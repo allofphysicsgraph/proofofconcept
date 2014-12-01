@@ -1,0 +1,2437 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Each connection is of the following form:
+    <connection>
+      <operator><infrule_name></infrule_name>          <infrule_tunid></infrule_tunid></operator>
+      <input>
+        <feed_tunid></feed_tunid>
+        <statement_punid></statement_punid><statement_tunid></statement_tunid>
+      </input>
+      <output>
+        <statement_punid></statement_punid><statement_tunid></statement_tunid>
+      </output>
+    </connection>
+-->
+<!-- connections between equations via operators, optionally with feeders as input -->
+<!-- must have at least either (one  input statement for each operator) or
+                               (one output statement for each operator)    -->
+<!-- for inputs, feeds are processed in order, then statements are processed -->
+<!-- for producing Latex files, connections are processed in the order given in this file. -->
+<!-- at least one "declareInitialEq" is required for every connection set in order to correctly compile Latex output -->
+
+<all_connections>
+  <connection_set name="frequency_relations" discipline="physics_basics">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>         <infrule_tunid>2303943</infrule_tunid></operator>
+      <output>
+        <statement_punid>5900595848</statement_punid><statement_tunid>3293094</statement_tunid>
+<!--    <statement_latex>k=\frac{\omega}{v}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>         <infrule_tunid>0304948</infrule_tunid></operator>
+      <output>
+        <statement_punid>0404050504</statement_punid><statement_tunid>3294004</statement_tunid>
+<!--    <statement_latex>\lambda = \frac{v}{f}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>         <infrule_tunid>8332941</infrule_tunid></operator>
+      <output>
+        <statement_punid>3131211131</statement_punid><statement_tunid>0921465</statement_tunid>
+<!--    <statement_latex>\omega=2 \pi f</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>         <infrule_tunid>8332941</infrule_tunid></operator>
+      <output>
+        <statement_punid>3131111133</statement_punid><statement_tunid>8482459</statement_tunid>
+<!--    <statement_latex>T=1/f     </statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>       <infrule_tunid>3832748</infrule_tunid></operator>
+      <input>
+        <statement_punid>3132131132</statement_punid><statement_tunid>8374556</statement_tunid>
+<!--    <statement_latex>\omega=\frac{2\pi}{T}</statement_latex> -->
+        <statement_punid>5900595848</statement_punid><statement_tunid>3293094</statement_tunid>
+<!--    <statement_latex>k=\frac{\omega}{v}</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>0934990943</statement_punid><statement_tunid>8394853</statement_tunid>
+<!--    <statement_latex>k = \frac{2 \pi}{v\ T}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>2939482</infrule_tunid></operator>
+      <input>
+        <statement_punid>0404050504</statement_punid><statement_tunid>3294004</statement_tunid>
+<!--    <statement_latex>\lambda = \frac{v}{f}</statement_latex> -->
+        <statement_punid>3131111133</statement_punid><statement_tunid>8482459</statement_tunid>
+<!--    <statement_latex>T=1/f     </statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>1293923844</statement_punid><statement_tunid>3993940</statement_tunid>
+<!--    <statement_latex>\lambda = v\ T</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid></infrule_tunid></operator>
+      <input>
+        <statement_punid>0934990943</statement_punid><statement_tunid>8394853</statement_tunid>
+<!--    <statement_latex>k = \frac{2 \pi}{v\ T}</statement_latex> -->
+        <statement_punid>1293923844</statement_punid><statement_tunid>3993940</statement_tunid>
+<!--    <statement_latex>\lambda = v\ T</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>3121513111</statement_punid><statement_tunid>2934848</statement_tunid>
+<!--    <statement_latex>k=\frac{2\pi}{\lambda}</statement_latex> -->
+      </output>
+    </connection>
+   <connection>
+<!-- for $T=1/f$, multiply both sides by $f$ to get $T\ f=1$ -->
+     <operator><infrule_name>multbothsidesby</infrule_name>             <infrule_tunid>6822583</infrule_tunid></operator>
+     <input>
+       <feed_tunid>5749291</feed_tunid>
+<!--     <feed_latex>f</feed_latex> -->
+       <statement_punid>3131111133</statement_punid><statement_tunid>8482459</statement_tunid>
+<!--    <statement_latex>T=1/f     </statement_latex> -->
+     </input>
+     <output>
+       <statement_punid>2131616531</statement_punid><statement_tunid>8341200</statement_tunid>
+<!--    <statement_latex>T\ f=1    </statement_latex> -->
+     </output>
+  </connection>   
+  <connection>
+    <operator><infrule_name>dividebothsidesby</infrule_name>           <infrule_tunid>9483715</infrule_tunid></operator>
+    <input>
+       <feed_tunid>8837284</feed_tunid>
+<!--     <feed_latex>T</feed_latex> -->
+       <statement_punid>2131616531</statement_punid><statement_tunid>8341200</statement_tunid>
+<!--    <statement_latex>T\ f=1    </statement_latex> -->
+    </input>
+    <output>
+       <statement_punid>2113211456</statement_punid><statement_tunid>9380032</statement_tunid>
+<!--    <statement_latex>f=1/T</statement_latex> -->
+    </output>
+  </connection>   
+  <connection>
+    <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>9483843</infrule_tunid></operator>
+    <input>
+       <statement_punid>2113211456</statement_punid><statement_tunid>9380032</statement_tunid>
+<!--    <statement_latex>f=1/T</statement_latex> -->
+       <statement_punid>3131211131</statement_punid><statement_tunid>0921465</statement_tunid>
+<!--    <statement_latex>\omega=2 \pi f</statement_latex> -->
+    </input>
+    <output>
+       <statement_punid>3132131132</statement_punid><statement_tunid>8374556</statement_tunid>
+<!--    <statement_latex>\omega=\frac{2\pi}{T}</statement_latex> -->
+    </output>
+  </connection>   
+  <connection>
+    <operator><infrule_name>declareFinalEq</infrule_name>            <infrule_tunid>8345721</infrule_tunid></operator>
+    <input>
+       <statement_punid>3121513111</statement_punid><statement_tunid>2934848</statement_tunid>
+<!--    <statement_latex>k=\frac{2\pi}{\lambda}</statement_latex> -->
+    </input>
+  </connection>   
+</connection_set>
+  <connection_set name="quadratic_equation_derivation" discipline="math">
+  <connection>
+    <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>8494551</infrule_tunid></operator>
+    <output>
+      <statement_punid>9285928292</statement_punid><statement_tunid>8882098</statement_tunid>
+<!--    <statement_latex>ax^2 + bx + c = 0</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>8494551</infrule_tunid></operator>
+    <output>
+      <statement_punid>8582954722</statement_punid><statement_tunid>0909127</statement_tunid>
+<!--    <statement_latex>x^2 + 2xh + h^2 = (x+h)^2</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>8492932</infrule_tunid></operator>
+    <input>
+      <feed_tunid>2424922</feed_tunid>
+<!--   <feed_latex>a</feed_latex> -->
+      <statement_punid>9285928292</statement_punid><statement_tunid>8882098</statement_tunid>
+<!--    <statement_latex>ax^2 + bx + c = 0</statement_latex> -->
+    </input>
+    <output>
+      <statement_punid>5958392859</statement_punid><statement_tunid>7777621</statement_tunid>
+<!--    <statement_latex>x^2 + (b/a)x+(c/a) =0</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>subtractXfromBothSides</infrule_name>          <infrule_tunid>5829110</infrule_tunid></operator>
+    <input>
+      <feed_tunid>6644853</feed_tunid>
+      <statement_punid>5958392859</statement_punid><statement_tunid>7777621</statement_tunid>
+<!--    <statement_latex>x^2 + (b/a)x+(c/a) =0</statement_latex> -->
+    </input>
+    <output>
+      <statement_punid>5938459282</statement_punid><statement_tunid>12121298</statement_tunid>
+<!--    <statement_latex>x^2 + (b/a)x = -c/a</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>addXtoBothSides</infrule_name>          <infrule_tunid>2500423</infrule_tunid></operator>
+    <input>
+       <feed_tunid>4307451</feed_tunid>
+<!-- <feed_latex>(b/(2a))^2</feed_latex>-->
+      <statement_punid>5938459282</statement_punid><statement_tunid>12121298</statement_tunid>
+<!--    <statement_latex>x^2 + (b/a)x = -c/a</statement_latex> -->
+    </input>
+    <output>
+      <statement_punid>5928292841</statement_punid><statement_tunid>0000112</statement_tunid>
+<!--    <statement_latex>x^2 + (b/a)x + (b/(2a))^2 = -c/a + (b/(2a))^2</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>subXforY</infrule_name>          <infrule_tunid>8321038</infrule_tunid></operator>
+    <input>
+      <feed_tunid>4858592</feed_tunid>
+<!-- <feed_latex>h</feed_latex> -->
+      <feed_tunid>0999900</feed_tunid>
+<!--     <feed_latex>b/(2a)</feed_latex> -->
+      <statement_punid>8582954722</statement_punid><statement_tunid>0909127</statement_tunid>
+<!--    <statement_latex>x^2 + 2xh + h^2 = (x+h)^2</statement_latex> -->
+    </input>
+    <output>
+        <statement_punid>5928285821</statement_punid><statement_tunid>0123901</statement_tunid>
+<!--    <statement_latex>x^2 + 2x(b/(2a)) + (b/(2a))^2 = (x+(b/(2a)))^2</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>7996484</infrule_tunid></operator>
+    <input>
+        <statement_punid>5928285821</statement_punid><statement_tunid>0123901</statement_tunid>
+<!--    <statement_latex>x^2 + 2x(b/(2a)) + (b/(2a))^2 = (x+(b/(2a)))^2</statement_latex> -->
+    </input>
+    <output>
+        <statement_punid>5959282914</statement_punid><statement_tunid>0173400</statement_tunid>
+<!--    <statement_latex>x^2 + x(b/a) + (b/(2a))^2 = (x+(b/(2a)))^2</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name>          <infrule_tunid>7777777</infrule_tunid></operator>
+    <input>
+      <statement_punid>5928292841</statement_punid><statement_tunid>0000112</statement_tunid>
+<!--    <statement_latex>x^2 + (b/a)x + (b/(2a))^2 = -c/a + (b/(2a))^2</statement_latex> -->
+      <statement_punid>5959282914</statement_punid><statement_tunid>0173400</statement_tunid>
+<!--    <statement_latex>x^2 + x(b/a) + (b/(2a))^2 = (x+(b/(2a)))^2</statement_latex> -->
+    </input>
+    <output>
+      <statement_punid>9385938295</statement_punid><statement_tunid>2985412</statement_tunid>
+<!--    <statement_latex>(x+(b/(2a)))^2 = -(c/a) + (b/(2a))^2</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>raiseBothSidesToPower</infrule_name>          <infrule_tunid>7487443</infrule_tunid></operator>
+    <input>
+       <feed_tunid>2367209</feed_tunid>
+<!--     <feed_latex>1/2</feed_latex> -->
+      <statement_punid>9385938295</statement_punid><statement_tunid>2985412</statement_tunid>
+<!--    <statement_latex>(x+(b/(2a)))^2 = -(c/a) + (b/(2a))^2</statement_latex> -->
+    </input>
+    <output>
+      <statement_punid>9582958294</statement_punid><statement_tunid>6608102</statement_tunid>
+<!--    <statement_latex>x+(b/(2a)) =  \sqrt{(b/(2a))^2 - (c/a)}</statement_latex> -->
+      <statement_punid>5982958249</statement_punid><statement_tunid>6608123</statement_tunid>
+<!--    <statement_latex>x+(b/(2a)) = -\sqrt{(b/(2a))^2 - (c/a)}</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>subtractXfromBothSides</infrule_name>          <infrule_tunid>2200910</infrule_tunid></operator>
+    <input>
+      <feed_tunid>2838490</feed_tunid>
+<!--     <feed_latex>b/(2a)</feed_latex> -->      
+      <statement_punid>9582958294</statement_punid><statement_tunid>6608102</statement_tunid>
+<!--    <statement_latex>x+(b/(2a)) =  \sqrt{(b/(2a))^2 - (c/a)}</statement_latex> -->
+    </input>
+    <output>
+      <statement_punid>9582958293</statement_punid><statement_tunid>4433112</statement_tunid>
+<!--    <statement_latex>x =  \sqrt{(b/(2a))^2 - (c/a)}-(b/(2a))</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>2211910</infrule_tunid></operator>
+    <input>
+      <statement_punid>9582958293</statement_punid><statement_tunid>4433112</statement_tunid>
+<!--    <statement_latex>x =  \sqrt{(b/(2a))^2 - (c/a)}-(b/(2a))</statement_latex> -->
+    </input>
+    <output>
+        <statement_punid>9999999969</statement_punid><statement_tunid>8761200</statement_tunid>
+<!--    <statement_latex>x=\frac{-b+\sqrt{b^2-4ac}}{2a}</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>subtractXfromBothSides</infrule_name>          <infrule_tunid>2200910</infrule_tunid></operator>
+    <input>
+        <feed_tunid>2449291</feed_tunid>
+<!-- <feed_latex>b/(2a)</feed_latex> -->
+        <statement_punid>5982958249</statement_punid><statement_tunid>6608123</statement_tunid>
+<!--    <statement_latex>x+(b/(2a)) = -\sqrt{(b/(2a))^2 - (c/a)}</statement_latex> -->
+    </input>
+    <output>
+        <statement_punid>5982958248</statement_punid><statement_tunid>2657355</statement_tunid>
+<!--    <statement_latex>x = -\sqrt{(b/(2a))^2 - (c/a)}-(b/(2a))</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>2211910</infrule_tunid></operator>
+    <input>
+        <statement_punid>5982958248</statement_punid><statement_tunid>2657355</statement_tunid>
+<!--    <statement_latex>x = -\sqrt{(b/(2a))^2 - (c/a)}-(b/(2a))</statement_latex> -->
+    </input>
+    <output>
+        <statement_punid>9999999968</statement_punid><statement_tunid>8811221</statement_tunid>
+<!--    <statement_latex>x=\frac{-b-\sqrt{b^2-4ac}}{2a}</statement_latex> -->
+    </output>
+  </connection>
+  <connection>
+    <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>8359402</infrule_tunid></operator>
+    <input>
+        <statement_punid>9999999969</statement_punid><statement_tunid>8761200</statement_tunid>
+<!--    <statement_latex>x=\frac{-b+\sqrt{b^2-4ac}}{2a}</statement_latex> -->
+    </input>
+  </connection>
+  <connection>
+    <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>8359402</infrule_tunid></operator>
+    <input>
+        <statement_punid>9999999968</statement_punid><statement_tunid>8811221</statement_tunid>
+<!--    <statement_latex>x=\frac{-b-\sqrt{b^2-4ac}}{2a}</statement_latex> -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="euler_equation_proof" discipline="math">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>7364656</infrule_tunid></operator>
+      <output>
+        <statement_punid>9492920340</statement_punid><statement_tunid>1029383</statement_tunid>
+<!--    <statement_latex>y = \cos(x)+i \sin(x)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>differentiateWRT</infrule_name>          <infrule_tunid>6463728</infrule_tunid></operator>
+      <input>
+       <feed_tunid>7636749</feed_tunid>
+<!-- <feed_latex>x</feed_latex> -->
+        <statement_punid>9492920340</statement_punid><statement_tunid>1029383</statement_tunid>
+<!--    <statement_latex>y = \cos(x)+i \sin(x)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9429829482</statement_punid><statement_tunid>0018383</statement_tunid>
+<!--    <statement_latex>\frac{dy}{dx} = -\sin(x) + i\cos(x)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>factorOutXfromRHS</infrule_name>          <infrule_tunid>4614728</infrule_tunid></operator>
+      <input>
+       <feed_tunid>7563791</feed_tunid>
+<!-- <feed_latex>i</feed_latex> -->
+       <statement_punid>9429829482</statement_punid><statement_tunid>0018383</statement_tunid>
+<!--    <statement_latex>\frac{dy}{dx} = -\sin(x) + i\cos(x)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9482984922</statement_punid><statement_tunid>2948271</statement_tunid>
+<!--    <statement_latex>\frac{dy}{dx} = (i\sin(x) + \cos(x))\ i</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>7466748</infrule_tunid></operator>
+      <input>
+        <statement_punid>9482984922</statement_punid><statement_tunid>2948271</statement_tunid>
+<!--    <statement_latex>\frac{dy}{dx} = (i\sin(x) + \cos(x))\ i</statement_latex> -->
+        <statement_punid>9492920340</statement_punid><statement_tunid>1029383</statement_tunid>
+<!--    <statement_latex>y = \cos(x)+i \sin(x)</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>9848294829</statement_punid><statement_tunid>9038289</statement_tunid>
+<!--    <statement_latex>\frac{dy}{dx} = y\ i</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>multbothsidesby</infrule_name>          <infrule_tunid>2741906</infrule_tunid></operator>
+      <input>
+      <feed_tunid>3954314</feed_tunid>
+<!-- <feed_latex>dx</feed_latex> -->
+        <statement_punid>9848294829</statement_punid><statement_tunid>9038289</statement_tunid>
+<!--    <statement_latex>\frac{dy}{dx} = y\ i</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9848292229</statement_punid><statement_tunid>1111289</statement_tunid>
+<!--    <statement_latex>dy = y\ i\ dx</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>6466378</infrule_tunid></operator>
+      <input>
+        <feed_tunid>9877781</feed_tunid>
+<!-- <feed_latex>y</feed_latex>  -->
+       <statement_punid>9848292229</statement_punid><statement_tunid>1111289</statement_tunid>
+<!--    <statement_latex>dy = y\ i\ dx</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9482113948</statement_punid><statement_tunid>8883737</statement_tunid>
+<!--    <statement_latex>\frac{dy}{y} = i\ dx</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>indefIntRHSOver</infrule_name>          <infrule_tunid>1848471</infrule_tunid></operator>
+      <input>
+       <feed_tunid>4264724</feed_tunid>
+<!--    <feed_latex>y</feed_latex> -->
+       <statement_punid>9482113948</statement_punid><statement_tunid>8883737</statement_tunid>
+<!--    <statement_latex>\frac{dy}{y} = i\ dx</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9482943948</statement_punid><statement_tunid>9984877</statement_tunid>
+<!--    <statement_latex>\log(y) = i\ dx</statement_latex> -->
+      </output>
+    </connection>
+
+    <connection>
+      <operator><infrule_name>indefIntRHSOver</infrule_name>          <infrule_tunid>6462728</infrule_tunid></operator>
+      <input>
+        <feed_tunid>6563727</feed_tunid>
+<!--     <feed_latex>x</feed_latex> -->
+       <statement_punid>9482943948</statement_punid><statement_tunid>9984877</statement_tunid>
+<!--    <statement_latex>\log(y) = i\ dx</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4928239482</statement_punid><statement_tunid>3747585</statement_tunid>
+<!--    <statement_latex>\log(y) = i\ x</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>swapLHSwithRHS</infrule_name>          <infrule_tunid>7563728</infrule_tunid></operator>
+      <input>
+       <statement_punid>4928239482</statement_punid><statement_tunid>3747585</statement_tunid>
+<!--    <statement_latex>\log(y) = i\ x</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4923339482</statement_punid><statement_tunid>3784785</statement_tunid>
+<!--    <statement_latex>i\ x = \log(y)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>makeEqPower</infrule_name>          <infrule_tunid>1029890</infrule_tunid></operator>
+      <input>
+       <feed_tunid>6656532</feed_tunid>
+<!-- <feed_latex>e</feed_latex> -->
+       <statement_punid>4923339482</statement_punid><statement_tunid>3784785</statement_tunid>
+<!--    <statement_latex>i\ x = \log(y)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9482923849</statement_punid><statement_tunid>9587572</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = y</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>7566272</infrule_tunid></operator>
+      <input>
+       <statement_punid>9482923849</statement_punid><statement_tunid>9587572</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = y</statement_latex> -->
+        <statement_punid>9492920340</statement_punid><statement_tunid>1029383</statement_tunid>
+<!--    <statement_latex>y = \cos(x)+i \sin(x)</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>4938429483</statement_punid><statement_tunid>8888888</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = \cos(x)+i \sin(x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>7561612</infrule_tunid></operator>
+      <input>
+        <statement_punid>4938429483</statement_punid><statement_tunid>8888888</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = \cos(x)+i \sin(x)</statement_latex>     -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="euler_equation_trig_sqrt" discipline="math">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>            <infrule_tunid>7663728</infrule_tunid></operator>
+      <output>
+        <statement_punid>4938429483</statement_punid><statement_tunid>8888888</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = \cos(x)+i \sin(x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subXforY</infrule_name><infrule_tunid>6839583</infrule_tunid></operator>
+      <input>
+        <feed_tunid>4582412</feed_tunid>
+<!--     <feed_latex>x</feed_latex> -->
+        <feed_tunid>4089571</feed_tunid>
+<!-- <feed_latex>2x</feed_latex> -->
+        <statement_punid>4938429483</statement_punid><statement_tunid>8888888</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = \cos(x)+i \sin(x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>4838429483</statement_punid><statement_tunid>9999999</statement_tunid>
+<!--    <statement_latex>\exp(2i\ x) = \cos(2x)+i \sin(2x)</statement_latex> -->
+      </output>
+    </connection>   
+    <connection>
+      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name><infrule_tunid>9582956</infrule_tunid></operator>
+      <input>
+        <statement_punid>4838429483</statement_punid><statement_tunid>9999999</statement_tunid>
+<!--    <statement_latex>\exp(2i\ x) = \cos(2x)+i \sin(2x)</statement_latex> -->
+        <statement_punid>4598294821</statement_punid><statement_tunid>4444444</statement_tunid>
+<!--    <statement_latex>\exp(2i\ x) = (\cos(x))^2+2i\cos(x)\sin(x)-(\sin(x))^2</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>9483928192</statement_punid><statement_tunid>2222222</statement_tunid>
+<!--    <statement_latex>\cos(2x)+i\sin(2x) = (\cos(x))^2+2i\cos(x)\sin(x)-(\sin(x))^2</statement_latex> -->
+      </output>
+    </connection>  
+    <connection>
+      <operator><infrule_name>multEqXbyEqY</infrule_name><infrule_tunid>8492847</infrule_tunid></operator>
+      <input>
+        <statement_punid>4938429483</statement_punid><statement_tunid>8888888</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = \cos(x)+i \sin(x)</statement_latex>     -->
+        <statement_punid>4938429483</statement_punid><statement_tunid>8888888</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = \cos(x)+i \sin(x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>4638429483</statement_punid><statement_tunid>3333333</statement_tunid>
+<!--    <statement_latex>\exp(2i\ x) = (\cos(x)+i \sin(x))(\cos(x)+i \sin(x))</statement_latex> -->
+      </output>
+    </connection> 
+    <connection>
+      <operator><infrule_name>expandRHS</infrule_name><infrule_tunid>5832058</infrule_tunid></operator>
+      <input>
+        <statement_punid>4638429483</statement_punid><statement_tunid>3333333</statement_tunid>
+<!--    <statement_latex>\exp(2i\ x) = (\cos(x)+i \sin(x))(\cos(x)+i \sin(x))</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>4598294821</statement_punid><statement_tunid>4444444</statement_tunid>
+<!--    <statement_latex>\exp(2i\ x) = (\cos(x))^2+2i\cos(x)\sin(x)-(\sin(x))^2</statement_latex> -->
+      </output>
+    </connection> 
+    <connection>
+      <operator><infrule_name>selectRealParts</infrule_name><infrule_tunid>8374590</infrule_tunid></operator>
+      <input>
+        <statement_punid>9483928192</statement_punid><statement_tunid>2222222</statement_tunid>
+<!--    <statement_latex>\cos(2x)+i\sin(2x) = (\cos(x))^2+2i\cos(x)\sin(x)-(\sin(x))^2</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>9482928242</statement_punid><statement_tunid>5828294</statement_tunid>
+<!--    <statement_latex>\cos(2x)=(\cos(x))^2 - (\sin(x))^2</statement_latex> -->
+      </output>
+    </connection> 
+    <connection>
+      <operator><infrule_name>addXtoBothSides</infrule_name><infrule_tunid>8374625</infrule_tunid></operator>
+      <input>
+       <feed_tunid>7894942</feed_tunid>
+<!--     <feed_latex>(\sin(x))^2</feed_latex> -->
+        <statement_punid>9482928242</statement_punid><statement_tunid>5828294</statement_tunid>
+<!--    <statement_latex>\cos(2x)=(\cos(x))^2 - (\sin(x))^2</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>9482928243</statement_punid><statement_tunid>4890284</statement_tunid>
+<!--    <statement_latex>\cos(2x)+(\sin(x))^2=(\cos(x))^2</statement_latex> --> 
+      </output>
+    </connection> 
+    <connection>
+      <operator><infrule_name>declareIdentity</infrule_name>          <infrule_tunid>3040493</infrule_tunid></operator>
+      <output>
+        <statement_punid>5832984291</statement_punid><statement_tunid>0938572</statement_tunid>
+<!--    <statement_latex>(\sin(x))^2 + (\cos(x))^2=1</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subtractXfromBothSides</infrule_name><infrule_tunid>0983243</infrule_tunid></operator>
+      <input>
+        <feed_tunid>1111111</feed_tunid>
+<!--     <feed_latex>(\sin(x))^2</feed_latex> -->
+        <statement_punid>5832984291</statement_punid><statement_tunid>0938572</statement_tunid>
+<!--    <statement_latex>(\sin(x))^2 + (\cos(x))^2=1</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>3285732911</statement_punid><statement_tunid>0912367</statement_tunid>
+<!--    <statement_latex>(\cos(x))^2 = 1-(\sin(x))^2</statement_latex> -->
+      </output>
+    </connection> 
+    <connection>
+      <operator><infrule_name>swapLHSwithRHS</infrule_name><infrule_tunid>3984721</infrule_tunid></operator>
+      <input>
+        <statement_punid>9482928243</statement_punid><statement_tunid>4890284</statement_tunid>
+<!--    <statement_latex>\cos(2x)+(\sin(x))^2=(\cos(x))^2</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>9482438243</statement_punid><statement_tunid>0293655</statement_tunid>
+<!--    <statement_latex>(\cos(x))^2=\cos(2x)+(\sin(x))^2</statement_latex> -->
+      </output>
+    </connection> 
+    <connection>
+      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name><infrule_tunid>9483240</infrule_tunid></operator>
+      <input>
+        <statement_punid>3285732911</statement_punid><statement_tunid>0912367</statement_tunid>
+<!--    <statement_latex>(\cos(x))^2 = 1-(\sin(x))^2</statement_latex> -->
+        <statement_punid>9482438243</statement_punid><statement_tunid>0293655</statement_tunid>
+<!--    <statement_latex>(\cos(x))^2=\cos(2x)+(\sin(x))^2</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4827492911</statement_punid><statement_tunid>0009481</statement_tunid>
+<!--    <statement_latex>\cos(2x)+(\sin(x))^2 = 1-(\sin(x))^2</statement_latex> -->
+      </output>
+    </connection> 
+    <connection>
+      <operator><infrule_name>subtractXfromBothSides</infrule_name>          <infrule_tunid>7563628</infrule_tunid></operator>
+      <input>
+      <feed_tunid>6466214</feed_tunid>
+<!-- <feed_latex>(\sin(x))^2</feed_latex> -->
+       <statement_punid>4827492911</statement_punid><statement_tunid>0009481</statement_tunid>
+<!--    <statement_latex>\cos(2x)+(\sin(x))^2 = 1-(\sin(x))^2</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1248277773</statement_punid><statement_tunid>7472641</statement_tunid>
+<!--    <statement_latex>\cos(2x) = 1-2(\sin(x))^2</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>addXtoBothSides</infrule_name>          <infrule_tunid>7572728</infrule_tunid></operator>
+      <input>
+         <feed_tunid>7471778</feed_tunid>
+<!--     <feed_latex>2(\sin(x))^2</feed_latex> -->
+       <statement_punid>1248277773</statement_punid><statement_tunid>7472641</statement_tunid>
+<!--    <statement_latex>\cos(2x) = 1-2(\sin(x))^2</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>7572664728</statement_punid><statement_tunid>1029911</statement_tunid>
+<!--    <statement_latex>\cos(2x)+2(\sin(x))^2 = 1</statement_latex> -->
+      </output>
+    </connection> 
+    <connection>
+      <operator><infrule_name>subtractXfromBothSides</infrule_name>          <infrule_tunid>7566277</infrule_tunid></operator>
+      <input>
+          <feed_tunid>8842811</feed_tunid>
+<!--    <feed_latex>\cos(2x)</feed_latex> -->
+       <statement_punid>7572664728</statement_punid><statement_tunid>1029911</statement_tunid>
+<!--    <statement_latex>\cos(2x)+2(\sin(x))^2 = 1</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9889984281</statement_punid><statement_tunid>7472666</statement_tunid>
+<!--    <statement_latex>2(\sin(x))^2 = 1-\cos(2x)</statement_latex> -->
+      </output>
+    </connection> 
+    <connection>
+      <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>3841414</infrule_tunid></operator>
+      <input>
+             <feed_tunid>3838111</feed_tunid>
+<!--     <feed_latex>2</feed_latex> -->
+       <statement_punid>9889984281</statement_punid><statement_tunid>7472666</statement_tunid>
+<!--    <statement_latex>2(\sin(x))^2 = 1-\cos(2x)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9988949211</statement_punid><statement_tunid>1231131</statement_tunid>
+<!--    <statement_latex>(\sin(x))^2 = \frac{1-\cos(2x)}{2}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>1383414</infrule_tunid></operator>
+      <input>
+       <statement_punid>9988949211</statement_punid><statement_tunid>1231131</statement_tunid>
+<!--    <statement_latex>(\sin(x))^2 = \frac{1-\cos(2x)}{2}</statement_latex> -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="example_of_Godel_problem"  discipline="math">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>            <infrule_tunid>7566367</infrule_tunid></operator>
+      <output>
+        <statement_punid>9829420421</statement_punid><statement_tunid>7572712</statement_tunid>
+<!--    <statement_latex>b = a</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>            <infrule_tunid>4647381</infrule_tunid></operator>
+      <output>
+        <statement_punid>2948293829</statement_punid><statement_tunid>4738297</statement_tunid>
+<!--    <statement_latex>a = b</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name><infrule_tunid>8673948</infrule_tunid></operator>
+      <input>
+        <statement_punid>9829420421</statement_punid><statement_tunid>7572712</statement_tunid>
+<!--    <statement_latex>b = a</statement_latex> -->
+        <statement_punid>2948293829</statement_punid><statement_tunid>4738297</statement_tunid>
+<!--    <statement_latex>a = b</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>4828238421</statement_punid><statement_tunid>2845892</statement_tunid>
+<!--    <statement_latex>a = c</statement_latex> -->
+        <statement_punid>9482948292</statement_punid><statement_tunid>4627482</statement_tunid>
+<!--    <statement_latex>b = c</statement_latex> -->
+      </output>
+    </connection> 
+    <connection>
+      <operator><infrule_name>swapLHSwithRHS</infrule_name><infrule_tunid>8674920</infrule_tunid></operator>
+      <input>
+        <statement_punid>2948293829</statement_punid><statement_tunid>4738297</statement_tunid>
+<!--    <statement_latex>a = b</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>9829420421</statement_punid><statement_tunid>7572712</statement_tunid>
+<!--    <statement_latex>b = a</statement_latex> -->
+      </output>
+    </connection> 
+  </connection_set>
+  <connection_set name="particle_in_a_1D_box" discipline="quantum">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>8576627</infrule_tunid></operator>
+      <output>
+       <statement_punid>5727578862</statement_punid><statement_tunid>7572748</statement_tunid>
+<!--    <statement_latex>\frac{d^2}{dx^2} \psi(x) = -k^2 \psi(x)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareGuessSolution</infrule_name>          <infrule_tunid>1384011</infrule_tunid></operator>
+      <input>
+       <statement_punid>5727578862</statement_punid><statement_tunid>7572748</statement_tunid>
+<!--    <statement_latex>\frac{d^2}{dx^2} \psi = -k^2 \psi</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>8582885111</statement_punid><statement_tunid>7572118</statement_tunid>
+<!--    <statement_latex>\psi(x) = a \sin(kx) + b \cos(kx)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>boundaryCondition</infrule_name>          <infrule_tunid>8572771</infrule_tunid></operator>
+      <input>
+       <statement_punid>5727578862</statement_punid><statement_tunid>7572748</statement_tunid>
+<!--    <statement_latex>\frac{d^2}{dx^2} \psi = -k^2 \psi</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9585727710</statement_punid><statement_tunid>8577781</statement_tunid>
+<!--    <statement_latex>\psi(x)=0\when{x=0}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>boundaryCondition</infrule_name>          <infrule_tunid>8572778</infrule_tunid></operator>
+      <input>
+       <statement_punid>5727578862</statement_punid><statement_tunid>7572748</statement_tunid>
+<!--    <statement_latex>\frac{d^2}{dx^2} \psi = -k^2 \psi</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9495857278</statement_punid><statement_tunid>8585727</statement_tunid>
+<!--    <statement_latex>\psi(x)=0\when{x=W}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name>          <infrule_tunid>8571277</infrule_tunid></operator>
+      <input>
+       <statement_punid>9585727710</statement_punid><statement_tunid>8577781</statement_tunid>
+<!--    <statement_latex>\psi(x)=0\when{x=0}</statement_latex> -->
+       <statement_punid>8582885111</statement_punid><statement_tunid>7572118</statement_tunid>
+<!--    <statement_latex>\psi(x) = a \sin(kx) + b \cos(kx)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>8577275751</statement_punid><statement_tunid>7547581</statement_tunid>
+<!--    <statement_latex>0=a \sin(0) + b\cos(0)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>8576571</infrule_tunid></operator>
+      <input>
+       <statement_punid>8577275751</statement_punid><statement_tunid>7547581</statement_tunid>
+<!--    <statement_latex>0=a \sin(0) + b\cos(0)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1293913110</statement_punid><statement_tunid>7572859</statement_tunid>
+<!--    <statement_latex>0=b</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>8572265</infrule_tunid></operator>
+      <input>
+       <statement_punid>1293913110</statement_punid><statement_tunid>7572859</statement_tunid>
+<!--    <statement_latex>0=b</statement_latex> -->
+       <statement_punid>8582885111</statement_punid><statement_tunid>7572118</statement_tunid>
+<!--    <statement_latex>\psi(x) = a \sin(kx) + b \cos(kx)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9059289981</statement_punid><statement_tunid>7562671</statement_tunid>
+<!--    <statement_latex>\psi(x)=a \sin(k x)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name>          <infrule_tunid>9686782</infrule_tunid></operator>
+      <input>
+       <statement_punid>9059289981</statement_punid><statement_tunid>7562671</statement_tunid>
+<!--    <statement_latex>\psi(x)=a \sin(k x)</statement_latex> -->
+       <statement_punid>9495857278</statement_punid><statement_tunid>8585727</statement_tunid>
+<!--    <statement_latex>\psi(x)=0\when{x=W}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1020010291</statement_punid><statement_tunid>8577672</statement_tunid>
+<!--    <statement_latex>0=a \sin(k W)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareIdentity</infrule_name>          <infrule_tunid>8575717</infrule_tunid></operator>
+      <output>
+       <statement_punid>1857710291</statement_punid><statement_tunid>8577711</statement_tunid>
+<!--    <statement_latex>0=a \sin(n \pi) \when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>EqXisTrueUnderconditionEqY</infrule_name>          <infrule_tunid>8575627</infrule_tunid></operator>
+      <input>
+       <statement_punid>1020010291</statement_punid><statement_tunid>8577672</statement_tunid>
+<!--    <statement_latex>0=a \sin(k W)</statement_latex> -->
+       <statement_punid>1857710291</statement_punid><statement_tunid>8577711</statement_tunid>
+<!--    <statement_latex>0=a \sin(n \pi) \when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1010923823</statement_punid><statement_tunid>0098476</statement_tunid>
+<!--    <statement_latex>k W = n \pi \when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>9114413</infrule_tunid></operator>
+      <input>
+         <feed_tunid>1334112</feed_tunid>
+<!--     <feed_latex>W</feed_latex> -->
+       <statement_punid>1010923823</statement_punid><statement_tunid>0098476</statement_tunid>
+<!--    <statement_latex>k W = n \pi \when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1858772113</statement_punid><statement_tunid>9495882</statement_tunid>
+<!--    <statement_latex>k = \frac{n \pi}{W} \when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>8575761</infrule_tunid></operator>
+      <input>
+       <statement_punid>1858772113</statement_punid><statement_tunid>9495882</statement_tunid>
+<!--    <statement_latex>k = \frac{n \pi}{W} \when{n \in {\rm Integer}}</statement_latex> -->
+       <statement_punid>9059289981</statement_punid><statement_tunid>7562671</statement_tunid>
+<!--    <statement_latex>\psi(x)=a \sin(k x)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>2944838499</statement_punid><statement_tunid>3452131</statement_tunid>
+<!--    <statement_latex>\psi(x)=a \sin(\frac{n \pi}{W} x) \when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>normalizationCondition</infrule_name>          <infrule_tunid>4434559</infrule_tunid></operator>
+      <output>
+       <statement_punid>1934748140</statement_punid><statement_tunid>7575626</statement_tunid>
+<!--    <statement_latex>\int |\psi(x)|^2\ dx = 1</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>conjugateFunctionX</infrule_name>          <infrule_tunid>5751725</infrule_tunid></operator>
+      <input>
+        <feed_tunid>9587738</feed_tunid>
+<!--     <feed_latex>\psi</feed_latex> -->
+       <statement_punid>2944838499</statement_punid><statement_tunid>3452131</statement_tunid>
+<!--    <statement_latex>\psi(x)=a \sin(\frac{n \pi}{W} x) \when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>8849289982</statement_punid><statement_tunid>3452132</statement_tunid>
+<!--    <statement_latex>\psi(x)^*=a \sin(\frac{n \pi}{W} x) \when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>swapLHSwithRHS</infrule_name>          <infrule_tunid>4757567</infrule_tunid></operator>
+      <input>
+       <statement_punid>1934748140</statement_punid><statement_tunid>7575626</statement_tunid>
+<!--    <statement_latex>\int |\psi(x)|^2\ dx = 1</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>8572657110</statement_punid><statement_tunid>5577567</statement_tunid>
+<!--    <statement_latex>1= \int |\psi(x)|^2\ dx</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>expandMagnitudeToConjugate</infrule_name>          <infrule_tunid>7455643</infrule_tunid></operator>
+      <input>
+      <feed_tunid>5656372</feed_tunid>
+<!-- <feed_latex>\psi(x)</feed_latex> -->
+       <statement_punid>8572657110</statement_punid><statement_tunid>5577567</statement_tunid>
+<!--    <statement_latex>1= \int |\psi(x)|^2\ dx</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4857472413</statement_punid><statement_tunid>0595847</statement_tunid>
+<!--    <statement_latex>1= \int \psi(x)\psi(x)^*\ dx</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>4455453</infrule_tunid></operator>
+      <input>
+       <statement_punid>2944838499</statement_punid><statement_tunid>3452131</statement_tunid>
+<!--    <statement_latex>\psi(x)=a \sin(\frac{n \pi}{W} x) \when{n \in {\rm Integer}}</statement_latex> -->
+       <statement_punid>4857472413</statement_punid><statement_tunid>0595847</statement_tunid>
+<!--    <statement_latex>1= \int \psi(x)\psi(x)^*\ dx</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>0203024440</statement_punid><statement_tunid>0495950</statement_tunid>
+<!--    <statement_latex>1= \int_0^W a \sin(\frac{n \pi}{W} x) \psi(x)^*\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>4948339</infrule_tunid></operator>
+      <input>
+       <statement_punid>8849289982</statement_punid><statement_tunid>3452132</statement_tunid>
+<!--    <statement_latex>\psi(x)^*=a \sin(\frac{n \pi}{W} x) \when{n \in {\rm Integer}}</statement_latex> -->
+       <statement_punid>0203024440</statement_punid><statement_tunid>0495950</statement_tunid>
+<!--    <statement_latex>1= \int_0^W a \sin(\frac{n \pi}{W} x) \psi(x)^*\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>8889444440</statement_punid><statement_tunid>8478550</statement_tunid>
+<!--    <statement_latex>1= \int_0^W a^2 \left(\sin\left(\frac{n \pi}{W} x\right)\right)^2\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareIdentity</infrule_name>          <infrule_tunid>8485725</infrule_tunid></operator>
+      <output>
+       <statement_punid>9988949211</statement_punid><statement_tunid>1231131</statement_tunid>
+<!--    <statement_latex>(\sin(x))^2 = \frac{1-\cos(2x)}{2}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subXforY</infrule_name>          <infrule_tunid>1003049</infrule_tunid></operator>
+      <input>
+      <feed_tunid>4934845</feed_tunid>
+<!--     <feed_latex>x</feed_latex> -->      
+         <feed_tunid>9484724</feed_tunid>
+<!--     <feed_latex>\frac{n \pi}{W}x</feed_latex> -->
+       <statement_punid>9988949211</statement_punid><statement_tunid>1231131</statement_tunid>
+<!--    <statement_latex>(\sin(x))^2 = \frac{1-\cos(2x)}{2}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>7575738420</statement_punid><statement_tunid>0100404</statement_tunid>
+<!--    <statement_latex>\left(\sin\left(\frac{n \pi}{W}x\right)\right)^2 = \frac{1-\cos\left(2\frac{n \pi}{W}x\right)}{2}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>8576741</infrule_tunid></operator>
+      <input>
+       <statement_punid>7575738420</statement_punid><statement_tunid>0100404</statement_tunid>
+<!--    <statement_latex>\left(\sin\left(\frac{n \pi}{W}x\right)\right)^2 = \frac{1-\cos\left(2\frac{n \pi}{W}x\right)}{2}</statement_latex> -->
+       <statement_punid>8889444440</statement_punid><statement_tunid>8478550</statement_tunid>
+<!--    <statement_latex>1= \int_0^W a^2 \left(\sin\left(\frac{n \pi}{W} x\right)\right)^2\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>8576785890</statement_punid><statement_tunid>0094858</statement_tunid>
+<!--    <statement_latex>1= \int_0^W a^2 \frac{1-\cos\left(2\frac{n \pi}{W}x\right)}{2}\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>0059403</infrule_tunid></operator>
+      <input>
+      <feed_tunid>0040490</feed_tunid>
+<!--     <feed_latex>a^2</feed_latex> -->
+       <statement_punid>8576785890</statement_punid><statement_tunid>0094858</statement_tunid>
+<!--    <statement_latex>1= \int_0^W a^2 \frac{1-\cos\left(2\frac{n \pi}{W}x\right)}{2}\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9858028950</statement_punid><statement_tunid>0495054</statement_tunid>
+<!--    <statement_latex>\frac{1}{a^2}= \int_0^W \frac{1-\cos\left(2\frac{n \pi}{W}x\right)}{2}\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>expandIntegrand</infrule_name>          <infrule_tunid>3949284</infrule_tunid></operator>
+      <input>
+       <statement_punid>9858028950</statement_punid><statement_tunid>0495054</statement_tunid>
+<!--    <statement_latex>\frac{1}{a^2}= \int_0^W \frac{1-\cos\left(2\frac{n \pi}{W}x\right)}{2}\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1202310110</statement_punid><statement_tunid>0203020</statement_tunid>
+<!--    <statement_latex>\frac{1}{a^2}= \int_0^W \frac{1}{2}\ dx - \frac{1}{2} \int_0^W \cos\left(2\frac{n \pi}{W}x\right)\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareIdentity</infrule_name>          <infrule_tunid>0030488</infrule_tunid></operator>
+      <output>
+       <statement_punid>0948572140</statement_punid><statement_tunid>3992939</statement_tunid>
+<!--    <statement_latex>\int \cos(a x)\ dx = \frac{1}{a}\sin(a x)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subXforY</infrule_name>          <infrule_tunid>4485722</infrule_tunid></operator>
+      <input>
+        <feed_tunid>4831494</feed_tunid>
+<!--     <feed_latex>a</feed_latex> -->
+        <feed_tunid>9485858</feed_tunid>
+<!--     <feed_latex>\frac{2n\pi}{W}</feed_latex> -->
+       <statement_punid>0948572140</statement_punid><statement_tunid>3992939</statement_tunid>
+<!--    <statement_latex>\int \cos(a x)\ dx = \frac{1}{a}\sin(a x)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>7564894985</statement_punid><statement_tunid>4948377</statement_tunid>
+<!--    <statement_latex>\int \cos\left(\frac{2n\pi}{W} x\right)\ dx = \frac{W}{2n\pi}\sin\left(\frac{2n\pi}{W} x\right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareIdentity</infrule_name>          <infrule_tunid>0030481</infrule_tunid></operator>
+      <output>
+       <statement_punid>5857434758</statement_punid><statement_tunid>0021030</statement_tunid>
+<!--    <statement_latex>\int a\ dx = a x</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subXforY</infrule_name>          <infrule_tunid>1911919</infrule_tunid></operator>
+      <input>
+        <feed_tunid>4948585</feed_tunid>
+<!--     <feed_latex>a</feed_latex> -->
+        <feed_tunid>2929944</feed_tunid>
+<!--     <feed_latex>1/2</feed_latex> -->
+       <statement_punid>5857434758</statement_punid><statement_tunid>0021030</statement_tunid>
+<!--    <statement_latex>\int a\ dx = a x</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>8575746378</statement_punid><statement_tunid>9339495</statement_tunid>
+<!--    <statement_latex>\int \frac{1}{2}\ dx = \frac{1}{2} x</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>EvaluateDefiniteIntegral</infrule_name>          <infrule_tunid>3329831</infrule_tunid></operator>
+      <input>
+       <statement_punid>1202310110</statement_punid><statement_tunid>0203020</statement_tunid>
+<!--    <statement_latex>\frac{1}{a^2}= \int_0^W \frac{1}{2}\ dx - \frac{1}{2} \int_0^W \cos\left(2\frac{n \pi}{W}x\right)\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+       <statement_punid>8575746378</statement_punid><statement_tunid>9339495</statement_tunid>
+<!--    <statement_latex>\int \frac{1}{2}\ dx = \frac{1}{2} x</statement_latex> -->      </input>
+      <output>
+       <statement_punid>1202312210</statement_punid><statement_tunid>8584733</statement_tunid>
+<!--    <statement_latex>\frac{1}{a^2}= \frac{1}{2}W - \frac{1}{2} \int_0^W \cos\left(2\frac{n \pi}{W}x\right)\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>EvaluateDefiniteIntegral</infrule_name>          <infrule_tunid>8485747</infrule_tunid></operator>
+      <input>
+       <statement_punid>7564894985</statement_punid><statement_tunid>4948377</statement_tunid>
+<!--    <statement_latex>\int \cos\left(\frac{2n\pi}{W} x\right)\ dx = \frac{W}{2n\pi}\sin\left(\frac{2n\pi}{W} x\right)</statement_latex> -->
+       <statement_punid>1202312210</statement_punid><statement_tunid>8584733</statement_tunid>
+<!--    <statement_latex>\frac{1}{a^2}= \frac{1}{2}W - \frac{1}{2} \int_0^W \cos\left(2\frac{n \pi}{W}x\right)\ dx\when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>0439492440</statement_punid><statement_tunid>0405049</statement_tunid>
+<!--    <statement_latex>\frac{1}{a^2}= \frac{1}{2}W - \frac{1}{2}\left. \frac{W}{2n\pi}\sin\left(\frac{2n\pi}{W} x\right)\right|_0^W    when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>8373472</infrule_tunid></operator>
+      <input>
+       <statement_punid>0439492440</statement_punid><statement_tunid>0405049</statement_tunid>
+<!--    <statement_latex>\frac{1}{a^2}= \frac{1}{2}W - \frac{1}{2}\left. \frac{W}{2n\pi}\sin\left(\frac{2n\pi}{W} x\right)\right|_0^W    when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4857475848</statement_punid><statement_tunid>9493949</statement_tunid>
+<!--    <statement_latex>\frac{1}{a^2}= \frac{W}{2}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>multbothsidesby</infrule_name>          <infrule_tunid>5859994</infrule_tunid></operator>
+      <input>
+        <feed_tunid>9485857</feed_tunid>
+<!--     <feed_latex>a^2\frac{2}{W}</feed_latex> -->
+       <statement_punid>4857475848</statement_punid><statement_tunid>9493949</statement_tunid>
+<!--    <statement_latex>\frac{1}{a^2}= \frac{W}{2}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>8485867742</statement_punid><statement_tunid>1029384</statement_tunid>
+<!--    <statement_latex>\frac{2}{W}= a^2</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>raiseBothSidesToPower</infrule_name>          <infrule_tunid>1293948</infrule_tunid></operator>
+      <input>
+        <feed_tunid>9594995</feed_tunid>
+<!--    <feed_latex>1/2</feed_latex> -->
+       <statement_punid>8485867742</statement_punid><statement_tunid>1029384</statement_tunid>
+<!--    <statement_latex>\frac{2}{W}= a^2</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9485747245</statement_punid><statement_tunid>9394857</statement_tunid>
+<!--    <statement_latex>\sqrt{\frac{2}{W}}= a</statement_latex> -->
+       <statement_punid>9485747246</statement_punid><statement_tunid>9394858</statement_tunid>
+<!--    <statement_latex>-\sqrt{\frac{2}{W}}= a</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>1384935</infrule_tunid></operator>
+      <input>
+       <statement_punid>9485747245</statement_punid><statement_tunid>9394857</statement_tunid>
+<!--    <statement_latex>\sqrt{\frac{2}{W}}= a</statement_latex> -->
+       <statement_punid>2944838499</statement_punid><statement_tunid>3452131</statement_tunid>
+<!--    <statement_latex>\psi(x)=a \sin\left(\frac{n \pi}{W} x\right) \when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9393939991</statement_punid><statement_tunid>8474766</statement_tunid>
+<!--    <statement_latex>\psi(x)=-\sqrt{\frac{2}{W}} \sin\left(\frac{n \pi}{W} x\right) \when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>3847567</infrule_tunid></operator>
+      <input>
+       <statement_punid>9485747246</statement_punid><statement_tunid>9394858</statement_tunid>
+<!--    <statement_latex>-\sqrt{\frac{2}{W}}= a</statement_latex> -->
+       <statement_punid>2944838499</statement_punid><statement_tunid>3452131</statement_tunid>
+<!--    <statement_latex>\psi(x)=a \sin\left(\frac{n \pi}{W} x\right) \when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9393939992</statement_punid><statement_tunid>8474765</statement_tunid>
+<!--    <statement_latex>\psi(x)=\sqrt{\frac{2}{W}} \sin\left(\frac{n \pi}{W} x\right) \when{n \in {\rm Integer}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>7474753</infrule_tunid></operator>
+      <input>
+       <statement_punid>9393939992</statement_punid><statement_tunid>8474765</statement_tunid>
+<!--    <statement_latex>\psi(x)=\sqrt{\frac{2}{W}} \sin\left(\frac{n \pi}{W} x\right) \when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>7474753</infrule_tunid></operator>
+      <input>
+       <statement_punid>9393939991</statement_punid><statement_tunid>8474766</statement_tunid>
+<!--    <statement_latex>\psi(x)=-\sqrt{\frac{2}{W}} \sin\left(\frac{n \pi}{W} x\right) \when{n \in {\rm Integer}}</statement_latex> -->
+      </input>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>4757743</infrule_tunid></operator>
+      <input>
+        <statement_punid>8582885111</statement_punid><statement_tunid>7572118</statement_tunid>
+<!--    <statement_latex>\psi(x) = a \sin(kx) + b \cos(kx)</statement_latex> -->
+        <statement_punid>5727578862</statement_punid><statement_tunid>7572748</statement_tunid>
+<!--    <statement_latex>\frac{d^2}{dx^2} \psi = -k^2 \psi</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>8575748999</statement_punid><statement_tunid>2838288</statement_tunid>
+<!--    <statement_latex>\frac{d^2}{dx^2} \left(a \sin(kx) + b \cos(kx)\right) = -k^2 \left(a \sin(kx) + b \cos(kx)\right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>2029394</infrule_tunid></operator>
+      <input>
+        <statement_punid>8575748999</statement_punid><statement_tunid>2838288</statement_tunid>
+<!--    <statement_latex>\frac{d^2}{dx^2} \left(a \sin(kx) + b \cos(kx)\right) = -k^2 \left(a \sin(kx) + b \cos(kx)\right)</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>8485757728</statement_punid><statement_tunid>8474762</statement_tunid>
+<!--    <statement_latex>a \frac{d^2}{dx^2}\sin(kx) + b \frac{d^2}{dx^2}\cos(kx) = -a k^2 \sin(kx) + -b k^2 \cos(kx)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>9394948</infrule_tunid></operator>
+      <input>
+        <statement_punid>8485757728</statement_punid><statement_tunid>8474762</statement_tunid>
+<!--    <statement_latex>a \frac{d^2}{dx^2}\sin(kx) + b \frac{d^2}{dx^2}\cos(kx) = -a k^2 \sin(kx) + -b k^2 \cos(kx)</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>8484544728</statement_punid><statement_tunid>1214762</statement_tunid>
+<!--    <statement_latex>-a k^2\sin(kx) + -b k^2\cos(kx) = -a k^2 \sin(kx) + -b k^2 \cos(kx)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>claimLHSequalsRHS</infrule_name>          <infrule_tunid>7374289</infrule_tunid></operator>
+      <input>
+        <statement_punid>8484544728</statement_punid><statement_tunid>1214762</statement_tunid>
+<!--    <statement_latex>-a k^2\sin(kx) + -b k^2\cos(kx) = -a k^2 \sin(kx) + -b k^2 \cos(kx)</statement_latex> -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="maxwell_to_electric_field_wave_equation" discipline="electromagnetism">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>2932848</infrule_tunid></operator>
+      <output>
+       <statement_punid>1314864131</statement_punid><statement_tunid>1199299</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{H} = \epsilon_0 \frac{\partial \vec{E}}{\partial t}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>2932848</infrule_tunid></operator>
+      <output>
+       <statement_punid>9991999979</statement_punid><statement_tunid>4757562</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{E} = -\mu_0\frac{\partial \vec{H}}{\partial t}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>partialDiffWRT</infrule_name>          <infrule_tunid>1010301</infrule_tunid></operator>
+      <input>
+         <feed_tunid>5626421</feed_tunid>
+<!--     <feed_latex>t</feed_latex> -->
+       <statement_punid>1314864131</statement_punid><statement_tunid>1199299</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{H} = \epsilon_0 \frac{\partial \vec{E}}{\partial t}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1314464131</statement_punid><statement_tunid>4642245</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \frac{\partial \vec{H}}{\partial t} = \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>takeCurlofBothSides</infrule_name>          <infrule_tunid>4224853</infrule_tunid></operator>
+      <input>
+       <statement_punid>9991999979</statement_punid><statement_tunid>4757562</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{E} = -\mu_0\frac{\partial \vec{H}}{\partial t}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9291999979</statement_punid><statement_tunid>2392932</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} = -\mu_0\vec{\nabla} \times \frac{\partial \vec{H}}{\partial t}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>1939442</infrule_tunid></operator>
+      <input>
+       <statement_punid>1314464131</statement_punid><statement_tunid>4642245</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \frac{\partial \vec{H}}{\partial t} = \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</statement_latex> -->
+       <statement_punid>9291999979</statement_punid><statement_tunid>2392932</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} = -\mu_0\vec{\nabla} \times \frac{\partial \vec{H}}{\partial t}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3947269979</statement_punid><statement_tunid>2962831</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} = -\mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>2932848</infrule_tunid></operator>
+      <output>
+       <statement_punid>9999999981</statement_punid><statement_tunid>4857731</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \cdot \vec{E} = \rho/\epsilon_0</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareAssumption</infrule_name>          <infrule_tunid>3837471</infrule_tunid></operator>
+      <output>
+       <statement_punid>9919999981</statement_punid><statement_tunid>3984852</statement_tunid>
+<!--    <statement_latex>\rho=0</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>5656372</infrule_tunid></operator>
+      <input>
+       <statement_punid>9999999981</statement_punid><statement_tunid>4857731</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \cdot \vec{E} = \rho/\epsilon_0</statement_latex> -->
+       <statement_punid>9919999981</statement_punid><statement_tunid>3984852</statement_tunid>
+<!--    <statement_latex>\rho=0</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>7466829492</statement_punid><statement_tunid>2837471</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \cdot \vec{E} = 0</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareIdentity</infrule_name>          <infrule_tunid>3948572</infrule_tunid></operator>
+      <output>
+         <statement_punid>7575859295</statement_punid><statement_tunid>1939485</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>4655746</infrule_tunid></operator>
+      <input>
+       <statement_punid>7466829492</statement_punid><statement_tunid>2837471</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \cdot \vec{E} = 0</statement_latex> -->
+         <statement_punid>7575859295</statement_punid><statement_tunid>1939485</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1636453295</statement_punid><statement_tunid>3738373</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} =  - \nabla^2 \vec{E}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>3737384</infrule_tunid></operator>
+      <input>
+       <statement_punid>1636453295</statement_punid><statement_tunid>3738373</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} =  - \nabla^2 \vec{E}</statement_latex> -->
+       <statement_punid>3947269979</statement_punid><statement_tunid>2962831</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} = -\mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>8494839423</statement_punid><statement_tunid>4758592</statement_tunid>
+<!--    <statement_latex>\nabla^2 \vec{E}= \mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</statement_latex> -->
+      </output>
+    </connection>      
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>3948584</infrule_tunid></operator>
+      <input>
+       <statement_punid>8494839423</statement_punid><statement_tunid>4758592</statement_tunid>
+<!--    <statement_latex>\nabla^2 \vec{E}= \mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</statement_latex> -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="electric_field_wave_equation_time_dependent_to_time_independent" discipline="electromagnetism">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>8485758</infrule_tunid></operator>
+      <output>
+       <statement_punid>8494839423</statement_punid><statement_tunid>4758592</statement_tunid>
+<!--    <statement_latex>\nabla^2 \vec{E}= \mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>8485758</infrule_tunid></operator>
+      <output>
+       <statement_punid>8572852424</statement_punid><statement_tunid>9393848</statement_tunid>
+<!--    <statement_latex>\vec{E}= E(\vec{r},t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareGuessSolution</infrule_name>          <infrule_tunid>4585829</infrule_tunid></operator>
+      <input>
+       <statement_punid>8494839423</statement_punid><statement_tunid>4758592</statement_tunid>
+<!--    <statement_latex>\nabla^2 \vec{E}= \mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</statement_latex> -->      
+      </input>
+      <output>
+       <statement_punid>9499428242</statement_punid><statement_tunid>3994928</statement_tunid>
+<!--    <statement_latex>E(\vec{r},t)=E(\vec{r})\exp(i \omega t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>4858282</infrule_tunid></operator>
+      <input>
+       <statement_punid>8572852424</statement_punid><statement_tunid>9393848</statement_tunid>
+<!--    <statement_latex>\vec{E}= E(\vec{r},t)</statement_latex> -->
+       <statement_punid>8494839423</statement_punid><statement_tunid>4758592</statement_tunid>
+<!--    <statement_latex>\nabla^2 \vec{E}= \mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9394939493</statement_punid><statement_tunid>3839493</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r},t)= \mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} E(\vec{r},t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>1002928</infrule_tunid></operator>
+      <input>
+       <statement_punid>9394939493</statement_punid><statement_tunid>3839493</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r},t)= \mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} E(\vec{r},t)</statement_latex> -->
+       <statement_punid>9499428242</statement_punid><statement_tunid>3994928</statement_tunid>
+<!--    <statement_latex>E(\vec{r},t)=E(\vec{r})\exp(i \omega t)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>2029293929</statement_punid><statement_tunid>1029393</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r})\exp(i \omega t)= \mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} E(\vec{r})\exp(i \omega t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>differentiateWRT</infrule_name>          <infrule_tunid>2319391</infrule_tunid></operator>
+      <input>
+        <feed_tunid>3232242</feed_tunid>
+<!--     <feed_latex>t</feed_latex> -->
+       <statement_punid>2029293929</statement_punid><statement_tunid>1029393</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r})\exp(i \omega t)= \mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} E(\vec{r})\exp(i \omega t)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4985825552</statement_punid><statement_tunid>2939392</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r})\exp(i \omega t)= i \omega \mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} E(\vec{r})\exp(i \omega t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>differentiateWRT</infrule_name>          <infrule_tunid>4955966</infrule_tunid></operator>
+      <input>
+       <feed_tunid>3232242</feed_tunid>
+<!--     <feed_latex>t</feed_latex> -->
+       <statement_punid>4985825552</statement_punid><statement_tunid>2939392</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r})\exp(i \omega t)= i \omega \mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} E(\vec{r})\exp(i \omega t)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1858578388</statement_punid><statement_tunid>4958573</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r})\exp(i \omega t)= - \omega^2 \mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} E(\vec{r})\exp(i \omega t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>8485758</infrule_tunid></operator>
+      <output>
+       <statement_punid>4585828572</statement_punid><statement_tunid>4949582</statement_tunid>
+<!--    <statement_latex> \omega \mu_0 = \frac{1}{c^2}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subXforY</infrule_name>          <infrule_tunid>5839535</infrule_tunid></operator>
+      <input>
+        <feed_tunid>4585828</feed_tunid>
+<!--     <feed_latex>\omega \mu_0</feed_latex> -->
+        <feed_tunid>4949582</feed_tunid>
+<!--     <feed_latex>\frac{1}{c^2}</feed_latex> -->
+       <statement_punid>1858578388</statement_punid><statement_tunid>4958573</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r})\exp(i \omega t)= - \omega^2 \mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} E(\vec{r})\exp(i \omega t)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9485384858</statement_punid><statement_tunid>9495903</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r})\exp(i \omega t)= - \frac{\omega^2}{c^2} \frac{\partial^2}{\partial t^2} E(\vec{r})\exp(i \omega t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>4958883</infrule_tunid></operator>
+      <input>
+       <statement_punid>9485384858</statement_punid><statement_tunid>9495903</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r})\exp(i \omega t)= - \frac{\omega^2}{c^2} \frac{\partial^2}{\partial t^2} E(\vec{r})\exp(i \omega t)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3485475729</statement_punid><statement_tunid>3949492</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r})= - \frac{\omega^2}{c^2} \frac{\partial^2}{\partial t^2} E(\vec{r})</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>5495827</infrule_tunid></operator>
+      <input>
+       <statement_punid>3485475729</statement_punid><statement_tunid>3949492</statement_tunid>
+<!--    <statement_latex>\nabla^2 E(\vec{r})= - \frac{\omega^2}{c^2} \frac{\partial^2}{\partial t^2} E(\vec{r})</statement_latex> -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="euler_equation_trig_relations" discipline="math">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>7473895</infrule_tunid></operator>
+      <output>
+        <statement_punid>4938429483</statement_punid><statement_tunid>8888888</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = \cos(x)+i \sin(x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subXforY</infrule_name>          <infrule_tunid>3848927</infrule_tunid></operator>
+      <input>
+      <feed_tunid>2393922</feed_tunid>
+<!--     <feed_latex>x</feed_latex>  -->
+       <feed_tunid>3949052</feed_tunid>
+<!--     <feed_latex>-x</feed_latex> -->
+        <statement_punid>4938429483</statement_punid><statement_tunid>8888888</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = \cos(x)+i \sin(x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>2394853829</statement_punid><statement_tunid>8888881</statement_tunid>
+<!--    <statement_latex>\exp(-i\ x) = \cos(-x)+i \sin(-x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>functionIsEven</infrule_name>          <infrule_tunid>9595949</infrule_tunid></operator>
+      <input>
+    <feed_tunid>3949482</feed_tunid>
+<!--     <feed_latex>\cos(-x)</feed_latex> -->
+    <feed_tunid>4849392</feed_tunid>
+<!--     <feed_latex>x</feed_latex> -->
+    <feed_tunid>1030901</feed_tunid>
+<!--     <feed_latex>\cos(x)</feed_latex> -->
+        <statement_punid>2394853829</statement_punid><statement_tunid>8888881</statement_tunid>
+<!--    <statement_latex>\exp(-i\ x) = \cos(-x)+i \sin(-x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>4938429482</statement_punid><statement_tunid>8888882</statement_tunid>
+<!--    <statement_latex>\exp(-i\ x) = \cos(x)+i \sin(-x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>functionIsOdd</infrule_name>          <infrule_tunid>4747288</infrule_tunid></operator>
+      <input>
+    <feed_tunid>2919191</feed_tunid>
+<!--     <feed_latex>\sin(-x)</feed_latex> -->
+    <feed_tunid>3919391</feed_tunid>
+<!--     <feed_latex>x</feed_latex> -->
+    <feed_tunid>3981813</feed_tunid>
+<!--     <feed_latex>-\sin(x)</feed_latex> -->
+        <statement_punid>4938429482</statement_punid><statement_tunid>8888882</statement_tunid>
+<!--    <statement_latex>\exp(-i\ x) = \cos(x)+i \sin(-x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>4938429484</statement_punid><statement_tunid>8888883</statement_tunid>
+<!--    <statement_latex>\exp(-i\ x) = \cos(x)-i \sin(x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>addEqXtoEqY</infrule_name>          <infrule_tunid>3848592</infrule_tunid></operator>
+      <input>
+        <statement_punid>4938429483</statement_punid><statement_tunid>8888888</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = \cos(x)+i \sin(x)</statement_latex>     -->
+        <statement_punid>4938429484</statement_punid><statement_tunid>8888883</statement_tunid>
+<!--    <statement_latex>\exp(-i\ x) = \cos(x)-i \sin(x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>4742644828</statement_punid><statement_tunid>2939484</statement_tunid>
+<!--    <statement_latex>\exp(i\ x)+\exp(-i\ x) = 2\cos(x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>1928392</infrule_tunid></operator>
+      <input>
+         <feed_tunid>4829194</feed_tunid>
+<!--     <feed_latex>2</feed_latex> -->
+        <statement_punid>4742644828</statement_punid><statement_tunid>2939484</statement_tunid>
+<!--    <statement_latex>\exp(i\ x)+\exp(-i\ x) = 2\cos(x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>3829492824</statement_punid><statement_tunid>4383592</statement_tunid>
+<!--    <statement_latex>\frac{1}{2}\left(\exp(i\ x)+\exp(-i\ x)\right) = \cos(x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>swapLHSwithRHS</infrule_name>          <infrule_tunid>2949492</infrule_tunid></operator>
+      <input>
+        <statement_punid>3829492824</statement_punid><statement_tunid>4383592</statement_tunid>
+<!--    <statement_latex>\frac{1}{2}\left(\exp(i\ x)+\exp(-i\ x)\right) = \cos(x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>4585932229</statement_punid><statement_tunid>4849888</statement_tunid>
+<!--    <statement_latex>\cos(x) = \frac{1}{2}\left(\exp(i\ x)+\exp(-i\ x)\right)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>2384942</infrule_tunid></operator>
+      <input>
+        <statement_punid>4585932229</statement_punid><statement_tunid>4849888</statement_tunid>
+<!--    <statement_latex>\cos(x) = \frac{1}{2}\left(\exp(i\ x)+\exp(-i\ x)\right)</statement_latex>     -->
+      </input>
+    </connection>
+    <connection>
+      <operator><infrule_name>multbothsidesby</infrule_name>          <infrule_tunid>3848924</infrule_tunid></operator>
+      <input>
+         <feed_tunid>3747849</feed_tunid>
+<!--    <feed_latex>-1</feed_latex> -->
+        <statement_punid>4938429484</statement_punid><statement_tunid>8888883</statement_tunid>
+<!--    <statement_latex>\exp(-i\ x) = \cos(x)-i \sin(x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>2123139121</statement_punid><statement_tunid>3194924</statement_tunid>
+<!--    <statement_latex>-\exp(-i\ x) = -\cos(x)+i \sin(x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>addEqXtoEqY</infrule_name>          <infrule_tunid>2939404</infrule_tunid></operator>
+      <input>
+        <statement_punid>4938429483</statement_punid><statement_tunid>8888888</statement_tunid>
+<!--    <statement_latex>\exp(i\ x) = \cos(x)+i \sin(x)</statement_latex>     -->
+        <statement_punid>2123139121</statement_punid><statement_tunid>3194924</statement_tunid>
+<!--    <statement_latex>-\exp(-i\ x) = -\cos(x)+i \sin(x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>3942849294</statement_punid><statement_tunid>4825483</statement_tunid>
+<!--    <statement_latex>\exp(i\ x)-\exp(-i\ x) = 2i \sin(x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>2849492</infrule_tunid></operator>
+      <input>
+            <feed_tunid>1921933</feed_tunid>
+<!--     <feed_latex>2 i</feed_latex>  -->
+        <statement_punid>3942849294</statement_punid><statement_tunid>4825483</statement_tunid>
+<!--    <statement_latex>\exp(i\ x)-\exp(-i\ x) = 2i \sin(x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>4843995999</statement_punid><statement_tunid>1133483</statement_tunid>
+<!--    <statement_latex>\frac{1}{2i}\left(\exp(i\ x)-\exp(-i\ x)\right) = \sin(x)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>swapLHSwithRHS</infrule_name>          <infrule_tunid>4294921</infrule_tunid></operator>
+      <input>
+        <statement_punid>4843995999</statement_punid><statement_tunid>1133483</statement_tunid>
+<!--    <statement_latex>\frac{1}{2i}\left(\exp(i\ x)-\exp(-i\ x)\right) = \sin(x)</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>2103023049</statement_punid><statement_tunid>4849959</statement_tunid>
+<!--    <statement_latex>\sin(x) = \frac{1}{2i}\left(\exp(i\ x)-\exp(-i\ x)\right)</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>2384942</infrule_tunid></operator>
+      <input>
+        <statement_punid>2103023049</statement_punid><statement_tunid>4849959</statement_tunid>
+<!--    <statement_latex>\sin(x) = \frac{1}{2i}\left(\exp(i\ x)-\exp(-i\ x)\right)</statement_latex>     -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="integration_by_parts" discipline="math">
+    <connection>
+      <operator><infrule_name>declareIdentity</infrule_name>          <infrule_tunid>4952082</infrule_tunid></operator>
+      <output>
+        <statement_punid>8489593958</statement_punid><statement_tunid>3494854</statement_tunid>
+<!--    <statement_latex>d(u\ v) = u\ dv + v\ du</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subtractXfromBothSides</infrule_name>          <infrule_tunid>4842942</infrule_tunid></operator>
+      <input>
+       <feed_tunid>9492929</feed_tunid>
+<!--     <feed_latex>v\ du</feed_latex> -->
+        <statement_punid>8489593958</statement_punid><statement_tunid>3494854</statement_tunid>
+<!--    <statement_latex>d(u\ v) = u\ dv + v\ du</statement_latex>     -->
+      </input>
+      <output>
+     <statement_punid>8489593960</statement_punid><statement_tunid>2938188</statement_tunid>
+<!--    <statement_latex>d(u\ v) - v\ du= u\ dv</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>swapLHSwithRHS</infrule_name>          <infrule_tunid>4848592</infrule_tunid></operator>
+      <input>
+     <statement_punid>8489593960</statement_punid><statement_tunid>2938188</statement_tunid>
+<!--    <statement_latex>d(u\ v) - v\ du= u\ dv</statement_latex>     -->
+      </input>
+      <output>
+     <statement_punid>8489593962</statement_punid><statement_tunid>2938190</statement_tunid>
+<!--    <statement_latex>u\ dv = d(u\ v) - v\ du</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>indefIntegration</infrule_name>          <infrule_tunid>8483953</infrule_tunid></operator>
+      <input>
+        <statement_punid>8489593962</statement_punid><statement_tunid>2938190</statement_tunid>
+<!--    <statement_latex>u\ dv = d(u\ v) - v\ du</statement_latex>     -->
+      </input>
+      <output>
+        <statement_punid>8489593964</statement_punid><statement_tunid>3848329</statement_tunid>
+<!--    <statement_latex>\int u\ dv = u\ v - \int v\ du</statement_latex>     -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>2839422</infrule_tunid></operator>
+      <input>
+        <statement_punid>8489593964</statement_punid><statement_tunid>3848329</statement_tunid>
+<!--    <statement_latex>\int u\ dv = u\ v - \int v\ du</statement_latex>     -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="curl_curl_identity" discipline="math">
+    <connection>
+      <operator><infrule_name>declareIdentity</infrule_name>          <infrule_tunid>3948572</infrule_tunid></operator>
+      <output>
+         <statement_punid>7575859295</statement_punid><statement_tunid>1939485</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>ReplaceCurlWithLeviCevitaSummationContravariant</infrule_name>          <infrule_tunid>2339482</infrule_tunid></operator>
+      <input>
+         <statement_punid>7575859295</statement_punid><statement_tunid>1939485</statement_tunid>
+<!--    <statement_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>7575859300</statement_punid><statement_tunid>9485482</statement_tunid>
+<!--    <statement_latex>\epsilon^{i,j,k} \hat{x}_i \nabla_j ( \vec{\nabla} \times \vec{E} )_k = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>ReplaceCurlWithLeviCevitaSummationContravariant</infrule_name>          <infrule_tunid>3948552</infrule_tunid></operator>
+      <input>
+       <statement_punid>7575859300</statement_punid><statement_tunid>9485482</statement_tunid>
+<!--    <statement_latex>\epsilon^{i,j,k} \hat{x}_i \nabla_j ( \vec{\nabla} \times \vec{E} )_k = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>7575859302</statement_punid><statement_tunid>2941319</statement_tunid>
+<!--    <statement_latex>\epsilon^{i,j,k} \epsilon_{n,j,k} \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareIdentity</infrule_name>          <infrule_tunid>4295822</infrule_tunid></operator>
+      <output>
+       <statement_punid>7575859304</statement_punid><statement_tunid>2934842</statement_tunid>
+<!--    <statement_latex>\epsilon^{i,j,k} \epsilon_{n,j,k} = \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>2930454</infrule_tunid></operator>
+      <input>
+       <statement_punid>7575859304</statement_punid><statement_tunid>2934842</statement_tunid>
+<!--    <statement_latex>\epsilon^{i,j,k} \epsilon_{n,j,k} = \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h}</statement_latex> -->
+       <statement_punid>7575859302</statement_punid><statement_tunid>2941319</statement_tunid>
+<!--    <statement_latex>\epsilon^{i,j,k} \epsilon_{n,j,k} \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>7575859306</statement_punid><statement_tunid>3949292</statement_tunid>
+<!--    <statement_latex>\left( \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \right) \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>3848292</infrule_tunid></operator>
+      <input>
+       <statement_punid>7575859306</statement_punid><statement_tunid>3949292</statement_tunid>
+<!--    <statement_latex>\left( \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \right) \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>7575859308</statement_punid><statement_tunid>3844221</statement_tunid>
+<!--    <statement_latex>\left( \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} \hat{x}_i \nabla_j \nabla^m E^n\right)-\left( \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \hat{x}_i \nabla_j \nabla^m E^n \right)  = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>3838233</infrule_tunid></operator>
+      <input>
+       <statement_punid>7575859308</statement_punid><statement_tunid>3844221</statement_tunid>
+<!--    <statement_latex>\left( \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} \hat{x}_i \nabla_j \nabla^m E^n\right)-\left( \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \hat{x}_i \nabla_j \nabla^m E^n \right)  = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>7575859310</statement_punid><statement_tunid>3948472</statement_tunid>
+<!--    <statement_latex>\hat{x}_m \nabla_n \nabla^m E^n - \hat{x}_n \nabla_m \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>ReplaceSummationNotationWithVectorNotation</infrule_name>          <infrule_tunid>1393411</infrule_tunid></operator>
+      <input>
+       <statement_punid>7575859310</statement_punid><statement_tunid>3948472</statement_tunid>
+<!--    <statement_latex>\hat{x}_m \nabla_n \nabla^m E^n - \hat{x}_n \nabla_m \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>7575859312</statement_punid><statement_tunid>2109231</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E} = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>claimLHSequalsRHS</infrule_name>          <infrule_tunid>3949211</infrule_tunid></operator>
+      <input>
+       <statement_punid>7575859312</statement_punid><statement_tunid>2109231</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E} = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</statement_latex> -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="derivation_of_Schrodinger_Eq" discipline="quantum">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>1204921</infrule_tunid></operator>
+      <output>
+       <statement_punid>3121513111</statement_punid><statement_tunid>2934848</statement_tunid>
+<!--    <statement_latex>k=\frac{2\pi}{\lambda}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>2919311</infrule_tunid></operator>
+      <output>
+       <statement_punid>3131211131</statement_punid><statement_tunid>0921465</statement_tunid>
+<!--    <statement_latex>\omega=2 \pi f</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>1294844</infrule_tunid></operator>
+      <output>
+       <statement_punid>9999999960</statement_punid><statement_tunid>2949002</statement_tunid>
+<!--    <statement_latex>\hbar= h/(2 \pi)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>9394842</infrule_tunid></operator>
+      <output>
+       <statement_punid>1020394900</statement_punid><statement_tunid>1203491</statement_tunid>
+<!--    <statement_latex>p = h/\lambda</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>3934948</infrule_tunid></operator>
+      <output>
+       <statement_punid>1020394902</statement_punid><statement_tunid>3499522</statement_tunid>
+<!--    <statement_latex>E = h f</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>3949482</infrule_tunid></operator>
+      <input>
+       <feed_tunid>2940021</feed_tunid>
+<!-- <feed_latex>2 \pi</feed_latex>  -->
+        <statement_punid>3131211131</statement_punid><statement_tunid>0921465</statement_tunid>
+<!--    <statement_latex>\omega=2 \pi f</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3147472131</statement_punid><statement_tunid>2939402</statement_tunid>
+<!--    <statement_latex>\frac{\omega}{2 \pi}= f</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>1294945</infrule_tunid></operator>
+      <input>
+       <statement_punid>3147472131</statement_punid><statement_tunid>2939402</statement_tunid>
+<!--    <statement_latex>\frac{\omega}{2 \pi}= f</statement_latex> -->
+       <statement_punid>1020394902</statement_punid><statement_tunid>3499522</statement_tunid>
+<!--    <statement_latex>E = h f</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4147472132</statement_punid><statement_tunid>2949821</statement_tunid>
+<!--    <statement_latex>E = \frac{h \omega}{2 \pi}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>2930492</infrule_tunid></operator>
+      <input>
+       <statement_punid>9999999960</statement_punid><statement_tunid>2949002</statement_tunid>
+<!--    <statement_latex>\hbar= h/(2 \pi)</statement_latex> -->
+       <statement_punid>4147472132</statement_punid><statement_tunid>2949821</statement_tunid>
+<!--    <statement_latex>E = \frac{h \omega}{2 \pi}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9999999965</statement_punid><statement_tunid>3741728</statement_tunid>
+<!--    <statement_latex>E = \omega \hbar</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>3919384</infrule_tunid></operator>
+      <input>
+          <feed_tunid>3949921</feed_tunid>
+<!--     <feed_latex>\hbar</feed_latex>  -->
+       <statement_punid>9999999965</statement_punid><statement_tunid>3741728</statement_tunid>
+<!--    <statement_latex>E = \omega \hbar</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9999999961</statement_punid><statement_tunid>4499582</statement_tunid>
+<!--    <statement_latex>\frac{E}{\hbar} = \omega </statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>2900428</infrule_tunid></operator>
+      <input>
+         <feed_tunid>1209482</feed_tunid>
+<!--     <feed_latex>2 \pi</feed_latex>  -->
+       <statement_punid>3121513111</statement_punid><statement_tunid>2934848</statement_tunid>
+<!--    <statement_latex>k=\frac{2\pi}{\lambda}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3121234211</statement_punid><statement_tunid>1039485</statement_tunid>
+<!--    <statement_latex>\frac{k}{2\pi}=\lambda}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>1204945</infrule_tunid></operator>
+      <input>
+       <statement_punid>3121234211</statement_punid><statement_tunid>1039485</statement_tunid>
+<!--    <statement_latex>\frac{k}{2\pi}=\lambda}</statement_latex> -->
+       <statement_punid>1020394900</statement_punid><statement_tunid>1203491</statement_tunid>
+<!--    <statement_latex>p = h/\lambda</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3121234212</statement_punid><statement_tunid>2901049</statement_tunid>
+<!--    <statement_latex>p = \frac{h k}{2\pi}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>2939400</infrule_tunid></operator>
+      <input>
+       <statement_punid>9999999960</statement_punid><statement_tunid>2949002</statement_tunid>
+<!--    <statement_latex>\hbar= h/(2 \pi)</statement_latex> -->
+       <statement_punid>3121234212</statement_punid><statement_tunid>2901049</statement_tunid>
+<!--    <statement_latex>p = \frac{h k}{2\pi}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9999999962</statement_punid><statement_tunid>1039013</statement_tunid>
+<!--    <statement_latex>p = \hbar k</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>dividebothsidesby</infrule_name>          <infrule_tunid>2030624</infrule_tunid></operator>
+      <input>
+              <feed_tunid>1304952</feed_tunid>
+<!--    <feed_latex>\hbar</feed_latex> -->
+       <statement_punid>9999999962</statement_punid><statement_tunid>1039013</statement_tunid>
+<!--    <statement_latex>p = \hbar k</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9999999870</statement_punid><statement_tunid>4948325</statement_tunid>
+<!--    <statement_latex>\frac{p}{\hbar} = k</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>replaceScalarWithVector</infrule_name>          <infrule_tunid>1039774</infrule_tunid></operator>
+      <input>
+       <statement_punid>9999999870</statement_punid><statement_tunid>4948325</statement_tunid>
+<!--    <statement_latex>\frac{p}{\hbar} = k</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9999998870</statement_punid><statement_tunid>2948487</statement_tunid>
+<!--    <statement_latex>\frac{\vec{p}}{\hbar} = \vec{k}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>1923945</infrule_tunid></operator>
+      <output>
+       <statement_punid>3948574224</statement_punid><statement_tunid>3940505</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(i\left(\vec{k}\cdot\vec{r} - \omega t \right) \right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>2938341</infrule_tunid></operator>
+      <input>
+       <statement_punid>9999998870</statement_punid><statement_tunid>2948487</statement_tunid>
+<!--    <statement_latex>\frac{\vec{p}}{\hbar} = \vec{k}</statement_latex> -->
+       <statement_punid>3948574224</statement_punid><statement_tunid>3940505</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(i\left(\vec{k}\cdot\vec{r} - \omega t \right) \right)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3948574226</statement_punid><statement_tunid>2100421</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(i\left(\frac{\vec{p}\cdot\vec{r}}{\hbar} - \omega t \right) \right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>0012031</infrule_tunid></operator>
+      <input>
+       <statement_punid>9999999961</statement_punid><statement_tunid>4499582</statement_tunid>
+<!--    <statement_latex>\frac{E}{\hbar} = \omega </statement_latex> -->
+       <statement_punid>3948574226</statement_punid><statement_tunid>2100421</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(i\left(\frac{\vec{p}\cdot\vec{r}}{\hbar} - \omega t \right) \right)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3948574228</statement_punid><statement_tunid>1291313</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(i\left(\frac{\vec{p}\cdot\vec{r}}{\hbar} - \frac{E t}{\hbar}  \right) \right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>1341141</infrule_tunid></operator>
+      <input>
+       <statement_punid>3948574228</statement_punid><statement_tunid>1291313</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(i\left(\frac{\vec{p}\cdot\vec{r}}{\hbar} - \frac{E t}{\hbar}  \right) \right)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3948574230</statement_punid><statement_tunid>1305534</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>1204929</infrule_tunid></operator>
+      <output>
+       <statement_punid>1029039903</statement_punid><statement_tunid>1039948</statement_tunid>
+<!--    <statement_latex>p = m v</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>1395335</infrule_tunid></operator>
+      <output>
+       <statement_punid>4298359835</statement_punid><statement_tunid>1353583</statement_tunid>
+<!--    <statement_latex>E = \frac{1}{2}m v^2</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>raiseBothSidesToPower</infrule_name>          <infrule_tunid>2422434</infrule_tunid></operator>
+      <input>
+            <feed_tunid>2239424</feed_tunid>
+<!--     <feed_latex>2</feed_latex>  -->
+       <statement_punid>1029039903</statement_punid><statement_tunid>1039948</statement_tunid>
+<!--    <statement_latex>p = m v</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1029039904</statement_punid><statement_tunid>1432042</statement_tunid>
+<!--    <statement_latex>p^2 = m^2 v^2</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>multRHSbyUnity</infrule_name>          <infrule_tunid>2322434</infrule_tunid></operator>
+      <input>
+       <feed_tunid>2342425</feed_tunid>
+<!--     <feed_latex>m/m</feed_latex>  -->
+       <statement_punid>4298359835</statement_punid><statement_tunid>1353583</statement_tunid>
+<!--    <statement_latex>E = \frac{1}{2}m v^2</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4298359845</statement_punid><statement_tunid>2326309</statement_tunid>
+<!--    <statement_latex>E = \frac{1}{2m}m^2 v^2</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>2449858</infrule_tunid></operator>
+      <input>
+       <statement_punid>1029039904</statement_punid><statement_tunid>1432042</statement_tunid>
+<!--    <statement_latex>p^2 = m^2 v^2</statement_latex> -->
+       <statement_punid>4298359845</statement_punid><statement_tunid>2326309</statement_tunid>
+<!--    <statement_latex>E = \frac{1}{2m}m^2 v^2</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4298359851</statement_punid><statement_tunid>3576787</statement_tunid>
+<!--    <statement_latex>E = \frac{p^2}{2m}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>partialDiffWRT</infrule_name>          <infrule_tunid>1347587</infrule_tunid></operator>
+      <input>
+      <feed_tunid>6544644</feed_tunid>
+<!--     <feed_latex>t</feed_latex> -->
+       <statement_punid>3948574230</statement_punid><statement_tunid>1305534</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3948574233</statement_punid><statement_tunid>2364546</statement_tunid>
+<!--    <statement_latex>\frac{\partial}{\partial t}\psi(\vec{r},t) = \psi_0 \frac{\partial}{\partial t}\exp\left(i\left(\frac{\vec{p}\cdot\vec{r}}{\hbar} - \frac{E t}{\hbar}  \right) \right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>2464445</infrule_tunid></operator>
+      <input>
+       <statement_punid>3948574230</statement_punid><statement_tunid>1305534</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</statement_latex> -->
+       <statement_punid>3948574233</statement_punid><statement_tunid>2364546</statement_tunid>
+<!--    <statement_latex>\frac{\partial}{\partial t}\psi(\vec{r},t) = \psi_0 \frac{\partial}{\partial t}\exp\left(i\left(\frac{\vec{p}\cdot\vec{r}}{\hbar} - \frac{E t}{\hbar}  \right) \right)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3948571256</statement_punid><statement_tunid>5345567</statement_tunid>
+<!--    <statement_latex>\frac{\partial}{\partial t}\psi(\vec{r},t) = \frac{-i}{\hbar}E \psi(\vec{r},t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>3454353</infrule_tunid></operator>
+      <input>
+       <statement_punid>4298359851</statement_punid><statement_tunid>3576787</statement_tunid>
+<!--    <statement_latex>E = \frac{p^2}{2m}</statement_latex> -->
+       <statement_punid>3948571256</statement_punid><statement_tunid>5345567</statement_tunid>
+<!--    <statement_latex>\frac{\partial}{\partial t}\psi(\vec{r},t) = \frac{-i}{\hbar}E \psi(\vec{r},t)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4348571256</statement_punid><statement_tunid>2495835</statement_tunid>
+<!--    <statement_latex>\frac{\partial}{\partial t}\psi(\vec{r},t) = \frac{-i}{\hbar}\frac{p^2}{2 m} \psi(\vec{r},t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>multbothsidesby</infrule_name>          <infrule_tunid>4358635</infrule_tunid></operator>
+      <input>
+        <feed_tunid>2436656</feed_tunid>
+<!--    <feed_latex>i \hbar</feed_latex> -->
+       <statement_punid>4348571256</statement_punid><statement_tunid>2495835</statement_tunid>
+<!--    <statement_latex>\frac{\partial}{\partial t}\psi(\vec{r},t) = \frac{-i}{\hbar}\frac{p^2}{2 m} \psi(\vec{r},t)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4341171256</statement_punid><statement_tunid>3429538</statement_tunid>
+<!--    <statement_latex>i \hbar \frac{\partial}{\partial t}\psi(\vec{r},t) = \frac{p^2}{2 m} \psi(\vec{r},t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>applyGradientToScalarFunction</infrule_name>          <infrule_tunid>2454535</infrule_tunid></operator>
+      <input>
+       <statement_punid>3948574230</statement_punid><statement_tunid>1305534</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3948572230</statement_punid><statement_tunid>5577584</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}\psi(\vec{r},t) = \psi_0 \vec{\nabla}\exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>5858694</infrule_tunid></operator>
+      <input>
+       <statement_punid>3948574230</statement_punid><statement_tunid>5577584</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}\psi(\vec{r},t) = \psi_0 \vec{\nabla}\exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4943571230</statement_punid><statement_tunid>3454565</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}\psi(\vec{r},t) = \frac{i}{\hbar} \vec{p} \psi_0 \exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>5354635</infrule_tunid></operator>
+      <input>
+       <statement_punid>4943571230</statement_punid><statement_tunid>3454565</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}\psi(\vec{r},t) = \frac{i}{\hbar} \vec{p} \psi_0 \exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</statement_latex> -->
+       <statement_punid>3948574230</statement_punid><statement_tunid>1305534</statement_tunid>
+<!--    <statement_latex>\psi(\vec{r},t) = \psi_0 \exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>5985371230</statement_punid><statement_tunid>5535257</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}\psi(\vec{r},t) = \frac{i}{\hbar} \vec{p} \psi(\vec{r},t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>applyDivergence</infrule_name>          <infrule_tunid>3294932</infrule_tunid></operator>
+      <input>
+        <statement_punid>5985371230</statement_punid><statement_tunid>5535257</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}\psi(\vec{r},t) = \frac{i}{\hbar} \vec{p} \psi(\vec{r},t)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4394958389</statement_punid><statement_tunid>4938589</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}\cdot \left(\vec{\nabla}\psi(\vec{r},t)\right) = \frac{i}{\hbar} \vec{\nabla}\cdot\left( \vec{p} \psi(\vec{r},t)\right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>2394495</infrule_tunid></operator>
+      <input>
+        <statement_punid>4394958389</statement_punid><statement_tunid>4938589</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}\cdot \left(\vec{\nabla}\psi(\vec{r},t)\right) = \frac{i}{\hbar} \vec{\nabla}\cdot\left( \vec{p} \psi(\vec{r},t)\right)</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>1648958381</statement_punid><statement_tunid>1495034</statement_tunid>
+<!--    <statement_latex>\nabla^2 \psi(\vec{r},t)\right) = \frac{i}{\hbar} \vec{p} \cdot \left( \vec{\nabla}\psi(\vec{r},t)\right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>4059592</infrule_tunid></operator>
+      <input>
+        <statement_punid>5985371230</statement_punid><statement_tunid>5535257</statement_tunid>
+<!--    <statement_latex>\vec{\nabla}\psi(\vec{r},t) = \frac{i}{\hbar} \vec{p} \psi(\vec{r},t)</statement_latex> -->
+        <statement_punid>1648958381</statement_punid><statement_tunid>1495034</statement_tunid>
+<!--    <statement_latex>\nabla^2 \psi(\vec{r},t)\right) = \frac{i}{\hbar} \vec{p} \cdot \left( \vec{\nabla}\psi(\vec{r},t)\right)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>2648958382</statement_punid><statement_tunid>1049553</statement_tunid>
+<!--    <statement_latex>\nabla^2 \psi(\vec{r},t)\right) = \frac{i}{\hbar} \vec{p} \cdot \left( \frac{i}{\hbar} \vec{p}\psi(\vec{r},t)\right)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>4305953</infrule_tunid></operator>
+      <input>
+       <statement_punid>2648958382</statement_punid><statement_tunid>1049553</statement_tunid>
+<!--    <statement_latex>\nabla^2 \psi(\vec{r},t)\right) = \frac{i}{\hbar} \vec{p} \cdot \left( \frac{i}{\hbar} \vec{p}\psi(\vec{r},t)\right)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>2395958385</statement_punid><statement_tunid>4959593</statement_tunid>
+<!--    <statement_latex>\nabla^2 \psi(\vec{r},t)\right) = \frac{-p^2}{\hbar} \psi(\vec{r},t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>multbothsidesby</infrule_name>          <infrule_tunid>4939459</infrule_tunid></operator>
+      <input>
+       <feed_tunid>5938585</feed_tunid>
+<!--    <feed_latex>\frac{-\hbar^2}{2m}</feed_latex> -->
+       <statement_punid>2395958385</statement_punid><statement_tunid>4959593</statement_tunid>
+<!--    <statement_latex>\nabla^2 \psi(\vec{r},t)\right) = \frac{-p^2}{\hbar} \psi(\vec{r},t)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>5868688585</statement_punid><statement_tunid>4349493</statement_tunid>
+<!--    <statement_latex>\frac{-\hbar^2}{2m} \nabla^2 \psi\left(\vec{r},t)\right) = \frac{p^2}{2m} \psi(\vec{r},t)</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name>          <infrule_tunid>9394834</infrule_tunid></operator>
+      <input>
+       <statement_punid>5868688585</statement_punid><statement_tunid>4349493</statement_tunid>
+<!--    <statement_latex>\frac{-\hbar^2}{2m} \nabla^2 \psi\left(\vec{r},t)\right) = \frac{p^2}{2m} \psi(\vec{r},t)</statement_latex> -->
+       <statement_punid>4341171256</statement_punid><statement_tunid>3429538</statement_tunid>
+<!--    <statement_latex>i \hbar \frac{\partial}{\partial t}\psi(\vec{r},t) = \frac{p^2}{2 m} \psi(\vec{r},t)</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>9958485859</statement_punid><statement_tunid>1304924</statement_tunid>
+<!--    <statement_latex>\frac{-\hbar^2}{2m} \nabla^2 \psi\left(\vec{r},t)\right) = i \hbar \frac{\partial}{\partial t}\psi(\vec{r},t) </statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>2455452</infrule_tunid></operator>
+      <output>
+       <statement_punid>1158485859</statement_punid><statement_tunid>2344324</statement_tunid>
+<!--    <statement_latex>\frac{-\hbar^2}{2m} \nabla^2 = {\cal H} </statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>2954835</infrule_tunid></operator>
+      <input>
+       <statement_punid>1158485859</statement_punid><statement_tunid>2344324</statement_tunid>
+<!--    <statement_latex>\frac{-\hbar^2}{2m} \nabla^2 = {\cal H} </statement_latex> -->
+       <statement_punid>9958485859</statement_punid><statement_tunid>1304924</statement_tunid>
+<!--    <statement_latex>\frac{-\hbar^2}{2m} \nabla^2 \psi\left(\vec{r},t)\right) = i \hbar \frac{\partial}{\partial t}\psi(\vec{r},t) </statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>2258485859</statement_punid><statement_tunid>2456546</statement_tunid>
+<!--    <statement_latex>{\cal H} \psi\left(\vec{r},t)\right) = i \hbar \frac{\partial}{\partial t}\psi(\vec{r},t) </statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>6756574</infrule_tunid></operator>
+      <input>
+       <statement_punid>2258485859</statement_punid><statement_tunid>2456546</statement_tunid>
+<!--    <statement_latex>{\cal H} \psi\left(\vec{r},t)\right) = i \hbar \frac{\partial}{\partial t}\psi(\vec{r},t) </statement_latex> -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="quantum_basics_orthogonality" discipline="quantum">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>2455366</infrule_tunid></operator>
+      <output>
+       <statement_punid>9596004948</statement_punid><statement_tunid>3849595</statement_tunid>
+<!--    <statement_latex>x = \bra{\psi_{\alpha}} \hat{A} \ket{\psi_{\beta}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>applyOperatorToKet</infrule_name>          <infrule_tunid>3848591</infrule_tunid></operator>
+      <input>
+       <statement_punid>9596004948</statement_punid><statement_tunid>3849595</statement_tunid>
+<!--    <statement_latex>x = \bra{\psi_{\alpha}} \hat{A} \ket{\psi_{\beta}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1010393944</statement_punid><statement_tunid>4940359</statement_tunid>
+<!--    <statement_latex>x = \bra{\psi_{\alpha}} a_{\beta} \ket{\psi_{\beta}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>applyOperatorToBra</infrule_name>          <infrule_tunid>1301442</infrule_tunid></operator>
+      <input>
+       <statement_punid>9596004948</statement_punid><statement_tunid>3849595</statement_tunid>
+<!--    <statement_latex>x = \bra{\psi_{\alpha}} \hat{A} \ket{\psi_{\beta}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1395858355</statement_punid><statement_tunid>4349300</statement_tunid>
+<!--    <statement_latex>x = \bra{\psi_{\alpha}} a_{\alpha} \ket{\psi_{\beta}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>2304934</infrule_tunid></operator>
+      <input>
+       <statement_punid>1010393944</statement_punid><statement_tunid>4940359</statement_tunid>
+<!--    <statement_latex>x = \bra{\psi_{\alpha}} a_{\beta} \ket{\psi_{\beta}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>2394240499</statement_punid><statement_tunid>2409402</statement_tunid>
+<!--    <statement_latex>x =a_{\beta} \braket{\psi_{\alpha}}{\psi_{\beta}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>0049384</infrule_tunid></operator>
+      <input>
+       <statement_punid>1395858355</statement_punid><statement_tunid>4349300</statement_tunid>
+<!--    <statement_latex>x = \bra{\psi_{\alpha}} a_{\alpha} \ket{\psi_{\beta}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3943939590</statement_punid><statement_tunid>4934893</statement_tunid>
+<!--    <statement_latex>x = a_{\alpha} \braket{\psi_{\alpha}}{\psi_{\beta}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name>          <infrule_tunid>0987890</infrule_tunid></operator>
+      <input>
+       <statement_punid>2394240499</statement_punid><statement_tunid>2409402</statement_tunid>
+<!--    <statement_latex>x =a_{\beta} \braket{\psi_{\alpha}}{\psi_{\beta}}</statement_latex> -->
+       <statement_punid>3943939590</statement_punid><statement_tunid>4934893</statement_tunid>
+<!--    <statement_latex>x = a_{\alpha} \braket{\psi_{\alpha}}{\psi_{\beta}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1203938249</statement_punid><statement_tunid>3495045</statement_tunid>
+<!--    <statement_latex>a_{\beta} \braket{\psi_{\alpha}}{\psi_{\beta}} = a_{\alpha} \braket{\psi_{\alpha}}{\psi_{\beta}}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subtractXfromBothSides</infrule_name>          <infrule_tunid>4838499</infrule_tunid></operator>
+      <input>
+        <feed_tunid>5395034</feed_tunid>
+<!--     <feed_latex>a_{\alpha} \braket{\psi_{\alpha}}{\psi_{\beta}}</feed_latex> -->
+       <statement_punid>1203938249</statement_punid><statement_tunid>3495045</statement_tunid>
+<!--    <statement_latex>a_{\beta} \braket{\psi_{\alpha}}{\psi_{\beta}} = a_{\alpha} \braket{\psi_{\alpha}}{\psi_{\beta}}</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>3924948349</statement_punid><statement_tunid>4939583</statement_tunid>
+<!--    <statement_latex>a_{\beta} \braket{\psi_{\alpha}}{\psi_{\beta}} - a_{\alpha} \braket{\psi_{\alpha}}{\psi_{\beta}} = 0</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>combineLikeTerms</infrule_name>          <infrule_tunid>0988873</infrule_tunid></operator>
+      <input>
+       <statement_punid>3924948349</statement_punid><statement_tunid>4939583</statement_tunid>
+<!--    <statement_latex>a_{\beta} \braket{\psi_{\alpha}}{\psi_{\beta}} - a_{\alpha} \braket{\psi_{\alpha}}{\psi_{\beta}} = 0</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>2394935831</statement_punid><statement_tunid>3494855</statement_tunid>
+<!--    <statement_latex>( a_{\beta} - a_{\alpha} ) \braket{\psi_{\alpha}}{\psi_{\beta}} = 0</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>2384852</infrule_tunid></operator>
+      <input>
+       <statement_punid>2394935831</statement_punid><statement_tunid>3494855</statement_tunid>
+<!--    <statement_latex>( a_{\beta} - a_{\alpha} ) \braket{\psi_{\alpha}}{\psi_{\beta}} = 0</statement_latex> -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="quantum_basics_Hermitian_operators_have_realvalued_observables" discipline="quantum">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>3403595</infrule_tunid></operator>
+      <output>
+       <statement_punid>9999999975</statement_punid><statement_tunid>3402919</statement_tunid>
+<!--    <statement_latex>\bra{\psi} \hat{A} \ket{\psi} = \langle a \rangle</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>conjugateTransposeBothSides</infrule_name>          <infrule_tunid>9538385</infrule_tunid></operator>
+      <input>
+       <statement_punid>9999999975</statement_punid><statement_tunid>3402919</statement_tunid>
+<!--    <statement_latex>\bra{\psi} \hat{A} \ket{\psi} = \langle a \rangle</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>2394935835</statement_punid><statement_tunid>2495954</statement_tunid>
+<!--    <statement_latex>\left(\bra{\psi} \hat{A} \ket{\psi} \right)^+= \left(\langle a \rangle\right)^+</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>distributeConjugateTransposeToFactors</infrule_name>          <infrule_tunid>2394942</infrule_tunid></operator>
+      <input>
+       <statement_punid>2394935835</statement_punid><statement_tunid>2495954</statement_tunid>
+<!--    <statement_latex>\left(\bra{\psi} \hat{A} \ket{\psi} \right)^*= \left(\langle a \rangle\right)^*</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>1010393913</statement_punid><statement_tunid>2390094</statement_tunid>
+<!--    <statement_latex>\bra{\psi} \hat{A}^+ \ket{\psi}=\langle a \rangle^*</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareAssumption</infrule_name>          <infrule_tunid>1294984</infrule_tunid></operator>
+      <output>
+       <statement_punid>9294858532</statement_punid><statement_tunid>2484892</statement_tunid>
+<!--    <statement_latex>\hat{A}^+=\hat{A}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>2485909</infrule_tunid></operator>
+      <input>
+       <statement_punid>9294858532</statement_punid><statement_tunid>2484892</statement_tunid>
+<!--    <statement_latex>\hat{A}^+=\hat{A}</statement_latex> -->
+       <statement_punid>1010393913</statement_punid><statement_tunid>2390094</statement_tunid>
+<!--    <statement_latex>\bra{\psi} \hat{A}^+ \ket{\psi}=\langle a \rangle^*</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>4948934890</statement_punid><statement_tunid>2494040</statement_tunid>
+<!--    <statement_latex>\bra{\psi} \hat{A} \ket{\psi}=\langle a \rangle^*</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_tunid>2490098</infrule_tunid></operator>
+      <input>
+       <statement_punid>4948934890</statement_punid><statement_tunid>2494040</statement_tunid>
+<!--    <statement_latex>\bra{\psi} \hat{A} \ket{\psi}=\langle a \rangle^*</statement_latex> -->
+       <statement_punid>9999999975</statement_punid><statement_tunid>3402919</statement_tunid>
+<!--    <statement_latex>\bra{\psi} \hat{A} \ket{\psi} = \langle a \rangle</statement_latex> -->
+      </input>
+      <output>
+       <statement_punid>2848934890</statement_punid><statement_tunid>4930585</statement_tunid>
+<!--    <statement_latex>\langle a \rangle^*=\langle a \rangle</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_tunid>2939493</infrule_tunid></operator>
+      <input>
+        <statement_punid>2848934890</statement_punid><statement_tunid>4930585</statement_tunid>
+<!--    <statement_latex>\langle a \rangle^*=\langle a \rangle</statement_latex> -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="variance_relation" discipline="math">
+    <connection>
+      <operator><infrule_name>declareIdentity</infrule_name>          <infrule_tunid>2004989</infrule_tunid></operator>
+      <output>
+        <statement_punid>3585845894</statement_punid><statement_tunid>3493498</statement_tunid>
+<!--    <statement_latex>\langle \left(x-\langle x \rangle\right)^2 \rangle=\langle x^2 \rangle-\langle x \rangle^2</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>2349059</infrule_tunid></operator>
+      <input>
+       <statement_punid>3585845894</statement_punid><statement_tunid>3493498</statement_tunid>
+<!--    <statement_latex>\langle \left(x-\langle x \rangle\right)^2 \rangle=\langle x^2 \rangle-\langle x \rangle^2</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>8399484849</statement_punid><statement_tunid>0504953</statement_tunid>
+<!--    <statement_latex>\langle x^2 -2x\langle x \rangle+\langle x \rangle^2 \rangle=\langle x^2 \rangle-\langle x \rangle^2</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>2390498</infrule_tunid></operator>
+      <input>
+        <statement_punid>8399484849</statement_punid><statement_tunid>0504953</statement_tunid>
+<!--    <statement_latex>\langle x^2 -2x\langle x \rangle+\langle x \rangle^2 \rangle=\langle x^2 \rangle-\langle x \rangle^2</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>2404934990</statement_punid><statement_tunid>6757584</statement_tunid>
+<!--    <statement_latex>\langle x^2\rangle -2\langle x \rangle\langle x \rangle+\langle x \rangle^2=\langle x^2 \rangle-\langle x \rangle^2</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>3848494</infrule_tunid></operator>
+      <input>
+        <statement_punid>2404934990</statement_punid><statement_tunid>6757584</statement_tunid>
+<!--    <statement_latex>\langle x^2\rangle -2\langle x \rangle\langle x \rangle+\langle x \rangle^2=\langle x^2 \rangle-\langle x \rangle^2</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>4949359835</statement_punid><statement_tunid>3294824</statement_tunid>
+<!--    <statement_latex>\langle x^2\rangle -2\langle x^2 \rangle+\langle x \rangle^2=\langle x^2 \rangle-\langle x \rangle^2</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>simplify</infrule_name>          <infrule_tunid>4948384</infrule_tunid></operator>
+      <input>
+        <statement_punid>4949359835</statement_punid><statement_tunid>3294824</statement_tunid>
+<!--    <statement_latex>\langle x^2\rangle -2\langle x^2 \rangle+\langle x \rangle^2=\langle x^2 \rangle-\langle x \rangle^2</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>2494533900</statement_punid><statement_tunid>5949484</statement_tunid>
+<!--    <statement_latex>\langle x^2\rangle -\langle x \rangle^2=\langle x^2 \rangle-\langle x \rangle^2</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>claimLHSequalsRHS</infrule_name>          <infrule_tunid>4948955</infrule_tunid></operator>
+      <input>
+        <statement_punid>2494533900</statement_punid><statement_tunid>5949484</statement_tunid>
+<!--    <statement_latex>\langle x^2\rangle -\langle x \rangle^2=\langle x^2 \rangle-\langle x \rangle^2</statement_latex> -->
+      </input>
+    </connection>
+  </connection_set>
+  <connection_set name="Comptons_equation_for_scattering" discipline="physics">
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>8668018</infrule_tunid></operator>
+      <output>
+        <statement_punid>1638282134</statement_punid><statement_tunid>4978059</statement_tunid>
+<!--         <statement_latex>\vec{p}_{before} = \vec{p}_{after}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>3445641</infrule_tunid></operator>
+      <output>
+        <statement_punid>8257621077</statement_punid><statement_tunid>2840008</statement_tunid>
+<!--         <statement_latex>\vec{p}_{before} = \vec{p}_{1}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_tunid>4733986</infrule_tunid></operator>
+      <output>
+        <statement_punid>8311458118</statement_punid><statement_tunid>1209604</statement_tunid>
+<!--         <statement_latex>\vec{p}_{after} = \vec{p}_{2}+\vec{p}_{electron}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>7958085</infrule_tunid></operator>
+      <input>
+        <statement_punid>1638282134</statement_punid><statement_tunid>4978059</statement_tunid>
+<!--         <statement_latex>\vec{p}_{before} = \vec{p}_{after}</statement_latex> -->
+        <statement_punid>8257621077</statement_punid><statement_tunid>2840008</statement_tunid>
+<!--         <statement_latex>\vec{p}_{before} = \vec{p}_{1}</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>3951205425</statement_punid><statement_tunid>2491904</statement_tunid>
+<!--         <statement_latex>\vec{p}_{after} = \vec{p}_{1}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_tunid>3667395</infrule_tunid></operator>
+      <input>
+        <statement_punid>8311458118</statement_punid><statement_tunid>1209604</statement_tunid>
+<!--         <statement_latex>\vec{p}_{after} = \vec{p}_{2}+\vec{p}_{electron}</statement_latex> -->
+        <statement_punid>3951205425</statement_punid><statement_tunid>2491904</statement_tunid>
+<!--         <statement_latex>\vec{p}_{after} = \vec{p}_{1}</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>8139187332</statement_punid><statement_tunid>5610925</statement_tunid>
+<!--         <statement_latex>\vec{p}_{1} = \vec{p}_{2}+\vec{p}_{electron}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>subtractXfromBothSides</infrule_name>          <infrule_tunid>7952658</infrule_tunid></operator>
+      <input>
+        <feed_tunid>2338514</feed_tunid>
+<!--             <feed_latex>\vec{p}_{2}</feed_latex> -->
+        <statement_punid>8139187332</statement_punid><statement_tunid>5610925</statement_tunid>
+<!--         <statement_latex>\vec{p}_{1} = \vec{p}_{2}+\vec{p}_{electron}</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>5530148480</statement_punid><statement_tunid>4068150</statement_tunid>
+<!--         <statement_latex>\vec{p}_{1}-\vec{p}_{2}=\vec{p}_{electron}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>swapLHSwithRHS</infrule_name>          <infrule_tunid>3871228</infrule_tunid></operator>
+      <input>
+        <statement_punid>5530148480</statement_punid><statement_tunid>4068150</statement_tunid>
+<!--         <statement_latex>\vec{p}_{1}-\vec{p}_{2}=\vec{p}_{electron}</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>7917051060</statement_punid><statement_tunid>4200334</statement_tunid>
+<!--         <statement_latex>\vec{p}_{electron} = \vec{p}_{1}-\vec{p}_{2}</statement_latex> -->
+      </output>
+    </connection>
+    <connection>
+      <operator><infrule_name>multEqXbyEqY</infrule_name>          <infrule_tunid>4738354</infrule_tunid></operator>
+      <input>
+        <statement_punid>7917051060</statement_punid><statement_tunid>4200334</statement_tunid>
+<!--         <statement_latex>\vec{p}_{electron} = \vec{p}_{1}-\vec{p}_{2}</statement_latex> -->
+        <statement_punid>7917051060</statement_punid><statement_tunid>4200334</statement_tunid>
+<!--         <statement_latex>\vec{p}_{electron} = \vec{p}_{1}-\vec{p}_{2}</statement_latex> -->
+      </input>
+      <output>
+        <statement_punid>6742123016</statement_punid><statement_tunid>4218805</statement_tunid>
+<!--         <statement_latex>\vec{p}_{electron}\cdot\vec{p}_{electron} = (\vec{p}_{1}\cdot\vec{p}_{1})+(\vec{p}_{2}\cdot\vec{p}_{2})-2(\vec{p}_{1}\cdot\vec{p}_{2})</statement_latex> -->
+      </output>
+    </connection>
+<!-- 
+        <statement_punid>6742123016</statement_punid><statement_tunid></statement_tunid>
+<!~~         <statement_latex>(p_{electron})^2 = (p_1)^2+(p_2)^2-2(p_1 p_2 \cos \theta)</statement_latex> ~~>
+ -->
+
+  </connection_set>
+  <connection_set name="variance_relation" discipline="math">
+  </connection_set>
+</all_connections>
+

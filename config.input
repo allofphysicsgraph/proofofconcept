@@ -1,0 +1,36 @@
+# configuration file for bin/build_connections_graph.py
+# Ben Payne <ben.is.located@gmail.com>
+
+file_extension_string:       png   # png or svg
+
+make_texPDF_for_set_boolean: False
+make_graphviz_boolean:       True # the big graph
+make_graphml_boolean:        False
+make_networkx_boolean:       False
+
+redraw_feed_pictures_boolean: False
+redraw_statement_pictures_boolean: False
+redraw_inference_rule_pictures_boolean: False
+
+makeAllGraphs_boolean:       False    # True  or False
+
+# the following string is used only if makeAllGraphs_boolean is false
+name_of_set_to_make:      derivation_of_Schrodinger_Eq
+#  name_of_set_to_make:   euler_equation_trig_relations
+#  name_of_set_to_make:   electric_field_wave_equation_time_dependent_to_time_independent
+#  name_of_set_to_make:   maxwell_to_electric_field_wave_equation
+#  name_of_set_to_make:   particle_in_a_1D_box
+#  name_of_set_to_make:   quadratic_equation_derivation
+#  name_of_set_to_make:   euler_equation_proof
+#  name_of_set_to_make:   euler_equation_trig_sqrd
+#  name_of_set_to_make:   frequency_relations
+name_of_set_to_make:   example_of_Godel_problem
+#  name_of_set_to_make:   integration_by_parts
+#  name_of_set_to_make:   curl_curl_identity
+#  name_of_set_to_make:   quantum_basics_orthogonality
+#  name_of_set_to_make:   quantum_basics_Hermitian_operators_have_realvalued_observables
+#  name_of_set_to_make:   variance_relation
+#  name_of_set_to_make:   Comptons_equation_for_scattering
+#  name_of_set_to_make:   variance_relation
+
+

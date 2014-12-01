@@ -1,0 +1,87 @@
+% @@psencodingfile@{
+%   version = "0.4",
+%   filename = "ot1.enc",
+%   docstring = "Ot1 encoding as a dvips .enc file."
+% @}
+%
+/Ot1Encoding [
+  /Gamma /Delta /Theta /Lambda
+  /Xi /Pi /Sigma /Upsilon
+  /Phi /Psi /Omega /ff
+  /fi /fl /ffi /ffl
+% 0x10
+  /dotlessi /dotlessj /grave /acute
+  /caron /breve /macron /ring
+  /cedilla /germandbls /ae /oe
+  /oslash /AE /OE /Oslash
+% 0x20
+  /suppress /exclam /quotedblright /numbersign
+  /dollar /percent /ampersand /quoteright
+  /parenleft /parenright /asterisk /plus
+  /comma /hyphen /period /slash
+% 0x30
+  /zero /one /two /three
+  /four /five /six /seven
+  /eight /nine /colon /semicolon
+  /exclamdown /equal /questiondown /question
+% 0x40
+  /at /A /B /C
+  /D /E /F /G
+  /H /I /J /K
+  /L /M /N /O
+% 0x50
+  /P /Q /R /S
+  /T /U /V /W
+  /X /Y /Z /bracketleft
+  /quotedblleft /bracketright /circumflex /dotaccent
+% 0x60
+  /quoteleft /a /b /c
+  /d /e /f /g
+  /h /i /j /k
+  /l /m /n /o
+% 0x70
+  /p /q /r /s
+  /t /u /v /w
+  /x /y /z /endash
+  /emdash /hungarumlaut /tilde /dieresis
+% 0x80
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /Lslash /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+% 0x90
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+% 0xa0
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /lslash /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+% 0xb0
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+% 0xc0
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+% 0xd0
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+% 0xe0
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+% 0xf0
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+  /.notdef /.notdef /.notdef /.notdef
+] def
