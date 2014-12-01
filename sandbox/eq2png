@@ -1,0 +1,207 @@
+#!/usr/bin/perl -w
+
+use XML::DOM;
+
+$numargs = $#ARGV + 1;
+if($numargs < 1){
+	usage();
+}
+
+#process command line args
+$equation = "";
+
+$outputfile = "eq.png";
+
+for($i = 0; $i < $numargs; $i++){
+	if($ARGV[$i] =~ m/-b/){
+		$boldflag = 1;
+	}
+	elsif($ARGV[$i] =~ m/-f/){
+		$eqfile = $ARGV[$i+1];
+		open(EQFILE, "$eqfile") or die "can't open equation file ($eqfile) specified at command line: $!\n"; 
+		while($l = <EQFILE>){
+			chomp($l);
+			$equation .= "$l\n";
+		}
+		$i++;
+		$eqfileflag = 1;
+	}
+	elsif($ARGV[$i] =~ m/-o/){
+		$outputfile = $ARGV[$i+1];
+		$i++;
+		$outputfileflag = 1;
+	}
+	elsif($ARGV[$i] =~ m/\.tex$/){ #pick up equation files if they weren't specified with the -f flag but have a .tex name
+		$eqfile = $ARGV[$i];
+		open(EQFILE, "$eqfile") or die "can't open equation file ($eqfile) specified at command line: $!\n";
+		while($l = <EQFILE>){
+			chomp($l);
+			$equation .= "$l\n";
+		}
+		$eqfileflag = 1;
+	}
+	elsif($ARGV[$i] =~ m/-c/){
+		$configfile = $ARGV[$i+1];
+		$usingconfigfileflag = 1;
+		$i++;
+	}
+	else{
+		$equation .= "$ARGV[$i]\n";
+	}
+}
+
+#if an output file isn't specified but an equation file is, use the equation filename as a basis for the output file
+unless(defined $outputfileflag){
+	if(defined $eqfileflag){
+		$tmp = $eqfile;
+		$tmp =~ s/\.tex$//;
+		$outputfile = "$tmp.png";
+	}
+}
+
+#get configuration parameters from config files
+my $configparse = XML::DOM::Parser->new();
+unless(defined $configfile){
+	if(-f "eq2png-conf.xml"){
+		$configfile = "eq2png-conf.xml";
+		$usingconfigfileflag = 1;
+	}
+	elsif(-f "~/.eq2png-conf.xml"){
+		$configfile = "~/.eq2png-conf.xml";
+		$usingconfigfileflag = 1;
+	}
+}
+
+#default behavior
+$ps_background_color = "1,1,1";
+$ps_foreground_color = "0,0,0";
+$png_transparent_color = "#FFFFFF";
+$image_density = "500";
+$image_border = "0x0";
+$dvips_scale = "2000";
+
+if(defined $usingconfigfileflag){
+	print "Processing config file ($configfile):\n";
+	my $config = $configparse->parsefile($configfile);
+
+	@matching_tags = $config->getElementsByTagName("ps_background_color");
+	foreach $match (@matching_tags){
+		getChildText($match);
+		$ps_background_color = $childtext;
+
+		$ps_background_color =~ s/\"//g;
+		($red, $green, $blue) = split /\,/, $ps_background_color;
+		if(defined $red){ $red *= 255; }else{ die "bad ps_background_color setting ($ps_background_color)!\n"; }
+		if(defined $green){ $green *= 255; }else{ die "bad ps_background_color setting ($ps_background_color)!\n"; }
+		if(defined $blue){ $blue *= 255; }else{ die "bad ps_background_color setting ($ps_background_color)!\n"; }
+		$png_transparent_color = sprintf ("#%2.2X%2.2X%2.2X", $red,$green,$blue);
+	}
+
+	@matching_tags = $config->getElementsByTagName("ps_foreground_color");
+	foreach $match (@matching_tags){
+		getChildText($match);
+		$ps_foreground_color = $childtext;
+		$ps_foreground_color =~ s/\"//g;
+	}
+
+	@matching_tags = $config->getElementsByTagName("image_density");
+	foreach $match (@matching_tags){
+		getChildText($match);
+		$image_density = $childtext;
+	}
+
+	@matching_tags = $config->getElementsByTagName("dvips_scale");
+	foreach $match (@matching_tags){
+		getChildText($match);
+		$dvips_scale = $childtext;
+	}
+
+	@matching_tags = $config->getElementsByTagName("image_border");
+	foreach $match (@matching_tags){
+		getChildText($match);
+		$image_border = $childtext;
+	}
+
+	@matching_tags = $config->getElementsByTagName("packages");
+	foreach $match (@matching_tags){
+		getChildText($match);
+		$packages = $childtext;
+	}
+}
+
+
+open(TMPTEX, ">tmp.tex") or die "can't open temporary latex file for writing (tmp.text): $!\n";
+print TMPTEX "\\documentclass{article}\n";
+print TMPTEX "\\usepackage{color}\n";
+if(defined $boldflag){ print TMPTEX "\\usepackage{bm}\n"; }
+if(defined $packages){
+	@packageS = split /\,/, $packages;
+	foreach $package (@packageS){
+		print TMPTEX "\\usepackage{$package}\n";
+	}
+}
+print TMPTEX "\\definecolor{bg}{rgb}{$ps_background_color}\n";
+print TMPTEX "\\definecolor{fg}{rgb}{$ps_foreground_color}\n";
+print TMPTEX "\\pagestyle{empty}\n";
+print TMPTEX "\\pagecolor{bg}\n";
+print TMPTEX "\\begin{document}\n";
+if(-f "macros.tex"){
+	print TMPTEX "\\input{macros}\n";
+}
+print TMPTEX "\\color{fg}\n";
+#print TMPTEX "\\Huge\n";
+if(defined $boldflag){ 
+	print TMPTEX "\\boldmath\n";
+}
+print TMPTEX "$equation\n";
+
+print TMPTEX "\\end{document}\n";
+
+$command = "latex tmp.tex";
+executeCommand($command);
+
+$command = "dvips -x $dvips_scale -E tmp -o";
+executeCommand($command);
+
+#-border 4x4 
+#$command = "convert -units PixelsPerInch -density 300 -trim -bordercolor \\#000000 -matte -transparent \\#000000 -type PaletteMatte tmp.ps $outputfile";
+$command = "convert -units PixelsPerInch -density $image_density -border $image_border -transparent \\$png_transparent_color tmp.ps $outputfile";
+executeCommand($command);
+
+#clean up
+$command = "rm -f tmp.tex tmp.ps tmp.aux tmp.dvi tmp.log";
+executeCommand($command);
+
+sub executeCommand{
+	my($commandstr) = @_;
+	print "$commandstr\n";
+	system($commandstr);
+}
+
+sub usage{
+	print STDERR "eq2png v0.02 (olsson AT math dot umd dawt edu)\n";
+	print STDERR "usage: eq2png [-o outputfile] (-f equationfile | \"some latex commands\" )\n\n";
+	print STDERR "If no output file is specified, defaults to \"eq.png\".\n";
+	print STDERR "If multiple latex sources are specified, they are all concatenated\n" . 
+		"and produce one equation (probably not what you want).\n";
+	print STDERR "Edit the source if you want to change colors or output resolution... future versions will simplify this.\n";
+	print STDERR "\nIf a file named macros.tex is in your working directury, it will be included in your equation's .TeX source.\n";
+	print STDERR "The -b flag will try to make the equation bold by including the bm package and wrapping the text in a bolding tag.\n";
+	exit(1);
+}
+
+sub getChildText {
+	#print text that descends from a node
+	my($node)= @_;
+	if ($node->getNodeType == ELEMENT_NODE) {
+		#print "<", $node->getNodeName, ">";
+		foreach my $child ($node->getChildNodes()) {
+			getChildText($child);
+		}
+		#print "</", $node->getNodeName, ">";
+	}
+	elsif ($node->getNodeType() == TEXT_NODE) {
+		$childtext = $node->getData;
+	}
+}
+

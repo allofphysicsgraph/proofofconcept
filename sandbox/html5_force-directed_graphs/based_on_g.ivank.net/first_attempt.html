@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- based on url=(0033)http://g.ivank.net/#3:1-2,2-3,3-1 -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+	<title>Physics Equation Directed Graph</title> 
+	<meta charset="utf-8"> 
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" async="" src="ga.js"></script>
+	<script type="text/javascript" src="Point.js"></script> 
+	<script type="text/javascript" src="Vertex.js"></script> 
+	<script type="text/javascript" src="Grapher2D.js"></script> 
+	<script type="text/javascript" src="Graph.js"></script> 
+	<script type="text/javascript" src="Control.js"></script>
+	<script type="text/javascript" src="slider.js"></script>
+	<style type="text/css"></style>
+</head> 
+<body onload="onLoad()"> 
+<h1 style="position:absolute">Physics Equation Directed Graph</h1>
+
+<div style="position:absolute; z-index:1; margin:15px; right:0px; width:230px;">
+	<h3>Controls</h3>
+	<!-- Ben's test of speech input -->
+	<input type="text" x-webkit-speech>
+	<div id="repSL" class="slider">
+		<div class="handle control" style="left: 74px; ">repulsion</div>
+	</div>
+	<div id="attSL" class="slider">
+		<div class="handle control" style="left: 74px; ">attraction</div>
+	</div>
+	
+	<div style="text-align:left; width:120px; padding-top:10px; line-height:1.6">
+		<div class="cb">
+			<input type="checkbox" checked="yes" onclick="changePhysics();" id="phBTN">
+			<label for="phBTN">physics</label>
+			<br>
+			<input type="checkbox" onclick="change3D(this);" id="tdBTN">
+			<label for="tdBTN">3D mode</label>
+			<br>
+			<input type="checkbox" onclick="changeLabels();" id="lbBTN">
+			<label for="lbBTN">show labels</label>
+		</div> 
+	</div>
+	
+	<input value="Greedy coloring" type="submit" onclick="minColoring(this);" class="btn control" style="font-size:15;">
+	<!--<div id="damSL" class="slider">     <div class="handle">damping</div></div>-->
+
+	<iframe width="100%" height="55" id="URLcont" style="border:none;"></iframe>
+</div>
+
+<svg id="svgc" style="width:100%; height:460px;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--<line style="stroke:#777;stroke-width:3" x1="600.3858296626638" y1="178.33103161915125" x2="610.944222822206" y2="258.40899500980424"></line><line style="stroke:#777;stroke-width:3" x1="610.944222822206" y1="258.40899500980424" x2="535.5243379928918" y2="226.78350708784242"></line><line style="stroke:#777;stroke-width:3" x1="535.5243379928918" y1="226.78350708784242" x2="600.3858296626638" y2="178.33103161915125"></line><circle fill="#E30613" style="cursor:move;" cx="600.3858296626638" cy="178.33103161915125" r="13"></circle><text fill="#fff" font-size="18" style="pointer-events: none; visibility: hidden; " x="595.3858296626638" y="184.33103161915125">1</text><circle fill="#E30613" style="cursor:move;" cx="610.944222822206" cy="258.40899500980424" r="13"></circle><text fill="#fff" font-size="18" style="pointer-events: none; visibility: hidden; " x="605.944222822206" y="264.40899500980424">2</text><circle fill="#E30613" style="cursor:move;" cx="535.5243379928918" cy="226.78350708784242" r="13"></circle><text fill="#fff" font-size="18" style="pointer-events: none; visibility: hidden; " x="530.5243379928918" y="232.78350708784242">3</text>--></svg>
+
+<div id="inPanel" style="margin-bottom:15px;">
+connections:
+	<input value="3:1-2,2-3,3-1" type="text" maxlength="2048" id="inText">
+	<input value="Draw" type="submit" onclick="rebuildURL();" class="btn control" style="font-size:18px;">
+</div>
+<div id="inPanel" style="margin-bottom:15px;">
+labels:
+	<input value="1:A+B=C,2:2*B=A" type="text" maxlength="2048" id="inText">
+	<input value="Add" type="submit" onclick="rebuildURL();" class="btn control" style="font-size:18px;">
+</div>
+
+<h2>Examples</h2>
+<div id="graphs">
+	<a href="first_attempt.html#2:1-2">Stick</a>
+	<a href="first_attempt.html#3:1-2,2-3,3-1">Triangle</a>
+	<a href="first_attempt.html#8:1-2,2-3,3-4,4-5,5-6,6-7,7-8,8-1">Ring C<sub>8</sub></a>
+	<a href="first_attempt.html#4:1-2,2-3,3-1,1-4,2-4,3-4">Tetrahedron</a>
+	<a href="first_attempt.html#8:1-2,2-3,3-4,4-1,5-6,6-7,7-8,8-5,1-5,2-6,3-7,4-8">Cube</a>
+	<a href="first_attempt.html#6:1-2,2-3,3-4,4-1,1-5,2-5,3-5,4-5,1-6,2-6,3-6,4-6">Octahedron</a>
+	<a href="first_attempt.html#12:1-2,2-3,3-4,4-5,5-1,6-7,7-8,8-9,9-10,10-6,1-11,2-11,3-11,4-11,5-11,6-12,7-12,8-12,9-12,10-12,1-6,6-2,2-7,7-3,3-8,8-4,4-9,9-5,5-10,10-1">Icosahedron</a>
+	<a href="first_attempt.html#20:1-2,2-3,3-4,4-5,5-1,6-7,7-8,8-9,9-10,10-6,1-11,2-12,3-13,4-14,5-15,6-16,7-17,8-18,9-19,10-20,11-16,16-12,12-17,17-13,13-18,18-14,14-19,19-15,15-20,20-11">Dodecahedron</a>
+	<a href="first_attempt.html#11:1-2,2-3,3-4,4-5,5-1,6-7,7-8,8-9,9-10,10-6,11-1,11-2,11-3,11-4,11-5,11-6,11-7,11-8,11-9,11-10">Diabolo</a>
+	<a href="first_attempt.html#7:1-2,2-3,3-4,4-5,5-6,6-1,1-7,2-7,3-7,4-7,5-7,6-7,2-4,4-6,6-2">Fano plane</a>
+	<a href="first_attempt.html#16:1-2,2-3,3-4,4-1,5-6,6-7,7-8,8-5,1-5,2-6,3-7,4-8,9-10,10-11,11-12,12-9,13-14,14-15,15-16,16-13,9-13,10-14,11-15,12-16,1-9,2-10,3-11,4-12,5-13,6-14,7-15,8-16">4D cube</a>
+	<a href="first_attempt.html#18:1-2,2-3,3-4,4-5,5-6,6-1,1-7,7-2,2-8,8-3,3-9,9-4,4-10,10-5,5-11,11-6,6-12,12-1,7-8,8-9,9-10,10-11,11-12,12-7,13-14,14-15,15-16,16-17,17-18,18-13,1-13,13-2,2-14,14-3,3-15,15-4,4-16,16-5,5-17,17-6,6-18,18-1">The Drum (???)</a>
+	<a href="first_attempt.html#12:1-2,2-3,3-4,4-5,5-6,6-1,1-7,2-8,3-9,4-10,5-11,6-12">Benzene</a>
+	<a href="first_attempt.html#18:1-2,2-3,3-4,4-5,5-6,6-1,1-7,2-8,3-9,4-10,5-11,6-12,1-13,2-14,3-15,4-16,5-17,6-18">Cyclohexane</a>
+	<a href="first_attempt.html#5:1-2,1-3,1-4,1-5">Methane</a>
+	<a href="first_attempt.html#16:1-2,2-3,4-5,5-6,7-8,8-9,1-4,4-7,2-5,5-8,3-6,6-9,3-10,6-11,9-12,9-14,8-15,7-16,10-11,11-12,12-13,13-14,14-15,15-16">Grid 4x4</a>
+	<a href="first_attempt.html#10:1-3,3-5,5-2,2-4,4-1,6-10,6-7,7-8,8-9,9-10,1-6,2-7,3-8,4-9,5-10">Petersen graph</a>
+	<a href="first_attempt.html#14:1-2,2-3,3-4,4-5,5-6,6-7,7-8,8-9,9-10,10-11,11-12,12-13,13-14,14-1,1-6,3-8,5-10,7-12,9-14,11-2,13-4">Heawood graph</a>
+	<a href="first_attempt.html#8:1-2,1-3,1-4,1-5,5-4,4-3,3-2,3-6,4-6,1-7,4-7,3-7,2-7,5-7,6-7,3-8,4-8,1-8">Spiky tetrahedron</a>
+	<a href="first_attempt.html#6:1-4,1-5,1-6,2-4,2-5,2-6,3-4,3-5,3-6">K<sub>3,3</sub></a>
+	<a href="first_attempt.html#5:1-2,1-3,1-4,1-5,2-3,2-4,2-5,3-4,3-5,4-5">K<sub>5</sub></a>
+</div>
+
+<div style="width:600px; display:none;" id="embed">
+<!--
+<h2>Paste your graph into your webpage</h2>
+-->
+<div style="width:360px; float:left; text-align:left;">
+<textarea rows="4" cols="36" id="wCode">&lt;iframe src= "http://g.ivank.net/g.html#3:1-2,2-3,3-1" width="400" height="200" style= "border:none;"&gt;&lt;/iframe&gt;</textarea>
+</div>
+<!--
+<div style="text-align:left;">
+<ul>
+<li>paste it anywhere in your HTML</li>
+<li>it weights 8kB (lighter than images)</li>
+<li>when stable, it doesn't use CPU</li>
+</ul>
+</div>
+-->
+</div>
+
+based on <a href="http://g.ivank.net/#3:1-2,2-3,3-1">http://g.ivank.net/#3:1-2,2-3,3-1</a>
+
+<br>
+<br>
+
+</body></html>

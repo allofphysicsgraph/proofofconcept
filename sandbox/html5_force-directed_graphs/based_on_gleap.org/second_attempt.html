@@ -1,0 +1,95 @@
+
+<!-- saved from url=(0017)http://gleap.org/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Gleap.org / SamPottinger.com</title>
+		
+		<link rel="stylesheet" type="text/css" href="gleap.css">
+		<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="util.js"></script>
+		<script type="text/javascript" src="sprintf.js"></script>
+
+		
+	<script type="text/javascript" src="node.js"></script>
+	<script type="text/javascript" src="edge.js"></script>
+	<script type="text/javascript" src="vector.js"></script>
+	<script type="text/javascript" src="graph_manager.js"></script>
+	<script type="text/javascript" src="driver.js"></script>
+	<script type="text/javascript" src="force_decorators.js"></script>
+
+
+		<script type="text/javascript">
+			// TODO: move this out into a seperate file
+			$(document).ready(function() {
+				$("#errorDisplay").hide();
+				$("#infoDisplay").hide();
+			});
+		</script>
+	<style type="text/css"></style></head>
+	<body>
+		
+		<div id="errorDisplay" style="display: none; "></div>
+		<div id="infoDisplay" style="display: none; "></div>
+
+		<div id="content">
+
+			<div id="leftContent">
+				<div class="title">gleap</div>
+
+				<div class="verticalButtonLinks">
+					<ul>
+						<li><a href="http://gleap.org/blog">Blog</a></li>
+						<li><a href="http://gleap.org/contact">Contact</a></li>
+					</ul>
+				</div>
+
+			</div>
+
+			<div id="rightContent">
+				
+	<div id="caption">Personal homepage of Sam Pottinger</div>
+
+	<canvas id="nodeartCanvas" width="545" height="350">
+		What? Your browser does not support canvas! That's a shame, I had a nice demo that I wanted to show you. Do you mind coming back with one of these browsers:
+		<ul>
+			<li><a href="https://www.google.com/chrome">Chrome</a></li>
+			<li><a href="http://www.mozilla.org/en-US/firefox/new/">Firefox (1.5+)</a></li>
+			<li><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home">IE (9+)</a></li>
+			<li><a href="http://www.apple.com/safari/">Safari (1.3+)</a></li>
+			<li><a href="http://www.opera.com/">Opera (9+)</a></li>
+		</ul>
+	</canvas>
+
+	<div class="detailedDescription" style="display: none; ">
+		<div>
+			<h2>Description</h2>
+			<p>This is a HTML5 canvas-based JavaScript implementation of Fruchterman and Reingol's force based graph visualization algorithm.</p>
+		</div>
+
+		<div>
+			<h2>Controls</h2>
+			<p>You can add new nodes by left clicking within the simulation.</p>
+		</div>
+
+		<div>
+			<h2>Resources</h2>
+				
+			<p>Want to do something with force based graph visualization or HTML5 canvas? The source code running this simulation is open source (MIT license) and moderately documented. Also check out some of these links:</p>
+
+			<ul>
+				<li><a href="http://www.html5canvastutorials.com/">HTML5 Canvas Tutorials</a></li>
+				<li><a href="http://www.cs.brown.edu/~rt/gdhandbook/chapters/force-directed.pdf">Force Directed Drawing Algorithms</a></li>
+			</ul>
+		</div>
+
+	</div>
+
+	<div id="demoDescriptionButtonHolder" class="bottomButtonArea" style="display: block; "><a id="moreInfoButton" href="http://gleap.org/#">info about this HTML5 demo</a></div>
+	<div id="lessInfoButtonHolder" class="bottomButtonArea" style="display: none; "><a id="lessInfoButton" href="http://gleap.org/#">go back</a></div>
+	<div id="demoInstructions" style="display: none; ">Left click to add nodes</div>
+
+			</div>
+			
+		</div>
+
+	
+</body></html>

@@ -1,0 +1,6 @@
+<eq2png_config>
+  <packages>fullpage</packages>
+  <dvips_scale>1000</dvips_scale>
+  <ps_background_color>"1,1,1"</ps_background_color>
+  <ps_foreground_color>"0,0,0"</ps_foreground_color>
+</eq2png_config>

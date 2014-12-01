@@ -1,0 +1,68 @@
+# Graphviz
+# 20141026
+# Command to produce output:
+# neato -Tsvg thisfile > out.svg
+# http://www.graphviz.org/Gallery/directed/traffic_lights.gv.txt
+# http://www.graphviz.org/content/traffic_lights
+digraph physicsEquations {
+2303943 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/declareInitialEq.png"];
+5900595848 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/5900595848.png",labelloc=b,URL="http://output.com"];
+2303943 -> 5900595848
+0304948 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/declareInitialEq.png"];
+0404050504 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/0404050504.png",labelloc=b,URL="http://output.com"];
+0304948 -> 0404050504
+8332941 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/declareInitialEq.png"];
+3131211131 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/3131211131.png",labelloc=b,URL="http://output.com"];
+8332941 -> 3131211131
+8332941 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/declareInitialEq.png"];
+3131111133 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/3131111133.png",labelloc=b,URL="http://output.com"];
+8332941 -> 3131111133
+3832748 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/subRHSofEqXintoEqY.png"];
+3132131132 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/3132131132.png",labelloc=b,URL="http://input.com"];
+3132131132 -> 3832748
+5900595848 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/5900595848.png",labelloc=b,URL="http://input.com"];
+5900595848 -> 3832748
+0934990943 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/0934990943.png",labelloc=b,URL="http://output.com"];
+3832748 -> 0934990943
+2939482 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/subRHSofEqXintoEqY.png"];
+0404050504 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/0404050504.png",labelloc=b,URL="http://input.com"];
+0404050504 -> 2939482
+3131111133 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/3131111133.png",labelloc=b,URL="http://input.com"];
+3131111133 -> 2939482
+1293923844 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/1293923844.png",labelloc=b,URL="http://output.com"];
+2939482 -> 1293923844
+<infrule_tunid/> [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/subRHSofEqXintoEqY.png"];
+0934990943 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/0934990943.png",labelloc=b,URL="http://input.com"];
+0934990943 -> <infrule_tunid/>
+1293923844 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/1293923844.png",labelloc=b,URL="http://input.com"];
+1293923844 -> <infrule_tunid/>
+3121513111 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/3121513111.png",labelloc=b,URL="http://output.com"];
+<infrule_tunid/> -> 3121513111
+6822583 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/multbothsidesby.png"];
+5749291 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_feed_png/5749291.png",labelloc=b,URL="http://feed.com"];
+5749291 -> 6822583
+3131111133 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/3131111133.png",labelloc=b,URL="http://input.com"];
+3131111133 -> 6822583
+2131616531 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/2131616531.png",labelloc=b,URL="http://output.com"];
+6822583 -> 2131616531
+9483715 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/dividebothsidesby.png"];
+8837284 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_feed_png/8837284.png",labelloc=b,URL="http://feed.com"];
+8837284 -> 9483715
+2131616531 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/2131616531.png",labelloc=b,URL="http://input.com"];
+2131616531 -> 9483715
+2113211456 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/2113211456.png",labelloc=b,URL="http://output.com"];
+9483715 -> 2113211456
+9483843 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/subRHSofEqXintoEqY.png"];
+2113211456 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/2113211456.png",labelloc=b,URL="http://input.com"];
+2113211456 -> 9483843
+3131211131 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/3131211131.png",labelloc=b,URL="http://input.com"];
+3131211131 -> 9483843
+3132131132 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/3132131132.png",labelloc=b,URL="http://output.com"];
+9483843 -> 3132131132
+8345721 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_op_png/declareFinalEq.png"];
+3121513111 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/physics-equations-graph/lib/images_eq_png/3121513111.png",labelloc=b,URL="http://input.com"];
+3121513111 -> 8345721
+overlap=false
+label="Equation relations\nExtracted from connections_database.xml and layed out by Graphviz"
+fontsize=12;
+}

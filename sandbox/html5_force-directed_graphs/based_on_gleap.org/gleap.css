@@ -1,0 +1,214 @@
+html
+{
+    width:100%;
+    height:100%;
+    /*background-image:url('/static/img/bg.png');*/
+    font-family:arial;
+    font-size:14px;
+    color:black;
+}
+
+body
+{
+    width:900px;
+    height:500px;
+    background-color:white;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    padding-top:10px;
+    margin-top:50px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:rgba(255, 255, 255, 0.5);
+}
+
+.detailedDescription
+{
+    font-size:14px;
+    color:black;
+    font-family:times;
+    overflow:auto;
+    height:340px;
+    margin-top:50px;
+}
+
+.detailedDescription h2
+{
+    font-family:arial;
+    padding-bottom:0px;
+    margin-bottom:0px;
+    font-size:24px;
+}
+
+.detailedDescription div
+{
+    padding-bottom:20px;
+    padding-top:0px;
+}
+
+.title
+{
+    font-family:arial;
+    font-size:60px;
+    font-weight:bold;
+    color:#0D456A;
+}
+
+.selectedHorizontalButton
+{
+    background-color:#A66411 !important;
+}
+
+.horizontalButtonLinks
+{
+    margin: 0px;
+    padding: 0px;
+    padding-top:50px;
+    font-family:times;
+    font-size:18px;
+    list-style-type: none;
+}
+
+.horizontalButtonLinks li
+{
+    padding-right:20px;
+    float: left;
+    display:inline;
+    list-style-type: none;
+}
+
+.horizontalButtonLinks a
+{
+    color:white;
+    background-color:#2873A3;
+    padding:5px;
+    text-decoration:none;
+}
+
+.horizontalButtonLinks a:hover
+{
+    background-color:#5BA3D1;
+    color:white;
+    text-decoration:underline;
+}
+
+.verticalButtonLinks
+{
+    padding-top:50px;
+    font-family:times;
+    font-size:18px;
+}
+
+.verticalButtonLinks ul
+{
+    list-style-type: none;
+}
+
+.verticalButtonLinks li
+{
+    padding-top:20px;
+    padding-right:10px;
+}
+
+.verticalButtonLinks a
+{
+    color:#35855F;
+    background-color:#79D8AB;
+    padding:5px;
+    text-decoration: none;
+}
+
+.verticalButtonLinks a:hover
+{
+    color:white;
+    text-decoration: underline;
+    background-color:#35855F;
+}
+
+.bottomButtonArea
+{
+    float:right;
+}
+
+.bottomButtonArea a
+{
+    color:white;
+    background-color:#2873A3;
+    padding:5px;
+    text-decoration:none;
+}
+
+.bottomButtonArea a:hover
+{
+    background-color:#5BA3D1;
+    color:white;
+    text-decoration:underline;
+}
+
+#caption
+{
+    font-size:16px;
+    padding-top:30px;
+}
+
+#nodeartCanvas
+{
+    margin-top:15px;
+    margin-bottom:25px;
+}
+
+#content
+{
+    background-color:white;
+    width:870px;
+    height:470px;
+    padding:5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#leftContent
+{
+    width:300px;
+    height:100%;
+    float:left;
+    text-align:right;
+    border-style:solid;
+    border-width:0px;
+    border-right-width:1px;
+}
+
+#rightContent
+{
+    text-align:left;
+    width:560px;
+    height:100%;
+    float:right;
+}
+
+#errorDisplay
+{
+    font-size:14px;
+    padding:10px;
+    width:900px;
+    position:absolute;
+    background-color:#FF6733;
+    color:white;
+}
+
+#infoDisplay
+{
+    font-size:14px;
+    padding:10px;
+    width:900px;
+    position:absolute;
+    background-color:#5BA3D1;
+    color:white;
+}
+
+#demoInstructions
+{
+    float:right;
+}
