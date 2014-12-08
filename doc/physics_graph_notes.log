@@ -1,4 +1,112 @@
 
+20141207
+
+what's the elevator pitch?
+
+compile a database of all current known physics 
+showing how they correlate
+the logic behind that correlation
+showing how they are derived
+
+examples of capturing lots of information concisely in an accessible form
+* google maps
+* wikipedia
+
+20141207
+
+syntax candidates: {ContentML, PresentationML, Latex, Mathematica, SymPy, abstract syntax tree}
+
+In general, we need to evaluate
+* ability to input
+* ability to transform between representations
+* ability to audit correctness
+Not a problem:
+* storage
+consumer cares about:
+* speed
+* ease of use
+* presentation
+* accessibility - multi-device, multi-OS
+* easy setup
+
+A set of test cases for flexing the capability of syntax
+
+1) polynomial
+Latex: a x^2 + b x + c = 0
+
+2) Stoke's theorem
+\int \int_{\sum} \vec{\nabla} \times \vec{F} \dot d\sum = \oint_{\partial \sum} \vec{F}\dot d\vec{r}
+
+3) Tensor analysis
+Y^i(X_j) = \Delta^i_{\ j}
+Einstein notation: contravariant = superscript, covariant = subscript
+
+4) creation operator
+\hat{a}^+ |n\rangle = \sqrt{n+1} |n+1\rangle
+
+\sigma_x \sigma_p \geq \frac{\hbar}{2}
+uncertainty principle
+
+To evaluate: 
+* character count
+* rendering
+
+Content MathML for 1:
+
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<apply>
+  <eq/>
+    <apply>
+      <plus/>
+        <apply><ci>a</ci> <power/><ci> x </ci><ci> 2 </ci></apply>
+        <apply><ci>b</ci> <ci> x </ci>                    </apply>
+        <apply><ci>c</ci>                                 </apply>
+    </apply>
+    <apply>
+      <cn>0</cn>
+    </apply>
+</apply>
+</math>
+
+Presentation MathML for 1:
+
+<mrow>
+ <mrow>
+  <msup>
+   <mrow><mi> x </mi></mrow>
+   <mrow><mi> n </mi></mrow>
+  </msup>
+  <mo>+</mo>
+  <msup>
+   <mrow><mi> y </mi></mrow>
+   <mrow><mi> n </mi></mrow>
+  </msup>
+ </mrow>
+ <mo>=</mo>
+ <msup>
+  <mrow><mi> z </mi></mrow>
+  <mrow><mi> n </mi></mrow>
+ </msup>
+</mrow>
+
+* what are we comparing?
+** presentation mathml, content mathml, mathematica, latex, abstract syntax tree
+* what is the evaluation?
+** can it describe all the notation necessary for physics
+** how easy is the input method? (character count)
+** can it be transformed to other representations
+
+
+20141206
+
+Statement stored as abstract syntax tree could generate MathML, Latex, CAS input
+Mathematica has "tree form"
+
+What I refer to as "statement", Mathematica calls "expressions"
+
+Mathematica has "atomq" which indicates whether the expression
+atom = {symbols, numbers, ...}
+
 20141027
 
 Mike found the basis for my inference rules
