@@ -1,0 +1,58 @@
+\documentclass[pdftex]{article}
+% \documentclass[prl,showpacs,amsmath,amssymb]{revtex4} % PRL
+
+% margins of 1 inch:
+\setlength{\topmargin}{-.5in}
+\setlength{\textheight}{9.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+
+\usepackage[pdftex]{hyperref} % hyperlink equation and bibliographic citations
+\usepackage[dvips]{graphicx,color}
+\usepackage{amsmath} % advanced math
+\usepackage{verbatim} % multi-line comments
+\usepackage{natbib} % bibilography 
+\usepackage{mciteplus} % collapse multiple citations in bibilography
+
+% from http://www.flakery.org/search/show/569
+\newcommand{\infint}{\ensuremath{\int_{-\infty}^{\infty}}}
+\newcommand{\ie}{\textit{i.e.}\ }
+\newcommand{\eg}{\textit{e.g.}\ }
+\newcommand{\eqn}[1]{Eq.\ (\ref{#1})}
+\newcommand{\pfrac}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+
+\begin{document}
+
+\title{Notes}
+
+\author{My name$^{1}$\footnote{Electronic address: username@gmail.com}\\
+
+{\it $^{1}$Department of Fun, University Name \& Town, city, State Zip}}
+
+\date{\today}
+
+\begin{abstract}
+blah blah blah
+\end{abstract}
+
+\maketitle % declares end of title page
+
+\tableofcontents
+
+\newpage
+
+\section{Introduction}
+
+Here is some text with\cite{name1,*name2} and more math $P_c=4$. All work and no play makes Jack
+\begin{equation}
+\begin{gathered}
+y=3 \\
+\int_0^x f(x)\ dx=9
+\end{gathered}
+\label{eq:name_of_eq}
+\end{equation}
+
+\bibliographystyle{apsrevM} % use the apsrevM.bst for collapsible citations
+\bibliography{../bibliography} % external bibtex flat-file database
+
+\end{document}
