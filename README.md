@@ -5,11 +5,11 @@ Claim: a finite static directed graph exists which describes all of mathematical
 Claim: the graph representation is machine parsable
 Claim: this graph can be checked by a computer algebra system
 
-== Licensing ==
+# Licensing
 Creative Commons Attribution-ShareAlike 3.0 Unported License.
 https://code.google.com/p/physics-equations-graph/
 
-== Requirements ==
+# Requirements
 
 Python 2.7
 http://www.python.org/getit/
@@ -24,24 +24,24 @@ Latex
 neato
 http://www.graphviz.org/
 
-== How to use (for the impatient) ==
+# How to use (for the impatient)
 
-# main commands:
-python bin/create_pictures_of_statements_and_grammar.py
-python bin/build_connections_graph.py
+main commands:
+    python bin/create_pictures_of_statements_and_grammar.py
+    python bin/build_connections_graph.py
 
-# tools
-python bin/list_connection_sets.py
-python bin/list_inference_rules.py
-python bin/generate_new_random_index.py
+tools
+    python bin/list_connection_sets.py
+    python bin/list_inference_rules.py
+    python bin/generate_new_random_index.py
 
-# statistical analysis
-python bin/popularity_of_inference_rules.py
-python bin/popularity_of_statements.py
-python bin/popularity_of_symbols.py
+statistical analysis
+    python bin/popularity_of_inference_rules.py
+    python bin/popularity_of_statements.py
+    python bin/popularity_of_symbols.py
 
-# validate connections
-python bin/check_connections_using_CAS.py
+validate connections
+    python bin/check_connections_using_CAS.py
 
 
 
@@ -63,7 +63,7 @@ for use with Networkx
 for input to graph plotting programs like yED
 
 
-== Status ==
+# Status
 
 Development and testing performed on Mac OS 10.7.5
 
