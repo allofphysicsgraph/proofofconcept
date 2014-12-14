@@ -1,5 +1,5 @@
-\documentclass[pdftex]{article}
-% \documentclass[prl,showpacs,amsmath,amssymb]{revtex4} % PRL
+\documentclass{article}
+%\documentclass[prl,amsmath,amssymb]{revtex4} % PRL
 
 % margins of 1 inch:
 \setlength{\topmargin}{-.5in}
@@ -13,46 +13,156 @@
 \usepackage{verbatim} % multi-line comments
 \usepackage{natbib} % bibilography 
 \usepackage{mciteplus} % collapse multiple citations in bibilography
+\usepackage{multicol}
+
 
 % from http://www.flakery.org/search/show/569
-\newcommand{\infint}{\ensuremath{\int_{-\infty}^{\infty}}}
+%\newcommand{\infint}{\ensuremath{\int_{-\infty}^{\infty}}}
 \newcommand{\ie}{\textit{i.e.}\ }
 \newcommand{\eg}{\textit{e.g.}\ }
 \newcommand{\eqn}[1]{Eq.\ (\ref{#1})}
 \newcommand{\pfrac}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
 
 \begin{document}
+\title{Comparison of Syntax formats}
 
-\title{Notes}
-
-\author{My name$^{1}$\footnote{Electronic address: username@gmail.com}\\
-
+\author{Ben Payne$^{1}$\footnote{Corresponding author: ben.is.located@gmail.com}\\
 {\it $^{1}$Department of Fun, University Name \& Town, city, State Zip}}
 
 \date{\today}
 
-\begin{abstract}
-blah blah blah
-\end{abstract}
+%\begin{abstract}
+%blah blah blah
+%\end{abstract}
 
 \maketitle % declares end of title page
+\begin{multicols}{2}
 
-\tableofcontents
+%\tableofcontents
 
-\newpage
+%\newpage
 
 \section{Introduction}
 
-Here is some text with\cite{name1,*name2} and more math $P_c=4$. All work and no play makes Jack
+Mathematical Markup Language (MathML)\cite{2014_MathML}, specifically Content MathML and Presentation MathML.
+
+Mathematica\cite{2014_mathematica}
+
+
+\section{Test Cases}
+A set of test cases for flexing the capability of syntax, provided in Latex
+
+\subsection{Case 1: polynomial}
+
 \begin{equation}
-\begin{gathered}
-y=3 \\
-\int_0^x f(x)\ dx=9
-\end{gathered}
-\label{eq:name_of_eq}
+a x^2 + b x + c = 0
+\label{eq:polynomial_case1}
+\end{equation}
+Latex: 
+\begin{verbatim}
+a x^2 + b x + c = 0
+\end{verbatim}
+
+Presentation MathML:
+\begin{verbatim}
+<mrow>
+ <mrow>
+  <msup>
+   <mrow><mi> x </mi></mrow>
+   <mrow><mi> n </mi></mrow>
+  </msup>
+  <mo>+</mo>
+  <msup>
+   <mrow><mi> y </mi></mrow>
+   <mrow><mi> n </mi></mrow>
+  </msup>
+ </mrow>
+ <mo>=</mo>
+ <msup>
+  <mrow><mi> z </mi></mrow>
+  <mrow><mi> n </mi></mrow>
+ </msup>
+</mrow>
+\end{verbatim}
+
+Content MathML:
+\begin{verbatim}
+<math xmlns=
+"http://www.w3.org/1998/Math/MathML">
+<apply>
+ <eq/>
+  <apply>
+   <plus/>
+    <apply>
+     <ci>a</ci> 
+     <power/><ci> x </ci><ci> 2 </ci>
+     </apply>
+    <apply>
+     <ci>b</ci> <ci> x </ci>                    
+     </apply>
+    <apply>
+    <ci>c</ci>                                 
+    </apply>
+   </apply>
+   <apply>
+    <cn>0</cn>
+  </apply>
+</apply>
+</math>
+\end{verbatim}
+
+\subsection{Case 2: Stoke's theorem}
+\begin{equation}
+\int \int_{\sum} \vec{\nabla} \times \vec{F} \dot d\sum = \oint_{\partial \sum} \vec{F}\dot d\vec{r}
+\label{eq:stokes_case2}
+\end{equation}
+Latex:
+\begin{verbatim}
+\int \int_{\sum} \vec{\nabla} \times
+ \vec{F} \dot d\sum = 
+\oint_{\partial \sum} \vec{F}\dot d\vec{r}
+\end{verbatim}
+
+\subsection{Case 3: Tensor analysis}
+\begin{equation}
+Y^i(X_j) = \Delta^i_{\ j}
+\end{equation}
+Latex: 
+\begin{verbatim}
+Y^i(X_j) = \Delta^i_{\ j}
+\end{verbatim}
+
+Einstein notation: contravariant = superscript, covariant = subscript
+
+\subsection{Case 4a: creation operator}
+\begin{equation}
+\hat{a}^+ |n\rangle = \sqrt{n+1} |n+1\rangle
 \end{equation}
 
-\bibliographystyle{apsrevM} % use the apsrevM.bst for collapsible citations
+\begin{verbatim}
+\hat{a}^+ |n\rangle = \sqrt{n+1} |n+1\rangle
+\end{verbatim}
+
+\subsection{Case 4b: uncertainty principle}
+\begin{equation}
+\sigma_x \sigma_p \geq \frac{\hbar}{2}
+\end{equation}
+
+\begin{verbatim}
+\sigma_x \sigma_p \geq \frac{\hbar}{2}
+\end{verbatim}
+
+\section{Comparison of Test Cases}
+
+\begin{tabular}{|c|c|c|c|}\hline
+Name & Cost & Open Source & keystroke count \\\hline
+Latex & Free & Yes & 4 \\\hline
+\end{tabular}
+
+\section{Bibliography}
+
+\bibliographystyle{apsrev4-1} % use the apsrevM.bst for collapsible citations
 \bibliography{../bibliography} % external bibtex flat-file database
 
+\end{multicols}
 \end{document}
