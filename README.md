@@ -53,10 +53,10 @@ Command:
 
     python bin/build_connections_graph.py
 
-output: 
-two pictures, each showing the graph for the selected sequence
+output: two pictures, each showing the graph for the selected sequence
 * "out_no_labels.png"
 * "out_with_labels.png"
+
 These were generated using GraphViz and the output file
 "connection_result.gv"
 and the command 
@@ -75,10 +75,10 @@ for input to graph plotting programs like yED
 Development and testing performed on Mac OS 10.7.5
 
 Currently, content is manually coded into XML files:
-connections_database.xml: how do inference rules and statements relate?
-equations_database.xml  : library of unique statements to be used by connections
-operators_database.xml  : library of unique inference rules to be used by connections
-comments_database.xml   : set of comments which may reference multiple statements
+* connections_database.xml: how do inference rules and statements relate?
+* equations_database.xml  : library of unique statements to be used by connections
+* operators_database.xml  : library of unique inference rules to be used by connections
+* comments_database.xml   : set of comments which may reference multiple statements
 
 None of the XML format and style is documented because it is under active development
 
