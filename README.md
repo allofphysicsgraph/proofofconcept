@@ -27,34 +27,41 @@ http://www.graphviz.org/
 # How to use (for the impatient)
 
 main commands:
+
     python bin/create_pictures_of_statements_and_grammar.py
     python bin/build_connections_graph.py
 
 tools
+
     python bin/list_connection_sets.py
     python bin/list_inference_rules.py
     python bin/generate_new_random_index.py
 
 statistical analysis
+
     python bin/popularity_of_inference_rules.py
     python bin/popularity_of_statements.py
     python bin/popularity_of_symbols.py
 
 validate connections
+
     python bin/check_connections_using_CAS.py
 
 
 
 Command:
-python bin/build_connections_graph.py
+
+    python bin/build_connections_graph.py
+
 output: 
 two pictures, each showing the graph for the selected sequence
-"out_no_labels.png"
-"out_with_labels.png"
+* "out_no_labels.png"
+* "out_with_labels.png"
 These were generated using GraphViz and the output file
 "connection_result.gv"
 and the command 
-neato -Tpng connections_result.gv > out_with_labels.png
+
+    neato -Tpng connections_result.gv > out_with_labels.png
 
 The other two output files are the same graph,
 "connections_result.py"
