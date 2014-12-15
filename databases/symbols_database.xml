@@ -6,8 +6,10 @@ constant: the symbol always has the same value. Can be dimensionless or some com
 operator: the symbol acts on other symbols. Then "units" and "value" are not applicable
 -->
 <!-- see wikipedia entries: "physical constant" -->
+<!--
 https://en.wikipedia.org/wiki/List_of_common_physics_notations
 http://physics-help.info/physicsguide/appendices/si_units.shtml
+-->
 <!--
   <symbol><symbol_name></symbol_name><symbol_punid></symbol_punid>
     <type></type>
