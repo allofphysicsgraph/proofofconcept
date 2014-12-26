@@ -3,31 +3,34 @@
 
 % margins of 1 inch:
 \setlength{\topmargin}{-.5in}
-\setlength{\textheight}{9.5in}
+\setlength{\textheight}{9in}
 \setlength{\oddsidemargin}{0in}
 \setlength{\textwidth}{6.5in}
 
 \usepackage[pdftex]{hyperref} % hyperlink equation and bibliographic citations
 \usepackage[dvips]{graphicx,color}
 \usepackage{amsmath} % advanced math
-\usepackage{verbatim} % multi-line comments
+\usepackage{verbatim}
 \usepackage{natbib} % bibilography 
 \usepackage{mciteplus} % collapse multiple citations in bibilography
 \usepackage{multicol}
+\usepackage[toc,page]{appendix} % http://tex.stackexchange.com/questions/49643/making-appendix-for-thesis
 
 
 % from http://www.flakery.org/search/show/569
 %\newcommand{\infint}{\ensuremath{\int_{-\infty}^{\infty}}}
-\newcommand{\ie}{\textit{i.e.}\ }
-\newcommand{\eg}{\textit{e.g.}\ }
+\newcommand{\cf}{\textit{c.f.}} % "compare". In context the abbreviation advises readers to consult other material, drawing attention to related ideas that provide additional arguments or information.
+\newcommand{\ie}{\textit{i.e.}} % i.e. is used to explain, clarify or rephrase a statement
+\newcommand{\eg}{\textit{e.g.}} % “for the sake of example”. Used to introduce an example or list of examples to illustrate what is being discussed.
 \newcommand{\eqn}[1]{Eq.\ (\ref{#1})}
 \newcommand{\pfrac}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
 
 \begin{document}
 \title{Comparison of Syntax formats}
 
-\author{Ben Payne$^{1}$\footnote{Corresponding author: ben.is.located@gmail.com}\\
-{\it $^{1}$Department of Fun, University Name \& Town, city, State Zip}}
+\author{Ben Payne$^{1}$\footnote{Corresponding author: ben.is.located@gmail.com}, Michael Goff$^{2}$\\
+{\it $^{1}$Department of Fun, University Name \& Town, city, State Zip}\\
+{\it $^{2}$Department of Mathematics, University of Maryland \& Baltimore 21228}}
 
 \date{\today}
 
@@ -45,159 +48,142 @@
 \section{Introduction}
 
 % relevant project background
-The Physics derivation graph is an effort to 
+The Physics Derivation Graph is an project designed to capture mathematical physics knowledge. 
 
-Other overviews:
+% Other overviews:
 % http://tex.stackexchange.com/questions/57717/relationship-between-mathml-and-tex
 % http://www.intmath.com/blog/mathematics/comparison-math-web-publishing-options-9915
 
 % what are we comparing?
-In this report, we compare methods of capturing mathematical syntax. 
-presentation mathml, content mathml, mathematica, latex, abstract syntax tree
-what is the evaluation?
+In this report, we compare methods of capturing mathematical syntax required to describe derivations in physics. This survey covers \LaTeX, Mathematical Markup Language (MathML)\cite{2014_MathML}, Mathematica\cite{2014_mathematica}, and SymPy\cite{2014_SymPy}. For MathML, both Presentation and Content forms are included.
 
-can it describe all the notation necessary for physics
-how easy is the input method? (character count)
-can it be transformed to other representations
-In general, we need to evaluate
+This comparison is between syntax methods which do not serve the same purpose. \LaTeX is a type-setting language, while Mathematica and SymPy are Computer Algebra Systems (CAS). The reason these were picked is twofold: what is typically used in the scientific community and what is needed for the Physics Derivation Graph. 
 
-ability to input
-ability to transform between representations
-ability to audit correctness
-Not a problem:
+Consumer cares about previous experience, how wide spread in their community, speed, ease of input, presentation (rendering), ability to access content across devices, OS independence, ease of setup. 
 
-storage
-consumer cares about:
+Evaluate criteria relevant to users, including the 
+\begin{itemize}
+\item ability to input by humans
+\item ability to transform between representations
+\item ability to audit correctness
+\end{itemize}
 
-speed
-ease of use
-presentation
-accessibility - multi-device, multi-OS
-easy setup
-To start, evaluate:
-
-character count
-rendering
-
-Mathematical Markup Language (MathML)\cite{2014_MathML}, specifically Content MathML and Presentation MathML.
-
-Mathematica\cite{2014_mathematica}
+In this evaluation, the following characterizations are used for comparison of syntax methods
+\begin{itemize}
+\item can it describe all the notation necessary for physics
+\item how easy is the input method? (character count)
+\item can it be transformed to other representations
+\end{itemize}
+Storage of the generated content (knowledge base for all of physics) isn't expected to exceed a Gigabyte, so compactness in terms of storage isn't a criterion.
 
 
 \section{Test Cases}
-A set of test cases for flexing the capability of syntax, provided in Latex
+In order to demonstrate the variety of uses in distinct domains of Physics, a set of test cases are provided in this section. These cases are not meant to be exhaustive of either the syntax or the scientific domain. Rather, they are examples of both capability requirements of the Physics Derivation Graph and of the syntax methods. 
 
-\subsection{Case 1: polynomial}
+% https://www.physicsforums.com/threads/formulae-of-various-topics.102736/
 
+Case 1 is a second order polynomial. Algebra
 \begin{equation}
 a x^2 + b x + c = 0
-\label{eq:polynomial_case1}
+\label{eq:polynomial_case1_body}
 \end{equation}
-Latex: 
-\begin{verbatim}
-a x^2 + b x + c = 0
-\end{verbatim}
 
-Presentation MathML:
-\begin{verbatim}
-<mrow>
- <mrow>
-  <msup>
-   <mrow><mi> x </mi></mrow>
-   <mrow><mi> n </mi></mrow>
-  </msup>
-  <mo>+</mo>
-  <msup>
-   <mrow><mi> y </mi></mrow>
-   <mrow><mi> n </mi></mrow>
-  </msup>
- </mrow>
- <mo>=</mo>
- <msup>
-  <mrow><mi> z </mi></mrow>
-  <mrow><mi> n </mi></mrow>
- </msup>
-</mrow>
-\end{verbatim}
-
-Content MathML:
-\begin{verbatim}
-<math xmlns=
-"http://www.w3.org/1998/Math/MathML">
-<apply>
- <eq/>
-  <apply>
-   <plus/>
-    <apply>
-     <ci>a</ci> 
-     <power/><ci> x </ci><ci> 2 </ci>
-     </apply>
-    <apply>
-     <ci>b</ci> <ci> x </ci>                    
-     </apply>
-    <apply>
-    <ci>c</ci>                                 
-    </apply>
-   </apply>
-   <apply>
-    <cn>0</cn>
-  </apply>
-</apply>
-</math>
-\end{verbatim}
-
-\subsection{Case 2: Stoke's theorem}
+Case 2, Stoke's theorem, includes integrals, cross products, and vectors. Calculus
 \begin{equation}
 \int \int_{\sum} \vec{\nabla} \times \vec{F} \dot d\sum = \oint_{\partial \sum} \vec{F}\dot d\vec{r}
-\label{eq:stokes_case2}
+\label{eq:stokes_case2_body}
 \end{equation}
-Latex:
-\begin{verbatim}
-\int \int_{\sum} \vec{\nabla} \times
- \vec{F} \dot d\sum = 
-\oint_{\partial \sum} \vec{F}\dot d\vec{r}
-\end{verbatim}
 
-\subsection{Case 3: Tensor analysis}
+Case 3: Tensor analysis. Einstein notation: contravariant = superscript, covariant = subscript. Used in electrodynamics
 \begin{equation}
 Y^i(X_j) = \Delta^i_{\ j}
+\label{eq:tensor_analysis_case3_body}
 \end{equation}
-Latex: 
-\begin{verbatim}
-Y^i(X_j) = \Delta^i_{\ j}
-\end{verbatim}
 
-Einstein notation: contravariant = superscript, covariant = subscript
+Case 4 covers notation used in Quantum Mechanics. Symbols such as $\hbar$ and Dirac notation are typically used.
 
-\subsection{Case 4a: creation operator}
+Case 4a is the creation operator 
 \begin{equation}
 \hat{a}^+ |n\rangle = \sqrt{n+1} |n+1\rangle
+\label{eq:creation_operator_case4a_body}
 \end{equation}
 
-\begin{verbatim}
-\hat{a}^+ |n\rangle = \sqrt{n+1} |n+1\rangle
-\end{verbatim}
-
-\subsection{Case 4b: uncertainty principle}
+Case 4b is the uncertainty principle
 \begin{equation}
 \sigma_x \sigma_p \geq \frac{\hbar}{2}
+\label{eq:uncertainty_principle_case4b_body}
 \end{equation}
 
-\begin{verbatim}
-\sigma_x \sigma_p \geq \frac{\hbar}{2}
-\end{verbatim}
+Case 4c: L\"{u}ders projection
+\begin{equation}
+ |\psi\rangle \rightarrow \sum_n  |c_n|^2 P_n,\ \rm{where}\ P_n = \sum_i |\psi_{ni}\rangle \langle \psi_{ni}|
+\label{eq:Luders_projection_case4c_body}
+\end{equation}
 
-\section{Comparison of Test Cases}
+\section{Quantitative Comparison of Test Cases}
 
-\begin{tabular}{|c|c|c|c|}\hline
-Name & Cost & Open Source & keystroke count \\\hline
-Latex & Free & Yes & 4 \\\hline
+\end{multicols}
+\begin{center}
+\begin{table}
+\caption {Character Count of Test Cases} \label{table:char_count} 
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+Name            & case 1 & case 2 & case 3 & case 4a & case 4b & case 4c \\\hline
+Latex            & 20       & 101     & 26       & 45         &   39      & 110 \\\hline
+PMathML      &  324     & 538    & 348     & 372       &  250      &        \\\hline
+CMathML      &             &           &            &             &              &        \\\hline
+Mathematica &             &           &            &             &              &        \\\hline
+SymPy           &             &           &            &             &              &        \\\hline
 \end{tabular}
+\end{center}
+\end{table}
+\end{center}
+\begin{multicols}{2}
+
+Character count for the MathML was carried out using
+\begin{verbatim}
+wc -m mathML_presentation_case*.xml
+\end{verbatim}
+
+\section{Qualitative Comparisons of Syntax Methods}
+\LaTeX, MathML, and SymPy are free and open source. Mathematica is proprietary and not free.
+
+For Physicists comfortable writing journal articles in \LaTeX or exploring ideas in Mathematica, these are natural syntax methods. Both \LaTeX and Mathematica are concise, making them intuitive to read and quick to enter. MathML is a verbose syntax which is lengthy to manually enter and yield difficult to read the native XML.  
+
+Unicode is needed to support Dirac notation and any other non-ASCII text in MathML
+
+\subsection{Transform representations}
+
+Wolfram Research offers the ability to convert from Mathematica expressions to MathML on their site \href{http://www.mathmlcentral.com/Tools/ToMathML.jsp}{www.mathmlcentral.com}
+
+A CAS typically produces output syntax such as \LaTeX or MathML in a single format. However, there are often many ways to represent the same math,  \eg~Eq.~\ref{eq:example_partial_derivative_representations}.
+
+\subsection{Audit Correctness of Derivations}
+
+One reason Computer Algebra Systems such as Mathematica and SymPy were included in this survey was to address the requirement of checking correctness of derivations. 
+
+\LaTeX and Presentation MathML are intended for rendering equations and are not easily parsed consistently by a CAS. For example, scientists and mathematicians often render the same partial differential operation in multiple ways:
+\begin{equation}
+\frac{\partial^2}{\partial t^2}F =\frac{\partial}{\partial t}\frac{\partial F}{\partial t} = \frac{\partial^2 F}{\partial t^2} = \frac{\partial}{\partial t}\dot{F} = \frac{\partial \dot{F}}{\partial t} = \ddot{F}.
+\label{eq:example_partial_derivative_representations}
+\end{equation}
+All of these are equivalent. 
+
+\section{Conclusions}
+
+This survey covered \LaTeX, Mathematica, MathML, and SymPy as candidates for syntax methods to be used for the Physics Derivation Graph. Although \LaTeX is intuitive for scientists and is concise, it is a typesetting language and not well suited for the web or use in Computer Algebra Systems (CAS). Mathematica is also concise and has wide spread use by scientists, though its cost limits accessibility. Mathematica is also proprietary, which limits the ability to explore the correctness of this CAS
 
 \section{Bibliography}
 
-\bibliographystyle{apsrev4-1} % use the apsrevM.bst for collapsible citations
+\bibliographystyle{unsrt}
 \bibliography{../bibliography} % external bibtex flat-file database
-
 \end{multicols}
+
+\newpage
+\appendix
+%\begin{appendices}
+\include{appendix_test_cases}
+%\end{appendices}
+
+
 \end{document}

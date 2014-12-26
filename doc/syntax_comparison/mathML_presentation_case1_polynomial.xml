@@ -1,0 +1,21 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mrow>
+  <mrow>
+    <mn>a</mn>
+    <msup>
+      <mi>x</mi>
+      <mn>2</mn>
+    </msup>
+    <mo>+</mo>
+    <mrow>
+      <mn>b</mn>
+      <mo>&InvisibleTimes;</mo>
+      <mi>x</mi>
+    </mrow>
+    <mo>+</mo>
+    <mn>c</mn>
+  </mrow>
+  <mo>=</mo>
+  <mn>0</mn>
+</mrow>
+</math>

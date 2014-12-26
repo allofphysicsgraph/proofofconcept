@@ -1,0 +1,37 @@
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+<mo>&#x222B;</mo>
+<msub>
+    <mo>&#x222B;</mo>
+    <mo>&#x3A3;</mo>
+</msub>
+<mover>
+  <mo>&#x2207;</mo>
+  <mo>&rarr;</mo>
+</mover>
+<mo>&#x2A2F;</mo>
+<mover>
+<mi>F</mi>
+<mo>&rarr;</mo>
+ </mover>
+<mi>&#xB7;</mi>
+<mi>d</mi>
+<mo>&#x3A3;</mo>
+<mo>=</mo>
+<msub>
+    <mo>&#x222E;</mo>
+    <mrow>
+        <mo>&#x2202;</mo>
+        <mo>&#x3A3;</mo>
+    </mrow>
+</msub>
+ <mover>
+<mi>F</mi>
+<mo>&rarr;</mo>
+ </mover>
+<mi>&#xB7;</mi>
+<mi>d</mi>   
+<mover>
+<mi>r</mi>
+<mo>&rarr;</mo>
+</mover>
+</math>

@@ -1,0 +1,134 @@
+\section{Test cases in Latex and MathML}\label{sec:appendix_test_cases}
+
+\subsection{Case 1: polynomial}
+
+\begin{equation}
+a x^2 + b x + c = 0
+\label{eq:polynomial_case1}
+\end{equation}
+Latex: 
+\begin{verbatim}
+a x^2 + b x + c = 0
+\end{verbatim}
+
+Presentation MathML:
+% http://www.mathmlcentral.com/Tools/FromMathML.jsp
+
+%\begin{figure}
+%\begin{center}
+%\includegraphics[scale=1,bb=0 0 111 19]{images/case1_polynomial_mathML_presentation.gif}
+%\caption{Case 1 polynomial in Presentation MathML}
+%\end{center}
+%\end{figure}
+
+\verbatiminput{mathML_presentation_case1_polynomial.xml}
+
+Content MathML:
+\verbatiminput{mathML_content_case1_polynomial.xml}
+
+\subsection{Case 2: Stoke's theorem}
+\begin{equation}
+\int \int_{\sum} \vec{\nabla} \times \vec{F} \dot d\sum = \oint_{\partial \sum} \vec{F}\dot d\vec{r}
+\label{eq:stokes_case2}
+\end{equation}
+Latex:
+\begin{verbatim}
+\int \int_{\sum} \vec{\nabla} \times \vec{F} \dot d\sum = 
+\oint_{\partial \sum} \vec{F}\dot d\vec{r}
+\end{verbatim}
+
+Presentation MathML:
+\verbatiminput{mathML_presentation_case2_stokes.xml}
+
+Content MathML:
+\begin{verbatim}
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+
+</math>
+\end{verbatim}
+
+\subsection{Case 3: Tensor analysis}
+\begin{equation}
+Y^i(X_j) = \Delta^i_{\ j}
+\label{eq:tensor_analysis_case3}
+\end{equation}
+Latex: 
+\begin{verbatim}
+Y^i(X_j) = \Delta^i_{\ j}
+\end{verbatim}
+
+Presentation MathML:
+\verbatiminput{mathML_presentation_case3_tensor.xml}
+
+Content MathML:
+\begin{verbatim}
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+
+</math>
+\end{verbatim}
+
+
+\subsection{Case 4a: creation operator}
+\begin{equation}
+\hat{a}^+ |n\rangle = \sqrt{n+1} |n+1\rangle
+\label{eq:creation_operator_case4a}
+\end{equation}
+
+\begin{verbatim}
+\hat{a}^+ |n\rangle = \sqrt{n+1} |n+1\rangle
+\end{verbatim}
+
+Presentation MathML:
+\verbatiminput{mathML_presentation_case4a_creation.xml}
+
+Content MathML:
+\begin{verbatim}
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+
+</math>
+\end{verbatim}
+
+\subsection{Case 4b: uncertainty principle}
+\begin{equation}
+\sigma_x \sigma_p \geq \frac{\hbar}{2}
+\label{eq:uncertainty_principle_case4b}
+\end{equation}
+
+\begin{verbatim}
+\sigma_x \sigma_p \geq \frac{\hbar}{2}
+\end{verbatim}
+
+Presentation MathML:
+\verbatiminput{mathML_presentation_case4b_uncertainty.xml}
+
+Content MathML:
+\begin{verbatim}
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+
+</math>
+\end{verbatim}
+
+\subsection{Case 4c: L\"{u}ders projection}
+\begin{equation}
+ |\psi\rangle \rightarrow \sum_n  |c_n|^2 P_n,\ \rm{where}\ P_n = 
+ \sum_i |\psi_{ni}\rangle \langle \psi_{ni}|
+\label{eq:Luders_projection_case4c}
+\end{equation}
+
+\begin{verbatim}
+ |\psi\rangle \rightarrow \sum_n  |c_n|^2 P_n,\ \rm{where}\ P_n = \sum_i |\psi_{ni}\rangle \langle \psi_{ni}|
+\end{verbatim}
+
+Presentation MathML:
+\begin{verbatim}
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+
+</math>
+\end{verbatim}
+
+Content MathML:
+\begin{verbatim}
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+
+</math>
+\end{verbatim}
