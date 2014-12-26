@@ -26,7 +26,7 @@
 \newcommand{\pfrac}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
 
 \begin{document}
-\title{Comparison of Syntax formats}
+\title{Comparison of Syntax Formats for the Physics Derivation Graph}
 
 \author{Ben Payne$^{1}$\footnote{Corresponding author: ben.is.located@gmail.com}, Michael Goff$^{2}$\\
 {\it $^{1}$Department of Fun, University Name \& Town, city, State Zip}\\
@@ -61,23 +61,11 @@ This comparison is between syntax methods which do not serve the same purpose. \
 
 Consumer cares about previous experience, how wide spread in their community, speed, ease of input, presentation (rendering), ability to access content across devices, OS independence, ease of setup. 
 
-Evaluate criteria relevant to users, including the 
-\begin{itemize}
-\item ability to input by humans
-\item ability to transform between representations
-\item ability to audit correctness
-\end{itemize}
+Evaluate criteria relevant to users, including the ability to manually input syntax (section \ref{sec:quant_compare}), the ability to transform between representations (section \ref{sec:transform}), and the ability to audit correctness (section \ref{sec:audit_correctness}).
 
-In this evaluation, the following characterizations are used for comparison of syntax methods
-\begin{itemize}
-\item can it describe all the notation necessary for physics
-\item how easy is the input method? (character count)
-\item can it be transformed to other representations
-\end{itemize}
-Storage of the generated content (knowledge base for all of physics) isn't expected to exceed a Gigabyte, so compactness in terms of storage isn't a criterion.
+We can ignore syntax methods which do not support notation necessary for describing physics. Example of this include ASCII\cite{1968_ASCII} and HTML\cite{1999_HTML}. Storage of the generated content (essentially a knowledge base for all of physics) isn't expected to exceed a Gigabyte, so compactness in terms of storage isn't a criterion in this evaluation.
 
-
-\section{Test Cases}
+\section{Test Cases\label{sec:test_cases}}
 In order to demonstrate the variety of uses in distinct domains of Physics, a set of test cases are provided in this section. These cases are not meant to be exhaustive of either the syntax or the scientific domain. Rather, they are examples of both capability requirements of the Physics Derivation Graph and of the syntax methods. 
 
 % https://www.physicsforums.com/threads/formulae-of-various-topics.102736/
@@ -120,7 +108,7 @@ Case 4c: L\"{u}ders projection
 \label{eq:Luders_projection_case4c_body}
 \end{equation}
 
-\section{Quantitative Comparison of Test Cases}
+\section{Quantitative Comparison of Test Cases\label{sec:quant_compare}}
 
 \end{multicols}
 \begin{center}
@@ -131,7 +119,7 @@ Case 4c: L\"{u}ders projection
 Name            & case 1 & case 2 & case 3 & case 4a & case 4b & case 4c \\\hline
 Latex            & 20       & 101     & 26       & 45         &   39      & 110 \\\hline
 PMathML      &  324     & 538    & 348     & 372       &  250      &        \\\hline
-CMathML      &             &           &            &             &              &        \\\hline
+CMathML      &   381    &           &            &             &              &        \\\hline
 Mathematica &             &           &            &             &              &        \\\hline
 SymPy           &             &           &            &             &              &        \\\hline
 \end{tabular}
@@ -145,20 +133,20 @@ Character count for the MathML was carried out using
 wc -m mathML_presentation_case*.xml
 \end{verbatim}
 
-\section{Qualitative Comparisons of Syntax Methods}
+\section{Qualitative Comparisons of Syntax Methods\label{sec:qual_compare}}
 \LaTeX, MathML, and SymPy are free and open source. Mathematica is proprietary and not free.
 
 For Physicists comfortable writing journal articles in \LaTeX or exploring ideas in Mathematica, these are natural syntax methods. Both \LaTeX and Mathematica are concise, making them intuitive to read and quick to enter. MathML is a verbose syntax which is lengthy to manually enter and yield difficult to read the native XML.  
 
 Unicode is needed to support Dirac notation and any other non-ASCII text in MathML
 
-\subsection{Transform representations}
+\subsection{Transform Syntax\label{sec:transform}}
 
 Wolfram Research offers the ability to convert from Mathematica expressions to MathML on their site \href{http://www.mathmlcentral.com/Tools/ToMathML.jsp}{www.mathmlcentral.com}
 
 A CAS typically produces output syntax such as \LaTeX or MathML in a single format. However, there are often many ways to represent the same math,  \eg~Eq.~\ref{eq:example_partial_derivative_representations}.
 
-\subsection{Audit Correctness of Derivations}
+\subsection{Audit Correctness of Derivations\label{sec:audit_correctness}}
 
 One reason Computer Algebra Systems such as Mathematica and SymPy were included in this survey was to address the requirement of checking correctness of derivations. 
 

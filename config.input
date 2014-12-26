@@ -23,8 +23,8 @@ name_of_set_to_make:      derivation_of_Schrodinger_Eq
 #  name_of_set_to_make:   quadratic_equation_derivation
 #  name_of_set_to_make:   euler_equation_proof
 #  name_of_set_to_make:   euler_equation_trig_sqrd
-#  name_of_set_to_make:   frequency_relations
-name_of_set_to_make:   example_of_Godel_problem
+#name_of_set_to_make:   frequency_relations
+#name_of_set_to_make:   example_of_Godel_problem
 #  name_of_set_to_make:   integration_by_parts
 #  name_of_set_to_make:   curl_curl_identity
 #  name_of_set_to_make:   quantum_basics_orthogonality
