@@ -50,15 +50,48 @@
 % relevant project background
 The Physics Derivation Graph is a project designed to capture mathematical physics knowledge. 
 
+Historically, knowledge about physics has been recorded in the form of notes, letters, journal articles, and text books. The content is typically composed of text, equations, and pictures. The presentation is in a linear sequence, though references are made to link the current section with previous sections and later sections. 
+
+A recent addition has been the use of webpages to capture knowledge. A primary example of this is Wikipedia, an HTML-based encyclopedia. Webpages such as Wikipedia still use text, equations, and pictures, but add a distinct capability: hyperlinks. Hypertext Markup Language offers the ability to connect content to any other content. This enables non-linear exploration of content, in contrast to a textbook which is designed to be read sequentially. 
+
+The Physics Derivation Graph is a non-linear capture of knowledge with mathematically-based links of physics content. A graph is composed of node and edges. This graph has two types of nodes: mathematical statements and inference rules. Every mathematical statement (referred to here as a statement) is connected to an inference rule by a directed edge. An example is provided which illustrates the concepts.
+
+Frequency $f$ and period $T$ are related by
+\begin{equation}
+T\ f = 1
+\label{eq:period_and_freq}
+\end{equation}
+Thus, frequency in terms of the period is
+\begin{equation}
+f = 1/T
+\label{eq:freq_is_inverse_period}
+\end{equation}
+The relation between \eqn{eq:period_and_freq} and \eqn{eq:freq_is_inverse_period} is that both sides of \eqn{eq:period_and_freq} were divided by $T$. 
+
+In the above example, there are two mathematical statements: \eqn{eq:period_and_freq} and \eqn{eq:freq_is_inverse_period}. These statements are related by an inference rule: ``Divide both sides of first equation by a value to yield the second equation.'' This inference rule takes an argument, referred to here as the ``feed'', which in this example is $T$. This set of steps is shown graphically in~Fig.~\ref{fig:freq_period}
+
+\begin{center}
+\begin{figure}
+%\includegraphics[scale=1]{images/frequency_period_relation.png}
+\caption{Relation between period $T$ and frequency $f$.\label{fig:freq_period}}
+\end{figure}
+\end{center}
 \section{Development Stages}
 
-\subsection{Gathering Examples}
+This project is expected to evolve through distinct steps. Each step can be characterized by different users and associated requirements. 
+% \subsection{Gathering Examples}
+The first step is prototyping and has a small number of expert users interested in gathering content for the Physics Derivation Graph. This exploratory phase involves research on appropriate syntax for the graph, brainstorming use cases, and minimal interaction with an external community. 
 
-\subsection{Proof of Concept}
+% \subsection{Proof of Concept}
+The second phase is when sufficient examples exist to constitute a proof of concept. This requires breadth of coverage across all the domains of physics (\ie, classical mechanics, quantum mechanics, relativity, thermodynamics, statistical mechanics, etc). As a consequence, much of mathematics covered up to undergraduate level is likely to be required. 
 
-\subsection{Interface Creation}
+% \subsection{Interface Creation}
+Once the breadth of coverage is demonstrated, the next step is to enable development of indepth creation for the Physics Derivation Graph
 
-\subsection{Community Utilization}
+% \subsection{Community Utilization}
+The most difficult step may be adoption and utilization by the scientific and education communities. 
+
+The steps listed above are sequential, but will likely be worked on concurrently. Exploration of an intuitive interface can take place while examples are being gathered. In the next section, 
 
 \section{Use Cases}
 
