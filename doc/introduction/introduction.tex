@@ -1,0 +1,84 @@
+\documentclass{article}
+%\documentclass[prl,amsmath,amssymb]{revtex4} % PRL
+
+% margins of 1 inch:
+\setlength{\topmargin}{-.5in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+
+\usepackage[pdftex]{hyperref} % hyperlink equation and bibliographic citations
+\usepackage[dvips]{graphicx,color}
+\usepackage{amsmath} % advanced math
+\usepackage{verbatim}
+\usepackage{natbib} % bibilography 
+\usepackage{mciteplus} % collapse multiple citations in bibilography
+\usepackage{multicol}
+\usepackage[toc,page]{appendix} % http://tex.stackexchange.com/questions/49643/making-appendix-for-thesis
+
+
+% from http://www.flakery.org/search/show/569
+%\newcommand{\infint}{\ensuremath{\int_{-\infty}^{\infty}}}
+\newcommand{\cf}{\textit{c.f.}} % "compare". In context the abbreviation advises readers to consult other material, drawing attention to related ideas that provide additional arguments or information.
+\newcommand{\ie}{\textit{i.e.}} % i.e. is used to explain, clarify or rephrase a statement
+\newcommand{\eg}{\textit{e.g.}} % “for the sake of example”. Used to introduce an example or list of examples to illustrate what is being discussed.
+\newcommand{\eqn}[1]{Eq.\ (\ref{#1})}
+\newcommand{\pfrac}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+
+\begin{document}
+\title{Introduction to the Physics Derivation Graph}
+
+\author{Ben Payne$^{1}$\footnote{Corresponding author: ben.is.located@gmail.com}, Michael Goff$^{2}$\\
+{\it $^{1}$Department of Fun, University Name \& Town, city, State Zip}\\
+{\it $^{2}$Department of Mathematics, University of Maryland \& Baltimore 21228}}
+
+\date{\today}
+
+%\begin{abstract}
+%blah blah blah
+%\end{abstract}
+
+\maketitle % declares end of title page
+\begin{multicols}{2}
+
+%\tableofcontents
+
+%\newpage
+
+\section{Introduction}
+
+% relevant project background
+The Physics Derivation Graph is a project designed to capture mathematical physics knowledge. 
+
+\section{Development Stages}
+
+\subsection{Gathering Examples}
+
+\subsection{Proof of Concept}
+
+\subsection{Interface Creation}
+
+\subsection{Community Utilization}
+
+\section{Use Cases}
+
+\subsection{Students in Math and Physics}
+
+\subsection{Scientific Articles}
+
+\subsection{Education Curriculum Design}
+
+\section{Bibliography}
+
+\bibliographystyle{unsrt}
+\bibliography{../bibliography} % external bibtex flat-file database
+\end{multicols}
+
+\newpage
+\appendix
+%\begin{appendices}
+%\include{appendix_test_cases}
+%\end{appendices}
+
+
+\end{document}
