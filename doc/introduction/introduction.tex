@@ -45,6 +45,8 @@
 
 %\newpage
 
+% Introduction: scope = ?
+
 \section{Introduction}
 
 % relevant project background
@@ -86,20 +88,36 @@ The first step is prototyping and has a small number of expert users interested 
 The second phase is when sufficient examples exist to constitute a proof of concept. This requires breadth of coverage across all the domains of physics (\ie, classical mechanics, quantum mechanics, relativity, thermodynamics, statistical mechanics, etc). As a consequence, much of mathematics covered up to undergraduate level is likely to be required. 
 
 % \subsection{Interface Creation}
-Once the breadth of coverage is demonstrated, the next step is to enable development of indepth creation for the Physics Derivation Graph
+Once the breadth of coverage is demonstrated, the next step is to enable development of indepth creation for the Physics Derivation Graph. Currently, content is manually entered into an XML database, and visualization of the graph is generated via the command line. To make both data entry and visualization more accessible to users and developers, a web browser-based interaction is planned. 
 
 % \subsection{Community Utilization}
-The most difficult step may be adoption and utilization by the scientific and education communities. 
+The most difficult step may be adoption and utilization by the scientific and education communities. This widespread use is dependent on having useful and reliable content, intuitive interfaces, and addresses a need. The Physics Derivation Graph does not currently exist, implying the needs being addressed are either unclear or sufficiently complex to make solution difficult. 
 
-The steps listed above are sequential, but will likely be worked on concurrently. Exploration of an intuitive interface can take place while examples are being gathered. In the next section, 
+The steps listed above are sequential, but will likely be worked on concurrently. Exploration of an intuitive interface can take place while examples are being gathered. In the next section, use cases which motivate users of this project are described. 
 
 \section{Use Cases}
 
+While curiosity has driven the development of the Physics Derivation Graph, the resulting work is expected to be useful to multiple audiences and users. Viewers of the content could include students in math and physics, and analysis of the content could help shape curriculum. Contributors to the Physics Derivation Graph would be scientists who add new developments based on their work.
+
 \subsection{Students in Math and Physics}
+
+Currently students in Math and Physics are taught content using lectures, textbooks, and homework. The method of presentation varies, but the overarching story is often historically driven. Algebra is old, calculus is newer, and topology is recent. Classical mechanics is old, thermodynamics is newer, and quantum mechanics is recent. When teaching, these subjects are taught by building on previous content -- calculus leverages algebra, thermodynamics leverages classical mechanics. 
 
 \subsection{Scientific Articles}
 
+Peer-reviewed journal articles are one of the current methods of demonstrating value in the scientific community. Conciseness is a feature of this writing style, and the mathematics presented is correspondingly sparse -- just sufficient to covey the author's intention. This results in a burden on the reader of the article, either to take the author's claims on faith, or to rederive the mathematical statements. A reader's derivation is complicated by implicit assumptions made by the author and unintentional mistakes in calculation. 
+
+With journals allowing supplemental materials for articles, calculations could be included. However, it is not clear what the appropriate level of detail is in supplied calculations. The intention is to be able to reproduce the work, but 
+
+validation via computer 
+
 \subsection{Education Curriculum Design}
+
+A less direct use case but potentially important impact of the Physics Derivation Graph is on understanding the relevance of what is being taught in the education system. Math classes essentially teach a set of inference rules, and physics is the application of those inference rules. The Physics Derivation Graph could answer two important questions: ``When am I going to use this inference rule?'' and ``What's the relative importance of this math skill?''
+
+The focus for students in mathematics classes is on the technique, \ie, ``integrate both sides with respect to $Y$,'' and application is necessarily of secondary importance. Physics students are expected to know the mathematical techniques and teaching is focused on application. The Physics Derivation Graph can assist both scenarios. The student in a math class can see where the inference rules they learn are applied in Physics. The student in the Physics class can see which inference rules are required in their field. 
+
+Each inference rule seems equally important, since it currently isn't known what the frequency of use for that inference rule is. From the Physics Derivation Graph, it is simple to count utilization of inference rules. Thus, we are able to measure the ratio of how often ``multiply both sides by X'' is used relative to ``integrate both sides with respect to $Y$.'' 
 
 \section{Bibliography}
 
