@@ -1,5 +1,4 @@
+#!/bin/python
 import sympy
-omega = sympy.Symbol('omega') # from outputs
-f = sympy.Symbol('f') # from inputs
-pi = sympy.pi
-
+# \sigma_x \sigma_p \geq \frac{\hbar}{2}
+# http://docs.sympy.org/dev/_modules/sympy/physics/qho_1d.html

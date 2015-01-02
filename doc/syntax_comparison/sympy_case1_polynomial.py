@@ -1,5 +1,8 @@
+#!/bin/python
 import sympy
-omega = sympy.Symbol('omega') # from outputs
-f = sympy.Symbol('f') # from inputs
-pi = sympy.pi
+a = sympy.Symbol('a')
+b = sympy.Symbol('b')
+c = sympy.Symbol('c')
+x = sympy.Symbol('x')
 
+a*(x**2) + b*x + c == 0

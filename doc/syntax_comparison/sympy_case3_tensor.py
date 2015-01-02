@@ -1,5 +1,6 @@
+#!/bin/python
 import sympy
-omega = sympy.Symbol('omega') # from outputs
-f = sympy.Symbol('f') # from inputs
-pi = sympy.pi
-
+# Y^i(X_j) = \Delta^i_{\ j}
+# http://docs.sympy.org/dev/modules/tensor/tensor.html
+Y = sympy.Symbol('Y')
+X = sympy.Symbol('X')
