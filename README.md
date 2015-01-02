@@ -1,9 +1,9 @@
 
 Physics Derivation Graph
 
-Claim: a finite static directed graph exists which describes all of mathematical physics. 
-Claim: the graph representation is machine parsable
-Claim: this graph can be checked by a computer algebra system
+* Claim: a finite static directed graph exists which describes all of mathematical physics. 
+* Claim: the graph representation is machine parsable
+* Claim: this graph can be checked by a computer algebra system
 
 # Licensing
 Creative Commons Attribution-ShareAlike 3.0 Unported License.
@@ -11,18 +11,15 @@ https://code.google.com/p/physics-equations-graph/
 
 # Requirements
 
-Python 2.7
-http://www.python.org/getit/
+Python 2.7, http://www.python.org/getit/
 
 Python packages: 
-yaml
-xml.dom.minidom
+* yaml
+* xml.dom.minidom
 
 Non-Python applications
-Latex
-
-neato
-http://www.graphviz.org/
+* Latex
+* Graphviz (neato), http://www.graphviz.org/
 
 # How to use (for the impatient)
 
