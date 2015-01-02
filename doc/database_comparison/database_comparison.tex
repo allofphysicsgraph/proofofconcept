@@ -26,7 +26,7 @@
 \newcommand{\pfrac}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
 
 \begin{document}
-\title{User Manual for the Physics Derivation Graph}
+\title{Comparison of Databases for the Physics Derivation Graph}
 
 \author{Ben Payne$^{1}$\footnote{Corresponding author: ben.is.located@gmail.com}, Michael Goff$^{2}$\\
 {\it $^{1}$Department of Fun, University Name \& Town, city, State Zip}\\
@@ -36,8 +36,9 @@
 
 
 \maketitle % declares end of title page
+
 \begin{abstract}
-Overview of current implementation
+A comparison of candidates for how to store elements of the graph
 \end{abstract}
 
 \begin{multicols}{2}
@@ -46,26 +47,21 @@ Overview of current implementation
 
 %\newpage
 
+% Syntax: scope = ?
+
+% Syntax comparison: Input, display, into, out of 
+
 \section{Introduction}
 
 % relevant project background
 The Physics Derivation Graph is an project designed to capture mathematical physics knowledge. 
 
-\section{Databases}
-
+% what are we comparing?
 XML\cite{2008_XML}
 
-\section{Database manipulation}
 
-Python\cite{2015_Python} version 2.7.6
+\section{Conclusions}
 
-\section{Report generation}
-
-\LaTeX\cite{1994_Latex} PDFs
-
-\section{Visualization of Graph}
-
-DOT language\cite{2015_Graphviz} 
 
 \section{Bibliography}
 
@@ -73,11 +69,9 @@ DOT language\cite{2015_Graphviz}
 \bibliography{../bibliography} % external bibtex flat-file database
 \end{multicols}
 
-\newpage
-\appendix
-%\begin{appendices}
+%\newpage
+%\appendix
 %\include{appendix_test_cases}
-%\end{appendices}
 
 
 \end{document}
