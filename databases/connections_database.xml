@@ -11,6 +11,7 @@
       </output>
     </connection>
 -->
+<!-- "punid = permenant unique identifier, "tunid" = temporary unique identifier -->
 <!-- connections between equations via operators, optionally with feeders as input -->
 <!-- must have at least either (one  input statement for each operator) or
                                (one output statement for each operator)    -->

@@ -24,6 +24,7 @@
 \newcommand{\eg}{\textit{e.g.}} % “for the sake of example”. Used to introduce an example or list of examples to illustrate what is being discussed.
 \newcommand{\eqn}[1]{Eq.\ (\ref{#1})}
 \newcommand{\pfrac}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\pdg}{Physics Derivation Graph}
 
 \begin{document}
 \title{Comparison of Syntax Formats for the Physics Derivation Graph}
@@ -38,7 +39,7 @@
 \maketitle % declares end of title page
 
 \begin{abstract}
-A comparison of candidates for how to express elements of the graph
+A comparison of candidates for how to express elements of the graph. It is assumed here that the Introduction to the \pdg has been read. 
 \end{abstract}
 
 \begin{multicols}{2}
@@ -54,7 +55,7 @@ A comparison of candidates for how to express elements of the graph
 \section{Introduction}
 
 % relevant project background
-The Physics Derivation Graph is an project designed to capture mathematical physics knowledge. 
+The Physics Derivation Graph is a project designed to capture mathematical physics knowledge. 
 
 % Other overviews:
 % http://tex.stackexchange.com/questions/57717/relationship-between-mathml-and-tex
@@ -63,11 +64,13 @@ The Physics Derivation Graph is an project designed to capture mathematical phys
 % what are we comparing?
 In this report, we compare methods of capturing mathematical syntax required to describe derivations in physics. This survey covers \LaTeX, Mathematical Markup Language (MathML)\cite{2014_MathML}, Mathematica\cite{2014_mathematica}, and SymPy\cite{2014_SymPy}. For MathML, both Presentation and Content forms are included.
 
-This comparison is between syntax methods which do not serve the same purpose. \LaTeX is a type-setting language, while Mathematica and SymPy are Computer Algebra Systems (CAS). The reason these were picked is twofold: what is typically used in the scientific community and what is needed for the Physics Derivation Graph. 
-
-Consumer cares about previous experience, how wide spread in their community, speed, ease of input, presentation (rendering), ability to access content across devices, OS independence, ease of setup. 
+User cares about previous experience, how wide spread in their community, speed, ease of input, presentation (rendering), ability to access content across devices, OS independence, ease of setup. 
 
 Evaluate criteria relevant to users, including the ability to manually input syntax (section \ref{sec:quant_compare}), the ability to transform between representations (section \ref{sec:transform}), and the ability to audit correctness (section \ref{sec:audit_correctness}).
+
+It is vital that a single syntax be used for the graph content. Suppose each syntax is used for its intended purpose -- \LaTeX for rendering equation, SymPy for the CAS, and MathML for portability. This introduces a significant source of error when a single equation requires three distinct representation. The manual entry could result in the three representations not being sychronized. Thus, a single representation satisfying multiple criteria is needed. If no single syntax meets all the needs of the Physics Derivation Graph, then the requirements must be prioritized.
+
+This comparison is between syntax methods which do not serve the same purpose. \LaTeX is a type-setting language, while Mathematica and SymPy are Computer Algebra Systems (CAS). The reason these approaches for rendering and CAS were picked is twofold: they are widely used in the scientific community and they address requirements for the Physics Derivation Graph. 
 
 We can ignore syntax methods which do not support notation necessary for describing physics. Example of this include ASCII\cite{1968_ASCII} and HTML\cite{1999_HTML}. Storage of the generated content (essentially a knowledge base for all of physics) isn't expected to exceed a Gigabyte, so compactness in terms of storage isn't a criterion in this evaluation.
 
@@ -166,6 +169,10 @@ All of these are equivalent.
 \section{Conclusions}
 
 This survey covered \LaTeX, Mathematica, MathML, and SymPy as candidates for syntax methods to be used for the Physics Derivation Graph. Although \LaTeX is intuitive for scientists and is concise, it is a typesetting language and not well suited for the web or use in Computer Algebra Systems (CAS). Mathematica is also concise and has wide spread use by scientists, though its cost limits accessibility. Mathematica is also proprietary, which limits the ability to explore the correctness of this CAS
+
+\LaTeX is concise and is widely used in the scientific community. It does not work well for portability to other representations and is ill-suited for use by CAS. For the initial phases of development for the Physics Derivation Graph, portability and compatibilty with a CAS are not the priority. Since getting content into the graph is the priority, the \LaTeX representation will be used.
+
+If a different syntax is needed in the future (\ie, for a CAS), then each \LaTeX expression will need to be translated.
 
 \section{Bibliography}
 

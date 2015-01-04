@@ -24,6 +24,7 @@
 \newcommand{\eg}{\textit{e.g.}} % “for the sake of example”. Used to introduce an example or list of examples to illustrate what is being discussed.
 \newcommand{\eqn}[1]{Eq.\ (\ref{#1})}
 \newcommand{\pfrac}[2]{\ensuremath{\frac{\partial #1}{\partial #2}}}
+\newcommand{\pdg}{Physics Derivation Graph}
 
 \begin{document}
 \title{User Manual for the Physics Derivation Graph}
@@ -37,7 +38,7 @@
 
 \maketitle % declares end of title page
 \begin{abstract}
-Overview of current implementation
+Overview of current implementation. It is assumed here that the Introduction to the \pdg has been read. 
 \end{abstract}
 
 \begin{multicols}{2}
@@ -49,23 +50,92 @@ Overview of current implementation
 \section{Introduction}
 
 % relevant project background
-The Physics Derivation Graph is an project designed to capture mathematical physics knowledge. 
+The \pdg is a project designed to capture mathematical physics knowledge. The mathematics necessary to describe physics can be written down, in this case in the form of a graph. Thus, the core of this project is a set of databases storing that content. There are a set of scripts for various manipulations of the content. Those scripts include the ability to generate visualizations of the graph, and to generate reports based on the graph content.
 
-\section{Databases}
+ Section~\ref{sec:databases} describes the databases which store these values. 
 
-XML\cite{2008_XML}
+\section{Databases\label{sec:databases}}
+
+The content associated with physics knowledge takes the form of expressions (\textit{equations and inequalities}), symbols, and inference rules. \textit{An inference rule is an atomic transformation of one expression to another.} An example is provided here. 
+
+Frequency $f$ and period $T$ are related by
+\begin{equation}
+T\ f = 1
+\label{eq:period_and_freq}
+\end{equation}
+Thus, frequency in terms of the period is
+\begin{equation}
+f = 1/T
+\label{eq:freq_is_inverse_period}
+\end{equation}
+The relation between \eqn{eq:period_and_freq} and \eqn{eq:freq_is_inverse_period} is that both sides of \eqn{eq:period_and_freq} were divided by $T$. 
+
+In this example, there are two mathematical expressions: \eqn{eq:period_and_freq} and \eqn{eq:freq_is_inverse_period}. These expressions are related by an inference rule: ``Divide both sides of first equation by a value to yield the second equation.'' This inference rule takes an argument, referred to here as the ``feed'', which in this example is $T$. This set of steps is shown graphically in~Fig.~\ref{fig:freq_period}. This simple step between two expressions is documented in five separate databases: expressions, symbols, feeds, inference rules, and connections. 
+
+Each expression, symbol, and inference rule appears only once in the respective database. Each time an expression, symbol, or inference rule is used in a derivation, that unique instance is referenced. This referencing of unique expressions, symbols, and inference rules is done using a numeric identifier (alphanumeric for inference rules).
+
+In the expressions database, each expression has an associated 10 digit number in base 10. For example, \eqn{eq:freq_is_inverse_period} is 2113211456 and \eqn{eq:period_and_freq} is 2131616531. Similarly, the symbols have unique 15 digit numeric identfiers. Period $T$ is 192938440120938 and frequency $f$ is 102938475990112. The database of expressions references these symbol identifiers -- expression 2113211456 uses symbols 192938440120938 and 102938475990112. 
+
+The connections database is the set of derivations. A derivation involving \eqn{eq:freq_is_inverse_period} refers to the expression identifier 2113211456 and relates it to 2131616531 by an inference rule which is identified by the alphanumeric string ``dividebothsidesby''. This inference rule takes an argument, referred to here as a ``feed.'' The feed database contains the value, in this example $T$ and a 7 digit identifier 8837284. Feeds are not unique, though the identifiers used are. The $T$ referred to for this use of the inference rule ``dividebothsidesby'' does not need to be associated with other instances of ``dividebothsidesby''. 
+
+The \pdg is designed to show one instance of each expression, but feeds and inference rules will have duplicates on the graph. To allow for this, the connections database has a unique 7 digit numeric identifier assocaited with each use of an inference rule. 
+
+\subsection{Implementation\label{sec:implementation}}
+The databases supporting the \pdg are implemented using XML\cite{2008_XML}. 
 
 \section{Database manipulation}
 
-Python\cite{2015_Python} version 2.7.6
+The databases are manipulated using software written in Python\cite{2015_Python} version 2.7.6. These scripts are described here in order of increasing complexity. 
 
-\section{Report generation}
+\subsection{Listing}
+
+The two simplest scripts are for listing content from the connections and inference rules databases, respectively. 
+\begin{verbatim}
+bin/list_connection_sets.py
+bin/list_inference_rules.py
+\end{verbatim}
+
+\subsection{Statistical Analysis}
+There are three scripts which build on the listing functionality and carry out simple analysis of the counts. 
+\begin{verbatim}
+popularity_of_inference_rules.py
+popularity_of_statements.py
+popularity_of_symbols.py
+\end{verbatim}
+
+\begin{verbatim}
+bin/popularity_of_statements.py
+\end{verbatim}
+For example, \eqn{eq:freq_is_inverse_period} is referenced twice as of this writting. 
+
+\subsection{Utilities}
+
+\begin{verbatim}
+create_pdf_of_statements.py
+create_pictures_of_inference_rules.py
+create_pictures_of_statements_and_feeds.py
+generate_new_random_index.py
+\end{verbatim}
+
+\subsection{Primary functions}
+
+\begin{verbatim}
+check_connections_using_CAS_sympy.py
+build_connection_set_pdf.py
+build_connections_graph.py
+\end{verbatim}
+
+The \texttt{build\_*.py} scripts are described in detail in sections \ref{sec:reports} and \ref{sec:visualization}, respectively. 
+
+\section{Report generation\label{sec:reports}}
 
 \LaTeX\cite{1994_Latex} PDFs
 
-\section{Visualization of Graph}
+\section{Visualization of Graph\label{sec:visualization}}
 
 DOT language\cite{2015_Graphviz} 
+
+\section{Summary}
 
 \section{Bibliography}
 
