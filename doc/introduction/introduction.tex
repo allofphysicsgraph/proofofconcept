@@ -43,7 +43,7 @@ An overview of the project. No assumptions about prior background on this projec
 
 \begin{multicols}{2}
 
-%\tableofcontents
+\tableofcontents
 
 %\newpage
 
@@ -74,7 +74,7 @@ f = 1/T
 \end{equation}
 The relation between \eqn{eq:period_and_freq} and \eqn{eq:freq_is_inverse_period} is that both sides of \eqn{eq:period_and_freq} were divided by $T$. 
 
-In the above example, there are two mathematical expressions: \eqn{eq:period_and_freq} and \eqn{eq:freq_is_inverse_period}. These expressions are related by an inference rule: ``Divide both sides of first equation by a value to yield the second equation.'' This inference rule takes an argument, referred to here as the ``feed'', which in this example is $T$. This set of steps is shown graphically in~Fig.~\ref{fig:freq_period}
+In the above example, there are two mathematical expressions: \eqn{eq:period_and_freq} and \eqn{eq:freq_is_inverse_period}. These expressions are related by an inference rule: ``Divide both sides of first expression by a scalar value to yield the second expression.'' This inference rule takes an argument, referred to here as the ``feed'', which in this example is $T$. This set of steps is shown graphically in~Fig.~\ref{fig:freq_period}
 
 \begin{center}
 \begin{figure}
@@ -89,7 +89,7 @@ The core of this project is capturing the graph associated with mathematical phy
 
 Tasks in section~\ref{sec:stages} such as checking the validity of the graph using a Computer Algebra System, visualization of the graph, and interactivity of input are follow-on tasks once the graph content has been developed to describe mathematical physics.
 
-\subsection{Distribution of Content\label{sec:distribution}}
+\subsection{Access to Content\label{sec:access}}
 
 The \pdg is free and open source under the Creative Commons Attribution-ShareAlike 3.0 Unported license. This content is free because it is intented to be accessible to anyone; cost should not be a barrier to access. The content is open source so that other researchers can build upon what exists. Once content is built, it should not need to be built again. 
 
@@ -146,6 +146,16 @@ In this expression, we are not referring to the speed of light. This is distingu
 Inference rules are necessary to perform derivations in physics, but have received little attention as they are typically left to the field of logic. One result of an education in mathematics is building a library of inference rules, though that is not the standard description in that field. In Physics, knowing that it is valid to multiply both sides of an expression by one is assumed to have been learned in the course of a math course. In the math course, the inference rule of multiplying both sides of an expression by one is taught with the common explanation that students need that inference rule to solve the relevant problems provided in the class. 
 %These inference rules are a significant source of confusion and a source of error when used. Using inference rules correctly and applying them atomically are tasks which take patience and practice.
 One of the consequences of constructing the \pdg is the enumeration of inference rules necessary for Physics. 
+
+\section{Inference Rules\label{sec:inference_rules}}
+
+Inference rules operate on expressions to produce new expressions. In section~\ref{sec:example}, the inference rule between \eqn{eq:period_and_freq} and \eqn{eq:freq_is_inverse_period} is ``Divide both sides of first expression by a scalar value to yield the second expression.''
+
+Inference rules for the \pgd are designed to meet a threshold -- can the computer algebra system validate that the claim is true?
+
+Inference rules are meant to catch simple mistakes like not carrying the negative symbol through a derivation or unintentionally dropping a term. The inference rules are first order -- only between nearest-neighbor expressions.
+
+
 
 \section{Use Cases\label{sec:use_cases}}
 

@@ -80,12 +80,78 @@ The connections database is the set of derivations. A derivation involving \eqn{
 
 The \pdg is designed to show one instance of each expression, but feeds and inference rules will have duplicates on the graph. To allow for this, the connections database has a unique 7 digit numeric identifier assocaited with each use of an inference rule. 
 
-\subsection{Implementation\label{sec:implementation}}
+%transition paragraph
 The databases supporting the \pdg are implemented using XML\cite{2008_XML}. 
+
+\subsection{Implementation: Symbols\label{sec:symbols}}
+
+\begin{verbatim}
+<symbol>
+  <symbol_name></symbol_name>
+  <symbol_punid></symbol_punid>
+  <type></type>
+  <description></description>
+  <cas_sympy></cas_sympy>
+  <units></units>
+</symbol>
+\end{verbatim}
+
+\subsection{Implementation: Expressions\label{sec:expressions}}
+
+\begin{verbatim}
+<statement>
+  <statement_punid></statement_punid>
+  <statement_latex></statement_latex>
+  <cas_sympy_LHS></cas_sympy_LHS>
+  <cas_sympy_operator></cas_sympy_operator>
+  <cas_sympy_RHS></cas_sympy_RHS>
+  <symbol_name></symbol_name>
+  <symbol_punid></symbol_punid>
+</statement>
+\end{verbatim}
+
+\subsection{Implementation: Connections\label{sec:connections}}
+
+In the connections database, the 
+\begin{verbatim}
+<all_connections>
+  <connection_set 
+        name="frequency_relations" 
+        discipline="physics_basics">
+    <connection>
+    <!-- content here -->
+    </connection>
+  </connection_set>
+  <!-- more connection sets -->
+</all_connections>
+\end{verbatim}
+
+Each connection within a connection set is of the form
+
+\begin{verbatim}
+<connection>
+  <operator><infrule_name></infrule_name>
+          <infrule_tunid></infrule_tunid>
+  </operator>
+  <input>
+    <feed_tunid></feed_tunid>
+    <statement_punid></statement_punid>
+    <statement_tunid></statement_tunid>
+  </input>
+  <output>
+    <statement_punid></statement_punid>
+    <statement_tunid></statement_tunid>
+  </output>
+</connection>
+\end{verbatim}
+
 
 \section{Database manipulation}
 
-The databases are manipulated using software written in Python\cite{2015_Python} version 2.7.6. These scripts are described here in order of increasing complexity. 
+The databases are manipulated using software written in Python\cite{2015_Python} version 2.7.6. 
+Each script in the \texttt{bin} directory performs a single task. 
+Common functions are stored in \texttt{lib/lib\_physics\_graph.py}. 
+The scripts in \texttt{bin} are described here in order of increasing complexity. 
 
 \subsection{Listing}
 
@@ -95,8 +161,22 @@ bin/list_connection_sets.py
 bin/list_inference_rules.py
 \end{verbatim}
 
+The output of listing the connection sets are the derivations which are listed in the connections database.
+\begin{verbatim}
+bin/list_connection_sets.py
+    frequency_relations
+    quadratic_equation_derivation
+    euler_equation_proof
+    euler_equation_trig_sqrt
+    example_of_Godel_problem
+    particle_in_a_1D_box
+    ...
+\end{verbatim}
+
+
+
 \subsection{Statistical Analysis}
-There are three scripts which build on the listing functionality and carry out simple analysis of the counts. 
+There are three scripts which build on the listing functionality and count instances of inference rules, expressions, and symbols, respectively. 
 \begin{verbatim}
 popularity_of_inference_rules.py
 popularity_of_statements.py
@@ -105,17 +185,22 @@ popularity_of_symbols.py
 
 \begin{verbatim}
 bin/popularity_of_statements.py
+    10 4938429483 \exp(i\ x) = \cos(x)+...
+    6 3948574230 \psi(\vec{r},t) = ...
+    5 5727578862 \frac{d^2}{dx^2} ...
+    ...
 \end{verbatim}
 For example, \eqn{eq:freq_is_inverse_period} is referenced twice as of this writting. 
 
 \subsection{Utilities}
-
+The utility scripts are meant for use by developers of the content. 
 \begin{verbatim}
 create_pdf_of_statements.py
 create_pictures_of_inference_rules.py
 create_pictures_of_statements_and_feeds.py
 generate_new_random_index.py
 \end{verbatim}
+Creating a PDF of the expressions can be used to validate the \LaTeX syntax of content in \texttt{databases/statements\_database.xml}
 
 \subsection{Primary functions}
 
@@ -127,13 +212,55 @@ build_connections_graph.py
 
 The \texttt{build\_*.py} scripts are described in detail in sections \ref{sec:reports} and \ref{sec:visualization}, respectively. 
 
+Checking the connections using SymPy is not fully supported. 
+
 \section{Report generation\label{sec:reports}}
 
-\LaTeX\cite{1994_Latex} PDFs
+\LaTeX\cite{1994_Latex} PDFs can be created by running \texttt{bin/build\_connection\_set\_pdf.py}
 
 \section{Visualization of Graph\label{sec:visualization}}
 
 DOT language\cite{2015_Graphviz} 
+
+\texttt{bin/build\_connections\_graph.py}
+
+\section{Creating a new Derivation\label{sec:new_derivation}}
+
+\subsection{New Symbol\label{sec:new_symbol}}
+
+First, pick a symbol from your derivation.
+
+Second, check whether that symbol exists in the symbol database. If it does, you are done.
+
+If your symbol is not already in the symbol database, the third step is to get a new  random index (``available symbol numeric identifier''). 
+
+Copy the symbol XML fields to create a new entry
+
+Place the symbol and new numeric identifier into the appropriate field
+
+\subsection{New expression\label{sec:new_expression}}
+
+First, pick the expression to be added.
+
+Second, check whether that expression exists in the expression database. If it does, you are done
+
+If your expression is not already in the expression database, the third step is to get a new random index (``available expression numeric identifier''). 
+
+In the expressions database, copy the expression XML fields into the appropriate derivation. 
+
+Place the \LaTeX expression and numeric identifier in the appropriate field. 
+
+Determine the SymPy equivalent. Include that in the XML
+
+Determine the symbols in the expression. See section~\ref{sec:new_symbol}. Include the symbol numeric identifiers in the expression database.
+
+\subsection{New Connection\label{sec:new_connection}}
+
+An inference rule connects expressions
+
+\subsection{New Derivation\label{sec:how_derivation}}
+
+A derivation is composed of a sequence of expressions connected by inference rules
 
 \section{Summary}
 
