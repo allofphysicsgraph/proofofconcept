@@ -7,7 +7,6 @@ Physics Derivation Graph
 
 # Licensing
 Creative Commons Attribution-ShareAlike 3.0 Unported License.
-https://code.google.com/p/physics-equations-graph/
 
 # Requirements
 
@@ -77,7 +76,7 @@ Currently, content is manually coded into XML files:
 * operators_database.xml  : library of unique inference rules to be used by connections
 * comments_database.xml   : set of comments which may reference multiple statements
 
-None of the XML format and style is documented because it is under active development
+The XML format and style is under-documented because it is under active development
 
 physics_graph_notes.log: my commentary and observations on the project as it progresses
 

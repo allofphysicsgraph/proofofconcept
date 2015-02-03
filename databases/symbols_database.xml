@@ -12,7 +12,7 @@ http://physics-help.info/physicsguide/appendices/si_units.shtml
 -->
 <!--
   <symbol><symbol_name></symbol_name><symbol_punid></symbol_punid>
-    <type></type>
+    <type></type><!-- "variable" or "constant" -->
     <value></value>
     <description></description>
     <cas_sympy></cas_sympy>
