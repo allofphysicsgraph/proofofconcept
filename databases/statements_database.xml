@@ -6,7 +6,7 @@ http://xmlwriter.net/xml_guide/doctype_declaration.shtml#ExternalDTD
 -->
 <!-- 
    <statement>
-       <statement_punid></statement_punid><!-- unique numeric identifier -->
+       <statement_punid></statement_punid>       unique numeric identifier 
        <statement_latex></statement_latex>
        <cas_sympy_LHS></cas_sympy_LHS>
        <cas_sympy_operator>=</cas_sympy_operator>

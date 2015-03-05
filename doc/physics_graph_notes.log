@@ -16,12 +16,26 @@ Seems like the main hurdle will be converting XML to the RDF triple paradigm.
 
 Problem is that some inference rules take feeds, rather than simply relate one expression to another
 
+      ----------------
+      | expression 1 |
+      ----------------
+             |
+             v
+  --------------------------     --------
+  \ multiply both sides by /--<--| feed |
+   ------------------------      --------
+               |
+               v
+       ----------------
+       | expression 2 |
+       ----------------
+
 Perhaps the triplets are
 
 (expression) (is composed of) ({left-hand-side, relation, right-hand-side})
 (left-hand-side) (is composed of) (symbols and operators)
 (right-hand-side) (is composed of) (symbols and operators)
-(relation) (is one of) ({=,<,>,!=,<=,>=})
+(relation operators) (is one of) ({=,<,>,!=,<=,>=})
 (expression) (is acted upon by) (inference rule)
 (inference rule) (takes) (feed)
 (inference rule) (yields) (expression)
