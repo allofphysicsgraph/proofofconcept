@@ -1,10 +1,31 @@
+20150304
+
+Started a page for myself on
+https://bhpayne.github.io/
+
+Good news: github.io supports HTML5
+https://haxiomic.github.io/GPU-Fluid-Experiments/html5/?q=Medium
+
 
 20150304
 
-Seems like the main hurdle will be converting to the RDF triple paradigm.
+Seems like the main hurdle will be converting XML to the RDF triple paradigm.
 
 (expression) (is composed of) (operators)
 (operators) (are) (symbols or math)
+
+Problem is that some inference rules take feeds, rather than simply relate one expression to another
+
+Perhaps the triplets are
+
+(expression) (is composed of) ({left-hand-side, relation, right-hand-side})
+(left-hand-side) (is composed of) (symbols and operators)
+(right-hand-side) (is composed of) (symbols and operators)
+(relation) (is one of) ({=,<,>,!=,<=,>=})
+(expression) (is acted upon by) (inference rule)
+(inference rule) (takes) (feed)
+(inference rule) (yields) (expression)
+
 
 ********************
 
@@ -16,17 +37,9 @@ The first return for
 rdf physics equation
 is
 http://stackoverflow.com/questions/27860142/writing-scientific-hypothesis-in-rdf
-It appears to be our friend jib-b
+It appears to be our friend jibe-b
 http://stackoverflow.com/users/4087192/jeybee
 
-*******************
-
-http://linkedscience.org/lsc/ns/
-PoC: Tomi.Kauppinen@aalto.fi
---> another person to contact. I'd like to hold off until we resolve this RDF/OWL conversation.
-
-added to the page
-https://github.com/allofphysicsgraph/proofofconcept/wiki/similar-projects
 
 *******************
 
@@ -52,13 +65,7 @@ http://www.rdfdata.org/
 ************************
 
 http://protege.stanford.edu/
-
-Signed up for an account on
 http://webprotege.stanford.edu/
-username: ben.is.located
-password: sh**d
-http://webprotege.stanford.edu/#Edit:projectId=c816e793-12eb-4bfd-a4c7-3db0ba44b34c
-
 
 
 20141207
