@@ -1,3 +1,29 @@
+
+
+20150305
+
+I created a project on webprotege for the physics derivation graph
+http://webprotege.stanford.edu/#Edit:projectId=c816e793-12eb-4bfd-a4c7-3db0ba44b34c
+
+The project is populated with data from
+https://github.com/allofphysicsgraph/proofofconcept/wiki/Inference-Rules
+and
+https://github.com/allofphysicsgraph/proofofconcept/wiki/Operators
+
+I then exported the data from webprotege as "OWL/XML" and got a ".owx" file
+http://bhpayne.github.io/physics_derivation_graph/physics_derivation_graph.owx
+
+I can plot the graph in
+http://vowl.visualdataweb.org/webvowl/index.html#iri=http://bhpayne.github.io/physics_derivation_graph/physics_derivation_graph.owx
+
+That same file input doesn't work on my instance
+http://bhpayne.github.io/physics_derivation_graph/webvowl_0.3.3/index.html?#iri=http://bhpayne.github.io/physics_derivation_graph/physics_derivation_graph.owx
+
+My next step is to determine how what I've done so far (developing
+structure) relates to putting content into OWL. The content is
+mathematical, so the format will likely be MathML.
+
+
 20150304
 
 Started a page for myself on
