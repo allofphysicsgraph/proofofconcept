@@ -1,7 +1,7 @@
 {"nodes":[
-  {"uniq_id": "2303943", "img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/declareInitialEq.png", "width": 101, "height": 25, "label": "declareInitialEq"},
-  {"uniq_id": "5900595848", "img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/5900595848.png", "width": 101, "height": 25, "label": "5900595848"},
-  {"uniq_id": "0304948", "img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/declareInitialEq.png", "width": 101, "height": 25, "label": "declareInitialEq"},
+  {"uniq_id": "2303943", "img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/declareInitialEq.png", "width": "101", "height": "25", "label": "declareInitialEq"},
+  {"uniq_id": "5900595848", "img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/5900595848.png", "width": "101", "height": "25", "label": "5900595848"},
+  {"uniq_id": "0304948", "img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/declareInitialEq.png", "width": "101", "height": "25", "label": "declareInitialEq"}
 ],
      "links":[    {"source": "0", "target": "1"},
                   {"source": "1", "target": "2"},
