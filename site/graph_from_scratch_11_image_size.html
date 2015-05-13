@@ -1,0 +1,133 @@
+<!-- http://codepen.io/mulderp/pen/KGFvx -->
+<!DOCTYPE html>
+<body>
+<script src="../d3/d3.v3.min.js"></script>
+<script>
+
+var w = 900,
+    h = 400;
+
+var circleWidth = 5;
+
+var palette = {
+      "lightgray": "#819090",
+      "gray": "#708284",
+      "mediumgray": "#536870",
+      "darkgray": "#475B62",
+
+      "darkblue": "#0A2933",
+      "darkerblue": "#042029",
+
+      "paleryellow": "#FCF4DC",
+      "paleyellow": "#EAE3CB",
+      "yellow": "#A57706",
+      "orange": "#BD3613",
+      "red": "#D11C24",
+      "pink": "#C61C6F",
+      "purple": "#595AB7",
+      "blue": "#2176C7",
+      "green": "#259286",
+      "yellowgreen": "#738A05"
+  }
+
+/*
+var nodes = [
+                {"name": "Matteo" },
+                    {"name": "Daniele"},
+                    {"name": "Marco"},
+                    {"name": "Lucio"},
+                    {"name": "Davide" }
+  ]
+//*/
+
+var nodes = [
+  {"img": "http://bhpayne.github.io/family_tree/images/1248277773.png", "width": 336, "height": 42 },
+  {"img": "http://bhpayne.github.io/family_tree/images/8572657110.png", "width": 243, "height": 77},
+  {"img": "http://bhpayne.github.io/family_tree/images/9999999999.png", "width": 575, "height": 42},
+  {"img": "http://bhpayne.github.io/family_tree/images/solveForX.png" , "width": 137, "height": 25},
+  {"img": "http://bhpayne.github.io/family_tree/images/subXforY.png"  , "width": 133, "height": 25}
+]
+  
+
+var links = [
+                  {source: nodes[0], target: nodes[1]},
+                  {source: nodes[1], target: nodes[2]},
+                  {source: nodes[0], target: nodes[3]},
+                  {source: nodes[4], target: nodes[2]},
+                  {source: nodes[2], target: nodes[3]}
+]
+              
+/*
+file images/*
+images/1248277773.png: PNG image data, 336 x 42, 8-bit/color RGB, non-interlaced
+images/8572657110.png: PNG image data, 243 x 77, 8-bit/color RGB, non-interlaced
+images/9999999999.png: PNG image data, 575 x 42, 8-bit/color RGB, non-interlaced
+images/solveForX.png:  PNG image data, 137 x 25, 8-bit/color RGB, non-interlaced
+images/subXforY.png:   PNG image data, 133 x 25, 8-bit/color RGB, non-int
+//*/
+
+var vis = d3.select("body")
+    .append("svg:svg")
+      .attr("class", "stage")
+      .attr("width", w)
+      .attr("height", h);
+
+var force = d3.layout.force()
+    .nodes(nodes)
+    .links([])
+    .gravity(0.1)
+    .charge(-1000)
+    .size([w, h]);
+
+ var link = vis.selectAll(".link")
+        .data(links)
+        .enter().append("line")
+          .attr("class", "link")
+          .attr("stroke", "#CCC")
+          .attr("fill", "none");
+
+ var node = vis.selectAll("circle.node")
+      .data(nodes)
+      .enter().append("g")
+      .attr("class", "node")
+
+      .call(force.drag);
+
+///*
+    //CIRCLE
+    node.append("svg:circle")
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .attr("r", circleWidth)
+      .attr("fill", function(d, i) { if (i>0) { return  palette.darkgray; } else { return palette.gray } } )
+//*/
+
+
+///*
+      node.append("image")
+//      .attr("xlink:href", "https://github.com/favicon.ico")
+//      .attr("xlink:href", "http://upload.wikimedia.org/wikipedia/commons/0/01/MaverickEyes_Favicon_Image.gif")
+      .attr("xlink:href", function(d, i) { return d.img; } )
+      .attr("x", 0) // off-set from center of node; upper left corner of picture is origin
+      .attr("y", 0)
+      .attr("width", function(d, i) { return d.width/2; }) // without both width and height, image does not display
+//      .attr("width", 200) // without both width and height, image does not display
+      .attr("height", function(d, i) { return d.height/2; })
+//*/
+
+force.on("tick", function(e) {
+  node.attr("transform", function(d, i) {     
+        return "translate(" + d.x + "," + d.y + ")"; 
+    });
+    
+   link.attr("x1", function(d)   { return d.source.x; })
+       .attr("y1", function(d)   { return d.source.y; })
+       .attr("x2", function(d)   { return d.target.x; })
+       .attr("y2", function(d)   { return d.target.y; })
+});
+
+force.start();
+</script>
+<P>Hello</P>
+</body>
+</html>
