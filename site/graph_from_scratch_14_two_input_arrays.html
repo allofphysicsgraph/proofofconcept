@@ -3,6 +3,7 @@
 <!-- http://stackoverflow.com/questions/24692002/i-want-to-distinguish-the-link-of-d3-js-force-graph-by-the-thickness -->
 <!-- http://stackoverflow.com/questions/23986466/d3-force-layout-linking-nodes-by-name-instead-of-index -->
 <!-- http://bl.ocks.org/mbostock/4062045 -->
+<!-- http://www.d3noob.org/2013/03/d3js-force-directed-graph-example-basic.html -->
 <!DOCTYPE html>
 <body>
 <script src="d3/d3.v3.min.js"></script>
@@ -36,45 +37,19 @@ var palette = {
 
 // load the external data
 d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/nodes_and_edges_expressions_and_inference_rules.json", function(error, root) {
+/*
   console.log(root);
   nodes = root["nodes"];
   console.log(nodes);
   links_in_json = root["links"];
-  console.log(links_in_json);
-
-console.log(links_in_json[0]);
-console.log(links_in_json[0].source);
-
-console.log(nodes[0].label);
-
-console.log(links_in_json[0].source==nodes[0].label);
-console.log(links_in_json[0].source==nodes[1].label);
-console.log(links_in_json[0].source==nodes[2].label);
-console.log(links_in_json[0].source==nodes[3].label);
-
-var links = [
-]
-
+*/
 /*
-//  http://www.d3noob.org/2013/03/d3js-force-directed-graph-example-basic.html
-links.forEach(function(link) {
-    link.source = links[link.source] || 
-        (nodes[link.source] = {name: links.label});
-    link.target = links[link.target] || 
-        (nodes[link.target] = {name: link.target});
-    link.value = +link.value;
-});
-//*/
+  force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .start();
+*/
 
-/*
-var links = [
-                  {source: nodes[0], target: nodes[1]},
-                  {source: nodes[1], target: nodes[2]},
-                  {source: nodes[0], target: nodes[3]},
-                  {source: nodes[4], target: nodes[2]},
-                  {source: nodes[2], target: nodes[3]}
-]
-//*/
 
 var vis = d3.select("body")
     .append("svg:svg")
@@ -83,14 +58,14 @@ var vis = d3.select("body")
       .attr("height", h);
 
 var force = d3.layout.force()
-    .nodes(nodes)
+    .nodes(root.nodes)
     .links([])
     .gravity(0.1)
     .charge(-1000)
     .size([w, h]);
 
  var link = vis.selectAll(".link")
-        .data(links)
+        .data(root.links)
         .enter().append("line")
           .attr("class", "link")
           .attr("stroke", "#CCC")
