@@ -21,18 +21,18 @@ from xml.dom.minidom import parseString
 connectionsDB=physgraf.parse_XML_file(db_path+'/connections_database.xml')
 statementsDB=physgraf.parse_XML_file(db_path+'/expressions_database.xml')
 
-statement_permenant_unique_id_ary=[]
-for these_statements in connectionsDB.getElementsByTagName('statement_permenant_unique_id'):
-  statement_permenant_unique_id=physgraf.remove_tags(these_statements.toxml(encoding="ascii"),'statement_permenant_unique_id')
-  statement_permenant_unique_id_ary.append(statement_permenant_unique_id)
+expression_permenant_unique_id_ary=[]
+for these_statements in connectionsDB.getElementsByTagName('expression_permenant_unique_id'):
+  expression_permenant_unique_id=physgraf.remove_tags(these_statements.toxml(encoding="ascii"),'expression_permenant_unique_id')
+  expression_permenant_unique_id_ary.append(expression_permenant_unique_id)
 
 #http://stackoverflow.com/questions/2870466/python-histogram-one-liner
 hist = {}
-for x in statement_permenant_unique_id_ary: hist[x] = hist.pop(x,0) + 1  # x=statement_permenant_unique_id
+for x in expression_permenant_unique_id_ary: hist[x] = hist.pop(x,0) + 1  # x=expression_permenant_unique_id
 
 #http://stackoverflow.com/questions/613183/python-sort-a-dictionary-by-value
-for w in sorted(hist, key=hist.get, reverse=True): # w=statement_permenant_unique_id
-  latex=physgraf.convert_tpunid_to_latex(w,statementsDB,'statement')
+for w in sorted(hist, key=hist.get, reverse=True): # w=expression_permenant_unique_id
+  latex=physgraf.convert_tpunid_to_latex(w,statementsDB,'expression')
   print (str(hist[w])+" "+w+" "+latex)
   
 sys.exit("done")

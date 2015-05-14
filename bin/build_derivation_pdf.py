@@ -37,21 +37,21 @@ def write_inputs_feeds(connector,infrule_name,feedsDB):
 #       print("input:")
 #       print connector.getElementsByTagName('input')[0].toxml()
     feed_array=[] # initialize array for string elements
-    for feed in connector.getElementsByTagName('feed_tunid'):
-      feed_tunid=physgraf.convert_tag_to_content(connector,'feed_tunid',0) # example: 5938585
-#         print("feed label is"+feed_tunid)
+    for feed in connector.getElementsByTagName('feed_temporary_unique_id'):
+      feed_temporary_unique_id=physgraf.convert_tag_to_content(connector,'feed_temporary_unique_id',0) # example: 5938585
+#         print("feed label is"+feed_temporary_unique_id)
       for feed_instance in feedsDB.getElementsByTagName('feed'):
-        feed_tunid_in_DB=physgraf.convert_tag_to_content(feed_instance,"feed_tunid",0)
-        if (feed_tunid_in_DB == feed_tunid):
+        feed_temporary_unique_id_in_DB=physgraf.convert_tag_to_content(feed_instance,"feed_temporary_unique_id",0)
+        if (feed_temporary_unique_id_in_DB == feed_temporary_unique_id):
           feed_latex=physgraf.convert_tag_to_content(feed_instance,"feed_latex",0)
           break
       feed_array.append(feed_latex)
 
     input_label_array=[]
-    for statement_counter in range(len(input_nodes.getElementsByTagName('statement_punid'))):
-      statement_indx=physgraf.convert_tag_to_content(input_nodes,'statement_punid',statement_counter)
-      statement_tunid=physgraf.convert_tag_to_content(input_nodes,'statement_tunid',statement_counter)
-      input_label_array.append(statement_tunid)
+    for expression_counter in range(len(input_nodes.getElementsByTagName('expression_permenant_unique_id'))):
+      expression_indx=physgraf.convert_tag_to_content(input_nodes,'expression_permenant_unique_id',expression_counter)
+      expression_temporary_unique_id=physgraf.convert_tag_to_content(input_nodes,'expression_temporary_unique_id',expression_counter)
+      input_label_array.append(expression_temporary_unique_id)
   # latex preparation
   feed_str=''
   input_str=''
@@ -65,26 +65,26 @@ def write_inputs_feeds(connector,infrule_name,feedsDB):
 
 def write_outputs(no_inputs_boolean,infrule_name,connector):
   for output_nodes in connector.getElementsByTagName('output'): # there may be multiple outputs for a given connection
-    for statement_counter in range(len(output_nodes.getElementsByTagName('statement_punid'))):
-      statement_indx=physgraf.convert_tag_to_content(output_nodes,'statement_punid',statement_counter)
-      statement_tunid=physgraf.convert_tag_to_content(output_nodes,'statement_tunid',statement_counter)
-      #  Given a "statement_indx" from connector, get the corresponding latex in statementDB
-      # iterate through <statement> blocks and find <statement_punid>
+    for expression_counter in range(len(output_nodes.getElementsByTagName('expression_permenant_unique_id'))):
+      expression_indx=physgraf.convert_tag_to_content(output_nodes,'expression_permenant_unique_id',expression_counter)
+      expression_temporary_unique_id=physgraf.convert_tag_to_content(output_nodes,'expression_temporary_unique_id',expression_counter)
+      #  Given a "expression_indx" from connector, get the corresponding latex in statementDB
+      # iterate through <statement> blocks and find <expression_permenant_unique_id>
       found_index_boolean=False
-      for these_statements in statementsDB.getElementsByTagName('statement'):
-        statement_punid_in_DB=physgraf.convert_tag_to_content(these_statements,"statement_punid",0)
-        if (statement_punid_in_DB == statement_indx):
-          statement_latex=physgraf.convert_tag_to_content(these_statements,"statement_latex",0)
+      for these_statements in expressionsDB.getElementsByTagName('expression'):
+        expression_permenant_unique_id_in_DB=physgraf.convert_tag_to_content(these_statements,"expression_permenant_unique_id",0)
+        if (expression_permenant_unique_id_in_DB == expression_indx):
+          expression_latex=physgraf.convert_tag_to_content(these_statements,"expression_latex",0)
           found_index_boolean=True
           break
       if(not found_index_boolean):
-        print("problem: did not find statement index "+statement_indx+" in statements database")
+        print("problem: did not find expression index "+expression_indx+" in expressions database")
         exit()
       if(no_inputs_boolean):
-        tex_file.write('\\'+infrule_name+'{'+statement_tunid+'}%init eq in output loop\n')
+        tex_file.write('\\'+infrule_name+'{'+expression_temporary_unique_id+'}%init eq in output loop\n')
       tex_file.write('\\begin{equation}%output loop\n')
-      tex_file.write(statement_latex+'\n')
-      tex_file.write('\\label{eq:'+statement_tunid+'}\n')
+      tex_file.write(expression_latex+'\n')
+      tex_file.write('\\label{eq:'+expression_temporary_unique_id+'}\n')
       tex_file.write('\\end{equation}\n')
 
 # begin main body
@@ -98,7 +98,7 @@ if (not makeAllGraphs):
 
 connectionsDB    =physgraf.parse_XML_file(db_path+'/connections_database.xml')
 inference_rulesDB=physgraf.parse_XML_file(db_path+'/inference_rules_database.xml')
-statementsDB     =physgraf.parse_XML_file(db_path+'/expressions_database.xml')
+expressionsDB     =physgraf.parse_XML_file(db_path+'/expressions_database.xml')
 feedsDB          =physgraf.parse_XML_file(db_path+'/feed_database.xml')
 
 # begin looping through connections in XML database
@@ -128,7 +128,7 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
 
   for connector in these_connections.getElementsByTagName('connection'):
     this_infrule_name=physgraf.convert_tag_to_content(connector,'infrule_name',0)
-    this_inference_rule_label=physgraf.convert_tag_to_content(connector,'infrule_tunid',0)
+    this_inference_rule_label=physgraf.convert_tag_to_content(connector,'infrule_temporary_unique_id',0)
 #   print(this_infrule_name)
     for inf_rule in inference_rulesDB.getElementsByTagName('inference_rule'):
       inf_rule_name=physgraf.convert_tag_to_content(inf_rule, 'infrule_name',0)

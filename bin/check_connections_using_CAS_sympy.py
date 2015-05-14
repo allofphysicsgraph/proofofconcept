@@ -24,24 +24,24 @@ import sympy # https://github.com/sympy/sympy/releases
 def convert_xml_to_cas_array(type_str,xml_ary,symbols_array,check_this_connection):
   lhs_array=[]
   rhs_array=[]
-  for stat in xml_ary[0].getElementsByTagName('statement_punid'):
-    statement_punid=physgraf.remove_tags(stat.toxml(encoding="ascii"),'statement_punid')
-    # now that we know the statement index, retrieve the CAS statements from statementsDB
+  for stat in xml_ary[0].getElementsByTagName('expression_permenant_unique_id'):
+    expression_permenant_unique_id=physgraf.remove_tags(stat.toxml(encoding="ascii"),'expression_permenant_unique_id')
+    # now that we know the expression index, retrieve the CAS expressions from expressionsDB
 
-    [statement_lhs,statement_rhs]=physgraf.convert_statement_punid_to_cas_sympy(statement_punid,statementsDB)
-    symbol_punid_array=physgraf.convert_tpunid_to_symbol_punid_array(statement_punid,statementsDB,'statement')
-    for indx in range(len(symbol_punid_array)):
-      cas_sympy=physgraf.convert_symbol_punid_to_cas_sympy(symbol_punid_array[indx],symbolsDB)
+    [expression_lhs,expression_rhs]=physgraf.convert_expression_permenant_unique_id_to_cas_sympy(expression_permenant_unique_id,expressionsDB)
+    symbol_permenant_unique_id_array=physgraf.convert_tpunid_to_symbol_permenant_unique_id_array(expression_permenant_unique_id,expressionsDB,'expression')
+    for indx in range(len(symbol_permenant_unique_id_array)):
+      cas_sympy=physgraf.convert_symbol_permenant_unique_id_to_cas_sympy(symbol_permenant_unique_id_array[indx],symbolsDB)
       symbols_array.append(cas_sympy+" # from "+type_str)
 
-    if ((statement_lhs != "empty") and (statement_rhs != "empty")):
-      print(type_str+" statement index "+statement_punid)
-      print(type_str+" lhs: " + statement_lhs)
-      lhs_array.append(statement_lhs)
-      print(type_str+" rhs: " + statement_rhs)
-      rhs_array.append(statement_rhs)
+    if ((expression_lhs != "empty") and (expression_rhs != "empty")):
+      print(type_str+" expression index "+expression_permenant_unique_id)
+      print(type_str+" lhs: " + expression_lhs)
+      lhs_array.append(expression_lhs)
+      print(type_str+" rhs: " + expression_rhs)
+      rhs_array.append(expression_rhs)
     else:
-      print(type_str+" statement index "+statement_punid+" is missing CAS expansion")
+      print(type_str+" expression index "+expression_permenant_unique_id+" is missing CAS expansion")
       check_this_connection=False
   return check_this_connection,lhs_array,rhs_array,symbols_array
 
@@ -91,9 +91,9 @@ def convert_feed_to_cas_array(inputs_xml,symbols_array,check_this_connection):
     if (feed_sympy != "empty"):
       print("feed tunid "+feed_tunid+" is "+ feed_sympy)
       feed_array.append(feed_sympy)
-      symbol_punid_array=physgraf.convert_tpunid_to_symbol_punid_array(feed_tunid,feedsDB,'feed')
-      for indx in range(len(symbol_punid_array)):
-        cas_sympy=physgraf.convert_symbol_punid_to_cas_sympy(symbol_punid_array[indx],symbolsDB)
+      symbol_permenant_unique_id_array=physgraf.convert_tpunid_to_symbol_permenant_unique_id_array(feed_tunid,feedsDB,'feed')
+      for indx in range(len(symbol_permenant_unique_id_array)):
+        cas_sympy=physgraf.convert_symbol_permenant_unique_id_to_cas_sympy(symbol_permenant_unique_id_array[indx],symbolsDB)
         symbols_array.append(cas_sympy+" # from feed")
     else:
       print("feed label "+feed_tunid+" is missing CAS expansion")
@@ -103,7 +103,7 @@ def convert_feed_to_cas_array(inputs_xml,symbols_array,check_this_connection):
 
 inference_rulesDB=physgraf.parse_XML_file(db_path+'/inference_rules_database.xml')
 connectionsDB=physgraf.parse_XML_file(db_path+'/connections_database.xml')
-statementsDB=physgraf.parse_XML_file(db_path+'/expressions_database.xml')
+expressionsDB=physgraf.parse_XML_file(db_path+'/expressions_database.xml')
 feedsDB=physgraf.parse_XML_file(db_path+'/feed_database.xml')
 symbolsDB=physgraf.parse_XML_file(db_path+'/symbols_database.xml')
 

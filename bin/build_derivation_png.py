@@ -48,13 +48,13 @@ make_graphml=input_data["make_graphml_boolean"]
 make_networkx=input_data["make_networkx_boolean"]
 
 
-eq_pictures=lib_path+'/images_statement_'+extension
+eq_pictures=lib_path+'/images_expression_'+extension
 op_pictures=lib_path+'/images_infrule_'+extension
 feed_pictures=lib_path+'/images_feed_'+extension
 
 connectionsDB    =physgraf.parse_XML_file(db_path+'/connections_database.xml')
 inference_rulesDB=physgraf.parse_XML_file(db_path+'/inference_rules_database.xml')
-statementsDB     =physgraf.parse_XML_file(db_path+'/expressions_database.xml')
+expressionsDB     =physgraf.parse_XML_file(db_path+'/expressions_database.xml')
 
 if (make_graphml):
   graphml_file=open(output_path+'/connections_result.graphml','w')
@@ -83,7 +83,7 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
 
   for connector in these_connections.getElementsByTagName('connection'):
     infrule_name=physgraf.convert_tag_to_content(connector,'infrule_name',0)
-    inference_rule_label=physgraf.convert_tag_to_content(connector,'infrule_tunid',0)
+    inference_rule_label=physgraf.convert_tag_to_content(connector,'infrule_temporary_unique_id',0)
     if (make_graphviz):
       # http://www.graphviz.org/doc/info/attrs.html#d:image
       #graphviz_file.write(inference_rule_label+" [shape=invtrapezium,color=red,image=\""+op_pictures+"/"+infrule_name+"."+extension+"\",labelloc=b,URL=\"http://google.com\"];\n")
@@ -93,45 +93,45 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
     for input_nodes in connector.getElementsByTagName('input'): # there may be multiple inputs for a given connection
 #       print('feed:')
 #       print connector.getElementsByTagName('input')[0].toxml()
-      for feed_counter in range(len(input_nodes.getElementsByTagName('feed_tunid'))):
-        feed_tunid=physgraf.convert_tag_to_content(input_nodes,'feed_tunid',feed_counter)
+      for feed_counter in range(len(input_nodes.getElementsByTagName('feed_temporary_unique_id'))):
+        feed_temporary_unique_id=physgraf.convert_tag_to_content(input_nodes,'feed_temporary_unique_id',feed_counter)
 
         if (make_graphviz):
-          graphviz_file.write(feed_tunid+" [shape=ellipse,color=red,image=\""+feed_pictures+"/"+feed_tunid+"."+extension+"\",labelloc=b,URL=\"http://feed.com\"];\n")
-          graphviz_file.write(feed_tunid+" -> "+inference_rule_label+"\n")
+          graphviz_file.write(feed_temporary_unique_id+" [shape=ellipse,color=red,image=\""+feed_pictures+"/"+feed_temporary_unique_id+"."+extension+"\",labelloc=b,URL=\"http://feed.com\"];\n")
+          graphviz_file.write(feed_temporary_unique_id+" -> "+inference_rule_label+"\n")
         if (make_graphml):
-          graphml_file.write("    <node id=\""+feed_tunid+"\"/>\n")
-          graphml_file.write("    <edge source=\""+feed_tunid+"\" target=\""+inference_rule_label+"\"/>\n")
+          graphml_file.write("    <node id=\""+feed_temporary_unique_id+"\"/>\n")
+          graphml_file.write("    <edge source=\""+feed_temporary_unique_id+"\" target=\""+inference_rule_label+"\"/>\n")
         if (make_networkx):
-          networkx_file.write('G.add_edge(['+feed_tunid+','+inference_rule_label+'])\n')
+          networkx_file.write('G.add_edge(['+feed_temporary_unique_id+','+inference_rule_label+'])\n')
       input_label_array=[]
-      for statement_counter in range(len(input_nodes.getElementsByTagName('statement_punid'))):
-        statement_indx=physgraf.convert_tag_to_content(input_nodes,'statement_punid',statement_counter)
-        input_label_array.append(statement_indx)
+      for expression_counter in range(len(input_nodes.getElementsByTagName('expression_permenant_unique_id'))):
+        expression_indx=physgraf.convert_tag_to_content(input_nodes,'expression_permenant_unique_id',expression_counter)
+        input_label_array.append(expression_indx)
         if (make_graphviz):
-          graphviz_file.write(statement_indx+" [shape=ellipse,color=red,image=\""+eq_pictures+"/"+statement_indx+"."+extension+"\",labelloc=b,URL=\"http://input.com\"];\n")
-          graphviz_file.write(statement_indx+" -> "+inference_rule_label+"\n")
+          graphviz_file.write(expression_indx+" [shape=ellipse,color=red,image=\""+eq_pictures+"/"+expression_indx+"."+extension+"\",labelloc=b,URL=\"http://input.com\"];\n")
+          graphviz_file.write(expression_indx+" -> "+inference_rule_label+"\n")
         if (make_graphml):  
-          graphml_file.write("    <node id=\""+statement_indx+"\"/>\n")
-          graphml_file.write("    <edge source=\""+statement_indx+"\" target=\""+inference_rule_label+"\"/>\n")
+          graphml_file.write("    <node id=\""+expression_indx+"\"/>\n")
+          graphml_file.write("    <edge source=\""+expression_indx+"\" target=\""+inference_rule_label+"\"/>\n")
         if (make_networkx):
-          networkx_file.write('G.add_edge(['+statement_indx+','+inference_rule_label+'])\n')
+          networkx_file.write('G.add_edge(['+expression_indx+','+inference_rule_label+'])\n')
 
     for output_nodes in connector.getElementsByTagName('output'): # there may be multiple outputs for a given connection
-      for statement_counter in range(len(output_nodes.getElementsByTagName('statement_punid'))):
-        statement_indx=physgraf.convert_tag_to_content(output_nodes,'statement_punid',statement_counter)
+      for expression_counter in range(len(output_nodes.getElementsByTagName('expression_permenant_unique_id'))):
+        expression_indx=physgraf.convert_tag_to_content(output_nodes,'expression_permenant_unique_id',expression_counter)
   
-        #  Given a "statement_indx" from connector, get the corresponding latex in statementDB
-        statement_latex=physgraf.convert_tpunid_to_latex(statement_indx,statementsDB,'statement')
+        #  Given a "expression_indx" from connector, get the corresponding latex in statementDB
+        expression_latex=physgraf.convert_tpunid_to_latex(expression_indx,expressionsDB,'expression')
   
         if (make_graphviz):
-          graphviz_file.write(statement_indx+" [shape=ellipse,color=red,image=\""+eq_pictures+"/"+statement_indx+"."+extension+"\",labelloc=b,URL=\"http://output.com\"];\n")
-          graphviz_file.write(inference_rule_label+" -> "+statement_indx+"\n")
+          graphviz_file.write(expression_indx+" [shape=ellipse,color=red,image=\""+eq_pictures+"/"+expression_indx+"."+extension+"\",labelloc=b,URL=\"http://output.com\"];\n")
+          graphviz_file.write(inference_rule_label+" -> "+expression_indx+"\n")
         if (make_graphml):
-          graphml_file.write("    <node id=\""+statement_indx+"\"/>\n")
-          graphml_file.write("    <edge source=\""+inference_rule_label+"\" target=\""+statement_indx+"\"/>\n")
+          graphml_file.write("    <node id=\""+expression_indx+"\"/>\n")
+          graphml_file.write("    <edge source=\""+inference_rule_label+"\" target=\""+expression_indx+"\"/>\n")
         if (make_networkx):
-          networkx_file.write('G.add_edge(['+inference_rule_label+','+statement_indx+'])\n')
+          networkx_file.write('G.add_edge(['+inference_rule_label+','+expression_indx+'])\n')
     # reset arrays to be empty for next connection
     feed_array=[]
     input_label_array=[]
