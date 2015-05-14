@@ -9,7 +9,7 @@
   {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/1010923823.png", "width": 389, "height": 31, "label": "1010923823"},
   {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/1020010291.png", "width": 198, "height": 34, "label": "1020010291"},
   {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/1020394900.png", "width": 117, "height": 34, "label": "1020394900"},
-  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/takeCurlofBothSides.png", "width": 284, "height": 2, "label": "takeCurlofBothSides"}
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/takeCurlofBothSides.png", "width": 284, "height": 25, "label": "takeCurlofBothSides"}
 ],
      "links":[
     {"source":1,"target":0},
