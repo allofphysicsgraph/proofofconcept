@@ -23,7 +23,7 @@ import random
 def find_unique_id(lower_bound,upper_bound,arry,id_name):
   unique_id_found = False
   while (not unique_id_found):
-    new_id = random.randint(lower_bound,upper_bound) # infrule_tunid is a unique digit number
+    new_id = random.randint(lower_bound,upper_bound) # infrule_temporary_unique_id is a unique digit number
     if (arry.count(new_id)==0):
       print("available "+id_name+": "+str(new_id))
       unique_id_found = True
@@ -32,33 +32,33 @@ def find_unique_id(lower_bound,upper_bound,arry,id_name):
 
 #***************
 connectionsDB=physgraf.parse_XML_file(db_path+'/connections_database.xml')
-tag_name="infrule_tunid"
-infrule_tunid_ary = []
+tag_name="infrule_temporary_unique_id"
+infrule_temporary_unique_id_ary = []
 for id in connectionsDB.getElementsByTagName(tag_name):
   value=physgraf.remove_tags(id.toxml(),tag_name)
-  infrule_tunid_ary.append(value)
+  infrule_temporary_unique_id_ary.append(value)
 
-tag_name="statement_tunid"
-statement_tunid_ary=[]
+tag_name="expression_temporary_unique_id"
+expression_temporary_unique_id_ary=[]
 for id in connectionsDB.getElementsByTagName(tag_name):
   value=physgraf.remove_tags(id.toxml(),tag_name)
-  statement_tunid_ary.append(value)
+  expression_temporary_unique_id_ary.append(value)
 
 print("\nconnections database:")
-find_unique_id(1000000,9999999,infrule_tunid_ary,"inference rule numeric identifier") # 7 digits
+find_unique_id(1000000,9999999,infrule_temporary_unique_id_ary,"inference rule numeric identifier") # 7 digits
 
-find_unique_id(1000000,9999999,statement_tunid_ary,"expression numeric identifier") # 7 digits
+find_unique_id(1000000,9999999,expression_temporary_unique_id_ary,"expression numeric identifier") # 7 digits
 
 #***************
-statementsDB=physgraf.parse_XML_file(db_path+'/statements_database.xml')
-tag_name="statement_punid"
-statement_indx_ary = []
+statementsDB=physgraf.parse_XML_file(db_path+'/expressions_database.xml')
+tag_name="expression_permenant_unique_id"
+expression_indx_ary = []
 for id in statementsDB.getElementsByTagName(tag_name):
   value=physgraf.remove_tags(id.toxml(),tag_name)
-  statement_indx_ary.append(value)
+  expression_indx_ary.append(value)
 
 print("\nexpression database:")
-find_unique_id(1000000000,9999999999,statement_indx_ary,"expression numeric identifier") # 10 digits
+find_unique_id(1000000000,9999999999,expression_indx_ary,"expression numeric identifier") # 10 digits
 
 #***************
 symbolsDB=physgraf.parse_XML_file(db_path+'/symbols_database.xml')
@@ -73,14 +73,14 @@ find_unique_id(100000000000000,999999999999999,symbol_label_ary,"symbol numeric 
 
 #***************
 feedDB=physgraf.parse_XML_file(db_path+'/feed_database.xml')
-tag_name="feed_tunid"
-feed_tunid_ary = []
+tag_name="feed_temporary_unique_id"
+feed_temporary_unique_id_ary = []
 for id in feedDB.getElementsByTagName(tag_name):
   value=physgraf.remove_tags(id.toxml(),tag_name)
-  feed_tunid_ary.append(value)
+  feed_temporary_unique_id_ary.append(value)
 
 print("\nfeed database:")
-find_unique_id(1000000,9999999,feed_tunid_ary,"feed numeric identifier") # 7 digits
+find_unique_id(1000000,9999999,feed_temporary_unique_id_ary,"feed numeric identifier") # 7 digits
 
 #***************
 sys.exit("done")

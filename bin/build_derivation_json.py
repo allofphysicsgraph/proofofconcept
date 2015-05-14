@@ -8,7 +8,7 @@
 #    lib_physics_graph.py
 #    connections_database.xml
 #    inference_rules_database.xml
-#    statements_database.xml
+#    expressions_database.xml
 # output: 
 #    out_no_labels.png
 #    out_with_labels.png
@@ -54,7 +54,7 @@ feed_pictures=lib_path+'/images_feed_'+extension
 
 connectionsDB    =physgraf.parse_XML_file(db_path+'/connections_database.xml')
 inference_rulesDB=physgraf.parse_XML_file(db_path+'/inference_rules_database.xml')
-statementsDB     =physgraf.parse_XML_file(db_path+'/statements_database.xml')
+statementsDB     =physgraf.parse_XML_file(db_path+'/expressions_database.xml')
 
 if (make_graphml):
   graphml_file=open(output_path+'/connections_result.graphml','w')

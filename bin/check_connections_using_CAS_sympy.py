@@ -103,7 +103,7 @@ def convert_feed_to_cas_array(inputs_xml,symbols_array,check_this_connection):
 
 inference_rulesDB=physgraf.parse_XML_file(db_path+'/inference_rules_database.xml')
 connectionsDB=physgraf.parse_XML_file(db_path+'/connections_database.xml')
-statementsDB=physgraf.parse_XML_file(db_path+'/statements_database.xml')
+statementsDB=physgraf.parse_XML_file(db_path+'/expressions_database.xml')
 feedsDB=physgraf.parse_XML_file(db_path+'/feed_database.xml')
 symbolsDB=physgraf.parse_XML_file(db_path+'/symbols_database.xml')
 

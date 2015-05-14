@@ -28,7 +28,7 @@ physgraf.latex_header(tex_file)
 tex_file.write('\\begin{document}\n')
 
 # read equations_database.xml and create svg for each
-statementsDB=physgraf.parse_XML_file(db_path+'/statements_database.xml')
+statementsDB=physgraf.parse_XML_file(db_path+'/expressions_database.xml')
 for item in statementsDB.getElementsByTagName('statement'):
   statement_indx=physgraf.convert_tag_to_content(item,'statement_punid',0)
   statement_latex=physgraf.convert_tag_to_content(item,'statement_latex',0)

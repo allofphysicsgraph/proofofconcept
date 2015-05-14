@@ -3,68 +3,68 @@
 <!--
    <comment>
       <comment_content></comment_content>
-      <applies_to_statement></applies_to_statement>
+      <applies_to_expression_permenant_unique_id></applies_to_expression_permenant_unique_id>
    </comment>
 -->
 <comments_list>
    <comment>
      <comment_content>The matrix is equal to its conjugate transpose, this is the definition of a Hermitian operator</comment_content>
-     <applies_to_statement>9294858532</applies_to_statement>
+     <applies_to_expression_permenant_unique_id>9294858532</applies_to_expression_permenant_unique_id>
    </comment>
    <comment>
       <comment_content>Non-physical. For use in examples only.</comment_content>
-      <applies_to_statement>4929218492</applies_to_statement>
-      <applies_to_statement>4929482992</applies_to_statement>
-      <applies_to_statement>4984892984</applies_to_statement>
-      <applies_to_statement>2948293829</applies_to_statement>
-      <applies_to_statement>9482948292</applies_to_statement>
-      <applies_to_statement>4828238421</applies_to_statement>
-      <applies_to_statement>9829420421</applies_to_statement>
+      <applies_to_expression_permenant_unique_id>4929218492</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>4929482992</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>4984892984</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>2948293829</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>9482948292</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>4828238421</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>9829420421</applies_to_expression_permenant_unique_id>
    </comment>
    <comment>
       <comment_content>\href{http://en.wikipedia.org/wiki/Transformation_matrix#Rotation}{Coordinate rotation transformation in 2D}</comment_content>
-      <applies_to_statement>9999999986</applies_to_statement>
+      <applies_to_expression_permenant_unique_id>9999999986</applies_to_expression_permenant_unique_id>
    </comment>
    <comment>
       <comment_content>\href{http://en.wikipedia.org/wiki/Ohm's_law#Circuit_analysis}{Ohm's law}</comment_content>
-      <applies_to_statement>9999999985</applies_to_statement>
+      <applies_to_expression_permenant_unique_id>9999999985</applies_to_expression_permenant_unique_id>
    </comment>
    <comment>
       <comment_content>\href{http://en.wikipedia.org/wiki/Capacitance}{Capacitance}</comment_content>
-      <applies_to_statement>9999999984</applies_to_statement>
+      <applies_to_expression_permenant_unique_id>9999999984</applies_to_expression_permenant_unique_id>
    </comment>
    <comment>
       <comment_content>\href{http://en.wikipedia.org/wiki/Gauss%27s_law_for_magnetism}; part of \href{http://en.wikipedia.org/wiki/Maxwell's_equations}{Gauss's law}{Maxwell's equations}</comment_content>
-      <applies_to_statement>9999999981</applies_to_statement>
+      <applies_to_expression_permenant_unique_id>9999999981</applies_to_expression_permenant_unique_id>
    </comment>
    <comment>
       <comment_content>\href{http://en.wikipedia.org/wiki/Gauss%27s_law_for_magnetism}; part of \href{http://en.wikipedia.org/wiki/Maxwell's_equations}{Gauss's law for magnetism}{Maxwell's equations}</comment_content>
-      <applies_to_statement>9999999980</applies_to_statement>
+      <applies_to_expression_permenant_unique_id>9999999980</applies_to_expression_permenant_unique_id>
    </comment>
    <comment>
       <comment_content>\href{http://en.wikipedia.org/wiki/Faraday%27s_law_of_induction}; part of \href{http://en.wikipedia.org/wiki/Maxwell's_equations}{Faraday's law of induction}{Maxwell's equations}</comment_content>
-      <applies_to_statement>9999999979</applies_to_statement>
+      <applies_to_expression_permenant_unique_id>9999999979</applies_to_expression_permenant_unique_id>
    </comment>
    <comment>
       <comment_content>\href{http://en.wikipedia.org/wiki/Amp%C3%A8re%27s_circuital_law}; part of \href{http://en.wikipedia.org/wiki/Maxwell's_equations}{Ampere's circuital law}{Maxwell's equations}</comment_content>
-      <applies_to_statement>9999999978</applies_to_statement>
+      <applies_to_expression_permenant_unique_id>9999999978</applies_to_expression_permenant_unique_id>
    </comment>
    <comment>
       <comment_content>quadratic equation</comment_content>
-      <applies_to_statement>8582954722</applies_to_statement>
-      <applies_to_statement>9285928292</applies_to_statement>
-      <applies_to_statement>5958392859</applies_to_statement>
-      <applies_to_statement>5938459282</applies_to_statement>
-      <applies_to_statement>5928292841</applies_to_statement>
-      <applies_to_statement>5928285821</applies_to_statement>
-      <applies_to_statement>5959282914</applies_to_statement>
-      <applies_to_statement>9385938295</applies_to_statement>
+      <applies_to_expression_permenant_unique_id>8582954722</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>9285928292</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>5958392859</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>5938459282</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>5928292841</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>5928285821</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>5959282914</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>9385938295</applies_to_expression_permenant_unique_id>
    </comment>      
    <comment>
       <comment_content>quadratic equation, nearing the end</comment_content>
-      <applies_to_statement>9582958294</applies_to_statement>
-      <applies_to_statement>5982958249</applies_to_statement>
-      <applies_to_statement>9582958293</applies_to_statement>
-      <applies_to_statement>5982958248</applies_to_statement>
+      <applies_to_expression_permenant_unique_id>9582958294</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>5982958249</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>9582958293</applies_to_expression_permenant_unique_id>
+      <applies_to_expression_permenant_unique_id>5982958248</applies_to_expression_permenant_unique_id>
    </comment>
 </comments_list>

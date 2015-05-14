@@ -11,487 +11,487 @@ https://en.wikipedia.org/wiki/List_of_common_physics_notations
 http://physics-help.info/physicsguide/appendices/si_units.shtml
 -->
 <!--
-  <symbol><symbol_name></symbol_name><symbol_punid></symbol_punid>
-    <type></type><!-- "variable" or "constant" -->
+  <symbol><symbol_name></symbol_name><symbol_permenant_unique_id></symbol_permenant_unique_id>
+    <type></type>                                                    "variable" or "constant" 
     <value></value>
     <description></description>
     <cas_sympy></cas_sympy>
     <units></units></symbol>
 -->
 <all_symbols>
-  <symbol><symbol_name>a</symbol_name><symbol_punid>523456789011112</symbol_punid>
+  <symbol><symbol_name>a</symbol_name><symbol_permenant_unique_id>523456789011112</symbol_permenant_unique_id>
     <type>variable</type>
     <description>arbitrary variable</description>
     <cas_sympy>a = sympy.Symbol('a')</cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>A</symbol_name><symbol_punid>394949020392392</symbol_punid>
+  <symbol><symbol_name>A</symbol_name><symbol_permenant_unique_id>394949020392392</symbol_permenant_unique_id>
     <type>variable</type>
     <description>Area</description>
     <cas_sympy>A = sympy.Symbol('A')</cas_sympy>
     <units>length*length</units></symbol>
     
-  <symbol><symbol_name>\alpha</symbol_name><symbol_punid>137035999999999</symbol_punid>
+  <symbol><symbol_name>\alpha</symbol_name><symbol_permenant_unique_id>137035999999999</symbol_permenant_unique_id>
     <type>constant</type>
     <value>1/137.03599999</value>
     <description>fine-structure constant: strength of the electromagnetic interaction</description>
     <cas_sympy></cas_sympy>
     <units>dimensionless</units></symbol>
     
-  <symbol><symbol_name>\hat{A}</symbol_name><symbol_punid>559382384859350</symbol_punid>
+  <symbol><symbol_name>\hat{A}</symbol_name><symbol_permenant_unique_id>559382384859350</symbol_permenant_unique_id>
     <type>variable</type>
     <description>generic quantum operator</description>
     <cas_sympy></cas_sympy>
     <units></units></symbol>
 
-  <symbol><symbol_name>b</symbol_name><symbol_punid>521456739011112</symbol_punid>
+  <symbol><symbol_name>b</symbol_name><symbol_permenant_unique_id>521456739011112</symbol_permenant_unique_id>
     <type>variable</type>
     <description>arbitrary variable</description>
     <cas_sympy>b = sympy.Symbol('b')</cas_sympy>
     <units></units></symbol>
 
-  <symbol><symbol_name>\vec{B}</symbol_name><symbol_punid>222222221111111</symbol_punid>
+  <symbol><symbol_name>\vec{B}</symbol_name><symbol_permenant_unique_id>222222221111111</symbol_permenant_unique_id>
     <type>variable</type>
     <description>magnetic field</description>
     <cas_sympy></cas_sympy>
     <units>T</units></symbol>
     
-  <symbol><symbol_name>C</symbol_name><symbol_punid>293948485758589</symbol_punid>
+  <symbol><symbol_name>C</symbol_name><symbol_permenant_unique_id>293948485758589</symbol_permenant_unique_id>
     <type>variable</type>
     <description>capacitance</description>
     <cas_sympy>C = sympy.Symbol('C')</cas_sympy>
     <units>F</units></symbol>
 
-  <symbol><symbol_name>c</symbol_name><symbol_punid>521456789011112</symbol_punid>
+  <symbol><symbol_name>c</symbol_name><symbol_permenant_unique_id>521456789011112</symbol_permenant_unique_id>
     <type>variable</type>
     <description>arbitrary variable</description>
     <cas_sympy>c = sympy.Symbol('c')</cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>c</symbol_name><symbol_punid>111111111111111</symbol_punid>
+  <symbol><symbol_name>c</symbol_name><symbol_permenant_unique_id>111111111111111</symbol_permenant_unique_id>
     <type>constant</type>
     <value>299792458</value>
     <description>speed of light</description>
     <cas_sympy>c = sympy.Symbol('c')</cas_sympy>
     <units>m/s</units></symbol>
     
-  <symbol><symbol_name>\cdot</symbol_name><symbol_punid>303030303030303</symbol_punid>
+  <symbol><symbol_name>\cdot</symbol_name><symbol_permenant_unique_id>303030303030303</symbol_permenant_unique_id>
     <type>operator</type>
     <description>dot or inner product</description>
     <cas_sympy></cas_sympy></symbol>
     
-  <symbol><symbol_name>\cos</symbol_name><symbol_punid>101001203013011</symbol_punid>
+  <symbol><symbol_name>\cos</symbol_name><symbol_permenant_unique_id>101001203013011</symbol_permenant_unique_id>
     <type>operators</type>
     <description>trigonometric cosine function</description>
     <cas_sympy>cos=sympy.cos</cas_sympy></symbol>
     
-  <symbol><symbol_name>d</symbol_name><symbol_punid>939485829495824</symbol_punid>
+  <symbol><symbol_name>d</symbol_name><symbol_permenant_unique_id>939485829495824</symbol_permenant_unique_id>
     <type>operator</type>
     <description>differential element</description>
     <cas_sympy></cas_sympy></symbol>
     
-  <symbol><symbol_name>d</symbol_name><symbol_punid>020998876678990</symbol_punid>
+  <symbol><symbol_name>d</symbol_name><symbol_permenant_unique_id>020998876678990</symbol_permenant_unique_id>
     <type>variable</type>
     <description>distance</description>
     <cas_sympy>d = sympy.Symbol('d')</cas_sympy>
     <units>length</units></symbol>
     
-  <symbol><symbol_name>\delta</symbol_name><symbol_punid>000000010000000</symbol_punid>
+  <symbol><symbol_name>\delta</symbol_name><symbol_permenant_unique_id>000000010000000</symbol_permenant_unique_id>
     <type>operator</type>
     <description>Dirac delta function</description>
     <cas_sympy></cas_sympy>
     <units>not applicable</units></symbol>
     
-  <symbol><symbol_name>\delta</symbol_name><symbol_punid>284857219191913</symbol_punid>
+  <symbol><symbol_name>\delta</symbol_name><symbol_permenant_unique_id>284857219191913</symbol_permenant_unique_id>
     <type>operator</type>
     <description>Kronecker delta (tensor)</description>
     <cas_sympy></cas_sympy>
     <units>not applicable</units></symbol>
 
-  <symbol><symbol_name>du</symbol_name><symbol_punid>261738844710260</symbol_punid>
+  <symbol><symbol_name>du</symbol_name><symbol_permenant_unique_id>261738844710260</symbol_permenant_unique_id>
     <type>infinitesimal</type>
     <description>differential element</description>
     <cas_sympy>du=sympy.Symbol('du')</cas_sympy>
     <units></units></symbol>
 
-  <symbol><symbol_name>dx</symbol_name><symbol_punid>590098651360374</symbol_punid>
+  <symbol><symbol_name>dx</symbol_name><symbol_permenant_unique_id>590098651360374</symbol_permenant_unique_id>
     <type>infinitesimal</type>
     <description>differential element</description>
     <cas_sympy>dx=sympy.Symbol('dx')</cas_sympy>
     <units></units></symbol>
 
-  <symbol><symbol_name>dy</symbol_name><symbol_punid>764178910971058</symbol_punid>
+  <symbol><symbol_name>dy</symbol_name><symbol_permenant_unique_id>764178910971058</symbol_permenant_unique_id>
     <type>infinitesimal</type>
     <description>differential element</description>
     <cas_sympy>dy=sympy.Symbol('dy')</cas_sympy>
     <units></units></symbol>
 
-  <symbol><symbol_name>dz</symbol_name><symbol_punid>546488007521880</symbol_punid>
+  <symbol><symbol_name>dz</symbol_name><symbol_permenant_unique_id>546488007521880</symbol_permenant_unique_id>
     <type>infinitesimal</type>
     <description>differential element</description>
     <cas_sympy>dz=sympy.Symbol('dz')</cas_sympy>
     <units></units></symbol>
 
-  <symbol><symbol_name>e</symbol_name><symbol_punid>193877428200388</symbol_punid>
+  <symbol><symbol_name>e</symbol_name><symbol_permenant_unique_id>193877428200388</symbol_permenant_unique_id>
     <type>constant</type>
     <value>1.602E-19</value>
     <description>elementary charge of electron</description>
     <cas_sympy></cas_sympy>
     <units>Coulombs</units></symbol>
     
-  <symbol><symbol_name>E</symbol_name><symbol_punid>827344378912938</symbol_punid>
+  <symbol><symbol_name>E</symbol_name><symbol_permenant_unique_id>827344378912938</symbol_permenant_unique_id>
     <type>variable</type>
     <description>energy [Joule]=kg*m^2/s^2=Watt*s=Pa*m^3=N*m</description>
     <cas_sympy>E = sympy.Symbol('E')</cas_sympy>
     <units>mass*length*length/(time*time)</units></symbol>
     
-  <symbol><symbol_name>\vec{E}</symbol_name><symbol_punid>111111122222222</symbol_punid>
+  <symbol><symbol_name>\vec{E}</symbol_name><symbol_permenant_unique_id>111111122222222</symbol_permenant_unique_id>
     <type>variable</type>
     <description>electric field</description>
     <cas_sympy></cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>\epsilon</symbol_name><symbol_punid>494985835835835</symbol_punid>  
+  <symbol><symbol_name>\epsilon</symbol_name><symbol_permenant_unique_id>494985835835835</symbol_permenant_unique_id>  
     <type>variable</type>
     <value>0 or 1 or -1</value>
     <description>Levi-Cevita</description>
     <cas_sympy></cas_sympy>
     <units>dimensionless</units></symbol>   
      
-  <symbol><symbol_name>\epsilon_0</symbol_name><symbol_punid>100100100100100</symbol_punid>
+  <symbol><symbol_name>\epsilon_0</symbol_name><symbol_permenant_unique_id>100100100100100</symbol_permenant_unique_id>
     <type>constant</type>
     <value>8.854187E-12</value>
     <description>permittivity of free space</description>
     <cas_sympy>epsilon0 = sympy.Symbol('epsilon0')</cas_sympy>
     <units>Farads/meter</units></symbol>
     
-  <symbol><symbol_name>\exp</symbol_name><symbol_punid>338474537734346</symbol_punid>
+  <symbol><symbol_name>\exp</symbol_name><symbol_permenant_unique_id>338474537734346</symbol_permenant_unique_id>
     <type>constant</type>
     <value>2.71828</value>
     <description>base of natural logarithm</description>
     <cas_sympy>sympy.exp</cas_sympy>
     <units>dimensionless</units></symbol>
     
-  <symbol><symbol_name>f</symbol_name><symbol_punid>123456789012345</symbol_punid>
+  <symbol><symbol_name>f</symbol_name><symbol_permenant_unique_id>123456789012345</symbol_permenant_unique_id>
     <type>operator</type> <!-- as in f(x) -->
     <value>not applicable</value>
     <description>arbitrary function</description>
     <cas_sympy>f = sympy.Symbol('f', cls=Function)</cas_sympy>
     <units>not applicable</units></symbol>
     
-  <symbol><symbol_name>f</symbol_name><symbol_punid>102938475990112</symbol_punid>
+  <symbol><symbol_name>f</symbol_name><symbol_permenant_unique_id>102938475990112</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>linear frequency</description>
     <cas_sympy>f = sympy.Symbol('f')</cas_sympy>
     <units>1/time</units></symbol>
     
-  <symbol><symbol_name>\vec{F}</symbol_name><symbol_punid>849859383472895</symbol_punid>
+  <symbol><symbol_name>\vec{F}</symbol_name><symbol_permenant_unique_id>849859383472895</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>force</description>
     <cas_sympy></cas_sympy>
     <units>mass*length/(time^2)</units></symbol>
     
-  <symbol><symbol_name>F</symbol_name><symbol_punid>125678999876654</symbol_punid>
+  <symbol><symbol_name>F</symbol_name><symbol_permenant_unique_id>125678999876654</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>force</description>
     <cas_sympy>F = sympy.Symbol('F')</cas_sympy>
     <units>mass*length/(time^2)</units></symbol>
     
-  <symbol><symbol_name>G</symbol_name><symbol_punid>666789987654321</symbol_punid>
+  <symbol><symbol_name>G</symbol_name><symbol_permenant_unique_id>666789987654321</symbol_permenant_unique_id>
     <type>constant</type>
     <value></value>
     <description>gravitational constant</description>
     <cas_sympy></cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>h</symbol_name><symbol_punid>789876542398765</symbol_punid>
+  <symbol><symbol_name>h</symbol_name><symbol_permenant_unique_id>789876542398765</symbol_permenant_unique_id>
     <type>constant</type>
     <value></value>
     <description>\href{http://en.wikipedia.org/wiki/Planck_constant}{Planck's constant}</description>
     <cas_sympy>h</cas_sympy>
     <units></units></symbol>
 
-  <symbol><symbol_name>h</symbol_name><symbol_punid>511456739011112</symbol_punid>
+  <symbol><symbol_name>h</symbol_name><symbol_permenant_unique_id>511456739011112</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>arbitrary variable</description>
     <cas_sympy>h = sympy.Symbol('h')</cas_sympy>
     <units></units></symbol>
 
-  <symbol><symbol_name>{\cal H}</symbol_name><symbol_punid>828384848292884</symbol_punid>
+  <symbol><symbol_name>{\cal H}</symbol_name><symbol_permenant_unique_id>828384848292884</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>Hamiltonian operator</description>
     <cas_sympy></cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>\vec{H}</symbol_name><symbol_punid>022222221111111</symbol_punid>
+  <symbol><symbol_name>\vec{H}</symbol_name><symbol_permenant_unique_id>022222221111111</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>magnetic field</description>
     <cas_sympy></cas_sympy>
     <units>A/m</units></symbol>
     
-  <symbol><symbol_name>\hbar</symbol_name><symbol_punid>536367483892748</symbol_punid>
+  <symbol><symbol_name>\hbar</symbol_name><symbol_permenant_unique_id>536367483892748</symbol_permenant_unique_id>
     <type>constant</type>
     <value>1.054E-34</value>
     <description>\href{http://en.wikipedia.org/wiki/Planck_constant}{reduced Planck's constant}    </description>
     <cas_sympy>hbar = sympy.Symbol('hbar')</cas_sympy>
     <units>J*s</units></symbol>
     
-  <symbol><symbol_name>i</symbol_name><symbol_punid>212121212121212</symbol_punid>
+  <symbol><symbol_name>i</symbol_name><symbol_permenant_unique_id>212121212121212</symbol_permenant_unique_id>
     <type>constant</type>
     <value>\sqrt{-1}</value>
     <description>imaginary</description>
     <cas_sympy>i=sympy.I</cas_sympy>
     <units>unitless</units></symbol>
     
-  <symbol><symbol_name>I</symbol_name><symbol_punid>293848595939488</symbol_punid>
+  <symbol><symbol_name>I</symbol_name><symbol_permenant_unique_id>293848595939488</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>current</description>
     <cas_sympy>I = sympy.Symbol('I')</cas_sympy>
     <units>A</units></symbol>
     
-  <symbol><symbol_name>k</symbol_name><symbol_punid>948588392938481</symbol_punid>
+  <symbol><symbol_name>k</symbol_name><symbol_permenant_unique_id>948588392938481</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>wave number</description>
     <cas_sympy>k = sympy.Symbol('k')</cas_sympy>
     <units>1/length</units></symbol>
     
-  <symbol><symbol_name>\vec{k}</symbol_name><symbol_punid>111588392938481</symbol_punid>
+  <symbol><symbol_name>\vec{k}</symbol_name><symbol_permenant_unique_id>111588392938481</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>vector wave number</description>
     <cas_sympy></cas_sympy>
     <units>1/length</units></symbol>
     
-  <symbol><symbol_name>k_{Boltzmann}</symbol_name><symbol_punid>999999911110000</symbol_punid>
+  <symbol><symbol_name>k_{Boltzmann}</symbol_name><symbol_permenant_unique_id>999999911110000</symbol_permenant_unique_id>
     <type>constant</type>
     <value></value>
     <description>Boltzmann's constant</description>
     <cas_sympy>kboltzmann</cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>L</symbol_name><symbol_punid>394848859594838</symbol_punid>
+  <symbol><symbol_name>L</symbol_name><symbol_permenant_unique_id>394848859594838</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>inductance</description>
     <cas_sympy>L = sympy.Symbol('L')</cas_sympy>
     <units>length</units></symbol>
     
-  <symbol><symbol_name>\lambda</symbol_name><symbol_punid>848377849938482</symbol_punid>
+  <symbol><symbol_name>\lambda</symbol_name><symbol_permenant_unique_id>848377849938482</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>wavelength</description>
     <cas_sympy>lambdah = sympy.Symbol('lambdah')</cas_sympy>
     <units>length</units></symbol>
     
-  <symbol><symbol_name>\log</symbol_name><symbol_punid>003948585484456</symbol_punid>
+  <symbol><symbol_name>\log</symbol_name><symbol_permenant_unique_id>003948585484456</symbol_permenant_unique_id>
     <type>operator</type>
     <value>not applicable</value>
     <description>log()</description>
     <cas_sympy>sympy.log</cas_sympy>
     <units>not applicable</units></symbol>
     
-  <symbol><symbol_name>m</symbol_name><symbol_punid>030949482852494</symbol_punid>
+  <symbol><symbol_name>m</symbol_name><symbol_permenant_unique_id>030949482852494</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>mass</description>
     <cas_sympy>m = sympy.Symbol('m')</cas_sympy>
     <units>kg</units></symbol>
     
-  <symbol><symbol_name>\mu_0</symbol_name><symbol_punid>200200200200200</symbol_punid>
+  <symbol><symbol_name>\mu_0</symbol_name><symbol_permenant_unique_id>200200200200200</symbol_permenant_unique_id>
     <type>constant</type>
     <value>4*\pi*10^{-7}</value>
     <description>vacuum permeability</description>
     <cas_sympy>mu0 = sympy.Symbol('mu0')</cas_sympy>
     <units> N/(A^2)</units></symbol>
 
-  <symbol><symbol_name>n</symbol_name><symbol_punid>829438536036040</symbol_punid>
+  <symbol><symbol_name>n</symbol_name><symbol_permenant_unique_id>829438536036040</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>real float</description>
     <cas_sympy>n = sympy.Symbol('n')</cas_sympy>
     <units>unitless</units></symbol>
     
-  <symbol><symbol_name>\vec{\nabla}</symbol_name><symbol_punid>101010101010101</symbol_punid>
+  <symbol><symbol_name>\vec{\nabla}</symbol_name><symbol_permenant_unique_id>101010101010101</symbol_permenant_unique_id>
     <type>operator</type>
     <value>not applicable</value>
     <description>spatial vector differential</description>
     <cas_sympy></cas_sympy>
     <units>not applicable</units></symbol>
     
-  <symbol><symbol_name>\nabla^2</symbol_name><symbol_punid>188888017088888</symbol_punid>
+  <symbol><symbol_name>\nabla^2</symbol_name><symbol_permenant_unique_id>188888017088888</symbol_permenant_unique_id>
     <type>operator</type>
     <value>not applicable</value>
     <description>Laplacian</description>
     <cas_sympy></cas_sympy>
     <units>not applicable</units></symbol>
     
-  <symbol><symbol_name>\omega</symbol_name><symbol_punid>234102990823039</symbol_punid>
+  <symbol><symbol_name>\omega</symbol_name><symbol_permenant_unique_id>234102990823039</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>circular frequency</description>
     <cas_sympy>omega = sympy.Symbol('omega')</cas_sympy>
     <units>angle/time</units></symbol>
     
-  <symbol><symbol_name>p</symbol_name><symbol_punid>384839582949992</symbol_punid>
+  <symbol><symbol_name>p</symbol_name><symbol_permenant_unique_id>384839582949992</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>momentum</description>
     <cas_sympy>p = sympy.Symbol('p')</cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>\vec{p}</symbol_name><symbol_punid>294849582949992</symbol_punid>
+  <symbol><symbol_name>\vec{p}</symbol_name><symbol_permenant_unique_id>294849582949992</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>momentum</description>
     <cas_sympy></cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>\pi</symbol_name><symbol_punid>333333333333333</symbol_punid>
+  <symbol><symbol_name>\pi</symbol_name><symbol_permenant_unique_id>333333333333333</symbol_permenant_unique_id>
     <type>constant</type>
     <value>3.1415926</value>
     <description>ratio of circumference to diameter</description>
     <cas_sympy>pi=sympy.pi</cas_sympy>
     <units>dimensionless</units></symbol>
     
-  <symbol><symbol_name>\phi</symbol_name><symbol_punid>955161417975345</symbol_punid>
+  <symbol><symbol_name>\phi</symbol_name><symbol_permenant_unique_id>955161417975345</symbol_permenant_unique_id>
     <type>constant</type>
     <value>1.61803</value>
     <description>golden ratio</description>
     <cas_sympy>phi=sympy.??</cas_sympy>
     <units>dimensionless</units></symbol>
     
-  <symbol><symbol_name>\psi</symbol_name><symbol_punid>888776433344677</symbol_punid>
+  <symbol><symbol_name>\psi</symbol_name><symbol_permenant_unique_id>888776433344677</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>wave function</description>
     <cas_sympy>psi = sympy.Symbol('psi')</cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>R</symbol_name><symbol_punid>484747626745533</symbol_punid>
+  <symbol><symbol_name>R</symbol_name><symbol_permenant_unique_id>484747626745533</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>resistance</description>
     <cas_sympy>R = sympy.Symbol('R')</cas_sympy>
     <units>amps</units></symbol>
     
-  <symbol><symbol_name>\vec{r}</symbol_name><symbol_punid>524532242222111</symbol_punid>
+  <symbol><symbol_name>\vec{r}</symbol_name><symbol_permenant_unique_id>524532242222111</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>spatial position vector</description>
     <cas_sympy></cas_sympy>
     <units>length</units></symbol>
     
-  <symbol><symbol_name>\vec{S}</symbol_name><symbol_punid>333333343333333</symbol_punid>
+  <symbol><symbol_name>\vec{S}</symbol_name><symbol_permenant_unique_id>333333343333333</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>Poynting vector</description>
     <cas_sympy></cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>\sin</symbol_name><symbol_punid>748495935943849</symbol_punid>
+  <symbol><symbol_name>\sin</symbol_name><symbol_permenant_unique_id>748495935943849</symbol_permenant_unique_id>
     <type>operators</type>
     <value>not applicable</value>
     <description>trigonometric sine function</description>
     <cas_sympy>sin=sympy.sin</cas_sympy>
     <units>not applicable</units></symbol>
     
-  <symbol><symbol_name>t</symbol_name><symbol_punid>000000000000000</symbol_punid>
+  <symbol><symbol_name>t</symbol_name><symbol_permenant_unique_id>000000000000000</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>time</description>
     <cas_sympy>t = sympy.Symbol('t')</cas_sympy>
     <units>time</units></symbol>
     
-  <symbol><symbol_name>T</symbol_name><symbol_punid>192938440120938</symbol_punid>
+  <symbol><symbol_name>T</symbol_name><symbol_permenant_unique_id>192938440120938</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>period</description>
     <cas_sympy>T = sympy.Symbol('T')</cas_sympy>
     <units>time</units></symbol>
     
-  <symbol><symbol_name>\times</symbol_name><symbol_punid>202020202020202</symbol_punid>
+  <symbol><symbol_name>\times</symbol_name><symbol_permenant_unique_id>202020202020202</symbol_permenant_unique_id>
     <type>operator</type>
     <value>not applicable</value>
     <description>vector cross product</description>
     <cas_sympy></cas_sympy>
     <units>not applicable</units></symbol>
     
-  <symbol><symbol_name>\frac{\partial}{\partial t}</symbol_name><symbol_punid>484858592817472</symbol_punid>
+  <symbol><symbol_name>\frac{\partial}{\partial t}</symbol_name><symbol_permenant_unique_id>484858592817472</symbol_permenant_unique_id>
     <type>operator</type>
     <value>not applicable</value>
     <description>partial differentiation</description>
     <cas_sympy></cas_sympy>
     <units>1/time</units></symbol>
     
-  <symbol><symbol_name>Q</symbol_name><symbol_punid>449959503030039</symbol_punid>
+  <symbol><symbol_name>Q</symbol_name><symbol_permenant_unique_id>449959503030039</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>charge</description>
     <cas_sympy>Q = sympy.Symbol('Q')</cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>u</symbol_name><symbol_punid>539595939294939</symbol_punid>
+  <symbol><symbol_name>u</symbol_name><symbol_permenant_unique_id>539595939294939</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>arbitrary variable</description>
     <cas_sympy>u = sympy.Symbol('u')</cas_sympy>
     <units>not applicable</units></symbol>
     
-  <symbol><symbol_name>v</symbol_name><symbol_punid>499595839939393</symbol_punid>
+  <symbol><symbol_name>v</symbol_name><symbol_permenant_unique_id>499595839939393</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>arbitrary variable</description>
     <cas_sympy>v = sympy.Symbol('v')</cas_sympy>
     <units>not applicable</units></symbol>
     
-  <symbol><symbol_name>v</symbol_name><symbol_punid>949858393502002</symbol_punid>
+  <symbol><symbol_name>v</symbol_name><symbol_permenant_unique_id>949858393502002</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>velocity</description>
     <cas_sympy>v = sympy.Symbol('v')</cas_sympy>
     <units>length/time</units></symbol>
     
-  <symbol><symbol_name>V</symbol_name><symbol_punid>394853663747488</symbol_punid>
+  <symbol><symbol_name>V</symbol_name><symbol_permenant_unique_id>394853663747488</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>Voltage</description>
     <cas_sympy>V = sympy.Symbol('V')</cas_sympy>
     <units>volts</units></symbol>
 
-  <symbol><symbol_name>W</symbol_name><symbol_punid>415755104187722</symbol_punid>
+  <symbol><symbol_name>W</symbol_name><symbol_permenant_unique_id>415755104187722</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>distance</description>
     <cas_sympy>W = sympy.Symbol('W')</cas_sympy>
     <units>length</units></symbol>
     
-  <symbol><symbol_name>x</symbol_name><symbol_punid>123456789011111</symbol_punid>
+  <symbol><symbol_name>x</symbol_name><symbol_permenant_unique_id>123456789011111</symbol_permenant_unique_id>
     <type>variable</type>
     <description>arbitrary variable</description>
     <cas_sympy>x = sympy.Symbol('x')</cas_sympy>
     <units></units></symbol>
 
-  <symbol><symbol_name>x</symbol_name><symbol_punid>759018916718320</symbol_punid>
+  <symbol><symbol_name>x</symbol_name><symbol_permenant_unique_id>759018916718320</symbol_permenant_unique_id>
     <type>variable</type>
     <description>spatial position</description>
     <cas_sympy>x = sympy.Symbol('x')</cas_sympy>
     <units>length</units></symbol>
     
-  <symbol><symbol_name>y</symbol_name><symbol_punid>023456789011111</symbol_punid>
+  <symbol><symbol_name>y</symbol_name><symbol_permenant_unique_id>023456789011111</symbol_permenant_unique_id>
     <type>variable</type>
     <description>arbitrary variable</description>
     <cas_sympy>y = sympy.Symbol('y')</cas_sympy>
     <units></units></symbol>
     
-  <symbol><symbol_name>z_0</symbol_name><symbol_punid>738647287548272</symbol_punid>
+  <symbol><symbol_name>z_0</symbol_name><symbol_permenant_unique_id>738647287548272</symbol_permenant_unique_id>
     <type>variable</type>
     <value>not applicable</value>
     <description>extrapolation length</description>

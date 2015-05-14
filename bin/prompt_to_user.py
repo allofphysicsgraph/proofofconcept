@@ -9,10 +9,10 @@
 #    feed_database.xml
 #    connections_database.xml
 #    inference_rules_database.xml
-#    statements_database.xml
+#    expressions_database.xml
 # output: 
-#    connections_result_<<connection name>>.tex
-#    connections_result_<<connection name>>.pdf
+#    derivation_<<connection name>>.tex
+#    derivation_<<connection name>>.pdf
 
 # import libraries
 import yaml # used to read "config.input"
@@ -83,7 +83,7 @@ def list_inference_rules():
 # begin main body
 connectionsDB    =physgraf.parse_XML_file(db_path+'/connections_database.xml')
 inference_rulesDB=physgraf.parse_XML_file(db_path+'/inference_rules_database.xml')
-statementsDB     =physgraf.parse_XML_file(db_path+'/statements_database.xml')
+statementsDB     =physgraf.parse_XML_file(db_path+'/expressions_database.xml')
 feedsDB          =physgraf.parse_XML_file(db_path+'/feed_database.xml')
 
 while(True):

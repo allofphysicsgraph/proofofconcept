@@ -24,7 +24,7 @@ redraw_statement_pictures_boolean=input_data["redraw_statement_pictures_boolean"
 statement_pictures=lib_path+'/images_eq_'+extension
 feed_pictures=lib_path+'/images_feed_'+extension
 
-statementsDB=physgraf.parse_XML_file(db_path+'/statements_database.xml')
+statementsDB=physgraf.parse_XML_file(db_path+'/expressions_database.xml')
 statementPicsDrawnCount=0
 statementCount=0
 for item in statementsDB.getElementsByTagName('statement'):

@@ -45,70 +45,70 @@ def write_footer_graphviz(graphviz_file):
 
 # ********** Begin translation among XMLs *******************
 
-def check_type_return_statement_or_feed_DOM(tpunid,type,xmlDB):
+def check_type_return_expression_or_feed_DOM(tpunid,type,xmlDB):
   if(type=='feed'):
-    tag='feed_tunid'
+    tag='feed_temporary_unique_id'
     latex_tag='feed_latex'
-  elif(type=='statement'):
-    tag='statement_punid'
-    latex_tag='statement_latex'
+  elif(type=='expression'):
+    tag='expression_permenant_unique_id'
+    latex_tag='expression_latex'
   else:
     print("ERROR in convert_tpunid_to_*, unknown type "+type)
     exit(1)
-  for this_statement_or_feed in xmlDB.getElementsByTagName(type):
-    tpunid_in_DB=convert_tag_to_content(this_statement_or_feed,tag,0)
+  for this_expression_or_feed in xmlDB.getElementsByTagName(type):
+    tpunid_in_DB=convert_tag_to_content(this_expression_or_feed,tag,0)
     if (tpunid==tpunid_in_DB):
       break
-  return this_statement_or_feed,tag,latex_tag
+  return this_expression_or_feed,tag,latex_tag
 
-def convert_tpunid_to_symbol_punid_array(tpunid,xmlDB,type):
-  # valid inputs: (statement_punid,statementsDB,'statement')
-  #               (feed_tunid,     feedsDB,     'feed'     )
-  symbol_punid_array=[]
-  [this_statement_or_feed,tag,latex_tag]=check_type_return_statement_or_feed_DOM(tpunid,type,xmlDB)
-  for these_symbols in this_statement_or_feed.getElementsByTagName('symbol_punid'):
-    this_symbol_punid=remove_tags(these_symbols.toxml(encoding="ascii"),'symbol_punid')
-    symbol_punid_array.append(this_symbol_punid)
-  return symbol_punid_array
+def convert_tpunid_to_symbol_permenant_unique_id_array(tpunid,xmlDB,type):
+  # valid inputs: (expression_permenant_unique_id,expressionsDB,'expression')
+  #               (feed_temporary_unique_id,     feedsDB,     'feed'     )
+  symbol_permenant_unique_id_array=[]
+  [this_expression_or_feed,tag,latex_tag]=check_type_return_expression_or_feed_DOM(tpunid,type,xmlDB)
+  for these_symbols in this_expression_or_feed.getElementsByTagName('symbol_permenant_unique_id'):
+    this_symbol_permenant_unique_id=remove_tags(these_symbols.toxml(encoding="ascii"),'symbol_permenant_unique_id')
+    symbol_permenant_unique_id_array.append(this_symbol_permenant_unique_id)
+  return symbol_permenant_unique_id_array
 
-def convert_tpunid_to_latex(tpunid,xmlDB,type): # statement_punid or feed_tunid, 'statement' or 'feed'
-  # valid inputs: (statement_punid,statementsDB,'statement')
-  #               (feed_tunid,     feedsDB,     'feed'     )
-  [this_statement_or_feed,tag,latex_tag]=check_type_return_statement_or_feed_DOM(tpunid,type,xmlDB)
-  latex=convert_tag_to_content(this_statement_or_feed,latex_tag,0)
+def convert_tpunid_to_latex(tpunid,xmlDB,type): # expression_permenant_unique_id or feed_temporary_unique_id, 'expression' or 'feed'
+  # valid inputs: (expression_permenant_unique_id,expressionsDB,'expression')
+  #               (feed_temporary_unique_id,     feedsDB,     'feed'     )
+  [this_expression_or_feed,tag,latex_tag]=check_type_return_expression_or_feed_DOM(tpunid,type,xmlDB)
+  latex=convert_tag_to_content(this_expression_or_feed,latex_tag,0)
   return latex
 
-def convert_statement_punid_to_cas_sympy(statement_punid,statementsDB):
-  # look through all the "statement" files in statementsDB to find 
-  #   which contains "statement_punid" matching input
-  for this_statement in statementsDB.getElementsByTagName('statement'):
-    statement_punid_in_DB=convert_tag_to_content(this_statement,'statement_punid',0)
-    if (statement_punid==statement_punid_in_DB):
+def convert_expression_permenant_unique_id_to_cas_sympy(expression_permenant_unique_id,expressionsDB):
+  # look through all the "expression" files in expressionsDB to find 
+  #   which contains "expression_permenant_unique_id" matching input
+  for this_expression in expressionsDB.getElementsByTagName('expression'):
+    expression_permenant_unique_id_in_DB=convert_tag_to_content(this_expression,'expression_permenant_unique_id',0)
+    if (expression_permenant_unique_id==expression_permenant_unique_id_in_DB):
       break
-  cas_sympy_LHS=convert_tag_to_content(this_statement,"cas_sympy_LHS",0)
-  cas_sympy_RHS=convert_tag_to_content(this_statement,"cas_sympy_RHS",0)
+  cas_sympy_LHS=convert_tag_to_content(this_expression,"cas_sympy_LHS",0)
+  cas_sympy_RHS=convert_tag_to_content(this_expression,"cas_sympy_RHS",0)
   return cas_sympy_LHS,cas_sympy_RHS
   
-def convert_feed_tunid_to_feed_sympy(feed_tunid,feedsDB):
+def convert_feed_temporary_unique_id_to_feed_sympy(feed_temporary_unique_id,feedsDB):
   for this_feed in feedsDB.getElementsByTagName('feed'):
-    feed_tunid_in_DB=convert_tag_to_content(this_feed,'feed_tunid',0)
-    if (feed_tunid==feed_tunid_in_DB):
+    feed_temporary_unique_id_in_DB=convert_tag_to_content(this_feed,'feed_temporary_unique_id',0)
+    if (feed_temporary_unique_id==feed_temporary_unique_id_in_DB):
       break
   feed_sympy=convert_tag_to_content(this_feed,"feed_sympy",0)
   return feed_sympy
 
-def convert_symbol_punid_to_cas_sympy(symbol_punid,symbolsDB):
+def convert_symbol_permenant_unique_id_to_cas_sympy(symbol_permenant_unique_id,symbolsDB):
   for this_symbol in symbolsDB.getElementsByTagName('symbol'):
-    symbol_punid_in_DB=convert_tag_to_content(this_symbol,'symbol_punid',0)
-    if (symbol_punid==symbol_punid_in_DB):
+    symbol_permenant_unique_id_in_DB=convert_tag_to_content(this_symbol,'symbol_permenant_unique_id',0)
+    if (symbol_permenant_unique_id==symbol_permenant_unique_id_in_DB):
       break
   cas_sympy=convert_tag_to_content(this_symbol,"cas_sympy",0)
   return cas_sympy
 
-def convert_symbol_punid_to_name(symbol_punid,symbolsDB):
+def convert_symbol_permenant_unique_id_to_name(symbol_permenant_unique_id,symbolsDB):
   for this_symbol in symbolsDB.getElementsByTagName('symbol'):
-    symbol_punid_in_DB=convert_tag_to_content(this_symbol,'symbol_punid',0)
-    if (symbol_punid==symbol_punid_in_DB):
+    symbol_permenant_unique_id_in_DB=convert_tag_to_content(this_symbol,'symbol_permenant_unique_id',0)
+    if (symbol_permenant_unique_id==symbol_permenant_unique_id_in_DB):
       break
   name=convert_tag_to_content(this_symbol,"symbol_name",0)
   return name
@@ -120,21 +120,21 @@ def write_inputs_feeds(connector,infrule_name,feedsDB):
 #       print("input:")
 #       print connector.getElementsByTagName('input')[0].toxml()
     feed_array=[] # initialize array for string elements
-    for feed in connector.getElementsByTagName('feed_tunid'):
-      feed_tunid=convert_tag_to_content(connector,'feed_tunid',0) # example: 5938585
-#         print("feed label is"+feed_tunid)
+    for feed in connector.getElementsByTagName('feed_temporary_unique_id'):
+      feed_temporary_unique_id=convert_tag_to_content(connector,'feed_temporary_unique_id',0) # example: 5938585
+#         print("feed label is"+feed_temporary_unique_id)
       for feed_instance in feedsDB.getElementsByTagName('feed'):
-        feed_tunid_in_DB=convert_tag_to_content(feed_instance,"feed_tunid",0)
-        if (feed_tunid_in_DB == feed_tunid):
+        feed_temporary_unique_id_in_DB=convert_tag_to_content(feed_instance,"feed_temporary_unique_id",0)
+        if (feed_temporary_unique_id_in_DB == feed_temporary_unique_id):
           feed_latex=convert_tag_to_content(feed_instance,"feed_latex",0)
           break
       feed_array.append(feed_latex)
 
     input_label_array=[]
-    for statement_counter in range(len(input_nodes.getElementsByTagName('statement_punid'))):
-      statement_indx=convert_tag_to_content(input_nodes,'statement_punid',statement_counter)
-      statement_tunid=convert_tag_to_content(input_nodes,'statement_tunid',statement_counter)
-      input_label_array.append(statement_tunid)
+    for expression_counter in range(len(input_nodes.getElementsByTagName('expression_permenant_unique_id'))):
+      expression_indx=convert_tag_to_content(input_nodes,'expression_permenant_unique_id',expression_counter)
+      expression_temporary_unique_id=convert_tag_to_content(input_nodes,'expression_temporary_unique_id',expression_counter)
+      input_label_array.append(expression_temporary_unique_id)
 #       print('\\'+infrule_name+feed_str+input_str+'%input loop\n')
 #   print("feed array:")
 #   print feed_array
