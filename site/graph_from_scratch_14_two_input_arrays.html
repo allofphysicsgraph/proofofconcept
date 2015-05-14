@@ -37,18 +37,11 @@ var palette = {
 
 // load the external data
 d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/nodes_and_edges_expressions_and_inference_rules.json", function(error, root) {
-/*
   console.log(root);
   nodes = root["nodes"];
   console.log(nodes);
-  links_in_json = root["links"];
-*/
-/*
-  force
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .start();
-*/
+  links = root["links"];
+  console.log(links);
 
 
 var vis = d3.select("body")
@@ -58,14 +51,14 @@ var vis = d3.select("body")
       .attr("height", h);
 
 var force = d3.layout.force()
-    .nodes(root.nodes)
+    .nodes(nodes)
     .links([])
     .gravity(0.1)
     .charge(-1000)
     .size([w, h]);
 
  var link = vis.selectAll(".link")
-        .data(root.links)
+        .data(links)
         .enter().append("line")
           .attr("class", "link")
           .attr("stroke", "#CCC")
