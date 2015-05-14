@@ -12,11 +12,11 @@
   {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/takeCurlofBothSides.png", "width": 284, "height": 2, "label": "takeCurlofBothSides"}
 ],
      "links":[
-    {"source":1,"target":0,"value":1},
-    {"source":2,"target":0,"value":8},
-    {"source":3,"target":0,"value":10},
-    {"source":3,"target":2,"value":6},
-    {"source":4,"target":0,"value":1},
-    {"source":5,"target":0,"value":1},
-    {"source":6,"target":0,"value":1}
+    {"source":1,"target":0},
+    {"source":2,"target":4},
+    {"source":3,"target":5},
+    {"source":3,"target":2},
+    {"source":4,"target":0},
+    {"source":5,"target":1},
+    {"source":6,"target":3}
 ]}  
