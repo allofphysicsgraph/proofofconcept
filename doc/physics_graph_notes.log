@@ -1,3 +1,12 @@
+20150513
+
+The translation from the static .xml based graphs to .json for d3js is not a simple regex.
+The .json needs to include the picture dimensions. 
+
+My next task is to parse edges based JSON input rather than relying on the data structure native to d3js
+
+  {source: nodes[0], target: nodes[1]},
+  {source: nodes[1], target: nodes[2]},
 
 
 20150305
