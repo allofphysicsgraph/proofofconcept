@@ -33,6 +33,8 @@ var palette = {
 // load the external data
 d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/nodes_expressions_and_inference_rules.json", function(error, input) {
   console.log(input);
+  nodes = root["input"];
+  console.log(nodes);
 
 /*
 var nodes = [
