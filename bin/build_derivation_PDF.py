@@ -1,8 +1,8 @@
 #!/opt/local/bin/python
 # Physics Equation Graph
 # Ben Payne <ben.is.located@gmail.com>
-# builds the graph of equations as PNG or SVG by reading from databases
-# use: python bin/build_connections_graph.py
+# builds the PDF for 1 or more derivation
+# use: python bin/build_derivation_PDF.py
 
 # files required as input: 
 #    lib_physics_graph.py
@@ -114,7 +114,7 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
 #    print('now producing set '+which_connection_set)
 
   # the graphs are made for either (all sets) or (one set), whereas the Latex file is always per set
-  tex_file=open(output_path+'/connections_result_'+which_connection_set+'.tex','w')
+  tex_file=open(output_path+'/derivation_'+which_connection_set+'.tex','w')
   physgraf.latex_header(tex_file)
 
   # define a set of new latex commands: all the possible inference rules
