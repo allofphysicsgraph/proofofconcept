@@ -30,39 +30,18 @@ var palette = {
       "yellowgreen": "#738A05"
   }
 
-///*
 // load the external data
-d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/nodes_list_playground.json", function(error, nodes) {
+d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/nodes_expressions_and_inference_rules.json", function(error, nodes) {
   console.log(nodes);
-//  update(root);
-//*/
-
-/*
-var nodes = [
-  {"img": "http://bhpayne.github.io/family_tree/images/1248277773.png", "width": 336, "height": 42, "label": "1248277773" },
-  {"img": "http://bhpayne.github.io/family_tree/images/8572657110.png", "width": 243, "height": 77, "label": "8572657110"},
-  {"img": "http://bhpayne.github.io/family_tree/images/9999999999.png", "width": 575, "height": 42, "label": "9999999999"},
-  {"img": "http://bhpayne.github.io/family_tree/images/solveForX.png" , "width": 137, "height": 25, "label": "solveForX"},
-  {"img": "http://bhpayne.github.io/family_tree/images/subXforY.png"  , "width": 133, "height": 25, "label": "subXforY"}
-]
-//*/
 
 var links = [
-                  {source: nodes[0], target: nodes[1]},
-                  {source: nodes[1], target: nodes[2]},
-                  {source: nodes[0], target: nodes[3]},
-                  {source: nodes[4], target: nodes[2]},
-                  {source: nodes[2], target: nodes[3]}
+   {source: nodes[0], target: nodes[1]},
+   {source: nodes[1], target: nodes[2]},
+   {source: nodes[0], target: nodes[3]},
+   {source: nodes[4], target: nodes[2]},
+   {source: nodes[2], target: nodes[3]}
 ]
               
-/*
-file images/*
-images/1248277773.png: PNG image data, 336 x 42, 8-bit/color RGB, non-interlaced
-images/8572657110.png: PNG image data, 243 x 77, 8-bit/color RGB, non-interlaced
-images/9999999999.png: PNG image data, 575 x 42, 8-bit/color RGB, non-interlaced
-images/solveForX.png:  PNG image data, 137 x 25, 8-bit/color RGB, non-interlaced
-images/subXforY.png:   PNG image data, 133 x 25, 8-bit/color RGB, non-int
-//*/
 
 var vis = d3.select("body")
     .append("svg:svg")
