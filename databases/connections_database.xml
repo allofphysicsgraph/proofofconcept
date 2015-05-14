@@ -11,12 +11,20 @@
       </output>
     </connection>
 -->
-<!-- "punid = permenant unique identifier, "tunid" = temporary unique identifier -->
 <!-- connections between equations via operators, optionally with feeders as input -->
+
+<!-- "punid = permenant unique identifier, "tunid" = temporary unique identifier -->
+<!-- punid is tied to the expression 
+     tunid for operations   allows for duplicate use of the same inference rule on the graph.
+     tunid for experessions allows for duplicate use of a statement_index in a tex document. -->
+
 <!-- must have at least either (one  input statement for each operator) or
                                (one output statement for each operator)    -->
+
 <!-- for inputs, feeds are processed in order, then statements are processed -->
+
 <!-- for producing Latex files, connections are processed in the order given in this file. -->
+
 <!-- at least one "declareInitialEq" is required for every connection set in order to correctly compile Latex output -->
 
 <all_connections>
@@ -172,7 +180,7 @@
 <!--    <statement_latex>x^2 + (b/a)x+(c/a) =0</statement_latex> -->
     </input>
     <output>
-      <statement_punid>5938459282</statement_punid><statement_tunid>12121298</statement_tunid>
+      <statement_punid>5938459282</statement_punid><statement_tunid>1212129</statement_tunid>
 <!--    <statement_latex>x^2 + (b/a)x = -c/a</statement_latex> -->
     </output>
   </connection>
@@ -181,7 +189,7 @@
     <input>
        <feed_tunid>4307451</feed_tunid>
 <!-- <feed_latex>(b/(2a))^2</feed_latex>-->
-      <statement_punid>5938459282</statement_punid><statement_tunid>12121298</statement_tunid>
+      <statement_punid>5938459282</statement_punid><statement_tunid>1212129</statement_tunid>
 <!--    <statement_latex>x^2 + (b/a)x = -c/a</statement_latex> -->
     </input>
     <output>

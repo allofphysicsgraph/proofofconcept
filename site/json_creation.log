@@ -1,0 +1,21 @@
+cd /Users/benpayne/version_controlled/proofofconcept/site
+
+file ../lib/images_infrule_png/*.png   > nodes_inference_rules.json
+file ../lib/images_statement_png/*.png > nodes_expressions.json
+
+replace
+../lib/i
+with
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/i
+
+
+replace
+_png/(.*)\.png: PNG image data, (.*) x (.*), 8-bit/color RGB, non-interlaced
+with
+_png/\1.png", "width": \2, "height": \3, "label": "\1"},
+
+
+replace
+_png/(.*)\.png: PNG image data, (.*) x (.*), 4-bit colormap, non-interlaced
+with 
+_png/\1.png", "width": \2, "height": \3, "label": "\1"},
