@@ -19,3 +19,12 @@ replace
 _png/(.*)\.png: PNG image data, (.*) x (.*), 4-bit colormap, non-interlaced
 with 
 _png/\1.png", "width": \2, "height": \3, "label": "\1"},
+
+
+
+touch nodes_expressions_and_inference_rules.json 
+cat nodes_expressions.json > nodes_expressions_and_inference_rules.json 
+cat nodes_inference_rules.json >> nodes_expressions_and_inference_rules.json 
+
+validate the JSON output:
+cat nodes_expressions_and_inference_rules.json | python -m json.tool
