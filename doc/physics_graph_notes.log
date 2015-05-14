@@ -8,6 +8,12 @@ My next task is to parse edges based JSON input rather than relying on the data 
   {source: nodes[0], target: nodes[1]},
   {source: nodes[1], target: nodes[2]},
 
+See https://github.com/mbostock/d3/wiki/Force-Layout
+"these attributes may be specified as a numeric index rather than a direct link, such that the nodes and links can be read-in from a JSON file"
+...
+"The source and target attributes on incoming links are only replaced with the corresponding entries in nodes if these attributes are numbers"
+
+http://bl.ocks.org/mbostock/4062045
 
 20150305
 

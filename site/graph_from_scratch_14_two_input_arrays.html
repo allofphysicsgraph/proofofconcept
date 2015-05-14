@@ -2,6 +2,7 @@
 <!-- http://jsonlint.com/ -->
 <!-- http://stackoverflow.com/questions/24692002/i-want-to-distinguish-the-link-of-d3-js-force-graph-by-the-thickness -->
 <!-- http://stackoverflow.com/questions/23986466/d3-force-layout-linking-nodes-by-name-instead-of-index -->
+<!-- http://bl.ocks.org/mbostock/4062045 -->
 <!DOCTYPE html>
 <body>
 <script src="d3/d3.v3.min.js"></script>
@@ -38,8 +39,32 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/nodes_and_edges_
   console.log(root);
   nodes = root["nodes"];
   console.log(nodes);
-  links = root["links"];
-  console.log(links);
+  links_in_json = root["links"];
+  console.log(links_in_json);
+
+console.log(links_in_json[0]);
+console.log(links_in_json[0].source);
+
+console.log(nodes[0].label);
+
+console.log(links_in_json[0].source==nodes[0].label);
+console.log(links_in_json[0].source==nodes[1].label);
+console.log(links_in_json[0].source==nodes[2].label);
+console.log(links_in_json[0].source==nodes[3].label);
+
+var links = [
+]
+
+/*
+//  http://www.d3noob.org/2013/03/d3js-force-directed-graph-example-basic.html
+links.forEach(function(link) {
+    link.source = links[link.source] || 
+        (nodes[link.source] = {name: links.label});
+    link.target = links[link.target] || 
+        (nodes[link.target] = {name: link.target});
+    link.value = +link.value;
+});
+//*/
 
 /*
 var links = [
