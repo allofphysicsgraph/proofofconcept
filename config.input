@@ -15,7 +15,7 @@ redraw_inference_rule_pictures_boolean: False
 makeAllGraphs_boolean:       True    # True  or False
 
 # the following string is used only if makeAllGraphs_boolean is false
-#name_of_set_to_make:      derivation_of_Schrodinger_Eq
+#name_of_set_to_make:   derivation_of_Schrodinger_Eq
 #name_of_set_to_make:   euler_equation_trig_relations
 #name_of_set_to_make:   electric_field_wave_equation_time_dependent_to_time_independent
 #name_of_set_to_make:   maxwell_to_electric_field_wave_equation
@@ -31,6 +31,6 @@ makeAllGraphs_boolean:       True    # True  or False
 #name_of_set_to_make:   quantum_basics_Hermitian_operators_have_realvalued_observables
 #name_of_set_to_make:   variance_relation
 #name_of_set_to_make:   Comptons_equation_for_scattering
-name_of_set_to_make:   variance_relation
+#name_of_set_to_make:   variance_relation
 
 
