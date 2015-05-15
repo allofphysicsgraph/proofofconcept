@@ -37,8 +37,8 @@ var palette = {
 
 var force = d3.layout.force()
     .gravity(0.08)
-    .charge(-800) // A negative value results in node repulsion, while a positive value results in node attraction.
-    .linkDistance(300)
+    .charge(-1000) // A negative value results in node repulsion, while a positive value results in node attraction.
+//    .linkDistance(300)
     .size([w, h]);
 
 var vis = d3.select("body")
