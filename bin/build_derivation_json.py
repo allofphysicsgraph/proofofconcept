@@ -137,7 +137,7 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
         img_width=matchObj.group(1)
         img_height=matchObj.group(2)
 #         print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},")
-        node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},\n"
+        node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+node[0]+"|"+node[1]+"\"},\n"
       else: # infrule
 #         print(node[0])
         output = subprocess.check_output("file "+infrule_pictures_path+"/"+node[0]+".png", shell=True)
@@ -146,14 +146,14 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
         img_width=matchObj.group(1)
         img_height=matchObj.group(2)
 #         print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},")
-        node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},\n"
+        node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+node[0]+"|"+node[1]+"\"},\n"
     else: # feed
       output = subprocess.check_output("file "+feed_pictures_path+"/"+node+".png", shell=True)
       matchObj=re.match( r'.*data, (\d+) x (\d+), .*', output, re.M|re.I)
       img_width=matchObj.group(1)
       img_height=matchObj.group(2)
 #       print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node+"\"},")
-      node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node+"\"},\n"
+      node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+node+"\"},\n"
   # need to delete the trailing comma on the last json reference
 
   node_list_str=node_list_str[:-2]+"\n"
