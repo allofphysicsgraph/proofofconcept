@@ -49,8 +49,6 @@ connectionsDB    =physgraf.parse_XML_file(db_path+'/connections_database.xml')
 inference_rulesDB=physgraf.parse_XML_file(db_path+'/inference_rules_database.xml')
 expressionsDB     =physgraf.parse_XML_file(db_path+'/expressions_database.xml')
 
-graphml_file=open(output_path+'/'+filename+'.json','w')
-
 
 input_label_array=[]
 output_label_array=[]
@@ -67,6 +65,8 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
     continue # skip this loop iteration
 
   print("\nwhich_connection_set="+str(which_connection_set))
+  outputfile=open(output_path+'/'+which_connection_set+'.json','w')
+  outputfile.write("{\"nodes\":[\n")
 
   ary_of_unique_nodes=[] # [(infrule_name,infrule_tunid), (expression_punid,expression_tunid), (feed_tunid),...]
   ary_of_edges=[] # [(infrule_tunid,expression_tunid),(infrule_tunid,expression_tunid),...] # pairs are source/target
@@ -126,30 +126,9 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
 
   print("array of edges:")
   print(ary_of_edges)  
-
-  # replace tunid in edge array with array of node indices
-  ary_of_edge_indices=[]
-  for edge_pair in ary_of_edges:
-    source_tunid=edge_pair[0]
-    target_tunid=edge_pair[1]
-    for index,node in enumerate(ary_of_unique_nodes):
-      if len(node)==2:  # list, either infrule or expression
-        if node[1]==source_tunid:
-          source_index=index
-        if node[1]==target_tunid:
-          target_index=index
-      else: # feed tunid
-        if node==source_tunid:
-          source_index=index
-        if node==target_tunid:
-          target_index=index
-    templist=(source_index,target_index)
-    ary_of_edge_indices.append(templist)
-
-  print("array of edge indices:")
-  print(ary_of_edge_indices)
-
-  # determine image dimensions
+  
+  # determine image dimensions, write nodes to file
+  node_list_str=""
   for node in ary_of_unique_nodes:
     if len(node)==2:  # list, either infrule or expression
       if node[0].isdigit(): # expression     
@@ -157,7 +136,8 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
         matchObj=re.match( r'.*data, (\d+) x (\d+), .*', output, re.M|re.I)
         img_width=matchObj.group(1)
         img_height=matchObj.group(2)
-        print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},")
+#         print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},")
+        node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},\n"
       else: # infrule
 #         print(node[0])
         output = subprocess.check_output("file "+infrule_pictures_path+"/"+node[0]+".png", shell=True)
@@ -165,13 +145,55 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
         matchObj=re.match( r'.*data, (\d+) x (\d+), .*', output, re.M|re.I)
         img_width=matchObj.group(1)
         img_height=matchObj.group(2)
-        print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},")
+#         print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},")
+        node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},\n"
     else: # feed
       output = subprocess.check_output("file "+feed_pictures_path+"/"+node+".png", shell=True)
       matchObj=re.match( r'.*data, (\d+) x (\d+), .*', output, re.M|re.I)
       img_width=matchObj.group(1)
       img_height=matchObj.group(2)
-      print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node+"\"},")
+#       print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node+"\"},")
+      node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node+"\"},\n"
+  # need to delete the trailing comma on the last json reference
+
+  node_list_str=node_list_str[:-2]+"\n"
+  outputfile.write(node_list_str)
+
+  # replace tunid in edge array with array of node indices
+  ary_of_edge_indices=[]
+  for edge_pair in ary_of_edges:
+    source_tunid=edge_pair[0]
+    target_tunid=edge_pair[1]
+    for index,node in enumerate(ary_of_unique_nodes):
+#       if len(node)==2:  # list, either infrule or expression
+        if node[1]==source_tunid:
+          source_index=index
+        if node[1]==target_tunid:
+          target_index=index
+#       else: # feed tunid
+#         if node==source_tunid:
+#           source_index=index
+#         if node==target_tunid:
+#           target_index=index
+    templist=(source_index,target_index)
+    ary_of_edge_indices.append(templist)
+
+  print("array of edge indices:")
+  print(ary_of_edge_indices)
+
+  outputfile.write("],\n")
+  outputfile.write("   \"links\":[\n")
+  
+  # write edges to file
+  edge_list_str=""
+  for edge_pair in ary_of_edge_indices:
+#     print("source:"+str(edge_pair[0])+" target:"+str(edge_pair[1]))
+    edge_list_str=edge_list_str+"  {\"source\":"+str(edge_pair[0])+",\"target\":"+str(edge_pair[1])+"},\n"
+  edge_list_str=edge_list_str[:-2]+"\n"  
+  outputfile.write(edge_list_str)  
+  outputfile.write("]}\n")
+  # need to delete the trailing comma on the last json reference
+  outputfile.close()
 
 
 # end loop through connections
