@@ -1,3 +1,21 @@
+20150519
+
+Now I have two tasks:
+
+* non-overlapping node labels, a la 
+    http://bl.ocks.org/MoritzStefaner/1377729
+* hierarchical graph -- interactive via URLs
+    http://stackoverflow.com/questions/20575026/how-to-make-labels-and-nodes-in-d3-forced-layout-clickable-to-navigate-to-a-url?lq=1
+    http://stackoverflow.com/questions/13104681/hyperlinks-in-d3-js-objects
+
+Both are presentation issues. I think the hierarchical graph is more important as it is the "zoom" 
+
+20150515
+
+got quadratic equation in d3js!
+Visualization needs non-overlapping labels, see
+http://bl.ocks.org/MoritzStefaner/1377729
+
 20150513
 
 The translation from the static .xml based graphs to .json for d3js is not a simple regex.
