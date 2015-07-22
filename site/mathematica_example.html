@@ -3,9 +3,10 @@
     <title>Physics Derivation graph: Mathematica example</title>
   </head>
   <body bgcolor="#ffffff">
+<P>Input:</P>
 
-
-multiplyBothSidesOfExpression[LHS_, relation_, RHS_, feed_] := {LHSout = LHS*feed, relationOut = relation, RHSout = RHS*feed}<BR>
+<FONT FACE="Courier New"> <B>
+<P>multiplyBothSidesOfExpression[LHS_, relation_, RHS_, feed_] := {LHSout = LHS*feed, relationOut = relation, RHSout = RHS*feed}<BR>
 divideBothSidesOfExpression[LHS_, relation_, RHS_, feed_] := {LHSout = LHS/feed, relationOut = relation, RHSout = RHS/feed}</P>
 
 <P>
@@ -20,6 +21,15 @@ result = divideBothSidesOfExpression[result[[1]], result[[2]], result[[3]], T]; 
 
 <P>
 {result[[1]], result[[2]], result[[3]]}</P>
+</FONT></B>
+
+<P>Output:</P>
+
+<FONT FACE="Courier New">
+<P>{T,=,1/f}</P>
+
+<P>{f,=,1/T}</P>
+</FONT>
 
 </body>
 </html>
