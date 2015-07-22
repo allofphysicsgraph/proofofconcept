@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Physics Derivation graph: Mathematica example</title>
+  </head>
+  <body bgcolor="#ffffff">
+
+
+multiplyBothSidesOfExpression[LHS_, relation_, RHS_, feed_] := {LHSout = LHS*feed, relationOut = relation, RHSout = RHS*feed}<BR>
+divideBothSidesOfExpression[LHS_, relation_, RHS_, feed_] := {LHSout = LHS/feed, relationOut = relation, RHSout = RHS/feed}</P>
+
+<P>
+LHS = T;<BR>
+RHS = 1/f;<BR>
+relation = "=";<BR>
+{LHS1, relation, RHS1}</P>
+
+<P>
+result = multiplyBothSidesOfExpression[LHS, relation, RHS, f]; (* should yield T*f=1 *)<BR>
+result = divideBothSidesOfExpression[result[[1]], result[[2]], result[[3]], T]; (* should yield f=1/T *)</P>
+
+<P>
+{result[[1]], result[[2]], result[[3]]}</P>
+
+</body>
+</html>
