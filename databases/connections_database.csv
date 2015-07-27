@@ -1,4 +1,3 @@
-  <connection_set name= discipline="physics_basics">
 "name"               ,indx,from_temp,       from_perm  ,to_temp,to_perm
 "frequency relations",   1,  2303943,declareInitialEq  ,3293094,5900595848
 "frequency relations",   1,  0304948,declareInitialEq  ,3294004,0404050504
@@ -74,49 +73,14 @@
 "quadratic equation" ,  11,  2449291,0                      ,2200910,subtractXfromBothSides
 "quadratic equation" ,  11,  2200910,subtractXfromBothSides ,2657355,5982958248
 
-"quadratic equation" ,  12,  
-"quadratic equation" ,  12,  
+"quadratic equation" ,  12,  2657355,5982958248             ,2211910,simplify
+"quadratic equation" ,  12,  2211910,simplify               ,8811221,9999999968
 
-"quadratic equation" ,  13,  
-"quadratic equation" ,  13,  
+"quadratic equation" ,  13,  8761200,9999999969             ,8359402,declareFinalEq
 
-"quadratic equation" ,  14,  
-"quadratic equation" ,  14,  
-
-"quadratic equation" ,  15,  
-"quadratic equation" ,  15,  
-
-"quadratic equation" ,  16,  
-
-"quadratic equation" ,  17,  
-
-"quadratic equation" ,  18,  
-
-"quadratic equation" ,  19,  
-
-"quadratic equation" ,  2,  
-
-    <operator>  ,2211910,simplify,
-    <input>
-        2657355,5982958248
-    <output>
-        8811221,9999999968
-
-    </output>
-
-  <connection>
-    <operator>  ,8359402,declareFinalEq,
-    <input>
-        8761200,9999999969
-
-  <connection>
-    <operator>  ,8359402,declareFinalEq,
-    <input>
-        8811221,9999999968
-
+"quadratic equation" ,  14,  8811221,9999999968             ,8359402,declareFinalEq
   
-  
-  </connection_set>
+
   <connection_set name="euler_equation_proof" discipline="math">
 
       <operator>  ,7364656,declareInitialEq,
