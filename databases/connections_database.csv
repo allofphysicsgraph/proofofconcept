@@ -1,0 +1,2237 @@
+  <connection_set name= discipline="physics_basics">
+"name"               ,indx,from_temp,       from_perm  ,to_temp,to_perm
+"frequency relations",   1,  2303943,declareInitialEq  ,3293094,5900595848
+"frequency relations",   1,  0304948,declareInitialEq  ,3294004,0404050504
+"frequency relations",   1,  8332941,declareInitialEq  ,0921465,3131211131
+"frequency relations",   1,  8332941,declareInitialEq  ,8482459,3131111133
+
+"frequency relations",   2,  8374556,3132131132        ,3832748,subRHSofEqXintoEqY
+"frequency relations",   2,  3293094,5900595848        ,3832748,subRHSofEqXintoEqY
+"frequency relations",   2,  3832748,subRHSofEqXintoEqY,8394853,0934990943
+
+"frequency relations",   3,  3294004,0404050504        ,2939482,subRHSofEqXintoEqY
+"frequency relations",   3,  8482459,3131111133        ,2939482,subRHSofEqXintoEqY
+"frequency relations",   3,  2939482,subRHSofEqXintoEqY,3993940,1293923844
+
+"frequency relations",   4,  8394853,0934990943        ,5364768,subRHSofEqXintoEqY
+"frequency relations",   4,  3993940,1293923844        ,5364768,subRHSofEqXintoEqY
+"frequency relations",   4,  5364768,subRHSofEqXintoEqY,2934848,3121513111
+
+"frequency relations",   5,  8482459,3131111133        ,6822583,multbothsidesby
+"frequency relations",   5,  5749291,0                 ,6822583,multbothsidesby
+"frequency relations",   5,  6822583,multbothsidesby   ,8341200,2131616531
+
+"frequency relations",   6,  8341200,2131616531        ,9483715,dividebothsidesby
+"frequency relations",   6,  8837284,0                 ,9483715,dividebothsidesby
+"frequency relations",   6,  9483715,dividebothsidesby ,9380032,2113211456
+
+"frequency relations",   7,  9380032,2113211456        ,9483843,subRHSofEqXintoEqY
+"frequency relations",   7,  0921465,3131211131        ,9483843,subRHSofEqXintoEqY
+"frequency relations",   7,  9483843,subRHSofEqXintoEqY,8374556,3132131132
+
+"frequency relations",   8,  2934848,3121513111        ,8345721,declareFinalEq
+
+"quadratic equation" ,   1,  8494551,declareInitialEq  ,8882098,9285928292
+"quadratic equation" ,   1,  8494551,declareInitialEq  ,0909127,8582954722
+
+"quadratic equation" ,   2,  8882098,9285928292        ,8492932,dividebothsidesby
+"quadratic equation" ,   2,  2424922,0                 ,8492932,dividebothsidesby
+"quadratic equation" ,   2,  8492932,dividebothsidesby ,7777621,5958392859
+
+"quadratic equation" ,   3,  7777621,5958392859            ,5829110,subtractXfromBothSides
+"quadratic equation" ,   3,  6644853,0                     ,5829110,subtractXfromBothSides
+"quadratic equation" ,   3,  5829110,subtractXfromBothSides,1212129,5938459282
+
+"quadratic equation" ,   4,  1212129,5938459282            ,2500423,addXtoBothSides
+"quadratic equation" ,   4,  4307451,0                     ,2500423,addXtoBothSides
+"quadratic equation" ,   4,  2500423,addXtoBothSides       ,0000112,5928292841
+
+"quadratic equation" ,   5,  0909127,8582954722            ,8321038,subXforY
+"quadratic equation" ,   5,  4858592,0                     ,8321038,subXforY
+"quadratic equation" ,   5,  0999900,0                     ,8321038,subXforY
+"quadratic equation" ,   5,  8321038,subXforY              ,0123901,5928285821
+
+"quadratic equation" ,   6,  0123901,5928285821            ,7996484,simplify
+"quadratic equation" ,   6,  7996484,simplify              ,0173400,5959282914
+
+"quadratic equation" ,   7,  0000112,5928292841,7777777     ,LHSofEqXeqLHSofEqY
+"quadratic equation" ,   7,  0173400,5959282914,7777777     ,LHSofEqXeqLHSofEqY
+"quadratic equation" ,   7,  7777777,LHSofEqXeqLHSofEqY     ,2985412,9385938295
+
+"quadratic equation" ,   8,  2985412,9385938295             ,7487443,raiseBothSidesToPower
+"quadratic equation" ,   8,  2367209,0                      ,7487443,raiseBothSidesToPower
+"quadratic equation" ,   8,  7487443,raiseBothSidesToPower  ,6608102,9582958294
+"quadratic equation" ,   8,  7487443,raiseBothSidesToPower  ,6608123,5982958249
+
+"quadratic equation" ,   9,  6608102,9582958294             ,2200910,subtractXfromBothSides
+"quadratic equation" ,   9,  2838490,0                      ,2200910,subtractXfromBothSides
+"quadratic equation" ,   9,  2200910,subtractXfromBothSides ,4433112,9582958293
+
+"quadratic equation" ,  10,  4433112,9582958293             ,2211910,simplify
+"quadratic equation" ,  10,  2211910,simplify               ,8761200,9999999969
+
+"quadratic equation" ,  11,  6608123,5982958249             ,2200910,subtractXfromBothSides
+"quadratic equation" ,  11,  2449291,0                      ,2200910,subtractXfromBothSides
+"quadratic equation" ,  11,  2200910,subtractXfromBothSides ,2657355,5982958248
+
+"quadratic equation" ,  12,  
+"quadratic equation" ,  12,  
+
+"quadratic equation" ,  13,  
+"quadratic equation" ,  13,  
+
+"quadratic equation" ,  14,  
+"quadratic equation" ,  14,  
+
+"quadratic equation" ,  15,  
+"quadratic equation" ,  15,  
+
+"quadratic equation" ,  16,  
+
+"quadratic equation" ,  17,  
+
+"quadratic equation" ,  18,  
+
+"quadratic equation" ,  19,  
+
+"quadratic equation" ,  2,  
+
+    <operator>  ,2211910,simplify,
+    <input>
+        2657355,5982958248
+    <output>
+        8811221,9999999968
+
+    </output>
+
+  <connection>
+    <operator>  ,8359402,declareFinalEq,
+    <input>
+        8761200,9999999969
+
+  <connection>
+    <operator>  ,8359402,declareFinalEq,
+    <input>
+        8811221,9999999968
+
+  
+  
+  </connection_set>
+  <connection_set name="euler_equation_proof" discipline="math">
+
+      <operator>  ,7364656,declareInitialEq,
+      <output>
+        1029383,9492920340
+
+      </output>
+  
+
+      <operator>  ,6463728,differentiateWRT,
+      <input>
+       <feed>7636749,0
+
+        1029383,9492920340
+
+  
+      <output>
+       0018383,9429829482
+
+      </output>
+  
+
+      <operator>  ,4614728,factorOutXfromRHS,
+      <input>
+       <feed>7563791,0
+
+       0018383,9429829482
+
+  
+      <output>
+       2948271,9482984922
+
+      </output>
+  
+
+      <operator>  ,7466748,subRHSofEqXintoEqY,
+      <input>
+        2948271,9482984922
+
+        1029383,9492920340
+
+  
+      <output>
+        9038289,9848294829
+
+      </output>
+  
+
+      <operator>  ,2741906,multbothsidesby,
+      <input>
+      <feed>3954314,0
+
+        9038289,9848294829
+
+  
+      <output>
+       1111289,9848292229
+
+      </output>
+  
+
+      <operator>  ,6466378,dividebothsidesby,
+      <input>
+        <feed>9877781,0
+
+       1111289,9848292229
+
+  
+      <output>
+       8883737,9482113948
+
+      </output>
+  
+
+      <operator>  ,1848471,indefIntRHSOver,
+      <input>
+       <feed>4264724,0
+
+       8883737,9482113948
+
+  
+      <output>
+       9984877,9482943948
+
+      </output>
+  
+      <operator>  ,6462728,indefIntRHSOver,
+      <input>
+        <feed>6563727,0
+
+       9984877,9482943948
+
+  
+      <output>
+       3747585,4928239482
+
+      </output>
+  
+
+      <operator>  ,7563728,swapLHSwithRHS,
+      <input>
+       3747585,4928239482
+
+  
+      <output>
+       3784785,4923339482
+
+      </output>
+  
+
+      <operator>  ,1029890,makeEqPower,
+      <input>
+       <feed>6656532,0
+
+       3784785,4923339482
+
+  
+      <output>
+       9587572,9482923849
+
+      </output>
+  
+
+      <operator>  ,7566272,subRHSofEqXintoEqY,
+      <input>
+       9587572,9482923849
+
+        1029383,9492920340
+
+  
+      <output>
+        8888888,4938429483
+
+      </output>
+  
+
+      <operator>  ,7561612,declareFinalEq,
+      <input>
+        8888888,4938429483
+
+  
+  
+  </connection_set>
+  <connection_set name="euler_equation_trig_sqrt" discipline="math">
+
+      <operator>  ,7663728,declareInitialEq,
+      <output>
+        8888888,4938429483
+
+      </output>
+  
+
+      <operator>  ,6839583,subXforY,
+      <input>
+        <feed>4582412,0
+
+        <feed>4089571,0
+
+        8888888,4938429483
+
+  
+      <output>
+        9999999,4838429483
+
+      </output>
+     
+
+      <operator>  ,9582956,LHSofEqXeqLHSofEqY,
+      <input>
+        9999999,4838429483
+
+        4444444,4598294821
+
+  
+      <output>
+        2222222,9483928192
+
+      </output>
+    
+
+      <operator>  ,8492847,multEqXbyEqY,
+      <input>
+        8888888,4938429483
+
+        8888888,4938429483
+
+  
+      <output>
+        3333333,4638429483
+
+      </output>
+   
+
+      <operator>  ,5832058,expandRHS,
+      <input>
+        3333333,4638429483
+
+  
+      <output>
+        4444444,4598294821
+
+      </output>
+   
+
+      <operator>  ,8374590,selectRealParts,
+      <input>
+        2222222,9483928192
+
+  
+      <output>
+        5828294,9482928242
+
+      </output>
+   
+
+      <operator>  ,8374625,addXtoBothSides,
+      <input>
+       <feed>7894942,0
+
+        5828294,9482928242
+
+  
+      <output>
+        4890284,9482928243
+ 
+      </output>
+   
+
+      <operator>  ,3040493,declareIdentity,
+      <output>
+        0938572,5832984291
+
+      </output>
+  
+
+      <operator>  ,0983243,subtractXfromBothSides,
+      <input>
+        <feed>1111111,0
+
+        0938572,5832984291
+
+  
+      <output>
+        0912367,3285732911
+
+      </output>
+   
+
+      <operator>  ,3984721,swapLHSwithRHS,
+      <input>
+        4890284,9482928243
+
+  
+      <output>
+        0293655,9482438243
+
+      </output>
+   
+
+      <operator>  ,9483240,LHSofEqXeqLHSofEqY,
+      <input>
+        0912367,3285732911
+
+        0293655,9482438243
+
+  
+      <output>
+       0009481,4827492911
+
+      </output>
+   
+
+      <operator>  ,7563628,subtractXfromBothSides,
+      <input>
+      <feed>6466214,0
+
+       0009481,4827492911
+
+  
+      <output>
+       7472641,1248277773
+
+      </output>
+  
+
+      <operator>  ,7572728,addXtoBothSides,
+      <input>
+         <feed>7471778,0
+
+       7472641,1248277773
+
+  
+      <output>
+       1029911,7572664728
+
+      </output>
+   
+
+      <operator>  ,7566277,subtractXfromBothSides,
+      <input>
+          <feed>8842811,0
+
+       1029911,7572664728
+
+  
+      <output>
+       7472666,9889984281
+
+      </output>
+   
+
+      <operator>  ,3841414,dividebothsidesby,
+      <input>
+             <feed>3838111,0
+
+       7472666,9889984281
+
+  
+      <output>
+       1231131,9988949211
+
+      </output>
+  
+
+      <operator>  ,1383414,declareFinalEq,
+      <input>
+       1231131,9988949211
+
+  
+  
+  </connection_set>
+  <connection_set name="example_of_Godel_problem"  discipline="math">
+
+      <operator>  ,7566367,declareInitialEq,
+      <output>
+        7572712,9829420421
+
+      </output>
+  
+
+      <operator>  ,4647381,declareInitialEq,
+      <output>
+        4738297,2948293829
+
+      </output>
+  
+
+      <operator>  ,8673948,LHSofEqXeqLHSofEqY,
+      <input>
+        7572712,9829420421
+
+        4738297,2948293829
+
+  
+      <output>
+        2845892,4828238421
+
+        4627482,9482948292
+
+      </output>
+   
+
+      <operator>  ,8674920,swapLHSwithRHS,
+      <input>
+        4738297,2948293829
+
+  
+      <output>
+        7572712,9829420421
+
+      </output>
+   
+  </connection_set>
+  <connection_set name="particle_in_a_1D_box" discipline="quantum">
+
+      <operator>  ,8576627,declareInitialEq,
+      <output>
+       7572748,5727578862
+
+      </output>
+  
+
+      <operator>  ,1384011,declareGuessSolution,
+      <input>
+       7572748,5727578862
+
+  
+      <output>
+       7572118,8582885111
+
+      </output>
+  
+
+      <operator>  ,8572771,boundaryCondition,
+      <input>
+       7572748,5727578862
+
+  
+      <output>
+       8577781,9585727710
+
+      </output>
+  
+
+      <operator>  ,8572778,boundaryCondition,
+      <input>
+       7572748,5727578862
+
+  
+      <output>
+       8585727,9495857278
+
+      </output>
+  
+
+      <operator>  ,8571277,LHSofEqXeqLHSofEqY,
+      <input>
+       8577781,9585727710
+
+       7572118,8582885111
+
+  
+      <output>
+       7547581,8577275751
+
+      </output>
+  
+
+      <operator>  ,8576571,simplify,
+      <input>
+       7547581,8577275751
+
+  
+      <output>
+       7572859,1293913110
+
+      </output>
+  
+
+      <operator>  ,8572265,subRHSofEqXintoEqY,
+      <input>
+       7572859,1293913110
+
+       7572118,8582885111
+
+  
+      <output>
+       7562671,9059289981
+
+      </output>
+  
+
+      <operator>  ,9686782,LHSofEqXeqLHSofEqY,
+      <input>
+       7562671,9059289981
+
+       8585727,9495857278
+
+  
+      <output>
+       8577672,1020010291
+
+      </output>
+  
+
+      <operator>  ,8575717,declareIdentity,
+      <output>
+       8577711,1857710291
+
+      </output>
+  
+
+      <operator>  ,8575627,EqXisTrueUnderconditionEqY,
+      <input>
+       8577672,1020010291
+
+       8577711,1857710291
+
+  
+      <output>
+       0098476,1010923823
+
+      </output>
+  
+
+      <operator>  ,9114413,dividebothsidesby,
+      <input>
+         <feed>1334112,0
+
+       0098476,1010923823
+
+  
+      <output>
+       9495882,1858772113
+
+      </output>
+  
+
+      <operator>  ,8575761,subRHSofEqXintoEqY,
+      <input>
+       9495882,1858772113
+
+       7562671,9059289981
+
+  
+      <output>
+       3452131,2944838499
+
+      </output>
+  
+
+      <operator>  ,4434559,normalizationCondition,
+      <output>
+       7575626,1934748140
+
+      </output>
+  
+
+      <operator>  ,5751725,conjugateFunctionX,
+      <input>
+        <feed>9587738,0
+
+       3452131,2944838499
+
+  
+      <output>
+       3452132,8849289982
+
+      </output>
+  
+
+      <operator>  ,4757567,swapLHSwithRHS,
+      <input>
+       7575626,1934748140
+
+  
+      <output>
+       5577567,8572657110
+
+      </output>
+  
+
+      <operator>  ,7455643,expandMagnitudeToConjugate,
+      <input>
+      <feed>5656372,0
+
+       5577567,8572657110
+
+  
+      <output>
+       0595847,4857472413
+
+      </output>
+  
+
+      <operator>  ,4455453,subLHSofEqXintoEqY,
+      <input>
+       3452131,2944838499
+
+       0595847,4857472413
+
+  
+      <output>
+       0495950,0203024440
+
+      </output>
+  
+
+      <operator>  ,4948339,subLHSofEqXintoEqY,
+      <input>
+       3452132,8849289982
+
+       0495950,0203024440
+
+  
+      <output>
+       8478550,8889444440
+
+      </output>
+  
+
+      <operator>  ,8485725,declareIdentity,
+      <output>
+       1231131,9988949211
+
+      </output>
+  
+
+      <operator>  ,1003049,subXforY,
+      <input>
+      <feed>4934845,0
+      
+         <feed>9484724,0
+
+       1231131,9988949211
+
+  
+      <output>
+       0100404,7575738420
+
+      </output>
+  
+
+      <operator>  ,8576741,subRHSofEqXintoEqY,
+      <input>
+       0100404,7575738420
+
+       8478550,8889444440
+
+  
+      <output>
+       0094858,8576785890
+
+      </output>
+  
+
+      <operator>  ,0059403,dividebothsidesby,
+      <input>
+      <feed>0040490,0
+
+       0094858,8576785890
+
+  
+      <output>
+       0495054,9858028950
+
+      </output>
+  
+
+      <operator>  ,3949284,expandIntegrand,
+      <input>
+       0495054,9858028950
+
+  
+      <output>
+       0203020,1202310110
+
+      </output>
+  
+
+      <operator>  ,0030488,declareIdentity,
+      <output>
+       3992939,0948572140
+
+      </output>
+  
+
+      <operator>  ,4485722,subXforY,
+      <input>
+        <feed>4831494,0
+
+        <feed>9485858,0
+
+       3992939,0948572140
+
+  
+      <output>
+       4948377,7564894985
+
+      </output>
+  
+
+      <operator>  ,0030481,declareIdentity,
+      <output>
+       0021030,5857434758
+
+      </output>
+  
+
+      <operator>  ,1911919,subXforY,
+      <input>
+        <feed>4948585,0
+
+        <feed>2929944,0
+
+       0021030,5857434758
+
+  
+      <output>
+       9339495,8575746378
+
+      </output>
+  
+
+      <operator>  ,3329831,EvaluateDefiniteIntegral,
+      <input>
+       0203020,1202310110
+
+       9339495,8575746378
+  
+      <output>
+       8584733,1202312210
+
+      </output>
+  
+
+      <operator>  ,8485747,EvaluateDefiniteIntegral,
+      <input>
+       4948377,7564894985
+
+       8584733,1202312210
+
+  
+      <output>
+       0405049,0439492440
+
+      </output>
+  
+
+      <operator>  ,8373472,simplify,
+      <input>
+       0405049,0439492440
+
+  
+      <output>
+       9493949,4857475848
+
+      </output>
+  
+
+      <operator>  ,5859994,multbothsidesby,
+      <input>
+        <feed>9485857,0
+
+       9493949,4857475848
+
+  
+      <output>
+       1029384,8485867742
+
+      </output>
+  
+
+      <operator>  ,1293948,raiseBothSidesToPower,
+      <input>
+        <feed>9594995,0
+
+       1029384,8485867742
+
+  
+      <output>
+       9394857,9485747245
+
+       9394858,9485747246
+
+      </output>
+  
+
+      <operator>  ,1384935,subLHSofEqXintoEqY,
+      <input>
+       9394857,9485747245
+
+       3452131,2944838499
+
+  
+      <output>
+       8474766,9393939991
+
+      </output>
+  
+
+      <operator>  ,3847567,subLHSofEqXintoEqY,
+      <input>
+       9394858,9485747246
+
+       3452131,2944838499
+
+  
+      <output>
+       8474765,9393939992
+
+      </output>
+  
+
+      <operator>  ,7474753,declareFinalEq,
+      <input>
+       8474765,9393939992
+
+  
+  
+
+      <operator>  ,7474753,declareFinalEq,
+      <input>
+       8474766,9393939991
+
+  
+  
+
+      <operator>  ,4757743,subRHSofEqXintoEqY,
+      <input>
+        7572118,8582885111
+
+        7572748,5727578862
+
+  
+      <output>
+        2838288,8575748999
+
+      </output>
+  
+
+      <operator>  ,2029394,simplify,
+      <input>
+        2838288,8575748999
+
+  
+      <output>
+        8474762,8485757728
+
+      </output>
+  
+
+      <operator>  ,9394948,simplify,
+      <input>
+        8474762,8485757728
+
+  
+      <output>
+        1214762,8484544728
+
+      </output>
+  
+
+      <operator>  ,7374289,claimLHSequalsRHS,
+      <input>
+        1214762,8484544728
+
+  
+  
+  </connection_set>
+  <connection_set name="maxwell_to_electric_field_wave_equation" discipline="electromagnetism">
+
+      <operator>  ,2932848,declareInitialEq,
+      <output>
+       1199299,1314864131
+
+      </output>
+  
+
+      <operator>  ,2932848,declareInitialEq,
+      <output>
+       4757562,9991999979
+
+      </output>
+  
+
+      <operator>  ,1010301,partialDiffWRT,
+      <input>
+         <feed>5626421,0
+
+       1199299,1314864131
+
+  
+      <output>
+       4642245,1314464131
+
+      </output>
+  
+
+      <operator>  ,4224853,takeCurlofBothSides,
+      <input>
+       4757562,9991999979
+
+  
+      <output>
+       2392932,9291999979
+
+      </output>
+  
+
+      <operator>  ,1939442,subLHSofEqXintoEqY,
+      <input>
+       4642245,1314464131
+
+       2392932,9291999979
+
+  
+      <output>
+       2962831,3947269979
+
+      </output>
+  
+
+      <operator>  ,2932848,declareInitialEq,
+      <output>
+       4857731,9999999981
+
+      </output>
+  
+
+      <operator>  ,3837471,declareAssumption,
+      <output>
+       3984852,9919999981
+
+      </output>
+  
+
+      <operator>  ,5656372,subLHSofEqXintoEqY,
+      <input>
+       4857731,9999999981
+
+       3984852,9919999981
+
+  
+      <output>
+       2837471,7466829492
+
+      </output>
+  
+
+      <operator>  ,3948572,declareIdentity,
+      <output>
+         1939485,7575859295
+
+      </output>
+  
+
+      <operator>  ,4655746,subLHSofEqXintoEqY,
+      <input>
+       2837471,7466829492
+
+         1939485,7575859295
+
+  
+      <output>
+       3738373,1636453295
+
+      </output>
+  
+
+      <operator>  ,3737384,subLHSofEqXintoEqY,
+      <input>
+       3738373,1636453295
+
+       2962831,3947269979
+
+  
+      <output>
+       4758592,8494839423
+
+      </output>
+        
+
+      <operator>  ,3948584,declareFinalEq,
+      <input>
+       4758592,8494839423
+
+  
+  
+  </connection_set>
+  <connection_set name="electric_field_wave_equation_time_dependent_to_time_independent" discipline="electromagnetism">
+
+      <operator>  ,8485758,declareInitialEq,
+      <output>
+       4758592,8494839423
+
+      </output>
+  
+
+      <operator>  ,8485758,declareInitialEq,
+      <output>
+       9393848,8572852424
+
+      </output>
+  
+
+      <operator>  ,4585829,declareGuessSolution,
+      <input>
+       4758592,8494839423
+      
+  
+      <output>
+       3994928,9499428242
+
+      </output>
+  
+
+      <operator>  ,4858282,subLHSofEqXintoEqY,
+      <input>
+       9393848,8572852424
+
+       4758592,8494839423
+
+  
+      <output>
+       3839493,9394939493
+
+      </output>
+  
+
+      <operator>  ,1002928,subLHSofEqXintoEqY,
+      <input>
+       3839493,9394939493
+
+       3994928,9499428242
+
+  
+      <output>
+       1029393,2029293929
+
+      </output>
+  
+
+      <operator>  ,2319391,differentiateWRT,
+      <input>
+        <feed>3232242,0
+
+       1029393,2029293929
+
+  
+      <output>
+       2939392,4985825552
+
+      </output>
+  
+
+      <operator>  ,4955966,differentiateWRT,
+      <input>
+       <feed>3232242,0
+
+       2939392,4985825552
+
+  
+      <output>
+       4958573,1858578388
+
+      </output>
+  
+
+      <operator>  ,8485758,declareInitialEq,
+      <output>
+       4949582,4585828572
+
+      </output>
+  
+
+      <operator>  ,5839535,subXforY,
+      <input>
+        <feed>4585828,0
+
+        <feed>4949582,0
+
+       4958573,1858578388
+
+  
+      <output>
+       9495903,9485384858
+
+      </output>
+  
+
+      <operator>  ,4958883,simplify,
+      <input>
+       9495903,9485384858
+
+  
+      <output>
+       3949492,3485475729
+
+      </output>
+  
+
+      <operator>  ,5495827,declareFinalEq,
+      <input>
+       3949492,3485475729
+
+  
+  
+  </connection_set>
+  <connection_set name="euler_equation_trig_relations" discipline="math">
+
+      <operator>  ,7473895,declareInitialEq,
+      <output>
+        8888888,4938429483
+
+      </output>
+  
+
+      <operator>  ,3848927,subXforY,
+      <input>
+      <feed>2393922,0
+
+       <feed>3949052,0
+
+        8888888,4938429483
+
+  
+      <output>
+        8888881,2394853829
+
+      </output>
+  
+
+      <operator>  ,9595949,functionIsEven,
+      <input>
+    <feed>3949482,0
+
+    <feed>4849392,0
+
+    <feed>1030901,0
+
+        8888881,2394853829
+
+  
+      <output>
+        8888882,4938429482
+
+      </output>
+  
+
+      <operator>  ,4747288,functionIsOdd,
+      <input>
+    <feed>2919191,0
+
+    <feed>3919391,0
+
+    <feed>3981813,0
+
+        8888882,4938429482
+
+  
+      <output>
+        8888883,4938429484
+
+      </output>
+  
+
+      <operator>  ,3848592,addEqXtoEqY,
+      <input>
+        8888888,4938429483
+
+        8888883,4938429484
+
+  
+      <output>
+        2939484,4742644828
+
+      </output>
+  
+
+      <operator>  ,1928392,dividebothsidesby,
+      <input>
+         <feed>4829194,0
+
+        2939484,4742644828
+
+  
+      <output>
+        4383592,3829492824
+
+      </output>
+  
+
+      <operator>  ,2949492,swapLHSwithRHS,
+      <input>
+        4383592,3829492824
+
+  
+      <output>
+        4849888,4585932229
+
+      </output>
+  
+
+      <operator>  ,2384942,declareFinalEq,
+      <input>
+        4849888,4585932229
+
+  
+  
+
+      <operator>  ,3848924,multbothsidesby,
+      <input>
+         <feed>3747849,0
+
+        8888883,4938429484
+
+  
+      <output>
+        3194924,2123139121
+
+      </output>
+  
+
+      <operator>  ,2939404,addEqXtoEqY,
+      <input>
+        8888888,4938429483
+
+        3194924,2123139121
+
+  
+      <output>
+        4825483,3942849294
+
+      </output>
+  
+
+      <operator>  ,2849492,dividebothsidesby,
+      <input>
+            <feed>1921933,0
+
+        4825483,3942849294
+
+  
+      <output>
+        1133483,4843995999
+
+      </output>
+  
+
+      <operator>  ,4294921,swapLHSwithRHS,
+      <input>
+        1133483,4843995999
+
+  
+      <output>
+        4849959,2103023049
+
+      </output>
+  
+
+      <operator>  ,2384942,declareFinalEq,
+      <input>
+        4849959,2103023049
+
+  
+  
+  </connection_set>
+  <connection_set name="integration_by_parts" discipline="math">
+
+      <operator>  ,4952082,declareIdentity,
+      <output>
+        3494854,8489593958
+
+      </output>
+  
+
+      <operator>  ,4842942,subtractXfromBothSides,
+      <input>
+       <feed>9492929,0
+
+        3494854,8489593958
+
+  
+      <output>
+     2938188,8489593960
+
+      </output>
+  
+
+      <operator>  ,4848592,swapLHSwithRHS,
+      <input>
+     2938188,8489593960
+
+  
+      <output>
+     2938190,8489593962
+
+      </output>
+  
+
+      <operator>  ,8483953,indefIntegration,
+      <input>
+        2938190,8489593962
+
+  
+      <output>
+        3848329,8489593964
+
+      </output>
+  
+
+      <operator>  ,2839422,declareFinalEq,
+      <input>
+        3848329,8489593964
+
+  
+  
+  </connection_set>
+  <connection_set name="curl_curl_identity" discipline="math">
+
+      <operator>  ,3948572,declareIdentity,
+      <output>
+         1939485,7575859295
+
+      </output>
+  
+
+      <operator>  ,2339482,ReplaceCurlWithLeviCevitaSummationContravariant,
+      <input>
+         1939485,7575859295
+
+  
+      <output>
+       9485482,7575859300
+
+      </output>
+  
+
+      <operator>  ,3948552,ReplaceCurlWithLeviCevitaSummationContravariant,
+      <input>
+       9485482,7575859300
+
+  
+      <output>
+       2941319,7575859302
+
+      </output>
+  
+
+      <operator>  ,4295822,declareIdentity,
+      <output>
+       2934842,7575859304
+
+      </output>
+  
+
+      <operator>  ,2930454,subRHSofEqXintoEqY,
+      <input>
+       2934842,7575859304
+
+       2941319,7575859302
+
+  
+      <output>
+       3949292,7575859306
+
+      </output>
+  
+
+      <operator>  ,3848292,simplify,
+      <input>
+       3949292,7575859306
+
+  
+      <output>
+       3844221,7575859308
+
+      </output>
+  
+
+      <operator>  ,3838233,simplify,
+      <input>
+       3844221,7575859308
+
+  
+      <output>
+       3948472,7575859310
+
+      </output>
+  
+
+      <operator>  ,1393411,ReplaceSummationNotationWithVectorNotation,
+      <input>
+       3948472,7575859310
+
+  
+      <output>
+       2109231,7575859312
+
+      </output>
+  
+
+      <operator>  ,3949211,claimLHSequalsRHS,
+      <input>
+       2109231,7575859312
+
+  
+  
+  </connection_set>
+  <connection_set name="derivation_of_Schrodinger_Eq" discipline="quantum">
+
+      <operator>  ,1204921,declareInitialEq,
+      <output>
+       2934848,3121513111
+
+      </output>
+  
+
+      <operator>  ,2919311,declareInitialEq,
+      <output>
+       0921465,3131211131
+
+      </output>
+  
+
+      <operator>  ,1294844,declareInitialEq,
+      <output>
+       2949002,9999999960
+
+      </output>
+  
+
+      <operator>  ,9394842,declareInitialEq,
+      <output>
+       1203491,1020394900
+
+      </output>
+  
+
+      <operator>  ,3934948,declareInitialEq,
+      <output>
+       3499522,1020394902
+
+      </output>
+  
+
+      <operator>  ,3949482,dividebothsidesby,
+      <input>
+       <feed>2940021,0
+
+        0921465,3131211131
+
+  
+      <output>
+       2939402,3147472131
+
+      </output>
+  
+
+      <operator>  ,1294945,subRHSofEqXintoEqY,
+      <input>
+       2939402,3147472131
+
+       3499522,1020394902
+
+  
+      <output>
+       2949821,4147472132
+
+      </output>
+  
+
+      <operator>  ,2930492,subRHSofEqXintoEqY,
+      <input>
+       2949002,9999999960
+
+       2949821,4147472132
+
+  
+      <output>
+       3741728,9999999965
+
+      </output>
+  
+
+      <operator>  ,3919384,dividebothsidesby,
+      <input>
+          <feed>3949921,0
+
+       3741728,9999999965
+
+  
+      <output>
+       4499582,9999999961
+
+      </output>
+  
+
+      <operator>  ,2900428,dividebothsidesby,
+      <input>
+         <feed>1209482,0
+
+       2934848,3121513111
+
+  
+      <output>
+       1039485,3121234211
+
+      </output>
+  
+
+      <operator>  ,1204945,subRHSofEqXintoEqY,
+      <input>
+       1039485,3121234211
+
+       1203491,1020394900
+
+  
+      <output>
+       2901049,3121234212
+
+      </output>
+  
+
+      <operator>  ,2939400,subRHSofEqXintoEqY,
+      <input>
+       2949002,9999999960
+
+       2901049,3121234212
+
+  
+      <output>
+       1039013,9999999962
+
+      </output>
+  
+
+      <operator>  ,2030624,dividebothsidesby,
+      <input>
+              <feed>1304952,0
+
+       1039013,9999999962
+
+  
+      <output>
+       4948325,9999999870
+
+      </output>
+  
+
+      <operator>  ,1039774,replaceScalarWithVector,
+      <input>
+       4948325,9999999870
+
+  
+      <output>
+       2948487,9999998870
+
+      </output>
+  
+
+      <operator>  ,1923945,declareInitialEq,
+      <output>
+       3940505,3948574224
+
+      </output>
+  
+
+      <operator>  ,2938341,subRHSofEqXintoEqY,
+      <input>
+       2948487,9999998870
+
+       3940505,3948574224
+
+  
+      <output>
+       2100421,3948574226
+
+      </output>
+  
+
+      <operator>  ,0012031,subRHSofEqXintoEqY,
+      <input>
+       4499582,9999999961
+
+       2100421,3948574226
+
+  
+      <output>
+       1291313,3948574228
+
+      </output>
+  
+
+      <operator>  ,1341141,simplify,
+      <input>
+       1291313,3948574228
+
+  
+      <output>
+       1305534,3948574230
+
+      </output>
+  
+
+      <operator>  ,1204929,declareInitialEq,
+      <output>
+       1039948,1029039903
+
+      </output>
+  
+
+      <operator>  ,1395335,declareInitialEq,
+      <output>
+       1353583,4298359835
+
+      </output>
+  
+
+      <operator>  ,2422434,raiseBothSidesToPower,
+      <input>
+            <feed>2239424,0
+
+       1039948,1029039903
+
+  
+      <output>
+       1432042,1029039904
+
+      </output>
+  
+
+      <operator>  ,2322434,multRHSbyUnity,
+      <input>
+       <feed>2342425,0
+
+       1353583,4298359835
+
+  
+      <output>
+       2326309,4298359845
+
+      </output>
+  
+
+      <operator>  ,2449858,subRHSofEqXintoEqY,
+      <input>
+       1432042,1029039904
+
+       2326309,4298359845
+
+  
+      <output>
+       3576787,4298359851
+
+      </output>
+  
+
+      <operator>  ,1347587,partialDiffWRT,
+      <input>
+      <feed>6544644,0
+
+       1305534,3948574230
+
+  
+      <output>
+       2364546,3948574233
+
+      </output>
+  
+
+      <operator>  ,2464445,subRHSofEqXintoEqY,
+      <input>
+       1305534,3948574230
+
+       2364546,3948574233
+
+  
+      <output>
+       5345567,3948571256
+
+      </output>
+  
+
+      <operator>  ,3454353,subRHSofEqXintoEqY,
+      <input>
+       3576787,4298359851
+
+       5345567,3948571256
+
+  
+      <output>
+       2495835,4348571256
+
+      </output>
+  
+
+      <operator>  ,4358635,multbothsidesby,
+      <input>
+        <feed>2436656,0
+
+       2495835,4348571256
+
+  
+      <output>
+       3429538,4341171256
+
+      </output>
+  
+
+      <operator>  ,2454535,applyGradientToScalarFunction,
+      <input>
+       1305534,3948574230
+
+  
+      <output>
+       5577584,3948572230
+
+      </output>
+  
+
+      <operator>  ,5858694,simplify,
+      <input>
+       5577584,3948574230
+
+  
+      <output>
+       3454565,4943571230
+
+      </output>
+  
+
+      <operator>  ,5354635,subRHSofEqXintoEqY,
+      <input>
+       3454565,4943571230
+
+       1305534,3948574230
+
+  
+      <output>
+        5535257,5985371230
+
+      </output>
+  
+
+      <operator>  ,3294932,applyDivergence,
+      <input>
+        5535257,5985371230
+
+  
+      <output>
+       4938589,4394958389
+
+      </output>
+  
+
+      <operator>  ,2394495,simplify,
+      <input>
+        4938589,4394958389
+
+  
+      <output>
+        1495034,1648958381
+
+      </output>
+  
+
+      <operator>  ,4059592,subRHSofEqXintoEqY,
+      <input>
+        5535257,5985371230
+
+        1495034,1648958381
+
+  
+      <output>
+       1049553,2648958382
+
+      </output>
+  
+
+      <operator>  ,4305953,simplify,
+      <input>
+       1049553,2648958382
+
+  
+      <output>
+       4959593,2395958385
+
+      </output>
+  
+
+      <operator>  ,4939459,multbothsidesby,
+      <input>
+       <feed>5938585,0
+
+       4959593,2395958385
+
+  
+      <output>
+       4349493,5868688585
+
+      </output>
+  
+
+      <operator>  ,9394834,LHSofEqXeqLHSofEqY,
+      <input>
+       4349493,5868688585
+
+       3429538,4341171256
+
+  
+      <output>
+       1304924,9958485859
+
+      </output>
+  
+
+      <operator>  ,2455452,declareInitialEq,
+      <output>
+       2344324,1158485859
+
+      </output>
+  
+
+      <operator>  ,2954835,subLHSofEqXintoEqY,
+      <input>
+       2344324,1158485859
+
+       1304924,9958485859
+
+  
+      <output>
+       2456546,2258485859
+
+      </output>
+  
+
+      <operator>  ,6756574,declareFinalEq,
+      <input>
+       2456546,2258485859
+
+  
+  
+  </connection_set>
+  <connection_set name="quantum_basics_orthogonality" discipline="quantum">
+
+      <operator>  ,2455366,declareInitialEq,
+      <output>
+       3849595,9596004948
+
+      </output>
+  
+
+      <operator>  ,3848591,applyOperatorToKet,
+      <input>
+       3849595,9596004948
+
+  
+      <output>
+       4940359,1010393944
+
+      </output>
+  
+
+      <operator>  ,1301442,applyOperatorToBra,
+      <input>
+       3849595,9596004948
+
+  
+      <output>
+       4349300,1395858355
+
+      </output>
+  
+
+      <operator>  ,2304934,simplify,
+      <input>
+       4940359,1010393944
+
+  
+      <output>
+       2409402,2394240499
+
+      </output>
+  
+
+      <operator>  ,0049384,simplify,
+      <input>
+       4349300,1395858355
+
+  
+      <output>
+       4934893,3943939590
+
+      </output>
+  
+
+      <operator>  ,0987890,LHSofEqXeqLHSofEqY,
+      <input>
+       2409402,2394240499
+
+       4934893,3943939590
+
+  
+      <output>
+       3495045,1203938249
+
+      </output>
+  
+
+      <operator>  ,4838499,subtractXfromBothSides,
+      <input>
+        <feed>5395034,0
+
+       3495045,1203938249
+
+  
+      <output>
+       4939583,3924948349
+
+      </output>
+  
+
+      <operator>  ,0988873,combineLikeTerms,
+      <input>
+       4939583,3924948349
+
+  
+      <output>
+       3494855,2394935831
+
+      </output>
+  
+
+      <operator>  ,2384852,declareFinalEq,
+      <input>
+       3494855,2394935831
+
+  
+  
+  </connection_set>
+  <connection_set name="quantum_basics_Hermitian_operators_have_realvalued_observables" discipline="quantum">
+
+      <operator>  ,3403595,declareInitialEq,
+      <output>
+       3402919,9999999975
+
+      </output>
+  
+
+      <operator>  ,9538385,conjugateTransposeBothSides,
+      <input>
+       3402919,9999999975
+
+  
+      <output>
+       2495954,2394935835
+
+      </output>
+  
+
+      <operator>  ,2394942,distributeConjugateTransposeToFactors,
+      <input>
+       2495954,2394935835
+
+  
+      <output>
+       2390094,1010393913
+
+      </output>
+  
+
+      <operator>  ,1294984,declareAssumption,
+      <output>
+       2484892,9294858532
+
+      </output>
+  
+
+      <operator>  ,2485909,subRHSofEqXintoEqY,
+      <input>
+       2484892,9294858532
+
+       2390094,1010393913
+
+  
+      <output>
+       2494040,4948934890
+
+      </output>
+  
+
+      <operator>  ,2490098,subRHSofEqXintoEqY,
+      <input>
+       2494040,4948934890
+
+       3402919,9999999975
+
+  
+      <output>
+       4930585,2848934890
+
+      </output>
+  
+
+      <operator>  ,2939493,declareFinalEq,
+      <input>
+        4930585,2848934890
+
+  
+  
+  </connection_set>
+  <connection_set name="variance_relation" discipline="math">
+
+      <operator>  ,2004989,declareIdentity,
+      <output>
+        3493498,3585845894
+
+      </output>
+  
+
+      <operator>  ,2349059,simplify,
+      <input>
+       3493498,3585845894
+
+  
+      <output>
+        0504953,8399484849
+
+      </output>
+  
+
+      <operator>  ,2390498,simplify,
+      <input>
+        0504953,8399484849
+
+  
+      <output>
+        6757584,2404934990
+
+      </output>
+  
+
+      <operator>  ,3848494,simplify,
+      <input>
+        6757584,2404934990
+
+  
+      <output>
+        3294824,4949359835
+
+      </output>
+  
+
+      <operator>  ,4948384,simplify,
+      <input>
+        3294824,4949359835
+
+  
+      <output>
+        5949484,2494533900
+
+      </output>
+  
+
+      <operator>  ,4948955,claimLHSequalsRHS,
+      <input>
+        5949484,2494533900
+
+  
+  
+  </connection_set>
+  <connection_set name="Comptons_equation_for_scattering" discipline="physics">
+
+      <operator>  ,8668018,declareInitialEq,
+      <output>
+        4978059,1638282134
+
+      </output>
+  
+
+      <operator>  ,3445641,declareInitialEq,
+      <output>
+        2840008,8257621077
+
+      </output>
+  
+
+      <operator>  ,4733986,declareInitialEq,
+      <output>
+        1209604,8311458118
+
+      </output>
+  
+
+      <operator>  ,7958085,subLHSofEqXintoEqY,
+      <input>
+        4978059,1638282134
+
+        2840008,8257621077
+
+  
+      <output>
+        2491904,3951205425
+
+      </output>
+  
+
+      <operator>  ,3667395,subLHSofEqXintoEqY,
+      <input>
+        1209604,8311458118
+
+        2491904,3951205425
+
+  
+      <output>
+        5610925,8139187332
+
+      </output>
+  
+
+      <operator>  ,7952658,subtractXfromBothSides,
+      <input>
+        <feed>2338514,0
+
+        5610925,8139187332
+
+  
+      <output>
+        4068150,5530148480
+
+      </output>
+  
+
+      <operator>  ,3871228,swapLHSwithRHS,
+      <input>
+        4068150,5530148480
+
+  
+      <output>
+        4200334,7917051060
+
+      </output>
+  
+
+      <operator>  ,4738354,multEqXbyEqY,
+      <input>
+        4200334,7917051060
+
+        4200334,7917051060
+
+  
+      <output>
+        4218805,6742123016
+
+      </output>
+  
