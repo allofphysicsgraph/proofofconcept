@@ -3,12 +3,12 @@
     <title>Physics Derivation graph: GraphViz example</title>
   </head>
   <body bgcolor="#ffffff">
-<P>Contents of file.gv</P>
+<P>Contents of physics_derivation.dot</P>
 <FONT FACE="Courier New"> 
 
 digraph physicsDerivation {<BR>
 overlap = false;<BR>
-label="Equation relations\\nExtracted from connections_database.xml and layed out by Graphviz";
+label="Equation relations\\nExtracted from connections_database.csv";
 fontsize=12;
 
 7473895 [shape=invtrapezium,color=red,image="images_infrule_png/declareInitialEq.png"];<BR>
@@ -18,7 +18,7 @@ fontsize=12;
 
 </FONT>
 <P>Command:<BR>
-neato -Tsvg thisfile > out.svg<BR>
-neato -Tpng thisfile > out.png
+neato -Tsvg physics_derivation.dot > out.svg<BR>
+neato -Tpng physics_derivation.dot > out.png
 </BODY>
 </HTML>
