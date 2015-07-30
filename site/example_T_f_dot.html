@@ -18,8 +18,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 digraph physicsDerivation {<BR>
 overlap = false;<BR>
-label="Equation relations\\nExtracted from connections_database.csv";
-fontsize=12;
+label="Equation relations\\nExtracted from connections_database.csv";<BR>
+fontsize=12;<BR>
 
 8332941 [shape=invtrapezium,color=red,image="images_infrule_png/declareInitialEq.png"];<BR>
 3131111133 [shape=ellipse,  color=red,image="images_expression_png/3131111133.png",labelloc=b,URL="http://output.com"];<BR>
@@ -49,7 +49,7 @@ fontsize=12;
 
 </FONT>
 <P>Command:<BR>
-neato -Tsvg physics_derivation.dot > out.svg<BR>
-neato -Tpng physics_derivation.dot > out.png
+neato -Tsvg -Nlabel="" physics_derivation.dot > out.svg<BR>
+neato -Tpng -Nlabel="" physics_derivation.dot > out.png
 </BODY>
 </HTML>
