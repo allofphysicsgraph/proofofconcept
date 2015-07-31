@@ -40,9 +40,7 @@ def write_footer_graphviz(graphviz_file):
   graphviz_file.write('overlap=false\n')
   graphviz_file.write('label=\"Equation relations\\nExtracted from connections_database.xml and layed out by Graphviz\"\n')
   graphviz_file.write('fontsize=12;\n')
-  graphviz_file.write('}\n')overlap=false\n')
-  graphviz_file.write('label=\"Equation relations\\nExtracted from connections_database.xml and layed out by Graphviz\"\n')
-  graphviz_file.write('fontsize=12;\n')
+  graphviz_file.write('}\n')
 
 
 # ********** Begin translation among XMLs *******************
