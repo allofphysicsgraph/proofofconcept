@@ -47,6 +47,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <P>In this example, there are three expressions. Each expression is defined by a left-hand side, a relation operator (here "="), and a right-hand side. Two instances of the <a href="https://en.wikipedia.org/wiki/Equivalence_relation#Definition">Equivalence relation</a> relate the three expressions. These relations between expressions are called <a href="https://en.wikipedia.org/wiki/List_of_rules_of_inference">inference rules</a>. The generic form of the first inference rule used in the example is "multiply both sides of an expression by a quantity to yield a new expression." Similarly, the second inference rule is generically, "divide both sides of an expression by a quantity to yield a new expression."
 
+<P><?php include 'site/example_T_f_d3js.html';?></P>
+
 <P>Graph formats: <a href="site/example_T_f_csv.html">CSV</a>, <a href="site/example_T_f_networkx.html">Networkx</a>, <a href="site/example_T_f_mathematica.html">Mathematica</a>, <a href="site/example_T_f_graphml.html">GraphML</a>, <a href="site/example_T_f_dot.html">GraphViz</a>, <a href="site/example_T_f_json.html">JSON</a>, and <a href="site/example_T_f_tex.html">LaTeX</a>. </P>
 
 <P>Derivations used in Physics are mathematical expressions linked by a finite set of inference rules. From this observation, a few claims can be made.
