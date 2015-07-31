@@ -177,17 +177,9 @@ The number of levels can vary. For example, the <a href="http://hyperphysics.phy
 <P><BR>
 </P>
 
-<P>&nbsp;</P>
 
-<P>&nbsp;</P>
+<?php include 'footer.html';?>
 
-<P>&nbsp;</P>
-
-<P>&nbsp;</P>
-
-<P>This site and this project are covered by the GNU GENERAL PUBLIC LICENSE,  Version 2</P>
-
-<P>Last updated 20150709 by Ben</P>
   </td>
   <td>&nbsp;</td>
 </tr>

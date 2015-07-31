@@ -58,17 +58,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <P>No new research in math or physics is needed to validate these claims. This project documents the relations between derivations used to describe physical experiments.</P>
 
-<P>&nbsp;</P>
 
-<P>&nbsp;</P>
-
-<P>&nbsp;</P>
-
-<P>&nbsp;</P>
-
-<P>This site and this project are covered by the GNU GENERAL PUBLIC LICENSE,  Version 2</P>
-
-<P>Last updated 20150709 by Ben</P>
+<?php include 'footer.html';?>
   </td>
   <td>&nbsp;  </td>
 </tr>
