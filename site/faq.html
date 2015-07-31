@@ -1,5 +1,16 @@
 <html>
   <head>
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="jquery.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("footer.html"); 
+    });
+    </script> 
+  
     <title>Physics Derivation graph: Frequently Asked Questions</title>
   </head>
   <body bgcolor="#ffffff">
@@ -33,7 +44,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr>
   <td valign="top">
-  <?php include 'nav_bar.html';?>
+ <div id="includedNavContent"></div>
 
   
   </td>
@@ -162,24 +173,7 @@ The number of levels can vary. For example, the <a href="http://hyperphysics.phy
 -->
 
 
-<P><BR>
-</P>
-
-<P><BR>
-</P>
-
-<P><BR>
-</P>
-
-<P><BR>
-</P>
-
-<P><BR>
-</P>
-
-
-<?php include 'footer.html';?>
-
+<div id="includedFooterContent"></div>
   </td>
   <td>&nbsp;</td>
 </tr>

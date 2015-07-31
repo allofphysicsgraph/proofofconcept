@@ -1,5 +1,16 @@
 <html>
   <head>
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="jquery.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("footer.html"); 
+    });
+    </script> 
+  
     <title>Physics Derivation graph</title>
     <!--
     <META http-equiv="refresh" content="0;URL=http://allofphysicsgraph.github.io/proofofconcept/site/graph_from_scratch_15_with_links.html">
@@ -37,7 +48,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <tr>
   <td valign="top">
 
-  <?php include 'nav_bar.html';?>
+  <div id="includedNavContent"></div>
   </td>
   <td>&nbsp;</td>
   <td>
@@ -61,7 +72,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <P>No new research in math or physics is needed to validate these claims. This project documents the relations between derivations used to describe physical experiments.</P>
 
 
-<?php include 'footer.html';?>
+<div id="includedFooterContent"></div>
   </td>
   <td>&nbsp;  </td>
 </tr>
