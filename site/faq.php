@@ -33,23 +33,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr>
   <td valign="top">
-    <P><a href="https://github.com/allofphysicsgraph/proofofconcept">Get Source Code</a></P>
-    
-    <P><a href="https://github.com/allofphysicsgraph/proofofconcept/wiki">Project Wiki</a>
-    
-    <P><a href="https://github.com/allofphysicsgraph/proofofconcept/issues">Issues</a></P>
-    
-    <P><a href="faq.html">FAQ</a></P>
-    
-    <P><a href="list_of_experiments.html">Sandbox</a></P>
-    
-    <P><a href="team_bios.html">The Team</a></P>
-    
-    <P><a href="..">Home</a></P>
-    
-    <!--
-    <P><a href=""></a></P>
-    -->
+  <?php include 'nav_bar.html';?>
+
   
   </td>
   <td>&nbsp;</td>
