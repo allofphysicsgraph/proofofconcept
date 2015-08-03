@@ -25,11 +25,19 @@ import lib_physics_graph as physgraf
 #import easy to use xml parser called minidom:
 from xml.dom.minidom import parseString
 
+prompt_for_which_derivation=True
+if (len(sys.argv)>1):
+  input_list=sys.argv
+  print 'Number of arguments:', len(input_list), 'arguments.'
+  print 'Argument List:', input_list
+  which_derivation_to_make=input_list[1]
+  print("selected: "+which_derivation_to_make)
+  prompt_for_which_derivation=False
+
 # https://yaml-online-parser.appspot.com/
 input_stream=file('config.input','r')
 input_data=yaml.load(input_stream)
 extension=input_data["file_extension_string"]
-makeAllGraphs=input_data["makeAllGraphs_boolean"] # set to false if you want to make just one graph; then you also need to set which graph to make
   
 expr_pictures=lib_path+'/images_expression_'+extension
 infrule_pictures=lib_path+'/images_infrule_'+extension
@@ -43,17 +51,20 @@ connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connec
 #   expression (perm indx)
 #   infrule (temp indx)
 
-if (not makeAllGraphs):
-  name_of_set_to_make=physgraf.which_set(connections_list_of_dics)
-  connections_list_of_dics=physgraf.keep_only_this_derivation(name_of_set_to_make,connections_list_of_dics)
-  filename_with_labels="graph_"+name_of_set_to_make+"_with_labels"
-  filename_without_labels="graph_"+name_of_set_to_make+"_with_labels"
-else: # making all graphs
-  filename_with_labels='graph_all_with_labels'
-  filename_without_labels='graph_all_without_labels'
+if (prompt_for_which_derivation):
+  which_derivation_to_make=physgraf.which_set(connections_list_of_dics)
+which_derivation_to_make_no_spaces='_'.join(which_derivation_to_make.split(" "))
+if (which_derivation_to_make=='all'):
+  print("all")
+elif (which_derivation_to_make=='each'):
+  print("each")
+elif (which_derivation_to_make=='EXIT'):
+  print("exiting")
+  exit()
+else:
+  connections_list_of_dics=physgraf.keep_only_this_derivation(which_derivation_to_make,connections_list_of_dics)
 
-
-graphviz_file=open(output_path+'/connections_result.gv','w')
+graphviz_file=open(output_path+'/connections_'+which_derivation_to_make_no_spaces+'.gv','w')
 physgraf.write_header_graphviz(graphviz_file)
 
 set_of_feeds=physgraf.set_of_feeds_from_list_of_dics(connections_list_of_dics)
@@ -81,10 +92,7 @@ for connection_dic in connections_list_of_dics:
 
 physgraf.write_footer_graphviz(graphviz_file)
 graphviz_file.close()
-name_list=name_of_set_to_make.split(" ")
-which_connection_set='_'.join(name_list)
-physgraf.convert_graphviz_to_pictures(extension,\
-   output_path,makeAllGraphs,which_connection_set,\
-   filename_with_labels,filename_without_labels)
+physgraf.convert_graphviz_to_pictures(extension,output_path,which_derivation_to_make_no_spaces)
+
 
 # end of file 

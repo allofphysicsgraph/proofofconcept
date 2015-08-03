@@ -27,6 +27,16 @@ import lib_physics_graph as physgraf
 #import easy to use xml parser called minidom:
 from xml.dom.minidom import parseString
 
+prompt_for_which_derivation=True
+if (len(sys.argv)>1):
+  input_list=sys.argv
+  print 'Number of arguments:', len(input_list), 'arguments.'
+  print 'Argument List:', input_list
+  which_derivation_to_make=input_list[1]
+  print("selected: "+which_derivation_to_make)
+  prompt_for_which_derivation=False
+
+
 def get_image_size(path,filename):
   output = subprocess.check_output("file "+path+"/"+filename+".png", shell=True)
   matchObj=re.match( r'.*data, (\d+) x (\d+), .*', output, re.M|re.I)
@@ -36,11 +46,6 @@ def get_image_size(path,filename):
   img_size["img width"]=img_width
   img_size["img height"]=img_height
   return(img_size)
-
-# https://yaml-online-parser.appspot.com/
-input_stream=file('config.input','r')
-input_data=yaml.load(input_stream)
-makeAllGraphs=input_data["makeAllGraphs_boolean"] # set to false if you want to make just one graph; then you also need to set which graph to make
 
 expression_pictures_path=lib_path+'/images_expression_png'
 infrule_pictures_path   =lib_path+'/images_infrule_png'
@@ -54,17 +59,14 @@ connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connec
 #   expression (perm indx)
 #   infrule
 
-if (not makeAllGraphs):
-  name_of_set_to_make=physgraf.which_set(connections_list_of_dics)
-  name_list=name_of_set_to_make.split(" ")
-  which_connection_set='_'.join(name_list)
-  connections_list_of_dics=physgraf.keep_only_this_derivation(name_of_set_to_make,connections_list_of_dics)
-  outputfile=open(output_path+'/'+which_connection_set+'.json','w')
-  outputfile.write("{\"nodes\":[\n")
+if (prompt_for_which_derivation):
+  which_derivation_to_make=physgraf.which_set(connections_list_of_dics)
+which_derivation_to_make_no_spaces='_'.join(which_derivation_to_make.split(" "))
 
-else: # making all graphs
-  outputfile=open(output_path+'/full_graph.json','w')
-  outputfile.write("{\"nodes\":[\n")
+connections_list_of_dics=physgraf.keep_only_this_derivation(which_derivation_to_make,connections_list_of_dics)
+
+outputfile=open(output_path+'/'+which_derivation_to_make_no_spaces+'.json','w')
+outputfile.write("{\"nodes\":[\n")
 
 local_translation_dic={}
 node_indx=0

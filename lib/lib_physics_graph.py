@@ -107,7 +107,12 @@ def get_set_of_derivations(connections_list_of_dics):
 
 def which_set(connections_list_of_dics):
   set_of_derivations=get_set_of_derivations(connections_list_of_dics)
-  list_of_derivations=list(set_of_derivations)
+  list_of_derivations=[]
+  list_of_derivations.append("all")
+  list_of_derivations.append("each")
+  for this_deriv in list(set_of_derivations):
+    list_of_derivations.append(this_deriv)
+  list_of_derivations.append("EXIT")
   print(' ')
   # http://stackoverflow.com/questions/6410982/enumerate-items-in-a-list-so-a-user-can-select-the-numeric-value
   for item in enumerate(list_of_derivations):
@@ -233,14 +238,10 @@ def write_inputs_feeds(connector,infrule_name,feedsDB):
   return feed_array,input_label_array
 
 
-def convert_graphviz_to_pictures(extension,output_path,makeAllGraphs,which_connection_set,filename_with_labels,filename_without_labels):
+def convert_graphviz_to_pictures(extension,output_path,which_derivation_to_make_no_spaces):
   print('now generating graph pictures')
-  if (makeAllGraphs):
-    os.system('neato -T'+extension+' '+output_path+'/connections_result.gv > '+output_path+'/'+filename_with_labels+'.'+extension)
-    os.system('neato -T'+extension+' -Nlabel=\"\" '+output_path+'/connections_result.gv > '+output_path+'/'+filename_without_labels+'.'+extension)
-  else:
-    os.system('neato -T'+extension+' '+output_path+'/connections_result.gv > '+output_path+'/out_'+which_connection_set+'_with_labels.'+extension)
-    os.system('neato -T'+extension+' -Nlabel=\"\" '+output_path+'/connections_result.gv > '+output_path+'/out_'+which_connection_set+'_no_labels.'+extension)
+  os.system('neato -T'+extension+' '+output_path+'/connections_'+which_derivation_to_make_no_spaces+'.gv > '+output_path+'/graph_'+which_derivation_to_make_no_spaces+'_with_labels.'+extension)
+  os.system('neato -T'+extension+' -Nlabel=\"\" '+output_path+'/connections_'+which_derivation_to_make_no_spaces+'.gv > '+output_path+'/graph_'+which_derivation_to_make_no_spaces+'_without_labels.'+extension)
 #   print('done making picture')
 
 def parse_XML_file(file_name):
