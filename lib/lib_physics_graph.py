@@ -5,6 +5,7 @@
 import os.path
 import os
 import time
+import csv
 
 # http://stackoverflow.com/questions/6665725/parsing-xml-using-minidom
 #import easy to use xml parser called minidom:
@@ -29,19 +30,49 @@ def write_header_networkx(networkx_file):
 def write_header_graphviz(graphviz_file):
   todays_date=time.strftime("%Y%m%d")
   graphviz_file.write("# Graphviz\n")
-  graphviz_file.write("# "+todays_date+"\n")
+  graphviz_file.write("# date created: "+todays_date+"\n")
   graphviz_file.write("# Command to produce output:\n")
-  graphviz_file.write("# neato -Tsvg thisfile > out.svg\n")
+  graphviz_file.write("# neato -Tsvg thisfile.gv > out.svg\n")
   graphviz_file.write("# http://www.graphviz.org/Gallery/directed/traffic_lights.gv.txt\n")
   graphviz_file.write("# http://www.graphviz.org/content/traffic_lights\n")
   graphviz_file.write("digraph physicsEquations {\n")
+  graphviz_file.write('overlap=false;\n')
+  graphviz_file.write('label=\"Equation relations\\nExtracted from connections_database.xml and layed out by Graphviz\";\n')
+  graphviz_file.write('fontsize=12;\n')
 
 def write_footer_graphviz(graphviz_file):
-  graphviz_file.write('overlap=false\n')
-  graphviz_file.write('label=\"Equation relations\\nExtracted from connections_database.xml and layed out by Graphviz\"\n')
-  graphviz_file.write('fontsize=12;\n')
   graphviz_file.write('}\n')
 
+
+# ********** Begin translation among CSVs *******************
+
+def convert_connections_csv_to_list_of_dics(connectionsDB):
+  connections_list_of_dics=[]
+
+  with open(connectionsDB, 'rb') as csvfile:
+    reader = csv.reader(csvfile, delimiter=',', quotechar='"',skipinitialspace=True)
+    for row in reader:
+      this_line_dic={}
+#       print(row)
+#       print('-'.join(row))
+#       print(len(row))
+      if(len(row)==1): # skip empty lines
+        continue
+      elif(len(row)==8): # proper lines
+        this_line_dic["derivation name"]=row[0]
+        this_line_dic["step index"]     =row[1]
+        this_line_dic["from type"]      =row[2]
+        this_line_dic["from temp index"]=row[3]
+        this_line_dic["from perm index"]=row[4]
+        this_line_dic["to type"]        =row[5]
+        this_line_dic["to temp index"]  =row[6]
+        this_line_dic["to perm index"]  =row[7]
+      else:
+        print("error in "+connectionsDB)
+        print(len(row))
+        print(row)
+      connections_list_of_dics.append(this_line_dic)
+  return connections_list_of_dics
 
 # ********** Begin translation among XMLs *******************
 
@@ -151,6 +182,7 @@ def convert_graphviz_to_pictures(extension,output_path,makeAllGraphs,which_conne
   else:
     os.system('neato -T'+extension+' '+output_path+'/connections_result.gv > '+output_path+'/out_'+which_connection_set+'_with_labels.'+extension)
     os.system('neato -T'+extension+' -Nlabel=\"\" '+output_path+'/connections_result.gv > '+output_path+'/out_'+which_connection_set+'_no_labels.'+extension)
+#   print('done making picture')
 
 def parse_XML_file(file_name):
   file = open(file_name,'r')# open the xml file for reading

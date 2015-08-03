@@ -1,492 +1,492 @@
-"frequency relations",1, 2303943,declareInitialEq,3293094,5900595848
-"frequency relations",2, 0304948,declareInitialEq,3294004,0404050504
-"frequency relations",3, 8332941,declareInitialEq,0921465,3131211131
-"frequency relations",4, 8332941,declareInitialEq,8482459,3131111133
-"frequency relations",5, 8374556,3132131132,3832748,subRHSofEqXintoEqY
-"frequency relations",5, 3293094,5900595848,3832748,subRHSofEqXintoEqY
-"frequency relations",5, 3832748,subRHSofEqXintoEqY,8394853,0934990943
-"frequency relations",6, 3294004,0404050504,2939482,subRHSofEqXintoEqY
-"frequency relations",6, 8482459,3131111133,2939482,subRHSofEqXintoEqY
-"frequency relations",6, 2939482,subRHSofEqXintoEqY,3993940,1293923844
-"frequency relations",7, 8394853,0934990943,8946983,subRHSofEqXintoEqY
-"frequency relations",7, 3993940,1293923844,8946983,subRHSofEqXintoEqY
-"frequency relations",7, 8946983,subRHSofEqXintoEqY,2934848,3121513111
-"frequency relations",8, 5749291,0,6822583,multbothsidesby
-"frequency relations",8, 8482459,3131111133,6822583,multbothsidesby
-"frequency relations",8, 6822583,multbothsidesby,8341200,2131616531
-"frequency relations",9, 8837284,0,9483715,dividebothsidesby
-"frequency relations",9, 8341200,2131616531,9483715,dividebothsidesby
-"frequency relations",9, 9483715,dividebothsidesby,9380032,2113211456
-"frequency relations",10, 9380032,2113211456,9483843,subRHSofEqXintoEqY
-"frequency relations",10, 0921465,3131211131,9483843,subRHSofEqXintoEqY
-"frequency relations",10, 9483843,subRHSofEqXintoEqY,8374556,3132131132
-"frequency relations",11, 2934848,3121513111,8345721,declareFinalEq
-"quadratic equation derivation",1, 8494551,declareInitialEq,8882098,9285928292
-"quadratic equation derivation",2, 8494551,declareInitialEq,0909127,8582954722
-"quadratic equation derivation",3, 2424922,0,8492932,dividebothsidesby
-"quadratic equation derivation",3, 8882098,9285928292,8492932,dividebothsidesby
-"quadratic equation derivation",3, 8492932,dividebothsidesby,7777621,5958392859
-"quadratic equation derivation",4, 6644853,0,5829110,subtractXfromBothSides
-"quadratic equation derivation",4, 7777621,5958392859,5829110,subtractXfromBothSides
-"quadratic equation derivation",4, 5829110,subtractXfromBothSides,1212129,5938459282
-"quadratic equation derivation",5, 4307451,0,2500423,addXtoBothSides
-"quadratic equation derivation",5, 1212129,5938459282,2500423,addXtoBothSides
-"quadratic equation derivation",5, 2500423,addXtoBothSides,0000112,5928292841
-"quadratic equation derivation",6, 4858592,0,8321038,subXforY
-"quadratic equation derivation",6, 0999900,0,8321038,subXforY
-"quadratic equation derivation",6, 0909127,8582954722,8321038,subXforY
-"quadratic equation derivation",6, 8321038,subXforY,0123901,5928285821
-"quadratic equation derivation",7, 0123901,5928285821,7996484,simplify
-"quadratic equation derivation",7, 7996484,simplify,0173400,5959282914
-"quadratic equation derivation",8, 0000112,5928292841,7777777,LHSofEqXeqLHSofEqY
-"quadratic equation derivation",8, 0173400,5959282914,7777777,LHSofEqXeqLHSofEqY
-"quadratic equation derivation",8, 7777777,LHSofEqXeqLHSofEqY,2985412,9385938295
-"quadratic equation derivation",9, 2367209,0,7487443,raiseBothSidesToPower
-"quadratic equation derivation",9, 2985412,9385938295,7487443,raiseBothSidesToPower
-"quadratic equation derivation",9, 7487443,raiseBothSidesToPower,6608102,9582958294
-"quadratic equation derivation",9, 7487443,raiseBothSidesToPower,6608123,5982958249
-"quadratic equation derivation",10, 2838490,0,2200910,subtractXfromBothSides
-"quadratic equation derivation",10, 6608102,9582958294,2200910,subtractXfromBothSides
-"quadratic equation derivation",10, 2200910,subtractXfromBothSides,4433112,9582958293
-"quadratic equation derivation",11, 4433112,9582958293,2211910,simplify
-"quadratic equation derivation",11, 2211910,simplify,8761200,9999999969
-"quadratic equation derivation",12, 2449291,0,2200910,subtractXfromBothSides
-"quadratic equation derivation",12, 6608123,5982958249,2200910,subtractXfromBothSides
-"quadratic equation derivation",12, 2200910,subtractXfromBothSides,2657355,5982958248
-"quadratic equation derivation",13, 2657355,5982958248,2211910,simplify
-"quadratic equation derivation",13, 2211910,simplify,8811221,9999999968
-"quadratic equation derivation",14, 8761200,9999999969,8359402,declareFinalEq
-"quadratic equation derivation",15, 8811221,9999999968,8359402,declareFinalEq
-"euler equation proof",1, 7364656,declareInitialEq,1029383,9492920340
-"euler equation proof",2, 7636749,0,6463728,differentiateWRT
-"euler equation proof",2, 1029383,9492920340,6463728,differentiateWRT
-"euler equation proof",2, 6463728,differentiateWRT,0018383,9429829482
-"euler equation proof",3, 7563791,0,4614728,factorOutXfromRHS
-"euler equation proof",3, 0018383,9429829482,4614728,factorOutXfromRHS
-"euler equation proof",3, 4614728,factorOutXfromRHS,2948271,9482984922
-"euler equation proof",4, 2948271,9482984922,7466748,subRHSofEqXintoEqY
-"euler equation proof",4, 1029383,9492920340,7466748,subRHSofEqXintoEqY
-"euler equation proof",4, 7466748,subRHSofEqXintoEqY,9038289,9848294829
-"euler equation proof",5, 3954314,0,2741906,multbothsidesby
-"euler equation proof",5, 9038289,9848294829,2741906,multbothsidesby
-"euler equation proof",5, 2741906,multbothsidesby,1111289,9848292229
-"euler equation proof",6, 9877781,0,6466378,dividebothsidesby
-"euler equation proof",6, 1111289,9848292229,6466378,dividebothsidesby
-"euler equation proof",6, 6466378,dividebothsidesby,8883737,9482113948
-"euler equation proof",7, 4264724,0,1848471,indefIntRHSOver
-"euler equation proof",7, 8883737,9482113948,1848471,indefIntRHSOver
-"euler equation proof",7, 1848471,indefIntRHSOver,9984877,9482943948
-"euler equation proof",8, 6563727,0,6462728,indefIntRHSOver
-"euler equation proof",8, 9984877,9482943948,6462728,indefIntRHSOver
-"euler equation proof",8, 6462728,indefIntRHSOver,3747585,4928239482
-"euler equation proof",9, 3747585,4928239482,7563728,swapLHSwithRHS
-"euler equation proof",9, 7563728,swapLHSwithRHS,3784785,4923339482
-"euler equation proof",10, 6656532,0,1029890,makeEqPower
-"euler equation proof",10, 3784785,4923339482,1029890,makeEqPower
-"euler equation proof",10, 1029890,makeEqPower,9587572,9482923849
-"euler equation proof",11, 9587572,9482923849,7566272,subRHSofEqXintoEqY
-"euler equation proof",11, 1029383,9492920340,7566272,subRHSofEqXintoEqY
-"euler equation proof",11, 7566272,subRHSofEqXintoEqY,8888888,4938429483
-"euler equation proof",12, 8888888,4938429483,7561612,declareFinalEq
-"euler equation trig sqrt",1, 7663728,declareInitialEq,8888888,4938429483
-"euler equation trig sqrt",2, 4582412,0,6839583,subXforY
-"euler equation trig sqrt",2, 4089571,0,6839583,subXforY
-"euler equation trig sqrt",2, 8888888,4938429483,6839583,subXforY
-"euler equation trig sqrt",2, 6839583,subXforY,9999999,4838429483
-"euler equation trig sqrt",3, 9999999,4838429483,9582956,LHSofEqXeqLHSofEqY
-"euler equation trig sqrt",3, 4444444,4598294821,9582956,LHSofEqXeqLHSofEqY
-"euler equation trig sqrt",3, 9582956,LHSofEqXeqLHSofEqY,2222222,9483928192
-"euler equation trig sqrt",4, 8888888,4938429483,8492847,multEqXbyEqY
-"euler equation trig sqrt",4, 8888888,4938429483,8492847,multEqXbyEqY
-"euler equation trig sqrt",4, 8492847,multEqXbyEqY,3333333,4638429483
-"euler equation trig sqrt",5, 3333333,4638429483,5832058,expandRHS
-"euler equation trig sqrt",5, 5832058,expandRHS,4444444,4598294821
-"euler equation trig sqrt",6, 2222222,9483928192,8374590,selectRealParts
-"euler equation trig sqrt",6, 8374590,selectRealParts,5828294,9482928242
-"euler equation trig sqrt",7, 7894942,0,8374625,addXtoBothSides
-"euler equation trig sqrt",7, 5828294,9482928242,8374625,addXtoBothSides
-"euler equation trig sqrt",7, 8374625,addXtoBothSides,4890284,9482928243
-"euler equation trig sqrt",8, 3040493,declareIdentity,0938572,5832984291
-"euler equation trig sqrt",9, 1111111,0,0983243,subtractXfromBothSides
-"euler equation trig sqrt",9, 0938572,5832984291,0983243,subtractXfromBothSides
-"euler equation trig sqrt",9, 0983243,subtractXfromBothSides,0912367,3285732911
-"euler equation trig sqrt",10, 4890284,9482928243,3984721,swapLHSwithRHS
-"euler equation trig sqrt",10, 3984721,swapLHSwithRHS,0293655,9482438243
-"euler equation trig sqrt",11, 0912367,3285732911,9483240,LHSofEqXeqLHSofEqY
-"euler equation trig sqrt",11, 0293655,9482438243,9483240,LHSofEqXeqLHSofEqY
-"euler equation trig sqrt",11, 9483240,LHSofEqXeqLHSofEqY,0009481,4827492911
-"euler equation trig sqrt",12, 6466214,0,7563628,subtractXfromBothSides
-"euler equation trig sqrt",12, 0009481,4827492911,7563628,subtractXfromBothSides
-"euler equation trig sqrt",12, 7563628,subtractXfromBothSides,7472641,1248277773
-"euler equation trig sqrt",13, 7471778,0,7572728,addXtoBothSides
-"euler equation trig sqrt",13, 7472641,1248277773,7572728,addXtoBothSides
-"euler equation trig sqrt",13, 7572728,addXtoBothSides,1029911,7572664728
-"euler equation trig sqrt",14, 8842811,0,7566277,subtractXfromBothSides
-"euler equation trig sqrt",14, 1029911,7572664728,7566277,subtractXfromBothSides
-"euler equation trig sqrt",14, 7566277,subtractXfromBothSides,7472666,9889984281
-"euler equation trig sqrt",15, 3838111,0,3841414,dividebothsidesby
-"euler equation trig sqrt",15, 7472666,9889984281,3841414,dividebothsidesby
-"euler equation trig sqrt",15, 3841414,dividebothsidesby,1231131,9988949211
-"euler equation trig sqrt",16, 1231131,9988949211,1383414,declareFinalEq
-"example of Godel problem",1, 7566367,declareInitialEq,7572712,9829420421
-"example of Godel problem",2, 4647381,declareInitialEq,4738297,2948293829
-"example of Godel problem",3, 7572712,9829420421,8673948,LHSofEqXeqLHSofEqY
-"example of Godel problem",3, 4738297,2948293829,8673948,LHSofEqXeqLHSofEqY
-"example of Godel problem",3, 8673948,LHSofEqXeqLHSofEqY,2845892,4828238421
-"example of Godel problem",3, 8673948,LHSofEqXeqLHSofEqY,4627482,9482948292
-"example of Godel problem",4, 4738297,2948293829,8674920,swapLHSwithRHS
-"example of Godel problem",4, 8674920,swapLHSwithRHS,7572712,9829420421
-"particle in a 1D box",1, 8576627,declareInitialEq,7572748,5727578862
-"particle in a 1D box",2, 7572748,5727578862,1384011,declareGuessSolution
-"particle in a 1D box",2, 1384011,declareGuessSolution,7572118,8582885111
-"particle in a 1D box",3, 7572748,5727578862,8572771,boundaryCondition
-"particle in a 1D box",3, 8572771,boundaryCondition,8577781,9585727710
-"particle in a 1D box",4, 7572748,5727578862,8572778,boundaryCondition
-"particle in a 1D box",4, 8572778,boundaryCondition,8585727,9495857278
-"particle in a 1D box",5, 8577781,9585727710,8571277,LHSofEqXeqLHSofEqY
-"particle in a 1D box",5, 7572118,8582885111,8571277,LHSofEqXeqLHSofEqY
-"particle in a 1D box",5, 8571277,LHSofEqXeqLHSofEqY,7547581,8577275751
-"particle in a 1D box",6, 7547581,8577275751,8576571,simplify
-"particle in a 1D box",6, 8576571,simplify,7572859,1293913110
-"particle in a 1D box",7, 7572859,1293913110,8572265,subRHSofEqXintoEqY
-"particle in a 1D box",7, 7572118,8582885111,8572265,subRHSofEqXintoEqY
-"particle in a 1D box",7, 8572265,subRHSofEqXintoEqY,7562671,9059289981
-"particle in a 1D box",8, 7562671,9059289981,9686782,LHSofEqXeqLHSofEqY
-"particle in a 1D box",8, 8585727,9495857278,9686782,LHSofEqXeqLHSofEqY
-"particle in a 1D box",8, 9686782,LHSofEqXeqLHSofEqY,8577672,1020010291
-"particle in a 1D box",9, 8575717,declareIdentity,8577711,1857710291
-"particle in a 1D box",10, 8577672,1020010291,8575627,EqXisTrueUnderconditionEqY
-"particle in a 1D box",10, 8577711,1857710291,8575627,EqXisTrueUnderconditionEqY
-"particle in a 1D box",10, 8575627,EqXisTrueUnderconditionEqY,0098476,1010923823
-"particle in a 1D box",11, 1334112,0,9114413,dividebothsidesby
-"particle in a 1D box",11, 0098476,1010923823,9114413,dividebothsidesby
-"particle in a 1D box",11, 9114413,dividebothsidesby,9495882,1858772113
-"particle in a 1D box",12, 9495882,1858772113,8575761,subRHSofEqXintoEqY
-"particle in a 1D box",12, 7562671,9059289981,8575761,subRHSofEqXintoEqY
-"particle in a 1D box",12, 8575761,subRHSofEqXintoEqY,3452131,2944838499
-"particle in a 1D box",13, 4434559,normalizationCondition,7575626,1934748140
-"particle in a 1D box",14, 9587738,0,5751725,conjugateFunctionX
-"particle in a 1D box",14, 3452131,2944838499,5751725,conjugateFunctionX
-"particle in a 1D box",14, 5751725,conjugateFunctionX,3452132,8849289982
-"particle in a 1D box",15, 7575626,1934748140,4757567,swapLHSwithRHS
-"particle in a 1D box",15, 4757567,swapLHSwithRHS,5577567,8572657110
-"particle in a 1D box",16, 5656372,0,7455643,expandMagnitudeToConjugate
-"particle in a 1D box",16, 5577567,8572657110,7455643,expandMagnitudeToConjugate
-"particle in a 1D box",16, 7455643,expandMagnitudeToConjugate,0595847,4857472413
-"particle in a 1D box",17, 3452131,2944838499,4455453,subLHSofEqXintoEqY
-"particle in a 1D box",17, 0595847,4857472413,4455453,subLHSofEqXintoEqY
-"particle in a 1D box",17, 4455453,subLHSofEqXintoEqY,0495950,0203024440
-"particle in a 1D box",18, 3452132,8849289982,4948339,subLHSofEqXintoEqY
-"particle in a 1D box",18, 0495950,0203024440,4948339,subLHSofEqXintoEqY
-"particle in a 1D box",18, 4948339,subLHSofEqXintoEqY,8478550,8889444440
-"particle in a 1D box",19, 8485725,declareIdentity,1231131,9988949211
-"particle in a 1D box",20, 4934845,0,1003049,subXforY
-"particle in a 1D box",20, 9484724,0,1003049,subXforY
-"particle in a 1D box",20, 1231131,9988949211,1003049,subXforY
-"particle in a 1D box",20, 1003049,subXforY,0100404,7575738420
-"particle in a 1D box",21, 0100404,7575738420,8576741,subRHSofEqXintoEqY
-"particle in a 1D box",21, 8478550,8889444440,8576741,subRHSofEqXintoEqY
-"particle in a 1D box",21, 8576741,subRHSofEqXintoEqY,0094858,8576785890
-"particle in a 1D box",22, 0040490,0,0059403,dividebothsidesby
-"particle in a 1D box",22, 0094858,8576785890,0059403,dividebothsidesby
-"particle in a 1D box",22, 0059403,dividebothsidesby,0495054,9858028950
-"particle in a 1D box",23, 0495054,9858028950,3949284,expandIntegrand
-"particle in a 1D box",23, 3949284,expandIntegrand,0203020,1202310110
-"particle in a 1D box",24, 0030488,declareIdentity,3992939,0948572140
-"particle in a 1D box",25, 4831494,0,4485722,subXforY
-"particle in a 1D box",25, 9485858,0,4485722,subXforY
-"particle in a 1D box",25, 3992939,0948572140,4485722,subXforY
-"particle in a 1D box",25, 4485722,subXforY,4948377,7564894985
-"particle in a 1D box",26, 0030481,declareIdentity,0021030,5857434758
-"particle in a 1D box",27, 4948585,0,1911919,subXforY
-"particle in a 1D box",27, 2929944,0,1911919,subXforY
-"particle in a 1D box",27, 0021030,5857434758,1911919,subXforY
-"particle in a 1D box",27, 1911919,subXforY,9339495,8575746378
-"particle in a 1D box",28, 0203020,1202310110,3329831,EvaluateDefiniteIntegral
-"particle in a 1D box",28, 9339495,8575746378,3329831,EvaluateDefiniteIntegral
-"particle in a 1D box",28, 3329831,EvaluateDefiniteIntegral,8584733,1202312210
-"particle in a 1D box",29, 4948377,7564894985,8485747,EvaluateDefiniteIntegral
-"particle in a 1D box",29, 8584733,1202312210,8485747,EvaluateDefiniteIntegral
-"particle in a 1D box",29, 8485747,EvaluateDefiniteIntegral,0405049,0439492440
-"particle in a 1D box",30, 0405049,0439492440,8373472,simplify
-"particle in a 1D box",30, 8373472,simplify,9493949,4857475848
-"particle in a 1D box",31, 9485857,0,5859994,multbothsidesby
-"particle in a 1D box",31, 9493949,4857475848,5859994,multbothsidesby
-"particle in a 1D box",31, 5859994,multbothsidesby,1029384,8485867742
-"particle in a 1D box",32, 9594995,0,1293948,raiseBothSidesToPower
-"particle in a 1D box",32, 1029384,8485867742,1293948,raiseBothSidesToPower
-"particle in a 1D box",32, 1293948,raiseBothSidesToPower,9394857,9485747245
-"particle in a 1D box",32, 1293948,raiseBothSidesToPower,9394858,9485747246
-"particle in a 1D box",33, 9394857,9485747245,1384935,subLHSofEqXintoEqY
-"particle in a 1D box",33, 3452131,2944838499,1384935,subLHSofEqXintoEqY
-"particle in a 1D box",33, 1384935,subLHSofEqXintoEqY,8474766,9393939991
-"particle in a 1D box",34, 9394858,9485747246,3847567,subLHSofEqXintoEqY
-"particle in a 1D box",34, 3452131,2944838499,3847567,subLHSofEqXintoEqY
-"particle in a 1D box",34, 3847567,subLHSofEqXintoEqY,8474765,9393939992
-"particle in a 1D box",35, 8474765,9393939992,7474753,declareFinalEq
-"particle in a 1D box",36, 8474766,9393939991,7474753,declareFinalEq
-"particle in a 1D box",37, 7572118,8582885111,4757743,subRHSofEqXintoEqY
-"particle in a 1D box",37, 7572748,5727578862,4757743,subRHSofEqXintoEqY
-"particle in a 1D box",37, 4757743,subRHSofEqXintoEqY,2838288,8575748999
-"particle in a 1D box",38, 2838288,8575748999,2029394,simplify
-"particle in a 1D box",38, 2029394,simplify,8474762,8485757728
-"particle in a 1D box",39, 8474762,8485757728,9394948,simplify
-"particle in a 1D box",39, 9394948,simplify,1214762,8484544728
-"particle in a 1D box",40, 1214762,8484544728,7374289,claimLHSequalsRHS
-"maxwell to electric field wave equation",1, 2932848,declareInitialEq,1199299,1314864131
-"maxwell to electric field wave equation",2, 2932848,declareInitialEq,4757562,9991999979
-"maxwell to electric field wave equation",3, 5626421,0,1010301,partialDiffWRT
-"maxwell to electric field wave equation",3, 1199299,1314864131,1010301,partialDiffWRT
-"maxwell to electric field wave equation",3, 1010301,partialDiffWRT,4642245,1314464131
-"maxwell to electric field wave equation",4, 4757562,9991999979,4224853,takeCurlofBothSides
-"maxwell to electric field wave equation",4, 4224853,takeCurlofBothSides,2392932,9291999979
-"maxwell to electric field wave equation",5, 4642245,1314464131,1939442,subLHSofEqXintoEqY
-"maxwell to electric field wave equation",5, 2392932,9291999979,1939442,subLHSofEqXintoEqY
-"maxwell to electric field wave equation",5, 1939442,subLHSofEqXintoEqY,2962831,3947269979
-"maxwell to electric field wave equation",6, 2932848,declareInitialEq,4857731,9999999981
-"maxwell to electric field wave equation",7, 3837471,declareAssumption,3984852,9919999981
-"maxwell to electric field wave equation",8, 4857731,9999999981,5656372,subLHSofEqXintoEqY
-"maxwell to electric field wave equation",8, 3984852,9919999981,5656372,subLHSofEqXintoEqY
-"maxwell to electric field wave equation",8, 5656372,subLHSofEqXintoEqY,2837471,7466829492
-"maxwell to electric field wave equation",9, 3948572,declareIdentity,1939485,7575859295
-"maxwell to electric field wave equation",10, 2837471,7466829492,4655746,subLHSofEqXintoEqY
-"maxwell to electric field wave equation",10, 1939485,7575859295,4655746,subLHSofEqXintoEqY
-"maxwell to electric field wave equation",10, 4655746,subLHSofEqXintoEqY,3738373,1636453295
-"maxwell to electric field wave equation",11, 3738373,1636453295,3737384,subLHSofEqXintoEqY
-"maxwell to electric field wave equation",11, 2962831,3947269979,3737384,subLHSofEqXintoEqY
-"maxwell to electric field wave equation",11, 3737384,subLHSofEqXintoEqY,4758592,8494839423
-"maxwell to electric field wave equation",12, 4758592,8494839423,3948584,declareFinalEq
-"electric field wave equation time dependent to time independent",1, 8485758,declareInitialEq,4758592,8494839423
-"electric field wave equation time dependent to time independent",2, 8485758,declareInitialEq,9393848,8572852424
-"electric field wave equation time dependent to time independent",3, 4758592,8494839423,4585829,declareGuessSolution
-"electric field wave equation time dependent to time independent",3, 4585829,declareGuessSolution,3994928,9499428242
-"electric field wave equation time dependent to time independent",4, 9393848,8572852424,4858282,subLHSofEqXintoEqY
-"electric field wave equation time dependent to time independent",4, 4758592,8494839423,4858282,subLHSofEqXintoEqY
-"electric field wave equation time dependent to time independent",4, 4858282,subLHSofEqXintoEqY,3839493,9394939493
-"electric field wave equation time dependent to time independent",5, 3839493,9394939493,1002928,subLHSofEqXintoEqY
-"electric field wave equation time dependent to time independent",5, 3994928,9499428242,1002928,subLHSofEqXintoEqY
-"electric field wave equation time dependent to time independent",5, 1002928,subLHSofEqXintoEqY,1029393,2029293929
-"electric field wave equation time dependent to time independent",6, 3232242,0,2319391,differentiateWRT
-"electric field wave equation time dependent to time independent",6, 1029393,2029293929,2319391,differentiateWRT
-"electric field wave equation time dependent to time independent",6, 2319391,differentiateWRT,2939392,4985825552
-"electric field wave equation time dependent to time independent",7, 3232242,0,4955966,differentiateWRT
-"electric field wave equation time dependent to time independent",7, 2939392,4985825552,4955966,differentiateWRT
-"electric field wave equation time dependent to time independent",7, 4955966,differentiateWRT,4958573,1858578388
-"electric field wave equation time dependent to time independent",8, 8485758,declareInitialEq,4949582,4585828572
-"electric field wave equation time dependent to time independent",9, 4585828,0,5839535,subXforY
-"electric field wave equation time dependent to time independent",9, 4949582,0,5839535,subXforY
-"electric field wave equation time dependent to time independent",9, 4958573,1858578388,5839535,subXforY
-"electric field wave equation time dependent to time independent",9, 5839535,subXforY,9495903,9485384858
-"electric field wave equation time dependent to time independent",10, 9495903,9485384858,4958883,simplify
-"electric field wave equation time dependent to time independent",10, 4958883,simplify,3949492,3485475729
-"electric field wave equation time dependent to time independent",11, 3949492,3485475729,5495827,declareFinalEq
-"euler equation trig relations",1, 7473895,declareInitialEq,8888888,4938429483
-"euler equation trig relations",2, 2393922,0,3848927,subXforY
-"euler equation trig relations",2, 3949052,0,3848927,subXforY
-"euler equation trig relations",2, 8888888,4938429483,3848927,subXforY
-"euler equation trig relations",2, 3848927,subXforY,8888881,2394853829
-"euler equation trig relations",3, 3949482,0,9595949,functionIsEven
-"euler equation trig relations",3, 4849392,0,9595949,functionIsEven
-"euler equation trig relations",3, 1030901,0,9595949,functionIsEven
-"euler equation trig relations",3, 8888881,2394853829,9595949,functionIsEven
-"euler equation trig relations",3, 9595949,functionIsEven,8888882,4938429482
-"euler equation trig relations",4, 2919191,0,4747288,functionIsOdd
-"euler equation trig relations",4, 3919391,0,4747288,functionIsOdd
-"euler equation trig relations",4, 3981813,0,4747288,functionIsOdd
-"euler equation trig relations",4, 8888882,4938429482,4747288,functionIsOdd
-"euler equation trig relations",4, 4747288,functionIsOdd,8888883,4938429484
-"euler equation trig relations",5, 8888888,4938429483,3848592,addEqXtoEqY
-"euler equation trig relations",5, 8888883,4938429484,3848592,addEqXtoEqY
-"euler equation trig relations",5, 3848592,addEqXtoEqY,2939484,4742644828
-"euler equation trig relations",6, 4829194,0,1928392,dividebothsidesby
-"euler equation trig relations",6, 2939484,4742644828,1928392,dividebothsidesby
-"euler equation trig relations",6, 1928392,dividebothsidesby,4383592,3829492824
-"euler equation trig relations",7, 4383592,3829492824,2949492,swapLHSwithRHS
-"euler equation trig relations",7, 2949492,swapLHSwithRHS,4849888,4585932229
-"euler equation trig relations",8, 4849888,4585932229,2384942,declareFinalEq
-"euler equation trig relations",9, 3747849,0,3848924,multbothsidesby
-"euler equation trig relations",9, 8888883,4938429484,3848924,multbothsidesby
-"euler equation trig relations",9, 3848924,multbothsidesby,3194924,2123139121
-"euler equation trig relations",10, 8888888,4938429483,2939404,addEqXtoEqY
-"euler equation trig relations",10, 3194924,2123139121,2939404,addEqXtoEqY
-"euler equation trig relations",10, 2939404,addEqXtoEqY,4825483,3942849294
-"euler equation trig relations",11, 1921933,0,2849492,dividebothsidesby
-"euler equation trig relations",11, 4825483,3942849294,2849492,dividebothsidesby
-"euler equation trig relations",11, 2849492,dividebothsidesby,1133483,4843995999
-"euler equation trig relations",12, 1133483,4843995999,4294921,swapLHSwithRHS
-"euler equation trig relations",12, 4294921,swapLHSwithRHS,4849959,2103023049
-"euler equation trig relations",13, 4849959,2103023049,2384942,declareFinalEq
-"integration by parts",1, 4952082,declareIdentity,3494854,8489593958
-"integration by parts",2, 9492929,0,4842942,subtractXfromBothSides
-"integration by parts",2, 3494854,8489593958,4842942,subtractXfromBothSides
-"integration by parts",2, 4842942,subtractXfromBothSides,2938188,8489593960
-"integration by parts",3, 2938188,8489593960,4848592,swapLHSwithRHS
-"integration by parts",3, 4848592,swapLHSwithRHS,2938190,8489593962
-"integration by parts",4, 2938190,8489593962,8483953,indefIntegration
-"integration by parts",4, 8483953,indefIntegration,3848329,8489593964
-"integration by parts",5, 3848329,8489593964,2839422,declareFinalEq
-"curl curl identity",1, 3948572,declareIdentity,1939485,7575859295
-"curl curl identity",2, 1939485,7575859295,2339482,ReplaceCurlWithLeviCevitaSummationContravariant
-"curl curl identity",2, 2339482,ReplaceCurlWithLeviCevitaSummationContravariant,9485482,7575859300
-"curl curl identity",3, 9485482,7575859300,3948552,ReplaceCurlWithLeviCevitaSummationContravariant
-"curl curl identity",3, 3948552,ReplaceCurlWithLeviCevitaSummationContravariant,2941319,7575859302
-"curl curl identity",4, 4295822,declareIdentity,2934842,7575859304
-"curl curl identity",5, 2934842,7575859304,2930454,subRHSofEqXintoEqY
-"curl curl identity",5, 2941319,7575859302,2930454,subRHSofEqXintoEqY
-"curl curl identity",5, 2930454,subRHSofEqXintoEqY,3949292,7575859306
-"curl curl identity",6, 3949292,7575859306,3848292,simplify
-"curl curl identity",6, 3848292,simplify,3844221,7575859308
-"curl curl identity",7, 3844221,7575859308,3838233,simplify
-"curl curl identity",7, 3838233,simplify,3948472,7575859310
-"curl curl identity",8, 3948472,7575859310,1393411,ReplaceSummationNotationWithVectorNotation
-"curl curl identity",8, 1393411,ReplaceSummationNotationWithVectorNotation,2109231,7575859312
-"curl curl identity",9, 2109231,7575859312,3949211,claimLHSequalsRHS
-"derivation of Schrodinger Eq",1, 1204921,declareInitialEq,2934848,3121513111
-"derivation of Schrodinger Eq",2, 2919311,declareInitialEq,0921465,3131211131
-"derivation of Schrodinger Eq",3, 1294844,declareInitialEq,2949002,9999999960
-"derivation of Schrodinger Eq",4, 9394842,declareInitialEq,1203491,1020394900
-"derivation of Schrodinger Eq",5, 3934948,declareInitialEq,3499522,1020394902
-"derivation of Schrodinger Eq",6, 2940021,0,3949482,dividebothsidesby
-"derivation of Schrodinger Eq",6, 0921465,3131211131,3949482,dividebothsidesby
-"derivation of Schrodinger Eq",6, 3949482,dividebothsidesby,2939402,3147472131
-"derivation of Schrodinger Eq",7, 2939402,3147472131,1294945,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",7, 3499522,1020394902,1294945,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",7, 1294945,subRHSofEqXintoEqY,2949821,4147472132
-"derivation of Schrodinger Eq",8, 2949002,9999999960,2930492,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",8, 2949821,4147472132,2930492,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",8, 2930492,subRHSofEqXintoEqY,3741728,9999999965
-"derivation of Schrodinger Eq",9, 3949921,0,3919384,dividebothsidesby
-"derivation of Schrodinger Eq",9, 3741728,9999999965,3919384,dividebothsidesby
-"derivation of Schrodinger Eq",9, 3919384,dividebothsidesby,4499582,9999999961
-"derivation of Schrodinger Eq",10, 1209482,0,2900428,dividebothsidesby
-"derivation of Schrodinger Eq",10, 2934848,3121513111,2900428,dividebothsidesby
-"derivation of Schrodinger Eq",10, 2900428,dividebothsidesby,1039485,3121234211
-"derivation of Schrodinger Eq",11, 1039485,3121234211,1204945,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",11, 1203491,1020394900,1204945,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",11, 1204945,subRHSofEqXintoEqY,2901049,3121234212
-"derivation of Schrodinger Eq",12, 2949002,9999999960,2939400,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",12, 2901049,3121234212,2939400,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",12, 2939400,subRHSofEqXintoEqY,1039013,9999999962
-"derivation of Schrodinger Eq",13, 1304952,0,2030624,dividebothsidesby
-"derivation of Schrodinger Eq",13, 1039013,9999999962,2030624,dividebothsidesby
-"derivation of Schrodinger Eq",13, 2030624,dividebothsidesby,4948325,9999999870
-"derivation of Schrodinger Eq",14, 4948325,9999999870,1039774,replaceScalarWithVector
-"derivation of Schrodinger Eq",14, 1039774,replaceScalarWithVector,2948487,9999998870
-"derivation of Schrodinger Eq",15, 1923945,declareInitialEq,3940505,3948574224
-"derivation of Schrodinger Eq",16, 2948487,9999998870,2938341,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",16, 3940505,3948574224,2938341,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",16, 2938341,subRHSofEqXintoEqY,2100421,3948574226
-"derivation of Schrodinger Eq",17, 4499582,9999999961,0012031,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",17, 2100421,3948574226,0012031,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",17, 0012031,subRHSofEqXintoEqY,1291313,3948574228
-"derivation of Schrodinger Eq",18, 1291313,3948574228,1341141,simplify
-"derivation of Schrodinger Eq",18, 1341141,simplify,1305534,3948574230
-"derivation of Schrodinger Eq",19, 1204929,declareInitialEq,1039948,1029039903
-"derivation of Schrodinger Eq",20, 1395335,declareInitialEq,1353583,4298359835
-"derivation of Schrodinger Eq",21, 2239424,0,2422434,raiseBothSidesToPower
-"derivation of Schrodinger Eq",21, 1039948,1029039903,2422434,raiseBothSidesToPower
-"derivation of Schrodinger Eq",21, 2422434,raiseBothSidesToPower,1432042,1029039904
-"derivation of Schrodinger Eq",22, 2342425,0,2322434,multRHSbyUnity
-"derivation of Schrodinger Eq",22, 1353583,4298359835,2322434,multRHSbyUnity
-"derivation of Schrodinger Eq",22, 2322434,multRHSbyUnity,2326309,4298359845
-"derivation of Schrodinger Eq",23, 1432042,1029039904,2449858,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",23, 2326309,4298359845,2449858,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",23, 2449858,subRHSofEqXintoEqY,3576787,4298359851
-"derivation of Schrodinger Eq",24, 6544644,0,1347587,partialDiffWRT
-"derivation of Schrodinger Eq",24, 1305534,3948574230,1347587,partialDiffWRT
-"derivation of Schrodinger Eq",24, 1347587,partialDiffWRT,2364546,3948574233
-"derivation of Schrodinger Eq",25, 1305534,3948574230,2464445,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",25, 2364546,3948574233,2464445,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",25, 2464445,subRHSofEqXintoEqY,5345567,3948571256
-"derivation of Schrodinger Eq",26, 3576787,4298359851,3454353,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",26, 5345567,3948571256,3454353,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",26, 3454353,subRHSofEqXintoEqY,2495835,4348571256
-"derivation of Schrodinger Eq",27, 2436656,0,4358635,multbothsidesby
-"derivation of Schrodinger Eq",27, 2495835,4348571256,4358635,multbothsidesby
-"derivation of Schrodinger Eq",27, 4358635,multbothsidesby,3429538,4341171256
-"derivation of Schrodinger Eq",28, 1305534,3948574230,2454535,applyGradientToScalarFunction
-"derivation of Schrodinger Eq",28, 2454535,applyGradientToScalarFunction,5577584,3948572230
-"derivation of Schrodinger Eq",29, 5577584,3948574230,5858694,simplify
-"derivation of Schrodinger Eq",29, 5858694,simplify,3454565,4943571230
-"derivation of Schrodinger Eq",30, 3454565,4943571230,5354635,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",30, 1305534,3948574230,5354635,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",30, 5354635,subRHSofEqXintoEqY,5535257,5985371230
-"derivation of Schrodinger Eq",31, 5535257,5985371230,3294932,applyDivergence
-"derivation of Schrodinger Eq",31, 3294932,applyDivergence,4938589,4394958389
-"derivation of Schrodinger Eq",32, 4938589,4394958389,2394495,simplify
-"derivation of Schrodinger Eq",32, 2394495,simplify,1495034,1648958381
-"derivation of Schrodinger Eq",33, 5535257,5985371230,4059592,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",33, 1495034,1648958381,4059592,subRHSofEqXintoEqY
-"derivation of Schrodinger Eq",33, 4059592,subRHSofEqXintoEqY,1049553,2648958382
-"derivation of Schrodinger Eq",34, 1049553,2648958382,4305953,simplify
-"derivation of Schrodinger Eq",34, 4305953,simplify,4959593,2395958385
-"derivation of Schrodinger Eq",35, 5938585,0,4939459,multbothsidesby
-"derivation of Schrodinger Eq",35, 4959593,2395958385,4939459,multbothsidesby
-"derivation of Schrodinger Eq",35, 4939459,multbothsidesby,4349493,5868688585
-"derivation of Schrodinger Eq",36, 4349493,5868688585,9394834,LHSofEqXeqLHSofEqY
-"derivation of Schrodinger Eq",36, 3429538,4341171256,9394834,LHSofEqXeqLHSofEqY
-"derivation of Schrodinger Eq",36, 9394834,LHSofEqXeqLHSofEqY,1304924,9958485859
-"derivation of Schrodinger Eq",37, 2455452,declareInitialEq,2344324,1158485859
-"derivation of Schrodinger Eq",38, 2344324,1158485859,2954835,subLHSofEqXintoEqY
-"derivation of Schrodinger Eq",38, 1304924,9958485859,2954835,subLHSofEqXintoEqY
-"derivation of Schrodinger Eq",38, 2954835,subLHSofEqXintoEqY,2456546,2258485859
-"derivation of Schrodinger Eq",39, 2456546,2258485859,6756574,declareFinalEq
-"quantum basics orthogonality",1, 2455366,declareInitialEq,3849595,9596004948
-"quantum basics orthogonality",2, 3849595,9596004948,3848591,applyOperatorToKet
-"quantum basics orthogonality",2, 3848591,applyOperatorToKet,4940359,1010393944
-"quantum basics orthogonality",3, 3849595,9596004948,1301442,applyOperatorToBra
-"quantum basics orthogonality",3, 1301442,applyOperatorToBra,4349300,1395858355
-"quantum basics orthogonality",4, 4940359,1010393944,2304934,simplify
-"quantum basics orthogonality",4, 2304934,simplify,2409402,2394240499
-"quantum basics orthogonality",5, 4349300,1395858355,0049384,simplify
-"quantum basics orthogonality",5, 0049384,simplify,4934893,3943939590
-"quantum basics orthogonality",6, 2409402,2394240499,0987890,LHSofEqXeqLHSofEqY
-"quantum basics orthogonality",6, 4934893,3943939590,0987890,LHSofEqXeqLHSofEqY
-"quantum basics orthogonality",6, 0987890,LHSofEqXeqLHSofEqY,3495045,1203938249
-"quantum basics orthogonality",7, 5395034,0,4838499,subtractXfromBothSides
-"quantum basics orthogonality",7, 3495045,1203938249,4838499,subtractXfromBothSides
-"quantum basics orthogonality",7, 4838499,subtractXfromBothSides,4939583,3924948349
-"quantum basics orthogonality",8, 4939583,3924948349,0988873,combineLikeTerms
-"quantum basics orthogonality",8, 0988873,combineLikeTerms,3494855,2394935831
-"quantum basics orthogonality",9, 3494855,2394935831,2384852,declareFinalEq
-"quantum basics Hermitian operators have realvalued observables",1, 3403595,declareInitialEq,3402919,9999999975
-"quantum basics Hermitian operators have realvalued observables",2, 3402919,9999999975,9538385,conjugateTransposeBothSides
-"quantum basics Hermitian operators have realvalued observables",2, 9538385,conjugateTransposeBothSides,2495954,2394935835
-"quantum basics Hermitian operators have realvalued observables",3, 2495954,2394935835,2394942,distributeConjugateTransposeToFactors
-"quantum basics Hermitian operators have realvalued observables",3, 2394942,distributeConjugateTransposeToFactors,2390094,1010393913
-"quantum basics Hermitian operators have realvalued observables",4, 1294984,declareAssumption,2484892,9294858532
-"quantum basics Hermitian operators have realvalued observables",5, 2484892,9294858532,2485909,subRHSofEqXintoEqY
-"quantum basics Hermitian operators have realvalued observables",5, 2390094,1010393913,2485909,subRHSofEqXintoEqY
-"quantum basics Hermitian operators have realvalued observables",5, 2485909,subRHSofEqXintoEqY,2494040,4948934890
-"quantum basics Hermitian operators have realvalued observables",6, 2494040,4948934890,2490098,subRHSofEqXintoEqY
-"quantum basics Hermitian operators have realvalued observables",6, 3402919,9999999975,2490098,subRHSofEqXintoEqY
-"quantum basics Hermitian operators have realvalued observables",6, 2490098,subRHSofEqXintoEqY,4930585,2848934890
-"quantum basics Hermitian operators have realvalued observables",7, 4930585,2848934890,2939493,declareFinalEq
-"variance relation",1, 2004989,declareIdentity,3493498,3585845894
-"variance relation",2, 3493498,3585845894,2349059,simplify
-"variance relation",2, 2349059,simplify,0504953,8399484849
-"variance relation",3, 0504953,8399484849,2390498,simplify
-"variance relation",3, 2390498,simplify,6757584,2404934990
-"variance relation",4, 6757584,2404934990,3848494,simplify
-"variance relation",4, 3848494,simplify,3294824,4949359835
-"variance relation",5, 3294824,4949359835,4948384,simplify
-"variance relation",5, 4948384,simplify,5949484,2494533900
-"variance relation",6, 5949484,2494533900,4948955,claimLHSequalsRHS
-"Comptons equation for scattering",1, 8668018,declareInitialEq,4978059,1638282134
-"Comptons equation for scattering",2, 3445641,declareInitialEq,2840008,8257621077
-"Comptons equation for scattering",3, 4733986,declareInitialEq,1209604,8311458118
-"Comptons equation for scattering",4, 4978059,1638282134,7958085,subLHSofEqXintoEqY
-"Comptons equation for scattering",4, 2840008,8257621077,7958085,subLHSofEqXintoEqY
-"Comptons equation for scattering",4, 7958085,subLHSofEqXintoEqY,2491904,3951205425
-"Comptons equation for scattering",5, 1209604,8311458118,3667395,subLHSofEqXintoEqY
-"Comptons equation for scattering",5, 2491904,3951205425,3667395,subLHSofEqXintoEqY
-"Comptons equation for scattering",5, 3667395,subLHSofEqXintoEqY,5610925,8139187332
-"Comptons equation for scattering",6, 2338514,0,7952658,subtractXfromBothSides
-"Comptons equation for scattering",6, 5610925,8139187332,7952658,subtractXfromBothSides
-"Comptons equation for scattering",6, 7952658,subtractXfromBothSides,4068150,5530148480
-"Comptons equation for scattering",7, 4068150,5530148480,3871228,swapLHSwithRHS
-"Comptons equation for scattering",7, 3871228,swapLHSwithRHS,4200334,7917051060
-"Comptons equation for scattering",8, 4200334,7917051060,4738354,multEqXbyEqY
-"Comptons equation for scattering",8, 4200334,7917051060,4738354,multEqXbyEqY
-"Comptons equation for scattering",8, 4738354,multEqXbyEqY,4218805,6742123016
+"frequency relations",1, "infrule",2303943,declareInitialEq,"expression",3293094,5900595848
+"frequency relations",2, "infrule",0304948,declareInitialEq,"expression",3294004,0404050504
+"frequency relations",3, "infrule",8332941,declareInitialEq,"expression",0921465,3131211131
+"frequency relations",4, "infrule",8332941,declareInitialEq,"expression",8482459,3131111133
+"frequency relations",5, "expression",8374556,3132131132,"infrule",3832748,subRHSofEqXintoEqY
+"frequency relations",5, "expression",3293094,5900595848,"infrule",3832748,subRHSofEqXintoEqY
+"frequency relations",5, "infrule",3832748,subRHSofEqXintoEqY,"expression",8394853,0934990943
+"frequency relations",6, "expression",3294004,0404050504,"infrule",2939482,subRHSofEqXintoEqY
+"frequency relations",6, "expression",8482459,3131111133,"infrule",2939482,subRHSofEqXintoEqY
+"frequency relations",6, "infrule",2939482,subRHSofEqXintoEqY,"expression",3993940,1293923844
+"frequency relations",7, "expression",8394853,0934990943,"infrule",8946983,subRHSofEqXintoEqY
+"frequency relations",7, "expression",3993940,1293923844,"infrule",8946983,subRHSofEqXintoEqY
+"frequency relations",7, "infrule",8946983,subRHSofEqXintoEqY,"expression",2934848,3121513111
+"frequency relations",8, "feed",5749291,0,"infrule",6822583,multbothsidesby
+"frequency relations",8, "expression",8482459,3131111133,"infrule",6822583,multbothsidesby
+"frequency relations",8, "infrule",6822583,multbothsidesby,"expression",8341200,2131616531
+"frequency relations",9, "feed",8837284,0,"infrule",9483715,dividebothsidesby
+"frequency relations",9, "expression",8341200,2131616531,"infrule",9483715,dividebothsidesby
+"frequency relations",9, "infrule",9483715,dividebothsidesby,"expression",9380032,2113211456
+"frequency relations",10, "expression",9380032,2113211456,"infrule",9483843,subRHSofEqXintoEqY
+"frequency relations",10, "expression",0921465,3131211131,"infrule",9483843,subRHSofEqXintoEqY
+"frequency relations",10, "infrule",9483843,subRHSofEqXintoEqY,"expression",8374556,3132131132
+"frequency relations",11, "expression",2934848,3121513111,"infrule",8345721,declareFinalEq
+"quadratic equation derivation",1, "infrule",8494551,declareInitialEq,"expression",8882098,9285928292
+"quadratic equation derivation",2, "infrule",8494551,declareInitialEq,"expression",0909127,8582954722
+"quadratic equation derivation",3, "feed",2424922,0,"infrule",8492932,dividebothsidesby
+"quadratic equation derivation",3, "expression",8882098,9285928292,"infrule",8492932,dividebothsidesby
+"quadratic equation derivation",3, "infrule",8492932,dividebothsidesby,"expression",7777621,5958392859
+"quadratic equation derivation",4, "feed",6644853,0,"infrule",5829110,subtractXfromBothSides
+"quadratic equation derivation",4, "expression",7777621,5958392859,"infrule",5829110,subtractXfromBothSides
+"quadratic equation derivation",4, "infrule",5829110,subtractXfromBothSides,"expression",1212129,5938459282
+"quadratic equation derivation",5, "feed",4307451,0,"infrule",2500423,addXtoBothSides
+"quadratic equation derivation",5, "expression",1212129,5938459282,"infrule",2500423,addXtoBothSides
+"quadratic equation derivation",5, "infrule",2500423,addXtoBothSides,"expression",0000112,5928292841
+"quadratic equation derivation",6, "feed",4858592,0,"infrule",8321038,subXforY
+"quadratic equation derivation",6, "feed",0999900,0,"infrule",8321038,subXforY
+"quadratic equation derivation",6, "expression",0909127,8582954722,"infrule",8321038,subXforY
+"quadratic equation derivation",6, "infrule",8321038,subXforY,"expression",0123901,5928285821
+"quadratic equation derivation",7, "expression",0123901,5928285821,"infrule",7996484,simplify
+"quadratic equation derivation",7, "infrule",7996484,simplify,"expression",0173400,5959282914
+"quadratic equation derivation",8, "expression",0000112,5928292841,"infrule",7777777,LHSofEqXeqLHSofEqY
+"quadratic equation derivation",8, "expression",0173400,5959282914,"infrule",7777777,LHSofEqXeqLHSofEqY
+"quadratic equation derivation",8, "infrule",7777777,LHSofEqXeqLHSofEqY,"expression",2985412,9385938295
+"quadratic equation derivation",9, "feed",2367209,0,"infrule",7487443,raiseBothSidesToPower
+"quadratic equation derivation",9, "expression",2985412,9385938295,"infrule",7487443,raiseBothSidesToPower
+"quadratic equation derivation",9, "infrule",7487443,raiseBothSidesToPower,"expression",6608102,9582958294
+"quadratic equation derivation",9, "infrule",7487443,raiseBothSidesToPower,"expression",6608123,5982958249
+"quadratic equation derivation",10, "feed",2838490,0,"infrule",2200910,subtractXfromBothSides
+"quadratic equation derivation",10, "expression",6608102,9582958294,"infrule",2200910,subtractXfromBothSides
+"quadratic equation derivation",10, "infrule",2200910,subtractXfromBothSides,"expression",4433112,9582958293
+"quadratic equation derivation",11, "expression",4433112,9582958293,"infrule",2211910,simplify
+"quadratic equation derivation",11, "infrule",2211910,simplify,"expression",8761200,9999999969
+"quadratic equation derivation",12, "feed",2449291,0,"infrule",2200910,subtractXfromBothSides
+"quadratic equation derivation",12, "expression",6608123,5982958249,"infrule",2200910,subtractXfromBothSides
+"quadratic equation derivation",12, "infrule",2200910,subtractXfromBothSides,"expression",2657355,5982958248
+"quadratic equation derivation",13, "expression",2657355,5982958248,"infrule",2211910,simplify
+"quadratic equation derivation",13, "infrule",2211910,simplify,"expression",8811221,9999999968
+"quadratic equation derivation",14, "expression",8761200,9999999969,"infrule",8359402,declareFinalEq
+"quadratic equation derivation",15, "expression",8811221,9999999968,"infrule",8359402,declareFinalEq
+"euler equation proof",1, "infrule",7364656,declareInitialEq,"expression",1029383,9492920340
+"euler equation proof",2, "feed",7636749,0,"infrule",6463728,differentiateWRT
+"euler equation proof",2, "expression",1029383,9492920340,"infrule",6463728,differentiateWRT
+"euler equation proof",2, "infrule",6463728,differentiateWRT,"expression",0018383,9429829482
+"euler equation proof",3, "feed",7563791,0,"infrule",4614728,factorOutXfromRHS
+"euler equation proof",3, "expression",0018383,9429829482,"infrule",4614728,factorOutXfromRHS
+"euler equation proof",3, "infrule",4614728,factorOutXfromRHS,"expression",2948271,9482984922
+"euler equation proof",4, "expression",2948271,9482984922,"infrule",7466748,subRHSofEqXintoEqY
+"euler equation proof",4, "expression",1029383,9492920340,"infrule",7466748,subRHSofEqXintoEqY
+"euler equation proof",4, "infrule",7466748,subRHSofEqXintoEqY,"expression",9038289,9848294829
+"euler equation proof",5, "feed",3954314,0,"infrule",2741906,multbothsidesby
+"euler equation proof",5, "expression",9038289,9848294829,"infrule",2741906,multbothsidesby
+"euler equation proof",5, "infrule",2741906,multbothsidesby,"expression",1111289,9848292229
+"euler equation proof",6, "feed",9877781,0,"infrule",6466378,dividebothsidesby
+"euler equation proof",6, "expression",1111289,9848292229,"infrule",6466378,dividebothsidesby
+"euler equation proof",6, "infrule",6466378,dividebothsidesby,"expression",8883737,9482113948
+"euler equation proof",7, "feed",4264724,0,"infrule",1848471,indefIntRHSOver
+"euler equation proof",7, "expression",8883737,9482113948,"infrule",1848471,indefIntRHSOver
+"euler equation proof",7, "infrule",1848471,indefIntRHSOver,"expression",9984877,9482943948
+"euler equation proof",8, "feed",6563727,0,"infrule",6462728,indefIntRHSOver
+"euler equation proof",8, "expression",9984877,9482943948,"infrule",6462728,indefIntRHSOver
+"euler equation proof",8, "infrule",6462728,indefIntRHSOver,"expression",3747585,4928239482
+"euler equation proof",9, "expression",3747585,4928239482,"infrule",7563728,swapLHSwithRHS
+"euler equation proof",9, "infrule",7563728,swapLHSwithRHS,"expression",3784785,4923339482
+"euler equation proof",10, "feed",6656532,0,"infrule",1029890,makeEqPower
+"euler equation proof",10, "expression",3784785,4923339482,"infrule",1029890,makeEqPower
+"euler equation proof",10, "infrule",1029890,makeEqPower,"expression",9587572,9482923849
+"euler equation proof",11, "expression",9587572,9482923849,"infrule",7566272,subRHSofEqXintoEqY
+"euler equation proof",11, "expression",1029383,9492920340,"infrule",7566272,subRHSofEqXintoEqY
+"euler equation proof",11, "infrule",7566272,subRHSofEqXintoEqY,"expression",8888888,4938429483
+"euler equation proof",12, "expression",8888888,4938429483,"infrule",7561612,declareFinalEq
+"euler equation trig sqrt",1, "infrule",7663728,declareInitialEq,"expression",8888888,4938429483
+"euler equation trig sqrt",2, "feed",4582412,0,"infrule",6839583,subXforY
+"euler equation trig sqrt",2, "feed",4089571,0,"infrule",6839583,subXforY
+"euler equation trig sqrt",2, "expression",8888888,4938429483,"infrule",6839583,subXforY
+"euler equation trig sqrt",2, "infrule",6839583,subXforY,"expression",9999999,4838429483
+"euler equation trig sqrt",3, "expression",9999999,4838429483,"infrule",9582956,LHSofEqXeqLHSofEqY
+"euler equation trig sqrt",3, "expression",4444444,4598294821,"infrule",9582956,LHSofEqXeqLHSofEqY
+"euler equation trig sqrt",3, "infrule",9582956,LHSofEqXeqLHSofEqY,"expression",2222222,9483928192
+"euler equation trig sqrt",4, "expression",8888888,4938429483,"infrule",8492847,multEqXbyEqY
+"euler equation trig sqrt",4, "expression",8888888,4938429483,"infrule",8492847,multEqXbyEqY
+"euler equation trig sqrt",4, "infrule",8492847,multEqXbyEqY,"expression",3333333,4638429483
+"euler equation trig sqrt",5, "expression",3333333,4638429483,"infrule",5832058,expandRHS
+"euler equation trig sqrt",5, "infrule",5832058,expandRHS,"expression",4444444,4598294821
+"euler equation trig sqrt",6, "expression",2222222,9483928192,"infrule",8374590,selectRealParts
+"euler equation trig sqrt",6, "infrule",8374590,selectRealParts,"expression",5828294,9482928242
+"euler equation trig sqrt",7, "feed",7894942,0,"infrule",8374625,addXtoBothSides
+"euler equation trig sqrt",7, "expression",5828294,9482928242,"infrule",8374625,addXtoBothSides
+"euler equation trig sqrt",7, "infrule",8374625,addXtoBothSides,"expression",4890284,9482928243
+"euler equation trig sqrt",8, "infrule",3040493,declareIdentity,"expression",0938572,5832984291
+"euler equation trig sqrt",9, "feed",1111111,0,"infrule",0983243,subtractXfromBothSides
+"euler equation trig sqrt",9, "expression",0938572,5832984291,"infrule",0983243,subtractXfromBothSides
+"euler equation trig sqrt",9, "infrule",0983243,subtractXfromBothSides,"expression",0912367,3285732911
+"euler equation trig sqrt",10, "expression",4890284,9482928243,"infrule",3984721,swapLHSwithRHS
+"euler equation trig sqrt",10, "infrule",3984721,swapLHSwithRHS,"expression",0293655,9482438243
+"euler equation trig sqrt",11, "expression",0912367,3285732911,"infrule",9483240,LHSofEqXeqLHSofEqY
+"euler equation trig sqrt",11, "expression",0293655,9482438243,"infrule",9483240,LHSofEqXeqLHSofEqY
+"euler equation trig sqrt",11, "infrule",9483240,LHSofEqXeqLHSofEqY,"expression",0009481,4827492911
+"euler equation trig sqrt",12, "feed",6466214,0,"infrule",7563628,subtractXfromBothSides
+"euler equation trig sqrt",12, "expression",0009481,4827492911,"infrule",7563628,subtractXfromBothSides
+"euler equation trig sqrt",12, "infrule",7563628,subtractXfromBothSides,"expression",7472641,1248277773
+"euler equation trig sqrt",13, "feed",7471778,0,"infrule",7572728,addXtoBothSides
+"euler equation trig sqrt",13, "expression",7472641,1248277773,"infrule",7572728,addXtoBothSides
+"euler equation trig sqrt",13, "infrule",7572728,addXtoBothSides,"expression",1029911,7572664728
+"euler equation trig sqrt",14, "feed",8842811,0,"infrule",7566277,subtractXfromBothSides
+"euler equation trig sqrt",14, "expression",1029911,7572664728,"infrule",7566277,subtractXfromBothSides
+"euler equation trig sqrt",14, "infrule",7566277,subtractXfromBothSides,"expression",7472666,9889984281
+"euler equation trig sqrt",15, "feed",3838111,0,"infrule",3841414,dividebothsidesby
+"euler equation trig sqrt",15, "expression",7472666,9889984281,"infrule",3841414,dividebothsidesby
+"euler equation trig sqrt",15, "infrule",3841414,dividebothsidesby,"expression",1231131,9988949211
+"euler equation trig sqrt",16, "expression",1231131,9988949211,"infrule",1383414,declareFinalEq
+"example of Godel problem",1, "infrule",7566367,declareInitialEq,"expression",7572712,9829420421
+"example of Godel problem",2, "infrule",4647381,declareInitialEq,"expression",4738297,2948293829
+"example of Godel problem",3, "expression",7572712,9829420421,"infrule",8673948,LHSofEqXeqLHSofEqY
+"example of Godel problem",3, "expression",4738297,2948293829,"infrule",8673948,LHSofEqXeqLHSofEqY
+"example of Godel problem",3, "infrule",8673948,LHSofEqXeqLHSofEqY,"expression",2845892,4828238421
+"example of Godel problem",3, "infrule",8673948,LHSofEqXeqLHSofEqY,"expression",4627482,9482948292
+"example of Godel problem",4, "expression",4738297,2948293829,"infrule",8674920,swapLHSwithRHS
+"example of Godel problem",4, "infrule",8674920,swapLHSwithRHS,"expression",7572712,9829420421
+"particle in a 1D box",1, "infrule",8576627,declareInitialEq,"expression",7572748,5727578862
+"particle in a 1D box",2, "expression",7572748,5727578862,"infrule",1384011,declareGuessSolution
+"particle in a 1D box",2, "infrule",1384011,declareGuessSolution,"expression",7572118,8582885111
+"particle in a 1D box",3, "expression",7572748,5727578862,"infrule",8572771,boundaryCondition
+"particle in a 1D box",3, "infrule",8572771,boundaryCondition,"expression",8577781,9585727710
+"particle in a 1D box",4, "expression",7572748,5727578862,"infrule",8572778,boundaryCondition
+"particle in a 1D box",4, "infrule",8572778,boundaryCondition,"expression",8585727,9495857278
+"particle in a 1D box",5, "expression",8577781,9585727710,"infrule",8571277,LHSofEqXeqLHSofEqY
+"particle in a 1D box",5, "expression",7572118,8582885111,"infrule",8571277,LHSofEqXeqLHSofEqY
+"particle in a 1D box",5, "infrule",8571277,LHSofEqXeqLHSofEqY,"expression",7547581,8577275751
+"particle in a 1D box",6, "expression",7547581,8577275751,"infrule",8576571,simplify
+"particle in a 1D box",6, "infrule",8576571,simplify,"expression",7572859,1293913110
+"particle in a 1D box",7, "expression",7572859,1293913110,"infrule",8572265,subRHSofEqXintoEqY
+"particle in a 1D box",7, "expression",7572118,8582885111,"infrule",8572265,subRHSofEqXintoEqY
+"particle in a 1D box",7, "infrule",8572265,subRHSofEqXintoEqY,"expression",7562671,9059289981
+"particle in a 1D box",8, "expression",7562671,9059289981,"infrule",9686782,LHSofEqXeqLHSofEqY
+"particle in a 1D box",8, "expression",8585727,9495857278,"infrule",9686782,LHSofEqXeqLHSofEqY
+"particle in a 1D box",8, "infrule",9686782,LHSofEqXeqLHSofEqY,"expression",8577672,1020010291
+"particle in a 1D box",9, "infrule",8575717,declareIdentity,"expression",8577711,1857710291
+"particle in a 1D box",10, "expression",8577672,1020010291,"infrule",8575627,EqXisTrueUnderconditionEqY
+"particle in a 1D box",10, "expression",8577711,1857710291,"infrule",8575627,EqXisTrueUnderconditionEqY
+"particle in a 1D box",10, "infrule",8575627,EqXisTrueUnderconditionEqY,"expression",0098476,1010923823
+"particle in a 1D box",11, "feed",1334112,0,"infrule",9114413,dividebothsidesby
+"particle in a 1D box",11, "expression",0098476,1010923823,"infrule",9114413,dividebothsidesby
+"particle in a 1D box",11, "infrule",9114413,dividebothsidesby,"expression",9495882,1858772113
+"particle in a 1D box",12, "expression",9495882,1858772113,"infrule",8575761,subRHSofEqXintoEqY
+"particle in a 1D box",12, "expression",7562671,9059289981,"infrule",8575761,subRHSofEqXintoEqY
+"particle in a 1D box",12, "infrule",8575761,subRHSofEqXintoEqY,"expression",3452131,2944838499
+"particle in a 1D box",13, "infrule",4434559,normalizationCondition,"expression",7575626,1934748140
+"particle in a 1D box",14, "feed",9587738,0,"infrule",5751725,conjugateFunctionX
+"particle in a 1D box",14, "expression",3452131,2944838499,"infrule",5751725,conjugateFunctionX
+"particle in a 1D box",14, "infrule",5751725,conjugateFunctionX,"expression",3452132,8849289982
+"particle in a 1D box",15, "expression",7575626,1934748140,"infrule",4757567,swapLHSwithRHS
+"particle in a 1D box",15, "infrule",4757567,swapLHSwithRHS,"expression",5577567,8572657110
+"particle in a 1D box",16, "feed",5656372,0,"infrule",7455643,expandMagnitudeToConjugate
+"particle in a 1D box",16, "expression",5577567,8572657110,"infrule",7455643,expandMagnitudeToConjugate
+"particle in a 1D box",16, "infrule",7455643,expandMagnitudeToConjugate,"expression",0595847,4857472413
+"particle in a 1D box",17, "expression",3452131,2944838499,"infrule",4455453,subLHSofEqXintoEqY
+"particle in a 1D box",17, "expression",0595847,4857472413,"infrule",4455453,subLHSofEqXintoEqY
+"particle in a 1D box",17, "infrule",4455453,subLHSofEqXintoEqY,"expression",0495950,0203024440
+"particle in a 1D box",18, "expression",3452132,8849289982,"infrule",4948339,subLHSofEqXintoEqY
+"particle in a 1D box",18, "expression",0495950,0203024440,"infrule",4948339,subLHSofEqXintoEqY
+"particle in a 1D box",18, "infrule",4948339,subLHSofEqXintoEqY,"expression",8478550,8889444440
+"particle in a 1D box",19, "infrule",8485725,declareIdentity,"expression",1231131,9988949211
+"particle in a 1D box",20, "feed",4934845,0,"infrule",1003049,subXforY
+"particle in a 1D box",20, "feed",9484724,0,"infrule",1003049,subXforY
+"particle in a 1D box",20, "expression",1231131,9988949211,"infrule",1003049,subXforY
+"particle in a 1D box",20, "infrule",1003049,subXforY,"expression",0100404,7575738420
+"particle in a 1D box",21, "expression",0100404,7575738420,"infrule",8576741,subRHSofEqXintoEqY
+"particle in a 1D box",21, "expression",8478550,8889444440,"infrule",8576741,subRHSofEqXintoEqY
+"particle in a 1D box",21, "infrule",8576741,subRHSofEqXintoEqY,"expression",0094858,8576785890
+"particle in a 1D box",22, "feed",0040490,0,"infrule",0059403,dividebothsidesby
+"particle in a 1D box",22, "expression",0094858,8576785890,"infrule",0059403,dividebothsidesby
+"particle in a 1D box",22, "infrule",0059403,dividebothsidesby,"expression",0495054,9858028950
+"particle in a 1D box",23, "expression",0495054,9858028950,"infrule",3949284,expandIntegrand
+"particle in a 1D box",23, "infrule",3949284,expandIntegrand,"expression",0203020,1202310110
+"particle in a 1D box",24, "infrule",0030488,declareIdentity,"expression",3992939,0948572140
+"particle in a 1D box",25, "feed",4831494,0,"infrule",4485722,subXforY
+"particle in a 1D box",25, "feed",9485858,0,"infrule",4485722,subXforY
+"particle in a 1D box",25, "expression",3992939,0948572140,"infrule",4485722,subXforY
+"particle in a 1D box",25, "infrule",4485722,subXforY,"expression",4948377,7564894985
+"particle in a 1D box",26, "infrule",0030481,declareIdentity,"expression",0021030,5857434758
+"particle in a 1D box",27, "feed",4948585,0,"infrule",1911919,subXforY
+"particle in a 1D box",27, "feed",2929944,0,"infrule",1911919,subXforY
+"particle in a 1D box",27, "expression",0021030,5857434758,"infrule",1911919,subXforY
+"particle in a 1D box",27, "infrule",1911919,subXforY,"expression",9339495,8575746378
+"particle in a 1D box",28, "expression",0203020,1202310110,"infrule",3329831,EvaluateDefiniteIntegral
+"particle in a 1D box",28, "expression",9339495,8575746378,"infrule",3329831,EvaluateDefiniteIntegral
+"particle in a 1D box",28, "infrule",3329831,EvaluateDefiniteIntegral,"expression",8584733,1202312210
+"particle in a 1D box",29, "expression",4948377,7564894985,"infrule",8485747,EvaluateDefiniteIntegral
+"particle in a 1D box",29, "expression",8584733,1202312210,"infrule",8485747,EvaluateDefiniteIntegral
+"particle in a 1D box",29, "infrule",8485747,EvaluateDefiniteIntegral,"expression",0405049,0439492440
+"particle in a 1D box",30, "expression",0405049,0439492440,"infrule",8373472,simplify
+"particle in a 1D box",30, "infrule",8373472,simplify,"expression",9493949,4857475848
+"particle in a 1D box",31, "feed",9485857,0,"infrule",5859994,multbothsidesby
+"particle in a 1D box",31, "expression",9493949,4857475848,"infrule",5859994,multbothsidesby
+"particle in a 1D box",31, "infrule",5859994,multbothsidesby,"expression",1029384,8485867742
+"particle in a 1D box",32, "feed",9594995,0,"infrule",1293948,raiseBothSidesToPower
+"particle in a 1D box",32, "expression",1029384,8485867742,"infrule",1293948,raiseBothSidesToPower
+"particle in a 1D box",32, "infrule",1293948,raiseBothSidesToPower,"expression",9394857,9485747245
+"particle in a 1D box",32, "infrule",1293948,raiseBothSidesToPower,"expression",9394858,9485747246
+"particle in a 1D box",33, "expression",9394857,9485747245,"infrule",1384935,subLHSofEqXintoEqY
+"particle in a 1D box",33, "expression",3452131,2944838499,"infrule",1384935,subLHSofEqXintoEqY
+"particle in a 1D box",33, "infrule",1384935,subLHSofEqXintoEqY,"expression",8474766,9393939991
+"particle in a 1D box",34, "expression",9394858,9485747246,"infrule",3847567,subLHSofEqXintoEqY
+"particle in a 1D box",34, "expression",3452131,2944838499,"infrule",3847567,subLHSofEqXintoEqY
+"particle in a 1D box",34, "infrule",3847567,subLHSofEqXintoEqY,"expression",8474765,9393939992
+"particle in a 1D box",35, "expression",8474765,9393939992,"infrule",7474753,declareFinalEq
+"particle in a 1D box",36, "expression",8474766,9393939991,"infrule",7474753,declareFinalEq
+"particle in a 1D box",37, "expression",7572118,8582885111,"infrule",4757743,subRHSofEqXintoEqY
+"particle in a 1D box",37, "expression",7572748,5727578862,"infrule",4757743,subRHSofEqXintoEqY
+"particle in a 1D box",37, "infrule",4757743,subRHSofEqXintoEqY,"expression",2838288,8575748999
+"particle in a 1D box",38, "expression",2838288,8575748999,"infrule",2029394,simplify
+"particle in a 1D box",38, "infrule",2029394,simplify,"expression",8474762,8485757728
+"particle in a 1D box",39, "expression",8474762,8485757728,"infrule",9394948,simplify
+"particle in a 1D box",39, "infrule",9394948,simplify,"expression",1214762,8484544728
+"particle in a 1D box",40, "expression",1214762,8484544728,"infrule",7374289,claimLHSequalsRHS
+"maxwell to electric field wave equation",1, "infrule",2932848,declareInitialEq,"expression",1199299,1314864131
+"maxwell to electric field wave equation",2, "infrule",2932848,declareInitialEq,"expression",4757562,9991999979
+"maxwell to electric field wave equation",3, "feed",5626421,0,"infrule",1010301,partialDiffWRT
+"maxwell to electric field wave equation",3, "expression",1199299,1314864131,"infrule",1010301,partialDiffWRT
+"maxwell to electric field wave equation",3, "infrule",1010301,partialDiffWRT,"expression",4642245,1314464131
+"maxwell to electric field wave equation",4, "expression",4757562,9991999979,"infrule",4224853,takeCurlofBothSides
+"maxwell to electric field wave equation",4, "infrule",4224853,takeCurlofBothSides,"expression",2392932,9291999979
+"maxwell to electric field wave equation",5, "expression",4642245,1314464131,"infrule",1939442,subLHSofEqXintoEqY
+"maxwell to electric field wave equation",5, "expression",2392932,9291999979,"infrule",1939442,subLHSofEqXintoEqY
+"maxwell to electric field wave equation",5, "infrule",1939442,subLHSofEqXintoEqY,"expression",2962831,3947269979
+"maxwell to electric field wave equation",6, "infrule",2932848,declareInitialEq,"expression",4857731,9999999981
+"maxwell to electric field wave equation",7, "infrule",3837471,declareAssumption,"expression",3984852,9919999981
+"maxwell to electric field wave equation",8, "expression",4857731,9999999981,"infrule",5656372,subLHSofEqXintoEqY
+"maxwell to electric field wave equation",8, "expression",3984852,9919999981,"infrule",5656372,subLHSofEqXintoEqY
+"maxwell to electric field wave equation",8, "infrule",5656372,subLHSofEqXintoEqY,"expression",2837471,7466829492
+"maxwell to electric field wave equation",9, "infrule",3948572,declareIdentity,"expression",1939485,7575859295
+"maxwell to electric field wave equation",10, "expression",2837471,7466829492,"infrule",4655746,subLHSofEqXintoEqY
+"maxwell to electric field wave equation",10, "expression",1939485,7575859295,"infrule",4655746,subLHSofEqXintoEqY
+"maxwell to electric field wave equation",10, "infrule",4655746,subLHSofEqXintoEqY,"expression",3738373,1636453295
+"maxwell to electric field wave equation",11, "expression",3738373,1636453295,"infrule",3737384,subLHSofEqXintoEqY
+"maxwell to electric field wave equation",11, "expression",2962831,3947269979,"infrule",3737384,subLHSofEqXintoEqY
+"maxwell to electric field wave equation",11, "infrule",3737384,subLHSofEqXintoEqY,"expression",4758592,8494839423
+"maxwell to electric field wave equation",12, "expression",4758592,8494839423,"infrule",3948584,declareFinalEq
+"electric field wave equation time dependent to time independent",1, "infrule",8485758,declareInitialEq,"expression",4758592,8494839423
+"electric field wave equation time dependent to time independent",2, "infrule",8485758,declareInitialEq,"expression",9393848,8572852424
+"electric field wave equation time dependent to time independent",3, "expression",4758592,8494839423,"infrule",4585829,declareGuessSolution
+"electric field wave equation time dependent to time independent",3, "infrule",4585829,declareGuessSolution,"expression",3994928,9499428242
+"electric field wave equation time dependent to time independent",4, "expression",9393848,8572852424,"infrule",4858282,subLHSofEqXintoEqY
+"electric field wave equation time dependent to time independent",4, "expression",4758592,8494839423,"infrule",4858282,subLHSofEqXintoEqY
+"electric field wave equation time dependent to time independent",4, "infrule",4858282,subLHSofEqXintoEqY,"expression",3839493,9394939493
+"electric field wave equation time dependent to time independent",5, "expression",3839493,9394939493,"infrule",1002928,subLHSofEqXintoEqY
+"electric field wave equation time dependent to time independent",5, "expression",3994928,9499428242,"infrule",1002928,subLHSofEqXintoEqY
+"electric field wave equation time dependent to time independent",5, "infrule",1002928,subLHSofEqXintoEqY,"expression",1029393,2029293929
+"electric field wave equation time dependent to time independent",6, "feed",3232242,0,"infrule",2319391,differentiateWRT
+"electric field wave equation time dependent to time independent",6, "expression",1029393,2029293929,"infrule",2319391,differentiateWRT
+"electric field wave equation time dependent to time independent",6, "infrule",2319391,differentiateWRT,"expression",2939392,4985825552
+"electric field wave equation time dependent to time independent",7, "feed",3232242,0,"infrule",4955966,differentiateWRT
+"electric field wave equation time dependent to time independent",7, "expression",2939392,4985825552,"infrule",4955966,differentiateWRT
+"electric field wave equation time dependent to time independent",7, "infrule",4955966,differentiateWRT,"expression",4958573,1858578388
+"electric field wave equation time dependent to time independent",8, "infrule",8485758,declareInitialEq,"expression",4949582,4585828572
+"electric field wave equation time dependent to time independent",9, "feed",4585828,0,"infrule",5839535,subXforY
+"electric field wave equation time dependent to time independent",9, "feed",4949582,0,"infrule",5839535,subXforY
+"electric field wave equation time dependent to time independent",9, "expression",4958573,1858578388,"infrule",5839535,subXforY
+"electric field wave equation time dependent to time independent",9, "infrule",5839535,subXforY,"expression",9495903,9485384858
+"electric field wave equation time dependent to time independent",10, "expression",9495903,9485384858,"infrule",4958883,simplify
+"electric field wave equation time dependent to time independent",10, "infrule",4958883,simplify,"expression",3949492,3485475729
+"electric field wave equation time dependent to time independent",11, "expression",3949492,3485475729,"infrule",5495827,declareFinalEq
+"euler equation trig relations",1, "infrule",7473895,declareInitialEq,"expression",8888888,4938429483
+"euler equation trig relations",2, "feed",2393922,0,"infrule",3848927,subXforY
+"euler equation trig relations",2, "feed",3949052,0,"infrule",3848927,subXforY
+"euler equation trig relations",2, "expression",8888888,4938429483,"infrule",3848927,subXforY
+"euler equation trig relations",2, "infrule",3848927,subXforY,"expression",8888881,2394853829
+"euler equation trig relations",3, "feed",3949482,0,"infrule",9595949,functionIsEven
+"euler equation trig relations",3, "feed",4849392,0,"infrule",9595949,functionIsEven
+"euler equation trig relations",3, "feed",1030901,0,"infrule",9595949,functionIsEven
+"euler equation trig relations",3, "expression",8888881,2394853829,"infrule",9595949,functionIsEven
+"euler equation trig relations",3, "infrule",9595949,functionIsEven,"expression",8888882,4938429482
+"euler equation trig relations",4, "feed",2919191,0,"infrule",4747288,functionIsOdd
+"euler equation trig relations",4, "feed",3919391,0,"infrule",4747288,functionIsOdd
+"euler equation trig relations",4, "feed",3981813,0,"infrule",4747288,functionIsOdd
+"euler equation trig relations",4, "expression",8888882,4938429482,"infrule",4747288,functionIsOdd
+"euler equation trig relations",4, "infrule",4747288,functionIsOdd,"expression",8888883,4938429484
+"euler equation trig relations",5, "expression",8888888,4938429483,"infrule",3848592,addEqXtoEqY
+"euler equation trig relations",5, "expression",8888883,4938429484,"infrule",3848592,addEqXtoEqY
+"euler equation trig relations",5, "infrule",3848592,addEqXtoEqY,"expression",2939484,4742644828
+"euler equation trig relations",6, "feed",4829194,0,"infrule",1928392,dividebothsidesby
+"euler equation trig relations",6, "expression",2939484,4742644828,"infrule",1928392,dividebothsidesby
+"euler equation trig relations",6, "infrule",1928392,dividebothsidesby,"expression",4383592,3829492824
+"euler equation trig relations",7, "expression",4383592,3829492824,"infrule",2949492,swapLHSwithRHS
+"euler equation trig relations",7, "infrule",2949492,swapLHSwithRHS,"expression",4849888,4585932229
+"euler equation trig relations",8, "expression",4849888,4585932229,"infrule",2384942,declareFinalEq
+"euler equation trig relations",9, "feed",3747849,0,"infrule",3848924,multbothsidesby
+"euler equation trig relations",9, "expression",8888883,4938429484,"infrule",3848924,multbothsidesby
+"euler equation trig relations",9, "infrule",3848924,multbothsidesby,"expression",3194924,2123139121
+"euler equation trig relations",10, "expression",8888888,4938429483,"infrule",2939404,addEqXtoEqY
+"euler equation trig relations",10, "expression",3194924,2123139121,"infrule",2939404,addEqXtoEqY
+"euler equation trig relations",10, "infrule",2939404,addEqXtoEqY,"expression",4825483,3942849294
+"euler equation trig relations",11, "feed",1921933,0,"infrule",2849492,dividebothsidesby
+"euler equation trig relations",11, "expression",4825483,3942849294,"infrule",2849492,dividebothsidesby
+"euler equation trig relations",11, "infrule",2849492,dividebothsidesby,"expression",1133483,4843995999
+"euler equation trig relations",12, "expression",1133483,4843995999,"infrule",4294921,swapLHSwithRHS
+"euler equation trig relations",12, "infrule",4294921,swapLHSwithRHS,"expression",4849959,2103023049
+"euler equation trig relations",13, "expression",4849959,2103023049,"infrule",2384942,declareFinalEq
+"integration by parts",1, "infrule",4952082,declareIdentity,"expression",3494854,8489593958
+"integration by parts",2, "feed",9492929,0,"infrule",4842942,subtractXfromBothSides
+"integration by parts",2, "expression",3494854,8489593958,"infrule",4842942,subtractXfromBothSides
+"integration by parts",2, "infrule",4842942,subtractXfromBothSides,"expression",2938188,8489593960
+"integration by parts",3, "expression",2938188,8489593960,"infrule",4848592,swapLHSwithRHS
+"integration by parts",3, "infrule",4848592,swapLHSwithRHS,"expression",2938190,8489593962
+"integration by parts",4, "expression",2938190,8489593962,"infrule",8483953,indefIntegration
+"integration by parts",4, "infrule",8483953,indefIntegration,"expression",3848329,8489593964
+"integration by parts",5, "expression",3848329,8489593964,"infrule",2839422,declareFinalEq
+"curl curl identity",1, "infrule",3948572,declareIdentity,"expression",1939485,7575859295
+"curl curl identity",2, "expression",1939485,7575859295,"infrule",2339482,ReplaceCurlWithLeviCevitaSummationContravariant
+"curl curl identity",2, "infrule",2339482,ReplaceCurlWithLeviCevitaSummationContravariant,"expression",9485482,7575859300
+"curl curl identity",3, "expression",9485482,7575859300,"infrule",3948552,ReplaceCurlWithLeviCevitaSummationContravariant
+"curl curl identity",3, "infrule",3948552,ReplaceCurlWithLeviCevitaSummationContravariant,"expression",2941319,7575859302
+"curl curl identity",4, "infrule",4295822,declareIdentity,"expression",2934842,7575859304
+"curl curl identity",5, "expression",2934842,7575859304,"infrule",2930454,subRHSofEqXintoEqY
+"curl curl identity",5, "expression",2941319,7575859302,"infrule",2930454,subRHSofEqXintoEqY
+"curl curl identity",5, "infrule",2930454,subRHSofEqXintoEqY,"expression",3949292,7575859306
+"curl curl identity",6, "expression",3949292,7575859306,"infrule",3848292,simplify
+"curl curl identity",6, "infrule",3848292,simplify,"expression",3844221,7575859308
+"curl curl identity",7, "expression",3844221,7575859308,"infrule",3838233,simplify
+"curl curl identity",7, "infrule",3838233,simplify,"expression",3948472,7575859310
+"curl curl identity",8, "expression",3948472,7575859310,"infrule",1393411,ReplaceSummationNotationWithVectorNotation
+"curl curl identity",8, "infrule",1393411,ReplaceSummationNotationWithVectorNotation,"expression",2109231,7575859312
+"curl curl identity",9, "expression",2109231,7575859312,"infrule",3949211,claimLHSequalsRHS
+"derivation of Schrodinger Eq",1, "infrule",1204921,declareInitialEq,"expression",2934848,3121513111
+"derivation of Schrodinger Eq",2, "infrule",2919311,declareInitialEq,"expression",0921465,3131211131
+"derivation of Schrodinger Eq",3, "infrule",1294844,declareInitialEq,"expression",2949002,9999999960
+"derivation of Schrodinger Eq",4, "infrule",9394842,declareInitialEq,"expression",1203491,1020394900
+"derivation of Schrodinger Eq",5, "infrule",3934948,declareInitialEq,"expression",3499522,1020394902
+"derivation of Schrodinger Eq",6, "feed",2940021,0,"infrule",3949482,dividebothsidesby
+"derivation of Schrodinger Eq",6, "expression",0921465,3131211131,"infrule",3949482,dividebothsidesby
+"derivation of Schrodinger Eq",6, "infrule",3949482,dividebothsidesby,"expression",2939402,3147472131
+"derivation of Schrodinger Eq",7, "expression",2939402,3147472131,"infrule",1294945,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",7, "expression",3499522,1020394902,"infrule",1294945,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",7, "infrule",1294945,subRHSofEqXintoEqY,"expression",2949821,4147472132
+"derivation of Schrodinger Eq",8, "expression",2949002,9999999960,"infrule",2930492,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",8, "expression",2949821,4147472132,"infrule",2930492,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",8, "infrule",2930492,subRHSofEqXintoEqY,"expression",3741728,9999999965
+"derivation of Schrodinger Eq",9, "feed",3949921,0,"infrule",3919384,dividebothsidesby
+"derivation of Schrodinger Eq",9, "expression",3741728,9999999965,"infrule",3919384,dividebothsidesby
+"derivation of Schrodinger Eq",9, "infrule",3919384,dividebothsidesby,"expression",4499582,9999999961
+"derivation of Schrodinger Eq",10, "feed",1209482,0,"infrule",2900428,dividebothsidesby
+"derivation of Schrodinger Eq",10, "expression",2934848,3121513111,"infrule",2900428,dividebothsidesby
+"derivation of Schrodinger Eq",10, "infrule",2900428,dividebothsidesby,"expression",1039485,3121234211
+"derivation of Schrodinger Eq",11, "expression",1039485,3121234211,"infrule",1204945,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",11, "expression",1203491,1020394900,"infrule",1204945,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",11, "infrule",1204945,subRHSofEqXintoEqY,"expression",2901049,3121234212
+"derivation of Schrodinger Eq",12, "expression",2949002,9999999960,"infrule",2939400,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",12, "expression",2901049,3121234212,"infrule",2939400,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",12, "infrule",2939400,subRHSofEqXintoEqY,"expression",1039013,9999999962
+"derivation of Schrodinger Eq",13, "feed",1304952,0,"infrule",2030624,dividebothsidesby
+"derivation of Schrodinger Eq",13, "expression",1039013,9999999962,"infrule",2030624,dividebothsidesby
+"derivation of Schrodinger Eq",13, "infrule",2030624,dividebothsidesby,"expression",4948325,9999999870
+"derivation of Schrodinger Eq",14, "expression",4948325,9999999870,"infrule",1039774,replaceScalarWithVector
+"derivation of Schrodinger Eq",14, "infrule",1039774,replaceScalarWithVector,"expression",2948487,9999998870
+"derivation of Schrodinger Eq",15, "infrule",1923945,declareInitialEq,"expression",3940505,3948574224
+"derivation of Schrodinger Eq",16, "expression",2948487,9999998870,"infrule",2938341,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",16, "expression",3940505,3948574224,"infrule",2938341,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",16, "infrule",2938341,subRHSofEqXintoEqY,"expression",2100421,3948574226
+"derivation of Schrodinger Eq",17, "expression",4499582,9999999961,"infrule",0012031,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",17, "expression",2100421,3948574226,"infrule",0012031,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",17, "infrule",0012031,subRHSofEqXintoEqY,"expression",1291313,3948574228
+"derivation of Schrodinger Eq",18, "expression",1291313,3948574228,"infrule",1341141,simplify
+"derivation of Schrodinger Eq",18, "infrule",1341141,simplify,"expression",1305534,3948574230
+"derivation of Schrodinger Eq",19, "infrule",1204929,declareInitialEq,"expression",1039948,1029039903
+"derivation of Schrodinger Eq",20, "infrule",1395335,declareInitialEq,"expression",1353583,4298359835
+"derivation of Schrodinger Eq",21, "feed",2239424,0,"infrule",2422434,raiseBothSidesToPower
+"derivation of Schrodinger Eq",21, "expression",1039948,1029039903,"infrule",2422434,raiseBothSidesToPower
+"derivation of Schrodinger Eq",21, "infrule",2422434,raiseBothSidesToPower,"expression",1432042,1029039904
+"derivation of Schrodinger Eq",22, "feed",2342425,0,"infrule",2322434,multRHSbyUnity
+"derivation of Schrodinger Eq",22, "expression",1353583,4298359835,"infrule",2322434,multRHSbyUnity
+"derivation of Schrodinger Eq",22, "infrule",2322434,multRHSbyUnity,"expression",2326309,4298359845
+"derivation of Schrodinger Eq",23, "expression",1432042,1029039904,"infrule",2449858,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",23, "expression",2326309,4298359845,"infrule",2449858,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",23, "infrule",2449858,subRHSofEqXintoEqY,"expression",3576787,4298359851
+"derivation of Schrodinger Eq",24, "feed",6544644,0,"infrule",1347587,partialDiffWRT
+"derivation of Schrodinger Eq",24, "expression",1305534,3948574230,"infrule",1347587,partialDiffWRT
+"derivation of Schrodinger Eq",24, "infrule",1347587,partialDiffWRT,"expression",2364546,3948574233
+"derivation of Schrodinger Eq",25, "expression",1305534,3948574230,"infrule",2464445,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",25, "expression",2364546,3948574233,"infrule",2464445,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",25, "infrule",2464445,subRHSofEqXintoEqY,"expression",5345567,3948571256
+"derivation of Schrodinger Eq",26, "expression",3576787,4298359851,"infrule",3454353,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",26, "expression",5345567,3948571256,"infrule",3454353,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",26, "infrule",3454353,subRHSofEqXintoEqY,"expression",2495835,4348571256
+"derivation of Schrodinger Eq",27, "feed",2436656,0,"infrule",4358635,multbothsidesby
+"derivation of Schrodinger Eq",27, "expression",2495835,4348571256,"infrule",4358635,multbothsidesby
+"derivation of Schrodinger Eq",27, "infrule",4358635,multbothsidesby,"expression",3429538,4341171256
+"derivation of Schrodinger Eq",28, "expression",1305534,3948574230,"infrule",2454535,applyGradientToScalarFunction
+"derivation of Schrodinger Eq",28, "infrule",2454535,applyGradientToScalarFunction,"expression",5577584,3948572230
+"derivation of Schrodinger Eq",29, "expression",5577584,3948574230,"infrule",5858694,simplify
+"derivation of Schrodinger Eq",29, "infrule",5858694,simplify,"expression",3454565,4943571230
+"derivation of Schrodinger Eq",30, "expression",3454565,4943571230,"infrule",5354635,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",30, "expression",1305534,3948574230,"infrule",5354635,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",30, "infrule",5354635,subRHSofEqXintoEqY,"expression",5535257,5985371230
+"derivation of Schrodinger Eq",31, "expression",5535257,5985371230,"infrule",3294932,applyDivergence
+"derivation of Schrodinger Eq",31, "infrule",3294932,applyDivergence,"expression",4938589,4394958389
+"derivation of Schrodinger Eq",32, "expression",4938589,4394958389,"infrule",2394495,simplify
+"derivation of Schrodinger Eq",32, "infrule",2394495,simplify,"expression",1495034,1648958381
+"derivation of Schrodinger Eq",33, "expression",5535257,5985371230,"infrule",4059592,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",33, "expression",1495034,1648958381,"infrule",4059592,subRHSofEqXintoEqY
+"derivation of Schrodinger Eq",33, "infrule",4059592,subRHSofEqXintoEqY,"expression",1049553,2648958382
+"derivation of Schrodinger Eq",34, "expression",1049553,2648958382,"infrule",4305953,simplify
+"derivation of Schrodinger Eq",34, "infrule",4305953,simplify,"expression",4959593,2395958385
+"derivation of Schrodinger Eq",35, "feed",5938585,0,"infrule",4939459,multbothsidesby
+"derivation of Schrodinger Eq",35, "expression",4959593,2395958385,"infrule",4939459,multbothsidesby
+"derivation of Schrodinger Eq",35, "infrule",4939459,multbothsidesby,"expression",4349493,5868688585
+"derivation of Schrodinger Eq",36, "expression",4349493,5868688585,"infrule",9394834,LHSofEqXeqLHSofEqY
+"derivation of Schrodinger Eq",36, "expression",3429538,4341171256,"infrule",9394834,LHSofEqXeqLHSofEqY
+"derivation of Schrodinger Eq",36, "infrule",9394834,LHSofEqXeqLHSofEqY,"expression",1304924,9958485859
+"derivation of Schrodinger Eq",37, "infrule",2455452,declareInitialEq,"expression",2344324,1158485859
+"derivation of Schrodinger Eq",38, "expression",2344324,1158485859,"infrule",2954835,subLHSofEqXintoEqY
+"derivation of Schrodinger Eq",38, "expression",1304924,9958485859,"infrule",2954835,subLHSofEqXintoEqY
+"derivation of Schrodinger Eq",38, "infrule",2954835,subLHSofEqXintoEqY,"expression",2456546,2258485859
+"derivation of Schrodinger Eq",39, "expression",2456546,2258485859,"infrule",6756574,declareFinalEq
+"quantum basics orthogonality",1, "infrule",2455366,declareInitialEq,"expression",3849595,9596004948
+"quantum basics orthogonality",2, "expression",3849595,9596004948,"infrule",3848591,applyOperatorToKet
+"quantum basics orthogonality",2, "infrule",3848591,applyOperatorToKet,"expression",4940359,1010393944
+"quantum basics orthogonality",3, "expression",3849595,9596004948,"infrule",1301442,applyOperatorToBra
+"quantum basics orthogonality",3, "infrule",1301442,applyOperatorToBra,"expression",4349300,1395858355
+"quantum basics orthogonality",4, "expression",4940359,1010393944,"infrule",2304934,simplify
+"quantum basics orthogonality",4, "infrule",2304934,simplify,"expression",2409402,2394240499
+"quantum basics orthogonality",5, "expression",4349300,1395858355,"infrule",0049384,simplify
+"quantum basics orthogonality",5, "infrule",0049384,simplify,"expression",4934893,3943939590
+"quantum basics orthogonality",6, "expression",2409402,2394240499,"infrule",0987890,LHSofEqXeqLHSofEqY
+"quantum basics orthogonality",6, "expression",4934893,3943939590,"infrule",0987890,LHSofEqXeqLHSofEqY
+"quantum basics orthogonality",6, "infrule",0987890,LHSofEqXeqLHSofEqY,"expression",3495045,1203938249
+"quantum basics orthogonality",7, "feed",5395034,0,"infrule",4838499,subtractXfromBothSides
+"quantum basics orthogonality",7, "expression",3495045,1203938249,"infrule",4838499,subtractXfromBothSides
+"quantum basics orthogonality",7, "infrule",4838499,subtractXfromBothSides,"expression",4939583,3924948349
+"quantum basics orthogonality",8, "expression",4939583,3924948349,"infrule",0988873,combineLikeTerms
+"quantum basics orthogonality",8, "infrule",0988873,combineLikeTerms,"expression",3494855,2394935831
+"quantum basics orthogonality",9, "expression",3494855,2394935831,"infrule",2384852,declareFinalEq
+"quantum basics Hermitian operators have realvalued observables",1, "infrule",3403595,declareInitialEq,"expression",3402919,9999999975
+"quantum basics Hermitian operators have realvalued observables",2, "expression",3402919,9999999975,"infrule",9538385,conjugateTransposeBothSides
+"quantum basics Hermitian operators have realvalued observables",2, "infrule",9538385,conjugateTransposeBothSides,"expression",2495954,2394935835
+"quantum basics Hermitian operators have realvalued observables",3, "expression",2495954,2394935835,"infrule",2394942,distributeConjugateTransposeToFactors
+"quantum basics Hermitian operators have realvalued observables",3, "infrule",2394942,distributeConjugateTransposeToFactors,"expression",2390094,1010393913
+"quantum basics Hermitian operators have realvalued observables",4, "infrule",1294984,declareAssumption,"expression",2484892,9294858532
+"quantum basics Hermitian operators have realvalued observables",5, "expression",2484892,9294858532,"infrule",2485909,subRHSofEqXintoEqY
+"quantum basics Hermitian operators have realvalued observables",5, "expression",2390094,1010393913,"infrule",2485909,subRHSofEqXintoEqY
+"quantum basics Hermitian operators have realvalued observables",5, "infrule",2485909,subRHSofEqXintoEqY,"expression",2494040,4948934890
+"quantum basics Hermitian operators have realvalued observables",6, "expression",2494040,4948934890,"infrule",2490098,subRHSofEqXintoEqY
+"quantum basics Hermitian operators have realvalued observables",6, "expression",3402919,9999999975,"infrule",2490098,subRHSofEqXintoEqY
+"quantum basics Hermitian operators have realvalued observables",6, "infrule",2490098,subRHSofEqXintoEqY,"expression",4930585,2848934890
+"quantum basics Hermitian operators have realvalued observables",7, "expression",4930585,2848934890,"infrule",2939493,declareFinalEq
+"variance relation",1, "infrule",2004989,declareIdentity,"expression",3493498,3585845894
+"variance relation",2, "expression",3493498,3585845894,"infrule",2349059,simplify
+"variance relation",2, "infrule",2349059,simplify,"expression",0504953,8399484849
+"variance relation",3, "expression",0504953,8399484849,"infrule",2390498,simplify
+"variance relation",3, "infrule",2390498,simplify,"expression",6757584,2404934990
+"variance relation",4, "expression",6757584,2404934990,"infrule",3848494,simplify
+"variance relation",4, "infrule",3848494,simplify,"expression",3294824,4949359835
+"variance relation",5, "expression",3294824,4949359835,"infrule",4948384,simplify
+"variance relation",5, "infrule",4948384,simplify,"expression",5949484,2494533900
+"variance relation",6, "expression",5949484,2494533900,"infrule",4948955,claimLHSequalsRHS
+"Comptons equation for scattering",1, "infrule",8668018,declareInitialEq,"expression",4978059,1638282134
+"Comptons equation for scattering",2, "infrule",3445641,declareInitialEq,"expression",2840008,8257621077
+"Comptons equation for scattering",3, "infrule",4733986,declareInitialEq,"expression",1209604,8311458118
+"Comptons equation for scattering",4, "expression",4978059,1638282134,"infrule",7958085,subLHSofEqXintoEqY
+"Comptons equation for scattering",4, "expression",2840008,8257621077,"infrule",7958085,subLHSofEqXintoEqY
+"Comptons equation for scattering",4, "infrule",7958085,subLHSofEqXintoEqY,"expression",2491904,3951205425
+"Comptons equation for scattering",5, "expression",1209604,8311458118,"infrule",3667395,subLHSofEqXintoEqY
+"Comptons equation for scattering",5, "expression",2491904,3951205425,"infrule",3667395,subLHSofEqXintoEqY
+"Comptons equation for scattering",5, "infrule",3667395,subLHSofEqXintoEqY,"expression",5610925,8139187332
+"Comptons equation for scattering",6, "feed",2338514,0,"infrule",7952658,subtractXfromBothSides
+"Comptons equation for scattering",6, "expression",5610925,8139187332,"infrule",7952658,subtractXfromBothSides
+"Comptons equation for scattering",6, "infrule",7952658,subtractXfromBothSides,"expression",4068150,5530148480
+"Comptons equation for scattering",7, "expression",4068150,5530148480,"infrule",3871228,swapLHSwithRHS
+"Comptons equation for scattering",7, "infrule",3871228,swapLHSwithRHS,"expression",4200334,7917051060
+"Comptons equation for scattering",8, "expression",4200334,7917051060,"infrule",4738354,multEqXbyEqY
+"Comptons equation for scattering",8, "expression",4200334,7917051060,"infrule",4738354,multEqXbyEqY
+"Comptons equation for scattering",8, "infrule",4738354,multEqXbyEqY,"expression",4218805,6742123016
 "
