@@ -12,6 +12,6 @@ redraw_feed_pictures_boolean: False
 redraw_statement_pictures_boolean: False
 redraw_inference_rule_pictures_boolean: False
 
-makeAllGraphs_boolean:       True    # True  or False
+makeAllGraphs_boolean:       False    # True  or False
 
 

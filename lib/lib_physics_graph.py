@@ -74,6 +74,65 @@ def convert_connections_csv_to_list_of_dics(connectionsDB):
       connections_list_of_dics.append(this_line_dic)
   return connections_list_of_dics
 
+def set_of_feeds_from_list_of_dics(connections_list_of_dics):
+  list_of_feeds=[]
+  for connection_dic in connections_list_of_dics:
+    if (connection_dic['from type']=='feed'):
+      list_of_feeds.append(connection_dic['from temp index'])
+  return(set(list_of_feeds))
+
+def set_of_expr_from_list_of_dics(connections_list_of_dics):
+  list_of_expr=[]
+  for connection_dic in connections_list_of_dics:
+    if (connection_dic['from type']=='expression'):
+      list_of_expr.append(connection_dic['from perm index'])
+    if (connection_dic['to type']=='expression'):
+      list_of_expr.append(connection_dic['to perm index'])
+  return(set(list_of_expr))
+
+def set_of_infrule_from_list_of_dics(connections_list_of_dics):
+  list_of_infrule=[]
+  for connection_dic in connections_list_of_dics:
+    if (connection_dic['from type']=='infrule'):
+      list_of_infrule.append(str(connection_dic['from perm index']+":"+connection_dic['from temp index']))
+    if (connection_dic['to type']=='infrule'):
+      list_of_infrule.append(str(connection_dic['to perm index']+":"+connection_dic['to temp index']))
+  return(set(list_of_infrule))
+
+def get_set_of_derivations(connections_list_of_dics):
+  list_of_derivations=[]
+  for connection_dic in connections_list_of_dics:
+    list_of_derivations.append(connection_dic["derivation name"])
+  return(set(list_of_derivations))
+
+def which_set(connections_list_of_dics):
+  set_of_derivations=get_set_of_derivations(connections_list_of_dics)
+  list_of_derivations=list(set_of_derivations)
+  print(' ')
+  # http://stackoverflow.com/questions/6410982/enumerate-items-in-a-list-so-a-user-can-select-the-numeric-value
+  for item in enumerate(list_of_derivations):
+    print "[%d] %s" % item
+
+  try:
+    idx = int(raw_input("\nEnter the derivation's number: "))
+  except ValueError:
+    print "You fail at typing numbers."
+
+  try:
+    which_set_name = list_of_derivations[idx]
+  except IndexError:
+    print "Try a number in range next time."
+  
+  print("selected: "+which_set_name)
+  return which_set_name
+
+def keep_only_this_derivation(name_of_set_to_make,connections_list_of_dics):
+  new_connection_list_of_dics=[]
+  for connection_dic in connections_list_of_dics:
+    if (connection_dic["derivation name"]==name_of_set_to_make):
+      new_connection_list_of_dics.append(connection_dic)
+  return new_connection_list_of_dics
+
 # ********** Begin translation among XMLs *******************
 
 def check_type_return_expression_or_feed_DOM(tpunid,type,xmlDB):
