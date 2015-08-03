@@ -153,7 +153,7 @@ for these_connections in connectionsDB.getElementsByTagName('connection_set'):
       img_width=matchObj.group(1)
       img_height=matchObj.group(2)
 #       print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node+"\"},")
-      node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+node+"\"},\n"
+      node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_feed_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+node+"\"},\n"
   # need to delete the trailing comma on the last json reference
 
   node_list_str=node_list_str[:-2]+"\n"

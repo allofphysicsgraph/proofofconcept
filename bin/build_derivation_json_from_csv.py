@@ -27,6 +27,16 @@ import lib_physics_graph as physgraf
 #import easy to use xml parser called minidom:
 from xml.dom.minidom import parseString
 
+def get_image_size(path,filename):
+  output = subprocess.check_output("file "+path+"/"+filename+".png", shell=True)
+  matchObj=re.match( r'.*data, (\d+) x (\d+), .*', output, re.M|re.I)
+  img_width=matchObj.group(1)
+  img_height=matchObj.group(2)
+  img_size={}
+  img_size["img width"]=img_width
+  img_size["img height"]=img_height
+  return(img_size)
+
 # https://yaml-online-parser.appspot.com/
 input_stream=file('config.input','r')
 input_data=yaml.load(input_stream)
@@ -56,87 +66,53 @@ else: # making all graphs
   outputfile=open(output_path+'/full_graph.json','w')
   outputfile.write("{\"nodes\":[\n")
 
+local_translation_dic={}
+node_indx=0
 
-"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+node[0]+"|"+node[1]+"\"},\n"
+node_lines=""
+set_of_feeds=physgraf.set_of_feeds_from_list_of_dics(connections_list_of_dics)
+for feed in set_of_feeds:
+  output = subprocess.check_output("file "+feed_pictures_path+"/"+feed+".png", shell=True)
+  img_size_dic=get_image_size(feed_pictures_path,feed)
+  node_lines+="  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_feed_png/"+feed+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+feed+"\"},\n"
+  local_translation_dic[feed]=node_indx
+  node_indx+=1
 
-{"img": "images_infrule_png/declareInitialEq.png", "width": 218, "height": 32, "label": "declareInitialEq|7364656"}, 
-{"img": "images_expression_png/9492920340.png", "width": 284, "height": 34, "label": "9492920340|1029383"}, 
-{"img": "images_infrule_png/differentiateWRT.png", "width": 239, "height": 25, "label": "differentiateWRT|6463728"} 
-], 
+set_of_expr=physgraf.set_of_expr_from_list_of_dics(connections_list_of_dics)
+for expr in set_of_expr:
+  img_size_dic=get_image_size(expression_pictures_path,expr)
+  node_lines+="  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+expr+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+expr+"\"},\n"
+  local_translation_dic[expr]=node_indx
+  node_indx+=1
+
+set_of_infrule=physgraf.set_of_infrule_from_list_of_dics(connections_list_of_dics)
+for infrule in set_of_infrule:
+  [infrule_name,infrule_temp]=infrule.split(":")
+  img_size_dic=get_image_size(infrule_pictures_path,infrule_name)
+  node_lines+="  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/"+infrule_name+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+infrule_temp+"\"},\n"
+  local_translation_dic[infrule_temp]=node_indx
+  node_indx+=1
+
+node_lines=node_lines[:-2]+"\n"
+outputfile.write(node_lines)
+
+outputfile.write("],\n")
+outputfile.write("   \"links\":[\n")
+
+edge_lines=""
+for connection_dic in connections_list_of_dics:
+#   print(connection_dic)
+  if (connection_dic['from type']=='feed'):  # feed -> infrule 
+    edge_lines+="  {\"source\":"+str(local_translation_dic[connection_dic['from temp index']])+",\"target\":"+str(local_translation_dic[connection_dic['to temp index']])+"},\n"  
+  if (connection_dic['from type']=='infrule'):  # infrule -> expression
+    edge_lines+="  {\"source\":"+str(local_translation_dic[connection_dic['from temp index']])+",\"target\":"+str(local_translation_dic[connection_dic['to perm index']])+"},\n"    
+  if (connection_dic['from type']=='expression'):  # expression -> infrule
+    edge_lines+="  {\"source\":"+str(local_translation_dic[connection_dic['from perm index']])+",\"target\":"+str(local_translation_dic[connection_dic['to temp index']])+"},\n"
   
-  # determine image dimensions, write nodes to file
-#   node_list_str=""
-#   for node in ary_of_unique_nodes:
-#     if len(node)==2:  # list, either infrule or expression
-#       if node[0].isdigit(): # expression     
-#         output = subprocess.check_output("file "+expression_pictures_path+"/"+node[0]+".png", shell=True)
-#         matchObj=re.match( r'.*data, (\d+) x (\d+), .*', output, re.M|re.I)
-#         img_width=matchObj.group(1)
-#         img_height=matchObj.group(2)
-# #         print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},")
-#         node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+node[0]+"|"+node[1]+"\"},\n"
-#       else: # infrule
-# #         print(node[0])
-#         output = subprocess.check_output("file "+infrule_pictures_path+"/"+node[0]+".png", shell=True)
-# #         print(output)
-#         matchObj=re.match( r'.*data, (\d+) x (\d+), .*', output, re.M|re.I)
-#         img_width=matchObj.group(1)
-#         img_height=matchObj.group(2)
-# #         print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node[0]+"|"+node[1]+"\"},")
-#         node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/"+node[0]+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+node[0]+"|"+node[1]+"\"},\n"
-#     else: # feed
-#       output = subprocess.check_output("file "+feed_pictures_path+"/"+node+".png", shell=True)
-#       matchObj=re.match( r'.*data, (\d+) x (\d+), .*', output, re.M|re.I)
-#       img_width=matchObj.group(1)
-#       img_height=matchObj.group(2)
-# #       print("  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_width+", \"label\": \""+node+"\"},")
-#       node_list_str=node_list_str+"  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+node+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+node+"\"},\n"
-#   # need to delete the trailing comma on the last json reference
-# 
-#   node_list_str=node_list_str[:-2]+"\n"
-#   outputfile.write(node_list_str)
-# 
-#   # replace tunid in edge array with array of node indices
-#   ary_of_edge_indices=[]
-#   for edge_pair in ary_of_edges:
-#     source_tunid=edge_pair[0]
-#     target_tunid=edge_pair[1]
-#     for index,node in enumerate(ary_of_unique_nodes):
-# #       if len(node)==2:  # list, either infrule or expression
-#         if node[1]==source_tunid:
-#           source_index=index
-#         if node[1]==target_tunid:
-#           target_index=index
-# #       else: # feed tunid
-# #         if node==source_tunid:
-# #           source_index=index
-# #         if node==target_tunid:
-# #           target_index=index
-#     templist=(source_index,target_index)
-#     ary_of_edge_indices.append(templist)
-# 
-#   print("array of edge indices:")
-#   print(ary_of_edge_indices)
-# 
-#   outputfile.write("],\n")
-#   outputfile.write("   \"links\":[\n")
-#   
-#   # write edges to file
-#   edge_list_str=""
-#   for edge_pair in ary_of_edge_indices:
-# #     print("source:"+str(edge_pair[0])+" target:"+str(edge_pair[1]))
-#     edge_list_str=edge_list_str+"  {\"source\":"+str(edge_pair[0])+",\"target\":"+str(edge_pair[1])+"},\n"
-#   edge_list_str=edge_list_str[:-2]+"\n"  
-#   outputfile.write(edge_list_str)  
-#   outputfile.write("]}\n")
-#   # need to delete the trailing comma on the last json reference
-#   outputfile.close()
-# 
-# 
-# # end loop through connections
-# 
-# 
-# 
-# 
-# sys.exit("done")
+edge_lines=edge_lines[:-2]+"\n"  
+outputfile.write(edge_lines)  
+
+outputfile.write("]}\n")
+outputfile.close()
+
 # end of file 
