@@ -1,3 +1,5 @@
+# prints the commands for running each and all the derivations
+
 cut -f 1 -d ',' databases/connections_database.csv | uniq > temp.dat
 
 while read line; do 

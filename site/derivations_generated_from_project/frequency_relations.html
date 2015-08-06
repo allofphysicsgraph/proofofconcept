@@ -1,3 +1,5 @@
+<!-- http://stackoverflow.com/questions/9573178/d3-force-directed-layout-with-bounding-box -->
+
 <!-- http://bl.ocks.org/d3noob/8329447 -->
 <!-- http://jsonlint.com/ -->
 <!-- http://stackoverflow.com/questions/24692002/i-want-to-distinguish-the-link-of-d3-js-force-graph-by-the-thickness -->
@@ -6,7 +8,7 @@
 <!-- http://www.d3noob.org/2013/03/d3js-force-directed-graph-example-basic.html -->
 <!DOCTYPE html>
 <body>
-<script src="d3/d3.v3.min.js"></script>
+<script src="http://allofphysicsgraph.github.io/proofofconcept/site/d3/d3.v3.min.js"></script>
 <script>
 
 var w = 1100,
@@ -41,7 +43,7 @@ var force = d3.layout.force()
 //    .linkDistance(300)
     .size([w, h]);
 
-var vis = d3.select("body")
+var vis = d3.select("#area1")
     .append("svg:svg")
       .attr("class", "stage")
       .attr("width", w)
@@ -65,7 +67,7 @@ vis.append("svg:defs").selectAll("marker")
 
 
 // load the external data
-d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/quadratic_equation_derivation.json", function(error, root) {
+d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_from_project/frequency_relations.json.json", function(error, root) {
   //console.log(root);
   console.log(root.nodes);
   console.log(root.links);
