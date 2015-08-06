@@ -1,0 +1,44 @@
+# Graphviz
+# date created: 20150805
+# Command to produce output:
+# neato -Tsvg thisfile.gv > out.svg
+# http://www.graphviz.org/Gallery/directed/traffic_lights.gv.txt
+# http://www.graphviz.org/content/traffic_lights
+digraph physicsEquations {
+overlap=false;
+label="Equation relations\nExtracted from connections_database.xml and layed out by Graphviz";
+fontsize=12;
+7575859308 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/7575859308.png",labelloc=b,URL="http://expre.com"];
+7575859302 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/7575859302.png",labelloc=b,URL="http://expre.com"];
+7575859300 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/7575859300.png",labelloc=b,URL="http://expre.com"];
+7575859295 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/7575859295.png",labelloc=b,URL="http://expre.com"];
+7575859306 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/7575859306.png",labelloc=b,URL="http://expre.com"];
+7575859304 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/7575859304.png",labelloc=b,URL="http://expre.com"];
+7575859310 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/7575859310.png",labelloc=b,URL="http://expre.com"];
+7575859312 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/7575859312.png",labelloc=b,URL="http://expre.com"];
+2930454 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/subRHSofEqXintoEqY.png",labelloc=b,URL="http://infrule.com"];
+3948572 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/declareIdentity.png",labelloc=b,URL="http://infrule.com"];
+4295822 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/declareIdentity.png",labelloc=b,URL="http://infrule.com"];
+3948552 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/ReplaceCurlWithLeviCevitaSummationContravariant.png",labelloc=b,URL="http://infrule.com"];
+3949211 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/claimLHSequalsRHS.png",labelloc=b,URL="http://infrule.com"];
+3848292 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/simplify.png",labelloc=b,URL="http://infrule.com"];
+2339482 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/ReplaceCurlWithLeviCevitaSummationContravariant.png",labelloc=b,URL="http://infrule.com"];
+3838233 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/simplify.png",labelloc=b,URL="http://infrule.com"];
+1393411 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/ReplaceSummationNotationWithVectorNotation.png",labelloc=b,URL="http://infrule.com"];
+3948572 -> 7575859295;
+7575859295 -> 2339482;
+2339482 -> 7575859300;
+7575859300 -> 3948552;
+3948552 -> 7575859302;
+4295822 -> 7575859304;
+7575859304 -> 2930454;
+7575859302 -> 2930454;
+2930454 -> 7575859306;
+7575859306 -> 3848292;
+3848292 -> 7575859308;
+7575859308 -> 3838233;
+3838233 -> 7575859310;
+7575859310 -> 1393411;
+1393411 -> 7575859312;
+7575859312 -> 3949211;
+}

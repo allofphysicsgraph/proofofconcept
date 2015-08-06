@@ -1,0 +1,80 @@
+# Graphviz
+# date created: 20150805
+# Command to produce output:
+# neato -Tsvg thisfile.gv > out.svg
+# http://www.graphviz.org/Gallery/directed/traffic_lights.gv.txt
+# http://www.graphviz.org/content/traffic_lights
+digraph physicsEquations {
+overlap=false;
+label="Equation relations\nExtracted from connections_database.xml and layed out by Graphviz";
+fontsize=12;
+4858592 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_feed_png/4858592.png",labelloc=b,URL="http://feed.com"];
+0999900 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_feed_png/0999900.png",labelloc=b,URL="http://feed.com"];
+2424922 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_feed_png/2424922.png",labelloc=b,URL="http://feed.com"];
+4307451 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_feed_png/4307451.png",labelloc=b,URL="http://feed.com"];
+2838490 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_feed_png/2838490.png",labelloc=b,URL="http://feed.com"];
+6644853 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_feed_png/6644853.png",labelloc=b,URL="http://feed.com"];
+2367209 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_feed_png/2367209.png",labelloc=b,URL="http://feed.com"];
+2449291 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_feed_png/2449291.png",labelloc=b,URL="http://feed.com"];
+9582958293 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/9582958293.png",labelloc=b,URL="http://expre.com"];
+9582958294 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/9582958294.png",labelloc=b,URL="http://expre.com"];
+5959282914 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/5959282914.png",labelloc=b,URL="http://expre.com"];
+9285928292 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/9285928292.png",labelloc=b,URL="http://expre.com"];
+5938459282 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/5938459282.png",labelloc=b,URL="http://expre.com"];
+5928292841 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/5928292841.png",labelloc=b,URL="http://expre.com"];
+5928285821 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/5928285821.png",labelloc=b,URL="http://expre.com"];
+5982958248 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/5982958248.png",labelloc=b,URL="http://expre.com"];
+5982958249 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/5982958249.png",labelloc=b,URL="http://expre.com"];
+9999999968 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/9999999968.png",labelloc=b,URL="http://expre.com"];
+9999999969 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/9999999969.png",labelloc=b,URL="http://expre.com"];
+5958392859 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/5958392859.png",labelloc=b,URL="http://expre.com"];
+8582954722 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/8582954722.png",labelloc=b,URL="http://expre.com"];
+9385938295 [shape=ellipse,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_expression_png/9385938295.png",labelloc=b,URL="http://expre.com"];
+7777777 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/LHSofEqXeqLHSofEqY.png",labelloc=b,URL="http://infrule.com"];
+8321038 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/subXforY.png",labelloc=b,URL="http://infrule.com"];
+8359402 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/declareFinalEq.png",labelloc=b,URL="http://infrule.com"];
+2211910 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/simplify.png",labelloc=b,URL="http://infrule.com"];
+8492932 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/dividebothsidesby.png",labelloc=b,URL="http://infrule.com"];
+7996484 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/simplify.png",labelloc=b,URL="http://infrule.com"];
+5829110 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/subtractXfromBothSides.png",labelloc=b,URL="http://infrule.com"];
+2500423 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/addXtoBothSides.png",labelloc=b,URL="http://infrule.com"];
+7487443 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/raiseBothSidesToPower.png",labelloc=b,URL="http://infrule.com"];
+8494551 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/declareInitialEq.png",labelloc=b,URL="http://infrule.com"];
+2200910 [shape=invtrapezium,color=red,image="/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_png/subtractXfromBothSides.png",labelloc=b,URL="http://infrule.com"];
+8494551 -> 9285928292;
+8494551 -> 8582954722;
+2424922 -> 8492932;
+9285928292 -> 8492932;
+8492932 -> 5958392859;
+6644853 -> 5829110;
+5958392859 -> 5829110;
+5829110 -> 5938459282;
+4307451 -> 2500423;
+5938459282 -> 2500423;
+2500423 -> 5928292841;
+4858592 -> 8321038;
+0999900 -> 8321038;
+8582954722 -> 8321038;
+8321038 -> 5928285821;
+5928285821 -> 7996484;
+7996484 -> 5959282914;
+5928292841 -> 7777777;
+5959282914 -> 7777777;
+7777777 -> 9385938295;
+2367209 -> 7487443;
+9385938295 -> 7487443;
+7487443 -> 9582958294;
+7487443 -> 5982958249;
+2838490 -> 2200910;
+9582958294 -> 2200910;
+2200910 -> 9582958293;
+9582958293 -> 2211910;
+2211910 -> 9999999969;
+2449291 -> 2200910;
+5982958249 -> 2200910;
+2200910 -> 5982958248;
+5982958248 -> 2211910;
+2211910 -> 9999999968;
+9999999969 -> 8359402;
+9999999968 -> 8359402;
+}

@@ -63,7 +63,8 @@ if (prompt_for_which_derivation):
   which_derivation_to_make=physgraf.which_set(connections_list_of_dics)
 which_derivation_to_make_no_spaces='_'.join(which_derivation_to_make.split(" "))
 
-connections_list_of_dics=physgraf.keep_only_this_derivation(which_derivation_to_make,connections_list_of_dics)
+if (which_derivation_to_make != "all"):
+  connections_list_of_dics=physgraf.keep_only_this_derivation(which_derivation_to_make,connections_list_of_dics)
 
 outputfile=open(output_path+'/'+which_derivation_to_make_no_spaces+'.json','w')
 outputfile.write("{\"nodes\":[\n")
@@ -117,4 +118,5 @@ outputfile.write(edge_lines)
 outputfile.write("]}\n")
 outputfile.close()
 
+print("done with "+which_derivation_to_make)
 # end of file 

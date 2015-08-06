@@ -1,0 +1,22 @@
+{"nodes":[
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/0203024440.png", "width": 654, "height": 87, "label": "0203024440"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/0404050504.png", "width": 86, "height": 69, "label": "0404050504"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/0439492440.png", "width": 711, "height": 93, "label": "0439492440"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/0934990943.png", "width": 116, "height": 70, "label": "0934990943"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/0948572140.png", "width": 358, "height": 77, "label": "0948572140"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/1010393913.png", "width": 237, "height": 41, "label": "1010393913"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/1010393944.png", "width": 222, "height": 40, "label": "1010393944"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/1010923823.png", "width": 389, "height": 31, "label": "1010923823"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/1020010291.png", "width": 198, "height": 34, "label": "1020010291"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_statement_png/1020394900.png", "width": 117, "height": 34, "label": "1020394900"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/takeCurlofBothSides.png", "width": 284, "height": 25, "label": "takeCurlofBothSides"}
+],
+     "links":[
+    {"source":1,"target":0},
+    {"source":2,"target":4},
+    {"source":3,"target":5},
+    {"source":3,"target":2},
+    {"source":4,"target":0},
+    {"source":5,"target":1},
+    {"source":6,"target":3}
+]}  
