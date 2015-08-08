@@ -13,6 +13,5 @@ while read line; do
   echo -e "<P><img src=\"http://allofphysicsgraph.github.io/proofofconcept/site/pictures/generated_from_project/graph_"${this_deriv}"_without_labels.png\" width=\"800\"></P>" >> ${file_name}
   echo -e "</body>" >> ${file_name}
   echo -e "</html>" >> ${file_name}
-
   
 done < temp.dat

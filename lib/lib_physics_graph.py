@@ -74,6 +74,42 @@ def convert_connections_csv_to_list_of_dics(connectionsDB):
       connections_list_of_dics.append(this_line_dic)
   return connections_list_of_dics
 
+def convert_feed_csv_to_list_of_dics(feedDB):
+  feeds_list_of_dics=[]
+  with open(feedDB, 'rb') as csvfile:
+    reader = csv.reader(csvfile, delimiter=',', quotechar='"',skipinitialspace=True)
+    for row in reader:
+      this_line_dic={}
+      if(len(row)==1): # skip empty lines
+        continue
+      elif(len(row)==2): # proper lines
+        this_line_dic["temp index"]=row[0]
+        this_line_dic["feed latex"]=row[1]
+      else:
+        print("error in "+feedDB)
+        print(len(row))
+        print(row)
+      feeds_list_of_dics.append(this_line_dic)
+  return feeds_list_of_dics
+
+def convert_expressions_csv_to_list_of_dics(expressionsDB):
+  expressions_list_of_dics=[]
+  with open(expressionsDB, 'rb') as csvfile:
+    reader = csv.reader(csvfile, delimiter=',', quotechar='"',skipinitialspace=True)
+    for row in reader:
+      this_line_dic={}
+      if(len(row)==1): # skip empty lines
+        continue
+      elif(len(row)==2): # proper lines
+        this_line_dic["permanent index"]=row[0]
+        this_line_dic["expression latex"]=row[1]
+      else:
+        print("error in "+expressionsDB)
+        print(len(row))
+        print(row)
+      expressions_list_of_dics.append(this_line_dic)
+  return expressions_list_of_dics
+
 def convert_infrule_csv_to_list_of_dics(infruleDB):
   infrule_list_of_dics=[]
   with open(infruleDB, 'rb') as csvfile:
@@ -290,14 +326,15 @@ def remove_tags(value_with_tags,tag_name):
 
 # ************** Begin Latex *******************
 
-def make_picture_from_latex(file_name,folder_name,latex,extension):
+
+def make_picture_from_latex_expression(file_name,folder_name,latex_expression,extension):
   path_to_file=folder_name+'/'+file_name+'.'+extension
   if (os.path.isfile(path_to_file)):
     os.remove(path_to_file)
   tmp_tex='tmp.tex'
   if (os.path.isfile(tmp_tex)):
     os.remove(tmp_tex)
-  tex_string =  "\n\\thispagestyle{empty}\n\\begin{document}\n\huge{"+latex+"}\n\\end{document}\n"
+  tex_string =  "\n\\thispagestyle{empty}\n\\begin{document}\n\huge{"+latex_expression+"}\n\\end{document}\n"
 # first argument is a text size, the further arguments set the corresponding math sizes in display/text style, script style and scriptscript style.
   tex_file = open(tmp_tex, 'w')
   latex_header(tex_file)
