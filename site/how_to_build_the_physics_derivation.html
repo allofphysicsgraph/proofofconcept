@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="jquery-2.1.4.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("footer.html"); 
+    });
+    </script> 
+  
+    <title>Physics Derivation graph: Frequently Asked Questions</title>
+  </head>
+  <body bgcolor="#e5e5e5">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MS7JL5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MS7JL5');</script>
+<!-- End Google Tag Manager -->
+
+<table width="100%">
+<tr>
+  <td width="10%">&nbsp;</td>
+  <td width="2%">&nbsp;</td>
+  <td width="78%">&nbsp;</td>
+  <td width="10%">&nbsp;</td>
+</tr>  
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <center>
+    <H2>Physics Derivation Graph: How to build the Physics Graph</H2>
+    </center>
+  </td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td valign="top">
+ <div id="includedNavContent"></div>
+
+  
+  </td>
+  <td>&nbsp;</td>
+  <td>
+<H2>How to build the Physics Graph</H2>
+
+<p>A simple "derivation" is the transition from the expression <i>T</i>=<i>1/f</i> to <i>f</i>=<i>1/T</i> as presented on the <a href="../index.html">front page</a>. The purpose of this documentation is to explain how to build a graph<!-- using GraphViz, d3js, and a PDF in Latex-->.</p>
+
+<P>The first step is to perform the derivation in atomic steps. To express frequency as a function of period, multiply both sides of the expression <i>T=1/f</i> by <i>f</i> to get a new expression, <i>T*f=1</i>. Then divide both sides of the second expression by <i>T</i> to yield the third expression, <i>f=1/T</i>. Even this "simple" expansion to atomic steps is not standard practice -- I haven't seen this done anywhere else. For most derivations, this is burdensome process. </P>
+
+<P>The next step is to visualize this graph. I usually do this iteration by hand on paper.<BR>
+<center>
+<img src="pictures/example_T_f_graphviz_output.png">
+</center>
+This graph could be represented by the following pairs in a CSV
+<FONT FACE="Courier New"> 
+"T=1/f",multbothsidesby<BR>
+"f",multbothsidesby<BR>
+multbothsidesby,"T f=1"<BR>
+"T f=1", dividebothsidesby<BR>
+dividebothsidesby,"T"<BR>
+dividebothsidesby,"f=1/T<BR>
+</FONT>
+
+<P>However, for larger derivations, a conflict arises. The inference rules can be referred to more than once -- ie "multbothsidesby" can be used in different steps of a derivation. Since we want the graph to have more than one node with the same label, an index which has a scope limited to the derivation step is needed. This leads to the notion of a "temporary index" for each inference rule. The temporary index for the inference rule is a unique identifier within a derivation step.</P>
+
+<P>A second complication arise regarding the expression. In the above example, I use a human readable expression, ie "T=1/f". This usefulness of this format depends on what is reading the expression. The expression needs to be readable by humans, LaTeX, and Computer Algebra Systems (ie Mathematica, Sympy). A unique identifier is needed which is associated with the expression, independent of the representation. In Logic, this is referred to as the Godel number. Similarly, the "feeds" (here <i>f</i> and <i>T</i> need unique identifiers.<P>
+
+<P>With the above constraints in mind, the CSV format is now of the form<BR>
+<FONT FACE="Courier New"> 
+"frequency and period",2,"expression",8482459,       3131111133,   "infrule",6822583,multbothsidesby<BR>
+"frequency and period",2,      "feed",5749291,                0,   "infrule",6822583,multbothsidesby<BR>
+"frequency and period",2,   "infrule",6822583,  multbothsidesby,"expression",8341200,2131616531<BR>
+"frequency and period",3,"expression",8341200,       2131616531,   "infrule",9483715,dividebothsidesby<BR>
+"frequency and period",3,      "feed",8837284,                0,   "infrule",9483715,dividebothsidesby<BR>
+"frequency and period",3,   "infrule",9483715,dividebothsidesby,"expression",9380032,2113211456<BR>
+"frequency and period",4,"expression",9380032,       2113211456,   "infrule",8345721,declareFinalEq<BR>
+</FONT> 
+The columns are
+<OL>
+<LI>the name of the derivation</LI>
+<LI>the step number within the derivation</LI>
+<LI>the from node type</LI>
+<LI>the from node temporary index</LI>
+<LI>the from node permanent index</LI>
+<LI>the to node type</LI>
+<LI>the to node temporary index</LI>
+<LI>the to node permanent index</LI>
+</OL>
+
+<P>The expression permanent index is the same across all derivations, whereas the temporary index is scoped to just the derivation step.<BR>
+Similarly, the inference rule permanent index is consistent across the entire physics derivation project, whereas the temporary index is specific to the derivation step.</p>
+
+<P>The inference rule needs the temporary index to build the graph.<BR>
+The expression needs a temporary index to build the Latex PDF. </P>
+
+<P>When building a graph, there are three types of nodes: inference rules, expressions, and seeds. To build a graph, we basically need a set of pairs. The pairs come from the 8 column CSV above. 
+<UL>
+<LI>If the node is an inference rule, use the temporary index (column 4 for "from", column 7 for "to"). </LI>
+<LI>If the node is an expression, use the permanent index (column 5 for "from", column 8 for "to").</LI>
+<LI>If the node is a feed, use the temporary index (column 4 for "from", column 7 for "to").</LI>
+</UL>
+
+<P>The graph will only have three types of edges:
+<UL>
+<LI>from:"inference rule" to:"expression"</LI>
+<LI>from:"expression" to:"inference rule"</LI>
+<LI>from:"feed" to:"inference rule"</LI>
+</UL>
+
+<div id="includedFooterContent"></div>
+  </td>
+  <td>&nbsp;</td>
+</tr>
+</table>
+  </body>
+</html>
