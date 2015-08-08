@@ -74,6 +74,33 @@ def convert_connections_csv_to_list_of_dics(connectionsDB):
       connections_list_of_dics.append(this_line_dic)
   return connections_list_of_dics
 
+def convert_infrule_csv_to_list_of_dics(infruleDB):
+  infrule_list_of_dics=[]
+  with open(infruleDB, 'rb') as csvfile:
+    reader = csv.reader(csvfile, delimiter=',', quotechar='"',skipinitialspace=True)
+    for row in reader:
+#       print(row)
+      this_line_dic={}
+#       print(row)
+#       print('-'.join(row))
+#       print(len(row))
+      if(len(row)==0): # skip empty lines
+        continue
+      elif(len(row)==7): # proper lines      
+        this_line_dic["inference rule"]              =row[0]
+        this_line_dic["number of arguments"]         =row[1]
+        this_line_dic["number of feeds"]             =row[2]
+        this_line_dic["number of input expressions"] =row[3]
+        this_line_dic["number of output expressions"]=row[4]
+        this_line_dic["comment"]                     =row[5]
+        this_line_dic["LaTeX expansion"]             =row[6]
+      else:
+        print("error in "+infruleDB)
+        print(len(row))
+        print(row)
+      infrule_list_of_dics.append(this_line_dic)
+  return infrule_list_of_dics
+
 def set_of_feeds_from_list_of_dics(connections_list_of_dics):
   list_of_feeds=[]
   for connection_dic in connections_list_of_dics:
