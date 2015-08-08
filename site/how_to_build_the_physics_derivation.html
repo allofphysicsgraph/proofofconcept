@@ -50,7 +50,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   </td>
   <td>&nbsp;</td>
   <td>
-<H2>How to build the Physics Graph</H2>
 
 <p>A simple "derivation" is the transition from the expression &nbsp;<i>T</i>=<i>1/f</i>&nbsp; to &nbsp;<i>f</i>=<i>1/T</i>&nbsp; -- the same example used on the <a href="../index.html">home page</a>. The purpose of this documentation is to explain how to build a graph<!-- using GraphViz, d3js, and a PDF in Latex-->.</p>
 
@@ -78,6 +77,7 @@ dividebothsidesby,"f=1/T<BR>
 
 <P>With the above constraints in mind, the CSV format is now of the form<BR>
 <!--<FONT FACE="Courier New"> -->
+<center>
 <textarea cols="100" rows="8" style="font-size: 12pt" style="font-family:Courier New">
 "frequency and period",2,"expression",8482459,       3131111133,   "infrule",6822583,multbothsidesby
 "frequency and period",2,      "feed",5749291,                0,   "infrule",6822583,multbothsidesby
@@ -87,6 +87,7 @@ dividebothsidesby,"f=1/T<BR>
 "frequency and period",3,   "infrule",9483715,dividebothsidesby,"expression",9380032,2113211456
 "frequency and period",4,"expression",9380032,       2113211456,   "infrule",8345721,declareFinalEq
 </textarea>
+</center>
 <!--</FONT>-->
 <P>The columns are
 <OL>
@@ -106,13 +107,6 @@ Similarly, the inference rule permanent index is consistent across the entire ph
 <P>The inference rule needs the temporary index to build the graph.<BR>
 The expression needs a temporary index to build the Latex PDF. </P>
 
-<P>When building a graph, there are three types of nodes: inference rules, expressions, and seeds. To build a graph, we basically need a set of pairs. The pairs come from the 8 column CSV above. 
-<UL>
-<LI>If the node is an inference rule, use the temporary index (column 4 for "from", column 7 for "to"). </LI>
-<LI>If the node is an expression, use the permanent index (column 5 for "from", column 8 for "to").</LI>
-<LI>If the node is a feed, use the temporary index (column 4 for "from", column 7 for "to").</LI>
-</UL>
-
 <P>The graph will only have three types of edges:
 <UL>
 <LI>from:"inference rule", to:"expression"</LI>
@@ -120,9 +114,57 @@ The expression needs a temporary index to build the Latex PDF. </P>
 <LI>from:"feed", to:"inference rule"</LI>
 </UL>
 
+<P>When building a graph, there are three types of nodes: inference rules, expressions, and seeds. To build a graph, we basically need a set of pairs. The pairs come from the 8 column CSV above. 
+<UL>
+<LI>If the node is an inference rule, use the temporary index (column 4 for "from", column 7 for "to"). </LI>
+<LI>If the node is an expression, use the permanent index (column 5 for "from", column 8 for "to").</LI>
+<LI>If the node is a feed, use the temporary index (column 4 for "from", column 7 for "to").</LI>
+</UL>
+
+<P>For the above example, that yields the following to columns:<BR>
+<center>
+<textarea cols="30" rows="8" style="font-size: 12pt" style="font-family:Courier New">
+3131111133,6822583
+5749291,6822583
+6822583,2131616531
+2131616531,9483715
+8837284,9483715
+9483715,2113211456
+2113211456,8345721
+</textarea>
+</center>
+</P>
+
+<P>Those two columns are straight forward to use in GraphViz format</P>
+<P>
+<FONT FACE="Courier New"> 
+digraph physicsDerivation {<BR>
+overlap = false;<BR>
+label="Equation relations\\nExtracted from connections_database.csv";<BR>
+fontsize=12;<BR>
+3131111133 -&gt; 6822583<BR>
+5749291 -&gt; 6822583<BR>
+6822583 -&gt; 2131616531<BR>
+2131616531 -&gt; 9483715<BR>
+8837284 -&gt; 9483715<BR>
+9483715 -&gt; 2113211456<BR>
+2113211456 -&gt; 8345721<BR>
+}<BR></FONT>
+
+<P>Command:<BR>
+neato -Tpng -Nlabel="" frequency_and_period.dot &gt; out.png</P>
+
+<P>Output:<BR>
+<center>
+<img src="pictures/example_T_f_intermediate_output.png" width="400">
+</center>
+</P>
+
+<p>However, that's not yet the pretty picture of the graph we want. Next we need to replace the Godel numbers with pictures and text. </P>
+
 <div id="includedFooterContent"></div>
   </td>
-  <td>&nbsp;</td>
+  <td>&nbsp;  </td>
 </tr>
 </table>
   </body>
