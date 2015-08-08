@@ -37,7 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <td>&nbsp;</td>
   <td>
     <center>
-    <H2>Physics Derivation Graph: How to build the Physics Graph</H2>
+    <H2>How to build the Physics Graph</H2>
     </center>
   </td>
   <td>&nbsp;</td>
@@ -116,9 +116,14 @@ The expression needs a temporary index to build the Latex PDF. </P>
 
 <P>When building a graph, there are three types of nodes: inference rules, expressions, and seeds. To build a graph, we basically need a set of pairs. The pairs come from the 8 column CSV above. 
 <UL>
-<LI>If the node is an inference rule, use the temporary index (column 4 for "from", column 7 for "to"). </LI>
-<LI>If the node is an expression, use the permanent index (column 5 for "from", column 8 for "to").</LI>
-<LI>If the node is a feed, use the temporary index (column 4 for "from", column 7 for "to").</LI>
+<LI>If the node is an "from" inference rule, use the temporary index (column 4).</LI>
+<LI>If the node is an "to" inference rule, use the temporary index (column 7).</LI>
+
+<LI>If the node is an "from" expression, use the permanent index (column 5).</LI>
+<LI>If the node is an "to" expression, use the permanent index (column 8).</LI>
+
+<LI>If the node is a "from" feed, use the temporary index (column 4).</LI>
+<LI>If the node is a "to" feed, use the temporary index (column 7).</LI>
 </UL>
 
 <P>For the above example, that yields the following to columns:<BR>
