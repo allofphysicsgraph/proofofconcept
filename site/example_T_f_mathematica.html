@@ -13,6 +13,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MS7JL5');</script>
 <!-- End Google Tag Manager -->
 
+<P>A computer algebra system like Mathematica can validate the steps of a derivation. This check does not prove the derivation.</P>
+
 <P>Input:</P>
 
 <FONT FACE="Courier New"> <B>
@@ -23,7 +25,7 @@ divideBothSidesOfExpression[LHS_, relation_, RHS_, feed_] := {LHSout = LHS/feed,
 LHS = T;<BR>
 RHS = 1/f;<BR>
 relation = "=";<BR>
-{LHS1, relation, RHS1}</P>
+{LHS, relation, RHS}</P>
 
 <P>
 result = multiplyBothSidesOfExpression[LHS, relation, RHS, f]; (* should yield T*f=1 *)<BR>
@@ -41,7 +43,23 @@ result = divideBothSidesOfExpression[result[[1]], result[[2]], result[[3]], T]; 
 <P>{f,=,1/T}</P>
 </FONT>
 
-<P>A computer algebra system like Mathematica can validate the steps of a derivation. This check does not prove the derivation.</P>
+<P>To work with the project content,</P>
+<FONT FACE="Courier New"> <B>
+PDGdata=Import["path/to/connections_database.csv"];<BR>
+
+Graph[{1-->2,2-->3},VertexLabels-->"Name"]<BR>
+
+For[i = 1, i < Length[Data], i++, Print[i]; <BR>
+ If[Data[[i]][[3]] == " \"infrule\"", Print[Data[[i]][[4]]]]; <BR>
+ If[Data[[i]][[3]] == " \"feed\"", Print[Data[[i]][[4]]]]; <BR>
+ If[Data[[i]][[3]] == " \"expression\"", Print[Data[[i]][[5]]]]; <BR>
+ If[Data[[i]][[6]] == "infrule", Print[Data[[i]][[7]]]]; <BR>
+ If[Data[[i]][[6]] == "feed", Print[Data[[i]][[7]]]]; <BR>
+ If[Data[[i]][[6]] == "expression", Print[Data[[i]][[8]]]]]<BR>
+
+lst = {}<BR>
+For[i = 1, i < Length[Data], i++, lst = Append[lst, Data[[i]][[4]] -> Data[[i]][[7]]]]; Graph[lst]<BR>
+</FONT></B>
 
 </body>
 </html>
