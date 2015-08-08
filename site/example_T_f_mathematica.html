@@ -61,6 +61,17 @@ lst = {}<BR>
 For[i = 1, i < Length[Data], i++, lst = Append[lst, Data[[i]][[4]] -> Data[[i]][[7]]]]; Graph[lst]<BR>
 <P>
 Graph[Flatten[Table[{Range[5][[i]] -> Range[3, 7][[i]]}, {i, 1, 5}]], VertexLabels -> &quot;Name&quot;]<BR>
+<P>
+cinf1=Table[If[f[3][[i]]== &quot; \&quot;infrule\&quot;&quot;,f[4][[i]]],{i,1,10}];
+cfeed1=Table[If[f[3][[i]]== &quot; \&quot;feed\&quot;&quot;,f[4][[i]]],{i,1,10}];
+cexp1=Table[If[f[3][[i]]== &quot; \&quot;expression\&quot;&quot;,f[5][[i]]],{i,1,10}];
+cinf2=Table[If[f[3][[i]]== &quot; \&quot;infrule\&quot;&quot;,f[7][[i]]],{i,1,10}];
+cfeed2=Table[If[f[3][[i]]== &quot; \&quot;feed\&quot;&quot;,f[7][[i]]],{i,1,10}];
+cexp2=Table[If[f[3][[i]]== &quot; \&quot;expression\&quot;&quot;,f[7][[i]]],{i,1,10}];
+<P>
+c1=Cases[{cinf1,cfeed1,cexp1},_Integer,2];
+c2=Cases[{cinf2,cfeed2,cexp2},_Integer,2];
+Graph[Table[c1[[i]]->c2[[i]],{i,1,10}],VertexLabels->&quot;Name&quot;]
 </FONT></B>
 
 </body>
