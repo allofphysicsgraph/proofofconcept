@@ -98,7 +98,7 @@ def convert_expressions_csv_to_list_of_dics(expressionsDB):
     reader = csv.reader(csvfile, delimiter=',', quotechar='"',skipinitialspace=True)
     for row in reader:
       this_line_dic={}
-      if(len(row)==1): # skip empty lines
+      if(len(row)==0): # skip empty lines
         continue
       elif(len(row)==2): # proper lines
         this_line_dic["permanent index"]=row[0]
