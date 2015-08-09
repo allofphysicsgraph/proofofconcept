@@ -166,7 +166,13 @@ def get_set_of_derivations(connections_list_of_dics):
   list_of_derivations=[]
   for connection_dic in connections_list_of_dics:
     list_of_derivations.append(connection_dic["derivation name"])
-  return(set(list_of_derivations))
+  return list(set(list_of_derivations))
+
+def get_set_of_steps(connections_list_of_dics):
+  list_of_steps=[]
+  for connection_dic in connections_list_of_dics:
+    list_of_steps.append(connection_dic["step index"])
+  return list(set(list_of_steps))
 
 def which_set(connections_list_of_dics):
   set_of_derivations=get_set_of_derivations(connections_list_of_dics)

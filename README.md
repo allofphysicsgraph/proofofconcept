@@ -74,12 +74,14 @@ for input to graph plotting programs like yED
 Development and testing performed on Mac OS 10.7.5
 
 Currently, content is manually coded into XML files:
-* connections_database.xml: how do inference rules and statements relate?
-* equations_database.xml  : library of unique statements to be used by connections
-* operators_database.xml  : library of unique inference rules to be used by connections
-* comments_database.xml   : set of comments which may reference multiple statements
+* connections_database.csv: how do inference rules and statements relate?
+** assumption: order of steps within a derivation matters (for Latex generation)
+** assumption: one inference rule per step (for Latex generation)
+* expressions_database.csv  : library of unique expressions used by connections
+* inference_rules_database.csv  : library of unique inference rules used by connections
+* comments_database.xml   : set of comments which may reference multiple expressions or steps
 
-The XML format and style is under-documented because it is under active development
+
 
 physics_graph_notes.log: my commentary and observations on the project as it progresses
 

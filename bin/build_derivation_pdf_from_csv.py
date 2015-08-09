@@ -4,6 +4,9 @@
 # builds the graph of equations as PNG or SVG by reading from databases
 # use: python bin/build_derivation_png_from_csv.py
 
+# assumption: order of steps within a derivation matters
+# assumption: one inference rule per step
+
 # files required as input: 
 #    lib_physics_graph.py
 #    connections_database.csv
@@ -20,6 +23,17 @@ output_path = os.path.abspath('output')
 sys.path.append(lib_path) # this has to proceed use of physgraph
 
 import lib_physics_graph as physgraf
+
+def get_connections_this_step(connections_list_of_dics,this_step):
+  connections_this_step=[]
+  for connection in connections_list_of_dics:
+    if (connection["step index"]==this_step): 
+      connections_this_step.append(connection)
+      if (connection["from type"]=="infrule"):
+        this_infrule=connection["from perm index"]
+      if (connection["to type"]=="infrule"):
+        this_infrule=connection["to perm index"]
+  return [this_infrule,connections_this_step]
 
 prompt_for_which_derivation=True
 if (len(sys.argv)>1):
@@ -66,7 +80,13 @@ for this_infrule in infrule_list_of_dics:
   tex_file.write('\\newcommand{\\'+this_infrule["inference rule"]+''+ '}['+this_infrule["number of arguments"]+']{'+this_infrule["LaTeX expansion"]+'}\n')
 tex_file.write('\\begin{document}\n')
 
-
-
+list_of_steps=physgraf.get_set_of_steps(connections_list_of_dics)
+#   print(list_of_steps)
+for this_step in sorted(list_of_steps):
+  print(this_step)
+  [this_infrule,connections_this_step]=get_connections_this_step(connections_list_of_dics,this_step)
+  print(this_infrule)
+  print(connections_this_step)
+  
 tex_file.write('\\end{document}\n')
 tex_file.close()

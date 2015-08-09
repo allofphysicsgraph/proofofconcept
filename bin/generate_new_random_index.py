@@ -39,7 +39,6 @@ def find_new_indx(list_of,start_indx,end_indx,strng):
       found_new_indx=True
   print(strng+str(potential_indx))
 
-
 expressionsDB=db_path+'/expressions_database.csv'
 connectionsDB=db_path+'/connections_database.csv'
 feedDB       =db_path+'/feed_database.csv'
@@ -107,3 +106,26 @@ if (len(list(set(connection_infrules) - set(list_of_infrules)))>0):
   print(len(set(connection_infrules)))
   print("in the infrule database:")
   print(len(set(list_of_infrules)))
+
+# check that each step in the connections database only has one inference rule
+
+list_of_deriv=physgraf.get_set_of_derivations(connections_list_of_dics)
+# print(list_of_deriv)
+for this_deriv in list_of_deriv:
+#   print(this_deriv)
+  this_connections_list_of_dics=physgraf.keep_only_this_derivation(this_deriv,connections_list_of_dics)
+  list_of_steps=physgraf.get_set_of_steps(this_connections_list_of_dics)
+#   print(list_of_steps)
+  for this_step in list_of_steps:
+#     print("\n"+this_deriv +"  "+this_step)
+    infrule_list=[]
+    for connection in this_connections_list_of_dics:
+      if (connection["step index"]==this_step): 
+#          print(connection)
+        if (connection["to type"]=="infrule"):
+          infrule_list.append(connection["to perm index"])
+        if (connection["from type"]=="infrule"):
+          infrule_list.append(connection["from perm index"])
+    if (len(set(infrule_list))!=1):
+      print("ERROR found: more than 1 infrule in "+this_deriv+" step "+this_step)
+

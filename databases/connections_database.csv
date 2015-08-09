@@ -1,7 +1,7 @@
 "frequency relations",1, "infrule",2303943,declareInitialEq,"expression",3293094,5900595848
 "frequency relations",2, "infrule",0304948,declareInitialEq,"expression",3294004,0404050504
 "frequency relations",3, "infrule",8332941,declareInitialEq,"expression",0921465,3131211131
-"frequency relations",4, "infrule",8332941,declareInitialEq,"expression",8482459,3131111133
+"frequency relations",4, "infrule",9103516,declareInitialEq,"expression",8482459,3131111133
 "frequency relations",5, "expression",8374556,3132131132,"infrule",3832748,subRHSofEqXintoEqY
 "frequency relations",5, "expression",3293094,5900595848,"infrule",3832748,subRHSofEqXintoEqY
 "frequency relations",5, "infrule",3832748,subRHSofEqXintoEqY,"expression",8394853,0934990943
