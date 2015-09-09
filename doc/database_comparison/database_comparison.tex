@@ -27,7 +27,7 @@
 \newcommand{\pdg}{Physics Derivation Graph}
 
 \begin{document}
-\title{Comparison of Databases for the Physics Derivation Graph}
+\title{Comparison of Databases for the \pdg}
 
 \author{Ben Payne$^{1}$\footnote{Corresponding author: ben.is.located@gmail.com}, Michael Goff$^{2}$\\
 {\it $^{1}$Department of Fun, University Name \& Town, city, State Zip}\\
@@ -44,25 +44,24 @@ A comparison of candidates for how to store elements of the graph. It is assumed
 
 \begin{multicols}{2}
 
-%\tableofcontents
-
-%\newpage
-
-% Syntax: scope = ?
-
-% Syntax comparison: Input, display, into, out of 
-
 \section{Introduction}
 
 % relevant project background
-The Physics Derivation Graph is a project designed to capture mathematical physics knowledge. 
+The \pdg\ is a project designed to capture mathematical physics knowledge. 
 
 % what are we comparing?
-XML\cite{2008_XML}
 
+In this article, we compare candidate data format options for storage of content for the \pdg. Candidate formats include XML\cite{2008_XML}, comma-separated plain-text (CSV), JSON key-value pairs, standard textbooks, Wikipedia, proprietary formats (i.e. Wolfram Alpha, Symbolab, FormulaDatabase), and other websites on the Internet (i.e. HyperPhysics). 
+\end{multicols}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}\hline
+                     & XML & CSV & key-value & JSON & textbooks     & Wikipedia & proprietary   & generic websites \\\hline
+free               & yes  & yes   & yes           & yes     & generally no & yes           & generally no & generally yes \\\hline
+open source & yes   & yes  & yes            & yes    & generally no & yes            & generally no & generally yes \\\hline
+\end{tabular}
+\begin{multicols}{2}
 
 \section{Conclusions}
-
+The \pdg\ uses CSV.
 
 \section{Bibliography}
 

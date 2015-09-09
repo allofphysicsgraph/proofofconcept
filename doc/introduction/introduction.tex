@@ -31,13 +31,13 @@
 
 \author{Ben Payne$^{1}$\footnote{Corresponding author: ben.is.located@gmail.com}, Michael Goff$^{2}$\\
 {\it $^{1}$Department of Fun, University Name \& Town, city, State Zip}\\
-{\it $^{2}$Department of Mathematics, University of Maryland \& Baltimore 21228}}
+{\it $^{2}$Department of Mathematics, University of Maryland, Baltimore 21228}}
 
 \date{\today}
 
 \maketitle % declares end of title page
 \begin{abstract}
-An overview of the project. No assumptions about prior background on this project are made.
+An overview of the project. No prior background on this project is assumed. General knowledge of Physics and Mathematics at the first year college level is expected.
 \end{abstract}
 
 
@@ -52,15 +52,16 @@ An overview of the project. No assumptions about prior background on this projec
 \section{Introduction\label{sec:intro}}
 
 % relevant project background
-The \pdg is a project designed to capture mathematical physics knowledge. 
+The \pdg\ is an effort to capture mathematical physics knowledge. 
 
-Historically, knowledge about physics has been recorded in the form of notes, letters, journal articles, and text books. The content is typically composed of text, equations, and pictures. The presentation is in a linear sequence, though references are made to link the current section with previous sections and later sections. 
+Historically, knowledge about physics has been recorded in the form of notes, letters, journal articles, and text books. The content is typically composed of text, equations, and pictures. The presentation is in a linear sequence, though references are often made to link the current section with previous sections and later sections. 
 
-A recent addition has been the use of webpages to capture knowledge. A primary example of this is Wikipedia, an HTML-based encyclopedia. Webpages such as Wikipedia still use text, equations, and pictures, but add a distinct capability: hyperlinks. Hypertext Markup Language offers the ability to connect content to any other content. This enables non-linear exploration of content, in contrast to a textbook which is designed to be read sequentially. 
+A recent addition to the toolset for capturing knowledge has been the use of linked webpages. A primary example of this is Wikipedia, an \href{https://en.wikipedia.org/wiki/HTML}{HTML}-based encyclopedia. Webpages such as Wikipedia still use text, equations, and pictures, but add a distinct capability: hyperlinks. Hypertext Markup Language offers the ability to connect content to any other content. This enables non-linear exploration of content, in contrast to a textbook which is designed to be read sequentially. The \pdg\ applies the concept of non-linear documentation to mathematical physics content. 
 
-The \pdg is a non-linear capture of knowledge with mathematically-based links of physics content. A graph is composed of node and edges. This graph has two types of nodes: mathematical expressions and inference rules. Every mathematical expression is connected to an inference rule by a directed edge. An example is provided which illustrates the concepts.
+A \href{https://en.wikipedia.org/wiki/Graph_(mathematics)}{graph} is composed of nodes and edges. The graph associated with the \pdg\ has two essential types of nodes: mathematical expressions and inference rules. Every mathematical expression is connected to an inference rule by a directed edge. An example is provided here which illustrates the concepts.
 
-\subsection{Example\label{sec:example}}
+\subsection{Example Derivation Step\label{sec:example}}
+Derivations in Physics are composed of steps. Each step involves one or more expressions, and one inference rule. Inference rules are described in section~\ref{sec:inference_rules}. 
 
 Frequency $f$ and period $T$ are related by
 \begin{equation}
@@ -83,23 +84,51 @@ In the above example, there are two mathematical expressions: \eqn{eq:period_and
 \end{figure}
 \end{center}
 
+\section{Graph content\label{sec:content}}
+
+The content associated with the \pdg\ takes the form of expressions (\textit{equations and inequalities}), symbols, and inference rules. \textit{An inference rule is an atomic transformation of one expression to another.} In the example provided in section~\ref{sec:example}, the two expressions are~\eqn{eq:period_and_freq} and~\eqn{eq:freq_is_inverse_period}. The symbols are period $T$ and frequency $f$. The inference rule being applied is ``Divide both sides of first equation by a value to yield the second equation.'' This inference rule takes an argument, referred to here as the ``feed'', which in this example is $T$. This simple step between two expressions is documented in five separate databases: expressions, symbols, feeds, inference rules, and connections. 
+
+Each expression, symbol, and inference rule appears only once in the respective database. Each time an expression, symbol, or inference rule is used in a derivation, that unique instance is referenced. That referencing of unique nodes is what constructs the graph. For example, if \eqn{eq:period_and_freq} is used in two distinct derivations, the same expression is referenced. Similarly, when the symbol $T$ is used in any derivation, it refers to period. This referencing of unique expressions, symbols, and inference rules is done using a numeric identifier (alphanumeric for inference rules). This uniqueness of expressions, symbols, and inference rules is the core utility of the \pdg. This results in no duplication and fixed references (a static directed graph). The \pdg\ is designed to show one instance of each expression, but feeds and inference rules will have duplicates on the graph. 
+
+Symbol re-use is common in science and can be addressed by the use of unique identifiers. For example, $c$ is typically used to stand for the speed of light, but the same symbol is also used in the quadratic equation
+\begin{equation}
+a x^2+b x+c =0.
+\label{eq:quadratic}
+\end{equation}
+In this expression, we are not referring to the speed of light. This is distinguishable in the \pdg\ because the $c$ referring to the speed of light has a different numeric identifier than the $c$ in \eqn{eq:quadratic}. 
+
+% inference rules
+Inference rules are necessary to perform derivations in physics, but have received little attention as they are typically left to the field of logic. One result of an education in mathematics is building a library of inference rules, though that is not the common description in the field of math education. In Physics, knowing that it is valid to multiply both sides of an expression by one is assumed to have been learned in a math course. In the math course, the inference rule of multiplying both sides of an expression by one is taught with the common explanation that students need that inference rule to solve the relevant problems provided in the class. 
+%These inference rules are a significant source of confusion and a source of error when used. Using inference rules correctly and applying them atomically are tasks which take patience and practice.
+One of the consequences of constructing the \pdg\ is the enumeration of inference rules necessary for Physics. 
+
+\section{Inference Rules\label{sec:inference_rules}}
+
+Inference rules operate on expressions to produce new expressions. In section~\ref{sec:example}, the inference rule between \eqn{eq:period_and_freq} and \eqn{eq:freq_is_inverse_period} is ``Divide both sides of first expression by a scalar value to yield the second expression.''
+
+Inference rules for the \pdg\ are designed to meet a threshold -- can the computer algebra system validate that the claim is true?
+
+Inference rules are useful for catching simple mistakes by CAS validation. Common mistakes include not carrying the negative symbol through a derivation or unintentionally dropping a term. The inference rules are atomic (simplest step possible) and first order -- they only relate nearest-neighbor expressions.
+
+\section{Administrivia}
+General notes about the \pdg\ are provided here. 
 \subsection{Scope of Project\label{sec:scope}}
 
-The core of this project is capturing the graph associated with mathematical physics. Once this is available, there are many potential tasks. The following section provides a specific set of stages for the research. Not expected within the scope of the graph are inclusion of graphics, explanatory text, animations of concepts, and interactive models. 
+The core of the \pdg\ is documenting the graph associated with mathematical physics. Once this content is available, there are many potential tasks. The following section (\ref{sec:stages}) provides a specific set of stages for potential future work. Not expected within the scope of the \pdg\ are inclusion of graphics, explanatory text, animations of concepts, and interactive models. 
 
 Tasks in section~\ref{sec:stages} such as checking the validity of the graph using a Computer Algebra System, visualization of the graph, and interactivity of input are follow-on tasks once the graph content has been developed to describe mathematical physics.
 
 \subsection{Access to Content\label{sec:access}}
 
-The \pdg is free and open source under the Creative Commons Attribution-ShareAlike 3.0 Unported license. This content is free because it is intented to be accessible to anyone; cost should not be a barrier to access. The content is open source so that other researchers can build upon what exists. Once content is built, it should not need to be built again. 
+The \pdg\ is free and open source under the Creative Commons Attribution-ShareAlike 3.0 Unported license. This content is free because it is intended to be accessible to anyone; cost should not be a barrier to access. The content is open source so that other researchers can build upon what exists. Once content is built, it should not need to be built again. 
 
 \subsection{Similar Projects\label{sec:similar_projects}}
 
-The scope and intention of the \pdg is unique, though aspects are shared by several active projects. Four examples are provided in this section: HyperPhysics, EquationMap, Formula Database, and Symbolab. The purpose is not to review these projects for utility or to comprehensively survey similar projects. Instead, they are used here to contrast the scope and intention of the \pdg. 
+The scope and intention of the \pdg\ is unique, though aspects are shared by several active projects. Five examples are provided in this section: HyperPhysics, EquationMap, Formula Database, Symbolab, and Wolfram Alpha. The purpose is not to review these projects for utility or to comprehensively survey similar work. Instead, they are used here to contrast the scope and intention of the \pdg. 
 
 The HyperPhysics website\cite{2015_Hyperphysics} is a static set of linked concept maps for topics in Physics. Concept maps are linked to text, graphs, and equations. The licensing of the content is described as ``not freeware or shareware'' by the author, though the site is free to access. Although hyperlinked concept maps are a departure from the standard textbook presentation of physics, the leaves of this tree are the same content found in textbooks. 
 
-The website EquationMap\cite{2015_EquationMap} is an interface for derivations, focused primarily on mathematical sciences. There is no backend database of content; instead content is dynamically generated by the user. Equations are manually entered using \LaTeX syntax and the graph of the derivation can be visualized using the same interface. The content is not open source and access is currently free. This is close to what the GUI for the \pdg is intended to behave like, with the exception that EquationMap doesn't include the concept of atomic inference rules.
+The website EquationMap\cite{2015_EquationMap} is an interface for derivations, focused primarily on mathematical sciences. There is no backend database of content; instead content is dynamically generated by the user. Equations are manually entered using \LaTeX syntax and the graph of the derivation can be visualized using the same interface. The content is not open source and access is currently free. This is close to what the GUI for the \pdg\ is intended to behave like, with the exception that EquationMap doesn't include the concept of atomic inference rules.
 
 
 Formula Database\cite{2015_FormulaDatabase} is a website described by the authors as a ``math search engine'' which has a built-in equation editor. The search feature is not just matching the Latex input -- it understands dot product and cross product. They have created a browser-based equation editor, similar to the equation editor in Microsoft Word. The search is of a backend database of content. The backend database of equations and symbols was manually entered by the project authors. A team of people have been working since about 2010 on this project. The data is stored as a high-dimensional graph. This project is not open source but access is currently free. A commercial launch is planned, though no date has been publicized. 
@@ -122,44 +151,18 @@ The first step is prototyping and involves a small number of expert users intere
 The second phase is when sufficient examples exist to constitute a proof of concept. This requires breadth of coverage across all the domains of physics (\ie, classical mechanics, quantum mechanics, relativity, thermodynamics, statistical mechanics, etc). As a consequence, much of mathematics covered up to undergraduate level is likely to be required. 
 
 % \subsection{Interface Creation}
-Once the breadth of coverage is demonstrated, the next step is to enable development of indepth creation for the \pdg. Currently, content is manually entered into an XML database, and visualization of the graph is generated via the command line. To make both data entry and visualization more accessible to users and developers, a web browser-based interaction is planned. As noted in section~\ref{sec:scope}, this is outside of the project scope regarding graph content, but would make additions more accessible. Graph visualization libraries which are free and opensource are available, making this issue tractable. New standards such as HTML5 will be investigated to determine suitability. 
+Once the breadth of coverage is demonstrated, the next step is to enable development of in-depth creation for the \pdg. Currently, content is manually entered into an CSV database, and visualization of the graph is generated via the command line. To make both data entry and visualization more accessible to users and developers, a web browser-based interaction is planned. As noted in section~\ref{sec:scope}, this is outside of the project scope regarding graph content, but would make addition of content more accessible. Graph visualization libraries which are free and opensource are available, making this issue tractable. New standards such as HTML5 and libraries like d3js will be investigated to determine suitability. 
 
 % \subsection{Community Utilization}
-The most difficult step may be adoption and utilization by the scientific and education communities. This widespread use is dependent on having useful and reliable content, intuitive interfaces, and addresses a need. The \pdg does not currently exist, implying the needs being addressed are either unclear or sufficiently complex to make solution difficult. 
+Adoption and utilization by the scientific and education communities is the intended outcome. Widespread use is dependent on having useful and reliable content, intuitive interfaces, and addressing a need. The \pdg\ does not currently exist, implying the needs being addressed are either unclear or sufficiently complex to make solution difficult. 
 
-The steps listed above are sequential, but will likely be worked on concurrently. Exploration of an intuitive interface can take place while examples are being gathered. In the next section, use cases which motivate users of this project are described. 
-
-\section{Graph content\label{sec:content}}
-
-The content associated with physics knowledge takes the form of expressions (\textit{equations and inequalities}), symbols, and inference rules. \textit{An inference rule is an atomic transformation of one expression to another.} In the example provided in section~\ref{sec:example}, the two expressions are~\eqn{eq:period_and_freq} and~\eqn{eq:freq_is_inverse_period}. The symbols are period $T$ and frequency $f$. The inference rule being applied is ``Divide both sides of first equation by a value to yield the second equation.'' This inference rule takes an argument, referred to here as the ``feed'', which in this example is $T$. This simple step between two expressions is documented in five separate databases: expressions, symbols, feeds, inference rules, and connections. 
-
-Each expression, symbol, and inference rule appears only once in the respective database. Each time an expression, symbol, or inference rule is used in a derivation, that unique instance is referenced. That referencing of unique nodes is what constructs the graph. For example, if \eqn{eq:period_and_freq} is used in two distinct derivations, the same expression is referenced. Similarly, when the symbol $T$ is used in any derivation, it refers to period. This referencing of unique expressions, symbols, and inference rules is done using a numeric identifier (alphanumeric for inference rules). This uniqueness of expressions, symbols, and inference rules is the core utility of the \pdg. This results in no duplication and fixed references (a static graph). The \pdg is designed to show one instance of each expression, but feeds and inference rules will have duplicates on the graph. 
-
-Symbol re-use is common in science and can be addressed by the use of unique identifiers. For example, $c$ is typically used to stand for the speed of light, but the same symbol is also used in the quadratic equation
-\begin{equation}
-a x^2+b x+c =0.
-\label{eq:quadratic}
-\end{equation}
-In this expression, we are not referring to the speed of light. This is distinguishable in the \pdg because the $c$ referring to the speed of light has a different numeric identifier than the $c$ in \eqn{eq:quadratic}. 
-
-% inference rules
-Inference rules are necessary to perform derivations in physics, but have received little attention as they are typically left to the field of logic. One result of an education in mathematics is building a library of inference rules, though that is not the standard description in that field. In Physics, knowing that it is valid to multiply both sides of an expression by one is assumed to have been learned in the course of a math course. In the math course, the inference rule of multiplying both sides of an expression by one is taught with the common explanation that students need that inference rule to solve the relevant problems provided in the class. 
-%These inference rules are a significant source of confusion and a source of error when used. Using inference rules correctly and applying them atomically are tasks which take patience and practice.
-One of the consequences of constructing the \pdg is the enumeration of inference rules necessary for Physics. 
-
-\section{Inference Rules\label{sec:inference_rules}}
-
-Inference rules operate on expressions to produce new expressions. In section~\ref{sec:example}, the inference rule between \eqn{eq:period_and_freq} and \eqn{eq:freq_is_inverse_period} is ``Divide both sides of first expression by a scalar value to yield the second expression.''
-
-Inference rules for the \pgd are designed to meet a threshold -- can the computer algebra system validate that the claim is true?
-
-Inference rules are meant to catch simple mistakes like not carrying the negative symbol through a derivation or unintentionally dropping a term. The inference rules are first order -- only between nearest-neighbor expressions.
+The steps listed above are intended to be worked on concurrently. Exploration of an intuitive interface can take place while examples are being gathered. In the next section, use cases which motivate users of this project are described. 
 
 
 
 \section{Use Cases\label{sec:use_cases}}
 
-While curiosity has driven the development of the \pdg, the resulting work is expected to be useful to multiple audiences and users. Viewers of the content could include students in math and physics, and analysis of the content could help shape curriculum. Contributors to the \pdg would be scientists who add new developments based on their work.
+While curiosity has driven the development of the \pdg, the resulting work is expected to be useful to multiple audiences and users. Viewers of the content could include students in math and physics, and analysis of the content could help shape curriculum. Contributors to the \pdg\ would be scientists who add new developments based on their work.
 
 \subsection{Students in Math and Physics}
 
@@ -175,9 +178,9 @@ validation via computer
 
 \subsection{Education Curriculum Design}
 
-A less direct use case but potentially important impact of the \pdg is on understanding the relevance of what is being taught in the education system. Math classes essentially teach a set of inference rules, and physics is the application of those inference rules. The \pdg could answer two important questions: ``When am I going to use this inference rule?'' and ``What's the relative importance of this math skill?''
+A less direct use case but potentially important impact of the \pdg\ is on understanding the relevance of what is being taught in the education system. Math classes essentially teach a set of inference rules, and physics is the application of those inference rules. The \pdg\ could answer two important questions: ``When am I going to use this inference rule?'' and ``What's the relative importance of this math skill?''
 
-The focus for students in mathematics classes is on the technique, \ie, ``integrate both sides with respect to $Y$,'' and application is necessarily of secondary importance. Physics students are expected to know the mathematical techniques and teaching is focused on application. The \pdg can assist both scenarios. The student in a math class can see where the inference rules they learn are applied in Physics. The student in the Physics class can see which inference rules are required in their field. 
+The focus for students in mathematics classes is on the technique, \ie, ``integrate both sides with respect to $Y$,'' and application is necessarily of secondary importance. Physics students are expected to know the mathematical techniques and teaching is focused on application. The \pdg\ can assist both scenarios. The student in a math class can see where the inference rules they learn are applied in Physics. The student in the Physics class can see which inference rules are required in their field. 
 
 Each inference rule seems equally important, since it currently isn't known what the frequency of use for that inference rule is. From the \pdg, it is simple to count utilization of inference rules. Thus, we are able to measure the ratio of how often ``multiply both sides by X'' is used relative to ``integrate both sides with respect to $Y$.'' 
 
