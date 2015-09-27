@@ -70,7 +70,7 @@ def start_new_derivation(list_of_infrules):
   print("\ndeclare initial equation; enter expression")
   first_latex=get_new_expression()
   print('-> connecting declare_init with '+first_latex)
-  time.sleep(1)
+  #time.sleep(1)
   
   done_with_steps=False
   while(not done_with_steps):
@@ -127,39 +127,58 @@ def select_from_available_derivations(list_of_derivations):
         print("--> invalid choice (should be in range 0,"+str(len(list_of_derivations))+"); try again")
         time.sleep(3)
   return int(derivation_choice_input),selected_derivation
-  
-def step(list_of_infrules):
-  clear_screen()
-  print("starting a new step")
 
+def user_choose_infrule(list_of_infrules):
   choice_selected=False
   while(not choice_selected):
     #clear_screen()  
     print("choose from the list of inference rules")
-    for indx in range(1,len(list_of_infrules)+1):
-      print(str(indx)+"   "+list_of_infrules[indx-1])
+    num_left_col_entries=30
+    num_remaining_entries=len(list_of_infrules)-num_left_col_entries
+    for indx in range(1,num_left_col_entries):
+      if (indx<10):
+        left_side_menu=str(indx)+"   "+list_of_infrules[indx-1]
+      else:  
+        left_side_menu=str(indx)+"  "+list_of_infrules[indx-1]
+      middle_indx=indx+num_left_col_entries-1
+      middle_menu=" "*(50-len(list_of_infrules[indx-1]))+str(middle_indx)+"   "+list_of_infrules[middle_indx-1]
+      right_side_indx=indx+2*num_left_col_entries-2
+      if (right_side_indx<(len(list_of_infrules)+1)):
+        right_side_menu=" "*(40-len(list_of_infrules[middle_indx-1]))+str(right_side_indx)+"   "+list_of_infrules[middle_indx-1]
+        print(left_side_menu+middle_menu+right_side_menu)
+      else:
+        print(left_side_menu+middle_menu)
 
     print("0  exit derivation selection and return to main menu\n")  
     infrule_choice_input = raw_input('selection [0]: ')
     if (infrule_choice_input=='0' or infrule_choice_input==''):
       print("selected exit without choice")
-      time.sleep(2)
+#       time.sleep(2)
       choice_selected=True
       infrule_choice_input=0
       selected_infrule='EXIT'
     else:
       try:
-        selected_infrule=list_of_infrule[int(infrule_choice_input)-1]
-        print("selected inference rule: "+selected_infrule)
-        time.sleep(1)
+        selected_infrule=list_of_infrules[int(infrule_choice_input)-1]
+        #print("selected inference rule: "+selected_infrule)
+        #time.sleep(1)
         choice_selected=True
       except ValueError:
         print("--> invalid choice (looking for int); try again")
         time.sleep(3)
       except IndexError:
-        print("--> invalid choice (should be in range 0,"+str(len(list_of_infrule))+"); try again")
+        print("--> invalid choice (should be in range 0,"+str(len(list_of_infrules))+"); try again")
         time.sleep(3)
-
+  return selected_infrule,infrule_choice_input
+  
+def step(list_of_infrules):
+  clear_screen()
+  print("starting a new step")
+  [selected_infrule,infrule_choice_input]=user_choose_infrule(list_of_infrules)
+  clear_screen()
+  print("selected "+str(infrule_choice_input)+" which is "+selected_infrule)
+  print("for this infrule, provide input, feed, and output")
+  time.sleep(5)
   return
 
 connectionsDB    =db_path+'/connections_database.csv'

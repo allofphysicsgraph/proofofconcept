@@ -16,7 +16,7 @@ sys.path.append(lib_path) # this has to proceed use of physgraph
 db_path = os.path.abspath('databases')
 sys.path.append(lib_path) # this has to proceed use of physgraph
 import lib_physics_graph as physgraf
-from xml.dom.minidom import parseString
+#from xml.dom.minidom import parseString
 
 connectionsDB=physgraf.parse_XML_file(db_path+'/connections_database.xml')
 
