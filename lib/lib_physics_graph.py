@@ -6,6 +6,7 @@ import os.path
 import os
 import time
 import csv
+import random
 
 # http://stackoverflow.com/questions/6665725/parsing-xml-using-minidom
 #import easy to use xml parser called minidom:
@@ -208,7 +209,7 @@ def keep_only_this_derivation(name_of_set_to_make,connections_list_of_dics):
   return new_connection_list_of_dics
 
 # ********** Begin translation among XMLs *******************
-
+'''
 def check_type_return_expression_or_feed_DOM(tpunid,type,xmlDB):
   if(type=='feed'):
     tag='feed_temporary_unique_id'
@@ -224,7 +225,9 @@ def check_type_return_expression_or_feed_DOM(tpunid,type,xmlDB):
     if (tpunid==tpunid_in_DB):
       break
   return this_expression_or_feed,tag,latex_tag
+'''
 
+'''
 def convert_tpunid_to_symbol_permenant_unique_id_array(tpunid,xmlDB,type):
   # valid inputs: (expression_permenant_unique_id,expressionsDB,'expression')
   #               (feed_temporary_unique_id,     feedsDB,     'feed'     )
@@ -234,14 +237,18 @@ def convert_tpunid_to_symbol_permenant_unique_id_array(tpunid,xmlDB,type):
     this_symbol_permenant_unique_id=remove_tags(these_symbols.toxml(encoding="ascii"),'symbol_permenant_unique_id')
     symbol_permenant_unique_id_array.append(this_symbol_permenant_unique_id)
   return symbol_permenant_unique_id_array
+'''
 
+'''
 def convert_tpunid_to_latex(tpunid,xmlDB,type): # expression_permenant_unique_id or feed_temporary_unique_id, 'expression' or 'feed'
   # valid inputs: (expression_permenant_unique_id,expressionsDB,'expression')
   #               (feed_temporary_unique_id,     feedsDB,     'feed'     )
   [this_expression_or_feed,tag,latex_tag]=check_type_return_expression_or_feed_DOM(tpunid,type,xmlDB)
   latex=convert_tag_to_content(this_expression_or_feed,latex_tag,0)
   return latex
+'''
 
+'''
 def convert_expression_permenant_unique_id_to_cas_sympy(expression_permenant_unique_id,expressionsDB):
   # look through all the "expression" files in expressionsDB to find 
   #   which contains "expression_permenant_unique_id" matching input
@@ -276,9 +283,9 @@ def convert_symbol_permenant_unique_id_to_name(symbol_permenant_unique_id,symbol
       break
   name=convert_tag_to_content(this_symbol,"symbol_name",0)
   return name
-
+'''
 # ********** Begin  *******************
-
+'''
 def write_inputs_feeds(connector,infrule_name,feedsDB):
   for input_nodes in connector.getElementsByTagName('input'): # there may be multiple inputs for a given connection
 #       print("input:")
@@ -305,7 +312,7 @@ def write_inputs_feeds(connector,infrule_name,feedsDB):
 #   print("input label array:")
 #   print input_label_array
   return feed_array,input_label_array
-
+'''
 
 def convert_graphviz_to_pictures(extension,output_path,which_derivation_to_make_no_spaces):
   print('now generating graph pictures')
@@ -313,6 +320,7 @@ def convert_graphviz_to_pictures(extension,output_path,which_derivation_to_make_
   os.system('neato -T'+extension+' -Nlabel=\"\" '+output_path+'/connections_'+which_derivation_to_make_no_spaces+'.gv > '+output_path+'/graph_'+which_derivation_to_make_no_spaces+'_without_labels.'+extension)
 #   print('done making picture')
 
+'''
 def parse_XML_file(file_name):
   file = open(file_name,'r')# open the xml file for reading
   data = file.read()# convert to string
@@ -329,7 +337,7 @@ def convert_tag_to_content(dom_name,tag_name,indx):
 def remove_tags(value_with_tags,tag_name):
   value=value_with_tags.replace('<'+tag_name+'>','').replace('</'+tag_name+'>','') # eliminate tags
   return value
-
+'''
 # ************** Begin Latex *******************
 
 
@@ -414,3 +422,90 @@ def cleanup_tex_files(file_path,file_name):
 #   os.system("python pydvi2svg/dvi2svg.py --paper-size=bbox:10 tmp.dvi")
 #   os.system("mv tmp.svg "+folder_name+"/"+file_name+extension)
 #   os.system("convert "+folder_name+"/"+file_name+extension+" "+folder_name+"/"+file_name+extension) # for some reason the initial svg format isn't interperatable by graphviz. Thus, I pass the .svg through convert
+
+
+def find_duplicates(list_of,name_of):
+  duplicates=[]
+  duplicates=set([x for x in list_of if list_of.count(x) > 1])
+  if (len(duplicates)>0):
+    print("duplicate "+name_of+" index found")
+    print(duplicates)
+  return duplicates  
+
+
+def find_mismatches(connection_feeds,list_of_feeds,connection_expr_perm,\
+                    list_of_expr,connection_infrules,list_of_infrules):
+  if (len(list(set(connection_feeds) - set(list_of_feeds)))>0):
+    print("feeds database and connections database have mismatch")
+    print(list(set(connection_feeds) - set(list_of_feeds)))
+
+  if (len(list(set(connection_expr_perm) - set(list_of_expr)))>0):
+    print("expressions database and connections database have mismatch")
+    print(list(set(connection_expr_perm) - set(list_of_expr)))
+
+  if (len(list(set(connection_infrules) - set(list_of_infrules)))>0):
+    print("infrule database and connections database have mismatch")
+    print(list(set(connection_infrules) - set(list_of_infrules)))
+    print("in connection set:")
+    print(len(set(connection_infrules)))
+    print("in the infrule database:")
+    print(len(set(list_of_infrules)))
+
+def check_connection_DB_steps_for_single_inf_rule(connections_list_of_dics):
+# check that each step in the connections database only has one inference rule
+  list_of_deriv=get_set_of_derivations(connections_list_of_dics)
+# print(list_of_deriv)
+  for this_deriv in list_of_deriv:
+#   print(this_deriv)
+    this_connections_list_of_dics=keep_only_this_derivation(this_deriv,connections_list_of_dics)
+    list_of_steps=get_set_of_steps(this_connections_list_of_dics)
+#   print(list_of_steps)
+    for this_step in list_of_steps:
+#     print("\n"+this_deriv +"  "+this_step)
+      infrule_list=[]
+      for connection in this_connections_list_of_dics:
+        if (connection["step index"]==this_step): 
+#          print(connection)
+          if (connection["to type"]=="infrule"):
+            infrule_list.append(connection["to perm index"])
+          if (connection["from type"]=="infrule"):
+            infrule_list.append(connection["from perm index"])
+      if (len(set(infrule_list))!=1):
+        print("ERROR found: more than 1 infrule in "+this_deriv+" step "+this_step)
+
+
+def find_new_indx(list_of,start_indx,end_indx,strng):
+  found_new_indx=False
+  while(not found_new_indx):
+    potential_indx=random.randint(start_indx,end_indx)
+    if (potential_indx not in list_of):
+      found_new_indx=True
+#  print(strng+str(potential_indx))
+  return potential_indx
+
+def separate_connection_lists(connections_list_of_dics):
+  connection_feeds=[]
+  connection_expr_perm=[]
+  connection_expr_temp=[]
+  connection_infrules=[]
+  connection_infrule_temp=[]
+  for this_connection in connections_list_of_dics:
+    if (this_connection["from type"]=="expression"):
+      connection_expr_perm.append(this_connection["from perm index"])
+      connection_expr_temp.append(this_connection["from temp index"])
+    if (this_connection["from type"]=="infrule"):
+      connection_infrules.append(this_connection["from perm index"])
+      connection_infrule_temp.append(this_connection["from temp index"])
+    if (this_connection["from type"]=="feed"):
+      connection_feeds.append(this_connection["from temp index"])
+    if (this_connection["to type"]=="expression"):
+      connection_expr_perm.append(this_connection["to perm index"])
+      connection_expr_temp.append(this_connection["to temp index"])
+    if (this_connection["to type"]=="infrule"):
+      connection_infrules.append(this_connection["to perm index"])
+      connection_infrule_temp.append(this_connection["to temp index"])
+    if (this_connection["to type"]=="feed"):
+      connection_feeds.append(this_connection["to temp index"])
+  return connection_feeds,connection_expr_perm,connection_expr_temp,connection_infrules,connection_infrule_temp
+
+

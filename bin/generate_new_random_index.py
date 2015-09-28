@@ -12,9 +12,9 @@
 # current bugs:
 
 import random
-import re # regular expressions
-import subprocess
-import yaml # used to read "config.input"
+#import re # regular expressions
+#import subprocess
+#import yaml # used to read "config.input"
 import os.path
 import sys
 lib_path = os.path.abspath('lib')
@@ -23,22 +23,6 @@ output_path = os.path.abspath('output')
 sys.path.append(lib_path) # this has to proceed use of physgraph
 
 import lib_physics_graph as physgraf
-
-def find_and_print_duplicates(list_of,name_of):
-  duplicates=[]
-  duplicates=set([x for x in list_of if list_of.count(x) > 1])
-  if (len(duplicates)>0):
-    print("duplicate "+name_of+" index found")
-    print(duplicates)
-
-def find_new_indx(list_of,start_indx,end_indx,strng):
-  found_new_indx=False
-  while(not found_new_indx):
-    potential_indx=random.randint(start_indx,end_indx)
-    if (potential_indx not in list_of_expr):
-      found_new_indx=True
-  print(strng+str(potential_indx))
-  return potential_indx
 
 expressionsDB=db_path+'/expressions_database.csv'
 connectionsDB=db_path+'/connections_database.csv'
@@ -50,83 +34,36 @@ feeds_list_of_dics=physgraf.convert_feed_csv_to_list_of_dics(feedDB)
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 infrule_list_of_dics=physgraf.convert_infrule_csv_to_list_of_dics(infruleDB)
 
+list_of_infrules=[]
+for this_infrule in infrule_list_of_dics:
+  list_of_infrules.append(this_infrule["inference rule"])
+
 list_of_expr=[]
 for this_expr in expressions_list_of_dics:
   list_of_expr.append(this_expr["permanent index"])
-find_and_print_duplicates(list_of_expr,"expressions")
-find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
 
 list_of_feeds=[]
 for this_feed in feeds_list_of_dics:
   list_of_feeds.append(this_feed["temp index"])
-find_and_print_duplicates(list_of_feeds,"feeds")
-find_new_indx(list_of_feeds,1000000,9999999,"feed temporary index: ")
 
-list_of_infrules=[]
-for this_infrule in infrule_list_of_dics:
-  list_of_infrules.append(this_infrule["inference rule"])
-find_and_print_duplicates(list_of_infrules,"inference rules")
+[connection_feeds,connection_expr_perm,connection_expr_temp,\
+connection_infrules,connection_infrule_temp]=\
+physgraf.separate_connection_lists(connections_list_of_dics)
 
-connection_feeds=[]
-connection_expr_perm=[]
-connection_expr_temp=[]
-connection_infrules=[]
-connection_infrule_temp=[]
-for this_connection in connections_list_of_dics:
-  if (this_connection["from type"]=="expression"):
-    connection_expr_perm.append(this_connection["from perm index"])
-    connection_expr_temp.append(this_connection["from temp index"])
-  if (this_connection["from type"]=="infrule"):
-    connection_infrules.append(this_connection["from perm index"])
-    connection_infrule_temp.append(this_connection["from temp index"])
-  if (this_connection["from type"]=="feed"):
-    connection_feeds.append(this_connection["from temp index"])
-  if (this_connection["to type"]=="expression"):
-    connection_expr_perm.append(this_connection["to perm index"])
-    connection_expr_temp.append(this_connection["to temp index"])
-  if (this_connection["to type"]=="infrule"):
-    connection_infrules.append(this_connection["to perm index"])
-    connection_infrule_temp.append(this_connection["to temp index"])
-  if (this_connection["to type"]=="feed"):
-    connection_feeds.append(this_connection["to temp index"])
+expr_perm_indx=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
+feed_temp_indx=physgraf.find_new_indx(list_of_feeds,1000000,9999999,"feed temporary index: ")
+expr_temp_indx=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")
 
-find_new_indx(connection_expr_temp,1000000,9999999,"expr temporary index: ")
+print('expression permanent index: '+str(expr_perm_indx))
+print('expression temporary index: '+str(expr_temp_indx))
+print('feed temporary index      : '+str(feed_temp_indx))
 
-if (len(list(set(connection_feeds) - set(list_of_feeds)))>0):
-  print("feeds database and connections database have mismatch")
-  print(list(set(connection_feeds) - set(list_of_feeds)))
 
-if (len(list(set(connection_expr_perm) - set(list_of_expr)))>0):
-  print("expressions database and connections database have mismatch")
-  print(list(set(connection_expr_perm) - set(list_of_expr)))
+physgraf.find_duplicates(list_of_infrules,"inference rules")
+physgraf.find_duplicates(list_of_expr,"expressions")
+physgraf.find_duplicates(list_of_feeds,"feeds")
 
-if (len(list(set(connection_infrules) - set(list_of_infrules)))>0):
-  print("infrule database and connections database have mismatch")
-  print(list(set(connection_infrules) - set(list_of_infrules)))
-  print("in connection set:")
-  print(len(set(connection_infrules)))
-  print("in the infrule database:")
-  print(len(set(list_of_infrules)))
+physgraf.find_mismatches(connection_feeds,list_of_feeds,connection_expr_perm,\
+                    list_of_expr,connection_infrules,list_of_infrules)
 
-# check that each step in the connections database only has one inference rule
-
-list_of_deriv=physgraf.get_set_of_derivations(connections_list_of_dics)
-# print(list_of_deriv)
-for this_deriv in list_of_deriv:
-#   print(this_deriv)
-  this_connections_list_of_dics=physgraf.keep_only_this_derivation(this_deriv,connections_list_of_dics)
-  list_of_steps=physgraf.get_set_of_steps(this_connections_list_of_dics)
-#   print(list_of_steps)
-  for this_step in list_of_steps:
-#     print("\n"+this_deriv +"  "+this_step)
-    infrule_list=[]
-    for connection in this_connections_list_of_dics:
-      if (connection["step index"]==this_step): 
-#          print(connection)
-        if (connection["to type"]=="infrule"):
-          infrule_list.append(connection["to perm index"])
-        if (connection["from type"]=="infrule"):
-          infrule_list.append(connection["from perm index"])
-    if (len(set(infrule_list))!=1):
-      print("ERROR found: more than 1 infrule in "+this_deriv+" step "+this_step)
-
+physgraf.check_connection_DB_steps_for_single_inf_rule(connections_list_of_dics)
