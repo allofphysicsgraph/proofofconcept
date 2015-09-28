@@ -31,7 +31,8 @@ def get_text_input(prompt_text):
       text_provided=True
   return input_text
 
-def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics):
+def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
+                 list_of_expr,connection_expr_temp,list_of_feeds):
   invalid_choice=True
   while(invalid_choice):
     clear_screen()
@@ -44,7 +45,8 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics):
       invalid_choice=False
       exit_from_program()
     elif (first_choice_input=='1'):
-      start_new_derivation(list_of_infrules,infrule_list_of_dics)
+      start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
+                           connection_expr_temp,list_of_feeds)
       invalid_choice=False
     elif (first_choice_input=='2'):
       edit_existing_derivation()
@@ -66,7 +68,8 @@ def edit_existing_derivation():
   time.sleep(5)
   return
   
-def start_new_derivation(list_of_infrules,infrule_list_of_dics):
+def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
+                         connection_expr_temp,list_of_feeds):
   clear_screen()
   print("starting new derivation")
   nme=get_text_input('name of new derivation: ')  
@@ -77,7 +80,7 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics):
   
   done_with_steps=False
   while(not done_with_steps):
-    step(list_of_infrules,infrule_list_of_dics)
+    step(list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds)
     invalid_choice=True
     while(invalid_choice):
       clear_screen()
@@ -170,12 +173,8 @@ def user_choose_infrule(list_of_infrules):
         print("--> invalid choice (should be in range 0,"+str(len(list_of_infrules))+"); try again")
         time.sleep(3)
   return selected_infrule,int(infrule_choice_input)
-  
-def step(list_of_infrules,infrule_list_of_dics):
-  clear_screen()
-  print("starting a new step")
-  [selected_infrule,infrule_choice_input]=user_choose_infrule(list_of_infrules)
-  clear_screen()
+
+def user_provide_latex_arguments(selected_infrule,infrule_choice_input,infrule_list_of_dics):
   print("selected "+str(infrule_choice_input)+" which is "+selected_infrule)
 #   print("for this infrule, provide input, feed, and output")
 #   print(infrule_list_of_dics[infrule_choice_input-1])
@@ -189,21 +188,52 @@ def step(list_of_infrules,infrule_list_of_dics):
   input_ary=[]
   for input_indx in range(number_of_input_expressions):
     this_input=get_text_input('input expression Latex,  '+str(input_indx+1)+' of '+str(number_of_input_expressions)+': ')
+
+    expr_perm_indx=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
+    expr_temp_indx=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")    
+    
     input_ary.append(this_input)
+  feed_ary=[]
   for input_indx in range(number_of_feeds):
     this_input=get_text_input('feed Latex,              '+str(input_indx+1)+' of '+str(number_of_feeds)+': ')
+    
+    feed_temp_indx=physgraf.find_new_indx(list_of_feeds,1000000,9999999,"feed temporary index: ")
+
+    
     input_ary.append(this_input)
-  for input_indx in range(number_of_output_expressions):
-    this_input=get_text_input('output expression Latex, '+str(input_indx+1)+' of '+str(number_of_output_expressions)+': ')
-    input_ary.append(this_input)
-  time.sleep(1)
+  output_ary=[]
+  for output_indx in range(number_of_output_expressions):
+    this_output=get_text_input('output expression Latex, '+str(output_indx+1)+' of '+str(number_of_output_expressions)+': ')
+    output_ary.append(this_output)
+    
+    expr_perm_indx=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
+    expr_temp_indx=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")    
+    
+    return input_ary,feed_ary,output_ary
+
+def step(list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds):
+  clear_screen()
+  print("starting a new step")
+  [selected_infrule,infrule_choice_input]=user_choose_infrule(list_of_infrules)
+  clear_screen()
+  [input_ary,feed_ary,output_ary]=user_provide_latex_arguments(selected_infrule,\
+        infrule_choice_input,infrule_list_of_dics)  
+  print(input_ary)
+  print(feed_ary)
+  print(output_ary)
+  time.sleep(2)
   return
 
-connectionsDB    =db_path+'/connections_database.csv'
-infruleDB        =db_path+'/inference_rules_database.csv'
+expressionsDB=db_path+'/expressions_database.csv'
+connectionsDB=db_path+'/connections_database.csv'
+feedDB       =db_path+'/feed_database.csv'
+infruleDB    =db_path+'/inference_rules_database.csv'
 
+expressions_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(expressionsDB)
+feeds_list_of_dics=physgraf.convert_feed_csv_to_list_of_dics(feedDB)
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 infrule_list_of_dics=physgraf.convert_infrule_csv_to_list_of_dics(infruleDB)
+
 
 list_of_derivations=physgraf.get_set_of_derivations(connections_list_of_dics)
 
@@ -214,5 +244,19 @@ for entry in infrule_list_of_dics:
   #print(entry['inference rule'])
   list_of_infrules.append(entry['inference rule'])
 
+list_of_expr=[]
+for this_expr in expressions_list_of_dics:
+  list_of_expr.append(this_expr["permanent index"])
+
+list_of_feeds=[]
+for this_feed in feeds_list_of_dics:
+  list_of_feeds.append(this_feed["temp index"])
+
+[connection_feeds,connection_expr_perm,connection_expr_temp,\
+connection_infrules,connection_infrule_temp]=\
+physgraf.separate_connection_lists(connections_list_of_dics)
+
+    
 while(True):
-  first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics)
+  first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
+               list_of_expr,connection_expr_temp,list_of_feeds)
