@@ -20,7 +20,18 @@ def exit_from_program():
   print("-->  Exiting")
   exit(0)
 
-def first_choice(list_of_derivations,list_of_infrules):
+def get_text_input(prompt_text):
+  text_provided=False
+  while(not text_provided):
+    input_text=raw_input(prompt_text)
+    if (input_text==''):
+      text_provided=False
+      print("--> invalid input (empty); Enter a string")
+    else:
+      text_provided=True
+  return input_text
+
+def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics):
   invalid_choice=True
   while(invalid_choice):
     clear_screen()
@@ -33,7 +44,7 @@ def first_choice(list_of_derivations,list_of_infrules):
       invalid_choice=False
       exit_from_program()
     elif (first_choice_input=='1'):
-      start_new_derivation(list_of_infrules)
+      start_new_derivation(list_of_infrules,infrule_list_of_dics)
       invalid_choice=False
     elif (first_choice_input=='2'):
       edit_existing_derivation()
@@ -55,29 +66,22 @@ def edit_existing_derivation():
   time.sleep(5)
   return
   
-def start_new_derivation(list_of_infrules):
+def start_new_derivation(list_of_infrules,infrule_list_of_dics):
   clear_screen()
   print("starting new derivation")
-  name_provided=False
-  while(not name_provided):
-    name_of_new_derivation=raw_input('name of new derivation: ')
-    if (name_of_new_derivation==''):
-      name_provided=False
-      print("--> invalid input (empty); Enter a string for the name")
-    else:
-      name_provided=True
-    
+  nme=get_text_input('name of new derivation: ')  
   print("\ndeclare initial equation; enter expression")
-  first_latex=get_new_expression()
+  first_latex=get_text_input('enter expression Latex: ')
   print('-> connecting declare_init with '+first_latex)
   #time.sleep(1)
   
   done_with_steps=False
   while(not done_with_steps):
-    step(list_of_infrules)
+    step(list_of_infrules,infrule_list_of_dics)
     invalid_choice=True
     while(invalid_choice):
-      print("\nStep Menu")
+      clear_screen()
+      print("Step Menu")
       print("1 add another step")
       print("0 exit derivation and return to main menu")
       step_choice_input= raw_input('selection [0]: ')
@@ -93,10 +97,6 @@ def start_new_derivation(list_of_infrules):
         time.sleep(1)
         invalid_choice=True     
   return
-
-def get_new_expression():
-  new_expr=raw_input('enter expression Latex: ')
-  return new_expr
 
 def select_from_available_derivations(list_of_derivations):
   choice_selected=False
@@ -131,7 +131,7 @@ def select_from_available_derivations(list_of_derivations):
 def user_choose_infrule(list_of_infrules):
   choice_selected=False
   while(not choice_selected):
-    #clear_screen()  
+    clear_screen()  
     print("choose from the list of inference rules")
     num_left_col_entries=30
     num_remaining_entries=len(list_of_infrules)-num_left_col_entries
@@ -169,16 +169,34 @@ def user_choose_infrule(list_of_infrules):
       except IndexError:
         print("--> invalid choice (should be in range 0,"+str(len(list_of_infrules))+"); try again")
         time.sleep(3)
-  return selected_infrule,infrule_choice_input
+  return selected_infrule,int(infrule_choice_input)
   
-def step(list_of_infrules):
+def step(list_of_infrules,infrule_list_of_dics):
   clear_screen()
   print("starting a new step")
   [selected_infrule,infrule_choice_input]=user_choose_infrule(list_of_infrules)
   clear_screen()
   print("selected "+str(infrule_choice_input)+" which is "+selected_infrule)
-  print("for this infrule, provide input, feed, and output")
-  time.sleep(5)
+#   print("for this infrule, provide input, feed, and output")
+#   print(infrule_list_of_dics[infrule_choice_input-1])
+  print("Latex expansion: "+infrule_list_of_dics[infrule_choice_input-1]['LaTeX expansion'])
+#   print("number of input expresions: "+infrule_list_of_dics[infrule_choice_input-1]['number of input expressions'])
+  number_of_input_expressions=int(infrule_list_of_dics[infrule_choice_input-1]['number of input expressions'])
+#   print("number of feeds: "+infrule_list_of_dics[infrule_choice_input-1]['number of feeds'])
+  number_of_feeds=int(infrule_list_of_dics[infrule_choice_input-1]['number of feeds'])
+#   print("number of output expressions: "+infrule_list_of_dics[infrule_choice_input-1]['number of output expressions'])
+  number_of_output_expressions=int(infrule_list_of_dics[infrule_choice_input-1]['number of output expressions'])
+  input_ary=[]
+  for input_indx in range(number_of_input_expressions):
+    this_input=get_text_input('input expression Latex,  '+str(input_indx+1)+' of '+str(number_of_input_expressions)+': ')
+    input_ary.append(this_input)
+  for input_indx in range(number_of_feeds):
+    this_input=get_text_input('feed Latex,              '+str(input_indx+1)+' of '+str(number_of_feeds)+': ')
+    input_ary.append(this_input)
+  for input_indx in range(number_of_output_expressions):
+    this_input=get_text_input('output expression Latex, '+str(input_indx+1)+' of '+str(number_of_output_expressions)+': ')
+    input_ary.append(this_input)
+  time.sleep(1)
   return
 
 connectionsDB    =db_path+'/connections_database.csv'
@@ -197,4 +215,4 @@ for entry in infrule_list_of_dics:
   list_of_infrules.append(entry['inference rule'])
 
 while(True):
-  first_choice(list_of_derivations,list_of_infrules)
+  first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics)

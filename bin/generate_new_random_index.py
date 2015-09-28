@@ -38,6 +38,7 @@ def find_new_indx(list_of,start_indx,end_indx,strng):
     if (potential_indx not in list_of_expr):
       found_new_indx=True
   print(strng+str(potential_indx))
+  return potential_indx
 
 expressionsDB=db_path+'/expressions_database.csv'
 connectionsDB=db_path+'/connections_database.csv'
