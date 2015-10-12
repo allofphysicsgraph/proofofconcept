@@ -36,7 +36,7 @@ def get_numeric_input(prompt_text,default_choice):
   while(not number_provided):
     input_number=raw_input(prompt_text)
     if (input_number==''):
-      print("\n--> no input; defaulting")
+      print("\n--> no selection from user; defaulting to ")
       number_provided=True
       input_number=default_choice
     try:
@@ -210,35 +210,41 @@ def user_choose_infrule(list_of_infrules):
 
 
 
-def user_supplies_latex_or_expression_index(input_indx,number_of_input_expressions,list_of_expr,step_ary):
+def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expressions,list_of_expr,step_ary):
   valid_input=False
   while(not valid_input):
-    print("\n1 provide new Latex for input")
-    print("2 use existing expression index")
+    print("\nChoice for providing step content for "+type_str+": ")
+    print("1 provide new Latex")
+    print("2 use existing expression index from above list")
     latex_or_index_choice=get_numeric_input("selection [1]: ","1")
     if (int(latex_or_index_choice)==1):
-      this_input_latex=get_text_input('input expression Latex,  '+str(input_indx+1)+' of '+str(number_of_input_expressions)+': ')
+      this_latex=get_text_input(type_str+' expression Latex,  '+str(input_indx+1)+' of '+str(number_of_expressions)+': ')
       expr_perm_indx=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
       valid_input=True
     elif (int(latex_or_index_choice)==2):
       expr_perm_indx=get_numeric_input("expression index : ","defaulllt")
-      this_input_latex="NONE"
+      this_latex="NONE"
       for each_step in step_ary:
         list_of_inputs=each_step["input"]
         for indx in range(len(list_of_inputs)):
           if (int(expr_perm_indx)==list_of_inputs[0]['indx']):
-            this_input_latex=list_of_inputs[0]['latex']
+            this_latex=list_of_inputs[0]['latex']
         list_of_outputs=each_step["output"]
         for indx in range(len(list_of_outputs)):
           if (int(expr_perm_indx)==list_of_outputs[0]['indx']):
-            this_input_latex=list_of_outputs[0]['latex']
-      if (this_input_latex=="NONE"):
+            this_latex=list_of_outputs[0]['latex']
+      if (this_latex=="NONE"):
         print("ERROR: user-supplied expression index not found in this derivation")
       valid_input=True
     else:
       print(" --> invalid input; try again")
       valid_input=False  
-  return this_input_latex,int(expr_perm_indx)
+
+  this_dic={}
+  this_dic["latex"]=this_latex
+  this_dic["indx"]=int(expr_perm_indx)
+
+  return this_dic
 
 
 def user_provide_latex_arguments(selected_infrule,infrule_choice_input,\
@@ -258,41 +264,28 @@ def user_provide_latex_arguments(selected_infrule,infrule_choice_input,\
   number_of_feeds=int(infrule_list_of_dics[infrule_choice_input-1]['number of feeds'])
 #   print("number of output expressions: "+infrule_list_of_dics[infrule_choice_input-1]['number of output expressions'])
   number_of_output_expressions=int(infrule_list_of_dics[infrule_choice_input-1]['number of output expressions'])
-#   print(number_of_input_expressions,number_of_feeds,number_of_output_expressions)
+
+  print("number of input expressions: "+str(number_of_input_expressions)+", number of feeds: "+str(number_of_feeds)+", number of output expressions: "+str(number_of_output_expressions))
 
   input_ary=[]
   if (number_of_input_expressions>0):
     for input_indx in range(number_of_input_expressions):
-      this_input_dic={}
-
-      [this_input_latex,expr_perm_indx]=user_supplies_latex_or_expression_index(\
+      this_input_dic=user_supplies_latex_or_expression_index('input',\
               input_indx,number_of_input_expressions,list_of_expr,step_ary)
 
-#       expr_temp_indx=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")    
-      this_input_dic["latex"]=this_input_latex
-      this_input_dic["indx"]=expr_perm_indx
-#       this_input_ary.append(expr_temp_indx)
       input_ary.append(this_input_dic)
   feed_ary=[]
   if (number_of_feeds>0):
     for input_indx in range(number_of_feeds):
 #       this_feed_ary=[]
       this_feed_latex=get_text_input('feed Latex,              '+str(input_indx+1)+' of '+str(number_of_feeds)+': ')
-#       feed_temp_indx=physgraf.find_new_indx(list_of_feeds,1000000,9999999,"feed temporary index: ")  
-#       this_feed_ary.append(this_feed_latex)
-#       this_feed_ary.append(feed_temp_indx)
-#       this_feed_ary.append('0')
       feed_ary.append(this_feed_latex)
   output_ary=[]
   if (number_of_output_expressions>0):
     for output_indx in range(number_of_output_expressions):
-      this_output_dic={}
-      this_output_latex=get_text_input('output expression Latex, '+str(output_indx+1)+' of '+str(number_of_output_expressions)+': ')
-      expr_perm_indx=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
-#       expr_temp_indx=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")
-      this_output_dic["latex"]=this_output_latex
-      this_output_dic["indx"]=expr_perm_indx
-#       this_output_ary.append(expr_temp_indx)
+      this_output_dic=user_supplies_latex_or_expression_index('output',\
+              output_indx,number_of_output_expressions,list_of_expr,step_ary)
+
       output_ary.append(this_output_dic)
 
   return input_ary,feed_ary,output_ary
