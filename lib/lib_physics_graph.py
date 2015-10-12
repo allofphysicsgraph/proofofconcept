@@ -83,9 +83,9 @@ def convert_feed_csv_to_list_of_dics(feedDB):
       this_line_dic={}
       if(len(row)==1): # skip empty lines
         continue
-      elif(len(row)==2): # proper lines
+      elif(len(row)>=2): # proper lines
         this_line_dic["temp index"]=row[0]
-        this_line_dic["feed latex"]=row[1]
+        this_line_dic["feed latex"]=",".join(row[1:len(row)]) # thus a row can contain quote, comma
       else:
         print("error in "+feedDB)
         print(len(row))
@@ -101,9 +101,9 @@ def convert_expressions_csv_to_list_of_dics(expressionsDB):
       this_line_dic={}
       if(len(row)==0): # skip empty lines
         continue
-      elif(len(row)==2): # proper lines
+      elif(len(row)>=2): # proper lines
         this_line_dic["permanent index"]=row[0]
-        this_line_dic["expression latex"]=row[1]
+        this_line_dic["expression latex"]=",".join(row[1:len(row)]) # thus a row can contain quote, comma
       else:
         print("error in "+expressionsDB)
         print(len(row))

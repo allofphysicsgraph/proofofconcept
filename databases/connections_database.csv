@@ -1,24 +1,24 @@
 "frequency relations",1, "infrule",2303943,declareInitialEq,"expression",3293094,5900595848
-"frequency relations",2, "infrule",0304948,declareInitialEq,"expression",3294004,0404050504
-"frequency relations",3, "infrule",8332941,declareInitialEq,"expression",0921465,3131211131
-"frequency relations",4, "infrule",9103516,declareInitialEq,"expression",8482459,3131111133
-"frequency relations",5, "expression",8374556,3132131132,"infrule",3832748,subRHSofEqXintoEqY
-"frequency relations",5, "expression",3293094,5900595848,"infrule",3832748,subRHSofEqXintoEqY
+"frequency relations",2, "infrule",0304948,declareInitialEq,  "expression",3294004,0404050504
+"frequency relations",3, "infrule",8332941,declareInitialEq,  "expression",0921465,3131211131
+"frequency relations",4, "infrule",9103516,declareInitialEq,  "expression",8482459,3131111133
+"frequency relations",5, "expression",8374556,3132131132,     "infrule",3832748,subRHSofEqXintoEqY
+"frequency relations",5, "expression",3293094,5900595848,     "infrule",3832748,subRHSofEqXintoEqY
 "frequency relations",5, "infrule",3832748,subRHSofEqXintoEqY,"expression",8394853,0934990943
-"frequency relations",6, "expression",3294004,0404050504,"infrule",2939482,subRHSofEqXintoEqY
-"frequency relations",6, "expression",8482459,3131111133,"infrule",2939482,subRHSofEqXintoEqY
+"frequency relations",6, "expression",3294004,0404050504,     "infrule",2939482,subRHSofEqXintoEqY
+"frequency relations",6, "expression",8482459,3131111133,     "infrule",2939482,subRHSofEqXintoEqY
 "frequency relations",6, "infrule",2939482,subRHSofEqXintoEqY,"expression",3993940,1293923844
-"frequency relations",7, "expression",8394853,0934990943,"infrule",8946983,subRHSofEqXintoEqY
-"frequency relations",7, "expression",3993940,1293923844,"infrule",8946983,subRHSofEqXintoEqY
+"frequency relations",7, "expression",8394853,0934990943,     "infrule",8946983,subRHSofEqXintoEqY
+"frequency relations",7, "expression",3993940,1293923844,     "infrule",8946983,subRHSofEqXintoEqY
 "frequency relations",7, "infrule",8946983,subRHSofEqXintoEqY,"expression",2934848,3121513111
-"frequency relations",8, "feed",5749291,0,"infrule",6822583,multbothsidesby
-"frequency relations",8, "expression",8482459,3131111133,"infrule",6822583,multbothsidesby
-"frequency relations",8, "infrule",6822583,multbothsidesby,"expression",8341200,2131616531
-"frequency relations",9, "feed",8837284,0,"infrule",9483715,dividebothsidesby
-"frequency relations",9, "expression",8341200,2131616531,"infrule",9483715,dividebothsidesby
-"frequency relations",9, "infrule",9483715,dividebothsidesby,"expression",9380032,2113211456
-"frequency relations",10, "expression",9380032,2113211456,"infrule",9483843,subRHSofEqXintoEqY
-"frequency relations",10, "expression",0921465,3131211131,"infrule",9483843,subRHSofEqXintoEqY
+"frequency relations",8, "feed",5749291,0,                    "infrule",6822583,multbothsidesby
+"frequency relations",8, "expression",8482459,3131111133,     "infrule",6822583,multbothsidesby
+"frequency relations",8, "infrule",6822583,multbothsidesby,   "expression",8341200,2131616531
+"frequency relations",9, "feed",8837284,0,                    "infrule",9483715,dividebothsidesby
+"frequency relations",9, "expression",8341200,2131616531,     "infrule",9483715,dividebothsidesby
+"frequency relations",9, "infrule",9483715,dividebothsidesby, "expression",9380032,2113211456
+"frequency relations",10, "expression",9380032,2113211456,    "infrule",9483843,subRHSofEqXintoEqY
+"frequency relations",10, "expression",0921465,3131211131,    "infrule",9483843,subRHSofEqXintoEqY
 "frequency relations",10, "infrule",9483843,subRHSofEqXintoEqY,"expression",8374556,3132131132
 "frequency relations",11, "expression",2934848,3121513111,"infrule",8345721,declareFinalEq
 "quadratic equation derivation",1, "infrule",8494551,declareInitialEq,"expression",8882098,9285928292

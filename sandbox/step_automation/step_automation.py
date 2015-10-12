@@ -30,6 +30,21 @@ def get_text_input(prompt_text):
     else:
       text_provided=True
   return input_text
+  
+def get_numeric_input(prompt_text,default_choice):
+  number_provided=False
+  while(not number_provided):
+    input_number=raw_input(prompt_text)
+    if (input_number==''):
+      print("\n--> no input; defaulting")
+      number_provided=True
+      input_number=default_choice
+    try:
+      print(int(input_number))
+      number_provided=True
+    except ValueError:
+      print("\n--> invalid choice - not an integer; try again")
+  return input_number
 
 def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
                  list_of_expr,connection_expr_temp,list_of_feeds):
@@ -72,31 +87,45 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
                          connection_expr_temp,list_of_feeds):
   clear_screen()
   print("starting new derivation")
-  nme=get_text_input('name of new derivation: ')  
-  print("\ndeclare initial equation; enter expression")
-  first_latex=get_text_input('enter expression Latex: ')
-  print('-> connecting declare_init with '+first_latex)
-  #time.sleep(1)
+  derivation_name=get_text_input('name of new derivation: ')  
   
   step_indx=0
+  step_ary=[]
   done_with_steps=False
   while(not done_with_steps):
     step_indx=step_indx+1
-    [input_ary,feed_ary,output_ary]=get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds)
-    done_with_steps=add_another_step_menu()
+    print("current steps for "+derivation_name+":")
+    print_current_steps(step_ary)
+
+    [selected_infrule,input_ary,feed_ary,output_ary]=get_step_arguments(\
+        list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds,step_ary)
+    step_dic={"infrule":selected_infrule,"input":input_ary,"feed":feed_ary,"output":output_ary}
+    print("\nResulting dic:")
+    print(step_dic)
+    step_ary.append(step_dic)
+    done_with_steps=add_another_step_menu(step_ary)
   return
 
-def add_another_step_menu():
+def print_current_steps(step_ary):
+  for this_step_dic in step_ary:
+    print(this_step_dic)
+  print("\n")
+  return
+
+
+def add_another_step_menu(step_ary):
     invalid_choice=True
     while(invalid_choice):
-      clear_screen()
-      print("Step Menu")
+      print("\n\nStep Menu")
       print("1 add another step")
       print("0 exit derivation and return to main menu")
       step_choice_input= raw_input('selection [0]: ')
       if (step_choice_input=='0' or step_choice_input==''):
         invalid_choice=False
         done_with_steps=True
+        print("\nsummary (this content gets printed to file once temporary indices are set)")
+        print_current_steps(step_ary)
+        time.sleep(5)
       elif (step_choice_input=='1'): # add another step
         invalid_choice=False
         done_with_steps=False   
@@ -179,55 +208,103 @@ def user_choose_infrule(list_of_infrules):
         time.sleep(3)
   return selected_infrule,int(infrule_choice_input)
 
-def user_provide_latex_arguments(selected_infrule,infrule_choice_input,infrule_list_of_dics):
+
+
+def user_supplies_latex_or_expression_index(input_indx,number_of_input_expressions,list_of_expr,step_ary):
+  valid_input=False
+  while(not valid_input):
+    print("\n1 provide new Latex for input")
+    print("2 use existing expression index")
+    latex_or_index_choice=get_numeric_input("selection [1]: ","1")
+    if (int(latex_or_index_choice)==1):
+      this_input_latex=get_text_input('input expression Latex,  '+str(input_indx+1)+' of '+str(number_of_input_expressions)+': ')
+      expr_perm_indx=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
+      valid_input=True
+    elif (int(latex_or_index_choice)==2):
+      expr_perm_indx=get_numeric_input("expression index : ","defaulllt")
+      this_input_latex="NONE"
+      for each_step in step_ary:
+        list_of_inputs=each_step["input"]
+        for indx in range(len(list_of_inputs)):
+          if (int(expr_perm_indx)==list_of_inputs[0]['indx']):
+            this_input_latex=list_of_inputs[0]['latex']
+        list_of_outputs=each_step["output"]
+        for indx in range(len(list_of_outputs)):
+          if (int(expr_perm_indx)==list_of_outputs[0]['indx']):
+            this_input_latex=list_of_outputs[0]['latex']
+      if (this_input_latex=="NONE"):
+        print("ERROR: user-supplied expression index not found in this derivation")
+      valid_input=True
+    else:
+      print(" --> invalid input; try again")
+      valid_input=False  
+  return this_input_latex,int(expr_perm_indx)
+
+
+def user_provide_latex_arguments(selected_infrule,infrule_choice_input,\
+       infrule_list_of_dics,step_ary,connection_expr_temp):
   print("selected "+str(infrule_choice_input)+" which is "+selected_infrule)
 #   print("for this infrule, provide input, feed, and output")
 #   print(infrule_list_of_dics[infrule_choice_input-1])
   print("Latex expansion: "+infrule_list_of_dics[infrule_choice_input-1]['LaTeX expansion'])
+
+  if (len(step_ary)>0):
+    print("\nexisting derivation steps:")
+    print_current_steps(step_ary)
+  
 #   print("number of input expresions: "+infrule_list_of_dics[infrule_choice_input-1]['number of input expressions'])
   number_of_input_expressions=int(infrule_list_of_dics[infrule_choice_input-1]['number of input expressions'])
 #   print("number of feeds: "+infrule_list_of_dics[infrule_choice_input-1]['number of feeds'])
   number_of_feeds=int(infrule_list_of_dics[infrule_choice_input-1]['number of feeds'])
 #   print("number of output expressions: "+infrule_list_of_dics[infrule_choice_input-1]['number of output expressions'])
   number_of_output_expressions=int(infrule_list_of_dics[infrule_choice_input-1]['number of output expressions'])
+#   print(number_of_input_expressions,number_of_feeds,number_of_output_expressions)
+
   input_ary=[]
-  for input_indx in range(number_of_input_expressions):
-    this_input=get_text_input('input expression Latex,  '+str(input_indx+1)+' of '+str(number_of_input_expressions)+': ')
+  if (number_of_input_expressions>0):
+    for input_indx in range(number_of_input_expressions):
+      this_input_dic={}
 
-    expr_perm_indx=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
-    expr_temp_indx=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")    
-    
-    input_ary.append(this_input)
+      [this_input_latex,expr_perm_indx]=user_supplies_latex_or_expression_index(\
+              input_indx,number_of_input_expressions,list_of_expr,step_ary)
+
+#       expr_temp_indx=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")    
+      this_input_dic["latex"]=this_input_latex
+      this_input_dic["indx"]=expr_perm_indx
+#       this_input_ary.append(expr_temp_indx)
+      input_ary.append(this_input_dic)
   feed_ary=[]
-  for input_indx in range(number_of_feeds):
-    this_input=get_text_input('feed Latex,              '+str(input_indx+1)+' of '+str(number_of_feeds)+': ')
-    
-    feed_temp_indx=physgraf.find_new_indx(list_of_feeds,1000000,9999999,"feed temporary index: ")
-
-    
-    input_ary.append(this_input)
+  if (number_of_feeds>0):
+    for input_indx in range(number_of_feeds):
+#       this_feed_ary=[]
+      this_feed_latex=get_text_input('feed Latex,              '+str(input_indx+1)+' of '+str(number_of_feeds)+': ')
+#       feed_temp_indx=physgraf.find_new_indx(list_of_feeds,1000000,9999999,"feed temporary index: ")  
+#       this_feed_ary.append(this_feed_latex)
+#       this_feed_ary.append(feed_temp_indx)
+#       this_feed_ary.append('0')
+      feed_ary.append(this_feed_latex)
   output_ary=[]
-  for output_indx in range(number_of_output_expressions):
-    this_output=get_text_input('output expression Latex, '+str(output_indx+1)+' of '+str(number_of_output_expressions)+': ')
-    output_ary.append(this_output)
-    
-    expr_perm_indx=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
-    expr_temp_indx=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")    
-    
-    return input_ary,feed_ary,output_ary
+  if (number_of_output_expressions>0):
+    for output_indx in range(number_of_output_expressions):
+      this_output_dic={}
+      this_output_latex=get_text_input('output expression Latex, '+str(output_indx+1)+' of '+str(number_of_output_expressions)+': ')
+      expr_perm_indx=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
+#       expr_temp_indx=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")
+      this_output_dic["latex"]=this_output_latex
+      this_output_dic["indx"]=expr_perm_indx
+#       this_output_ary.append(expr_temp_indx)
+      output_ary.append(this_output_dic)
 
-def get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds):
-  clear_screen()
+  return input_ary,feed_ary,output_ary
+
+def get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,\
+        connection_expr_temp,list_of_feeds,step_ary):
   print("starting a new step")
   [selected_infrule,infrule_choice_input]=user_choose_infrule(list_of_infrules)
   clear_screen()
   [input_ary,feed_ary,output_ary]=user_provide_latex_arguments(selected_infrule,\
-        infrule_choice_input,infrule_list_of_dics)  
-  print(input_ary)
-  print(feed_ary)
-  print(output_ary)
-  time.sleep(2)
-  return input_ary,feed_ary,output_ary
+        infrule_choice_input,infrule_list_of_dics,step_ary,connection_expr_temp)
+  return selected_infrule,input_ary,feed_ary,output_ary
 
 expressionsDB=db_path+'/expressions_database.csv'
 connectionsDB=db_path+'/connections_database.csv'
@@ -246,15 +323,17 @@ infrule_list_of_dics=physgraf.convert_infrule_csv_to_list_of_dics(infruleDB)
 
 list_of_infrules=[]
 for entry in infrule_list_of_dics:
-  #print(entry['inference rule'])
+#   print(entry['inference rule'])
   list_of_infrules.append(entry['inference rule'])
 
 list_of_expr=[]
 for this_expr in expressions_list_of_dics:
+#   print(this_expr)
   list_of_expr.append(this_expr["permanent index"])
 
 list_of_feeds=[]
 for this_feed in feeds_list_of_dics:
+#   print(this_feed)
   list_of_feeds.append(this_feed["temp index"])
 
 [connection_feeds,connection_expr_perm,connection_expr_temp,\
