@@ -78,9 +78,15 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
   print('-> connecting declare_init with '+first_latex)
   #time.sleep(1)
   
+  step_indx=0
   done_with_steps=False
   while(not done_with_steps):
-    step(list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds)
+    step_indx=step_indx+1
+    [input_ary,feed_ary,output_ary]=get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds)
+    done_with_steps=add_another_step_menu()
+  return
+
+def add_another_step_menu():
     invalid_choice=True
     while(invalid_choice):
       clear_screen()
@@ -91,15 +97,14 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
       if (step_choice_input=='0' or step_choice_input==''):
         invalid_choice=False
         done_with_steps=True
-        return
       elif (step_choice_input=='1'): # add another step
         invalid_choice=False
         done_with_steps=False   
       else: 
         print("---> invalid choice; try again")
         time.sleep(1)
-        invalid_choice=True     
-  return
+        invalid_choice=True  
+    return done_with_steps
 
 def select_from_available_derivations(list_of_derivations):
   choice_selected=False
@@ -211,7 +216,7 @@ def user_provide_latex_arguments(selected_infrule,infrule_choice_input,infrule_l
     
     return input_ary,feed_ary,output_ary
 
-def step(list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds):
+def get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds):
   clear_screen()
   print("starting a new step")
   [selected_infrule,infrule_choice_input]=user_choose_infrule(list_of_infrules)
@@ -222,7 +227,7 @@ def step(list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp
   print(feed_ary)
   print(output_ary)
   time.sleep(2)
-  return
+  return input_ary,feed_ary,output_ary
 
 expressionsDB=db_path+'/expressions_database.csv'
 connectionsDB=db_path+'/connections_database.csv'
