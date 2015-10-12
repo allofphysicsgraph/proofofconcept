@@ -12,8 +12,6 @@ db_path = os.path.abspath('databases')
 sys.path.append(lib_path) # this has to proceed use of physgraph
 import lib_physics_graph as physgraf
 
-
-
 expressionsDB=db_path+'/expressions_database.csv'
 connectionsDB=db_path+'/connections_database.csv'
 # feedDB       =db_path+'/feed_database.csv'
@@ -24,11 +22,7 @@ expressions_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(expres
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 # infrule_list_of_dics=physgraf.convert_infrule_csv_to_list_of_dics(infruleDB)
 
-
 list_of_derivations=physgraf.get_set_of_derivations(connections_list_of_dics)
-
-
-# print(connections_list_of_dics)
 
 all_derivations=[]
 for this_derivation in list_of_derivations:
