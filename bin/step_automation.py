@@ -269,15 +269,18 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
     num_left_col_entries=30
     num_remaining_entries=len(list_of_infrules)-num_left_col_entries
     for indx in range(1,num_left_col_entries):
-      if (indx<10):
-        left_side_menu=str(indx)+"   "+list_of_infrules[indx-1]
-      else:  
-        left_side_menu=str(indx)+"  "+list_of_infrules[indx-1]
+#       if (indx<10):
+#         left_side_menu=str(indx)+"   "+list_of_infrules[indx-1]
+#       else:  
+#         left_side_menu=str(indx)+"  "+list_of_infrules[indx-1]
+      left_side_menu="  "+list_of_infrules[indx-1]
       middle_indx=indx+num_left_col_entries-1
-      middle_menu=" "*(50-len(list_of_infrules[indx-1]))+str(middle_indx)+"   "+list_of_infrules[middle_indx-1]
+#       middle_menu=" "*(50-len(list_of_infrules[indx-1]))+str(middle_indx)+"   "+list_of_infrules[middle_indx-1]
+      middle_menu=" "*(50-len(list_of_infrules[indx-1]))+"   "+list_of_infrules[middle_indx-1]
       right_side_indx=indx+2*num_left_col_entries-2
       if (right_side_indx<(len(list_of_infrules)+1)):
-        right_side_menu=" "*(40-len(list_of_infrules[middle_indx-1]))+str(right_side_indx)+"   "+list_of_infrules[middle_indx-1]
+#         right_side_menu=" "*(40-len(list_of_infrules[middle_indx-1]))+str(right_side_indx)+"   "+list_of_infrules[middle_indx-1]
+        right_side_menu=" "*(40-len(list_of_infrules[middle_indx-1]))+"   "+list_of_infrules[middle_indx-1]
         print(left_side_menu+middle_menu+right_side_menu)
       else:
         print(left_side_menu+middle_menu)
@@ -293,7 +296,7 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
     else:
         readline.parse_and_bind("tab: complete")
 
-    selected_infrule = raw_input("Input: ")
+    selected_infrule = raw_input("\nselection (tab auto-complete): ")
     
     for this_infrule_dic in infrule_list_of_dics:
       if (this_infrule_dic["inference rule"]==selected_infrule):
@@ -301,6 +304,7 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
         selected_infrule_dic=this_infrule_dic
         break
     
+### OLD index-based selection used prior to auto-complete
 #     print("0  exit derivation selection and return to main menu\n")  
 #     infrule_choice_input = get_numeric_input('selection [0]: ','0')
 #     if (infrule_choice_input=='0' or infrule_choice_input==''):
