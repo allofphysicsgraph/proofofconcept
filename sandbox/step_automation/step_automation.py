@@ -55,7 +55,7 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
     print("1  start a new derivation")
     print("2  edit an existing derivation")
     print("0  exit")
-    first_choice_input = raw_input('selection [0]: ')
+    first_choice_input = get_numeric_input('selection [0]: ','0')
     if (first_choice_input=='0' or first_choice_input==''):
       invalid_choice=False
       exit_from_program()
@@ -119,8 +119,8 @@ def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,connecti
       print("\n\nStep Menu")
       print("1 add another step")
       print("0 exit derivation; write content to file and return to main menu")
-      step_choice_input= raw_input('selection [0]: ')
-      if (step_choice_input=='0' or step_choice_input==''):
+      step_choice_input= get_numeric_input('selection [1]: ','1')
+      if (step_choice_input=='0'):
         invalid_choice=False
         done_with_steps=True
         print("\nsummary (this content gets written to file once temporary indices are set)")
@@ -139,6 +139,7 @@ def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,connecti
 
 def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection_infrule_temp,list_of_feeds):
 
+# step_ary contains entries like
 #{'infrule': 'combineLikeTerms', 'input': [{'latex': 'afmaf=mlasf', 'indx': 2612303073}], 'feed': [], 'output': [{'latex': 'mafmo=asfm', 'indx': 2430513647}]}
 #{'infrule': 'solveForX', 'input': [{'latex': 'afmaf=mlasf', 'indx': 2612303073}], 'feed': ['x'], 'output': [{'latex': 'masdf=masdf', 'indx': 4469061559}]}
 
@@ -156,8 +157,10 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection
   print(derivation_name)
   print(step_ary)
 
+# step_ary now looks like
 #[{'infrule': 'dividebothsidesby', 'input': [{'latex': 'afm =asfaf', 'temp indx': 9521703, 'indx': 6448490481}], 'infrule temp indx': 3491788, 'feed': [{'latex': 'asf', 'feed indx': 4479113}], 'output': [{'latex': 'asdfa =asf', 'temp indx': 1939903, 'indx': 4449405156}]}]
 
+# what we want is output like
 #"frequency relations",1, "infrule",2303943,declareInitialEq,   "expression",3293094,5900595848
 #"frequency relations",2, "infrule",0304948,declareInitialEq,   "expression",3294004,0404050504
 
@@ -165,19 +168,18 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection
   for step_indx,this_step in enumerate(step_ary):
     for input_indx,this_input in enumerate(this_step['input']):
       f.write( "\""+derivation_name+"\","+str(step_indx)+\
-              ",\"infrule\","+str(this_step['infrule temp indx'])+","+this_step['infrule']+\
-              ",\"expression\","+str(this_input['temp indx'])+","+str(this_step['input'][0]['indx'])+"\n")
+              ",\"expression\","+str(this_input['temp indx'])+","+str(this_step['input'][0]['indx'])+\
+              ",\"infrule\","+str(this_step['infrule temp indx'])+","+this_step['infrule']+"\n")
 
     for feed_indx,this_feed in enumerate(this_step['feed']):
       f.write( "\""+derivation_name+"\","+str(step_indx)+\
-              ",\"infrule\","+str(this_step['infrule temp indx'])+","+this_step['infrule']+\
-              ",\"feed\","+str(this_feed['feed indx'])+",0\n")
+              ",\"feed\","+str(this_feed['feed indx'])+",0"+\
+              ",\"infrule\","+str(this_step['infrule temp indx'])+","+this_step['infrule']+"\n")
 
     for output_indx,this_output in enumerate(this_step['output']):
       f.write( "\""+derivation_name+"\","+str(step_indx)+\
-              ",\"expression\","+str(this_output['temp indx'])+","+str(this_step['output'][0]['indx'])+\
-              ",\"infrule\","+str(this_step['infrule temp indx'])+","+this_step['infrule']+"\n")
-              
+              ",\"infrule\","+str(this_step['infrule temp indx'])+","+this_step['infrule']+\
+              ",\"expression\","+str(this_output['temp indx'])+","+str(this_step['output'][0]['indx'])+"\n")
   f.close()
 
   # collect all the latex expressions
@@ -189,11 +191,24 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection
     for this_output in this_step['output']:
       if not (this_output['indx'] in latex_expr_dic):
         latex_expr_dic[this_output['indx']]=this_output['latex']
+  # write latex expressions to file
   f = open('new_latex.csv', 'w')
   for indx_key, latex_value in latex_expr_dic.iteritems():
     f.write(str(indx_key)+","+latex_value+"\n")
   f.close()
+
+  latex_feed_dic={}
+  for this_step in step_ary:
+    for this_feed in this_step['feed']:
+      if not (this_feed['feed indx'] in latex_feed_dic):
+        latex_feed_dic[this_feed['feed indx']]=this_feed['latex']
+  f = open('new_feed.csv', 'w')
+  for indx_key, latex_value in latex_expr_dic.iteritems():
+    f.write(str(indx_key)+","+latex_value+"\n")
+  f.close()
+
   return
+
 
 def select_from_available_derivations(list_of_derivations):
   choice_selected=False
@@ -204,7 +219,7 @@ def select_from_available_derivations(list_of_derivations):
     for indx in range(1,len(list_of_derivations)+1):
       print(str(indx)+"   "+list_of_derivations[indx-1])
     print("0  exit derivation selection and return to main menu\n")  
-    derivation_choice_input = raw_input('selection [0]: ')
+    derivation_choice_input = get_numeric_input('selection [0]: ','0')
     if (derivation_choice_input=='0' or derivation_choice_input==''):
       print("selected exit without choice")
       time.sleep(2)
@@ -247,7 +262,7 @@ def user_choose_infrule(list_of_infrules):
         print(left_side_menu+middle_menu)
 
     print("0  exit derivation selection and return to main menu\n")  
-    infrule_choice_input = raw_input('selection [0]: ')
+    infrule_choice_input = get_numeric_input('selection [0]: ','0')
     if (infrule_choice_input=='0' or infrule_choice_input==''):
       print("selected exit without choice")
 #       time.sleep(2)
