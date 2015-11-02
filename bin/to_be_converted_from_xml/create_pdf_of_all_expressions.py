@@ -12,9 +12,6 @@ sys.path.append(lib_path) # this has to proceed use of physgraph
 
 import lib_physics_graph as physgraf
 
-# http://stackoverflow.com/questions/6665725/parsing-xml-using-minidom
-from xml.dom.minidom import parseString #import easy to use xml parser called minidom:
-
 input_stream=file('config.input','r')
 input_data=yaml.load(input_stream)
 extension=input_data["file_extension_string"]

@@ -17,8 +17,6 @@ sys.path.append(lib_path) # this has to proceed use of physgraph
 
 import lib_physics_graph as physgraf
 
-from xml.dom.minidom import parseString
-
 import sympy # https://github.com/sympy/sympy/releases
 
 def convert_xml_to_cas_array(type_str,xml_ary,symbols_array,check_this_connection):

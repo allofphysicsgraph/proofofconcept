@@ -21,10 +21,6 @@ sys.path.append(lib_path) # this has to proceed use of physgraph
 
 import lib_physics_graph as physgraf
 
-# http://stackoverflow.com/questions/6665725/parsing-xml-using-minidom
-#import easy to use xml parser called minidom:
-from xml.dom.minidom import parseString
-
 def convert_expr_perm_indx_to_latex(expr_list_of_dics,target_expression):
   for this_expr in expr_list_of_dics:
     if (this_expr["permanent index"]==target_expression):
