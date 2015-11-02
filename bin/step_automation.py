@@ -49,7 +49,7 @@ def get_numeric_input(prompt_text,default_choice):
   return input_number
 
 def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
-                 list_of_expr,connection_expr_temp,list_of_feeds,connection_infrule_temp):
+                 list_of_expr,connection_expr_temp,list_of_feeds,connection_infrule_temp,output_path):
   invalid_choice=True
   while(invalid_choice):
     clear_screen()
@@ -63,7 +63,7 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
       exit_from_program()
     elif (first_choice_input=='1'):
       start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
-                           connection_expr_temp,list_of_feeds,connection_infrule_temp)
+                           connection_expr_temp,list_of_feeds,connection_infrule_temp,output_path)
       invalid_choice=False
     elif (first_choice_input=='2'):
       edit_existing_derivation()
@@ -104,7 +104,7 @@ def edit_existing_derivation():
   return
   
 def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
-                         connection_expr_temp,list_of_feeds,connection_infrule_temp):
+                         connection_expr_temp,list_of_feeds,connection_infrule_temp,output_path):
   clear_screen()
   print("starting new derivation")
   derivation_name=get_text_input('name of new derivation (can contain spaces): ')  
@@ -123,7 +123,8 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
     print("\nResulting dic:")
     print(step_dic)
     step_ary.append(step_dic)
-    done_with_steps=add_another_step_menu(step_ary,derivation_name,connection_expr_temp,connection_infrule_temp,list_of_feeds)
+    done_with_steps=add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
+                                      connection_infrule_temp,list_of_feeds,output_path)
   return 
 
 def print_current_steps(step_ary):
@@ -133,7 +134,8 @@ def print_current_steps(step_ary):
   return
 
 
-def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,connection_infrule_temp,list_of_feeds):
+def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
+                          connection_infrule_temp,list_of_feeds,output_path):
     invalid_choice=True
     while(invalid_choice):
       print("\n\nStep Menu")
@@ -146,7 +148,8 @@ def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,connecti
         print("\nsummary (this content gets written to file once temporary indices are set)")
         print("derivation name: "+derivation_name)
         print_current_steps(step_ary)
-        write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection_infrule_temp,list_of_feeds)
+        write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
+                            connection_infrule_temp,list_of_feeds,output_path)
         time.sleep(5)
       elif (step_choice_input=='1'): # add another step
         invalid_choice=False
@@ -157,7 +160,8 @@ def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,connecti
         invalid_choice=True  
     return done_with_steps
 
-def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection_infrule_temp,list_of_feeds):
+def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
+                        connection_infrule_temp,list_of_feeds,output_path):
 
 # step_ary contains entries like
 #{'infrule': 'combineLikeTerms', 'input': [{'latex': 'afmaf=mlasf', 'indx': 2612303073}], 'feed': [], 'output': [{'latex': 'mafmo=asfm', 'indx': 2430513647}]}
@@ -174,7 +178,8 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection
     for feed_indx,feed_dic in enumerate(step_ary[step_indx]['feed']):
       step_ary[step_indx]['feed'][feed_indx]['feed indx']=physgraf.find_new_indx(list_of_feeds,1000000,9999999,"feed temporary index: ")
 
-  print(derivation_name)
+  print("derivation name: "+derivation_name)
+  print("content to be written to files")
   print(step_ary)
 
 # step_ary now looks like
@@ -184,7 +189,7 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection
 #"frequency relations",1, "infrule",2303943,declareInitialEq,   "expression",3293094,5900595848
 #"frequency relations",2, "infrule",0304948,declareInitialEq,   "expression",3294004,0404050504
 
-  f = open('new_connections.csv', 'w')
+  f = open(output_path+'new_connections.csv', 'w')
   for step_indx,this_step in enumerate(step_ary):
     for input_indx,this_input in enumerate(this_step['input']):
       f.write( "\""+derivation_name+"\","+str(step_indx)+\
@@ -212,7 +217,7 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection
       if not (this_output['indx'] in latex_expr_dic):
         latex_expr_dic[this_output['indx']]=this_output['latex']
   # write latex expressions to file
-  f = open('new_latex.csv', 'w')
+  f = open(output_path+'new_latex.csv', 'w')
   for indx_key, latex_value in latex_expr_dic.iteritems():
     f.write(str(indx_key)+","+latex_value+"\n")
   f.close()
@@ -222,7 +227,7 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection
     for this_feed in this_step['feed']:
       if not (this_feed['feed indx'] in latex_feed_dic):
         latex_feed_dic[this_feed['feed indx']]=this_feed['latex']
-  f = open('new_feed.csv', 'w')
+  f = open(output_path+'new_feed.csv', 'w')
   for indx_key, latex_value in latex_expr_dic.iteritems():
     f.write(str(indx_key)+","+latex_value+"\n")
   f.close()
@@ -421,9 +426,20 @@ def get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,\
 input_stream=file('config.input','r')
 input_data=yaml.load(input_stream)
 connectionsDB=input_data["connectionsDB_path"]
+f=open(connectionsDB,'a') # create empty file if it doesn't already exist
+f.close()
 expressionsDB=input_data["expressionsDB_path"]
+f=open(expressionsDB,'a') # create empty file if it doesn't already exist
+f.close()
 feedDB       =input_data["feedDB_path"]
+f=open(feedDB,'a') # create empty file if it doesn't already exist
+f.close()
 infruleDB    =input_data["infruleDB_path"]
+f=open(infruleDB,'a') # create empty file if it doesn't already exist
+f.close()
+output_path  =input_data["output_path"]
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
 
 expressions_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(expressionsDB)
 feeds_list_of_dics=physgraf.convert_feed_csv_to_list_of_dics(feedDB)
@@ -456,4 +472,4 @@ physgraf.separate_connection_lists(connections_list_of_dics)
     
 while(True):
   first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
-               list_of_expr,connection_expr_temp,list_of_feeds,connection_infrule_temp)
+               list_of_expr,connection_expr_temp,list_of_feeds,connection_infrule_temp,output_path)
