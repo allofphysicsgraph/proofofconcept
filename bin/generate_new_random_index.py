@@ -50,14 +50,16 @@ for this_feed in feeds_list_of_dics:
 connection_infrules,connection_infrule_temp]=\
 physgraf.separate_connection_lists(connections_list_of_dics)
 
+
 expr_perm_indx=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
 feed_temp_indx=physgraf.find_new_indx(list_of_feeds,1000000,9999999,"feed temporary index: ")
 expr_temp_indx=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")
+infrule_temp_indx=physgraf.find_new_indx(connection_infrule_temp,1000000,9999999,"inf rule temp indx")
 
 print('expression permanent index: '+str(expr_perm_indx))
 print('expression temporary index: '+str(expr_temp_indx))
 print('feed temporary index      : '+str(feed_temp_indx))
-
+print('inf rule temporary index  : '+str(infrule_temp_indx))
 
 physgraf.find_duplicates(list_of_infrules,"inference rules")
 physgraf.find_duplicates(list_of_expr,"expressions")

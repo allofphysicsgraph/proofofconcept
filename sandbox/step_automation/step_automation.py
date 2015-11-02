@@ -47,7 +47,7 @@ def get_numeric_input(prompt_text,default_choice):
   return input_number
 
 def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
-                 list_of_expr,connection_expr_temp,list_of_feeds):
+                 list_of_expr,connection_expr_temp,list_of_feeds,connection_infrule_temp):
   invalid_choice=True
   while(invalid_choice):
     clear_screen()
@@ -61,7 +61,7 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
       exit_from_program()
     elif (first_choice_input=='1'):
       start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
-                           connection_expr_temp,list_of_feeds)
+                           connection_expr_temp,list_of_feeds,connection_infrule_temp)
       invalid_choice=False
     elif (first_choice_input=='2'):
       edit_existing_derivation()
@@ -84,7 +84,7 @@ def edit_existing_derivation():
   return
   
 def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
-                         connection_expr_temp,list_of_feeds):
+                         connection_expr_temp,list_of_feeds,connection_infrule_temp):
   clear_screen()
   print("starting new derivation")
   derivation_name=get_text_input('name of new derivation: ')  
@@ -103,8 +103,8 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
     print("\nResulting dic:")
     print(step_dic)
     step_ary.append(step_dic)
-    done_with_steps=add_another_step_menu(step_ary)
-  return
+    done_with_steps=add_another_step_menu(step_ary,derivation_name,connection_expr_temp,connection_infrule_temp,list_of_feeds)
+  return 
 
 def print_current_steps(step_ary):
   for this_step_dic in step_ary:
@@ -113,18 +113,20 @@ def print_current_steps(step_ary):
   return
 
 
-def add_another_step_menu(step_ary):
+def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,connection_infrule_temp,list_of_feeds):
     invalid_choice=True
     while(invalid_choice):
       print("\n\nStep Menu")
       print("1 add another step")
-      print("0 exit derivation and return to main menu")
+      print("0 exit derivation; write content to file and return to main menu")
       step_choice_input= raw_input('selection [0]: ')
       if (step_choice_input=='0' or step_choice_input==''):
         invalid_choice=False
         done_with_steps=True
-        print("\nsummary (this content gets printed to file once temporary indices are set)")
+        print("\nsummary (this content gets written to file once temporary indices are set)")
+        print("derivation name: "+derivation_name)
         print_current_steps(step_ary)
+        write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection_infrule_temp,list_of_feeds)
         time.sleep(5)
       elif (step_choice_input=='1'): # add another step
         invalid_choice=False
@@ -134,6 +136,64 @@ def add_another_step_menu(step_ary):
         time.sleep(1)
         invalid_choice=True  
     return done_with_steps
+
+def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,connection_infrule_temp,list_of_feeds):
+
+#{'infrule': 'combineLikeTerms', 'input': [{'latex': 'afmaf=mlasf', 'indx': 2612303073}], 'feed': [], 'output': [{'latex': 'mafmo=asfm', 'indx': 2430513647}]}
+#{'infrule': 'solveForX', 'input': [{'latex': 'afmaf=mlasf', 'indx': 2612303073}], 'feed': ['x'], 'output': [{'latex': 'masdf=masdf', 'indx': 4469061559}]}
+
+  # add temp index for feed, infrule, and expr
+  for step_indx,this_step in enumerate(step_ary):
+    step_ary[step_indx]['infrule temp indx']=physgraf.find_new_indx(connection_infrule_temp,1000000,9999999,"inf rule temp indx")
+
+    for input_indx,input_dic in enumerate(step_ary[step_indx]['input']):
+      step_ary[step_indx]['input'][input_indx]['temp indx']=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")  
+    for output_indx,output_dic in enumerate(step_ary[step_indx]['output']):
+      step_ary[step_indx]['output'][output_indx]['temp indx']=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")  
+    for feed_indx,feed_dic in enumerate(step_ary[step_indx]['feed']):
+      step_ary[step_indx]['feed'][feed_indx]['feed indx']=physgraf.find_new_indx(list_of_feeds,1000000,9999999,"feed temporary index: ")
+
+  print(derivation_name)
+  print(step_ary)
+
+#[{'infrule': 'dividebothsidesby', 'input': [{'latex': 'afm =asfaf', 'temp indx': 9521703, 'indx': 6448490481}], 'infrule temp indx': 3491788, 'feed': [{'latex': 'asf', 'feed indx': 4479113}], 'output': [{'latex': 'asdfa =asf', 'temp indx': 1939903, 'indx': 4449405156}]}]
+
+#"frequency relations",1, "infrule",2303943,declareInitialEq,   "expression",3293094,5900595848
+#"frequency relations",2, "infrule",0304948,declareInitialEq,   "expression",3294004,0404050504
+
+  f = open('new_connections.csv', 'w')
+  for step_indx,this_step in enumerate(step_ary):
+    for input_indx,this_input in enumerate(this_step['input']):
+      f.write( "\""+derivation_name+"\","+str(step_indx)+\
+              ",\"infrule\","+str(this_step['infrule temp indx'])+","+this_step['infrule']+\
+              ",\"expression\","+str(this_input['temp indx'])+","+str(this_step['input'][0]['indx'])+"\n")
+
+    for feed_indx,this_feed in enumerate(this_step['feed']):
+      f.write( "\""+derivation_name+"\","+str(step_indx)+\
+              ",\"infrule\","+str(this_step['infrule temp indx'])+","+this_step['infrule']+\
+              ",\"feed\","+str(this_feed['feed indx'])+",0\n")
+
+    for output_indx,this_output in enumerate(this_step['output']):
+      f.write( "\""+derivation_name+"\","+str(step_indx)+\
+              ",\"expression\","+str(this_output['temp indx'])+","+str(this_step['output'][0]['indx'])+\
+              ",\"infrule\","+str(this_step['infrule temp indx'])+","+this_step['infrule']+"\n")
+              
+  f.close()
+
+  # collect all the latex expressions
+  latex_expr_dic={}
+  for this_step in step_ary:
+    for this_input in this_step['input']:
+      if not (this_input['indx'] in latex_expr_dic):
+        latex_expr_dic[this_input['indx']]=this_input['latex']
+    for this_output in this_step['output']:
+      if not (this_output['indx'] in latex_expr_dic):
+        latex_expr_dic[this_output['indx']]=this_output['latex']
+  f = open('new_latex.csv', 'w')
+  for indx_key, latex_value in latex_expr_dic.iteritems():
+    f.write(str(indx_key)+","+latex_value+"\n")
+  f.close()
+  return
 
 def select_from_available_derivations(list_of_derivations):
   choice_selected=False
@@ -276,10 +336,10 @@ def user_provide_latex_arguments(selected_infrule,infrule_choice_input,\
       input_ary.append(this_input_dic)
   feed_ary=[]
   if (number_of_feeds>0):
-    for input_indx in range(number_of_feeds):
-#       this_feed_ary=[]
-      this_feed_latex=get_text_input('feed Latex,              '+str(input_indx+1)+' of '+str(number_of_feeds)+': ')
-      feed_ary.append(this_feed_latex)
+    for feed_indx in range(number_of_feeds):
+      feed_dic={}
+      feed_dic['latex']=get_text_input('feed Latex,              '+str(feed_indx+1)+' of '+str(number_of_feeds)+': ')
+      feed_ary.append(feed_dic)
   output_ary=[]
   if (number_of_output_expressions>0):
     for output_indx in range(number_of_output_expressions):
@@ -309,7 +369,6 @@ feeds_list_of_dics=physgraf.convert_feed_csv_to_list_of_dics(feedDB)
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 infrule_list_of_dics=physgraf.convert_infrule_csv_to_list_of_dics(infruleDB)
 
-
 list_of_derivations=physgraf.get_set_of_derivations(connections_list_of_dics)
 
 infrule_list_of_dics=physgraf.convert_infrule_csv_to_list_of_dics(infruleDB)
@@ -336,4 +395,4 @@ physgraf.separate_connection_lists(connections_list_of_dics)
     
 while(True):
   first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
-               list_of_expr,connection_expr_temp,list_of_feeds)
+               list_of_expr,connection_expr_temp,list_of_feeds,connection_infrule_temp)
