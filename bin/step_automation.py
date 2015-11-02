@@ -3,8 +3,11 @@
 # Ben Payne <ben.is.located@gmail.com>
 # automate entry of content
 
+
+import readline    # for auto-complete # https://pymotw.com/2/readline/
+import rlcompleter # for auto-complete
+import time        # for pauses
 import sys
-import time
 import os
 lib_path = os.path.abspath('lib')
 sys.path.append(lib_path) # this has to proceed use of physgraph
@@ -69,6 +72,24 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
     else:
       print("\n--> invalid choice; try again")
       time.sleep(1)
+
+# http://stackoverflow.com/questions/7821661/how-to-code-autocompletion-in-python
+class MyCompleter(object):  # Custom completer
+    def __init__(self, options):
+        self.options = sorted(options)
+    def complete(self, text, state):
+        if state == 0:  # on first trigger, build possible matches
+            if text:  # cache matches (entries that start with entered text)
+                self.matches = [s for s in self.options 
+                                    if s and s.startswith(text)]
+            else:  # no text entered, all matches possible
+                self.matches = self.options[:]
+        # return match indexed by state
+        try: 
+            return self.matches[state]
+        except IndexError:
+            return None
+
       
 def edit_existing_derivation():
   # which exiting derivation?
@@ -87,7 +108,7 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
                          connection_expr_temp,list_of_feeds,connection_infrule_temp):
   clear_screen()
   print("starting new derivation")
-  derivation_name=get_text_input('name of new derivation: ')  
+  derivation_name=get_text_input('name of new derivation (can contain spaces): ')  
   
   step_indx=0
   step_ary=[]
@@ -97,9 +118,9 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
     print("current steps for "+derivation_name+":")
     print_current_steps(step_ary)
 
-    [selected_infrule,input_ary,feed_ary,output_ary]=get_step_arguments(\
+    [selected_infrule_dic,input_ary,feed_ary,output_ary]=get_step_arguments(\
         list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds,step_ary)
-    step_dic={"infrule":selected_infrule,"input":input_ary,"feed":feed_ary,"output":output_ary}
+    step_dic={"infrule":selected_infrule_dic["inference rule"],"input":input_ary,"feed":feed_ary,"output":output_ary}
     print("\nResulting dic:")
     print(step_dic)
     step_ary.append(step_dic)
@@ -240,7 +261,7 @@ def select_from_available_derivations(list_of_derivations):
         time.sleep(3)
   return int(derivation_choice_input),selected_derivation
 
-def user_choose_infrule(list_of_infrules):
+def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
   choice_selected=False
   while(not choice_selected):
     clear_screen()  
@@ -261,27 +282,46 @@ def user_choose_infrule(list_of_infrules):
       else:
         print(left_side_menu+middle_menu)
 
-    print("0  exit derivation selection and return to main menu\n")  
-    infrule_choice_input = get_numeric_input('selection [0]: ','0')
-    if (infrule_choice_input=='0' or infrule_choice_input==''):
-      print("selected exit without choice")
-#       time.sleep(2)
-      choice_selected=True
-      infrule_choice_input=0
-      selected_infrule='EXIT'
+    completer = MyCompleter(list_of_infrules)
+    readline.set_completer(completer.complete)
+    #readline.parse_and_bind('tab: complete') # works on Linux, not Mac OS X
+
+    # http://stackoverflow.com/questions/7116038/python-tab-completion-mac-osx-10-7-lion
+    # see also https://pypi.python.org/pypi/gnureadline, though I didn't install that package
+    if 'libedit' in readline.__doc__: # detects libedit which is a Mac OS X "feature"
+        readline.parse_and_bind("bind ^I rl_complete")
     else:
-      try:
-        selected_infrule=list_of_infrules[int(infrule_choice_input)-1]
-        #print("selected inference rule: "+selected_infrule)
-        #time.sleep(1)
-        choice_selected=True
-      except ValueError:
-        print("--> invalid choice (looking for int); try again")
-        time.sleep(3)
-      except IndexError:
-        print("--> invalid choice (should be in range 0,"+str(len(list_of_infrules))+"); try again")
-        time.sleep(3)
-  return selected_infrule,int(infrule_choice_input)
+        readline.parse_and_bind("tab: complete")
+
+    selected_infrule = raw_input("Input: ")
+    
+    for this_infrule_dic in infrule_list_of_dics:
+      if (this_infrule_dic["inference rule"]==selected_infrule):
+        choice_selected=True        
+        selected_infrule_dic=this_infrule_dic
+        break
+    
+#     print("0  exit derivation selection and return to main menu\n")  
+#     infrule_choice_input = get_numeric_input('selection [0]: ','0')
+#     if (infrule_choice_input=='0' or infrule_choice_input==''):
+#       print("selected exit without choice")
+# #       time.sleep(2)
+#       choice_selected=True
+#       infrule_choice_input=0
+#       selected_infrule='EXIT'
+#     else:
+#       try:
+#         selected_infrule=list_of_infrules[int(infrule_choice_input)-1]
+#         #print("selected inference rule: "+selected_infrule)
+#         #time.sleep(1)
+#         choice_selected=True
+#       except ValueError:
+#         print("--> invalid choice (looking for int); try again")
+#         time.sleep(3)
+#       except IndexError:
+#         print("--> invalid choice (should be in range 0,"+str(len(list_of_infrules))+"); try again")
+#         time.sleep(3)
+  return selected_infrule_dic
 
 
 
@@ -322,23 +362,22 @@ def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expres
   return this_dic
 
 
-def user_provide_latex_arguments(selected_infrule,infrule_choice_input,\
-       infrule_list_of_dics,step_ary,connection_expr_temp):
-  print("selected "+str(infrule_choice_input)+" which is "+selected_infrule)
+def user_provide_latex_arguments(selected_infrule_dic,step_ary,connection_expr_temp):
+  print("selected "+selected_infrule_dic["inference rule"])
 #   print("for this infrule, provide input, feed, and output")
 #   print(infrule_list_of_dics[infrule_choice_input-1])
-  print("Latex expansion: "+infrule_list_of_dics[infrule_choice_input-1]['LaTeX expansion'])
+  print("Latex expansion: "+selected_infrule_dic['LaTeX expansion'])
 
   if (len(step_ary)>0):
     print("\nexisting derivation steps:")
     print_current_steps(step_ary)
   
-#   print("number of input expresions: "+infrule_list_of_dics[infrule_choice_input-1]['number of input expressions'])
-  number_of_input_expressions=int(infrule_list_of_dics[infrule_choice_input-1]['number of input expressions'])
-#   print("number of feeds: "+infrule_list_of_dics[infrule_choice_input-1]['number of feeds'])
-  number_of_feeds=int(infrule_list_of_dics[infrule_choice_input-1]['number of feeds'])
-#   print("number of output expressions: "+infrule_list_of_dics[infrule_choice_input-1]['number of output expressions'])
-  number_of_output_expressions=int(infrule_list_of_dics[infrule_choice_input-1]['number of output expressions'])
+#   print("number of input expresions: "+selected_infrule_dic['number of input expressions'])
+  number_of_input_expressions=int(selected_infrule_dic['number of input expressions'])
+#   print("number of feeds: "+selected_infrule_dic['number of feeds'])
+  number_of_feeds=int(selected_infrule_dic['number of feeds'])
+#   print("number of output expressions: "+selected_infrule_dic['number of output expressions'])
+  number_of_output_expressions=int(selected_infrule_dic['number of output expressions'])
 
   print("number of input expressions: "+str(number_of_input_expressions)+", number of feeds: "+str(number_of_feeds)+", number of output expressions: "+str(number_of_output_expressions))
 
@@ -368,11 +407,11 @@ def user_provide_latex_arguments(selected_infrule,infrule_choice_input,\
 def get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,\
         connection_expr_temp,list_of_feeds,step_ary):
   print("starting a new step")
-  [selected_infrule,infrule_choice_input]=user_choose_infrule(list_of_infrules)
+  selected_infrule_dic=user_choose_infrule(list_of_infrules,infrule_list_of_dics)
   clear_screen()
-  [input_ary,feed_ary,output_ary]=user_provide_latex_arguments(selected_infrule,\
-        infrule_choice_input,infrule_list_of_dics,step_ary,connection_expr_temp)
-  return selected_infrule,input_ary,feed_ary,output_ary
+  [input_ary,feed_ary,output_ary]=user_provide_latex_arguments(selected_infrule_dic,\
+                                                     step_ary,connection_expr_temp)
+  return selected_infrule_dic,input_ary,feed_ary,output_ary
 
 expressionsDB=db_path+'/expressions_database.csv'
 connectionsDB=db_path+'/connections_database.csv'
