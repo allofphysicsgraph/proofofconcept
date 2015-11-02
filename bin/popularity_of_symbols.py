@@ -14,14 +14,15 @@ import os
 lib_path = os.path.abspath('lib')
 sys.path.append(lib_path) # this has to proceed use of physgraph
 db_path = os.path.abspath('databases')
-sys.path.append(lib_path) # this has to proceed use of physgraph
 import lib_physics_graph as physgraf
-from xml.dom.minidom import parseString
 
-statementsDB=physgraf.parse_XML_file(db_path+'/expressions_database.xml')
+expressionsDB=   input_data["expressionsDB_path"]
+expressions_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(expressionsDB)
+# this is still XML
 symbolsDB=physgraf.parse_XML_file(db_path+'/symbols_database.xml')
 
 symbol_permenant_unique_id_ary=[]
+# this is still XML
 for these_symbols in statementsDB.getElementsByTagName('symbol_permenant_unique_id'):
   symbol_permenant_unique_id=physgraf.remove_tags(these_symbols.toxml(encoding="ascii"),'symbol_permenant_unique_id')
   symbol_permenant_unique_id_ary.append(symbol_permenant_unique_id)

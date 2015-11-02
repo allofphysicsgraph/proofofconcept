@@ -1,8 +1,6 @@
 # configuration file for bin/build_connections_graph.py
 # Ben Payne <ben.is.located@gmail.com>
 
-file_extension_string:       png   # png or svg
-
 make_texPDF_for_set_boolean: False
 make_graphviz_boolean:       True # the big graph
 make_graphml_boolean:        True
@@ -12,3 +10,15 @@ redraw_feed_pictures_boolean: False
 redraw_statement_pictures_boolean: False
 redraw_inference_rule_pictures_boolean: False
 
+file_extension_string:       'png'   # png or svg
+
+expr_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/images_expr_'
+feed_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/images_feed_'
+infrule_pictures_path: '/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_'
+
+output_path:           '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/output'
+
+connectionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_connections.csv'
+expressionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_latex.csv'
+feedDB_path:           '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_feed.csv'
+infruleDB_path:        '/Users/benpayne/version_controlled/proofofconcept/databases/inference_rules_database.csv'

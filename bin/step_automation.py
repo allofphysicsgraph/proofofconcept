@@ -3,7 +3,7 @@
 # Ben Payne <ben.is.located@gmail.com>
 # automate entry of content
 
-
+import yaml        # for reading "config.input"
 import readline    # for auto-complete # https://pymotw.com/2/readline/
 import rlcompleter # for auto-complete
 import time        # for pauses
@@ -12,7 +12,6 @@ import os
 lib_path = os.path.abspath('lib')
 sys.path.append(lib_path) # this has to proceed use of physgraph
 db_path = os.path.abspath('databases')
-sys.path.append(lib_path) # this has to proceed use of physgraph
 import lib_physics_graph as physgraf
 
 def clear_screen():
@@ -417,10 +416,14 @@ def get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,\
                                                      step_ary,connection_expr_temp)
   return selected_infrule_dic,input_ary,feed_ary,output_ary
 
-expressionsDB=db_path+'/expressions_database.csv'
-connectionsDB=db_path+'/connections_database.csv'
-feedDB       =db_path+'/feed_database.csv'
-infruleDB    =db_path+'/inference_rules_database.csv'
+
+# https://yaml-online-parser.appspot.com/
+input_stream=file('config.input','r')
+input_data=yaml.load(input_stream)
+connectionsDB=input_data["connectionsDB_path"]
+expressionsDB=input_data["expressionsDB_path"]
+feedDB       =input_data["feedDB_path"]
+infruleDB    =input_data["infruleDB_path"]
 
 expressions_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(expressionsDB)
 feeds_list_of_dics=physgraf.convert_feed_csv_to_list_of_dics(feedDB)

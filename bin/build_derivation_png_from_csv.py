@@ -15,9 +15,9 @@ import yaml # used to read "config.input"
 import os.path
 import sys
 lib_path = os.path.abspath('lib')
-db_path = os.path.abspath('databases')
+# db_path = os.path.abspath('databases')
 # output_path = os.path.abspath('output')
-output_path = '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/output'
+
 sys.path.append(lib_path) # this has to proceed use of physgraph
 
 import lib_physics_graph as physgraf
@@ -34,16 +34,21 @@ if (len(sys.argv)>1):
 # https://yaml-online-parser.appspot.com/
 input_stream=file('config.input','r')
 input_data=yaml.load(input_stream)
-extension=input_data["file_extension_string"]
-  
-infrule_pictures=lib_path+'/images_infrule_'+extension
-# expr_pictures=lib_path+'/images_expression_'+extension
-# feed_pictures=lib_path+'/images_feed_'+extension
-expr_pictures='/Users/benpayne/version_controlled/proofofconcept/eipiplusone/expr_png'
-feed_pictures='/Users/benpayne/version_controlled/proofofconcept/eipiplusone/feed_png'
+extension=       input_data["file_extension_string"]
+infrule_pictures=input_data["infrule_pictures_path"]+extension
+if not os.path.exists(infrule_pictures):
+    os.makedirs(infrule_pictures)
+expr_pictures=   input_data["expr_pictures_path"]   +extension
+if not os.path.exists(expr_pictures):
+    os.makedirs(expr_pictures)
+feed_pictures=   input_data["feed_pictures_path"]   +extension
+if not os.path.exists(feed_pictures):
+    os.makedirs(feed_pictures)
+output_path=   input_data["output_path"]
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
+connectionsDB=   input_data["connectionsDB_path"]
 
-# connectionsDB    =db_path+'/connections_database.csv'
-connectionsDB    ='/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_connections.csv'
 
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 # node types: 

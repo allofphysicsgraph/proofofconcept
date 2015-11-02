@@ -34,11 +34,13 @@ def write_header_graphviz(graphviz_file):
   graphviz_file.write("# date created: "+todays_date+"\n")
   graphviz_file.write("# Command to produce output:\n")
   graphviz_file.write("# neato -Tsvg thisfile.gv > out.svg\n")
+  graphviz_file.write("# neato -Tpng thisfile.gv > out.png\n")
   graphviz_file.write("# http://www.graphviz.org/Gallery/directed/traffic_lights.gv.txt\n")
   graphviz_file.write("# http://www.graphviz.org/content/traffic_lights\n")
   graphviz_file.write("digraph physicsEquations {\n")
+#   graphviz_file.write("rankdir=TB;\n")
   graphviz_file.write('overlap=false;\n')
-  graphviz_file.write('label=\"Equation relations\\nExtracted from connections_database.xml and layed out by Graphviz\";\n')
+  graphviz_file.write('label=\"Expression relations\\nExtracted from connections.csv and layed out by Graphviz\";\n')
   graphviz_file.write('fontsize=12;\n')
 
 def write_footer_graphviz(graphviz_file):
