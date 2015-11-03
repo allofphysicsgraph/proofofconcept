@@ -43,11 +43,12 @@ def get_image_size(path,filename):
   img_size["img height"]=img_height
   return(img_size)
 
-expression_pictures_path=lib_path+'/images_expression_png'
-infrule_pictures_path   =lib_path+'/images_infrule_png'
-feed_pictures_path      =lib_path+'/images_feed_png'
+extension=input_data["file_extension_string"]
+expression_pictures_path=input_data["expr_pictures_path"]   +extension
+infrule_pictures_path   =input_data["infrule_pictures_path"]+extension
+feed_pictures_path      =input_data["feed_pictures_path"]   +extension
 
-connectionsDB    =db_path+'/connections_database.csv'
+connectionsDB=   input_data["connectionsDB_path"]
 
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 # node types: 

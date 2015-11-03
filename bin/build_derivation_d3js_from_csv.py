@@ -33,14 +33,9 @@ if (len(sys.argv)>1):
 # https://yaml-online-parser.appspot.com/
 input_stream=file('config.input','r')
 input_data=yaml.load(input_stream)
-extension=input_data["file_extension_string"]
-  
-expr_pictures=lib_path+'/images_expression_'+extension
-infrule_pictures=lib_path+'/images_infrule_'+extension
-feed_pictures=lib_path+'/images_feed_'+extension
 
-connectionsDB    =db_path+'/connections_database.csv'
-infruleDB        =db_path+'/inference_rules_database.csv'
+connectionsDB=input_data["connectionsDB_path"]
+infruleDB    =input_data["infruleDB_path"]
 
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 infrule_list_of_dics=physgraf.convert_infrule_csv_to_list_of_dics(infruleDB)

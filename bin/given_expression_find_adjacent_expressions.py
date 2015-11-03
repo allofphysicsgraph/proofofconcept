@@ -1,15 +1,11 @@
 #!/opt/local/bin/python
 # Physics Equation Graph
 # Ben Payne <ben.is.located@gmail.com>
-# builds the graph of equations as PNG or SVG by reading from databases
-# use: python bin/build_derivation_png_from_csv.py
 
 # files required as input: 
 #    lib_physics_graph.py
 #    connections_database.csv
 # output: 
-#    graph_all_with_labels.png
-#    graph_all_without_labels.png
 
 import yaml # used to read "config.input"
 import os.path

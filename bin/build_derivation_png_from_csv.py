@@ -44,7 +44,7 @@ if not os.path.exists(expr_pictures):
 feed_pictures=   input_data["feed_pictures_path"]   +extension
 if not os.path.exists(feed_pictures):
     os.makedirs(feed_pictures)
-output_path=   input_data["output_path"]
+output_path=     input_data["output_path"]
 if not os.path.exists(output_path):
     os.makedirs(output_path)
 connectionsDB=   input_data["connectionsDB_path"]

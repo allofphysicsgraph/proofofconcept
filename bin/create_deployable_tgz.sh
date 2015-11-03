@@ -2,7 +2,8 @@
 # Ben Payne
 # bash shell script to create deployable .tgz
 todays_date=`date +%Y%m%d`
-svn_indx=`svn info | grep Revision | sed -ne 's/Revision: //p'`
+#svn_indx=`svn info | grep Revision | sed -ne 's/Revision: //p'`
+git_indx=`git rev-parse HEAD`
 
 folder_name=physics_graph_${todays_date}
 mkdir ${folder_name}
@@ -27,7 +28,7 @@ cp bin/*.py ${folder_name}/bin/
 mkdir              ${folder_name}/databases
 cp databases/*.xml ${folder_name}/databases
 
-tar czvf physics_graph_${todays_date}_svn${svn_indx}.tgz ${folder_name}
+tar czvf physics_graph_${todays_date}_svn${git_indx}.tgz ${folder_name}
 
 rm -rf ${folder_name}
 
