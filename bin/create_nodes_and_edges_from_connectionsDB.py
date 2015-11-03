@@ -1,8 +1,7 @@
 #!/opt/local/bin/python
 # Physics Equation Graph
 # Ben Payne <ben.is.located@gmail.com>
-# builds the JSON for d3js
-# use: python bin/build_connections_JSON.py
+# based on the JSON creation script
 
 # files required as input: 
 #    lib_physics_graph.py

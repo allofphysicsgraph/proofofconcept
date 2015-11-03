@@ -17,7 +17,6 @@ Python 2.7, http://www.python.org/getit/
 
 Python packages: 
 * yaml
-* xml.dom.minidom
 
 Non-Python applications
 * Latex
@@ -27,14 +26,12 @@ Non-Python applications
 
 main commands:
 
-    python bin/create_pictures_of_statements_and_grammar.py
-    python bin/build_connections_graph.py
+    python bin/create_picture_per_derivation_from_connectionsDB.py
 
 tools
 
-    python bin/list_connection_sets.py
+    python bin/list_derivations.sh
     python bin/list_inference_rules.py
-    python bin/generate_new_random_index.py
 
 statistical analysis
 
@@ -73,15 +70,14 @@ for input to graph plotting programs like yED
 
 Development and testing performed on Mac OS 10.7.5
 
-Currently, content is manually coded into XML files:
-* connections_database.csv: how do inference rules and statements relate?
-** assumption: order of steps within a derivation matters (for Latex generation)
-** assumption: one inference rule per step (for Latex generation)
+Currently, content is entered into CSV files:
+* connections_database.csv: relation between inference rules and expressions
+** one inference rule per step (for Latex generation)
 * expressions_database.csv  : library of unique expressions used by connections
 * inference_rules_database.csv  : library of unique inference rules used by connections
 * comments_database.xml   : set of comments which may reference multiple expressions or steps
 
 
 
-physics_graph_notes.log: my commentary and observations on the project as it progresses
+doc/physics_graph_notes.log: my commentary and observations on the project as it progresses
 
