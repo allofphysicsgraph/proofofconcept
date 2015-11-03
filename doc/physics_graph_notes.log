@@ -4,7 +4,6 @@ cleaned up lots of inconsistencies
 
 todo:
 * create nodes and edges csv file is not yet working as desired
-* there are a few scripts that need converting from XML in bin/to_be_converted_from_xml
 * end-to-end test of enter derivation to create json needs to be demonstrated
 * link overview graph to each derivation
 
