@@ -11,29 +11,29 @@
 
 # current bugs:
 
-# import re # regular expressions
-# import subprocess
-# import yaml # used to read "config.input"
+import yaml # used to read "config.input"
 import os.path
 import sys
 lib_path = os.path.abspath('lib')
-db_path = os.path.abspath('databases')
-#output_path = os.path.abspath('output')
 sys.path.append(lib_path) # this has to proceed use of physgraph
-
 import lib_physics_graph as physgraf
 
-#feedDB    =db_path+'/feed_database.csv'
-feedDB='/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_feed.csv'
+# https://yaml-online-parser.appspot.com/
+input_stream=file('config.input','r')
+input_data=yaml.load(input_stream)
+# output_path  =input_data["output_path"]
+# if not os.path.exists(output_path):
+#     os.makedirs(output_path)
+extension=       input_data["file_extension_string"]
+feed_pictures=   input_data["feed_pictures_path"]   +extension
+if not os.path.exists(feed_pictures):
+    os.makedirs(feed_pictures)
+extension=       input_data["file_extension_string"]
+feedDB    =input_data["feedDB_path"]
 
 feeds_list_of_dics=physgraf.convert_feed_csv_to_list_of_dics(feedDB)
 
-extension="png"
-#   output_path="lib/images_feed_"+extension+"/"
-# output_path      =lib_path+'/images_feed_png'
-output_path='/Users/benpayne/version_controlled/proofofconcept/eipiplusone/feed_png/'
-
 for this_feed in feeds_list_of_dics:
-  physgraf.make_picture_from_latex_expression(this_feed["temp index"],output_path,"$"+this_feed["feed latex"]+"$",extension)
+  physgraf.make_picture_from_latex_expression(this_feed["temp index"],feed_pictures,"$"+this_feed["feed latex"]+"$",extension)
   
   

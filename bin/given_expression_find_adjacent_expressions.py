@@ -11,13 +11,11 @@ import yaml # used to read "config.input"
 import os.path
 import sys
 lib_path = os.path.abspath('lib')
-db_path = os.path.abspath('databases')
-output_path = os.path.abspath('output')
 sys.path.append(lib_path) # this has to proceed use of physgraph
-
 import lib_physics_graph as physgraf
 
 def convert_expr_perm_indx_to_latex(expr_list_of_dics,target_expression):
+  target_latex=None
   for this_expr in expr_list_of_dics:
     if (this_expr["permanent index"]==target_expression):
       target_latex=this_expr["expression latex"]
@@ -25,13 +23,22 @@ def convert_expr_perm_indx_to_latex(expr_list_of_dics,target_expression):
 
 target_expression='3121513111'
 
-exprDB           =db_path+'/expressions_database.csv'
-connectionsDB    =db_path+'/connections_database.csv'
+# https://yaml-online-parser.appspot.com/
+input_stream=file('config.input','r')
+input_data=yaml.load(input_stream)
+expressionsDB=input_data["expressionsDB_path"]
+connectionsDB=input_data["connectionsDB_path"]
+output_path  =input_data["output_path"]
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
 
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
-expr_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(exprDB)
+expr_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(expressionsDB)
 
 target_latex=convert_expr_perm_indx_to_latex(expr_list_of_dics,target_expression)
+if (target_latex==None):
+  print("target not found in list of expressions")
+  exit()
 
 list_of_infrules=[]
 for this_connection in connections_list_of_dics:

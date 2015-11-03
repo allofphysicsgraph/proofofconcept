@@ -11,29 +11,28 @@
 
 # current bugs:
 
-# import re # regular expressions
-# import subprocess
-# import yaml # used to read "config.input"
+import yaml # used to read "config.input"
 import os.path
 import sys
-db_path = os.path.abspath('databases')
-output_path = os.path.abspath('output') # where the pictures end up
 lib_path = os.path.abspath('lib')
 sys.path.append(lib_path) # this has to proceed use of physgraph
-
 import lib_physics_graph as physgraf
 
-
-# expressionsDB    =db_path+'/expressions_database.csv'
-expressionsDB='/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_latex.csv'
+# https://yaml-online-parser.appspot.com/
+input_stream=file('config.input','r')
+input_data=yaml.load(input_stream)
+# output_path  =input_data["output_path"]
+# if not os.path.exists(output_path):
+#     os.makedirs(output_path)
+extension=       input_data["file_extension_string"]
+expr_pictures=   input_data["expr_pictures_path"]   +extension
+if not os.path.exists(expr_pictures):
+    os.makedirs(expr_pictures)
+extension=       input_data["file_extension_string"]
+expressionsDB=input_data["expressionsDB_path"]
 
 expressions_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(expressionsDB)
 
-extension="png"
-# output_path=lib_path+'/images_expression_png'
-#   output_path="lib/images_expression_"+extension+"/"
-output_path='/Users/benpayne/version_controlled/proofofconcept/eipiplusone/expr_png'
-
 for this_expression in expressions_list_of_dics:
-  physgraf.make_picture_from_latex_expression(this_expression["permanent index"],folder_name,"$"+this_expression["expression latex"]+"$",extension)
+  physgraf.make_picture_from_latex_expression(this_expression["permanent index"],expr_pictures,"$"+this_expression["expression latex"]+"$",extension)
 

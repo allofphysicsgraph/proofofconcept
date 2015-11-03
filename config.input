@@ -6,11 +6,11 @@ make_graphviz_boolean:       True # the big graph
 make_graphml_boolean:        True
 make_networkx_boolean:       True
 
-redraw_feed_pictures_boolean: False
-redraw_statement_pictures_boolean: False
+redraw_feed_pictures_boolean:           False
+redraw_statement_pictures_boolean:      False
 redraw_inference_rule_pictures_boolean: False
 
-file_extension_string:       'png'   # png or svg
+file_extension_string: 'png'   # png or svg
 
 expr_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/images_expr_'
 feed_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/images_feed_'

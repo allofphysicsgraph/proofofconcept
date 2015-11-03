@@ -1,9 +1,9 @@
 # prints the commands for running each and all the derivations
 
-cut -f 1 -d ',' databases/connections_database.csv | uniq > temp.dat
+cut -f 1 -d ',' databases/connections_database.csv | uniq > output/list_of_derivations.dat
 
 while read line; do 
-  this_deriv=`echo $line | sed -e "s/ /_/g" | sed -e "s/\"//g"`
+  this_deriv=`echo $line | sed -e "s/ /_/g" | sed -e "s/\"//g"` # replace space with underscore, remove "
   file_name=output/${this_deriv}.html
   cp lib/d3js_part1_head.html ${file_name}
   echo -e "d3.json(\"http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_from_project/"${this_deriv}".json\", function(error, root) {" >> ${file_name}
@@ -14,4 +14,4 @@ while read line; do
   echo -e "</body>" >> ${file_name}
   echo -e "</html>" >> ${file_name}
   
-done < temp.dat
+done < output/list_of_derivations.dat

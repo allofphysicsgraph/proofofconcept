@@ -100,7 +100,7 @@ def edit_existing_derivation():
   print("here's a list of steps for the derivation "+selected_derivation)
   print("...")
   print("done editing; returning to main menu")
-  time.sleep(5)
+  time.sleep(2)
   return
   
 def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
@@ -228,7 +228,7 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
       if not (this_feed['feed indx'] in latex_feed_dic):
         latex_feed_dic[this_feed['feed indx']]=this_feed['latex']
   f = open(output_path+'new_feed.csv', 'w')
-  for indx_key, latex_value in latex_expr_dic.iteritems():
+  for indx_key, latex_value in latex_feed_dic.iteritems():
     f.write(str(indx_key)+","+latex_value+"\n")
   f.close()
 

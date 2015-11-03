@@ -3,24 +3,25 @@
 # Ben Payne <ben.is.located@gmail.com>
 # create overview graph
 
+import yaml        # for reading "config.input"
 import sys
 import time
 import os
 lib_path = os.path.abspath('lib')
 sys.path.append(lib_path) # this has to proceed use of physgraph
-db_path = os.path.abspath('databases')
-sys.path.append(lib_path) # this has to proceed use of physgraph
 import lib_physics_graph as physgraf
 
-expressionsDB=db_path+'/expressions_database.csv'
-connectionsDB=db_path+'/connections_database.csv'
-# feedDB       =db_path+'/feed_database.csv'
-# infruleDB    =db_path+'/inference_rules_database.csv'
+# https://yaml-online-parser.appspot.com/
+input_stream=file('config.input','r')
+input_data=yaml.load(input_stream)
+connectionsDB=input_data["connectionsDB_path"]
+expressionsDB=input_data["expressionsDB_path"]
+output_path  =input_data["output_path"]
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
 
 expressions_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(expressionsDB)
-# feeds_list_of_dics=physgraf.convert_feed_csv_to_list_of_dics(feedDB)
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
-# infrule_list_of_dics=physgraf.convert_infrule_csv_to_list_of_dics(infruleDB)
 
 list_of_derivations=physgraf.get_set_of_derivations(connections_list_of_dics)
 
