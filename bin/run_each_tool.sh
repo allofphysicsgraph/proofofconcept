@@ -4,7 +4,7 @@
 this_dir=`pwd`
 for filename in `ls bin`
 do
-  if [ "$filename" == "step_automation.py" ]
+  if [ "$filename" == "interactive_user_prompt.py" ]
   then
     echo skipping $filename because it requires user interaction
     continue
