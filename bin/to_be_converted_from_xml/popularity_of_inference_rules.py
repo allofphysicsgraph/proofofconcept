@@ -19,11 +19,7 @@ import lib_physics_graph as physgraf
 connectionsDB=   input_data["connectionsDB_path"]
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 
-rule_ary=[]
-# this is still XML
-for these_rules in connectionsDB.getElementsByTagName('infrule_name'):
-  this_rule=physgraf.remove_tags(these_rules.toxml(encoding="ascii"),'infrule_name')
-  rule_ary.append(this_rule)
+
 
 #http://stackoverflow.com/questions/2870466/python-histogram-one-liner
 hist = {}
