@@ -65,7 +65,8 @@ elif (which_derivation_to_make=='EXIT'):
 else:
   connections_list_of_dics=physgraf.keep_only_this_derivation(which_derivation_to_make,connections_list_of_dics)
 
-graphviz_file=open(output_path+'/connections_'+which_derivation_to_make_no_spaces+'.gv','w')
+graphviz_filename=output_path+'connections_'+which_derivation_to_make_no_spaces+'.gv'
+graphviz_file=open(graphviz_filename,'w')
 physgraf.write_header_graphviz(graphviz_file)
 
 set_of_feeds=physgraf.set_of_feeds_from_list_of_dics(connections_list_of_dics)
@@ -93,7 +94,7 @@ for connection_dic in connections_list_of_dics:
 
 physgraf.write_footer_graphviz(graphviz_file)
 graphviz_file.close()
-physgraf.convert_graphviz_to_pictures(extension,output_path,which_derivation_to_make_no_spaces)
-
+physgraf.convert_graphviz_to_pictures_with_and_without_labels(graphviz_filename,\
+                        extension,output+which_derivation_to_make_no_spaces)
 
 # end of file 

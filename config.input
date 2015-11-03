@@ -10,14 +10,18 @@ redraw_feed_pictures_boolean:           False
 redraw_statement_pictures_boolean:      False
 redraw_inference_rule_pictures_boolean: False
 
-file_extension_string: 'png'   # png or svg
+# png or svg
+file_extension_string: 'png'   
 
+# extension will be appended to picture path
 expr_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/images_expr_'
 feed_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/images_feed_'
 infrule_pictures_path: '/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_'
 
+# output path requires trailing /
 output_path:           '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/output/'
 
+# these are the CSV databases
 connectionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_connections.csv'
 expressionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_latex.csv'
 feedDB_path:           '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_feed.csv'
