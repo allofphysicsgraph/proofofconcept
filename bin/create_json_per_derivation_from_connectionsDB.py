@@ -17,20 +17,22 @@ import yaml # used to read "config.input"
 import os.path
 import sys
 lib_path = os.path.abspath('lib')
-db_path = os.path.abspath('databases')
-output_path = os.path.abspath('output')
 sys.path.append(lib_path) # this has to proceed use of physgraph
-
 import lib_physics_graph as physgraf
 
-prompt_for_which_derivation=True
-if (len(sys.argv)>1):
-  input_list=sys.argv
-  print 'Number of arguments:', len(input_list), 'arguments.'
-  print 'Argument List:', input_list
-  which_derivation_to_make=input_list[1]
-  print("selected: "+which_derivation_to_make)
-  prompt_for_which_derivation=False
+# https://yaml-online-parser.appspot.com/
+input_stream=file('config.input','r')
+input_data=yaml.load(input_stream)
+output_path  =input_data["output_path"]
+if not os.path.exists(output_path):
+    os.makedirs(output_path)
+
+extension=input_data["file_extension_string"]
+expression_pictures_path=input_data["expr_pictures_path"]   +extension
+infrule_pictures_path   =input_data["infrule_pictures_path"]+extension
+feed_pictures_path      =input_data["feed_pictures_path"]   +extension
+
+connectionsDB=   input_data["connectionsDB_path"]
 
 
 def get_image_size(path,filename):
@@ -43,12 +45,15 @@ def get_image_size(path,filename):
   img_size["img height"]=img_height
   return(img_size)
 
-extension=input_data["file_extension_string"]
-expression_pictures_path=input_data["expr_pictures_path"]   +extension
-infrule_pictures_path   =input_data["infrule_pictures_path"]+extension
-feed_pictures_path      =input_data["feed_pictures_path"]   +extension
+prompt_for_which_derivation=True
+if (len(sys.argv)>1):
+  input_list=sys.argv
+  print 'Number of arguments:', len(input_list), 'arguments.'
+  print 'Argument List:', input_list
+  which_derivation_to_make=input_list[1]
+  print("selected: "+which_derivation_to_make)
+  prompt_for_which_derivation=False
 
-connectionsDB=   input_data["connectionsDB_path"]
 
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 # node types: 
