@@ -60,8 +60,8 @@ for this_deriv in list_of_deriv:
         this_node1_dic['type']           =connection['from type']
         this_node1_dic['temp index']     =connection['from temp index']
         this_node1_dic['perm index']     =connection['from perm index']
-        this_node1_dic['step index']     =connection['step index']
-        this_node1_dic['derivation name']=connection['derivation name']
+#         this_node1_dic['step index']     =connection['step index']
+#         this_node1_dic['derivation name']=connection['derivation name']
         list_of_nodes.append(this_node1_dic)
 
         this_node2_dic={}        
@@ -69,7 +69,7 @@ for this_deriv in list_of_deriv:
         this_node2_dic['temp index']     =connection['to temp index']
         this_node2_dic['perm index']     =connection['to perm index']
 #         this_node2_dic['step index']     =connection['step index']
-        this_node2_dic['derivation name']=connection['derivation name']
+#         this_node2_dic['derivation name']=connection['derivation name']
         list_of_nodes.append(this_node2_dic)
 
         this_edge_dic={}
@@ -89,7 +89,7 @@ for this_candidate_node_dic in list_of_nodes:
   for this_node_dic in pruned_list_of_nodes:
     if (this_candidate_node_dic==this_node_dic):
       already_exists_in_pruned=True
-      print(this_candidate_node_dic)
+#       print(this_candidate_node_dic)
       break # this_candidate_node_dic already exists in pruned_list_of_nodes
   if not already_exists_in_pruned:
     pruned_list_of_nodes.append(this_candidate_node_dic)
@@ -98,7 +98,7 @@ print(len(pruned_list_of_nodes))
 
 nodes_file=open(output_path+'nodes.csv','w')
 for this_node_dic in pruned_list_of_nodes:
-  nodes_file.write(this_node_dic['temp index']+","+this_node_dic['type']+","+this_node_dic['perm index']+",\""+this_node_dic['derivation name']+"\"\n")
+  nodes_file.write(this_node_dic['temp index']+","+this_node_dic['type']+","+this_node_dic['perm index']+"\n")
 
 nodes_file.close()
 
