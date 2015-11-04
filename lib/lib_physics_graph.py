@@ -309,15 +309,15 @@ def find_duplicates(list_of,name_of):
 def find_mismatches(connection_feeds,list_of_feeds,connection_expr_perm,\
                     list_of_expr,connection_infrules,list_of_infrules):
   if (len(list(set(connection_feeds) - set(list_of_feeds)))>0):
-    print("feeds database and connections database have mismatch")
+    print("ERROR: feeds database and connections database have mismatch")
     print(list(set(connection_feeds) - set(list_of_feeds)))
 
   if (len(list(set(connection_expr_perm) - set(list_of_expr)))>0):
-    print("expressions database and connections database have mismatch")
+    print("ERROR: expressions database and connections database have mismatch")
     print(list(set(connection_expr_perm) - set(list_of_expr)))
 
   if (len(list(set(connection_infrules) - set(list_of_infrules)))>0):
-    print("infrule database and connections database have mismatch")
+    print("ERROR: infrule database and connections database have mismatch")
     print(list(set(connection_infrules) - set(list_of_infrules)))
     print("in connection set:")
     print(len(set(connection_infrules)))

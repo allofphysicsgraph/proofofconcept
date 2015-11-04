@@ -74,3 +74,15 @@ physgraf.find_mismatches(connection_feeds,list_of_feeds,connection_expr_perm,\
                     list_of_expr,connection_infrules,list_of_infrules)
 
 physgraf.check_connection_DB_steps_for_single_inf_rule(connections_list_of_dics)
+
+# temporary indices collision detection
+if (len(set(connection_feeds) & set(connection_expr_temp)) != 0):
+  print("ERROR found in connections DB: temp index used more than once for feeds and expr")
+  print( set(connection_feeds) & set(connection_expr_temp))
+if (len(set(connection_feeds) & set(connection_infrule_temp)) != 0):
+  print("ERROR found in connections DB: temp index used more than once for feed and infrule")
+  print( set(connection_feeds) & set(connection_infrule_temp))
+if (len(set(connection_infrule_temp) & set(connection_expr_temp)) != 0):
+  print("ERROR found in connections DB: temp index used more than once for infrule and expr")
+  print( set(connection_infrule_temp) & set(connection_expr_temp))
+

@@ -170,7 +170,7 @@
 "particle in a 1D box",14, "infrule",5751725,conjugateFunctionX,"expression",3452132,8849289982
 "particle in a 1D box",15, "expression",7575626,1934748140,"infrule",4757567,swapLHSwithRHS
 "particle in a 1D box",15, "infrule",4757567,swapLHSwithRHS,"expression",5577567,8572657110
-"particle in a 1D box",16, "feed",5656372,0,"infrule",7455643,expandMagnitudeToConjugate
+"particle in a 1D box",16, "feed",9458842,0,"infrule",7455643,expandMagnitudeToConjugate
 "particle in a 1D box",16, "expression",5577567,8572657110,"infrule",7455643,expandMagnitudeToConjugate
 "particle in a 1D box",16, "infrule",7455643,expandMagnitudeToConjugate,"expression",0595847,4857472413
 "particle in a 1D box",17, "expression",3452131,2944838499,"infrule",4455453,subLHSofEqXintoEqY
@@ -256,8 +256,8 @@
 "maxwell to electric field wave equation",11, "expression",2962831,3947269979,"infrule",3737384,subLHSofEqXintoEqY
 "maxwell to electric field wave equation",11, "infrule",3737384,subLHSofEqXintoEqY,"expression",4758592,8494839423
 "maxwell to electric field wave equation",12, "expression",4758592,8494839423,"infrule",3948584,declareFinalEq
-"electric field wave equation time dependent to time independent",1, "infrule",8485758,declareInitialEq,"expression",4758592,8494839423
-"electric field wave equation time dependent to time independent",2, "infrule",8485758,declareInitialEq,"expression",9393848,8572852424
+"electric field wave equation time dependent to time independent",1, "infrule",7419980,declareInitialEq,"expression",4758592,8494839423
+"electric field wave equation time dependent to time independent",2, "infrule",3568093,declareInitialEq,"expression",9393848,8572852424
 "electric field wave equation time dependent to time independent",3, "expression",4758592,8494839423,"infrule",4585829,declareGuessSolution
 "electric field wave equation time dependent to time independent",3, "infrule",4585829,declareGuessSolution,"expression",3994928,9499428242
 "electric field wave equation time dependent to time independent",4, "expression",9393848,8572852424,"infrule",4858282,subLHSofEqXintoEqY
@@ -273,10 +273,9 @@
 "electric field wave equation time dependent to time independent",7, "expression",2939392,4985825552,"infrule",4955966,differentiateWRT
 "electric field wave equation time dependent to time independent",7, "infrule",4955966,differentiateWRT,"expression",4958573,1858578388
 "electric field wave equation time dependent to time independent",8, "infrule",8485758,declareInitialEq,"expression",4949582,4585828572
-"electric field wave equation time dependent to time independent",9, "feed",4585828,0,"infrule",5839535,subXforY
-"electric field wave equation time dependent to time independent",9, "feed",4949582,0,"infrule",5839535,subXforY
-"electric field wave equation time dependent to time independent",9, "expression",4958573,1858578388,"infrule",5839535,subXforY
-"electric field wave equation time dependent to time independent",9, "infrule",5839535,subXforY,"expression",9495903,9485384858
+"electric field wave equation time dependent to time independent",9, "expression",4958573,1858578388,"infrule",5839535,subLHSofEqXintoEqY
+"electric field wave equation time dependent to time independent",9, "expression",4949582,4585828572,"infrule",5839535,subLHSofEqXintoEqY
+"electric field wave equation time dependent to time independent",9, "infrule",5839535,subLHSofEqXintoEqY,"expression",9495903,9485384858
 "electric field wave equation time dependent to time independent",10, "expression",9495903,9485384858,"infrule",4958883,simplify
 "electric field wave equation time dependent to time independent",10, "infrule",4958883,simplify,"expression",3949492,3485475729
 "electric field wave equation time dependent to time independent",11, "expression",3949492,3485475729,"infrule",5495827,declareFinalEq
@@ -285,7 +284,7 @@
 "euler equation trig relations",2, "feed",3949052,0,"infrule",3848927,subXforY
 "euler equation trig relations",2, "expression",8888888,4938429483,"infrule",3848927,subXforY
 "euler equation trig relations",2, "infrule",3848927,subXforY,"expression",8888881,2394853829
-"euler equation trig relations",3, "feed",3949482,0,"infrule",9595949,functionIsEven
+"euler equation trig relations",3, "feed",3413423,0,"infrule",9595949,functionIsEven
 "euler equation trig relations",3, "feed",4849392,0,"infrule",9595949,functionIsEven
 "euler equation trig relations",3, "feed",1030901,0,"infrule",9595949,functionIsEven
 "euler equation trig relations",3, "expression",8888881,2394853829,"infrule",9595949,functionIsEven

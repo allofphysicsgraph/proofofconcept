@@ -10,7 +10,6 @@
 
 # current bugs:
 
-import re # regular expressions
 import subprocess
 import yaml # used to read "config.input"
 import os.path
@@ -28,74 +27,83 @@ if not os.path.exists(output_path):
 
 connectionsDB=   input_data["connectionsDB_path"]
 
-prompt_for_which_derivation=True
-if (len(sys.argv)>1):
-  input_list=sys.argv
-  print 'Number of arguments:', len(input_list), 'arguments.'
-  print 'Argument List:', input_list
-  which_derivation_to_make=input_list[1]
-  print("selected: "+which_derivation_to_make)
-  prompt_for_which_derivation=False
-
-
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
-# node types: 
-#   feed (temp indx)
-#   expression (perm indx)
-#   infrule
 
-if (prompt_for_which_derivation):
-  which_derivation_to_make=physgraf.which_set(connections_list_of_dics)
-which_derivation_to_make_no_spaces='_'.join(which_derivation_to_make.split(" "))
+[connection_feeds,connection_expr_perm,connection_expr_temp,\
+connection_infrules,connection_infrule_temp]=\
+physgraf.separate_connection_lists(connections_list_of_dics)
 
-if (which_derivation_to_make != "all"):
-  connections_list_of_dics=physgraf.keep_only_this_derivation(which_derivation_to_make,connections_list_of_dics)
+print("number of unique nodes in the graph = "+str(len(set(connection_feeds+connection_expr_temp+connection_infrule_temp))))
 
-nodes_file=open(output_path+which_derivation_to_make_no_spaces+'_nodes.csv','w')
+# cut -f 4 -d ',' databases/connections_database.csv > temp_node_ID
+# cut -f 7 -d ',' databases/connections_database.csv >> temp_node_ID
+# cat temp_node_ID | sort | uniq > temp_node_ID_sorted_uniq
+# wc -l temp_node_ID_sorted_uniq 
+#      464 temp_node_ID_sorted_uniq
 
-local_translation_dic={}
-node_indx=0
 
-node_lines=""
-set_of_feeds=physgraf.set_of_feeds_from_list_of_dics(connections_list_of_dics)
-for feed in set_of_feeds:
-  node_lines+="feed: "+feed+"\n"
-  local_translation_dic[feed]=node_indx
-  node_indx+=1
+list_of_nodes=[]
+list_of_edges=[]
+list_of_deriv=physgraf.get_set_of_derivations(connections_list_of_dics)
+# print(list_of_deriv)
+for this_deriv in list_of_deriv:
+#   print(this_deriv)
+  this_connections_list_of_dics=physgraf.keep_only_this_derivation(this_deriv,connections_list_of_dics)
+  list_of_steps=physgraf.get_set_of_steps(this_connections_list_of_dics)
+#   print(list_of_steps)
+  for this_step in list_of_steps:
+#     print("\n"+this_deriv +"  "+this_step)
+    for connection in this_connections_list_of_dics:
+      if (connection["step index"]==this_step): 
+#         print(connection)
+        this_node1_dic={}
+        this_node1_dic['type']           =connection['from type']
+        this_node1_dic['temp index']     =connection['from temp index']
+        this_node1_dic['perm index']     =connection['from perm index']
+        this_node1_dic['step index']     =connection['step index']
+        this_node1_dic['derivation name']=connection['derivation name']
+        list_of_nodes.append(this_node1_dic)
 
-set_of_expr=physgraf.set_of_expr_from_list_of_dics(connections_list_of_dics)
-for expr in set_of_expr:
-  node_lines+="expression: "+expr+"\n"
-  local_translation_dic[expr]=node_indx
-  node_indx+=1
+        this_node2_dic={}        
+        this_node2_dic['type']           =connection['to type']
+        this_node2_dic['temp index']     =connection['to temp index']
+        this_node2_dic['perm index']     =connection['to perm index']
+#         this_node2_dic['step index']     =connection['step index']
+        this_node2_dic['derivation name']=connection['derivation name']
+        list_of_nodes.append(this_node2_dic)
 
-set_of_infrule=physgraf.set_of_infrule_from_list_of_dics(connections_list_of_dics)
-for infrule in set_of_infrule:
-  [infrule_name,infrule_temp]=infrule.split(":")
-  node_lines+="infrule: "+infrule_name+","+infrule_temp+"\n"
-  local_translation_dic[infrule_temp]=node_indx
-  node_indx+=1
+        this_edge_dic={}
+        this_edge_dic['source']=connection['from temp index']
+        this_edge_dic['destination']=connection['to temp index']
+        list_of_edges.append(this_edge_dic)
+#         break
 
-node_lines=node_lines[:-2]+"\n"
-nodes_file.write(node_lines)
+print('number of nodes found: '+str(len(list_of_nodes))) # this contains a bunch of redundant entries. However, neither dics nor lists are hashable to determine collisions
+print('number of edges found: '+str(len(list_of_edges)))
+
+# this is intended to eliminate redundant node dictionaries
+# BUG: reduces redundant entries but doesn't eliminate them
+pruned_list_of_nodes=[]
+for this_candidate_node_dic in list_of_nodes:
+  already_exists_in_pruned=False
+  for this_node_dic in pruned_list_of_nodes:
+    if (this_candidate_node_dic==this_node_dic):
+      already_exists_in_pruned=True
+      print(this_candidate_node_dic)
+      break # this_candidate_node_dic already exists in pruned_list_of_nodes
+  if not already_exists_in_pruned:
+    pruned_list_of_nodes.append(this_candidate_node_dic)
+      
+print(len(pruned_list_of_nodes))
+
+nodes_file=open(output_path+'nodes.csv','w')
+for this_node_dic in pruned_list_of_nodes:
+  nodes_file.write(this_node_dic['temp index']+","+this_node_dic['type']+","+this_node_dic['perm index']+",\""+this_node_dic['derivation name']+"\"\n")
 
 nodes_file.close()
-edges_file=open(output_path+which_derivation_to_make_no_spaces+'_edges.csv','w')
 
-edge_lines=""
-for connection_dic in connections_list_of_dics:
-#   print(connection_dic)
-  if (connection_dic['from type']=='feed'):  # feed -> infrule 
-    edge_lines+=str(local_translation_dic[connection_dic['from temp index']])+","+str(local_translation_dic[connection_dic['to temp index']])+"\n"  
-  if (connection_dic['from type']=='infrule'):  # infrule -> expression
-    edge_lines+=str(local_translation_dic[connection_dic['from temp index']])+","+str(local_translation_dic[connection_dic['to perm index']])+"\n"    
-  if (connection_dic['from type']=='expression'):  # expression -> infrule
-    edge_lines+=str(local_translation_dic[connection_dic['from perm index']])+","+str(local_translation_dic[connection_dic['to temp index']])+"\n"
-  
-edge_lines=edge_lines[:-2]+"\n"  
-edges_file.write(edge_lines)  
-
+edges_file=open(output_path+'edges.csv','w')
+for this_edge_dic in list_of_edges:
+  edges_file.write(this_edge_dic['source']+","+this_edge_dic['destination']+"\n")
 edges_file.close()
 
-print("done with "+which_derivation_to_make)
-# end of file 

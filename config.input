@@ -19,10 +19,10 @@ feed_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/eipipl
 infrule_pictures_path: '/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_'
 
 # output path requires trailing /
-output_path:           '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/output/'
+output_path:           '/Users/benpayne/version_controlled/proofofconcept/output/'
 
 # these are the CSV databases
-connectionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_connections.csv'
-expressionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_latex.csv'
-feedDB_path:           '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_feed.csv'
+connectionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/databases/connections_database.csv'
+expressionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/databases/expressions_database.csv'
+feedDB_path:           '/Users/benpayne/version_controlled/proofofconcept/databases/feed_database.csv'
 infruleDB_path:        '/Users/benpayne/version_controlled/proofofconcept/databases/inference_rules_database.csv'
