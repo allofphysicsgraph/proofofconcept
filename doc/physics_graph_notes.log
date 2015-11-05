@@ -1,3 +1,15 @@
+20151104
+
+bin/interactive_user_prompt.py 
+mv eipiplusone/output/new_* eipiplusone/
+bin/create_picture_per_expression_from_expressionDB.py 
+bin/create_picture_per_feed_from_feedDB.py 
+bin/create_picture_per_derivation_from_connectionsDB.py 
+open eipiplusone/output/new_derivation_with_labels.png 
+open eipiplusone/output/new_derivation_without_labels.png 
+bin/create_json_per_derivation_from_connectionsDB.py 
+bin/create_d3js_html_per_derivation.sh 
+
 20151102
 
 cleaned up lots of inconsistencies

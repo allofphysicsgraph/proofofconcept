@@ -95,6 +95,6 @@ for connection_dic in connections_list_of_dics:
 physgraf.write_footer_graphviz(graphviz_file)
 graphviz_file.close()
 physgraf.convert_graphviz_to_pictures_with_and_without_labels(graphviz_filename,\
-                        extension,output+which_derivation_to_make_no_spaces)
+                        extension,output_path+which_derivation_to_make_no_spaces)
 
 # end of file 
