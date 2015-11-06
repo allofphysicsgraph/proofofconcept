@@ -1,0 +1,14 @@
+
+      <infrule_name>conjugateFunctionX</infrule_name>
+      <latex_expansion>Conjugate $#1$ in Eq.~\ref{eq:#2}.</latex_expansion>
+      <!-- keyword: complex conjugate -->
+      <cas_mathematica>replace f with f^*; replace $i$ with $-i$</cas_mathematica>
+      <cas_sympy>	      
+<!-- 
+      sympy.conjugate(sympy.I)==-sympy.I
+ -->
+      </cas_sympy>
+      <number_of_arguments>2</number_of_arguments> <!-- for the "#1", "#2", "#3" in the latex expansion -->
+      <number_of_feeds>1</number_of_feeds> <!-- how many of the arguments are not equations -->
+      <number_of_input_statements>1</number_of_input_statements> <!-- how many of the arguments are equation -->
+      <number_of_output_statements>1</number_of_output_statements>

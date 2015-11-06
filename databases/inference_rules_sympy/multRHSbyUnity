@@ -1,0 +1,16 @@
+
+      <infrule_name>multRHSbyUnity</infrule_name>
+      <latex_expansion>Multiply RHS of Eq.~\ref{eq:#2} by 1, which in this case is $#1$</latex_expansion>
+      <check>argument 2 must evaluate to 1</check>
+      <relation_to_other_inference_rule>compliment of multLHSbyUnity</relation_to_other_inference_rule>
+      <cas_mathematica></cas_mathematica>
+      <cas_sympy>
+try:
+  rule_obeyed = ((feed0==1) and (out_lhs0 == (in_lhs0)) and (out_rhs0 == in_rhs0*feed0))
+except:
+  rule_obeyed = 5 # used to indicate problem
+      </cas_sympy>
+      <number_of_arguments>2</number_of_arguments>
+      <number_of_feeds>1</number_of_feeds>
+      <number_of_input_statements>1</number_of_input_statements>
+      <number_of_output_statements>1</number_of_output_statements>

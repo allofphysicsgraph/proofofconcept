@@ -1,0 +1,19 @@
+{"nodes":[
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_feed_png/4069302.png", "width": 17, "height": 24, "label": "4069302"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_feed_png/2464043.png", "width": 29, "height": 15, "label": "2464043"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_feed_png/8433058.png", "width": 18, "height": 15, "label": "8433058"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/9361140010.png", "width": 194, "height": 31, "label": "9361140010"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/2170741476.png", "width": 251, "height": 31, "label": "2170741476"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/declareInitialEq.png", "width": 218, "height": 32, "label": "9471346"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/functionIsOdd.png", "width": 197, "height": 25, "label": "8582310"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/declareFinalEq.png", "width": 206, "height": 32, "label": "6527026"}
+],
+   "links":[
+  {"source":5,"target":3},
+  {"source":3,"target":6},
+  {"source":2,"target":6},
+  {"source":1,"target":6},
+  {"source":0,"target":6},
+  {"source":6,"target":4},
+  {"source":4,"target":7}
+]}

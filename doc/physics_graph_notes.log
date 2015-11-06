@@ -1,3 +1,14 @@
+20151105
+
+now that I'm doing rapid prototyping, I need a development environment which is 
+sparate from the projection environment.
+--> added /dev/
+
+
+bin/interactive_user_prompt.py 
+mv dev/output/new_*.csv dev/
+
+
 20151104
 
 bin/interactive_user_prompt.py 

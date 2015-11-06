@@ -1,0 +1,25 @@
+
+      <infrule_name>subXforY</infrule_name>
+      <latex_expansion>Substitute $#1$ for $#2$ in Eq.~\ref{eq:#3}.</latex_expansion>
+      <!-- keywords: replace, substitute. for substitutions like "x" becomes "2x" -->
+      <cas_mathematica></cas_mathematica>
+<!-- 
+replaceThis = feed0
+withThis = feed1
+ -->
+      <cas_sympy>
+try:
+  rule_obeyed = ((out_lhs0 == in_lhs0.subs(feed0,feed1)) and (out_rhs0 == in_rhs0.subs(feed0,feed1)))
+except:
+  rule_obeyed = 5 # used to indicate problem
+      </cas_sympy>
+      <number_of_arguments>3</number_of_arguments> <!-- for the "#1", "#2", "#3" in the latex expansion -->
+      <!-- \newcommand{\subXforY}[3]{Substitute $#1$ for $#2$ in Eq.~\ref{eq:#3}.} -->
+      <number_of_feeds>2</number_of_feeds> <!-- how many of the arguments are not equations -->
+      <number_of_input_statements>1</number_of_input_statements> <!-- how many of the arguments are equation -->
+      <number_of_output_statements>1</number_of_output_statements>
+<!--
+statement 1: A+z = B+g
+rule: substitute z for k
+statement 2: A+k = B+g
+-->

@@ -1,0 +1,9 @@
+multiplyBothSidesOfExpression[LHS_, relation_, RHS_, feed_] := {LHSout = LHS*feed, relationOut = relation, RHSout = RHS*feed}
+divideBothSidesOfExpression[LHS_, relation_, RHS_, feed_] := {LHSout = LHS/feed, relationOut = relation, RHSout = RHS/feed}
+
+dividebothsidesby[expr_, x_] := Apart[First[expr]/x] == Apart[Last[expr]/x];
+subtractXfromBothSides [expr_, x_] := First[expr]-x == Last[expr]-x;
+addXtoBothSides[expr_, x_] := First[expr]+x == Last[expr]+x;
+subXforY[expr_, x_, y_] := expr /. x -> y
+raiseBothSidesToPower[expr_, pwr_] = First[expr]^pwr == Last[expr]^pwr
+simplifyLHS[expr_, condition_] := FullSimplify [First[expr], condition] == Last[expr]

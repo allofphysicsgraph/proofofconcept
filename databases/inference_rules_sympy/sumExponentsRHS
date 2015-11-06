@@ -1,0 +1,15 @@
+
+      <infrule_name>sumExponentsRHS</infrule_name>
+      <inference_rule_type>manipulation</inference_rule_type>
+      <latex_expansion>Sum exponents on RHS of Eq.~\ref{eq:#1}.</latex_expansion>
+      <cas_mathematica></cas_mathematica>
+      <cas_sympy>
+try:
+  rule_obeyed = ((in_lhs0 == out_lhs0) and (?))
+except:
+  rule_obeyed = 5 # used to indicate problem
+      </cas_sympy>
+      <number_of_arguments>1</number_of_arguments>
+      <number_of_feeds>0</number_of_feeds>
+      <number_of_input_statements>1</number_of_input_statements>
+      <number_of_output_statements>1</number_of_output_statements>

@@ -1,0 +1,15 @@
+
+      <infrule_name>indefIntRHSOver</infrule_name>
+      <number_of_arguments>2</number_of_arguments>
+      <latex_expansion>Indefinite integral of RHS of Eq.~\ref{eq:#2} over $#1$.</latex_expansion>
+      <comment>indefinite integral over variable</comment>
+      <cas_mathematica>Integrate[#2,#1]</cas_mathematica>
+      <cas_sympy>
+try:
+  rule_obeyed = ((out_lhs0 == in_lhs0) and (out_rhs0 == \int in_rhs0 feed0))
+except:
+  rule_obeyed = 5 # used to indicate problem
+      </cas_sympy>
+      <number_of_feeds>1</number_of_feeds>
+      <number_of_input_statements>1</number_of_input_statements>
+      <number_of_output_statements>1</number_of_output_statements>

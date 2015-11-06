@@ -1,0 +1,15 @@
+
+      <infrule_name>IntOverFromTo</infrule_name>
+      <latex_expansion>Integrate Eq.~\ref{eq:#4} over $#1$ from lower limit $#2$ to upper limit $#3$.</latex_expansion>
+      <comment>$\int_{#2}^{#3}\ d #1$</comment>
+      <cas_mathematica></cas_mathematica>
+      <cas_sympy>
+try:
+  rule_obeyed = ((out_lhs0 == (\int_{feed1}^{feed2} in_lhs0 feed0)) and (out_rhs0 == \int_{feed1}^{feed2} in_rhs0 feed0))
+except:
+  rule_obeyed = 5 # used to indicate problem
+      </cas_sympy>
+      <number_of_arguments>4</number_of_arguments>
+      <number_of_feeds>3</number_of_feeds>
+      <number_of_input_statements>1</number_of_input_statements>
+      <number_of_output_statements>1</number_of_output_statements>

@@ -150,7 +150,7 @@ def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
         print_current_steps(step_ary)
         write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
                             connection_infrule_temp,list_of_feeds,output_path)
-        time.sleep(5)
+        time.sleep(2)
       elif (step_choice_input=='1'): # add another step
         invalid_choice=False
         done_with_steps=False   
