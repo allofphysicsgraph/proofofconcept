@@ -1,0 +1,20 @@
+{"nodes":[
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_feed_png/1413301.png", "width": 18, "height": 15, "label": "1413301"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_feed_png/4606536.png", "width": 17, "height": 22, "label": "4606536"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/7920188330.png", "width": 180, "height": 31, "label": "7920188330"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/1397888324.png", "width": 132, "height": 24, "label": "1397888324"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/1612499688.png", "width": 222, "height": 31, "label": "1612499688"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/3288998179.png", "width": 178, "height": 31, "label": "3288998179"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/declareInitialEq.png", "width": 218, "height": 32, "label": "9710114"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/partialDiffWRT.png", "width": 217, "height": 32, "label": "3026805"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/factorOutX.png", "width": 158, "height": 25, "label": "8826444"}
+],
+   "links":[
+  {"source":6,"target":2},
+  {"source":5,"target":7},
+  {"source":0,"target":7},
+  {"source":7,"target":3},
+  {"source":3,"target":8},
+  {"source":1,"target":8},
+  {"source":8,"target":4}
+]}

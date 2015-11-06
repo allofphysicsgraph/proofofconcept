@@ -7,8 +7,11 @@ bin/create_picture_per_feed_from_feedDB.py
 bin/create_picture_per_derivation_from_connectionsDB.py 
 open eipiplusone/output/new_derivation_with_labels.png 
 open eipiplusone/output/new_derivation_without_labels.png 
-bin/create_json_per_derivation_from_connectionsDB.py 
-bin/create_d3js_html_per_derivation.sh 
+bin/create_json_per_derivation_from_connectionsDB.py
+bin/create_d3js_html_per_derivation.sh output new_derivation
+cp output/new_derivation.html site/testing/
+cp eipiplusone/output/*.json site/json/testing/
+cp eipiplusone/output/*.png site/pictures/testing/
 
 20151102
 
