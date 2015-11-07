@@ -190,7 +190,9 @@ def which_set(connections_list_of_dics):
 
 def keep_only_this_derivation(name_of_set_to_make,connections_list_of_dics):
   new_connection_list_of_dics=[]
+#   print(name_of_set_to_make)
   for connection_dic in connections_list_of_dics:
+#     print(connection_dic["derivation name"])
     if (connection_dic["derivation name"]==name_of_set_to_make):
       new_connection_list_of_dics.append(connection_dic)
   return new_connection_list_of_dics

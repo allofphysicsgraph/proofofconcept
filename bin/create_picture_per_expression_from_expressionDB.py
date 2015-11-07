@@ -25,10 +25,9 @@ input_data=yaml.load(input_stream)
 # if not os.path.exists(output_path):
 #     os.makedirs(output_path)
 extension=       input_data["file_extension_string"]
-expr_pictures=   input_data["expr_pictures_path"]   +extension
+expr_pictures=   input_data["expr_latex_to_pictures_path"]   +extension
 if not os.path.exists(expr_pictures):
     os.makedirs(expr_pictures)
-extension=       input_data["file_extension_string"]
 expressionsDB=input_data["expressionsDB_path"]
 
 expressions_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(expressionsDB)

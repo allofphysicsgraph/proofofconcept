@@ -25,10 +25,9 @@ input_data=yaml.load(input_stream)
 # if not os.path.exists(output_path):
 #     os.makedirs(output_path)
 extension=       input_data["file_extension_string"]
-feed_pictures=   input_data["feed_pictures_path"]   +extension
+feed_pictures=   input_data["feed_latex_to_pictures_path"]   +extension
 if not os.path.exists(feed_pictures):
     os.makedirs(feed_pictures)
-extension=       input_data["file_extension_string"]
 feedDB    =input_data["feedDB_path"]
 
 feeds_list_of_dics=physgraf.convert_feed_csv_to_list_of_dics(feedDB)

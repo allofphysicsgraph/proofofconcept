@@ -28,9 +28,13 @@ if not os.path.exists(output_path):
     os.makedirs(output_path)
 
 extension=input_data["file_extension_string"]
-expression_pictures_path=input_data["expr_pictures_path"]   +extension
-infrule_pictures_path   =input_data["infrule_pictures_path"]+extension
-feed_pictures_path      =input_data["feed_pictures_path"]   +extension
+expression_pictures_path=input_data["expr_latex_to_pictures_path"]   +extension
+feed_pictures_path      =input_data["feed_latex_to_pictures_path"]   +extension
+infrule_pictures_path   =input_data["infrule_latex_to_pictures_path"]+extension
+
+expr_pictures_json_path=input_data["expr_pictures_json_path"]      +extension
+feed_pictures_json_path=input_data["feed_pictures_json_path"]      +extension
+infrule_pictures_json_path=input_data["infrule_pictures_json_path"]+extension
 
 connectionsDB=   input_data["connectionsDB_path"]
 
@@ -79,14 +83,14 @@ set_of_feeds=physgraf.set_of_feeds_from_list_of_dics(connections_list_of_dics)
 for feed in set_of_feeds:
   output = subprocess.check_output("file "+feed_pictures_path+"/"+feed+".png", shell=True)
   img_size_dic=get_image_size(feed_pictures_path,feed)
-  node_lines+="  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_feed_png/"+feed+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+feed+"\"},\n"
+  node_lines+="  {\"img\": \""+feed_pictures_json_path+"/"+feed+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+feed+"\"},\n"
   local_translation_dic[feed]=node_indx
   node_indx+=1
 
 set_of_expr=physgraf.set_of_expr_from_list_of_dics(connections_list_of_dics)
 for expr in set_of_expr:
   img_size_dic=get_image_size(expression_pictures_path,expr)
-  node_lines+="  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_expression_png/"+expr+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+expr+"\"},\n"
+  node_lines+="  {\"img\": \""+expr_pictures_json_path+"/"+expr+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+expr+"\"},\n"
   local_translation_dic[expr]=node_indx
   node_indx+=1
 
@@ -94,7 +98,7 @@ set_of_infrule=physgraf.set_of_infrule_from_list_of_dics(connections_list_of_dic
 for infrule in set_of_infrule:
   [infrule_name,infrule_temp]=infrule.split(":")
   img_size_dic=get_image_size(infrule_pictures_path,infrule_name)
-  node_lines+="  {\"img\": \"http://allofphysicsgraph.github.io/proofofconcept/lib/images_infrule_png/"+infrule_name+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+infrule_temp+"\"},\n"
+  node_lines+="  {\"img\": \""+infrule_pictures_json_path+"png/"+infrule_name+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+infrule_temp+"\"},\n"
   local_translation_dic[infrule_temp]=node_indx
   node_indx+=1
 

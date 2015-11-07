@@ -18,26 +18,17 @@ lib_path = os.path.abspath('lib')
 sys.path.append(lib_path) # this has to proceed use of physgraph
 import lib_physics_graph as physgraf
 
-prompt_for_which_derivation=True
-if (len(sys.argv)>1):
-  input_list=sys.argv
-  print 'Number of arguments:', len(input_list), 'arguments.'
-  print 'Argument List:', input_list
-  which_derivation_to_make=input_list[1]
-  print("selected: "+which_derivation_to_make)
-  prompt_for_which_derivation=False
-
 # https://yaml-online-parser.appspot.com/
 input_stream=file('config.input','r')
 input_data=yaml.load(input_stream)
 extension=       input_data["file_extension_string"]
-infrule_pictures=input_data["infrule_pictures_path"]+extension
+infrule_pictures=input_data["infrule_latex_to_pictures_path"]+extension
 if not os.path.exists(infrule_pictures):
     os.makedirs(infrule_pictures)
-expr_pictures=   input_data["expr_pictures_path"]   +extension
+expr_pictures=   input_data["expr_latex_to_pictures_path"]   +extension
 if not os.path.exists(expr_pictures):
     os.makedirs(expr_pictures)
-feed_pictures=   input_data["feed_pictures_path"]   +extension
+feed_pictures=   input_data["feed_latex_to_pictures_path"]   +extension
 if not os.path.exists(feed_pictures):
     os.makedirs(feed_pictures)
 output_path=     input_data["output_path"]
@@ -45,16 +36,26 @@ if not os.path.exists(output_path):
     os.makedirs(output_path)
 connectionsDB=   input_data["connectionsDB_path"]
 
-
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 # node types: 
 #   feed (temp indx)
 #   expression (perm indx)
 #   infrule (temp indx)
 
-if (prompt_for_which_derivation):
+if (len(sys.argv)>1):
+  input_list=sys.argv
+  print 'Number of arguments:', len(input_list), 'arguments.'
+  print 'Argument List:', input_list
+  which_derivation_to_make=input_list[1]
+  print("selected: "+which_derivation_to_make)
+  prompt_for_which_derivation=False
+else:
   which_derivation_to_make=physgraf.which_set(connections_list_of_dics)
+
 which_derivation_to_make_no_spaces='_'.join(which_derivation_to_make.split(" "))
+
+# print(connections_list_of_dics)
+
 if (which_derivation_to_make=='all'):
   print("all")
 elif (which_derivation_to_make=='each'):
@@ -64,6 +65,8 @@ elif (which_derivation_to_make=='EXIT'):
   exit()
 else:
   connections_list_of_dics=physgraf.keep_only_this_derivation(which_derivation_to_make,connections_list_of_dics)
+
+# print(connections_list_of_dics)
 
 graphviz_filename=output_path+'connections_'+which_derivation_to_make_no_spaces+'.gv'
 graphviz_file=open(graphviz_filename,'w')

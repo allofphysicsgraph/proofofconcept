@@ -25,7 +25,7 @@ input_data=yaml.load(input_stream)
 # if not os.path.exists(output_path):
 #     os.makedirs(output_path)
 extension=       input_data["file_extension_string"]
-infrule_pictures=input_data["infrule_pictures_path"]+extension
+infrule_pictures=input_data["infrule_latex_to_pictures_path"]+extension
 if not os.path.exists(infrule_pictures):
     os.makedirs(infrule_pictures)
 infruleDB    =input_data["infruleDB_path"]

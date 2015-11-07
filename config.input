@@ -2,7 +2,7 @@
 # Ben Payne <ben.is.located@gmail.com>
 
 make_texPDF_for_set_boolean: False
-make_graphviz_boolean:       True # the big graph
+make_graphviz_boolean:       True
 make_graphml_boolean:        True
 make_networkx_boolean:       True
 
@@ -14,15 +14,19 @@ redraw_inference_rule_pictures_boolean: False
 file_extension_string: 'png'   
 
 # extension will be appended to picture path
-expr_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/images_expr_'
-feed_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/images_feed_'
-infrule_pictures_path: '/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_'
+expr_latex_to_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/dev/images_expression_'
+feed_latex_to_pictures_path:    '/Users/benpayne/version_controlled/proofofconcept/dev/images_feed_'
+infrule_latex_to_pictures_path: '/Users/benpayne/version_controlled/proofofconcept/lib/images_infrule_'
+
+expr_pictures_json_path:    'pictures/images_expression_'
+feed_pictures_json_path:    'pictures/images_feed_'
+infrule_pictures_json_path: '../../lib/images_infrule_'
 
 # output path requires trailing /
-output_path:           '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/output/'
+output_path:           '/Users/benpayne/version_controlled/proofofconcept/dev/output/'
 
 # these are the CSV databases
-connectionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_connections.csv'
-expressionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_latex.csv'
-feedDB_path:           '/Users/benpayne/version_controlled/proofofconcept/eipiplusone/new_feed.csv'
+connectionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/dev/new_connections.csv'
+expressionsDB_path:    '/Users/benpayne/version_controlled/proofofconcept/dev/new_latex.csv'
+feedDB_path:           '/Users/benpayne/version_controlled/proofofconcept/dev/new_feed.csv'
 infruleDB_path:        '/Users/benpayne/version_controlled/proofofconcept/databases/inference_rules_database.csv'

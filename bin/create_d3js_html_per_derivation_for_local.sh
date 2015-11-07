@@ -15,12 +15,12 @@ site_dir=testing
 # site_dir=generated_from_project # actual PDG content
 
 file_name=$1/$2.html
-cp lib/d3js_part1_head.html ${file_name}
-echo -e "d3.json(\"http://allofphysicsgraph.github.io/proofofconcept/site/json/"${site_dir}"/"$2".json\", function(error, root) {" >> ${file_name}
+cp lib/d3js_part1_head_for_local.html ${file_name}
+echo -e "d3.json(\"json/"${site_dir}"/"$2".json\", function(error, root) {" >> ${file_name}
 cat lib/d3js_part2_tail.html >> ${file_name}
   
 echo -e "<P>Picture from Graphviz:</P>" >> ${file_name}
-echo -e "<P><img src=\"http://allofphysicsgraph.github.io/proofofconcept/site/pictures/"${site_dir}"/graph_"$2"_without_labels.png\" width=\"800\"></P>" >> ${file_name}
+echo -e "<P><img src=\"pictures/"${site_dir}"/graph_"$2"_without_labels.png\" width=\"800\"></P>" >> ${file_name}
 echo -e "</body>" >> ${file_name}
 echo -e "</html>" >> ${file_name}
   

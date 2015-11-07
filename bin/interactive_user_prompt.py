@@ -189,6 +189,10 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
 #"frequency relations",1, "infrule",2303943,declareInitialEq,   "expression",3293094,5900595848
 #"frequency relations",2, "infrule",0304948,declareInitialEq,   "expression",3294004,0404050504
 
+  f = open(output_path+'derivation_name.dat','w')
+  f.write(derivation_name)
+  f.close()
+
   f = open(output_path+'new_connections.csv', 'w')
   for step_indx,this_step in enumerate(step_ary):
     for input_indx,this_input in enumerate(this_step['input']):
