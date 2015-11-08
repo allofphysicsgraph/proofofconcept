@@ -20,7 +20,7 @@ echo -e "d3.json(\"http://allofphysicsgraph.github.io/proofofconcept/site/json/"
 cat lib/d3js_part2_tail.html >> ${file_name}
   
 echo -e "<P>Picture from Graphviz:</P>" >> ${file_name}
-echo -e "<P><img src=\"http://allofphysicsgraph.github.io/proofofconcept/site/pictures/"${site_dir}"/graph_"$2"_without_labels.png\" width=\"800\"></P>" >> ${file_name}
+echo -e "<P><img src=\"http://allofphysicsgraph.github.io/proofofconcept/site/pictures/"${site_dir}"/"$2"_without_labels.png\" width=\"800\"></P>" >> ${file_name}
 echo -e "</body>" >> ${file_name}
 echo -e "</html>" >> ${file_name}
   

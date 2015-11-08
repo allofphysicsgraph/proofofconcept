@@ -38,7 +38,6 @@ infrule_pictures_json_path=input_data["infrule_pictures_json_path"]+extension
 
 connectionsDB=   input_data["connectionsDB_path"]
 
-
 def get_image_size(path,filename):
   output = subprocess.check_output("file "+path+"/"+filename+".png", shell=True)
   matchObj=re.match( r'.*data, (\d+) x (\d+), .*', output, re.M|re.I)
@@ -58,7 +57,6 @@ if (len(sys.argv)>1):
   print("selected: "+which_derivation_to_make)
   prompt_for_which_derivation=False
 
-
 connections_list_of_dics=physgraf.convert_connections_csv_to_list_of_dics(connectionsDB)
 # node types: 
 #   feed (temp indx)
@@ -71,6 +69,8 @@ which_derivation_to_make_no_spaces='_'.join(which_derivation_to_make.split(" "))
 
 if (which_derivation_to_make != "all"):
   connections_list_of_dics=physgraf.keep_only_this_derivation(which_derivation_to_make,connections_list_of_dics)
+
+# print connections_list_of_dics
 
 outputfile=open(output_path+which_derivation_to_make_no_spaces+'.json','w')
 outputfile.write("{\"nodes\":[\n")
@@ -98,7 +98,7 @@ set_of_infrule=physgraf.set_of_infrule_from_list_of_dics(connections_list_of_dic
 for infrule in set_of_infrule:
   [infrule_name,infrule_temp]=infrule.split(":")
   img_size_dic=get_image_size(infrule_pictures_path,infrule_name)
-  node_lines+="  {\"img\": \""+infrule_pictures_json_path+"png/"+infrule_name+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+infrule_temp+"\"},\n"
+  node_lines+="  {\"img\": \""+infrule_pictures_json_path+"/"+infrule_name+".png\", \"width\": "+img_size_dic["img width"]+", \"height\": "+img_size_dic["img height"]+", \"label\": \""+infrule_temp+"\"},\n"
   local_translation_dic[infrule_temp]=node_indx
   node_indx+=1
 

@@ -1,15 +1,6 @@
 20151107
 
-rm -rf dev/
-mkdir dev
-mkdir dev/images_expression_png/
-mkdir dev/images_feed_png/
-mkdir dev/output/
-mkdir dev/site/
-mkdir dev/site/pictures/
-mkdir dev/site/pictures/images_expression_png/
-mkdir dev/site/pictures/images_feed_png/
-mkdir dev/site/json/
+bin/clean_dev.sh
 cp site/d3/d3.v3.min.js dev/site/
 rm -rf output/
 mkdir output
@@ -17,17 +8,25 @@ mkdir output
 bin/interactive_user_prompt.py 
 mv dev/output/new_*.csv dev/
 
+cp new_*.csv dev/
+cp derivation_name.dat dev/output/
+
 deriv_name_with_spaces=`cat dev/output/derivation_name.dat`
 deriv_name_without_spaces=`cat dev/output/derivation_name.dat | sed 's/ /_/g'`
 
 bin/create_picture_per_expression_from_expressionDB.py 
 bin/create_picture_per_feed_from_feedDB.py 
 bin/create_picture_per_derivation_from_connectionsDB.py "${deriv_name_with_spaces}"
-bin/create_json_per_derivation_from_connectionsDB.py ${deriv_name_without_spaces}
-bin/create_d3js_html_per_derivation_for_local.sh dev/site/ ${deriv_name_without_spaces}
-cp dev/output/*.json site/json/
-cp dev/output/*.png site/pictures/
+bin/create_json_per_derivation_from_connectionsDB.py "${deriv_name_with_spaces}"
+bin/create_d3js_html_per_derivation_for_local.sh dev/site/ json/ pictures/ ${deriv_name_without_spaces} local
 
+cp dev/output/*.json dev/site/json/
+cp dev/output/*.png dev/site/pictures/
+cp dev/images_expression_png/*.png dev/site/pictures/images_expression_png/
+cp dev/images_feed_png/*.png dev/site/pictures/images_feed_png/
+cp lib/images_infrule_png/*.png dev/site/pictures/images_infrule_png/
+
+open /Applications/Google\ Chrome.app --args --allow-file-access-from-files file:///Users/benpayne/version_controlled/proofofconcept/dev/site/${deriv_name_without_spaces}.html
 
 20151105
 
