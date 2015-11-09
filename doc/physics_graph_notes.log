@@ -1,31 +1,37 @@
 20151107
 
+# nothing up my sleeve - clean the destination directories
 bin/clean_dev.sh
 cp site/d3/d3.v3.min.js dev/site/
 rm -rf output/
 mkdir output
 
+# user input
 bin/interactive_user_prompt.py 
 mv dev/output/new_*.csv dev/
-
+# or recycle existing
 cp new_*.csv dev/
 cp derivation_name.dat dev/output/
 
+# set variables to pass to scripts
 deriv_name_with_spaces=`cat dev/output/derivation_name.dat`
 deriv_name_without_spaces=`cat dev/output/derivation_name.dat | sed 's/ /_/g'`
 
+# create infrastructure
 bin/create_picture_per_expression_from_expressionDB.py 
 bin/create_picture_per_feed_from_feedDB.py 
 bin/create_picture_per_derivation_from_connectionsDB.py "${deriv_name_with_spaces}"
 bin/create_json_per_derivation_from_connectionsDB.py "${deriv_name_with_spaces}"
 bin/create_d3js_html_per_derivation_for_local.sh dev/site/ json/ pictures/ ${deriv_name_without_spaces} local
 
+# place results in appropriate directories for visualization
 cp dev/output/*.json dev/site/json/
 cp dev/output/*.png dev/site/pictures/
 cp dev/images_expression_png/*.png dev/site/pictures/images_expression_png/
 cp dev/images_feed_png/*.png dev/site/pictures/images_feed_png/
 cp lib/images_infrule_png/*.png dev/site/pictures/images_infrule_png/
 
+# visualize the results
 open /Applications/Google\ Chrome.app --args --allow-file-access-from-files file:///Users/benpayne/version_controlled/proofofconcept/dev/site/${deriv_name_without_spaces}.html
 
 20151105
