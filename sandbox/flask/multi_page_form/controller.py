@@ -2,7 +2,7 @@
 
 from model import SelectInfRule,InfRuleArguments,AddAnotherStep
 from flask import Flask, render_template, request, redirect, url_for
-from compute import compute
+from compute import arg_count
 
 app = Flask(__name__)
 
