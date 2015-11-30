@@ -20,7 +20,9 @@ def index():
 def choose_inf_rule():
     form = SelectInfRule(request.form)
     if request.method == 'POST' and form.validate():
-        return redirect(url_for('provide_arguments_for_this_infrule'))
+        this_infrule=form.inference_rule.data
+        print this_infrule
+        return redirect(url_for('provide_arguments_for_this_infrule', infrule=this_infrule))
     return render_template('choose_inf_rule_for_this_step.html', form=form)
     
 @app.route('/provide_arguments_for_this_infrule.html', methods=['GET', 'POST'])
@@ -28,7 +30,7 @@ def provide_arguments_for_this_infrule():
     form = InfRuleArguments(request.form)
     if request.method == 'POST' and form.validate():
         return redirect(url_for('index'))
-    return render_template('provide_arguments_for_this_infrule.html', form=form)
+    return render_template('provide_arguments_for_this_infrule.html', form=form, infrule=request.args.get('infrule'))
 
 if __name__ == '__main__':
     app.run(debug=True)
