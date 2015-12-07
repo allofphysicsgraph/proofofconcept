@@ -45,14 +45,15 @@ for this_derivation in list_of_derivations:
 # print(all_derivations)
 # print("\n\n")
 
+
 graphviz_filename=output_path+'overview.gv'
 f = open(graphviz_filename, 'w')
-f.write("digraph G {\n")
+f.write("graph G {\n")
 f.write("# neato -Tpng thisfile > overview_graph.png\n")
 for source_derivation_dic in all_derivations:
   for source_expr in source_derivation_dic['expressions']:
     for target_derivation_dic in all_derivations:
-      if target_derivation_dic['name']==source_derivation_dic['name']:
+      if target_derivation_dic['name']==source_derivation_dic['name']: # skip looking for overlap in self
         break
       else:   
         for target_expr in target_derivation_dic['expressions']:

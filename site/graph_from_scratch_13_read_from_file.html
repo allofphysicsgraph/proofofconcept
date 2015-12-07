@@ -31,7 +31,7 @@ var palette = {
   }
 
 // load the external data
-d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/nodes_expressions_and_inference_rules.json", function(error, input) {
+d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/nodes_expressions_and_inference_rules.json", function(error, input) {
   console.log(input); // "input" is an object
   nodes = input["nodes"]; // "nodes" is an array
   console.log(nodes);
