@@ -1,4 +1,4 @@
-<!-- SVG -->
+<!-- nodes separated -->
 <!-- http://bl.ocks.org/d3noob/8329447 -->
 <!-- http://jsonlint.com/ -->
 <!-- http://stackoverflow.com/questions/24692002/i-want-to-distinguish-the-link-of-d3-js-force-graph-by-the-thickness -->
@@ -95,17 +95,20 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_f
 //      .attr("cy", function(d) { return d.y; })
       .attr("r", circleWidth)
       .attr("fill", palette.darkgray )
-      .append("text")
+
+  node.append("text")
       .text(function(d, i) { return d.label; })
       .attr("x",  5) // positive value moves text right of origin
       .attr("y",  -3) // positive value moves text up from origin
       .attr("font-family",  "Bree Serif")
       .attr("fill",    palette.red)
       .attr("font-size",    "1em" )
-      .append("svg:a")
+
+  node.append("svg:a")
       .attr("xlink:href", function(d) {return "http://google.com/"})
       //.attr("text-anchor",  function(d, i) { if (i>0) { return  "beginning"; }      else { return "end" } })
-      .append("image")
+
+  node.append("image")
       //.attr("xlink:href", function(d, i) { return d.img; } )
       // setting x and y both to zero is redundant -- those are the default values
       .attr("x", 0) // off-set from center of node; upper left corner of picture is origin
@@ -113,8 +116,6 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_f
       .attr("width", function(d, i) { return d.width/2; }) // without both width and height, image does not display
 //      .attr("width", 200) // without both width and height, image does not display
       .attr("height", function(d, i) { return d.height/2; })
-      .append("svg:a")
-      .attr("xlink:href", function(d) {return "http://google.com/"})
 
   force.on("tick", function(e) {
     node.attr("transform", function(d, i) {     
