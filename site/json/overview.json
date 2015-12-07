@@ -1,0 +1,28 @@
+{"nodes":[
+  {"label": "quantum basics orthogonality"},
+  {"label": "curl curl identity"},
+  {"label": "euler equation trig sqrt"},
+  {"label": "quadratic equation derivation"},
+  {"label": "integration by parts"},
+  {"label": "example of Godel problem"},
+  {"label": "euler equation proof"},
+  {"label": "particle in a 1D box"},
+  {"label": "quantum basics Hermitian operators have realvalued observables"},
+  {"label": "variance relation"},
+  {"label": "derivation of Schrodinger Eq"},
+  {"label": "Comptons equation for scattering"},
+  {"label": "frequency relations"},
+  {"label": "electric field wave equation time dependent to time independent"},
+  {"label": "euler equation trig relations"},
+  {"label": "maxwell to electric field wave equation"},
+],
+   "links":[
+  {"source":6,"target":2}
+  {"source":7,"target":2}
+  {"source":12,"target":10}
+  {"source":12,"target":10}
+  {"source":14,"target":2}
+  {"source":14,"target":6}
+  {"source":15,"target":13}
+  {"source":15,"target":1}
+]}
