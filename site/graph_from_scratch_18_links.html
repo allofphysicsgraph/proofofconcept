@@ -105,6 +105,7 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_f
       //.attr("text-anchor",  function(d, i) { if (i>0) { return  "beginning"; }      else { return "end" } })
 
   node.append("image")
+      .attr("xlink:href", function(d) {return "http://google.com/"})
       .attr("xlink:href", function(d, i) { return d.img; } )
       // setting x and y both to zero is redundant -- those are the default values
       .attr("x", 0) // off-set from center of node; upper left corner of picture is origin
