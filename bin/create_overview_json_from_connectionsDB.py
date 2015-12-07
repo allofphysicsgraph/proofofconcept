@@ -52,7 +52,14 @@ f.write("{\"nodes\":[\n")
 
 for indx,dic in enumerate(all_derivations):
   all_derivations[indx]['id']=indx
-  f.write("  {\"label\": \""+all_derivations[indx]['name']+"\"},\n")
+  
+  url_name="http://allofphysicsgraph.github.io/proofofconcept/site/derivations_generated_from_project/"+\
+            all_derivations[indx]['name'].replace(" ","_")+".html"
+  
+  if (indx<len(all_derivations)-1):
+    f.write("  {\"label\": \""+all_derivations[indx]['name']+"\", \"url\": \""+url_name+"\"},\n")
+  else:
+    f.write("  {\"label\": \""+all_derivations[indx]['name']+"\", \"url\": \""+url_name+"\"}\n")
 
 f.write("],\n")
 f.write("   \"links\":[\n")

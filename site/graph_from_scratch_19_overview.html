@@ -46,7 +46,7 @@ var vis = d3.select("body")
       .attr("width", w)
       .attr("height", h);
 
-///*
+/*
 // build the arrow
 vis.append("svg:defs").selectAll("marker")
     .data(["end"])
@@ -104,7 +104,7 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_f
       //.attr("text-anchor",  function(d, i) { if (i>0) { return  "beginning"; }      else { return "end" } })
 
       .on("click", function(d){
-          var url = "http://google.com";
+          var url = d.url;
 //          $(location).attr('href', url);
           window.location = url;
         });
