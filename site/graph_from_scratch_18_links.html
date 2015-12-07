@@ -96,6 +96,7 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_f
       .attr("fill", palette.darkgray )
 
   node.append("text")
+      .attr("xlink:href", function(d) {return "http://google.com/"})
       .text(function(d, i) { return d.label; })
       .attr("x",  5) // positive value moves text right of origin
       .attr("y",  -3) // positive value moves text up from origin
