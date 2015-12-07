@@ -75,7 +75,7 @@ for source_derivation_dic in all_derivations:
             list_of_edges.append(new_pair_list)
 
 for indx,this_pair in enumerate(list_of_edges):
-  if (indx>len(list_of_edges)):
+  if (indx<len(list_of_edges)-1):
     f.write("  {\"source\":"+str(this_pair[0])+",\"target\":"+str(this_pair[1])+"},\n")
   else: 
     f.write("  {\"source\":"+str(this_pair[0])+",\"target\":"+str(this_pair[1])+"}\n")
