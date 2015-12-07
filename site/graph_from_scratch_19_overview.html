@@ -112,15 +112,6 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_f
 //  node.append("svg:a")
 //      .attr("xlink:href", function(d) {return "http://google.com/"})
 
-  node.append("image")
-      .attr("xlink:href", function(d, i) { return d.img; } )
-      // setting x and y both to zero is redundant -- those are the default values
-      .attr("x", 0) // off-set from center of node; upper left corner of picture is origin
-      .attr("y", 0)
-      .attr("width", function(d, i) { return d.width/2; }) // without both width and height, image does not display
-//      .attr("width", 200) // without both width and height, image does not display
-      .attr("height", function(d, i) { return d.height/2; })
-
   force.on("tick", function(e) {
     node.attr("transform", function(d, i) {     
       return "translate(" + d.x + "," + d.y + ")"; 
