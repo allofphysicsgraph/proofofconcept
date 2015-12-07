@@ -1,4 +1,4 @@
-<!-- fixing pics -->
+<!-- click to URL -->
 <!-- http://bl.ocks.org/d3noob/8329447 -->
 <!-- http://jsonlint.com/ -->
 <!-- http://stackoverflow.com/questions/24692002/i-want-to-distinguish-the-link-of-d3-js-force-graph-by-the-thickness -->
@@ -105,8 +105,10 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_f
       .attr("font-size",    "1em" )
       //.attr("text-anchor",  function(d, i) { if (i>0) { return  "beginning"; }      else { return "end" } })
 
-  node.append("svg:a")
-      .attr("xlink:href", function(d) {return "http://google.com/"})
+      .on("click", function(){ return "http://google.com" })
+
+//  node.append("svg:a")
+//      .attr("xlink:href", function(d) {return "http://google.com/"})
 
   node.append("image")
       .attr("xlink:href", function(d, i) { return d.img; } )
