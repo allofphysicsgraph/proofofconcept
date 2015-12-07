@@ -14,7 +14,7 @@
   {"label": "frequency relations"},
   {"label": "electric field wave equation time dependent to time independent"},
   {"label": "euler equation trig relations"},
-  {"label": "maxwell to electric field wave equation"},
+  {"label": "maxwell to electric field wave equation"}
 ],
    "links":[
   {"source":6,"target":2},
