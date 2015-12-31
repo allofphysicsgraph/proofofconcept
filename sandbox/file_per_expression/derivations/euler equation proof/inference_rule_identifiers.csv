@@ -1,0 +1,12 @@
+1029890,makeEqPower
+1848471,indefIntRHSOver
+2741906,multbothsidesby
+4614728,factorOutXfromRHS
+6462728,indefIntRHSOver
+6463728,differentiateWRT
+6466378,dividebothsidesby
+7364656,declareInitialEq
+7466748,subRHSofEqXintoEqY
+7561612,declareFinalEq
+7563728,swapLHSwithRHS
+7566272,subRHSofEqXintoEqY
