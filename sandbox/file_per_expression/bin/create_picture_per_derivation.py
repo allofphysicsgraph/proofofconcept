@@ -77,7 +77,8 @@ for this_pair in expr_list:
     graphviz_file.write(this_pair[0]+" [shape=ellipse, color=red,image=\"../../expressions/"+this_pair[1]+".png\",labelloc=b,URL=\"http://output.com\"];\n")
 
 for this_pair in infrule_list:
-    graphviz_file.write(this_pair[0]+" [shape=invtrapezium, color=red,image=\"../../inference_rules/"+this_pair[1]+".png\"];\n")
+#     graphviz_file.write(this_pair[0]+" [shape=invtrapezium, color=red,image=\"../../inference_rules/"+this_pair[1]+".png\"];\n")
+    graphviz_file.write(this_pair[0]+" [shape=invtrapezium, color=red,label=\""+this_pair[1]+"\"];\n")
 
 # print feed_list
 # print len(feed_list)

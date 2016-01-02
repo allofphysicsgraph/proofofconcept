@@ -11,8 +11,8 @@ import lib_physics_graph as physgraf
 from os import listdir
 from os.path import isfile, join
 
-# mypath='../feeds'
-mypath='../expressions'
+mypath='../feeds'
+# mypath='../expressions'
 onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 # print onlyfiles
 extension='png'
