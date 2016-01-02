@@ -40,6 +40,10 @@ do
             then
                 echo ${input_temp_id},${input_perm_id} >> "$derivation_name"/inference_rule_identifiers.csv.tmp
             fi
+            if [ ${input_type} == '"feed"' ]
+            then
+                echo ${input_temp_id} >> "$derivation_name"/feeds.csv.tmp
+            fi
             if [ ${output_type} == '"expression"' ]
             then
                 echo ${output_temp_id},${output_perm_id} >> "$derivation_name"/expression_identifiers.csv.tmp
@@ -56,5 +60,7 @@ do
     rm "$derivation_name"/expression_identifiers.csv.tmp
     cat "$derivation_name"/inference_rule_identifiers.csv.tmp | sort | uniq > "$derivation_name"/inference_rule_identifiers.csv
     rm "$derivation_name"/inference_rule_identifiers.csv.tmp
+    cat "$derivation_name"/feeds.csv.tmp | sort | uniq > "$derivation_name"/feeds.csv
+    rm "$derivation_name"/feeds.csv.tmp
 
 done < ${temp_file}

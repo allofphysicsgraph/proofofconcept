@@ -19,7 +19,7 @@ extension='png'
 
 for this_filename in onlyfiles:
     split_filename=this_filename.split('.') 
-    filename=split_filename[0]
+    filename=split_filename[0].split('_')[0]
     file_extension=split_filename[-1]
 #     print(filename+"  "+file_extension)
     if (file_extension=="tex"):
