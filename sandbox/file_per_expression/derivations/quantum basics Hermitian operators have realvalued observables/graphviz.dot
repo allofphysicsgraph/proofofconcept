@@ -1,0 +1,31 @@
+digraph physicsDerivation {
+overlap = false;
+label="Equation relations\nExtracted from connections_database.csv";
+fontsize=12;
+3403595 -> 3402919;
+3402919 -> 9538385;
+9538385 -> 2495954;
+2495954 -> 2394942;
+2394942 -> 2390094;
+1294984 -> 2484892;
+2484892 -> 2485909;
+2390094 -> 2485909;
+2485909 -> 2494040;
+2494040 -> 2490098;
+3402919 -> 2490098;
+2490098 -> 4930585;
+4930585 -> 2939493;
+2390094 [shape=ellipse, color=red,image="../../expressions/1010393913.png",labelloc=b,URL="http://output.com"];
+2484892 [shape=ellipse, color=red,image="../../expressions/9294858532.png",labelloc=b,URL="http://output.com"];
+2494040 [shape=ellipse, color=red,image="../../expressions/4948934890.png",labelloc=b,URL="http://output.com"];
+2495954 [shape=ellipse, color=red,image="../../expressions/2394935835.png",labelloc=b,URL="http://output.com"];
+3402919 [shape=ellipse, color=red,image="../../expressions/9999999975.png",labelloc=b,URL="http://output.com"];
+4930585 [shape=ellipse, color=red,image="../../expressions/2848934890.png",labelloc=b,URL="http://output.com"];
+1294984 [shape=invtrapezium, color=red,label="declareAssumption"];
+2394942 [shape=invtrapezium, color=red,label="distributeConjugateTransposeToFactors"];
+2485909 [shape=invtrapezium, color=red,label="subRHSofEqXintoEqY"];
+2490098 [shape=invtrapezium, color=red,label="subRHSofEqXintoEqY"];
+2939493 [shape=invtrapezium, color=red,label="declareFinalEq"];
+3403595 [shape=invtrapezium, color=red,label="declareInitialEq"];
+9538385 [shape=invtrapezium, color=red,label="conjugateTransposeBothSides"];
+}

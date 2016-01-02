@@ -1,0 +1,7 @@
+# run the scripts in the following order:
+
+python create_picture_per_feed_expression.py
+bash create_all_derivations.sh
+bash create_picture_for_each_derivation.sh
+
+# "create_picture_per_derivation.py" doesn't need to be called; it's used by create_picture_for_each_derivation.sh

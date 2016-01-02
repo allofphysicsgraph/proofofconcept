@@ -1,0 +1,38 @@
+digraph physicsDerivation {
+overlap = false;
+label="Equation relations\nExtracted from connections_database.csv";
+fontsize=12;
+3948572 -> 1939485;
+1939485 -> 2339482;
+2339482 -> 9485482;
+9485482 -> 3948552;
+3948552 -> 2941319;
+4295822 -> 2934842;
+2934842 -> 2930454;
+2941319 -> 2930454;
+2930454 -> 3949292;
+3949292 -> 3848292;
+3848292 -> 3844221;
+3844221 -> 3838233;
+3838233 -> 3948472;
+3948472 -> 1393411;
+1393411 -> 2109231;
+2109231 -> 3949211;
+1939485 [shape=ellipse, color=red,image="../../expressions/7575859295.png",labelloc=b,URL="http://output.com"];
+2109231 [shape=ellipse, color=red,image="../../expressions/7575859312.png",labelloc=b,URL="http://output.com"];
+2934842 [shape=ellipse, color=red,image="../../expressions/7575859304.png",labelloc=b,URL="http://output.com"];
+2941319 [shape=ellipse, color=red,image="../../expressions/7575859302.png",labelloc=b,URL="http://output.com"];
+3844221 [shape=ellipse, color=red,image="../../expressions/7575859308.png",labelloc=b,URL="http://output.com"];
+3948472 [shape=ellipse, color=red,image="../../expressions/7575859310.png",labelloc=b,URL="http://output.com"];
+3949292 [shape=ellipse, color=red,image="../../expressions/7575859306.png",labelloc=b,URL="http://output.com"];
+9485482 [shape=ellipse, color=red,image="../../expressions/7575859300.png",labelloc=b,URL="http://output.com"];
+1393411 [shape=invtrapezium, color=red,label="ReplaceSummationNotationWithVectorNotation"];
+2339482 [shape=invtrapezium, color=red,label="ReplaceCurlWithLeviCevitaSummationContravariant"];
+2930454 [shape=invtrapezium, color=red,label="subRHSofEqXintoEqY"];
+3838233 [shape=invtrapezium, color=red,label="simplify"];
+3848292 [shape=invtrapezium, color=red,label="simplify"];
+3948552 [shape=invtrapezium, color=red,label="ReplaceCurlWithLeviCevitaSummationContravariant"];
+3948572 [shape=invtrapezium, color=red,label="declareIdentity"];
+3949211 [shape=invtrapezium, color=red,label="claimLHSequalsRHS"];
+4295822 [shape=invtrapezium, color=red,label="declareIdentity"];
+}

@@ -1,0 +1,24 @@
+digraph physicsDerivation {
+overlap = false;
+label="Equation relations\nExtracted from connections_database.csv";
+fontsize=12;
+4952082 -> 3494854;
+9492929 -> 4842942;
+3494854 -> 4842942;
+4842942 -> 2938188;
+2938188 -> 4848592;
+4848592 -> 2938190;
+2938190 -> 8483953;
+8483953 -> 3848329;
+3848329 -> 2839422;
+2938188 [shape=ellipse, color=red,image="../../expressions/8489593960.png",labelloc=b,URL="http://output.com"];
+2938190 [shape=ellipse, color=red,image="../../expressions/8489593962.png",labelloc=b,URL="http://output.com"];
+3494854 [shape=ellipse, color=red,image="../../expressions/8489593958.png",labelloc=b,URL="http://output.com"];
+3848329 [shape=ellipse, color=red,image="../../expressions/8489593964.png",labelloc=b,URL="http://output.com"];
+2839422 [shape=invtrapezium, color=red,label="declareFinalEq"];
+4842942 [shape=invtrapezium, color=red,label="subtractXfromBothSides"];
+4848592 [shape=invtrapezium, color=red,label="swapLHSwithRHS"];
+4952082 [shape=invtrapezium, color=red,label="declareIdentity"];
+8483953 [shape=invtrapezium, color=red,label="indefIntegration"];
+9492929 [shape=ellipse, color=red,image="../../feeds/9492929.png",labelloc=b,URL="http://feed.com"];
+}
