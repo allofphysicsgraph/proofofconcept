@@ -1,3 +1,7 @@
+# Physics Equation Graph
+# Ben Payne <ben.is.located@gmail.com>
+# 20160129
+
 rm -rf ../derivations/all
 mkdir ../derivations/all
 find ../derivations -depth 1 -type d | while read this_dir; do

@@ -1,6 +1,7 @@
 #!/opt/local/bin/python
-# Physics Equation Graph
 # Ben Payne <ben.is.located@gmail.com>
+# Physics Derivation Graph
+# 20160129
 
 import sys
 import os

@@ -1,3 +1,10 @@
+# Ben Payne <ben.is.located@gmail.com>
+# Physics Derivation Graph
+# 20160129
+
+# use: python create_picture_per_derivation.py "../derivations/frequency relations"
+# output: ../derivations/frequency relations/graphviz.do
+
 import os
 import sys
 import csv
@@ -89,8 +96,8 @@ for this_feed in feed_list:
 
 graphviz_file.write("}\n")
 
-# print("neato -Tsvg -Nlabel=\"\" graphviz.dot > out.svg")
-# print("neato -Tpng -Nlabel=\"\" graphviz.dot > out.png")
+print("neato -Tsvg -Nlabel=\"\" graphviz.dot > out.svg")
+print("neato -Tpng -Nlabel=\"\" graphviz.dot > out.png")
 
 # subprocess.call(["neato","-Tpng -Nlabel=\"\" \which_derivation_to_make+"/graphviz.dot\" > \which_derivation_to_make+"/out.png\""], shell=True)
 # extension='png'
