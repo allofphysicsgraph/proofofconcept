@@ -9,18 +9,20 @@ Physics Derivation Graph
 * Claim: this graph can be checked by a computer algebra system
 
 # Licensing
-Creative Commons Attribution-ShareAlike 3.0 Unported License.
+[Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
+
+
 
 # Requirements
 
-Python 2.7, http://www.python.org/getit/
+[Python 2.7](http://www.python.org/getit/)
 
 Python packages: 
 * yaml
 
 Non-Python applications
 * Latex
-* Graphviz (neato), http://www.graphviz.org/
+* [Graphviz](http://www.graphviz.org/) (neato)
 
 # How to use (for the impatient)
 
@@ -68,7 +70,7 @@ for input to graph plotting programs like yED
 
 # Status
 
-Development and testing performed on Mac OS 10.7.5
+Development and testing performed on Mac OS 10.11.2
 
 Currently, content is entered into CSV files:
 * connections_database.csv: relation between inference rules and expressions
