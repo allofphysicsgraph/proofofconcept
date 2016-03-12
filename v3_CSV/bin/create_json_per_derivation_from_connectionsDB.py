@@ -16,7 +16,7 @@ import subprocess
 import yaml # used to read "config.input"
 import os.path
 import sys
-lib_path = os.path.abspath('lib')
+lib_path = os.path.abspath('../lib')
 sys.path.append(lib_path) # this has to proceed use of physgraph
 import lib_physics_graph as physgraf
 
