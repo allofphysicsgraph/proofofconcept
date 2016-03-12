@@ -2,7 +2,7 @@
 # Ben Payne <ben.is.located@gmail.com>
 
 make_texPDF_for_set_boolean: False
-make_graphviz_boolean:       True # the big graph
+make_graphviz_boolean:       False # the big graph
 make_graphml_boolean:        True
 make_networkx_boolean:       True
 
