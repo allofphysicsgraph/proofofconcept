@@ -10,7 +10,7 @@
 import subprocess
 import os.path
 import sys
-lib_path = os.path.abspath('lib')
+lib_path = os.path.abspath('../lib')
 db_path = os.path.abspath('databases')
 output_path = os.path.abspath('output')
 sys.path.append(lib_path) # this has to proceed use of physgraph
