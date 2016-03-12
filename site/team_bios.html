@@ -1,5 +1,16 @@
 <html>
   <head>
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="javascript_libraries/jquery-2.1.4.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("footer.html"); 
+    });
+    </script> 
+  
     <title>Physics Derivation graph: team bios</title>
   </head>
   <body bgcolor="#ffffff">
@@ -23,24 +34,7 @@
 </tr>
 <tr>
   <td valign="top">
-    <P><a href="https://github.com/allofphysicsgraph/proofofconcept">Get Source Code</a></P>
-    
-    <P><a href="https://github.com/allofphysicsgraph/proofofconcept/wiki">Project Wiki</a>
-    
-    <P><a href="https://github.com/allofphysicsgraph/proofofconcept/issues">Issues</a></P>
-    
-    <P><a href="faq.html">FAQ</a></P>
-    
-    <P><a href="list_of_experiments.html">Sandbox</a></P>
-    
-    <P><a href="team_bios.html">The Team</a></P>
-    
-    <P><a href="..">Home</a></P>
-    
-    <!--
-    <P><a href=""></a></P>
-    -->
-  
+ <div id="includedNavContent"></div>
   </td>
   <td>&nbsp;</td>
   <td>
@@ -52,13 +46,7 @@
 
 <P>&nbsp;</P>
 
-<P>&nbsp;</P>
-
-<P>&nbsp;</P>
-
-<P>This site and this project are covered by the GNU GENERAL PUBLIC LICENSE,  Version 2</P>
-
-<P>Last updated 20150709 by Ben</P>
+<div id="includedFooterContent"></div>
   </td>
   <td>&nbsp;</td>
 </tr>
