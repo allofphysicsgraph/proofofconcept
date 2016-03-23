@@ -16,8 +16,13 @@ sys.path.append(lib_path) # this has to proceed use of physgraph
 db_path = os.path.abspath('databases')
 import lib_physics_graph as physgraf
 
-expressionsDB=   input_data["expressionsDB_path"]
+expressionsDB_path=   input_data["expressionsDB_path"]
 expressions_list_of_dics=physgraf.convert_expressions_csv_to_list_of_dics(expressionsDB)
+
+# http://stackoverflow.com/questions/6665725/parsing-xml-using-minidom
+#import easy to use xml parser called minidom:
+from xml.dom.minidom import parseString
+
 # this is still XML
 symbolsDB=physgraf.parse_XML_file(db_path+'/symbols_database.xml')
 

@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Physics Derivation graph: GraphViz example</title>
+    <title>Physics Derivation graph: CSV design</title>
   </head>
   <body bgcolor="#ffffff">
 <!-- Google Tag Manager -->
@@ -15,21 +15,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <P>Contents of connections_database.csv</P>
 
+<P>node IDs forming the graph</P>
 <P>
 <FONT FACE="Courier New"> 
-&quot;frequency and period&quot;,2,&quot;expression&quot;,8482459,       3131111133,   &quot;infrule&quot;,6822583,multbothsidesby<BR>
-&quot;frequency and period&quot;,2,      &quot;feed&quot;,5749291,                0,   &quot;infrule&quot;,6822583,multbothsidesby<BR>
-&quot;frequency and period&quot;,2,   &quot;infrule&quot;,6822583,  multbothsidesby,&quot;expression&quot;,8341200,2131616531<BR>
-&quot;frequency and period&quot;,3,&quot;expression&quot;,8341200,       2131616531,   &quot;infrule&quot;,9483715,dividebothsidesby<BR>
-&quot;frequency and period&quot;,3,      &quot;feed&quot;,8837284,                0,   &quot;infrule&quot;,9483715,dividebothsidesby<BR>
-&quot;frequency and period&quot;,3,   &quot;infrule&quot;,9483715,dividebothsidesby,&quot;expression&quot;,9380032,2113211456<BR>
-&quot;frequency and period&quot;,4,&quot;expression&quot;,9380032,       2113211456,   &quot;infrule&quot;,8345721,declareFinalEq<BR>
+8482459,6822583<BR>
+5749291,6822583<BR>
+6822583,8341200<BR>
+8341200,9483715<BR>
+8837284,9483715<BR>
+9483715,9380032<BR>
+9380032,8345721<BR>
 </FONT> 
+</P>
+<P>These node IDs are linked with a permenant ID for the expression or inference rule</P>
+<P>
+<FONT FACE="Courier New"> 
+8482459,       3131111133<BR>
+5749291,                0<BR>
+6822583,  multbothsidesby<BR>
+8341200,       2131616531<BR>
+8837284,                0<BR>
+9483715,dividebothsidesby<BR>
+9380032,       2113211456<BR>
+8345721,declareFinalEq<BR>
+</FONT> 
+</P>
 
-<P>This forms one of the core databases for the Physics Derivation Graph.<BR>
-The first column is the name of the derivation, the second is the derivation step index.<BR>
-The third and fourth column are the &quot;from&quot; node -- temporary and permanent labels.<BR>
-The fifth and sixth column are the &quot;to&quot; node -- temporary and permanent labels.</P>
+<P>This forms the core database for the Physics Derivation Graph.<BR>
 
 <P>The permanent expression index points to the expressions_database.xml<BR>
 The inference rules are plain tex.</P>
