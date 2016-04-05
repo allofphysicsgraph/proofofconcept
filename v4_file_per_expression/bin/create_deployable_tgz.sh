@@ -32,10 +32,10 @@ mkdir               ${folder_name}/lib
 cp ../../lib/*.py         ${folder_name}/lib/
 
 mkdir               ${folder_name}/bin
-cp *.py         ${folder_name}/bin/
+cp *         ${folder_name}/bin/
 
 # z=gzip, v=verbose, f=write to file
-tar czvf physics_graph_v4_${todays_date}_git_${git_indx}.tgz ${folder_name}
+tar cpzvf physics_graph_v4_${todays_date}_git_${git_indx}.tgz ${folder_name}
 echo "done making tgz"
 
 rm -rf ${folder_name}
