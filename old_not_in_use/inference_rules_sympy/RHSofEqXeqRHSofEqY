@@ -1,5 +1,5 @@
 
-      <infrule_name>RHSofEqXeqRHSofEqY</infrule_name>
+      <infrule_name>RHSofExprXeqRHSofExprY</infrule_name>
       <inference_rule_type>combining multiple equations</inference_rule_type>
       <latex_expansion>RHS of Eq.~\ref{eq:#1} is equal to RHS of Eq.~\ref{eq:#2}.</latex_expansion>
       <cas_mathematica></cas_mathematica>

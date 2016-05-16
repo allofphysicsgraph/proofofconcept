@@ -12,15 +12,15 @@
   {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_expression_png/3947269979.png", "width": 362, "height": 82, "label": "3947269979"},
   {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_expression_png/7466829492.png", "width": 138, "height": 35, "label": "7466829492"},
   {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/declareIdentity.png", "width": 204, "height": 31, "label": "3948572"},
-  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/subLHSofEqXintoEqY.png", "width": 313, "height": 32, "label": "1939442"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/subLHSofExprXintoExprY.png", "width": 313, "height": 32, "label": "1939442"},
   {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/declareAssumption.png", "width": 260, "height": 32, "label": "3837471"},
-  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/declareFinalEq.png", "width": 206, "height": 32, "label": "3948584"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/declareFinalExpression.png", "width": 206, "height": 32, "label": "3948584"},
   {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/partialDiffWRT.png", "width": 217, "height": 32, "label": "1010301"},
   {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/takeCurlofBothSides.png", "width": 284, "height": 25, "label": "4224853"},
-  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/subLHSofEqXintoEqY.png", "width": 313, "height": 32, "label": "4655746"},
-  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/subLHSofEqXintoEqY.png", "width": 313, "height": 32, "label": "5656372"},
-  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/declareInitialEq.png", "width": 218, "height": 32, "label": "2932848"},
-  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/subLHSofEqXintoEqY.png", "width": 313, "height": 32, "label": "3737384"}
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/subLHSofExprXintoExprY.png", "width": 313, "height": 32, "label": "4655746"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/subLHSofExprXintoExprY.png", "width": 313, "height": 32, "label": "5656372"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/declareInitialExpression.png", "width": 218, "height": 32, "label": "2932848"},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/subLHSofExprXintoExprY.png", "width": 313, "height": 32, "label": "3737384"}
 ],
    "links":[
   {"source":20,"target":3},

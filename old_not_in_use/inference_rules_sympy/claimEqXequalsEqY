@@ -1,5 +1,5 @@
 
-      <infrule_name>claimEqXequalsEqY</infrule_name>
+      <infrule_name>claimExprXequalsExprY</infrule_name>
       <latex_expansion>Thus we see that Eq.~\ref{eq:#1} is equivalent to Eq.~\ref{eq:#2}.</latex_expansion>
       <cas_mathematica></cas_mathematica>
       <cas_sympy>

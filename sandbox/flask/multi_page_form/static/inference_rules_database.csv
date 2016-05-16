@@ -7,10 +7,10 @@
                                 multbothsidesby,2,1,1,1,"none","Multiply both sides of Eq.~\ref{eq:#2} by $#1$."
                               dividebothsidesby,2,1,1,1,"none","Divide both sides of Eq.~\ref{eq:#2} by $#1$."
 
-                               declareInitialEq,1,0,0,1,"pass label of starting equation","Eq.~\ref{eq:#1} is an initial equation."
+                               declareInitialExpression,1,0,0,1,"pass label of starting equation","Eq.~\ref{eq:#1} is an initial equation."
                               declareAssumption,1,0,0,1,"pass label of starting equation","Eq.~\ref{eq:#1} is an assumption."
                            declareGuessSolution,1,0,1,1,"applies to differential equations","Judicious choice as a guessed solution to Eq.~\ref{eq:#1} is"
-                                 declareFinalEq,1,0,1,0,"pass label of starting equation","Eq.~\ref{eq:#1} is one of the final equations."
+                                 declareFinalExpression,1,0,1,0,"pass label of starting equation","Eq.~\ref{eq:#1} is one of the final equations."
                                 declareIdentity,1,0,0,1,"none","Eq.~\ref{eq:#1} is an identity."
                               boundaryCondition,1,0,1,1,"applies to differential equations","A boundary condition for Eq.~\ref{eq:#1} is"
 
@@ -59,7 +59,7 @@ ReplaceCurlWithLeviCevitaSummationContravariant,1,0,1,1,"Einstein summation nota
                              applyOperatorToKet,1,0,1,1,"none","Apply operator to ket in Eq.~\ref{eq:#1}."
                              applyOperatorToBra,1,0,1,1,"none","Apply operator to bra in Eq.~\ref{eq:#1}."
 
-                                    makeEqPower,2,1,1,1,"none","Make Eq.~\ref{eq:#2} the power of $#1$."
+                                    makeExpressionPower,2,1,1,1,"none","Make Eq.~\ref{eq:#2} the power of $#1$."
                           raiseBothSidesToPower,2,1,1,2,"Two outputs for +/- solutions","Raise both sides of Eq.~\ref{eq:#2} to $#1$."
 
                                 selectRealParts,1,0,1,1,"none","Select real parts of Eq.~\ref{eq:#1}."
@@ -74,16 +74,16 @@ ReplaceCurlWithLeviCevitaSummationContravariant,1,0,1,1,"Einstein summation nota
                                 sumExponentsLHS,1,0,1,1,"none","Sum exponents on LHS of Eq.~\ref{eq:#1}."
                                 sumExponentsRHS,1,0,1,1,"none","Sum exponents on RHS of Eq.~\ref{eq:#1}."
 
-                                    addEqXtoEqY,2,0,2,1,"assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)","Add Eq.~\ref{eq:#1} to Eq.~\ref{eq:#2}."
-                             subRHSofEqXintoEqY,2,0,2,1,"none","Substitute RHS of Eq.~\ref{eq:#1} into Eq.~\ref{eq:#2}."
-                             subLHSofEqXintoEqY,2,0,2,1,"none","Substitute LHS of Eq.~\ref{eq:#1} into Eq.~\ref{eq:#2}."
-                                   multEqXbyEqY,2,0,2,1,"assumes result form LHS(X)*LHS(Y)=RHS(X)*RHS(Y)","Multiply Eq.~\ref{eq:#1} by Eq.~\ref{eq:#2}."
-                             LHSofEqXeqLHSofEqY,2,0,2,1,"none","LHS of Eq.~\ref{eq:#1} is equal to LHS of Eq.~\ref{eq:#2}."
-                             RHSofEqXeqRHSofEqY,2,0,2,1,"none","RHS of Eq.~\ref{eq:#1} is equal to RHS of Eq.~\ref{eq:#2}."
+                                    addExprXtoExprY,2,0,2,1,"assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)","Add Eq.~\ref{eq:#1} to Eq.~\ref{eq:#2}."
+                             subRHSofExprXintoExprY,2,0,2,1,"none","Substitute RHS of Eq.~\ref{eq:#1} into Eq.~\ref{eq:#2}."
+                             subLHSofExprXintoExprY,2,0,2,1,"none","Substitute LHS of Eq.~\ref{eq:#1} into Eq.~\ref{eq:#2}."
+                                   multExprXbyExprY,2,0,2,1,"assumes result form LHS(X)*LHS(Y)=RHS(X)*RHS(Y)","Multiply Eq.~\ref{eq:#1} by Eq.~\ref{eq:#2}."
+                             LHSofExprXeqLHSofExprY,2,0,2,1,"none","LHS of Eq.~\ref{eq:#1} is equal to LHS of Eq.~\ref{eq:#2}."
+                             RHSofExprXeqRHSofExprY,2,0,2,1,"none","RHS of Eq.~\ref{eq:#1} is equal to RHS of Eq.~\ref{eq:#2}."
 
-                     EqXisTrueUnderconditionEqY,2,0,2,1,"none","Eq.~\ref{eq:#1} is valid when Eq.~\ref{eq:#2} occurs."
+                     ExprXisTrueUnderconditionExprY,2,0,2,1,"none","Eq.~\ref{eq:#1} is valid when Eq.~\ref{eq:#2} occurs."
 
-                              claimEqXequalsEqY,2,0,2,0,"none","Thus we see that Eq.~\ref{eq:#1} is equivalent to Eq.~\ref{eq:#2}."
+                              claimExprXequalsExprY,2,0,2,0,"none","Thus we see that Eq.~\ref{eq:#1} is equivalent to Eq.~\ref{eq:#2}."
                               claimLHSequalsRHS,1,0,1,0,"none","Thus we see that LHS of Eq.~\ref{eq:#1} is equal to RHS."
 
                          normalizationCondition,1,0,0,1,"none","Normalization condition is Eq.~\ref{eq:#1}."

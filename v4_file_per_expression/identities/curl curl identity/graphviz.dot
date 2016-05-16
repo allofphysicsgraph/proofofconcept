@@ -28,7 +28,7 @@ fontsize=12;
 9485482 [shape=ellipse, color=red,image="../../expressions/7575859300.png",labelloc=b,URL="http://output.com"];
 1393411 [shape=invtrapezium, color=red,label="ReplaceSummationNotationWithVectorNotation"];
 2339482 [shape=invtrapezium, color=red,label="ReplaceCurlWithLeviCevitaSummationContravariant"];
-2930454 [shape=invtrapezium, color=red,label="subRHSofEqXintoEqY"];
+2930454 [shape=invtrapezium, color=red,label="subRHSofExprXintoExprY"];
 3838233 [shape=invtrapezium, color=red,label="simplify"];
 3848292 [shape=invtrapezium, color=red,label="simplify"];
 3948552 [shape=invtrapezium, color=red,label="ReplaceCurlWithLeviCevitaSummationContravariant"];

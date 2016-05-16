@@ -1,5 +1,5 @@
 
-      <infrule_name>addEqXtoEqY</infrule_name>
+      <infrule_name>addExprXtoExprY</infrule_name>
       <inference_rule_type>combining multiple equations</inference_rule_type>
       <latex_expansion>Add Eq.~\ref{eq:#1} to Eq.~\ref{eq:#2}.</latex_expansion>
       <comment>assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)</comment>

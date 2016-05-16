@@ -117,13 +117,13 @@ for this_connection in connectionsDB.getElementsByTagName('connection'):
   #this_connection=physgraf.remove_tags(this_connection.toxml(encoding="ascii"),'connection')
   #print(this_connection)
   this_inference_rule=physgraf.convert_tag_to_content(this_connection,'infrule_name',0)
-  if (this_inference_rule=="declareInitialEq" or \
+  if (this_inference_rule=="declareInitialExpression" or \
       this_inference_rule=="AssumeNdimensions" or \
       this_inference_rule=="ReplaceCurlWithLeviCevitaSummationContravariant" or \
       this_inference_rule=="ReplaceSummationNotationWithVectorNotation" or \
       this_inference_rule=="replaceScalarWithVector" or \
       this_inference_rule=="normalizationCondition" or \
-      this_inference_rule=="declareFinalEq" or \
+      this_inference_rule=="declareFinalExpression" or \
       this_inference_rule=="declareAssumption" or \
       this_inference_rule=="declareGuessSolution" or \
       this_inference_rule=="boundaryCondition" ):
@@ -168,9 +168,9 @@ for this_connection in connectionsDB.getElementsByTagName('connection'):
       this_inference_rule=="sumExponents" or \
       this_inference_rule=="sumExponentsLHS" or \
       this_inference_rule=="sumExponentsRHS" or \
-      this_inference_rule=="subRHSofEqXintoEqY" or \
-      this_inference_rule=="subLHSofEqXintoEqY" or \
-      this_inference_rule=="EqXisTrueUnderconditionEqY" or \
+      this_inference_rule=="subRHSofExprXintoExprY" or \
+      this_inference_rule=="subLHSofExprXintoExprY" or \
+      this_inference_rule=="ExprXisTrueUnderconditionExprY" or \
       this_inference_rule=="declareIdentity" ): 
     counter_array[1]=counter_array[1]+1  
     print("skipping "+this_inference_rule+" since no CAS implemented yet")

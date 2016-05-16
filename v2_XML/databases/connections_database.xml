@@ -24,40 +24,40 @@
 
 <!-- for producing Latex files, connections are processed in the order given in this file. -->
 
-<!-- at least one "declareInitialEq" is required for every connection set in order to correctly compile Latex output -->
+<!-- at least one "declareInitialExpression" is required for every connection set in order to correctly compile Latex output -->
 
 <all_connections>
   <connection_set name="frequency_relations" discipline="physics_basics">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>         <infrule_temporary_unique_id>2303943</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>         <infrule_temporary_unique_id>2303943</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>5900595848</expression_permenant_unique_id><expression_temporary_unique_id>3293094</expression_temporary_unique_id>
 <!--    <expression_latex>k=\frac{\omega}{v}</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>         <infrule_temporary_unique_id>0304948</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>         <infrule_temporary_unique_id>0304948</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>0404050504</expression_permenant_unique_id><expression_temporary_unique_id>3294004</expression_temporary_unique_id>
 <!--    <expression_latex>\lambda = \frac{v}{f}</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>         <infrule_temporary_unique_id>8332941</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>         <infrule_temporary_unique_id>8332941</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>3131211131</expression_permenant_unique_id><expression_temporary_unique_id>0921465</expression_temporary_unique_id>
 <!--    <expression_latex>\omega=2 \pi f</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>         <infrule_temporary_unique_id>8332941</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>         <infrule_temporary_unique_id>8332941</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>3131111133</expression_permenant_unique_id><expression_temporary_unique_id>8482459</expression_temporary_unique_id>
 <!--    <expression_latex>T=1/f     </expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>       <infrule_temporary_unique_id>3832748</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>       <infrule_temporary_unique_id>3832748</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>3132131132</expression_permenant_unique_id><expression_temporary_unique_id>8374556</expression_temporary_unique_id>
 <!--    <expression_latex>\omega=\frac{2\pi}{T}</expression_latex> -->
@@ -70,7 +70,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>2939482</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2939482</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>0404050504</expression_permenant_unique_id><expression_temporary_unique_id>3294004</expression_temporary_unique_id>
 <!--    <expression_latex>\lambda = \frac{v}{f}</expression_latex> -->
@@ -83,7 +83,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id></infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id></infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>0934990943</expression_permenant_unique_id><expression_temporary_unique_id>8394853</expression_temporary_unique_id>
 <!--    <expression_latex>k = \frac{2 \pi}{v\ T}</expression_latex> -->
@@ -123,7 +123,7 @@
     </output>
   </connection>   
   <connection>
-    <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>9483843</infrule_temporary_unique_id></operator>
+    <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>9483843</infrule_temporary_unique_id></operator>
     <input>
        <expression_permenant_unique_id>2113211456</expression_permenant_unique_id><expression_temporary_unique_id>9380032</expression_temporary_unique_id>
 <!--    <expression_latex>f=1/T</expression_latex> -->
@@ -136,7 +136,7 @@
     </output>
   </connection>   
   <connection>
-    <operator><infrule_name>declareFinalEq</infrule_name>            <infrule_temporary_unique_id>8345721</infrule_temporary_unique_id></operator>
+    <operator><infrule_name>declareFinalExpression</infrule_name>            <infrule_temporary_unique_id>8345721</infrule_temporary_unique_id></operator>
     <input>
        <expression_permenant_unique_id>3121513111</expression_permenant_unique_id><expression_temporary_unique_id>2934848</expression_temporary_unique_id>
 <!--    <expression_latex>k=\frac{2\pi}{\lambda}</expression_latex> -->
@@ -145,14 +145,14 @@
 </connection_set>
   <connection_set name="quadratic_equation_derivation" discipline="math">
   <connection>
-    <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>8494551</infrule_temporary_unique_id></operator>
+    <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>8494551</infrule_temporary_unique_id></operator>
     <output>
       <expression_permenant_unique_id>9285928292</expression_permenant_unique_id><expression_temporary_unique_id>8882098</expression_temporary_unique_id>
 <!--    <expression_latex>ax^2 + bx + c = 0</expression_latex> -->
     </output>
   </connection>
   <connection>
-    <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>8494551</infrule_temporary_unique_id></operator>
+    <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>8494551</infrule_temporary_unique_id></operator>
     <output>
       <expression_permenant_unique_id>8582954722</expression_permenant_unique_id><expression_temporary_unique_id>0909127</expression_temporary_unique_id>
 <!--    <expression_latex>x^2 + 2xh + h^2 = (x+h)^2</expression_latex> -->
@@ -223,7 +223,7 @@
     </output>
   </connection>
   <connection>
-    <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name>          <infrule_temporary_unique_id>7777777</infrule_temporary_unique_id></operator>
+    <operator><infrule_name>LHSofExprXeqLHSofExprY</infrule_name>          <infrule_temporary_unique_id>7777777</infrule_temporary_unique_id></operator>
     <input>
       <expression_permenant_unique_id>5928292841</expression_permenant_unique_id><expression_temporary_unique_id>0000112</expression_temporary_unique_id>
 <!--    <expression_latex>x^2 + (b/a)x + (b/(2a))^2 = -c/a + (b/(2a))^2</expression_latex> -->
@@ -299,14 +299,14 @@
     </output>
   </connection>
   <connection>
-    <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>8359402</infrule_temporary_unique_id></operator>
+    <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>8359402</infrule_temporary_unique_id></operator>
     <input>
         <expression_permenant_unique_id>9999999969</expression_permenant_unique_id><expression_temporary_unique_id>8761200</expression_temporary_unique_id>
 <!--    <expression_latex>x=\frac{-b+\sqrt{b^2-4ac}}{2a}</expression_latex> -->
     </input>
   </connection>
   <connection>
-    <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>8359402</infrule_temporary_unique_id></operator>
+    <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>8359402</infrule_temporary_unique_id></operator>
     <input>
         <expression_permenant_unique_id>9999999968</expression_permenant_unique_id><expression_temporary_unique_id>8811221</expression_temporary_unique_id>
 <!--    <expression_latex>x=\frac{-b-\sqrt{b^2-4ac}}{2a}</expression_latex> -->
@@ -315,7 +315,7 @@
   </connection_set>
   <connection_set name="euler_equation_proof" discipline="math">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>7364656</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>7364656</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>9492920340</expression_permenant_unique_id><expression_temporary_unique_id>1029383</expression_temporary_unique_id>
 <!--    <expression_latex>y = \cos(x)+i \sin(x)</expression_latex> -->
@@ -348,7 +348,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>7466748</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>7466748</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>9482984922</expression_permenant_unique_id><expression_temporary_unique_id>2948271</expression_temporary_unique_id>
 <!--    <expression_latex>\frac{dy}{dx} = (i\sin(x) + \cos(x))\ i</expression_latex> -->
@@ -425,7 +425,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>makeEqPower</infrule_name>          <infrule_temporary_unique_id>1029890</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>makeExpressionPower</infrule_name>          <infrule_temporary_unique_id>1029890</infrule_temporary_unique_id></operator>
       <input>
        <feed_temporary_unique_id>6656532</feed_temporary_unique_id>
 <!-- <feed_latex>e</feed_latex> -->
@@ -438,7 +438,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>7566272</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>7566272</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9482923849</expression_permenant_unique_id><expression_temporary_unique_id>9587572</expression_temporary_unique_id>
 <!--    <expression_latex>\exp(i\ x) = y</expression_latex> -->
@@ -451,7 +451,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>7561612</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>7561612</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>4938429483</expression_permenant_unique_id><expression_temporary_unique_id>8888888</expression_temporary_unique_id>
 <!--    <expression_latex>\exp(i\ x) = \cos(x)+i \sin(x)</expression_latex>     -->
@@ -460,7 +460,7 @@
   </connection_set>
   <connection_set name="euler_equation_trig_sqrt" discipline="math">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>            <infrule_temporary_unique_id>7663728</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>            <infrule_temporary_unique_id>7663728</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>4938429483</expression_permenant_unique_id><expression_temporary_unique_id>8888888</expression_temporary_unique_id>
 <!--    <expression_latex>\exp(i\ x) = \cos(x)+i \sin(x)</expression_latex>     -->
@@ -482,7 +482,7 @@
       </output>
     </connection>   
     <connection>
-      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name><infrule_temporary_unique_id>9582956</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>LHSofExprXeqLHSofExprY</infrule_name><infrule_temporary_unique_id>9582956</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>4838429483</expression_permenant_unique_id><expression_temporary_unique_id>9999999</expression_temporary_unique_id>
 <!--    <expression_latex>\exp(2i\ x) = \cos(2x)+i \sin(2x)</expression_latex> -->
@@ -495,7 +495,7 @@
       </output>
     </connection>  
     <connection>
-      <operator><infrule_name>multEqXbyEqY</infrule_name><infrule_temporary_unique_id>8492847</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>multExprXbyExprY</infrule_name><infrule_temporary_unique_id>8492847</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>4938429483</expression_permenant_unique_id><expression_temporary_unique_id>8888888</expression_temporary_unique_id>
 <!--    <expression_latex>\exp(i\ x) = \cos(x)+i \sin(x)</expression_latex>     -->
@@ -574,7 +574,7 @@
       </output>
     </connection> 
     <connection>
-      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name><infrule_temporary_unique_id>9483240</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>LHSofExprXeqLHSofExprY</infrule_name><infrule_temporary_unique_id>9483240</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>3285732911</expression_permenant_unique_id><expression_temporary_unique_id>0912367</expression_temporary_unique_id>
 <!--    <expression_latex>(\cos(x))^2 = 1-(\sin(x))^2</expression_latex> -->
@@ -639,7 +639,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>1383414</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>1383414</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9988949211</expression_permenant_unique_id><expression_temporary_unique_id>1231131</expression_temporary_unique_id>
 <!--    <expression_latex>(\sin(x))^2 = \frac{1-\cos(2x)}{2}</expression_latex> -->
@@ -648,21 +648,21 @@
   </connection_set>
   <connection_set name="example_of_Godel_problem"  discipline="math">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>            <infrule_temporary_unique_id>7566367</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>            <infrule_temporary_unique_id>7566367</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>9829420421</expression_permenant_unique_id><expression_temporary_unique_id>7572712</expression_temporary_unique_id>
 <!--    <expression_latex>b = a</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>            <infrule_temporary_unique_id>4647381</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>            <infrule_temporary_unique_id>4647381</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>2948293829</expression_permenant_unique_id><expression_temporary_unique_id>4738297</expression_temporary_unique_id>
 <!--    <expression_latex>a = b</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name><infrule_temporary_unique_id>8673948</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>LHSofExprXeqLHSofExprY</infrule_name><infrule_temporary_unique_id>8673948</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>9829420421</expression_permenant_unique_id><expression_temporary_unique_id>7572712</expression_temporary_unique_id>
 <!--    <expression_latex>b = a</expression_latex> -->
@@ -690,7 +690,7 @@
   </connection_set>
   <connection_set name="particle_in_a_1D_box" discipline="quantum">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>8576627</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>8576627</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>5727578862</expression_permenant_unique_id><expression_temporary_unique_id>7572748</expression_temporary_unique_id>
 <!--    <expression_latex>\frac{d^2}{dx^2} \psi(x) = -k^2 \psi(x)</expression_latex> -->
@@ -730,7 +730,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name>          <infrule_temporary_unique_id>8571277</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>LHSofExprXeqLHSofExprY</infrule_name>          <infrule_temporary_unique_id>8571277</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9585727710</expression_permenant_unique_id><expression_temporary_unique_id>8577781</expression_temporary_unique_id>
 <!--    <expression_latex>\psi(x)=0\when{x=0}</expression_latex> -->
@@ -754,7 +754,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>8572265</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>8572265</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>1293913110</expression_permenant_unique_id><expression_temporary_unique_id>7572859</expression_temporary_unique_id>
 <!--    <expression_latex>0=b</expression_latex> -->
@@ -767,7 +767,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name>          <infrule_temporary_unique_id>9686782</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>LHSofExprXeqLHSofExprY</infrule_name>          <infrule_temporary_unique_id>9686782</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9059289981</expression_permenant_unique_id><expression_temporary_unique_id>7562671</expression_temporary_unique_id>
 <!--    <expression_latex>\psi(x)=a \sin(k x)</expression_latex> -->
@@ -787,7 +787,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>EqXisTrueUnderconditionEqY</infrule_name>          <infrule_temporary_unique_id>8575627</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>ExprXisTrueUnderconditionExprY</infrule_name>          <infrule_temporary_unique_id>8575627</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>1020010291</expression_permenant_unique_id><expression_temporary_unique_id>8577672</expression_temporary_unique_id>
 <!--    <expression_latex>0=a \sin(k W)</expression_latex> -->
@@ -813,7 +813,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>8575761</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>8575761</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>1858772113</expression_permenant_unique_id><expression_temporary_unique_id>9495882</expression_temporary_unique_id>
 <!--    <expression_latex>k = \frac{n \pi}{W} \when{n \in {\rm Integer}}</expression_latex> -->
@@ -870,7 +870,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>4455453</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>4455453</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>2944838499</expression_permenant_unique_id><expression_temporary_unique_id>3452131</expression_temporary_unique_id>
 <!--    <expression_latex>\psi(x)=a \sin(\frac{n \pi}{W} x) \when{n \in {\rm Integer}}</expression_latex> -->
@@ -883,7 +883,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>4948339</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>4948339</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>8849289982</expression_permenant_unique_id><expression_temporary_unique_id>3452132</expression_temporary_unique_id>
 <!--    <expression_latex>\psi(x)^*=a \sin(\frac{n \pi}{W} x) \when{n \in {\rm Integer}}</expression_latex> -->
@@ -918,7 +918,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>8576741</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>8576741</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>7575738420</expression_permenant_unique_id><expression_temporary_unique_id>0100404</expression_temporary_unique_id>
 <!--    <expression_latex>\left(\sin\left(\frac{n \pi}{W}x\right)\right)^2 = \frac{1-\cos\left(2\frac{n \pi}{W}x\right)}{2}</expression_latex> -->
@@ -1063,7 +1063,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>1384935</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>1384935</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9485747245</expression_permenant_unique_id><expression_temporary_unique_id>9394857</expression_temporary_unique_id>
 <!--    <expression_latex>\sqrt{\frac{2}{W}}= a</expression_latex> -->
@@ -1076,7 +1076,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>3847567</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>3847567</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9485747246</expression_permenant_unique_id><expression_temporary_unique_id>9394858</expression_temporary_unique_id>
 <!--    <expression_latex>-\sqrt{\frac{2}{W}}= a</expression_latex> -->
@@ -1089,21 +1089,21 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>7474753</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>7474753</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9393939992</expression_permenant_unique_id><expression_temporary_unique_id>8474765</expression_temporary_unique_id>
 <!--    <expression_latex>\psi(x)=\sqrt{\frac{2}{W}} \sin\left(\frac{n \pi}{W} x\right) \when{n \in {\rm Integer}}</expression_latex> -->
       </input>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>7474753</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>7474753</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9393939991</expression_permenant_unique_id><expression_temporary_unique_id>8474766</expression_temporary_unique_id>
 <!--    <expression_latex>\psi(x)=-\sqrt{\frac{2}{W}} \sin\left(\frac{n \pi}{W} x\right) \when{n \in {\rm Integer}}</expression_latex> -->
       </input>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>4757743</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>4757743</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>8582885111</expression_permenant_unique_id><expression_temporary_unique_id>7572118</expression_temporary_unique_id>
 <!--    <expression_latex>\psi(x) = a \sin(kx) + b \cos(kx)</expression_latex> -->
@@ -1147,14 +1147,14 @@
   </connection_set>
   <connection_set name="maxwell_to_electric_field_wave_equation" discipline="electromagnetism">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>2932848</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>2932848</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>1314864131</expression_permenant_unique_id><expression_temporary_unique_id>1199299</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{\nabla} \times \vec{H} = \epsilon_0 \frac{\partial \vec{E}}{\partial t}</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>2932848</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>2932848</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>9991999979</expression_permenant_unique_id><expression_temporary_unique_id>4757562</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{\nabla} \times \vec{E} = -\mu_0\frac{\partial \vec{H}}{\partial t}</expression_latex> -->
@@ -1185,7 +1185,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>1939442</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>1939442</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>1314464131</expression_permenant_unique_id><expression_temporary_unique_id>4642245</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{\nabla} \times \frac{\partial \vec{H}}{\partial t} = \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</expression_latex> -->
@@ -1198,7 +1198,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>2932848</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>2932848</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>9999999981</expression_permenant_unique_id><expression_temporary_unique_id>4857731</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{\nabla} \cdot \vec{E} = \rho/\epsilon_0</expression_latex> -->
@@ -1212,7 +1212,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>5656372</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>5656372</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9999999981</expression_permenant_unique_id><expression_temporary_unique_id>4857731</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{\nabla} \cdot \vec{E} = \rho/\epsilon_0</expression_latex> -->
@@ -1232,7 +1232,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>4655746</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>4655746</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>7466829492</expression_permenant_unique_id><expression_temporary_unique_id>2837471</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{\nabla} \cdot \vec{E} = 0</expression_latex> -->
@@ -1245,7 +1245,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>3737384</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>3737384</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>1636453295</expression_permenant_unique_id><expression_temporary_unique_id>3738373</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{\nabla} \times \vec{\nabla} \times \vec{E} =  - \nabla^2 \vec{E}</expression_latex> -->
@@ -1258,7 +1258,7 @@
       </output>
     </connection>      
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>3948584</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>3948584</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>8494839423</expression_permenant_unique_id><expression_temporary_unique_id>4758592</expression_temporary_unique_id>
 <!--    <expression_latex>\nabla^2 \vec{E}= \mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</expression_latex> -->
@@ -1267,14 +1267,14 @@
   </connection_set>
   <connection_set name="electric_field_wave_equation_time_dependent_to_time_independent" discipline="electromagnetism">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>8485758</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>8485758</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>8494839423</expression_permenant_unique_id><expression_temporary_unique_id>4758592</expression_temporary_unique_id>
 <!--    <expression_latex>\nabla^2 \vec{E}= \mu_0 \epsilon_0 \frac{\partial^2 \vec{E}}{\partial t^2}</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>8485758</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>8485758</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>8572852424</expression_permenant_unique_id><expression_temporary_unique_id>9393848</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{E}= E(\vec{r},t)</expression_latex> -->
@@ -1292,7 +1292,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>4858282</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>4858282</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>8572852424</expression_permenant_unique_id><expression_temporary_unique_id>9393848</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{E}= E(\vec{r},t)</expression_latex> -->
@@ -1305,7 +1305,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>1002928</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>1002928</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9394939493</expression_permenant_unique_id><expression_temporary_unique_id>3839493</expression_temporary_unique_id>
 <!--    <expression_latex>\nabla^2 E(\vec{r},t)= \mu_0 \epsilon_0 \frac{\partial^2}{\partial t^2} E(\vec{r},t)</expression_latex> -->
@@ -1344,7 +1344,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>8485758</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>8485758</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>4585828572</expression_permenant_unique_id><expression_temporary_unique_id>4949582</expression_temporary_unique_id>
 <!--    <expression_latex> \omega \mu_0 = \frac{1}{c^2}</expression_latex> -->
@@ -1377,7 +1377,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>5495827</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>5495827</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>3485475729</expression_permenant_unique_id><expression_temporary_unique_id>3949492</expression_temporary_unique_id>
 <!--    <expression_latex>\nabla^2 E(\vec{r})= - \frac{\omega^2}{c^2} \frac{\partial^2}{\partial t^2} E(\vec{r})</expression_latex> -->
@@ -1386,7 +1386,7 @@
   </connection_set>
   <connection_set name="euler_equation_trig_relations" discipline="math">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>7473895</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>7473895</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>4938429483</expression_permenant_unique_id><expression_temporary_unique_id>8888888</expression_temporary_unique_id>
 <!--    <expression_latex>\exp(i\ x) = \cos(x)+i \sin(x)</expression_latex>     -->
@@ -1442,7 +1442,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>addEqXtoEqY</infrule_name>          <infrule_temporary_unique_id>3848592</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>addExprXtoExprY</infrule_name>          <infrule_temporary_unique_id>3848592</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>4938429483</expression_permenant_unique_id><expression_temporary_unique_id>8888888</expression_temporary_unique_id>
 <!--    <expression_latex>\exp(i\ x) = \cos(x)+i \sin(x)</expression_latex>     -->
@@ -1479,7 +1479,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>2384942</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>2384942</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>4585932229</expression_permenant_unique_id><expression_temporary_unique_id>4849888</expression_temporary_unique_id>
 <!--    <expression_latex>\cos(x) = \frac{1}{2}\left(\exp(i\ x)+\exp(-i\ x)\right)</expression_latex>     -->
@@ -1499,7 +1499,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>addEqXtoEqY</infrule_name>          <infrule_temporary_unique_id>2939404</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>addExprXtoExprY</infrule_name>          <infrule_temporary_unique_id>2939404</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>4938429483</expression_permenant_unique_id><expression_temporary_unique_id>8888888</expression_temporary_unique_id>
 <!--    <expression_latex>\exp(i\ x) = \cos(x)+i \sin(x)</expression_latex>     -->
@@ -1536,7 +1536,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>2384942</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>2384942</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>2103023049</expression_permenant_unique_id><expression_temporary_unique_id>4849959</expression_temporary_unique_id>
 <!--    <expression_latex>\sin(x) = \frac{1}{2i}\left(\exp(i\ x)-\exp(-i\ x)\right)</expression_latex>     -->
@@ -1587,7 +1587,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>2839422</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>2839422</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>8489593964</expression_permenant_unique_id><expression_temporary_unique_id>3848329</expression_temporary_unique_id>
 <!--    <expression_latex>\int u\ dv = u\ v - \int v\ du</expression_latex>     -->
@@ -1632,7 +1632,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>2930454</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2930454</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>7575859304</expression_permenant_unique_id><expression_temporary_unique_id>2934842</expression_temporary_unique_id>
 <!--    <expression_latex>\epsilon^{i,j,k} \epsilon_{n,j,k} = \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h}</expression_latex> -->
@@ -1687,35 +1687,35 @@
   </connection_set>
   <connection_set name="derivation_of_Schrodinger_Eq" discipline="quantum">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>1204921</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>1204921</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>3121513111</expression_permenant_unique_id><expression_temporary_unique_id>2934848</expression_temporary_unique_id>
 <!--    <expression_latex>k=\frac{2\pi}{\lambda}</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>2919311</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>2919311</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>3131211131</expression_permenant_unique_id><expression_temporary_unique_id>0921465</expression_temporary_unique_id>
 <!--    <expression_latex>\omega=2 \pi f</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>1294844</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>1294844</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>9999999960</expression_permenant_unique_id><expression_temporary_unique_id>2949002</expression_temporary_unique_id>
 <!--    <expression_latex>\hbar= h/(2 \pi)</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>9394842</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>9394842</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>1020394900</expression_permenant_unique_id><expression_temporary_unique_id>1203491</expression_temporary_unique_id>
 <!--    <expression_latex>p = h/\lambda</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>3934948</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>3934948</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>1020394902</expression_permenant_unique_id><expression_temporary_unique_id>3499522</expression_temporary_unique_id>
 <!--    <expression_latex>E = h f</expression_latex> -->
@@ -1735,7 +1735,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>1294945</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>1294945</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>3147472131</expression_permenant_unique_id><expression_temporary_unique_id>2939402</expression_temporary_unique_id>
 <!--    <expression_latex>\frac{\omega}{2 \pi}= f</expression_latex> -->
@@ -1748,7 +1748,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>2930492</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2930492</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9999999960</expression_permenant_unique_id><expression_temporary_unique_id>2949002</expression_temporary_unique_id>
 <!--    <expression_latex>\hbar= h/(2 \pi)</expression_latex> -->
@@ -1787,7 +1787,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>1204945</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>1204945</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>3121234211</expression_permenant_unique_id><expression_temporary_unique_id>1039485</expression_temporary_unique_id>
 <!--    <expression_latex>\frac{k}{2\pi}=\lambda}</expression_latex> -->
@@ -1800,7 +1800,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>2939400</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2939400</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9999999960</expression_permenant_unique_id><expression_temporary_unique_id>2949002</expression_temporary_unique_id>
 <!--    <expression_latex>\hbar= h/(2 \pi)</expression_latex> -->
@@ -1837,14 +1837,14 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>1923945</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>1923945</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>3948574224</expression_permenant_unique_id><expression_temporary_unique_id>3940505</expression_temporary_unique_id>
 <!--    <expression_latex>\psi(\vec{r},t) = \psi_0 \exp\left(i\left(\vec{k}\cdot\vec{r} - \omega t \right) \right)</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>2938341</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2938341</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9999998870</expression_permenant_unique_id><expression_temporary_unique_id>2948487</expression_temporary_unique_id>
 <!--    <expression_latex>\frac{\vec{p}}{\hbar} = \vec{k}</expression_latex> -->
@@ -1857,7 +1857,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>0012031</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>0012031</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9999999961</expression_permenant_unique_id><expression_temporary_unique_id>4499582</expression_temporary_unique_id>
 <!--    <expression_latex>\frac{E}{\hbar} = \omega </expression_latex> -->
@@ -1881,14 +1881,14 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>1204929</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>1204929</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>1029039903</expression_permenant_unique_id><expression_temporary_unique_id>1039948</expression_temporary_unique_id>
 <!--    <expression_latex>p = m v</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>1395335</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>1395335</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>4298359835</expression_permenant_unique_id><expression_temporary_unique_id>1353583</expression_temporary_unique_id>
 <!--    <expression_latex>E = \frac{1}{2}m v^2</expression_latex> -->
@@ -1921,7 +1921,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>2449858</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2449858</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>1029039904</expression_permenant_unique_id><expression_temporary_unique_id>1432042</expression_temporary_unique_id>
 <!--    <expression_latex>p^2 = m^2 v^2</expression_latex> -->
@@ -1947,7 +1947,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>2464445</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2464445</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>3948574230</expression_permenant_unique_id><expression_temporary_unique_id>1305534</expression_temporary_unique_id>
 <!--    <expression_latex>\psi(\vec{r},t) = \psi_0 \exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</expression_latex> -->
@@ -1960,7 +1960,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>3454353</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>3454353</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>4298359851</expression_permenant_unique_id><expression_temporary_unique_id>3576787</expression_temporary_unique_id>
 <!--    <expression_latex>E = \frac{p^2}{2m}</expression_latex> -->
@@ -2008,7 +2008,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>5354635</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>5354635</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>4943571230</expression_permenant_unique_id><expression_temporary_unique_id>3454565</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{\nabla}\psi(\vec{r},t) = \frac{i}{\hbar} \vec{p} \psi_0 \exp\left(\frac{i}{\hbar}\left(\vec{p}\cdot\vec{r} - E t \right) \right)</expression_latex> -->
@@ -2043,7 +2043,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>4059592</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>4059592</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>5985371230</expression_permenant_unique_id><expression_temporary_unique_id>5535257</expression_temporary_unique_id>
 <!--    <expression_latex>\vec{\nabla}\psi(\vec{r},t) = \frac{i}{\hbar} \vec{p} \psi(\vec{r},t)</expression_latex> -->
@@ -2080,7 +2080,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name>          <infrule_temporary_unique_id>9394834</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>LHSofExprXeqLHSofExprY</infrule_name>          <infrule_temporary_unique_id>9394834</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>5868688585</expression_permenant_unique_id><expression_temporary_unique_id>4349493</expression_temporary_unique_id>
 <!--    <expression_latex>\frac{-\hbar^2}{2m} \nabla^2 \psi\left(\vec{r},t)\right) = \frac{p^2}{2m} \psi(\vec{r},t)</expression_latex> -->
@@ -2093,14 +2093,14 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>2455452</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>2455452</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>1158485859</expression_permenant_unique_id><expression_temporary_unique_id>2344324</expression_temporary_unique_id>
 <!--    <expression_latex>\frac{-\hbar^2}{2m} \nabla^2 = {\cal H} </expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>2954835</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2954835</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>1158485859</expression_permenant_unique_id><expression_temporary_unique_id>2344324</expression_temporary_unique_id>
 <!--    <expression_latex>\frac{-\hbar^2}{2m} \nabla^2 = {\cal H} </expression_latex> -->
@@ -2113,7 +2113,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>6756574</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>6756574</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>2258485859</expression_permenant_unique_id><expression_temporary_unique_id>2456546</expression_temporary_unique_id>
 <!--    <expression_latex>{\cal H} \psi\left(\vec{r},t)\right) = i \hbar \frac{\partial}{\partial t}\psi(\vec{r},t) </expression_latex> -->
@@ -2122,7 +2122,7 @@
   </connection_set>
   <connection_set name="quantum_basics_orthogonality" discipline="quantum">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>2455366</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>2455366</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>9596004948</expression_permenant_unique_id><expression_temporary_unique_id>3849595</expression_temporary_unique_id>
 <!--    <expression_latex>x = \bra{\psi_{\alpha}} \hat{A} \ket{\psi_{\beta}}</expression_latex> -->
@@ -2173,7 +2173,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>LHSofEqXeqLHSofEqY</infrule_name>          <infrule_temporary_unique_id>0987890</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>LHSofExprXeqLHSofExprY</infrule_name>          <infrule_temporary_unique_id>0987890</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>2394240499</expression_permenant_unique_id><expression_temporary_unique_id>2409402</expression_temporary_unique_id>
 <!--    <expression_latex>x =a_{\beta} \braket{\psi_{\alpha}}{\psi_{\beta}}</expression_latex> -->
@@ -2210,7 +2210,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>2384852</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>2384852</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>2394935831</expression_permenant_unique_id><expression_temporary_unique_id>3494855</expression_temporary_unique_id>
 <!--    <expression_latex>( a_{\beta} - a_{\alpha} ) \braket{\psi_{\alpha}}{\psi_{\beta}} = 0</expression_latex> -->
@@ -2219,7 +2219,7 @@
   </connection_set>
   <connection_set name="quantum_basics_Hermitian_operators_have_realvalued_observables" discipline="quantum">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>3403595</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>3403595</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>9999999975</expression_permenant_unique_id><expression_temporary_unique_id>3402919</expression_temporary_unique_id>
 <!--    <expression_latex>\bra{\psi} \hat{A} \ket{\psi} = \langle a \rangle</expression_latex> -->
@@ -2255,7 +2255,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>2485909</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2485909</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>9294858532</expression_permenant_unique_id><expression_temporary_unique_id>2484892</expression_temporary_unique_id>
 <!--    <expression_latex>\hat{A}^+=\hat{A}</expression_latex> -->
@@ -2268,7 +2268,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subRHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>2490098</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2490098</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>4948934890</expression_permenant_unique_id><expression_temporary_unique_id>2494040</expression_temporary_unique_id>
 <!--    <expression_latex>\bra{\psi} \hat{A} \ket{\psi}=\langle a \rangle^*</expression_latex> -->
@@ -2281,7 +2281,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareFinalEq</infrule_name>          <infrule_temporary_unique_id>2939493</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareFinalExpression</infrule_name>          <infrule_temporary_unique_id>2939493</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>2848934890</expression_permenant_unique_id><expression_temporary_unique_id>4930585</expression_temporary_unique_id>
 <!--    <expression_latex>\langle a \rangle^*=\langle a \rangle</expression_latex> -->
@@ -2350,28 +2350,28 @@
   </connection_set>
   <connection_set name="Comptons_equation_for_scattering" discipline="physics">
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>8668018</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>8668018</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>1638282134</expression_permenant_unique_id><expression_temporary_unique_id>4978059</expression_temporary_unique_id>
 <!--         <expression_latex>\vec{p}_{before} = \vec{p}_{after}</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>3445641</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>3445641</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>8257621077</expression_permenant_unique_id><expression_temporary_unique_id>2840008</expression_temporary_unique_id>
 <!--         <expression_latex>\vec{p}_{before} = \vec{p}_{1}</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>declareInitialEq</infrule_name>          <infrule_temporary_unique_id>4733986</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>declareInitialExpression</infrule_name>          <infrule_temporary_unique_id>4733986</infrule_temporary_unique_id></operator>
       <output>
         <expression_permenant_unique_id>8311458118</expression_permenant_unique_id><expression_temporary_unique_id>1209604</expression_temporary_unique_id>
 <!--         <expression_latex>\vec{p}_{after} = \vec{p}_{2}+\vec{p}_{electron}</expression_latex> -->
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>7958085</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>7958085</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>1638282134</expression_permenant_unique_id><expression_temporary_unique_id>4978059</expression_temporary_unique_id>
 <!--         <expression_latex>\vec{p}_{before} = \vec{p}_{after}</expression_latex> -->
@@ -2384,7 +2384,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>subLHSofEqXintoEqY</infrule_name>          <infrule_temporary_unique_id>3667395</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>subLHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>3667395</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>8311458118</expression_permenant_unique_id><expression_temporary_unique_id>1209604</expression_temporary_unique_id>
 <!--         <expression_latex>\vec{p}_{after} = \vec{p}_{2}+\vec{p}_{electron}</expression_latex> -->
@@ -2421,7 +2421,7 @@
       </output>
     </connection>
     <connection>
-      <operator><infrule_name>multEqXbyEqY</infrule_name>          <infrule_temporary_unique_id>4738354</infrule_temporary_unique_id></operator>
+      <operator><infrule_name>multExprXbyExprY</infrule_name>          <infrule_temporary_unique_id>4738354</infrule_temporary_unique_id></operator>
       <input>
         <expression_permenant_unique_id>7917051060</expression_permenant_unique_id><expression_temporary_unique_id>4200334</expression_temporary_unique_id>
 <!--         <expression_latex>\vec{p}_{electron} = \vec{p}_{1}-\vec{p}_{2}</expression_latex> -->

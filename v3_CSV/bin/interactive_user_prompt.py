@@ -186,8 +186,8 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
 #[{'infrule': 'dividebothsidesby', 'input': [{'latex': 'afm =asfaf', 'temp indx': 9521703, 'indx': 6448490481}], 'infrule temp indx': 3491788, 'feed': [{'latex': 'asf', 'feed indx': 4479113}], 'output': [{'latex': 'asdfa =asf', 'temp indx': 1939903, 'indx': 4449405156}]}]
 
 # what we want is output like
-#"frequency relations",1, "infrule",2303943,declareInitialEq,   "expression",3293094,5900595848
-#"frequency relations",2, "infrule",0304948,declareInitialEq,   "expression",3294004,0404050504
+#"frequency relations",1, "infrule",2303943,declareInitialExpression,   "expression",3293094,5900595848
+#"frequency relations",2, "infrule",0304948,declareInitialExpression,   "expression",3294004,0404050504
 
   f = open(output_path+'derivation_name.dat','w')
   f.write(derivation_name)

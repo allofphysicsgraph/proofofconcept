@@ -28,21 +28,21 @@ selectImagParts    | 1 | 1 | 1 | Select imaginary parts of Eq.~\ref{#1}.
 expandLHS          | 1 | 1 | 1 | Expand the LHS of Eq.~\ref{#1}.
 expandRHS          | 1 | 1 | 1 | Expand the RHS of Eq.~\ref{#1}.
 swapLHSwithRHS     | 1 | 1 | 1 | Swap LHS of Eq.~\ref{#1} with RHS.
-declareInitialEq   | 1 | 1 | 1 | Eq.~\ref{#1} % pass label of starting equation
+declareInitialExpression   | 1 | 1 | 1 | Eq.~\ref{#1} % pass label of starting equation
 sumExponents       | 1 | 1 | 1 | Sum exponents on LHS and RHS of Eq.~\ref{#1}.
 sumExponentsLHS    | 1 | 1 | 1 | Sum exponents on LHS of Eq.~\ref{#1}.
 sumExponentsRHS    | 1 | 1 | 1 | Sum exponents on RHS of Eq.~\ref{#1}.
 %
 % combining multiple equations
-addEqXtoEqY        | 2 | 2 | 1 | Add Eq.~\ref{#1} to Eq.~\ref{#2}. % assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)
-subRHSofEqXintoEqY | 2 | 2 | 1 | Substitute RHS of Eq.~\ref{#1} into Eq.~\ref{#2}.
-subLHSofEqXintoEqY | 2 | 2 | 1 | Substitute LHS of Eq.~\ref{#1} into Eq.~\ref{#2}.
-multEqXbyEqY       | 2 | 2 | 1 | Multiply Eq.~\ref{#1} by Eq.~\ref{#2}.   % assumes result form LHS(X)*LHS(Y)=RHS(X)*RHS(Y)
-LHSofEqXeqLHSofEqY | 2 | 2 | 1 | LHS of Eq.~\ref{#1} is equal to LHS of Eq.~\ref{#2}.
+addExprXtoExprY        | 2 | 2 | 1 | Add Eq.~\ref{#1} to Eq.~\ref{#2}. % assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)
+subRHSofExprXintoExprY | 2 | 2 | 1 | Substitute RHS of Eq.~\ref{#1} into Eq.~\ref{#2}.
+subLHSofExprXintoExprY | 2 | 2 | 1 | Substitute LHS of Eq.~\ref{#1} into Eq.~\ref{#2}.
+multExprXbyExprY       | 2 | 2 | 1 | Multiply Eq.~\ref{#1} by Eq.~\ref{#2}.   % assumes result form LHS(X)*LHS(Y)=RHS(X)*RHS(Y)
+LHSofExprXeqLHSofExprY | 2 | 2 | 1 | LHS of Eq.~\ref{#1} is equal to LHS of Eq.~\ref{#2}.
 %
 % these are a combination of other simpler commands:
-raiseBothSidesToPower | 2 | 1 | 1 |  Raise both sides of Eq.~\ref{#2} to $#1$. % this is \multEqXbyEqY
+raiseBothSidesToPower | 2 | 1 | 1 |  Raise both sides of Eq.~\ref{#2} to $#1$. % this is \multExprXbyExprY
 %
 % declare the end?
-claimEqXequalsEqY  | 2 | 1 | 1 | Thus we see that Eq.~\ref{#1} is equivalent to Eq.~\ref{#2}.        %
+claimExprXequalsExprY  | 2 | 1 | 1 | Thus we see that Eq.~\ref{#1} is equivalent to Eq.~\ref{#2}.        %
 % 

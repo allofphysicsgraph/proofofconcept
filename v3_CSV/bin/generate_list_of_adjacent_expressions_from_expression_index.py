@@ -53,20 +53,20 @@ for this_connection in connections_list_of_dics:
 #     print(this_infrule+"\n")
     list_of_infrules.append(this_infrule)
 
-# the "temp index" for both declareInitialEq and declareFinalEq only appear once
+# the "temp index" for both declareInitialExpression and declareFinalExpression only appear once
 
 print(" ")
 for this_infrule in list_of_infrules:
   for this_connection in connections_list_of_dics:
     if (this_connection["from temp index"]==this_infrule):
-      if (this_connection["from perm index"]=='declareInitialEq'):
+      if (this_connection["from perm index"]=='declareInitialExpression'):
         continue # skip init eq
       adjacent_latex=convert_expr_perm_indx_to_latex(expr_list_of_dics,this_connection["to perm index"])
       print("                   from "+this_connection["from perm index"]+" to "+adjacent_latex+"\n")
     if (this_connection["to temp index"]==this_infrule):
       if (this_connection["from perm index"]=='0'):
         continue # skip feeds
-      if (this_connection["to perm index"]=='declareFinalEq'):
+      if (this_connection["to perm index"]=='declareFinalExpression'):
         continue # skip final eq
 #       print("from "+this_connection["from perm index"])
       adjacent_latex=convert_expr_perm_indx_to_latex(expr_list_of_dics,this_connection["from perm index"])

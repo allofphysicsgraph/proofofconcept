@@ -4,14 +4,14 @@
 % index    |                    | index      | input      | outputs
 % --------------------------------------------------------------
 4938429483 | subXforY           | 4838429483 | 0          | 
-4838429483 | LHSofEqXeqLHSofEqY | 9483928192 | 4598294821 |  
-4938429483 | multEqXbyEqY       | 4638429483 | 4938429483 | 
+4838429483 | LHSofExprXeqLHSofExprY | 9483928192 | 4598294821 |  
+4938429483 | multExprXbyExprY       | 4638429483 | 4938429483 | 
 4638429483 | expandRHS          | 4598294821 | 0          | 
 2948293829 | swapLHSwithRHS     | 9829420421 | 0          | 
-9829420421 | LHSofEqXeqLHSofEqY | 4828238421 | 9482948292 | 
+9829420421 | LHSofExprXeqLHSofExprY | 4828238421 | 9482948292 | 
 9483928192 | selectRealParts    | 9482928242 | 0          | 
 9482928242 | addXtoBothSides    | 9482928243 | 0          | 
 5832984291 | addXtoBothSides    | 3285732911 | 0          | 
 9482928243 | swapLHSwithRHS     | 9482438243 | 0          | 
-9482438243 | LHSofEqXeqLHSofEqY | 9482438243 | 3285732911 | 
+9482438243 | LHSofExprXeqLHSofExprY | 9482438243 | 3285732911 | 
 % 

@@ -23,9 +23,9 @@ fontsize=12;
 4930585 [shape=ellipse, color=red,image="../../expressions/2848934890.png",labelloc=b,URL="http://output.com"];
 1294984 [shape=invtrapezium, color=red,label="declareAssumption"];
 2394942 [shape=invtrapezium, color=red,label="distributeConjugateTransposeToFactors"];
-2485909 [shape=invtrapezium, color=red,label="subRHSofEqXintoEqY"];
-2490098 [shape=invtrapezium, color=red,label="subRHSofEqXintoEqY"];
-2939493 [shape=invtrapezium, color=red,label="declareFinalEq"];
-3403595 [shape=invtrapezium, color=red,label="declareInitialEq"];
+2485909 [shape=invtrapezium, color=red,label="subRHSofExprXintoExprY"];
+2490098 [shape=invtrapezium, color=red,label="subRHSofExprXintoExprY"];
+2939493 [shape=invtrapezium, color=red,label="declareFinalExpression"];
+3403595 [shape=invtrapezium, color=red,label="declareInitialExpression"];
 9538385 [shape=invtrapezium, color=red,label="conjugateTransposeBothSides"];
 }

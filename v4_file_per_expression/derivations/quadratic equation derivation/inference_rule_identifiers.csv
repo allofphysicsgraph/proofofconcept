@@ -3,9 +3,9 @@
 2500423,addXtoBothSides
 5829110,subtractXfromBothSides
 7487443,raiseBothSidesToPower
-7777777,LHSofEqXeqLHSofEqY
+7777777,LHSofExprXeqLHSofExprY
 7996484,simplify
 8321038,subXforY
-8359402,declareFinalEq
+8359402,declareFinalExpression
 8492932,dividebothsidesby
-8494551,declareInitialEq
+8494551,declareInitialExpression

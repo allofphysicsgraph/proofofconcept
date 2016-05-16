@@ -1119,8 +1119,8 @@ My current mapping of jargon is
 (my phrase) = (standard logic terms, based on http://en.wikipedia.org/wiki/Inference_rule)
 
 statement = proposition
-declareInitialEq = premise
-declareFinalEq = conclusion
+declareInitialExpression = premise
+declareFinalExpression = conclusion
 
 Some of the "inference rules" may actually be "effective methods"
 http://en.wikipedia.org/wiki/Effective_method
@@ -1745,7 +1745,7 @@ or on the command line, with -Nlabel=""
 neato -Tpng -Nlabel="" connections_result.gv > out.png
 
 
-The "declareInitialEq" should be at the top of the graph and "declareFinalEq" should be towards the bottom
+The "declareInitialExpression" should be at the top of the graph and "declareFinalExpression" should be towards the bottom
 http://www.graphviz.org/content/attrs#dpos
 http://stackoverflow.com/questions/5343899/how-to-force-node-position-x-and-y-in-graphviz
 http://stackoverflow.com/questions/2476575/how-to-control-node-placement-in-graphviz-i-e-avoid-edge-crossings

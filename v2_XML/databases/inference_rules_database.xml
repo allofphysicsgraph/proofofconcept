@@ -640,7 +640,7 @@ except:
       <number_of_output_statements>1</number_of_output_statements>
    </inference_rule>
    <inference_rule>
-      <infrule_name>makeEqPower</infrule_name>
+      <infrule_name>makeExpressionPower</infrule_name>
       <inference_rule_type>manipulation</inference_rule_type>
       <latex_expansion>Make Eq.~\ref{eq:#2} the power of $#1$.</latex_expansion>
       <cas_mathematica></cas_mathematica>
@@ -764,7 +764,7 @@ except:
    </inference_rule>
 <!-- combining multiple equations -->
    <inference_rule>
-      <infrule_name>addEqXtoEqY</infrule_name>
+      <infrule_name>addExprXtoExprY</infrule_name>
       <inference_rule_type>combining multiple equations</inference_rule_type>
       <latex_expansion>Add Eq.~\ref{eq:#1} to Eq.~\ref{eq:#2}.</latex_expansion>
       <comment>assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)</comment>
@@ -781,7 +781,7 @@ except:
       <number_of_output_statements>1</number_of_output_statements>
    </inference_rule>
    <inference_rule>
-      <infrule_name>subRHSofEqXintoEqY</infrule_name>
+      <infrule_name>subRHSofExprXintoExprY</infrule_name>
       <inference_rule_type>combining multiple equations</inference_rule_type>
       <latex_expansion>Substitute RHS of Eq.~\ref{eq:#1} into Eq.~\ref{eq:#2}.</latex_expansion>
       <cas_mathematica></cas_mathematica>
@@ -792,7 +792,7 @@ except:
       <number_of_output_statements>1</number_of_output_statements>
    </inference_rule>
    <inference_rule>
-      <infrule_name>subLHSofEqXintoEqY</infrule_name>
+      <infrule_name>subLHSofExprXintoExprY</infrule_name>
       <inference_rule_type>combining multiple equations</inference_rule_type>
       <latex_expansion>Substitute LHS of Eq.~\ref{eq:#1} into Eq.~\ref{eq:#2}.</latex_expansion>
       <cas_mathematica></cas_mathematica>
@@ -803,7 +803,7 @@ except:
       <number_of_output_statements>1</number_of_output_statements>
    </inference_rule>
    <inference_rule>
-      <infrule_name>multEqXbyEqY</infrule_name>
+      <infrule_name>multExprXbyExprY</infrule_name>
       <inference_rule_type>combining multiple equations</inference_rule_type>
       <latex_expansion>Multiply Eq.~\ref{eq:#1} by Eq.~\ref{eq:#2}.</latex_expansion>
       <comment>assumes result form LHS(X)*LHS(Y)=RHS(X)*RHS(Y)</comment>
@@ -820,7 +820,7 @@ except:
       <number_of_output_statements>1</number_of_output_statements>
    </inference_rule>
    <inference_rule>
-      <infrule_name>LHSofEqXeqLHSofEqY</infrule_name>
+      <infrule_name>LHSofExprXeqLHSofExprY</infrule_name>
       <inference_rule_type>combining multiple equations</inference_rule_type>
       <latex_expansion>LHS of Eq.~\ref{eq:#1} is equal to LHS of Eq.~\ref{eq:#2}.</latex_expansion>
       <cas_mathematica></cas_mathematica>
@@ -836,7 +836,7 @@ except:
       <number_of_output_statements>1</number_of_output_statements>
    </inference_rule>
    <inference_rule>
-      <infrule_name>RHSofEqXeqRHSofEqY</infrule_name>
+      <infrule_name>RHSofExprXeqRHSofExprY</infrule_name>
       <inference_rule_type>combining multiple equations</inference_rule_type>
       <latex_expansion>RHS of Eq.~\ref{eq:#1} is equal to RHS of Eq.~\ref{eq:#2}.</latex_expansion>
       <cas_mathematica></cas_mathematica>
@@ -852,7 +852,7 @@ except:
       <number_of_output_statements>1</number_of_output_statements>
    </inference_rule>
    <inference_rule>
-      <infrule_name>EqXisTrueUnderconditionEqY</infrule_name>
+      <infrule_name>ExprXisTrueUnderconditionExprY</infrule_name>
       <inference_rule_type>combining multiple equations</inference_rule_type>
       <latex_expansion>Eq.~\ref{eq:#1} is valid when Eq.~\ref{eq:#2} occurs.</latex_expansion>
       <cas_mathematica>Not applicable</cas_mathematica>
@@ -881,7 +881,7 @@ except:
 <!-- declare the beginning and end -->
    </inference_rule>
    <inference_rule>
-      <infrule_name>claimEqXequalsEqY</infrule_name>
+      <infrule_name>claimExprXequalsExprY</infrule_name>
       <latex_expansion>Thus we see that Eq.~\ref{eq:#1} is equivalent to Eq.~\ref{eq:#2}.</latex_expansion>
       <cas_mathematica></cas_mathematica>
       <cas_sympy>
@@ -933,7 +933,7 @@ except:
       <number_of_output_statements>1</number_of_output_statements>
    </inference_rule>
    <inference_rule>
-      <infrule_name>declareInitialEq</infrule_name>
+      <infrule_name>declareInitialExpression</infrule_name>
       <latex_expansion>Eq.~\ref{eq:#1} is an initial equation.</latex_expansion>
       <comment>pass label of starting equation</comment>
       <cas_mathematica>Not applicable</cas_mathematica>
@@ -977,7 +977,7 @@ except:
       <number_of_output_statements>1</number_of_output_statements>
    </inference_rule>
    <inference_rule>
-      <infrule_name>declareFinalEq</infrule_name>
+      <infrule_name>declareFinalExpression</infrule_name>
       <latex_expansion>Eq.~\ref{eq:#1} is one of the final equations.</latex_expansion>
       <comment>pass label of starting equation</comment>
       <cas_mathematica>Not applicable</cas_mathematica>

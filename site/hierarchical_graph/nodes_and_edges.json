@@ -1,5 +1,5 @@
 {"nodes":[
-  {"label": "declareInitialEq|8494551"},
+  {"label": "declareInitialExpression|8494551"},
   {"label": "9285928292|8882098"},
   {"label": "8582954722|0909127"},
   {"label": "dividebothsidesby|8492932"},
@@ -17,7 +17,7 @@
   {"label": "5928285821|0123901"},
   {"label": "simplify|7996484"},
   {"label": "5959282914|0173400"},
-  {"label": "LHSofEqXeqLHSofEqY|7777777"},
+  {"label": "LHSofExprXeqLHSofExprY|7777777"},
   {"label": "9385938295|2985412"},
   {"label": "raiseBothSidesToPower|7487443"},
   {"label": "2367209"},
@@ -31,7 +31,7 @@
   {"label": "2449291"},
   {"label": "5982958248|2657355"},
   {"label": "9999999968|8811221"},
-  {"label": "declareFinalEq|8359402"}
+  {"label": "declareFinalExpression|8359402"}
 ],
    "links":[
   {"source":0,"target":1},
