@@ -9,6 +9,7 @@
 
 # current bugs: none
 
+import re
 import yaml        # for reading "config.input"
 import random
 import os.path
@@ -68,8 +69,13 @@ for inf_rule_index in list_of_inf_rule_indicies:
 
 # print(list_of_steps_to_check)
 
+list_of_steps_complete=[]
 for inf_rule_to_check in list_of_steps_to_check:
 
+  print("inf rule: "+inf_rule_to_check['inf rule'])  
+  this_step_complete={}
+  this_step_complete['infrule']=inf_rule_to_check['inf rule']
+  
   this_step=[]
   for this_dic in connections_list_of_dics:
     if (this_dic['from temp index']==inf_rule_to_check['temp indx'] or \
@@ -77,25 +83,49 @@ for inf_rule_to_check in list_of_steps_to_check:
       this_step.append(this_dic)
 # print(this_step)
 
-  print("inf rule: "+inf_rule_to_check['inf rule'])
-
+  list_of_feeds=[]
+  list_of_inputs=[]
+  list_of_outputs=[]
   for this_dic in this_step:
     if (this_dic['from type']=='feed'):
 #     print("from feed "+this_dic['from temp index']) 
       for this_feed_dic in feeds_list_of_dics:
         if (this_feed_dic['temp index']==this_dic['from temp index']):
           print("feed: "+this_feed_dic['feed latex'])
+          list_of_feeds.append(this_feed_dic['feed latex'])
 
     if (this_dic['from type']=='expression'):
 #     print("from expr "+this_dic['from perm index']) 
       for this_expr_dic in expressions_list_of_dics:
         if (this_expr_dic['permanent index']==this_dic['from perm index']):
           print("from expr "+this_expr_dic['expression latex'])
+          list_of_inputs.append(this_expr_dic['expression latex'])
     
     if (this_dic['to type']=='expression'):
 #     print("to expr "+this_dic['to perm index']) 
       for this_expr_dic in expressions_list_of_dics:
         if (this_expr_dic['permanent index']==this_dic['to perm index']):
           print("to expr "+this_expr_dic['expression latex'])
+          list_of_outputs.append(this_expr_dic['expression latex'])
 
+  this_step_complete['inputs']= list_of_inputs
+  this_step_complete['outputs']= list_of_outputs
+  this_step_complete['feeds']= list_of_feeds
+  
+  list_of_steps_complete.append(this_step_complete)
   print(" ")
+  
+for this_step_to_check in list_of_steps_complete:
+  if (this_step_to_check['infrule']=='multbothsidesby'):
+#     print(this_step_to_check)
+    input_expr = this_step_to_check['inputs'][0]
+    input_expr = re.sub(r"=", "==", input_expr)
+    output_expr= this_step_to_check['outputs'][0]
+    output_expr = re.sub(r"=", "==", output_expr)
+    print("input_expr = "+input_expr)
+    print("expected_output_expr = "+output_expr)
+    print("feed = "+this_step_to_check['feeds'][0])
+    print("expected_output_expr * feed == expected_output_expr")
+    print(" ")
+    
+    
