@@ -7,10 +7,10 @@
                                 multbothsidesby,2,1,1,1,"none","Multiply both sides of Eq.~\ref{eq:#2} by $#1$."
                               dividebothsidesby,2,1,1,1,"none","Divide both sides of Eq.~\ref{eq:#2} by $#1$."
 
-                       declareInitialExpression,1,0,0,1,"pass label of starting equation","Eq.~\ref{eq:#1} is an initial equation."
+                             declareInitialExpr,1,0,0,1,"pass label of starting equation","Eq.~\ref{eq:#1} is an initial equation."
                               declareAssumption,1,0,0,1,"pass label of starting equation","Eq.~\ref{eq:#1} is an assumption."
                            declareGuessSolution,1,0,1,1,"applies to differential equations","Judicious choice as a guessed solution to Eq.~\ref{eq:#1} is"
-                         declareFinalExpression,1,0,1,0,"pass label of starting equation","Eq.~\ref{eq:#1} is one of the final equations."
+                               declareFinalExpr,1,0,1,0,"pass label of starting equation","Eq.~\ref{eq:#1} is one of the final equations."
                                 declareIdentity,1,0,0,1,"none","Eq.~\ref{eq:#1} is an identity."
                               boundaryCondition,1,0,1,1,"applies to differential equations","A boundary condition for Eq.~\ref{eq:#1} is"
 
@@ -59,7 +59,7 @@ ReplaceCurlWithLeviCevitaSummationContravariant,1,0,1,1,"Einstein summation nota
                              applyOperatorToKet,1,0,1,1,"none","Apply operator to ket in Eq.~\ref{eq:#1}."
                              applyOperatorToBra,1,0,1,1,"none","Apply operator to bra in Eq.~\ref{eq:#1}."
 
-                            makeExpressionPower,2,1,1,1,"none","Make Eq.~\ref{eq:#2} the power of $#1$."
+                                  makeExprPower,2,1,1,1,"none","Make Eq.~\ref{eq:#2} the power of $#1$."
                           raiseBothSidesToPower,2,1,1,2,"Two outputs for +/- solutions","Raise both sides of Eq.~\ref{eq:#2} to $#1$."
 
                                 selectRealParts,1,0,1,1,"none","Select real parts of Eq.~\ref{eq:#1}."
