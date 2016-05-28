@@ -1,0 +1,62 @@
+digraph topicsAndConcepts {
+node [shape=box,color=blue];  
+#  astronomy [label="astronomy"]; 
+  cosmology; 
+  quantum_mechanics   [label="quantum\nmechanics"]; 
+  classical_mechanics [label="classical\nmechanics"]; 
+  particle_physics    [label="particle\nphysics"]; 
+  relativity; 
+  thermodynamics; 
+  electromagnetism;
+node [shape=ellipse,color=red]; 
+  Schrodingers_equation    [label="Schrodinger's\nequation"]; 
+  particle_in_a_box        [label="particle\nin a box"]; 
+  work; 
+  "F=m*a"; 
+  momentum; 
+  Dirac_equation           [label="Dirac\nEquation"]; 
+  uncertainty_relation     [label="uncertainty\nrelation"];
+  Maxwells_equations       [label="Maxwells\nequations"];
+  Plancks_Law              [label="Planck's\nLaw"];
+  Kirchhoffs_Laws          [label="Kirchhoff's\nLaws"];
+  wave_equation            [label="wave\nequation"];
+  Friedmann_equations      [label="Friedmann\nequations",     penwidth=2,URL="https://en.wikipedia.org/wiki/Friedmann_equations"];
+  Einstein_field_equations [label="Einstein\nfield equations",penwidth=2,URL="https://en.wikipedia.org/wiki/Einstein_field_equations"];
+  Ideal_gas_law            [label="Ideal\ngas law",           penwidth=2,URL="https://en.wikipedia.org/wiki/Ideal_gas_law"];
+  Cosmological_equation_of_state [label="equation\nof state", penwidth=2,URL="https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"];
+
+quantum_mechanics->Schrodingers_equation;
+quantum_mechanics->particle_in_a_box;
+quantum_mechanics->uncertainty_relation;
+classical_mechanics->work;
+classical_mechanics->"F=m*a";
+classical_mechanics->momentum;
+particle_physics->Dirac_equation;
+relativity->Dirac_equation;
+relativity->"E=mc2";
+thermodynamics->Plancks_Law;
+thermodynamics->Ideal_gas_law;
+
+electromagnetism->Maxwells_equations;
+cosmology->Friedmann_equations;
+cosmology->Cosmological_equation_of_state;
+relativity->Friedmann_equations;
+relativity->Einstein_field_equations       [penwidth=2,URL="https://en.wikipedia.org/wiki/Mathematics_of_general_relativity#The_Einstein_field_equations"];
+
+Cosmological_equation_of_state->Ideal_gas_law [dir=both,penwidth=2,URL="https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"];
+"E=mc2"->"F=m*a"                              [dir=both,penwidth=2,URL="http://www.mrelativity.net/relationshipef/the_relationship_between_e_and_f_p1.htm"]; #  http://www.emc2-explained.info/Emc2/Deriving.htm
+Dirac_equation->Schrodingers_equation         [dir=both]; # derivation_of_dirac_equation.pdf derivation_of_schrodinger_and_dirac_equations.pdf
+Schrodingers_equation->wave_equation          [dir=both]; # derivation_of_schrodinger_equation_2006_Ward.pdf
+wave_equation->uncertainty_relation           [dir=both]; # derivation_of_heisenberg_uncertainty_principle.pdf, derivation_of_heisenberg_uncertainty_principle_2010_Kessler.pdf
+particle_in_a_box->Plancks_Law                [dir=both]; # derivation_of_plank.pdf
+wave_equation->Maxwells_equations             [dir=both];
+Maxwells_equations->Kirchhoffs_Laws           [dir=both]; # derivation_of_kirchhoff.pdf
+Schrodingers_equation->Maxwells_equations     [dir=both]; # derivation_of_schrodinger_equation_2006_Ward.pdf
+
+overlap=false
+label="Concepts (red ellipses) and topics (blue squares)\ncoarse overview of the Physics Derivation Graph"
+fontsize=12;
+}
+
+# neato -Tsvg topic_and_concept_graph.gv > file.svg
+# neato -Tpng topic_and_concept_graph.gv > file.png
