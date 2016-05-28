@@ -5,17 +5,17 @@ node [shape=box,color=blue];
   quantum_mechanics   [label="quantum\nmechanics",    penwidth=2,URL="https://en.wikipedia.org/wiki/Quantum_mechanics"]; 
   classical_mechanics [label="classical\nmechanics",  penwidth=2,URL="https://en.wikipedia.org/wiki/Classical_mechanics"]; 
   particle_physics    [label="particle\nphysics",     penwidth=2,URL="https://en.wikipedia.org/wiki/Particle_physics"]; 
-  relativity;         [                               penwidth=2,URL="https://en.wikipedia.org/wiki/Theory_of_relativity"]; 
-  thermodynamics;     [                               penwidth=2,URL="https://en.wikipedia.org/wiki/Thermodynamics"]; 
-  electromagnetism;   [                               penwidth=2,URL="https://en.wikipedia.org/wiki/Electromagnetism"]; 
+  relativity          [                               penwidth=2,URL="https://en.wikipedia.org/wiki/Theory_of_relativity"]; 
+  thermodynamics      [                               penwidth=2,URL="https://en.wikipedia.org/wiki/Thermodynamics"]; 
+  electromagnetism    [                               penwidth=2,URL="https://en.wikipedia.org/wiki/Electromagnetism"]; 
 node [shape=ellipse,color=red]; 
   Schrodingers_equation    [label="Schrodinger's\nequation",  penwidth=2,URL="https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation"]; 
   particle_in_a_box        [label="particle\nin a box",       penwidth=2,URL="https://en.wikipedia.org/wiki/Particle_in_a_box"]; 
-  work;                    [                                  penwidth=2,URL="https://en.wikipedia.org/wiki/Work_(physics)"]; 
-  "F=m*a";                 [                                  penwidth=2,URL="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Newton.27s_second_law"]; 
+  work                     [                                  penwidth=2,URL="https://en.wikipedia.org/wiki/Work_(physics)"]; 
+  "F=m*a"                  [                                  penwidth=2,URL="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Newton.27s_second_law"]; 
   harmonic_oscillator      [label="harmonic\noscillator",     penwidth=2,URL="https://en.wikipedia.org/wiki/Harmonic_oscillator"]; 
   quantum_harmonic_oscillator [label="quantum_harmonic\noscillator",penwidth=2,URL="https://en.wikipedia.org/wiki/Quantum_harmonic_oscillator"]; 
-  momentum;                [                                  penwidth=2,URL="https://en.wikipedia.org/wiki/Momentum"]; 
+  momentum                 [                                  penwidth=2,URL="https://en.wikipedia.org/wiki/Momentum"]; 
   Dirac_equation           [label="Dirac\nEquation",          penwidth=2,URL="https://en.wikipedia.org/wiki/Dirac_equation"]; 
   uncertainty_relation     [label="uncertainty\nrelation",    penwidth=2,URL="https://en.wikipedia.org/wiki/Uncertainty_principle"];
   Maxwells_equations       [label="Maxwells\nequations",      penwidth=2,URL="https://en.wikipedia.org/wiki/Maxwell%27s_equations"];
@@ -26,6 +26,7 @@ node [shape=ellipse,color=red];
   Einstein_field_equations [label="Einstein\nfield equations",penwidth=2,URL="https://en.wikipedia.org/wiki/Einstein_field_equations"];
   Ideal_gas_law            [label="Ideal\ngas law",           penwidth=2,URL="https://en.wikipedia.org/wiki/Ideal_gas_law"];
   Cosmological_equation_of_state [label="equation\nof state", penwidth=2,URL="https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"];
+  "E=mc2"                  [label="E=mc&#178;",                    penwidth=2,URL="https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence"];
 
 quantum_mechanics->quantum_harmonic_oscillator [penwidth=2,URL=""];
 quantum_mechanics->Schrodingers_equation       [penwidth=2,URL=""];
@@ -46,14 +47,14 @@ relativity->Friedmann_equations;
 relativity->Einstein_field_equations           [penwidth=2,URL="https://en.wikipedia.org/wiki/Mathematics_of_general_relativity#The_Einstein_field_equations"];
 
 Cosmological_equation_of_state->Ideal_gas_law [dir=both,penwidth=2,URL="https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"];
-"E=mc2"->"F=m*a"                              [dir=both,penwidth=2,URL="http://www.mrelativity.net/relationshipef/the_relationship_between_e_and_f_p1.htm"]; #  http://www.emc2-explained.info/Emc2/Deriving.htm
-Dirac_equation->Schrodingers_equation         [dir=both]; # derivation_of_dirac_equation.pdf derivation_of_schrodinger_and_dirac_equations.pdf
-Schrodingers_equation->wave_equation          [dir=both]; # derivation_of_schrodinger_equation_2006_Ward.pdf
-wave_equation->uncertainty_relation           [dir=both]; # derivation_of_heisenberg_uncertainty_principle.pdf, derivation_of_heisenberg_uncertainty_principle_2010_Kessler.pdf
-particle_in_a_box->Plancks_Law                [dir=both]; # derivation_of_plank.pdf
-wave_equation->Maxwells_equations             [dir=both];
-Maxwells_equations->Kirchhoffs_Laws           [dir=both]; # derivation_of_kirchhoff.pdf
-Schrodingers_equation->Maxwells_equations     [dir=both]; # derivation_of_schrodinger_equation_2006_Ward.pdf
+"E=mc2"->"F=m*a"                              [dir=both,penwidth=2,URL="http://www.mrelativity.net/relationshipef/the_relationship_between_e_and_f_p1.htm"]; # also http://www.emc2-explained.info/Emc2/Deriving.htm
+Dirac_equation->Schrodingers_equation         [dir=both,penwidth=2,URL="http://allofphysicsgraph.github.io/proofofconcept/reference_articles/derivations/2013_Boyd_Dirac_Equation.pdf"]; # also derivation_of_schrodinger_and_dirac_equations.pdf
+Schrodingers_equation->wave_equation          [dir=both,penwidth=2,URL="http://allofphysicsgraph.github.io/proofofconcept/reference_articles/derivations/2006_Ward_How_to_derive_the_schrodinger_equation.pdf"]; 
+wave_equation->uncertainty_relation           [dir=both,penwidth=2,URL="http://allofphysicsgraph.github.io/proofofconcept/reference_articles/derivations/2010_Kessler_derivation_of_heisenberg_uncertainty_principle.pdf"]; # also derivation_of_heisenberg_uncertainty_principle.pdf
+particle_in_a_box->Plancks_Law                [dir=both,penwidth=2,URL="http://allofphysicsgraph.github.io/proofofconcept/reference_articles/derivations/derivation_of_plank_formula.pdf"]; 
+wave_equation->Maxwells_equations             [dir=both,penwidth=5,pencolor=red,URL="http://allofphysicsgraph.github.io/proofofconcept/site/derivations_generated_from_project/maxwell_to_electric_field_wave_equation.html"];
+Maxwells_equations->Kirchhoffs_Laws           [dir=both,penwidth=2,URL="http://allofphysicsgraph.github.io/proofofconcept/reference_articles/derivations/derivation_of_kirchhoffs_laws.pdf"]; 
+Schrodingers_equation->Maxwells_equations     [dir=both,penwidth=2,URL="http://allofphysicsgraph.github.io/proofofconcept/reference_articles/derivations/2006_Ward_How_to_derive_the_schrodinger_equation.pdf"]; 
 
 overlap=false
 label="Concepts (red ellipses) and topics (blue squares)\ncoarse overview of the Physics Derivation Graph"
