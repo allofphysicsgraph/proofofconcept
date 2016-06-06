@@ -13,10 +13,10 @@
 
 import yaml        # for reading "config.input"
 import random
-import os.path
+import os
 import sys
-lib_path = os.path.abspath('../lib')
-db_path = os.path.abspath('databases')
+lib_path = os.getcwd()+"/lib"
+db_path  = os.getcwd()+"/databases"
 sys.path.append(lib_path) # this has to proceed use of physgraph
 
 import lib_physics_graph as physgraf
