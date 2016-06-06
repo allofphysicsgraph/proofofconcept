@@ -1,4 +1,3 @@
-#!/opt/local/bin/python
 # Physics Equation Graph
 # Ben Payne <ben.is.located@gmail.com>
 
@@ -12,13 +11,28 @@
 import re
 import yaml        # for reading "config.input"
 import random
-import os
+import os.path
 import sys
 lib_path = os.getcwd()+"/lib"
 db_path  = os.getcwd()+"/databases"
 sys.path.append(lib_path) # this has to proceed use of physgraph
 
 import lib_physics_graph as physgraf
+
+def convert_expression_to_symbols(latex_expression):
+  if ("==" in latex_expression):
+    ary_of_symbols=latex_expression.split("==")
+  else: 
+    print("equality not found in expression")
+    print(latex_expression)
+    ary_of_symbols=[]
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('/') # division
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  return ary_of_symbols
 
 # https://yaml-online-parser.appspot.com/
 input_stream=file('config.input','r')
@@ -123,6 +137,11 @@ for this_step_to_check in list_of_steps_complete:
     output_expr= this_step_to_check['outputs'][0]
     output_expr = re.sub(r"=", "==", output_expr)
     print("input_expr = "+input_expr)
+    print("    BEGIN SAGE VARIABLES")
+    ary_of_symbols=convert_expression_to_symbols(input_expr)
+    for this_elem in ary_of_symbols:
+      print(this_elem)
+    print("    END SAGE VARIABLES")
     print("expected_output_expr = "+output_expr)
     print("feed = "+this_step_to_check['feeds'][0])
     print("expected_output_expr * feed == expected_output_expr")
