@@ -13,7 +13,6 @@ redraw_inference_rule_pictures_boolean: False
 # png or svg
 file_extension_string: 'png'   
 
-local_path_to_program_directory:  '/Users/benpayne/version_controlled/proofofconcept/v3_CSV/'
 # extension will be appended to picture path
 expr_latex_to_pictures_path:    'lib/images_expression_'
 feed_latex_to_pictures_path:    'lib/images_feed_'
