@@ -18,3 +18,12 @@ do
     echo ERROR found with $filename
   fi
 done
+
+# better: 
+# https://stackoverflow.com/questions/285289/exit-codes-in-python
+# me@mini:~$ python -c ""; echo $?
+# 0
+# me@mini:~$ python -c "import sys; sys.exit(0)"; echo $?
+# 0
+# me@mini:~$ python -c "import sys; sys.exit(43)"; echo $?
+# 43
