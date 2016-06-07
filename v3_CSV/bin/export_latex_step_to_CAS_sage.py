@@ -20,18 +20,112 @@ sys.path.append(lib_path) # this has to proceed use of physgraph
 import lib_physics_graph as physgraf
 
 def convert_expression_to_symbols(latex_expression):
+  ary_of_symbols=[latex_expression]
   if ("==" in latex_expression):
     ary_of_symbols=latex_expression.split("==")
-  else: 
-    print("equality not found in expression")
-    print(latex_expression)
-    ary_of_symbols=[]
+#  else: 
+#    print("equality not found in expression")
+#    print(latex_expression)
+#    ary_of_symbols=[]
   new_ary=[]
   for this_chunk in ary_of_symbols:
     split_chunk=this_chunk.split('/') # division
     for new_elems in split_chunk:
       new_ary.append(new_elems)
   ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('\\frac{') # \frac{}{}
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('\\exp') # \exp
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('\\sin') 
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('\\cos') 
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split(',') 
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('(') 
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split(')') 
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('}{') # \frac{}{}
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('}') # \frac{}{}
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('^')
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    if ('\hbar' in this_chunk):
+      split_chunk=this_chunk.split('\hbar')
+      for new_elems in split_chunk:
+        new_ary.append(new_elems)
+      new_ary.append('\hbar')
+    else: 
+      new_ary.append(this_chunk)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('+')
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('-')
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  for this_chunk in ary_of_symbols: # remove integers
+    try:
+      int(this_chunk)
+      ary_of_symbols.remove(this_chunk)
+    except ValueError:
+      continue
+  if ('' in ary_of_symbols):
+    ary_of_symbols.remove('')
+  if (' ' in ary_of_symbols):
+    ary_of_symbols.remove(' ')
+  ary_of_symbols=list(set(ary_of_symbols))
   return ary_of_symbols
 
 # https://yaml-online-parser.appspot.com/
@@ -139,12 +233,25 @@ for this_step_to_check in list_of_steps_complete:
     print("input_expr = "+input_expr)
     print("    BEGIN SAGE VARIABLES")
     ary_of_symbols=convert_expression_to_symbols(input_expr)
+    print(ary_of_symbols)
     for this_elem in ary_of_symbols:
       print(this_elem)
     print("    END SAGE VARIABLES")
     print("expected_output_expr = "+output_expr)
+    print("    BEGIN SAGE VARIABLES")
+    ary_of_symbols=convert_expression_to_symbols(output_expr)
+    print(ary_of_symbols)
+    for this_elem in ary_of_symbols:
+      print(this_elem)
+    print("    END SAGE VARIABLES")
     print("feed = "+this_step_to_check['feeds'][0])
+    print("    BEGIN SAGE VARIABLES")
+    ary_of_symbols=convert_expression_to_symbols(this_step_to_check['feeds'][0])
+    print(ary_of_symbols)
+    for this_elem in ary_of_symbols:
+      print(this_elem)
+    print("    END SAGE VARIABLES")
     print("expected_output_expr * feed == expected_output_expr")
     print(" ")
     
-    
+sys.exit(0)
