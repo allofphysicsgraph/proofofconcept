@@ -19,6 +19,15 @@ sys.path.append(lib_path) # this has to proceed use of physgraph
 
 import lib_physics_graph as physgraf
 
+def convert_latex_expr_to_sage(expr):
+  expr = re.sub(r"\\ ", "*", expr)
+  expr = re.sub(r"i ", "i*", expr)
+  expr = re.sub(r"\\sin", "sin", expr)
+  expr = re.sub(r"\\cos", "cos", expr)
+  expr = re.sub(r"\\exp", "exp", expr)
+  expr = re.sub(r"\\frac\{(.*)\}\{(.*)\}","(\\1)/(\\2)", expr)
+  return expr
+
 def convert_expression_to_symbols(latex_expression):
   ary_of_symbols=[latex_expression]
   if ("==" in latex_expression):
@@ -111,6 +120,18 @@ def convert_expression_to_symbols(latex_expression):
   ary_of_symbols=new_ary
   new_ary=[]
   for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split('\\ ')
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
+    split_chunk=this_chunk.split(' ')
+    for new_elems in split_chunk:
+      new_ary.append(new_elems)
+  ary_of_symbols=new_ary
+  new_ary=[]
+  for this_chunk in ary_of_symbols:
     split_chunk=this_chunk.split('-')
     for new_elems in split_chunk:
       new_ary.append(new_elems)
@@ -121,6 +142,7 @@ def convert_expression_to_symbols(latex_expression):
       ary_of_symbols.remove(this_chunk)
     except ValueError:
       continue
+  ary_of_symbols=list(set(ary_of_symbols))
   if ('' in ary_of_symbols):
     ary_of_symbols.remove('')
   if (' ' in ary_of_symbols):
@@ -222,36 +244,42 @@ for inf_rule_to_check in list_of_steps_to_check:
   
   list_of_steps_complete.append(this_step_complete)
   print(" ")
-  
+
+print("mult both sides by: ")
+
 for this_step_to_check in list_of_steps_complete:
   if (this_step_to_check['infrule']=='multbothsidesby'):
-#     print(this_step_to_check)
     input_expr = this_step_to_check['inputs'][0]
-    input_expr = re.sub(r"=", "==", input_expr)
+    input_expr = re.sub(r"=", " == ", input_expr)
     output_expr= this_step_to_check['outputs'][0]
-    output_expr = re.sub(r"=", "==", output_expr)
-    print("input_expr = "+input_expr)
-    print("    BEGIN SAGE VARIABLES")
-    ary_of_symbols=convert_expression_to_symbols(input_expr)
-    print(ary_of_symbols)
+    output_expr = re.sub(r"=", " == ", output_expr)
+    feed=this_step_to_check['feeds'][0]
+
+    ary_of_symbols_input=convert_expression_to_symbols(input_expr)
+    ary_of_symbols_output=convert_expression_to_symbols(output_expr)
+    ary_of_symbols_feed=convert_expression_to_symbols(feed)
+    ary_of_symbols=[]
+    for this_elem in ary_of_symbols_input:
+      ary_of_symbols.append(this_elem)
+    for this_elem in ary_of_symbols_output:
+      ary_of_symbols.append(this_elem)
+    for this_elem in ary_of_symbols_feed:
+      ary_of_symbols.append(this_elem)
+    ary_of_symbols=list(set(ary_of_symbols))
     for this_elem in ary_of_symbols:
-      print(this_elem)
-    print("    END SAGE VARIABLES")
-    print("expected_output_expr = "+output_expr)
-    print("    BEGIN SAGE VARIABLES")
-    ary_of_symbols=convert_expression_to_symbols(output_expr)
-    print(ary_of_symbols)
-    for this_elem in ary_of_symbols:
-      print(this_elem)
-    print("    END SAGE VARIABLES")
-    print("feed = "+this_step_to_check['feeds'][0])
-    print("    BEGIN SAGE VARIABLES")
-    ary_of_symbols=convert_expression_to_symbols(this_step_to_check['feeds'][0])
-    print(ary_of_symbols)
-    for this_elem in ary_of_symbols:
-      print(this_elem)
-    print("    END SAGE VARIABLES")
-    print("expected_output_expr * feed == expected_output_expr")
+      print(this_elem+"=var('"+this_elem+"')")
+
+    print("# latex input: "+input_expr)
+    sage_input_expr=convert_latex_expr_to_sage(input_expr)
+    print("input_expr = "+sage_input_expr)
+    print("# latex output: "+output_expr)
+    sage_output_expr=convert_latex_expr_to_sage(output_expr)
+    print("expected_output_expr = "+sage_output_expr)
+    print("# latex feed: "+feed)
+    sage_feed=convert_latex_expr_to_sage(feed)
+    print("feed = "+sage_feed)
+
+    print("input_expr * feed == expected_output_expr")
     print(" ")
     
 sys.exit(0)
