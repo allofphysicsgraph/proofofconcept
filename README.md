@@ -38,7 +38,7 @@ tools
 statistical analysis
 
     python bin/popularity_of_inference_rules.py
-    python bin/popularity_of_statements.py
+    python bin/popularity_of_expressions.py
     python bin/popularity_of_symbols.py
 
 validate connections
