@@ -25,6 +25,7 @@ Non-Python applications
 * [Graphviz](http://www.graphviz.org/) (neato)
 
 # How to use (for the impatient)
+cd v3_CSV
 
 main commands:
 
