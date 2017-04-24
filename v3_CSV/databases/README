@@ -27,6 +27,59 @@ note: "number of arguments" refers to the number of latex inputs (#1, #2, ...)
 
 note: "type" is either infrule,expression, or feed
 
+
+<pre>
+"frequency and period",2,"expression",8482459,       3131111133,   "infrule",6822583,multbothsidesby
+"frequency and period",2,      "feed",5749291,                0,   "infrule",6822583,multbothsidesby
+"frequency and period",2,   "infrule",6822583,  multbothsidesby,"expression",8341200,2131616531
+"frequency and period",3,"expression",8341200,       2131616531,   "infrule",9483715,dividebothsidesby
+"frequency and period",3,      "feed",8837284,                0,   "infrule",9483715,dividebothsidesby
+"frequency and period",3,   "infrule",9483715,dividebothsidesby,"expression",9380032,2113211456
+"frequency and period",4,"expression",9380032,       2113211456,   "infrule",8345721,declareFinalExpression
+</pre>
+
+The columns are
+<OL>
+<LI>name of the derivation</LI>
+<LI>step number within the derivation</LI>
+<LI>source node type</LI>
+<LI>source node temporary index</LI>
+<LI>source node permanent index</LI>
+<LI>destination node type</LI>
+<LI>destination node temporary index</LI>
+<LI>destination node permanent index</LI>
+</OL>
+
+
+<P>To build a graph, a set of pairs identifying the edges is needed. The edge pairs come from the 8 column CSV (referred to as the "database") above. Here's the logic of when to use which ID:
+
+<UL>
+<LI>For graph column 1, if database column 3 is</LI>
+    <UL>
+    <LI>an inference rule, use temporary index (column 4)
+    <LI>a feed, use temporary index (column 4)
+    <LI>an expression, use permanent index (column 5)
+    </UL>
+<LI>For graph column 2, if database column 6 is</LI>
+    <UL>
+    <LI>an inference rule, use temporary index (column 7)
+    <LI>a feed, use temporary index (column 7)
+    <LI>an expression, use permanent index (column 8)
+    </UL>
+</UL>
+
+<!--
+<UL>
+<LI>If the destination   node (column 3) is an inference rule, use the temporary index (column 4) to be the new column 1.</LI>
+<LI>If the destination   node (column 3) is a            feed, use the temporary index (column 4) to be the new column 1.</LI>
+<LI>If the destination   node (column 3) is an     expression, use the permanent index (column 5) to be the new column 1.</LI>
+
+<LI>If the source node (column 6) is an inference rule, use the temporary index (column 7) to be the new column 2.</LI>
+<LI>If the source node (column 6) is a            feed, use the temporary index (column 7) to be the new column 2.</LI>
+<LI>If the source node (column 6) is an     expression, use the permanent index (column 8) to be the new column 2.</LI>
+</UL>
+-->
+
 == symbols_database.csv ==
 
             int,str,str,float,str,str,str
