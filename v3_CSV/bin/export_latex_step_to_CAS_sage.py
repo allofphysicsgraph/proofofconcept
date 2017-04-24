@@ -25,7 +25,7 @@ def convert_latex_expr_to_sage(expr):
   expr = re.sub(r"\\sin", "sin", expr)
   expr = re.sub(r"\\cos", "cos", expr)
   expr = re.sub(r"\\exp", "exp", expr)
-  expr = re.sub(r"\\frac\{(.*)\}\{(.*)\}","(\\1)/(\\2)", expr)
+  expr = re.sub(r"\\frac\{(.*?)\}\{(.*?)\}","(\\1)/(\\2)", expr)
   return expr
 
 def convert_expression_to_symbols(latex_expression):

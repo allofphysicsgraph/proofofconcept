@@ -19,6 +19,7 @@ node [shape=ellipse,color=red];
   Dirac_equation           [label="Dirac\nEquation",          penwidth=2,URL="https://en.wikipedia.org/wiki/Dirac_equation"]; 
   uncertainty_relation     [label="uncertainty\nrelation",    penwidth=2,URL="https://en.wikipedia.org/wiki/Uncertainty_principle"];
   Maxwells_equations       [label="Maxwells\nequations",      penwidth=2,URL="https://en.wikipedia.org/wiki/Maxwell%27s_equations"];
+  Biot_Savart_law          [label="Biot\nSavart",             penwidth=2,URL="https://en.wikipedia.org/wiki/Biot%E2%80%93Savart_law"];
   Plancks_Law              [label="Planck's\nLaw",            penwidth=2,URL="https://en.wikipedia.org/wiki/Planck%27s_law"];
   Kirchhoffs_Laws          [label="Kirchhoff's\nLaws",        penwidth=2,URL="https://en.wikipedia.org/wiki/Kirchhoff%27s_circuit_laws"];
   wave_equation            [label="wave\nequation",           penwidth=2,URL="https://en.wikipedia.org/wiki/Wave_equation"];
@@ -41,13 +42,14 @@ relativity->"E=mc2"                            [penwidth=2,URL="https://en.wikip
 thermodynamics->Plancks_Law;
 thermodynamics->Ideal_gas_law;
 electromagnetism->Maxwells_equations;
+electromagnetism->Biot_Savart_law;
 cosmology->Friedmann_equations;
 cosmology->Cosmological_equation_of_state;
 relativity->Friedmann_equations;
 relativity->Einstein_field_equations           [penwidth=2,URL="https://en.wikipedia.org/wiki/Mathematics_of_general_relativity#The_Einstein_field_equations"];
 
 Cosmological_equation_of_state->Ideal_gas_law [dir=both,penwidth=2,URL="https://en.wikipedia.org/wiki/Equation_of_state_(cosmology)"];
-"E=mc2"->"F=m*a"                              [dir=both,penwidth=2,URL="http://www.mrelativity.net/relationshipef/the_relationship_between_e_and_f_p1.htm"]; # also http://www.emc2-explained.info/Emc2/Deriving.htm
+"E=mc2"->"F=m*a"                              [dir=both,penwidth=2,URL="http://www.emc2-explained.info/Emc2/Deriving.htm"];
 Dirac_equation->Schrodingers_equation         [dir=both,penwidth=2,URL="http://allofphysicsgraph.github.io/proofofconcept/reference_articles/derivations/2013_Boyd_Dirac_Equation.pdf"]; # also derivation_of_schrodinger_and_dirac_equations.pdf
 Schrodingers_equation->wave_equation          [dir=both,penwidth=2,URL="http://allofphysicsgraph.github.io/proofofconcept/reference_articles/derivations/2006_Ward_How_to_derive_the_schrodinger_equation.pdf"]; 
 wave_equation->uncertainty_relation           [dir=both,penwidth=2,URL="http://allofphysicsgraph.github.io/proofofconcept/reference_articles/derivations/2010_Kessler_derivation_of_heisenberg_uncertainty_principle.pdf"]; # also derivation_of_heisenberg_uncertainty_principle.pdf
