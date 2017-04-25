@@ -104,7 +104,7 @@ In this description, the edge pairs are ordered by source and destination.
 </UL>
 
 
-<P>With the above constraints in mind, the CSV format is now of the form<BR>
+<P>With the above constraints in mind, the intermediate visual representation is<BR>
 <!--<FONT FACE="Courier New"> -->
 <!--<textarea cols="100" rows="8" style="font-size: 12pt" style="font-family:Courier New">-->
 
@@ -115,12 +115,12 @@ In this description, the edge pairs are ordered by source and destination.
 </center>
 
 <P>The expression permanent index is the same across all derivations, whereas the temporary index is scoped to just the derivation step.<BR>
-Similarly, the inference rule permanent index is consistent across the entire physics derivation project, whereas the temporary index is specific to the derivation step.</p>
+Similarly, the inference rule temporary index is specific to the derivation step.</p>
 
 <P>The inference rule needs the temporary index to build the graph.<BR>
 The expression needs a temporary index to build the Latex PDF. </P>
 
-<P>The core of the Physics Derivation Graph is an edge list of temporary IDs that are local to each step. 
+<P>The core of the Physics Derivation Graph is an edge list of temporary IDs that are local to each step:
 <pre>
 $ cat derivation_edge_list.csv
 9103516,8482459
@@ -134,7 +134,7 @@ $ cat expression_identifiers.csv
 3131111133,8482459
 2131616531,8341200
 </pre>
-and inference rules
+and inference rules.
 <pre>
 $ cat inference_rule_identifiers.csv 
 6822583,multbothsidesby
@@ -177,6 +177,9 @@ neato -Tpng body_of_graph.dot &gt; out.png
 </P>
 
 <p>However, that's not yet the pretty picture of the graph we want. We need to replace the Godel numbers (permanent IDs) with pictures for expressions. Also need to collapse temporary IDs.</P>
+
+
+$ cat expression_identifiers.csv | sed 's/\([0-9]\{10\}\)/[shape=ellipse, color=red,image=\"..\/..\/expressions\/\1/'
 
 
 <div id="includedFooterContent"></div>
