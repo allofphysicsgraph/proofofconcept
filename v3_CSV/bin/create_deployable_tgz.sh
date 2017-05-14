@@ -1,13 +1,28 @@
 #!/bin/bash
 # Ben Payne
 # bash shell script to create deployable .tgz
-todays_date=`date +%Y%m%d`
 #svn_indx=`svn info | grep Revision | sed -ne 's/Revision: //p'`
 git_indx=`git rev-parse HEAD`
 
+
+project_path="$(pwd)/.."
+
+#echo $project_path
+
+if [ -f "/etc/debian_version" ];
+	then
+		todays_date="$(echo `date +%Y%m%d`)"
+	
+	else
+		todays_date=`date +%Y%m%d`
+fi
+
+
+
 folder_name=physics_graph_${todays_date}
+
 mkdir ${folder_name}
-cp README.md                 ${folder_name}
+cp $project_path/README.md                 ${folder_name}
 cp config.input              ${folder_name}
 mkdir               ${folder_name}/output
 mkdir               ${folder_name}/lib
@@ -25,7 +40,7 @@ cp databases/*.csv  ${folder_name}/databases
 cp databases/README ${folder_name}/databases
 
 # z=gzip, v=verbose, f=write to file
-tar czvf physics_graph_${todays_date}_git_${git_indx}.tgz ${folder_name}
+tar -czvf physics_graph_${todays_date}_git_${git_indx}.tgz ${folder_name}
 
 rm -rf ${folder_name}
 
