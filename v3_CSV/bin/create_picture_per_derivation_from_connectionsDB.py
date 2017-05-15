@@ -11,16 +11,10 @@
 #    graph_all_with_labels.png
 #    graph_all_without_labels.png
 
-import yaml  # used to read "config.input"
-import os.path
-import sys
-lib_path = os.path.abspath('../lib')
-sys.path.append(lib_path)  # this has to proceed use of physgraph
-import lib_physics_graph as physgraf
+from __init__ import * 
 
-# https://yaml-online-parser.appspot.com/
-input_stream = file('config.input', 'r')
-input_data = yaml.load(input_stream)
+
+
 extension = input_data["file_extension_string"]
 infrule_pictures = input_data["infrule_latex_to_pictures_path"] + extension
 if not os.path.exists(infrule_pictures):

@@ -3,12 +3,11 @@
 # Ben Payne <ben.is.located@gmail.com>
 # automate entry of content
 
-import yaml        # for reading "config.input"
+from __init__ import * 
+
 import readline    # for auto-complete # https://pymotw.com/2/readline/
 import rlcompleter  # for auto-complete
 import time        # for pauses
-import sys
-import os
 lib_path = os.path.abspath('../lib')
 sys.path.append(lib_path)  # this has to proceed use of physgraph
 db_path = os.path.abspath('databases')

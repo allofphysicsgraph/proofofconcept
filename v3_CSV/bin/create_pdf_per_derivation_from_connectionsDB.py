@@ -13,14 +13,8 @@
 # output:
 #    graph_all_with_labels.png
 #    graph_all_without_labels.png
+from __init__ import * 
 
-import yaml  # used to read "config.input"
-import os.path
-import sys
-lib_path = os.path.abspath('../lib')
-sys.path.append(lib_path)  # this has to proceed use of physgraph
-
-import lib_physics_graph as physgraf
 
 
 def get_connections_this_step(connections_list_of_dics, this_step):

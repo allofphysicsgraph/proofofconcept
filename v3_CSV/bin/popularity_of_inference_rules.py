@@ -9,12 +9,7 @@
 
 # current bugs:
 
-import yaml
-import sys
-import os
-lib_path = os.path.abspath('../lib')
-print(lib_path)
-sys.path.append(lib_path)  # this has to proceed use of physgraph
+from __init__ import *
 db_path = os.path.abspath('databases')
 import lib_physics_graph as physgraf
 

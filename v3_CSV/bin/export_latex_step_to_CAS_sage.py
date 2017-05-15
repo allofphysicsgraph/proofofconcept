@@ -8,11 +8,8 @@
 
 # current bugs: none
 
-import re
-import yaml        # for reading "config.input"
-import random
-import os.path
-import sys
+from __init__ import *
+
 lib_path = os.getcwd() + "/lib"
 db_path = os.getcwd() + "/databases"
 sys.path.append(lib_path)  # this has to proceed use of physgraph

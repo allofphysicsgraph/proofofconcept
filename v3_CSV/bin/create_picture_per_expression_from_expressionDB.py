@@ -11,16 +11,8 @@
 
 # current bugs:
 
-import yaml  # used to read "config.input"
-import os.path
-import sys
-lib_path = os.path.abspath('../lib')
-sys.path.append(lib_path)  # this has to proceed use of physgraph
-import lib_physics_graph as physgraf
+import __init__ import * 
 
-# https://yaml-online-parser.appspot.com/
-input_stream = file('config.input', 'r')
-input_data = yaml.load(input_stream)
 # output_path  =input_data["output_path"]
 # if not os.path.exists(output_path):
 #     os.makedirs(output_path)

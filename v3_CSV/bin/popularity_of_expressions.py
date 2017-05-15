@@ -9,16 +9,12 @@
 
 # current bugs:
 
-import yaml        # for reading "config.input"
-import sys
-import os
-lib_path = os.path.abspath('../lib')
-sys.path.append(lib_path)  # this has to proceed use of physgraph
-import lib_physics_graph as physgraf
+from __init__ import *
 
-# https://yaml-online-parser.appspot.com/
-input_stream = file('config.input', 'r')
-input_data = yaml.load(input_stream)
+
+
+
+
 connectionsDB = input_data["connectionsDB_path"]
 expressionsDB = input_data["expressionsDB_path"]
 

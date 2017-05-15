@@ -2,15 +2,10 @@
 # Physics Equation Graph
 # Ben Payne <ben.is.located@gmail.com>
 
-import yaml  # used to read "config.input"
-import os.path
-import sys
-lib_path = os.path.abspath('../lib')
-sys.path.append(lib_path)  # this has to proceed use of physgraph
-import lib_physics_graph as physgraf
+from __init__ import * 
 
-input_stream = file('config.input', 'r')
-input_data = yaml.load(input_stream)
+
+
 expressionsDB = input_data["expressionsDB_path"]
 output_path = input_data["output_path"]
 if not os.path.exists(output_path):

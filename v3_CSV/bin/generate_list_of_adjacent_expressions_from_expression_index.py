@@ -7,12 +7,7 @@
 #    connections_database.csv
 # output:
 
-import yaml  # used to read "config.input"
-import os.path
-import sys
-lib_path = os.path.abspath('../lib')
-sys.path.append(lib_path)  # this has to proceed use of physgraph
-import lib_physics_graph as physgraf
+from __init__ import * 
 
 
 def convert_expr_perm_indx_to_latex(expr_list_of_dics, target_expression):
