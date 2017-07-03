@@ -1,0 +1,1477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="91db7c64-a994-4abc-ac74-409ea94f3ccc" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/flask/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/flask/multi_page_form/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/flask/single_page_form/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/lib/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/lib/pydvi2svg/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/javascript_libraries/part2.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/d3js_part1_head_for_local.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/d3js_part1_head_for_web.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/d3js_part2_tail.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/lib_physics_graph.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg.tar.bz2" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/cache/cmex10.cache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/cache/cmmi10.cache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/cache/cmmi7.cache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/cache/cmr10.cache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/cache/cmr5.cache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/cache/cmr7.cache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/cache/cmsy10.cache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/cache/cmsy5.cache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/cache/cmsy7.cache" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/binfile.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/cmdopts.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/colors.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/dviparser.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/encoding.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/findfile.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/fontsel.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/metrics.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/paper_size.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/path_element.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/unic.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/unic_upd.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/utils.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/dvi2svg.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/dvilistfonts.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/8a.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/8r.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/asex.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/asexp.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/cork.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/dc.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/enc.info" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/font.info" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/groff.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/ot1.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/ot1tt.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/qx.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/stormex.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/t5.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/tex256.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/texmext.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/texmital.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/texmsym.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/texnansi.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/texnansx.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/xl2.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/enc/xt2.enc" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmb10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmbsy10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmbx10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmbx12.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmbx5.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmbx6.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmbx7.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmbx8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmbx9.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmbxsl10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmbxti10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmcsc10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmdunh10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmex10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmff10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmfi10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmfib8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cminch.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmitt10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmmi10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmmi12.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmmi5.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmmi6.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmmi7.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmmi8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmmi9.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmmib10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmr10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmr12.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmr17.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmr5.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmr6.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmr7.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmr8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmr9.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsl10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsl12.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsl8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsl9.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsltt10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmss10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmss12.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmss17.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmss8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmss9.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmssbx10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmssdc10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmssi10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmssi12.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmssi17.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmssi8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmssi9.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmssq8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmssqi8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsy10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsy5.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsy6.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsy7.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsy8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmsy9.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmtcsc10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmtex10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmtex8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmtex9.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmti10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmti12.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmti7.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmti8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmti9.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmtt10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmtt12.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmtt8.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmtt9.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmu10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/fonts/cm/cmvtt10.svg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/frags/__init__.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/frags/cmdopts.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/frags/parse_subst.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/frags/parser.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/setup.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/svgfrags.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/multi_page_form/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/multi_page_form/compute.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/multi_page_form/controller.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/multi_page_form/model.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/multi_page_form/static/inference_rules_database.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/multi_page_form/templates/choose_inf_rule_for_this_step.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/multi_page_form/templates/provide_arguments_for_this_infrule.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/multi_page_form/templates/view_current_derivation.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/single_page_form/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/single_page_form/compute.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/single_page_form/controller.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/single_page_form/model.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/flask/single_page_form/templates/view.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/gui/eq2png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/gui/interactive_cli.pl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/gui/latex_entry_gui_flow.dia" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/gui/latex_entry_gui_flow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/gui/operators_database.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/gui/statement2png.pl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/sandbox/mike/ast.png" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/bibliography.bib" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/bibliography.bib" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/database_comparison/database_comparison.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/documentation_PDFs/database_comparison.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/database_comparison/database_comparison.tex" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/database_comparison/database_comparison.tex" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/introduction/images/freq_period_relation.pptx" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/introduction/images/freq_period_relation.pptx" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/introduction/images/frequency_period_relation.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/introduction/images/frequency_period_relation.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/introduction/introduction.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/documentation_PDFs/introduction.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/introduction/introduction.tex" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/introduction/introduction.tex" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/knowledge_graph_example.odp" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/knowledge_graph_example.odp" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/knowledge_graph_example.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/knowledge_graph_example.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/physics_graph_motivation.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/documentation_PDFs/physics_graph_motivation.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/physics_graph_motivation.pptx" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/physics_graph_motivation.pptx" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/physics_graph_notes.log" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/physics_graph_notes.log" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/appendix_test_cases.tex" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/appendix_test_cases.tex" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/images/case1_polynomial_mathML_presentation.gif" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/images/case1_polynomial_mathML_presentation.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/mathML_content_case1_polynomial.xml" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_content_case1_polynomial.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/mathML_presentation_case1_polynomial.xml" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_presentation_case1_polynomial.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/mathML_presentation_case2_stokes.xml" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_presentation_case2_stokes.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/mathML_presentation_case3_tensor.xml" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_presentation_case3_tensor.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/mathML_presentation_case4a_creation.xml" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_presentation_case4a_creation.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/mathML_presentation_case4b_uncertainty.xml" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_presentation_case4b_uncertainty.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/sympy_case1_polynomial.py" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case1_polynomial.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/sympy_case2_stokes.py" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case2_stokes.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/sympy_case3_tensor.py" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case3_tensor.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/sympy_case4a_creation.py" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case4a_creation.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/sympy_case4b_uncertainty.py" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case4b_uncertainty.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/sympy_case4c_projection.py" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case4c_projection.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/syntax_comparison.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/documentation_PDFs/syntax_comparison.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/syntax_comparison/syntax_comparison.tex" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/syntax_comparison.tex" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/user_manual/user_manual.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/documentation_PDFs/user_manual.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/user_manual/user_manual.tex" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/user_manual/user_manual.tex" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/user_manual/user_manual_XML.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/user_manual/user_manual_XML.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/doc/user_manual/user_manual_XML.tex" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/user_manual/user_manual_XML.tex" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/lib/pydvi2svg/conv/__init__.py" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/autocomplete/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_mathematica.nb" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_mathematica.nb" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/IntOverFromTo" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/IntOverFromTo" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/LHSofEqXeqLHSofEqY" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/LHSofEqXeqLHSofEqY" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/RHSofEqXeqRHSofEqY" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/RHSofEqXeqRHSofEqY" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/addEqXtoEqY" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/addEqXtoEqY" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/addXtoBothSides" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/addXtoBothSides" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/addZerotoLHS" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/addZerotoLHS" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/addZerotoRHS" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/addZerotoRHS" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/claimEqXequalsEqY" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/claimEqXequalsEqY" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/claimLHSequalsRHS" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/claimLHSequalsRHS" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/conjugateBothSides" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/conjugateBothSides" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/conjugateFunctionX" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/conjugateFunctionX" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/conjugateTransposeBothSides" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/conjugateTransposeBothSides" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/dividebothsidesby" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/dividebothsidesby" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/expandIntegrand" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/expandIntegrand" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/functionIsEven" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/functionIsEven" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/functionIsOdd" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/functionIsOdd" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/indefIntLHSOver" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/indefIntLHSOver" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/indefIntOver" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/indefIntOver" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/indefIntRHSOver" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/indefIntRHSOver" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/indefIntegration" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/indefIntegration" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/inference_rules_database.xml_NOT_IN_USE" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/inference_rules_database.xml_NOT_IN_USE" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/makeEqPower" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/makeEqPower" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/multEqXbyEqY" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/multEqXbyEqY" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/multLHSbyUnity" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/multLHSbyUnity" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/multRHSbyUnity" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/multRHSbyUnity" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/multbothsidesby" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/multbothsidesby" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/raiseBothSidesToPower" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/raiseBothSidesToPower" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/selectImagParts" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/selectImagParts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/selectRealParts" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/selectRealParts" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/subXforY" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/subXforY" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/subtractXfromBothSides" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/subtractXfromBothSides" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/sumExponentsLHS" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/sumExponentsLHS" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/sumExponentsRHS" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/sumExponentsRHS" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/swapLHSwithRHS" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/swapLHSwithRHS" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/old_not_in_use/inference_rules_sympy/takeCurlofBothSides" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/old_not_in_use/inference_rules_sympy/takeCurlofBothSides" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/1968_ASCII_standard.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/1968_ASCII_standard.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/1986_ASCII_standard.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/1986_ASCII_standard.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/2003_Stuber_Extracting_Mathematical_semantics_from_Latex_documents.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/2003_Stuber_Extracting_Mathematical_semantics_from_Latex_documents.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/2012_Zanibbi_Recognition_and_Retrieval_of_Mathematical_Expressions.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/2012_Zanibbi_Recognition_and_Retrieval_of_Mathematical_Expressions.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/ASCII_history.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/ASCII_history.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/1986_Peters_alternate_derivation_of_relativistic_momentum.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/1986_Peters_alternate_derivation_of_relativistic_momentum.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/1995_Derbes_Feynmans_derivation_of_schrodinger_equation.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/1995_Derbes_Feynmans_derivation_of_schrodinger_equation.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/2006_Efthimiades_Physical_meaning_and_derivation_of_Schrodinger_and_Dirac_equations.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/2006_Efthimiades_Physical_meaning_and_derivation_of_Schrodinger_and_Dirac_equations.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/2006_Ward_How_to_derive_the_schrodinger_equation.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/2006_Ward_How_to_derive_the_schrodinger_equation.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/2009_Moore_Heisenberg_uncertainty_principle.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/2009_Moore_Heisenberg_uncertainty_principle.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/2010_Kessler_derivation_of_heisenberg_uncertainty_principle.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/2010_Kessler_derivation_of_heisenberg_uncertainty_principle.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/2012_Manasreh_Derivation_of_Heisenberg_Uncertainty_Principle.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/2012_Manasreh_Derivation_of_Heisenberg_Uncertainty_Principle.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/2013_Boyd_Dirac_Equation.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/2013_Boyd_Dirac_Equation.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/2013_Rebilas_derivation_of_relativistic_equations_of_motion.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/2013_Rebilas_derivation_of_relativistic_equations_of_motion.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/2014_Grinwald_Schrodinger_equation_derived_from_complex_Gaussian_propagator_with_no_prior_physical_assumptions.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/2014_Grinwald_Schrodinger_equation_derived_from_complex_Gaussian_propagator_with_no_prior_physical_assumptions.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/derivation_of_kirchhoffs_laws.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/derivation_of_kirchhoffs_laws.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/derivations/derivation_of_plank_formula.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/derivations/derivation_of_plank_formula.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/mmlprime.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/mmlprime.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/reference_articles/wu_xiaoheng.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/reference_articles/wu_xiaoheng.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/autocomplete/auto_complete.py" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/autocomplete/auto_complete.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/cas_mathematica/validate_equation.m" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/cas_mathematica/validate_equation.m" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/cas_mathematica/validate_equation_working.m" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/cas_mathematica/validate_equation_working.m" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/equationMap_tex_parser/convert_diagram_to_PDG.py" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/equationMap_tex_parser/convert_diagram_to_PDG.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/equationMap_tex_parser/diagram.tex" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/equationMap_tex_parser/diagram.tex" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/Control.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/Control.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/Graph.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/Graph.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/Grapher2D.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/Grapher2D.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/Point.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/Point.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/Vertex.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/Vertex.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/first_attempt.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/first_attempt.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/ga.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/ga.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/node_pics/1.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/node_pics/1.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/slider.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/slider.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/style.css" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_g.ivank.net/style.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/driver.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/driver.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/edge.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/edge.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/force_decorators.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/force_decorators.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/gleap.css" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/gleap.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/graph_manager.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/graph_manager.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/jquery-1.7.1.min.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/jquery-1.7.1.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/node.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/node.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/second_attempt.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/second_attempt.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/sprintf.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/sprintf.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/util.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/util.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/based_on_gleap.org/vector.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/based_on_gleap.org/vector.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/download.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/download.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/force-directed.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/force-directed.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/html5_force-directed_graphs/notes_on_editing_graphs.txt" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/html5_force-directed_graphs/notes_on_editing_graphs.txt" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/mathjax_html/equation_test.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/mathjax_html/equation_test.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/website_tests/mathjax_html/shapes.css" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/website_tests/mathjax_html/shapes.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/xml_in_html/cd_catalog.xml" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/xml_in_html/cd_catalog.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/sandbox/xml_in_html/table.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/xml_in_html/table.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/Comptons_equation_for_scattering.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/Comptons_equation_for_scattering.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/all.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/all.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/curl_curl_identity.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/curl_curl_identity.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/derivation_of_Schrodinger_Eq.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/derivation_of_Schrodinger_Eq.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/electric_field_wave_equation_time_dependent_to_time_independent.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/electric_field_wave_equation_time_dependent_to_time_independent.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/euler_equation_proof.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/euler_equation_proof.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/euler_equation_trig_relations.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/euler_equation_trig_relations.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/euler_equation_trig_sqrt.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/euler_equation_trig_sqrt.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/example_of_Godel_problem.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/example_of_Godel_problem.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/frequency_relations.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/frequency_relations.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/integration_by_parts.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/integration_by_parts.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/maxwell_to_electric_field_wave_equation.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/maxwell_to_electric_field_wave_equation.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/particle_in_a_1D_box.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/particle_in_a_1D_box.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/quadratic_equation_derivation.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/quadratic_equation_derivation.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/quantum_basics_Hermitian_operators_have_realvalued_observables.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/quantum_basics_Hermitian_operators_have_realvalued_observables.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/quantum_basics_orthogonality.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/quantum_basics_orthogonality.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/derivations_generated_from_project/variance_relation.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/variance_relation.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/directed-graph-creator-master/FileSaver.min.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/directed-graph-creator-master/FileSaver.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/directed-graph-creator-master/README.md" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/directed-graph-creator-master/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/directed-graph-creator-master/download-icon.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/directed-graph-creator-master/download-icon.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/directed-graph-creator-master/graph-creator.css" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/directed-graph-creator-master/graph-creator.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/directed-graph-creator-master/graph-creator.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/directed-graph-creator-master/graph-creator.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/directed-graph-creator-master/index.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/directed-graph-creator-master/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/directed-graph-creator-master/thumbnail.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/directed-graph-creator-master/thumbnail.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/directed-graph-creator-master/trash-icon.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/directed-graph-creator-master/trash-icon.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/directed-graph-creator-master/upload-icon.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/directed-graph-creator-master/upload-icon.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/documentation_PDFs/database_comparison.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/database_comparison/database_comparison.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/documentation_PDFs/grab_current_copy_from_git.sh" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/documentation_PDFs/grab_current_copy_from_git.sh" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/documentation_PDFs/introduction.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/introduction/introduction.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/documentation_PDFs/physics_graph_motivation.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/physics_graph_motivation.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/documentation_PDFs/syntax_comparison.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/syntax_comparison.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/documentation_PDFs/user_manual.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/user_manual/user_manual.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/example_T_f/example_T_f_csv.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/example_T_f/example_T_f_csv.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/example_T_f/example_T_f_d3js.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/example_T_f/example_T_f_d3js.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/example_T_f/example_T_f_dot.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/example_T_f/example_T_f_dot.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/example_T_f/example_T_f_json.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/example_T_f/example_T_f_json.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/example_T_f/example_T_f_tex.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/example_T_f/example_T_f_tex.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/example_T_f/example_T_f_tex_output.pdf" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/example_T_f/example_T_f_tex_output.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/example_d3js_graphs/1377729.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/example_d3js_graphs/1377729.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/example_d3js_graphs/4062045.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/example_d3js_graphs/4062045.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/faq.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/faq.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/footer.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/footer.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graph_from_scratch/graph_from_scratch_10_picture_per_node.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graph_from_scratch/graph_from_scratch_10_picture_per_node.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graph_from_scratch/graph_from_scratch_11_image_size.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graph_from_scratch/graph_from_scratch_11_image_size.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graph_from_scratch/graph_from_scratch_12_pics_and_labels.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graph_from_scratch/graph_from_scratch_12_pics_and_labels.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graph_from_scratch/graph_from_scratch_13_read_from_file.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graph_from_scratch/graph_from_scratch_13_read_from_file.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graph_from_scratch/graph_from_scratch_14_two_input_arrays.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graph_from_scratch/graph_from_scratch_14_two_input_arrays.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graph_from_scratch/graph_from_scratch_15_with_arrows.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graph_from_scratch/graph_from_scratch_15_with_arrows.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graph_from_scratch/graph_from_scratch_16_quadratic_equation.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graph_from_scratch/graph_from_scratch_16_quadratic_equation.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graph_from_scratch/graph_from_scratch_17_node_repulsion.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graph_from_scratch/graph_from_scratch_17_node_repulsion.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graph_from_scratch/graph_from_scratch_18_links.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graph_from_scratch/graph_from_scratch_18_links.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graph_from_scratch/graph_from_scratch_19_overview.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graph_from_scratch/graph_from_scratch_19_overview.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_Comptons_equation_for_scattering.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_Comptons_equation_for_scattering.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_all.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_all.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_curl_curl_identity.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_curl_curl_identity.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_derivation_of_Schrodinger_Eq.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_derivation_of_Schrodinger_Eq.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_electric_field_wave_equation_time_dependent_to_time_independent.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_electric_field_wave_equation_time_dependent_to_time_independent.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_euler_equation_proof.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_euler_equation_proof.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_euler_equation_trig_relations.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_euler_equation_trig_relations.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_euler_equation_trig_sqrt.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_euler_equation_trig_sqrt.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_example_of_Godel_problem.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_example_of_Godel_problem.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_frequency_relations.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_frequency_relations.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_integration_by_parts.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_integration_by_parts.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_maxwell_to_electric_field_wave_equation.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_maxwell_to_electric_field_wave_equation.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_particle_in_a_1D_box.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_particle_in_a_1D_box.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_quadratic_equation_derivation.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_quadratic_equation_derivation.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_quantum_basics_Hermitian_operators_have_realvalued_observables.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_quantum_basics_Hermitian_operators_have_realvalued_observables.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_quantum_basics_orthogonality.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_quantum_basics_orthogonality.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/graphviz/connections_variance_relation.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/graphviz/connections_variance_relation.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/hierarchical_graph/graph_hierarchical_01_basic.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/hierarchical_graph/graph_hierarchical_01_basic.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/hierarchical_graph/nodes_and_edges.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/hierarchical_graph/nodes_and_edges.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/how_to_build_the_physics_derivation.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/how_to_build_the_physics_derivation.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/inactive_avenues/README_Coq_proof_assistant" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/inactive_avenues/README_Coq_proof_assistant" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/inactive_avenues/example_T_f/example_T_f_csv.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/inactive_avenues/example_T_f/example_T_f_csv.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/inactive_avenues/example_T_f/example_T_f_graphml.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/inactive_avenues/example_T_f/example_T_f_graphml.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/inactive_avenues/example_T_f/example_T_f_mathematica.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/inactive_avenues/example_T_f/example_T_f_mathematica.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/inactive_avenues/example_T_f/example_T_f_networkx.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/inactive_avenues/example_T_f/example_T_f_networkx.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/inactive_avenues/index.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/inactive_avenues/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/javascript_libraries/d3/LICENSE" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/javascript_libraries/d3/LICENSE" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/javascript_libraries/d3/d3.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/javascript_libraries/d3/d3.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/javascript_libraries/d3/d3.min.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/javascript_libraries/d3/d3.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/javascript_libraries/d3/d3.v3.min.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/javascript_libraries/d3/d3.v3.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/javascript_libraries/jquery-2.1.4.min.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/javascript_libraries/jquery-2.1.4.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/javascript_libraries/part1.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/javascript_libraries/part1.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/javascript_libraries/part2.js" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/equationMap_tex_parser/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/README" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/README" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/frequency_relation_T_f.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/frequency_relation_T_f.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/Comptons_equation_for_scattering.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/Comptons_equation_for_scattering.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/all.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/all.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/curl_curl_identity.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/curl_curl_identity.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/derivation_of_Schrodinger_Eq.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/derivation_of_Schrodinger_Eq.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/electric_field_wave_equation_time_dependent_to_time_independent.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/electric_field_wave_equation_time_dependent_to_time_independent.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/euler_equation_proof.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/euler_equation_proof.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/euler_equation_trig_relations.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/euler_equation_trig_relations.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/euler_equation_trig_sqrt.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/euler_equation_trig_sqrt.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/example_of_Godel_problem.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/example_of_Godel_problem.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/frequency_relations.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/frequency_relations.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/integration_by_parts.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/integration_by_parts.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/maxwell_to_electric_field_wave_equation.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/maxwell_to_electric_field_wave_equation.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/overview.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/overview.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/particle_in_a_1D_box.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/particle_in_a_1D_box.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/quadratic_equation_derivation.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/quadratic_equation_derivation.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/quantum_basics_Hermitian_operators_have_realvalued_observables.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/quantum_basics_Hermitian_operators_have_realvalued_observables.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/quantum_basics_orthogonality.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/quantum_basics_orthogonality.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/generated_from_project/variance_relation.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/generated_from_project/variance_relation.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/json_creation.log" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/json_creation.log" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/miserables.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/miserables.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/nodes_and_edges_expressions_and_inference_rules.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/nodes_and_edges_expressions_and_inference_rules.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/nodes_and_edges_expressions_and_inference_rules.json_FULL" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/nodes_and_edges_expressions_and_inference_rules.json_FULL" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/nodes_expressions.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/nodes_expressions.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/nodes_expressions_and_inference_rules.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/nodes_expressions_and_inference_rules.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/nodes_inference_rules.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/nodes_inference_rules.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/nodes_list_full.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/nodes_list_full.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/json/nodes_list_playground.json" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/nodes_list_playground.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/list_of_experiments.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/list_of_experiments.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/nav_bar.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/nav_bar.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/overview.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/overview.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/papers.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/papers.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/example_T_f_graphviz_output.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/example_T_f_graphviz_output.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/example_T_f_intermediate_output.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/example_T_f_intermediate_output.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/example_T_f_tex_output.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/example_T_f_tex_output.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/README" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/json/README" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_Comptons_equation_for_scattering_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_Comptons_equation_for_scattering_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_Comptons_equation_for_scattering_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_Comptons_equation_for_scattering_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_all_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_all_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_all_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_all_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_curl_curl_identity_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_curl_curl_identity_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_curl_curl_identity_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_curl_curl_identity_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_derivation_of_Schrodinger_Eq_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_derivation_of_Schrodinger_Eq_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_derivation_of_Schrodinger_Eq_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_derivation_of_Schrodinger_Eq_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_electric_field_wave_equation_time_dependent_to_time_independent_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_electric_field_wave_equation_time_dependent_to_time_independent_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_electric_field_wave_equation_time_dependent_to_time_independent_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_electric_field_wave_equation_time_dependent_to_time_independent_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_euler_equation_proof_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_euler_equation_proof_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_euler_equation_proof_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_euler_equation_proof_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_euler_equation_trig_relations_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_euler_equation_trig_relations_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_euler_equation_trig_relations_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_euler_equation_trig_relations_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_euler_equation_trig_sqrt_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_euler_equation_trig_sqrt_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_euler_equation_trig_sqrt_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_euler_equation_trig_sqrt_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_example_of_Godel_problem_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_example_of_Godel_problem_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_example_of_Godel_problem_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_example_of_Godel_problem_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_frequency_relations_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_frequency_relations_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_frequency_relations_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_frequency_relations_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_integration_by_parts_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_integration_by_parts_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_integration_by_parts_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_integration_by_parts_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_maxwell_to_electric_field_wave_equation_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_maxwell_to_electric_field_wave_equation_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_maxwell_to_electric_field_wave_equation_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_maxwell_to_electric_field_wave_equation_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_particle_in_a_1D_box_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_particle_in_a_1D_box_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_particle_in_a_1D_box_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_particle_in_a_1D_box_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_quadratic_equation_derivation_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_quadratic_equation_derivation_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_quadratic_equation_derivation_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_quadratic_equation_derivation_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_quantum_basics_Hermitian_operators_have_realvalued_observables_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_quantum_basics_Hermitian_operators_have_realvalued_observables_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_quantum_basics_Hermitian_operators_have_realvalued_observables_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_quantum_basics_Hermitian_operators_have_realvalued_observables_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_quantum_basics_orthogonality_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_quantum_basics_orthogonality_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_quantum_basics_orthogonality_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_quantum_basics_orthogonality_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_variance_relation_with_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_variance_relation_with_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/generated_from_project/graph_variance_relation_without_labels.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/generated_from_project/graph_variance_relation_without_labels.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/pictures/simple_example_expanded_T1f.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/pictures/simple_example_expanded_T1f.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/0010_title_slide.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/0010_title_slide.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/0020_people_are_aware_of_advanced_physics.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/0020_people_are_aware_of_advanced_physics.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/0030_exposure_to_expressions.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/0030_exposure_to_expressions.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/0040_relation_between_expressions.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/0040_relation_between_expressions.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/0050_wikipedia.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/0050_wikipedia.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/0060_physics_is_connected_mathematically.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/0060_physics_is_connected_mathematically.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/0070_example_frequency.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/0070_example_frequency.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/0080_use_cases.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/0080_use_cases.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/0090_status.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/0090_status.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/0100_future_plans.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/0100_future_plans.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/born_oppenheimer.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/born_oppenheimer.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/brief_history_of_time.gif" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/brief_history_of_time.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/cloud_1.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/cloud_1.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/cloud_2.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/cloud_2.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/cloud_3.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/cloud_3.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/cloud_4.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/cloud_4.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/cloud_5.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/cloud_5.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/cloud_6.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/cloud_6.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/elegant_universe_cover.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/elegant_universe_cover.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/emc2_fma.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/emc2_fma.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/erratum.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/erratum.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/frustration.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/frustration.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/lady-balancing-checkbook.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/lady-balancing-checkbook.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/maxwell_tattoo.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/maxwell_tattoo.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/physics_of_the_future.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/physics_of_the_future.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/quantum-web.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/quantum-web.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/questionable_arxiv_paper_antigravity_propulsion.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/questionable_arxiv_paper_antigravity_propulsion.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/questionable_crank_this_time.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/questionable_crank_this_time.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/schrdi1.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/schrdi1.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/schrodingers-cat-artwork-500x500.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/schrodingers-cat-artwork-500x500.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/schrodingers_cat_walks_into_a_bar.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/schrodingers_cat_walks_into_a_bar.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/simple_harmonic_motion__spring.gif" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/simple_harmonic_motion__spring.gif" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/the_problem_with_wikipedia_xkcd_214.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/the_problem_with_wikipedia_xkcd_214.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/what-does-e-mc-2-mean_fa03d3c0-ae7e-4061-b40a-ca77132f5145.jpg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/what-does-e-mc-2-mean_fa03d3c0-ae7e-4061-b40a-ca77132f5145.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/wikipedia_html_source.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/wikipedia_html_source.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/images/wikipedia_topics.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/images/wikipedia_topics.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/presentation/nav_bar.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/presentation/nav_bar.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/sandbox/topic_and_concept_graph.gv" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/sandbox/topic_and_concept_graph.gv" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/sandbox/topic_and_concept_graph.png" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/sandbox/topic_and_concept_graph.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/sandbox/topic_and_concept_graph.svg" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/sandbox/topic_and_concept_graph.svg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/site/team_bios.html" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/templates/site/team_bios.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/proofofconcept.iml" afterPath="$PROJECT_DIR$/.idea/proofofconcept.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/mike/CSV_PANDAS.ipynb" afterPath="$PROJECT_DIR$/sandbox/mike/CSV_PANDAS.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/mike/Csv_2_Redis.ipynb" afterPath="$PROJECT_DIR$/sandbox/mike/Csv_2_Redis.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/mike/ast.dot" afterPath="$PROJECT_DIR$/sandbox/mike/ast.dot" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/mike/webapp/main/views.py" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/main/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/mike/webapp/postgres_setup.sh" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/postgres_setup.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/mike/webapp/requirements.txt" afterPath="$PROJECT_DIR$/sandbox/mike/webapp/requirements.txt" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.idea/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/proofofconcept$manage.coverage" NAME="manage Coverage Results" MODIFIED="1499102753784" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sandbox/mike/webapp" />
+    <SUITE FILE_PATH="coverage/proofofconcept$auto_complete.coverage" NAME="auto_complete Coverage Results" MODIFIED="1499100980033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sandbox/autocomplete" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="mathML_presentation_case3_tensor.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_presentation_case3_tensor.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sympy_case2_stokes.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case2_stokes.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mathML_presentation_case4b_uncertainty.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_presentation_case4b_uncertainty.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="14" lean-forward="false" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CircleFlowAlgorithm.pde" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sandbox/processing/example_graphs/CircleFlowAlgorithm.pde">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sympy_case1_polynomial.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case1_polynomial.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sympy_case4c_projection.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case4c_projection.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sympy_case3_tensor.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case3_tensor.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user_manual_XML.tex" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/user_manual/user_manual_XML.tex">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="physics_graph_notes.log" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/physics_graph_notes.log">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="136">
+                <caret line="8" column="53" lean-forward="false" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/sandbox/mike/webapp/main/views.py" />
+        <option value="$PROJECT_DIR$/sandbox/mike/webapp/requirements.txt" />
+        <option value="$PROJECT_DIR$/sandbox/mike/webapp/postgres_setup.sh" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-322" />
+    <option name="y" value="279" />
+    <option name="width" value="1909" />
+    <option name="height" value="948" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sandbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sandbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="processing" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sandbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mike" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sandbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mike" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sandbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mike" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sandbox/mike/webapp/main" />
+      <recent name="$PROJECT_DIR$/sandbox/mike/webapp/templates" />
+      <recent name="$PROJECT_DIR$/sandbox/mike/webapp/main/static" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.manage">
+    <configuration default="false" name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sandbox/mike/webapp" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="proofofconcept" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sandbox/mike/webapp/manage.py" />
+      <option name="PARAMETERS" value="runserver 0.0.0.0:8000" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="auto_complete" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sandbox/autocomplete" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="proofofconcept" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sandbox/autocomplete/auto_complete.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#PerlConfigurationType" factoryName="Perl" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="alternativeSdkPath" />
+      <option name="compileTimeBreakpointsEnabled" value="false" />
+      <option name="consoleCharset" />
+      <option name="envs">
+        <map />
+      </option>
+      <option name="nonInteractiveModeEnabled" value="false" />
+      <option name="passParentEnvs" value="true" />
+      <option name="perlParameters" value="" />
+      <option name="programParameters" />
+      <option name="scriptPath" />
+      <option name="useAlternativeSdk" value="false" />
+      <option name="workingDirectory" />
+      <option name="SCRIPT_PATH" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="PERL_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENVS">
+        <map />
+      </option>
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="CHARSET" />
+      <option name="USE_ALTERNATIVE_SDK" value="false" />
+      <option name="ALTERNATIVE_SDK_PATH" />
+      <option name="scriptCharset" value="utf8" />
+      <option name="startMode" value="RUN" />
+      <option name="isNonInteractiveModeEnabled" value="false" />
+      <option name="isCompileTimeBreakpointsEnabled" value="false" />
+      <option name="initCode" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="ApexTest" factoryName="Apex Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="BashConfigurationType" factoryName="Bash">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="proofofconcept" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="proofofconcept" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="proofofconcept" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="proofofconcept" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <module name="proofofconcept" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="proofofconcept" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="proofofconcept" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="proofofconcept" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <list size="2">
+      <item index="0" class="java.lang.String" itemvalue="Python.manage" />
+      <item index="1" class="java.lang.String" itemvalue="Python.auto_complete" />
+    </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python.manage" />
+        <item index="1" class="java.lang.String" itemvalue="Python.auto_complete" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="91db7c64-a994-4abc-ac74-409ea94f3ccc" name="Default" comment="" />
+      <created>1499099560237</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1499099560237</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-322" y="279" width="1909" height="948" extended-state="0" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896304" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33252722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26756033" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/sandbox/wolfram_alpha_test_expressions/query_response_url.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/wolfram_alpha_test_expressions/README">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/templates/xml_in_html/table.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/eq2png">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="110" column="5" lean-forward="true" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/xml_to_gv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/templates/site/derivations_generated_from_project/Comptons_equation_for_scattering.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="107" lean-forward="true" selection-start-line="5" selection-start-column="107" selection-end-line="5" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/templates/site/documentation_PDFs/test.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="279" column="0" lean-forward="true" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/templates/site/hierarchical_graph/graph_hierarchical_01_basic.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/site/documentation_PDFs/.~lock.test.csv#" />
+    <entry file="file://$PROJECT_DIR$/v1_plain_text/statement_txt_db_to_png.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/bin/build_derivation_csv_from_xml.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/bin/prompt_to_user.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/bin/popularity_of_symbols.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/bin/list_inference_rules.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/bin/list_connection_sets.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/bin/generate_new_random_index.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/databases/symbols_database.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/databases/inference_rules_database.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/databases/feed_database.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/databases/expressions_database.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/databases/connections_database.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v2_XML/databases/comments_database.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/ast.dot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/ast.png" />
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/fb1-4.l">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/ast_output">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/clean_ast.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/Csv_2_Redis.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/CSV_PANDAS.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/test">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/Shunting_Yard_Algorithm.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v1_plain_text/statement_txt_db_to_svg.pl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v1_plain_text/operators_database.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v1_plain_text/equations_database.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/v1_plain_text/comments_database.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/postgres_setup.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/database_comparison/database_comparison.tex">
+      <provider selected="true" editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/images/case1_polynomial_mathML_presentation.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_content_case1_polynomial.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_presentation_case2_stokes.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_presentation_case3_tensor.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case2_stokes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case1_polynomial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case4c_projection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/sympy_case3_tensor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/user_manual/user_manual_XML.tex">
+      <provider editor-type-id="LaTeXFileEditor">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/physics_graph_notes.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="136">
+            <caret line="8" column="53" lean-forward="false" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/mike/webapp/main/static/doc/syntax_comparison/mathML_presentation_case4b_uncertainty.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="14" lean-forward="false" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/processing/example_graphs/CircleFlowAlgorithm.pde">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="36" lean-forward="false" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
