@@ -40,7 +40,12 @@ def wiki_index(request):
 
     return render(request,'b_index.html',context)
 
+def create_symbols_table():
 
+    f = open('/home/as/PycharmProjects/proofofconcept/sandbox/App/webapp/main/databases/symbols_database.csv')
+    df = pd.read_csv(f, names=['id', 'symbol', 'type', 'value', 'units', 'description', 'cas_sympy'])
+
+    df.to_sql('symbols', engine, if_exists='replace')
 
 def index_pdfs(request):
     testing = system('find {} -name "*.pdf" > /tmp/pdfs'.format(path))
@@ -52,21 +57,26 @@ def pdfs(request):
     #files = f.readlines()
     #f.close()
     files=''
-    df = pd.read_sql('symbols', engine)
+    df = pd.read_sql('symbols', engine).fillna(' ')
+    columns=[x for x in df.columns.tolist() if x != 'id']
     symbols_rows=df.iterrows()
     context = {
+
         'files':files,
+        'columns':columns,
         'rows':symbols_rows,
+
     }
 
 
 
 
-    return render(request,'symbols_table.html',context)
+    return render(request,'data_table.html',context)
 
 
 def pdf_list(request):
     testing = system('find {} -name "*.pdf"'.format(path))
+
 
 
 #https://stackoverflow.com/questions/11779246/how-to-show-a-pdf-file-in-a-django-view

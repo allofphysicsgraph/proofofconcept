@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.4/dt-1.10.15/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-2.2.4/dt-1.10.15/datatables.min.js"></script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+</head>
+
+<body>
+
+<table id="symbols_table" class="display" cellspacing="0" width="100%">
+
+        <thead>
+             <tr>
+{% for cell in columns %}
+        <th>${{  cell }}$</th>
+    {% endfor %}
+</tr>
+        </thead>
+        <tfoot>
+           <tr>
+{% for cell in columns %}
+        <th>${{  cell }}$</th>
+    {% endfor %}
+</tr>
+        </tfoot>
+        <tbody>
+
+{% for col,row in rows %}
+<tr>
+    {% for cell in row|slice:"1:" %}
+        <td>${{  cell }}$</td>
+    {% endfor %}
+</tr>
+{% endfor %}
+
+
+        </tbody>
+</table>
+
+
+$\alpha$
+
+</body>
+
+<script>
+    $(document).ready(function(){
+    $('#symbols_table').DataTable({
+         "iDisplayLength": 100
+
+    });
+
+
+});
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+  });
+</script>
+
+</html>

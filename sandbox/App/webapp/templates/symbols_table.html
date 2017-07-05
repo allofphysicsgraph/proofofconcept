@@ -32,6 +32,13 @@
     <!-- Main styles for this application -->
     <link href="/static/root/css/style.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.4/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/kt-2.2.1/r-2.1.1/se-1.2.2/datatables.min.css"/>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-2.2.4/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/kt-2.2.1/r-2.1.1/se-1.2.2/datatables.min.js"></script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 </head>
 
 <!-- BODY options, add following classes to body to change options
@@ -121,29 +128,37 @@
         <main class="main">
 
 
-            <div class="container-fluid">
+<table id="symbols_table">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.4/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/kt-2.2.1/r-2.1.1/se-1.2.2/datatables.min.css"/>
+ <thead>
+ <tr>
+{% for cell in columns %}
+        <th>${{  cell }}$</th>
+    {% endfor %}
+</tr>
 
-<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-2.2.4/pdfmake-0.1.27/dt-1.10.15/af-2.2.0/b-1.3.1/b-colvis-1.3.1/b-html5-1.3.1/b-print-1.3.1/cr-1.3.3/kt-2.2.1/r-2.1.1/se-1.2.2/datatables.min.js"></script>
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-
-
-<table>
-{% for file in files %}
-    <tr>
-    <th><a href="{{ file }}">{{ file }}</a></th>
-    </tr>
-{% endfor %}
+ </thead>
 
 
+ <tfoot>
+ <tr>
+{% for cell in columns %}
+        <th>${{  cell }}$</th>
+    {% endfor %}
+</tr>
 
+ </tfoot>
 
+<tbody>
+
+</tbody>
 
 </table>
+
+            <div class="container-fluid">
+
+
+
 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
@@ -154,15 +169,16 @@
 
 
 
-<table>
-{% for col,row in rows %}
-<tr>
-    {% for cell in row|slice:"1:" %}
-        <td>${{  cell }}$</td>
-    {% endfor %}
-</tr>
-{% endfor %}
-</table>
+
+
+</body>
+
+<script>
+    $(document).ready(function(){
+    $('#symbols_table').DataTable();
+});
+</script>
+
 
             </div>
             <!-- /.conainer-fluid -->
@@ -204,7 +220,12 @@
     <script src="/static/root/js/views/main.js"></script>
 
 
+<script>
 
+$(document).ready(function(){
+    $('#symbols_table').DataTable();
+});
+</script>
 
 
 
