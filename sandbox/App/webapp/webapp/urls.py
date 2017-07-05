@@ -18,6 +18,7 @@ from django.contrib import admin
 from main.views import *
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
-    url('^$',index)
+    url('^$',derivation_pdfs),
+    url('[a-zA-Z0-9_]+.pdf',render_pdf)
 
 ]

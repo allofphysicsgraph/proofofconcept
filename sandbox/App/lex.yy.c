@@ -461,7 +461,7 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "fb1-4.l"
+#line 1 "f2.l"
 /* Companion source code for "flex & bison", published by O'Reilly
  * Media, ISBN 978-0-596-15597-1
  * Copyright (c) 2009, Taughannock Networks. All rights reserved.
@@ -469,7 +469,7 @@ char *yytext;
  * $Header: /home/johnl/flnb/code/RCS/fb1-4.l,v 2.1 2009/11/08 02:53:18 johnl Exp $
  */
 /* recognize tokens for the calculator and print them out */
-#line 12 "fb1-4.l"
+#line 12 "f2.l"
 
 #include <stdio.h>
    enum yytokentype {
@@ -698,7 +698,7 @@ YY_DECL
 		}
 
 	{
-#line 28 "fb1-4.l"
+#line 28 "f2.l"
 
 #line 704 "lex.yy.c"
 
@@ -759,53 +759,53 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 29 "fb1-4.l"
+#line 29 "f2.l"
 { return ADD; }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 30 "fb1-4.l"
+#line 30 "f2.l"
 { return SUB; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 31 "fb1-4.l"
+#line 31 "f2.l"
 { return MUL; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 32 "fb1-4.l"
+#line 32 "f2.l"
 { return DIV; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 33 "fb1-4.l"
+#line 33 "f2.l"
 { return ABS; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 34 "fb1-4.l"
+#line 34 "f2.l"
 { yylval = atoi(yytext); return NUMBER; }
 	YY_BREAK
 case 7:
 /* rule 7 can match eol */
 YY_RULE_SETUP
-#line 35 "fb1-4.l"
+#line 35 "f2.l"
 { return EOL; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 36 "fb1-4.l"
+#line 36 "f2.l"
 { /* ignore white space */ }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 37 "fb1-4.l"
+#line 37 "f2.l"
 { printf("Mystery character %c\n", *yytext); }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 38 "fb1-4.l"
+#line 38 "f2.l"
 ECHO;
 	YY_BREAK
 #line 812 "lex.yy.c"
@@ -1803,7 +1803,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 37 "fb1-4.l"
+#line 37 "f2.l"
 
 
 main()
@@ -1814,18 +1814,25 @@ main()
 
 
   int tok;
-
+  int counter = 0;
+  int arr[3];
   while(tok = yylex()) {
-    printf("%d", tok);
-    fprintf(fptr,"%d",tok);
-    if(tok == NUMBER)
-            printf(" = %d\n", yylval);
+    if(tok == NUMBER){
+            /*printf(" = %d\n", yylval);*/
             fprintf(fptr," -- %d\n",yylval);
+	    arr[counter] = yylval;	
+	    /*printf("%d",yylval);*/
+	    counter += 1;
+  }else{
+
+	printf("%s","5");
+	
+	}
 
 
-
-  }
-
+}
+  
+  
   fprintf(fptr,"}");
   fclose(fptr);
 

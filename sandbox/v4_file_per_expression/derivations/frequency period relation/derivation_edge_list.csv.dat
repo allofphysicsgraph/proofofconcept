@@ -1,5 +1,0 @@
-9103516,8482459 # declareInitialExpression;       T == 1/f
-8482459,6822583 # T == 1/f                ;       multiply both sides by
-5749291,6822583 # f                       ;       multiply both sides by
-6822583,8341200 # multiply both sides by  ; T\ f == 1
-
