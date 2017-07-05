@@ -3,12 +3,26 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from models import *
-# Create your views here.
+import requests
+import re
+from os import listdir
+import re, os
+import os
+from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from os import system
+from time import sleep
+import pandas as pd
+from sqlalchemy import create_engine
+engine = create_engine('postgres://pdg_user:password@localhost/pdg')
+
+
+
+path='/home/as/PycharmProjects/proofofconcept/sandbox/App/webapp/main/static/pdfs'
 
 
 def wiki_index(request):
-    import requests
-    import re
+
 
     data = requests.get('https://en.wikipedia.org/wiki/Physics').content
     for url in re.findall('href="(.*?/wiki/.*?title.*?)(?:>|</a)', data):
@@ -26,26 +40,44 @@ def wiki_index(request):
 
     return render(request,'b_index.html',context)
 
-from os import listdir
-path='/home/user/PycharmProjects/proofofconcept/sandbox/App/webapp/main/static/reference_articles'
-def derivation_pdfs(request):
-    files = [x for x in listdir(path) if x[-3:]=='pdf']
-    context = {
-        'files':files
-    }
-    return render(request,'index.html',context)
 
-import re, os
-import os
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+
+def index_pdfs(request):
+    testing = system('find {} -name "*.pdf" > /tmp/pdfs'.format(path))
+    system('cat /tmp/pdfs |rev|cut -d "/" -f1 |rev >/tmp/pdf_files')
+    return render(request,'index.html')
+
+def pdfs(request):
+    #f=open('/tmp/pdf_files')
+    #files = f.readlines()
+    #f.close()
+    files=''
+    df = pd.read_sql('symbols', engine)
+    symbols_rows=df.iterrows()
+    context = {
+        'files':files,
+        'rows':symbols_rows,
+    }
+
+
+
+
+    return render(request,'symbols_table.html',context)
+
+
+def pdf_list(request):
+    testing = system('find {} -name "*.pdf"'.format(path))
+
 
 #https://stackoverflow.com/questions/11779246/how-to-show-a-pdf-file-in-a-django-view
 @csrf_exempt
 def render_pdf(request):
 
     file_name=request.get_full_path()
-    name = path+file_name
+    f=open('/tmp/pdfs')
+    data=f.readlines()
+    fname=[x.replace('\n','') for x in data if file_name in str(x)][0]
+    name = fname
 
     with open(name, 'r') as pdf:
             response = HttpResponse(pdf.read(), content_type='application/pdf')

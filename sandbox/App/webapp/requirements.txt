@@ -3,3 +3,10 @@ requests
 pandas
 pydot
 astmonkey
+numpy
+sympy
+scipy
+bokeh
+networkx
+redis
+sqlalchemy

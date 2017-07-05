@@ -1,7 +1,3 @@
-% operator | number of args | input line | output line | latex function
-% label    | for latex sty  |  count     |  count      | description
-% -----------------------------------------------------------------------
-%
 subXforY           | 3 | 1 | 1 | Substitute $#1$ for $#2$ in Eq.~\ref{#3}.
 multLHSbyUnity     | 2 | 1 | 1 | Multiply LHS of Eq.~\ref{#2} by 1, which in this case is $#1$} % check: argument 2 must evaluate to 1
 multRHSbyUnity     | 2 | 1 | 1 | Multiply RHS of Eq.~\ref{#2} by 1, which in this case is $#1$} % check: argument 2 must evaluate to 1
@@ -21,8 +17,7 @@ Xdotbothsides      | 2 | 1 | 1 | Take inner product of $#1$ with Eq.~\ref{#2}. %
 bothsidesdotX      | 2 | 1 | 1 | Take inner product of Eq.~\ref{#1} with $#2$ % LHS \cdot arg = RHS \cdot arg
 solveForX          | 2 | 1 | 1 | Solve Eq.~\ref{#2} for $#1$. % Mathematica: Solve[#1,#2]
 factorOutX         | 2 | 1 | 1 | Factor $#1$ from Eq.~\ref{#2}.
-%
-% manipulation
+
 selectRealParts    | 1 | 1 | 1 | Select real parts of Eq.~\ref{#1}.
 selectImagParts    | 1 | 1 | 1 | Select imaginary parts of Eq.~\ref{#1}.
 expandLHS          | 1 | 1 | 1 | Expand the LHS of Eq.~\ref{#1}.
@@ -32,17 +27,13 @@ declareInitialExpression   | 1 | 1 | 1 | Eq.~\ref{#1} % pass label of starting e
 sumExponents       | 1 | 1 | 1 | Sum exponents on LHS and RHS of Eq.~\ref{#1}.
 sumExponentsLHS    | 1 | 1 | 1 | Sum exponents on LHS of Eq.~\ref{#1}.
 sumExponentsRHS    | 1 | 1 | 1 | Sum exponents on RHS of Eq.~\ref{#1}.
-%
-% combining multiple equations
+
 addExprXtoExprY        | 2 | 2 | 1 | Add Eq.~\ref{#1} to Eq.~\ref{#2}. % assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)
 subRHSofExprXintoExprY | 2 | 2 | 1 | Substitute RHS of Eq.~\ref{#1} into Eq.~\ref{#2}.
 subLHSofExprXintoExprY | 2 | 2 | 1 | Substitute LHS of Eq.~\ref{#1} into Eq.~\ref{#2}.
 multExprXbyExprY       | 2 | 2 | 1 | Multiply Eq.~\ref{#1} by Eq.~\ref{#2}.   % assumes result form LHS(X)*LHS(Y)=RHS(X)*RHS(Y)
 LHSofExprXeqLHSofExprY | 2 | 2 | 1 | LHS of Eq.~\ref{#1} is equal to LHS of Eq.~\ref{#2}.
-%
-% these are a combination of other simpler commands:
+
 raiseBothSidesToPower | 2 | 1 | 1 |  Raise both sides of Eq.~\ref{#2} to $#1$. % this is \multExprXbyExprY
-%
-% declare the end?
+
 claimExprXequalsExprY  | 2 | 1 | 1 | Thus we see that Eq.~\ref{#1} is equivalent to Eq.~\ref{#2}.        %
-% 
