@@ -6,15 +6,6 @@
 7952658,subtractXfromBothSides
 7958085,subLHSofExprXintoExprY
 8668018,declareInitialExpression
-1393411,ReplaceSummationNotationWithVectorNotation
-2339482,ReplaceCurlWithLeviCevitaSummationContravariant
-2930454,subRHSofExprXintoExprY
-3838233,simplify
-3848292,simplify
-3948552,ReplaceCurlWithLeviCevitaSummationContravariant
-3948572,declareIdentity
-3949211,claimLHSequalsRHS
-4295822,declareIdentity
 0012031,subRHSofExprXintoExprY
 1039774,replaceScalarWithVector
 1204921,declareInitialExpression
@@ -105,6 +96,8 @@
 8492847,multExprXbyExprY
 9483240,LHSofExprXeqLHSofExprY
 9582956,LHSofExprXeqLHSofExprY
+6822583,multbothsidesby
+9103516,declareInitialExpression
 0304948,declareInitialExpression
 2303943,declareInitialExpression
 2939482,subRHSofExprXintoExprY
@@ -197,9 +190,3 @@
 2455366,declareInitialExpression
 3848591,applyOperatorToKet
 4838499,subtractXfromBothSides
-2004989,declareIdentity
-2349059,simplify
-2390498,simplify
-3848494,simplify
-4948384,simplify
-4948955,claimLHSequalsRHS

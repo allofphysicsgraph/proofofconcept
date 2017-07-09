@@ -105,5 +105,5 @@ extension='png'
 
 # os.system('cd \"'+which_derivation_to_make+'\"; neato -T'+extension+' -Nlabel=\"\" \"'+which_derivation_to_make+'/graphviz.dot\" > \"'+which_derivation_to_make+'/out.'+extension+'\"')
 
-os.system('neato -T'+extension+' -Nlabel=\"\" \"'+which_derivation_to_make+'/graphviz.dot\" > \"'+which_derivation_to_make+'/out.'+extension+'\"')
+#os.system('neato -T'+extension+' -Nlabel=\"\" \"'+which_derivation_to_make+'/graphviz.dot\" > \"'+which_derivation_to_make+'/out.'+extension+'\"')
 

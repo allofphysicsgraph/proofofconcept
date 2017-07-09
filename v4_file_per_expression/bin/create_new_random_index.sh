@@ -5,7 +5,11 @@
 if [ -f temp_id.dat ] ; then
   rm temp_id.dat
 fi
-find ../derivations -depth 1 -type d | while read this_dir; do
+find derivations -depth 1 -type d | while read this_dir; do
+    #echo "looking for temporary IDs in ${this_dir}"
+    cat "${this_dir}/derivation_edge_list.csv" | tr ',' '\n' >> temp_id.dat # convert from two column to single column
+done
+find identities -depth 1 -type d | while read this_dir; do
     #echo "looking for temporary IDs in ${this_dir}"
     cat "${this_dir}/derivation_edge_list.csv" | tr ',' '\n' >> temp_id.dat # convert from two column to single column
 done
@@ -20,7 +24,11 @@ if grep -Fxq $current_guess temp_id.dat; then echo "already in file; try again";
 if [ -f expr_id.dat ]; then
   rm expr_id.dat
 fi
-find ../derivations -depth 1 -type d | while read this_dir; do
+find derivations -depth 1 -type d | while read this_dir; do
+    #echo "looking for expression IDs in ${this_dir}"
+    cat "${this_dir}/expression_identifiers.csv" | cut -d',' -f2 >> expr_id.dat # convert from two column to single column
+done
+find identities -depth 1 -type d | while read this_dir; do
     #echo "looking for expression IDs in ${this_dir}"
     cat "${this_dir}/expression_identifiers.csv" | cut -d',' -f2 >> expr_id.dat # convert from two column to single column
 done
