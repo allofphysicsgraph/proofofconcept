@@ -18,7 +18,7 @@ engine = create_engine('postgres://pdg_user:password@localhost/pdg')
 
 
 
-path='/home/as/PycharmProjects/proofofconcept/sandbox/App/webapp/main/static/pdfs'
+path='/home/user/PycharmProjects/proofofconcept/sandbox/App/webapp/main/static/pdfs'
 
 
 def wiki_index(request):
@@ -42,7 +42,7 @@ def wiki_index(request):
 
 def create_symbols_table():
 
-    f = open('/home/as/PycharmProjects/proofofconcept/sandbox/App/webapp/main/databases/symbols_database.csv')
+    f = open('/home/user/PycharmProjects/proofofconcept/sandbox/App/webapp/main/databases/symbols_database.csv')
     df = pd.read_csv(f, names=['id', 'symbol', 'type', 'value', 'units', 'description', 'cas_sympy'])
 
     df.to_sql('symbols', engine, if_exists='replace')
@@ -57,19 +57,17 @@ def pdfs(request):
     #files = f.readlines()
     #f.close()
     files=''
+
     df = pd.read_sql('symbols', engine).fillna(' ')
-    columns=[x for x in df.columns.tolist() if x != 'id']
-    symbols_rows=df.iterrows()
+    columns = [x for x in df.columns.tolist() if x != 'id']
+    symbols_rows = df.iterrows()
     context = {
 
-        'files':files,
-        'columns':columns,
-        'rows':symbols_rows,
+        'files': files,
+        'columns': columns,
+        'rows': symbols_rows,
 
     }
-
-
-
 
     return render(request,'data_table.html',context)
 

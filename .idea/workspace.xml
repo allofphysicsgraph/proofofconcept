@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="958d19ac-238f-4c6d-b66a-9fc0dee322d4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/App/webapp/templates/data_table.html" />
+    <list default="true" id="8c9c382d-bb78-4ca9-b856-68fc387aa328" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sandbox/App/webapp/main/create_tables.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/proofofconcept.iml" afterPath="$PROJECT_DIR$/.idea/proofofconcept.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/App/webapp/main/Ast_to_PNG.ipynb" afterPath="$PROJECT_DIR$/sandbox/App/webapp/main/Ast_to_PNG.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/App/webapp/main/clean_ast.sh" afterPath="$PROJECT_DIR$/sandbox/App/webapp/main/clean_ast.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/App/webapp/main/databases/symbols_database.csv" afterPath="$PROJECT_DIR$/sandbox/App/webapp/main/databases/symbols_database.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/App/requirements.sh" afterPath="$PROJECT_DIR$/sandbox/App/requirements.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/App/webapp/main/views.py" afterPath="$PROJECT_DIR$/sandbox/App/webapp/main/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/App/webapp/templates/symbols_table.html" afterPath="$PROJECT_DIR$/sandbox/App/webapp/templates/symbols_table.html" />
     </list>
-    <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/proofofconcept$manage.coverage" NAME="manage Coverage Results" MODIFIED="1499279971615" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sandbox/App/webapp" />
+    <SUITE FILE_PATH="coverage/proofofconcept$manage.coverage" NAME="manage Coverage Results" MODIFIED="1499629961295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sandbox/App/webapp" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -35,7 +33,7 @@
         <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
-        <option name="myItemId" value="pdg@localhost" />
+        <option name="myItemId" value="postgres@localhost" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
@@ -45,56 +43,33 @@
         <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
-        <option name="myItemId" value="pdg@localhost" />
+        <option name="myItemId" value="postgres@localhost" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
-        <option name="myItemId" value="pdg" />
+        <option name="myItemId" value="postgres" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="public" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="pdg@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="pdg" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="public" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$GroupNode" />
       </PATH_ELEMENT>
     </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
-  <component name="FavoritesManager">
-    <favorites_list name="proofofconcept" />
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="symbols_database.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/symbols_database.csv">
+      <file leaf-file-name="compute.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/flask/single_page_form/compute.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/flask/single_page_form/templates/view.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -103,12 +78,19 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="73" column="12" lean-forward="false" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
-              <folding>
-                <element signature="e#24#63#0" expanded="true" />
-                <element signature="e#575#987#0" expanded="false" />
-              </folding>
+            <state relative-caret-position="748">
+              <caret line="58" column="12" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/07d808f8-63a4-4462-9086-228b4b7833fb/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -116,47 +98,15 @@
       <file leaf-file-name="symbols_table.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/symbols_table.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="147" selection-end-column="5" />
-              <folding>
-                <element signature="n#nav#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="data_table.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/data_table.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="latex_data_tables.html" pinned="false" current-in-tab="true">
-        <entry file="file://$USER_HOME$/Desktop/latex_data_tables.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="241" column="9716" lean-forward="false" selection-start-line="241" selection-start-column="9716" selection-end-line="241" selection-end-column="9716" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2396">
-              <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eq2png-conf.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/eq2png-conf.xml">
+      <file leaf-file-name="Physics_equations.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/Physics_equations.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -165,8 +115,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="eq2png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/eq2png">
+      <file leaf-file-name="symbols_database.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/symbols_database.csv">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -175,24 +125,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/apps.py">
+      <file leaf-file-name="controller.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/flask/single_page_form/controller.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="statement_txt_db_to_png.pl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/v2_XML/statement_txt_db_to_png.pl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="571">
-              <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -203,45 +141,18 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>5433</find>
-      <find>src=&quot;</find>
-      <find>&lt;span class=&quot;badge badge-info&quot;&gt;NEW&lt;/span&gt;</find>
-      <find>wiki</find>
-      <find>view</find>
-      <find>views.py</find>
-      <find>views.p</find>
-      <find>views.</find>
-      <find>views</find>
-      <find>index</find>
-      <find>index.html</find>
-      <find>symbo</find>
+      <find>as</find>
       <find>symbols</find>
-      <find>href=&quot;.*?\s</find>
-      <find>none,</find>
-      <find>one</find>
-      <find>rows</find>
-      <find>sym</find>
-      <find>main</find>
-      <find>math</find>
+      <find>pdfs</find>
+      <find>pdf</find>
+      <find>table</find>
+      <find>61</find>
     </findStrings>
-    <replaceStrings>
-      <replace>href=&quot;/static/root/</replace>
-      <replace>src=&quot;/static/root/</replace>
-      <replace>&lt;td&gt;</replace>
-      <replace>&lt;/td&gt;</replace>
-      <replace>&lt;/td&gt;&lt;td&gt;</replace>
-      <replace>,</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
-      <dir>$PROJECT_DIR$/sandbox</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -249,24 +160,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/webapp/settings.py" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/templates/site/nav_bar.html" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/main/bin/export_latex_step_to_CAS_sage.py" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/main/CSV_PANDAS.ipynb" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/main/gui/operators_database.txt" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/webapp/urls.py" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/templates/index.html" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/templates/inde.html" />
         <option value="$PROJECT_DIR$/sandbox/App/requirements.sh" />
-        <option value="$APPLICATION_CONFIG_DIR$/scratches/scratch.txt" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/requirements.txt" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/templates/site/example_T_f/example_T_f_csv.html" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/main/models.py" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/main/clean_ast.sh" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/main/databases/symbols_database.csv" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/templates/symbols_table.html" />
         <option value="$PROJECT_DIR$/sandbox/App/webapp/main/views.py" />
-        <option value="$PROJECT_DIR$/sandbox/App/webapp/templates/data_table.html" />
+        <option value="$PROJECT_DIR$/sandbox/App/webapp/main/create_tables.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/07d808f8-63a4-4462-9086-228b4b7833fb/console.sql" />
       </list>
     </option>
   </component>
@@ -277,10 +174,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="65" />
-    <option name="y" value="-4" />
-    <option name="width" value="1535" />
-    <option name="height" value="1204" />
+    <option name="x" value="20" />
+    <option name="y" value="55" />
+    <option name="width" value="1132" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -297,7 +194,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -328,6 +224,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="v3_CSV" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sandbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="App" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -347,6 +261,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="App" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="proofofconcept" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sandbox" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="App" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -380,58 +320,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="proofofconcept" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="proofofconcept" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sandbox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="App" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="database.data.csv.formats" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
-    <property name="FullScreen" value="true" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$2/Languages" value="TEXT" />
-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/latex_data_tables.html" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/sandbox/App/webapp/templates" />
-      <recent name="$PROJECT_DIR$/sandbox/App/webapp/main/static/documentation_PDFs" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/sandbox/App/webapp/main/static" />
-      <recent name="$PROJECT_DIR$/sandbox/App/webapp/main/static/images" />
-      <recent name="$PROJECT_DIR$/sandbox/App/webapp/main/static/pdfs" />
-      <recent name="$PROJECT_DIR$/sandbox/App/webapp/main" />
-      <recent name="$PROJECT_DIR$/sandbox/App/webapp/templates" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -446,50 +343,23 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.manage">
-    <configuration default="false" name="requirements.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="bash" />
-      <option name="INTERPRETER_PATH" value="/usr/bin/env" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sandbox/App" />
+    <configuration default="false" name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sandbox/App/requirements.sh" />
-      <option name="PARAMETERS" value="" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sandbox/App/webapp" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="proofofconcept" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="#PerlConfigurationType" factoryName="Perl" show_console_on_std_err="false" show_console_on_std_out="false">
-      <option name="alternativeSdkPath" />
-      <option name="compileTimeBreakpointsEnabled" value="false" />
-      <option name="consoleCharset" />
-      <option name="envs">
-        <map />
-      </option>
-      <option name="nonInteractiveModeEnabled" value="false" />
-      <option name="passParentEnvs" value="true" />
-      <option name="perlParameters" value="" />
-      <option name="programParameters" />
-      <option name="scriptPath" />
-      <option name="useAlternativeSdk" value="false" />
-      <option name="workingDirectory" />
-      <option name="SCRIPT_PATH" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="PERL_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" />
-      <option name="ENVS">
-        <map />
-      </option>
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="CHARSET" />
-      <option name="USE_ALTERNATIVE_SDK" value="false" />
-      <option name="ALTERNATIVE_SDK_PATH" />
-      <option name="scriptCharset" value="utf8" />
-      <option name="startMode" value="RUN" />
-      <option name="isNonInteractiveModeEnabled" value="false" />
-      <option name="isCompileTimeBreakpointsEnabled" value="false" />
-      <option name="initCode" value="" />
-      <method />
-    </configuration>
-    <configuration default="true" type="ApexTest" factoryName="Apex Test">
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sandbox/App/webapp/manage.py" />
+      <option name="PARAMETERS" value="runserver 0.0.0.0:8000" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
@@ -573,7 +443,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/untitled/bin/python" />
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -581,9 +451,9 @@
       <module name="proofofconcept" />
       <option name="launchJavascriptDebuger" value="false" />
       <option name="port" value="8000" />
-      <option name="host" value="localhost" />
+      <option name="host" value="" />
       <option name="additionalOptions" value="" />
-      <option name="browserUrl" value="http://localhost:8000/" />
+      <option name="browserUrl" value="http://127.0.0.1:8000/" />
       <option name="runTestServer" value="false" />
       <option name="runNoReload" value="false" />
       <option name="useCustomRunCommand" value="false" />
@@ -658,7 +528,7 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
+    <configuration default="true" type="tests" factoryName="Nosetests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -669,37 +539,18 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="proofofconcept" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;.&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
-    <configuration default="false" name="manage" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/sandbox/App/webapp" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="proofofconcept" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sandbox/App/webapp/manage.py" />
-      <option name="PARAMETERS" value="runserver 0.0.0.0:8000" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <method />
-    </configuration>
-    <list size="2">
+    <list size="1">
       <item index="0" class="java.lang.String" itemvalue="Python.manage" />
-      <item index="1" class="java.lang.String" itemvalue="Bash.requirements.sh" />
     </list>
     <recent_temporary>
       <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Bash.requirements.sh" />
+        <item index="0" class="java.lang.String" itemvalue="Python.manage" />
       </list>
     </recent_temporary>
   </component>
@@ -708,81 +559,38 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="958d19ac-238f-4c6d-b66a-9fc0dee322d4" name="Default" comment="" />
-      <created>1499238542131</created>
+      <changelist id="8c9c382d-bb78-4ca9-b856-68fc387aa328" name="Default" comment="" />
+      <created>1499627537543</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1499238542131</updated>
+      <updated>1499627537543</updated>
     </task>
-    <task id="LOCAL-00001" summary="setup views, added symbols model,&#10;mathjax,indexing available pdfs">
-      <created>1499276109044</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1499276109044</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1535" height="1204" extended-state="6" />
+    <frame x="20" y="55" width="1132" height="744" extended-state="0" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32860938" sideWeight="0.48970398" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.3828829" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42555147" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.022058824" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34189406" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283859" sideWeight="0.49764943" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3283859" sideWeight="0.6171171" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27179962" sideWeight="0.47940797" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41437206" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15958816" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283859" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32744783" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967898" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39840284" sideWeight="0.49899262" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947233" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24172795" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32744783" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32860938" sideWeight="0.48970398" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.3828829" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.6171171" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.49764943" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25377107" sideWeight="0.47940797" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33719432" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15958816" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919255" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39840284" sideWeight="0.49899262" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947233" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -790,67 +598,12 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="setup views, added symbols model,&#10;mathjax,indexing available pdfs" />
-    <option name="LAST_COMMIT_MESSAGE" value="setup views, added symbols model,&#10;mathjax,indexing available pdfs" />
-  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/sandbox/App/webapp/main/views.py</url>
-          <line>23</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="2" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/site/inactive_avenues/README_Coq_proof_assistant">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/v2_XML/bin/convert_expressions_xml_to_png.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="22" lean-forward="false" selection-start-line="3" selection-start-column="7" selection-end-line="4" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/v2_XML/bin/convert_feed_xml_to_png.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/v2_XML/bin/create_pictures_of_inference_rules.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/v2_XML/bin/list_connection_sets.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/v2_XML/bin/popularity_of_symbols.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/static/why_operators_must_be_nodes.graphml">
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/flask/single_page_form/compute.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -858,33 +611,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/auto_complete.py">
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/flask/single_page_form/templates/view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="27" column="19" lean-forward="false" selection-start-line="26" selection-start-column="10" selection-end-line="27" selection-end-column="19" />
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/equationMap_tex_parser/convert_diagram_to_PDG.py">
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#11#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/bin/generate_new_random_index.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="748">
+          <caret line="58" column="12" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/bin/create_overview_json_from_connectionsDB.py">
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/symbols_database.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -892,19 +635,176 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/bin/create_deployable_tgz.sh">
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/flask/single_page_form/controller.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/bin/export_latex_step_to_CAS_sage.py">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/07d808f8-63a4-4462-9086-228b4b7833fb/console.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="22" lean-forward="true" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/manage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/v3_CSV/lib/images_expression_svg/0404050504.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/v3_CSV/lib/images_expression_svg/0439492440.svg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/test">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/requirements.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="43" lean-forward="true" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/parsed_ast_output">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/requirements.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="10" lean-forward="true" selection-start-line="11" selection-start-column="10" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/webapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/webapp/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/webapp/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/connections_database.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/gui/operators_database.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/inference_rules_sympy/addEqXtoEqY">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/inference_rules_sympy/addXtoBothSides">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/inference_rules_sympy/addZerotoLHS">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/feed_database.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/final">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/inference_rules_database.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/somefile.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/README">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/comments_database.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/gui/latex_entry_gui_flow.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/gui/latex_entry_gui_flow.dia">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -912,35 +812,86 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/flask/single_page_form/controller.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/gui/operators_database.txt">
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/flask/single_page_form/compute.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/flask/single_page_form/templates/view.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/symbols_database.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/example_of_CAS_check.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="35" lean-forward="true" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="34">
+          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.txt">
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/ast_test">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/auto_complete.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/create_tables.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="58" column="12" lean-forward="false" selection-start-line="58" selection-start-column="12" selection-end-line="58" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/webapp/settings.py">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/07d808f8-63a4-4462-9086-228b4b7833fb/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/symbols_table.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -950,374 +901,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/Physics_equations.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1252">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="10" selection-start-column="23" selection-end-line="11" selection-end-column="0" />
-          <caret line="14" column="0" lean-forward="false" selection-start-line="13" selection-start-column="23" selection-end-line="14" selection-end-column="0" />
-          <caret line="17" column="0" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="17" selection-end-column="0" />
-          <caret line="18" column="0" lean-forward="false" selection-start-line="17" selection-start-column="71" selection-end-line="18" selection-end-column="0" />
-          <caret line="19" column="0" lean-forward="false" selection-start-line="18" selection-start-column="40" selection-end-line="19" selection-end-column="0" />
-          <caret line="20" column="0" lean-forward="false" selection-start-line="19" selection-start-column="29" selection-end-line="20" selection-end-column="0" />
-          <caret line="21" column="0" lean-forward="false" selection-start-line="20" selection-start-column="26" selection-end-line="21" selection-end-column="0" />
-          <caret line="21" column="94" lean-forward="false" selection-start-line="21" selection-start-column="64" selection-end-line="21" selection-end-column="94" />
-          <caret line="23" column="0" lean-forward="false" selection-start-line="22" selection-start-column="47" selection-end-line="23" selection-end-column="0" />
-          <caret line="24" column="0" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="24" selection-end-column="0" />
-          <caret line="25" column="0" lean-forward="false" selection-start-line="24" selection-start-column="22" selection-end-line="25" selection-end-column="0" />
-          <caret line="26" column="0" lean-forward="false" selection-start-line="25" selection-start-column="25" selection-end-line="26" selection-end-column="0" />
-          <caret line="26" column="53" lean-forward="false" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="53" />
-          <caret line="41" column="83" lean-forward="false" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="83" />
-          <caret line="42" column="0" lean-forward="false" selection-start-line="41" selection-start-column="103" selection-end-line="42" selection-end-column="0" />
-          <caret line="43" column="165" lean-forward="false" selection-start-line="43" selection-start-column="143" selection-end-line="43" selection-end-column="165" />
-          <caret line="43" column="432" lean-forward="false" selection-start-line="43" selection-start-column="411" selection-end-line="43" selection-end-column="432" />
-          <caret line="50" column="67" lean-forward="false" selection-start-line="50" selection-start-column="39" selection-end-line="50" selection-end-column="67" />
-          <caret line="51" column="68" lean-forward="false" selection-start-line="51" selection-start-column="39" selection-end-line="51" selection-end-column="68" />
-          <caret line="52" column="62" lean-forward="false" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="62" />
-          <caret line="53" column="76" lean-forward="false" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="76" />
-          <caret line="54" column="68" lean-forward="false" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="68" />
-          <caret line="58" column="220" lean-forward="false" selection-start-line="58" selection-start-column="146" selection-end-line="58" selection-end-column="220" />
-          <caret line="60" column="55" lean-forward="false" selection-start-line="60" selection-start-column="7" selection-end-line="60" selection-end-column="55" />
-          <caret line="61" column="40" lean-forward="false" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="40" />
-          <caret line="62" column="42" lean-forward="false" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="42" />
-          <caret line="63" column="48" lean-forward="false" selection-start-line="63" selection-start-column="7" selection-end-line="63" selection-end-column="48" />
-          <caret line="65" column="222" lean-forward="false" selection-start-line="65" selection-start-column="148" selection-end-line="65" selection-end-column="222" />
-          <caret line="67" column="59" lean-forward="false" selection-start-line="67" selection-start-column="7" selection-end-line="67" selection-end-column="59" />
-          <caret line="68" column="61" lean-forward="false" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="61" />
-          <caret line="69" column="53" lean-forward="false" selection-start-line="69" selection-start-column="7" selection-end-line="69" selection-end-column="53" />
-          <caret line="70" column="53" lean-forward="false" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="53" />
-          <caret line="71" column="51" lean-forward="false" selection-start-line="71" selection-start-column="7" selection-end-line="71" selection-end-column="51" />
-          <caret line="72" column="57" lean-forward="false" selection-start-line="72" selection-start-column="7" selection-end-line="72" selection-end-column="57" />
-          <caret line="73" column="55" lean-forward="false" selection-start-line="73" selection-start-column="7" selection-end-line="73" selection-end-column="55" />
-          <caret line="74" column="53" lean-forward="false" selection-start-line="74" selection-start-column="7" selection-end-line="74" selection-end-column="53" />
-          <caret line="75" column="48" lean-forward="false" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="48" />
-          <caret line="76" column="59" lean-forward="false" selection-start-line="76" selection-start-column="7" selection-end-line="76" selection-end-column="59" />
-          <caret line="77" column="70" lean-forward="false" selection-start-line="77" selection-start-column="7" selection-end-line="77" selection-end-column="70" />
-          <caret line="79" column="210" lean-forward="false" selection-start-line="79" selection-start-column="136" selection-end-line="79" selection-end-column="210" />
-          <caret line="81" column="38" lean-forward="false" selection-start-line="81" selection-start-column="7" selection-end-line="81" selection-end-column="38" />
-          <caret line="82" column="39" lean-forward="false" selection-start-line="82" selection-start-column="7" selection-end-line="82" selection-end-column="39" />
-          <caret line="83" column="36" lean-forward="false" selection-start-line="83" selection-start-column="7" selection-end-line="83" selection-end-column="36" />
-          <caret line="85" column="238" lean-forward="false" selection-start-line="85" selection-start-column="164" selection-end-line="85" selection-end-column="238" />
-          <caret line="87" column="38" lean-forward="false" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="38" />
-          <caret line="88" column="38" lean-forward="false" selection-start-line="88" selection-start-column="7" selection-end-line="88" selection-end-column="38" />
-          <caret line="89" column="29" lean-forward="false" selection-start-line="89" selection-start-column="7" selection-end-line="89" selection-end-column="29" />
-          <caret line="90" column="36" lean-forward="false" selection-start-line="90" selection-start-column="7" selection-end-line="90" selection-end-column="36" />
-          <caret line="91" column="46" lean-forward="false" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="46" />
-          <caret line="92" column="53" lean-forward="false" selection-start-line="92" selection-start-column="7" selection-end-line="92" selection-end-column="53" />
-          <caret line="94" column="222" lean-forward="false" selection-start-line="94" selection-start-column="148" selection-end-line="94" selection-end-column="222" />
-          <caret line="96" column="102" lean-forward="false" selection-start-line="96" selection-start-column="44" selection-end-line="96" selection-end-column="102" />
-          <caret line="97" column="113" lean-forward="false" selection-start-line="97" selection-start-column="44" selection-end-line="97" selection-end-column="113" />
-          <caret line="98" column="160" lean-forward="false" selection-start-line="98" selection-start-column="64" selection-end-line="98" selection-end-column="160" />
-          <caret line="98" column="320" lean-forward="false" selection-start-line="98" selection-start-column="204" selection-end-line="98" selection-end-column="320" />
-          <caret line="101" column="136" lean-forward="false" selection-start-line="101" selection-start-column="64" selection-end-line="101" selection-end-column="136" />
-          <caret line="102" column="117" lean-forward="false" selection-start-line="102" selection-start-column="44" selection-end-line="102" selection-end-column="117" />
-          <caret line="102" column="163" lean-forward="false" selection-start-line="102" selection-start-column="140" selection-end-line="102" selection-end-column="163" />
-          <caret line="136" column="228" lean-forward="false" selection-start-line="136" selection-start-column="53" selection-end-line="136" selection-end-column="228" />
-          <caret line="137" column="158" lean-forward="false" selection-start-line="137" selection-start-column="131" selection-end-line="137" selection-end-column="158" />
-          <caret line="137" column="251" lean-forward="false" selection-start-line="137" selection-start-column="207" selection-end-line="137" selection-end-column="251" />
-          <caret line="137" column="370" lean-forward="false" selection-start-line="137" selection-start-column="327" selection-end-line="137" selection-end-column="370" />
-          <caret line="137" column="606" lean-forward="false" selection-start-line="137" selection-start-column="556" selection-end-line="137" selection-end-column="606" />
-          <caret line="147" column="123" lean-forward="false" selection-start-line="147" selection-start-column="95" selection-end-line="147" selection-end-column="123" />
-          <caret line="147" column="271" lean-forward="false" selection-start-line="147" selection-start-column="234" selection-end-line="147" selection-end-column="271" />
-          <caret line="147" column="469" lean-forward="false" selection-start-line="147" selection-start-column="390" selection-end-line="147" selection-end-column="469" />
-          <caret line="147" column="677" lean-forward="false" selection-start-line="147" selection-start-column="602" selection-end-line="147" selection-end-column="677" />
-          <caret line="153" column="141" lean-forward="false" selection-start-line="153" selection-start-column="110" selection-end-line="153" selection-end-column="141" />
-          <caret line="154" column="123" lean-forward="false" selection-start-line="154" selection-start-column="87" selection-end-line="154" selection-end-column="123" />
-          <caret line="172" column="134" lean-forward="false" selection-start-line="172" selection-start-column="103" selection-end-line="172" selection-end-column="134" />
-          <caret line="173" column="146" lean-forward="false" selection-start-line="173" selection-start-column="86" selection-end-line="173" selection-end-column="146" />
-          <caret line="174" column="172" lean-forward="false" selection-start-line="174" selection-start-column="109" selection-end-line="174" selection-end-column="172" />
-          <caret line="198" column="94" lean-forward="false" selection-start-line="198" selection-start-column="71" selection-end-line="198" selection-end-column="94" />
-          <caret line="204" column="82" lean-forward="false" selection-start-line="204" selection-start-column="59" selection-end-line="204" selection-end-column="82" />
-          <caret line="204" column="198" lean-forward="false" selection-start-line="204" selection-start-column="169" selection-end-line="204" selection-end-column="198" />
-          <caret line="204" column="319" lean-forward="false" selection-start-line="204" selection-start-column="282" selection-end-line="204" selection-end-column="319" />
-          <caret line="204" column="456" lean-forward="false" selection-start-line="204" selection-start-column="421" selection-end-line="204" selection-end-column="456" />
-          <caret line="204" column="586" lean-forward="false" selection-start-line="204" selection-start-column="558" selection-end-line="204" selection-end-column="586" />
-          <caret line="204" column="847" lean-forward="false" selection-start-line="204" selection-start-column="683" selection-end-line="204" selection-end-column="847" />
-          <caret line="204" column="945" lean-forward="false" selection-start-line="204" selection-start-column="917" selection-end-line="204" selection-end-column="945" />
-          <caret line="212" column="70" lean-forward="false" selection-start-line="212" selection-start-column="43" selection-end-line="212" selection-end-column="70" />
-          <caret line="212" column="186" lean-forward="false" selection-start-line="212" selection-start-column="157" selection-end-line="212" selection-end-column="186" />
-          <caret line="212" column="304" lean-forward="false" selection-start-line="212" selection-start-column="264" selection-end-line="212" selection-end-column="304" />
-          <caret line="212" column="457" lean-forward="false" selection-start-line="212" selection-start-column="422" selection-end-line="212" selection-end-column="457" />
-          <caret line="212" column="621" lean-forward="false" selection-start-line="212" selection-start-column="569" selection-end-line="212" selection-end-column="621" />
-          <caret line="220" column="105" lean-forward="false" selection-start-line="220" selection-start-column="52" selection-end-line="220" selection-end-column="105" />
-          <caret line="220" column="314" lean-forward="false" selection-start-line="220" selection-start-column="255" selection-end-line="220" selection-end-column="314" />
-          <caret line="220" column="488" lean-forward="false" selection-start-line="220" selection-start-column="446" selection-end-line="220" selection-end-column="488" />
-          <caret line="220" column="608" lean-forward="false" selection-start-line="220" selection-start-column="574" selection-end-line="220" selection-end-column="608" />
-          <caret line="220" column="772" lean-forward="false" selection-start-line="220" selection-start-column="708" selection-end-line="220" selection-end-column="772" />
-          <caret line="220" column="926" lean-forward="false" selection-start-line="220" selection-start-column="866" selection-end-line="220" selection-end-column="926" />
-          <caret line="220" column="1080" lean-forward="false" selection-start-line="220" selection-start-column="1015" selection-end-line="220" selection-end-column="1080" />
-          <caret line="220" column="1277" lean-forward="false" selection-start-line="220" selection-start-column="1186" selection-end-line="220" selection-end-column="1277" />
-          <caret line="228" column="156" lean-forward="false" selection-start-line="228" selection-start-column="55" selection-end-line="228" selection-end-column="156" />
-          <caret line="228" column="523" lean-forward="false" selection-start-line="228" selection-start-column="210" selection-end-line="228" selection-end-column="523" />
-          <caret line="228" column="620" lean-forward="false" selection-start-line="228" selection-start-column="558" selection-end-line="228" selection-end-column="620" />
-          <caret line="236" column="271" lean-forward="false" selection-start-line="236" selection-start-column="71" selection-end-line="236" selection-end-column="271" />
-          <caret line="236" column="528" lean-forward="false" selection-start-line="236" selection-start-column="438" selection-end-line="236" selection-end-column="528" />
-          <caret line="236" column="867" lean-forward="false" selection-start-line="236" selection-start-column="710" selection-end-line="236" selection-end-column="867" />
-          <caret line="237" column="200" lean-forward="false" selection-start-line="237" selection-start-column="115" selection-end-line="237" selection-end-column="200" />
-          <caret line="244" column="239" lean-forward="false" selection-start-line="244" selection-start-column="120" selection-end-line="244" selection-end-column="239" />
-          <caret line="244" column="347" lean-forward="false" selection-start-line="244" selection-start-column="298" selection-end-line="244" selection-end-column="347" />
-          <caret line="245" column="126" lean-forward="false" selection-start-line="245" selection-start-column="69" selection-end-line="245" selection-end-column="126" />
-          <caret line="245" column="205" lean-forward="false" selection-start-line="245" selection-start-column="144" selection-end-line="245" selection-end-column="205" />
-          <caret line="245" column="312" lean-forward="false" selection-start-line="245" selection-start-column="264" selection-end-line="245" selection-end-column="312" />
-          <caret line="248" column="137" lean-forward="false" selection-start-line="248" selection-start-column="78" selection-end-line="248" selection-end-column="137" />
-          <caret line="249" column="105" lean-forward="false" selection-start-line="249" selection-start-column="76" selection-end-line="249" selection-end-column="105" />
-          <caret line="250" column="123" lean-forward="false" selection-start-line="250" selection-start-column="81" selection-end-line="250" selection-end-column="123" />
-          <caret line="251" column="138" lean-forward="false" selection-start-line="251" selection-start-column="78" selection-end-line="251" selection-end-column="138" />
-          <caret line="253" column="0" lean-forward="false" selection-start-line="252" selection-start-column="81" selection-end-line="253" selection-end-column="0" />
-          <caret line="253" column="154" lean-forward="false" selection-start-line="253" selection-start-column="86" selection-end-line="253" selection-end-column="154" />
-          <caret line="254" column="181" lean-forward="false" selection-start-line="254" selection-start-column="81" selection-end-line="254" selection-end-column="181" />
-          <caret line="258" column="76" lean-forward="false" selection-start-line="258" selection-start-column="31" selection-end-line="258" selection-end-column="76" />
-          <caret line="260" column="64" lean-forward="false" selection-start-line="260" selection-start-column="31" selection-end-line="260" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/parsed_ast_output">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/v3_CSV/lib/images_expression_svg/1010393913.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/fb1-4.l">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/site/example_T_f/example_T_f_csv.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/site/example_d3js_graphs/4062045.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/bin/create_pdf_of_all_expressions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/webapp/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/v3_CSV/lib/images_expression_svg/0203024440.svg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/static/images/simple_harmonic_motion.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/static/images/simple_example_expanded_T1f.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/static/images/graph.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/bin/interactive_user_prompt_README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="423">
-            <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="32" column="7" lean-forward="false" selection-start-line="32" selection-start-column="4" selection-end-line="32" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/test">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/static/images/frequency_period_relation.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="29" column="48" lean-forward="true" selection-start-line="29" selection-start-column="48" selection-end-line="29" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/clean_ast.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/Ast_to_PNG.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/mash.pl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/eq2png-conf.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/eq2png">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/apps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/v2_XML/statement_txt_db_to_png.pl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="571">
-          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/databases/symbols_database.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/bin/create_picture_per_infrule_from_infruleDB.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2396">
-          <caret line="15" column="40" lean-forward="false" selection-start-line="15" selection-start-column="40" selection-end-line="15" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
-          <caret line="73" column="12" lean-forward="false" selection-start-line="73" selection-start-column="12" selection-end-line="73" selection-end-column="12" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-            <element signature="e#575#987#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/symbols_table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="143" column="0" lean-forward="false" selection-start-line="143" selection-start-column="0" selection-end-line="147" selection-end-column="5" />
-          <folding>
-            <element signature="n#nav#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sandbox/App/webapp/templates/data_table.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="39" column="5" lean-forward="true" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/latex_data_tables.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="241" column="9716" lean-forward="false" selection-start-line="241" selection-start-column="9716" selection-end-line="241" selection-end-column="9716" />
           <folding />
         </state>
       </provider>
