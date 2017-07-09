@@ -18,8 +18,8 @@ if (len(sys.argv)>1):
   print("selected: "+which_derivation_to_make)
 else:
   print("example: \n")
-  print("   python create_picture_per_derivation.py \"this derivation\"\n")
-  print("   no trailing slash\n")
+  print("   no trailing slash\n") 
+  print("   python bin/create_picture_per_derivation.py \"derivations/euler equation proof\"\n")
   exit()
 
 # check that folder exists
@@ -99,7 +99,11 @@ graphviz_file.write("}\n")
 print("neato -Tsvg -Nlabel=\"\" graphviz.dot > out.svg")
 print("neato -Tpng -Nlabel=\"\" graphviz.dot > out.png")
 
-# subprocess.call(["neato","-Tpng -Nlabel=\"\" \which_derivation_to_make+"/graphviz.dot\" > \which_derivation_to_make+"/out.png\""], shell=True)
-# extension='png'
+#subprocess.call(["neato","-Tpng -Nlabel=\"\" which_derivation_to_make+"/graphviz.dot\" > which_derivation_to_make+"/out.png\""], shell=True)
+
+extension='png'
+
 # os.system('cd \"'+which_derivation_to_make+'\"; neato -T'+extension+' -Nlabel=\"\" \"'+which_derivation_to_make+'/graphviz.dot\" > \"'+which_derivation_to_make+'/out.'+extension+'\"')
-# os.system('neato -T'+extension+' -Nlabel=\"\" \"'+which_derivation_to_make+'/graphviz.dot\" > \"'+which_derivation_to_make+'/out.'+extension+'\"')
+
+os.system('neato -T'+extension+' -Nlabel=\"\" \"'+which_derivation_to_make+'/graphviz.dot\" > \"'+which_derivation_to_make+'/out.'+extension+'\"')
+
