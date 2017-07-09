@@ -1,0 +1,13 @@
+digraph physicsDerivation {
+overlap = false;
+label="Equation relations\\nExtracted from connections_database.csv";
+fontsize=12;
+9103516 -> 8482459
+8482459 -> 6822583
+5749291 -> 6822583
+6822583 -> 8341200
+3131111133 -> 8482459
+2131616531 -> 8341200
+6822583 -> multbothsidesby
+9103516 -> declareInitialExpression
+}
