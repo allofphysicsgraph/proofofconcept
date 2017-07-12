@@ -6,7 +6,7 @@ sudo pip install astmonkey
 sudo apt-get install python-psycopg2
 sudo apt-get install libpq-dev
 sudo pip install sqlalchemy
-sudo pip intsall -r webapp/requirements.txt
+sudo pip install -r webapp/requirements.txt
 
 sudo -u postgres -H --  psql  -c "create database pdg";
 
