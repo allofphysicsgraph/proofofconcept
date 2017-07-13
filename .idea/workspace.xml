@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="45e9defb-d17e-4826-9d1a-d6c750040ead" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sandbox/App/requirements.sh" afterPath="$PROJECT_DIR$/sandbox/App/requirements.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -314,7 +313,14 @@
       <option name="project" value="LOCAL" />
       <updated>1499963037948</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="geogebra">
+      <created>1499963514962</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1499963514962</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
