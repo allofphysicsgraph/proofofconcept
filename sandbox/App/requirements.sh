@@ -9,6 +9,10 @@ sudo pip install sqlalchemy
 
 sudo apt install geogebra
 
+sudo apt-add-repository -y ppa:aims/sagemath
+sudo apt-get update
+sudo apt-get install sagemath-upstream-binary
+
 
 sudo pip install -r webapp/requirements.txt
 
