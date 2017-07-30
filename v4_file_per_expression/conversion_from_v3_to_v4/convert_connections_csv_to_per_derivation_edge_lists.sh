@@ -1,8 +1,10 @@
+# purpose: convert files from v3
+
 temp_file=derivation_names.log
 
 cut -f 1 -d ',' ../../../databases/connections_database.csv | uniq > ${temp_file}
 
-while read -r derivation_name_with_quotes
+while read -r derivation_name_with_quotes.log
 do 
 #     echo $derivation_name
     # http://stackoverflow.com/questions/9733338/shell-script-remove-first-and-last-quote-from-a-variable    

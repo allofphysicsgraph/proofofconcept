@@ -1,0 +1,6 @@
+inf_rule_name: Xcrossbothsidesby
+number_of_arguments: 2
+number_of_feeds: 1
+number_of_input_expressions: 1
+number_of_output_expressions: 1
+comments: "arg x LHS = arg x RHS"

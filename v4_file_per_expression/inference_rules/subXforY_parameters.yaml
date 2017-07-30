@@ -1,0 +1,6 @@
+inf_rule_name: subXforY
+number_of_arguments: 3
+number_of_feeds: 2
+number_of_input_expressions: 1
+number_of_output_expressions: 1
+comments: "none"

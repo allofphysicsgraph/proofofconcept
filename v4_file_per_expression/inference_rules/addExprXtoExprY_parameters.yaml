@@ -1,0 +1,6 @@
+inf_rule_name: addExprXtoExprY
+number_of_arguments: 2
+number_of_feeds: 0
+number_of_input_expressions: 2
+number_of_output_expressions: 1
+comments: "assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)"

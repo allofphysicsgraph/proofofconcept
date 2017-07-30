@@ -5,17 +5,37 @@
 rm -rf derivations/all
 mkdir  derivations/all
 find   derivations -depth 1 -type d | while read this_dir; do
+    echo "  consolidating following directory into derivations/all:"
     echo ${this_dir}
     # the newline is needed between files because some input files do not terminate with a new line
     cat "${this_dir}/derivation_edge_list.csv"       >> derivations/all/derivation_edge_list.csv
     printf "\n"                                      >> derivations/all/derivation_edge_list.csv
     cat "${this_dir}/expression_identifiers.csv"     >> derivations/all/expression_identifiers.csv
     printf "\n"                                      >> derivations/all/expression_identifiers.csv
-    cat "${this_dir}/feeds.csv"                      >> derivations/all/feeds.csv
-    printf "\n"                                      >> derivations/all/feeds.csv
+    if [ -e "${this_dir}/feeds.csv" ]; then
+        cat "${this_dir}/feeds.csv"                      >> derivations/all/feeds.csv
+        printf "\n"                                      >> derivations/all/feeds.csv
+    fi
     cat "${this_dir}/inference_rule_identifiers.csv" >> derivations/all/inference_rule_identifiers.csv
     printf "\n"                                      >> derivations/all/inference_rule_identifiers.csv
 done
+
+find   identities -depth 1 -type d | while read this_dir; do
+    echo "  consolidating following directory into derivations/all:"
+    echo ${this_dir}
+    # the newline is needed between files because some input files do not terminate with a new line
+    cat "${this_dir}/derivation_edge_list.csv"       >> derivations/all/derivation_edge_list.csv
+    printf "\n"                                      >> derivations/all/derivation_edge_list.csv
+    cat "${this_dir}/expression_identifiers.csv"     >> derivations/all/expression_identifiers.csv
+    printf "\n"                                      >> derivations/all/expression_identifiers.csv
+    if [ -e "${this_dir}/feeds.csv" ]; then
+        cat "${this_dir}/feeds.csv"                      >> derivations/all/feeds.csv
+        printf "\n"                                      >> derivations/all/feeds.csv
+    fi
+    cat "${this_dir}/inference_rule_identifiers.csv" >> derivations/all/inference_rule_identifiers.csv
+    printf "\n"                                      >> derivations/all/inference_rule_identifiers.csv
+done
+
 cat derivations/all/derivation_edge_list.csv       | sed '/^$/d' > derivations/all/derivation_edge_list.csv_temp
 cat derivations/all/expression_identifiers.csv     | sed '/^$/d' > derivations/all/expression_identifiers.csv_temp
 cat derivations/all/feeds.csv                      | sed '/^$/d' > derivations/all/feeds.csv_temp
@@ -26,5 +46,7 @@ mv -f derivations/all/expression_identifiers.csv_temp derivations/all/expression
 mv -f derivations/all/feeds.csv_temp derivations/all/feeds.csv
 mv -f derivations/all/inference_rule_identifiers.csv_temp derivations/all/inference_rule_identifiers.csv
 
+
+echo "plain text files created for derivations/all"
 echo "calling bin/create_png_for_derivation__input_name_of_derivation.py derivations/all"
 python bin/create_png_for_derivation__input_name_of_derivation.py "derivations/all"
