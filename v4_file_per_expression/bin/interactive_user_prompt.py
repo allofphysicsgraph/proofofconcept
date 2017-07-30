@@ -461,17 +461,41 @@ infrule_list_of_dics=[]
 for this_infrule in list_of_infrules:
     this_dic={}
     this_dic["inference rule"]=this_infrule
+    if not os.path.isfile('inference_rules/'+this_infrule+'_parameters.yaml'):
+        print('missing inf rule yaml file for '+this_infrule+'_parameters.yaml')
+        exit()
     try:
         config = yaml.load(file('inference_rules/'+this_infrule+'_parameters.yaml', 'r'))
     except yaml.YAMLError, exc:
         print "Error in configuration file:", exc
 
+    if (config['inf_rule_name'] != this_infrule):
+        print("name of .tex file doesn't match what's in the .yaml file")
+        print(this_infrule)
+        print(config['inf_rule_name'])
+        exit()
+        
+    this_dic['number of feeds']=config['number_of_feeds']
+    this_dic['number of output expressions']=config['number_of_output_expressions']
+    this_dic['number of input expressions']=config['number_of_input_expressions']
     this_dic['LaTeX expansion']="latex here"
-    this_dic['number of input expressions']=2
-    this_dic['number of feeds']=2
-    this_dic['number of output expressions']=2
     infrule_list_of_dics.append(this_dic)
 
+'''
+    if (config['number_of_arguments'] != ( config['number_of_feeds'] + 
+                                           config['number_of_output_expressions'] + 
+                                           config['number_of_input_expressions'])):
+        print("number of arguments in parameters.yaml is inconsistent for "+this_infrule)
+        print("number of args = "+str(config['number_of_arguments']))
+        print("number of feeds = "+str(config['number_of_feeds']))
+        print("number of output expressions = "+str(config['number_of_output_expressions']))
+        print("number of input expressions = "+str(config['number_of_input_expressions']))
+'''
+# not in use:
+#    config['comments']
+
+
+#exit()
 list_of_expr=[]
 connection_expr_temp=[]
 list_of_feeds=[]
