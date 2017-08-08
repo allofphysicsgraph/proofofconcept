@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Ben Payne <ben.is.located@gmail.com>
 # Physics Derivation Graph
 # 20160129
