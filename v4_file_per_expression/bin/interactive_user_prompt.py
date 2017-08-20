@@ -277,7 +277,8 @@ def assign_temp_indx(step_ary):
 #{'infrule': 'combineLikeTerms', 'input': [{'latex': 'afmaf=mlasf', 'step indx input': 2612303073}], 'feed': [], 'output': [{'latex': 'mafmo=asfm', 'step indx output': 2430513647}]}
 #{'infrule': 'solveForX', 'input': [{'latex': 'afmaf=mlasf', 'step indx input': 2612303073}], 'feed': ['x'], 'output': [{'latex': 'masdf=masdf', 'step indx output': 4469061559}]}
 
-#TODO: If an expression is common across the step array, then it should have the same "step indx" value
+#TODO: If an expression index is common across the step array, 
+#      then it should have the same "step indx" value
 
   # add temp index for feed, infrule, and expr
 
@@ -293,7 +294,6 @@ def assign_temp_indx(step_ary):
         for feed_indx,feed_dic in enumerate(step_ary[step_indx]['feed']):
             step_ary[step_indx]['feed'][feed_indx]['feed indx']=get_new_step_indx('derivations')
 
-    print("derivation name: "+derivation_name)
     print("content to be written to files")
     for each_step in step_ary:
         print(each_step)
@@ -307,6 +307,9 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
                         connection_infrule_temp,list_of_feeds,output_path):
     write_activity_log("def", "write_steps_to_file")
 #    print("entered 'write_steps_to_file' function")
+
+    print("derivation name: "+derivation_name)
+    write_activity_log("derivation name: "+derivation_name, "write_steps_to_file")
 
     step_ary=assign_temp_indx(step_ary)
 
@@ -545,7 +548,8 @@ def user_provide_latex_arguments(selected_infrule_dic,step_ary,connection_expr_t
     if (number_of_feeds>0):
         for feed_indx in range(number_of_feeds):
             feed_dic={}
-            feed_dic['latex']=get_text_input('feed Latex,                            '+str(feed_indx+1)+' of '+str(number_of_feeds)+': ')
+            feed_dic['latex']=get_text_input('feed Latex,                '+\
+                             str(feed_indx+1)+' of '+str(number_of_feeds)+': ')
             feed_ary.append(feed_dic)
     output_ary=[]
     if (number_of_output_expressions>0):
