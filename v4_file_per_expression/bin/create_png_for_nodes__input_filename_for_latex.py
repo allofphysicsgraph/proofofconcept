@@ -27,7 +27,7 @@ from os.path import isfile, join
 picture_extension='png'
 
 split_on_slash_filename=filename.split('/')
-folder_name=split_on_slash_filename[0] # assumes depth of folder name is one
+folder_name='/'.join(split_on_slash_filename[0:len(split_on_slash_filename)-1])
 filename_with_extension=split_on_slash_filename[-1]
 split_on_dot_filename=filename_with_extension.split('.')
 file_extension=split_on_dot_filename[-1]

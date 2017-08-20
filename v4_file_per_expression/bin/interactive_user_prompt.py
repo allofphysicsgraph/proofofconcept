@@ -11,13 +11,44 @@ import time        # for pauses
 import sys
 import os
 import random 
-#lib_path = os.path.abspath('../lib')
-#sys.path.append(lib_path) # this has to proceed use of physgraph
-#db_path = os.path.abspath('databases')
-#import lib_physics_graph as physgraf #TODO this isn't needed once the library calls are needed.
+
+lib_path = os.path.abspath('../lib')
+sys.path.append(lib_path) # this has to proceed use of physgraph
+import lib_physics_graph as physgraf
+
+def create_pictures_for_derivation(output_path,derivation_name):
+    write_activity_log("def", "create_pictures_for_derivation")
+
+    for name in os.listdir(output_path+'/'+derivation_name+'/'):
+        name_and_extension = name.split('.')
+        if (os.path.isfile(output_path+'/'+derivation_name+'/'+name) and (name_and_extension[1]=='tex')):
+#            print(output_path+'/'+derivation_name+'/'+name)
+            numeric_as_ary=name_and_extension[0].split('_')
+            with open(output_path+'/'+derivation_name+'/'+name, 'r') as f:
+                read_data = f.read()
+                print(read_data.rstrip())
+                latex_expression="$"+read_data.rstrip()+"$"
+                physgraf.make_picture_from_latex_expression(numeric_as_ary[0],\
+                     output_path+'/'+derivation_name,latex_expression,'png')
+
+    return
+
+def create_graph_for_derivation(output_path,derivation_name):
+    write_activity_log("def", "create_graph_for_derivation")
+
+    which_derivation_to_make=output_path+"/"+derivation_name
+    edge_list, expr_list, infrule_list, feed_list = physgraf.read_csv_files_into_ary(which_derivation_to_make)
+    physgraf.write_edges_and_nodes_to_graphviz(which_derivation_to_make,\
+                                          edge_list, expr_list, infrule_list, feed_list,\
+                                          "", "")
+    os.system('cd "'+which_derivation_to_make+'"; pwd; neato -Tpng -Nlabel="" graphviz.dot > out.png')
+    os.system('cd "'+which_derivation_to_make+'"; open out.png')
+    return
 
 # https://stackoverflow.com/questions/1724693/find-a-file-in-python
 def find_all(name, path):
+    write_activity_log("def", "find_all")
+
     result = []
     for root, dirs, files in os.walk(path):
         if name in files:
@@ -25,6 +56,8 @@ def find_all(name, path):
     return result
 
 def get_new_expr_indx(path):
+  write_activity_log("def", "get_new_expr_indx")
+
   list_of_expression_files = find_all('expression_identifiers.csv',path)
   list_of_nodes=[]
   for this_file in list_of_expression_files:
@@ -45,6 +78,8 @@ def get_new_expr_indx(path):
   return candidate
 
 def get_new_step_indx(path):
+  write_activity_log("def", "get_new_step_indx")
+
   list_of_derivation_edge_files = find_all('derivation_edge_list.csv',path)
   list_of_nodes=[]
   for this_file in list_of_derivation_edge_files:
@@ -189,7 +224,12 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
     step_dic={"infrule":selected_infrule_dic["inference rule"],"input":input_ary,"feed":feed_ary,"output":output_ary}
     print("\nResulting dic:")
     print(step_dic)
+
     step_ary.append(step_dic)
+
+    write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
+                            connection_infrule_temp,list_of_feeds,output_path)
+
     done_with_steps=add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
                                       connection_infrule_temp,list_of_feeds,output_path)
   write_activity_log("return derivation_name", "start_new_derivation")
@@ -206,6 +246,7 @@ def print_current_steps(step_ary):
 def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
                           connection_infrule_temp,list_of_feeds,output_path):
     write_activity_log("def", "add_another_step_menu")
+
     invalid_choice=True
     while(invalid_choice):
       print("\n\nStep Menu")
@@ -231,118 +272,98 @@ def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
         invalid_choice=True  
     return done_with_steps
 
-def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
-                        connection_infrule_temp,list_of_feeds,output_path):
-  write_activity_log("def", "write_steps_to_file")
-  print("entered 'write_steps_to_file' function")
-
+def assign_temp_indx(step_ary):
 # step_ary contains entries like
 #{'infrule': 'combineLikeTerms', 'input': [{'latex': 'afmaf=mlasf', 'step indx input': 2612303073}], 'feed': [], 'output': [{'latex': 'mafmo=asfm', 'step indx output': 2430513647}]}
 #{'infrule': 'solveForX', 'input': [{'latex': 'afmaf=mlasf', 'step indx input': 2612303073}], 'feed': ['x'], 'output': [{'latex': 'masdf=masdf', 'step indx output': 4469061559}]}
 
+#TODO: If an expression is common across the step array, then it should have the same "step indx" value
+
   # add temp index for feed, infrule, and expr
-  for step_indx,this_step in enumerate(step_ary):
-#TODO: replace this library call
-#    step_ary[step_indx]['infrule indx']=physgraf.find_new_indx(connection_infrule_temp,1000000,9999999,"inf rule indx")
-    step_ary[step_indx]['infrule indx']=get_new_step_indx('derivations')
 
-    for input_indx,input_dic in enumerate(step_ary[step_indx]['input']):
-#TODO: replace this library call
-#      step_ary[step_indx]['input'][input_indx]['step indx input']=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")  
-      step_ary[step_indx]['input'][input_indx]['step indx input']=get_new_step_indx('derivations')
+    for step_indx,this_step in enumerate(step_ary):
+        step_ary[step_indx]['infrule indx']=get_new_step_indx('derivations')
 
-    for output_indx,output_dic in enumerate(step_ary[step_indx]['output']):
-#TODO: replace this library call
-#      step_ary[step_indx]['output'][output_indx]['step indx output']=physgraf.find_new_indx(connection_expr_temp,1000000,9999999,"expression temporary index: ")  
-      step_ary[step_indx]['output'][output_indx]['step indx output']=get_new_step_indx('derivations')
-      
-    for feed_indx,feed_dic in enumerate(step_ary[step_indx]['feed']):
-#TODO: replace this library call
-#      step_ary[step_indx]['feed'][feed_indx]['feed indx']=physgraf.find_new_indx(list_of_feeds,1000000,9999999,"feed temporary index: ")
-      step_ary[step_indx]['feed'][feed_indx]['feed indx']=get_new_step_indx('derivations')
+        for input_indx,input_dic in enumerate(step_ary[step_indx]['input']):
+            step_ary[step_indx]['input'][input_indx]['step indx input']=get_new_step_indx('derivations')
 
-  print("derivation name: "+derivation_name)
-  print("content to be written to files")
-  for each_step in step_ary:
-    print(each_step)
+        for output_indx,output_dic in enumerate(step_ary[step_indx]['output']):
+            step_ary[step_indx]['output'][output_indx]['step indx output']=get_new_step_indx('derivations')
+            
+        for feed_indx,feed_dic in enumerate(step_ary[step_indx]['feed']):
+            step_ary[step_indx]['feed'][feed_indx]['feed indx']=get_new_step_indx('derivations')
 
+    print("derivation name: "+derivation_name)
+    print("content to be written to files")
+    for each_step in step_ary:
+        print(each_step)
+    print("those were the steps")
+  
 # step_ary now looks like
 # [{'infrule': 'dividebothsidesby', 'input': [{'latex': 'afm =asfaf', 'temp indx': 9521703, 'step indx input': 6448490481}], 'infrule indx': 3491788, 'feed': [{'latex': 'asf', 'feed indx': 4479113}], 'output': [{'latex': 'asdfa =asf', 'temp indx': 1939903, 'step indx output': 4449405156}]}]
+    return step_ary
+
+def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
+                        connection_infrule_temp,list_of_feeds,output_path):
+    write_activity_log("def", "write_steps_to_file")
+#    print("entered 'write_steps_to_file' function")
+
+    step_ary=assign_temp_indx(step_ary)
 
 # what we want is output like
-#"frequency relations",1, "infrule",2303943,declareInitialExpression,   "expression",3293094,5900595848
-#"frequency relations",2, "infrule",0304948,declareInitialExpression,   "expression",3294004,0404050504
+#"frequency relations",1, "infrule",2303943,declareInitialExpression,     "expression",3293094,5900595848
+#"frequency relations",2, "infrule",0304948,declareInitialExpression,     "expression",3294004,0404050504
 
-  if not os.path.exists(output_path+'/'+derivation_name):
-    os.makedirs(output_path+'/'+derivation_name)
+    if not os.path.exists(output_path+'/'+derivation_name):
+        os.makedirs(output_path+'/'+derivation_name)
 
-  infrule_file  = open(output_path+'/'+derivation_name+'/inference_rule_identifiers.csv','w+') # infrule_ID and inf_rule 
-  feed_file     = open(output_path+'/'+derivation_name+'/feeds.csv','w+')                      # feed_ID
-  edgelist_file = open(output_path+'/'+derivation_name+'/derivation_edge_list.csv','w+')       # step_ID and step_ID
-  expr_file     = open(output_path+'/'+derivation_name+'/expression_identifiers.csv','w+')     # expr_ID and step_ID
+    infrule_file    = open(output_path+'/'+derivation_name+'/inference_rule_identifiers.csv','w+') # infrule_ID and inf_rule 
+    feed_file         = open(output_path+'/'+derivation_name+'/feeds.csv','w+')                                            # feed_ID
+    edgelist_file = open(output_path+'/'+derivation_name+'/derivation_edge_list.csv','w+')             # step_ID and step_ID
+    expr_file         = open(output_path+'/'+derivation_name+'/expression_identifiers.csv','w+')         # expr_ID and step_ID
 
-  list_of_expr_dics=[]
-  for step_indx,this_step in enumerate(step_ary):
-    ID_for_this_step=get_new_expr_indx('derivations')
+    list_of_expr_dics=[]
+    for step_indx,this_step in enumerate(step_ary):
+        ID_for_this_step=get_new_expr_indx('derivations')
 
-    infrule_file.write(str(ID_for_this_step) + "," + this_step['infrule'] +"\n")
+        infrule_file.write(str(ID_for_this_step) + "," + this_step['infrule'] +"\n")
 
-    for this_feed_dic in this_step['feed']:
-      feed_file.write( str(this_feed_dic['feed indx']) +"\n")
-      edgelist_file.write(str(this_feed_dic['feed indx'])+','+str(ID_for_this_step)+"\n")
+        for this_feed_dic in this_step['feed']:
+            feed_file.write( str(this_feed_dic['feed indx']) +"\n")
+            edgelist_file.write(str(this_feed_dic['feed indx'])+','+str(ID_for_this_step)+"\n")
+            filename = output_path+'/'+derivation_name+'/'+str(this_feed_dic['feed indx'])+'_latex.tex'
+            f_latex=open(filename,"w+")
+            f_latex.write(this_feed_dic['latex']+"\n")
+            f_latex.close()
+        
+        for this_input_dic in this_step['input']:
+            list_of_expr_dics.append(this_input_dic)
+            edgelist_file.write(str(this_input_dic['step indx input'])+','+str(ID_for_this_step)+"\n")
 
-    for this_input_dic in this_step['input']:
-      list_of_expr_dics.append(this_input_dic)
-      edgelist_file.write(str(this_input_dic['step indx input'])+','+str(ID_for_this_step)+"\n")
+        for this_output_dic in this_step['output']:
+            list_of_expr_dics.append(this_output_dic)        
+            edgelist_file.write(str(ID_for_this_step)+','+str(this_output_dic['step indx output'])+"\n")
 
-    for this_output_dic in this_step['output']:
-      list_of_expr_dics.append(this_output_dic)    
-      edgelist_file.write(str(this_output_dic['step indx output'])+','+str(ID_for_this_step)+"\n")
+    for this_expr_dic in list_of_expr_dics:
+        if "step indx output" in this_expr_dic.keys():
+            expr_file.write(str(this_expr_dic['step indx output'])+","+str(this_expr_dic['expr indx'])+"\n")
+        if "step indx input" in this_expr_dic.keys():
+            expr_file.write(str(this_expr_dic['step indx input'])+","+str(this_expr_dic['expr indx'])+"\n")
+        filename = output_path+'/'+derivation_name+'/'+str(this_expr_dic['expr indx'])+'_latex.tex'
+        print(filename)
+        f_latex=open(filename,"w+")
+        f_latex.write(this_expr_dic['latex']+"\n")
+        f_latex.close()
 
-  for this_expr_dic in list_of_expr_dics:
-    if "step indx output" in this_expr_dic.keys():
-      expr_file.write(str(this_expr_dic['expr indx'])+","+str(this_expr_dic['step indx output'])+"\n")
-    if "step indx input" in this_expr_dic.keys():
-      expr_file.write(str(this_expr_dic['expr indx'])+","+str(this_expr_dic['step indx input'])+"\n")
-    filename = output_path+'/'+derivation_name+'/'+str(this_expr_dic['expr indx'])+'_latex.tex'
-    print(filename)
-    f_latex=open(filename,"w+")
-    f_latex.write(this_expr_dic['latex']+"\n")
-    f_latex.close()
+    feed_file.close()
+    edgelist_file.close()
+    expr_file.close()
+    infrule_file.close()
 
-  feed_file.close()
-  edgelist_file.close()
-  expr_file.close()
-  infrule_file.close()
+    create_pictures_for_derivation(output_path,derivation_name)
+    create_graph_for_derivation(output_path,derivation_name)
 
-  asf='''
-  # collect all the latex expressions
-  latex_expr_dic={}
-  for this_step in step_ary:
-    for this_input in this_step['input']:
-      if not (this_input['step indx input'] in latex_expr_dic):
-        latex_expr_dic[this_input['step indx input']]=this_input['latex']
-    for this_output in this_step['output']:
-      if not (this_output['step indx output'] in latex_expr_dic):
-        latex_expr_dic[this_output['step indx output']]=this_output['latex']
-  # write latex expressions to file
-  f = open(output_path+'new_latex.csv', 'w')
-  for indx_key, latex_value in latex_expr_dic.iteritems():
-    f.write(str(indx_key)+","+latex_value+"\n")
-  f.close()
-
-  latex_feed_dic={}
-  for this_step in step_ary:
-    for this_feed in this_step['feed']:
-      if not (this_feed['feed indx'] in latex_feed_dic):
-        latex_feed_dic[this_feed['feed indx']]=this_feed['latex']
-  f = open(output_path+'new_feed.csv', 'w')
-  for indx_key, latex_value in latex_feed_dic.iteritems():
-    f.write(str(indx_key)+","+latex_value+"\n")
-  f.close()
-'''
-
-  return
+    return
 
 
 def select_from_available_derivations(list_of_derivations):
@@ -359,7 +380,7 @@ def select_from_available_derivations(list_of_derivations):
     write_activity_log("user selected "+str(derivation_choice_input), "select_from_available_derivations")
     if (derivation_choice_input=='0' or derivation_choice_input==''):
       print("selected exit without choice")
-      time.sleep(2)
+      #time.sleep(2)
       choice_selected=True
       derivation_choice_input=0
       selected_derivation='EXIT'
@@ -455,88 +476,86 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
 
 
 def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expressions,list_of_expr,step_ary):
-  write_activity_log("def", "user_supplies_latex_or_expression_index")
-  valid_input=False
-  while(not valid_input):
-    print("\nChoice for providing step content for "+type_str+": ")
-    print("1 provide new Latex")
-    print("2 use existing expression index from above list")
-    latex_or_index_choice=get_numeric_input("selection [1]: ","1")
-    if (int(latex_or_index_choice)==1):
-      this_latex=get_text_input(type_str+' expression Latex,  '+str(input_indx+1)+' of '+str(number_of_expressions)+': ')
-#TODO: replace this library call
-#      expr_ID=physgraf.find_new_indx(list_of_expr,1000000000,9999999999,"expression permanent index: ")
-      expr_ID=get_new_expr_indx('derivations')
+    write_activity_log("def", "user_supplies_latex_or_expression_index")
+    valid_input=False
+    while(not valid_input):
+        print("\nChoice for providing step content for "+type_str+": ")
+        print("1 provide new Latex")
+        print("2 use existing expression index from above list")
+        latex_or_index_choice=get_numeric_input("selection [1]: ","1")
+        if (int(latex_or_index_choice)==1):
+            this_latex=get_text_input(type_str+' expression Latex,    '+str(input_indx+1)+' of '+str(number_of_expressions)+': ')
+            expr_ID=get_new_expr_indx('derivations')
 
-      valid_input=True
-    elif (int(latex_or_index_choice)==2):
-      expr_ID=get_numeric_input("expression index : ","defaulllt")
-      this_latex="NONE"
-      for each_step in step_ary:
-        list_of_inputs=each_step["input"]
-        for indx in range(len(list_of_inputs)):
-          if (int(expr_ID)==list_of_inputs[0]['step indx input']):
-            this_latex=list_of_inputs[0]['latex']
-        list_of_outputs=each_step["output"]
-        for indx in range(len(list_of_outputs)):
-          if (int(expr_ID)==list_of_outputs[0]['step indx output']):
-            this_latex=list_of_outputs[0]['latex']
-      if (this_latex=="NONE"):
-        print("ERROR: user-supplied expression index not found in this derivation")
-      valid_input=True
-    else:
-      print(" --> invalid input; try again")
-      valid_input=False  
+            valid_input=True
+        elif (int(latex_or_index_choice)==2):
+            expr_ID=get_numeric_input("expression index : ","defaulllt")
+            this_latex="NONE"
+            for each_step in step_ary:
+                list_of_inputs=each_step["input"]
+                for indx in range(len(list_of_inputs)):
+                    if (int(expr_ID)==list_of_inputs[0]['expr indx']):
+                        this_latex=list_of_inputs[0]['latex']
+                list_of_outputs=each_step["output"]
+                for indx in range(len(list_of_outputs)):
+                    if (int(expr_ID)==list_of_outputs[0]['expr indx']):
+                        this_latex=list_of_outputs[0]['latex']
+            if (this_latex=="NONE"):
+                print("ERROR: user-supplied expression index not found in this derivation")
+                valid_input=False
+            valid_input=True
+        else:
+            print(" --> invalid input; try again")
+            valid_input=False    
 
-  this_dic={}
-  this_dic["latex"]=this_latex
-  this_dic["expr indx"]=int(expr_ID)
+    this_dic={}
+    this_dic["latex"]=this_latex
+    this_dic["expr indx"]=int(expr_ID)
 
-  return this_dic
-
+    return this_dic
 
 def user_provide_latex_arguments(selected_infrule_dic,step_ary,connection_expr_temp):
-  write_activity_log("def", "user_provide_latex_arguments")
-  print("selected "+selected_infrule_dic["inference rule"])
-#   print("for this infrule, provide input, feed, and output")
-#   print(infrule_list_of_dics[infrule_choice_input-1])
-  print("Latex expansion: "+selected_infrule_dic['LaTeX expansion'])
+    write_activity_log("def", "user_provide_latex_arguments")
+    print("selected "+selected_infrule_dic["inference rule"])
+#     print("for this infrule, provide input, feed, and output")
+#     print(infrule_list_of_dics[infrule_choice_input-1])
+    print("Latex expansion: "+selected_infrule_dic['LaTeX expansion'])
 
-  if (len(step_ary)>0):
-    print("\nexisting derivation steps:")
-    print_current_steps(step_ary)
-  
-#   print("number of input expresions: "+selected_infrule_dic['number of input expressions'])
-  number_of_input_expressions=int(selected_infrule_dic['number of input expressions'])
-#   print("number of feeds: "+selected_infrule_dic['number of feeds'])
-  number_of_feeds=int(selected_infrule_dic['number of feeds'])
-#   print("number of output expressions: "+selected_infrule_dic['number of output expressions'])
-  number_of_output_expressions=int(selected_infrule_dic['number of output expressions'])
+    if (len(step_ary)>0):
+        print("\nexisting derivation steps:")
+        print_current_steps(step_ary)
+    
+#     print("number of input expresions: "+selected_infrule_dic['number of input expressions'])
+    number_of_input_expressions=int(selected_infrule_dic['number of input expressions'])
+#     print("number of feeds: "+selected_infrule_dic['number of feeds'])
+    number_of_feeds=int(selected_infrule_dic['number of feeds'])
+#     print("number of output expressions: "+selected_infrule_dic['number of output expressions'])
+    number_of_output_expressions=int(selected_infrule_dic['number of output expressions'])
 
-  print("number of input expressions: "+str(number_of_input_expressions)+", number of feeds: "+str(number_of_feeds)+", number of output expressions: "+str(number_of_output_expressions))
+    print("number of input expressions: "+str(number_of_input_expressions)+", number of feeds: "+str(number_of_feeds)+", number of output expressions: "+str(number_of_output_expressions))
 
-  input_ary=[]
-  if (number_of_input_expressions>0):
-    for input_indx in range(number_of_input_expressions):
-      this_input_dic=user_supplies_latex_or_expression_index('input',\
-              input_indx,number_of_input_expressions,list_of_expr,step_ary)
+    input_ary=[]
+    if (number_of_input_expressions>0):
+        for input_indx in range(number_of_input_expressions):
+            this_input_dic=user_supplies_latex_or_expression_index('input',\
+                            input_indx,number_of_input_expressions,list_of_expr,step_ary)
 
-      input_ary.append(this_input_dic)
-  feed_ary=[]
-  if (number_of_feeds>0):
-    for feed_indx in range(number_of_feeds):
-      feed_dic={}
-      feed_dic['latex']=get_text_input('feed Latex,              '+str(feed_indx+1)+' of '+str(number_of_feeds)+': ')
-      feed_ary.append(feed_dic)
-  output_ary=[]
-  if (number_of_output_expressions>0):
-    for output_indx in range(number_of_output_expressions):
-      this_output_dic=user_supplies_latex_or_expression_index('output',\
-              output_indx,number_of_output_expressions,list_of_expr,step_ary)
+            input_ary.append(this_input_dic)
+    feed_ary=[]
+    if (number_of_feeds>0):
+        for feed_indx in range(number_of_feeds):
+            feed_dic={}
+            feed_dic['latex']=get_text_input('feed Latex,                            '+str(feed_indx+1)+' of '+str(number_of_feeds)+': ')
+            feed_ary.append(feed_dic)
+    output_ary=[]
+    if (number_of_output_expressions>0):
+        for output_indx in range(number_of_output_expressions):
+            this_output_dic=user_supplies_latex_or_expression_index('output',\
+                            output_indx,number_of_output_expressions,list_of_expr,step_ary)
 
-      output_ary.append(this_output_dic)
+            output_ary.append(this_output_dic)
 
-  return input_ary,feed_ary,output_ary
+    return input_ary,feed_ary,output_ary
 
 def get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,\
         connection_expr_temp,list_of_feeds,step_ary):
