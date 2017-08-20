@@ -28,6 +28,7 @@ Non-Python applications
 
 main commands:
 
+    cd v3_CSV/    
     python bin/create_picture_per_derivation_from_connectionsDB.py
 
 tools
