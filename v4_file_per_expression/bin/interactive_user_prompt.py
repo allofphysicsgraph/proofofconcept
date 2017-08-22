@@ -274,30 +274,20 @@ def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
 
 def expr_indx_exists_in_ary(test_indx,test_step_indx,step_ary):
     for step_indx,this_step in enumerate(step_ary):
-        print("step index = "+str(step_indx))
-        print(this_step)
+#        print("step index = "+str(step_indx))
+#        print(this_step)
 
-        for input_indx,input_dic in enumerate(step_ary[step_indx]['input']):
-            print("in the input loop")
-            print(step_ary[step_indx]['input'][input_indx])
-            print("test index = "+str(test_indx))
-            print("does expr index == test index?")
-            print("test step indx = "+str(test_step_indx))
-            print("step indx = "+str(step_indx))
-            print("does test step indx != step index?")
+        if (test_step_indx != step_indx):
+            for input_indx,input_dic in enumerate(step_ary[step_indx]['input']):
 
-            if ((step_ary[step_indx]['input'][input_indx]['expr indx'] == test_indx) and \
-                (test_step_indx != step_indx)):
-                print("indx found for input")
-                print(step_ary[step_indx]['input'][input_indx])
-                return step_ary[step_indx]['input'][input_indx]['step indx input']
+                if ((step_ary[step_indx]['input'][input_indx]['expr indx'] == test_indx) and \
+                        (test_step_indx != step_indx)):
+                    return step_ary[step_indx]['input'][input_indx]['step indx input']
 
-        for output_indx,output_dic in enumerate(step_ary[step_indx]['output']):
-            if ((step_ary[step_indx]['output'][input_indx]['expr indx'] == test_indx) and \
-                (test_step_indx != step_indx)):
-                print("indx found for output")
-                print(test_indx)
-                return step_ary[step_indx]['output'][input_indx]['step indx output']
+            for output_indx,output_dic in enumerate(step_ary[step_indx]['output']):
+                if ((step_ary[step_indx]['output'][input_indx]['expr indx'] == test_indx) and \
+                        (test_step_indx != step_indx)):
+                    return step_ary[step_indx]['output'][input_indx]['step indx output']
     
     return 0 # temp index does not exist
 
@@ -306,39 +296,30 @@ def assign_temp_indx(step_ary):
 #{'infrule': 'combineLikeTerms', 'input': [{'latex': 'afmaf=mlasf', 'step indx input': 2612303073}], 'feed': [], 'output': [{'latex': 'mafmo=asfm', 'step indx output': 2430513647}]}
 #{'infrule': 'solveForX', 'input': [{'latex': 'afmaf=mlasf', 'step indx input': 2612303073}], 'feed': ['x'], 'output': [{'latex': 'masdf=masdf', 'step indx output': 4469061559}]}
 
-#TODO: If an expression index is common across the step array, 
-#      then it should have the same "step indx" value
-
   # add temp index for feed, infrule, and expr
 
     for step_indx,this_step in enumerate(step_ary):
-        step_ary[step_indx]['infrule indx']=get_new_step_indx('derivations')
+        if 'infrule indx' not in step_ary[step_indx].keys():
+            step_ary[step_indx]['infrule indx']=get_new_step_indx('derivations')
 
         for input_indx,input_dic in enumerate(step_ary[step_indx]['input']):
-            this_indx=step_ary[step_indx]['input'][input_indx]['expr indx']
-            temp_indx=expr_indx_exists_in_ary(this_indx,step_indx,step_ary)
-            if (temp_indx == 0):
-                print("adding temp indx because it wasn't in the step ary for input")
-                if 'step indx input' not in step_ary[step_indx]['input'][input_indx].keys():
+            if ('step indx input' not in input_dic.keys()):
+                expr_indx=step_ary[step_indx]['input'][input_indx]['expr indx']
+                temp_indx_for_this_expr_indx = expr_indx_exists_in_ary(expr_indx,step_indx,step_ary)
+                if (temp_indx_for_this_expr_indx == 0):
                     step_ary[step_indx]['input'][input_indx]['step indx input']=get_new_step_indx('derivations')
                 else:
-                    print("actually, temp index wasn't changed because it existed")
-            else:
-                step_ary[step_indx]['input'][input_indx]['step indx input']=temp_indx
+                    step_ary[step_indx]['input'][input_indx]['step indx input']=temp_indx_for_this_expr_indx
 
         for output_indx,output_dic in enumerate(step_ary[step_indx]['output']):
-#            step_ary[step_indx]['output'][output_indx]['step indx output']=get_new_step_indx('derivations')
-            this_indx=step_ary[step_indx]['output'][input_indx]['expr indx']
-            temp_indx=expr_indx_exists_in_ary(this_indx,step_indx,step_ary)
-            if (temp_indx == 0):
-                print("adding temp indx because it wasn't in the step array for output")
-                if 'step indx output' not in step_ary[step_indx]['output'][input_indx].keys():
-                    step_ary[step_indx]['output'][input_indx]['step indx output']=get_new_step_indx('derivations')
+            if 'step indx output' not in output_dic.keys():
+                expr_indx=step_ary[step_indx]['output'][output_indx]['expr indx']
+                temp_indx_for_this_expr_indx = expr_indx_exists_in_ary(expr_indx,step_indx,step_ary)
+                if (temp_indx_for_this_expr_indx == 0):
+                    step_ary[step_indx]['output'][output_indx]['step indx output']=get_new_step_indx('derivations')
                 else:
-                    print("actually, temp index wasn't changed because it existed")
-            else:
-                step_ary[step_indx]['output'][input_indx]['step indx output']=temp_indx
-            
+                    step_ary[step_indx]['output'][output_indx]['step indx output']=temp_indx_for_this_expr_indx
+
         for feed_indx,feed_dic in enumerate(step_ary[step_indx]['feed']):
             step_ary[step_indx]['feed'][feed_indx]['feed indx']=get_new_step_indx('derivations')
 
@@ -360,10 +341,6 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
     write_activity_log("derivation name: "+derivation_name, "write_steps_to_file")
 
     step_ary=assign_temp_indx(step_ary)
-
-# what we want is output like
-#"frequency relations",1, "infrule",2303943,declareInitialExpression,     "expression",3293094,5900595848
-#"frequency relations",2, "infrule",0304948,declareInitialExpression,     "expression",3294004,0404050504
 
     if not os.path.exists(output_path+'/'+derivation_name):
         os.makedirs(output_path+'/'+derivation_name)
