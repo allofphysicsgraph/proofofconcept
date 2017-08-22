@@ -272,6 +272,35 @@ def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
         invalid_choice=True  
     return done_with_steps
 
+def expr_indx_exists_in_ary(test_indx,test_step_indx,step_ary):
+    for step_indx,this_step in enumerate(step_ary):
+        print("step index = "+str(step_indx))
+        print(this_step)
+
+        for input_indx,input_dic in enumerate(step_ary[step_indx]['input']):
+            print("in the input loop")
+            print(step_ary[step_indx]['input'][input_indx])
+            print("test index = "+str(test_indx))
+            print("does expr index == test index?")
+            print("test step indx = "+str(test_step_indx))
+            print("step indx = "+str(step_indx))
+            print("does test step indx != step index?")
+
+            if ((step_ary[step_indx]['input'][input_indx]['expr indx'] == test_indx) and \
+                (test_step_indx != step_indx)):
+                print("indx found for input")
+                print(step_ary[step_indx]['input'][input_indx])
+                return step_ary[step_indx]['input'][input_indx]['step indx input']
+
+        for output_indx,output_dic in enumerate(step_ary[step_indx]['output']):
+            if ((step_ary[step_indx]['output'][input_indx]['expr indx'] == test_indx) and \
+                (test_step_indx != step_indx)):
+                print("indx found for output")
+                print(test_indx)
+                return step_ary[step_indx]['output'][input_indx]['step indx output']
+    
+    return 0 # temp index does not exist
+
 def assign_temp_indx(step_ary):
 # step_ary contains entries like
 #{'infrule': 'combineLikeTerms', 'input': [{'latex': 'afmaf=mlasf', 'step indx input': 2612303073}], 'feed': [], 'output': [{'latex': 'mafmo=asfm', 'step indx output': 2430513647}]}
@@ -286,10 +315,29 @@ def assign_temp_indx(step_ary):
         step_ary[step_indx]['infrule indx']=get_new_step_indx('derivations')
 
         for input_indx,input_dic in enumerate(step_ary[step_indx]['input']):
-            step_ary[step_indx]['input'][input_indx]['step indx input']=get_new_step_indx('derivations')
+            this_indx=step_ary[step_indx]['input'][input_indx]['expr indx']
+            temp_indx=expr_indx_exists_in_ary(this_indx,step_indx,step_ary)
+            if (temp_indx == 0):
+                print("adding temp indx because it wasn't in the step ary for input")
+                if 'step indx input' not in step_ary[step_indx]['input'][input_indx].keys():
+                    step_ary[step_indx]['input'][input_indx]['step indx input']=get_new_step_indx('derivations')
+                else:
+                    print("actually, temp index wasn't changed because it existed")
+            else:
+                step_ary[step_indx]['input'][input_indx]['step indx input']=temp_indx
 
         for output_indx,output_dic in enumerate(step_ary[step_indx]['output']):
-            step_ary[step_indx]['output'][output_indx]['step indx output']=get_new_step_indx('derivations')
+#            step_ary[step_indx]['output'][output_indx]['step indx output']=get_new_step_indx('derivations')
+            this_indx=step_ary[step_indx]['output'][input_indx]['expr indx']
+            temp_indx=expr_indx_exists_in_ary(this_indx,step_indx,step_ary)
+            if (temp_indx == 0):
+                print("adding temp indx because it wasn't in the step array for output")
+                if 'step indx output' not in step_ary[step_indx]['output'][input_indx].keys():
+                    step_ary[step_indx]['output'][input_indx]['step indx output']=get_new_step_indx('derivations')
+                else:
+                    print("actually, temp index wasn't changed because it existed")
+            else:
+                step_ary[step_indx]['output'][input_indx]['step indx output']=temp_indx
             
         for feed_indx,feed_dic in enumerate(step_ary[step_indx]['feed']):
             step_ary[step_indx]['feed'][feed_indx]['feed indx']=get_new_step_indx('derivations')
@@ -415,6 +463,7 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
     print("choose from the list of inference rules")
     num_left_col_entries=30 # number of rows
     num_remaining_entries=len(list_of_infrules)-num_left_col_entries
+    list_of_infrules.sort()
     for indx in range(1,num_left_col_entries):
 #       if (indx<10):
 #         left_side_menu=str(indx)+"   "+list_of_infrules[indx-1]

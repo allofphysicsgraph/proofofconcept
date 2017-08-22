@@ -299,9 +299,9 @@ def make_picture_from_latex_expression(file_name,folder_name,latex_expression,ex
   tex_file.close()
   os.system("latex tmp") # convert from .tex to .dvi
   if (extension=='png'):
-    os.system("dvipng tmp.dvi -o \""+path_to_file+"\" -T tight")
+    os.system("dvipng tmp.dvi -o \""+path_to_file+"\" -T tight 2> /dev/null")
   if (extension=='svg'):
-    os.system("python lib/pydvi2svg/dvi2svg.py --paper-size=bbox:10 tmp.dvi")
+    os.system("python lib/pydvi2svg/dvi2svg.py --paper-size=bbox:10 tmp.dvi 2> /dev/null")
     os.system("mv tmp.svg \""+path_to_file+"\"")
 #     os.system("convert "+path_to_file+" "+path_to_file) # for some reason the initial svg format isn't interperatable by graphviz. Thus, I pass the .svg through convert
 
