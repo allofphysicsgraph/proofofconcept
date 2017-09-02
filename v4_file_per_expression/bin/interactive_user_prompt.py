@@ -142,7 +142,7 @@ def get_numeric_input(prompt_text,default_choice):
       print(int(input_number))
       number_provided=True
     except ValueError:
-      print("\n--> invalid choice - not an integer; try again")
+      print("\n--> WARNING: invalid choice: not an integer; try again")
   return input_number
 
 def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
@@ -273,6 +273,7 @@ def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
     return done_with_steps
 
 def expr_indx_exists_in_ary(test_indx,test_step_indx,step_ary):
+    write_activity_log("def", "expr_indx_exists_in_ary")
     for step_indx,this_step in enumerate(step_ary):
 #        print("step index = "+str(step_indx))
 #        print(this_step)
@@ -292,6 +293,7 @@ def expr_indx_exists_in_ary(test_indx,test_step_indx,step_ary):
     return 0 # temp index does not exist
 
 def assign_temp_indx(step_ary):
+    write_activity_log("def", "assign_temp_indx")
 # step_ary contains entries like
 #{'infrule': 'combineLikeTerms', 'input': [{'latex': 'afmaf=mlasf', 'step indx input': 2612303073}], 'feed': [], 'output': [{'latex': 'mafmo=asfm', 'step indx output': 2430513647}]}
 #{'infrule': 'solveForX', 'input': [{'latex': 'afmaf=mlasf', 'step indx input': 2612303073}], 'feed': ['x'], 'output': [{'latex': 'masdf=masdf', 'step indx output': 4469061559}]}
@@ -419,20 +421,20 @@ def select_from_available_derivations(list_of_derivations):
         time.sleep(1)
         choice_selected=True
       except ValueError:
-        print("--> invalid choice (looking for int); try again")
+        print("WARNING: invalid choice (looking for int); try again")
         time.sleep(3)
       except IndexError:
-        print("--> invalid choice (should be in range 0,"+str(len(list_of_derivations))+"); try again")
+        print("WARNING: invalid choice (should be in range 0,"+str(len(list_of_derivations))+"); try again")
         time.sleep(3)
   return int(derivation_choice_input),selected_derivation
 
 def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
   write_activity_log("def", "user_choose_infrule")
   if (len(list_of_infrules)==0):
-    print("ERROR: list of inference rules is empty")
+    print("ERROR in interactive_user_prompt.py, user_choose_infrule: list of inference rules is empty")
     exit()
   if (len(infrule_list_of_dics)==0):
-    print("ERROR: list of inference rule dictionaries is empty")
+    print("ERROR in interactive_user_prompt.py, user_choose_infrule: list of inference rule dictionaries is empty")
     exit()
   choice_selected=False
   while(not choice_selected):
@@ -442,10 +444,6 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
     num_remaining_entries=len(list_of_infrules)-num_left_col_entries
     list_of_infrules.sort()
     for indx in range(1,num_left_col_entries):
-#       if (indx<10):
-#         left_side_menu=str(indx)+"   "+list_of_infrules[indx-1]
-#       else:  
-#         left_side_menu=str(indx)+"  "+list_of_infrules[indx-1]
       left_side_menu="  "+list_of_infrules[indx-1]
       middle_indx=indx+num_left_col_entries-1
 #       middle_menu=" "*(50-len(list_of_infrules[indx-1]))+str(middle_indx)+"   "+list_of_infrules[middle_indx-1]
@@ -479,27 +477,6 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
         selected_infrule_dic=this_infrule_dic
         break
     
-### OLD index-based selection used prior to auto-complete
-#     print("0  exit derivation selection and return to main menu\n")  
-#     infrule_choice_input = get_numeric_input('selection [0]: ','0')
-#     if (infrule_choice_input=='0' or infrule_choice_input==''):
-#       print("selected exit without choice")
-# #       time.sleep(2)
-#       choice_selected=True
-#       infrule_choice_input=0
-#       selected_infrule='EXIT'
-#     else:
-#       try:
-#         selected_infrule=list_of_infrules[int(infrule_choice_input)-1]
-#         #print("selected inference rule: "+selected_infrule)
-#         #time.sleep(1)
-#         choice_selected=True
-#       except ValueError:
-#         print("--> invalid choice (looking for int); try again")
-#         time.sleep(3)
-#       except IndexError:
-#         print("--> invalid choice (should be in range 0,"+str(len(list_of_infrules))+"); try again")
-#         time.sleep(3)
   return selected_infrule_dic
 
 
@@ -530,7 +507,7 @@ def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expres
                     if (int(expr_ID)==list_of_outputs[0]['expr indx']):
                         this_latex=list_of_outputs[0]['latex']
             if (this_latex=="NONE"):
-                print("ERROR: user-supplied expression index not found in this derivation")
+                print("ERROR [in interactive_user_prompt.py, user_supplies_latex_or_expression_index: user-supplied expression index not found in this derivation")
                 valid_input=False
             valid_input=True
         else:
@@ -626,7 +603,7 @@ for this_infrule in list_of_infrules:
     try:
         config = yaml.load(file('inference_rules/'+this_infrule+'_parameters.yaml', 'r'))
     except yaml.YAMLError, exc:
-        print "Error in configuration file:", exc
+        print "ERROR [in interactive_user_prompt.py, main]: YAML configuration file:", exc
 
     if (config['inf_rule_name'] != this_infrule):
         print("name of .tex file doesn't match what's in the .yaml file")
