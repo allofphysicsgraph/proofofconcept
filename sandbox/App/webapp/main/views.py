@@ -244,3 +244,26 @@ def xml_to_gv():
     print xmlTag
     print "\njust print the data"
     print xmlData
+
+
+def derivation(request):
+    from models import Derivation
+    from forms import MyModelForm
+    context_data = {}
+    if request.method == 'POST':
+            form = MyModelForm(request.POST)
+
+            if form.is_valid():
+                # save the model to database, directly from the form:
+                form.save()  # reference to my_model is often not needed at all, a simple form.save() is ok
+                # alternatively:
+                # my_model = form.save(commit=False)  # create model, but don't save to database
+                # my.model.something = whatever  # if I need to do something before saving it
+                # my.model.save()
+    else:
+        form = MyModelForm()
+        context_data = {'form': form}
+
+
+    print context_data
+    return render(request,'derivation.html', context_data)

@@ -28,3 +28,7 @@ class SYMBOLS(models.Model):
     units=models.IntegerField()
     description=models.CharField(max_length=250)
     cas_sympy = models.CharField(max_length=250)
+
+class Derivation(models.Model):
+        expression = models.CharField(max_length=250, blank=False, null=True)
+        goal = models.CharField(max_length=250, blank=False, null=True)

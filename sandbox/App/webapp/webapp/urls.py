@@ -19,6 +19,8 @@ from main.views import *
 urlpatterns = [
     #url(r'^admin/', admin.site.urls),
     url('^$',pdfs),
-    url('[a-zA-Z0-9_]+.pdf',render_pdf)
+    url('[a-zA-Z0-9_]+.pdf',render_pdf),
+    url('derivation/[a-z]+',derivation),
+
 
 ]
