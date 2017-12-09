@@ -22,8 +22,6 @@ path='/home/user/PycharmProjects/proofofconcept/sandbox/App/webapp/main/static/p
 
 
 def wiki_index(request):
-
-
     data = requests.get('https://en.wikipedia.org/wiki/Physics').content
     for url in re.findall('href="(.*?/wiki/.*?title.*?)(?:>|</a)', data):
         instance = URLS()
@@ -40,12 +38,26 @@ def wiki_index(request):
 
     return render(request,'b_index.html',context)
 
+
+
 def create_symbols_table():
+    import pandas as pd
+    from string import printable
+    printable_strings = set(printable)
+
+    def remove_unicode_chars(strng):
+        return ''.join([x for x in strng if x in printable_strings])
 
     f = open('/home/user/PycharmProjects/proofofconcept/sandbox/App/webapp/main/databases/symbols_database.csv')
     df = pd.read_csv(f, names=['id', 'symbol', 'type', 'value', 'units', 'description', 'cas_sympy'])
-
+    df = df.applymap(lambda x: remove_unicode_chars(str(x)))
+    df.dropna(inplace=True)
     df.to_sql('symbols', engine, if_exists='replace')
+
+
+
+
+
 
 def index_pdfs(request):
     testing = system('find {} -name "*.pdf" > /tmp/pdfs'.format(path))
@@ -57,8 +69,11 @@ def pdfs(request):
     #files = f.readlines()
     #f.close()
     files=''
-
-    df = pd.read_sql('symbols', engine).fillna(' ')
+    try:
+        df = pd.read_sql('symbols', engine).fillna(' ')
+    except:
+        create_symbols_table()
+        df = pd.read_sql('symbols', engine).fillna(' ')
     columns = [x for x in df.columns.tolist() if x != 'id']
     symbols_rows = df.iterrows()
     context = {
