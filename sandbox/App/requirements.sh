@@ -13,6 +13,10 @@ sudo apt-add-repository -y ppa:aims/sagemath
 sudo apt-get update
 sudo apt-get install sagemath-upstream-binary
 
+sudo apt-get install postgresql postgresql-contrib --assume-yes
+sudo sed -i 's/5433/5432/g' /etc/postgresql/9.4/main/postgresql.conf
+sudo /etc/init.d/postgresql restart
+
 
 sudo pip install -r webapp/requirements.txt
 
