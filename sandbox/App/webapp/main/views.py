@@ -246,20 +246,58 @@ def xml_to_gv():
     print xmlData
 
 
+#################3
+#check each expression to make sure it is valid
+
+def check_parens(expr):
+    if '(' in expr:
+        if expr.count('(') == expr.count(')'):
+            return expr
+        else:
+            return "Un balanced parens"
+
+    else:
+        return expr
+
+########################################
+
+from redis import Redis
+client = Redis()
+import  pickle
+
+
+def save_current_step_to_redis(dct):
+    len_of_keys = len(client.keys())
+    client.set("expression_{}".format(len_of_keys+1),dct['expression'])
+    if len_of_keys == 0:
+        client.set("goal_0",dct['goal'])
+
+    elif dct['goal'] != client.get("goal_0"):
+            goal_counter = len([x for x in client.keys() if 'goal' in x])
+            client.set("goal_{}".format(goal_counter+1),dct['goal'])
+
+
 def derivation(request):
     from models import Derivation
     from forms import MyModelForm
     context_data = {}
     if request.method == 'POST':
             form = MyModelForm(request.POST)
-
+            #print form
             if form.is_valid():
+                dct = request.POST
+                print check_parens(dct['expression'])
+                print check_parens(dct['goal'])
                 # save the model to database, directly from the form:
-                form.save()  # reference to my_model is often not needed at all, a simple form.save() is ok
-                # alternatively:
-                # my_model = form.save(commit=False)  # create model, but don't save to database
-                # my.model.something = whatever  # if I need to do something before saving it
-                # my.model.save()
+                form.save()
+
+
+                form = MyModelForm()
+                post_copy = dct.copy()
+                del post_copy['csrfmiddlewaretoken']
+                save_current_step_to_redis(post_copy)
+                context_data = {'form': form,'dct':post_copy}
+
     else:
         form = MyModelForm()
         context_data = {'form': form}
