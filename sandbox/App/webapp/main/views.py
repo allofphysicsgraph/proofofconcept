@@ -18,7 +18,7 @@ engine = create_engine('postgres://pdg_user:password@localhost/pdg')
 
 
 
-path='/home/user/PycharmProjects/proofofconcept/sandbox/App/webapp/main/static/pdfs'
+path='/home/user/Desktop/proofofconcept/sandbox/App/webapp/main/static/pdfs'
 
 
 def wiki_index(request):
@@ -47,8 +47,8 @@ def create_symbols_table():
 
     def remove_unicode_chars(strng):
         return ''.join([x for x in strng if x in printable_strings])
-
-    f = open('/home/user/PycharmProjects/proofofconcept/sandbox/App/webapp/main/databases/symbols_database.csv')
+    
+    f = open('/home/user/Desktop/proofofconcept/sandbox/App/webapp/main/databases/symbols_database.csv')
     df = pd.read_csv(f, names=['id', 'symbol', 'type', 'value', 'units', 'description', 'cas_sympy'])
     df = df.applymap(lambda x: remove_unicode_chars(str(x)))
     df.dropna(inplace=True)
@@ -305,3 +305,19 @@ def derivation(request):
 
     print context_data
     return render(request,'derivation.html', context_data)
+
+
+def show_derivation(request):
+	from redis import Redis
+	client = Redis()
+
+	lst = []
+	for key in client.keys():
+	    if 'expression' in key: #only get the expressions
+		lst.append(key.split('_')[1]) #remove the word expression from keys
+	steps = sorted([int(x) for x in lst]) #get the expressions in the order they were entered
+
+	for step in steps:
+	    print client.get('expression_{}'.format(step))
+
+
