@@ -30,5 +30,6 @@ postgres "create user pdg_user with password 'password'"
 
 postgres "grant all on database pdg to pdg_user"
 
+cd webapp
 python manage.py makemigrations
 python manage.py migrate
