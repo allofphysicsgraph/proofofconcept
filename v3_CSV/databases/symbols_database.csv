@@ -69,4 +69,4 @@
 123456789011111,x,            "variable","none",         "none",         "arbitrary variable",   x = sympy.Symbol('x')
 759018916718320,x,            "variable","none",         "length",       "spatial position",     x = sympy.Symbol('x')
 023456789011111,y,            "variable","none",         "none",         "arbitrary variable",   y = sympy.Symbol('y')
-738647287548272,z_0,          "variable","none",         "length",       "extrapolation length,  z0 = sympy.Symbol('z0')
+738647287548272,z_0,          "variable","none",         "length",       "extrapolation length",  z0 = sympy.Symbol('z0')
