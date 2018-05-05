@@ -2,21 +2,21 @@
 394949020392392,A,            "variable","none",         "length*length","Area",                 A = sympy.Symbol('A')
 137035999999999,\alpha,       "constant",1/137.03599999, "dimensionless","fine-structure constant: strength of the electromagnetic interaction",null
 559382384859350,\hat{A},      "variable","none",         "none",         "generic quantum operator",null
-521456739011112,b,            "variable","none",         "none",         "arbitrary variable,    b = sympy.Symbol('b')
-222222221111111,\vec{B},      "variable","none",         "Tesla",        "magnetic field,        null
-293948485758589,C,            "variable","none",         "Farad",        "capacitance,           C = sympy.Symbol('C')
-521456789011112,c,            "variable","none",         "none",         "arbitrary variable,    c = sympy.Symbol('c')
+521456739011112,b,            "variable","none",         "none",         "arbitrary variable",    b = sympy.Symbol('b')
+222222221111111,\vec{B},      "variable","none",         "Tesla",        "magnetic field",        null
+293948485758589,C,            "variable","none",         "Farad",        "capacitance",           C = sympy.Symbol('C')
+521456789011112,c,            "variable","none",         "none",         "arbitrary variable",    c = sympy.Symbol('c')
 111111111111111,c,            "constant",299792458,      "meters/second","speed of light",       c = sympy.Symbol('c')
-303030303030303,\cdot,        "operator","none",         "none",         "dot or inner product,
+303030303030303,\cdot,        "operator","none",         "none",         "dot or inner product",
 101001203013011,\cos,         "operator","none",         "none",         "trigonometric cosine function",cos=sympy.cos
 939485829495824,d,            "operator","none",         "none",         "differential element",
 020998876678990,d,            "variable","none",         "length",       "distance",             d = sympy.Symbol('d')
 000000010000000,\delta,       "operator","none",         "none",         "Dirac delta function", null
 284857219191913,\delta,       "operator","none",         "none",         "Kronecker delta (tensor)",
-261738844710260,du,           "infinitesimal","none",    "none",         "differential element,  du=sympy.Symbol('du')
-590098651360374,dx,           "infinitesimal","none",    "none",         "differential element,  dx=sympy.Symbol('dx')
-764178910971058,dy,           "infinitesimal","none",    "none",         "differential element,  dy=sympy.Symbol('dy')
-546488007521880,dz,           "infinitesimal","none",    "none",         "differential element,  dz=sympy.Symbol('dz')
+261738844710260,du,           "infinitesimal","none",    "none",         "differential element",  du=sympy.Symbol('du')
+590098651360374,dx,           "infinitesimal","none",    "none",         "differential element",  dx=sympy.Symbol('dx')
+764178910971058,dy,           "infinitesimal","none",    "none",         "differential element",  dy=sympy.Symbol('dy')
+546488007521880,dz,           "infinitesimal","none",    "none",         "differential element",  dz=sympy.Symbol('dz')
 193877428200388,e,            "constant",1.602E-19,      "Coulombs",     "elementary charge of electron",
 827344378912938,E,            "variable","none",         "mass*length*length/(time*time)","energy [Joule]=kg*m^2/s^2=Watt*s=Pa*m^3=N*m",E = sympy.Symbol('E')
 111111122222222,\vec{E},      "variable","none",         "none",         "electric field",
