@@ -17,7 +17,9 @@ from django.conf.urls import url
 from django.contrib import admin
 
 
-from main.views import HomeView
+from main.views import HomeView,NewInferenceRule
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',HomeView.as_view(),name="home")]
+    url(r'^$',HomeView.as_view(),name="home"),
+    url(r'^NewInferenceRule$',NewInferenceRule,name="NewInferenceRule"),
+]
