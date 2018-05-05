@@ -3,8 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class InferenceRules(models.Model):
-    inference_rule_name = models.CharField(null=True)
+class InferenceRule(models.Model):
+    inference_rule_name = models.CharField(max_length=128,null=True)
     number_of_arguments = models.IntegerField(null=True)
     number_of_feeds = models.IntegerField(null=True)
     number_of_input_expressions = models.IntegerField(null=True)
@@ -13,17 +13,17 @@ class InferenceRules(models.Model):
     latex_expression = models.CharField(max_length=128, null=True)
 
 
-class Feeds(models.Model):
+class Feed(models.Model):
     index = models.IntegerField(null=True)
     latex = models.CharField(max_length=128, null=True)
 
 
-class Expressions(models.Model):
+class Expression(models.Model):
     index = models.IntegerField(null=True)
     latex = models.CharField(max_length=128, null=True)
 
 
-class Connections(models.Model):
+class Connection(models.Model):
     derivation_name = models.IntegerField(null=True)
     step_index = models.CharField(max_length=128, null=True)
     input_type = models.IntegerField(null=True)
@@ -34,12 +34,11 @@ class Connections(models.Model):
     output_permanent_index = models.CharField(max_length=128, null=True)
 
 
-class Symbols(models.Model):
+class Symbol(models.Model):
     unique_id = models.IntegerField(null=True)
-    symbol = models.CharField(null=True)
-    type = models.CharField(null=True)
+    symbol = models.CharField(max_length=128,null=True)
+    type = models.CharField(max_length=128,null=True)
     value = models.FloatField(null=True)
-    units = models.CharField(null=True)
-    description = models.CharField(null=True)
-    cas_sympy = models.CharField(null=True)
-
+    units = models.CharField(max_length=128,null=True)
+    description = models.CharField(max_length=128,null=True)
+    cas_sympy = models.CharField(max_length=128,null=True)
