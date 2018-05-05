@@ -42,7 +42,7 @@
 848377849938482,\lambda,      "variable","none",         "length",       "wavelength",           lambdah = sympy.Symbol('lambdah')
 003948585484456,\log,         "operator","none",         "none",         "log()",                sympy.log
 030949482852494,m,            "variable","none",         "kg",           "mass",                 m = sympy.Symbol('m')
-200200200200200,\mu_0,        "constant",4*\pi*10^{-7},  "N/(A^2),       "vacuum permeability",  mu0 = sympy.Symbol('mu0')
+200200200200200,\mu_0,        "constant",4*\pi*10^{-7}",  "N/(A^2),       "vacuum permeability",  mu0 = sympy.Symbol('mu0')
 829438536036040,n,            "variable","none",         "unitless",     "real float",           n = sympy.Symbol('n')
 101010101010101,\vec{\nabla}, "operator","none",         "none",         "spatial vector differential",
 188888017088888,\nabla^2,     "operator","none",         "none",         "Laplacian",
