@@ -1,4 +1,22 @@
 
+20180512
+
+Use Activity log to get a list of times and functions:
+
+$ cat activity_log.dat | sed '/write_steps/d' | sed 's/ | <function /,/' | sed 's/ at .*//'
+
+How many times was each function called?
+
+$ cat activity_log.dat | sed '/write_steps/d' | sed 's/ | <function /,/' | sed 's/ at .*//' | cut -d',' -f2 | sort | uniq -c | sort -k1,1
+
+Store unique functions to an array,
+https://askubuntu.com/questions/439026/store-output-of-command-into-the-array/439038#439038
+
+$ readarray -t ary_of_funcs <<< "$(cat activity_log.dat | sed '/write_steps/d' | sed 's/ | <function /,/' | cut -d',' -f2 | sort | uniq )"
+
+$ printf -- "%s\n" "${ary_of_funcs[@]}"
+
+
 
 20151107
 
