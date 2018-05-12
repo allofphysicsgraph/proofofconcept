@@ -280,15 +280,16 @@ def expr_indx_exists_in_ary(test_indx,test_step_indx,step_ary):
 
         if (test_step_indx != step_indx):
             for input_indx,input_dic in enumerate(step_ary[step_indx]['input']):
+                print("input_indx = ", input_indx)
 
                 if ((step_ary[step_indx]['input'][input_indx]['expr indx'] == test_indx) and \
                         (test_step_indx != step_indx)):
                     return step_ary[step_indx]['input'][input_indx]['step indx input']
 
             for output_indx,output_dic in enumerate(step_ary[step_indx]['output']):
-                if ((step_ary[step_indx]['output'][input_indx]['expr indx'] == test_indx) and \
+                if ((step_ary[step_indx]['output'][output_indx]['expr indx'] == test_indx) and \
                         (test_step_indx != step_indx)):
-                    return step_ary[step_indx]['output'][input_indx]['step indx output']
+                    return step_ary[step_indx]['output'][output_indx]['step indx output']
     
     return 0 # temp index does not exist
 
