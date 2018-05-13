@@ -10,6 +10,7 @@ import rlcompleter # for auto-complete
 import time        # for pauses
 import sys
 import os
+import glob
 import random 
 from functools import wraps
 
@@ -234,7 +235,13 @@ def edit_existing_derivation(output_path):
   print("here's a list of steps for the derivation "+selected_derivation)
   read_derivation_steps_from_files(selected_derivation, output_path)
   print("done editing; returning to main menu")
-  time.sleep(2)
+
+  if sys.version_info[0] < 3:
+    entered_key=raw_input("\n\nPress Enter to continue...")
+  else:
+    entered_key=input("\n\nPress Enter to continue...") # v3
+
+#  time.sleep(2)
 #  write_activity_log("return from", "edit_existing_derivation")
   return
 
@@ -429,7 +436,24 @@ def read_derivation_steps_from_files(derivation_name, output_path):
 #    print(expr_list)  # expr_ID and step_ID
     list_of_expr_dics=[]
     for indx_for_expr in expr_list:
-        with open(output_path+"/"+derivation_name+"/"+str(indx_for_expr[1])+"_latex.tex") as exprfile:
+
+        exprfile=None
+        if os.path.exists(output_path+"/"+derivation_name+"/"+str(indx_for_expr[1])+"_latex.tex"):
+            exprfile = open(output_path+"/"+derivation_name+"/"+str(indx_for_expr[1])+"_latex.tex")
+        else:
+            list_of_tex_files = glob.glob("expressions/"+str(indx_for_expr[1])+"_latex_*.tex")
+            print(list_of_tex_files)
+            if (len(list_of_tex_files)==0):
+                print("no Latex expression found in the expressions directory")
+            elif (len(list_of_tex_files)==1):
+                exprfile = open(list_of_tex_files[0])
+            elif (len(list_of_tex_files)>1):
+                print("multiple expression Latex files found for "+str(indx_for_expr[1]))
+                print(list_of_tex_files)
+                print("selecting the first option")
+                exprfile = open(list_of_tex_files[0])
+
+        if (exprfile is not None):
             line_list=exprfile.readlines()
             this_dic={}
             line_list = [line.strip() for line in line_list]
@@ -440,12 +464,31 @@ def read_derivation_steps_from_files(derivation_name, output_path):
             this_dic['expression indx']=int(indx_for_expr[0])
             this_dic['indx specific to this step for input']=int(indx_for_expr[1])
             list_of_expr_dics.append(this_dic)
+            
     print(list_of_expr_dics)
     
     print("feed list:")
     list_of_feed_dics=[]
-    for temp_indx_for_feed in feed_list:
-        with open(output_path+"/"+derivation_name+"/"+temp_indx_for_feed+"_latex.tex") as feedfile:
+    for local_indx_for_feed in feed_list:
+        feedfile=None
+
+
+        if os.path.exists(output_path+"/"+derivation_name+"/"+str(local_indx_for_feed[1])+"_latex.tex"):
+            exprfile = open(output_path+"/"+derivation_name+"/"+str(local_indx_for_feed[1])+"_latex.tex")
+        else:
+            list_of_tex_files = glob.glob("feeds/"+str(local_indx_for_feed[1])+"_latex_*.tex")
+            print(list_of_tex_files)
+            if (len(list_of_tex_files)==0):
+                print("no Latex expression found in the feeds directory")
+            elif (len(list_of_tex_files)==1):
+                exprfile = open(list_of_tex_files[0])
+            elif (len(list_of_tex_files)>1):
+                print("multiple expression Latex files found for "+str(indx_for_expr[1]))
+                print(list_of_tex_files)
+                print("selecting the first option")
+                exprfile = open(list_of_tex_files[0])
+
+        if (feedfile is not None):
             line_list=feedfile.readlines()
             this_dic={}
             line_list = [line.strip() for line in line_list]
