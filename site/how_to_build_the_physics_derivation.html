@@ -94,7 +94,7 @@ In this description, the edge pairs are ordered by source and destination.
 
 <P>At this point we have enough to generate a graph, ie using GraphViz. However, the objective is to support more complex derivations, and also to link multiple derivations. At that scale, the inference rule "multbothsidesby" may appear in multiple steps. We don't want the graph to render multiple uses of the same inference rule as the same node. We do want multiple references to the same expression to be a single node. An index which has a scope limited to the local derivation step is needed. This leads to the notion of a unique numeric index local to each inference rule. The local index for the inference rule is a unique identifier within a derivation step.</P>
 
-<P>Another complication arises regarding the expression. In the above example, I use a human readable expression, i.e. <i>T=1/f</i>. The usefulness of this format depends on what is reading the expression. Multiple readers of the expression can be expected: humans, LaTeX, and Computer Algebra Systems (i.e. Mathematica, Sympy). This leads to the need for a unique identifier which is associated with the expression  independent of the representation. In <a href="https://en.wikipedia.org/wiki/Logic">Logic</a>, this unique identifier is referred to as the <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>. (Similarly, the "feeds" (here <i>f</i> and <i>T</i> need unique identifiers.)<P>
+<P>Another complication arises regarding the expression. In the above example, I use a human readable expression, i.e. <i>T=1/f</i>. The usefulness of this format depends on what is reading the expression. Multiple readers of the expression can be expected: humans, <a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a>, and Computer Algebra Systems (i.e. <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">Mathematica</a>, <a href="https://en.wikipedia.org/wiki/SymPy">Sympy</a>). This leads to the need for a unique identifier which is associated with the expression  independent of the representation. In <a href="https://en.wikipedia.org/wiki/Logic">Logic</a>, this unique identifier is referred to as the <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>. (Similarly, the "feeds" (here <i>f</i> and <i>T</i> need unique identifiers.)<P>
 
 <P>To summarize the above points,
 <UL>
@@ -178,9 +178,11 @@ neato -Tpng body_of_graph.dot &gt; out.png
 
 <p>However, that's not yet the pretty picture of the graph we want. We need to replace the Godel numbers (expression IDs) with pictures for expressions. Also need to collapse local IDs.</P>
 
-
+<P>
+<pre>
 $ cat expression_identifiers.csv | sed 's/\([0-9]\{10\}\)/[shape=ellipse, color=red,image=\"..\/..\/expressions\/\1/'
-
+</pre>
+</p>
 
 <div id="includedFooterContent"></div>
   </td>
