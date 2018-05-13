@@ -192,7 +192,7 @@ def path_iter(L, init_x=0.0, init_y=0.0, line_fn=None, ccurve_fn=None, qcurve_fn
 		# ---------------------------------------------------
 
 		# relative lineto
-		elif command == 'l':
+		elif command == 'bin':
 			(x,y) = param
 			line_fn( (cur_x, cur_y), (cur_x + x, cur_y + y) )
 			cur_x += x

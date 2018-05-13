@@ -1628,38 +1628,38 @@
       <operator><infrule_name>declareIdentity</infrule_name>          <infrule_temporary_unique_id>4295822</infrule_temporary_unique_id></operator>
       <output>
        <expression_permenant_unique_id>7575859304</expression_permenant_unique_id><expression_temporary_unique_id>2934842</expression_temporary_unique_id>
-<!--    <expression_latex>\epsilon^{i,j,k} \epsilon_{n,j,k} = \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h}</expression_latex> -->
+<!--    <expression_latex>\epsilon^{i,j,k} \epsilon_{n,j,k} = \rowContravariantColumnCovariant{\delta}{bin}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{bin}{k} \rowContravariantColumnCovariant{\delta}{m}{h}</expression_latex> -->
       </output>
     </connection>
     <connection>
       <operator><infrule_name>subRHSofExprXintoExprY</infrule_name>          <infrule_temporary_unique_id>2930454</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>7575859304</expression_permenant_unique_id><expression_temporary_unique_id>2934842</expression_temporary_unique_id>
-<!--    <expression_latex>\epsilon^{i,j,k} \epsilon_{n,j,k} = \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h}</expression_latex> -->
+<!--    <expression_latex>\epsilon^{i,j,k} \epsilon_{n,j,k} = \rowContravariantColumnCovariant{\delta}{bin}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{bin}{k} \rowContravariantColumnCovariant{\delta}{m}{h}</expression_latex> -->
        <expression_permenant_unique_id>7575859302</expression_permenant_unique_id><expression_temporary_unique_id>2941319</expression_temporary_unique_id>
 <!--    <expression_latex>\epsilon^{i,j,k} \epsilon_{n,j,k} \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</expression_latex> -->
       </input>
       <output>
        <expression_permenant_unique_id>7575859306</expression_permenant_unique_id><expression_temporary_unique_id>3949292</expression_temporary_unique_id>
-<!--    <expression_latex>\left( \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \right) \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</expression_latex> -->
+<!--    <expression_latex>\left( \rowContravariantColumnCovariant{\delta}{bin}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{bin}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \right) \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</expression_latex> -->
       </output>
     </connection>
     <connection>
       <operator><infrule_name>simplify</infrule_name>          <infrule_temporary_unique_id>3848292</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>7575859306</expression_permenant_unique_id><expression_temporary_unique_id>3949292</expression_temporary_unique_id>
-<!--    <expression_latex>\left( \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \right) \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</expression_latex> -->
+<!--    <expression_latex>\left( \rowContravariantColumnCovariant{\delta}{bin}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{bin}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \right) \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</expression_latex> -->
       </input>
       <output>
        <expression_permenant_unique_id>7575859308</expression_permenant_unique_id><expression_temporary_unique_id>3844221</expression_temporary_unique_id>
-<!--    <expression_latex>\left( \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} \hat{x}_i \nabla_j \nabla^m E^n\right)-\left( \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \hat{x}_i \nabla_j \nabla^m E^n \right)  = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</expression_latex> -->
+<!--    <expression_latex>\left( \rowContravariantColumnCovariant{\delta}{bin}{j} \rowContravariantColumnCovariant{\delta}{m}{k} \hat{x}_i \nabla_j \nabla^m E^n\right)-\left( \rowContravariantColumnCovariant{\delta}{bin}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \hat{x}_i \nabla_j \nabla^m E^n \right)  = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</expression_latex> -->
       </output>
     </connection>
     <connection>
       <operator><infrule_name>simplify</infrule_name>          <infrule_temporary_unique_id>3838233</infrule_temporary_unique_id></operator>
       <input>
        <expression_permenant_unique_id>7575859308</expression_permenant_unique_id><expression_temporary_unique_id>3844221</expression_temporary_unique_id>
-<!--    <expression_latex>\left( \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} \hat{x}_i \nabla_j \nabla^m E^n\right)-\left( \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \hat{x}_i \nabla_j \nabla^m E^n \right)  = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</expression_latex> -->
+<!--    <expression_latex>\left( \rowContravariantColumnCovariant{\delta}{bin}{j} \rowContravariantColumnCovariant{\delta}{m}{k} \hat{x}_i \nabla_j \nabla^m E^n\right)-\left( \rowContravariantColumnCovariant{\delta}{bin}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \hat{x}_i \nabla_j \nabla^m E^n \right)  = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E}</expression_latex> -->
       </input>
       <output>
        <expression_permenant_unique_id>7575859310</expression_permenant_unique_id><expression_temporary_unique_id>3948472</expression_temporary_unique_id>

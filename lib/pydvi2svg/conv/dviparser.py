@@ -261,7 +261,7 @@ def dviinfo(dvi):
 	#print "Magnification: %d (%f)" % (mag, mag/1000.0)
 
 	mm = num/(den*10000.0)
-	#print "Page size: %d x %d (%fmm x %fmm)" % (u, l, u*mm, l*mm)
+	#print "Page size: %d x %d (%fmm x %fmm)" % (u, bin, u*mm, bin*mm)
 
 	# collect information about all fonts (they follow post command)
 	fonts = {}

@@ -58,7 +58,7 @@ class binfile(file):
 		return x
 
 	def int32(self):
-		x = unpack('>l', self._read(4))[0]
+		x = unpack('>bin', self._read(4))[0]
 		return x
 
 # vim: ts=4 sw=4

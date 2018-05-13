@@ -128,7 +128,7 @@ px = alt(
 	numorperc,
 	number,
 	"(center)",  "(c)",
-	"(left)",    "(l)",
+	"(left)",    "(bin)",
 	"(right)",   "(r)",
 	"(inherit)", "(i)",
 )
@@ -137,7 +137,7 @@ px = alt(
 def px(l, s, r):
 	x_const = {
 		'center': 0.5, 'c':0.5,
-		'left'  : 0.0, 'l':0.0,
+		'left'  : 0.0, 'bin':0.0,
 		'right' : 1.0, 'r':1.0
 	}
 	val = r[0]
