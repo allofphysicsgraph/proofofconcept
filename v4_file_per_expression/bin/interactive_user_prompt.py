@@ -290,7 +290,9 @@ def print_current_steps(step_ary):
 def print_this_step(this_step_dic):
 #    write_activity_log("def", "print_this_step")
 #    print("inference rule: " + this_step_dic['infrule'])
+    print("for debugging and comparison purposes, I am showing the raw dic:")
     print(this_step_dic)
+    print("and now for the formatted output: ")
     print("step:")
     if (len(this_step_dic['input'])>0):
         if (len(this_step_dic['input'])==1):
@@ -415,12 +417,19 @@ def read_derivation_steps_from_files(derivation_name, output_path):
     which_derivation_to_make=output_path+"/"+derivation_name
     edge_list, expr_list, infrule_list, feed_list = physgraf.read_csv_files_into_ary(which_derivation_to_make)
 
+    if ((edge_list is None) or (expr_list is None) or (infrule_list is None)):
+        return None
+
     step_ary=[]
     for each_pair in infrule_list:
         this_step={}
         this_step['infrule indx']=int(each_pair[0])
         this_step['infrule']=each_pair[1]
+        this_step['input']=[]
+        this_step['output']=[]
+        this_step['feed']=[]        
         step_ary.append(this_step)
+    print("step array with only inf rules and indices: ")
     print(step_ary)
 
     print("edge list:")
@@ -461,10 +470,11 @@ def read_derivation_steps_from_files(derivation_name, output_path):
                 this_dic['latex']=line_list[0]
             else:
                 this_dic['latex']=line_list
-            this_dic['expression indx']=int(indx_for_expr[0])
-            this_dic['indx specific to this step for input']=int(indx_for_expr[1])
+            this_dic['expression indx']=int(indx_for_expr[1])
+            this_dic['indx specific to this step for input']=int(indx_for_expr[0])
             list_of_expr_dics.append(this_dic)
             
+    print("list of expr dics: ")
     print(list_of_expr_dics)
     
     print("feed list:")
@@ -501,9 +511,12 @@ def read_derivation_steps_from_files(derivation_name, output_path):
     print(list_of_feed_dics)
 
     for this_step in step_ary:
-        central_temp_indx = this_step['infrule indx']
-        this_step['input']=None
-        print("This step is now")
+        for this_edge in edge_list_typed:
+            if (this_step['infrule indx'] == this_edge[0]):
+                this_step['indx specific to this step for input']=this_edge[1]
+            if (this_step['infrule indx'] == this_edge[1]):
+                this_step['indx specific to this step for output']=this_edge[0]
+        print("his step is now")
         print(this_step)
 
 #    write_activity_log("return from", "read_derivation_steps_from_files")
@@ -737,7 +750,9 @@ def user_provide_latex_arguments(selected_infrule_dic,step_ary,connection_expr_t
 #     print("number of output expressions: "+selected_infrule_dic['number of output expressions'])
     number_of_output_expressions=int(selected_infrule_dic['number of output expressions'])
 
-    print("number of input expressions: "+str(number_of_input_expressions)+", number of feeds: "+str(number_of_feeds)+", number of output expressions: "+str(number_of_output_expressions))
+    print("number of input expressions: "+str(number_of_input_expressions)+
+        ", number of feeds: "+str(number_of_feeds)+
+        ", number of output expressions: "+str(number_of_output_expressions))
 
     input_ary=[]
     if (number_of_input_expressions>0):

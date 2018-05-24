@@ -10,26 +10,42 @@ import random
 
 def read_csv_files_into_ary(which_derivation_to_make):
     edge_list=[]
-    with open(which_derivation_to_make+'/derivation_edge_list.csv', 'rb') as csvfile:
-        edges_obj = csv.reader(csvfile, delimiter=',')
-        for row in edges_obj:
-        # print ', '.join(row)
-#         print row
-            edge_list.append(row)
+    
+    try:
+        with open(which_derivation_to_make+'/derivation_edge_list.csv', 'rb') as csvfile:
+            edges_obj = csv.reader(csvfile, delimiter=',')
+            for row in edges_obj:
+            # print ', '.join(row)
+#             print row
+                edge_list.append(row)
+    except IOError:
+        print("Unable to find file "+which_derivation_to_make+'/derivation_edge_list.csv')
+        print("Returning to menu with empty lists")
+        return None, None, None, None
     edge_list = filter(None, edge_list) # fastest way to remove empty strings from list
 
     expr_list=[]
-    with open(which_derivation_to_make+'/expression_identifiers.csv', 'rb') as csvfile:
-        expr_obj = csv.reader(csvfile, delimiter=',')
-        for row in expr_obj:
-            expr_list.append(row)
+    try:
+        with open(which_derivation_to_make+'/expression_identifiers.csv', 'rb') as csvfile:
+            expr_obj = csv.reader(csvfile, delimiter=',')
+            for row in expr_obj:
+                expr_list.append(row)
+    except IOError:
+        print("Unable to find file "+which_derivation_to_make+'/expression_identifiers.csv')
+        print("Returning to menu with empty lists")
+        return None, None, None, None
     expr_list = filter(None, expr_list) # fastest way to remove empty strings from list
 
     infrule_list=[]
-    with open(which_derivation_to_make+'/inference_rule_identifiers.csv', 'rb') as csvfile:
-        infrule_obj = csv.reader(csvfile, delimiter=',')
-        for row in infrule_obj:
-            infrule_list.append(row)
+    try:
+        with open(which_derivation_to_make+'/inference_rule_identifiers.csv', 'rb') as csvfile:
+            infrule_obj = csv.reader(csvfile, delimiter=',')
+            for row in infrule_obj:
+                infrule_list.append(row)
+    except IOError:
+        print("Unable to find file "+which_derivation_to_make+'/inference_rule_identifiers.csv')
+        print("Returning to menu with empty lists")
+        return None, None, None, None
     infrule_list = filter(None, infrule_list) # fastest way to remove empty strings from list
 
     feed_list=[]

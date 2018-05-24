@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="javascript_libraries/jquery-2.1.4.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("footer.html"); 
+    });
+    </script> 
+  
+    <title>Physics Derivation graph: Inference Rules</title>
+  </head>
+  <body bgcolor="#e5e5e5">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MS7JL5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MS7JL5');</script>
+<!-- End Google Tag Manager -->
+
+<table width="100%">
+<tr>
+  <td width="10%">&nbsp;</td>
+  <td width="2%">&nbsp;</td>
+  <td width="78%">&nbsp;</td>
+  <td width="10%">&nbsp;</td>
+</tr>  
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <center>
+    <H2>Inference Rules</H2>
+    </center>
+  </td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td valign="top">
+ <div id="includedNavContent"></div>
+
+  
+  </td>
+  <td>&nbsp;</td>
+  <td>
+
+<P>An inference rule is <B>the atomic step of logic that relates two mathematical expressions</B>. 
+
+<P>Inference rule are taught in math classes and get used in derivations. For example, consider the step "given expression 1, add 2 to both sides of expression 1, which yields expressions 2." The inference rule is of the form "add a value to both sides of the input expression to yield the output expression," where the value in the example is 2. More complex inference rules like "integrate both sides of the expression" are taught in <a href="https://en.wikipedia.org/wiki/Calculus">Calculus</a>, and "differentiate both sides of the expression with respect to a variable" is taught in a class on <a href="https://en.wikipedia.org/wiki/Partial_differential_equation">PDE</a>s.
+
+<P>Enumerating <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v4_file_per_expression/inference_rules">all the inference rules</a> is vital to the Physics Derivation Graph because inference rules govern how derivations are described. In addition to the normal topics in math, inference rules need to be capable of describing transformations in <a href="https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation">bra-ket notation</a> and <a href="https://en.wikipedia.org/wiki/Einstein_notation">Einstein summation convention</a>. 
+
+<P>What is an atomic step? <BR>
+There are many ways to accomplish the same task in a derivation. For example, "add X to both sides of an expression" is equivalent to "subtract Y from both sides of an expression" where X=-Y. Similarly, "divides both sides of the expression by Z" is equivalent to "multiply both sides of the expression by W" where Z=1/W. The choice of which inference rules are considered for use in the Physics Derivation Graph is motivated by multiple objectives: minimize the number of inference rules, enable concise derivations (fewer steps is better), make derivations understandable to humans (improve readability), and make derivations checkable by a computer algebra system (simpler is better). These objectives can yield conflict, so a subject choice is made by the project owner.
+
+<div id="includedFooterContent"></div>
+  </td>
+  <td>&nbsp;  </td>
+</tr>
+</table>
+  </body>
+</html>
