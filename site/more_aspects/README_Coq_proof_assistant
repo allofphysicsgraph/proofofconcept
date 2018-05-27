@@ -1,0 +1,13 @@
+ skimmed all of the COQ tutorial
+https://coq.inria.fr/distrib/V8.5/files/Tutorial.pdf
+--> Page 41 of 52 has a proof of "n = n+0", which runs to page 43
+
+I skimmed the first 20 pages of
+https://coq.inria.fr/distrib/V8.5/files/Reference-Manual.pdf
+
+I skimmed the list at
+https://coq.inria.fr/distrib/current/stdlib/
+
+
+The apparent lack of support for the PDG isn't surprising. The PDG
+isn't about proofs, it's about documentation and verification.
