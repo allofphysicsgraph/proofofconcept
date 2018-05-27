@@ -6,7 +6,7 @@
 
 <P>The snippets of SAGE can be run in <a href="https://sagecell.sagemath.org/">https://sagecell.sagemath.org/</a>
 
-<P>The following carries out the actions but does not invoke the inference rules:
+<P>The following carries out the actions of the derivation but does not explicitly use the inference rules:
 
 <pre>
 T,f=var('T,f')
@@ -19,8 +19,9 @@ The output is
 <pre>
 f == (1/T)
 </pre>
+which is the expected outcome from the derivation.
 
-<P>The implementation below checks that the claimed step as stated by the inference rule is carried out correctly:
+<P>In contrast, the implementation below checks that the claimed step as stated by the inference rule is carried out correctly:
 
 <pre>
 T=var('T')
@@ -37,7 +38,7 @@ The output is
 <pre>
 True
 </pre>
-
+which means that the claimed step in the derivation was implemented consistent with the inference rule applied.
 
 
 </body>
