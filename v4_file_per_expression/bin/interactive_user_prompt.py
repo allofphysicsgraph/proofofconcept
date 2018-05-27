@@ -293,6 +293,8 @@ def print_current_steps(step_ary):
 
 @track_function_usage
 def convert_latex_str_to_sympy(latex_str):
+    ''' this parses simple LaTeX statements into SymPy
+        only * and + are currently supported '''
     latex_str = latex_str.strip() # remove leading and trailing spaces
     if (latex_str.count('*')>0):
         terms_list_str = latex_str.split('*')
@@ -309,47 +311,71 @@ def convert_latex_str_to_sympy(latex_str):
     else:
         latex_as_sympy = sympy.symbols(latex_str)
 
+    if (latex_str.count('+')>0):
+        terms_list_str = latex_str.split('-')
+        terms_list = []
+        for this_term_str in terms_list_str:
+            try:
+                this_term = int(this_term_str)
+            except ValueError:
+                this_term = sympy.symbols(this_term_str)
+            terms_list.append(this_term)
+        latex_as_sympy = terms_list[0]
+        for term in terms_list[1:len(terms_list)]:
+            latex_as_sympy = latex_as_sympy * term
+    else:
+        latex_as_sympy = sympy.symbols(latex_str)
+
+
     return latex_as_sympy
 
 @track_function_usage
 def check_this_step(this_step_dic):
+    ''' use SymPy to validate specific inference rules '''
     # see https://github.com/allofphysicsgraph/proofofconcept/issues/42
     if (this_step_dic['infrule']=='declareInitialExpr'):
         print("there is no checking of this step using a CAS")
+        return True
     if (this_step_dic['infrule']=='declareAssumption'):
         print("there is no checking of this step using a CAS")
+        return True
     if (this_step_dic['infrule']=='declareFinalExpr'):
         print("there is no checking of this step using a CAS")
+        return True
+
+    # for the following derivations, each takes an input and a feed and produces an output
+    input_latex  = this_step_dic['input'][0]['latex'] # list length is 1 since there is a single input
+    output_latex = this_step_dic['output'][0]['latex'] # list length is 1 since there is a single output
+    feed_latex = this_step_dic['feed'][0]['latex'] # list length is 1 since there is a single feed
+
+    # convert Latex to SymPy 
+    if (input_latex.count('=') == 1):
+        [input_latex_LHS, input_latex_RHS]   =  input_latex.split("=")
+    else:
+    	print("unable to parse input latex since it seems to have more than one =")
+    	print(input_latex)
+    	return False
+    input_LHS_sympy = convert_latex_str_to_sympy(input_latex_LHS)
+    input_RHS_sympy = convert_latex_str_to_sympy(input_latex_RHS)
+
+    # convert Latex to SymPy
+    if (output_latex.count('=') == 1):
+        [output_latex_LHS, output_latex_RHS] = output_latex.split("=")
+    else:
+    	print("unable to parse output latex since it seems to have more than one =")
+    	print(output_latex)
+    	return False
+    output_LHS_sympy = convert_latex_str_to_sympy(output_latex_LHS)
+    output_RHS_sympy = convert_latex_str_to_sympy(output_latex_RHS)
+
     if (this_step_dic['infrule']=='multbothsidesby'):
         print("attempting to check step using SymPy")
-        input_latex  = this_step_dic['input'][0]['latex'] # list length is 1 since there is a single input
-        output_latex = this_step_dic['output'][0]['latex'] # list length is 1 since there is a single output
-        feed_latex = this_step_dic['feed'][0]['latex'] # list length is 1 since there is a single feed
-
-        # convert Latex to SymPy 
-        if (input_latex.count('=') == 1):
-            [input_latex_LHS, input_latex_RHS]   =  input_latex.split("=")
-        else:
-        	print("unable to parse input latex since it seems to have more than one =")
-        	print(input_latex)
-        	return False
-        input_LHS_sympy = convert_latex_str_to_sympy(input_latex_LHS)
-        input_RHS_sympy = convert_latex_str_to_sympy(input_latex_RHS)
-
-        # convert Latex to SymPy
-        if (output_latex.count('=') == 1):
-            [output_latex_LHS, output_latex_RHS] = output_latex.split("=")
-        else:
-        	print("unable to parse output latex since it seems to have more than one =")
-        	print(output_latex)
-        	return False
-        output_LHS_sympy = convert_latex_str_to_sympy(output_latex_LHS)
-        output_RHS_sympy = convert_latex_str_to_sympy(output_latex_RHS)
 
         try:
             feed = int(feed_latex)
         except ValueError:
             feed = sympy.symbols(feed_latex.strip())
+
 
         print("LHS side: ")
         print(output_LHS_sympy)
@@ -357,7 +383,7 @@ def check_this_step(this_step_dic):
         print(feed)
         print(input_LHS_sympy * feed)
         print(output_LHS_sympy == (input_LHS_sympy * feed))
-        
+    
         print("RHS side: ")
         print(output_RHS_sympy)
         print(input_RHS_sympy)
@@ -372,10 +398,58 @@ def check_this_step(this_step_dic):
         
     if (this_step_dic['infrule']=='multLHSbyUnity'):
         print("attempting to check step")
+
+        try:
+            feed = int(feed_latex)
+        except ValueError:
+            feed = sympy.symbols(feed_latex.strip())
+
+        print("LHS side: ")
+        print(output_LHS_sympy)
+        print(input_LHS_sympy)
+        print(feed)
+        print(feed == 1)
+        print(output_LHS_sympy == (input_LHS_sympy))
+        
+        print("RHS side: ")
+        print(output_RHS_sympy)
+        print(input_RHS_sympy)
+        print(feed)
+        print(feed == 1)
+        print(output_RHS_sympy == (input_RHS_sympy))
+        
+        boolean_validity_of_step = ((feed==1) and 
+                                    (output_LHS_sympy == input_LHS_sympy) and 
+                                    (output_RHS_sympy == input_RHS_sympy))
+        print("this step checks out as "+str(boolean_validity_of_step))
+        return boolean_validity_of_step
+
+
     if (this_step_dic['infrule']=='multRHSbyUnity'):
         print("attempting to check step")
 
-        boolean_validity_of_step = ((feed==1) and (output_LHS_symbol == (input_LHS_symbol)) and (output_RHS_symbol == input_RHS_symbol * feed))
+        try:
+            feed = int(feed_latex)
+        except ValueError:
+            feed = sympy.symbols(feed_latex.strip())
+
+        print("LHS side: ")
+        print(output_LHS_sympy)
+        print(input_LHS_sympy)
+        print(feed)
+        print(feed == 1)
+        print(output_LHS_sympy == (input_LHS_sympy))
+        
+        print("RHS side: ")
+        print(output_RHS_sympy)
+        print(input_RHS_sympy)
+        print(feed)
+        print(feed == 1)
+        print(output_RHS_sympy == (input_RHS_sympy))
+
+        boolean_validity_of_step = ((feed==1) and 
+                                    (output_LHS_sympy == input_LHS_sympy) and 
+                                    (output_RHS_sympy == input_RHS_sympy))
         print("this step checks out as "+str(boolean_validity_of_step))
         return boolean_validity_of_step
         
