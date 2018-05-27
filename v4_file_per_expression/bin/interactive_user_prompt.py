@@ -292,6 +292,26 @@ def print_current_steps(step_ary):
     return
 
 @track_function_usage
+def convert_latex_str_to_sympy(latex_str):
+    latex_str = latex_str.strip() # remove leading and trailing spaces
+    if (latex_str.count('*')>0):
+        terms_list_str = latex_str.split('*')
+        terms_list = []
+        for this_term_str in terms_list_str:
+            try:
+                this_term = int(this_term_str)
+            except ValueError:
+                this_term = sympy.symbols(this_term_str)
+            terms_list.append(this_term)
+        latex_as_sympy = terms_list[0]
+        for term in terms_list[1:len(terms_list)]:
+            latex_as_sympy = latex_as_sympy * term
+    else:
+        latex_as_sympy = sympy.symbols(latex_str)
+
+    return latex_as_sympy
+
+@track_function_usage
 def check_this_step(this_step_dic):
     # see https://github.com/allofphysicsgraph/proofofconcept/issues/42
     if (this_step_dic['infrule']=='declareInitialExpr'):
@@ -308,40 +328,23 @@ def check_this_step(this_step_dic):
 
         # convert Latex to SymPy 
         if (input_latex.count('=') == 1):
-            [input_LHS_str, input_RHS_str]   =  input_latex.split("=")
+            [input_latex_LHS, input_latex_RHS]   =  input_latex.split("=")
         else:
         	print("unable to parse input latex since it seems to have more than one =")
         	print(input_latex)
-        	return True
-        input_LHS_str = input_LHS_str.strip() # remove leading and trailing white spaces
-        input_RHS_str = input_RHS_str.strip()
-        if (input_LHS_str.count('*')>0):
-            input_terms_list_str = input_LHS_str.split('*')
-            input_LHS_list = []
-            for this_term_str in input_terms_list_str:
-                try:
-                    this_term = int(this_term_str)
-                except ValueError:
-                    this_term = sympy.symbols(this_term)
-                input_LHS_list.append(this_term)
-            for term in input_LHS_list:
-                input_LHS = input_LHS * term
-        else:
-            input_LHS = sympy.symbols(input_LHS_str)
-        input_LHS_symbol = input_LHS
-        input_RHS_symbol = sympy.symbols(input_RHS_str)
+        	return False
+        input_LHS_sympy = convert_latex_str_to_sympy(input_latex_LHS)
+        input_RHS_sympy = convert_latex_str_to_sympy(input_latex_RHS)
 
         # convert Latex to SymPy
         if (output_latex.count('=') == 1):
-            [output_LHS, output_RHS] = output_latex.split("=")
+            [output_latex_LHS, output_latex_RHS] = output_latex.split("=")
         else:
         	print("unable to parse output latex since it seems to have more than one =")
         	print(output_latex)
-        	return True
-        output_LHS = output_LHS.strip()
-        output_RHS = output_RHS.strip()
-        output_LHS_symbol = sympy.symbols(output_LHS)
-        output_RHS_symbol = sympy.symbols(output_RHS)
+        	return False
+        output_LHS_sympy = convert_latex_str_to_sympy(output_latex_LHS)
+        output_RHS_sympy = convert_latex_str_to_sympy(output_latex_RHS)
 
         try:
             feed = int(feed_latex)
@@ -349,20 +352,21 @@ def check_this_step(this_step_dic):
             feed = sympy.symbols(feed_latex.strip())
 
         print("LHS side: ")
-        print(output_LHS_symbol)
-        print(input_LHS_symbol)
+        print(output_LHS_sympy)
+        print(input_LHS_sympy)
         print(feed)
-        print(input_LHS_symbol * feed)
-        print((output_LHS_symbol == (input_LHS_symbol * feed))
+        print(input_LHS_sympy * feed)
+        print(output_LHS_sympy == (input_LHS_sympy * feed))
         
         print("RHS side: ")
-        print(output_RHS_symbol)
-        print(input_RHS_symbol)
+        print(output_RHS_sympy)
+        print(input_RHS_sympy)
         print(feed)
-        print(input_RHS_symbol * feed)
-        print((output_RHS_symbol == (input_RHS_symbol * feed))
+        print(input_RHS_sympy * feed)
+        print(output_RHS_sympy == (input_RHS_sympy * feed))
                 
-        boolean_validity_of_step = ((output_LHS_symbol == (input_LHS_symbol * feed)) and (output_RHS_symbol == input_RHS_symbol * feed))
+        boolean_validity_of_step = ((output_LHS_sympy == (input_LHS_sympy * feed)) and 
+                                    (output_RHS_sympy == input_RHS_sympy * feed))
         print("this step checks out as "+str(boolean_validity_of_step))
         return boolean_validity_of_step
         
