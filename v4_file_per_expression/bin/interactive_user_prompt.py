@@ -4,6 +4,7 @@
 # Ben Payne <ben.is.located@gmail.com>
 # automate entry of content
 
+import sympy # https://github.com/sympy/sympy/releases
 import yaml        # for reading "config.input"
 import readline    # for auto-complete # https://pymotw.com/2/readline/
 import rlcompleter # for auto-complete
@@ -266,6 +267,10 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
     step_dic={"infrule":selected_infrule_dic["inference rule"],"input":input_ary,"feed":feed_ary,"output":output_ary}
     print("\nResulting dic:")
     print_this_step(step_dic)
+    
+    step_is_valid = check_this_step(step_dic)
+    if (not step_is_valid):
+        print("would you like to re-enter this step? [actually going to continue for now.]")
 
     step_ary.append(step_dic)
 
@@ -285,6 +290,93 @@ def print_current_steps(step_ary):
 #    print("\n")
 #    write_activity_log("return from", "print_current_steps")
     return
+
+@track_function_usage
+def check_this_step(this_step_dic):
+    # see https://github.com/allofphysicsgraph/proofofconcept/issues/42
+    if (this_step_dic['infrule']=='declareInitialExpr'):
+        print("there is no checking of this step using a CAS")
+    if (this_step_dic['infrule']=='declareAssumption'):
+        print("there is no checking of this step using a CAS")
+    if (this_step_dic['infrule']=='declareFinalExpr'):
+        print("there is no checking of this step using a CAS")
+    if (this_step_dic['infrule']=='multbothsidesby'):
+        print("attempting to check step using SymPy")
+        input_latex  = this_step_dic['input'][0]['latex'] # list length is 1 since there is a single input
+        output_latex = this_step_dic['output'][0]['latex'] # list length is 1 since there is a single output
+        feed_latex = this_step_dic['feed'][0]['latex'] # list length is 1 since there is a single feed
+
+        # convert Latex to SymPy 
+        if (input_latex.count('=') == 1):
+            [input_LHS_str, input_RHS_str]   =  input_latex.split("=")
+        else:
+        	print("unable to parse input latex since it seems to have more than one =")
+        	print(input_latex)
+        	return True
+        input_LHS_str = input_LHS_str.strip() # remove leading and trailing white spaces
+        input_RHS_str = input_RHS_str.strip()
+        if (input_LHS_str.count('*')>0):
+            input_terms_list_str = input_LHS_str.split('*')
+            input_LHS_list = []
+            for this_term_str in input_terms_list_str:
+                try:
+                    this_term = int(this_term_str)
+                except ValueError:
+                    this_term = sympy.symbols(this_term)
+                input_LHS_list.append(this_term)
+            for term in input_LHS_list:
+                input_LHS = input_LHS * term
+        else:
+            input_LHS = sympy.symbols(input_LHS_str)
+        input_LHS_symbol = input_LHS
+        input_RHS_symbol = sympy.symbols(input_RHS_str)
+
+        # convert Latex to SymPy
+        if (output_latex.count('=') == 1):
+            [output_LHS, output_RHS] = output_latex.split("=")
+        else:
+        	print("unable to parse output latex since it seems to have more than one =")
+        	print(output_latex)
+        	return True
+        output_LHS = output_LHS.strip()
+        output_RHS = output_RHS.strip()
+        output_LHS_symbol = sympy.symbols(output_LHS)
+        output_RHS_symbol = sympy.symbols(output_RHS)
+
+        try:
+            feed = int(feed_latex)
+        except ValueError:
+            feed = sympy.symbols(feed_latex.strip())
+
+        print("LHS side: ")
+        print(output_LHS_symbol)
+        print(input_LHS_symbol)
+        print(feed)
+        print(input_LHS_symbol * feed)
+        print((output_LHS_symbol == (input_LHS_symbol * feed))
+        
+        print("RHS side: ")
+        print(output_RHS_symbol)
+        print(input_RHS_symbol)
+        print(feed)
+        print(input_RHS_symbol * feed)
+        print((output_RHS_symbol == (input_RHS_symbol * feed))
+                
+        boolean_validity_of_step = ((output_LHS_symbol == (input_LHS_symbol * feed)) and (output_RHS_symbol == input_RHS_symbol * feed))
+        print("this step checks out as "+str(boolean_validity_of_step))
+        return boolean_validity_of_step
+        
+    if (this_step_dic['infrule']=='multLHSbyUnity'):
+        print("attempting to check step")
+    if (this_step_dic['infrule']=='multRHSbyUnity'):
+        print("attempting to check step")
+
+        boolean_validity_of_step = ((feed==1) and (output_LHS_symbol == (input_LHS_symbol)) and (output_RHS_symbol == input_RHS_symbol * feed))
+        print("this step checks out as "+str(boolean_validity_of_step))
+        return boolean_validity_of_step
+        
+    return True
+
 
 @track_function_usage
 def print_this_step(this_step_dic):

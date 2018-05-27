@@ -10,9 +10,20 @@
 
 <pre>
 T,f = symbols('T f')
-
+expr_LHS = T
+expr_RHS = 1 / f
+expr_LHS = expr_LHS * f
+expr_RHS = expr_RHS * f
+expr_LHS = expr_LHS / T
+expr_RHS = expr_RHS / T
 </pre>
-
+Then the new expression is
+<pre>
+>>> expr_LHS
+f
+>>> expr_RHS
+1/T
+</pre>
 
 
 </body>
