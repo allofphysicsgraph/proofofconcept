@@ -9,15 +9,17 @@ import yaml        # for reading "config.input"
 import readline    # for auto-complete # https://pymotw.com/2/readline/
 import rlcompleter # for auto-complete
 import time        # for pauses
+import csv
 import sys
 import os
+from math import ceil
 import glob
 import random 
 from functools import wraps
 
-lib_path = os.path.abspath('../lib')
-sys.path.append(lib_path) # this has to proceed use of physgraph
-import lib_physics_graph as physgraf
+#lib_path = os.path.abspath('../lib')
+#sys.path.append(lib_path) # this has to proceed use of physgraph
+#import lib_physics_graph as physgraf
 
 def track_function_usage(the_function):
     @wraps(the_function) 
@@ -26,6 +28,32 @@ def track_function_usage(the_function):
         return the_function(*args, **kwargs)
         write_activity_log("return from", str(the_function))    
     return wrapper
+
+@track_function_usage
+def latex_header(tex_file):
+  todays_date=time.strftime("%Y%m%d")
+  tex_file.write('\\documentclass[12pt]{report}\n')
+  tex_file.write('% '+todays_date+'\n')
+  tex_file.write('\\usepackage{amsmath} % advanced math\n')
+  tex_file.write('\\usepackage{amssymb}\n')
+  tex_file.write('\\usepackage{amsfonts}\n')
+  tex_file.write('\\usepackage{graphicx,color}\n')
+  tex_file.write('\\usepackage{verbatim} % multi-line comments\n')
+  tex_file.write('\\usepackage[backref, colorlinks=false, pdftitle={'+todays_date+'}, \n')
+  tex_file.write('pdfauthor={Ben Payne}, pdfsubject={physics graph}, \n')
+  tex_file.write('pdfkeywords={physics,graph,automated, computer algebra system}]{hyperref}\n')
+  tex_file.write('\\setlength{\\topmargin}{-.5in}\n')
+  tex_file.write('\\setlength{\\textheight}{9in}\n')
+  tex_file.write('\\setlength{\\oddsidemargin}{-0in}\n')
+  tex_file.write('\\setlength{\\textwidth}{6.5in}\n')
+  tex_file.write('\\newcommand{\\when}[1]{{\\rm \ when\\ }#1}\n')
+  tex_file.write('\\newcommand{\\bra}[1]{\\langle #1 |}\n')
+  tex_file.write('\\newcommand{\\ket}[1]{| #1\\rangle}\n')
+  tex_file.write('\\newcommand{\\op}[1]{\\hat{#1}}\n')
+  tex_file.write('\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n')
+  tex_file.write('\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n')
+  tex_file.write('\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n')
+  return
 
 @track_function_usage
 def create_pictures_for_derivation(output_path,derivation_name):
@@ -41,19 +69,89 @@ def create_pictures_for_derivation(output_path,derivation_name):
 #                print("the latex to be converted to picture:")
 #                print(read_data.rstrip())
                 latex_expression="$"+read_data.rstrip()+"$"
-                physgraf.make_picture_from_latex_expression(numeric_as_ary[0],\
+                make_picture_from_latex_expression(numeric_as_ary[0],\
                      output_path+'/'+derivation_name,latex_expression,'png')
 
 #    write_activity_log("return from", "create_pictures_for_derivation")
     return
 
 @track_function_usage
+def make_picture_from_latex_expression(file_name,folder_name,latex_expression,extension):
+  path_to_file=folder_name+'/'+file_name+'.'+extension
+  #print("path to file = "+path_to_file)
+  if (os.path.isfile(path_to_file)):
+    os.remove(path_to_file)
+  tmp_tex='tmp.tex'
+  if (os.path.isfile(tmp_tex)):
+    os.remove(tmp_tex)
+  tex_string =  "\n\\thispagestyle{empty}\n\\begin{document}\n\huge{"+latex_expression+"}\n\\end{document}\n"
+# first argument is a text size, the further arguments set the corresponding math sizes in display/text style, script style and scriptscript style.
+  tex_file = open(tmp_tex, 'w')
+  latex_header(tex_file)
+  tex_file.write(tex_string)
+  tex_file.close()
+  os.system("latex tmp &> /dev/null") # convert from .tex to .dvi
+  if (extension=='png'):
+    os.system("dvipng tmp.dvi -o \""+path_to_file+"\" -T tight &> /dev/null")
+  if (extension=='svg'):
+    os.system("python lib/pydvi2svg/dvi2svg.py --paper-size=bbox:10 tmp.dvi &> /dev/null")
+    os.system("mv tmp.svg \""+path_to_file+"\"")
+#     os.system("convert "+path_to_file+" "+path_to_file) # for some reason the initial svg format isn't interperatable by graphviz. Thus, I pass the .svg through convert
+
+  if (not os.path.isfile(path_to_file)):
+    print("ERROR [in lib_physics_graph.py: file does not exist") 
+  return
+
+@track_function_usage
+def write_edges_and_nodes_to_graphviz(which_derivation_to_make,\
+                         edge_list, expr_list, infrule_list, feed_list,
+                         path_to_expressions, path_to_feeds):
+    graphviz_file=open(which_derivation_to_make+'/graphviz.dot','w')
+    graphviz_file.write("digraph physicsDerivation {\n")
+    graphviz_file.write("overlap = false;\n")
+#    graphviz_file.write("label=\"Expession relations\\nExtracted from connections_database.csv\";\n")
+    graphviz_file.write("fontsize=12;\n")
+
+    for this_pair in edge_list:
+        if (len(this_pair) != 2):
+            print("invalid construct for edge list: ")
+            print(this_pair)
+        else:
+            graphviz_file.write(this_pair[0]+" -> "+this_pair[1]+";\n")
+
+    for this_pair in expr_list:
+        if (len(this_pair) != 2):
+            print("invalid construct for expr list: ")
+            print(this_pair)
+        else:
+            graphviz_file.write(this_pair[0]+" [shape=ellipse, color=red,image=\""+path_to_expressions+this_pair[1]+".png\",labelloc=b,URL=\"http://output.com\"];\n")
+
+    for this_pair in infrule_list:
+        if (len(this_pair) != 2):
+            print("invalid construct for infrule list: ")
+            print(this_pair)
+        else:
+            graphviz_file.write(this_pair[0]+" [shape=invtrapezium, color=red,label=\""+this_pair[1]+"\"];\n")
+        # because the infrule is stored as text and not a picture, it doesn't point back to a .png file
+
+# print feed_list
+# print len(feed_list)
+    if (len(feed_list)>0):
+        for this_feed in feed_list:
+            graphviz_file.write(this_feed+" [shape=ellipse, color=red,image=\""+path_to_feeds+this_feed+".png\",labelloc=b,URL=\"http://feed.com\"];\n")
+
+    graphviz_file.write("}\n")
+    graphviz_file.close()
+    return
+
+
+@track_function_usage
 def create_graph_for_derivation(output_path,derivation_name):
 #    write_activity_log("def", "create_graph_for_derivation")
 
     which_derivation_to_make=output_path+"/"+derivation_name
-    edge_list, expr_list, infrule_list, feed_list = physgraf.read_csv_files_into_ary(which_derivation_to_make)
-    physgraf.write_edges_and_nodes_to_graphviz(which_derivation_to_make,\
+    edge_list, expr_list, infrule_list, feed_list = read_csv_files_into_ary(which_derivation_to_make)
+    write_edges_and_nodes_to_graphviz(which_derivation_to_make,\
                                           edge_list, expr_list, infrule_list, feed_list,\
                                           "", "")
     os.system('cd "'+which_derivation_to_make+'"; pwd; neato -Tpng -Nlabel="" graphviz.dot > out.png')
@@ -343,10 +441,18 @@ def check_this_step(this_step_dic):
         print("there is no checking of this step using a CAS")
         return True
 
+    if (this_step_dic['infrule']!='multbothsidesby' and 
+        this_step_dic['infrule']!='multRHSbyUnity' and
+        this_step_dic['infrule']!='multLHSbyUnity'):
+        return True
+
     # for the following derivations, each takes an input and a feed and produces an output
-    input_latex  = this_step_dic['input'][0]['latex'] # list length is 1 since there is a single input
-    output_latex = this_step_dic['output'][0]['latex'] # list length is 1 since there is a single output
-    feed_latex = this_step_dic['feed'][0]['latex'] # list length is 1 since there is a single feed
+    if (len(this_step_dic['input'])>0):
+        input_latex  = this_step_dic['input'][0]['latex'] # list length is 1 since there is a single input
+    if (len(this_step_dic['output'])>0):
+        output_latex = this_step_dic['output'][0]['latex'] # list length is 1 since there is a single output
+    if (len(this_step_dic['feed'])>0):
+        feed_latex = this_step_dic['feed'][0]['latex'] # list length is 1 since there is a single feed
 
     # convert Latex to SymPy 
     if (input_latex.count('=') == 1):
@@ -581,11 +687,67 @@ def assign_temp_indx(step_ary):
     return step_ary
 
 @track_function_usage
+def read_csv_files_into_ary(which_derivation_to_make):
+    edge_list=[]
+    try:
+        with open(which_derivation_to_make+'/derivation_edge_list.csv', 'rb') as csvfile:
+            edges_obj = csv.reader(csvfile, delimiter=',')
+            for row in edges_obj:
+            # print ', '.join(row)
+#             print row
+                edge_list.append(row)
+    except IOError:
+        print("Unable to find file "+which_derivation_to_make+'/derivation_edge_list.csv')
+        print("Returning to menu with empty lists")
+        return None, None, None, None
+    edge_list = filter(None, edge_list) # fastest way to remove empty strings from list
+
+    expr_list=[]
+    try:
+        with open(which_derivation_to_make+'/expression_identifiers.csv', 'rb') as csvfile:
+            expr_obj = csv.reader(csvfile, delimiter=',')
+            for row in expr_obj:
+                expr_list.append(row)
+    except IOError:
+        print("Unable to find file "+which_derivation_to_make+'/expression_identifiers.csv')
+        print("Returning to menu with empty lists")
+        return None, None, None, None
+    expr_list = filter(None, expr_list) # fastest way to remove empty strings from list
+
+    infrule_list=[]
+    try:
+        with open(which_derivation_to_make+'/inference_rule_identifiers.csv', 'rb') as csvfile:
+            infrule_obj = csv.reader(csvfile, delimiter=',')
+            for row in infrule_obj:
+                infrule_list.append(row)
+    except IOError:
+        print("Unable to find file "+which_derivation_to_make+'/inference_rule_identifiers.csv')
+        print("Returning to menu with empty lists")
+        return None, None, None, None
+    infrule_list = filter(None, infrule_list) # fastest way to remove empty strings from list
+
+    feed_list=[]
+    if os.path.isfile(which_derivation_to_make+'/feeds.csv'):
+        with open(which_derivation_to_make+'/feeds.csv', 'r') as csvfile:
+            feeds_obj = csv.reader(csvfile, delimiter=',')
+            for row in feeds_obj:
+                feed_list.append(row[0])
+    feed_list = filter(None, feed_list) # fastest way to remove empty strings from list
+    return edge_list, expr_list, infrule_list, feed_list
+
+
+@track_function_usage
 def read_derivation_steps_from_files(derivation_name, output_path):
 #    write_activity_log("def", "read_derivation_steps_from_files")
 
     which_derivation_to_make=output_path+"/"+derivation_name
-    edge_list, expr_list, infrule_list, feed_list = physgraf.read_csv_files_into_ary(which_derivation_to_make)
+    edge_list, expr_list, infrule_list, feed_list = read_csv_files_into_ary(which_derivation_to_make)
+
+    print("expr_list")
+    print(expr_list)
+
+    create_pictures_for_derivation(output_path,derivation_name)
+    create_graph_for_derivation(output_path,derivation_name)
 
     if ((edge_list is None) or (expr_list is None) or (infrule_list is None)):
         return None
@@ -600,7 +762,8 @@ def read_derivation_steps_from_files(derivation_name, output_path):
         this_step['feed']=[]        
         step_ary.append(this_step)
     print("step array with only inf rules and indices: ")
-    print(step_ary)
+    for this_step in step_ary:
+        print(this_step)
 
     print("edge list:")
     edge_list_typed=[]
@@ -609,7 +772,8 @@ def read_derivation_steps_from_files(derivation_name, output_path):
         this_pair_typed.append(int(this_pair[0]))
         this_pair_typed.append(int(this_pair[1]))
         edge_list_typed.append(this_pair_typed)
-    print(edge_list_typed)
+    for this_edge in edge_list_typed:
+        print(this_edge)
     
     print("expr list:")
 #    print(expr_list)  # expr_ID and step_ID
@@ -620,6 +784,7 @@ def read_derivation_steps_from_files(derivation_name, output_path):
         if os.path.exists(output_path+"/"+derivation_name+"/"+str(indx_for_expr[1])+"_latex.tex"):
             exprfile = open(output_path+"/"+derivation_name+"/"+str(indx_for_expr[1])+"_latex.tex")
         else:
+            print("reached the else block")
             list_of_tex_files = glob.glob("expressions/"+str(indx_for_expr[1])+"_latex_*.tex")
             print(list_of_tex_files)
             if (len(list_of_tex_files)==0):
@@ -636,6 +801,8 @@ def read_derivation_steps_from_files(derivation_name, output_path):
             line_list=exprfile.readlines()
             this_dic={}
             line_list = [line.strip() for line in line_list]
+            print("line_list is")
+            print(line_list)
             if (len(line_list)==1):
                 this_dic['latex']=line_list[0]
             else:
@@ -645,7 +812,8 @@ def read_derivation_steps_from_files(derivation_name, output_path):
             list_of_expr_dics.append(this_dic)
             
     print("list of expr dics: ")
-    print(list_of_expr_dics)
+    for this_expr in list_of_expr_dics:
+        print(this_expr)
     
     print("feed list:")
     list_of_feed_dics=[]
@@ -686,7 +854,7 @@ def read_derivation_steps_from_files(derivation_name, output_path):
                 this_step['indx specific to this step for input']=this_edge[1]
             if (this_step['infrule indx'] == this_edge[1]):
                 this_step['indx specific to this step for output']=this_edge[0]
-        print("his step is now")
+        print("this step is now")
         print(this_step)
 
 #    write_activity_log("return from", "read_derivation_steps_from_files")
@@ -819,21 +987,23 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
   choice_selected=False
   while(not choice_selected):
     clear_screen()
-    print("choose from the list of inference rules")
-    num_left_col_entries=30 # number of rows
+    print("choose from the list of "+str(len(list_of_infrules))+" inference rules")
+    num_left_col_entries=int(ceil(len(list_of_infrules)/3.0)+1) # number of rows
     num_remaining_entries=len(list_of_infrules)-num_left_col_entries
-    list_of_infrules.sort()
+    list_of_infrules = sorted(list_of_infrules, key=lambda s: s.lower()) # this is case-insensitive
+    #list_of_infrules.sort() # this is case-sensitive; the .sort() method places capitalized before lowercase
     for indx in range(1,num_left_col_entries):
       left_side_menu="  "+list_of_infrules[indx-1]
       middle_indx=indx+num_left_col_entries-1
-#       middle_menu=" "*(50-len(list_of_infrules[indx-1]))+str(middle_indx)+"   "+list_of_infrules[middle_indx-1]
-      # here "50" is the number of spaces
-      middle_menu=" "*(50-len(list_of_infrules[indx-1]))+"   "+list_of_infrules[middle_indx-1]
+      number_of_spaces=40
+#     middle_menu=" "*(number_of_spaces-len(list_of_infrules[indx-1]))+str(middle_indx)+"   "+list_of_infrules[middle_indx-1]
+      middle_menu=" "*(number_of_spaces-len(list_of_infrules[indx-1]))+"   "+list_of_infrules[middle_indx-1]
       right_side_indx=indx+2*num_left_col_entries-2
+#      print(str(indx) + ", " + str(middle_indx) + ", " + str(right_side_indx))
+
       if (right_side_indx<(len(list_of_infrules)+1)):
-#         right_side_menu=" "*(40-len(list_of_infrules[middle_indx-1]))+str(right_side_indx)+"   "+list_of_infrules[middle_indx-1]
-      # here "40" is the number of spaces
-        right_side_menu=" "*(50-len(list_of_infrules[middle_indx-1]))+"   "+list_of_infrules[middle_indx-1]
+#         right_side_menu=" "*(number_of_spaces-len(list_of_infrules[middle_indx-1]))+str(right_side_indx)+"   "+list_of_infrules[middle_indx-1]
+        right_side_menu=" "*(number_of_spaces-len(list_of_infrules[middle_indx-1]))+"   "+list_of_infrules[right_side_indx-1]
         print(left_side_menu+middle_menu+right_side_menu)
       else:
         print(left_side_menu+middle_menu)
@@ -861,20 +1031,41 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
   return selected_infrule_dic
 
 @track_function_usage
+def get_list_of_expr_indices_and_latex(step_ary):
+    dic_of_expr_and_latex = {}
+    for this_step in step_ary:
+        for this_input_list in this_step['input']:
+            dic_of_expr_and_latex[str( this_input_dic['expression indx'])] = this_input_dic['latex']
+        for this_output_dic in this_step['output']:
+            dic_of_expr_and_latex[str(this_output_dic['expression indx'])] = this_output_dic['latex']
+    return dic_of_expr_and_latex
+
+
+@track_function_usage
 def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expressions,list_of_expr,step_ary):
 #    write_activity_log("def", "user_supplies_latex_or_expression_index")
     valid_input=False
     while(not valid_input):
-        print("\nChoice for providing step content for "+type_str+": ")
-        print("1 provide new Latex")
-        print("2 use existing expression index from above list")
-        latex_or_index_choice=get_numeric_input("selection [1]: ","1")
+        if (len(step_ary)>0): # if there are prior steps,
+            print("\nChoice for providing step content for "+type_str+": ")
+            print("1 provide new Latex")
+            print("2 use existing expression index from above list")
+            latex_or_index_choice=get_numeric_input("selection [1]: ","1")
+        else: # there are no prior steps, so user will need to enter latex
+            print("\n")
+            latex_or_index_choice = 1
         if (int(latex_or_index_choice)==1):
             this_latex=get_text_input(type_str+' expression Latex,    '+str(input_indx+1)+' of '+str(number_of_expressions)+': ')
             expr_ID=get_new_expr_indx('derivations')
 
             valid_input=True
         elif (int(latex_or_index_choice)==2):
+            dic_of_expr_and_latex = get_list_of_expr_indices_and_latex(step_ary)
+            print("\nchoose from")
+            print("Expression index | latex")
+            for key_expr, valu_latex in dic_of_expr_and_latex.iteritems():
+                print("       "+key_expr + " | " + valu_latex)
+            print("\n")
             expr_ID=get_numeric_input("expression index : ","defaulllt")
             this_latex="NONE"
             for each_step in step_ary:
@@ -907,12 +1098,7 @@ def user_provide_latex_arguments(selected_infrule_dic,step_ary,connection_expr_t
     print("selected "+selected_infrule_dic["inference rule"])
 #     print("for this infrule, provide input, feed, and output")
 #     print(infrule_list_of_dics[infrule_choice_input-1])
-    print("Latex expansion: "+selected_infrule_dic['LaTeX expansion'])
-
-    if (len(step_ary)>0):
-        print("\nexisting derivation steps:")
-        print_current_steps(step_ary)
-    
+    print("Latex expansion: "+selected_infrule_dic['LaTeX expansion'])    
 #     print("number of input expresions: "+selected_infrule_dic['number of input expressions'])
     number_of_input_expressions=int(selected_infrule_dic['number of input expressions'])
 #     print("number of feeds: "+selected_infrule_dic['number of feeds'])
@@ -923,6 +1109,11 @@ def user_provide_latex_arguments(selected_infrule_dic,step_ary,connection_expr_t
     print("number of input expressions: "+str(number_of_input_expressions)+
         ", number of feeds: "+str(number_of_feeds)+
         ", number of output expressions: "+str(number_of_output_expressions))
+
+    if (len(step_ary)>0):
+        print("\nexisting derivation steps:")
+        print_current_steps(step_ary)
+
 
     input_ary=[]
     if (number_of_input_expressions>0):
@@ -961,51 +1152,62 @@ def get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,\
 #  write_activity_log("return from", "get_step_arguments")
   return selected_infrule_dic,input_ary,feed_ary,output_ary
 
+@track_function_usage
+def find_input_files():
+    list_of_derivations=[]
+    for name in os.listdir('derivations'):
+        if os.path.isdir('derivations/'+name):
+            list_of_derivations.append(name)
+
+    list_of_infrule_filenames=[]
+    for name in os.listdir('inference_rules'):
+        if os.path.isfile('inference_rules/'+name):
+            list_of_infrule_filenames.append(name)
+
+    list_of_infrules=[]
+    for file_name in list_of_infrule_filenames:
+        infrule_list=file_name.split('_')
+        list_of_infrules.append(infrule_list[0])
+
+    list_of_infrules=list(set(list_of_infrules))
+
+    infrule_list_of_dics=[]
+    for this_infrule in list_of_infrules:
+        this_dic={}
+        this_dic["inference rule"]=this_infrule
+        if not os.path.isfile('inference_rules/'+this_infrule+'_parameters.yaml'):
+            print('missing inf rule yaml file for '+this_infrule+'_parameters.yaml')
+            exit()
+        try:
+            config = yaml.load(file('inference_rules/'+this_infrule+'_parameters.yaml', 'r'))
+        except yaml.YAMLError, exc:
+            print "ERROR [in interactive_user_prompt.py, main]: YAML configuration file:", exc
+
+        if (config['inf_rule_name'] != this_infrule):
+            print("name of .tex file doesn't match what's in the .yaml file")
+            print("the infrule in question is "+this_infrule+" and the inf_rule_name is")
+            print(config['inf_rule_name'])
+            exit()
+        
+        this_dic['number of feeds']=config['number_of_feeds']
+        this_dic['number of output expressions']=config['number_of_output_expressions']
+        this_dic['number of input expressions']=config['number_of_input_expressions']
+        list_of_tex_files = glob.glob("inference_rules/"+this_infrule+"_latex_*.tex")
+        if (len(list_of_tex_files)>0):
+            with open(list_of_tex_files[0]) as ftex:
+                read_data = ftex.read()
+#                print(read_data)
+                this_dic['LaTeX expansion']=read_data
+        else:
+            print("no .tex file found for "+this_infrule)
+            this_dic['LaTeX expansion']="no tex file found for "+this_infrule
+        infrule_list_of_dics.append(this_dic)
+    return infrule_list_of_dics,list_of_derivations,list_of_infrules
 
 ##### welcome to the main body 
 
 write_activity_log("started", "interactive_user_prompt")
 
-list_of_derivations=[]
-for name in os.listdir('derivations'):
-    if os.path.isdir('derivations/'+name):
-        list_of_derivations.append(name)
-
-list_of_infrule_filenames=[]
-for name in os.listdir('inference_rules'):
-    if os.path.isfile('inference_rules/'+name):
-        list_of_infrule_filenames.append(name)
-
-list_of_infrules=[]
-for file_name in list_of_infrule_filenames:
-    infrule_list=file_name.split('_')
-    list_of_infrules.append(infrule_list[0])
-
-list_of_infrules=list(set(list_of_infrules))
-
-infrule_list_of_dics=[]
-for this_infrule in list_of_infrules:
-    this_dic={}
-    this_dic["inference rule"]=this_infrule
-    if not os.path.isfile('inference_rules/'+this_infrule+'_parameters.yaml'):
-        print('missing inf rule yaml file for '+this_infrule+'_parameters.yaml')
-        exit()
-    try:
-        config = yaml.load(file('inference_rules/'+this_infrule+'_parameters.yaml', 'r'))
-    except yaml.YAMLError, exc:
-        print "ERROR [in interactive_user_prompt.py, main]: YAML configuration file:", exc
-
-    if (config['inf_rule_name'] != this_infrule):
-        print("name of .tex file doesn't match what's in the .yaml file")
-        print("the infrule in question is "+this_infrule+" and the inf_rule_name is")
-        print(config['inf_rule_name'])
-        exit()
-        
-    this_dic['number of feeds']=config['number_of_feeds']
-    this_dic['number of output expressions']=config['number_of_output_expressions']
-    this_dic['number of input expressions']=config['number_of_input_expressions']
-    this_dic['LaTeX expansion']="latex here"
-    infrule_list_of_dics.append(this_dic)
 
 '''
     if (config['number_of_arguments'] != ( config['number_of_feeds'] + 
@@ -1020,6 +1222,7 @@ for this_infrule in list_of_infrules:
 # not in use:
 #    config['comments']
 
+[infrule_list_of_dics,list_of_derivations,list_of_infrules] = find_input_files()
 
 #exit()
 list_of_expr=[]
