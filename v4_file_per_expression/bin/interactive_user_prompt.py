@@ -24,6 +24,8 @@ def track_function_usage(the_function):
         return the_function(*args, **kwargs)
         write_activity_log("return from", str(the_function))    
     return wrapper
+# how to verify in bash that every definition has the "@track_function_usage" before the definition:
+# grep -B1 ^def bin/interactive_user_prompt.py
 
 @track_function_usage
 def latex_header(tex_file):
@@ -215,6 +217,7 @@ def get_new_step_indx(path):
 #  write_activity_log("return from", "get_new_step_indx")
   return candidate
 
+# DO NOT TRACK FUNCTION USAGE HERE
 def write_activity_log(description,function_name):
   # do not call write_activity_log in order to avoid endless recursion
   f=open('activity_log.dat','a+') # append; create if it doesn't exist
