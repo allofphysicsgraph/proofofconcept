@@ -4,22 +4,18 @@
 # Ben Payne <ben.is.located@gmail.com>
 # automate entry of content
 
-import sympy # https://github.com/sympy/sympy/releases
+from sympy import symbols # https://github.com/sympy/sympy/releases
 import yaml        # for reading "config.input"
 import readline    # for auto-complete # https://pymotw.com/2/readline/
-import rlcompleter # for auto-complete
+#import rlcompleter # for auto-complete
 import time        # for pauses
-import csv
-import sys
+from csv import reader
+from sys import version_info # for checking whether Python 2 or 3 is being used
 import os
-from math import ceil
-import glob
-import random 
+from math import ceil # round up
+from glob import glob # get files in directory 
+from random import random 
 from functools import wraps
-
-#lib_path = os.path.abspath('../lib')
-#sys.path.append(lib_path) # this has to proceed use of physgraph
-#import lib_physics_graph as physgraf
 
 def track_function_usage(the_function):
     @wraps(the_function) 
@@ -189,7 +185,7 @@ def get_new_expr_indx(path):
   list_of_nodes = list(set(list_of_nodes))
   found_new_ID=False
   while(not found_new_ID):
-    candidate = int(random.random()*1000000000)
+    candidate = int(random()*1000000000)
     if ((candidate > 100000000) and (candidate not in list_of_nodes)):
       found_new_ID=True
 #  write_activity_log("return from", "get_new_expr_indx")
@@ -213,7 +209,7 @@ def get_new_step_indx(path):
   list_of_nodes = list(set(list_of_nodes))
   found_new_ID=False
   while(not found_new_ID):
-    candidate = int(random.random()*10000000)
+    candidate = int(random()*10000000)
     if ((candidate > 1000000) and (candidate not in list_of_nodes)):
       found_new_ID=True
 #  write_activity_log("return from", "get_new_step_indx")
@@ -335,7 +331,7 @@ def edit_existing_derivation(output_path):
   read_derivation_steps_from_files(selected_derivation, output_path)
   print("done editing; returning to main menu")
 
-  if sys.version_info[0] < 3:
+  if version_info[0] < 3:
     entered_key=raw_input("\n\nPress Enter to continue...")
   else:
     entered_key=input("\n\nPress Enter to continue...") # v3
@@ -401,13 +397,13 @@ def convert_latex_str_to_sympy(latex_str):
             try:
                 this_term = int(this_term_str)
             except ValueError:
-                this_term = sympy.symbols(this_term_str)
+                this_term = symbols(this_term_str)
             terms_list.append(this_term)
         latex_as_sympy = terms_list[0]
         for term in terms_list[1:len(terms_list)]:
             latex_as_sympy = latex_as_sympy * term
     else:
-        latex_as_sympy = sympy.symbols(latex_str)
+        latex_as_sympy = symbols(latex_str)
 
     if (latex_str.count('+')>0):
         terms_list_str = latex_str.split('-')
@@ -416,13 +412,13 @@ def convert_latex_str_to_sympy(latex_str):
             try:
                 this_term = int(this_term_str)
             except ValueError:
-                this_term = sympy.symbols(this_term_str)
+                this_term = symbols(this_term_str)
             terms_list.append(this_term)
         latex_as_sympy = terms_list[0]
         for term in terms_list[1:len(terms_list)]:
             latex_as_sympy = latex_as_sympy * term
     else:
-        latex_as_sympy = sympy.symbols(latex_str)
+        latex_as_sympy = symbols(latex_str)
 
 
     return latex_as_sympy
@@ -480,7 +476,7 @@ def check_this_step(this_step_dic):
         try:
             feed = int(feed_latex)
         except ValueError:
-            feed = sympy.symbols(feed_latex.strip())
+            feed = symbols(feed_latex.strip())
 
 
         print("LHS side: ")
@@ -508,7 +504,7 @@ def check_this_step(this_step_dic):
         try:
             feed = int(feed_latex)
         except ValueError:
-            feed = sympy.symbols(feed_latex.strip())
+            feed = symbols(feed_latex.strip())
 
         print("LHS side: ")
         print(output_LHS_sympy)
@@ -537,7 +533,7 @@ def check_this_step(this_step_dic):
         try:
             feed = int(feed_latex)
         except ValueError:
-            feed = sympy.symbols(feed_latex.strip())
+            feed = symbols(feed_latex.strip())
 
         print("LHS side: ")
         print(output_LHS_sympy)
@@ -691,7 +687,7 @@ def read_csv_files_into_ary(which_derivation_to_make):
     edge_list=[]
     try:
         with open(which_derivation_to_make+'/derivation_edge_list.csv', 'rb') as csvfile:
-            edges_obj = csv.reader(csvfile, delimiter=',')
+            edges_obj = reader(csvfile, delimiter=',')
             for row in edges_obj:
             # print ', '.join(row)
 #             print row
@@ -705,7 +701,7 @@ def read_csv_files_into_ary(which_derivation_to_make):
     expr_list=[]
     try:
         with open(which_derivation_to_make+'/expression_identifiers.csv', 'rb') as csvfile:
-            expr_obj = csv.reader(csvfile, delimiter=',')
+            expr_obj = reader(csvfile, delimiter=',')
             for row in expr_obj:
                 expr_list.append(row)
     except IOError:
@@ -717,7 +713,7 @@ def read_csv_files_into_ary(which_derivation_to_make):
     infrule_list=[]
     try:
         with open(which_derivation_to_make+'/inference_rule_identifiers.csv', 'rb') as csvfile:
-            infrule_obj = csv.reader(csvfile, delimiter=',')
+            infrule_obj = reader(csvfile, delimiter=',')
             for row in infrule_obj:
                 infrule_list.append(row)
     except IOError:
@@ -729,7 +725,7 @@ def read_csv_files_into_ary(which_derivation_to_make):
     feed_list=[]
     if os.path.isfile(which_derivation_to_make+'/feeds.csv'):
         with open(which_derivation_to_make+'/feeds.csv', 'r') as csvfile:
-            feeds_obj = csv.reader(csvfile, delimiter=',')
+            feeds_obj = reader(csvfile, delimiter=',')
             for row in feeds_obj:
                 feed_list.append(row[0])
     feed_list = filter(None, feed_list) # fastest way to remove empty strings from list
@@ -785,7 +781,7 @@ def read_derivation_steps_from_files(derivation_name, output_path):
             exprfile = open(output_path+"/"+derivation_name+"/"+str(indx_for_expr[1])+"_latex.tex")
         else:
             print("reached the else block")
-            list_of_tex_files = glob.glob("expressions/"+str(indx_for_expr[1])+"_latex_*.tex")
+            list_of_tex_files = glob("expressions/"+str(indx_for_expr[1])+"_latex_*.tex")
             print(list_of_tex_files)
             if (len(list_of_tex_files)==0):
                 print("no Latex expression found in the expressions directory")
@@ -824,7 +820,7 @@ def read_derivation_steps_from_files(derivation_name, output_path):
         if os.path.exists(output_path+"/"+derivation_name+"/"+str(local_indx_for_feed[1])+"_latex.tex"):
             exprfile = open(output_path+"/"+derivation_name+"/"+str(local_indx_for_feed[1])+"_latex.tex")
         else:
-            list_of_tex_files = glob.glob("feeds/"+str(local_indx_for_feed[1])+"_latex_*.tex")
+            list_of_tex_files = glob("feeds/"+str(local_indx_for_feed[1])+"_latex_*.tex")
             print(list_of_tex_files)
             if (len(list_of_tex_files)==0):
                 print("no Latex expression found in the feeds directory")
@@ -1192,7 +1188,7 @@ def find_input_files():
         this_dic['number of feeds']=config['number_of_feeds']
         this_dic['number of output expressions']=config['number_of_output_expressions']
         this_dic['number of input expressions']=config['number_of_input_expressions']
-        list_of_tex_files = glob.glob("inference_rules/"+this_infrule+"_latex_*.tex")
+        list_of_tex_files = glob("inference_rules/"+this_infrule+"_latex_*.tex")
         if (len(list_of_tex_files)>0):
             with open(list_of_tex_files[0]) as ftex:
                 read_data = ftex.read()
