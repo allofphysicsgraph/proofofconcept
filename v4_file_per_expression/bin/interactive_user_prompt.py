@@ -9,6 +9,7 @@ import yaml        # for reading "config.input"
 import readline    # for auto-complete # https://pymotw.com/2/readline/
 #import rlcompleter # for auto-complete
 import time        # for pauses
+import platform # to detect OS and version
 from csv import reader
 from sys import version_info # for checking whether Python 2 or 3 is being used
 import os
@@ -227,15 +228,16 @@ def write_activity_log(description,function_name):
 
 @track_function_usage
 def clear_screen():
-#  write_activity_log("def", "clear_screen")
-  os.system('cls') #for windows
-  os.system('clear') #for Linux
+#  print(platform.system())
+  if (platform.system() == 'Windows'):
+      os.system('cls') #for windows
+  if (platform.system() == 'Darwin'):
+      os.system('clear') #for Linux
 #  write_activity_log("return from", "clear_screen")
   return
 
 @track_function_usage
 def exit_from_program():
-#  write_activity_log("def", "exit_from_program")
   print("-->  Exiting")
   exit(0)
   return
@@ -975,7 +977,7 @@ def select_from_available_derivations(list_of_derivations):
   return int(derivation_choice_input),selected_derivation
 
 @track_function_usage
-def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
+def user_choose_infrule(list_of_infrules,infrule_list_of_dics,step_ary):
 #  write_activity_log("def", "user_choose_infrule")
   if (len(list_of_infrules)==0):
     print("ERROR in interactive_user_prompt.py, user_choose_infrule: list of inference rules is empty")
@@ -983,6 +985,13 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics):
   if (len(infrule_list_of_dics)==0):
     print("ERROR in interactive_user_prompt.py, user_choose_infrule: list of inference rule dictionaries is empty")
     exit()
+  if (len(step_ary)==0):
+    for this_infrule_dic in infrule_list_of_dics:
+      if (this_infrule_dic["inference rule"]=="declareInitialExpr"):
+        choice_selected=True        
+        selected_infrule_dic=this_infrule_dic
+        return selected_infrule_dic
+    
   choice_selected=False
   while(not choice_selected):
     clear_screen()
@@ -1054,18 +1063,30 @@ def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expres
             print("\n")
             latex_or_index_choice = 1
         if (int(latex_or_index_choice)==1):
-            this_latex=get_text_input(type_str+' expression Latex,    '+str(input_indx+1)+' of '+str(number_of_expressions)+': ')
+            text_provided=False
+            while(not text_provided):
+                this_latex=get_text_input(type_str+' expression Latex,    '+str(input_indx+1)+' of '+str(number_of_expressions)+': ')
+                if (("=" not in this_latex) and (">" not in this_latex) and ("<" not in this_latex)):
+                    text_provided=False
+                    print("--> invalid input (missing relation operator); Enter a string")
+                else:
+                    text_provided=True
+
             expr_ID=get_new_expr_indx('derivations')
 
             valid_input=True
         elif (int(latex_or_index_choice)==2):
             dic_of_expr_and_latex = get_list_of_expr_indices_and_latex(step_ary)
-            print("\nchoose from")
-            print("Expression index | latex")
-            for key_expr, valu_latex in dic_of_expr_and_latex.iteritems():
-                print("       "+key_expr + " | " + valu_latex)
-            print("\n")
-            expr_ID=get_numeric_input("expression index : ","defaulllt")
+            if (len(dic_of_expr_and_latex)==1):
+                expr_ID = list(dic_of_expr_and_latex.keys())[0]
+                valid_input=True
+            else:
+                print("\nchoose from")
+                print("Expression index | latex")
+                for key_expr, valu_latex in dic_of_expr_and_latex.iteritems():
+                    print("       "+key_expr + " | " + valu_latex)
+                print("\n")
+                expr_ID=get_numeric_input("expression index : ","defaulllt")
             this_latex="NONE"
             for each_step in step_ary:
                 list_of_inputs=each_step["input"]
@@ -1144,7 +1165,7 @@ def get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,\
         connection_expr_temp,list_of_feeds,step_ary):
 #  write_activity_log("def", "get_step_arguments")
   print("starting a new step")
-  selected_infrule_dic=user_choose_infrule(list_of_infrules,infrule_list_of_dics)
+  selected_infrule_dic=user_choose_infrule(list_of_infrules,infrule_list_of_dics,step_ary)
   clear_screen()
   [input_ary,feed_ary,output_ary]=user_provide_latex_arguments(selected_infrule_dic,\
                                                      step_ary,connection_expr_temp)
