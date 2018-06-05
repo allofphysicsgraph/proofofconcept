@@ -18,6 +18,8 @@ from glob import glob # get files in directory
 from random import random 
 from functools import wraps
 
+# alternatively, just use
+# pycallgraph graphviz -- ./mypythonscript.py
 def track_function_usage(the_function):
     @wraps(the_function) 
     def wrapper(*args, **kwargs):

@@ -1,0 +1,6 @@
+inside of the hol-light directory you have to run make 
+but not install 
+
+then run 
+#use "hol.ml";;
+
