@@ -1044,7 +1044,7 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics,step_ary):
 def get_list_of_expr_indices_and_latex(step_ary):
     dic_of_expr_and_latex = {}
     for this_step in step_ary:
-        for this_input_list in this_step['input']:
+        for this_input_dic in this_step['input']:
             dic_of_expr_and_latex[str( this_input_dic['expression indx'])] = this_input_dic['latex']
         for this_output_dic in this_step['output']:
             dic_of_expr_and_latex[str(this_output_dic['expression indx'])] = this_output_dic['latex']
