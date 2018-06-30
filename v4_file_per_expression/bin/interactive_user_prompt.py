@@ -703,19 +703,32 @@ def read_csv_files_into_ary(which_derivation_to_make):
         print("Unable to find file "+which_derivation_to_make+'/derivation_edge_list.csv')
         print("Returning to menu with empty lists")
         return None, None, None, None
+#    print("edge list in read_csv_files is")
+#    print(edge_list)
     edge_list = filter(None, edge_list) # fastest way to remove empty strings from list
 
     expr_list=[]
     try:
         with open(which_derivation_to_make+'/expression_identifiers.csv', 'rb') as csvfile:
-            expr_obj = reader(csvfile, delimiter=',')
-            for row in expr_obj:
-                expr_list.append(row)
+
+#            expr_obj = reader(csvfile, delimiter=',')
+#            for row in expr_obj:
+#                expr_list.append(row)
+# https://stackoverflow.com/questions/15741564/removing-duplicate-rows-from-a-csv-file-using-a-python-script
+            seen = set() # set for fast O(1) amortized lookup
+            for line in csvfile:
+                line = line.rstrip()
+                if line in seen: continue # skip duplicate
+
+                seen.add(line)
+            for line in list(seen):
+                expr_list.append(line.split(','))
     except IOError:
         print("Unable to find file "+which_derivation_to_make+'/expression_identifiers.csv')
         print("Returning to menu with empty lists")
         return None, None, None, None
     expr_list = filter(None, expr_list) # fastest way to remove empty strings from list
+
 
     infrule_list=[]
     try:
@@ -746,11 +759,13 @@ def read_derivation_steps_from_files(derivation_name, output_path):
     which_derivation_to_make=output_path+"/"+derivation_name
     edge_list, expr_list, infrule_list, feed_list = read_csv_files_into_ary(which_derivation_to_make)
 
+    print("create pictures for graph from directory content")
+    create_pictures_for_derivation(output_path,derivation_name)
+    print("create PNG from graphviz")
+    create_graph_for_derivation(output_path,derivation_name)
+
     print("expr_list")
     print(expr_list)
-
-    create_pictures_for_derivation(output_path,derivation_name)
-    create_graph_for_derivation(output_path,derivation_name)
 
     if ((edge_list is None) or (expr_list is None) or (infrule_list is None)):
         return None
@@ -823,21 +838,23 @@ def read_derivation_steps_from_files(derivation_name, output_path):
     for local_indx_for_feed in feed_list:
         feedfile=None
 
-
-        if os.path.exists(output_path+"/"+derivation_name+"/"+str(local_indx_for_feed[1])+"_latex.tex"):
-            exprfile = open(output_path+"/"+derivation_name+"/"+str(local_indx_for_feed[1])+"_latex.tex")
+        if os.path.exists(output_path+"/"+derivation_name+"/"+str(local_indx_for_feed)+"_latex.tex"):
+            #print("feed latex found in derivation folder")
+            feedfile = open(output_path+"/"+derivation_name+"/"+str(local_indx_for_feed)+"_latex.tex")
         else:
-            list_of_tex_files = glob("feeds/"+str(local_indx_for_feed[1])+"_latex_*.tex")
+            #print("expecting feed latex in feed folder since it isn't in derivation folder")
+            list_of_tex_files = glob("feeds/"+str(local_indx_for_feed)+"_latex_*.tex")
+            print("list of tex files:")
             print(list_of_tex_files)
             if (len(list_of_tex_files)==0):
                 print("no Latex expression found in the feeds directory")
             elif (len(list_of_tex_files)==1):
-                exprfile = open(list_of_tex_files[0])
+                feedfile = open(list_of_tex_files[0])
             elif (len(list_of_tex_files)>1):
                 print("multiple expression Latex files found for "+str(indx_for_expr[1]))
                 print(list_of_tex_files)
                 print("selecting the first option")
-                exprfile = open(list_of_tex_files[0])
+                feedfile = open(list_of_tex_files[0])
 
         if (feedfile is not None):
             line_list=feedfile.readlines()
@@ -847,8 +864,9 @@ def read_derivation_steps_from_files(derivation_name, output_path):
                 this_dic['latex']=line_list[0]
             else:
                 this_dic['latex']=line_list
-            this_dic['feed indx']=int(temp_indx_for_feed)
+            this_dic['feed indx']=int(local_indx_for_feed)
             list_of_feed_dics.append(this_dic)
+    print("list of feed dics:")
     print(list_of_feed_dics)
 
     for this_step in step_ary:
@@ -916,10 +934,12 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
         
         for this_input_dic in this_step['input']:
             list_of_expr_dics.append(this_input_dic)
+# this approach yields duplicate lines in the expression_identifiers.csv because the same expression gets referenced repeatedly in a derivation
             edgelist_file.write(str(this_input_dic['indx specific to this step for input'])+','+str(ID_for_this_step)+"\n")
 
         for this_output_dic in this_step['output']:
             list_of_expr_dics.append(this_output_dic)        
+# this approach yields duplicate lines in the expression_identifiers.csv because the same expression gets referenced repeatedly in a derivation
             edgelist_file.write(str(ID_for_this_step)+','+str(this_output_dic['indx specific to this step for output'])+"\n")
 
     for this_expr_dic in list_of_expr_dics:
