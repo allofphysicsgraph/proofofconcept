@@ -2,7 +2,7 @@
 
 # Physics Equation Graph
 # Ben Payne <ben.is.located@gmail.com>
-# automate entry of content
+# automate entry of content for the Physics Equation Graph
 
 from sympy import symbols # https://github.com/sympy/sympy/releases
 import yaml        # for reading "config.input"
@@ -10,17 +10,24 @@ import readline    # for auto-complete # https://pymotw.com/2/readline/
 #import rlcompleter # for auto-complete
 import time        # for pauses
 import platform # to detect OS and version
-from csv import reader
+from csv import reader # read files
 from sys import version_info # for checking whether Python 2 or 3 is being used
-import os
+import os # listing folder contents
 from math import ceil # round up
 from glob import glob # get files in directory 
-from random import random 
-from functools import wraps
+from random import random # creating new indices
+from functools import wraps # decorator
 
-# alternatively, just use
-# pycallgraph graphviz -- ./mypythonscript.py
 def track_function_usage(the_function):
+    '''
+    I'd like to include a "function terminated" decorator, but I don't know how to
+    
+    for a dynamic call graph, use
+    pycallgraph graphviz -- ./interactive_user_prompt.py
+    
+    for a static call graph, see
+    https://physicsderivationgraph.blogspot.com/2018/07/static-analysis-of-function-dependency.html
+    '''
     @wraps(the_function) 
     def wrapper(*args, **kwargs):
         write_activity_log("def", str(the_function))
@@ -29,6 +36,15 @@ def track_function_usage(the_function):
     return wrapper
 # how to verify in bash that every definition has the "@track_function_usage" before the definition:
 # grep -B1 ^def bin/interactive_user_prompt.py
+
+# DO NOT TRACK FUNCTION USAGE HERE
+def write_activity_log(description,function_name):
+  # do not call write_activity_log in order to avoid endless recursion
+  f=open('activity_log.dat','a+') # append; create if it doesn't exist
+  f.write(str(time.time()) + ' | ' + function_name + ' | ' + description + "\n")
+  f.close()
+  return
+
 
 @track_function_usage
 def latex_header(tex_file):
@@ -58,7 +74,9 @@ def latex_header(tex_file):
 
 @track_function_usage
 def create_pictures_for_derivation(output_path,derivation_name):
-#    write_activity_log("def", "create_pictures_for_derivation")
+    '''
+    reads latex from file
+    '''
 
     for name in os.listdir(output_path+'/'+derivation_name+'/'):
         name_and_extension = name.split('.')
@@ -72,12 +90,13 @@ def create_pictures_for_derivation(output_path,derivation_name):
                 latex_expression="$"+read_data.rstrip()+"$"
                 make_picture_from_latex_expression(numeric_as_ary[0],\
                      output_path+'/'+derivation_name,latex_expression,'png')
-
-#    write_activity_log("return from", "create_pictures_for_derivation")
     return
 
 @track_function_usage
 def make_picture_from_latex_expression(file_name,folder_name,latex_expression,extension):
+  '''
+  given Latex, create PNG
+  '''
   path_to_file=folder_name+'/'+file_name+'.'+extension
   #print("path to file = "+path_to_file)
   if (os.path.isfile(path_to_file)):
@@ -163,18 +182,15 @@ def create_graph_for_derivation(output_path,derivation_name):
 # https://stackoverflow.com/questions/1724693/find-a-file-in-python
 @track_function_usage
 def find_all(name, path):
-#    write_activity_log("def", "find_all")
 
     result = []
     for root, dirs, files in os.walk(path):
         if name in files:
             result.append(os.path.join(root, name))
-#    write_activity_log("return from", "find_all")
     return result
 
 @track_function_usage
 def get_new_expr_indx(path):
-#  write_activity_log("def", "get_new_expr_indx")
 
   list_of_expression_files = find_all('expression_identifiers.csv',path)
   list_of_nodes=[]
@@ -193,12 +209,10 @@ def get_new_expr_indx(path):
     candidate = int(random()*1000000000)
     if ((candidate > 100000000) and (candidate not in list_of_nodes)):
       found_new_ID=True
-#  write_activity_log("return from", "get_new_expr_indx")
   return candidate
 
 @track_function_usage
 def get_new_step_indx(path):
-#  write_activity_log("def", "get_new_step_indx")
 
   list_of_derivation_edge_files = find_all('derivation_edge_list.csv',path)
   list_of_nodes=[]
@@ -217,16 +231,7 @@ def get_new_step_indx(path):
     candidate = int(random()*10000000)
     if ((candidate > 1000000) and (candidate not in list_of_nodes)):
       found_new_ID=True
-#  write_activity_log("return from", "get_new_step_indx")
   return candidate
-
-# DO NOT TRACK FUNCTION USAGE HERE
-def write_activity_log(description,function_name):
-  # do not call write_activity_log in order to avoid endless recursion
-  f=open('activity_log.dat','a+') # append; create if it doesn't exist
-  f.write(str(time.time()) + ' | ' + function_name + ' | ' + description + "\n")
-  f.close()
-  return
 
 @track_function_usage
 def clear_screen():
@@ -278,8 +283,7 @@ def get_numeric_input(prompt_text,default_choice):
   return input_number
 
 @track_function_usage
-def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
-                 list_of_expr,connection_expr_temp,list_of_feeds,connection_infrule_temp,output_path):
+def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,output_path):
 #  write_activity_log("def", "first_choice")
   invalid_choice=True
   while(invalid_choice):
@@ -288,19 +292,26 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
     print("1  start a new derivation")
     print("2  edit an existing derivation")
     print("3  combine two derivations")
+    print("4  generate PDF")
+    print("5  popularity counts")    
     print("0  exit")
     first_choice_input = get_numeric_input('selection [0]: ','0')
     if (first_choice_input=='0' or first_choice_input==''):
       invalid_choice=False
       exit_from_program()
     elif (first_choice_input=='1'):
-      derivation_name = start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
-                           connection_expr_temp,list_of_feeds,connection_infrule_temp,output_path)
+      derivation_name = start_new_derivation(list_of_infrules,infrule_list_of_dics,output_path)
       invalid_choice=False
     elif (first_choice_input=='2'):
       edit_existing_derivation(output_path)
       invalid_choice=False
     elif (first_choice_input=='3'):
+      print("to do: create this routine")
+      invalid_choice=False 
+    elif (first_choice_input=='4'):
+      print("to do: create this routine")
+      invalid_choice=False 
+    elif (first_choice_input=='5'):
       print("to do: create this routine")
       invalid_choice=False 
     else:
@@ -501,14 +512,10 @@ def select_step_from_derivation(selected_derivation,list_of_infrule_indices):
         else:
             print("selected step index is not found in list. Try again.")
 
-#    write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
-#                            connection_infrule_temp,list_of_feeds,output_path)
     return selected_step_indx
 
 @track_function_usage
-def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
-                         connection_expr_temp,list_of_feeds,connection_infrule_temp,output_path):
-#  write_activity_log("def", "start_new_derivation")
+def start_new_derivation(list_of_infrules,infrule_list_of_dics,output_path):
   clear_screen()
   print("starting new derivation")
   derivation_name=get_text_input('name of new derivation (can contain spaces): ')  
@@ -522,7 +529,7 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
     print_current_steps(step_ary)
 
     [selected_infrule_dic,input_ary,feed_ary,output_ary]=get_step_arguments(\
-        list_of_infrules,infrule_list_of_dics,list_of_expr,connection_expr_temp,list_of_feeds,step_ary)
+        list_of_infrules,infrule_list_of_dics,step_ary)
     step_dic={"infrule":selected_infrule_dic["inference rule"],"input":input_ary,"feed":feed_ary,"output":output_ary}
     print("\nResulting dic:")
     print_this_step(step_dic)
@@ -533,12 +540,9 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
 
     step_ary.append(step_dic)
 
-    write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
-                            connection_infrule_temp,list_of_feeds,output_path)
+    write_steps_to_file(derivation_name,step_ary,output_path)
 
-    done_with_steps=add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
-                                      connection_infrule_temp,list_of_feeds,output_path)
-#  write_activity_log("return from", "start_new_derivation")
+    done_with_steps=add_another_step_menu(step_ary,derivation_name,output_path)
   return derivation_name
 
 @track_function_usage
@@ -552,8 +556,10 @@ def print_current_steps(step_ary):
 
 @track_function_usage
 def convert_latex_str_to_sympy(latex_str):
-    ''' this parses simple LaTeX statements into SymPy
-        only * and + are currently supported '''
+    ''' 
+    This parses simple LaTeX statements into SymPy
+    Only * and + are currently supported 
+    '''
     latex_str = latex_str.strip() # remove leading and trailing spaces
     if (latex_str.count('*')>0):
         terms_list_str = latex_str.split('*')
@@ -749,8 +755,7 @@ def print_this_step(this_step_dic):
     return
 
 @track_function_usage
-def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
-                          connection_infrule_temp,list_of_feeds,output_path):
+def add_another_step_menu(step_ary,derivation_name,output_path):
 #    write_activity_log("def", "add_another_step_menu")
 
     invalid_choice=True
@@ -766,8 +771,7 @@ def add_another_step_menu(step_ary,derivation_name,connection_expr_temp,\
         print("derivation name: "+derivation_name)
         print_current_steps(step_ary)
         print("output path is: " + output_path)
-        write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
-                            connection_infrule_temp,list_of_feeds,output_path)
+        write_steps_to_file(derivation_name,step_ary,output_path)
         time.sleep(2)
       elif (step_choice_input=='1'): # add another step
         invalid_choice=False
@@ -1062,10 +1066,7 @@ def read_derivation_steps_from_files(derivation_name, output_path):
 
 
 @track_function_usage
-def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
-                        connection_infrule_temp,list_of_feeds,output_path):
-#    write_activity_log("def", "write_steps_to_file")
-#    print("entered 'write_steps_to_file' function")
+def write_steps_to_file(derivation_name,step_ary,output_path):
 
     print("derivation name being written to file: "+derivation_name)
     write_activity_log("derivation name: "+derivation_name, "write_steps_to_file")
@@ -1123,7 +1124,6 @@ def write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
     create_pictures_for_derivation(output_path,derivation_name)
     create_graph_for_derivation(output_path,derivation_name)
 
-#    write_activity_log("return from", "write_steps_to_file")
     return
 
 @track_function_usage
@@ -1232,7 +1232,7 @@ def get_list_of_expr_indices_and_latex(step_ary):
 
 
 @track_function_usage
-def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expressions,list_of_expr,step_ary):
+def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expressions,step_ary):
 #    write_activity_log("def", "user_supplies_latex_or_expression_index")
     valid_input=False
     while(not valid_input):
@@ -1295,7 +1295,7 @@ def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expres
     return this_dic
 
 @track_function_usage
-def user_provide_latex_arguments(selected_infrule_dic,step_ary,connection_expr_temp):
+def user_provide_latex_arguments(selected_infrule_dic,step_ary):
 #    write_activity_log("def", "user_provide_latex_arguments")
     print("selected "+selected_infrule_dic["inference rule"])
 #     print("for this infrule, provide input, feed, and output")
@@ -1321,7 +1321,7 @@ def user_provide_latex_arguments(selected_infrule_dic,step_ary,connection_expr_t
     if (number_of_input_expressions>0):
         for input_indx in range(number_of_input_expressions):
             this_input_dic=user_supplies_latex_or_expression_index('input',\
-                            input_indx,number_of_input_expressions,list_of_expr,step_ary)
+                            input_indx,number_of_input_expressions,step_ary)
 
             input_ary.append(this_input_dic)
     feed_ary=[]
@@ -1335,7 +1335,7 @@ def user_provide_latex_arguments(selected_infrule_dic,step_ary,connection_expr_t
     if (number_of_output_expressions>0):
         for output_indx in range(number_of_output_expressions):
             this_output_dic=user_supplies_latex_or_expression_index('output',\
-                            output_indx,number_of_output_expressions,list_of_expr,step_ary)
+                            output_indx,number_of_output_expressions,step_ary)
 
             output_ary.append(this_output_dic)
 
@@ -1343,27 +1343,26 @@ def user_provide_latex_arguments(selected_infrule_dic,step_ary,connection_expr_t
     return input_ary,feed_ary,output_ary
 
 @track_function_usage
-def get_step_arguments(list_of_infrules,infrule_list_of_dics,list_of_expr,\
-        connection_expr_temp,list_of_feeds,step_ary):
+def get_step_arguments(list_of_infrules,infrule_list_of_dics,step_ary):
 #  write_activity_log("def", "get_step_arguments")
   print("starting a new step")
   selected_infrule_dic=user_choose_infrule(list_of_infrules,infrule_list_of_dics,step_ary)
   clear_screen()
   [input_ary,feed_ary,output_ary]=user_provide_latex_arguments(selected_infrule_dic,\
-                                                     step_ary,connection_expr_temp)
+                                                     step_ary)
 #  write_activity_log("return from", "get_step_arguments")
   return selected_infrule_dic,input_ary,feed_ary,output_ary
 
 @track_function_usage
-def find_input_files():
+def find_input_files(path_for_derivations,path_for_infrules):
     list_of_derivations=[]
-    for name in os.listdir('derivations'):
-        if os.path.isdir('derivations/'+name):
+    for name in os.listdir(path_for_derivations):
+        if os.path.isdir(path_for_derivations+'/'+name):
             list_of_derivations.append(name)
 
     list_of_infrule_filenames=[]
-    for name in os.listdir('inference_rules'):
-        if os.path.isfile('inference_rules/'+name):
+    for name in os.listdir(path_for_infrules):
+        if os.path.isfile(path_for_infrules+'/'+name):
             list_of_infrule_filenames.append(name)
 
     list_of_infrules=[]
@@ -1377,11 +1376,11 @@ def find_input_files():
     for this_infrule in list_of_infrules:
         this_dic={}
         this_dic["inference rule"]=this_infrule
-        if not os.path.isfile('inference_rules/'+this_infrule+'_parameters.yaml'):
+        if not os.path.isfile(path_for_infrules+'/'+this_infrule+'_parameters.yaml'):
             print('missing inf rule yaml file for '+this_infrule+'_parameters.yaml')
             exit()
         try:
-            config = yaml.load(file('inference_rules/'+this_infrule+'_parameters.yaml', 'r'))
+            config = yaml.load(file(path_for_infrules+'/'+this_infrule+'_parameters.yaml', 'r'))
         except yaml.YAMLError, exc:
             print "ERROR [in interactive_user_prompt.py, main]: YAML configuration file:", exc
 
@@ -1394,7 +1393,7 @@ def find_input_files():
         this_dic['number of feeds']=config['number_of_feeds']
         this_dic['number of output expressions']=config['number_of_output_expressions']
         this_dic['number of input expressions']=config['number_of_input_expressions']
-        list_of_tex_files = glob("inference_rules/"+this_infrule+"_latex_*.tex")
+        list_of_tex_files = glob(path_for_infrules+"/"+this_infrule+"_latex_*.tex")
         if (len(list_of_tex_files)>0):
             with open(list_of_tex_files[0]) as ftex:
                 read_data = ftex.read()
@@ -1406,33 +1405,10 @@ def find_input_files():
         infrule_list_of_dics.append(this_dic)
     return infrule_list_of_dics,list_of_derivations,list_of_infrules
 
-##### welcome to the main body 
-
-write_activity_log("started", "interactive_user_prompt")
-
-
-'''
-    if (config['number_of_arguments'] != ( config['number_of_feeds'] + 
-                                           config['number_of_output_expressions'] + 
-                                           config['number_of_input_expressions'])):
-        print("number of arguments in parameters.yaml is inconsistent for "+this_infrule)
-        print("number of args = "+str(config['number_of_arguments']))
-        print("number of feeds = "+str(config['number_of_feeds']))
-        print("number of output expressions = "+str(config['number_of_output_expressions']))
-        print("number of input expressions = "+str(config['number_of_input_expressions']))
-'''
-# not in use:
-#    config['comments']
-
-[infrule_list_of_dics,list_of_derivations,list_of_infrules] = find_input_files()
-
-#exit()
-list_of_expr=[]
-connection_expr_temp=[]
-list_of_feeds=[]
-connection_infrule_temp=None
-output_path='derivations'
-
-while(True):
-  first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
-               list_of_expr,connection_expr_temp,list_of_feeds,connection_infrule_temp,output_path)
+if __name__ == "__main__":
+    write_activity_log("started", "interactive_user_prompt")
+    path_for_derivations='derivations'
+    path_for_infrules='inference_rules'
+    [infrule_list_of_dics,list_of_derivations,list_of_infrules] = find_input_files(path_for_derivations,path_for_infrules)
+    while(True):
+        first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,path_for_derivations)
