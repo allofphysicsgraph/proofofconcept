@@ -287,6 +287,7 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
     print("PDG Main Menu")
     print("1  start a new derivation")
     print("2  edit an existing derivation")
+    print("3  combine two derivations")
     print("0  exit")
     first_choice_input = get_numeric_input('selection [0]: ','0')
     if (first_choice_input=='0' or first_choice_input==''):
@@ -299,6 +300,9 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,\
     elif (first_choice_input=='2'):
       edit_existing_derivation(output_path)
       invalid_choice=False
+    elif (first_choice_input=='3'):
+      print("to do: create this routine")
+      invalid_choice=False 
     else:
       print(first_choice_input)
       print("\n--> invalid choice; try again")
@@ -328,26 +332,180 @@ class MyCompleter(object):  # Custom completer
 def edit_existing_derivation(output_path):
 #  write_activity_log("def", "edit_existing_derivation")
   # which exiting derivation?
-  [derivation_choice_input,selected_derivation]=select_from_available_derivations(list_of_derivations)
-  if (selected_derivation=='EXIT'):
-    print("exit this editing")
+    [derivation_choice_input,selected_derivation]=select_from_available_derivations(list_of_derivations)
+    if (selected_derivation=='EXIT'):
+        print("exit from editing")
+        return
+    clear_screen()
+    step_ary = read_derivation_steps_from_files(selected_derivation, output_path)
+
+#    print("create pictures for graph from directory content")
+#    create_pictures_for_derivation(output_path,selected_derivation)
+#    print("create PNG from graphviz")
+#    create_graph_for_derivation(output_path,selected_derivation)
+
+    print("here's a list of steps for the derivation "+selected_derivation)
+    list_of_infrule_indices=[]
+    for this_step_dic in step_ary:
+        print("==== step index: "+str(this_step_dic['infrule indx'])+" ====")
+        list_of_infrule_indices.append(str(this_step_dic['infrule indx'])) # str for tab completion
+        print_this_step(this_step_dic)
+
+    # what is the type of edit?
+    invalid_choice=True
+    while(invalid_choice):
+        input_choice=raw_input("\na: Add new step; d: Delete existing step; e: edit existing step; m: return to main menu -   [e]: ")
+        if (input_choice=="a"):
+            print("add new step")
+            invalid_choice=False
+            step_ary=add_new_step_to_existing_derivation(step_ary)
+        elif (input_choice=="d"):
+            print("delete step")
+            invalid_choice=False
+            step_ary=delete_step_from_derivation(step_ary,selected_derivation,list_of_infrule_indices)
+        elif (input_choice=="e" or input_choice==""):
+            print("edit step")
+            invalid_choice=False
+            step_ary=edit_step_in_derivation(step_ary,selected_derivation,list_of_infrule_indices)
+        elif (input_choice=="m"):
+            print("done editing; returning to main menu")
+            invalid_choice=False
+        else:
+            print("invalid selection; try again")
+
+    if version_info[0] < 3:
+        entered_key=raw_input("\n\nPress Enter to continue...")
+    else:
+        entered_key=input("\n\nPress Enter to continue...") # v3
+
     return
-  clear_screen()
-  print("in derivation "+selected_derivation+", which step?")
-  print("here's a list of steps for the derivation "+selected_derivation)
-  read_derivation_steps_from_files(selected_derivation, output_path)
-  print("done editing; returning to main menu")
 
-  if version_info[0] < 3:
-    entered_key=raw_input("\n\nPress Enter to continue...")
-  else:
-    entered_key=input("\n\nPress Enter to continue...") # v3
+@track_function_usage
+def edit_step_in_derivation(step_ary,selected_derivation,list_of_infrule_indices):
+    selected_step_indx = select_step_from_derivation(selected_derivation,list_of_infrule_indices)
+    print("\nstep to edit:")
+    for this_step in step_ary:
+        if (this_step['infrule indx'] == int(selected_step_indx)):
+            print_this_step(this_step)
+            step_to_edit=this_step
+            break
 
-#  time.sleep(2)
-#  write_activity_log("return from", "edit_existing_derivation")
-  return
+    # where is the edit?
+    invalid_choice=True
+    while(invalid_choice):
+        input_choice=raw_input("\nr: change inference rule; i: edit input; f: edit feed; o: edit output; e: return to edit menu -   [i]: ")
+        if (input_choice=="r"):
+            print("change inference rule")
+            edited_step = change_inference_rule_in_step(step_to_edit)
+            invalid_choice=False
+        elif (input_choice=="i" or input_choice==""):
+            print("edit input")
+            invalid_choice=False
+            edited_step = change_input_output_feed_in_step(step_to_edit,'input')
+        elif (input_choice=="f"):
+            print("edit feed")
+            invalid_choice=False
+            edited_step = change_input_output_feed_in_step(step_to_edit,'feed')
+        elif (input_choice=="o"):
+            print("edit output")
+            invalid_choice=False
+            edited_step = change_input_output_feed_in_step(step_to_edit,'output')
+        elif (input_choice=="e"):
+            print("returning to edit menu")
+            invalid_choice=False
+            return step_ary
+        else:
+            print("invalid selection; try again")
 
-@track_function_usage   
+
+        for step_indx in range(len(step_ary)):
+            if (step_ary[step_indx]['infrule indx'] == selected_step_indx):
+                step_ary[step_indx] = edited_step
+                return step_ary
+
+    return step_ary
+
+@track_function_usage
+def change_input_output_feed_in_step(step_to_edit,which_category):
+    node_indx_choice=0
+    if (len(step_to_edit[which_category])>1):
+        print("need to select which "+which_category)
+        for node_indx in range(len(step_to_edit[which_category])):
+            print(str(node_indx) + str(this_node))
+            node_indx_choice = get_numeric_input('selection [0]: ','0')
+    #else: # there is only one input/feed/output to be edited
+    print(step_to_edit[which_category][node_indx_choice]['latex'])
+    text_provided=False
+    while(not text_provided):
+        this_latex=get_text_input("enter new latex for "+which_category+": ")
+        text_provided=True
+
+    step_to_edit[which_category][node_indx_choice]['latex']=this_latex
+    return step_to_edit
+
+@track_function_usage
+def delete_step_from_derivation(step_ary,selected_derivation,list_of_infrule_indices):
+    deletion_confirmed=False
+    while(not deletion_confirmed):
+        selected_step_indx = select_step_from_derivation(selected_derivation,list_of_infrule_indices)
+        print("\nstep to delete:")
+        for this_step in step_ary:
+            if (this_step['infrule indx'] == int(selected_step_indx)):
+                print_this_step(this_step)
+                break
+        invalid_choice=True
+        while(invalid_choice):
+            input_choice=raw_input("\ny: correct step selected; n: incorrect step selected; e: return to edit menu - [y]: ")
+            if (input_choice=="y" or input_choice==""):
+                invalid_choice=False
+                deletion_confirmed=True
+            elif (input_choice=="n"):
+                invalid_choice=False
+            elif (input_choice=="e"):
+                invalid_choice=False
+                return
+            else:
+                print("invalid selection; try again")
+
+
+    for step_indx in range(len(step_ary)):
+        if (step_ary[step_indx]['infrule indx'] == selected_step_indx):
+            del step_ary[step_indx]
+            return step_ary
+
+    print("should never get here")
+    return step_ary
+
+@track_function_usage
+def add_new_step_to_existing_derivation(step_ary):
+    
+    return step_ary
+
+@track_function_usage
+def select_step_from_derivation(selected_derivation,list_of_infrule_indices):
+    print("\nIn derivation "+selected_derivation+", which step?")
+
+    completer = MyCompleter(list_of_infrule_indices)
+    readline.set_completer(completer.complete)
+    #readline.parse_and_bind('tab: complete') # works on Linux, not Mac OS X
+    if 'libedit' in readline.__doc__: # detects libedit which is a Mac OS X "feature"
+        readline.parse_and_bind("bind ^I rl_complete")
+    else:
+        readline.parse_and_bind("tab: complete")
+
+    valid_input_provided=False
+    while (not valid_input_provided):
+        selected_step_indx = raw_input("\nselection (tab auto-complete): ")
+        if (selected_step_indx in list_of_infrule_indices):
+            valid_input_provided=True
+        else:
+            print("selected step index is not found in list. Try again.")
+
+#    write_steps_to_file(derivation_name,step_ary,connection_expr_temp,\
+#                            connection_infrule_temp,list_of_feeds,output_path)
+    return selected_step_indx
+
+@track_function_usage
 def start_new_derivation(list_of_infrules,infrule_list_of_dics,list_of_expr,\
                          connection_expr_temp,list_of_feeds,connection_infrule_temp,output_path):
 #  write_activity_log("def", "start_new_derivation")
@@ -567,12 +725,11 @@ def check_this_step(this_step_dic):
 
 @track_function_usage
 def print_this_step(this_step_dic):
-#    write_activity_log("def", "print_this_step")
-#    print("inference rule: " + this_step_dic['infrule'])
-    print("for debugging and comparison purposes, I am showing the raw dic:")
-    print(this_step_dic)
-    print("and now for the formatted output: ")
-    print("step:")
+#    print("for debugging and comparison purposes, I am showing the raw dic:")
+#    print(this_step_dic)
+#    print("and now for the formatted output: ")
+#    print("step:")
+
     if (len(this_step_dic['input'])>0):
         if (len(this_step_dic['input'])==1):
             print("      input: "+str(this_step_dic['input'][0]))
@@ -583,13 +740,12 @@ def print_this_step(this_step_dic):
             print("      feed: "+str(this_step_dic['feed'][0]))
         else:
             print("      feed: "+str(this_step_dic['feed']))
-    print(this_step_dic['infrule'])
+    print(this_step_dic['infrule']) # inference rule appears after inputs and before outputs
     if (len(this_step_dic['output'])>0):
         if (len(this_step_dic['output'])==1):
             print("      output: "+str(this_step_dic['output'][0]))
         else:
             print("      output: "+str(this_step_dic['output']))
-#    write_activity_log("return from", "print_this_step")
     return
 
 @track_function_usage
@@ -754,18 +910,17 @@ def read_csv_files_into_ary(which_derivation_to_make):
 
 @track_function_usage
 def read_derivation_steps_from_files(derivation_name, output_path):
-#    write_activity_log("def", "read_derivation_steps_from_files")
 
     which_derivation_to_make=output_path+"/"+derivation_name
     edge_list, expr_list, infrule_list, feed_list = read_csv_files_into_ary(which_derivation_to_make)
 
-    print("create pictures for graph from directory content")
-    create_pictures_for_derivation(output_path,derivation_name)
-    print("create PNG from graphviz")
-    create_graph_for_derivation(output_path,derivation_name)
+#    print("create pictures for graph from directory content")
+#    create_pictures_for_derivation(output_path,derivation_name)
+#    print("create PNG from graphviz")
+#    create_graph_for_derivation(output_path,derivation_name)
 
-    print("expr_list")
-    print(expr_list)
+#    print("expr_list")
+#    print(expr_list)
 
     if ((edge_list is None) or (expr_list is None) or (infrule_list is None)):
         return None
@@ -779,21 +934,21 @@ def read_derivation_steps_from_files(derivation_name, output_path):
         this_step['output']=[]
         this_step['feed']=[]        
         step_ary.append(this_step)
-    print("step array with only inf rules and indices: ")
-    for this_step in step_ary:
-        print(this_step)
+#    print("step array with only inf rules and indices: ")
+#    for this_step in step_ary:
+#        print(this_step)
 
-    print("edge list:")
+#    print("edge list:")
     edge_list_typed=[]
     for this_pair in edge_list:
         this_pair_typed=[]
         this_pair_typed.append(int(this_pair[0]))
         this_pair_typed.append(int(this_pair[1]))
         edge_list_typed.append(this_pair_typed)
-    for this_edge in edge_list_typed:
-        print(this_edge)
+#    for this_edge in edge_list_typed:
+#        print(this_edge)
     
-    print("expr list:")
+#    print("expr list:")
 #    print(expr_list)  # expr_ID and step_ID
     list_of_expr_dics=[]
     for indx_for_expr in expr_list:
@@ -802,9 +957,9 @@ def read_derivation_steps_from_files(derivation_name, output_path):
         if os.path.exists(output_path+"/"+derivation_name+"/"+str(indx_for_expr[1])+"_latex.tex"):
             exprfile = open(output_path+"/"+derivation_name+"/"+str(indx_for_expr[1])+"_latex.tex")
         else:
-            print("reached the else block")
+#            print("reached the else block")
             list_of_tex_files = glob("expressions/"+str(indx_for_expr[1])+"_latex_*.tex")
-            print(list_of_tex_files)
+#            print(list_of_tex_files)
             if (len(list_of_tex_files)==0):
                 print("no Latex expression found in the expressions directory")
             elif (len(list_of_tex_files)==1):
@@ -819,8 +974,8 @@ def read_derivation_steps_from_files(derivation_name, output_path):
             line_list=exprfile.readlines()
             this_dic={}
             line_list = [line.strip() for line in line_list]
-            print("line_list is")
-            print(line_list)
+#            print("line_list is")
+#            print(line_list)
             if (len(line_list)==1):
                 this_dic['latex']=line_list[0]
             else:
@@ -829,11 +984,11 @@ def read_derivation_steps_from_files(derivation_name, output_path):
             this_dic['indx specific to this step for input']=int(indx_for_expr[0])
             list_of_expr_dics.append(this_dic)
             
-    print("list of expr dics: ")
-    for this_expr in list_of_expr_dics:
-        print(this_expr)
+#    print("list of expr dics: ")
+#    for this_expr in list_of_expr_dics:
+#        print(this_expr)
     
-    print("feed list:")
+#    print("feed list:")
     list_of_feed_dics=[]
     for local_indx_for_feed in feed_list:
         feedfile=None
@@ -844,8 +999,8 @@ def read_derivation_steps_from_files(derivation_name, output_path):
         else:
             #print("expecting feed latex in feed folder since it isn't in derivation folder")
             list_of_tex_files = glob("feeds/"+str(local_indx_for_feed)+"_latex_*.tex")
-            print("list of tex files:")
-            print(list_of_tex_files)
+#            print("list of tex files:")
+#            print(list_of_tex_files)
             if (len(list_of_tex_files)==0):
                 print("no Latex expression found in the feeds directory")
             elif (len(list_of_tex_files)==1):
@@ -866,19 +1021,26 @@ def read_derivation_steps_from_files(derivation_name, output_path):
                 this_dic['latex']=line_list
             this_dic['feed indx']=int(local_indx_for_feed)
             list_of_feed_dics.append(this_dic)
-    print("list of feed dics:")
-    print(list_of_feed_dics)
+#    print("list of feed dics:")
+#    print(list_of_feed_dics)
 
     for this_step in step_ary:
         for this_edge in edge_list_typed:
             if (this_step['infrule indx'] == this_edge[0]):
-                this_step['indx specific to this step for input']=this_edge[1]
+                for this_expr in list_of_expr_dics:
+                    if (this_expr['indx specific to this step for input']==this_edge[1]):
+                        this_step['output'].append(this_expr)
             if (this_step['infrule indx'] == this_edge[1]):
-                this_step['indx specific to this step for output']=this_edge[0]
-        print("this step is now")
-        print(this_step)
+                for this_expr in list_of_expr_dics:
+                    if (this_expr['indx specific to this step for input']==this_edge[0]):
+                        this_step['input'].append(this_expr)
+                for this_feed in list_of_feed_dics:
+                    if (this_feed['feed indx'] == this_edge[0]):
+                        this_step['feed'].append(this_feed)
 
-#    write_activity_log("return from", "read_derivation_steps_from_files")
+#        print("this step is now")
+#        print(this_step)
+        
     return step_ary
 
 # this_step:
@@ -987,15 +1149,13 @@ def select_from_available_derivations(list_of_derivations):
       try:
         selected_derivation=list_of_derivations[int(derivation_choice_input)-1]
         print("selected derivation: "+selected_derivation)
-        time.sleep(1)
+#        time.sleep(1)
         choice_selected=True
       except ValueError:
         print("WARNING: invalid choice (looking for int); try again")
-        time.sleep(3)
+#        time.sleep(3)
       except IndexError:
         print("WARNING: invalid choice (should be in range 0,"+str(len(list_of_derivations))+"); try again")
-        time.sleep(3)
-#  write_activity_log("return from", "select_from_available_derivations")
   return int(derivation_choice_input),selected_derivation
 
 @track_function_usage
@@ -1270,7 +1430,7 @@ write_activity_log("started", "interactive_user_prompt")
 list_of_expr=[]
 connection_expr_temp=[]
 list_of_feeds=[]
-connection_infrule_temp=[]
+connection_infrule_temp=None
 output_path='derivations'
 
 while(True):
