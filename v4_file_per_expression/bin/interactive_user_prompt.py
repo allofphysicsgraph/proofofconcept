@@ -306,13 +306,13 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
       edit_existing_derivation(output_path)
       invalid_choice=False
     elif (first_choice_input=='3'):
-      print("to do: create this routine")
+      combine_two_derivations()
       invalid_choice=False 
     elif (first_choice_input=='4'):
-      print("to do: create this routine")
+      generate_PDF()
       invalid_choice=False 
     elif (first_choice_input=='5'):
-      print("to do: create this routine")
+      popularity_counts()
       invalid_choice=False 
     else:
       print(first_choice_input)
@@ -321,6 +321,25 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
   print("exiting 'first_choice' function")
 #  write_activity_log("return from", "first_choice")
   return
+
+@track_function_usage
+def combine_two_derivations():
+    # pick a derivation
+    # pick a different derivation
+    
+    # list all expressions from the first derivation; pick one
+    # list all expressions from the second derivation; pick one
+    
+    
+    return 
+
+@track_function_usage
+def generate_PDF():
+    return 
+    
+@track_function_usage
+def popularity_counts():
+    return
 
 # http://stackoverflow.com/questions/7821661/how-to-code-autocompletion-in-python
 class MyCompleter(object):  # Custom completer
