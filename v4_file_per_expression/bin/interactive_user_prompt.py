@@ -293,7 +293,8 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
     print("2  edit an existing derivation")
     print("3  combine two derivations")
     print("4  generate PDF")
-    print("5  popularity counts")    
+    print("5  generate web pages")
+    print("6  popularity counts")    
     print("0  exit")
     first_choice_input = get_numeric_input('selection [0]: ','0')
     if (first_choice_input=='0' or first_choice_input==''):
@@ -312,6 +313,9 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
       generate_PDF()
       invalid_choice=False 
     elif (first_choice_input=='5'):
+      generate_web_pages()
+      invalid_choice=False 
+    elif (first_choice_input=='6'):
       popularity_counts()
       invalid_choice=False 
     else:
@@ -323,18 +327,75 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
   return
 
 @track_function_usage
+def generate_web_pages():
+  invalid_choice=True
+  while(invalid_choice):
+    clear_screen()
+    print("web page generation Menu")
+    print("1  each derivation")
+    print("2  all derivations")
+    print("3  each derivation and all derivations")
+    print("4  single derivation")
+    print("0  return to main menu")
+
+    first_choice_input = get_numeric_input('selection [3]: ','3')
+    if (first_choice_input=='0'):
+      invalid_choice=False
+      return # back to main menu
+    elif (first_choice_input=='1'):      
+      invalid_choice=False
+    elif (first_choice_input=='2'):      
+      invalid_choice=False
+    elif (first_choice_input=='3' or first_choice_input==''):
+      invalid_choice=False
+    elif (first_choice_input=='4'):      
+      invalid_choice=False
+    else:
+      print(first_choice_input)
+      print("\n--> invalid choice; try again")
+      time.sleep(1)
+ 
+  return
+
+@track_function_usage
+def generate_PDF():
+  invalid_choice=True
+  while(invalid_choice):
+    clear_screen()
+    print("PDF generation Menu")
+    print("1  each derivation")
+    print("2  all derivations")
+    print("3  each derivation and all derivations")
+    print("4  single derivation")
+    print("0  return to main menu")
+
+    first_choice_input = get_numeric_input('selection [3]: ','3')
+    if (first_choice_input=='0'):
+      invalid_choice=False
+      return # back to main menu
+    elif (first_choice_input=='1'):      
+      invalid_choice=False
+    elif (first_choice_input=='2'):      
+      invalid_choice=False
+    elif (first_choice_input=='3' or first_choice_input==''):
+      invalid_choice=False
+    elif (first_choice_input=='4'):      
+      invalid_choice=False
+    else:
+      print(first_choice_input)
+      print("\n--> invalid choice; try again")
+      time.sleep(1)
+
+    return 
+
+@track_function_usage
 def combine_two_derivations():
     # pick a derivation
     # pick a different derivation
     
     # list all expressions from the first derivation; pick one
     # list all expressions from the second derivation; pick one
-    
-    
-    return 
-
-@track_function_usage
-def generate_PDF():
+        
     return 
     
 @track_function_usage
