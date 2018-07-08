@@ -316,7 +316,7 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
       generate_web_pages()
       invalid_choice=False 
     elif (first_choice_input=='6'):
-      popularity_counts()
+      popularity_counts(output_path)
       invalid_choice=False 
     else:
       print(first_choice_input)
@@ -399,7 +399,25 @@ def combine_two_derivations():
     return 
     
 @track_function_usage
-def popularity_counts():
+def popularity_counts(path):
+    # popularity of expressions (in bash):
+    #     find derivations identities -name 'expression_identifiers.csv' -exec 'cat' {} \; |\
+    #      cut -d',' -f2  | xargs -I % sh -c 'cat expressions/%_latex_*' | sort | uniq -c | sort -g -k1,1
+
+    list_of_expression_files = find_all('expression_identifiers.csv',path)
+
+    for this_file in list_of_expression_files:
+        print(this_file)
+
+    # popularity of inference rules (in bash):
+    #     find derivations identities -name 'inference_rule_identifiers.csv' -exec 'cat' {} \; |\
+    #      cut -d',' -f2 | sort | uniq -c | sort -g -k1,1
+
+    if version_info[0] < 3:
+        entered_key=raw_input("\n\nPress Enter to continue...")
+    else:
+        entered_key=input("\n\nPress Enter to continue...") # v3
+
     return
 
 # http://stackoverflow.com/questions/7821661/how-to-code-autocompletion-in-python
@@ -430,10 +448,10 @@ def edit_existing_derivation(output_path):
     clear_screen()
     step_ary = read_derivation_steps_from_files(selected_derivation, output_path)
 
-#    print("create pictures for graph from directory content")
-#    create_pictures_for_derivation(output_path,selected_derivation)
-#    print("create PNG from graphviz")
-#    create_graph_for_derivation(output_path,selected_derivation)
+    print("create pictures for graph from directory content")
+    create_pictures_for_derivation(output_path,selected_derivation)
+    print("create PNG from graphviz")
+    create_graph_for_derivation(output_path,selected_derivation)
 
     print("here's a list of steps for the derivation "+selected_derivation)
     list_of_infrule_indices=[]
