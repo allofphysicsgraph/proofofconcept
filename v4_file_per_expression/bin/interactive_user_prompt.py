@@ -17,6 +17,8 @@ from math import ceil # round up
 from glob import glob # get files in directory 
 from random import random # creating new indices
 from functools import wraps # decorator
+from collections import Counter # popularity_count
+
 
 def track_function_usage(the_function):
     '''
@@ -304,7 +306,7 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
       derivation_name = start_new_derivation(list_of_infrules,infrule_list_of_dics,output_path)
       invalid_choice=False
     elif (first_choice_input=='2'):
-      edit_existing_derivation(output_path)
+      edit_existing_derivation(list_of_derivations,output_path)
       invalid_choice=False
     elif (first_choice_input=='3'):
       combine_two_derivations()
@@ -316,7 +318,7 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
       generate_web_pages()
       invalid_choice=False 
     elif (first_choice_input=='6'):
-      popularity_counts(output_path)
+      popularity_counts(list_of_derivations,output_path)
       invalid_choice=False 
     else:
       print(first_choice_input)
@@ -397,26 +399,79 @@ def combine_two_derivations():
     # list all expressions from the second derivation; pick one
         
     return 
+
+@track_function_usage
+def press_enter_to_continue():
+    if version_info[0] < 3:
+        entered_key=raw_input("\n\nPress Enter to continue...")
+    else:
+        entered_key=input("\n\nPress Enter to continue...") # v3
+
     
 @track_function_usage
-def popularity_counts(path):
+def popularity_counts(list_of_derivations,path):
     # popularity of expressions (in bash):
     #     find derivations identities -name 'expression_identifiers.csv' -exec 'cat' {} \; |\
     #      cut -d',' -f2  | xargs -I % sh -c 'cat expressions/%_latex_*' | sort | uniq -c | sort -g -k1,1
 
-    list_of_expression_files = find_all('expression_identifiers.csv',path)
-
-    for this_file in list_of_expression_files:
-        print(this_file)
+#    list_of_expression_files = find_all('expression_identifiers.csv',path)
+#    for this_file in list_of_expression_files:
+#        print(this_file)
 
     # popularity of inference rules (in bash):
     #     find derivations identities -name 'inference_rule_identifiers.csv' -exec 'cat' {} \; |\
     #      cut -d',' -f2 | sort | uniq -c | sort -g -k1,1
 
-    if version_info[0] < 3:
-        entered_key=raw_input("\n\nPress Enter to continue...")
-    else:
-        entered_key=input("\n\nPress Enter to continue...") # v3
+    clear_screen()
+
+    all_infrules=[]
+    all_exprs=[]
+    for this_deriv in list_of_derivations:
+        edge_list, expr_list, infrule_list, feed_list = read_csv_files_into_ary(path+"/"+this_deriv)
+
+        derivation_infrules=[]
+        for this_infrule in infrule_list:
+            all_infrules.append(this_infrule[1])
+#        print(this_deriv)
+#        print(all_infrules)
+
+        derivation_exprs=[]
+        for this_expr in expr_list:
+            all_exprs.append(this_expr[1])
+
+#    print("all exprs:")
+#    print(all_exprs)
+
+    # https://stackoverflow.com/questions/2600191/how-to-count-the-occurrences-of-a-list-item
+    infrule_count_dict=Counter(all_infrules)
+    expr_count_dict=Counter(all_exprs)
+
+    # https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value
+    for infrule in sorted(infrule_count_dict, key=infrule_count_dict.get): # , reverse=True
+        print(str(infrule_count_dict[infrule])+" "+infrule)
+    print("\n")
+
+    press_enter_to_continue()
+
+    expr_dict={}
+    for expr_indx in all_exprs:
+        list_of_expr_files = find_all(expr_indx+"_latex.tex",path)
+        if (len(list_of_expr_files)>1):
+            print("more than 1 Latex found for "+expr_indx)
+            print(list_of_expr_files)
+        if (len(list_of_expr_files)==0):
+            list_of_expr_files = glob("expressions/"+expr_indx+"_*.tex")
+
+        with open(list_of_expr_files[0],'r') as exprfile:
+            line_list=exprfile.readlines()
+            line_list = [line.strip() for line in line_list]
+            expr_dict[expr_indx]=line_list
+
+    for expr_indx in sorted(expr_count_dict, key=expr_count_dict.get): # , reverse=True
+        print(str(expr_count_dict[expr_indx])+" "+expr_dict[expr_indx][0]) # only print the first line of the latex
+    print("\n")
+
+    press_enter_to_continue()
 
     return
 
@@ -438,9 +493,8 @@ class MyCompleter(object):  # Custom completer
             return None
 
 @track_function_usage
-def edit_existing_derivation(output_path):
-#  write_activity_log("def", "edit_existing_derivation")
-  # which exiting derivation?
+def edit_existing_derivation(list_of_derivations,output_path):
+    # which exiting derivation?
     [derivation_choice_input,selected_derivation]=select_from_available_derivations(list_of_derivations)
     if (selected_derivation=='EXIT'):
         print("exit from editing")
@@ -482,10 +536,7 @@ def edit_existing_derivation(output_path):
         else:
             print("invalid selection; try again")
 
-    if version_info[0] < 3:
-        entered_key=raw_input("\n\nPress Enter to continue...")
-    else:
-        entered_key=input("\n\nPress Enter to continue...") # v3
+    press_enter_to_continue()
 
     return
 
