@@ -49,32 +49,6 @@ def write_activity_log(description,function_name):
 
 
 @track_function_usage
-def latex_header(tex_file):
-  todays_date=time.strftime("%Y%m%d")
-  tex_file.write('\\documentclass[12pt]{report}\n')
-  tex_file.write('% '+todays_date+'\n')
-  tex_file.write('\\usepackage{amsmath} % advanced math\n')
-  tex_file.write('\\usepackage{amssymb}\n')
-  tex_file.write('\\usepackage{amsfonts}\n')
-  tex_file.write('\\usepackage{graphicx,color}\n')
-  tex_file.write('\\usepackage{verbatim} % multi-line comments\n')
-  tex_file.write('\\usepackage[backref, colorlinks=false, pdftitle={'+todays_date+'}, \n')
-  tex_file.write('pdfauthor={Ben Payne}, pdfsubject={physics graph}, \n')
-  tex_file.write('pdfkeywords={physics,graph,automated, computer algebra system}]{hyperref}\n')
-  tex_file.write('\\setlength{\\topmargin}{-.5in}\n')
-  tex_file.write('\\setlength{\\textheight}{9in}\n')
-  tex_file.write('\\setlength{\\oddsidemargin}{-0in}\n')
-  tex_file.write('\\setlength{\\textwidth}{6.5in}\n')
-  tex_file.write('\\newcommand{\\when}[1]{{\\rm \ when\\ }#1}\n')
-  tex_file.write('\\newcommand{\\bra}[1]{\\langle #1 |}\n')
-  tex_file.write('\\newcommand{\\ket}[1]{| #1\\rangle}\n')
-  tex_file.write('\\newcommand{\\op}[1]{\\hat{#1}}\n')
-  tex_file.write('\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n')
-  tex_file.write('\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n')
-  tex_file.write('\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n')
-  return
-
-@track_function_usage
 def create_pictures_for_derivation(output_path,derivation_name):
     '''
     reads latex from file
@@ -309,13 +283,13 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
       edit_existing_derivation(list_of_derivations,output_path)
       invalid_choice=False
     elif (first_choice_input=='3'):
-      combine_two_derivations()
+      combine_two_derivations(list_of_derivations,output_path)
       invalid_choice=False 
     elif (first_choice_input=='4'):
-      generate_PDF()
+      generate_PDF(list_of_derivations,infrule_list_of_dics,output_path)
       invalid_choice=False 
     elif (first_choice_input=='5'):
-      generate_web_pages()
+      generate_web_pages(list_of_derivations,output_path)
       invalid_choice=False 
     elif (first_choice_input=='6'):
       popularity_counts(list_of_derivations,output_path)
@@ -324,12 +298,16 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
       print(first_choice_input)
       print("\n--> invalid choice; try again")
       time.sleep(1)
-  print("exiting 'first_choice' function")
+  print("finished 'first_choice' function")
 #  write_activity_log("return from", "first_choice")
   return
 
 @track_function_usage
 def generate_web_pages():
+  '''
+  proofofconcept/v3_CSV/bin/create_d3js_html_per_derivation_for_web.sh
+  proofofconcept/v3_CSV/bin/create_d3js_html_per_derivation_for_local.sh
+  '''
   invalid_choice=True
   while(invalid_choice):
     clear_screen()
@@ -357,17 +335,25 @@ def generate_web_pages():
       print("\n--> invalid choice; try again")
       time.sleep(1)
  
+  print("finished generate_web_pages")
+  time.sleep(1)
+  
   return
 
 @track_function_usage
-def generate_PDF():
+def generate_PDF(list_of_derivations,infrule_list_of_dics,output_path):
+  '''
+  see
+  proofofconcept/v3_CSV/bin/create_pdf_per_derivation_from_connectionsDB.py
+  proofofconcept/v3_CSV/bin/create_pdf_of_all_expressions.py
+  '''
   invalid_choice=True
   while(invalid_choice):
     clear_screen()
     print("PDF generation Menu")
-    print("1  each derivation")
-    print("2  all derivations")
-    print("3  each derivation and all derivations")
+    print("1  PDF per derivation for all derivations")
+    print("2  PDF of all derivations")
+    print("3  1+2: PDF of each derivation and for all derivations")
     print("4  single derivation")
     print("0  return to main menu")
 
@@ -376,19 +362,95 @@ def generate_PDF():
       invalid_choice=False
       return # back to main menu
     elif (first_choice_input=='1'):      
+      for selected_derivation in list_of_derivations:
+        generate_pdf_for_single_derivation(selected_derivation,output_path)
       invalid_choice=False
     elif (first_choice_input=='2'):      
       invalid_choice=False
     elif (first_choice_input=='3' or first_choice_input==''):
       invalid_choice=False
-    elif (first_choice_input=='4'):      
+    elif (first_choice_input=='4'):
+      [derivation_choice_input,selected_derivation]=select_from_available_derivations(list_of_derivations)
+      generate_pdf_for_single_derivation(selected_derivation,infrule_list_of_dics,output_path)
       invalid_choice=False
     else:
       print(first_choice_input)
       print("\n--> invalid choice; try again")
       time.sleep(1)
 
+    print("finished generate_PDF")
+    time.sleep(1)
+
     return 
+
+@track_function_usage
+def generate_pdf_for_single_derivation(selected_derivation,infrule_list_of_dics,output_path):
+  '''
+  see
+  proofofconcept/v3_CSV/bin/create_pdf_per_derivation_from_connectionsDB.py
+  '''
+
+  tex_file=open(output_path+'/'+selected_derivation+'/'+selected_derivation+'.tex','w')
+  latex_header(tex_file)
+
+  for this_infrule in infrule_list_of_dics:
+    #print(this_infrule)
+    tex_file.write('\\newcommand{\\'+
+      this_infrule["inference rule"]+ '}['+
+      str(this_infrule["number of output expressions"]+this_infrule["number of input expressions"])+']{'+
+      this_infrule["LaTeX expansion"].rstrip()+'}\n')
+  tex_file.write('\\begin{document}\n')
+
+  step_ary = read_derivation_steps_from_files(selected_derivation, output_path)
+  for this_step_dict in step_ary:
+    #print(this_step_dict)
+    tex_file.write(str(this_step_dict['infrule indx'])+"\n")
+    tex_file.write("\\"+this_step_dict['infrule']+"{"+"}"+"\n")
+  
+  tex_file.write('\\end{document}\n')
+  tex_file.close()
+
+
+  print("finished generating PDF for "+selected_derivation)
+  time.sleep(1)
+
+  return
+
+def compile_latex_to_pdf(output_path,which_connection_set):
+  os.system('latex '+output_path+'/connections_result_'+which_connection_set)
+  os.system('latex '+output_path+'/connections_result_'+which_connection_set)
+  os.system('mv connections_result_* '+output_path)
+  os.system('dvipdf '+output_path+'/connections_result_'+which_connection_set+'.dvi')
+  os.system('mv connections_result_* '+output_path)
+  return
+
+
+@track_function_usage
+def latex_header(tex_file):
+  todays_date=time.strftime("%Y%m%d")
+  tex_file.write('\\documentclass[12pt]{report}\n')
+  tex_file.write('% '+todays_date+'\n')
+  tex_file.write('\\usepackage{amsmath} % advanced math\n')
+  tex_file.write('\\usepackage{amssymb}\n')
+  tex_file.write('\\usepackage{amsfonts}\n')
+  tex_file.write('\\usepackage{graphicx,color}\n')
+  tex_file.write('\\usepackage{verbatim} % multi-line comments\n')
+  tex_file.write('\\usepackage[backref, colorlinks=false, pdftitle={'+todays_date+'}, \n')
+  tex_file.write('pdfauthor={Ben Payne}, pdfsubject={physics graph}, \n')
+  tex_file.write('pdfkeywords={physics,graph,automated, computer algebra system}]{hyperref}\n')
+  tex_file.write('\\setlength{\\topmargin}{-.5in}\n')
+  tex_file.write('\\setlength{\\textheight}{9in}\n')
+  tex_file.write('\\setlength{\\oddsidemargin}{-0in}\n')
+  tex_file.write('\\setlength{\\textwidth}{6.5in}\n')
+  tex_file.write('\\newcommand{\\when}[1]{{\\rm \ when\\ }#1}\n')
+  tex_file.write('\\newcommand{\\bra}[1]{\\langle #1 |}\n')
+  tex_file.write('\\newcommand{\\ket}[1]{| #1\\rangle}\n')
+  tex_file.write('\\newcommand{\\op}[1]{\\hat{#1}}\n')
+  tex_file.write('\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n')
+  tex_file.write('\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n')
+  tex_file.write('\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n')
+  return
+
 
 @track_function_usage
 def combine_two_derivations():
@@ -1555,9 +1617,10 @@ def find_input_files(path_for_derivations,path_for_infrules):
     return infrule_list_of_dics,list_of_derivations,list_of_infrules
 
 if __name__ == "__main__":
-    write_activity_log("started", "interactive_user_prompt")
-    path_for_derivations='derivations'
-    path_for_infrules='inference_rules'
-    [infrule_list_of_dics,list_of_derivations,list_of_infrules] = find_input_files(path_for_derivations,path_for_infrules)
-    while(True):
-        first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,path_for_derivations)
+  write_activity_log("started", "interactive_user_prompt")
+  path_for_derivations='derivations'
+  path_for_infrules='inference_rules'
+  [infrule_list_of_dics,list_of_derivations,list_of_infrules] = find_input_files(path_for_derivations,path_for_infrules)
+  while(True):
+    print("entered main loop")
+    first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,path_for_derivations)
