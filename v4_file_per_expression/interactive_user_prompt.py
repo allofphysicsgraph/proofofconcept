@@ -404,8 +404,22 @@ def generate_pdf_for_single_derivation(selected_derivation,infrule_list_of_dics,
   step_ary = read_derivation_steps_from_files(selected_derivation, output_path)
   for this_step_dict in step_ary:
     #print(this_step_dict)
-    tex_file.write(str(this_step_dict['infrule indx'])+"\n")
-    tex_file.write("\\"+this_step_dict['infrule']+"{"+"}"+"\n")
+    strng_for_this_step="\\"+this_step_dict['infrule']+"{"
+    for this_input_dict in this_step_dict['input']:
+      strng_for_this_step += str(this_input_dict['indx specific to this step for input'])+","
+    for this_feed_dict in this_step_dict['feed']:
+      strng_for_this_step += str(this_feed_dict['latex'])+","
+    for this_output_dict in this_step_dict['output']:
+      strng_for_this_step += str(this_output_dict['indx specific to this step for input'])+","
+    strng_for_this_step = strng_for_this_step[:-1] # remove last character which is a comma
+    strng_for_this_step += "}\n"
+    #print(strng_for_this_step)
+    tex_file.write(strng_for_this_step)
+    for this_output_dict in this_step_dict['output']:
+      tex_file.write("\\begin{equation}\n")
+      tex_file.write(this_output_dict['latex'])
+      tex_file.write("\\label{"+str(this_output_dict['indx specific to this step for input'])+"}\n")
+      tex_file.write("\\end{equation}\n")
   
   tex_file.write('\\end{document}\n')
   tex_file.close()
