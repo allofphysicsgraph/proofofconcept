@@ -233,22 +233,19 @@ def exit_from_program():
 
 
 @track_function_usage
-def get_text_input(prompt_text):
-#  write_activity_log("def","get_text_input")
+def get_text_input(prompt_text,response_required):
   text_provided=False
   while(not text_provided):
     input_text=raw_input(prompt_text)
-    if (input_text==''):
+    if (input_text=='' and response_required):
       text_provided=False
       print("--> invalid input (empty); Enter a string")
     else:
       text_provided=True
-#  write_activity_log("return from","get_text_input")
   return input_text
   
 @track_function_usage
 def get_numeric_input(prompt_text,default_choice):
-#  write_activity_log("def", "get_numeric_input")
   number_provided=False
   while(not number_provided):
     input_number=raw_input(prompt_text)
@@ -681,7 +678,7 @@ def change_input_output_feed_in_step(step_to_edit,which_category):
     print(step_to_edit[which_category][node_indx_choice]['latex'])
     text_provided=False
     while(not text_provided):
-        this_latex=get_text_input("enter new latex for "+which_category+": ")
+        this_latex=get_text_input("enter new latex for "+which_category+": ",True)
         text_provided=True
 
     step_to_edit[which_category][node_indx_choice]['latex']=this_latex
@@ -751,7 +748,7 @@ def select_step_from_derivation(selected_derivation,list_of_infrule_indices):
 def start_new_derivation(list_of_infrules,infrule_list_of_dics,output_path):
   clear_screen()
   print("starting new derivation")
-  derivation_name=get_text_input('name of new derivation (can contain spaces): ')  
+  derivation_name=get_text_input('name of new derivation (can contain spaces): ',True)  
   
   step_indx=0
   step_ary=[]
@@ -763,7 +760,14 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,output_path):
 
     [selected_infrule_dic,input_ary,feed_ary,output_ary]=get_step_arguments(\
         list_of_infrules,infrule_list_of_dics,step_ary)
-    step_dic={"infrule":selected_infrule_dic["inference rule"],"input":input_ary,"feed":feed_ary,"output":output_ary}
+    step_comment=get_text_input("step comment: ",False)
+    if (step_comment==""):
+      step_dic={"infrule":selected_infrule_dic["inference rule"],
+                "input":input_ary,"feed":feed_ary,"output":output_ary}
+    else:
+      step_dic={"infrule":selected_infrule_dic["inference rule"],
+                "input":input_ary,"feed":feed_ary,"output":output_ary,
+                "step comment":step_comment}
     print("\nResulting dic:")
     print_this_step(step_dic)
     
@@ -1468,6 +1472,7 @@ def get_list_of_expr_indices_and_latex(step_ary):
 def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expressions,step_ary):
 #    write_activity_log("def", "user_supplies_latex_or_expression_index")
     valid_input=False
+    expr_comment=""
     while(not valid_input):
         if (len(step_ary)>0): # if there are prior steps,
             print("\nChoice for providing step content for "+type_str+": ")
@@ -1480,13 +1485,14 @@ def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expres
         if (int(latex_or_index_choice)==1):
             text_provided=False
             while(not text_provided):
-                this_latex=get_text_input(type_str+' expression Latex,    '+str(input_indx+1)+' of '+str(number_of_expressions)+': ')
+                this_latex=get_text_input(type_str+' expression Latex,    '+str(input_indx+1)+' of '+str(number_of_expressions)+': ',True)
                 if (("=" not in this_latex) and (">" not in this_latex) and ("<" not in this_latex)):
                     text_provided=False
                     print("--> invalid input (missing relation operator); Enter a string")
                 else:
                     text_provided=True
 
+            expr_comment=get_text_input("comment: ",False)
             expr_ID=get_new_expr_indx('derivations')
 
             valid_input=True
@@ -1521,15 +1527,15 @@ def user_supplies_latex_or_expression_index(type_str,input_indx,number_of_expres
             valid_input=False    
 
     this_dic={}
+    if (expr_comment != ""):
+        this_dic["comment"]=expr_comment
     this_dic["latex"]=this_latex
     this_dic["expression indx"]=int(expr_ID)
 
-#    write_activity_log("return from", "user_supplies_latex_or_expression_index")
     return this_dic
 
 @track_function_usage
 def user_provide_latex_arguments(selected_infrule_dic,step_ary):
-#    write_activity_log("def", "user_provide_latex_arguments")
     print("selected "+selected_infrule_dic["inference rule"])
 #     print("for this infrule, provide input, feed, and output")
 #     print(infrule_list_of_dics[infrule_choice_input-1])
@@ -1562,7 +1568,7 @@ def user_provide_latex_arguments(selected_infrule_dic,step_ary):
         for feed_indx in range(number_of_feeds):
             feed_dic={}
             feed_dic['latex']=get_text_input('feed Latex,                '+\
-                             str(feed_indx+1)+' of '+str(number_of_feeds)+': ')
+                             str(feed_indx+1)+' of '+str(number_of_feeds)+': ',True)
             feed_ary.append(feed_dic)
     output_ary=[]
     if (number_of_output_expressions>0):
@@ -1572,18 +1578,15 @@ def user_provide_latex_arguments(selected_infrule_dic,step_ary):
 
             output_ary.append(this_output_dic)
 
-#    write_activity_log("return from", "user_provide_latex_arguments")
     return input_ary,feed_ary,output_ary
 
 @track_function_usage
 def get_step_arguments(list_of_infrules,infrule_list_of_dics,step_ary):
-#  write_activity_log("def", "get_step_arguments")
   print("starting a new step")
   selected_infrule_dic=user_choose_infrule(list_of_infrules,infrule_list_of_dics,step_ary)
   clear_screen()
   [input_ary,feed_ary,output_ary]=user_provide_latex_arguments(selected_infrule_dic,\
                                                      step_ary)
-#  write_activity_log("return from", "get_step_arguments")
   return selected_infrule_dic,input_ary,feed_ary,output_ary
 
 @track_function_usage
