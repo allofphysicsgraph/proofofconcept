@@ -108,6 +108,7 @@ def write_edges_and_nodes_to_graphviz(which_derivation_to_make,\
 #    graphviz_file.write("label=\"Expession relations\\nExtracted from connections_database.csv\";\n")
     graphviz_file.write("fontsize=12;\n")
 
+    found_declare_init=False
     for this_pair in edge_list:
         if (len(this_pair) != 2):
             print("invalid construct for edge list: ")
@@ -127,7 +128,12 @@ def write_edges_and_nodes_to_graphviz(which_derivation_to_make,\
             print("invalid construct for infrule list: ")
             print(this_pair)
         else:
-            graphviz_file.write(this_pair[0]+" [shape=invtrapezium, color=red,label=\""+this_pair[1]+"\"];\n")
+            if (this_pair[1]=="declareInitialExpr" and not found_declare_init):
+                found_declare_init=True
+#                graphviz_file.write(this_pair[0]+" [shape=invtrapezium, color=red, label=\""+this_pair[1]+"\", pos=\"0,0\"];\n")    # https://www.graphviz.org/doc/info/attrs.html#d:pos
+                graphviz_file.write(this_pair[0]+" [shape=invtrapezium, color=red, label=\""+this_pair[1]+"\", imagepos=\"bc\"];\n") # https://www.graphviz.org/doc/info/attrs.html#d:imagepos
+            else:
+                graphviz_file.write(this_pair[0]+" [shape=invtrapezium, color=red, label=\""+this_pair[1]+"\"];\n")
         # because the infrule is stored as text and not a picture, it doesn't point back to a .png file
 
 # print feed_list
@@ -394,11 +400,13 @@ def generate_pdf_for_single_derivation(selected_derivation,infrule_list_of_dics,
   latex_header(tex_file)
 
   for this_infrule in infrule_list_of_dics:
-    #print(this_infrule)
+#    print(this_infrule)
     tex_file.write('\\newcommand{\\'+
       this_infrule["inference rule"]+ '}['+
-      str(this_infrule["number of output expressions"]+this_infrule["number of input expressions"])+']{'+
-      this_infrule["LaTeX expansion"].rstrip()+'}\n')
+        str(this_infrule["number of input expressions"]+
+            this_infrule['number of feeds']+
+            this_infrule["number of output expressions"])+']{'+
+        this_infrule["LaTeX expansion"].rstrip()+'}\n')
   tex_file.write('\\begin{document}\n')
 
   step_ary = read_derivation_steps_from_files(selected_derivation, output_path)
@@ -406,21 +414,21 @@ def generate_pdf_for_single_derivation(selected_derivation,infrule_list_of_dics,
     #print(this_step_dict)
     strng_for_this_step="\\"+this_step_dict['infrule']+"{"
     for this_input_dict in this_step_dict['input']:
-      strng_for_this_step += str(this_input_dict['indx specific to this step for input'])+","
+      strng_for_this_step += str(this_input_dict['indx specific to this step for input'])+"}{"
     for this_feed_dict in this_step_dict['feed']:
       strng_for_this_step += str(this_feed_dict['latex'])+","
     for this_output_dict in this_step_dict['output']:
-      strng_for_this_step += str(this_output_dict['indx specific to this step for input'])+","
-    strng_for_this_step = strng_for_this_step[:-1] # remove last character which is a comma
-    strng_for_this_step += "}\n"
+      strng_for_this_step += str(this_output_dict['indx specific to this step for input'])+"}{"
+    strng_for_this_step = strng_for_this_step[:-1] # remove last character which is a {
+    strng_for_this_step += "\n"
     #print(strng_for_this_step)
     tex_file.write(strng_for_this_step)
     for this_output_dict in this_step_dict['output']:
       tex_file.write("\\begin{equation}\n")
-      tex_file.write(this_output_dict['latex'])
-      tex_file.write("\\label{"+str(this_output_dict['indx specific to this step for input'])+"}\n")
+      tex_file.write(this_output_dict['latex']+"\n")
+      tex_file.write("\\label{eq:"+str(this_output_dict['indx specific to this step for input'])+"}\n")
       tex_file.write("\\end{equation}\n")
-  
+    tex_file.write("% end of step\n")
   tex_file.write('\\end{document}\n')
   tex_file.close()
 
