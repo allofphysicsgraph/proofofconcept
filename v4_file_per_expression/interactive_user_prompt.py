@@ -18,7 +18,7 @@ from glob import glob # get files in directory
 from random import random # creating new indices
 from functools import wraps # decorator
 from collections import Counter # popularity_count
-
+from PIL import Image # for determining image dimensions, necessary for JSON which is referenced by d3js webpage
 
 def track_function_usage(the_function):
     '''
@@ -306,7 +306,7 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
   return
 
 @track_function_usage
-def generate_web_pages():
+def generate_web_pages(list_of_derivations,output_path):
   '''
   proofofconcept/v3_CSV/bin/create_d3js_html_per_derivation_for_web.sh
   proofofconcept/v3_CSV/bin/create_d3js_html_per_derivation_for_local.sh
@@ -323,15 +323,22 @@ def generate_web_pages():
 
     first_choice_input = get_numeric_input('selection [3]: ','3')
     if (first_choice_input=='0'):
+      print("returning to main menu")
       invalid_choice=False
       return # back to main menu
-    elif (first_choice_input=='1'):      
+    elif (first_choice_input=='1'):   
+      for selected_derivation in list_of_derivations:
+        generate_webpage_for_single_derivation(selected_derivation,output_path)
       invalid_choice=False
-    elif (first_choice_input=='2'):      
+    elif (first_choice_input=='2'):
+      print("currently there is no action associated with this selection")
       invalid_choice=False
     elif (first_choice_input=='3' or first_choice_input==''):
+      print("currently there is no action associated with this selection")
       invalid_choice=False
-    elif (first_choice_input=='4'):      
+    elif (first_choice_input=='4'):
+      [derivation_choice_input,selected_derivation]=select_from_available_derivations(list_of_derivations)
+      generate_webpage_for_single_derivation(selected_derivation,output_path)
       invalid_choice=False
     else:
       print(first_choice_input)
@@ -341,6 +348,192 @@ def generate_web_pages():
   print("finished generate_web_pages")
   time.sleep(1)
   
+  return
+
+def create_html_page(filename,path_to_json,path_to_d3js,path_to_png):
+  with open(filename,'w') as fhtml:
+    fhtml.write("\
+<!DOCTYPE html> \n \
+<body> \n \
+<script src=\""+path_to_d3js+"\"></script>  \n \
+<script> \n \
+ \n \
+var w = 1100, \n \
+    h = 500; \n \
+ \n \
+var circleWidth = 5; \n \
+ \n \
+var palette = { \n \
+      \"lightgray\": \"#819090\", \n \
+      \"gray\": \"#708284\", \n \
+      \"mediumgray\": \"#536870\", \n \
+      \"darkgray\": \"#475B62\", \n \
+ \n \
+      \"darkblue\": \"#0A2933\", \n \
+      \"darkerblue\": \"#042029\", \n \
+ \n \
+      \"paleryellow\": \"#FCF4DC\", \n \
+      \"paleyellow\": \"#EAE3CB\", \n \
+      \"yellow\": \"#A57706\", \n \
+      \"orange\": \"#BD3613\", \n \
+      \"red\": \"#D11C24\", \n \
+      \"pink\": \"#C61C6F\", \n \
+      \"purple\": \"#595AB7\", \n \
+      \"blue\": \"#2176C7\", \n \
+      \"green\": \"#259286\", \n \
+      \"yellowgreen\": \"#738A05\" \n \
+  } \n \
+ \n \
+var force = d3.layout.force() \n \
+    .gravity(0.08) \n \
+    .charge(-1000) // A negative value results in node repulsion, while a positive value results in node attraction. \n \
+//    .linkDistance(300) \n \
+    .size([w, h]); \n \
+ \n \
+var vis = d3.select(\"body\") \n \
+    .append(\"svg:svg\") \n \
+      .attr(\"class\", \"stage\") \n \
+      .attr(\"width\", w) \n \
+      .attr(\"height\", h); \n \
+ \n \
+///* \n \
+// build the arrow \n \
+vis.append(\"svg:defs\").selectAll(\"marker\") \n \
+    .data([\"end\"]) \n \
+  .enter().append(\"svg:marker\") \n \
+    .attr(\"id\", String) \n \
+    .attr(\"viewBox\", \"0 -5 10 10\") \n \
+    .attr(\"refX\", 15) \n \
+    .attr(\"refY\", -1.5) \n \
+    .attr(\"markerWidth\", 12) \n \
+    .attr(\"markerHeight\", 12) \n \
+    .attr(\"orient\", \"auto\") \n \
+  .append(\"svg:path\") \n \
+    .attr(\"d\", \"M0,-5L10,0L0,5\"); \n \
+//*/ \n \
+ \n \
+// load the external data \n \
+d3.json(\""+path_to_json+"\", function(error, root) { \n \
+  //console.log(root); \n \
+  console.log(root.nodes); \n \
+  console.log(root.links); \n \
+ \n \
+  force \n \
+      .nodes(root.nodes) \n \
+      .links(root.links) \n \
+      .start(); \n \
+ \n \
+  var link = vis.selectAll(\".link\") \n \
+        .data(root.links) \n \
+        .enter().append(\"line\") \n \
+          .attr(\"class\", \"link\") \n \
+          .attr(\"stroke\", \"#666\") // #CCC is a light gray  \n \
+          .attr(\"fill\", \"none\") \n \
+          .attr(\"marker-end\", \"url(#end)\"); \n \
+ \n \
+  var node = vis.selectAll(\"circle.node\") \n \
+      .data(root.nodes) \n \
+      .enter().append(\"g\") \n \
+      .attr(\"class\", \"node\") \n \
+      .call(force.drag); \n \
+ \n \
+  node.append(\"svg:circle\") \n \
+//      .attr(\"cx\", function(d) { return d.x; }) \n \
+//      .attr(\"cy\", function(d) { return d.y; }) \n \
+      .attr(\"r\", circleWidth) \n \
+      .attr(\"fill\", palette.darkgray ) \n \
+ \n \
+  node.append(\"text\") \n \
+      .text(function(d, i) { return d.label; }) \n \
+      .attr(\"x\",  5) // positive value moves text right of origin \n \
+      .attr(\"y\",  -3) // positive value moves text up from origin \n \
+      .attr(\"font-family\",  \"Bree Serif\") \n \
+      .attr(\"fill\",    palette.red) \n \
+      .attr(\"font-size\",    \"1em\" ) \n \
+      //.attr(\"text-anchor\",  function(d, i) { if (i>0) { return  \"beginning\"; }      else { return \"end\" } }) \n \
+ \n \
+  node.append(\"image\") \n \
+      .attr(\"xlink:href\", function(d, i) { return d.img; } ) \n \
+      // setting x and y both to zero is redundant -- those are the default values \n \
+      .attr(\"x\", 0) // off-set from center of node; upper left corner of picture is origin \n \
+      .attr(\"y\", 0) \n \
+      .attr(\"width\", function(d, i) { return d.width/2; }) // without both width and height, image does not display \n \
+//      .attr(\"width\", 200) // without both width and height, image does not display \n \
+      .attr(\"height\", function(d, i) { return d.height/2; }) \n \
+ \n \
+  force.on(\"tick\", function(e) { \n \
+    node.attr(\"transform\", function(d, i) {      \n \
+      return \"translate(\" + d.x + \",\" + d.y + \")\";  \n \
+    }); \n \
+     \n \
+    link.attr(\"x1\", function(d)   { return d.source.x; }) \n \
+        .attr(\"y1\", function(d)   { return d.source.y; }) \n \
+        .attr(\"x2\", function(d)   { return d.target.x; }) \n \
+        .attr(\"y2\", function(d)   { return d.target.y; }) \n \
+  }); // force.on \n \
+ \n \
+  force.start(); \n \
+ \n \
+}); \n \
+ \n \
+</script> \n \
+<P>Picture from Graphviz:</P> \n \
+<P><img src=\""+path_to_png+"\" width=\"800\"></P> \n \
+</body> \n \
+</html> \n \
+")
+
+  return
+
+@track_function_usage
+def image_dimensions(filepath):
+  '''
+  https://stackoverflow.com/questions/6444548/how-do-i-get-the-picture-size-with-pil
+  '''
+  with Image.open(filepath) as img:
+    width, height = img.size
+  return width, height
+
+@track_function_usage
+def create_json_for_webpage(path_to_pictures,path_to_json,step_ary):
+  '''
+  see 
+  proofofconcept/v3_CSV/bin/create_json_per_derivation_from_connectionsDB.py
+  '''
+
+  node_indx=0
+  node_lines=""
+
+  img_width, img_height = image_dimensions(path_to_pictures+"/"+feed+".png")
+  node_lines+="  {\"img\": \""+path_to_pictures+"/"+feed+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+feed+"\"},\n"
+
+  edge_lines=""
+  
+  
+  with open(path_to_json,'w') as fjson:
+    fjson.write("{\"nodes\":[\n")
+    fjson.write(node_lines)
+    fjson.write("],\n")
+    fjson.write("   \"links\":[\n")
+    fjson.write(edge_lines)
+    fjson.write("]}\n")
+  return
+
+
+@track_function_usage
+def generate_webpage_for_single_derivation(selected_derivation,output_path):
+  '''
+  see
+  proofofconcept/v3_CSV/bin/create_d3js_html_per_derivation_for_local.sh
+  '''
+  
+  step_ary = read_derivation_steps_from_files(selected_derivation, output_path)
+  
+  path_to_json="http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_from_project/curl_curl_identity.json"
+  create_json_for_webpage(path_to_pictures,path_to_json,step_ary)
+  path_to_png ="http://allofphysicsgraph.github.io/proofofconcept/site/pictures/generated_from_project/graph_curl_curl_identity_without_labels.png"
+  path_to_d3js="http://allofphysicsgraph.github.io/proofofconcept/site/javascript_libraries/d3/d3.v3.min.js"
+  create_html_page("file.html",path_to_json,path_to_d3js)
   return
 
 @track_function_usage
@@ -369,8 +562,10 @@ def generate_PDF(list_of_derivations,infrule_list_of_dics,output_path):
         generate_pdf_for_single_derivation(selected_derivation,output_path)
       invalid_choice=False
     elif (first_choice_input=='2'):      
+      print("currently there is no action associated with this selection")
       invalid_choice=False
     elif (first_choice_input=='3' or first_choice_input==''):
+      print("currently there is no action associated with this selection")
       invalid_choice=False
     elif (first_choice_input=='4'):
       [derivation_choice_input,selected_derivation]=select_from_available_derivations(list_of_derivations)
