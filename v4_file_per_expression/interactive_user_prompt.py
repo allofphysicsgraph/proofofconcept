@@ -283,7 +283,7 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
       derivation_name = start_new_derivation(list_of_infrules,infrule_list_of_dics,output_path)
       invalid_choice=False
     elif (first_choice_input=='2'):
-      edit_existing_derivation(list_of_derivations,output_path)
+      edit_existing_derivation(list_of_derivations,output_path,list_of_infrules,infrule_list_of_dics)
       invalid_choice=False
     elif (first_choice_input=='3'):
       combine_two_derivations(list_of_derivations,output_path)
@@ -769,7 +769,7 @@ class MyCompleter(object):  # Custom completer
             return None
 
 @track_function_usage
-def edit_existing_derivation(list_of_derivations,output_path):
+def edit_existing_derivation(list_of_derivations,output_path,list_of_infrules,infrule_list_of_dics):
     # which exiting derivation?
     [derivation_choice_input,selected_derivation]=select_from_available_derivations(list_of_derivations)
     if (selected_derivation=='EXIT'):
@@ -778,10 +778,10 @@ def edit_existing_derivation(list_of_derivations,output_path):
     clear_screen()
     step_ary = read_derivation_steps_from_files(selected_derivation, output_path)
 
-    print("create pictures for graph from directory content")
-    create_pictures_for_derivation(output_path,selected_derivation)
-    print("create PNG from graphviz")
-    create_graph_for_derivation(output_path,selected_derivation)
+#    print("create pictures for graph from directory content")
+#    create_pictures_for_derivation(output_path,selected_derivation)
+#    print("create PNG from graphviz")
+#    create_graph_for_derivation(output_path,selected_derivation)
 
     print("here's a list of steps for the derivation "+selected_derivation)
     list_of_infrule_indices=[]
@@ -805,7 +805,7 @@ def edit_existing_derivation(list_of_derivations,output_path):
         elif (input_choice=="e" or input_choice==""):
             print("edit step")
             invalid_choice=False
-            step_ary=edit_step_in_derivation(step_ary,selected_derivation,list_of_infrule_indices)
+            step_ary=edit_step_in_derivation(step_ary,selected_derivation,list_of_infrule_indices,list_of_infrules,infrule_list_of_dics)
         elif (input_choice=="m"):
             print("done editing; returning to main menu")
             invalid_choice=False
@@ -817,49 +817,61 @@ def edit_existing_derivation(list_of_derivations,output_path):
     return
 
 @track_function_usage
-def edit_step_in_derivation(step_ary,selected_derivation,list_of_infrule_indices):
-    selected_step_indx = select_step_from_derivation(selected_derivation,list_of_infrule_indices)
-    print("\nstep to edit:")
-    for this_step in step_ary:
+def edit_step_in_derivation(step_ary,selected_derivation,list_of_infrule_indices,list_of_infrules,infrule_list_of_dics):
+  selected_step_indx = select_step_from_derivation(selected_derivation,list_of_infrule_indices)
+  print("\nstep to edit:")
+  for this_step in step_ary:
+    if (this_step['infrule indx'] == int(selected_step_indx)):
+      print_this_step(this_step)
+      step_to_edit=this_step
+      break
+
+  # where is the edit?
+  invalid_choice=True
+  while(invalid_choice):
+    input_choice=raw_input("\nr: change inference rule; i: edit input; f: edit feed; o: edit output; e: return to edit menu -   [i]: ")
+    if (input_choice=="r"):
+      print("change inference rule")
+      new_infrule = change_inference_rule_in_step(step_to_edit,list_of_infrules,infrule_list_of_dics)
+      for this_step in step_ary:
         if (this_step['infrule indx'] == int(selected_step_indx)):
-            print_this_step(this_step)
-            step_to_edit=this_step
-            break
-
-    # where is the edit?
-    invalid_choice=True
-    while(invalid_choice):
-        input_choice=raw_input("\nr: change inference rule; i: edit input; f: edit feed; o: edit output; e: return to edit menu -   [i]: ")
-        if (input_choice=="r"):
-            print("change inference rule")
-            edited_step = change_inference_rule_in_step(step_to_edit)
-            invalid_choice=False
-        elif (input_choice=="i" or input_choice==""):
-            print("edit input")
-            invalid_choice=False
-            edited_step = change_input_output_feed_in_step(step_to_edit,'input')
-        elif (input_choice=="f"):
-            print("edit feed")
-            invalid_choice=False
-            edited_step = change_input_output_feed_in_step(step_to_edit,'feed')
-        elif (input_choice=="o"):
-            print("edit output")
-            invalid_choice=False
-            edited_step = change_input_output_feed_in_step(step_to_edit,'output')
-        elif (input_choice=="e"):
-            print("returning to edit menu")
-            invalid_choice=False
-            return step_ary
-        else:
-            print("invalid selection; try again")
+          this_step['infrule']=new_infrule
+          break
+      invalid_choice=False
+    elif (input_choice=="i" or input_choice==""):
+      print("edit input")
+      invalid_choice=False
+      edited_step = change_input_output_feed_in_step(step_to_edit,'input')
+    elif (input_choice=="f"):
+      print("edit feed")
+      invalid_choice=False
+      edited_step = change_input_output_feed_in_step(step_to_edit,'feed')
+    elif (input_choice=="o"):
+      print("edit output")
+      invalid_choice=False
+      edited_step = change_input_output_feed_in_step(step_to_edit,'output')
+    elif (input_choice=="e"):
+      print("returning to edit menu")
+      invalid_choice=False
+      return step_ary
+    else:
+      print("invalid selection; try again")
 
 
-        for step_indx in range(len(step_ary)):
-            if (step_ary[step_indx]['infrule indx'] == selected_step_indx):
-                step_ary[step_indx] = edited_step
-                return step_ary
+    for step_indx in range(len(step_ary)):
+      if (step_ary[step_indx]['infrule indx'] == selected_step_indx):
+        step_ary[step_indx] = edited_step
+        return step_ary
 
-    return step_ary
+  return step_ary
+
+@track_function_usage
+def change_inference_rule_in_step(step_to_edit,list_of_infrules,infrule_list_of_dics):
+  print(step_to_edit)
+  print("inf rule is currently "+step_to_edit['infrule'])
+  selected_infrule_dic = user_choose_infrule(list_of_infrules,infrule_list_of_dics,len_of_step_ary=10) # len_of_step_ary should be greater than 1 to avoid the default of declareInit
+  #print(selected_infrule_dic)
+  return selected_infrule_dic['inference rule']
 
 @track_function_usage
 def change_input_output_feed_in_step(step_to_edit,which_category):
@@ -896,6 +908,8 @@ def delete_step_from_derivation(step_ary,selected_derivation,list_of_infrule_ind
                 invalid_choice=False
                 deletion_confirmed=True
             elif (input_choice=="n"):
+                deletion_confirmed=False
+                print("incorrect step selected; try again")
                 invalid_choice=False
             elif (input_choice=="e"):
                 invalid_choice=False
@@ -903,13 +917,16 @@ def delete_step_from_derivation(step_ary,selected_derivation,list_of_infrule_ind
             else:
                 print("invalid selection; try again")
 
-
+    # at this point the step to delete has been selected and confirmed
+    #print("selected step index is")
+    #print(selected_step_indx)
     for step_indx in range(len(step_ary)):
-        if (step_ary[step_indx]['infrule indx'] == selected_step_indx):
+        #print(step_ary[step_indx]['infrule indx'])
+        if (str(step_ary[step_indx]['infrule indx']) == str(selected_step_indx)):
             del step_ary[step_indx]
             return step_ary
 
-    print("should never get here")
+    print("delete_step_from_derivation: should never get here")
     return step_ary
 
 @track_function_usage
@@ -1591,15 +1608,14 @@ def select_from_available_derivations(list_of_derivations):
   return int(derivation_choice_input),selected_derivation
 
 @track_function_usage
-def user_choose_infrule(list_of_infrules,infrule_list_of_dics,step_ary):
-#  write_activity_log("def", "user_choose_infrule")
+def user_choose_infrule(list_of_infrules,infrule_list_of_dics,len_of_step_ary):
   if (len(list_of_infrules)==0):
     print("ERROR in interactive_user_prompt.py, user_choose_infrule: list of inference rules is empty")
     exit()
   if (len(infrule_list_of_dics)==0):
     print("ERROR in interactive_user_prompt.py, user_choose_infrule: list of inference rule dictionaries is empty")
     exit()
-  if (len(step_ary)==0):
+  if (len_of_step_ary==0):
     for this_infrule_dic in infrule_list_of_dics:
       if (this_infrule_dic["inference rule"]=="declareInitialExpr"):
         choice_selected=True        
@@ -1649,7 +1665,6 @@ def user_choose_infrule(list_of_infrules,infrule_list_of_dics,step_ary):
         selected_infrule_dic=this_infrule_dic
         break
     
-#  write_activity_log("return from", "user_choose_infrule")
   return selected_infrule_dic
 
 @track_function_usage
@@ -1778,7 +1793,7 @@ def user_provide_latex_arguments(selected_infrule_dic,step_ary):
 @track_function_usage
 def get_step_arguments(list_of_infrules,infrule_list_of_dics,step_ary):
   print("starting a new step")
-  selected_infrule_dic=user_choose_infrule(list_of_infrules,infrule_list_of_dics,step_ary)
+  selected_infrule_dic=user_choose_infrule(list_of_infrules,infrule_list_of_dics,len(step_ary))
   clear_screen()
   [input_ary,feed_ary,output_ary]=user_provide_latex_arguments(selected_infrule_dic,\
                                                      step_ary)
