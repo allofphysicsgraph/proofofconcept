@@ -283,6 +283,7 @@ def first_choice(list_of_derivations,list_of_infrules,infrule_list_of_dics,outpu
       derivation_name = start_new_derivation(list_of_infrules,infrule_list_of_dics,output_path)
       invalid_choice=False
     elif (first_choice_input=='2'):
+      clear_screen()
       edit_existing_derivation(list_of_derivations,output_path,list_of_infrules,infrule_list_of_dics)
       invalid_choice=False
     elif (first_choice_input=='3'):
@@ -331,9 +332,11 @@ def generate_web_pages(list_of_derivations,output_path):
         generate_webpage_for_single_derivation(selected_derivation,output_path)
       invalid_choice=False
     elif (first_choice_input=='2'):
+      #TODO
       print("currently there is no action associated with this selection")
       invalid_choice=False
     elif (first_choice_input=='3' or first_choice_input==''):
+      #TODO
       print("currently there is no action associated with this selection")
       invalid_choice=False
     elif (first_choice_input=='4'):
@@ -667,14 +670,71 @@ def latex_header(tex_file):
 
 
 @track_function_usage
-def combine_two_derivations():
-    # pick a derivation
-    # pick a different derivation
-    
-    # list all expressions from the first derivation; pick one
-    # list all expressions from the second derivation; pick one
-        
-    return 
+def combine_two_derivations(list_of_derivations,output_path):
+  clear_screen()
+  # pick a derivation
+  [first_derivation_choice_input,first_selected_derivation]=select_from_available_derivations(list_of_derivations)
+  if (first_selected_derivation=='EXIT'):
+    print("exit from editing")
+    return
+  step_ary_for_first_derivation = read_derivation_steps_from_files(first_selected_derivation, output_path)
+
+  clear_screen()
+  print("first derivation is "+first_selected_derivation)
+  print("select second derivation: \n")
+
+  # pick a different derivation
+  selected_valid_second_derivation=False
+  while(not selected_valid_second_derivation):
+    [second_derivation_choice_input,second_selected_derivation]=\
+         select_from_available_derivations(list_of_derivations)
+    if (second_selected_derivation=='EXIT'):
+      print("exit from editing")
+      return
+    if (second_selected_derivation == first_selected_derivation):
+      print("Must select two different derivations. Try again.")
+    else:
+      selected_valid_second_derivation=True
+
+  step_ary_for_second_derivation = read_derivation_steps_from_files(second_selected_derivation, output_path)
+      
+  clear_screen()
+  print("first derivation is "+first_selected_derivation)
+  print("and second derivation is "+second_selected_derivation)
+  print(" ")
+  print("from the first derivation, "+first_selected_derivation+", select an expression")
+  # list all expressions from the first derivation; pick one
+  list_of_infrule_indices=[]
+  for this_step_dic in step_ary_for_first_derivation:
+    print("==== step index: "+str(this_step_dic['infrule indx'])+" ====")
+    list_of_infrule_indices.append(str(this_step_dic['infrule indx'])) # str for tab completion
+    print_this_step(this_step_dic)
+
+  selected_step_indx = select_step_from_derivation(first_selected_derivation,list_of_infrule_indices)
+  print("\nselected step:")
+  for this_step in step_ary_for_first_derivation:
+    if (this_step['infrule indx'] == int(selected_step_indx)):
+      print_this_step(this_step)
+      break
+
+  print("from the second derivation, "+second_selected_derivation+", select an expression")
+  # list all expressions from the second derivation; pick one
+  list_of_infrule_indices=[]
+  for this_step_dic in step_ary_for_second_derivation:
+    print("==== step index: "+str(this_step_dic['infrule indx'])+" ====")
+    list_of_infrule_indices.append(str(this_step_dic['infrule indx'])) # str for tab completion
+    print_this_step(this_step_dic)
+
+  selected_step_indx = select_step_from_derivation(first_selected_derivation,list_of_infrule_indices)
+  print("\nselected step:")
+  for this_step in step_ary_for_second_derivation:
+    if (this_step['infrule indx'] == int(selected_step_indx)):
+      print_this_step(this_step)
+      break
+
+  # change indx for step in second derivation
+
+  return 
 
 @track_function_usage
 def press_enter_to_continue():
@@ -797,7 +857,8 @@ def edit_existing_derivation(list_of_derivations,output_path,list_of_infrules,in
         if (input_choice=="a"):
             print("add new step")
             invalid_choice=False
-            step_ary=add_new_step_to_existing_derivation(step_ary)
+            step_dic = get_step_arguments(list_of_infrules,infrule_list_of_dics,step_ary)
+            step_ary.append(step_dic)
         elif (input_choice=="d"):
             print("delete step")
             invalid_choice=False
@@ -812,6 +873,16 @@ def edit_existing_derivation(list_of_derivations,output_path,list_of_infrules,in
         else:
             print("invalid selection; try again")
 
+    # the edited list of step is in memory
+    # need to write data to disk 
+    write_steps_to_file(selected_derivation,step_ary,output_path)
+
+    print("create pictures for graph from directory content")
+    create_pictures_for_derivation(output_path,selected_derivation)
+#    print("create PNG from graphviz")
+#    create_graph_for_derivation(output_path,selected_derivation)
+
+    print("pausing in edit_existing_derivation")
     press_enter_to_continue()
 
     return
@@ -826,30 +897,52 @@ def edit_step_in_derivation(step_ary,selected_derivation,list_of_infrule_indices
       step_to_edit=this_step
       break
 
+  str_of_options="\nr: change inference rule; "
+  if (len(step_to_edit['input'])>0):
+    str_of_options+="i: edit input; "
+  if (len(step_to_edit['feed'])>0):  
+    str_of_options+="f: edit feed; "
+  if (len(step_to_edit['output'])>0):
+    str_of_options+="o: edit output; "
+  str_of_options+="e: return to edit menu -   [i]: "
+
   # where is the edit?
   invalid_choice=True
   while(invalid_choice):
-    input_choice=raw_input("\nr: change inference rule; i: edit input; f: edit feed; o: edit output; e: return to edit menu -   [i]: ")
+    input_choice=raw_input(str_of_options)
     if (input_choice=="r"):
       print("change inference rule")
       new_infrule = change_inference_rule_in_step(step_to_edit,list_of_infrules,infrule_list_of_dics)
       for this_step in step_ary:
         if (this_step['infrule indx'] == int(selected_step_indx)):
           this_step['infrule']=new_infrule
+          edited_step=this_step
           break
       invalid_choice=False
+
+#   step_to_edit.keys() = ['infrule', 'input', 'infrule indx', 'feed', 'output']
     elif (input_choice=="i" or input_choice==""):
       print("edit input")
-      invalid_choice=False
-      edited_step = change_input_output_feed_in_step(step_to_edit,'input')
+      if (len(step_to_edit['input'])==0):
+        print("There are no inputs to edit; try again")
+        invalid_choice=True
+      else:
+        invalid_choice=False
+        edited_step = change_input_output_feed_in_step(step_to_edit,'input')
     elif (input_choice=="f"):
       print("edit feed")
-      invalid_choice=False
-      edited_step = change_input_output_feed_in_step(step_to_edit,'feed')
+      if (len(step_to_edit['feed'])==0):
+        invalid_choice=True
+      else:
+        invalid_choice=False
+        edited_step = change_input_output_feed_in_step(step_to_edit,'feed')
     elif (input_choice=="o"):
       print("edit output")
-      invalid_choice=False
-      edited_step = change_input_output_feed_in_step(step_to_edit,'output')
+      if (len(step_to_edit['output'])==0):
+        invalid_choice=True
+      else:
+        invalid_choice=False
+        edited_step = change_input_output_feed_in_step(step_to_edit,'output')
     elif (input_choice=="e"):
       print("returning to edit menu")
       invalid_choice=False
@@ -857,11 +950,11 @@ def edit_step_in_derivation(step_ary,selected_derivation,list_of_infrule_indices
     else:
       print("invalid selection; try again")
 
-
-    for step_indx in range(len(step_ary)):
-      if (step_ary[step_indx]['infrule indx'] == selected_step_indx):
-        step_ary[step_indx] = edited_step
-        return step_ary
+  for step_indx in range(len(step_ary)):
+    if (step_ary[step_indx]['infrule indx'] == selected_step_indx):
+      step_ary[step_indx] = edited_step
+      print("returning from for loop")
+      return step_ary
 
   return step_ary
 
@@ -913,7 +1006,7 @@ def delete_step_from_derivation(step_ary,selected_derivation,list_of_infrule_ind
                 invalid_choice=False
             elif (input_choice=="e"):
                 invalid_choice=False
-                return
+                return step_ary # unedited
             else:
                 print("invalid selection; try again")
 
@@ -929,10 +1022,6 @@ def delete_step_from_derivation(step_ary,selected_derivation,list_of_infrule_ind
     print("delete_step_from_derivation: should never get here")
     return step_ary
 
-@track_function_usage
-def add_new_step_to_existing_derivation(step_ary):
-    
-    return step_ary
 
 @track_function_usage
 def select_step_from_derivation(selected_derivation,list_of_infrule_indices):
@@ -970,27 +1059,9 @@ def start_new_derivation(list_of_infrules,infrule_list_of_dics,output_path):
     print("current steps for "+derivation_name+":")
     print_current_steps(step_ary)
 
-    [selected_infrule_dic,input_ary,feed_ary,output_ary]=get_step_arguments(\
-        list_of_infrules,infrule_list_of_dics,step_ary)
-    step_comment=get_text_input("step comment: ",False)
-    if (step_comment==""):
-      step_dic={"infrule":selected_infrule_dic["inference rule"],
-                "input":input_ary,"feed":feed_ary,"output":output_ary}
-    else:
-      step_dic={"infrule":selected_infrule_dic["inference rule"],
-                "input":input_ary,"feed":feed_ary,"output":output_ary,
-                "step comment":step_comment}
-    print("\nResulting dic:")
-    print_this_step(step_dic)
-    
-    step_is_valid = check_this_step(step_dic)
-    if (not step_is_valid):
-        print("would you like to re-enter this step? [actually going to continue for now.]")
-
+    step_dic=get_step_arguments(list_of_infrules,infrule_list_of_dics,step_ary)
     step_ary.append(step_dic)
-
     write_steps_to_file(derivation_name,step_ary,output_path)
-
     done_with_steps=add_another_step_menu(step_ary,derivation_name,output_path)
   return derivation_name
 
@@ -1289,9 +1360,9 @@ def assign_temp_indx(step_ary):
         for feed_indx,feed_dic in enumerate(step_ary[step_indx]['feed']):
             step_ary[step_indx]['feed'][feed_indx]['feed indx']=get_new_step_indx('derivations')
 
-    print("\ncontent to be written to files")
-    print_current_steps(step_ary)
-    print("those were the steps\n")
+#    print("\ncontent to be written to files")
+#    print_current_steps(step_ary)
+#    print("those were the steps\n")
   
 # step_ary now looks like
 # [{'infrule': 'dividebothsidesby', 'input': [{'latex': 'afm =asfaf', 'temp indx': 9521703, 'indx specific to this step for input': 6448490481}], 'infrule indx': 3491788, 'feed': [{'latex': 'asf', 'feed indx': 4479113}], 'output': [{'latex': 'asdfa =asf', 'temp indx': 1939903, 'indx specific to this step for output': 4449405156}]}]
@@ -1580,7 +1651,7 @@ def select_from_available_derivations(list_of_derivations):
 #  write_activity_log("def", "select_from_available_derivations")
   choice_selected=False
   while(not choice_selected):
-    clear_screen()
+    #clear_screen()
     print("List of available derivations")
     #print(list_of_derivations)
     for indx in range(1,len(list_of_derivations)+1):
@@ -1797,7 +1868,24 @@ def get_step_arguments(list_of_infrules,infrule_list_of_dics,step_ary):
   clear_screen()
   [input_ary,feed_ary,output_ary]=user_provide_latex_arguments(selected_infrule_dic,\
                                                      step_ary)
-  return selected_infrule_dic,input_ary,feed_ary,output_ary
+
+  step_comment=get_text_input("step comment: ",False)
+  if (step_comment==""):
+    step_dic={"infrule":selected_infrule_dic["inference rule"],
+                "input":input_ary,"feed":feed_ary,"output":output_ary}
+  else:
+    step_dic={"infrule":selected_infrule_dic["inference rule"],
+                "input":input_ary,"feed":feed_ary,"output":output_ary,
+                "step comment":step_comment}
+  print("\nResulting dic:")
+  print_this_step(step_dic)
+    
+  step_is_valid = check_this_step(step_dic)
+  if (not step_is_valid):
+    print("would you like to re-enter this step? [actually going to continue for now.]")
+
+
+  return step_dic
 
 @track_function_usage
 def find_input_files(path_for_derivations,path_for_infrules):
