@@ -530,10 +530,12 @@ def generate_webpage_for_single_derivation(selected_derivation,output_path):
   proofofconcept/v3_CSV/bin/create_d3js_html_per_derivation_for_local.sh
   '''
   
+  
+  
   step_ary = read_derivation_steps_from_files(selected_derivation, output_path)
   
   path_to_json="http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_from_project/curl_curl_identity.json"
-  create_json_for_webpage(path_to_pictures,path_to_json,step_ary)
+  create_json_for_webpage(output_path,path_to_json,step_ary)
   path_to_png ="http://allofphysicsgraph.github.io/proofofconcept/site/pictures/generated_from_project/graph_curl_curl_identity_without_labels.png"
   path_to_d3js="http://allofphysicsgraph.github.io/proofofconcept/site/javascript_libraries/d3/d3.v3.min.js"
   create_html_page("file.html",path_to_json,path_to_d3js)
