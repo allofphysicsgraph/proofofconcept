@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+function getone() {
+  var step = 1;
+  var txt1 = parseFloat(document.getElementById("txt1").value);
+  var txt2 = document.getElementById("txt2").value;
+  var equation1 = "$$ \\newcommand{\\cvval}{" + txt1 + "} $$<br/>";
+  var equation2 = "$$ \\mathrm{k\\,=\\,\\frac{C_p}{\\cvval}} $$<br/>";
+  var eq3 = "$$ "+txt2+" $$";
+  document.getElementById('divid_des').innerHTML = equation1 + equation2 + eq3;
+  return MathJax.Hub.Typeset('divid_des');
+}
+</script>
+
+</head>
+<body>
+must be a number:<input type="textbox" id="txt1" />
+latex: <input type="textbox" id="txt2" />
+
+<input type="button" value="click" onclick="MathJax.Hub.Queue(getone)" />
+<br />
+<br />
+<br />
+
+<div id="divid">$$ \mathrm{k\,=\,\frac{C_p}{C_v}} $$</div>
+<div lang="latex" id="divid_des"></div>
+
+</body>
+</html>
