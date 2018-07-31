@@ -511,8 +511,7 @@ def create_json_for_webpage(path_to_pictures,path_to_json,step_ary):
   node_lines+="  {\"img\": \""+path_to_pictures+"/"+feed+".png\", \"width\": "+img_width+", \"height\": "+img_height+", \"label\": \""+feed+"\"},\n"
 
   edge_lines=""
-  
-  
+    
   with open(path_to_json,'w') as fjson:
     fjson.write("{\"nodes\":[\n")
     fjson.write(node_lines)
