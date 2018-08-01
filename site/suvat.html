@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- https://github.com/mathjax/MathJax-docs/wiki/Variable-from-textbox-demos -->
+<html>
+  <head>
+    <title>SUVAT</title>
+
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="site/javascript_libraries/jquery-2.1.4.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("footer.html"); 
+    });
+    </script> 
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "all" } }
+});
+</script>
+<script type="text/javascript" 
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+function getone() {
+  var step = 1;
+  var txt1 = parseFloat(document.getElementById("txt1").value);
+  var txt2 = document.getElementById("txt2").value;
+  var equation1 = "$$ \\newcommand{\\cvval}{" + txt1 + "} $$<br/>";
+  var equation2 = "$$ \\mathrm{k\\,=\\,\\frac{C_p}{\\cvval}} $$<br/>";
+  var eq3 = "$$ "+txt2+" $$";
+  document.getElementById('divid_destination').innerHTML = equation1 + equation2 + eq3;
+
+    // from the bottom of https://docs.mathjax.org/en/latest/advanced/typeset.html
+    MathJax.Hub.Queue(
+    ["resetEquationNumbers",MathJax.InputJax.TeX],
+    ["PreProcess",MathJax.Hub],
+    ["Reprocess",MathJax.Hub]);
+
+  return MathJax.Hub.Typeset('divid_destination');  
+}
+</script>
+
+</head>
+<body>
+
+<table width="100%">
+<tr>
+  <td width="10%">&nbsp;</td>
+  <td width="2%">&nbsp;</td>
+  <td width="78%">&nbsp;</td>
+  <td width="10%">&nbsp;</td>
+</tr>  
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <center>
+    <H2>Physics Derivation Graph: MathJax testing</H2>
+    </center>
+  </td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td valign="top">
+
+  <div id="includedNavContent"></div>
+  </td>
+  <td>&nbsp;</td>
+  <td>
+
+From <a href="https://en.wikipedia.org/wiki/Equations_of_motion#Constant_translational_acceleration_in_a_straight_line">
+the wikipedia page on Constant translational acceleration in a straight line</a>,
+
+\begin{equation}
+v & = u + at
+\label{eq:vuat}
+\end{equation}
+\begin{equation}
+s & = ut + \tfrac12 at^2
+\label{eq:sutat2}
+\end{equation}
+\begin{equation}
+s & = \tfrac{1}{2}(u + v)t
+\label{eq:suvt}
+\end{equation}
+\begin{equation}
+v^2 & = u^2 + 2as
+\label{eq:v2u22as}
+\end{equation}
+\begin{equation}
+s & = vt - \tfrac12 at^2
+\label{eq:svt}
+\end{equation}
+
+
+
+<div id="includedFooterContent"></div>
+  </td>
+  <td>&nbsp;  </td>
+</tr>
+</table>
+
+
+</body>
+</html>
