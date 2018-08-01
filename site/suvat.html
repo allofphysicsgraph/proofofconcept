@@ -26,25 +26,6 @@ MathJax.Hub.Config({
 </script>
 <script type="text/javascript" 
 src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-<script type="text/javascript">
-function getone() {
-  var step = 1;
-  var txt1 = parseFloat(document.getElementById("txt1").value);
-  var txt2 = document.getElementById("txt2").value;
-  var equation1 = "$$ \\newcommand{\\cvval}{" + txt1 + "} $$<br/>";
-  var equation2 = "$$ \\mathrm{k\\,=\\,\\frac{C_p}{\\cvval}} $$<br/>";
-  var eq3 = "$$ "+txt2+" $$";
-  document.getElementById('divid_destination').innerHTML = equation1 + equation2 + eq3;
-
-    // from the bottom of https://docs.mathjax.org/en/latest/advanced/typeset.html
-    MathJax.Hub.Queue(
-    ["resetEquationNumbers",MathJax.InputJax.TeX],
-    ["PreProcess",MathJax.Hub],
-    ["Reprocess",MathJax.Hub]);
-
-  return MathJax.Hub.Typeset('divid_destination');  
-}
-</script>
 
 </head>
 <body>
@@ -61,7 +42,7 @@ function getone() {
   <td>&nbsp;</td>
   <td>
     <center>
-    <H2>Physics Derivation Graph: MathJax testing</H2>
+    <H2>Physics Derivation Graph: SUVAT</H2>
     </center>
   </td>
   <td>&nbsp;</td>
@@ -74,30 +55,71 @@ function getone() {
   <td>&nbsp;</td>
   <td>
 
-From <a href="https://en.wikipedia.org/wiki/Equations_of_motion#Constant_translational_acceleration_in_a_straight_line">
+<P>For a derivation of SUVAT starting expressions, see <a href="https://www.khanacademy.org/science/physics/one-dimensional-motion/kinematic-formulas/a/what-are-the-kinematic-formulas">
+the khanacadamy overview</a>.
+
+<P>Starting from <a href="https://en.wikipedia.org/wiki/Equations_of_motion#Constant_translational_acceleration_in_a_straight_line">
 the wikipedia page on Constant translational acceleration in a straight line</a>,
 
 \begin{equation}
-v & = u + at
-\label{eq:vuat}
-\end{equation}
-\begin{equation}
-s & = ut + \tfrac12 at^2
-\label{eq:sutat2}
-\end{equation}
-\begin{equation}
-s & = \tfrac{1}{2}(u + v)t
-\label{eq:suvt}
-\end{equation}
-\begin{equation}
-v^2 & = u^2 + 2as
-\label{eq:v2u22as}
-\end{equation}
-\begin{equation}
-s & = vt - \tfrac12 at^2
-\label{eq:svt}
+v = u + at
+\label{eq:v_uat}
 \end{equation}
 
+\begin{equation}
+s = ut + \tfrac12 at^2
+\label{eq:s_uta}
+\end{equation}
+
+\begin{equation}
+s = \tfrac{1}{2}(u + v)t
+\label{eq:s_uvt}
+\end{equation}
+
+\begin{equation}
+v^2 = u^2 + 2as
+\label{eq:v_uas}
+\end{equation}
+
+\begin{equation}
+s = vt - \tfrac12 at^2
+\label{eq:s_vat}
+\end{equation}
+
+Solve Eq. \ref{eq:s_uta} for $a$ to get
+
+\begin{equation}
+a=\frac{(s-ut)2}{t^2}
+\label{eq:a_sut}
+\end{equation}
+
+Substitute Eq. \ref{eq:a_sut} into Eq. \ref{eq:v_uat} to yield
+
+\begin{equation}
+v=u+\left(\frac{(s-ut)2}{t^2}\right) t
+\label{eq:v_ust_a_sub}
+\end{equation}
+
+Simplify Eq. \ref{eq:v_ust_a_sub} to get
+
+\begin{equation}
+v=u+\frac{(s-ut)2}{t}
+\label{eq:v_ust_t}
+\end{equation}
+
+Simplify Eq. \ref{eq:v_ust_t} to get
+
+\begin{equation}
+v=u+\frac{2s}{t}-2u
+\label{eq:v_ust_u}
+\end{equation}
+
+Simplify Eq. \ref{eq:v_ust_u} to get
+
+\begin{equation}
+v=\frac{2s}{t}-u
+\label{eq:v_ust}
+\end{equation}
 
 
 <div id="includedFooterContent"></div>
