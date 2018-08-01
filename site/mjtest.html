@@ -1,8 +1,21 @@
 <!DOCTYPE html>
 <!-- https://github.com/mathjax/MathJax-docs/wiki/Variable-from-textbox-demos -->
 <html>
-<head>
-<title>MathJax TeX Test Page</title>
+  <head>
+    <title>MathJax TeX Test Page</title>
+
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="site/javascript_libraries/jquery-2.1.4.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("footer.html"); 
+    });
+    </script> 
+
+
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
@@ -35,6 +48,32 @@ function getone() {
 
 </head>
 <body>
+
+<table width="100%">
+<tr>
+  <td width="10%">&nbsp;</td>
+  <td width="2%">&nbsp;</td>
+  <td width="78%">&nbsp;</td>
+  <td width="10%">&nbsp;</td>
+</tr>  
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <center>
+    <H2>Physics Derivation Graph: MathJax testing</H2>
+    </center>
+  </td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td valign="top">
+
+  <div id="includedNavContent"></div>
+  </td>
+  <td>&nbsp;</td>
+  <td>
+
 
 <P>Here is some LaTeX content:
 <div id="divid">$$ \mathrm{k\,=\,\frac{C_p}{C_v}} $$</div>
@@ -132,6 +171,13 @@ m = \int f(x) dx
   <option value="swapLHSwithRHS">swapLHSwithRHS</option>
   <option value="takeCurlofBothSides">takeCurlofBothSides</option>
 </select>
+
+<div id="includedFooterContent"></div>
+  </td>
+  <td>&nbsp;  </td>
+</tr>
+</table>
+
 
 </body>
 </html>
