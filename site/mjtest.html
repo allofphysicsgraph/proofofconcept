@@ -83,6 +83,7 @@ provide some latex: <input type="textbox" id="txt2" />
 
 <input type="button" value="click" onclick="MathJax.Hub.Queue(getone)" />
 
+<!-- the following is where user provided input gets displayed -->
 <div lang="latex" id="divid_destination"></div>
 
 <P>When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
@@ -98,7 +99,20 @@ m = \int f(x) dx
 \end{equation}
 
 
-<select>
+<script>
+function choose(x){
+  if (document.form1.inference_selection.value != "null") {
+    window.alert(x);
+    }
+}
+</script>
+
+<form name="form1">
+<!-- from https://www.quackit.com/javascript/javascript_dropdown_menu.cfm -->
+<select name="inference_selection"
+onChange="choose(document.form1.inference_selection.options[
+document.form1.inference_selection.options.selectedIndex].value)">
+  <option>Select an inference rule</option>
   <option value="AssumeNdimensions">AssumeNdimensions</option>
   <option value="EvaluateDefiniteIntegral">EvaluateDefiniteIntegral</option>
   <option value="ExprXisTrueUnderconditionExprY">ExprXisTrueUnderconditionExprY</option>
@@ -171,6 +185,7 @@ m = \int f(x) dx
   <option value="swapLHSwithRHS">swapLHSwithRHS</option>
   <option value="takeCurlofBothSides">takeCurlofBothSides</option>
 </select>
+</form>
 
 <div id="includedFooterContent"></div>
   </td>
