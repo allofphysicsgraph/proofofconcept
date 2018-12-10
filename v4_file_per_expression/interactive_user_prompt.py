@@ -739,10 +739,10 @@ def combine_two_derivations(list_of_derivations,output_path):
 
 @track_function_usage
 def press_enter_to_continue():
-    if version_info[0] < 3:
-        entered_key=raw_input("\n\nPress Enter to continue...")
-    else:
-        entered_key=input("\n\nPress Enter to continue...") # v3
+#    if version_info[0] < 3:
+    entered_key=raw_input("\n\nPress Enter to continue...")
+#    else: 
+#        entered_key=input("\n\nPress Enter to continue...") # v3
     return
     
 @track_function_usage
@@ -1911,7 +1911,7 @@ def find_input_files(path_for_derivations_fif,path_for_infrules_fif):
             print('missing inf rule yaml file for '+this_infrule+'_parameters.yaml')
             exit()
         try:
-            config = yaml.load(file(path_for_infrules_fif+'/'+this_infrule+'_parameters.yaml', 'r'))
+            config = yaml.safe_load(file(path_for_infrules_fif+'/'+this_infrule+'_parameters.yaml', 'r'))
         except yaml.YAMLError, exc:
             print "ERROR [in interactive_user_prompt.py, main]: YAML configuration file:", exc
 

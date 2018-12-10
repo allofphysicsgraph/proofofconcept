@@ -16,9 +16,11 @@ RUN pip install sympy
 RUN mkdir /derivations
 RUN mkdir /inference_rules
 
-ADD ./interactive_user_prompt.py interactive_user_prompt.py
-ADD ./lib_physics_graph.py /lib/lib_physics_graph.py
-ADD ./inference_rules/* /inference_rules/
+RUN git clone https://github.com/allofphysicsgraph/proofofconcept.git
+
+ADD ./v4_file_per_expression/bin/interactive_user_prompt.py interactive_user_prompt.py
+ADD ./v4_file_per_expression/bin/lib_physics_graph.py /lib/lib_physics_graph.py
+ADD ./v4_file_per_expression/bin/inference_rules/* /inference_rules/
 
 #WORKDIR /bin
 
