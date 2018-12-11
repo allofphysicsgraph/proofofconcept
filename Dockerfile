@@ -6,12 +6,21 @@ MAINTAINER My Name <my.email.address@gmail.com>
 
 LABEL distro_style="apk" distro="alpine" arch="x86_64" operatingsystem="linux"
 
+# for graph visualization 
 RUN apk add --update --no-cache graphviz
+# for compiling Latex to PDF
 RUN apk add --update --no-cache texlive-full
 RUN apk add --update --no-cache texlive
+# zlib and jpg required for pillow
+RUN apk add --update --no-cache zlib-dev zlib
+RUN apk add --update --no-cache jpeg-dev
+# gcc is needed to build pillow
+RUN apk add --update --no-cache build-base
 
+# for reading configuration file
 RUN pip install pyyaml
 RUN pip install sympy
+RUN pip install pillow
 
 RUN mkdir /derivations
 RUN mkdir /inference_rules
