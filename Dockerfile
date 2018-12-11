@@ -16,6 +16,8 @@ RUN apk add --update --no-cache zlib-dev zlib
 RUN apk add --update --no-cache jpeg-dev
 # gcc is needed to build pillow
 RUN apk add --update --no-cache build-base
+# web server
+RUN apk add --update --no-cache lighttpd
 
 # for reading configuration file
 RUN pip install pyyaml
@@ -31,6 +33,9 @@ RUN mkdir /inference_rules
 ADD v4_file_per_expression/interactive_user_prompt.py interactive_user_prompt.py
 ADD lib/lib_physics_graph.py /lib/lib_physics_graph.py
 ADD v4_file_per_expression/inference_rules/* /inference_rules/
+
+# web server
+EXPOSE 80
 
 #WORKDIR /bin
 
