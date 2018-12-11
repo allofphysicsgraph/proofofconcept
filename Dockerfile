@@ -19,9 +19,9 @@ RUN mkdir /inference_rules
 #RUN apk add --no-cache curl
 #RUN git clone https://github.com/allofphysicsgraph/proofofconcept.git
 
-ADD bin/interactive_user_prompt.py interactive_user_prompt.py
+ADD v4_file_per_expression/interactive_user_prompt.py interactive_user_prompt.py
 ADD lib/lib_physics_graph.py /lib/lib_physics_graph.py
-ADD inference_rules/* /inference_rules/
+ADD v4_file_per_expression/inference_rules/* /inference_rules/
 
 #WORKDIR /bin
 
