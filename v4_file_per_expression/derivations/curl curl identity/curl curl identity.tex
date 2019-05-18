@@ -1,0 +1,144 @@
+\documentclass[12pt]{report}
+% 20180730
+\usepackage{amsmath} % advanced math
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx,color}
+\usepackage{verbatim} % multi-line comments
+\usepackage[backref, colorlinks=false, pdftitle={20180730}, 
+pdfauthor={Ben Payne}, pdfsubject={physics graph}, 
+pdfkeywords={physics,graph,automated, computer algebra system}]{hyperref}
+\setlength{\topmargin}{-.5in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{-0in}
+\setlength{\textwidth}{6.5in}
+\newcommand{\when}[1]{{\rm \ when\ }#1}
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\ket}[1]{| #1\rangle}
+\newcommand{\op}[1]{\hat{#1}}
+\newcommand{\braket}[2]{\langle #1 | #2 \rangle}
+\newcommand{\rowCovariantColumnContravariant}[3]{#1_{#2}^{\ \ #3}} % left-bottom, right-upper
+\newcommand{\rowContravariantColumnCovariant}[3]{#1^{#2}_{\ \ #3}} % left-upper, right-bottom
+\newcommand{\expandMagnitudeToConjugate}[3]{Expand $#1$ in Eq.~\ref{eq:#2} with conjugate.}
+\newcommand{\applyDivergence}[2]{Apply divergence to both sides of Eq.~\ref{eq:#1}.}
+\newcommand{\expandRHS}[2]{Expand the RHS of Eq.~\ref{eq:#1}.}
+\newcommand{\declareAssumption}[1]{Eq.~\ref{eq:#1} is an assumption.}
+\newcommand{\conjugateBothSides}[2]{Conjugate both sides of Eq.~\ref{eq:#1}.}
+\newcommand{\declareInitialExpr}[1]{Eq.~\ref{eq:#1} is an initial equation.}
+\newcommand{\EvaluateDefiniteIntegral}[3]{Integrate Eq.~\ref{eq:#1} using identity Eq.~\ref{eq:#2}.}
+\newcommand{\applyOperatorToKet}[2]{Apply operator to ket in Eq.~\ref{eq:#1}.}
+\newcommand{\factorOutX}[3]{Factor $#1$ from Eq.~\ref{eq:#2}.}
+\newcommand{\indefIntRHSOver}[3]{Indefinite integral of RHS of Eq.~\ref{eq:#2} over $#1$.}
+\newcommand{\multLHSbyUnity}[3]{Multiply LHS of Eq.~\ref{eq:#2} by 1, which in this case is $#1$}
+\newcommand{\claimExprXequalsExprY}[2]{Thus we see that Eq.~\ref{eq:#1} is equivalent to Eq.~\ref{eq:#2}.}
+\newcommand{\bothsidescrossX}[3]{Take cross product of Eq.~\ref{eq:#2} and $#1$}
+\newcommand{\swapLHSwithRHS}[2]{Swap LHS of Eq.~\ref{eq:#1} with RHS.}
+\newcommand{\indefIntegration}[2]{Indefinite integral of both sides of Eq.~\ref{eq:#1}.}
+\newcommand{\expandIntegrand}[2]{Expand integrand of Eq.~\ref{eq:#1}.}
+\newcommand{\simplify}[2]{Simplify Eq.~\ref{eq:#1}.}
+\newcommand{\conjugateTransposeBothSides}[2]{Conjugate transpose of both sides of Eq.~\ref{eq:#1}.}
+\newcommand{\normalizationCondition}[1]{Normalization condition is Eq.~\ref{eq:#1}.}
+\newcommand{\differentiateWRT}[3]{Differentiate Eq.~\ref{eq:#2} with respect to $#1$.}
+\newcommand{\declareIdentity}[1]{Eq.~\ref{eq:#1} is an identity.}
+\newcommand{\Xcrossbothsidesby}[3]{Take cross product of $#1$ and Eq.~\ref{eq:#2}.}
+\newcommand{\ReplaceSummationNotationWithVectorNotation}[2]{Replace summation notation in Eq.~\ref{eq:#1} with vector notation.}
+\newcommand{\boundaryCondition}[2]{A boundary condition for Eq.~\ref{eq:#1} is}
+\newcommand{\combineLikeTerms}[2]{Combine like terms in Eq.~\ref{eq:#1}.}
+\newcommand{\conjugateFunctionX}[3]{Conjugate $#1$ in Eq.~\ref{eq:#2}.}
+\newcommand{\distributeConjugateToFactors}[2]{Distribute conjugate to factors in Eq.~\ref{eq:#1}.}
+\newcommand{\dividebothsidesby}[3]{Divide both sides of Eq.~\ref{eq:#2} by $#1$.}
+\newcommand{\partialDiffWRT}[3]{Partially differentiate Eq.~\ref{eq:#2} with respect to $#1$.}
+\newcommand{\addExprXtoExprY}[3]{Add Eq.~\ref{eq:#1} to Eq.~\ref{eq:#2}.}
+\newcommand{\functionIsEven}[5]{$#1$ is even with respect to $#2$, so replace $#1$ with $#3$ in Eq.~\ref{eq:#4}.}
+\newcommand{\applyOperatorToBra}[2]{Apply operator to bra in Eq.~\ref{eq:#1}.}
+\newcommand{\RHSofExprXeqRHSofExprY}[3]{RHS of Eq.~\ref{eq:#1} is equal to RHS of Eq.~\ref{eq:#2}.}
+\newcommand{\ReplaceCurlWithLeviCevitaSummationContravariant}[2]{Replace curl in Eq.~\ref{eq:#1} with Levi-Cevita contravariant.}
+\newcommand{\subRHSofExprXintoExprY}[3]{Substitute RHS of Eq.~\ref{eq:#1} into Eq.~\ref{eq:#2}.}
+\newcommand{\subXforY}[4]{Substitute $#1$ for $#2$ in Eq.~\ref{eq:#3}.}
+\newcommand{\applyGradientToScalarFunction}[2]{Apply gradient to both sides of Eq.~\ref{eq:#1}.}
+\newcommand{\makeExprPower}[3]{Make Eq.~\ref{eq:#2} the power of $#1$.}
+\newcommand{\takeCurlofBothSides}[2]{Apply curl to both sides of Eq.~\ref{eq:#1}.}
+\newcommand{\sumExponentsLHS}[2]{Sum exponents on LHS of Eq.~\ref{eq:#1}.}
+\newcommand{\raiseBothSidesToPower}[4]{Raise both sides of Eq.~\ref{eq:#2} to $#1$.}
+\newcommand{\indefIntOver}[3]{Indefinite integral of both sides of Eq.~\ref{eq:#2} over $#1$.}
+\newcommand{\multRHSbyUnity}[3]{Multiply RHS of Eq.~\ref{eq:#2} by 1, which in this case is $#1$}
+\newcommand{\selectRealParts}[2]{Select real parts of Eq.~\ref{eq:#1}.}
+\newcommand{\addZerotoRHS}[3]{Add zero to RHS of Eq.~\ref{eq:#2}, where $0=#1$.}
+\newcommand{\AssumeNdimensions}[2]{Assume $#1$ dimensions in Eq.~\ref{eq:#2}.}
+\newcommand{\factorOutXfromLHS}[3]{Factor $#1$ from the LHS of Eq.~\ref{eq:#2}.}
+\newcommand{\expandLHS}[2]{Expand the LHS of Eq.~\ref{eq:#1}.}
+\newcommand{\solveForX}[3]{Solve Eq.~\ref{eq:#2} for $#1$.}
+\newcommand{\declareGuessSolution}[2]{Judicious choice as a guessed solution to Eq.~\ref{eq:#1} is}
+\newcommand{\multbothsidesby}[3]{Multiply both sides of Eq.~\ref{eq:#2} by $#1$.}
+\newcommand{\sumExponentsRHS}[2]{Sum exponents on RHS of Eq.~\ref{eq:#1}.}
+\newcommand{\ExprXisTrueUnderconditionExprY}[3]{Eq.~\ref{eq:#1} is valid when Eq.~\ref{eq:#2} occurs.}
+\newcommand{\addZerotoLHS}[3]{Add zero to LHS of Eq.~\ref{eq:#2}, where $0=#1$.}
+\newcommand{\LHSofExprXeqLHSofExprY}[3]{LHS of Eq.~\ref{eq:#1} is equal to LHS of Eq.~\ref{eq:#2}.}
+\newcommand{\multExprXbyExprY}[3]{Multiply Eq.~\ref{eq:#1} by Eq.~\ref{eq:#2}.}
+\newcommand{\selectImagParts}[2]{Select imaginary parts of Eq.~\ref{eq:#1}.}
+\newcommand{\indefIntLHSOver}[3]{Indefinite integral of LHS of Eq.~\ref{eq:#2} over $#1$.}
+\newcommand{\sumExponents}[2]{Sum exponents on LHS and RHS of Eq.~\ref{eq:#1}.}
+\newcommand{\Xdotbothsides}[3]{Take inner product of $#1$ with Eq.~\ref{eq:#2}.}
+\newcommand{\replaceScalarWithVector}[2]{Replace scalar variables in Eq.~\ref{eq:#1} with equivalent vector variables.}
+\newcommand{\declareFinalExpr}[1]{Eq.~\ref{eq:#1} is one of the final equations.}
+\newcommand{\claimLHSequalsRHS}[1]{Thus we see that LHS of Eq.~\ref{eq:#1} is equal to RHS.}
+\newcommand{\subLHSofExprXintoExprY}[3]{Substitute LHS of Eq.~\ref{eq:#1} into Eq.~\ref{eq:#2}.}
+\newcommand{\functionIsOdd}[5]{$#1$ is odd with respect to $#2$, so replace $#1$ with $#3$ in Eq.~\ref{eq:#4}.}
+\newcommand{\IntOverFromTo}[5]{Integrate Eq.~\ref{eq:#4} over $#1$ from lower limit $#2$ to upper limit $#3$.}
+\newcommand{\bothsidesdotX}[3]{Take inner product of Eq.~\ref{eq:#2} with $#1$}
+\newcommand{\addXtoBothSides}[3]{Add $#1$ to both sides of Eq.~\ref{eq:#2}.}
+\newcommand{\distributeConjugateTransposeToFactors}[2]{Distribute conjugate transpose to factors in Eq.~\ref{eq:#1}.}
+\newcommand{\factorOutXfromRHS}[3]{Factor $#1$ from the RHS of Eq.~\ref{eq:#2}.}
+\newcommand{\subtractXfromBothSides}[3]{Subtract $#1$ from both sides of Eq.~\ref{eq:#2}.}
+\begin{document}
+\ReplaceSummationNotationWithVectorNotation{3948472}{2109231}
+\begin{equation}
+\vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E} = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E})
+\label{eq:2109231}
+\end{equation}
+% end of step
+\ReplaceCurlWithLeviCevitaSummationContravariant{1939485}{9485482}
+\begin{equation}
+\epsilon^{i,j,k} \hat{x}_i \nabla_j ( \vec{\nabla} \times \vec{E} )_k = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E})
+\label{eq:9485482}
+\end{equation}
+% end of step
+\subRHSofExprXintoExprY{2934842}{2941319}{3949292}
+\begin{equation}
+\left( \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \right) \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E})
+\label{eq:3949292}
+\end{equation}
+% end of step
+\simplify{3844221}{3948472}
+\begin{equation}
+\hat{x}_m \nabla_n \nabla^m E^n - \hat{x}_n \nabla_m \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E})
+\label{eq:3948472}
+\end{equation}
+% end of step
+\simplify{3949292}{3844221}
+\begin{equation}
+\left( \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} \hat{x}_i \nabla_j \nabla^m E^n\right)-\left( \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h} \hat{x}_i \nabla_j \nabla^m E^n \right) = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E})
+\label{eq:3844221}
+\end{equation}
+% end of step
+\ReplaceCurlWithLeviCevitaSummationContravariant{9485482}{2941319}
+\begin{equation}
+\epsilon^{i,j,k} \epsilon_{n,j,k} \hat{x}_i \nabla_j \nabla^m E^n = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E})
+\label{eq:2941319}
+\end{equation}
+% end of step
+\declareIdentity{1939485}
+\begin{equation}
+\vec{\nabla} \times \vec{\nabla} \times \vec{E} = \vec{\nabla}(\vec{\nabla} \cdot \vec{E} - \nabla^2 \vec{E})
+\label{eq:1939485}
+\end{equation}
+% end of step
+\claimLHSequalsRHS{2109231}
+% end of step
+\declareIdentity{2934842}
+\begin{equation}
+\epsilon^{i,j,k} \epsilon_{n,j,k} = \rowContravariantColumnCovariant{\delta}{l}{j} \rowContravariantColumnCovariant{\delta}{m}{k} - \rowContravariantColumnCovariant{\delta}{l}{k} \rowContravariantColumnCovariant{\delta}{m}{h}
+\label{eq:2934842}
+\end{equation}
+% end of step
+\end{document}
