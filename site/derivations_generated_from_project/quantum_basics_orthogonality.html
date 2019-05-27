@@ -8,7 +8,7 @@
 <!-- http://www.d3noob.org/2013/03/d3js-force-directed-graph-example-basic.html -->
 <!DOCTYPE html>
 <body>
-<script src="http://allofphysicsgraph.github.io/proofofconcept/site/javascript_libraries/d3/d3.v3.min.js"></script>
+<script src="https://allofphysicsgraph.github.io/proofofconcept/site/javascript_libraries/d3/d3.v3.min.js"></script>
 <script>
 
 var w = 1100,
@@ -67,7 +67,7 @@ vis.append("svg:defs").selectAll("marker")
 
 
 // load the external data
-d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_from_project/quantum_basics_orthogonality.json", function(error, root) {
+d3.json("https://allofphysicsgraph.github.io/proofofconcept/site/json/generated_from_project/quantum_basics_orthogonality.json", function(error, root) {
   //console.log(root);
   console.log(root.nodes);
   console.log(root.links);
@@ -81,10 +81,10 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_f
         .data(root.links)
         .enter().append("line")
           .attr("class", "link")
-          .attr("stroke", "#666") // #CCC is a light gray 
+          .attr("stroke", "#666") // #CCC is a light gray
           .attr("fill", "none")
           .attr("marker-end", "url(#end)");
-    
+
   var node = vis.selectAll("circle.node")
       .data(root.nodes)
       .enter().append("g")
@@ -116,10 +116,10 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_f
       .attr("height", function(d, i) { return d.height/2; })
 
   force.on("tick", function(e) {
-    node.attr("transform", function(d, i) {     
-      return "translate(" + d.x + "," + d.y + ")"; 
+    node.attr("transform", function(d, i) {
+      return "translate(" + d.x + "," + d.y + ")";
     });
-    
+
     link.attr("x1", function(d)   { return d.source.x; })
         .attr("y1", function(d)   { return d.source.y; })
         .attr("x2", function(d)   { return d.target.x; })
@@ -132,6 +132,6 @@ d3.json("http://allofphysicsgraph.github.io/proofofconcept/site/json/generated_f
 
 </script>
 <P>Picture from Graphviz:</P>
-<P><img src="http://allofphysicsgraph.github.io/proofofconcept/site/pictures/generated_from_project/graph_quantum_basics_orthogonality_without_labels.png" width="800"></P>
+<P><img src="https://allofphysicsgraph.github.io/proofofconcept/site/pictures/generated_from_project/graph_quantum_basics_orthogonality_without_labels.png" width="800"></P>
 </body>
 </html>
