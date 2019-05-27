@@ -1,0 +1,45 @@
+# https://docs.docker.com/engine/reference/builder/#from
+FROM ubuntu:latest
+
+# https://docs.docker.com/engine/reference/builder/#run
+RUN apt-get update && \
+    apt-get install -y \
+               vim \
+               python3 \
+               python3-pip \
+               python3-dev \
+               python2.7 \
+               python-pip \
+               build-essential  \
+               graphviz \
+               dvipng \
+               git-core \
+               2to3 \
+               texlive \
+    && rm -rf /var/lib/apt/lists/*
+
+# https://docs.docker.com/engine/reference/builder/#copy
+COPY . /app
+
+# The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile. 
+WORKDIR /app
+
+# not currently necessary, but may be useful in the future
+RUN git clone https://github.com/mathjax/MathJax.git MathJax
+
+# convert DVI to SVG
+# not necessary, and written in Python2. Conversion to Python3 using 2to3 failed :(
+#RUN git clone https://github.com/WojciechMula/pydvi2svg.git
+#RUN ln -sf /app/pydvi3svg/dvi2svg.py /usr/local/bin/
+#RUN cat pydvi2svg/dvi2png.py | sed 's/#!\/usr\/bin\/python/\/usr\/bin\/python3/' > pydvi2svg/dvi2png.py
+#RUN cat pydvi2svg/conv/binfile.py | sed 's/binfile(file/binfile(open/' > pydvi2svg/conv/binfile.py
+
+RUN pip3 install -r requirements.txt
+
+# An ENTRYPOINT allows you to configure a container that will run as an executable.
+ENTRYPOINT ["python3"]
+
+# There can only be one CMD instruction in a Dockerfile
+# The CMD instruction should be used to run the software contained by your image, along with any arguments. 
+CMD ["app.py"]
+

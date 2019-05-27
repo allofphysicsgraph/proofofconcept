@@ -17,7 +17,10 @@ RUN apk add --update --no-cache jpeg-dev
 # gcc is needed to build pillow
 RUN apk add --update --no-cache build-base
 # web server
-RUN apk add --update --no-cache lighttpd
+#https://wiki.alpinelinux.org/wiki/Lighttpd
+RUN apk add --update --no-cache lighttpd lighttpd-mod_auth
+#https://wiki.alpinelinux.org/wiki/Nginx
+RUN apk add --update --no-cache nginx
 
 # for reading configuration file
 RUN pip install pyyaml
