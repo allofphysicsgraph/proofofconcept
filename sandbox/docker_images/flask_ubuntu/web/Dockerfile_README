@@ -9,6 +9,11 @@ docker run -d -p 5000:5000 flask-ub
 docker run -it flask-ub /bin/bash
 # Since I have a defined entrypoint, I use
 docker run -it --entrypoint /bin/bash flask_ub
+# with a mount
+docker run -it --mount type=bind,source="$(pwd)",target=/another  --entrypoint /bin/bash flask_ub
+# with ports exposed
+docker run -it --publish 5000:5000 --mount type=bind,source="$(pwd)",target=/another  --entrypoint /bin/bash flask_ub
+
 
 # list all containers
 docker ps -a
