@@ -21,10 +21,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # https://docs.docker.com/engine/reference/builder/#copy
-COPY . /app
-
-# The WORKDIR instruction sets the working directory for any RUN, CMD, ENTRYPOINT, COPY and ADD instructions that follow it in the Dockerfile. 
-WORKDIR /app
+COPY requirements.txt /tmp
 
 # not currently necessary, but may be useful in the future
 #RUN git clone https://github.com/mathjax/MathJax.git MathJax
@@ -39,12 +36,26 @@ WORKDIR /app
 #RUN git clone https://github.com/fontforge/libspiro.git
 #RUN git clone https://github.com/fontforge/libuninameslist.git
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install -r /tmp/requirements.txt
+
+RUN useradd --create-home appuser
+WORKDIR /home/appuser
+USER appuser
+
+COPY templates /home/appuser/app/templates
+COPY static /home/appuser/app/static
+COPY controller.py /home/appuser/app
+COPY compute.py /home/appuser/app
+
+USER root
+RUN chown -R appuser /home/appuser/app
+RUN chgrp -R appuser /home/appuser/app
+USER appuser
 
 # An ENTRYPOINT allows you to configure a container that will run as an executable.
 ENTRYPOINT ["python3"]
 
 # There can only be one CMD instruction in a Dockerfile
 # The CMD instruction should be used to run the software contained by your image, along with any arguments. 
-CMD ["app.py"]
+CMD ["/home/appuser/app/controller.py"]
 

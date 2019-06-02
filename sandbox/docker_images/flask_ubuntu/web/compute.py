@@ -56,9 +56,9 @@ def compute_latex(input_latex_str,print_debug):
     if print_debug: print('png std out',png_stdout)
     if print_debug: print('png std err',png_stderr)
 
-    if os.path.isfile('static/'+name_of_png):
-        os.remove('static/'+name_of_png)
-    shutil.move(name_of_png,'static')
+    if os.path.isfile('/home/appuser/app/static/'+name_of_png):
+        os.remove('/home/appuser/app/static/'+name_of_png)
+    shutil.move(name_of_png,'/home/appuser/app/static')
 
     return latex_stdout,latex_stderr,png_stdout,png_stderr,name_of_png
 
