@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request
 from wtforms import Form, StringField, FloatField, validators
-from compute import compute_sine, compute_latex
+from compute import compute_latex
 
 app = Flask(__name__, static_folder='static')
 
@@ -13,6 +13,7 @@ class InputForm(Form):
 
 
 # prevent cached responses; see https://stackoverflow.com/questions/47376744/how-to-prevent-cached-response-flask-server-using-chrome
+# The following doesn't work; F12 > Network > Disable cache
 @app.after_request
 def add_header(r):
     """

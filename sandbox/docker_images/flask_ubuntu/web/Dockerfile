@@ -46,10 +46,10 @@ COPY templates /home/appuser/app/templates
 COPY static /home/appuser/app/static
 COPY controller.py /home/appuser/app
 COPY compute.py /home/appuser/app
+COPY graphviz.dot /home/appuser/app
 
 USER root
-RUN chown -R appuser /home/appuser/app
-RUN chgrp -R appuser /home/appuser/app
+RUN chown -R appuser /home/appuser/app && chgrp -R appuser /home/appuser/app
 USER appuser
 
 # An ENTRYPOINT allows you to configure a container that will run as an executable.

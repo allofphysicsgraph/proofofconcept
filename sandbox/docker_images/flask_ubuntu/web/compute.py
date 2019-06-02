@@ -5,26 +5,13 @@ import os
 import shutil
 from subprocess import Popen, PIPE
 
-def compute_sine(r):
-    try:
-       float(r)
-       return math.sin(r)
-    except:
-       return None
+def remove_file_debris(tmp_file,list_of_file_ext):
+    for file_ext in list_of_file_ext:
+        if os.path.isfile(tmp_file+'.'+file_ext):
+            os.remove(tmp_file+'.'+file_ext)
+    return
 
-def compute_latex(input_latex_str,print_debug):
-    
-    tmp_file='lat'
-
-    if os.path.isfile(tmp_file+'.tex'):
-        os.remove(tmp_file+'.tex')
-    if os.path.isfile(tmp_file+'.dvi'):
-        os.remove(tmp_file+'.dvi')
-    if os.path.isfile(tmp_file+'.aux'):
-        os.remove(tmp_file+'.aux')
-    if os.path.isfile(tmp_file+'.log'):
-        os.remove(tmp_file+'.log')
-
+def create_tex_file(tmp_file,input_latex_str):
     with open(tmp_file+'.tex','w') as lat_file:
         lat_file.write('\\documentclass[12pt]{report}\n')
         lat_file.write('\\thispagestyle{empty}\n')
@@ -33,6 +20,13 @@ def compute_latex(input_latex_str,print_debug):
         lat_file.write('$'+input_latex_str+'$\n')
         lat_file.write('}\n')
         lat_file.write('\\end{document}\n')
+    return
+
+def compute_latex(input_latex_str,print_debug):
+    
+    tmp_file='lat'
+    remove_file_debris(tmp_file,['tex','dvi','aux','log'])
+    create_tex_file(tmp_file,input_latex_str)
 
     print('input latex str:',input_latex_str)
 
@@ -59,6 +53,15 @@ def compute_latex(input_latex_str,print_debug):
     if os.path.isfile('/home/appuser/app/static/'+name_of_png):
         os.remove('/home/appuser/app/static/'+name_of_png)
     shutil.move(name_of_png,'/home/appuser/app/static')
+
+    # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
+#    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
+    process = Popen(['neato','-Tpng','app/graphviz.dot','-ographviz.png'], stdout=PIPE, stderr=PIPE)
+    neato_stdout,neato_stderr = process.communicate()
+    neato_stdout = neato_stdout.decode("utf-8")
+    neato_stderr = neato_stderr.decode("utf-8")
+
+    shutil.move('graphviz.png','/home/appuser/app/static')
 
     return latex_stdout,latex_stderr,png_stdout,png_stderr,name_of_png
 
