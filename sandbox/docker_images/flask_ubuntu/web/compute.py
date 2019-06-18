@@ -1,9 +1,10 @@
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask003.html
 
-import math
+#import math
 import os
 import shutil
 from subprocess import Popen, PIPE
+import sqlite3
 
 def remove_file_debris(tmp_file,list_of_file_ext):
     for file_ext in list_of_file_ext:
@@ -22,7 +23,22 @@ def create_tex_file(tmp_file,input_latex_str):
         lat_file.write('\\end{document}\n')
     return
 
-def compute_latex(input_latex_str,print_debug):
+def create_sql_db(db_file,print_debug):
+
+    return
+
+def add_latex_to_sql(db_file,input_latex_str,print_debug):
+    print('sqlite3 version:',sqlite3.version)
+
+    try:
+        conn = sqlite3.connect(db_file)
+    except sqlite3.Error:
+        print(sqlite3.Error)
+
+
+    return
+
+def create_png_from_latex(input_latex_str,print_debug):
     
     tmp_file='lat'
     remove_file_debris(tmp_file,['tex','dvi','aux','log'])
@@ -63,5 +79,5 @@ def compute_latex(input_latex_str,print_debug):
 
     shutil.move('graphviz.png','/home/appuser/app/static')
 
-    return latex_stdout,latex_stderr,png_stdout,png_stderr,name_of_png
-
+    #return latex_stdout,latex_stderr,png_stdout,png_stderr,name_of_png
+    return name_of_png

@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request
 from wtforms import Form, StringField, FloatField, validators
-from compute import compute_latex
+import compute 
 
 app = Flask(__name__, static_folder='static')
 
@@ -31,13 +31,14 @@ def add_header(r):
 def index():
     form = InputForm(request.form)
     if request.method == 'POST' and form.validate():
-#        r = form.r.data
-        latex = form.latex.data
-#        s = compute_sine(r)
-        latex_stdout,latex_stderr,png_stdout,png_stderr,name_of_png = compute_latex(latex,print_debug)
-        return render_template("view_output.html", form=form, #s=s, 
-                               latex_stdout=latex_stdout,latex_stderr=latex_stderr,
-                               png_stdout=png_stdout,png_stderr=png_stderr,name_of_png=name_of_png)
+        latex_as_str = form.latex.data
+        #latex_stdout,latex_stderr,png_stdout,png_stderr,name_of_png = compute_latex(latex_as_str,print_debug)
+        name_of_png = compute.create_png_from_latex(latex_as_str,print_debug)
+        compute.add_latex_to_sql("app/sqlite.db",latex_as_str,print_debug)
+        return render_template("view_output.html", #form=form, #s=s, 
+                               #latex_stdout=latex_stdout,latex_stderr=latex_stderr,
+                               #png_stdout=png_stdout,png_stderr=png_stderr,
+                               name_of_png=name_of_png)
     else:
         return render_template("view_input.html", form=form)
 
