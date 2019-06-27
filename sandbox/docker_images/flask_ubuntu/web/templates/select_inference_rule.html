@@ -1,0 +1,14 @@
+<HTML>
+
+<BODY>
+
+<P>select inference rule
+
+<!-- https://stackoverflow.com/questions/42469800/select-from-dropdown-list-in-flask -->
+
+{% for x in inf_rule_list %}
+<option value="{{ x }}"{% if loop.first %} SELECTED{% endif %}>{{ x }}</option>
+{% endfor %}
+
+</BODY>
+</HTML>
