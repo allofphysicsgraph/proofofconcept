@@ -10,17 +10,40 @@
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
 <form method=post action="{{ url_for('step_review', name_of_derivation=name_of_derivation) }}">
-<P>HELLO  
 
-{% for latex_eq_form in form.inputs_and_outputs %}
-<P>input:    {{ render_field(latex_eq_form.latex) }}
-{% endfor %}
+{% if form.latex_in_one is defined %} {# http://jinja.pocoo.org/docs/2.10/templates/#defined #}
+<P>{{ form.latex_in_one.label }}: {{ form.latex_in_one }}
+{% endif %}
 
-{% for latex_eq_form in form.output_latex %}
-<P>output:    {{ render_field(latex_eq_form.latex) }}
-{% endfor %}
+{% if form.latex_in_two is defined %}
+<P>{{ form.latex_in_two.label }}: {{ form.latex_in_two }}
+{% endif %}
 
-<input type=submit value=Submit>
+{% if form.latex_in_three is defined %}
+<P>{{ form.latex_in_three.label }}: {{ form.latex_in_three }}
+{% endif %}
+
+{% if form.latex_in_four is defined %}
+<P>{{ form.latex_in_four.label }}: {{ form.latex_in_four }}
+{% endif %}
+
+{% if form.latex_out_one is defined %}
+<P>{{ form.latex_out_one.label }}: {{ form.latex_out_one }}
+{% endif %}
+
+{% if form.latex_out_two is defined %}
+<P>{{ form.latex_out_two.label }}: {{ form.latex_out_two }}
+{% endif %}
+
+{% if form.latex_out_three is defined %}
+<P>{{ form.latex_out_three.label }}: {{ form.latex_out_three }}
+{% endif %}
+
+{% if form.latex_out_four is defined %}
+<P>{{ form.latex_out_four.label }}: {{ form.latex_out_four }}
+{% endif %}
+
+<P><input type=submit value=Submit>
 </form>
 
 

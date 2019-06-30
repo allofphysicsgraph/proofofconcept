@@ -12,18 +12,48 @@ app.config.from_object(Config) # https://blog.miguelgrinberg.com/post/the-flask-
 class EquationInputForm(Form):
 #    r = FloatField(validators=[validators.InputRequired()])
 #    r = FloatField()
-    latex = StringField(validators=[validators.InputRequired()])
+    latex = StringField('LaTeX',validators=[validators.InputRequired()])
 
 class infRuleInputsAndOutputs(Form):
-   """
-   a form with one or more latex entries 
-   source: https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
+    """
+    a form with one or more latex entries 
+    source: https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
+           https://stackoverflow.com/questions/30121763/how-to-use-a-wtforms-fieldlist-of-formfields
+           https://gist.github.com/doobeh/5d0f965502b86fee80fe
+           https://www.rmedgar.com/blog/dynamic_fields_flask_wtf
 
-   docs: https://wtforms.readthedocs.io/en/latest/fields.html#field-enclosures
+    docs: https://wtforms.readthedocs.io/en/latest/fields.html#field-enclosures
          https://wtforms.readthedocs.io/en/latest/fields.html#wtforms.fields.FieldList
          https://wtforms.readthedocs.io/en/latest/fields.html#wtforms.fields.FormField
-   """
-   inputs_and_outputs = FieldList(FormField(EquationInputForm), min_entries=1)
+    """
+    inputs_and_outputs = FieldList(FormField(EquationInputForm,'late_x'), min_entries=1)
+#    inputs_and_outputs = FieldList(EquationInputForm, min_entries=1)
+
+class LatexOneInputZeroOutput(Form):
+    latex_in_one = StringField('LaTeX',validators=[validators.InputRequired()])
+
+class LatexOneInputOneOutput(Form):
+    latex_in_one  = StringField('LaTeX',validators=[validators.InputRequired()])
+    latex_out_one = StringField('LaTeX',validators=[validators.InputRequired()])
+
+class LatexZeroInputOneOutput(Form):
+    latex_out_one = StringField('LaTeX',validators=[validators.InputRequired()])
+
+class LatexOneInputTwoOutput(Form):
+    latex_in_one = StringField('LaTeX',validators=[validators.InputRequired()])
+    latex_out_one = StringField('LaTeX',validators=[validators.InputRequired()])
+    latex_out_two = StringField('LaTeX',validators=[validators.InputRequired()])
+
+class LatexTwoInputOneOutput(Form):
+    latex_in_one = StringField('input LaTeX 1',validators=[validators.InputRequired()])
+    latex_in_two = StringField('input LaTeX 2',validators=[validators.InputRequired()])
+    latex_out_one = StringField('output LaTeX',validators=[validators.InputRequired()])
+
+class LatexTwoInputTwoOutput(Form):
+    latex_in_one = StringField('LaTeX',validators=[validators.InputRequired()])
+    latex_in_two = StringField('LaTeX',validators=[validators.InputRequired()])
+    latex_out_one = StringField('LaTeX',validators=[validators.InputRequired()])
+    latex_out_two = StringField('LaTeX',validators=[validators.InputRequired()])
 
 class NameOfDerivationInputForm(Form):
     name_of_derivation = StringField(validators=[validators.InputRequired()])
@@ -113,13 +143,6 @@ def select_inference_rule(name_of_derivation):
                            name_of_derivation=name_of_derivation)
 
 
-#@app.route('/ANOTHER_inf_rule_selected/<name_of_derivation>', methods=['GET', 'POST'])
-#def ANOTHER_inf_rule_selected(name_of_derivation):
-#    user_addresses = [{"name": "First Address"},
-#                  {"name": "Second Address"}]
-#    form = AddressesForm(addresses=user_addresses)
-#    return render_template("inf_rule_selected.html", form=form)
-
 @app.route('/inf_rule_selected/<name_of_derivation>', methods=['GET', 'POST'])
 def inf_rule_selected(name_of_derivation):
     """
@@ -132,25 +155,30 @@ def inf_rule_selected(name_of_derivation):
         print('no inputs, 1 output')
         number_of_inputs=0
         number_of_outputs=1
+        form = LatexZeroInputOneOutput(request.form)
     elif select=='add X to both sides':
         print('2 inputs, 1 output')
         number_of_inputs=2
         number_of_outputs=1
+        form = LatexTwoInputOneOutput(request.form)
     elif select=='multiply both sides by X':
         print('2 inputs, 1 output')
         number_of_inputs=2
         number_of_outputs=1
+        form = LatexTwoInputOneOutput(request.form)
     print('user selected inference rule:',select)
 
-    # https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
-    inputs = [{"latex":"first"}, {"latex":"second"}]
-    outputs = [{"latex":"first"}, {"latex":"second"}]
-
     #form = infRuleInputsAndOutputs(input_latex=inputs, output_latex = outputs)
-    form = infRuleInputsAndOutputs()
+    #form = infRuleInputsAndOutputs(inputs=inputs) # "form" is an instance of the class "infRuleInputsAndOutputs"
+    #form = infRuleInputsAndOutputs()
+    #form = infRuleInputsAndOutputs(request.form,inputs=inputs)
     #form = FieldList(StringField(validators=[validators.InputRequired()]),min_entries=1)
 
-    print(form.errors)
+    #print(form.errors)
+
+    #print('form',form) # instance of class
+    #print(form.latex_in_one)
+    #print(form.inputs_and_outputs) # inputs_and_outputs is an attribute in the class "infRuleInputsAndOutputs"
 
     return render_template('inf_rule_selected.html',
                             name_of_derivation=name_of_derivation,
@@ -159,8 +187,11 @@ def inf_rule_selected(name_of_derivation):
                             inf_rule=select,
                             form=form)
 
-@app.route('/step_review', methods=['GET', 'POST'])
-def step_review():
+@app.route('/step_review/<name_of_derivation>', methods=['GET', 'POST'])
+def step_review(name_of_derivation):
+    """
+    https://teamtreehouse.com/community/getting-data-from-wtforms-formfield
+    """
     return render_template('step_review.html')
 
 @app.route('/enter_equation/', methods=['GET', 'POST'])
