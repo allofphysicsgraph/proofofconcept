@@ -18,9 +18,12 @@ class infRuleInputsAndOutputs(Form):
    """
    a form with one or more latex entries 
    source: https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
+
+   docs: https://wtforms.readthedocs.io/en/latest/fields.html#field-enclosures
+         https://wtforms.readthedocs.io/en/latest/fields.html#wtforms.fields.FieldList
+         https://wtforms.readthedocs.io/en/latest/fields.html#wtforms.fields.FormField
    """
    inputs_and_outputs = FieldList(FormField(EquationInputForm), min_entries=1)
-
 
 class NameOfDerivationInputForm(Form):
     name_of_derivation = StringField(validators=[validators.InputRequired()])
@@ -109,10 +112,19 @@ def select_inference_rule(name_of_derivation):
                            inf_rule_list=list_of_inf_rules,
                            name_of_derivation=name_of_derivation)
 
+
+#@app.route('/ANOTHER_inf_rule_selected/<name_of_derivation>', methods=['GET', 'POST'])
+#def ANOTHER_inf_rule_selected(name_of_derivation):
+#    user_addresses = [{"name": "First Address"},
+#                  {"name": "Second Address"}]
+#    form = AddressesForm(addresses=user_addresses)
+#    return render_template("inf_rule_selected.html", form=form)
+
 @app.route('/inf_rule_selected/<name_of_derivation>', methods=['GET', 'POST'])
 def inf_rule_selected(name_of_derivation):
     """
     TODO SQL interaction: for a given inf_rule, return number of inputs and outputs
+    https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
     """
     print('name of derivation=',name_of_derivation)
     select = request.form.get('inf_rul_select') # this comes from the POST 
@@ -134,7 +146,11 @@ def inf_rule_selected(name_of_derivation):
     inputs = [{"latex":"first"}, {"latex":"second"}]
     outputs = [{"latex":"first"}, {"latex":"second"}]
 
-    form = infRuleInputsAndOutputs(input_latex=inputs, output_latex = outputs)
+    #form = infRuleInputsAndOutputs(input_latex=inputs, output_latex = outputs)
+    form = infRuleInputsAndOutputs()
+    #form = FieldList(StringField(validators=[validators.InputRequired()]),min_entries=1)
+
+    print(form.errors)
 
     return render_template('inf_rule_selected.html',
                             name_of_derivation=name_of_derivation,
