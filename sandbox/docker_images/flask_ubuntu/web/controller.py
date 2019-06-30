@@ -1,10 +1,14 @@
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 
-from flask import Flask, render_template, request
+from flask import Flask, redirect, render_template, request, url_for
 from wtforms import Form, StringField, FloatField, validators
 import compute 
+from config import Config # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
+
 
 app = Flask(__name__, static_folder='static')
+app.config.from_object(Config) # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
+
 
 class EquationInputForm(Form):
 #    r = FloatField(validators=[validators.InputRequired()])
@@ -29,6 +33,7 @@ def add_header(r):
     return r
 
 # View
+@app.route('/index', methods=['GET', 'POST'])
 @app.route('/', methods=['GET', 'POST'])
 def index():
     """ 
@@ -46,9 +51,11 @@ def start_new_derivation():
     if request.method == 'POST' and form.validate():
         name_of_derivation = form.name_of_derivation.data
         print(name_of_derivation)
-        return render_template("select_inference_rule.html")
+        return redirect(url_for('select_inference_rule', name_of_derivation=name_of_derivation))
+              #select_inference_rule(name_of_derivation) 
+              #render_template("select_inference_rule.html")
     else:
-        return render_template("start_new_derivation.html",form=form)
+        return render_template("start_new_derivation.html",form=form,title='start new derivation')
 
 @app.route('/edit_existing_derivation', methods=['GET', 'POST'])
 def edit_existing_derivation():
@@ -79,15 +86,34 @@ def list_all_expressions():
 def view_existing_derivations():
     return render_template("view_existing_derivations.html")
 
-@app.route('/select_inference_rule/', methods=['GET', 'POST'])
-def select_inference_rule():
+@app.route('/select_inference_rule/<name_of_derivation>/', methods=['GET', 'POST'])
+def select_inference_rule(name_of_derivation):
     """
     rather than a local list, 
     this function should poll the SQL database
     """
-    list_of_inf_rules = ['add X to both sides','multiply both sides by X']
+    list_of_inf_rules = ['begin derivation','add X to both sides','multiply both sides by X']
 
-    return render_template("select_inference_rule.html",inf_rule_list=list_of_inf_rules)
+#    if request.method == 'POST':
+#        print(request.args['inf_rule'])
+
+    return render_template("select_inference_rule.html",
+                           title=name_of_derivation,
+                           inf_rule_list=list_of_inf_rules,
+                           name_of_derivation=name_of_derivation)
+
+@app.route('/inf_rule_selected', methods=['GET', 'POST'])
+def inf_rule_selected():
+    select = request.form.get('inf_rul_select')
+    if select=='begin derivation':
+        print('no inputs, 1 output')
+    elif select=='add X to both sides':
+        print('2 inputs, 1 output')
+    elif select=='multiply both sides by X':
+        print('2 inputs, 1 output')
+
+    print('user selected inference rule:',select)
+    return render_template('inf_rule_selected.html')
 
 @app.route('/enter_equation/', methods=['GET', 'POST'])
 def create_eq_as_png():

@@ -46,6 +46,7 @@ COPY templates /home/appuser/app/templates
 COPY static /home/appuser/app/static
 COPY controller.py /home/appuser/app
 COPY compute.py /home/appuser/app
+COPY config.py /home/appuser/app
 COPY graphviz.dot /home/appuser/app
 
 USER root
