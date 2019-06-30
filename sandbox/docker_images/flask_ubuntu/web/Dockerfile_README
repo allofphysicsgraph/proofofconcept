@@ -1,3 +1,6 @@
+# QUICK START:
+docker build -t flask_ub:latest .; docker run -it --publish 5000:5000 flask_ub
+
 
 # Build the image
 docker build -t flask-ub:latest .
