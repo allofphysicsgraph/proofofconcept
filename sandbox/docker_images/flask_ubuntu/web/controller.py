@@ -187,11 +187,23 @@ def inf_rule_selected(name_of_derivation):
                             inf_rule=select,
                             form=form)
 
-@app.route('/step_review/<name_of_derivation>', methods=['GET', 'POST'])
-def step_review(name_of_derivation):
+@app.route('/step_review/<name_of_derivation>/<inf_rule>/', methods=['GET', 'POST'])
+def step_review(name_of_derivation,inf_rule):
     """
     https://teamtreehouse.com/community/getting-data-from-wtforms-formfield
     """
+    if request.method == 'POST':
+        res = request.form
+        print(res) # form from inf_rule_selected()
+        print('keys:',res.keys())
+        list_of_pngs
+        for this_eq in res.keys():
+            name_of_png = compute.create_png_from_latex(latex_as_str,print_debug)
+            list_of_pngs.append(name_of_png)
+        return render_template("step_review.html",
+                               res=res,
+                               name_of_derivation=name_of_derivation,
+                               inf_rule=inf_rule)
     return render_template('step_review.html')
 
 @app.route('/enter_equation/', methods=['GET', 'POST'])

@@ -9,7 +9,7 @@
 
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
-<form method=post action="{{ url_for('step_review', name_of_derivation=name_of_derivation) }}">
+<form method=post action="{{ url_for('step_review', name_of_derivation=name_of_derivation, inf_rule=inf_rule) }}">
 
 {% if form.latex_in_one is defined %} {# http://jinja.pocoo.org/docs/2.10/templates/#defined #}
 <P>{{ form.latex_in_one.label }}: {{ form.latex_in_one }}
