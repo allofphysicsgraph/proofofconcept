@@ -195,16 +195,49 @@ def step_review(name_of_derivation,inf_rule):
     if request.method == 'POST':
         res = request.form
         print(res) # form from inf_rule_selected()
-        print('keys:',res.keys())
-        list_of_pngs
-        for this_eq in res.keys():
-            name_of_png = compute.create_png_from_latex(latex_as_str,print_debug)
-            list_of_pngs.append(name_of_png)
+        # looks like {'latex_in_one':'asdf', 'latex_in_two':'afdm','latex_out_one':'imfa'}
+        inf_rule_local_id = compute.create_local_id(print_debug)
+        inf_rule_png      = compute.create_png_from_latex(inf_rule,print_debug)
+        eq_and_png={}
+        for which_eq, this_eq in res.items():
+            name_of_png = compute.create_png_from_latex(this_eq,print_debug)
+            eq_and_png[which_eq] = {'equation text':this_eq, 
+                                    'equation picture':name_of_png,
+                                    'local identifier':compute.create_local_id(print_debug)}
+        name_of_graphviz_png = compute.create_step_graphviz_png(eq_and_png,
+                                                           inf_rule,inf_rule_local_id,inf_rule_png,
+                                                           name_of_derivation,
+                                                           print_debug)
         return render_template("step_review.html",
-                               res=res,
+                               eq_and_png=eq_and_png,
+                               name_of_graphviz_png=name_of_graphviz_png,
                                name_of_derivation=name_of_derivation,
                                inf_rule=inf_rule)
     return render_template('step_review.html')
+
+@app.route('/accept_step_or_modify_step/<name_of_derivation>/', methods=['GET', 'POST'])
+def accept_step_or_modify_step(name_of_derivation):
+    if request.method == 'POST':
+        if request.form['accept and add or accept and return to derivation or modify']=='accept and review derivation':
+            render_template('review_derivation.html')
+        elif request.form['accept and add or accept and return to derivation or modify']=='modify this step':
+            render_template('modify_step.html')
+        elif request.form['accept and add or accept and return to derivation or modify']=='accept and add another step':
+            render_template('select_inference_rule.html')
+        else:
+            raise Exception('undefined choice in form')
+    else:
+        raise Exception('submit form to get to this page')
+
+@app.route('/review_derivation/<name_of_derivation>/', methods=['GET', 'POST'])
+def review_derivation(name_of_derivation):
+
+    return render_template('review_derivation.html')
+
+@app.route('/modify_step/<name_of_derivation>/', methods=['GET', 'POST'])
+def modify_step(name_of_derivation):
+    return render_template('modify_step.html')
+
 
 @app.route('/enter_equation/', methods=['GET', 'POST'])
 def create_eq_as_png():
