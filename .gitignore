@@ -2,8 +2,16 @@
 ### Example user template template
 ### Example user template
 
+__pycache__/
+*.pyc
+a.out
+*.zip
+*.gz
+*.bz2
+*.so
 # IntelliJ project files
 .idea
 *.iml
 out
 gen
+

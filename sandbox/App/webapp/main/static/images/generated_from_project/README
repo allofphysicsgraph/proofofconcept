@@ -1,2 +1,0 @@
-bash bin/list_derivations.sh > runme.sh
-bash runme.sh 
