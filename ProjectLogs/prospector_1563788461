@@ -1,0 +1,3701 @@
+Messages
+========
+
+sandbox/docker_images/flask_ubuntu/web/compute.py
+  Line: 34
+    pyflakes: F841 / local variable 'conn' is assigned to but never used (col 9)
+
+sandbox/docker_images/flask_ubuntu/web/controller.py
+  Line: 4
+    pyflakes: F401 / 'wtforms.FloatField' imported but unused (col 1)
+  Line: 13
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 14
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 95
+    pep8: E114 / indentation is not a multiple of four (comment) (col 15)
+    pep8: E116 / unexpected indentation (comment) (col 15)
+  Line: 96
+    pep8: E114 / indentation is not a multiple of four (comment) (col 15)
+    pep8: E116 / unexpected indentation (comment) (col 15)
+  Line: 257
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+
+sandbox/docker_images/flask_ubuntu/web/mvcc/app.py
+  Line: 20
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+
+sandbox/docker_images/flask_ubuntu/web/mvcc/app_hello.py
+  Line: 10
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+
+sandbox/testing/Shunting_Yard_Algorithm.py
+  Line: 8
+    pylint: unused-import / Unused pprint imported from pprint as pp
+  Line: 46
+    pylint: too-many-nested-blocks / Too many nested blocks (6/5) (col 4)
+  Line: 57
+    pylint: unused-variable / Unused variable 'a2' (col 25)
+
+sandbox/testing/auto_complete.py
+  Line: 4
+    pylint: unused-import / Unused import rlcompleter
+  Line: 22
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 34
+    pylint: redefined-builtin / Redefining built-in 'input'
+
+sandbox/testing/binfile.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+
+sandbox/testing/cmdopts.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 3)
+  Line: 152
+    pylint: no-else-return / Unnecessary "else" after "return" (col 1)
+  Line: 168
+    pylint: redefined-builtin / Redefining built-in 'dir' (col 2)
+  Line: 170
+    pep8: E306 / expected 1 blank line before a nested definition, found 0 (col 3)
+    pylint: unused-argument / Unused argument 'p' (col 14)
+  Line: 184
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 210
+    pylint: unused-argument / Unused argument 'option' (col 16)
+    pylint: unused-argument / Unused argument 'opt_str' (col 24)
+  Line: 216
+    pylint: unused-argument / Unused argument 'option' (col 22)
+    pylint: unused-argument / Unused argument 'opt_str' (col 30)
+  Line: 220
+    pylint: unused-argument / Unused argument 'option' (col 19)
+    pylint: unused-argument / Unused argument 'opt_str' (col 27)
+  Line: 224
+    pylint: unused-argument / Unused argument 'option' (col 21)
+    pylint: unused-argument / Unused argument 'opt_str' (col 29)
+  Line: 273
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+
+sandbox/testing/colors.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 24
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 65
+    pylint: no-else-return / Unnecessary "else" after "return" (col 1)
+  Line: 70
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+
+sandbox/testing/compute.py
+  Line: 2
+    pylint: unused-argument / Unused argument 'inference_rule' (col 14)
+  Line: 9
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 10
+    pylint: undefined-variable / Undefined variable 'compute' (col 10)
+  Line: 11
+    pylint: trailing-newlines / Trailing newlines
+
+sandbox/testing/controller.py
+  Line: 4
+    pylint: import-error / Unable to import 'flask'
+  Line: 5
+    pylint: unused-import / Unused arg_count imported from compute
+  Line: 13
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 29
+    pylint: unused-variable / Unused variable 'infrule' (col 17)
+  Line: 32
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 36
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 38
+    pylint: trailing-newlines / Trailing newlines
+
+sandbox/testing/convert_diagram_to_PDG.py
+  Line: 14
+    pep8: E711 / comparison to None should be 'if cond is None:' (col 22)
+    pylint: singleton-comparison / Comparison to None should be 'expr is None' (col 8)
+  Line: 79
+    pylint: trailing-newlines / Trailing newlines
+
+sandbox/testing/create_tables.py
+  Line: 1
+    pylint: import-error / Unable to import 'pandas'
+  Line: 15
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 16
+    pylint: trailing-newlines / Trailing newlines
+
+sandbox/testing/dvi2svg.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 128
+    pylint: import-error / Unable to import 'conv'
+  Line: 129
+    pylint: import-error / Unable to import 'conv'
+  Line: 131
+    pylint: import-error / Unable to import 'conv'
+  Line: 132
+    pylint: import-error / Unable to import 'conv'
+  Line: 133
+    pylint: import-error / Unable to import 'conv'
+  Line: 135
+    pylint: import-error / Unable to import 'conv.binfile'
+  Line: 136
+    pylint: import-error / Unable to import 'conv.dviparser'
+  Line: 137
+    pylint: import-error / Unable to import 'conv.unic'
+  Line: 138
+    pylint: import-error / Unable to import 'conv.utils'
+  Line: 180
+    pylint: too-many-arguments / Too many arguments (7/5) (col 1)
+  Line: 195
+    pylint: too-many-arguments / Too many arguments (6/5) (col 1)
+  Line: 201
+    pylint: unused-variable / Unused variable 's2s' (col 2)
+  Line: 238
+    pylint: too-many-locals / Too many local variables (23/15) (col 1)
+    pylint: unused-argument / Unused argument 'element' (col 25)
+  Line: 241
+    pylint: unused-variable / Unused variable 'new' (col 2)
+  Line: 246
+    pylint: unused-variable / Unused variable 'color' (col 42)
+  Line: 270
+    pylint: pointless-string-statement / String statement has no effect
+  Line: 298
+    pylint: pointless-string-statement / String statement has no effect
+  Line: 303
+    pylint: too-many-locals / Too many local variables (22/15) (col 1)
+  Line: 410
+    pylint: too-many-locals / Too many local variables (26/15) (col 1)
+    mccabe: MC0001 / SVGTextDocument.flush_chars is too complex (17)
+  Line: 412
+    pylint: unused-variable / Unused variable 's2s' (col 2)
+  Line: 439
+    pylint: redefined-builtin / Redefining built-in 'list' (col 26)
+  Line: 487
+    pylint: unused-variable / Unused variable 'color' (col 12)
+  Line: 508
+    pylint: too-many-locals / Too many local variables (17/15)
+    pylint: too-many-statements / Too many statements (73/60)
+    mccabe: MC0001 / convert_page is too complex (28)
+  Line: 589
+    pylint: unused-variable / Unused variable 'background' (col 11)
+  Line: 593
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 595
+    mccabe: MC0001 / If 595 is too complex (18)
+  Line: 648
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+  Line: 654
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 658
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+
+sandbox/testing/dvilistfonts.py
+  Line: 5
+    pylint: import-error / Unable to import 'conv'
+  Line: 6
+    pylint: import-error / Unable to import 'conv'
+
+sandbox/testing/dviparser.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 22
+    pylint: too-many-locals / Too many local variables (31/15)
+    pylint: too-many-statements / Too many statements (131/60)
+    mccabe: MC0001 / get_token is too complex (62)
+  Line: 166
+    pep8: E741 / ambiguous variable name 'l' (col 3)
+  Line: 167
+    pylint: redefined-builtin / Redefining built-in 'dir' (col 2)
+  Line: 176
+    pep8: E741 / ambiguous variable name 'l' (col 3)
+  Line: 186
+    pep8: E741 / ambiguous variable name 'l' (col 3)
+  Line: 196
+    pep8: E741 / ambiguous variable name 'l' (col 3)
+  Line: 214
+    pep8: E741 / ambiguous variable name 'l' (col 3)
+  Line: 229
+    pylint: too-many-locals / Too many local variables (36/15)
+  Line: 245
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 7)
+  Line: 256
+    pylint: unused-variable / Unused variable 't' (col 38)
+  Line: 263
+    pylint: unused-variable / Unused variable 'mm' (col 1)
+  Line: 271
+    pylint: redefined-builtin / Redefining built-in 'dir' (col 15)
+    pylint: unused-variable / Unused variable 'dir' (col 15)
+  Line: 279
+    pep8: W603 / '<>' is deprecated, use '!=' (col 10)
+  Line: 282
+    pylint: unused-variable / Unused variable 'c0' (col 12)
+
+sandbox/testing/encoding.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 27
+    pylint: import-error / Unable to import 'main.lib.pydvi2svg'
+  Line: 33
+    pylint: old-style-class / Old-style class defined.
+  Line: 34
+    pylint: dangerous-default-value / Dangerous default value [] as argument (col 1)
+  Line: 56
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+  Line: 62
+    pylint: no-else-return / Unnecessary "else" after "return" (col 3)
+  Line: 77
+    pylint: redefined-builtin / Redefining built-in 'file' (col 9)
+    pylint: unused-variable / Unused variable 'path' (col 3)
+  Line: 111
+    pylint: redefined-builtin / Redefining built-in 'file' (col 13)
+  Line: 119
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+  Line: 155
+    pylint: no-value-for-parameter / No value for argument 'strerror' in constructor call (col 9)
+  Line: 156
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+
+sandbox/testing/findfile.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 45
+    pylint: redefined-builtin / Redefining built-in 'dir' (col 2)
+  Line: 46
+    pylint: redefined-builtin / Redefining built-in 'file' (col 6)
+  Line: 60
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 4)
+  Line: 63
+    pylint: redefined-argument-from-local / Redefining argument with the local name 'path' (col 6)
+  Line: 64
+    pylint: redefined-builtin / Redefining built-in 'file' (col 3)
+  Line: 81
+    pylint: redefined-builtin / Redefining built-in 'list' (col 38)
+  Line: 82
+    pylint: redefined-builtin / Redefining built-in 'dir' (col 2)
+  Line: 84
+    pylint: redefined-builtin / Redefining built-in 'file' (col 6)
+  Line: 95
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 4)
+  Line: 98
+    pylint: redefined-argument-from-local / Redefining argument with the local name 'path' (col 6)
+  Line: 99
+    pylint: assignment-from-no-return / Assigning to function call which doesn't return (col 3)
+    pylint: redefined-builtin / Redefining built-in 'file' (col 3)
+    pylint: unused-variable / Unused variable 'file' (col 3)
+  Line: 122
+    pylint: dangerous-default-value / Dangerous default value [] as argument
+  Line: 132
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should.
+
+sandbox/testing/fontsel.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 1)
+  Line: 92
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 107
+    pylint: too-many-locals / Too many local variables (17/15)
+    pylint: too-many-statements / Too many statements (66/60)
+    mccabe: MC0001 / create_DVI_font is too complex (21)
+  Line: 115
+    pylint: old-style-class / Old-style class defined. (col 1)
+  Line: 186
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 192
+    pylint: redefined-builtin / Redefining built-in 'file' (col 2)
+  Line: 225
+    pylint: dangerous-default-value / Dangerous default value {} as argument
+  Line: 231
+    pep8: E711 / comparison to None should be 'if cond is not None:' (col 50)
+  Line: 232
+    pep8: E711 / comparison to None should be 'if cond is not None:' (col 52)
+  Line: 233
+    pep8: E711 / comparison to None should be 'if cond is not None:' (col 51)
+  Line: 241
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+  Line: 248
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 1)
+  Line: 251
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 1)
+  Line: 267
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 271
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+  Line: 275
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+  Line: 283
+    pylint: redefined-builtin / Redefining built-in 'file' (col 2)
+  Line: 284
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 286
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 302
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 307
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+  Line: 314
+    pylint: redefined-builtin / Redefining built-in 'file' (col 2)
+  Line: 315
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 317
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 330
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 337
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 340
+    pylint: too-many-format-args / Too many arguments for format string (col 14)
+  Line: 349
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 350
+    pylint: redefined-builtin / Redefining built-in 'file' (col 2)
+  Line: 353
+    pylint: unused-variable / Unused variable 'e' (col 19)
+  Line: 354
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+  Line: 359
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 362
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 367
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should.
+  Line: 371
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 372
+    pylint: redefined-builtin / Redefining built-in 'file' (col 2)
+  Line: 375
+    pylint: unused-variable / Unused variable 'e' (col 19)
+  Line: 376
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+  Line: 382
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 5)
+  Line: 385
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 5)
+  Line: 387
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 394
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should.
+  Line: 398
+    pep8: E711 / comparison to None should be 'if cond is not None:' (col 23)
+  Line: 403
+    pylint: unused-argument / Unused argument 'path' (col 14)
+  Line: 409
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 412
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+  Line: 415
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 420
+    pep8: E711 / comparison to None should be 'if cond is not None:' (col 19)
+  Line: 426
+    pylint: unused-argument / Unused argument 'path' (col 14)
+  Line: 437
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 440
+    pylint: redefined-builtin / Redefining built-in 'all' (col 1)
+  Line: 459
+    pylint: unused-variable / Unused variable 'encoding' (col 2)
+  Line: 460
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 467
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 468
+    pylint: redefined-builtin / Redefining built-in 'file' (col 2)
+  Line: 471
+    pylint: unused-variable / Unused variable 'e' (col 19)
+  Line: 472
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+  Line: 480
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+    pep8: W605 / invalid escape sequence '\d' (col 3)
+  Line: 483
+    pylint: old-style-class / Old-style class defined.
+  Line: 486
+    pylint: old-style-class / Old-style class defined.
+  Line: 492
+    pylint: too-many-locals / Too many local variables (25/15)
+    pylint: too-many-statements / Too many statements (99/60)
+    mccabe: MC0001 / make_cache_file is too complex (35)
+  Line: 502
+    pep8: E306 / expected 1 blank line before a nested definition, found 0 (col 2)
+    pylint: unused-argument / Unused argument 'path' (col 13)
+  Line: 518
+    pylint: unused-argument / Unused argument 'path' (col 13)
+  Line: 525
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+  Line: 540
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 5)
+  Line: 577
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 1)
+  Line: 607
+    pylint: unused-variable / Unused variable 'xmin' (col 3)
+  Line: 608
+    pylint: unused-variable / Unused variable 'upem' (col 3)
+  Line: 625
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 6)
+  Line: 649
+    pep8: E711 / comparison to None should be 'if cond is not None:' (col 22)
+  Line: 653
+    pylint: raising-format-tuple / Exception arguments suggest string formatting might be intended (col 3)
+  Line: 680
+    pylint: too-many-locals / Too many local variables (19/15)
+  Line: 766
+    pylint: redefined-builtin / Redefining built-in 'file' (col 7)
+    pylint: unused-variable / Unused variable 'path' (col 1)
+
+sandbox/testing/forms/__init__.py
+  Line: 1
+    pylint: import-error / Unable to import 'forms'
+    pylint: import-error / Unable to import 'forms'
+    pyflakes: F401 / 'forms.*' imported but unused (col 1)
+
+sandbox/testing/lib_physics_graph.py
+  Line: 20
+    pep8: E115 / expected an indented block (comment) (col 13)
+  Line: 21
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 83
+    pep8: E501 / line too long (166 > 159 characters) (col 160)
+  Line: 210
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 249
+    pylint: syntax-error / unindent does not match any outer indentation level (<string>, line 249)
+
+sandbox/testing/metrics.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 29
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+    pylint: wrong-import-position / Import "import re" should be placed at the top of the module
+  Line: 31
+    pep8: W605 / invalid escape sequence '\d' (col 6)
+    pep8: W605 / invalid escape sequence '\d' (col 17)
+  Line: 32
+    pylint: redefined-builtin / Redefining built-in 'file' (col 13)
+  Line: 56
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 4)
+  Line: 59
+    pylint: no-else-return / Unnecessary "else" after "return" (col 1)
+  Line: 64
+    pylint: too-many-locals / Too many local variables (25/15)
+    pylint: redefined-builtin / Redefining built-in 'file' (col 13)
+  Line: 124
+    pylint: redefined-builtin / Redefining built-in 'file' (col 1)
+
+sandbox/testing/model.py
+  Line: 3
+    pylint: import-error / Unable to import 'wtforms'
+  Line: 22
+    pylint: trailing-newlines / Trailing newlines
+
+sandbox/testing/models.py
+  Line: 6
+    pylint: undefined-variable / Undefined variable 'models' (col 20)
+  Line: 7
+    pylint: undefined-variable / Undefined variable 'models' (col 26)
+  Line: 8
+    pylint: undefined-variable / Undefined variable 'models' (col 26)
+  Line: 9
+    pylint: undefined-variable / Undefined variable 'models' (col 22)
+  Line: 10
+    pylint: undefined-variable / Undefined variable 'models' (col 34)
+  Line: 11
+    pylint: undefined-variable / Undefined variable 'models' (col 35)
+  Line: 12
+    pylint: undefined-variable / Undefined variable 'models' (col 15)
+  Line: 13
+    pylint: undefined-variable / Undefined variable 'models' (col 23)
+  Line: 16
+    pylint: undefined-variable / Undefined variable 'models' (col 11)
+  Line: 17
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 18
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 21
+    pylint: undefined-variable / Undefined variable 'models' (col 17)
+  Line: 22
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 23
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 26
+    pylint: undefined-variable / Undefined variable 'models' (col 17)
+  Line: 27
+    pylint: undefined-variable / Undefined variable 'models' (col 22)
+  Line: 28
+    pylint: undefined-variable / Undefined variable 'models' (col 17)
+  Line: 29
+    pylint: undefined-variable / Undefined variable 'models' (col 17)
+  Line: 30
+    pylint: undefined-variable / Undefined variable 'models' (col 28)
+  Line: 31
+    pylint: undefined-variable / Undefined variable 'models' (col 28)
+  Line: 32
+    pylint: undefined-variable / Undefined variable 'models' (col 18)
+  Line: 33
+    pylint: undefined-variable / Undefined variable 'models' (col 29)
+  Line: 34
+    pylint: undefined-variable / Undefined variable 'models' (col 29)
+  Line: 37
+    pylint: undefined-variable / Undefined variable 'models' (col 13)
+  Line: 38
+    pylint: undefined-variable / Undefined variable 'models' (col 16)
+  Line: 39
+    pylint: undefined-variable / Undefined variable 'models' (col 13)
+  Line: 40
+    pylint: undefined-variable / Undefined variable 'models' (col 11)
+  Line: 41
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 42
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 43
+    pylint: undefined-variable / Undefined variable 'models' (col 18)
+  Line: 44
+    pylint: undefined-variable / Undefined variable 'models' (col 16)
+
+sandbox/testing/parse_subst.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 36
+    pep8: W605 / invalid escape sequence '\s' (col 2)
+  Line: 43
+    pep8: E306 / expected 1 blank line before a nested definition, found 0 (col 2)
+    pylint: blacklisted-name / Black listed name "foo" (col 1)
+  Line: 49
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+  Line: 53
+    pylint: unused-argument / Unused argument 'l' (col 14)
+    pylint: unused-argument / Unused argument 's' (col 17)
+  Line: 54
+    pylint: no-else-return / Unnecessary "else" after "return" (col 1)
+  Line: 60
+    pylint: unused-argument / Unused argument 'l' (col 18)
+    pylint: unused-argument / Unused argument 's' (col 21)
+  Line: 64
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+  Line: 68
+    pylint: unused-argument / Unused argument 'l' (col 9)
+    pylint: unused-argument / Unused argument 's' (col 12)
+  Line: 72
+    pylint: unused-argument / Unused argument 'l' (col 10)
+    pylint: unused-argument / Unused argument 's' (col 13)
+  Line: 78
+    pep8: E131 / continuation line unaligned for hanging indent (col 3)
+  Line: 81
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+    pylint: function-redefined / function already defined line 76
+  Line: 82
+    pylint: no-else-return / Unnecessary "else" after "return" (col 1)
+  Line: 92
+    pylint: unused-argument / Unused argument 'l' (col 10)
+    pylint: unused-argument / Unused argument 's' (col 13)
+  Line: 96
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+  Line: 100
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+  Line: 103
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 106
+    pylint: unused-argument / Unused argument 'l' (col 10)
+    pylint: unused-argument / Unused argument 's' (col 13)
+  Line: 110
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 5)
+  Line: 122
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 25)
+  Line: 127
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 137
+    pylint: unused-argument / Unused argument 'l' (col 7)
+    pylint: unused-argument / Unused argument 's' (col 10)
+    pylint: function-redefined / function already defined line 127
+  Line: 144
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 4)
+  Line: 154
+    pylint: unused-argument / Unused argument 'l' (col 7)
+    pylint: unused-argument / Unused argument 's' (col 10)
+  Line: 161
+    pylint: no-else-return / Unnecessary "else" after "return" (col 1)
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 4)
+  Line: 168
+    pylint: unused-argument / Unused argument 'l' (col 13)
+    pylint: unused-argument / Unused argument 's' (col 16)
+  Line: 169
+    pylint: no-else-return / Unnecessary "else" after "return" (col 1)
+  Line: 170
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+  Line: 178
+    pylint: old-style-class / Old-style class defined.
+  Line: 190
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+  Line: 191
+    pylint: no-else-return / Unnecessary "else" after "return" (col 1)
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 4)
+  Line: 196
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 199
+    pylint: unused-argument / Unused argument 'l' (col 9)
+    pylint: unused-argument / Unused argument 's' (col 12)
+    pylint: unused-argument / Unused argument 'r' (col 15)
+  Line: 202
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 206
+    pylint: unused-argument / Unused argument 'l' (col 9)
+    pylint: unused-argument / Unused argument 's' (col 12)
+    pylint: function-redefined / function already defined line 204
+  Line: 219
+    pylint: redefined-builtin / Redefining built-in 'SyntaxError'
+
+sandbox/testing/parser.py
+  Line: 42
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 4)
+  Line: 43
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+  Line: 44
+    pylint: no-else-return / Unnecessary "else" after "return" (col 3)
+  Line: 49
+    pylint: no-else-return / Unnecessary "else" after "return" (col 3)
+  Line: 55
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 6)
+  Line: 67
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 86
+    pylint: unused-argument / Unused argument 'string' (col 15)
+  Line: 92
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should. (col 1)
+  Line: 102
+    pylint: arguments-differ / Parameters differ from overridden 'get' method (col 1)
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should. (col 1)
+    pylint: redefined-builtin / Redefining built-in 'str' (col 15)
+  Line: 109
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should. (col 1)
+  Line: 112
+    pylint: no-else-return / Unnecessary "else" after "return" (col 3)
+  Line: 124
+    pylint: unused-variable / Unused variable 'matched' (col 11)
+  Line: 151
+    pylint: unused-variable / Unused variable 'matched' (col 12)
+  Line: 228
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+
+sandbox/testing/path_element.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 1)
+  Line: 57
+    pylint: unused-argument / Unused argument 'tofloat' (col 24)
+    mccabe: MC0001 / tokens is too complex (23)
+  Line: 126
+    pylint: too-many-arguments / Too many arguments (6/5)
+    pylint: too-many-locals / Too many local variables (26/15)
+    pylint: too-many-statements / Too many statements (152/60)
+    mccabe: MC0001 / path_iter is too complex (29)
+  Line: 137
+    pylint: unused-variable / Unused variable 'mlast_x1' (col 1)
+  Line: 138
+    pylint: unused-variable / Unused variable 'mlast_y1' (col 1)
+  Line: 140
+    pylint: unused-argument / Unused argument 'arg'
+  Line: 294
+    pylint: undefined-variable / Undefined variable 'last_x2' (col 17)
+  Line: 295
+    pylint: undefined-variable / Undefined variable 'last_y2' (col 17)
+  Line: 386
+    pylint: old-style-class / Old-style class defined. (col 1)
+  Line: 399
+    pylint: unused-argument / Unused argument 'x1' (col 23)
+  Line: 406
+    pylint: unused-variable / Unused variable 'Cx' (col 2)
+  Line: 410
+    pylint: unused-variable / Unused variable 'Cy' (col 2)
+  Line: 428
+    pylint: too-many-locals / Too many local variables (22/15) (col 1)
+  Line: 433
+    pylint: no-else-return / Unnecessary "else" after "return" (col 3)
+  Line: 434
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+  Line: 440
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+
+sandbox/testing/setup.py
+  Line: 6
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 14
+    pylint: old-style-class / Old-style class defined.
+  Line: 15
+    pep8: E305 / expected 2 blank lines after class or function definition, found 0 (col 1)
+
+sandbox/testing/svgfrags.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 48
+    pylint: import-error / Unable to import 'frags'
+  Line: 50
+    pylint: import-error / Unable to import 'conv'
+  Line: 51
+    pylint: import-error / Unable to import 'conv'
+  Line: 52
+    pylint: import-error / Unable to import 'conv.binfile'
+  Line: 53
+    pylint: import-error / Unable to import 'conv.findfile'
+  Line: 72
+    pylint: unnecessary-pass / Unnecessary pass statement (col 2)
+  Line: 75
+    pylint: unused-variable / Unused variable 'scale2str' (col 2)
+  Line: 76
+    pylint: unused-variable / Unused variable 'coord2str' (col 2)
+  Line: 114
+    pylint: too-many-locals / Too many local variables (77/15)
+    pylint: too-many-statements / Too many statements (172/60)
+    mccabe: MC0001 / main is too complex (115)
+  Line: 115
+    pylint: import-error / Unable to import 'frags.cmdopts' (col 1)
+  Line: 162
+    pylint: using-constant-test / Using a conditional statement with a constant value (col 1)
+  Line: 168
+    pylint: redefined-builtin / Redefining built-in 'id' (col 24)
+  Line: 191
+    pylint: redefined-builtin / Redefining built-in 'input' (col 1)
+  Line: 193
+    pylint: import-error / Unable to import 'frags.parse_subst' (col 1)
+  Line: 227
+    pylint: redefined-builtin / Redefining built-in 'object' (col 4)
+  Line: 270
+    pep8: W605 / invalid escape sequence '\e' (col 4)
+  Line: 291
+    pylint: unused-variable / Unused variable 'comment' (col 1)
+  Line: 302
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+  Line: 307
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 3)
+  Line: 311
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 2)
+    pylint: too-many-format-args / Too many arguments for format string (col 12)
+  Line: 321
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+  Line: 329
+    pylint: no-else-return / Unnecessary "else" after "return" (col 2)
+  Line: 386
+    pylint: cell-var-from-loop / Cell variable xmin defined in loop (col 9)
+    pylint: cell-var-from-loop / Cell variable xmax defined in loop (col 17)
+    pylint: cell-var-from-loop / Cell variable xmin defined in loop (col 24)
+    pylint: cell-var-from-loop / Cell variable px defined in loop (col 30)
+  Line: 387
+    pylint: cell-var-from-loop / Cell variable ymin defined in loop (col 9)
+    pylint: cell-var-from-loop / Cell variable ymax defined in loop (col 17)
+    pylint: cell-var-from-loop / Cell variable ymin defined in loop (col 24)
+    pylint: cell-var-from-loop / Cell variable py defined in loop (col 30)
+  Line: 391
+    pylint: cell-var-from-loop / Cell variable equation defined in loop (col 5)
+  Line: 398
+    pylint: cell-var-from-loop / Cell variable equation defined in loop (col 5)
+  Line: 404
+    pylint: cell-var-from-loop / Cell variable equation defined in loop (col 11)
+  Line: 415
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 8)
+  Line: 429
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 8)
+  Line: 482
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 8)
+  Line: 496
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 8)
+  Line: 552
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 8)
+  Line: 568
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 8)
+  Line: 635
+    pylint: bare-except / No exception type(s) specified (col 1)
+
+sandbox/testing/unic.py
+  Line: 892
+    pylint: redefined-builtin / Redefining built-in 'unicode' (col 20)
+  Line: 894
+    pylint: bad-indentation / Bad indentation. Found 7 spaces, expected 8
+
+sandbox/testing/unic_upd.py
+  Line: 30
+    pylint: pointless-statement / Statement seems to have no effect
+
+sandbox/testing/urls.py
+  Line: 20
+    pylint: import-error / Unable to import 'main.views'
+  Line: 22
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 23
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 24
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 25
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 26
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 27
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 28
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+
+sandbox/testing/utils.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 1)
+  Line: 47
+    pylint: redefined-builtin / Redefining built-in 'min' (col 26)
+    pylint: redefined-builtin / Redefining built-in 'max' (col 31)
+  Line: 63
+    pep8: E306 / expected 1 blank line before a nested definition, found 0 (col 2)
+  Line: 109
+    pylint: redefined-builtin / Redefining built-in 'dict' (col 1)
+  Line: 120
+    pylint: redefined-builtin / Redefining built-in 'list' (col 22)
+  Line: 146
+    pylint: no-else-return / Unnecessary "else" after "return" (col 1)
+  Line: 151
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+
+sandbox/testing/views.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 1)
+  Line: 5
+    pylint: unused-wildcard-import / Unused imports from wildcard import: Feed, Symbol, Connection, Expression, InferenceRule
+  Line: 8
+    pylint: unused-import / Unused listdir imported from os
+  Line: 9
+    pylint: multiple-imports / Multiple imports on one line (re, os)
+    pylint: reimported / Reimport 're' (imported line 7)
+    pylint: unused-import / Unused import os
+    pyflakes: F811 / redefinition of unused 're' from line 7 (col 1)
+  Line: 10
+    pylint: reimported / Reimport 'os' (imported line 9)
+    pyflakes: F401 / 'os' imported but unused (col 1)
+    pyflakes: F811 / redefinition of unused 'os' from line 9 (col 1)
+  Line: 14
+    pylint: unused-import / Unused sleep imported from time
+  Line: 15
+    pylint: import-error / Unable to import 'pandas'
+  Line: 27
+    pyflakes: F999 / 'URLS' may be undefined, or defined from star imports: models (col 20)
+    pylint: undefined-variable / Undefined variable 'URLS' (col 19)
+  Line: 31
+    pylint: bare-except / No exception type(s) specified (col 8)
+  Line: 33
+    pyflakes: F999 / 'URLS' may be undefined, or defined from star imports: models (col 22)
+    pylint: undefined-variable / Undefined variable 'URLS' (col 21)
+  Line: 39
+    pyflakes: F999 / 'render' may be undefined, or defined from star imports: models (col 12)
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 44
+    pylint: import-error / Unable to import 'pandas' (col 4)
+    pylint: reimported / Reimport 'pandas' (imported line 15) (col 4)
+  Line: 63
+    pylint: unused-variable / Unused variable 'testing' (col 4)
+  Line: 65
+    pyflakes: F999 / 'render' may be undefined, or defined from star imports: models (col 12)
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 74
+    pylint: bare-except / No exception type(s) specified (col 4)
+  Line: 87
+    pyflakes: F999 / 'render' may be undefined, or defined from star imports: models (col 12)
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 90
+    pylint: unused-argument / Unused argument 'request' (col 13)
+  Line: 91
+    pylint: unused-variable / Unused variable 'testing' (col 4)
+  Line: 96
+    pyflakes: F999 / 'csrf_exempt' may be undefined, or defined from star imports: models (col 2)
+    pylint: undefined-variable / Undefined variable 'csrf_exempt' (col 1)
+  Line: 106
+    pyflakes: F999 / 'HttpResponse' may be undefined, or defined from star imports: models (col 24)
+    pylint: undefined-variable / Undefined variable 'HttpResponse' (col 23)
+    pylint: bad-indentation / Bad indentation. Found 12 spaces, expected 8
+  Line: 107
+    pylint: bad-indentation / Bad indentation. Found 12 spaces, expected 8
+  Line: 108
+    pylint: bad-indentation / Bad indentation. Found 12 spaces, expected 8
+  Line: 109
+    pylint: pointless-statement / Statement seems to have no effect (col 12)
+    pylint: unreachable / Unreachable code (col 12)
+    pylint: bad-indentation / Bad indentation. Found 12 spaces, expected 8
+  Line: 114
+    pylint: unused-argument / Unused argument 'request' (col 18)
+  Line: 119
+    pylint: import-error / Unable to import 'wolframalpha' (col 4)
+  Line: 126
+    pylint: unused-variable / Unused variable 'client' (col 4)
+  Line: 131
+    pylint: import-error / Unable to import 'networkx' (col 4)
+  Line: 135
+    pylint: import-error / Unable to import 'matplotlib.pyplot' (col 4)
+  Line: 152
+    pylint: import-error / Unable to import 'urllib.request' (col 4)
+  Line: 173
+    pylint: import-error / Unable to import 'astmonkey' (col 4)
+  Line: 183
+    pylint: reimported / Reimport 're' (imported line 7) (col 4)
+  Line: 187
+    pep8: W605 / invalid escape sequence '\s' (col 6)
+  Line: 189
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 11)
+  Line: 221
+    pylint: reimported / Reimport 'os' (imported line 9) (col 4)
+    pyflakes: F811 / redefinition of unused 'os' from line 10 (col 5)
+  Line: 226
+    pyflakes: F401 / 'lib_physics_graph as physgraf' imported but unused (col 5)
+    pylint: unused-variable / Unused variable 'physgraf' (col 4)
+  Line: 232
+    pylint: redefined-builtin / Redefining built-in 'file' (col 4)
+  Line: 253
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+  Line: 254
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 264
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+    pylint: import-error / Unable to import 'redis'
+    pylint: wrong-import-position / Import "from redis import Redis" should be placed at the top of the module
+  Line: 266
+    pylint: wrong-import-position / Import "import pickle" should be placed at the top of the module
+    pylint: unused-import / Unused import pickle
+  Line: 276
+    pylint: bad-indentation / Bad indentation. Found 12 spaces, expected 8
+  Line: 277
+    pylint: bad-indentation / Bad indentation. Found 12 spaces, expected 8
+  Line: 281
+    pyflakes: F401 / 'models.Derivation' imported but unused (col 5)
+    pylint: unused-variable / Unused variable 'Derivation' (col 4)
+  Line: 285
+    pylint: bad-indentation / Bad indentation. Found 12 spaces, expected 8
+  Line: 287
+    pylint: bad-indentation / Bad indentation. Found 12 spaces, expected 8
+  Line: 288
+    pylint: bad-indentation / Bad indentation. Found 16 spaces, expected 12
+  Line: 289
+    pylint: bad-indentation / Bad indentation. Found 16 spaces, expected 12
+  Line: 290
+    pylint: bad-indentation / Bad indentation. Found 16 spaces, expected 12
+  Line: 292
+    pylint: bad-indentation / Bad indentation. Found 16 spaces, expected 12
+  Line: 295
+    pylint: bad-indentation / Bad indentation. Found 16 spaces, expected 12
+  Line: 296
+    pylint: bad-indentation / Bad indentation. Found 16 spaces, expected 12
+  Line: 297
+    pylint: bad-indentation / Bad indentation. Found 16 spaces, expected 12
+  Line: 298
+    pylint: bad-indentation / Bad indentation. Found 16 spaces, expected 12
+  Line: 299
+    pylint: bad-indentation / Bad indentation. Found 16 spaces, expected 12
+  Line: 307
+    pyflakes: F999 / 'render' may be undefined, or defined from star imports: models (col 12)
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 310
+    pylint: unused-argument / Unused argument 'request' (col 20)
+  Line: 311
+    pylint: import-error / Unable to import 'redis' (col 1)
+    pylint: reimported / Reimport 'Redis' (imported line 264) (col 1)
+  Line: 323
+    pylint: trailing-newlines / Trailing newlines
+
+sandbox/testing/views/__init__.py
+  Line: 1
+    pyflakes: F401 / 'views.*' imported but unused (col 1)
+  Line: 2
+    pyflakes: F401 / 'home.HomeView' imported but unused (col 1)
+
+sandbox/testing/views/home.py
+  Line: 6
+    pylint: unused-import / Unused import pickle
+  Line: 7
+    pylint: unused-import / Unused import json
+  Line: 8
+    pylint: unused-import / Unused time imported from time
+  Line: 9
+    pylint: unused-import / Unused import re
+  Line: 11
+    pylint: undefined-variable / Undefined variable 'settings' (col 9)
+
+sandbox/testing/views/views.py
+  Line: 11
+    pylint: undefined-variable / Undefined variable 'InferenceRuleForm' (col 26)
+  Line: 12
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 16
+    pylint: undefined-variable / Undefined variable 'FeedForm' (col 16)
+  Line: 17
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 21
+    pylint: undefined-variable / Undefined variable 'ExpressionForm' (col 22)
+  Line: 22
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 26
+    pylint: undefined-variable / Undefined variable 'ConnectionForm' (col 22)
+  Line: 27
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 31
+    pylint: undefined-variable / Undefined variable 'SymbolForm' (col 18)
+  Line: 32
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+
+v2_XML/bin/build_derivation_csv_from_xml.py
+  Line: 17
+    pylint: unused-import / Unused import yaml
+  Line: 25
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 29
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 42
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 43
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 44
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 45
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 47
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 48
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 50
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 51
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 53
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 54
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 55
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 56
+    pep8: E501 / line too long (162 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 58
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 59
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 60
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 61
+    pep8: E501 / line too long (187 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 63
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 64
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 65
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 66
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 67
+    pep8: E501 / line too long (188 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 70
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 71
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 72
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+
+v2_XML/bin/build_derivation_json_from_xml.py
+  Line: 27
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 31
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 38
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 39
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 41
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 58
+    mccabe: MC0001 / Loop 58 is too complex (21)
+  Line: 59
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 60
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 63
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 64
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 65
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 67
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 68
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 69
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 71
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 72
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 74
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 75
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 76
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 78
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 79
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 80
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 82
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 83
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 84
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 85
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 86
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 88
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 89
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 90
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 91
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 94
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 96
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 97
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 98
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 99
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 100
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 102
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 103
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 104
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 105
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 108
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 110
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 111
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 112
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 113
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 116
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 117
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 118
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 119
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 122
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 124
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 125
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 127
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 128
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 130
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 131
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 132
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 133
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 134
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 135
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 136
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 137
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 138
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 139
+    pep8: E501 / line too long (221 > 159 characters) (col 160)
+  Line: 140
+    pep8: E501 / line too long (243 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 141
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 142
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 143
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 145
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 146
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 147
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 148
+    pep8: E501 / line too long (218 > 159 characters) (col 160)
+  Line: 149
+    pep8: E501 / line too long (240 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 150
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 151
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 152
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 153
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 154
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 155
+    pep8: E501 / line too long (201 > 159 characters) (col 160)
+  Line: 156
+    pep8: E501 / line too long (217 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 157
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 159
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 160
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 162
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 163
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 164
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 165
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 166
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 167
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 168
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 169
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 170
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 16
+  Line: 171
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 172
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 16
+  Line: 178
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 179
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 181
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 182
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 184
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 185
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 187
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 188
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 189
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 190
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 191
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 192
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 193
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 194
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 195
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 196
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/build_derivation_pdf_from_xml.py
+  Line: 26
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 29
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 33
+    pylint: too-many-locals / Too many local variables (18/15)
+  Line: 34
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 35
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 36
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 37
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 38
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 39
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 40
+    pylint: unused-variable / Unused variable 'feed' (col 8)
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 41
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 43
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 44
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 45
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 46
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 47
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 48
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 50
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 51
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 52
+    pylint: unused-variable / Unused variable 'expression_indx' (col 6)
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 53
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 54
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 55
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 56
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 57
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 58
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 2)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 59
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 60
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 2)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 61
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 62
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 67
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 68
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 69
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 70
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 71
+    pep8: E114 / indentation is not a multiple of four (comment) (col 7)
+  Line: 72
+    pep8: E114 / indentation is not a multiple of four (comment) (col 7)
+  Line: 73
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 74
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 75
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 76
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 77
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 78
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 79
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 80
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 81
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 82
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 83
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 84
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 85
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 86
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 87
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 88
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 93
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 97
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 106
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 107
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 110
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 111
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 112
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 116
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 117
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 118
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 120
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 121
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 122
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 123
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 124
+    pep8: E501 / line too long (182 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 125
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 127
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 129
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 130
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 131
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 133
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 134
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 135
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 136
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 137
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 138
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 139
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 140
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 141
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 143
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 145
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 146
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 149
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 150
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 151
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 152
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 153
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 155
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 158
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 159
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 160
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 161
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 162
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 163
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 164
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 165
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 166
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/build_derivation_png_from_xml.py
+  Line: 27
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 31
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 39
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 40
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 41
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 43
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 44
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 60
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 61
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 64
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 65
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 68
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 69
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 75
+    mccabe: MC0001 / Loop 75 is too complex (20)
+  Line: 76
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 77
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 80
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 81
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 82
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 84
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 85
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 86
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 87
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 88
+    pep8: E114 / indentation is not a multiple of four (comment) (col 7)
+  Line: 89
+    pep8: E114 / indentation is not a multiple of four (comment) (col 7)
+    pep8: E501 / line too long (179 > 159 characters) (col 160)
+  Line: 90
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 91
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 92
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 93
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 94
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 95
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 96
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 97
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 99
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 100
+    pep8: E501 / line too long (193 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 101
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 102
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 103
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 104
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 105
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 106
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 107
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 108
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 109
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 110
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 111
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 112
+    pep8: E501 / line too long (174 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 113
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 114
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 115
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 116
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 117
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 118
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 120
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 121
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 122
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 125
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 127
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 128
+    pep8: E501 / line too long (175 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 129
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 130
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 131
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 132
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 133
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 134
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 136
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 137
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 138
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 143
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 144
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 147
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 148
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 149
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 152
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 153
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 154
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/check_connections_using_CAS_sympy.py
+  Line: 18
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 20
+    pylint: import-error / Unable to import 'sympy'
+    pylint: wrong-import-position / Import "import sympy" should be placed at the top of the module
+    pylint: unused-import / Unused import sympy
+  Line: 23
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 24
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 25
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 26
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 29
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 30
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 31
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 4)
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 32
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 33
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 35
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 36
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 37
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 38
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 39
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 40
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 41
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 42
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 43
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 44
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 46
+    pylint: too-many-arguments / Too many arguments (9/5)
+    pylint: unused-argument / Unused argument 'filename' (col 24)
+  Line: 48
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 49
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 50
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 51
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 2)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 52
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 53
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 6)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 54
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 55
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 56
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 57
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 58
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 59
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 6)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 60
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 61
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 62
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 63
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 64
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 65
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 6)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 66
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 67
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 68
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 69
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 70
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 71
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 72
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 73
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 74
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 75
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 76
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 77
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 78
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 81
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 82
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 83
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 84
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 89
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 90
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 91
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 92
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 93
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 6)
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 94
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 95
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 96
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 97
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 98
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 99
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 100
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 102
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 116
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 117
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 118
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 119
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 120
+    pylint: too-many-boolean-expressions / Too many boolean expressions in if statement (10/5) (col 6)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 129
+    pep8: E129 / visually indented line with same indent as next logical line (col 7)
+  Line: 130
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 131
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 132
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 133
+    pylint: too-many-boolean-expressions / Too many boolean expressions in if statement (42/5) (col 6)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 174
+    pep8: E129 / visually indented line with same indent as next logical line (col 7)
+  Line: 175
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 176
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 177
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 178
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 180
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 181
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 182
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 183
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 184
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 186
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 188
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 189
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 190
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 191
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 5)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 192
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 193
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 195
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 196
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 197
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 199
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 5)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 200
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 203
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 205
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 206
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 207
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 210
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 211
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 212
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 215
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 216
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 218
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 219
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 220
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 221
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 222
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 223
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 225
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 226
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 227
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 228
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 229
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 230
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 231
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 232
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 234
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 235
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 236
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 237
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 238
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/convert_expressions_xml_to_png.py
+  Line: 16
+    pylint: unused-import / Unused import yaml
+  Line: 24
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 28
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 33
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 34
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 35
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 36
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/convert_feed_xml_to_png.py
+  Line: 16
+    pylint: unused-import / Unused import yaml
+  Line: 24
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 28
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 33
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 34
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 35
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 36
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/convert_inference_rules_xml_to_csv.py
+  Line: 17
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 18
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 23
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 24
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 25
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 26
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 27
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 28
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 29
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 30
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 31
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 32
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 33
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 34
+    pep8: E501 / line too long (171 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/create_pictures_of_expressions_and_feeds.py
+  Line: 13
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 28
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 29
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 30
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 31
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 32
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 33
+    pep8: E501 / line too long (199 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 34
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 35
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 39
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 41
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 48
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 49
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 50
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 51
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 52
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 53
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 54
+    pep8: E129 / visually indented line with same indent as next logical line (col 7)
+  Line: 55
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 56
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 60
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 62
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/create_pictures_of_inference_rules.py
+  Line: 13
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 27
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 29
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 30
+    pep8: E501 / line too long (201 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 31
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 32
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 36
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 38
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/generate_new_random_index.py
+  Line: 19
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 20
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 21
+    pylint: wrong-import-position / Import "import random" should be placed at the top of the module
+  Line: 24
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 25
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 26
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 27
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 28
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 29
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 30
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 31
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 34
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 37
+    pylint: redefined-builtin / Redefining built-in 'id' (col 4)
+  Line: 38
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 39
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 44
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 45
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 57
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 58
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 68
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 69
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 79
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 80
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/list_connection_sets.py
+  Line: 18
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 19
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 24
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 25
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/list_inference_rules.py
+  Line: 17
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 18
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 23
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/popularity_of_symbols.py
+  Line: 17
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 19
+    pylint: undefined-variable / Undefined variable 'input_data' (col 22)
+  Line: 20
+    pylint: undefined-variable / Undefined variable 'expressionsDB' (col 74)
+  Line: 24
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 31
+    pylint: undefined-variable / Undefined variable 'statementsDB' (col 21)
+  Line: 32
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 33
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 41
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 42
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v2_XML/bin/prompt_to_user.py
+  Line: 18
+    pylint: unused-import / Unused import yaml
+  Line: 26
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 29
+    pylint: wrong-import-position / Import "from xml.dom.minidom import parseString" should be placed at the top of the module
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 32
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 33
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 34
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 35
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 36
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 37
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 38
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 39
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 40
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 41
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 44
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 45
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 46
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 47
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 48
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 49
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 50
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 51
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 52
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 53
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 54
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 58
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 59
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 60
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 61
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 62
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 63
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 64
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 65
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 66
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 69
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 70
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 71
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 72
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 73
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 76
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 77
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 78
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 79
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 80
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 90
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 91
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 92
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 93
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 94
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 95
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 96
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 97
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 98
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 99
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 100
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 101
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 102
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+
+v3_CSV/bin/export_latex_step_to_CAS_sage.py
+  Line: 13
+    pyflakes: F401 / 'random' imported but unused (col 1)
+  Line: 31
+    mccabe: MC0001 / convert_expression_to_symbols is too complex (40)
+  Line: 107
+    pep8: W605 / invalid escape sequence '\h' (col 6)
+  Line: 108
+    pep8: W605 / invalid escape sequence '\h' (col 8)
+  Line: 111
+    pep8: W605 / invalid escape sequence '\h' (col 8)
+  Line: 154
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 179
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 182
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 212
+    pep8: E129 / visually indented line with same indent as next logical line (col 5)
+  Line: 221
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 228
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 235
+    pep8: E115 / expected an indented block (comment) (col 1)
+
+v3_CSV/lib/lib_physics_graph.py
+  Line: 13
+    pyflakes: F841 / local variable 'todays_date' is assigned to but never used (col 5)
+  Line: 258
+    pep8: E501 / line too long (194 > 159 characters) (col 160)
+  Line: 259
+    pep8: E501 / line too long (210 > 159 characters) (col 160)
+  Line: 277
+    pep8: W605 / invalid escape sequence '\h' (col 51)
+  Line: 305
+    pep8: E501 / line too long (187 > 159 characters) (col 160)
+  Line: 360
+    pep8: W605 / invalid escape sequence '\ ' (col 36)
+
+v4_file_per_expression/bin/create_png_for_derivation__input_name_of_derivation.py
+  Line: 12
+    pylint: unused-import / Unused import csv
+  Line: 13
+    pylint: unused-import / Unused import subprocess
+  Line: 17
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 21
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 22
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 23
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 24
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 25
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 27
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 28
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 29
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 30
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 83
+    pep8: E501 / line too long (184 > 159 characters) (col 160)
+
+v4_file_per_expression/bin/create_png_for_nodes__input_filename_for_latex.py
+  Line: 10
+    pylint: wrong-import-position / Import "import lib_physics_graph as physgraf" should be placed at the top of the module
+  Line: 13
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 14
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 15
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 16
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 17
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 19
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 20
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 21
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 22
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 24
+    pylint: wrong-import-position / Import "from os import listdir" should be placed at the top of the module
+    pylint: unused-import / Unused listdir imported from os
+  Line: 25
+    pylint: wrong-import-position / Import "from os.path import isfile, join" should be placed at the top of the module
+    pylint: unused-import / Unused join imported from os.path
+  Line: 38
+    pep8: E501 / line too long (185 > 159 characters) (col 160)
+  Line: 40
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 41
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 44
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 45
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 46
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 47
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+
+v4_file_per_expression/derivations/frequency period relation/3131111133_sage_20151229.py
+  Line: 1
+    pylint: undefined-variable / Undefined variable 'var' (col 6)
+
+v4_file_per_expression/derivations/frequency relations/3131111133_sage_20151229.py
+  Line: 1
+    pylint: undefined-variable / Undefined variable 'var' (col 6)
+
+v4_file_per_expression/derivations/frequency relations/5749291_sage_20151229.py
+  Line: 1
+    pylint: undefined-variable / Undefined variable 'var' (col 2)
+
+v4_file_per_expression/interactive_user_prompt.py
+  Line: 12
+    pylint: unused-import / Unused version_info imported from sys
+  Line: 21
+    pylint: import-error / Unable to import 'sympy'
+  Line: 37
+    pylint: unreachable / Unreachable code (col 8)
+  Line: 59
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 72
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 75
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 76
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 77
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 78
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 79
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 80
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 81
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 82
+    pep8: E501 / line too long (243 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 84
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 85
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 86
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 87
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 88
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 89
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 90
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 91
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 92
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 93
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 94
+    pep8: E501 / line too long (170 > 159 characters) (col 160)
+  Line: 96
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 97
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 98
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 101
+    pylint: too-many-arguments / Too many arguments (7/5)
+  Line: 122
+    pep8: E501 / line too long (166 > 159 characters) (col 160)
+  Line: 131
+    pep8: E501 / line too long (185 > 159 characters) (col 160)
+  Line: 132
+    pep8: E501 / line too long (190 > 159 characters) (col 160)
+  Line: 139
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 150
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 167
+    pylint: unused-variable / Unused variable 'dirs' (col 14)
+  Line: 175
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 176
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 177
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 178
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 179
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 180
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 181
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 182
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 183
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 184
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 185
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 186
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 187
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 188
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 189
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 190
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 191
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 192
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 197
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 198
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 199
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 200
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 201
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 202
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 203
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 204
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 205
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 206
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 207
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 208
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 209
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 210
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 211
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 212
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 213
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 214
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 218
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 219
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 220
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 8
+  Line: 221
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 222
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 8
+  Line: 224
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 228
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 229
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 230
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 235
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 236
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 237
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 238
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 239
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 240
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 241
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 242
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 243
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 247
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 248
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 249
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 250
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 251
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 252
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 253
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 254
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 255
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 256
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 257
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 258
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 260
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 264
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 265
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 266
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 267
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 268
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 269
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 270
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 271
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 272
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 273
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 274
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 275
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 276
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 277
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 278
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 279
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 280
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 281
+    pylint: unused-variable / Unused variable 'derivation_name' (col 6)
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 282
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 283
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 284
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 285
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 286
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 287
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 288
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 289
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 290
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 291
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 292
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 293
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 294
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 295
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 296
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 297
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 298
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 299
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 300
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 301
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 302
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 303
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 305
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 309
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 313
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 314
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 315
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 316
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 317
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 318
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 319
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 320
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 321
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 323
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 324
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 325
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 326
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 327
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 328
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 329
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 330
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 331
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 332
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 333
+    pep8: E114 / indentation is not a multiple of four (comment) (col 7)
+  Line: 334
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 335
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 336
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 337
+    pep8: E114 / indentation is not a multiple of four (comment) (col 7)
+  Line: 338
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 339
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 340
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 341
+    pylint: unused-variable / Unused variable 'derivation_choice_input' (col 7)
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 342
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 343
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 344
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 345
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 346
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 347
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 349
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 350
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 352
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 355
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 356
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 487
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 491
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 494
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 495
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 496
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 499
+    pylint: unused-argument / Unused argument 'step_ary' (col 58)
+  Line: 506
+    pylint: unused-variable / Unused variable 'node_indx' (col 4)
+  Line: 539
+    pylint: unused-variable / Unused variable 'path_to_png' (col 4)
+  Line: 541
+    pylint: no-value-for-parameter / No value for argument 'path_to_png' in function call (col 4)
+  Line: 546
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 551
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 552
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 553
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 554
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 555
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 556
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 557
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 558
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 559
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 561
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 562
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 563
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 564
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 565
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 566
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 567
+    pylint: no-value-for-parameter / No value for argument 'output_path' in function call (col 8)
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 568
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 569
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 570
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 571
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 572
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 573
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 574
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 575
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 576
+    pylint: unused-variable / Unused variable 'derivation_choice_input' (col 7)
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 577
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 578
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 579
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 580
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 581
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 582
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 584
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 585
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 587
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 591
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 596
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 597
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 599
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 600
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 601
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 607
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 609
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 610
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 612
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 613
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 614
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 615
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 616
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 617
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 618
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 619
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 620
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 622
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 623
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 624
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 625
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 626
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 627
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 628
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 629
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 630
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 632
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 633
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 635
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 638
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 639
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 640
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 641
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 642
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 643
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 648
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 649
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 650
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 651
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 652
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 653
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 654
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 655
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 656
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 657
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 658
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 659
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 660
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 661
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 662
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 663
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 664
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 665
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 666
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 667
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 668
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 669
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 670
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 675
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 676
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 677
+    pylint: unused-variable / Unused variable 'first_derivation_choice_input' (col 3)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 678
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 679
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 680
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 681
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 683
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 684
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 685
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 687
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 688
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 689
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 690
+    pylint: unused-variable / Unused variable 'second_derivation_choice_input' (col 5)
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 692
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 693
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 694
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 695
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 696
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 697
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 698
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 700
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 702
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 703
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 704
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 705
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 706
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 707
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 708
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 709
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 710
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 711
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 712
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 714
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 715
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 716
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 717
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 718
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 719
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 721
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 722
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 723
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 724
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 725
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 726
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 727
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 729
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 730
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 731
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 732
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 733
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 734
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 736
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 738
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 742
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 743
+    pylint: unused-variable / Unused variable 'entered_key' (col 4)
+  Line: 749
+    pylint: too-many-locals / Too many local variables (22/15)
+  Line: 754
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 755
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 756
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 767
+    pylint: unused-variable / Unused variable 'edge_list' (col 8)
+  Line: 769
+    pylint: unused-variable / Unused variable 'derivation_infrules' (col 8)
+  Line: 775
+    pylint: unused-variable / Unused variable 'derivation_exprs' (col 8)
+  Line: 799
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 12)
+  Line: 835
+    pylint: unused-variable / Unused variable 'derivation_choice_input' (col 5)
+  Line: 891
+    mccabe: MC0001 / edit_step_in_derivation is too complex (19)
+  Line: 892
+    pylint: too-many-branches / Too many branches (22/15)
+  Line: 893
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 894
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 895
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 896
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 897
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 898
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 899
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 901
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 902
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 6)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 903
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 904
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 6)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 905
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 906
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 6)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 907
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 908
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 910
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 911
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 912
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 913
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 914
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 915
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 916
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 917
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 918
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 919
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 920
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 921
+    pylint: bad-indentation / Bad indentation. Found 10 spaces, expected 20
+  Line: 922
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 925
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 926
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 927
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 10)
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 928
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 929
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 930
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 931
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 932
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 933
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 934
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 935
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 10)
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 936
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 937
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 938
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 939
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 940
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 941
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 942
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 10)
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 943
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 944
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 945
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 946
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 947
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 948
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 949
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 950
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 951
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 952
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 954
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 2)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 955
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 956
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 957
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 958
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 960
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 964
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 965
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 966
+    pep8: E501 / line too long (191 > 159 characters) (col 160)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 967
+    pep8: E114 / indentation is not a multiple of four (comment) (col 3)
+  Line: 968
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1051
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1052
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1053
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1055
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1056
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1057
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1058
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1059
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1060
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1061
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1063
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1064
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1065
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1066
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1067
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1071
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1117
+    mccabe: MC0001 / check_this_step is too complex (19)
+  Line: 1118
+    pylint: too-many-statements / Too many statements (88/60)
+    pylint: too-many-branches / Too many branches (17/15)
+  Line: 1133
+    pep8: E129 / visually indented line with same indent as next logical line (col 9)
+  Line: 1137
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1139
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1141
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1252
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1253
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1254
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1255
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1257
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1262
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1268
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1277
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1281
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 8
+  Line: 1282
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 8
+  Line: 1283
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 8
+  Line: 1284
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 8
+  Line: 1285
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 8
+  Line: 1286
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1287
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1288
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1289
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1290
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1291
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1292
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1293
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1294
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 8
+  Line: 1295
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1296
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1297
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 8
+  Line: 1298
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1299
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1300
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1306
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1307
+    pylint: unused-variable / Unused variable 'this_step' (col 18)
+  Line: 1308
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1309
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1312
+    pylint: unused-variable / Unused variable 'input_dic' (col 27)
+  Line: 1313
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1319
+    pylint: unused-variable / Unused variable 'output_dic' (col 28)
+  Line: 1330
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1331
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1332
+    pep8: E115 / expected an indented block (comment) (col 1)
+    pep8: E501 / line too long (224 > 159 characters) (col 160)
+  Line: 1333
+    pep8: E115 / expected an indented block (comment) (col 1)
+    pep8: E501 / line too long (221 > 159 characters) (col 160)
+  Line: 1337
+    pylint: unused-variable / Unused variable 'this_step' (col 18)
+  Line: 1359
+    pylint: unused-variable / Unused variable 'feed_dic' (col 22)
+  Line: 1367
+    pep8: E501 / line too long (333 > 159 characters) (col 160)
+  Line: 1378
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1379
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1393
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1394
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1395
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1396
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1433
+    mccabe: MC0001 / read_derivation_steps_from_files is too complex (28)
+  Line: 1434
+    pylint: too-many-locals / Too many local variables (26/15)
+    pylint: too-many-statements / Too many statements (76/60)
+    pylint: too-many-branches / Too many branches (31/15)
+  Line: 1498
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1501
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 16)
+  Line: 1535
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1538
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1542
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 16)
+  Line: 1586
+    pylint: too-many-locals / Too many local variables (17/15)
+  Line: 1604
+    pylint: unused-variable / Unused variable 'step_indx' (col 8)
+  Line: 1650
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1651
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1652
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1653
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1654
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1656
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1657
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1658
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1659
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1660
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1661
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1662
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1664
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1665
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1666
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1667
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1668
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1669
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1670
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1672
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1673
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1674
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1676
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1677
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1678
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1681
+    pylint: too-many-locals / Too many local variables (17/15)
+  Line: 1682
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 6)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1683
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1684
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1685
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 6)
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1686
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1687
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1688
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1689
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1690
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1691
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1692
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1693
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1695
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1696
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1697
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1698
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1699
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1700
+    pylint: unused-variable / Unused variable 'num_remaining_entries' (col 4)
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1701
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1703
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1704
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1705
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1706
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1708
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1709
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1712
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1713
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1714
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1715
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1716
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1717
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1719
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1720
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1725
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1726
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1727
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1728
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 12
+  Line: 1730
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1732
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1733
+    pylint: bad-indentation / Bad indentation. Found 6 spaces, expected 12
+  Line: 1734
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1735
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1736
+    pylint: bad-indentation / Bad indentation. Found 8 spaces, expected 16
+  Line: 1738
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1751
+    mccabe: MC0001 / user_supplies_latex_or_expression_index is too complex (16)
+  Line: 1752
+    pylint: too-many-locals / Too many local variables (20/15)
+    pylint: too-many-branches / Too many branches (19/15)
+  Line: 1753
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 1757
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 12)
+  Line: 1794
+    pylint: unused-variable / Unused variable 'indx' (col 20)
+  Line: 1798
+    pylint: unused-variable / Unused variable 'this_output' (col 25)
+  Line: 1802
+    pep8: E501 / line too long (163 > 159 characters) (col 160)
+  Line: 1834
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1864
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1865
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1866
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1867
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1870
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1871
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1872
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1874
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1875
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1878
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1879
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1881
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1882
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1883
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1885
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1888
+    pylint: too-many-locals / Too many local variables (16/15)
+  Line: 1928
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 12)
+  Line: 1939
+    pep8: E305 / expected 2 blank lines after class or function definition, found 1 (col 1)
+  Line: 1940
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1941
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1942
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1943
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1944
+    pylint: bad-indentation / Bad indentation. Found 2 spaces, expected 4
+  Line: 1945
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+  Line: 1946
+    pylint: bad-indentation / Bad indentation. Found 4 spaces, expected 8
+
+v6_sqlite/create_db.py
+  Line: 25
+    pylint: bare-except / No exception type(s) specified
+  Line: 27
+    pylint: unnecessary-pass / Unnecessary pass statement (col 4)
+  Line: 30
+    pep8: E501 / line too long (185 > 159 characters) (col 160)
+  Line: 51
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 61
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 14)
+  Line: 70
+    pylint: bare-except / No exception type(s) specified
+  Line: 72
+    pylint: unnecessary-pass / Unnecessary pass statement (col 4)
+  Line: 89
+    pylint: bare-except / No exception type(s) specified
+  Line: 91
+    pylint: unnecessary-pass / Unnecessary pass statement (col 4)
+  Line: 118
+    pylint: trailing-newlines / Trailing newlines
+
+
+
+Check Information
+=================
+         Started: 2019-07-22 11:41:01.870676
+        Finished: 2019-07-22 11:41:28.648964
+      Time Taken: 26.78 seconds
+       Formatter: grouped
+        Profiles: default, no_doc_warnings, no_test_warnings, strictness_medium, strictness_high, strictness_veryhigh, no_member_warnings
+      Strictness: None
+  Libraries Used: flask
+       Tools Run: dodgy, mccabe, pep8, profile-validator, pyflakes, pylint
+  Messages Found: 1867
+
