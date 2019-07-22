@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!-- https://github.com/mathjax/MathJax-docs/wiki/Variable-from-textbox-demos -->
+<html>
+  <head>
+    <title>SUVAT</title>
+
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="site/javascript_libraries/jquery-2.1.4.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("footer.html"); 
+    });
+    </script> 
+
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "all" } }
+});
+</script>
+<script type="text/javascript" 
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+</head>
+<body>
+
+<table width="100%">
+<tr>
+  <td width="10%">&nbsp;</td>
+  <td width="2%">&nbsp;</td>
+  <td width="78%">&nbsp;</td>
+  <td width="10%">&nbsp;</td>
+</tr>  
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <center>
+    <H2>Physics Derivation Graph: SUVAT</H2>
+    </center>
+  </td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td valign="top">
+
+  <div id="includedNavContent"></div>
+  </td>
+  <td>&nbsp;</td>
+  <td>
+
+<P>For a derivation of SUVAT starting expressions, see <a href="https://www.khanacademy.org/science/physics/one-dimensional-motion/kinematic-formulas/a/what-are-the-kinematic-formulas">
+the khanacadamy overview</a>.
+
+<P>Starting from <a href="https://en.wikipedia.org/wiki/Equations_of_motion#Constant_translational_acceleration_in_a_straight_line">
+the wikipedia page on Constant translational acceleration in a straight line</a>,
+
+\begin{equation}
+v = u + at
+\label{eq:v_uat}
+\end{equation}
+
+\begin{equation}
+s = ut + \tfrac12 at^2
+\label{eq:s_uta}
+\end{equation}
+
+\begin{equation}
+s = \tfrac{1}{2}(u + v)t
+\label{eq:s_uvt}
+\end{equation}
+
+\begin{equation}
+v^2 = u^2 + 2as
+\label{eq:v_uas}
+\end{equation}
+
+\begin{equation}
+s = vt - \tfrac12 at^2
+\label{eq:s_vat}
+\end{equation}
+
+Solve Eq. \ref{eq:s_uta} for $a$ to get
+
+\begin{equation}
+a=\frac{(s-ut)2}{t^2}
+\label{eq:a_sut}
+\end{equation}
+
+Substitute Eq. \ref{eq:a_sut} into Eq. \ref{eq:v_uat} to yield
+
+\begin{equation}
+v=u+\left(\frac{(s-ut)2}{t^2}\right) t
+\label{eq:v_ust_a_sub}
+\end{equation}
+
+Simplify Eq. \ref{eq:v_ust_a_sub} to get
+
+\begin{equation}
+v=u+\frac{(s-ut)2}{t}
+\label{eq:v_ust_t}
+\end{equation}
+
+Simplify Eq. \ref{eq:v_ust_t} to get
+
+\begin{equation}
+v=u+\frac{2s}{t}-2u
+\label{eq:v_ust_u}
+\end{equation}
+
+Simplify Eq. \ref{eq:v_ust_u} to get
+
+\begin{equation}
+v=\frac{2s}{t}-u
+\label{eq:v_ust}
+\end{equation}
+
+
+<div id="includedFooterContent"></div>
+  </td>
+  <td>&nbsp;  </td>
+</tr>
+</table>
+
+
+</body>
+</html>

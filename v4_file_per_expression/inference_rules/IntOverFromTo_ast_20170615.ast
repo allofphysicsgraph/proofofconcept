@@ -1,0 +1,26 @@
+input:expression
+op
+  LHS
+  RHS
+
+input:feed
+lower
+
+input:feed
+upper
+
+input:feed
+x
+
+output:expression
+op
+  \int
+    lower
+    upper
+    LHS
+    x
+  \int
+    lower
+    upper
+    RHS
+    x

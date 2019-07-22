@@ -1,0 +1,13 @@
+input:expression
+op
+  LHS
+  RHS
+
+output:expression
+op
+  \dot
+    \nabla
+    LHS
+  \dot
+    \nabla
+    RHS

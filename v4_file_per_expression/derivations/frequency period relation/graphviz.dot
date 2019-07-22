@@ -1,0 +1,13 @@
+digraph physicsDerivation {
+overlap = false;
+label="Equation relations\nExtracted from connections_database.csv";
+fontsize=12;
+9103516 -> 8482459;
+8482459 -> 6822583;
+5749291 -> 6822583;
+6822583 -> 8341200;
+8482459 [shape=ellipse, color=red,image="../../expressions/3131111133.png",labelloc=b,URL="http://output.com"];
+8341200 [shape=ellipse, color=red,image="../../expressions/2131616531.png",labelloc=b,URL="http://output.com"];
+6822583 [shape=invtrapezium, color=red,label="multbothsidesby"];
+9103516 [shape=invtrapezium, color=red,label="declareInitialExpression"];
+}

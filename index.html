@@ -1,0 +1,133 @@
+<html>
+  <head>
+
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="site/javascript_libraries/jquery-2.1.4.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("site/nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("site/footer.html"); 
+    });
+    $(function(){
+      $("#includedd3jsContent").load("site/example_T_f/example_T_f_d3js.html"); 
+    });
+    </script> 
+  
+    <title>Physics Derivation graph</title>
+    <!--
+    <META http-equiv="refresh" content="0;URL=http://allofphysicsgraph.github.io/proofofconcept/site/graph_from_scratch_15_with_links.html">
+    -->
+
+    <!-- SEO tag; see https://help.github.com/articles/search-engine-optimization-for-github-pages/ -->
+<!--
+    {% include head.html %}
+    {% seo %}
+-->
+  </head>
+  <!-- <body bgcolor="#ffffff"> --> <!-- white -->
+  <body bgcolor="#e5e5e5">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MS7JL5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MS7JL5');</script>
+<!-- End Google Tag Manager -->
+
+<table width="100%">
+<tr>
+  <td width="10%">&nbsp;</td>
+  <td width="2%">&nbsp;</td>
+  <td width="78%">&nbsp;</td>
+  <td width="10%">&nbsp;</td>
+</tr>  
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <center>
+    <H2>Physics Derivation Graph</H2>
+    </center>
+  </td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td valign="top">
+
+  <div id="includedNavContent"></div>
+  </td>
+  <td>&nbsp;</td>
+  <td>
+<P><i>Objective for this project:</i> Write down all known mathematical physics in a way that can be both read by humans and checked by a computer algebra system.<BR>
+[To view the current state, see this <a href="site/overview.html">overview graph</a> and this <a href="site/derivations.html">listing of content</a>.]
+</P>
+  
+<P><i>Example:</i> A simple example is the relation between period, <i>T</i>, and linear frequency, <i>f</i>. The mathematical expression of the relation is <i>T=1/f</i>. To express frequency as a function of period, multiply both sides of the expression by <i>f</i> to get a new expression, <i>T*f=1</i>. Finally, divide both sides of the second expression by <i>T</i> to yield the third expression, <i>f=1/T</i>.
+
+<P>In this example, there are three expressions. Each expression is defined by a left-hand side, a relation operator (here "="), and a right-hand side. Two instances of the <a href="https://en.wikipedia.org/wiki/Equivalence_relation#Definition">Equivalence relation</a> relate the three expressions. These relations between expressions are called <a href="site/inference_rules.html">inference rules</a>. The generic form of the first inference rule used in the example is "multiply both sides of an expression by a quantity to yield a new expression." Similarly, the second inference rule is generically, "divide both sides of an expression by a quantity to yield a new expression."
+
+<P><div id="includedd3jsContent"></div>
+<!-- http://www.d3noob.org/2013/07/arranging-more-than-one-d3js-graph-on.html -->
+<div style="border: 2px solid darkblue; padding: 5px;" id="area1"></div>
+</P>
+
+<P>The central database for documenting relations in derivations of Physics is <a href="site/inactive_avenues/example_T_f/example_T_f_csv.html">a set of 
+CSV files</a>. This can be transformed into other formats: <a href="site/example_T_f/example_T_f_dot.html">GraphViz</a>, <a href="site/example_T_f/example_T_f_json.html">JSON</a>, and <a href="site/example_T_f/example_T_f_tex.html">LaTeX</a>. </P>
+
+<P><i>Motivation:</i> <a href="https://en.wikipedia.org/wiki/Mathematical_physics">Mathematical Physics</a> uses the tools of math applied to measurements of our environment. I claim Physics is a unique field in that all existing knowledge can be recorded. Another aspect that is unique is that the result can be checked for correctness by a computer algebra system. A third unique facet to Physics is that claims can be tested by experiment.</P>
+
+
+<H3>Jargon specific to this project</h3>
+
+<P>A derivation is a sequence of steps. Each step in a derivation involves an "inference rule." An inference rule relates one or more "expressions." An inference rule may require one or more "feed" values. An expression is, by default, composed of (LHS, relation operator, RHS). Expression operators include both equations (the relation operator is equality) and inequalities (the relation operator is an inequality).
+
+<P>"Inference rules", "expressions", and "feeds" are words specific to the Physics Derivation Graph. Represented graphically, 
+
+<img src="https://allofphysicsgraph.github.io/proofofconcept/site/pictures/single_step.png">
+
+<P>Read this directed graph as, "The inference rule acts on the input expression and, combined with the feed, produces the output expression." Inference rules can be considered as functions; the above picture would be
+
+<pre>
+inference_rule(input_expression, feed) yields output_expression
+</pre>
+
+<P>&nbsp;
+
+<H3>Disclaimers regarding scope of the project</h3>
+<P>No new research in math or physics is needed to validate these claims. This project documents the relations between derivations used to describe physical experiments.</P>
+
+<p>There are no new algorithms. The Physics Derivation Graph is about documenting existing knowledge.</P>
+
+<P>Derivations used in Physics are mathematical expressions linked by a finite set of inference rules. From this observation, a few claims can be made.
+<UL>
+  <LI>A finite static graph exists which relates all expressions of mathematical physics. In this graph, nodes are expressions and edges are inference rules.</LI>
+  <LI>A finite number of unique inference rules are needed to express the relations between expressions.</LI>
+</UL>
+</P>
+
+<P>The Physics Derivation Graph does not include geometric arguments</p>
+
+<P>The Physics Derivation Graph does not include textual explanations about why algebraic manipulations are being carried out.</p>
+
+<P>The Physics Derivation Graph is similar to a <a href="https://en.wikipedia.org/wiki/Schaum%27s_Outlines">Schuam's outline</a>, except it covers all known Physics and documents the relations between various governing expressions.<BR>
+
+<p>There are no automatic mechanisms for generating new content.<BR>
+
+
+<P>The Physics Derivation Graph does include boundary conditions and initial conditions.
+</P>
+
+
+
+<div id="includedFooterContent"></div>
+  </td>
+  <td>&nbsp;  </td>
+</tr>
+</table>
+  </body>
+</html>

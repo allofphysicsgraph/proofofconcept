@@ -1,0 +1,16 @@
+input:expression
+op
+  LHS
+  RHS
+  
+input:feed
+A
+
+output:expression
+op
+  \dot
+    A
+    LHS
+  \dot
+    A
+    RHS

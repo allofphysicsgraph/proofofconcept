@@ -1,0 +1,14 @@
+input:expression
+op
+  LHS
+  RHS
+
+input:feed
+zero
+  
+output:expression
+op
+  LHS
+  +
+    RHS
+    zero

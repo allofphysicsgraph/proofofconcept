@@ -9,6 +9,9 @@ Physics Derivation Graph
 * Claim: this graph can be checked by a computer algebra system
 
 # Licensing
+
+[![Join the chat at https://gitter.im/allofphysicsgraph/autoproof](https://badges.gitter.im/allofphysicsgraph/autoproof.svg)](https://gitter.im/allofphysicsgraph/autoproof?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
 
 
@@ -29,6 +32,7 @@ cd v3_CSV
 
 main commands:
 
+    cd v3_CSV/    
     python bin/create_picture_per_derivation_from_connectionsDB.py
 
 tools

@@ -1,0 +1,10 @@
+# Name of your site (displayed in the header)
+name: Physics Derivation Graph
+
+url: https://allofphysicsgraph.github.io/proofofconcept/
+
+plugins:
+  - jekyll-seo-tag
+
+author_email: ben.is.located@gmail.com
+

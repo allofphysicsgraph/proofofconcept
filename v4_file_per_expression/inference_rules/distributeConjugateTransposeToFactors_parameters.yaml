@@ -1,0 +1,6 @@
+inf_rule_name: distributeConjugateTransposeToFactors
+number_of_arguments: 1
+number_of_feeds: 0
+number_of_input_expressions: 1
+number_of_output_expressions: 1
+comments: "this is a combination of &quot;distribute conjugate&quot; and then &quot;distribute transpose&quot;"

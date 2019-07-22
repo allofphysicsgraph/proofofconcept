@@ -1,0 +1,26 @@
+digraph physicsDerivation {
+overlap = false;
+label="Equation relations\nExtracted from connections_database.csv";
+fontsize=12;
+2004989 -> 3493498;
+3493498 -> 2349059;
+2349059 -> 0504953;
+0504953 -> 2390498;
+2390498 -> 6757584;
+6757584 -> 3848494;
+3848494 -> 3294824;
+3294824 -> 4948384;
+4948384 -> 5949484;
+5949484 -> 4948955;
+0504953 [shape=ellipse, color=red,image="../../expressions/8399484849.png",labelloc=b,URL="http://output.com"];
+3294824 [shape=ellipse, color=red,image="../../expressions/4949359835.png",labelloc=b,URL="http://output.com"];
+3493498 [shape=ellipse, color=red,image="../../expressions/3585845894.png",labelloc=b,URL="http://output.com"];
+5949484 [shape=ellipse, color=red,image="../../expressions/2494533900.png",labelloc=b,URL="http://output.com"];
+6757584 [shape=ellipse, color=red,image="../../expressions/2404934990.png",labelloc=b,URL="http://output.com"];
+2004989 [shape=invtrapezium, color=red,label="declareIdentity"];
+2349059 [shape=invtrapezium, color=red,label="simplify"];
+2390498 [shape=invtrapezium, color=red,label="simplify"];
+3848494 [shape=invtrapezium, color=red,label="simplify"];
+4948384 [shape=invtrapezium, color=red,label="simplify"];
+4948955 [shape=invtrapezium, color=red,label="claimLHSequalsRHS"];
+}

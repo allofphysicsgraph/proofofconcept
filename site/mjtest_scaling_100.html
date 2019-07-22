@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<!-- https://github.com/mathjax/MathJax-docs/wiki/Variable-from-textbox-demos -->
+<html>
+<head>
+<title>MathJax TeX Test Page</title>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "all" } }
+});
+</script>
+<script type="text/javascript" 
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript">
+function getone() {
+  var step = 1;
+  var txt1 = parseFloat(document.getElementById("txt1").value);
+  var txt2 = document.getElementById("txt2").value;
+  var equation1 = "$$ \\newcommand{\\cvval}{" + txt1 + "} $$<br/>";
+  var equation2 = "$$ \\mathrm{k\\,=\\,\\frac{C_p}{\\cvval}} $$<br/>";
+  var eq3 = "$$ "+txt2+" $$";
+  document.getElementById('divid_destination').innerHTML = equation1 + equation2 + eq3;
+
+    // from the bottom of https://docs.mathjax.org/en/latest/advanced/typeset.html
+    MathJax.Hub.Queue(
+    ["resetEquationNumbers",MathJax.InputJax.TeX],
+    ["PreProcess",MathJax.Hub],
+    ["Reprocess",MathJax.Hub]);
+
+  return MathJax.Hub.Typeset('divid_destination');  
+}
+</script>
+
+</head>
+<body>
+
+<P>Here is some LaTeX content:
+<div id="divid">$$ \mathrm{k\,=\,\frac{C_p}{C_v}} $$</div>
+
+<P>input a float:<input type="textbox" id="txt1" /><BR>
+provide some latex: <input type="textbox" id="txt2" />
+
+<input type="button" value="click" onclick="MathJax.Hub.Queue(getone)" />
+
+<div lang="latex" id="divid_destination"></div>
+
+<P>When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+$$
+x = {-b \pm \sqrt{b^2-4ac} \over 2a}.
+\label{eq:this}
+$$
+blah Eq. \ref{eq:this}
+<P>another
+<P>third
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>4
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>5
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+<P>
+\begin{equation}
+m = \int f(x) dx
+\end{equation}
+
+
+
+</body>
+</html>

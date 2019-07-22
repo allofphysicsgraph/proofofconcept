@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>Physics Derivation graph: Python Networkx example</title>
+  </head>
+  <body bgcolor="#ffffff">
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MS7JL5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MS7JL5');</script>
+<!-- End Google Tag Manager -->
+
+<P><B><font color="red">Not working on my Mac as of 20150729</font></B></P>
+
+<P>Contents of physics_derivation.py</P>
+<FONT FACE="Courier New">
+import networkx as nx<BR>
+G=nx.digraph()<BR>
+G.add_edge([8332941,8482459])<BR>
+G.add_edge([8482459,6822583])<BR>
+G.add_edge([5749291,6822583])<BR>
+G.add_edge([6822583,8341200])<BR>
+G.add_edge([8341200,9483715])<BR>
+G.add_edge([8837284,9483715])<BR>
+G.add_edge([9483715,9380032])<BR>
+G.add_edge([9380032,8345721])<BR>
+nx.plot()<BR>
+plt.show()
+</FONT>
+<P>Command:<BR>
+python physics_derivation.py</P>
+</BODY>
+</HTML>

@@ -1,0 +1,15 @@
+input:expression
+op
+  LHS
+  ^
+    RHS
+    +
+      A
+      B
+
+output:expression
+op
+  RHS
+  ^
+    LHS
+    C

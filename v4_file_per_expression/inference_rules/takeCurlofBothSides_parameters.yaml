@@ -1,0 +1,6 @@
+inf_rule_name: takeCurlofBothSides
+number_of_arguments: 1
+number_of_feeds: 0
+number_of_input_expressions: 1
+number_of_output_expressions: 1
+comments: "Curl: $\vec{\nabla}\times$"

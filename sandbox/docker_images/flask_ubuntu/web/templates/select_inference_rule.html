@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<P>select inference rule
+
+<!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
+
+<form class="form-inline" method="POST" action="{{ url_for('inf_rule_selected', name_of_derivation=name_of_derivation) }}">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Please select</span>
+            <select name="inf_rul_select" class="selectpicker form-control">
+              {% for elem in inf_rule_list %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+    </div>
+    <button type="submit" class="btn btn-default">Next</button>
+  </div>
+</form>
+
+
+{% endblock %}
+

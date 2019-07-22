@@ -1,0 +1,22 @@
+digraph physicsDerivation {
+overlap = false;
+fontsize=12;
+746347900 -> 8810119;
+315634496 -> 6159363;
+6159363 -> 279270491;
+8810119 -> 279270491;
+279270491 -> 4799606;
+4799606 -> 675134283;
+675134283 -> 4803990;
+8810119 [shape=ellipse, color=red,image="777483502.png",labelloc=b,URL="http://output.com"];
+6159363 [shape=ellipse, color=red,image="112430485.png",labelloc=b,URL="http://output.com"];
+6159363 [shape=ellipse, color=red,image="112430485.png",labelloc=b,URL="http://output.com"];
+8810119 [shape=ellipse, color=red,image="777483502.png",labelloc=b,URL="http://output.com"];
+4799606 [shape=ellipse, color=red,image="531502717.png",labelloc=b,URL="http://output.com"];
+4799606 [shape=ellipse, color=red,image="531502717.png",labelloc=b,URL="http://output.com"];
+4803990 [shape=ellipse, color=red,image="443653038.png",labelloc=b,URL="http://output.com"];
+746347900 [shape=invtrapezium, color=red,label="declareInitialExpr"];
+315634496 [shape=invtrapezium, color=red,label="declareInitialExpr"];
+279270491 [shape=invtrapezium, color=red,label="subLHSofExprXintoExprY"];
+675134283 [shape=invtrapezium, color=red,label="simplify"];
+}

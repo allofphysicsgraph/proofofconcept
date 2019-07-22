@@ -1,0 +1,20 @@
+<!-- http://www.patricksoftwareblog.com/tag/flask-wtf/ -->
+<!-- http://flask.pocoo.org/docs/0.12/patterns/wtforms/ -->
+
+{% macro render_field(field) %}
+ 
+<dt>{{ field.label }}:
+ 
+<dd>{{ field(**kwargs)|safe }}
+  {% if field.errors %}
+    <span class="error">
+    {% for error in field.errors %}
+      {{ error }}
+    {% endfor %}
+    </span>
+  {% endif %}
+</dd>
+ 
+ 
+{% endmacro %}
+

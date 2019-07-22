@@ -1,0 +1,17 @@
+<!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
+<html>
+    <head>
+      {% if title %}
+      <title>Physics Derivation Graph: {{ title }}</title>
+      {% else %}
+      <title>Welcome to the Physics Derivation Graph</title>
+      {% endif %}
+    </head>
+    <body>
+        <div>PDG: <a href="/index">Home</a></div>
+        <hr>
+        {% block content %}{% endblock %}
+    </body>
+</html>
+
+

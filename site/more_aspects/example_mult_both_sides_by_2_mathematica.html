@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="javascript_libraries/jquery-2.1.4.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("footer.html"); 
+    });
+    </script> 
+  
+    <title>Physics Derivation graph: Mathematica example</title>
+  </head>
+  <body bgcolor="#e5e5e5">
+
+
+<P>A computer algebra system like Mathematica can validate the steps of a derivation. This check does not prove the derivation.</P>
+
+<HR>
+
+<P>Input:</P>
+
+<pre>
+(* this sample mathematica script evaluates
+initial: A==B
+action:  multiply both sides by 2
+result:  2 A == 2 B
+*)
+labelInitialLHS = A;
+labelInitialRHS = B;
+labelResultLHS = 2 A;
+labelResultRHS = 2 B;
+action[y_] := Module[{x=y}, 2 x]
+appliedActionLHS = action[labelInitialLHS];
+appliedActionRHS = action[labelInitialRHS];
+verdict= "Result: operation is ";
+Print[verdict,appliedActionLHS == labelResultLHS && appliedActionRHS == labelResultRHS]
+</pre>
+
+<div id="includedFooterContent"></div>
+  </td>
+  <td>&nbsp;  </td>
+</tr>
+</table>
+  </body>
+</html>

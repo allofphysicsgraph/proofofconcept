@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Physics Derivation graph: SAGE example</title>
+  </head>
+  <body bgcolor="#ffffff">
+
+<P>The snippets of SAGE can be run in <a href="https://sagecell.sagemath.org/">https://sagecell.sagemath.org/</a>
+
+<P>The following carries out the actions of the derivation but does not explicitly use the inference rules:
+
+<pre>
+T,f=var('T,f')
+expr= T == 1/f
+expr=expr*f
+expr=expr/T
+print(expr)
+</pre>
+The output is
+<pre>
+f == (1/T)
+</pre>
+which is the expected outcome from the derivation.
+
+<P>In contrast, the implementation below checks that the claimed step as stated by the inference rule is carried out correctly:
+
+<pre>
+T=var('T')
+f=var('f')
+# latex input: T = 1/f
+input_expr = (1)/(f) == (T)
+# latex output: T f = 1
+expected_output_expr = T * f == 1
+# latex feed: f
+feed = f
+input_expr * feed == expected_output_expr
+</pre>
+The output is
+<pre>
+True
+</pre>
+which means that the claimed step in the derivation was implemented consistent with the inference rule applied.
+
+
+</body>
+</html>

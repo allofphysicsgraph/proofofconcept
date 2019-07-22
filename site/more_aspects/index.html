@@ -1,0 +1,97 @@
+<html>
+  <head>
+    <!-- http://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file -->
+    <script src="javascript_libraries/jquery-2.1.4.min.js"></script> 
+    <script> 
+    $(function(){
+      $("#includedNavContent").load("nav_bar.html"); 
+    });
+    $(function(){
+      $("#includedFooterContent").load("footer.html"); 
+    });
+    </script> 
+  
+    <title>Physics Derivation graph: More Aspects</title>
+  </head>
+  <body bgcolor="#e5e5e5">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-MS7JL5"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MS7JL5');</script>
+<!-- End Google Tag Manager -->
+
+<table width="100%">
+<tr>
+  <td width="10%">&nbsp;</td>
+  <td width="2%">&nbsp;</td>
+  <td width="78%">&nbsp;</td>
+  <td width="10%">&nbsp;</td>
+</tr>  
+<tr>
+  <td>&nbsp;</td>
+  <td>&nbsp;</td>
+  <td>
+    <center>
+    <H2>More Aspects</H2>
+    </center>
+  </td>
+  <td>&nbsp;</td>
+</tr>
+<tr>
+  <td valign="top">
+ <div id="includedNavContent"></div>
+
+  
+  </td>
+  <td>&nbsp;</td>
+  <td>
+
+<p>There are lots of aspects that have been explored that may be useful but that haven't been fully explored. This page is a collection of the avenues that could be investigated.</P>
+
+<P>An example (shown graphically on <a href="http://allofphysicsgraph.github.io/proofofconcept/site/more_aspects/index.html">the front page</a>) is of the relations between frequency (f) and period (T). In functional form,
+
+<pre>
+" T = 1/f " = declareInitExpr()
+" T f = 1 " = multiplyBothSidesBy ( " T = 1/f "," f " )
+" f = 1/T " = divideBothSidesBy( " T f = 1 "," T " )
+declareFinalExpr( " f = 1/T " )
+</pre>
+which is a subset from <a href="derivations_generated_from_project/frequency_relations.html">frequency relations</a>.
+
+
+
+<H3>Computer Algebra Systems</H3>
+
+<P>HOL (source, <a href="http://www.cl.cam.ac.uk/~jrh13/hol-light/tutorial.pdf">tutorial</a>)
+
+<P><a href="example_T_f_sympy.html">Frequency and period relation</a> and <a href="example_quadratic_equation_sympy.html">quadratic equation</a> in SymPy
+
+<P><a href="example_T_f_sage.html">Frequency and period relation</a> in SAGE. My comments on SAGE are posted <a href="https://physicsderivationgraph.blogspot.com/2015/12/sage-isnt-robust-computer-algebra.html">here</a> </P>
+
+<P><a href="example_T_f_mathematica.html">Frequency and period relation</a> in Mathematica
+
+<H3>Graph representations</H3>
+
+<P><a href="example_T_f_graphml.html">Frequency and period relation</a> in GraphML
+
+<P><a href="example_T_f_networkx.html">Frequency and period relation</a> in NetworkX
+
+<H3>Database formats</H3>
+
+<P>I prefer plain text formats, ie XML, CSV, JSON.
+
+<P><a href="example_T_f_csv.html">Frequency and period relation</a> as a single CSV for the entire derivation
+
+
+<div id="includedFooterContent"></div>
+  </td>
+  <td>&nbsp;  </td>
+</tr>
+</table>
+  </body>
+</html>

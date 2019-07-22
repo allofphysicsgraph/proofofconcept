@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Physics Derivation graph: SymPy example</title>
+  </head>
+  <body bgcolor="#ffffff">
+
+<P>The snippets of SymPy can be run in <a href="http://live.sympy.org/">http://live.sympy.org/</a>
+
+<P>The following carries out the actions of the derivation but does not explicitly use the inference rules:
+
+<pre>
+T,f = symbols('T f')
+expr_LHS = T
+expr_RHS = 1 / f
+expr_LHS = expr_LHS * f
+expr_RHS = expr_RHS * f
+expr_LHS = expr_LHS / T
+expr_RHS = expr_RHS / T
+</pre>
+Then the new expression is
+<pre>
+>>> expr_LHS
+f
+>>> expr_RHS
+1/T
+</pre>
+
+
+</body>
+</html>

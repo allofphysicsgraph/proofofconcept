@@ -1,0 +1,17 @@
+input:expression
+op
+  ^
+    LHS
+    +
+      A
+      B
+  RHS
+
+output:expression
+op
+  ^
+    LHS
+    C
+  +
+    RHS
+    x
