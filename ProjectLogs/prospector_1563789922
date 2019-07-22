@@ -1,0 +1,1202 @@
+Messages
+========
+
+sandbox/docker_images/flask_ubuntu/web/compute.py
+  Line: 38
+    pyflakes: F841 / local variable 'conn' is assigned to but never used (col 9)
+
+sandbox/docker_images/flask_ubuntu/web/controller.py
+  Line: 4
+    pyflakes: F401 / 'wtforms.FloatField' imported but unused (col 1)
+
+sandbox/testing/Shunting_Yard_Algorithm.py
+  Line: 6
+    pylint: unused-import / Unused pprint imported from pprint as pp
+  Line: 44
+    pylint: too-many-nested-blocks / Too many nested blocks (6/5) (col 4)
+  Line: 57
+    pylint: unused-variable / Unused variable 'a2' (col 25)
+
+sandbox/testing/auto_complete.py
+  Line: 4
+    pylint: unused-import / Unused import rlcompleter
+  Line: 38
+    pylint: redefined-builtin / Redefining built-in 'input'
+
+sandbox/testing/binfile.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+
+sandbox/testing/cmdopts.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 1)
+  Line: 152
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+  Line: 168
+    pylint: redefined-builtin / Redefining built-in 'dir' (col 8)
+  Line: 172
+    pylint: unused-argument / Unused argument 'p' (col 20)
+  Line: 186
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 211
+    pylint: unused-argument / Unused argument 'option' (col 16)
+    pylint: unused-argument / Unused argument 'opt_str' (col 24)
+  Line: 218
+    pylint: unused-argument / Unused argument 'option' (col 22)
+    pylint: unused-argument / Unused argument 'opt_str' (col 30)
+  Line: 222
+    pylint: unused-argument / Unused argument 'option' (col 19)
+    pylint: unused-argument / Unused argument 'opt_str' (col 27)
+  Line: 226
+    pylint: unused-argument / Unused argument 'option' (col 21)
+    pylint: unused-argument / Unused argument 'opt_str' (col 29)
+  Line: 280
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+
+sandbox/testing/colors.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 70
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+
+sandbox/testing/compute.py
+  Line: 2
+    pylint: unused-argument / Unused argument 'inference_rule' (col 14)
+  Line: 11
+    pylint: undefined-variable / Undefined variable 'compute' (col 10)
+
+sandbox/testing/controller.py
+  Line: 4
+    pylint: import-error / Unable to import 'flask'
+  Line: 5
+    pylint: unused-import / Unused arg_count imported from compute
+  Line: 35
+    pylint: unused-variable / Unused variable 'infrule' (col 19)
+
+sandbox/testing/create_tables.py
+  Line: 1
+    pylint: import-error / Unable to import 'pandas'
+
+sandbox/testing/dvi2svg.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 128
+    pylint: import-error / Unable to import 'conv'
+  Line: 129
+    pylint: import-error / Unable to import 'conv'
+  Line: 131
+    pylint: import-error / Unable to import 'conv'
+  Line: 132
+    pylint: import-error / Unable to import 'conv'
+  Line: 133
+    pylint: import-error / Unable to import 'conv'
+  Line: 135
+    pylint: import-error / Unable to import 'conv.binfile'
+  Line: 136
+    pylint: import-error / Unable to import 'conv.dviparser'
+  Line: 137
+    pylint: import-error / Unable to import 'conv.unic'
+  Line: 138
+    pylint: import-error / Unable to import 'conv.utils'
+  Line: 184
+    pylint: too-many-arguments / Too many arguments (7/5) (col 4)
+  Line: 199
+    pylint: too-many-arguments / Too many arguments (6/5) (col 4)
+  Line: 205
+    pylint: unused-variable / Unused variable 's2s' (col 8)
+  Line: 240
+    pylint: too-many-locals / Too many local variables (23/15) (col 4)
+    pylint: unused-argument / Unused argument 'element' (col 28)
+  Line: 243
+    pylint: unused-variable / Unused variable 'new' (col 8)
+  Line: 248
+    pylint: unused-variable / Unused variable 'color' (col 48)
+  Line: 272
+    pylint: pointless-string-statement / String statement has no effect
+  Line: 300
+    pylint: pointless-string-statement / String statement has no effect
+  Line: 304
+    pylint: too-many-locals / Too many local variables (22/15) (col 4)
+  Line: 410
+    pylint: too-many-locals / Too many local variables (26/15) (col 4)
+    mccabe: MC0001 / SVGTextDocument.flush_chars is too complex (17)
+  Line: 412
+    pylint: unused-variable / Unused variable 's2s' (col 8)
+  Line: 441
+    pylint: redefined-builtin / Redefining built-in 'list' (col 35)
+  Line: 501
+    pylint: unused-variable / Unused variable 'color' (col 36)
+  Line: 523
+    pylint: too-many-locals / Too many local variables (17/15)
+    pylint: too-many-statements / Too many statements (73/60)
+    mccabe: MC0001 / convert_page is too complex (28)
+  Line: 607
+    pylint: unused-variable / Unused variable 'background' (col 23)
+  Line: 616
+    mccabe: MC0001 / If 616 is too complex (18)
+  Line: 677
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+  Line: 684
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 16)
+  Line: 688
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+
+sandbox/testing/dvilistfonts.py
+  Line: 5
+    pylint: import-error / Unable to import 'conv'
+  Line: 6
+    pylint: import-error / Unable to import 'conv'
+
+sandbox/testing/dviparser.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 23
+    pylint: too-many-locals / Too many local variables (31/15)
+    pylint: too-many-statements / Too many statements (131/60)
+    mccabe: MC0001 / get_token is too complex (62)
+  Line: 167
+    pep8: E741 / ambiguous variable name 'l' (col 9)
+  Line: 168
+    pylint: redefined-builtin / Redefining built-in 'dir' (col 8)
+  Line: 177
+    pep8: E741 / ambiguous variable name 'l' (col 9)
+  Line: 187
+    pep8: E741 / ambiguous variable name 'l' (col 9)
+  Line: 197
+    pep8: E741 / ambiguous variable name 'l' (col 9)
+  Line: 215
+    pep8: E741 / ambiguous variable name 'l' (col 9)
+  Line: 232
+    pylint: too-many-locals / Too many local variables (36/15)
+  Line: 248
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 10)
+  Line: 259
+    pylint: unused-variable / Unused variable 't' (col 41)
+  Line: 266
+    pylint: unused-variable / Unused variable 'mm' (col 4)
+  Line: 274
+    pylint: redefined-builtin / Redefining built-in 'dir' (col 24)
+    pylint: unused-variable / Unused variable 'dir' (col 24)
+  Line: 285
+    pylint: unused-variable / Unused variable 'c0' (col 18)
+
+sandbox/testing/encoding.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 27
+    pylint: import-error / Unable to import 'main.lib.pydvi2svg'
+  Line: 34
+    pylint: old-style-class / Old-style class defined.
+  Line: 35
+    pylint: dangerous-default-value / Dangerous default value [] as argument (col 4)
+  Line: 57
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 63
+    pylint: no-else-return / Unnecessary "else" after "return" (col 12)
+  Line: 78
+    pylint: redefined-builtin / Redefining built-in 'file' (col 18)
+    pylint: unused-variable / Unused variable 'path' (col 12)
+  Line: 112
+    pylint: redefined-builtin / Redefining built-in 'file' (col 13)
+  Line: 120
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 158
+    pylint: no-value-for-parameter / No value for argument 'strerror' in constructor call (col 18)
+  Line: 161
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+
+sandbox/testing/findfile.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 1)
+  Line: 46
+    pylint: redefined-builtin / Redefining built-in 'dir' (col 8)
+  Line: 47
+    pylint: redefined-builtin / Redefining built-in 'file' (col 12)
+  Line: 60
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 7)
+  Line: 63
+    pylint: redefined-argument-from-local / Redefining argument with the local name 'path' (col 12)
+  Line: 64
+    pylint: redefined-builtin / Redefining built-in 'file' (col 12)
+  Line: 81
+    pylint: redefined-builtin / Redefining built-in 'list' (col 41)
+  Line: 82
+    pylint: redefined-builtin / Redefining built-in 'dir' (col 8)
+  Line: 84
+    pylint: redefined-builtin / Redefining built-in 'file' (col 12)
+  Line: 95
+    pylint: unidiomatic-typecheck / Using type() instead of isinstance() for a typecheck. (col 7)
+  Line: 98
+    pylint: redefined-argument-from-local / Redefining argument with the local name 'path' (col 12)
+  Line: 99
+    pylint: assignment-from-no-return / Assigning to function call which doesn't return (col 12)
+    pylint: redefined-builtin / Redefining built-in 'file' (col 12)
+    pylint: unused-variable / Unused variable 'file' (col 12)
+  Line: 125
+    pylint: dangerous-default-value / Dangerous default value [] as argument
+  Line: 136
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should.
+
+sandbox/testing/fontsel.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 1)
+  Line: 111
+    pylint: too-many-locals / Too many local variables (17/15)
+    pylint: too-many-statements / Too many statements (66/60)
+    mccabe: MC0001 / create_DVI_font is too complex (21)
+  Line: 119
+    pylint: old-style-class / Old-style class defined. (col 4)
+  Line: 193
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 195
+    pylint: redefined-builtin / Redefining built-in 'file' (col 8)
+  Line: 231
+    pylint: dangerous-default-value / Dangerous default value {} as argument
+  Line: 247
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 256
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 259
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 279
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 283
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+  Line: 289
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+  Line: 297
+    pylint: redefined-builtin / Redefining built-in 'file' (col 8)
+  Line: 298
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 300
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 316
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 16)
+  Line: 323
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+  Line: 331
+    pylint: redefined-builtin / Redefining built-in 'file' (col 8)
+  Line: 332
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 334
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 347
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 16)
+  Line: 354
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 16)
+  Line: 360
+    pylint: too-many-format-args / Too many arguments for format string (col 16)
+  Line: 371
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 372
+    pylint: redefined-builtin / Redefining built-in 'file' (col 8)
+  Line: 375
+    pylint: unused-variable / Unused variable 'e' (col 27)
+  Line: 376
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+  Line: 381
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 16)
+  Line: 384
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 16)
+  Line: 392
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should.
+  Line: 396
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 397
+    pylint: redefined-builtin / Redefining built-in 'file' (col 8)
+  Line: 400
+    pylint: unused-variable / Unused variable 'e' (col 27)
+  Line: 401
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+  Line: 407
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 20)
+  Line: 410
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 20)
+  Line: 412
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 16)
+  Line: 421
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should.
+  Line: 431
+    pylint: unused-argument / Unused argument 'path' (col 20)
+  Line: 437
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 440
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+  Line: 457
+    pylint: unused-argument / Unused argument 'path' (col 20)
+  Line: 468
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 16)
+  Line: 471
+    pylint: redefined-builtin / Redefining built-in 'all' (col 4)
+  Line: 490
+    pylint: unused-variable / Unused variable 'encoding' (col 8)
+  Line: 491
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 498
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 499
+    pylint: redefined-builtin / Redefining built-in 'file' (col 8)
+  Line: 502
+    pylint: unused-variable / Unused variable 'e' (col 27)
+  Line: 503
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+  Line: 516
+    pylint: old-style-class / Old-style class defined.
+  Line: 520
+    pylint: old-style-class / Old-style class defined.
+  Line: 527
+    pylint: too-many-locals / Too many local variables (25/15)
+    pylint: too-many-statements / Too many statements (99/60)
+    mccabe: MC0001 / make_cache_file is too complex (35)
+  Line: 538
+    pylint: unused-argument / Unused argument 'path' (col 16)
+  Line: 557
+    pylint: unused-argument / Unused argument 'path' (col 25)
+  Line: 564
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+  Line: 579
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 20)
+  Line: 617
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 4)
+  Line: 649
+    pylint: unused-variable / Unused variable 'xmin' (col 12)
+  Line: 652
+    pylint: unused-variable / Unused variable 'upem' (col 12)
+  Line: 669
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 15)
+  Line: 697
+    pylint: raising-format-tuple / Exception arguments suggest string formatting might be intended (col 12)
+  Line: 735
+    pylint: too-many-locals / Too many local variables (19/15)
+  Line: 823
+    pylint: redefined-builtin / Redefining built-in 'file' (col 10)
+    pylint: unused-variable / Unused variable 'path' (col 4)
+
+sandbox/testing/forms/__init__.py
+  Line: 1
+    pylint: import-error / Unable to import 'forms'
+    pylint: import-error / Unable to import 'forms'
+    pyflakes: F401 / 'forms.*' imported but unused (col 1)
+
+sandbox/testing/lib_physics_graph.py
+  Line: 21
+    pep8: E115 / expected an indented block (comment) (col 13)
+  Line: 22
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 267
+    pep8: E115 / expected an indented block (comment) (col 1)
+  Line: 308
+    pylint: syntax-error / unindent does not match any outer indentation level (<string>, line 308)
+
+sandbox/testing/metrics.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 38
+    pylint: redefined-builtin / Redefining built-in 'file' (col 13)
+  Line: 62
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 7)
+  Line: 65
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+  Line: 71
+    pylint: too-many-locals / Too many local variables (25/15)
+    pylint: redefined-builtin / Redefining built-in 'file' (col 13)
+  Line: 132
+    pylint: redefined-builtin / Redefining built-in 'file' (col 4)
+
+sandbox/testing/model.py
+  Line: 3
+    pylint: import-error / Unable to import 'wtforms'
+
+sandbox/testing/models.py
+  Line: 6
+    pylint: undefined-variable / Undefined variable 'models' (col 20)
+  Line: 7
+    pylint: undefined-variable / Undefined variable 'models' (col 26)
+  Line: 8
+    pylint: undefined-variable / Undefined variable 'models' (col 26)
+  Line: 9
+    pylint: undefined-variable / Undefined variable 'models' (col 22)
+  Line: 10
+    pylint: undefined-variable / Undefined variable 'models' (col 34)
+  Line: 11
+    pylint: undefined-variable / Undefined variable 'models' (col 35)
+  Line: 12
+    pylint: undefined-variable / Undefined variable 'models' (col 15)
+  Line: 13
+    pylint: undefined-variable / Undefined variable 'models' (col 23)
+  Line: 16
+    pylint: undefined-variable / Undefined variable 'models' (col 11)
+  Line: 17
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 18
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 21
+    pylint: undefined-variable / Undefined variable 'models' (col 17)
+  Line: 22
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 23
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 26
+    pylint: undefined-variable / Undefined variable 'models' (col 17)
+  Line: 27
+    pylint: undefined-variable / Undefined variable 'models' (col 22)
+  Line: 28
+    pylint: undefined-variable / Undefined variable 'models' (col 17)
+  Line: 29
+    pylint: undefined-variable / Undefined variable 'models' (col 17)
+  Line: 30
+    pylint: undefined-variable / Undefined variable 'models' (col 28)
+  Line: 31
+    pylint: undefined-variable / Undefined variable 'models' (col 28)
+  Line: 32
+    pylint: undefined-variable / Undefined variable 'models' (col 18)
+  Line: 33
+    pylint: undefined-variable / Undefined variable 'models' (col 29)
+  Line: 34
+    pylint: undefined-variable / Undefined variable 'models' (col 29)
+  Line: 37
+    pylint: undefined-variable / Undefined variable 'models' (col 13)
+  Line: 38
+    pylint: undefined-variable / Undefined variable 'models' (col 16)
+  Line: 39
+    pylint: undefined-variable / Undefined variable 'models' (col 13)
+  Line: 40
+    pylint: undefined-variable / Undefined variable 'models' (col 11)
+  Line: 41
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 42
+    pylint: undefined-variable / Undefined variable 'models' (col 12)
+  Line: 43
+    pylint: undefined-variable / Undefined variable 'models' (col 18)
+  Line: 44
+    pylint: undefined-variable / Undefined variable 'models' (col 16)
+
+sandbox/testing/parse_subst.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 45
+    pylint: blacklisted-name / Black listed name "foo" (col 4)
+  Line: 52
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+  Line: 57
+    pylint: unused-argument / Unused argument 'l' (col 14)
+    pylint: unused-argument / Unused argument 's' (col 17)
+  Line: 58
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+  Line: 65
+    pylint: unused-argument / Unused argument 'l' (col 18)
+    pylint: unused-argument / Unused argument 's' (col 21)
+  Line: 70
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+  Line: 75
+    pylint: unused-argument / Unused argument 'l' (col 9)
+    pylint: unused-argument / Unused argument 's' (col 12)
+  Line: 80
+    pylint: unused-argument / Unused argument 'l' (col 10)
+    pylint: unused-argument / Unused argument 's' (col 13)
+  Line: 91
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+    pylint: function-redefined / function already defined line 84
+  Line: 92
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+  Line: 103
+    pylint: unused-argument / Unused argument 'l' (col 10)
+    pylint: unused-argument / Unused argument 's' (col 13)
+  Line: 108
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+  Line: 113
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+  Line: 121
+    pylint: unused-argument / Unused argument 'l' (col 10)
+    pylint: unused-argument / Unused argument 's' (col 13)
+  Line: 126
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 138
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 155
+    pylint: unused-argument / Unused argument 'l' (col 7)
+    pylint: unused-argument / Unused argument 's' (col 10)
+    pylint: function-redefined / function already defined line 144
+  Line: 173
+    pylint: unused-argument / Unused argument 'l' (col 7)
+    pylint: unused-argument / Unused argument 's' (col 10)
+  Line: 180
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+  Line: 187
+    pylint: unused-argument / Unused argument 'l' (col 13)
+    pylint: unused-argument / Unused argument 's' (col 16)
+  Line: 188
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+  Line: 189
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 197
+    pylint: old-style-class / Old-style class defined.
+  Line: 210
+    pylint: unused-argument / Unused argument 'l' (col 11)
+    pylint: unused-argument / Unused argument 's' (col 14)
+  Line: 211
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+  Line: 221
+    pylint: unused-argument / Unused argument 'l' (col 9)
+    pylint: unused-argument / Unused argument 's' (col 12)
+    pylint: unused-argument / Unused argument 'r' (col 15)
+  Line: 231
+    pylint: unused-argument / Unused argument 'l' (col 9)
+    pylint: unused-argument / Unused argument 's' (col 12)
+    pylint: function-redefined / function already defined line 227
+  Line: 244
+    pylint: redefined-builtin / Redefining built-in 'SyntaxError'
+
+sandbox/testing/parser.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 1)
+  Line: 43
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 44
+    pylint: no-else-return / Unnecessary "else" after "return" (col 12)
+  Line: 49
+    pylint: no-else-return / Unnecessary "else" after "return" (col 12)
+  Line: 92
+    pylint: unused-argument / Unused argument 'string' (col 18)
+  Line: 99
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should. (col 4)
+  Line: 110
+    pylint: arguments-differ / Parameters differ from overridden 'get' method (col 4)
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should. (col 4)
+    pylint: redefined-builtin / Redefining built-in 'str' (col 18)
+  Line: 118
+    pylint: inconsistent-return-statements / Either all return statements in a function should return an expression, or none of them should. (col 4)
+  Line: 121
+    pylint: no-else-return / Unnecessary "else" after "return" (col 12)
+  Line: 134
+    pylint: unused-variable / Unused variable 'matched' (col 20)
+  Line: 161
+    pylint: unused-variable / Unused variable 'matched' (col 24)
+  Line: 244
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+
+sandbox/testing/path_element.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 1)
+  Line: 58
+    pylint: unused-argument / Unused argument 'tofloat' (col 24)
+    mccabe: MC0001 / tokens is too complex (23)
+  Line: 128
+    pylint: too-many-arguments / Too many arguments (6/5)
+    pylint: too-many-locals / Too many local variables (26/15)
+    pylint: too-many-statements / Too many statements (152/60)
+    mccabe: MC0001 / path_iter is too complex (29)
+  Line: 145
+    pylint: unused-variable / Unused variable 'mlast_x1' (col 4)
+  Line: 146
+    pylint: unused-variable / Unused variable 'mlast_y1' (col 4)
+  Line: 148
+    pylint: unused-argument / Unused argument 'arg'
+  Line: 302
+    pylint: undefined-variable / Undefined variable 'last_x2' (col 29)
+  Line: 303
+    pylint: undefined-variable / Undefined variable 'last_y2' (col 29)
+  Line: 395
+    pylint: old-style-class / Old-style class defined. (col 4)
+  Line: 411
+    pylint: too-many-locals / Too many local variables (17/15) (col 4)
+  Line: 414
+    pylint: unused-variable / Unused variable 'x1' (col 9)
+  Line: 418
+    pylint: unused-variable / Unused variable 'Cx' (col 8)
+  Line: 422
+    pylint: unused-variable / Unused variable 'Cy' (col 8)
+  Line: 440
+    pylint: too-many-locals / Too many local variables (26/15) (col 4)
+  Line: 453
+    pylint: no-else-return / Unnecessary "else" after "return" (col 12)
+  Line: 454
+    pylint: no-else-return / Unnecessary "else" after "return" (col 16)
+  Line: 460
+    pylint: no-else-return / Unnecessary "else" after "return" (col 16)
+
+sandbox/testing/setup.py
+  Line: 17
+    pylint: old-style-class / Old-style class defined.
+
+sandbox/testing/svgfrags.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 2)
+  Line: 48
+    pylint: import-error / Unable to import 'frags'
+  Line: 50
+    pylint: import-error / Unable to import 'conv'
+  Line: 51
+    pylint: import-error / Unable to import 'conv'
+  Line: 52
+    pylint: import-error / Unable to import 'conv.binfile'
+  Line: 53
+    pylint: import-error / Unable to import 'conv.findfile'
+  Line: 73
+    pylint: unnecessary-pass / Unnecessary pass statement (col 8)
+  Line: 76
+    pylint: unused-variable / Unused variable 'scale2str' (col 8)
+  Line: 77
+    pylint: unused-variable / Unused variable 'coord2str' (col 8)
+  Line: 114
+    pylint: too-many-locals / Too many local variables (77/15)
+    pylint: too-many-statements / Too many statements (172/60)
+    mccabe: MC0001 / main is too complex (115)
+  Line: 115
+    pylint: import-error / Unable to import 'frags.cmdopts' (col 4)
+  Line: 164
+    pylint: using-constant-test / Using a conditional statement with a constant value (col 4)
+  Line: 170
+    pylint: redefined-builtin / Redefining built-in 'id' (col 30)
+  Line: 192
+    pylint: redefined-builtin / Redefining built-in 'input' (col 4)
+  Line: 194
+    pylint: import-error / Unable to import 'frags.parse_subst' (col 4)
+  Line: 229
+    pylint: redefined-builtin / Redefining built-in 'object' (col 16)
+  Line: 301
+    pylint: unused-variable / Unused variable 'comment' (col 4)
+  Line: 311
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 317
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 12)
+  Line: 321
+    pylint: logging-not-lazy / Specify string format arguments as logging function parameters (col 8)
+  Line: 322
+    pylint: too-many-format-args / Too many arguments for format string (col 12)
+  Line: 334
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 342
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 397
+    pylint: cell-var-from-loop / Cell variable xmin defined in loop (col 21)
+    pylint: cell-var-from-loop / Cell variable xmax defined in loop (col 29)
+    pylint: cell-var-from-loop / Cell variable xmin defined in loop (col 36)
+    pylint: cell-var-from-loop / Cell variable px defined in loop (col 44)
+  Line: 398
+    pylint: cell-var-from-loop / Cell variable ymin defined in loop (col 21)
+    pylint: cell-var-from-loop / Cell variable ymax defined in loop (col 29)
+    pylint: cell-var-from-loop / Cell variable ymin defined in loop (col 36)
+    pylint: cell-var-from-loop / Cell variable py defined in loop (col 44)
+  Line: 402
+    pylint: cell-var-from-loop / Cell variable equation defined in loop (col 20)
+  Line: 409
+    pylint: cell-var-from-loop / Cell variable equation defined in loop (col 20)
+  Line: 415
+    pylint: cell-var-from-loop / Cell variable equation defined in loop (col 23)
+
+sandbox/testing/unic.py
+  Line: 892
+    pylint: redefined-builtin / Redefining built-in 'unicode' (col 20)
+
+sandbox/testing/unic_upd.py
+  Line: 31
+    pylint: pointless-statement / Statement seems to have no effect
+
+sandbox/testing/urls.py
+  Line: 20
+    pylint: import-error / Unable to import 'main.views'
+  Line: 22
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 23
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 24
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 25
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 26
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 27
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+  Line: 28
+    pyflakes: F999 / 'url' may be undefined, or defined from star imports: main.views (col 5)
+    pylint: undefined-variable / Undefined variable 'url' (col 4)
+
+sandbox/testing/utils.py
+  Line: None
+    pep8: E101 / indentation contains mixed spaces and tabs (col 1)
+  Line: 49
+    pylint: redefined-builtin / Redefining built-in 'min' (col 26)
+    pylint: redefined-builtin / Redefining built-in 'max' (col 31)
+  Line: 112
+    pylint: redefined-builtin / Redefining built-in 'dict' (col 4)
+  Line: 123
+    pylint: redefined-builtin / Redefining built-in 'list' (col 22)
+  Line: 154
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+
+sandbox/testing/views.py
+  Line: 5
+    pylint: import-error / Unable to import 'redis'
+  Line: 6
+    pylint: unused-import / Unused import pickle
+  Line: 7
+    pylint: unused-wildcard-import / Unused imports from wildcard import: Feed, Symbol, Connection, Expression, InferenceRule
+  Line: 10
+    pylint: unused-import / Unused listdir imported from os
+  Line: 11
+    pylint: reimported / Reimport 're' (imported line 9)
+    pyflakes: F811 / redefinition of unused 're' from line 9 (col 1)
+  Line: 12
+    pylint: unused-import / Unused import os
+  Line: 13
+    pylint: reimported / Reimport 'os' (imported line 12)
+    pyflakes: F401 / 'os' imported but unused (col 1)
+    pyflakes: F811 / redefinition of unused 'os' from line 12 (col 1)
+  Line: 17
+    pylint: unused-import / Unused sleep imported from time
+  Line: 18
+    pylint: import-error / Unable to import 'pandas'
+  Line: 29
+    pyflakes: F999 / 'URLS' may be undefined, or defined from star imports: models (col 20)
+    pylint: undefined-variable / Undefined variable 'URLS' (col 19)
+  Line: 35
+    pyflakes: F999 / 'URLS' may be undefined, or defined from star imports: models (col 24)
+    pylint: undefined-variable / Undefined variable 'URLS' (col 23)
+  Line: 41
+    pyflakes: F999 / 'render' may be undefined, or defined from star imports: models (col 12)
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 45
+    pylint: import-error / Unable to import 'pandas' (col 4)
+    pylint: reimported / Reimport 'pandas' (imported line 18) (col 4)
+  Line: 70
+    pylint: unused-variable / Unused variable 'testing' (col 4)
+  Line: 72
+    pyflakes: F999 / 'render' may be undefined, or defined from star imports: models (col 12)
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 95
+    pyflakes: F999 / 'render' may be undefined, or defined from star imports: models (col 12)
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 98
+    pylint: unused-argument / Unused argument 'request' (col 13)
+  Line: 99
+    pylint: unused-variable / Unused variable 'testing' (col 4)
+  Line: 103
+    pyflakes: F999 / 'csrf_exempt' may be undefined, or defined from star imports: models (col 2)
+    pylint: undefined-variable / Undefined variable 'csrf_exempt' (col 1)
+  Line: 113
+    pyflakes: F999 / 'HttpResponse' may be undefined, or defined from star imports: models (col 20)
+    pylint: undefined-variable / Undefined variable 'HttpResponse' (col 19)
+  Line: 116
+    pylint: pointless-statement / Statement seems to have no effect (col 8)
+    pylint: unreachable / Unreachable code (col 8)
+  Line: 119
+    pylint: unused-argument / Unused argument 'request' (col 18)
+  Line: 124
+    pylint: import-error / Unable to import 'wolframalpha' (col 4)
+  Line: 133
+    pylint: unused-variable / Unused variable 'client' (col 4)
+  Line: 137
+    pylint: import-error / Unable to import 'networkx' (col 4)
+  Line: 141
+    pylint: import-error / Unable to import 'matplotlib.pyplot' (col 4)
+  Line: 159
+    pylint: import-error / Unable to import 'urllib.request' (col 4)
+  Line: 183
+    pylint: import-error / Unable to import 'astmonkey' (col 4)
+  Line: 193
+    pylint: reimported / Reimport 're' (imported line 9) (col 4)
+  Line: 199
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 11)
+  Line: 230
+    pylint: reimported / Reimport 'os' (imported line 12) (col 4)
+    pyflakes: F811 / redefinition of unused 'os' from line 13 (col 5)
+  Line: 235
+    pyflakes: F401 / 'lib_physics_graph as physgraf' imported but unused (col 5)
+    pylint: unused-variable / Unused variable 'physgraf' (col 4)
+  Line: 241
+    pylint: redefined-builtin / Redefining built-in 'file' (col 4)
+  Line: 263
+    pylint: no-else-return / Unnecessary "else" after "return" (col 4)
+  Line: 264
+    pylint: no-else-return / Unnecessary "else" after "return" (col 8)
+  Line: 290
+    pyflakes: F401 / 'models.Derivation' imported but unused (col 5)
+    pylint: unused-variable / Unused variable 'Derivation' (col 4)
+  Line: 314
+    pyflakes: F999 / 'render' may be undefined, or defined from star imports: models (col 12)
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 317
+    pylint: unused-argument / Unused argument 'request' (col 20)
+  Line: 318
+    pylint: import-error / Unable to import 'redis' (col 4)
+    pylint: reimported / Reimport 'Redis' (imported line 5) (col 4)
+
+sandbox/testing/views/__init__.py
+  Line: 1
+    pyflakes: F401 / 'views.*' imported but unused (col 1)
+  Line: 2
+    pyflakes: F401 / 'home.HomeView' imported but unused (col 1)
+
+sandbox/testing/views/home.py
+  Line: 6
+    pylint: unused-import / Unused import pickle
+  Line: 7
+    pylint: unused-import / Unused import json
+  Line: 8
+    pylint: unused-import / Unused time imported from time
+  Line: 9
+    pylint: unused-import / Unused import re
+  Line: 11
+    pylint: undefined-variable / Undefined variable 'settings' (col 9)
+
+sandbox/testing/views/views.py
+  Line: 11
+    pylint: undefined-variable / Undefined variable 'InferenceRuleForm' (col 26)
+  Line: 12
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 18
+    pylint: undefined-variable / Undefined variable 'FeedForm' (col 16)
+  Line: 19
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 23
+    pylint: undefined-variable / Undefined variable 'ExpressionForm' (col 22)
+  Line: 24
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 28
+    pylint: undefined-variable / Undefined variable 'ConnectionForm' (col 22)
+  Line: 29
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+  Line: 33
+    pylint: undefined-variable / Undefined variable 'SymbolForm' (col 18)
+  Line: 34
+    pylint: undefined-variable / Undefined variable 'render' (col 11)
+
+v2_XML/bin/build_derivation_csv_from_xml.py
+  Line: 18
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 20
+    pylint: unused-import / Unused import yaml
+
+v2_XML/bin/build_derivation_json_from_xml.py
+  Line: 17
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 61
+    mccabe: MC0001 / Loop 61 is too complex (21)
+  Line: 160
+    pep8: E501 / line too long (221 > 159 characters) (col 160)
+  Line: 172
+    pep8: E501 / line too long (218 > 159 characters) (col 160)
+  Line: 184
+    pep8: E501 / line too long (201 > 159 characters) (col 160)
+
+v2_XML/bin/build_derivation_pdf_from_xml.py
+  Line: 18
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 34
+    pylint: too-many-locals / Too many local variables (18/15)
+  Line: 42
+    pylint: unused-variable / Unused variable 'feed' (col 12)
+  Line: 58
+    pylint: unused-variable / Unused variable 'expression_indx' (col 12)
+  Line: 66
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 4)
+  Line: 68
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 4)
+
+v2_XML/bin/build_derivation_png_from_xml.py
+  Line: 20
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 79
+    mccabe: MC0001 / Loop 79 is too complex (20)
+  Line: 95
+    pep8: E501 / line too long (185 > 159 characters) (col 160)
+
+v2_XML/bin/check_connections_using_CAS_sympy.py
+  Line: 10
+    pylint: import-error / Unable to import 'sympy'
+    pylint: unused-import / Unused import sympy
+  Line: 39
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 8)
+  Line: 63
+    pylint: too-many-arguments / Too many arguments (9/5)
+  Line: 64
+    pylint: unused-argument / Unused argument 'filename' (col 8)
+  Line: 77
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 4)
+  Line: 79
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 85
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 91
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 126
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 12)
+  Line: 157
+    pylint: too-many-boolean-expressions / Too many boolean expressions in if statement (10/5) (col 8)
+  Line: 170
+    pylint: too-many-boolean-expressions / Too many boolean expressions in if statement (42/5) (col 8)
+  Line: 234
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 7)
+  Line: 247
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 7)
+
+v2_XML/bin/convert_expressions_xml_to_png.py
+  Line: 16
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 18
+    pylint: unused-import / Unused import yaml
+
+v2_XML/bin/convert_feed_xml_to_png.py
+  Line: 16
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 18
+    pylint: unused-import / Unused import yaml
+
+v2_XML/bin/convert_inference_rules_xml_to_csv.py
+  Line: 11
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+
+v2_XML/bin/generate_new_random_index.py
+  Line: 14
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 41
+    pylint: redefined-builtin / Redefining built-in 'id' (col 4)
+
+v2_XML/bin/list_connection_sets.py
+  Line: 12
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+
+v2_XML/bin/list_inference_rules.py
+  Line: 11
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+
+v2_XML/bin/popularity_of_symbols.py
+  Line: 12
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 20
+    pylint: undefined-variable / Undefined variable 'input_data' (col 21)
+  Line: 22
+    pylint: undefined-variable / Undefined variable 'expressionsDB' (col 4)
+  Line: 32
+    pylint: undefined-variable / Undefined variable 'statementsDB' (col 21)
+
+v2_XML/bin/prompt_to_user.py
+  Line: 18
+    pylint: unused-import / Unused parseString imported from xml.dom.minidom
+  Line: 20
+    pylint: unused-import / Unused import yaml
+
+v3_CSV/bin/export_latex_step_to_CAS_sage.py
+  Line: 14
+    pyflakes: F401 / 'random' imported but unused (col 1)
+  Line: 32
+    mccabe: MC0001 / convert_expression_to_symbols is too complex (40)
+
+v3_CSV/lib/lib_physics_graph.py
+  Line: 13
+    pyflakes: F841 / local variable 'todays_date' is assigned to but never used (col 5)
+  Line: 258
+    pep8: E501 / line too long (194 > 159 characters) (col 160)
+  Line: 259
+    pep8: E501 / line too long (210 > 159 characters) (col 160)
+  Line: 277
+    pep8: W605 / invalid escape sequence '\h' (col 51)
+  Line: 305
+    pep8: E501 / line too long (187 > 159 characters) (col 160)
+
+v4_file_per_expression/bin/create_png_for_derivation__input_name_of_derivation.py
+  Line: 13
+    pylint: unused-import / Unused import csv
+  Line: 14
+    pylint: unused-import / Unused import subprocess
+  Line: 102
+    pep8: E501 / line too long (184 > 159 characters) (col 160)
+
+v4_file_per_expression/bin/create_png_for_nodes__input_filename_for_latex.py
+  Line: 6
+    pylint: unused-import / Unused join imported from os.path
+  Line: 7
+    pylint: unused-import / Unused listdir imported from os
+
+v4_file_per_expression/derivations/frequency period relation/3131111133_sage_20151229.py
+  Line: 1
+    pylint: undefined-variable / Undefined variable 'var' (col 7)
+
+v4_file_per_expression/derivations/frequency relations/3131111133_sage_20151229.py
+  Line: 1
+    pylint: undefined-variable / Undefined variable 'var' (col 7)
+
+v4_file_per_expression/derivations/frequency relations/5749291_sage_20151229.py
+  Line: 1
+    pylint: undefined-variable / Undefined variable 'var' (col 4)
+
+v4_file_per_expression/interactive_user_prompt.py
+  Line: 12
+    pylint: unused-import / Unused version_info imported from sys
+  Line: 23
+    pylint: import-error / Unable to import 'sympy'
+  Line: 40
+    pylint: unreachable / Unreachable code (col 8)
+  Line: 130
+    pylint: too-many-arguments / Too many arguments (7/5)
+  Line: 191
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 233
+    pylint: unused-variable / Unused variable 'dirs' (col 14)
+  Line: 357
+    pylint: unused-variable / Unused variable 'derivation_name' (col 12)
+  Line: 427
+    pylint: unused-variable / Unused variable 'derivation_choice_input' (col 13)
+  Line: 590
+    pylint: unused-argument / Unused argument 'step_ary' (col 60)
+  Line: 597
+    pylint: unused-variable / Unused variable 'node_indx' (col 4)
+  Line: 633
+    pylint: unused-variable / Unused variable 'path_to_png' (col 4)
+  Line: 635
+    pylint: no-value-for-parameter / No value for argument 'path_to_png' in function call (col 4)
+  Line: 662
+    pylint: no-value-for-parameter / No value for argument 'output_path' in function call (col 16)
+  Line: 672
+    pylint: unused-variable / Unused variable 'derivation_choice_input' (col 13)
+  Line: 814
+    pylint: unused-variable / Unused variable 'first_derivation_choice_input' (col 5)
+  Line: 829
+    pylint: unused-variable / Unused variable 'second_derivation_choice_input' (col 9)
+  Line: 896
+    pylint: unused-variable / Unused variable 'entered_key' (col 4)
+  Line: 903
+    pylint: too-many-locals / Too many local variables (22/15)
+  Line: 922
+    pylint: unused-variable / Unused variable 'edge_list' (col 8)
+  Line: 925
+    pylint: unused-variable / Unused variable 'derivation_infrules' (col 8)
+  Line: 931
+    pylint: unused-variable / Unused variable 'derivation_exprs' (col 8)
+  Line: 956
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 12)
+  Line: 1002
+    pylint: unused-variable / Unused variable 'derivation_choice_input' (col 5)
+  Line: 1071
+    mccabe: MC0001 / edit_step_in_derivation is too complex (19)
+  Line: 1072
+    pylint: too-many-branches / Too many branches (22/15)
+  Line: 1088
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1090
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1092
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1115
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 16)
+  Line: 1124
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 16)
+  Line: 1132
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 16)
+  Line: 1145
+    pylint: consider-using-enumerate / Consider using enumerate instead of iterating with range and len (col 4)
+  Line: 1336
+    mccabe: MC0001 / check_this_step is too complex (19)
+  Line: 1337
+    pylint: too-many-statements / Too many statements (88/60)
+    pylint: too-many-branches / Too many branches (17/15)
+  Line: 1357
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1360
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1363
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1484
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1489
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1496
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 1538
+    pylint: unused-variable / Unused variable 'this_step' (col 19)
+  Line: 1543
+    pylint: unused-variable / Unused variable 'input_dic' (col 28)
+  Line: 1551
+    pylint: unused-variable / Unused variable 'output_dic' (col 29)
+  Line: 1565
+    pep8: E501 / line too long (228 > 159 characters) (col 160)
+  Line: 1566
+    pep8: E501 / line too long (225 > 159 characters) (col 160)
+  Line: 1570
+    pylint: unused-variable / Unused variable 'this_step' (col 19)
+  Line: 1598
+    pylint: unused-variable / Unused variable 'feed_dic' (col 23)
+  Line: 1607
+    pep8: E501 / line too long (333 > 159 characters) (col 160)
+  Line: 1688
+    mccabe: MC0001 / read_derivation_steps_from_files is too complex (28)
+  Line: 1689
+    pylint: too-many-locals / Too many local variables (26/15)
+    pylint: too-many-statements / Too many statements (76/60)
+    pylint: too-many-branches / Too many branches (31/15)
+  Line: 1760
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 16)
+  Line: 1819
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 16)
+  Line: 1867
+    pylint: too-many-locals / Too many local variables (17/15)
+  Line: 1905
+    pylint: unused-variable / Unused variable 'step_indx' (col 8)
+  Line: 2006
+    pylint: too-many-locals / Too many local variables (17/15)
+  Line: 2010
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 2013
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 2034
+    pylint: unused-variable / Unused variable 'num_remaining_entries' (col 8)
+  Line: 2052
+    pep8: E501 / line too long (168 > 159 characters) (col 160)
+  Line: 2095
+    mccabe: MC0001 / user_supplies_latex_or_expression_index is too complex (16)
+  Line: 2096
+    pylint: too-many-locals / Too many local variables (20/15)
+    pylint: too-many-branches / Too many branches (19/15)
+  Line: 2102
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 12)
+  Line: 2148
+    pylint: unused-variable / Unused variable 'indx' (col 20)
+  Line: 2152
+    pylint: unused-variable / Unused variable 'this_output' (col 26)
+  Line: 2157
+    pep8: E501 / line too long (161 > 159 characters) (col 160)
+  Line: 2196
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 8)
+  Line: 2258
+    pylint: too-many-locals / Too many local variables (16/15)
+  Line: 2318
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 12)
+
+v6_sqlite/create_db.py
+  Line: 27
+    pylint: unnecessary-pass / Unnecessary pass statement (col 4)
+  Line: 30
+    pep8: E501 / line too long (185 > 159 characters) (col 160)
+  Line: 61
+    pylint: len-as-condition / Do not use `len(SEQUENCE)` to determine if a sequence is empty (col 14)
+  Line: 74
+    pylint: unnecessary-pass / Unnecessary pass statement (col 4)
+  Line: 94
+    pylint: unnecessary-pass / Unnecessary pass statement (col 4)
+
+
+
+Check Information
+=================
+         Started: 2019-07-22 12:05:22.925214
+        Finished: 2019-07-22 12:05:49.188206
+      Time Taken: 26.26 seconds
+       Formatter: grouped
+        Profiles: default, no_doc_warnings, no_test_warnings, strictness_medium, strictness_high, strictness_veryhigh, no_member_warnings
+      Strictness: None
+  Libraries Used: flask
+       Tools Run: dodgy, mccabe, pep8, profile-validator, pyflakes, pylint
+  Messages Found: 580
+

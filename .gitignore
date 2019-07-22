@@ -9,6 +9,7 @@ a.out
 *.gz
 *.bz2
 *.so
+sqlite.db
 # IntelliJ project files
 .idea
 *.iml

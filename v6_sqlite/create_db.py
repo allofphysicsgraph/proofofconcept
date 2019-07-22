@@ -9,6 +9,12 @@ import sqlite3
 import csv
 import glob
 
+inference_rules_db_path = 'DataSource/CSVS/inference_rules_database.csv'
+inference_rules_ast_path='v4_file_per_expression/inference_rules/*.ast'
+expressions_tex_path = 'v4_file_per_expression/expressions/*.tex'
+tex_feeds_path='v4_file_per_expression/feeds/*.tex'
+expression_derivations_path= 'v4_file_per_expression/derivations/*'
+
 print('sqlite3 version:', sqlite3.version)
 
 db_file = "sqlite.db"
@@ -22,7 +28,8 @@ c = conn.cursor()
 
 try:
     c.execute('''drop table inference_rules''')
-except BaseException:
+except BaseException as e:
+    print(e)
     print('did not drop table inference_rules')
     pass
 # source of schema is v3_CSV/databases/README
@@ -31,10 +38,8 @@ c.execute('''CREATE TABLE inference_rules
 
 
 inf_rules = []
-
-list_of_ast_files = glob.glob('v4_file_per_expression/inference_rules/*.ast')
-
-with open('v3_CSV/databases/inference_rules_database.csv') as fil:
+list_of_ast_files = glob.glob(inference_rules_ast_path)
+with open(inference_rules_db_path) as fil:
     csv_reader = csv.reader(fil, delimiter=',')
     for line in csv_reader:
         line_as_list = [x.strip() for x in line]
@@ -76,7 +81,7 @@ c.execute('''CREATE TABLE expressions
              ("unique identifier",latex)''')
 
 list_of_expr_tuples = []
-list_of_expr_files = glob.glob('v4_file_per_expression/expressions/*.tex')
+list_of_expr_files = glob.glob(expressions_tex_path)
 for expr_file in list_of_expr_files:
     with open(expr_file, 'r') as fil:
         latex_expr = fil.read().strip()
@@ -95,7 +100,7 @@ except BaseException:
 c.execute('''CREATE TABLE feeds
              ("local identifier",latex)''')
 list_of_feed_tuples = []
-list_of_feed_files = glob.glob('v4_file_per_expression/feeds/*.tex')
+list_of_feed_files = glob.glob(tex_feeds_path)
 for feed_file in list_of_feed_files:
     with open(feed_file, 'r') as fil:
         latex_feed = fil.read().strip()
@@ -104,8 +109,7 @@ for feed_file in list_of_feed_files:
 
 c.executemany('INSERT INTO feeds VALUES (?,?)', list_of_feed_tuples)
 
-
-list_of_derivation_folders = glob.glob('v4_file_per_expression/derivations/*')
+list_of_derivation_folders = glob.glob(expression_derivations_path)
 for deriv_folder in list_of_derivation_folders:
     if deriv_folder.split('/')[-1] != 'all':
         print(deriv_folder)
