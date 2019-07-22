@@ -34,7 +34,8 @@ except BaseException as e:
     pass
 # source of schema is v3_CSV/databases/README
 c.execute('''CREATE TABLE inference_rules
-("inference rule abbreviation","number of arguments","number of feeds","number of input expressions","number of output expressions","comments","latex expansion",yyyymmdd,author,ast)''')
+("inference rule abbreviation","number of arguments","number of feeds","number of input expressions", \
+        "number of output expressions","comments","latex expansion",yyyymmdd,author,ast)''')
 
 
 inf_rules = []
