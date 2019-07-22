@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render
+#from django.shortcuts import render
 from models import *
 import requests
 import re
 from os import listdir
 import re, os
 import os
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
+#from django.http import HttpResponse
+#from django.views.decorators.csrf import csrf_exempt
 from os import system
 from time import sleep
 import pandas as pd
