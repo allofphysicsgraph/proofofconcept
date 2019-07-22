@@ -9,7 +9,9 @@ from __future__ import unicode_literals
 
 def add_inference_rule(request):
     inference_rule_form = InferenceRuleForm()
-    return render(request, 'index.html', {'inference_rule_form': inference_rule_form})
+    return render(
+        request, 'index.html', {
+            'inference_rule_form': inference_rule_form})
 
 
 def add_feed(request):

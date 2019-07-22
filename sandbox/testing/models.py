@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 
 class InferenceRule(models.Model):
-    inference_rule_name = models.CharField(max_length=128,null=True)
+    inference_rule_name = models.CharField(max_length=128, null=True)
     number_of_arguments = models.IntegerField(null=True)
     number_of_feeds = models.IntegerField(null=True)
     number_of_input_expressions = models.IntegerField(null=True)
@@ -36,9 +36,9 @@ class Connection(models.Model):
 
 class Symbol(models.Model):
     unique_id = models.IntegerField(null=True)
-    symbol = models.CharField(max_length=128,null=True)
-    type = models.CharField(max_length=128,null=True)
+    symbol = models.CharField(max_length=128, null=True)
+    type = models.CharField(max_length=128, null=True)
     value = models.FloatField(null=True)
-    units = models.CharField(max_length=128,null=True)
-    description = models.CharField(max_length=128,null=True)
-    cas_sympy = models.CharField(max_length=128,null=True)
+    units = models.CharField(max_length=128, null=True)
+    description = models.CharField(max_length=128, null=True)
+    cas_sympy = models.CharField(max_length=128, null=True)

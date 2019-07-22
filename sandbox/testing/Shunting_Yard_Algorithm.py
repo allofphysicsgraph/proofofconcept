@@ -1,7 +1,5 @@
-#https://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm
-#TODO convert this output to a graph using network x
-
-
+# https://rosettacode.org/wiki/Parsing/Shunting-yard_algorithm
+# TODO convert this output to a graph using network x
 
 
 from collections import namedtuple
@@ -48,7 +46,9 @@ def shunting(tokenvals):
         if token is NUM:
             action = 'Add number to output'
             outq.append(val)
-            table.append((val, action, ' '.join(outq), ' '.join(s[0] for s in stack), note))
+            table.append(
+                (val, action, ' '.join(outq), ' '.join(
+                    s[0] for s in stack), note))
         elif token in ops:
             t1, (p1, a1) = token, val
             v = t1
@@ -71,9 +71,13 @@ def shunting(tokenvals):
                         else:
                             stack.pop()
                             action = '(Pop & discard "(")'
-                            table.append((v, action, ' '.join(outq), ' '.join(s[0] for s in stack), note))
+                            table.append(
+                                (v, action, ' '.join(outq), ' '.join(
+                                    s[0] for s in stack), note))
                             break
-                    table.append((v, action, ' '.join(outq), ' '.join(s[0] for s in stack), note))
+                    table.append(
+                        (v, action, ' '.join(outq), ' '.join(
+                            s[0] for s in stack), note))
                     v = note = ''
                 else:
                     note = ''
@@ -85,7 +89,9 @@ def shunting(tokenvals):
                 action = 'Push op token to stack'
             else:
                 action = 'Discard ")"'
-            table.append((v, action, ' '.join(outq), ' '.join(s[0] for s in stack), note))
+            table.append(
+                (v, action, ' '.join(outq), ' '.join(
+                    s[0] for s in stack), note))
     note = 'Drain stack to output'
     while stack:
         v = ''
@@ -93,7 +99,9 @@ def shunting(tokenvals):
         action = '(Pop op)'
         stack.pop()
         outq.append(t2)
-        table.append((v, action, ' '.join(outq), ' '.join(s[0] for s in stack), note))
+        table.append(
+            (v, action, ' '.join(outq), ' '.join(
+                s[0] for s in stack), note))
         v = note = ''
     return table
 
@@ -104,8 +112,24 @@ if __name__ == '__main__':
     rp = shunting(get_input(infix))
     maxcolwidths = [len(max(x, key=len)) for x in zip(*rp)]
     row = rp[0]
-    print(' '.join('{cell:^{width}}'.format(width=width, cell=cell) for (width, cell) in zip(maxcolwidths, row)))
+    print(
+        ' '.join(
+            '{cell:^{width}}'.format(
+                width=width,
+                cell=cell) for (
+                width,
+                cell) in zip(
+                    maxcolwidths,
+                row)))
     for row in rp[1:]:
-        print(' '.join('{cell:<{width}}'.format(width=width, cell=cell) for (width, cell) in zip(maxcolwidths, row)))
+        print(
+            ' '.join(
+                '{cell:<{width}}'.format(
+                    width=width,
+                    cell=cell) for (
+                    width,
+                    cell) in zip(
+                    maxcolwidths,
+                    row)))
 
     print('\n The final output RPN is: %r' % rp[-1][2])

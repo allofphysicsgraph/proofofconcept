@@ -357,7 +357,7 @@ def latex_header(tex_file):
     tex_file.write('\\setlength{\\textheight}{9in}\n')
     tex_file.write('\\setlength{\\oddsidemargin}{-0in}\n')
     tex_file.write('\\setlength{\\textwidth}{6.5in}\n')
-    tex_file.write('\\newcommand{\\when}[1]{{\\rm \ when\\ }#1}\n')
+    tex_file.write(r'\\newcommand{\\when}[1]{{\\rm \ when\\ }#1}\n')
     tex_file.write('\\newcommand{\\bra}[1]{\\langle #1 |}\n')
     tex_file.write('\\newcommand{\\ket}[1]{| #1\\rangle}\n')
     tex_file.write('\\newcommand{\\op}[1]{\\hat{#1}}\n')

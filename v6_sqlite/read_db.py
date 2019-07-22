@@ -12,7 +12,7 @@ except sqlite3.Error:
 
 c = conn.cursor()
 
-#for row in c.execute('SELECT * FROM stocks ORDER BY price'):
+# for row in c.execute('SELECT * FROM stocks ORDER BY price'):
 for row in c.execute('SELECT * FROM expressions'):
     print(row)
 

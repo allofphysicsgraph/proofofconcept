@@ -8,103 +8,136 @@ import time
 import csv
 import random
 
+
 def read_csv_files_into_ary(which_derivation_to_make):
     """
     """
-    edge_list=[]
+    edge_list = []
 
     try:
-        with open(which_derivation_to_make+'/derivation_edge_list.csv', 'rb') as csvfile:
+        with open(which_derivation_to_make + '/derivation_edge_list.csv', 'rb') as csvfile:
             edges_obj = csv.reader(csvfile, delimiter=',')
             for row in edges_obj:
             # print ', '.join(row)
 #             print row
                 edge_list.append(row)
     except IOError:
-        raise Exception("Unable to find file "+which_derivation_to_make+'/derivation_edge_list.csv')
-        #print("Returning to menu with empty lists")
-        #return None, None, None, None
-    edge_list = filter(None, edge_list) # fastest way to remove empty strings from list
+        raise Exception(
+    "Unable to find file " +
+    which_derivation_to_make +
+     '/derivation_edge_list.csv')
+        # print("Returning to menu with empty lists")
+        # return None, None, None, None
+    # fastest way to remove empty strings from list
+    edge_list = filter(None, edge_list)
 
-    expr_list=[]
+    expr_list = []
     try:
-        with open(which_derivation_to_make+'/expression_identifiers.csv', 'rb') as csvfile:
+        with open(which_derivation_to_make + '/expression_identifiers.csv', 'rb') as csvfile:
             expr_obj = csv.reader(csvfile, delimiter=',')
             for row in expr_obj:
                 expr_list.append(row)
     except IOError:
-        raise Exception("Unable to find file "+which_derivation_to_make+'/expression_identifiers.csv')
-        #print("Returning to menu with empty lists")
-        #return None, None, None, None
-    expr_list = filter(None, expr_list) # fastest way to remove empty strings from list
+        raise Exception(
+    "Unable to find file " +
+    which_derivation_to_make +
+     '/expression_identifiers.csv')
+        # print("Returning to menu with empty lists")
+        # return None, None, None, None
+    # fastest way to remove empty strings from list
+    expr_list = filter(None, expr_list)
 
-    infrule_list=[]
+    infrule_list = []
     try:
-        with open(which_derivation_to_make+'/inference_rule_identifiers.csv', 'rb') as csvfile:
+        with open(which_derivation_to_make + '/inference_rule_identifiers.csv', 'rb') as csvfile:
             infrule_obj = csv.reader(csvfile, delimiter=',')
             for row in infrule_obj:
                 infrule_list.append(row)
     except IOError:
-        raise Exception("Unable to find file "+which_derivation_to_make+'/inference_rule_identifiers.csv')
-        #print("Returning to menu with empty lists")
-        #return None, None, None, None
-    infrule_list = filter(None, infrule_list) # fastest way to remove empty strings from list
+        raise Exception(
+    "Unable to find file " +
+    which_derivation_to_make +
+     '/inference_rule_identifiers.csv')
+        # print("Returning to menu with empty lists")
+        # return None, None, None, None
+    # fastest way to remove empty strings from list
+    infrule_list = filter(None, infrule_list)
 
-    feed_list=[]
-    if os.path.isfile(which_derivation_to_make+'/feeds.csv'):
-        with open(which_derivation_to_make+'/feeds.csv', 'r') as csvfile:
+    feed_list = []
+    if os.path.isfile(which_derivation_to_make + '/feeds.csv'):
+        with open(which_derivation_to_make + '/feeds.csv', 'r') as csvfile:
             feeds_obj = csv.reader(csvfile, delimiter=',')
             for row in feeds_obj:
                 feed_list.append(row[0])
-    feed_list = filter(None, feed_list) # fastest way to remove empty strings from list
+    # fastest way to remove empty strings from list
+    feed_list = filter(None, feed_list)
     return edge_list, expr_list, infrule_list, feed_list
 
-def write_edges_and_nodes_to_graphviz(which_derivation_to_make,\
+
+def write_edges_and_nodes_to_graphviz(which_derivation_to_make,
                          edge_list, expr_list, infrule_list, feed_list,
                          path_to_expressions, path_to_feeds):
     """
     """
-    graphviz_file=open(which_derivation_to_make+'/graphviz.dot','w')
+    graphviz_file = open(which_derivation_to_make + '/graphviz.dot', 'w')
     graphviz_file.write("digraph physicsDerivation {\n")
     graphviz_file.write("overlap = false;\n")
-#    graphviz_file.write("label=\"Expession relations\\nExtracted from connections_database.csv\";\n")
+# graphviz_file.write("label=\"Expession relations\\nExtracted from
+# connections_database.csv\";\n")
     graphviz_file.write("fontsize=12;\n")
 
     for this_pair in edge_list:
         if (len(this_pair) != 2):
-            raise Exception("invalid construct for edge list: ",this_pair)
+            raise Exception("invalid construct for edge list: ", this_pair)
         else:
-            graphviz_file.write(this_pair[0]+" -> "+this_pair[1]+";\n")
+            graphviz_file.write(this_pair[0] + " -> " + this_pair[1] + ";\n")
 
     for this_pair in expr_list:
         if (len(this_pair) != 2):
-            raise Exception("invalid construct for expr list: ",this_pair)
+            raise Exception("invalid construct for expr list: ", this_pair)
         else:
-            graphviz_file.write(this_pair[0]+" [shape=ellipse, color=red,image=\""+path_to_expressions+this_pair[1]+".png\",labelloc=b,URL=\"http://output.com\"];\n")
+            graphviz_file.write(
+    this_pair[0] +
+    " [shape=ellipse, color=red,image=\"" +
+    path_to_expressions +
+    this_pair[1] +
+     ".png\",labelloc=b,URL=\"http://output.com\"];\n")
 
     for this_pair in infrule_list:
         if (len(this_pair) != 2):
-            raise Exception("invalid construct for infrule list: ",this_pair)
+            raise Exception("invalid construct for infrule list: ", this_pair)
         else:
-            graphviz_file.write(this_pair[0]+" [shape=invtrapezium, color=red,label=\""+this_pair[1]+"\"];\n")
-        # because the infrule is stored as text and not a picture, it doesn't point back to a .png file
+            graphviz_file.write(
+    this_pair[0] +
+    " [shape=invtrapezium, color=red,label=\"" +
+    this_pair[1] +
+     "\"];\n")
+        # because the infrule is stored as text and not a picture, it doesn't
+        # point back to a .png file
 
 # print feed_list
 # print len(feed_list)
-    if (len(feed_list)>0):
+    if (len(feed_list) > 0):
         for this_feed in feed_list:
-            graphviz_file.write(this_feed+" [shape=ellipse, color=red,image=\""+path_to_feeds+this_feed+".png\",labelloc=b,URL=\"http://feed.com\"];\n")
+            graphviz_file.write(
+    this_feed +
+    " [shape=ellipse, color=red,image=\"" +
+    path_to_feeds +
+    this_feed +
+     ".png\",labelloc=b,URL=\"http://feed.com\"];\n")
 
     graphviz_file.write("}\n")
     graphviz_file.close()
     return
 
+
 def write_header_networkx(networkx_file):
     """
     """
-    todays_date=time.strftime("%Y%m%d")
+    todays_date = time.strftime("%Y%m%d")
     networkx_file.write('import networkx as nx\n')
     networkx_file.write('G=nx.digraph()\n')
+
 
 def write_header_graphviz(graphviz_file):
     """
@@ -113,17 +146,20 @@ def write_header_graphviz(graphviz_file):
     Text content is Graphviz boilerplate header; see http://www.graphviz.org/
     """
     graphviz_file.write("# Graphviz\n")
-    graphviz_file.write("# date created: "+time.strftime("%Y%m%d")+"\n")
+    graphviz_file.write("# date created: " + time.strftime("%Y%m%d") + "\n")
     graphviz_file.write("# Command to produce output:\n")
     graphviz_file.write("# neato -Tsvg thisfile.gv > out.svg\n")
     graphviz_file.write("# neato -Tpng thisfile.gv > out.png\n")
-    graphviz_file.write("# http://www.graphviz.org/Gallery/directed/traffic_lights.gv.txt\n")
+    graphviz_file.write(
+        "# http://www.graphviz.org/Gallery/directed/traffic_lights.gv.txt\n")
     graphviz_file.write("# http://www.graphviz.org/content/traffic_lights\n")
     graphviz_file.write("digraph physicsGraph {\n")
 #   graphviz_file.write("rankdir=TB;\n")
     graphviz_file.write('overlap=false;\n')
-    graphviz_file.write('label=\"Expression relations\\nExtracted from connections.csv and layed out by Graphviz\";\n')
+    graphviz_file.write(
+        'label=\"Expression relations\\nExtracted from connections.csv and layed out by Graphviz\";\n')
     graphviz_file.write('fontsize=12;\n')
+
 
 def write_footer_graphviz(graphviz_file):
     """
@@ -136,115 +172,138 @@ def write_footer_graphviz(graphviz_file):
 def convert_connections_csv_to_list_of_dics(connectionsDB):
   """
   """
-  connections_list_of_dics=[]
+  connections_list_of_dics = []
 
   with open(connectionsDB, 'rb') as csvfile:
-    reader = csv.reader(csvfile, delimiter=',', quotechar='"',skipinitialspace=True)
+    reader = csv.reader(
+    csvfile,
+    delimiter=',',
+    quotechar='"',
+     skipinitialspace=True)
     for row in reader:
-      this_line_dic={}
+      this_line_dic = {}
 #       print(row)
 #       print('-'.join(row))
 #       print(len(row))
-      if(len(row)==1): # skip empty lines
+      if(len(row) == 1):  # skip empty lines
         continue
-      elif(len(row)==8): # proper lines
-        this_line_dic["derivation name"]=row[0]
-        this_line_dic["step index"]     =row[1]
-        this_line_dic["from type"]      =row[2]
-        this_line_dic["from temp index"]=row[3]
-        this_line_dic["from perm index"]=row[4]
-        this_line_dic["to type"]        =row[5]
-        this_line_dic["to temp index"]  =row[6]
-        this_line_dic["to perm index"]  =row[7]
+      elif(len(row) == 8):  # proper lines
+        this_line_dic["derivation name"] = row[0]
+        this_line_dic["step index"] = row[1]
+        this_line_dic["from type"] = row[2]
+        this_line_dic["from temp index"] = row[3]
+        this_line_dic["from perm index"] = row[4]
+        this_line_dic["to type"] = row[5]
+        this_line_dic["to temp index"] = row[6]
+        this_line_dic["to perm index"] = row[7]
       else:
-        raise Exception("error in "+connectionsDB+"; len="+str(len(row)))
+        raise Exception("error in " + connectionsDB + "; len=" + str(len(row)))
         print(row)
       connections_list_of_dics.append(this_line_dic)
   return connections_list_of_dics
 
+
 def convert_feed_csv_to_list_of_dics(feedDB):
   """
   """
-  feeds_list_of_dics=[]
+  feeds_list_of_dics = []
   with open(feedDB, 'rb') as csvfile:
-    reader = csv.reader(csvfile, delimiter=',', quotechar='"',skipinitialspace=True)
+    reader = csv.reader(
+    csvfile,
+    delimiter=',',
+    quotechar='"',
+     skipinitialspace=True)
     for row in reader:
-      this_line_dic={}
-      if(len(row)==1): # skip empty lines
+      this_line_dic = {}
+      if(len(row) == 1):  # skip empty lines
         continue
-      elif(len(row)>=2): # proper lines
-        this_line_dic["temp index"]=row[0]
-        this_line_dic["feed latex"]=",".join(row[1:len(row)]) # thus a row can contain quote, comma
+      elif(len(row) >= 2):  # proper lines
+        this_line_dic["temp index"] = row[0]
+        # thus a row can contain quote, comma
+        this_line_dic["feed latex"] = ",".join(row[1:len(row)])
       else:
-        raise Exception("error in "+feedDB+"; len="+str(len(row)))
+        raise Exception("error in " + feedDB + "; len=" + str(len(row)))
         print(row)
       feeds_list_of_dics.append(this_line_dic)
   return feeds_list_of_dics
 
+
 def convert_expressions_csv_to_list_of_dics(expressionsDB):
   """
   """
-  expressions_list_of_dics=[]
+  expressions_list_of_dics = []
   with open(expressionsDB, 'rb') as csvfile:
-    reader = csv.reader(csvfile, delimiter=',', quotechar='"',skipinitialspace=True)
+    reader = csv.reader(
+    csvfile,
+    delimiter=',',
+    quotechar='"',
+     skipinitialspace=True)
     for row in reader:
-      this_line_dic={}
-      if(len(row)==0): # skip empty lines
+      this_line_dic = {}
+      if(len(row) == 0):  # skip empty lines
         continue
-      elif(len(row)>=2): # proper lines
-        this_line_dic["permanent index"]=row[0]
-        this_line_dic["expression latex"]=",".join(row[1:len(row)]) # thus a row can contain quote, comma
+      elif(len(row) >= 2):  # proper lines
+        this_line_dic["permanent index"] = row[0]
+        this_line_dic["expression latex"] = ",".join(
+            row[1:len(row)])  # thus a row can contain quote, comma
       else:
-        raise Exception("error in "+expressionsDB+"; len="+str(len(row)))
+        raise Exception("error in " + expressionsDB + "; len=" + str(len(row)))
         print(row)
       expressions_list_of_dics.append(this_line_dic)
   return expressions_list_of_dics
 
+
 def convert_infrule_csv_to_list_of_dics(infruleDB):
   """
   """
-  infrule_list_of_dics=[]
+  infrule_list_of_dics = []
   with open(infruleDB, 'rb') as csvfile:
-    reader = csv.reader(csvfile, delimiter=',', quotechar='"',skipinitialspace=True)
+    reader = csv.reader(
+    csvfile,
+    delimiter=',',
+    quotechar='"',
+     skipinitialspace=True)
     for row in reader:
 #       print(row)
-      this_line_dic={}
+      this_line_dic = {}
 #       print(row)
 #       print('-'.join(row))
 #       print(len(row))
-      if(len(row)==0): # skip empty lines
+      if(len(row) == 0):  # skip empty lines
         continue
-      elif(len(row)==7): # proper lines
-        this_line_dic["inference rule"]              =row[0]
-        this_line_dic["number of arguments"]         =row[1]
-        this_line_dic["number of feeds"]             =row[2]
-        this_line_dic["number of input expressions"] =row[3]
-        this_line_dic["number of output expressions"]=row[4]
-        this_line_dic["comment"]                     =row[5]
-        this_line_dic["LaTeX expansion"]             =row[6]
+      elif(len(row) == 7):  # proper lines
+        this_line_dic["inference rule"] = row[0]
+        this_line_dic["number of arguments"] = row[1]
+        this_line_dic["number of feeds"] = row[2]
+        this_line_dic["number of input expressions"] = row[3]
+        this_line_dic["number of output expressions"] = row[4]
+        this_line_dic["comment"] = row[5]
+        this_line_dic["LaTeX expansion"] = row[6]
       else:
-        raise Exception("error in "+infruleDB+"; len="+str(len(row)))
+        raise Exception("error in " + infruleDB + "; len=" + str(len(row)))
         print(row)
       infrule_list_of_dics.append(this_line_dic)
   return infrule_list_of_dics
 
+
 def set_of_feeds_from_list_of_dics(connections_list_of_dics):
   """
   """
-  list_of_feeds=[]
+  list_of_feeds = []
   for connection_dic in connections_list_of_dics:
-    if (connection_dic['from type']=='feed'):
+    if (connection_dic['from type'] == 'feed'):
       list_of_feeds.append(connection_dic['from temp index'])
   return(set(list_of_feeds))
+
 
 def set_of_expr_from_list_of_dics(connections_list_of_dics):
     """
     """
-    list_of_expr=[]
+    list_of_expr = []
     for connection_dic in connections_list_of_dics:
-        if (connection_dic['from type']=='expression'):
+        if (connection_dic['from type'] == 'expression'):
             list_of_expr.append(connection_dic['from perm index'])
-        if (connection_dic['to type']=='expression'):
+        if (connection_dic['to type'] == 'expression'):
             list_of_expr.append(connection_dic['to perm index'])
   return(set(list_of_expr))
 
@@ -332,7 +391,7 @@ def make_picture_from_latex_expression(file_name,folder_name,latex_expression,ex
   """
   """
   path_to_file=folder_name+'/'+file_name+'.'+extension
-  #print("path to file = "+path_to_file)
+  # print("path to file = "+path_to_file)
   if (os.path.isfile(path_to_file)):
     os.remove(path_to_file)
   tmp_tex='tmp.tex'
