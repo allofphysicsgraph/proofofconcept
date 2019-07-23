@@ -1,17 +1,11 @@
-# to run, use
-# python3 v6_sqlite/create_db.py
 
-# https://allofphysicsgraph.github.io/proofofconcept/site/how_to_build_the_physics_derivation.html
-# source of schema is v3_CSV/databases/README
-
-
-import sqlite3
-import datetime
 class sqlite_crud():
     def __init__(self):
         self.db = "sqlite.db"
 
     def setup_connection(self):
+        import sqlite3
+        import datetime
         try:
             conn = sqlite3.connect(self.db) 
             cursor = conn.cursor()
@@ -64,15 +58,3 @@ class sqlite_crud():
         return
         pass
 
-###############
-
-
-X = sqlite_crud()
-
-X.delete('inference_rules')
-
-query  = ("inference rule abbreviation","number of arguments","number of feeds", \
-            "number of input expressions","number of output expressions","comments", \
-            "latex expansion","yyyymmdd","author","ast")
-
-X.create('inference_rules',query)

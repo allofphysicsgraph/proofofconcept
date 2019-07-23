@@ -8,6 +8,7 @@
 import sqlite3
 import csv
 import glob
+from sqlite_crud import sqlite_crud
 
 inference_rules_db_path = 'DataSource/CSVS/inference_rules_database.csv'
 inference_rules_ast_path='v4_file_per_expression/inference_rules/*.ast'
@@ -17,25 +18,14 @@ expression_derivations_path= 'v4_file_per_expression/derivations/*'
 
 print('sqlite3 version:', sqlite3.version)
 
-db_file = "sqlite.db"
 
-try:
-    conn = sqlite3.connect(db_file)
-except sqlite3.Error:
-    print(sqlite3.Error)
+X = sqlite_crud()
+X.delete('inference_rules')
+query  = ("inference rule abbreviation","number of arguments","number of feeds", \
+            "number of input expressions","number of output expressions","comments", \
+            "latex expansion","yyyymmdd","author","ast")
+X.create('inference_rules',query)
 
-c = conn.cursor()
-
-try:
-    c.execute('''drop table inference_rules''')
-except BaseException as e:
-    print(e)
-    print('did not drop table inference_rules')
-    pass
-# source of schema is v3_CSV/databases/README
-c.execute('''CREATE TABLE inference_rules
-("inference rule abbreviation","number of arguments","number of feeds","number of input expressions", \
-        "number of output expressions","comments","latex expansion",yyyymmdd,author,ast)''')
 
 
 inf_rules = []
@@ -68,7 +58,7 @@ with open(inference_rules_db_path) as fil:
             pass  # empty line
         else:
             print('ERROR with', line)
-
+"""
 c.executemany(
     'INSERT INTO inference_rules VALUES (?,?,?,?,?,?,?,?,?,?)',
     inf_rules)
@@ -124,3 +114,4 @@ for deriv_folder in list_of_derivation_folders:
 conn.commit()  # Save (commit) the changes
 
 conn.close()
+"""
