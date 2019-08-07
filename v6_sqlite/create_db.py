@@ -9,6 +9,7 @@ import sqlite3
 import csv
 import glob
 from sqlite_crud import sqlite_crud
+import pandas as pd 
 
 inference_rules_db_path = 'DataSource/CSVS/inference_rules_database.csv'
 inference_rules_ast_path='v4_file_per_expression/inference_rules/*.ast'
@@ -17,7 +18,6 @@ tex_feeds_path='v4_file_per_expression/feeds/*.tex'
 expression_derivations_path= 'v4_file_per_expression/derivations/*'
 
 print('sqlite3 version:', sqlite3.version)
-
 
 X = sqlite_crud()
 X.delete('inference_rules')
