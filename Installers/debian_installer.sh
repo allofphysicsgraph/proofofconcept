@@ -1,3 +1,5 @@
+git clone https://github.com/mathjax/MathJax.git MathJax
+
 sudo apt-get install graphviz
 sudo apt-get install python3-pip
 sudo pip3 install -U pip3
