@@ -342,5 +342,13 @@ def create_eq_as_png():
 
 
 if __name__ == '__main__':
+    #Check if program exists
+    #https://stackoverflow.com/a/34177358
+    import shutil
+    requirements = ['latex','dvipng','neato']
+    for application in requirements:
+        if not shutil.which(application):
+            print("{} Not Installed".format(application))
+            exit(1)
     print_debug = False
     app.run(debug=True, host='0.0.0.0')

@@ -1,6 +1,6 @@
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask003.html
 
-#import math
+# import math
 import os
 import shutil
 from subprocess import Popen, PIPE
@@ -12,6 +12,12 @@ def remove_file_debris(tmp_file, list_of_file_ext):
         if os.path.isfile(tmp_file + '.' + file_ext):
             os.remove(tmp_file + '.' + file_ext)
     return
+
+def create_local_id(print_debug):
+    from random import randint
+    guess = randint(1000000,9999999)
+    #TODO ensure uniqueness
+    return guess
 
 
 def create_tex_file(tmp_file, input_latex_str):
@@ -27,23 +33,19 @@ def create_tex_file(tmp_file, input_latex_str):
 
 
 def create_sql_db(db_file, print_debug):
-
     return
 
 
 def add_latex_to_sql(db_file, input_latex_str, print_debug):
     print('sqlite3 version:', sqlite3.version)
-
     try:
         conn = sqlite3.connect(db_file)
     except sqlite3.Error:
         print(sqlite3.Error)
-
     return
 
 
 def create_png_from_latex(input_latex_str, print_debug):
-
     tmp_file = 'lat'
     remove_file_debris(tmp_file, ['tex', 'dvi', 'aux', 'log'])
     create_tex_file(tmp_file, input_latex_str)
@@ -80,7 +82,7 @@ def create_png_from_latex(input_latex_str, print_debug):
     shutil.move(name_of_png, '/home/user/app/static')
 
     # neato -Tpng graphviz.dot > /home/user/app/static/graphviz.png
-#    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/user/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
+    #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/user/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
     process = Popen(['neato', '-Tpng', 'app/graphviz.dot',
                      '-ographviz.png'], stdout=PIPE, stderr=PIPE)
     neato_stdout, neato_stderr = process.communicate()
