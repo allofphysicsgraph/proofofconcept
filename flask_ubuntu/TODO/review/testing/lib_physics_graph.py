@@ -347,17 +347,17 @@ def which_set(connections_list_of_dics):
   print(' ')
   # http://stackoverflow.com/questions/6410982/enumerate-items-in-a-list-so-a-user-can-select-the-numeric-value
   for item in enumerate(list_of_derivations):
-    print "[%d] %s" % item
+    print("[%d] %s" % item)
 
   try:
     idx = int(raw_input("\nEnter the derivation's number: "))
   except ValueError:
-    print "You fail at typing numbers; provide an integer."
+    print("You fail at typing numbers; provide an integer.")
 
   try:
     which_set_name = list_of_derivations[idx]
   except IndexError:
-    print "Try a number in range next time."
+    print("Try a number in range next time.")
 
   print("selected: "+which_set_name)
   return which_set_name

@@ -19,8 +19,8 @@ sys.path.append(lib_path)  # this has to proceed use of physgraph
 
 if (len(sys.argv) > 1):
     input_list = sys.argv
-    print 'Number of arguments:', len(input_list), 'arguments.'
-    print 'Argument List:', input_list
+    print('Number of arguments:', len(input_list), 'arguments.')
+    print('Argument List:', input_list)
     which_derivation_to_make = input_list[1]
     print("selected: " + which_derivation_to_make)
 else:
@@ -63,9 +63,9 @@ if not (
 edge_list, expr_list, infrule_list, feed_list = physgraf.read_csv_files_into_ary(
     which_derivation_to_make)
 
-# print edge_list
-# print expr_list
-# print infrule_list
+# print(edge_list)
+# print(expr_list)
+# print(infrule_list)
 
 path_to_expressions = "../../expressions/"
 path_to_feeds = "../../feeds/"
