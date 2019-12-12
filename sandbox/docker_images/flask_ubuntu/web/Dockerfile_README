@@ -1,12 +1,12 @@
 # QUICK START:
-docker build -t flask_ub:latest .; docker run -it --publish 5000:5000 flask_ub
+docker build -t flask_ub .; docker run -it --publish 5000:5000 flask_ub
 
 
 # Build the image
-docker build -t flask-ub:latest .
+docker build -t flask_ub .
 
 # run container in detached mode
-docker run -d -p 5000:5000 flask-ub
+docker run -d -p 5000:5000 flask_ub
 
 # run container interactively
 docker run -it flask-ub /bin/bash

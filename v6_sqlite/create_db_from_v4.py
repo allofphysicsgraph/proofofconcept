@@ -32,9 +32,9 @@ c.execute('''CREATE TABLE inference_rules
 
 inf_rules = []
 
-list_of_ast_files = glob.glob('v4_file_per_expression/inference_rules/*.ast')
+list_of_ast_files = glob.glob('../v4_file_per_expression/inference_rules/*.ast')
 
-with open('v3_CSV/databases/inference_rules_database.csv') as fil:
+with open('../v3_CSV/databases/inference_rules_database.csv') as fil:
     csv_reader = csv.reader(fil, delimiter=',')
     for line in csv_reader:
         line_as_list = [x.strip() for x in line]
@@ -74,7 +74,7 @@ c.execute('''CREATE TABLE expressions
              ("unique identifier",latex)''')
 
 list_of_expr_tuples=[]
-list_of_expr_files = glob.glob('v4_file_per_expression/expressions/*.tex')
+list_of_expr_files = glob.glob('../v4_file_per_expression/expressions/*.tex')
 for expr_file in list_of_expr_files:
     with open(expr_file,'r') as fil:
         latex_expr = fil.read().strip()
@@ -92,7 +92,7 @@ except:
 c.execute('''CREATE TABLE feeds
              ("local identifier",latex)''')
 list_of_feed_tuples=[]
-list_of_feed_files = glob.glob('v4_file_per_expression/feeds/*.tex')
+list_of_feed_files = glob.glob('../v4_file_per_expression/feeds/*.tex')
 for feed_file in list_of_feed_files:
     with open(feed_file,'r') as fil:
         latex_feed = fil.read().strip()
@@ -101,7 +101,7 @@ for feed_file in list_of_feed_files:
 c.executemany('INSERT INTO feeds VALUES (?,?)', list_of_feed_tuples)
 
 
-list_of_derivation_folders = glob.glob('v4_file_per_expression/derivations/*')
+list_of_derivation_folders = glob.glob('../v4_file_per_expression/derivations/*')
 for deriv_folder in list_of_derivation_folders:
     if deriv_folder.split('/')[-1]!='all':
         print(deriv_folder)

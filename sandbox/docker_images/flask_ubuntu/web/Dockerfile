@@ -1,5 +1,8 @@
 # https://docs.docker.com/engine/reference/builder/#from
-FROM ubuntu:latest
+# https://github.com/phusion/baseimage-docker
+FROM phusion/baseimage:0.11
+# Ubuntu is too big 
+#FROM ubuntu:latest
 
 # https://docs.docker.com/engine/reference/builder/#run
 RUN apt-get update && \
@@ -39,7 +42,7 @@ COPY requirements.txt /tmp
 RUN pip3 install -r /tmp/requirements.txt
 
 RUN useradd --create-home appuser
-WORKDIR /home/appuser
+WORKDIR /home/appuser/app
 USER appuser
 
 COPY templates /home/appuser/app/templates
