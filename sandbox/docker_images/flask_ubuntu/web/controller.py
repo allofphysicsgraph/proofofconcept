@@ -19,13 +19,13 @@ class infRuleInputsAndOutputs(Form):
     """
     a form with one or more latex entries 
     source: https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
-           https://stackoverflow.com/questions/30121763/how-to-use-a-wtforms-fieldlist-of-formfields
-           https://gist.github.com/doobeh/5d0f965502b86fee80fe
-           https://www.rmedgar.com/blog/dynamic_fields_flask_wtf
+            https://stackoverflow.com/questions/30121763/how-to-use-a-wtforms-fieldlist-of-formfields
+            https://gist.github.com/doobeh/5d0f965502b86fee80fe
+            https://www.rmedgar.com/blog/dynamic_fields_flask_wtf
 
     docs: https://wtforms.readthedocs.io/en/latest/fields.html#field-enclosures
-         https://wtforms.readthedocs.io/en/latest/fields.html#wtforms.fields.FieldList
-         https://wtforms.readthedocs.io/en/latest/fields.html#wtforms.fields.FormField
+          https://wtforms.readthedocs.io/en/latest/fields.html#wtforms.fields.FieldList
+          https://wtforms.readthedocs.io/en/latest/fields.html#wtforms.fields.FormField
     """
     inputs_and_outputs = FieldList(FormField(EquationInputForm,'late_x'), min_entries=1)
 #    inputs_and_outputs = FieldList(EquationInputForm, min_entries=1)
@@ -91,7 +91,7 @@ def start_new_derivation():
     form = NameOfDerivationInputForm(request.form)
     if request.method == 'POST' and form.validate():
         name_of_derivation = form.name_of_derivation.data
-        print(name_of_derivation)
+        print('name of derivation:',name_of_derivation)
         return redirect(url_for('select_inference_rule', name_of_derivation=name_of_derivation))
               #select_inference_rule(name_of_derivation) 
               #render_template("select_inference_rule.html")
@@ -133,7 +133,7 @@ def select_inference_rule(name_of_derivation):
     TODO: rather than a local list, 
     this function should poll the SQL database
     """
-    list_of_inf_rules = ['begin derivation','add X to both sides','multiply both sides by X']
+    list_of_inf_rules = compute.get_list_of_inf_rules()
 
 #    if request.method == 'POST':
 #        print(request.args['inf_rule'])
@@ -152,21 +152,20 @@ def inf_rule_selected(name_of_derivation):
     """
     print('name of derivation=',name_of_derivation)
     select = request.form.get('inf_rul_select') # this comes from the POST 
-    if select=='begin derivation':
+
+    number_of_inputs, number_of_outputs = compute.input_output_count_for_infrule(select)
+
+    if number_of_inputs == 0 and number_of_outputs == 1: 
         print('no inputs, 1 output')
-        number_of_inputs=0
-        number_of_outputs=1
         form = LatexZeroInputOneOutput(request.form)
-    elif select=='add X to both sides':
+    elif number_of_inputs == 2 and number_of_outputs == 1:
         print('2 inputs, 1 output')
-        number_of_inputs=2
-        number_of_outputs=1
         form = LatexTwoInputOneOutput(request.form)
-    elif select=='multiply both sides by X':
+    elif number_of_inputs == 2 and number_of_outputs == 1:
         print('2 inputs, 1 output')
-        number_of_inputs=2
-        number_of_outputs=1
         form = LatexTwoInputOneOutput(request.form)
+    else:
+        raise Exception('invalid number of arguments passed')
     print('user selected inference rule:',select)
 
     #form = infRuleInputsAndOutputs(input_latex=inputs, output_latex = outputs)

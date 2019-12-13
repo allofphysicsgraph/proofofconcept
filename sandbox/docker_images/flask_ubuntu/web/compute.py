@@ -8,13 +8,44 @@ from subprocess import Popen, PIPE
 import sqlite3
 import random
 
-def remove_file_debris(tmp_file,list_of_file_ext):
+def get_list_of_inf_rules():
+    """
+    >>> 
+    """
+    return ['begin derivation','add X to both sides','multiply both sides by X']
+
+def input_output_count_for_infrule(inf_rule):
+    """
+    >>> 
+    """
+    number_of_inputs = 0
+    number_of_outputs = 0
+    if inf_rule == 'begin derivation':
+        number_of_inputs = 0
+        number_of_outputs = 1
+    elif inf_rule == 'add X to both sides':
+        number_of_inputs = 2
+        number_of_outputs = 1
+    elif inf_rule == 'multiply both sides by X':
+        number_of_inputs = 2
+        number_of_outputs = 1
+    else:
+        raise Exception('unrecognized inference rule')
+    return number_of_inputs, number_of_outputs
+
+def remove_file_debris(tmp_file, list_of_file_ext):
+    """
+    >>> remove_file_debris('filename_without_extension', ['ext1', 'ext2'])
+    """
     for file_ext in list_of_file_ext:
         if os.path.isfile(tmp_file+'.'+file_ext):
             os.remove(tmp_file+'.'+file_ext)
     return
 
-def create_tex_file(tmp_file,input_latex_str):
+def create_tex_file(tmp_file, input_latex_str):
+    """
+    >>> create_tex_file('filename_without_extension', 'a \dot b \nabla')
+    """
     with open(tmp_file+'.tex','w') as lat_file:
         lat_file.write('\\documentclass[12pt]{report}\n')
         lat_file.write('\\thispagestyle{empty}\n')
@@ -25,14 +56,11 @@ def create_tex_file(tmp_file,input_latex_str):
         lat_file.write('\\end{document}\n')
     return
 
-def create_sql_db(db_file,print_debug):
-
-    return
-
 def create_step_graphviz_png(eq_and_png,
                         inf_rule,inf_rule_local_id,inf_rule_png,
                         name_of_derivation,print_debug):
     """
+    >>> create_step_graphviz_png() 
     """
     dot_filename='/home/appuser/app/static/graphviz.dot'
     with open(dot_filename,'w') as fil:
@@ -67,6 +95,7 @@ def create_step_graphviz_png(eq_and_png,
 def create_local_id(print_debug):
     """
     TODO: search SQL to find whether proposed local ID already exists
+    >>> create_local_id(False)
     """
     proposed_local_id = str(int(random.random()*1000000000))
     # insert SQL search and verification here
@@ -75,24 +104,19 @@ def create_local_id(print_debug):
 def find_valid_filename(print_debug):
     """
     TODO: search SQL to find whether proposed file name already exists
+    >>> find_valid_filename(False)
     """
     proposed_file_name = str(int(random.random()*1000000000))
     # insert SQL search and verification here
     return proposed_file_name+'.png'
 
-def add_latex_to_sql(db_file,input_latex_str,print_debug):
-    print('sqlite3 version:',sqlite3.version)
-    try:
-        conn = sqlite3.connect(db_file)
-    except sqlite3.Error:
-        print(sqlite3.Error)
-    return
 
 def create_png_from_latex(input_latex_str,print_debug):
     """
     this function relies on latex  being available on the command line
     this function relies on dvipng being available on the command line
     this function assumes generated PNG should be placed in /home/appuser/app/static/
+    >>> create_png_from_latex('a \dot b \nabla', False)
     """
     tmp_file='lat'
     remove_file_debris(tmp_file,['tex','dvi','aux','log'])

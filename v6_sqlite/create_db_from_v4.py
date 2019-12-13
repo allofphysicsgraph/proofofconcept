@@ -104,7 +104,7 @@ c.executemany('INSERT INTO feeds VALUES (?,?)', list_of_feed_tuples)
 list_of_derivation_folders = glob.glob('../v4_file_per_expression/derivations/*')
 for deriv_folder in list_of_derivation_folders:
     if deriv_folder.split('/')[-1]!='all':
-        print(deriv_folder)
+        print('deriv folder =',deriv_folder)
 
 #derivation_edge_list.csv
 #expression_identifiers.csv
