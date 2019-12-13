@@ -7,31 +7,43 @@ import shutil
 from subprocess import Popen, PIPE
 import sqlite3
 import random
+import pickle
 
 def get_list_of_inf_rules():
     """
     >>> 
     """
-    return ['begin derivation','add X to both sides','multiply both sides by X']
+    inf_rule_dict = read_db('data.pkl')
+    list_of_inf_rules = []
+    for inf_rule, data in inf_rule_dict.items():
+        list_of_inf_rules.append(inf_rule)
+    return list_of_inf_rules
 
-def input_output_count_for_infrule(inf_rule):
+def read_db(path_to_pkl):
     """
     >>> 
     """
-    number_of_inputs = 0
-    number_of_outputs = 0
-    if inf_rule == 'begin derivation':
-        number_of_inputs = 0
-        number_of_outputs = 1
-    elif inf_rule == 'add X to both sides':
-        number_of_inputs = 2
-        number_of_outputs = 1
-    elif inf_rule == 'multiply both sides by X':
-        number_of_inputs = 2
-        number_of_outputs = 1
-    else:
-        raise Exception('unrecognized inference rule')
-    return number_of_inputs, number_of_outputs
+    with open(path_to_pkl,'rb') as f:
+        inf_rule_dict = pickle.load(f)
+    return inf_rule_dict
+
+def write_db(path_to_pkl, inf_rule_dict):
+    """
+    >>> 
+    """
+    with open(path_to_pkl, 'wb') as f:
+        pickle.dump(inf_rule_dict, f)
+    return
+
+def input_output_count_for_infrule(inf_rule):
+    """
+    >>> input_output_count_for_infrule('multiply both sides by X')
+    """
+    inf_rule_dict = read_db('data.pkl')
+    number_of_feeds   = inf_rule_dict[inf_rule]['number of feeds']
+    number_of_inputs  = inf_rule_dict[inf_rule]['number of inputs']
+    number_of_outputs = inf_rule_dict[inf_rule]['number of outputs']
+    return number_of_feeds, number_of_inputs, number_of_outputs
 
 def remove_file_debris(tmp_file, list_of_file_ext):
     """

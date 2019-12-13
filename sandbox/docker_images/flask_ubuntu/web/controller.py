@@ -30,6 +30,34 @@ class infRuleInputsAndOutputs(Form):
     inputs_and_outputs = FieldList(FormField(EquationInputForm,'late_x'), min_entries=1)
 #    inputs_and_outputs = FieldList(EquationInputForm, min_entries=1)
 
+# https://stackoverflow.com/questions/37837682/python-class-input-argument/37837766
+class LatexIO(Form):
+    #,num_feeds,num_inputs,num_outputs):
+    def __init__(self, num_feeds, num_inputs, num_outputs):
+        print('called class\nnum_feeds =',num_feeds)
+        print('num_inputs =',num_inputs,'\nnum_outputs =',num_outputs)
+        if num_feeds > 0: self.feed1 = StringField('feed LaTeX 1',validators=[validators.InputRequired()])
+        if num_feeds > 1: self.feed2 = StringField('feed LaTeX 2'+str(feed_indx+1),validators=[validators.InputRequired()])
+        if num_feeds > 2: self.feed3 = StringField('feed LaTeX 3'+str(feed_indx+1),validators=[validators.InputRequired()])
+        if num_inputs > 0: self.input1 = StringField('input LaTeX 1'+str(input_indx+1),validators=[validators.InputRequired()])
+        if num_inputs > 1: self.input2 = StringField('input LaTeX 2'+str(input_indx+1),validators=[validators.InputRequired()])
+        if num_inputs > 2: self.input3 = StringField('input LaTeX 3'+str(input_indx+1),validators=[validators.InputRequired()])
+        if num_outputs > 0: self.output1 = StringField('output LaTeX 1',validators=[validators.InputRequired()])
+        if num_outputs > 1: self.output2 = StringField('output LaTeX 2',validators=[validators.InputRequired()])
+        if num_outputs > 2: self.output3 = StringField('output LaTeX 3',validators=[validators.InputRequired()])
+#        feed_list   = []
+#        for feed_indx in range(num_feeds):
+#            feed_list.append(   StringField('feed LaTeX '+str(feed_indx+1),validators=[validators.InputRequired()]))
+#        self.feed_list = feed_list
+#        input_list  = []
+#        for input_indx in range(num_inputs):
+#            input_list.append(  StringField('input LaTeX '+str(input_indx+1),validators=[validators.InputRequired()]))
+#        self.input_list = input_list
+#        output_list = []
+#        for output_indx in range(num_outputs):
+#            output_list.append( StringField('output LaTeX '+str(output_indx+1),validators=[validators.InputRequired()]))
+#        self.output_list = output_list
+
 class LatexOneInputZeroOutput(Form):
     latex_in_one = StringField('LaTeX',validators=[validators.InputRequired()])
 
@@ -153,20 +181,22 @@ def inf_rule_selected(name_of_derivation):
     print('name of derivation=',name_of_derivation)
     select = request.form.get('inf_rul_select') # this comes from the POST 
 
-    number_of_inputs, number_of_outputs = compute.input_output_count_for_infrule(select)
+    num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(select)
 
-    if number_of_inputs == 0 and number_of_outputs == 1: 
-        print('no inputs, 1 output')
-        form = LatexZeroInputOneOutput(request.form)
-    elif number_of_inputs == 2 and number_of_outputs == 1:
-        print('2 inputs, 1 output')
-        form = LatexTwoInputOneOutput(request.form)
-    elif number_of_inputs == 2 and number_of_outputs == 1:
-        print('2 inputs, 1 output')
-        form = LatexTwoInputOneOutput(request.form)
-    else:
-        raise Exception('invalid number of arguments passed')
-    print('user selected inference rule:',select)
+    form = LatexIO(num_feeds, num_inputs, num_outputs)
+
+#    if number_of_inputs == 0 and number_of_outputs == 1: 
+#        print('no inputs, 1 output')
+#        form = LatexZeroInputOneOutput(request.form)
+#    elif number_of_inputs == 2 and number_of_outputs == 1:
+#        print('2 inputs, 1 output')
+#        form = LatexTwoInputOneOutput(request.form)
+#    elif number_of_inputs == 2 and number_of_outputs == 1:
+#        print('2 inputs, 1 output')
+#        form = LatexTwoInputOneOutput(request.form)
+#    else:
+#        raise Exception('invalid number of arguments passed')
+#    print('user selected inference rule:',select)
 
     #form = infRuleInputsAndOutputs(input_latex=inputs, output_latex = outputs)
     #form = infRuleInputsAndOutputs(inputs=inputs) # "form" is an instance of the class "infRuleInputsAndOutputs"
@@ -182,8 +212,9 @@ def inf_rule_selected(name_of_derivation):
 
     return render_template('inf_rule_selected.html',
                             name_of_derivation=name_of_derivation,
-                            number_of_inputs=number_of_inputs,
-                            number_of_outputs=number_of_outputs,
+                            number_of_feeds=num_feeds,
+                            number_of_inputs=num_inputs,
+                            number_of_outputs=num_outputs,
                             inf_rule=select,
                             form=form)
 
