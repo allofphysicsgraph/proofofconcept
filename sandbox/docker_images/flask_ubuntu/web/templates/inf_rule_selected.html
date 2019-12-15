@@ -11,30 +11,46 @@
 
 <form method=post action="{{ url_for('step_review', name_of_derivation=name_of_derivation, inf_rule=inf_rule) }}">
 
-{% for feed in form.feed_list %}
-<P>{{ form.feed.label }}: 
-{% endfor %}
-
-{% for input in form.input_list %}
-<P>{{ form.input.label }}: 
-{% endfor %}
-
-{% for output in form.output_list %}
-<P>{{ form.output.label }}: 
-{% endfor %}
-
-{% if form.feed1 is defined %} {# http://jinja.pocoo.org/docs/2.10/templates/#defined #}
-<P>{{ form.feed1.label }}: {{ form.feed1 }}
-{% endif %}
-
-{% if form.input1 is defined %}
+{% if number_of_inputs|int() > 0|int() %}
 <P>{{ form.input1.label }}: {{ form.input1 }}
 {% endif %}
 
-{% if form.output1 is defined %}
+{% if number_of_inputs|int() > 1|int() %}
+<P>{{ form.input2.label }}: {{ form.input2 }}
+{% endif %}
+
+{% if number_of_inputs|int() > 2|int() %}
+<P>{{ form.input3.label }}: {{ form.input3 }}
+{% endif %}
+
+{% if number_of_feeds|int() > 0|int() %} 
+<P>{{ form.feed1.label }}: {{ form.feed1 }}
+{% endif %}
+
+{% if number_of_feeds|int() > 1|int() %} 
+<P>{{ form.feed2.label }}: {{ form.feed2 }}
+{% endif %}
+
+{% if number_of_feeds|int() > 2|int() %} 
+<P>{{ form.feed3.label }}: {{ form.feed3 }}
+{% endif %}
+
+{% if number_of_outputs|int() > 0|int() %}
 <P>{{ form.output1.label }}: {{ form.output1 }}
 {% endif %}
 
+{% if number_of_outputs|int() > 1|int() %}
+<P>{{ form.output2.label }}: {{ form.output2 }}
+{% endif %}
+
+{% if number_of_outputs|int() > 2|int() %}
+<P>{{ form.output3.label }}: {{ form.output3 }}
+{% endif %}
+
+
+
+<!--
+old
 {% if form.latex_in_four is defined %}
 <P>{{ form.latex_in_four.label }}: {{ form.latex_in_four }}
 {% endif %}
@@ -54,6 +70,7 @@
 {% if form.latex_out_four is defined %}
 <P>{{ form.latex_out_four.label }}: {{ form.latex_out_four }}
 {% endif %}
+-->
 
 <P><input type=submit value=Submit>
 </form>
