@@ -268,9 +268,10 @@ def add_step_to_derivation(print_debug, step_exprs_and_pngs, inf_rule, inf_rule_
             expr_id = create_expr_id(print_debug, path_to_pkl)
             expressions_dict[expr_id] = step_exprs_and_pngs[which_eq]['expr latex']
             step_dict['outputs'].append({'expr local ID':step_exprs_and_pngs[which_eq]['local ID'],
-                                        'expr ID':expr_id})
+                                         'expr ID':expr_id})
         elif 'feed' in which_eq:
-            step_dict['feeds'].append(step_exprs_and_pngs['expr latex'])
+            step_dict['feeds'].append({'feed local ID':step_exprs_and_pngs[which_eq]['local ID'],
+                                       'feed latex':step_exprs_and_pngs[which_eq]['expr latex']})
         else:
             raise Exception('unrecognized key in step dict')
 
