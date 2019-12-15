@@ -1,1 +1,12 @@
-<P>A list of all expressions</P>
+{% extends "base.html" %}
+{% block content %}
+
+<P>a list of all expressions</P>
+
+{% for expr_id,expr_latex in expressions_dict.items() %}
+{{ expr_id }}: {{ expr_latex }}<BR>
+
+{% endfor %}
+
+{% endblock %}
+

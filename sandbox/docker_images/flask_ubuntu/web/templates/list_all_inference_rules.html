@@ -1,1 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
 <P>a list of all inference rules</P>
+
+{% for inf_rule,inf_rule_attributes_dict in inf_rules_dict.items() %}
+{{ inf_rule }}: {{ inf_rule_attributes_dict }}<BR>
+
+{% endfor %}
+
+{% endblock %}
+

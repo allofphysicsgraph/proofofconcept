@@ -97,38 +97,60 @@ def start_new_derivation():
 @app.route('/edit_existing_derivation', methods=['GET', 'POST'])
 def edit_existing_derivation():
     if print_trace: print('[trace] controller: edit_existing_derivation')
-    return render_template("edit_existing_derivation.html")
+    expressions_dict, inf_rules_dict, derivations_dict = compute.read_db('data.pkl')
+    return render_template("edit_existing_derivation.html",
+                           derivations_dict=derivations_dict)
 
 @app.route('/edit_inference_rule', methods=['GET', 'POST'])
 def edit_inference_rule():
     if print_trace: print('[trace] controller: edit_inference_rule')
-    return render_template("edit_inference_rule.html")
+    expressions_dict, inf_rules_dict, derivations_dict = compute.read_db('data.pkl')
+
+    return render_template("edit_inference_rule.html",
+                           inf_rules_dict=inf_rules_dict)
+
+@app.route('/edit_expression', methods=['GET', 'POST'])
+def edit_expression():
+    if print_trace: print('[trace] controller: edit_expression')
+    expressions_dict, inf_rules_dict, derivations_dict = compute.read_db('data.pkl')
+    return render_template('edit_expression.html',
+                           expressions_dict=expressions_dict)
 
 @app.route('/list_all_inference_rules', methods=['GET', 'POST'])
 def list_all_inference_rules():
     if print_trace: print('[trace] controller: list_all_inference_rules')
-    return render_template("list_all_inference_rules.html")
+    expressions_dict, inf_rules_dict, derivations_dict = compute.read_db('data.pkl')
+    return render_template("list_all_inference_rules.html",
+                           inf_rules_dict=inf_rules_dict)
 
 @app.route('/select_derivation_to_edit', methods=['GET', 'POST'])
 def select_derivation_to_edit():
     if print_trace: print('[trace] controller: select_derivation_to_edit')
-    return render_template("select_derivation_to_edit.html")
+    expressions_dict, inf_rules_dict, derivations_dict = compute.read_db('data.pkl')
+    return render_template("select_derivation_to_edit.html",
+                           derivations_dict=derivations_dict)
 
 @app.route('/select_derivation_step_to_edit', methods=['GET', 'POST'])
 def select_derivation_step_to_edit():
     if print_trace: print('[trace] controller: select_derivation_step_to_edit')
-    return render_template("select_derivation_step_to_edit.html")
+    expressions_dict, inf_rules_dict, derivations_dict = compute.read_db('data.pkl')
+    return render_template("select_derivation_step_to_edit.html",
+                           derivations_dict=derivations_dict)
 
 @app.route('/list_all_expressions', methods=['GET', 'POST'])
 def list_all_expressions():
     if print_trace: print('[trace] controller: list_all_expressions')
-    return render_template("list_all_expressions.html")
+    expressions_dict, inf_rules_dict, derivations_dict = compute.read_db('data.pkl')
+    return render_template("list_all_expressions.html",
+                           expressions_dict=expressions_dict)
 
 
 @app.route('/view_existing_derivations', methods=['GET', 'POST'])
 def view_existing_derivations():
     if print_trace: print('[trace] controller: view_existing_derivations')
-    return render_template("view_existing_derivations.html")
+    expressions_dict, inf_rules_dict, derivations_dict = compute.read_db('data.pkl')
+    return render_template("view_existing_derivations.html",
+                           derivations_dict=derivations_dict)
 
 @app.route('/select_inference_rule/<name_of_derivation>/', methods=['GET', 'POST'])
 def select_inference_rule(name_of_derivation):
