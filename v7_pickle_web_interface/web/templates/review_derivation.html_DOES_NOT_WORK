@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<P>review derivation
+
+<P>derivation name: {{ name_of_derivation}}
+
+<form method=post action="{{ url_for('accept_step_or_modify_step', name_of_derivation=name_of_derivation) }}">
+<!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
+<P><input type=submit name='add step' value='add'>  
+   <input type=submit name='modify step' value='modify'>
+   <input type=submit name='done' value='done'>
+
+
+<!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
+<!--
+<P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
+
+{% if eq_and_png['input1'] is defined %}
+<P>Latex input 1: <BR>{{ eq_and_png['latex_in_one']['equation text'] }} <BR>renders as <BR>
+<img src="{{ url_for('static', filename=eq_and_png['latex_in_one']['equation picture']) }}">
+{% endif %}
+
+{% if eq_and_png['input2'] is defined %}
+<P>Latex input 2: <BR>{{ eq_and_png['latex_in_two']['equation text'] }} <BR>renders as <BR>
+<img src="{{ url_for('static', filename=eq_and_png['latex_in_two']['equation picture']) }}">
+{% endif %}
+
+{% if eq_and_png['input3'] is defined %}
+<P>Latex input 3: <BR>{{ eq_and_png['latex_in_three']['equation text'] }} <BR> renders as<BR>
+<img src="{{ url_for('static', filename=eq_and_png['latex_in_three']['equation picture']) }}">
+{% endif %}
+
+<P>inf_rule: {{ inf_rule }}
+
+{% if eq_and_png['latex_out_one'] is defined %}
+<P>Latex output 1: <BR>{{ eq_and_png['latex_out_one']['equation text'] }} <BR>renders as<BR>
+<img src="{{ url_for('static', filename=eq_and_png['latex_out_one']['equation picture']) }}">
+{% endif %}
+
+{% if eq_and_png['latex_out_two'] is defined %}
+<P>Latex output 2: <BR>{{ eq_and_png['latex_out_two']['equation text'] }} <BR> renders as<BR>
+<img src="{{ url_for('static', filename=eq_and_png['latex_out_two']['equation picture']) }}">
+{% endif %}
+
+{% if eq_and_png['latex_out_three'] is defined %}
+<P>Latex output 3: <BR>{{ eq_and_png['latex_out_three']['equation text'] }} <BR> renders as<BR>
+<img src="{{ url_for('static', filename=eq_and_png['latex_out_three']['equation picture']) }}">
+{% endif %}
+
+</form>
+-->
+
+{% endblock %}
+

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<P>select inference rule
+
+<!-- https://www.reddit.com/r/flask/comments/2fug7o/af_getting_selected_value_from_dropdown_list/ -->
+<!-- reference the name attribute of a form element in Flask to get the value associated with it. -->
+
+<!-- https://stackoverflow.com/questions/45877080/how-to-create-dropdown-menu-from-python-list-using-flask-and-html -->
+<select name="inf_rule" method="POST" action="/">
+  <option value="{{inf_rule_list[0]}}" selected>{{inf_rule_list[0]}}</option>
+  {% for inf_rule in inf_rule_list[1:] %}
+    <option value="{{inf_rule}}">{{inf_rule}}</option>
+  {% endfor %}
+</select>
+
+
+<!-- doesn't work: -->
+<!-- https://stackoverflow.com/questions/42469800/select-from-dropdown-list-in-flask -->
+
+{% endblock %}
+

@@ -1,0 +1,30 @@
+# Graphviz
+# date created: 20150805
+# Command to produce output:
+# neato -Tsvg thisfile.gv > out.svg
+# http://www.graphviz.org/Gallery/directed/traffic_lights.gv.txt
+# http://www.graphviz.org/content/traffic_lights
+digraph physicsEquations {
+overlap=false;
+label="Equation relations\nExtracted from connections_database and rendered by Graphviz";
+fontsize=12;
+9492929 [shape=ellipse,color=red,image="/home/appuser/app/templates/9492929.png",labelloc=b,URL="http://feed.com"];
+8489593964 [shape=ellipse,color=red,image="/home/appuser/app/templates/8489593964.png",labelloc=b,URL="http://expre.com"];
+8489593962 [shape=ellipse,color=red,image="/home/appuser/app/templates/8489593962.png",labelloc=b,URL="http://expre.com"];
+8489593958 [shape=ellipse,color=red,image="/home/appuser/app/templates/8489593958.png",labelloc=b,URL="http://expre.com"];
+8489593960 [shape=ellipse,color=red,image="/home/appuser/app/templates/8489593960.png",labelloc=b,URL="http://expre.com"];
+4848592 [shape=invtrapezium,color=red,image="/home/appuser/app/templates/swapLHSwithRHS.png",labelloc=b,URL="http://infrule.com"];
+4842942 [shape=invtrapezium,color=red,image="/home/appuser/app/templates/subtractXfromBothSides.png",labelloc=b,URL="http://infrule.com"];
+2839422 [shape=invtrapezium,color=red,image="/home/appuser/app/templates/declareFinalExpression.png",labelloc=b,URL="http://infrule.com"];
+8483953 [shape=invtrapezium,color=red,image="/home/appuser/app/templates/indefIntegration.png",labelloc=b,URL="http://infrule.com"];
+4952082 [shape=invtrapezium,color=red,image="/home/appuser/app/templates/declareIdentity.png",labelloc=b,URL="http://infrule.com"];
+4952082 -> 8489593958;
+9492929 -> 4842942;
+8489593958 -> 4842942;
+4842942 -> 8489593960;
+8489593960 -> 4848592;
+4848592 -> 8489593962;
+8489593962 -> 8483953;
+8483953 -> 8489593964;
+8489593964 -> 2839422;
+}

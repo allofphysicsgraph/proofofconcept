@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<P>name of derivation = {{ name_of_derivation }}
+
+<P>inference rule "{{ inf_rule }}" selected; provide {{ number_of_inputs }} inputs and {{ number_of_outputs }} outputs
+
+<!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
+
+<form method=post action="{{ url_for('step_review', name_of_derivation=name_of_derivation) }}">
+<P>HELLO  {{ form.input_latex }}
+
+{% for latex_eq_form in form.input_latex %}
+<P>input:    {{ forms.render_field(latex_eq_form.latex) }}
+{% endfor %}
+
+{% for latex_eq_form in form.output_latex %}
+<P>output:    {{ forms.render_field(latex_eq_form.latex) }}
+{% endfor %}
+
+<input type=submit value=Submit>
+</form>
+
+{% endblock %}
+
