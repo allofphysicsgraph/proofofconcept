@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "_form_macros.html" import render_field %}
+
+{% block content %}
+
+<!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
+
+<form method=post action="{{ url_for('list_all_inference_rules') }}">
+
+<P>number of feeds: {{ form.input1 }}
+
+<P>number of inputs: {{ form.input2 }}
+
+<P>number of outputs: {{ form.input3 }}
+
+<P><input type=submit value=Submit>
+</form>
+
+
+{% endblock %}
+

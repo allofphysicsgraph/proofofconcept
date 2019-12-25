@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<P>step review
+
+<P>derivation name: {{ name_of_derivation}}
+
+<form method=post action="{{ url_for('select_inference_rule', name_of_derivation=name_of_derivation) }}">
+<!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
+<input type=submit value='add another step'>  
+</form>
+<form method=post action="{{ url_for('review_derivation', name_of_derivation=name_of_derivation) }}">
+   <input type=submit value='review derivation'>
+</form>
+
+<!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
+<P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
+
+
+
+{% endblock %}
+

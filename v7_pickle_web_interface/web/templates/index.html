@@ -4,11 +4,11 @@
 <P>Choices:
 <UL>
 <LI><a href="{{ url_for('start_new_derivation') }}">start a new derivation</a>
-<LI><a href="{{ url_for('view_existing_derivations') }}">view existing derivations</a> 
+<LI><a href="{{ url_for('select_from_existing_derivations') }}">view existing derivations</a> 
 
-<LI><a href="{{ url_for('edit_existing_derivation') }}">edit an existing derivation</a> (place holder only)
-<LI><a href="{{ url_for('edit_inference_rule') }}">edit inference rule</a> (place holder only)
-<LI><a href="{{ url_for('edit_expression') }}">edit expression</a> (a place holder only)
+<LI><a href="{{ url_for('select_from_existing_derivations') }}">edit an existing derivation</a> 
+<LI><a href="{{ url_for('list_all_inference_rules') }}">edit inference rule</a> 
+<LI><a href="{{ url_for('list_all_expressions') }}">edit expression</a> 
 <LI><a href="{{ url_for('list_all_inference_rules') }}">list all inference rules</a> 
 <LI><a href="{{ url_for('list_all_expressions') }}">list all expressions</a> 
 </UL>

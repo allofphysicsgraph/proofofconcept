@@ -88,9 +88,7 @@ def start_new_derivation():
     if request.method == 'POST' and form.validate():
         name_of_derivation = form.name_of_derivation.data
         print('name of derivation:',name_of_derivation)
-        return redirect(url_for('select_inference_rule', name_of_derivation=name_of_derivation))
-              #select_inference_rule(name_of_derivation) 
-              #render_template("select_inference_rule.html")
+        return redirect(url_for('new_step_select_inf_rule', name_of_derivation=name_of_derivation))
     else:
         return render_template("start_new_derivation.html",form=form,title='start new derivation')
 
@@ -145,34 +143,34 @@ def list_all_expressions():
                            expressions_dict=expressions_dict)
 
 
-@app.route('/view_existing_derivations', methods=['GET', 'POST'])
-def view_existing_derivations():
+@app.route('/select_from_existing_derivations', methods=['GET', 'POST'])
+def select_from_existing_derivations():
     if print_trace: print('[trace] controller: view_existing_derivations')
     expressions_dict, inf_rules_dict, derivations_dict = compute.read_db('data.pkl')
-    return render_template("view_existing_derivations.html",
-                           derivations_dict=derivations_dict)
+    return render_template("select_from_existing_derivations.html",
+                           list_of_derivations=list(derivations_dict.keys()))
 
-@app.route('/select_inference_rule/<name_of_derivation>/', methods=['GET', 'POST'])
-def select_inference_rule(name_of_derivation):
-    if print_trace: print('[trace] controller: select_inference_rule')
+@app.route('/new_step_select_inf_rule/<name_of_derivation>/', methods=['GET', 'POST'])
+def new_step_select_inf_rule(name_of_derivation):
+    if print_trace: print('[trace] controller: new_step_select_inf_rule')
     list_of_inf_rules = compute.get_list_of_inf_rules('data.pkl')
 
-    return render_template("select_inference_rule.html",
+    return render_template("new_step_select_inf_rule.html",
                            title=name_of_derivation,
                            inf_rule_list=list_of_inf_rules,
                            name_of_derivation=name_of_derivation)
 
 
-@app.route('/inf_rule_selected/<name_of_derivation>', methods=['GET', 'POST'])
-def inf_rule_selected(name_of_derivation):
+@app.route('/provide_expr_for_inf_rule/<name_of_derivation>', methods=['GET', 'POST'])
+def provide_expr_for_inf_rule(name_of_derivation):
     """
     https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
     """
-    if print_trace: print('[trace] controller: inf_rule_selected')
-    print('name of derivation=',name_of_derivation)
+    if print_trace: print('[trace] controller: provide_expr_for_inf_rule')
+    print('controller; provide_expr_for_inf_rule; name of derivation =',name_of_derivation)
     selected_inf_rule = request.form.get('inf_rul_select') # this comes from the POST 
     num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(selected_inf_rule, 'data.pkl')
-    return render_template('inf_rule_selected.html',
+    return render_template('provide_expr_for_inf_rule.html',
                             name_of_derivation=name_of_derivation,
                             number_of_feeds=int(num_feeds),
                             number_of_inputs=int(num_inputs),
@@ -188,46 +186,37 @@ def step_review(name_of_derivation,inf_rule):
     if print_trace: print('[trace] controller: step_review')
     if request.method == 'POST':
         latex_for_step_dict = request.form
-        print('latex_for_step_dict = ',latex_for_step_dict) # form from inf_rule_selected()
+        print('latex_for_step_dict = ',latex_for_step_dict) # form from provide_expr_for_inf_rule()
         # looks like {'input1':'asdf', 'input2':'afdm','output1':'imfa'}
-        # save this "step" information to database
-        step_graphviz_png = compute.create_step(latex_for_step_dict, inf_rule, name_of_derivation, print_debug, 'data.pkl')
+        # convet this data into "step" information 
+        step_graphviz_png, step_dict, expr_dict = compute.create_step(latex_for_step_dict, inf_rule, name_of_derivation, print_debug, 'data.pkl')
 
         return render_template("step_review.html",
                                name_of_graphviz_png=step_graphviz_png,
                                name_of_derivation=name_of_derivation,
-                               inf_rule=inf_rule)
+                               step_dict=step_dict, expr_dict=expr_dict)
     else:
         print('controller: step_review -- reached else')
         return render_template('index.html')
     print('controller: step_review - reached end of function')
     return render_template('step_review.html')
 
-#@app.route('/accept_step_or_modify_step/<name_of_derivation>/', methods=['GET', 'POST'])
-#def accept_step_or_modify_step(name_of_derivation):
-#    if print_trace: print('[trace] controller: accept_step_or_modify_step')
-#    if request.method == 'POST':
-#        #print('accept_step_or_modify_step POSTed')
-#        #print(request)
-#        print('request form:',request.form)
-#        if request.form['accept and add or accept and return to derivation or modify']=='accept and review derivation':
-#            print('accept and review')
-#            return render_template('review_derivation.html',
-#                                   name_of_derivation=name_of_derivation)
-#        elif request.form['accept and add or accept and return to derivation or modify']=='modify this step':
-#            print('modify step')
-#            return render_template('modify_step.html')
-#        elif request.form['accept and add or accept and return to derivation or modify']=='accept and add another step':
-#            print('accept and add')
-#            return render_template('select_inference_rule.html')
-#        else:
-#            raise Exception('undefined choice in form')
-#    else:
-#        print('accept_step_or_modify_step: GET?')
-#        return render_template('index.html')
-#        #raise Exception('submit form to get to this page')
-#    print('accept_step_or_modify_step -- returning')
-#    return rander_template('index.html')
+@app.route('/accept_step_and_add_or_review/<name_of_derivation>/<step_dict>/<expr_dict>', methods=['GET', 'POST'])
+def accept_step_and_add_or_review(name_of_derivation, step_dict, expr_dict):
+    if print_trace: print('[trace] controller: accept_step_and_add_or_review')
+    if request.method == 'POST':
+        print('controller; accept_step_and_add_or_review; expr_dict =',expr_dict)
+        compute.write_step_to_db(name_of_derivation, step_dict, expr_dict, 'data.pkl')
+
+        return render_template("accept_step_and_add_or_review.html",
+                               name_of_derivation=name_of_derivation, 
+                               inf_rule=step_dict['inf rule'],
+                               step_dict=step_dict, 
+                               expr_dict=expr_dict)
+
+    else:
+        return render_template('index.html')
+    return render_template('index.html')
 
 @app.route('/review_derivation/<name_of_derivation>/', methods=['GET', 'POST'])
 def review_derivation(name_of_derivation):
@@ -239,14 +228,42 @@ def review_derivation(name_of_derivation):
                                name_of_graphviz_png=derivation_png)
     else:
         return render_template('index.html')
+    return render_template('index.html')
 
-@app.route('/modify_step/<name_of_derivation>/', methods=['GET', 'POST'])
-def modify_step(name_of_derivation):
+@app.route('/modify_step/<name_of_derivation>/<step_dict>/<expr_dict>', methods=['GET', 'POST'])
+def modify_step(name_of_derivation, step_dict, expr_dict):
     if print_trace: print('[trace] controller: modify_step')
     if request.method == 'POST':
+        print('controller; modify_step; entered if')
         print('request form:',request.form)
+        print('name_of_derivation =',name_of_derivation)
+        print('step_dict =',step_dict)
+        print('expr_dict =',expr_dict)
+        return render_template('modify_step.html',
+                               name_of_derivation=name_of_derivation,
+                               step_dict=step_dict,
+                               expr_dict=expr_dict)
+    else:
+        print('controller; modify_step; else')
+        return render_template('modify_step.html')
     return render_template('modify_step.html')
 
+@app.route('/view_derivation_selected/', methods=['GET', 'POST'])
+def view_derivation_selected():
+    if print_trace: print('[trace] controller: view_derivation_selected')
+    if request.method == 'POST':
+        name_of_derivation = request.form.get('derivation_selected') # this comes from the POST
+        print('controller; view_derivation_selected; selected_inf_rule =',selected_inf_rule)
+        review_derivation(name_of_derivation)
+    return render_template('index.html')
+
+@app.route('/create_new_inf_rule/', methods=['GET', 'POST'])
+def create_new_inf_rule():
+    if print_trace: print('[trace] controller: create_new_inf_rule')
+    if request.method == 'POST':
+        print('posted')
+        print(request.form)
+    return render_template('create_new_inf_rule.html')
 
 #@app.route('/enter_equation/', methods=['GET', 'POST'])
 #def create_eq_as_png():

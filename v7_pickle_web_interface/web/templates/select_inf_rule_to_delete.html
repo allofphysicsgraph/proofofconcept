@@ -2,17 +2,16 @@
 {% block content %}
 
 
-
-<P>view existing derivations
+<P>Select an inference rule to delete 
 
 <!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
 
-<form class="form-inline" method="POST" action="{{ url_for('view_derivation_selected') }}">
+<form class="form-inline" method="POST" action="{{ url_for('review_where_inf_rule_is_used') }}">
   <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon">Please select</span>
-            <select name="derivation_selected" class="selectpicker form-control">
-              {% for elem in derivation_list %}
+        <span class="input-group-addon">Select from</span>
+            <select name="inf_rul_select" class="selectpicker form-control">
+              {% for elem in inf_rule_list %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>
@@ -20,7 +19,6 @@
     <button type="submit" class="btn btn-default">Next</button>
   </div>
 </form>
-
 
 
 {% endblock %}

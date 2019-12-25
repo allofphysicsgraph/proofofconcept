@@ -1,20 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
-<P>a list of all inference rules</P>
 
-{% for inf_rule,inf_rule_attributes_dict in inf_rules_dict.items() %}
-{{ inf_rule }}: {{ inf_rule_attributes_dict }}<BR>
-{% endfor %}
+<P>Select an inference rule to create a new step for {{ name_of_derivation }}
 
-
-<form method=post action="">
-  <P>Add new inference rule: {{ form.new_inf_rule }}
-  <input type=submit value=Add>
-</form>
-
-
-
+<!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
 
 <form class="form-inline" method="POST" action="{{ url_for('provide_expr_for_inf_rule', name_of_derivation=name_of_derivation) }}">
   <div class="form-group">
@@ -30,9 +20,6 @@
   </div>
 </form>
 
-<P>Delete inference rule:
-
-<P>Which inference rule to edit:
 
 {% endblock %}
 

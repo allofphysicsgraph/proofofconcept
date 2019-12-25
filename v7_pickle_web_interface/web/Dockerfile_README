@@ -1,5 +1,5 @@
 # QUICK START:
-docker build -t flask_ub .; docker run -it --publish 5000:5000 flask_ub
+docker build -t flask_ub .; docker run -it --rm --publish 5000:5000 flask_ub
 
 
 # Build the image
