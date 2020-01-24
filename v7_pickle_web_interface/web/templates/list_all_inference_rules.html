@@ -15,7 +15,7 @@
 
 
 
-
+<P>Delete inference rule:
 <form class="form-inline" method="POST" action="{{ url_for('provide_expr_for_inf_rule', name_of_derivation=name_of_derivation) }}">
   <div class="form-group">
     <div class="input-group">
@@ -30,9 +30,22 @@
   </div>
 </form>
 
-<P>Delete inference rule:
 
 <P>Which inference rule to edit:
+
+<form class="form-inline" method="POST" action="{{ url_for('provide_expr_for_inf_rule', name_of_derivation=name_of_derivation) }}">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="inf_rul_select" class="selectpicker form-control">
+              {% for elem in inf_rule_list %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+    </div>
+    <button type="submit" class="btn btn-default">Next</button>
+  </div>
+</form>
 
 {% endblock %}
 
