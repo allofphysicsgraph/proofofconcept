@@ -13,42 +13,46 @@ print_trace = True
 
 def get_list_of_inf_rules(path_to_pkl):
     """
-    >>> 
+    >>>
     """
     if print_trace: print('[trace] compute: get_list_of_inf_rules')
-    expressions_dict, inf_rules_dict, derivations_dict = read_db(path_to_pkl)
+    dat = read_db(path_to_pkl)
     list_of_inf_rules = []
-    for inf_rule, data in inf_rules_dict.items():
-        list_of_inf_rules.append(inf_rule)
+    for inf_rule_dict in dat['inference rules']:
+        list_of_inf_rules.append(inf_rule_dict['name'])
     return list_of_inf_rules
 
 def read_db(path_to_pkl):
     """
-    >>> 
+    >>> read_db('data.pkl')
     """
     if print_trace: print('[trace] compute: read_db')
     with open(path_to_pkl,'rb') as f:
-        expressions_dict, inf_rules_dict, derivations_dict = pickle.load(f)
-    return expressions_dict, inf_rules_dict, derivations_dict
+        dat = pickle.load(f)
+    return dat
 
-def write_db(path_to_pkl, expressions_dict, inf_rules_dict, derivations_dict):
+def write_db(path_to_pkl, dat):
     """
-    >>> 
+    >>> dat = {}
+    >>> write_db('data.pkl', dat)
     """
     if print_trace: print('[trace] compute: write_db')
     with open(path_to_pkl, 'wb') as f:
-        pickle.dump([expressions_dict, inf_rules_dict, derivations_dict], f)
+        pickle.dump(dat, f)
     return
 
 def input_output_count_for_infrule(inf_rule, path_to_db):
     """
-    >>> input_output_count_for_infrule('multiply both sides by X')
+    >>> input_output_count_for_infrule('multiply both sides by X', 'data.pkl')
     """
     if print_trace: print('[trace] compute: input_output_count_for_infrule')
-    expressions_dict, inf_rules_dict, derivations_dict = read_db(path_to_db)
-    number_of_feeds   = inf_rules_dict[inf_rule]['number of feeds']
-    number_of_inputs  = inf_rules_dict[inf_rule]['number of inputs']
-    number_of_outputs = inf_rules_dict[inf_rule]['number of outputs']
+    dat = read_db(path_to_db)
+
+    for inf_rule_dict in dat['inference rules']:
+        if (inf_rule_dict['name'] == inf_rule):
+            number_of_feeds   = inf_rule_dict['number of feeds']
+            number_of_inputs  = inf_rule_dict['number of inputs']
+            number_of_outputs = inf_rule_dict['number of outputs']
     return number_of_feeds, number_of_inputs, number_of_outputs
 
 def remove_file_debris(tmp_file, list_of_file_ext):
@@ -81,7 +85,7 @@ def create_step_graphviz_png(step_dict, expessions_for_this_step, name_of_deriva
                      'inputs':[{'expr local ID':'9428', 'expr ID':'4928923942'}],
                      'feeds':[{'feed local ID':'319', 'feed latex':'k'],
                      'outputs':[{'expr local ID':'3921', 'expr ID':'9499959299'}]}
-    >>> create_step_graphviz_png(step_dict, 'my derivation', False) 
+    >>> create_step_graphviz_png(step_dict, 'my derivation', False)
 
     """
 
@@ -115,9 +119,9 @@ def create_step_graphviz_png(step_dict, expessions_for_this_step, name_of_deriva
 def create_expr_id(print_debug, path_to_pkl):
     """
     TODO: search DB to find whether proposed expr ID already exists
-    >>> create_expr_id(False)
+    >>> create_expr_id(False, 'data.pkl')
     """
-    expressions_dict, inf_rules_dict, derivations_dict = read_db(path_to_pkl)
+    dat = read_db(path_to_pkl)
 
     proposed_expr_id = str(int(random.random()*1000000000))
     return proposed_expr_id
@@ -127,11 +131,11 @@ def create_inf_rule_id(print_debug, path_to_pkl):
     search DB to find whether proposed local ID already exists
     >>> create_inf_rule_id(False, 'data.pkl')
     """
-    expressions_dict, inf_rules_dict, derivations_dict = read_db(path_to_pkl)
+    dat = read_db(path_to_pkl)
 
     inf_rule_ids_in_use = []
-    for derivation_name, derivation_steps_list in derivations_dict.items():
-        for step in derivation_steps_list:
+    for derivation_dict in dat['derivations']:
+        for step in derivation_dict['steps']:
             inf_rule_ids_in_use.append(step['inf rule local ID'])
 
     found_valid_id = False
@@ -146,13 +150,13 @@ def create_expr_local_id(print_debug, path_to_pkl):
     search DB to find whether proposed local ID already exists
     >>> create_expr_local_id(False, 'data.pkl')
     """
-    expressions_dict, inf_rules_dict, derivations_dict = read_db(path_to_pkl)
+    dat = read_db(path_to_pkl)
 
     local_ids_in_use = []
-    for derivation_name, derivation_steps_list in derivations_dict.items():
-        for step in derivation_steps_list:
+    for derivation_dict in dat['derivations']:
+        for step in derivation_dict['steps']:
             for input_dict in step['inputs']:
-                local_ids_in_use.append(input_dict['expr local ID'])
+                local_ids_in_use.append(input_dict[ 'expr local ID'])
             for output_dict in step['outputs']:
                 local_ids_in_use.append(output_dict['expr local ID'])
 
@@ -226,7 +230,7 @@ def create_png_from_latex(input_latex_str,print_debug, path_to_pkl):
 
 def create_step(latex_for_step_dict, inf_rule, name_of_derivation, print_debug, path_to_pkl):
     """
-    >>> 
+    >>>
     """
     inf_rule_png      = create_png_from_latex(inf_rule, print_debug, path_to_pkl)
 
@@ -261,7 +265,7 @@ def create_step(latex_for_step_dict, inf_rule, name_of_derivation, print_debug, 
     #add_step_to_derivation(print_debug, step_dict, name_of_derivation, path_to_pkl)
     print('compute; step_review; step_exprs_and_pngs =',step_dict)
 
-    step_graphviz_png = create_step_graphviz_png(step_dict,expressions_for_this_step, 
+    step_graphviz_png = create_step_graphviz_png(step_dict,expressions_for_this_step,
                                                  name_of_derivation,
                                                  print_debug, path_to_pkl)
     print('compute; step_review; step_graphviz_png =',step_graphviz_png)
@@ -270,30 +274,30 @@ def create_step(latex_for_step_dict, inf_rule, name_of_derivation, print_debug, 
 
 def add_step_to_derivation(print_debug, step_dict, name_of_derivation, path_to_pkl):
     """
-    >>> 
+    >>>
     """
     print('compute: add_step_to_derivation: step_exprs_and_pngs =',step_exprs_and_pngs)
 
-    expressions_dict, inf_rules_dict, derivations_dict = read_db(path_to_pkl)
-
+    dat = read_db(path_to_pkl)
+# TODO: stopped conversion to "dat" here
     if name_of_derivation not in list(derivations_dict.keys()):
         print('compute: add_step_to_derivation: new derivation being added to pkl')
         derivations_dict[name_of_derivation] = []
 
     derivations_dict[name_of_derivation].append(step_dict)
 
-    write_db(path_to_pkl, expressions_dict, inf_rules_dict, derivations_dict)
+    write_db(path_to_pkl, dat)
     return
 
 def write_step_to_db(name_of_derivation, step_dict, expr_dict, path_to_pkl):
     """
     >>> step_dict = {}
-    >>> write_step_to_db('my deriv',step_dict,{'982':'a = b', '9482':'c=f'},'data.pkl' 
+    >>> write_step_to_db('my deriv',step_dict,{'982':'a = b', '9482':'c=f'},'data.pkl'
     """
     step_dict = eval(step_dict)
     expr_dict = eval(expr_dict)
 
-    expressions_dict, inf_rules_dict, derivations_dict = read_db(path_to_pkl)
+    dat = read_db(path_to_pkl)
 
     print('compute; write_step_to_db; expr_dict =',type(expr_dict), expr_dict)
     for expr_id, expr_latex in expr_dict.items():
@@ -304,7 +308,7 @@ def write_step_to_db(name_of_derivation, step_dict, expr_dict, path_to_pkl):
         derivations_dict[name_of_derivation] = []
         derivations_dict[name_of_derivation].append(step_dict)
 
-    write_db(path_to_pkl, expressions_dict, inf_rules_dict, derivations_dict) 
+    write_db(path_to_pkl, dat)
     return
 
 def write_step_to_graphviz_file(step_dict, expressions_dict, fil, print_debug, path_to_pkl):
@@ -340,9 +344,9 @@ def write_step_to_graphviz_file(step_dict, expressions_dict, fil, print_debug, p
 
 def create_derivation_png(name_of_derivation, print_debug, path_to_pkl):
     """
-    >>> 
+    >>>
     """
-    expressions_dict, inf_rules_dict, derivations_dict = read_db(path_to_pkl)
+    dat = read_db(path_to_pkl)
 
     dot_filename='/home/appuser/app/static/graphviz.dot'
     with open(dot_filename,'w') as fil:
@@ -365,7 +369,3 @@ def create_derivation_png(name_of_derivation, print_debug, path_to_pkl):
 
     shutil.move(output_filename,'/home/appuser/app/static/'+output_filename)
     return output_filename
-
-
-
-
