@@ -6,25 +6,11 @@
 
 <P>derivation name: {{ name_of_derivation}}
 
-<form method=post action="{{ url_for('accept_step_and_add_or_review', 
-                             name_of_derivation=name_of_derivation,
-                             step_dict=step_dict,
-                             expr_dict=expr_dict) }}">
+<form method="post" action=""> 
 <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
-<!-- what I actually want to do:
-<form method=post action="{{ url_for('new_step_select_inf_rule', name_of_derivation=name_of_derivation) }}">
-<input type=submit value='accept and add another step'>  
-</form>
-<form method=post action="{{ url_for('review_derivation', name_of_derivation=name_of_derivation) }}">
-   <input type=submit value='accept and review derivation'>
--->
-   <input type=submit value='accept this step'>
-</form>
-<form method=post action="{{ url_for('modify_step', 
-                             name_of_derivation=name_of_derivation,
-                             step_dict=step_dict,
-                             expr_dict=expr_dict) }}">
-   <input type=submit value='modify this step'>
+   <input type="submit" name="submit_button" value='accept this step; add another step'>
+   <input type="submit" name="submit_button" value='accept this step; review derivation'>
+   <input type="submit" name="submit_button" value='modify this step'>
 </form>
 
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->

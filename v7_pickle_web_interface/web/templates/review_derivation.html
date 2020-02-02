@@ -6,9 +6,10 @@
 
 <P>derivation name: {{ name_of_derivation}}
 
-<form method=post action="{{ url_for('select_inference_rule', name_of_derivation=name_of_derivation) }}">
+<form method="post" action="">
 <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
-<input type=submit value='add another step'>
+<input type="submit" name="submit_button" value='add another step'>
+<input type="submit" name="submit_button" value="return to main menu">
 </form>
 
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">

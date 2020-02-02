@@ -5,9 +5,7 @@
 
 <P>derivation name: {{ name_of_derivation}}
 
-<form method=post action="{{ url_for('step_review', 
-                             name_of_derivation=name_of_derivation,
-                             inf_rule=inf_rule) }}">
+<form method="post" action=""> 
 
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">

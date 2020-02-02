@@ -9,68 +9,45 @@
 
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
-<form method=post action="{{ url_for('step_review', name_of_derivation=name_of_derivation, inf_rule=inf_rule) }}">
+<form method="post" action="">
 
 {% if number_of_inputs|int() > 0|int() %}
-<P>{{ form.input1.label }}: {{ form.input1 }}
+<P>{{ webform.input1.label }}: {{ webform.input1 }}
 {% endif %}
 
 {% if number_of_inputs|int() > 1|int() %}
-<P>{{ form.input2.label }}: {{ form.input2 }}
+<P>{{ webform.input2.label }}: {{ webform.input2 }}
 {% endif %}
 
 {% if number_of_inputs|int() > 2|int() %}
-<P>{{ form.input3.label }}: {{ form.input3 }}
+<P>{{ webform.input3.label }}: {{ webform.input3 }}
 {% endif %}
 
 {% if number_of_feeds|int() > 0|int() %} 
-<P>{{ form.feed1.label }}: {{ form.feed1 }}
+<P>{{ webform.feed1.label }}: {{ webform.feed1 }}
 {% endif %}
 
 {% if number_of_feeds|int() > 1|int() %} 
-<P>{{ form.feed2.label }}: {{ form.feed2 }}
+<P>{{ webform.feed2.label }}: {{ webform.feed2 }}
 {% endif %}
 
 {% if number_of_feeds|int() > 2|int() %} 
-<P>{{ form.feed3.label }}: {{ form.feed3 }}
+<P>{{ webform.feed3.label }}: {{ webform.feed3 }}
 {% endif %}
 
 {% if number_of_outputs|int() > 0|int() %}
-<P>{{ form.output1.label }}: {{ form.output1 }}
+<P>{{ webform.output1.label }}: {{ webform.output1 }}
 {% endif %}
 
 {% if number_of_outputs|int() > 1|int() %}
-<P>{{ form.output2.label }}: {{ form.output2 }}
+<P>{{ webform.output2.label }}: {{ webform.output2 }}
 {% endif %}
 
 {% if number_of_outputs|int() > 2|int() %}
-<P>{{ form.output3.label }}: {{ form.output3 }}
+<P>{{ webform.output3.label }}: {{ webform.output3 }}
 {% endif %}
 
 
-
-<!--
-old
-{% if form.latex_in_four is defined %}
-<P>{{ form.latex_in_four.label }}: {{ form.latex_in_four }}
-{% endif %}
-
-{% if form.latex_out_one is defined %}
-<P>{{ form.latex_out_one.label }}: {{ form.latex_out_one }}
-{% endif %}
-
-{% if form.latex_out_two is defined %}
-<P>{{ form.latex_out_two.label }}: {{ form.latex_out_two }}
-{% endif %}
-
-{% if form.latex_out_three is defined %}
-<P>{{ form.latex_out_three.label }}: {{ form.latex_out_three }}
-{% endif %}
-
-{% if form.latex_out_four is defined %}
-<P>{{ form.latex_out_four.label }}: {{ form.latex_out_four }}
-{% endif %}
--->
 
 <P><input type=submit value=Submit>
 </form>

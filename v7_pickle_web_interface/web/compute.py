@@ -49,9 +49,9 @@ def input_output_count_for_infrule(inf_rule, path_to_db):
     dat = read_db(path_to_db)
 
     if 'inference rules' not in dat.keys():
-        print("ERROR: dat doesn't contain 'inference rules' as a key")
+        print("compute ERROR in input_output_count_for_infrule: dat doesn't contain 'inference rules' as a key")
     if inf_rule not in dat['inference rules'].keys():
-        print("ERROR: dat['inference rules'] doesn't contain ",inf_rule)
+        print("compute ERROR in input_output_count_for_infrule: dat['inference rules'] doesn't contain ",inf_rule)
 
     number_of_feeds   = dat['inference rules'][inf_rule]['number of feeds']
     number_of_inputs  = dat['inference rules'][inf_rule]['number of inputs']
@@ -84,7 +84,7 @@ def create_tex_file(tmp_file, input_latex_str):
     return
 
 
-def create_step_graphviz_png(step_dict, expessions_for_this_step, name_of_derivation, print_debug, path_to_pkl):
+def create_step_graphviz_png(name_of_derivation, local_step_id, print_debug, path_to_pkl):
     """
     >>> step_dict = {'inf rule':'add X to both sides',
                      'inf rule local ID':'2948592',
@@ -101,13 +101,17 @@ def create_step_graphviz_png(step_dict, expessions_for_this_step, name_of_deriva
     with open(dot_filename,'w') as fil:
         fil.write('digraph physicsDerivation { \n')
         fil.write('overlap = false;\n')
-        fil.write('label="step preview for '+name_of_derivation+'";\n')
+        fil.write('label="step review for '+name_of_derivation+'";\n')
         fil.write('fontsize=12;\n')
 
-        print('compute; create_step_graphviz_png; ',step_dict, expessions_for_this_step)
-        write_step_to_graphviz_file(step_dict, expessions_for_this_step, fil, print_debug, path_to_pkl)
+        #print('compute; create_step_graphviz_png; ')
+        write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, print_debug, path_to_pkl)
 
         fil.write('}\n')
+
+#    with open(dot_filename,'r') as fil:
+#       print(fil.read())
+
     output_filename = 'graphviz.png'
     if os.path.exists(output_filename):
         os.remove(output_filename)
@@ -125,24 +129,43 @@ def create_step_graphviz_png(step_dict, expessions_for_this_step, name_of_deriva
 
 def create_expr_id(print_debug, path_to_pkl):
     """
-    TODO: search DB to find whether proposed expr ID already exists
+    search DB to find whether proposed expr ID already exists
+
     >>> create_expr_id(False, 'data.pkl')
     """
     dat = read_db(path_to_pkl)
 
-    proposed_expr_id = str(int(random.random()*1000000000))
-    return proposed_expr_id
+    global_expr_ids_in_use = []
+    for derivation_name, steps_dict in dat['derivations'].items():
+        for step_id, step in steps_dict.items():
+#            print('step =',step)
+            for expr_local_id,expr_global_id in step['inputs'].items():
+                global_expr_ids_in_use.append(expr_global_id)
+            for expr_local_id,expr_global_id in step['outputs'].items():
+                global_expr_ids_in_use.append(expr_global_id)
+            for expr_local_id,expr_global_id in step['feeds'].items():
+                global_expr_ids_in_use.append(expr_global_id)
+
+    found_valid_id = False
+    while(not found_valid_id):
+        proposed_global_expr_id = str(int(random.random()*1000000000))
+        if proposed_global_expr_id not in global_expr_ids_in_use:
+            found_valid_id = True
+
+    return proposed_global_expr_id
 
 
 def create_inf_rule_id(print_debug, path_to_pkl):
     """
+    aka step ID
+
     search DB to find whether proposed local ID already exists
     >>> create_inf_rule_id(False, 'data.pkl')
     """
     dat = read_db(path_to_pkl)
 
     inf_rule_ids_in_use = []
-    for derivation_name, steps_dict in dat['derivations']:
+    for derivation_name, steps_dict in dat['derivations'].items():
         for step_id, step_dict in steps_dict.items():
             inf_rule_ids_in_use.append(step_id) # formerly 'inf rule local ID'
 
@@ -164,12 +187,12 @@ def create_expr_local_id(print_debug, path_to_pkl):
     local_ids_in_use = []
     for derivation_name, steps_dict in dat['derivations'].items():
         for step_id, step in steps_dict.items():
-            for input_dict in step['inputs']:
-                for expr_local_id in input_dict.keys():
-                    local_ids_in_use.append(expr_local_ID)
-            for output_dict in step['outputs']:
-                for expr_local_id in output_dict.keys():
-                    local_ids_in_use.append(expr_localID)
+            for expr_local_id,expr_global_id in step['inputs'].items():
+                local_ids_in_use.append(expr_local_id)
+            for expr_local_id,expr_global_id in step['outputs'].items():
+                local_ids_in_use.append(expr_local_id)
+            for expr_local_id,expr_global_id in step['feeds'].items():
+                local_ids_in_use.append(expr_local_id)
 
     found_valid_id = False
     while(not found_valid_id):
@@ -204,7 +227,7 @@ def create_png_from_latex(input_latex_str,print_debug, path_to_pkl):
     remove_file_debris(tmp_file,['tex','dvi','aux','log'])
     create_tex_file(tmp_file,input_latex_str)
 
-    print('input latex str:',input_latex_str)
+    print('compute: create_png_from_latex: input latex str =',input_latex_str)
 
     process = Popen(['latex', tmp_file+'.tex'], stdout=PIPE, stderr=PIPE)
     latex_stdout, latex_stderr = process.communicate()
@@ -241,66 +264,53 @@ def create_png_from_latex(input_latex_str,print_debug, path_to_pkl):
 
 def create_step(latex_for_step_dict, inf_rule, name_of_derivation, print_debug, path_to_pkl):
     """
-    >>>
+    >>> latex_for_step_dict = ImmutableMultiDict([('output1', 'a = b')])
+    >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'data.pkl')
+    9492849
     """
-    inf_rule_png      = create_png_from_latex(inf_rule, print_debug, path_to_pkl)
+    dat = read_db(path_to_pkl)
 
-    step_dict = {}
-    step_dict['inf rule'] = inf_rule
-#   step_dict['inf rule local ID'] = create_inf_rule_id(print_debug, path_to_pkl)
-    step_dict['inputs'] = {}
-    step_dict['feeds'] = {}
-    step_dict['outputs'] = {}
-    expressions_for_this_step = {}
+    step_dict = {'inf rule': inf_rule,
+                 'inputs':   {},
+                 'feeds':    {},
+                 'outputs':  {}}
 
     for which_eq, latex_expr_str in latex_for_step_dict.items():
         if 'input' in which_eq:
             expr_id = create_expr_id(print_debug, path_to_pkl)
-            expressions_for_this_step[expr_id] = {'latex': latex_expr_str, 'AST': {}}
+            dat['expressions'][expr_id] = {'latex': latex_expr_str, 'AST': {}}
             step_dict['inputs'][create_expr_local_id(print_debug, path_to_pkl)] = expr_id
         elif 'output' in which_eq:
             expr_id = create_expr_id(print_debug, path_to_pkl)
-            expressions_for_this_step[expr_id] = latex_expr_str
-            step_dict['outputs'][create_expr_local_id(print_debug, path_to_pkl)] = expr_id
+            dat['expressions'][expr_id] = {'latex': latex_expr_str, 'AST': {}}
+            local_expr_id = create_expr_local_id(print_debug, path_to_pkl)
+            step_dict['outputs'][local_expr_id] = expr_id
         elif 'feed' in which_eq:
-            step_dict['feeds'][create_expr_local_id(print_debug, path_to_pkl)] = latex_expr_str
+            local_expr_id = create_expr_local_id(print_debug, path_to_pkl)
+            step_dict['feeds'][local_expr_id] = latex_expr_str
         else:
             raise Exception('unrecognized key in step dict')
 
-    # TODO: this data structure should be removed
-    #step_exprs_and_pngs[which_eq] = {'expr picture':create_png_from_latex(latex_expr_str,
-    #                                                                              print_debug, path_to_pkl),
-    #add_step_to_derivation(print_debug, step_dict, name_of_derivation, path_to_pkl)
-    print('compute; step_review; step_exprs_and_pngs =',step_dict)
+    print('compute; step_review; step_dict =',step_dict)
 
-    step_graphviz_png = create_step_graphviz_png(step_dict,expressions_for_this_step,
-                                                 name_of_derivation,
-                                                 print_debug, path_to_pkl)
-    print('compute; step_review; step_graphviz_png =',step_graphviz_png)
-
-    return step_graphviz_png, step_dict, expressions_for_this_step
-
-
-def add_step_to_derivation(print_debug, step_dict, name_of_derivation, path_to_pkl):
-    """
-    >>>
-    """
-    print('compute: add_step_to_derivation: step_exprs_and_pngs =',step_exprs_and_pngs)
-
-    dat = read_db(path_to_pkl)
-
-    if name_of_derivation not in list(dat['derivations'].keys()):
-        print('compute: add_step_to_derivation: new derivation being added to pkl')
+    # add step_dict to dat, write dat to pkl
+    inf_rule_local_ID = create_inf_rule_id(print_debug, path_to_pkl)
+    if name_of_derivation not in dat['derivations'].keys():
+        print('compute: create_step: starting new derivation')
         dat['derivations'][name_of_derivation] = {}
-
-    dat['derivations'][name_of_derivation][create_inf_rule_id(print_debug, path_to_pkl)] = step_dict
-
+    if inf_rule_local_ID in dat['derivations'][name_of_derivation].keys():
+        raise Exception('collision of inf_rule_local_id already in dat',inf_rule_local_ID)
+    dat['derivations'][name_of_derivation][inf_rule_local_ID] = step_dict 
     write_db(path_to_pkl, dat)
-    return
+
+    return inf_rule_local_ID
+
 
 
 def write_step_to_db(name_of_derivation, step_dict, expr_dict, path_to_pkl):
     """
+    # TODO: What is the difference between write_step_to_db and add_step_to_derivation ?
+
     >>> step_dict = {}
     >>> write_step_to_db('my deriv',step_dict,{'982':'a = b', '9482':'c=f'},'data.pkl'
     """
@@ -311,48 +321,46 @@ def write_step_to_db(name_of_derivation, step_dict, expr_dict, path_to_pkl):
 
     print('compute; write_step_to_db; expr_dict =',type(expr_dict), expr_dict)
     for expr_id, expr_latex in expr_dict.items():
-        dat['expressions'].append({'unique id': expr_id, 'latex': expr_latex})
+        dat['expressions'][expr_id] = {'latex': expr_latex}
 
-    list_of_derivation_names = enumerate_derivation_names(dat)
-    if name_of_derivation in list_of_derivation_names:
-        indx = index_of_derivation_name(dat, name_of_derivation)
-        dat['derivations'][indx]['steps'].append(step_dict)
+    if name_of_derivation in dat['derivations'].keys():
+        dat['derivations'][name_of_derivation][create_inf_rule_id(print_debug, path_to_pkl)] = step_dict
     else: # derivation name is not present in "dat"
-        dat['derivations'].append({'name':name_of_derivation, 'steps': [step_dict]})
+        dat['derivations'][name_of_derivation] = {}
+        dat['derivations'][name_of_derivation][create_inf_rule_id(print_debug, path_to_pkl)] = step_dict
 
     write_db(path_to_pkl, dat)
     return None
 
 
-def write_step_to_graphviz_file(step_dict, expressions_dict, fil, print_debug, path_to_pkl):
+def write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, print_debug, path_to_pkl):
     """
-    >>> step_dict = {}
-    >>> write_step_to_graphviz_file(step_dict, expressions_dict, fil, False, 'data.pkl')
+    >>> write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, False, 'data.pkl')
     """
-    fil.write(step_dict['inf rule local ID']+' [shape=ellipse, label="",image="/home/appuser/app/static/'+
+    dat = read_db(path_to_pkl)
+
+    step_dict = dat['derivations'][name_of_derivation][local_step_id]
+    #print('compute: write_step_to_graphviz_file: step_dict =',step_dict)
+    #  step_dict = {'inf rule': 'begin derivation', 'inputs': {}, 'feeds': {}, 'outputs': {'526874110': '557883925'}}
+
+    fil.write(local_step_id + ' [shape=ellipse, label="",image="/home/appuser/app/static/'+
               create_png_from_latex(step_dict['inf rule'], print_debug, path_to_pkl)+
               '",labelloc=b];\n')
-    for input_dict in step_dict['inputs']:
-        fil.write(input_dict['expr local ID']+' -> '+step_dict['inf rule local ID']+';\n')
-        fil.write(input_dict['expr local ID']+
-              ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/'+
-                       create_png_from_latex(expressions_dict[input_dict['expr ID']], print_debug, path_to_pkl)+
-                      '",labelloc=b];\n')
-    for output_dict in step_dict['outputs']:
-        print('compute; write_step_to_graphviz_file; output_dict =',output_dict)
-        fil.write(step_dict['inf rule local ID']+' -> '+output_dict['expr local ID']+';\n')
-        print('compute; write_step_to_graphviz_file; ',output_dict['expr local ID'],output_dict['expr ID'])
-        print('compute; write_step_to_graphviz_file; latex =',expressions_dict[output_dict['expr ID']])
-        fil.write(output_dict['expr local ID']+
-                      ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/'+
-                       create_png_from_latex(expressions_dict[output_dict['expr ID']], print_debug, path_to_pkl)+
-                      '",labelloc=b];\n')
-    for feed_dict in step_dict['feeds']:
-        fil.write(feed_dict['feed local ID']+' -> '+step_dict['inf rule local ID']+';\n')
-        fil.write(feed_dict['feed local ID']+
-                      ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/'+
-                       create_png_from_latex(feed_dict['feed latex'], print_debug, path_to_pkl)+
-                      '",labelloc=b];\n')
+    for expr_local_id, expr_global_id in step_dict['inputs'].items():
+        fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
+        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/'+
+                       create_png_from_latex(dat['expressions'][expr_global_id]['latex'], print_debug, path_to_pkl)+'",labelloc=b];\n')
+    for expr_local_id, expr_global_id in step_dict['outputs'].items():
+        #print('compute; write_step_to_graphviz_file; output_dict =',output_dict)
+        fil.write(local_step_id + ' -> ' + expr_local_id + ';\n')
+        #print('compute; write_step_to_graphviz_file; ',output_dict['expr local ID'],output_dict['expr ID'])
+        #print('compute; write_step_to_graphviz_file; latex =',expressions_dict[output_dict['expr ID']])
+        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/'+
+                       create_png_from_latex(dat['expressions'][expr_global_id]['latex'], print_debug, path_to_pkl)+'",labelloc=b];\n')
+    for expr_local_id, expr_global_id in step_dict['feeds'].items():
+        fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
+        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/'+
+                       create_png_from_latex(dat['expressions'][expr_global_id]['latex'], print_debug, path_to_pkl)+'",labelloc=b];\n')
     return
 
 
@@ -369,10 +377,9 @@ def create_derivation_png(name_of_derivation, print_debug, path_to_pkl):
         fil.write('label="step preview for '+name_of_derivation+'";\n')
         fil.write('fontsize=12;\n')
 
-        for derivation_dict in dat['derivations']:
-            if derivation_dict['name'] == name_of_derivation:
-                for step_dict in derivation_dict['steps']: 
-                    write_step_to_graphviz_file(step_dict, dat['expressions'], fil, print_debug, path_to_pkl)
+        for step_id, step_dict in dat['derivations'][name_of_derivation].items():
+
+            write_step_to_graphviz_file(name_of_derivation, step_id, fil, print_debug, path_to_pkl)
 
         fil.write('}\n')
     output_filename = 'graphviz.png'

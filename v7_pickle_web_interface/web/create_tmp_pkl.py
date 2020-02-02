@@ -27,9 +27,15 @@
 
 import pickle
 
-dat = {}
+dat = {} # one data structure to hold all others (expressions, inference rules, derivations, symbols, units, measures, operators)
 
-
+# the most visible component of the Physics Derivation Graph is the expression
+#   * steps are composed of inference rules and expressions; derivations are comprised of steps
+#   * expressions are composed of operators and symbols
+# Each expression has a unique numeric identifier
+# An expression manifests as LaTeX and an Abstract Syntax Tree
+# The AST and LaTeX representations are intended to be equivalent
+# Ambiguous LaTeX is not allowed
 dat['expressions'] = {
   '4928923942': {'latex': 'a = b',         'AST': {'equals': ['9139', '1939']}},
   '9499959299': {'latex': 'a + k = b + k', 'AST': {'equals': [
@@ -44,44 +50,63 @@ dat['expressions'] = {
   '1492811142': {'latex': 'f = x - d',     'AST': {'equals': [
                                                                 '4200',
                                                                 {'subtraction': [
-                                                                     '1464', '1900']}]}}
+                                                                     '1464', '1900']}]}},
+   '949482919': {'latex': 'k',             'AST': {'5321'}}
 #  ''{ 'latex': '', 'AST': {}},
 }
 
+# the glue of the Physics Derivation Graph is a concept called an "Inference rule"
+# An inference rule relates one or more expressions in a given step
 dat['inference rules'] =  {
     'begin derivation':         {'number of feeds':0, 'number of inputs':0, 'number of outputs': 1},
     'add X to both sides':      {'number of feeds':1, 'number of inputs':1, 'number of outputs': 1},
     'multiply both sides by X': {'number of feeds':1, 'number of inputs':1, 'number of outputs': 1}
 }
 
-
+# A derivation is comprised of steps. 
+# Each step has 0 or more inputs, 0 or more outputs, 0 or more feeds, and one inference rule
+# Each step is assocaited with a unique numeric identifier
+# The inputs and outputs of each step have a "local ID" which is associated with a unique global ID. The global ID is associated with an expression
 dat['derivations'] = {
-  'fun deriv': { # key is "inf rule local ID"
+  'fun deriv': { 
+     # key is "inf rule local ID"
      '4928482': {'inf rule': 'begin derivation',
                  'inputs':  {},
                  'feeds':   {},
                  'outputs': {'9428': '4928923942'}}, # key is "expr local ID", value is "expr ID"
      '2948592': {'inf rule': 'add X to both sides',
-                 'inputs':  {'9428':'4928923942'},
-                 'feeds':   {'319' :'k'},            # value is "feed latex"
-                 'outputs': {'3921', '9499959299'}}},
+                 'inputs':  {'9428': '4928923942'},
+                 'feeds':   {'319' : '949482919'},   
+                 'outputs': {'3921': '9499959299'}}},
   'another deriv': {
      '491182': {'inf rule':'begin derivation',
                  'inputs':  {},
                  'feeds':   {},
-                 'outputs':{'94128', '1492842'}}}}
+                 'outputs':{'94128': '1492842'}}}}
 
 
-
+# see also v3_CSV/databases/symbols_database.csv
+# this is a combination of constants and variables
+# constants include values
+# in alphabetic order
 dat['symbols'] = {
   '9139': {'latex': 'a',            'category': 'variable', 'scope': ['real', 'complex']},
+  '1370': {'latex': '\alpha',       'category': 'constant', 'scope': ['real'], 'name': 'fine-structure constant',
+                          'values': [{'value': '1/137.03599999', 'units': 'dimensionless'}],
+                          'references': ['https://en.wikipedia.org/wiki/Fine-structure_constant']},
   '1939': {'latex': 'b',            'category': 'variable', 'scope': ['real', 'complex']},
   '4231': {'latex': 'c',            'category': 'variable', 'scope': ['real', 'complex']},
   '4567': {'latex': 'c',            'category': 'constant', 'scope': ['real'], 'name': 'speed of light in vacuum',
                           'values': [{'value': '299792458','units':'meters/second'}],
                           'references': ['https://en.wikipedia.org/wiki/Speed_of_light']},
   '1900': {'latex': 'd',            'category': 'variable', 'scope': ['real', 'complex']},
+  '9199': {'latex': 'dx',           'category': 'variable', 'scope': ['real']},
   '1939': {'latex': 'e',            'category': 'variable', 'scope': ['real', 'complex']},
+  '1999': {'latex': 'e',            'category': 'constant', 'scope': ['real'], 'name': 'charge of an electron',
+                          'values': [{'value': '1.602*10^{-19}', 'units':'Columb'}],
+                          'references': ['https://en.wikipedia.org/wiki/Elementary_charge']},
+  '2912': {'latex': '\exp',         'category': 'constant', 'scope': ['real'], 'name': 'e',
+                          'values': [{'value': '2.718', 'units': 'dimensionless'}]},
   '4200': {'latex': 'f',            'category': 'variable', 'scope': ['real', 'complex']},
   '4291': {'latex': 'g',            'category': 'variable', 'scope': ['real', 'complex']},
   '2456': {'latex': 'h',            'category': 'variable', 'scope': ['real', 'complex']},
@@ -101,14 +126,17 @@ dat['symbols'] = {
   '2467': {'latex': 'o',            'category': 'variable', 'scope': ['real', 'complex']},
   '1131': {'latex': 'p',            'category': 'variable', 'scope': ['real', 'complex']},
   '1134': {'latex': 'p',            'category': 'variable', 'scope': ['real'], 'name': 'momentum', 'measure': 'mass*length/time'},
+  '3141': {'latex': '\pi',          'category': 'constant', 'scope': ['real'], 'name': 'pi',
+                          'values': [{'value': '3.1415', 'units': 'dimensionless'}]},
   '1223': {'latex': 'q',            'category': 'variable', 'scope': ['real', 'complex']},
   '9492': {'latex': 'r',            'category': 'variable', 'scope': ['real', 'complex']},
   '5791': {'latex': 's',            'category': 'variable', 'scope': ['real', 'complex']},
   '1456': {'latex': 't',            'category': 'variable', 'scope': ['real', 'complex']},
-  '1467': {'latex': 't',            'category': 'variable', 'scope': ['real'], 'name': 'time', 'measure': 'time'},
-  '4568': {'latex': 't_0',          'category': 'variable', 'scope': ['real'], 'name': 'time 0', 'measure': 'time'},
+  '9491': {'latex': 'T',            'category': 'variable', 'scope': ['real'], 'name': 'period',       'measure': 'time'},
+  '1467': {'latex': 't',            'category': 'variable', 'scope': ['real'], 'name': 'time',         'measure': 'time'},
+  '4568': {'latex': 't_0',          'category': 'variable', 'scope': ['real'], 'name': 'time 0',       'measure': 'time'},
   '5563': {'latex': 't_i',          'category': 'variable', 'scope': ['real'], 'name': 'initial time', 'measure': 'time'},
-  '2467': {'latex': 't_f',          'category': 'variable', 'scope': ['real'], 'name': 'final time', 'measure': 'time'},
+  '2467': {'latex': 't_f',          'category': 'variable', 'scope': ['real'], 'name': 'final time',   'measure': 'time'},
   '4221': {'latex': 'u',            'category': 'variable', 'scope': ['real', 'complex']},
   '1357': {'latex': 'v',            'category': 'variable', 'scope': ['real', 'complex']},
   '1245': {'latex': 'v',            'category': 'variable', 'scope': ['real', 'complex']},
@@ -132,6 +160,7 @@ dat['measures'] = {
   'amount of substance': {}
 }
 
+# see also v3_CSV/databases/symbols_database.csv
 dat['units'] = {
 # https://en.wikipedia.org/wiki/SI_base_unit
 # https://www.adducation.info/how-to-improve-your-knowledge/units-of-measurement/i
@@ -141,6 +170,9 @@ dat['units'] = {
   'kilogram':   {'measure': 'mass', 'references': ['https://en.wikipedia.org/wiki/Kilogram']},
   'mol':        {'measure': 'amount of substance', 'references': ['https://en.wikipedia.org/wiki/Mole_(unit)']},
   'Ampere':     {'measure': 'electric current', 'references': ['']},
+# common units
+  'Farad':      {'measure': 'capacitance', 'references': ['']},
+  'Tesla':      {'measure': 'magnetic field', 'references': ['']},
 # https://en.wikipedia.org/wiki/List_of_unusual_units_of_measurement
   'hand':       {'measure': 'length', 'references': ['https://en.wikipedia.org/wiki/Hand_(unit)']},
   'light-year': {'measure': 'length', 'references': ['https://en.wikipedia.org/wiki/Light-year']},
@@ -148,18 +180,22 @@ dat['units'] = {
   'sol':        {'measure': 'time', 'references': ['https://en.wikipedia.org/wiki/Sol_(day_on_Mars)']}
 }
 
+# see also v3_CSV/databases/symbols_database.csv
 dat['operators'] = {
-  'equals':                {'latex': '=',       'argument count': 2, 'scope': ['real','vector','matrix','complex']},
-  'addition':              {'latex': '+',       'argument count': 2, 'scope': ['real','vector','matrix','complex']},
-  'subtraction':           {'latex': '-',       'argument count': 2, 'scope': ['real','vector','matrix','complex']},
-  'multiplication':        {'latex': '*',       'argument count': 2, 'scope': ['real','vector','matrix','complex']},
-  'division':              {'latex': '/',       'argument count': 2, 'scope': ['real','vector','matrix','complex']},
-  'dot product':           {'latex': '\dot',    'argument count': 2, 'scope': ['vector']},
-  'cross product':         {'latex': '\cross',  'argument count': 2, 'scope': ['vector']},
-  'element-wise addition': {'latex': '+',       'argument count': 2, 'scope': ['vector', 'matrix']},
-  'indefinite intergral':  {'latex': '\int',    'argument count': 2, 'scope': ['real','vector','matrix','complex']},
-  'definite integral':     {'latex': '\int',    'argument count': 4, 'scope': ['real','vector','matrix','complex']},
-  'summation':             {'latex': '\sum',    'argument count': 4, 'scope': ['real','vector','matrix','complex']},
+  'equals':                      {'latex': '=',            'argument count': 2, 'scope': ['real','vector','matrix','complex']},
+  'addition':                    {'latex': '+',            'argument count': 2, 'scope': ['real','vector','matrix','complex']},
+  'subtraction':                 {'latex': '-',            'argument count': 2, 'scope': ['real','vector','matrix','complex']},
+  'multiplication':              {'latex': '*',            'argument count': 2, 'scope': ['real','vector','matrix','complex']},
+  'division':                    {'latex': '/',            'argument count': 2, 'scope': ['real','vector','matrix','complex']},
+  'cosine':                      {'latex': '\cos',         'argument count': 1, 'scope': ['real']},
+  'sine':                        {'latex': '\sin',         'argument count': 1, 'scope': ['real']},
+  'dot product':                 {'latex': '\dot',         'argument count': 2, 'scope': ['vector']},
+  'cross product':               {'latex': '\cross',       'argument count': 2, 'scope': ['vector']},
+  'element-wise addition':       {'latex': '+',            'argument count': 2, 'scope': ['vector', 'matrix']},
+  'indefinite intergral':        {'latex': '\int',         'argument count': 2, 'scope': ['real','vector','matrix','complex']},
+  'definite integral':           {'latex': '\int',         'argument count': 4, 'scope': ['real','vector','matrix','complex']},
+  'summation':                   {'latex': '\sum',         'argument count': 4, 'scope': ['real','vector','matrix','complex']},
+  'spatial vector differential': {'latex': '\vec{\nabla}', 'argument count': 2, 'scope': ['real']}
 }
 
 

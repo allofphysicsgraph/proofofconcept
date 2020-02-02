@@ -84,13 +84,14 @@ def index():
 @app.route('/start_new_derivation/', methods=['GET', 'POST'])
 def start_new_derivation():
     if print_trace: print('[trace] controller: start_new_derivation')
-    form = NameOfDerivationInputForm(request.form)
-    if request.method == 'POST' and form.validate():
-        name_of_derivation = form.name_of_derivation.data
-        print('name of derivation:',name_of_derivation)
+    web_form = NameOfDerivationInputForm(request.form)
+    if request.method == 'POST' and web_form.validate():
+        name_of_derivation = web_form.name_of_derivation.data
+        print('controller: start_new_derivation: name of derivation =',name_of_derivation)
         return redirect(url_for('new_step_select_inf_rule', name_of_derivation=name_of_derivation))
-    else:
-        return render_template("start_new_derivation.html",form=form,title='start new derivation')
+#    else: # 'GET' or form is not valid
+    return render_template("start_new_derivation.html",form=web_form,title='start new derivation')
+
 
 @app.route('/edit_existing_derivation', methods=['GET', 'POST'])
 def edit_existing_derivation():
@@ -155,80 +156,100 @@ def new_step_select_inf_rule(name_of_derivation):
     if print_trace: print('[trace] controller: new_step_select_inf_rule')
     list_of_inf_rules = compute.get_list_of_inf_rules('data.pkl')
 
+    if request.method == 'POST': # and request.form.validate(): no validation because the form was defined on the web page
+        print('controller: new_step_select_inf_rule: ',request.form)
+        selected_inf_rule = request.form.get('inf_rul_select')
+        print('[trace] controller: new_step_select_inf_rule; selected_inf_rule =',selected_inf_rule)
+        return redirect(url_for('provide_expr_for_inf_rule', 
+                                name_of_derivation=name_of_derivation,
+                                inf_rule=selected_inf_rule))
+
     return render_template("new_step_select_inf_rule.html",
                            title=name_of_derivation,
                            inf_rule_list=list_of_inf_rules,
                            name_of_derivation=name_of_derivation)
 
 
-@app.route('/provide_expr_for_inf_rule/<name_of_derivation>', methods=['GET', 'POST'])
-def provide_expr_for_inf_rule(name_of_derivation):
+@app.route('/provide_expr_for_inf_rule/<name_of_derivation>/<inf_rule>', methods=['GET', 'POST'])
+def provide_expr_for_inf_rule(name_of_derivation,inf_rule):
     """
     https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
     """
     if print_trace: print('[trace] controller: provide_expr_for_inf_rule')
     print('controller; provide_expr_for_inf_rule; name of derivation =',name_of_derivation)
-    selected_inf_rule = request.form.get('inf_rul_select') # this comes from the POST 
-    num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(selected_inf_rule, 'data.pkl')
+    print('controller; provide_expr_for_inf_rule; inf_rule =',inf_rule)
+    num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, 'data.pkl')
+    print('controller; provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
+
+    if request.method == 'POST': # and request.form.validate(): no validation because the form was defined on the web page
+        latex_for_step_dict = request.form
+        print('controller: provide_expr_for_inf_rule: latex_for_step_dict = ',latex_for_step_dict)
+        local_step_id = compute.create_step(latex_for_step_dict, inf_rule, name_of_derivation, print_debug, 'data.pkl')
+        print('controller; provide_expr_for_inf_rule; local_step_id =',local_step_id)
+
+        return redirect(url_for('step_review', 
+                        name_of_derivation=name_of_derivation, 
+                        local_step_id=local_step_id))
+
     return render_template('provide_expr_for_inf_rule.html',
                             name_of_derivation=name_of_derivation,
                             number_of_feeds=int(num_feeds),
                             number_of_inputs=int(num_inputs),
                             number_of_outputs=int(num_outputs),
-                            inf_rule=selected_inf_rule,
-                            form=LatexIO(request.form))
+                            inf_rule=inf_rule,
+                            webform=LatexIO(request.form))
 
-@app.route('/step_review/<name_of_derivation>/<inf_rule>/', methods=['GET', 'POST'])
-def step_review(name_of_derivation,inf_rule):
+@app.route('/step_review/<name_of_derivation>/<local_step_id>/', methods=['GET', 'POST'])
+def step_review(name_of_derivation,local_step_id):
     """
     https://teamtreehouse.com/community/getting-data-from-wtforms-formfield
     """
     if print_trace: print('[trace] controller: step_review')
+
+    step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, local_step_id, print_debug, 'data.pkl')
+
+    dat = compute.read_db('data.pkl')
+
     if request.method == 'POST':
-        latex_for_step_dict = request.form
-        print('latex_for_step_dict = ',latex_for_step_dict) # form from provide_expr_for_inf_rule()
-        # looks like {'input1':'asdf', 'input2':'afdm','output1':'imfa'}
-        # convet this data into "step" information 
-        step_graphviz_png, step_dict, expr_dict = compute.create_step(latex_for_step_dict, inf_rule, name_of_derivation, print_debug, 'data.pkl')
+        print('controller: step_review: via POST')
+        reslt = request.form
+        print('controller: step_review: reslt =',reslt)
+        if request.form['submit_button']=='accept this step; add another step':
+            return redirect(url_for('new_step_select_inf_rule', 
+                             name_of_derivation=name_of_derivation))
+        if request.form['submit_button']=='accept this step; review derivation':
+            return redirect(url_for('review_derivation',
+                             name_of_derivation=name_of_derivation))
+        elif request.form['submit_button']=='modify this step':
+            return redirect(url_for('modify_step', 
+                             name_of_derivation=name_of_derivation,
+                             local_step_id=local_step_id))
+        else:
+            raise Exception('unrecognized button in "step_review":',request.form)
 
-        return render_template("step_review.html",
-                               name_of_graphviz_png=step_graphviz_png,
-                               name_of_derivation=name_of_derivation,
-                               step_dict=step_dict, expr_dict=expr_dict)
-    else:
-        print('controller: step_review -- reached else')
-        return render_template('index.html')
-    print('controller: step_review - reached end of function')
-    return render_template('step_review.html')
+    return render_template('step_review.html',
+                           name_of_graphviz_png=step_graphviz_png,
+                           name_of_derivation=name_of_derivation,
+                           step_dict=dat['derivations'][name_of_derivation][local_step_id],
+                           expr_dict=dat['expressions'])
 
-@app.route('/accept_step_and_add_or_review/<name_of_derivation>/<step_dict>/<expr_dict>', methods=['GET', 'POST'])
-def accept_step_and_add_or_review(name_of_derivation, step_dict, expr_dict):
-    if print_trace: print('[trace] controller: accept_step_and_add_or_review')
-    if request.method == 'POST':
-        print('controller; accept_step_and_add_or_review; expr_dict =',expr_dict)
-        compute.write_step_to_db(name_of_derivation, step_dict, expr_dict, 'data.pkl')
-
-        return render_template("accept_step_and_add_or_review.html",
-                               name_of_derivation=name_of_derivation, 
-                               inf_rule=step_dict['inf rule'],
-                               step_dict=step_dict, 
-                               expr_dict=expr_dict)
-
-    else:
-        return render_template('index.html')
-    return render_template('index.html')
 
 @app.route('/review_derivation/<name_of_derivation>/', methods=['GET', 'POST'])
 def review_derivation(name_of_derivation):
     if print_trace: print('[trace] controller: review_derivation')
     if request.method == 'POST':
-        derivation_png = compute.create_derivation_png(name_of_derivation, print_debug, 'data.pkl')
-        return render_template('review_derivation.html',
+        if request.form['submit_button']=='add another step':
+            return redirect(url_for('new_step_select_inf_rule',
+                             name_of_derivation=name_of_derivation))
+        elif request.form['submit_button']=="return to main menu":
+            return redirect(url_for('index'))
+        else:
+            raise Exception('unrecognized button in "review_derivation":',request.form)
+
+    derivation_png = compute.create_derivation_png(name_of_derivation, print_debug, 'data.pkl')
+    return render_template('review_derivation.html',
                                name_of_derivation=name_of_derivation,
                                name_of_graphviz_png=derivation_png)
-    else:
-        return render_template('index.html')
-    return render_template('index.html')
 
 @app.route('/modify_step/<name_of_derivation>/<step_dict>/<expr_dict>', methods=['GET', 'POST'])
 def modify_step(name_of_derivation, step_dict, expr_dict):
@@ -237,8 +258,6 @@ def modify_step(name_of_derivation, step_dict, expr_dict):
         print('controller; modify_step; entered if')
         print('request form:',request.form)
         print('name_of_derivation =',name_of_derivation)
-        print('step_dict =',step_dict)
-        print('expr_dict =',expr_dict)
         return render_template('modify_step.html',
                                name_of_derivation=name_of_derivation,
                                step_dict=step_dict,
