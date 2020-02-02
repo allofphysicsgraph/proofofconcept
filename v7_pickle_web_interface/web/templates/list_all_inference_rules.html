@@ -8,37 +8,40 @@
 {% endfor %}
 
 
-<form method=post action="">
-  <P>Add new inference rule: {{ form.new_inf_rule }}
-  <input type=submit value=Add>
-</form>
+<form method="post" action="">
 
+  <P>Add new inference rule: 
+  <div class="form-group">
+    <div class="input-group">
 
+      <P>{{ webform.inf_rule_name.label }}: {{ webform.inf_rule_name }}
+      <P>{{ webform.num_inputs.label }}:    {{ webform.num_inputs }}
+      <P>{{ webform.num_feeds.label }}:     {{ webform.num_feeds }}
+      <P>{{ webform.num_outputs.label }}:   {{ webform.num_outputs }}
+    </div>
+    <input type="submit" name="submit_button" value="add">
+  </div>
 
-<P>Delete inference rule:
-<form class="form-inline" method="POST" action="{{ url_for('provide_expr_for_inf_rule', name_of_derivation=name_of_derivation) }}">
+  <P>Delete inference rule:
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="inf_rul_select" class="selectpicker form-control">
-              {% for elem in inf_rule_list %}
+              {% for elem in inf_rules_dict.keys() %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>
     </div>
     <button type="submit" class="btn btn-default">Next</button>
   </div>
-</form>
 
+  <P>Which inference rule to edit:
 
-<P>Which inference rule to edit:
-
-<form class="form-inline" method="POST" action="{{ url_for('provide_expr_for_inf_rule', name_of_derivation=name_of_derivation) }}">
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="inf_rul_select" class="selectpicker form-control">
-              {% for elem in inf_rule_list %}
+              {% for elem in inf_rules_dict.keys() %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>

@@ -1,9 +1,15 @@
-<HTML>
+{% extends "base.html" %}
+{% from "_form_macros.html" import render_field %}
 
-<BODY>
+{% block content %}
 
-<P>select derivation step to edit 
+<P>select derivation step to edit in {{ name_of_derivation }}
 
+<P>steps: {{ steps_dict }}
 
-</BODY>
-</HTML>
+<P>step IDs: {{ list_of_step_ids }}
+
+<form method="post" action="">
+</form>
+
+{% endblock %}

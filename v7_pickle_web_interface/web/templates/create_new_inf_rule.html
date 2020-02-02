@@ -5,7 +5,7 @@
 
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
-<form method=post action="{{ url_for('list_all_inference_rules') }}">
+<form method="post" action="">
 
 <P>number of feeds: {{ form.input1 }}
 
@@ -13,7 +13,7 @@
 
 <P>number of outputs: {{ form.input3 }}
 
-<P><input type=submit value=Submit>
+<P><input type=submit name="submit_button" value="submit">
 </form>
 
 
