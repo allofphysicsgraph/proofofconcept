@@ -16,7 +16,7 @@
 
 # 20200124: added symbols, operators, units, and measures
 # previously I had three keys: expressions, inference rules, derivations.
-# Enabling valiation of steps requires supporting a computer algebra system (CAS)
+# Enabling validation of steps requires supporting a computer algebra system (CAS)
 # To enable an arbitrary choice of CAS, I need to support abstract syntax trees (ASTs)
 # To enable an AST, I need to define symbols and operators
 # To enable symbols, I need units and measures
