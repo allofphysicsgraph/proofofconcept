@@ -1,6 +1,8 @@
 # QUICK START:
-docker build -t flask_ub .; docker run -it --rm --publish 5000:5000 flask_ub
+python create_tmp_pkl.py ; docker build -t flask_ub .; docker run -it --rm --publish 5000:5000 flask_ub
 
+# to run linting and type checking, get a shell using
+python create_tmp_pkl.py ; docker build -t flask_ub .; docker run -it --rm --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
 
 # Build the image
 docker build -t flask_ub .

@@ -3,8 +3,15 @@
 
 # convention: every print statement starts with the string [debug] or [trace] or [ERROR],
 # followed by the name of the file, followed by the function name
+#
 # convention: every function and class includes a [trace] print
-
+#
+# Every function has type hinting; https://www.python.org/dev/peps/pep-0484/
+# https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html
+#
+# Every function has a doctest; https://docs.python.org/3/library/doctest.html
+# 
+# formating should be PEP-8 compliant; https://www.python.org/dev/peps/pep-0008/
 
 #import math
 import os
@@ -12,26 +19,27 @@ import shutil
 from subprocess import Popen, PIPE
 import random
 import pickle
+from typing import Tuple, TextIO
 
 global print_trace
 print_trace = True
 global print_debug
 print_debug = False
 
-#*********************************************
+# *********************************************
 # database interaction
 
-def read_db(path_to_pkl):
+def read_db(path_to_pkl: str) -> dict:
     """
     >>> read_db('data.pkl')
     """
     if print_trace: print('[trace] compute: read_db')
-    with open(path_to_pkl,'rb') as f:
+    with open(path_to_pkl, 'rb') as f:
         dat = pickle.load(f)
     return dat
 
 
-def write_db(path_to_pkl, dat):
+def write_db(path_to_pkl: str, dat: dict) -> None:
     """
     >>> dat = {}
     >>> write_db('data.pkl', dat)
@@ -41,11 +49,11 @@ def write_db(path_to_pkl, dat):
         pickle.dump(dat, fil)
     return
 
-#*******************************************
+# *******************************************
 # query database for properties
 # read-only functions
 
-def get_list_of_inf_rules(path_to_pkl):
+def get_list_of_inf_rules(path_to_pkl: str) -> list:
     """
     >>>
     """
@@ -54,7 +62,7 @@ def get_list_of_inf_rules(path_to_pkl):
     return list(dat['inference rules'].keys())
 
 
-def get_list_of_derivations(path_to_pkl):
+def get_list_of_derivations(path_to_pkl: str) -> list:
     """
     >>> get_list_of_derivations('data.pkl') 
     """
@@ -63,19 +71,19 @@ def get_list_of_derivations(path_to_pkl):
     return list(dat['derivations'].keys())
 
 
-def get_derivation_steps(name_of_derivation, path_to_pkl):
+def get_derivation_steps(name_of_derivation: str, path_to_pkl: str) -> dict:
     """
     >>> get_list_of_steps('my deriv','data.pkl') 
     """
     if print_trace: print('[trace] compute; get_list_of_steps')
     dat = read_db(path_to_pkl)
     if name_of_derivation not in dat['derivations'].keys():
-        raise Exception('[ERROR] compute; get_list_of_steps;',name_of_derivation,
-                        'does not appear to be a key in derivations',dat['derivations'].keys())
+        raise Exception('[ERROR] compute; get_list_of_steps;', name_of_derivation,
+                        'does not appear to be a key in derivations', dat['derivations'].keys())
     return dat['derivations'][name_of_derivation]
 
 
-def input_output_count_for_infrule(inf_rule, path_to_db):
+def input_output_count_for_infrule(inf_rule: str, path_to_db: str) -> Tuple[str, str, str]:
     """
     >>> input_output_count_for_infrule('multiply both sides by X', 'data.pkl')
     """
@@ -85,14 +93,14 @@ def input_output_count_for_infrule(inf_rule, path_to_db):
     if 'inference rules' not in dat.keys():
         print("[ERROR] compute; input_output_count_for_infrule: dat doesn't contain 'inference rules' as a key")
     if inf_rule not in dat['inference rules'].keys():
-        print("[ERROR] compute; input_output_count_for_infrule: dat['inference rules'] doesn't contain ",inf_rule)
+        print("[ERROR] compute; input_output_count_for_infrule: dat['inference rules'] doesn't contain ", inf_rule)
 
     number_of_feeds   = dat['inference rules'][inf_rule]['number of feeds']
     number_of_inputs  = dat['inference rules'][inf_rule]['number of inputs']
     number_of_outputs = dat['inference rules'][inf_rule]['number of outputs']
     return number_of_feeds, number_of_inputs, number_of_outputs
 
-def create_expr_id(path_to_pkl):
+def create_expr_id(path_to_pkl: str) -> str:
     """
     search DB to find whether proposed expr ID already exists
 
@@ -103,11 +111,11 @@ def create_expr_id(path_to_pkl):
     global_expr_ids_in_use = []
     for derivation_name, steps_dict in dat['derivations'].items():
         for step_id, step in steps_dict.items():
-            for expr_local_id,expr_global_id in step['inputs'].items():
+            for expr_local_id, expr_global_id in step['inputs'].items():
                 global_expr_ids_in_use.append(expr_global_id)
-            for expr_local_id,expr_global_id in step['outputs'].items():
+            for expr_local_id, expr_global_id in step['outputs'].items():
                 global_expr_ids_in_use.append(expr_global_id)
-            for expr_local_id,expr_global_id in step['feeds'].items():
+            for expr_local_id, expr_global_id in step['feeds'].items():
                 global_expr_ids_in_use.append(expr_global_id)
 
     found_valid_id = False
@@ -119,7 +127,7 @@ def create_expr_id(path_to_pkl):
     return proposed_global_expr_id
 
 
-def create_inf_rule_id(path_to_pkl):
+def create_inf_rule_id(path_to_pkl: str) -> str:
     """
     aka step ID
 
@@ -141,7 +149,7 @@ def create_inf_rule_id(path_to_pkl):
     return proposed_inf_rule_id
 
 
-def create_expr_local_id(path_to_pkl):
+def create_expr_local_id(path_to_pkl: str) -> str:
     """
     search DB to find whether proposed local ID already exists
     >>> create_expr_local_id(False, 'data.pkl')
@@ -151,11 +159,11 @@ def create_expr_local_id(path_to_pkl):
     local_ids_in_use = []
     for derivation_name, steps_dict in dat['derivations'].items():
         for step_id, step in steps_dict.items():
-            for expr_local_id,expr_global_id in step['inputs'].items():
+            for expr_local_id, expr_global_id in step['inputs'].items():
                 local_ids_in_use.append(expr_local_id)
-            for expr_local_id,expr_global_id in step['outputs'].items():
+            for expr_local_id, expr_global_id in step['outputs'].items():
                 local_ids_in_use.append(expr_local_id)
-            for expr_local_id,expr_global_id in step['feeds'].items():
+            for expr_local_id, expr_global_id in step['feeds'].items():
                 local_ids_in_use.append(expr_local_id)
 
     found_valid_id = False
@@ -169,7 +177,7 @@ def create_expr_local_id(path_to_pkl):
 #********************************************
 # local filesystem
 
-def remove_file_debris(list_of_paths_to_files, list_of_file_names, list_of_file_ext):
+def remove_file_debris(list_of_paths_to_files: list, list_of_file_names: list, list_of_file_ext: list) -> None:
     """
     >>> remove_file_debris(['/path/to/file/'],['filename_without_extension'], ['ext1', 'ext2'])
     """
@@ -180,7 +188,7 @@ def remove_file_debris(list_of_paths_to_files, list_of_file_names, list_of_file_
                     os.remove(path_to_file + file_name +'.' + file_ext)
     return
 
-def find_valid_filename(extension, print_debug, destination_folder):
+def find_valid_filename(extension: str, print_debug: bool, destination_folder: str) -> str:
     """
     called by create_png_from_latex()
 
@@ -196,13 +204,13 @@ def find_valid_filename(extension, print_debug, destination_folder):
 #*******************************************
 # create files on filesystem
 
-def create_tex_file(tmp_file, input_latex_str):
+def create_tex_file(tmp_file: str, input_latex_str: str) -> None:
     """
-    >>> create_tex_file('filename_without_extension', 'a \dot b \nabla')
+    >>> create_tex_file('filename_without_extension', 'a \dot b \\nabla')
     """
-    remove_file_debris(['./'],[tmp_file],['tex'])
+    remove_file_debris(['./'], [tmp_file], ['tex'])
 
-    with open(tmp_file+'.tex','w') as lat_file:
+    with open(tmp_file+'.tex', 'w') as lat_file:
         lat_file.write('\\documentclass[12pt]{report}\n')
         lat_file.write('\\thispagestyle{empty}\n')
         lat_file.write('\\begin{document}\n')
@@ -212,23 +220,23 @@ def create_tex_file(tmp_file, input_latex_str):
         lat_file.write('\\end{document}\n')
     return
 
-def write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_pkl):
+def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil: TextIO, path_to_pkl: str) -> None:
     """
     >>> write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, False, 'data.pkl')
     """
     dat = read_db(path_to_pkl)
 
     step_dict = dat['derivations'][name_of_derivation][local_step_id]
-    print('[debug] compute: write_step_to_graphviz_file: step_dict =',step_dict)
+    print('[debug] compute: write_step_to_graphviz_file: step_dict =', step_dict)
     #  step_dict = {'inf rule': 'begin derivation', 'inputs': {}, 'feeds': {}, 'outputs': {'526874110': '557883925'}}
-    print('[debug] compute: write_step_to_graphviz_file: expr_dict =',dat['expressions'])
+    print('[debug] compute: write_step_to_graphviz_file: expr_dict =', dat['expressions'])
 
-    fil.write(local_step_id + ' [shape=ellipse, label="",image="/home/appuser/app/static/'+
-              create_png_from_latex(step_dict['inf rule'], path_to_pkl)+
+    fil.write(local_step_id + ' [shape=ellipse, label="",image="/home/appuser/app/static/' + 
+              create_png_from_latex(step_dict['inf rule'], path_to_pkl) + 
               '",labelloc=b];\n')
     for expr_local_id, expr_global_id in step_dict['inputs'].items():
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
-        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/'+
+        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' + 
                        create_png_from_latex(dat['expressions'][expr_global_id]['latex'], path_to_pkl)+'",labelloc=b];\n')
     for expr_local_id, expr_global_id in step_dict['outputs'].items():
         #print('compute; write_step_to_graphviz_file; output_dict =',output_dict)
@@ -244,9 +252,9 @@ def write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_
     return
 
 
-def create_derivation_png(name_of_derivation, path_to_pkl):
+def create_derivation_png(name_of_derivation: str, path_to_pkl: str) -> str:
     """
-    >>>
+    >>> create_derivation_png()
     """
     dat = read_db(path_to_pkl)
 
@@ -265,17 +273,17 @@ def create_derivation_png(name_of_derivation, path_to_pkl):
     output_filename = 'graphviz.png'
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
 #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
-    process = Popen(['neato','-Tpng',dot_filename,'-o'+output_filename], stdout=PIPE, stderr=PIPE)
-    neato_stdout,neato_stderr = process.communicate()
-    neato_stdout = neato_stdout.decode("utf-8")
-    neato_stderr = neato_stderr.decode("utf-8")
+    process = Popen(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE)
+    neato_stdout, neato_stderr = process.communicate()
+    #neato_stdout = neato_stdout.decode("utf-8")
+    #neato_stderr = neato_stderr.decode("utf-8")
 
     shutil.move(output_filename,'/home/appuser/app/static/'+output_filename)
     return output_filename
 
 
 
-def create_step_graphviz_png(name_of_derivation, local_step_id, path_to_pkl):
+def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_to_pkl: str) -> str:
     """
     >>> step_dict = {'inf rule':'add X to both sides',
                      'inf rule local ID':'2948592',
@@ -288,12 +296,12 @@ def create_step_graphviz_png(name_of_derivation, local_step_id, path_to_pkl):
 
     dot_filename='/home/appuser/app/static/graphviz.dot'
 
-    remove_file_debris(['/home/appuser/app/static/'],['graphviz'],['dot'])
+    remove_file_debris(['/home/appuser/app/static/'], ['graphviz'], ['dot'])
 
-    with open(dot_filename,'w') as fil:
+    with open(dot_filename, 'w') as fil:
         fil.write('digraph physicsDerivation { \n')
         fil.write('overlap = false;\n')
-        fil.write('label="step review for '+name_of_derivation+'";\n')
+        fil.write('label="step review for ' + name_of_derivation + '";\n')
         fil.write('fontsize=12;\n')
 
         write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_pkl)
@@ -304,51 +312,51 @@ def create_step_graphviz_png(name_of_derivation, local_step_id, path_to_pkl):
 #       print(fil.read())
 
     output_filename = 'graphviz.png'
-    remove_file_debris(['./'],['graphviz'],['png'])
+    remove_file_debris(['./'], ['graphviz'], ['png'])
 
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
 #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
-    process = Popen(['neato','-Tpng',dot_filename,'-o'+output_filename], stdout=PIPE, stderr=PIPE)
-    neato_stdout,neato_stderr = process.communicate()
-    neato_stdout = neato_stdout.decode("utf-8")
-    neato_stderr = neato_stderr.decode("utf-8")
+    process = Popen(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE)
+    neato_stdout, neato_stderr = process.communicate()
+    #neato_stdout = neato_stdout.decode("utf-8")
+    #neato_stderr = neato_stderr.decode("utf-8")
 
-    shutil.move(output_filename,'/home/appuser/app/static/'+output_filename)
+    shutil.move(output_filename, '/home/appuser/app/static/' + output_filename)
     return output_filename
 
 
 
-def create_png_from_latex(input_latex_str, path_to_pkl):
+def create_png_from_latex(input_latex_str: str, path_to_pkl: str) -> str:
     """
     this function relies on latex  being available on the command line
     this function relies on dvipng being available on the command line
     this function assumes generated PNG should be placed in /home/appuser/app/static/
-    >>> create_png_from_latex('a \dot b \nabla', False)
+    >>> create_png_from_latex('a \dot b \\nabla', False)
     """
     tmp_file='lat'
     remove_file_debris(['./'],[tmp_file],['tex','dvi','aux','log'])
     create_tex_file(tmp_file,input_latex_str)
 
-    if print_debug: print('[debug] compute: create_png_from_latex: input latex str =',input_latex_str)
+    if print_debug: print('[debug] compute: create_png_from_latex: input latex str =', input_latex_str)
 
     process = Popen(['latex', tmp_file+'.tex'], stdout=PIPE, stderr=PIPE)
     latex_stdout, latex_stderr = process.communicate()
-    latex_stdout = latex_stdout.decode("utf-8")
-    latex_stderr = latex_stderr.decode("utf-8")
+    #latex_stdout = latex_stdout.decode("utf-8")
+    #latex_stderr = latex_stderr.decode("utf-8")
 
-    if print_debug: print('[debug] compute: create_png_from_latex: latex std out:',latex_stdout)
-    if print_debug: print('[debug] compute: create_png_from_latex: latex std err',latex_stderr)
+    if print_debug: print('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
+    if print_debug: print('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
 
     name_of_png = tmp_file+'.png'
     remove_file_debris(['./'],[tmp_file],['png'])
 
     process = Popen(['dvipng',tmp_file+'.dvi','-T','tight','-o',name_of_png], stdout=PIPE, stderr=PIPE)
     png_stdout, png_stderr = process.communicate()
-    png_stdout = png_stdout.decode("utf-8")
-    png_stderr = png_stderr.decode("utf-8")
+    #png_stdout = png_stdout.decode("utf-8")
+    #png_stderr = png_stderr.decode("utf-8")
 
-    if print_debug: print('[debug] compute: create_png_from_latex: png std out',png_stdout)
-    if print_debug: print('[debug] compute: create_png_from_latex: png std err',png_stderr)
+    if print_debug: print('[debug] compute: create_png_from_latex: png std out', png_stdout)
+    if print_debug: print('[debug] compute: create_png_from_latex: png std err', png_stderr)
 
     destination_folder = '/home/appuser/app/static/'
     generated_png_name=find_valid_filename('png', print_debug, destination_folder)
@@ -365,7 +373,7 @@ def create_png_from_latex(input_latex_str, path_to_pkl):
 #*********************************************************
 # data structure transformations
 
-def create_step(latex_for_step_dict, inf_rule, name_of_derivation, path_to_pkl):
+def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_pkl: str) -> str:
     """
     >>> latex_for_step_dict = ImmutableMultiDict([('output1', 'a = b')])
     >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'data.pkl')
@@ -382,7 +390,8 @@ def create_step(latex_for_step_dict, inf_rule, name_of_derivation, path_to_pkl):
         if 'input' in which_eq:
             expr_id = create_expr_id(path_to_pkl)
             dat['expressions'][expr_id] = {'latex': latex_expr_str, 'AST': {}}
-            step_dict['inputs'][create_expr_local_id(path_to_pkl)] = expr_id
+            expr_local_id = create_expr_local_id(path_to_pkl)
+            step_dict['inputs'][expr_local_id] = expr_id
         elif 'output' in which_eq:
             expr_id = create_expr_id(path_to_pkl)
             dat['expressions'][expr_id] = {'latex': latex_expr_str, 'AST': {}}
@@ -394,9 +403,9 @@ def create_step(latex_for_step_dict, inf_rule, name_of_derivation, path_to_pkl):
         elif 'submit_button' in which_eq:
             pass
         else:
-            print('[ERROR] compute; create_step; unrecognized key in step dict',latex_for_step_dict)
+            print('[ERROR] compute; create_step; unrecognized key in step dict', latex_for_step_dict)
 
-    print('[debug] compute; create_step; step_dict =',step_dict)
+    print('[debug] compute; create_step; step_dict =', step_dict)
 
     # add step_dict to dat, write dat to pkl
     inf_rule_local_ID = create_inf_rule_id(path_to_pkl)
@@ -404,7 +413,7 @@ def create_step(latex_for_step_dict, inf_rule, name_of_derivation, path_to_pkl):
         print('[debug] compute: create_step: starting new derivation')
         dat['derivations'][name_of_derivation] = {}
     if inf_rule_local_ID in dat['derivations'][name_of_derivation].keys():
-        raise Exception('collision of inf_rule_local_id already in dat',inf_rule_local_ID)
+        raise Exception('collision of inf_rule_local_id already in dat', inf_rule_local_ID)
     dat['derivations'][name_of_derivation][inf_rule_local_ID] = step_dict
     write_db(path_to_pkl, dat)
 

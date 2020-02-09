@@ -149,7 +149,7 @@ def select_derivation_to_edit():
                            derivations_list=compute.get_list_of_inf_rules('data.pkl'))
 
 @app.route('/select_derivation_step_to_edit/<name_of_derivation>/', methods=['GET', 'POST'])
-def select_derivation_step_to_edit(name_of_derivation):
+def select_derivation_step_to_edit(name_of_derivation: str):
     if print_trace: print('[trace] controller: select_derivation_step_to_edit')
     steps_dict = compute.get_derivation_steps(name_of_derivation,'data.pkl')
     if request.method == "POST":
@@ -179,7 +179,7 @@ def select_from_existing_derivations():
                            list_of_derivations=list_of_deriv)
 
 @app.route('/new_step_select_inf_rule/<name_of_derivation>/', methods=['GET', 'POST'])
-def new_step_select_inf_rule(name_of_derivation):
+def new_step_select_inf_rule(name_of_derivation: str):
     if print_trace: print('[trace] controller: new_step_select_inf_rule')
     list_of_inf_rules = compute.get_list_of_inf_rules('data.pkl')
 
@@ -198,7 +198,7 @@ def new_step_select_inf_rule(name_of_derivation):
 
 
 @app.route('/provide_expr_for_inf_rule/<name_of_derivation>/<inf_rule>', methods=['GET', 'POST'])
-def provide_expr_for_inf_rule(name_of_derivation,inf_rule):
+def provide_expr_for_inf_rule(name_of_derivation: str,inf_rule: str):
     """
     https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
     """
@@ -208,9 +208,9 @@ def provide_expr_for_inf_rule(name_of_derivation,inf_rule):
 
     if request.method == 'POST': # and request.form.validate(): no validation because the form was defined on the web page
         latex_for_step_dict = request.form
-        if print_debug: print('[debug] controller: provide_expr_for_inf_rule: latex_for_step_dict = ',latex_for_step_dict)
+        if print_debug: print('[debug] controller: provide_expr_for_inf_rule: latex_for_step_dict = ', latex_for_step_dict)
         local_step_id = compute.create_step(latex_for_step_dict, inf_rule, name_of_derivation, 'data.pkl')
-        if print_debug: print('[debug] controller; provide_expr_for_inf_rule; local_step_id =',local_step_id)
+        if print_debug: print('[debug] controller; provide_expr_for_inf_rule; local_step_id =', local_step_id)
 
         return redirect(url_for('step_review', 
                         name_of_derivation=name_of_derivation, 
@@ -225,7 +225,7 @@ def provide_expr_for_inf_rule(name_of_derivation,inf_rule):
                             webform=LatexIO(request.form))
 
 @app.route('/step_review/<name_of_derivation>/<local_step_id>/', methods=['GET', 'POST'])
-def step_review(name_of_derivation,local_step_id):
+def step_review(name_of_derivation: str,local_step_id: str):
     """
     https://teamtreehouse.com/community/getting-data-from-wtforms-formfield
     """
@@ -259,7 +259,7 @@ def step_review(name_of_derivation,local_step_id):
 
 
 @app.route('/review_derivation/<name_of_derivation>/', methods=['GET', 'POST'])
-def review_derivation(name_of_derivation):
+def review_derivation(name_of_derivation: str):
     if print_trace: print('[trace] controller: review_derivation')
     if request.method == 'POST':
         if request.form['submit_button'] == 'add another step':
@@ -279,7 +279,7 @@ def review_derivation(name_of_derivation):
                                name_of_graphviz_png=derivation_png)
 
 @app.route('/modify_step/<name_of_derivation>/<step_id>/', methods=['GET', 'POST'])
-def modify_step(name_of_derivation, step_id):
+def modify_step(name_of_derivation: str, step_id: str):
     if print_trace: print('[trace] controller: modify_step')
     
     step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, step_id, 'data.pkl')

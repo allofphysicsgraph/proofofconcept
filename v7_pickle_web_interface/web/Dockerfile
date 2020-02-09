@@ -51,6 +51,7 @@ COPY controller.py /home/appuser/app
 COPY compute.py    /home/appuser/app
 COPY config.py     /home/appuser/app
 COPY data.pkl      /home/appuser/app
+COPY tests.sh      /home/appuser/app
 
 USER root
 RUN chown -R appuser /home/appuser/app && chgrp -R appuser /home/appuser/app
