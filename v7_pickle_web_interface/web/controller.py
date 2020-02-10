@@ -6,7 +6,7 @@
 # convention: every function and class includes a [trace] print
 
 from flask import Flask, redirect, render_template, request, url_for
-from wtforms import Form, StringField, FloatField, validators, FieldList, FormField
+from wtforms import Form, StringField, FloatField, validators, FieldList, FormField # type: ignore 
 import compute 
 from config import Config # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 
@@ -102,7 +102,7 @@ def start_new_derivation():
     if print_trace: print('[trace] controller: start_new_derivation')
     web_form = NameOfDerivationInputForm(request.form)
     if request.method == 'POST' and web_form.validate():
-        name_of_derivation = web_form.name_of_derivation.data
+        name_of_derivation = str(web_form.name_of_derivation.data)
         print('controller: start_new_derivation: name of derivation =',name_of_derivation)
         return redirect(url_for('new_step_select_inf_rule', 
                                 name_of_derivation=name_of_derivation))
@@ -172,7 +172,7 @@ def list_all_expressions():
 @app.route('/select_from_existing_derivations', methods=['GET', 'POST'])
 def select_from_existing_derivations():
     if print_trace: print('[trace] controller: view_existing_derivations')
-    list_of_deriv = get_list_of_derivations('data.pkl')
+    list_of_deriv = compute.get_list_of_derivations('data.pkl')
     if request.method == "POST":
         print('[debug] compute; select_from_existing_derivations; request.form =',request.form)
     return render_template("select_from_existing_derivations.html",
@@ -294,7 +294,7 @@ def modify_step(name_of_derivation: str, step_id: str):
                                     name_of_derivation=name_of_derivation))
         #elif request.form['submit_button'] == '...
         else:
-            raise Exception('[ERROR] compute; review_derivation; unrecognized button:',request.form)
+            raise Exception('[ERROR] compute; review_derivation; unrecognized button:', request.form)
     return render_template('modify_step.html',
                             name_of_derivation=name_of_derivation,
                             name_of_graphviz_png=step_graphviz_png,
@@ -305,8 +305,8 @@ def modify_step(name_of_derivation: str, step_id: str):
 def view_derivation_selected():
     if print_trace: print('[trace] controller: view_derivation_selected')
     if request.method == 'POST':
-        name_of_derivation = request.form.get('derivation_selected') # this comes from the POST
-        print('[debug] controller; view_derivation_selected; selected_inf_rule =',selected_inf_rule)
+        name_of_derivation = str(request.form.get('derivation_selected'))  # this comes from the POST
+        print('[debug] controller; view_derivation_selected; name_of_derivation =', name_of_derivation)
         review_derivation(name_of_derivation)
     return render_template('index.html')
 
@@ -314,7 +314,7 @@ def view_derivation_selected():
 def create_new_inf_rule():
     if print_trace: print('[trace] controller: create_new_inf_rule')
     if request.method == 'POST':
-        print('[debug] controller; create_new_inf_rule; request.form =',request.form)
+        print('[debug] controller; create_new_inf_rule; request.form =', request.form)
     return render_template('create_new_inf_rule.html')
 
 

@@ -20,11 +20,18 @@ from subprocess import Popen, PIPE
 import random
 import pickle
 from typing import Tuple, TextIO
+from typing_extensions import TypedDict  # https://mypy.readthedocs.io/en/stable/more_types.html
+# https://www.python.org/dev/peps/pep-0589/
 
 global print_trace
 print_trace = True
 global print_debug
 print_debug = False
+
+STEP_DICT = TypedDict('STEP_DICT', {'inf rule': str,
+                                    'inputs':   dict,
+                                    'feeds':    dict,
+                                    'outputs':  dict})
 
 # *********************************************
 # database interaction
@@ -34,15 +41,17 @@ def read_db(path_to_pkl: str) -> dict:
     >>> read_db('data.pkl')
     """
     if print_trace: print('[trace] compute: read_db')
-    with open(path_to_pkl, 'rb') as f:
-        dat = pickle.load(f)
+    with open(path_to_pkl, 'rb') as fil:
+        dat = pickle.load(fil)
     return dat
 
 
 def write_db(path_to_pkl: str, dat: dict) -> None:
     """
     >>> dat = {}
+    >>> print_trace = False
     >>> write_db('data.pkl', dat)
+    [trace] compute: write_db
     """
     if print_trace: print('[trace] compute: write_db')
     with open(path_to_pkl, 'wb') as fil:
@@ -222,7 +231,8 @@ def create_tex_file(tmp_file: str, input_latex_str: str) -> None:
 
 def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil: TextIO, path_to_pkl: str) -> None:
     """
-    >>> write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, False, 'data.pkl')
+    >>> fil = open('a_file','r') 
+    >>> write_step_to_graphviz_file("deriv name", "492482", fil, False, 'data.pkl')
     """
     dat = read_db(path_to_pkl)
 
@@ -232,23 +242,23 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
     print('[debug] compute: write_step_to_graphviz_file: expr_dict =', dat['expressions'])
 
     fil.write(local_step_id + ' [shape=ellipse, label="",image="/home/appuser/app/static/' + 
-              create_png_from_latex(step_dict['inf rule'], path_to_pkl) + 
+              create_png_from_latex(step_dict['inf rule']) + 
               '",labelloc=b];\n')
     for expr_local_id, expr_global_id in step_dict['inputs'].items():
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
         fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' + 
-                       create_png_from_latex(dat['expressions'][expr_global_id]['latex'], path_to_pkl)+'",labelloc=b];\n')
+                       create_png_from_latex(dat['expressions'][expr_global_id]['latex']) + '",labelloc=b];\n')
     for expr_local_id, expr_global_id in step_dict['outputs'].items():
         #print('compute; write_step_to_graphviz_file; output_dict =',output_dict)
         fil.write(local_step_id + ' -> ' + expr_local_id + ';\n')
         #print('compute; write_step_to_graphviz_file; ',output_dict['expr local ID'],output_dict['expr ID'])
         #print('compute; write_step_to_graphviz_file; latex =',expressions_dict[output_dict['expr ID']])
-        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/'+
-                       create_png_from_latex(dat['expressions'][expr_global_id]['latex'], path_to_pkl)+'",labelloc=b];\n')
+        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' + 
+                       create_png_from_latex(dat['expressions'][expr_global_id]['latex']) + '",labelloc=b];\n')
     for expr_local_id, expr_global_id in step_dict['feeds'].items():
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
-        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/'+
-                       create_png_from_latex(dat['expressions'][expr_global_id]['latex'], path_to_pkl)+'",labelloc=b];\n')
+        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' + 
+                       create_png_from_latex(dat['expressions'][expr_global_id]['latex']) + '",labelloc=b];\n')
     return
 
 
@@ -258,8 +268,8 @@ def create_derivation_png(name_of_derivation: str, path_to_pkl: str) -> str:
     """
     dat = read_db(path_to_pkl)
 
-    dot_filename='/home/appuser/app/static/graphviz.dot'
-    with open(dot_filename,'w') as fil:
+    dot_filename = '/home/appuser/app/static/graphviz.dot'
+    with open(dot_filename, 'w') as fil:
         fil.write('digraph physicsDerivation { \n')
         fil.write('overlap = false;\n')
         fil.write('label="step preview for '+name_of_derivation+'";\n')
@@ -278,7 +288,7 @@ def create_derivation_png(name_of_derivation: str, path_to_pkl: str) -> str:
     #neato_stdout = neato_stdout.decode("utf-8")
     #neato_stderr = neato_stderr.decode("utf-8")
 
-    shutil.move(output_filename,'/home/appuser/app/static/'+output_filename)
+    shutil.move(output_filename, '/home/appuser/app/static/' + output_filename)
     return output_filename
 
 
@@ -294,7 +304,7 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
 
     """
 
-    dot_filename='/home/appuser/app/static/graphviz.dot'
+    dot_filename = '/home/appuser/app/static/graphviz.dot'
 
     remove_file_debris(['/home/appuser/app/static/'], ['graphviz'], ['dot'])
 
@@ -326,16 +336,16 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
 
 
 
-def create_png_from_latex(input_latex_str: str, path_to_pkl: str) -> str:
+def create_png_from_latex(input_latex_str: str) -> str:
     """
     this function relies on latex  being available on the command line
     this function relies on dvipng being available on the command line
     this function assumes generated PNG should be placed in /home/appuser/app/static/
     >>> create_png_from_latex('a \dot b \\nabla', False)
     """
-    tmp_file='lat'
-    remove_file_debris(['./'],[tmp_file],['tex','dvi','aux','log'])
-    create_tex_file(tmp_file,input_latex_str)
+    tmp_file = 'lat'
+    remove_file_debris(['./'], [tmp_file], ['tex', 'dvi', 'aux', 'log'])
+    create_tex_file(tmp_file, input_latex_str)
 
     if print_debug: print('[debug] compute: create_png_from_latex: input latex str =', input_latex_str)
 
@@ -347,10 +357,10 @@ def create_png_from_latex(input_latex_str: str, path_to_pkl: str) -> str:
     if print_debug: print('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
     if print_debug: print('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
 
-    name_of_png = tmp_file+'.png'
-    remove_file_debris(['./'],[tmp_file],['png'])
+    name_of_png = tmp_file + '.png'
+    remove_file_debris(['./'], [tmp_file], ['png'])
 
-    process = Popen(['dvipng',tmp_file+'.dvi','-T','tight','-o',name_of_png], stdout=PIPE, stderr=PIPE)
+    process = Popen(['dvipng', tmp_file + '.dvi', '-T', 'tight', '-o', name_of_png], stdout=PIPE, stderr=PIPE)
     png_stdout, png_stderr = process.communicate()
     #png_stdout = png_stdout.decode("utf-8")
     #png_stderr = png_stderr.decode("utf-8")
@@ -359,8 +369,8 @@ def create_png_from_latex(input_latex_str: str, path_to_pkl: str) -> str:
     if print_debug: print('[debug] compute: create_png_from_latex: png std err', png_stderr)
 
     destination_folder = '/home/appuser/app/static/'
-    generated_png_name=find_valid_filename('png', print_debug, destination_folder)
-    shutil.move(name_of_png,generated_png_name)
+    generated_png_name = find_valid_filename('png', print_debug, destination_folder)
+    shutil.move(name_of_png, generated_png_name)
 
     if os.path.isfile(destination_folder + generated_png_name):
         #os.remove('/home/appuser/app/static/'+name_of_png)
@@ -384,7 +394,7 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
     step_dict = {'inf rule': inf_rule,
                  'inputs':   {},
                  'feeds':    {},
-                 'outputs':  {}}
+                 'outputs':  {}}  # type: STEP_DICT
 
     for which_eq, latex_expr_str in latex_for_step_dict.items():
         if 'input' in which_eq:
@@ -418,7 +428,5 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
     write_db(path_to_pkl, dat)
 
     return inf_rule_local_ID
-
-
 
 # EOF
