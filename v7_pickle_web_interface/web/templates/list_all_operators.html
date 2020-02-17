@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<P>a list of all operators</P>
+
+{% for expr_id,expr_latex in operators_dict.items() %}
+{{ expr_id }}: {{ expr_latex }}<BR>
+
+{% endfor %}
+
+{% endblock %}
+

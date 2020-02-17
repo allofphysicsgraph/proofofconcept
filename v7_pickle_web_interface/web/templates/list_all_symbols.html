@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+<P>a list of all symbols</P>
+
+{% for expr_id,expr_latex in symbols_dict.items() %}
+{{ expr_id }}: {{ expr_latex }}<BR>
+
+{% endfor %}
+
+{% endblock %}
+

@@ -37,6 +37,9 @@ dat = {} # one data structure to hold all others (expressions, inference rules, 
 # The AST and LaTeX representations are intended to be equivalent
 # Ambiguous LaTeX is not allowed
 dat['expressions'] = {
+  '1492842':    {'latex': '\\nabla \\vec{x} = f(y)','AST': {'equals': [
+                                                                {'nabla': ['2911']},
+                                                                {'function': ['1452']}]}},
   '4928923942': {'latex': 'a = b',         'AST': {'equals': ['9139', '1939']}},
   '9499959299': {'latex': 'a + k = b + k', 'AST': {'equals': [
                                                                 {'addition': [
@@ -88,10 +91,11 @@ dat['derivations'] = {
 # see also v3_CSV/databases/symbols_database.csv
 # this is a combination of constants and variables
 # constants include values
+# additional constraints: what range? What base?
 # in alphabetic order
 dat['symbols'] = {
   '9139': {'latex': 'a',            'category': 'variable', 'scope': ['real', 'complex']},
-  '1370': {'latex': '\alpha',       'category': 'constant', 'scope': ['real'], 'name': 'fine-structure constant',
+  '1370': {'latex': '\\alpha',       'category': 'constant', 'scope': ['real'], 'name': 'fine-structure constant',
                           'values': [{'value': '1/137.03599999', 'units': 'dimensionless'}],
                           'references': ['https://en.wikipedia.org/wiki/Fine-structure_constant']},
   '1939': {'latex': 'b',            'category': 'variable', 'scope': ['real', 'complex']},
@@ -105,7 +109,7 @@ dat['symbols'] = {
   '1999': {'latex': 'e',            'category': 'constant', 'scope': ['real'], 'name': 'charge of an electron',
                           'values': [{'value': '1.602*10^{-19}', 'units':'Columb'}],
                           'references': ['https://en.wikipedia.org/wiki/Elementary_charge']},
-  '2912': {'latex': '\exp',         'category': 'constant', 'scope': ['real'], 'name': 'e',
+  '2912': {'latex': '\\exp',         'category': 'constant', 'scope': ['real'], 'name': 'e',
                           'values': [{'value': '2.718', 'units': 'dimensionless'}]},
   '4200': {'latex': 'f',            'category': 'variable', 'scope': ['real', 'complex']},
   '4291': {'latex': 'g',            'category': 'variable', 'scope': ['real', 'complex']},
@@ -126,7 +130,7 @@ dat['symbols'] = {
   '2467': {'latex': 'o',            'category': 'variable', 'scope': ['real', 'complex']},
   '1131': {'latex': 'p',            'category': 'variable', 'scope': ['real', 'complex']},
   '1134': {'latex': 'p',            'category': 'variable', 'scope': ['real'], 'name': 'momentum', 'measure': 'mass*length/time'},
-  '3141': {'latex': '\pi',          'category': 'constant', 'scope': ['real'], 'name': 'pi',
+  '3141': {'latex': '\\pi',          'category': 'constant', 'scope': ['real'], 'name': 'pi',
                           'values': [{'value': '3.1415', 'units': 'dimensionless'}]},
   '1223': {'latex': 'q',            'category': 'variable', 'scope': ['real', 'complex']},
   '9492': {'latex': 'r',            'category': 'variable', 'scope': ['real', 'complex']},
@@ -142,6 +146,7 @@ dat['symbols'] = {
   '1245': {'latex': 'v',            'category': 'variable', 'scope': ['real', 'complex']},
   '1464': {'latex': 'x',            'category': 'variable', 'scope': ['real', 'complex']},
   '1572': {'latex': 'x_0',          'category': 'variable', 'scope': ['real'], 'name': 'initial position', 'measure': 'length'},
+  '2911': {'latex': '\\vec{x}',      'category': 'variable', 'scope': ['vector']},
   '1452': {'latex': 'y',            'category': 'variable', 'scope': ['real', 'complex']},
   '1469': {'latex': 'y_0',          'category': 'variable', 'scope': ['real'], 'name': 'initial position', 'measure': 'length'},
   '0011': {'latex': 'z',            'category': 'variable', 'scope': ['real', 'complex']}
@@ -187,7 +192,9 @@ dat['operators'] = {
   'subtraction':                 {'latex': '-',            'argument count': 2, 'scope': ['real','vector','matrix','complex']},
   'multiplication':              {'latex': '*',            'argument count': 2, 'scope': ['real','vector','matrix','complex']},
   'division':                    {'latex': '/',            'argument count': 2, 'scope': ['real','vector','matrix','complex']},
-  'cosine':                      {'latex': '\cos',         'argument count': 1, 'scope': ['real']},
+  'cosine':                      {'latex': '\\cos',         'argument count': 1, 'scope': ['real']},
+  'nabla':                       {'latex': '\\nabla',       'argument count': 1, 'scope': ['vector']},
+  'function':                    {'latex': 'f',            'argument count': 1, 'scope': ['list']},
   'sine':                        {'latex': '\sin',         'argument count': 1, 'scope': ['real']},
   'dot product':                 {'latex': '\dot',         'argument count': 2, 'scope': ['vector']},
   'cross product':               {'latex': '\cross',       'argument count': 2, 'scope': ['vector']},
@@ -195,7 +202,7 @@ dat['operators'] = {
   'indefinite intergral':        {'latex': '\int',         'argument count': 2, 'scope': ['real','vector','matrix','complex']},
   'definite integral':           {'latex': '\int',         'argument count': 4, 'scope': ['real','vector','matrix','complex']},
   'summation':                   {'latex': '\sum',         'argument count': 4, 'scope': ['real','vector','matrix','complex']},
-  'spatial vector differential': {'latex': '\vec{\nabla}', 'argument count': 2, 'scope': ['real']}
+  'spatial vector differential': {'latex': '\\vec{\\nabla}', 'argument count': 2, 'scope': ['real']}
 }
 
 

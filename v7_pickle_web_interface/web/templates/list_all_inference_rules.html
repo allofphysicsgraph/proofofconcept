@@ -7,10 +7,9 @@
 {{ inf_rule }}: {{ inf_rule_attributes_dict }}<BR>
 {% endfor %}
 
-
+<a id="add_inf_rule"></a>
+  <H2>Add new inference rule</h2> 
 <form method="post" action="">
-
-  <P>Add new inference rule: 
   <div class="form-group">
     <div class="input-group">
 
@@ -19,14 +18,18 @@
       <P>{{ webform.num_feeds.label }}:     {{ webform.num_feeds }}
       <P>{{ webform.num_outputs.label }}:   {{ webform.num_outputs }}
     </div>
-    <input type="submit" name="submit_button" value="add">
+<!--    <input type="submit" name="submit_button" value="add"> -->
+     <button type="submit" class="btn btn-default">Add</button>
   </div>
+</form>
 
-  <P>Delete inference rule:
+<a id="delete_inf_rule"></a>
+  <h2>Delete an inference rule</h2>
+<form method="post" action="">
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
-            <select name="inf_rul_select" class="selectpicker form-control">
+            <select name="delete_inf_rule" class="selectpicker form-control">
               {% for elem in inf_rules_dict.keys() %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
@@ -34,13 +37,15 @@
     </div>
     <button type="submit" class="btn btn-default">Next</button>
   </div>
+</form>
 
-  <P>Which inference rule to edit:
-
+<a id="edit_inf_rule"></a>
+  <h2>Edit an inference rule</h2>
+<form method="post" action="">
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
-            <select name="inf_rul_select" class="selectpicker form-control">
+            <select name="edit_inf_rule" class="selectpicker form-control">
               {% for elem in inf_rules_dict.keys() %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}

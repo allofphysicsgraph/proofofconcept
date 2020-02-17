@@ -16,7 +16,8 @@
 #import math
 import os
 import shutil
-from subprocess import Popen, PIPE
+from subprocess import PIPE # https://docs.python.org/3/library/subprocess.html
+import subprocess # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
 import pickle
 from typing import Tuple, TextIO
@@ -26,7 +27,9 @@ from typing_extensions import TypedDict  # https://mypy.readthedocs.io/en/stable
 global print_trace
 print_trace = True
 global print_debug
-print_debug = False
+print_debug = True
+global proc_timeout
+proc_timeout = 30
 
 STEP_DICT = TypedDict('STEP_DICT', {'inf rule': str,
                                     'inputs':   dict,
@@ -115,6 +118,7 @@ def create_expr_id(path_to_pkl: str) -> str:
 
     >>> create_expr_id(False, 'data.pkl')
     """
+    if print_trace: print('[trace] compute; create_expr_id')
     dat = read_db(path_to_pkl)
 
     global_expr_ids_in_use = []
@@ -128,11 +132,14 @@ def create_expr_id(path_to_pkl: str) -> str:
                 global_expr_ids_in_use.append(expr_global_id)
 
     found_valid_id = False
+    loop_count = 0
     while(not found_valid_id):
+        loop_count += 1
         proposed_global_expr_id = str(int(random.random()*1000000000))
         if proposed_global_expr_id not in global_expr_ids_in_use:
             found_valid_id = True
-
+        if loop_count > 10000000000:
+            raise Exception("this seems unlikely")
     return proposed_global_expr_id
 
 
@@ -143,6 +150,7 @@ def create_inf_rule_id(path_to_pkl: str) -> str:
     search DB to find whether proposed local ID already exists
     >>> create_inf_rule_id(False, 'data.pkl')
     """
+    if print_trace: print('[trace] compute; create_inf_rule_id')
     dat = read_db(path_to_pkl)
 
     inf_rule_ids_in_use = []
@@ -151,10 +159,14 @@ def create_inf_rule_id(path_to_pkl: str) -> str:
             inf_rule_ids_in_use.append(step_id) # formerly 'inf rule local ID'
 
     found_valid_id = False
+    loop_count = 0
     while(not found_valid_id):
+        loop_count += 1
         proposed_inf_rule_id = str(int(random.random()*1000000000))
         if proposed_inf_rule_id not in inf_rule_ids_in_use:
             found_valid_id = True
+        if loop_count > 10000000000:
+            raise Exception("this seems unlikely")
     return proposed_inf_rule_id
 
 
@@ -163,6 +175,7 @@ def create_expr_local_id(path_to_pkl: str) -> str:
     search DB to find whether proposed local ID already exists
     >>> create_expr_local_id(False, 'data.pkl')
     """
+    if print_trace: print('[trace] compute; create_expr_local_id')
     dat = read_db(path_to_pkl)
 
     local_ids_in_use = []
@@ -176,10 +189,14 @@ def create_expr_local_id(path_to_pkl: str) -> str:
                 local_ids_in_use.append(expr_local_id)
 
     found_valid_id = False
+    loop_count = 0
     while(not found_valid_id):
+        loop_count += 1
         proposed_local_id = str(int(random.random()*1000000000))
         if proposed_local_id not in local_ids_in_use:
             found_valid_id = True
+        if loop_count > 10000000000:
+            raise Exception("this seems unlikely")
     return proposed_local_id
 
 
@@ -190,12 +207,20 @@ def remove_file_debris(list_of_paths_to_files: list, list_of_file_names: list, l
     """
     >>> remove_file_debris(['/path/to/file/'],['filename_without_extension'], ['ext1', 'ext2'])
     """
+    if print_trace: print('[trace] compute; remove_file_debris')
+
     for path_to_file in list_of_paths_to_files:
+#        print('path_to_file =',path_to_file)
         for file_name in list_of_file_names:
+#            print('file_name =',file_name)
             for file_ext in list_of_file_ext:
+#                print('file_ext =',file_ext)
+
                 if os.path.isfile(path_to_file + file_name + '.' + file_ext):
                     os.remove(path_to_file + file_name +'.' + file_ext)
+#    print('done')
     return
+
 
 def find_valid_filename(extension: str, print_debug: bool, destination_folder: str) -> str:
     """
@@ -203,11 +228,17 @@ def find_valid_filename(extension: str, print_debug: bool, destination_folder: s
 
     >>> find_valid_filename('png', False, '/home/appuser/app/static/')
     """
+    if print_trace: print('[trace] compute; find_valid_filename')
+
     found_valid_name = False
+    loop_count = 0
     while(not found_valid_name):
+        loop_count += 1
         proposed_file_name = str(int(random.random()*1000000000))+'.'+extension
         if not os.path.isfile(destination_folder + proposed_file_name):
             found_valid_name = True
+        if loop_count > 10000000000:
+            raise Exception("this seems unlikely")
     return proposed_file_name
 
 #*******************************************
@@ -217,7 +248,11 @@ def create_tex_file(tmp_file: str, input_latex_str: str) -> None:
     """
     >>> create_tex_file('filename_without_extension', 'a \dot b \\nabla')
     """
+    if print_trace: print('[trace] compute; create_tex_file')
+
     remove_file_debris(['./'], [tmp_file], ['tex'])
+
+    print('got past file removal')
 
     with open(tmp_file+'.tex', 'w') as lat_file:
         lat_file.write('\\documentclass[12pt]{report}\n')
@@ -227,6 +262,7 @@ def create_tex_file(tmp_file: str, input_latex_str: str) -> None:
         lat_file.write('$'+input_latex_str+'$\n')
         lat_file.write('}\n')
         lat_file.write('\\end{document}\n')
+    print('wrote tex file')
     return
 
 def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil: TextIO, path_to_pkl: str) -> None:
@@ -234,38 +270,66 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
     >>> fil = open('a_file','r') 
     >>> write_step_to_graphviz_file("deriv name", "492482", fil, False, 'data.pkl')
     """
+    if print_trace: print('[trace] compute; write_step_to_graphviz_file') 
+
     dat = read_db(path_to_pkl)
 
     step_dict = dat['derivations'][name_of_derivation][local_step_id]
     print('[debug] compute: write_step_to_graphviz_file: step_dict =', step_dict)
     #  step_dict = {'inf rule': 'begin derivation', 'inputs': {}, 'feeds': {}, 'outputs': {'526874110': '557883925'}}
-    print('[debug] compute: write_step_to_graphviz_file: expr_dict =', dat['expressions'])
+    for global_id, latex_and_ast_dict in dat['expressions'].items():
+        print('[debug] compute: write_step_to_graphviz_file: expr_dict has', global_id, latex_and_ast_dict['latex'])
 
+    #print('[debug] compute: write_step_to_graphviz_file: starting write')
+
+    valid_latex_bool, generated_png_name = create_png_from_latex(step_dict['inf rule'])
+    if not valid_latex_bool:
+        print('invalid latex for inference rule',step_dict['inf rule'])
+        return valid_latex_bool, step_dict['inf rule']
     fil.write(local_step_id + ' [shape=ellipse, label="",image="/home/appuser/app/static/' + 
-              create_png_from_latex(step_dict['inf rule']) + 
-              '",labelloc=b];\n')
+              generated_png_name + '",labelloc=b];\n')
+
+    #print('[debug] compute: write_step_to_graphviz_file: inputs')
     for expr_local_id, expr_global_id in step_dict['inputs'].items():
+        valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
+        if not valid_latex_bool:
+            print('invalid latex for input',dat['expressions'][expr_global_id]['latex'])
+            return valid_latex_bool,dat['expressions'][expr_global_id]['latex']
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
         fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' + 
-                       create_png_from_latex(dat['expressions'][expr_global_id]['latex']) + '",labelloc=b];\n')
+                       generated_png_name + '",labelloc=b];\n')
+
+    #print('[debug] compute: write_step_to_graphviz_file: outputs')
     for expr_local_id, expr_global_id in step_dict['outputs'].items():
-        #print('compute; write_step_to_graphviz_file; output_dict =',output_dict)
+        valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
+        if not valid_latex_bool:
+            print('invalid latex for output',dat['expressions'][expr_global_id]['latex'])
+            return valid_latex_bool, dat['expressions'][expr_global_id]['latex']
+        #print('[debug] compute; write_step_to_graphviz_file; local and global',expr_local_id,expr_local_id)
         fil.write(local_step_id + ' -> ' + expr_local_id + ';\n')
-        #print('compute; write_step_to_graphviz_file; ',output_dict['expr local ID'],output_dict['expr ID'])
-        #print('compute; write_step_to_graphviz_file; latex =',expressions_dict[output_dict['expr ID']])
         fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' + 
-                       create_png_from_latex(dat['expressions'][expr_global_id]['latex']) + '",labelloc=b];\n')
+                       generated_png_name + '",labelloc=b];\n')
+
+    #print('[debug] compute: write_step_to_graphviz_file: feeds')
     for expr_local_id, expr_global_id in step_dict['feeds'].items():
+        valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
+        if not valid_latex_bool:
+            print('invalid latex for feed',dat['expressions'][expr_global_id]['latex'])
+            return valid_latex_bool, dat['expressions'][expr_global_id]['latex']
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
         fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' + 
-                       create_png_from_latex(dat['expressions'][expr_global_id]['latex']) + '",labelloc=b];\n')
-    return
+                       generated_png_name + '",labelloc=b];\n')
+    #print('[debug] compute: write_step_to_graphviz_file: returning')
+
+    return True, 'no invalid latex'
 
 
 def create_derivation_png(name_of_derivation: str, path_to_pkl: str) -> str:
     """
     >>> create_derivation_png()
     """
+    if print_trace: print('[trace] compute; create_derivation_png')
+
     dat = read_db(path_to_pkl)
 
     dot_filename = '/home/appuser/app/static/graphviz.dot'
@@ -277,19 +341,21 @@ def create_derivation_png(name_of_derivation: str, path_to_pkl: str) -> str:
 
         for step_id, step_dict in dat['derivations'][name_of_derivation].items():
 
-            write_step_to_graphviz_file(name_of_derivation, step_id, fil, path_to_pkl)
+            valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(name_of_derivation, step_id, fil, path_to_pkl)
+            if not valid_latex_bool:
+                return valid_latex_bool, invalid_latex_str, 'no png created'
 
         fil.write('}\n')
     output_filename = 'graphviz.png'
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
 #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
-    process = Popen(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE)
+    process = subprocess.run(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
     neato_stdout, neato_stderr = process.communicate()
     #neato_stdout = neato_stdout.decode("utf-8")
     #neato_stderr = neato_stderr.decode("utf-8")
 
     shutil.move(output_filename, '/home/appuser/app/static/' + output_filename)
-    return output_filename
+    return valid_latex_bool, invalid_latex_str, output_png_filename
 
 
 
@@ -303,6 +369,7 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
     >>> create_step_graphviz_png(step_dict, 'my derivation', False)
 
     """
+    if print_trace: print('[trace] compute; create_step_graphviz_png')
 
     dot_filename = '/home/appuser/app/static/graphviz.dot'
 
@@ -314,7 +381,9 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
         fil.write('label="step review for ' + name_of_derivation + '";\n')
         fil.write('fontsize=12;\n')
 
-        write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_pkl)
+        valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_pkl)
+        if not valid_latex_bool:
+            return valid_latex_bool, invalid_latex_str, 'no png created'
 
         fil.write('}\n')
 
@@ -326,13 +395,13 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
 
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
 #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
-    process = Popen(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE)
+    process = subprocess.run(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
     neato_stdout, neato_stderr = process.communicate()
     #neato_stdout = neato_stdout.decode("utf-8")
     #neato_stderr = neato_stderr.decode("utf-8")
 
     shutil.move(output_filename, '/home/appuser/app/static/' + output_filename)
-    return output_filename
+    return True, 'no invalid latex', output_filename
 
 
 
@@ -343,30 +412,40 @@ def create_png_from_latex(input_latex_str: str) -> str:
     this function assumes generated PNG should be placed in /home/appuser/app/static/
     >>> create_png_from_latex('a \dot b \\nabla', False)
     """
+    if print_trace: print('[trace] compute; create_png_from_latex')
+
+    #if print_debug: print('[debug] compute: create_png_from_latex: input latex str =', input_latex_str)
+
     tmp_file = 'lat'
     remove_file_debris(['./'], [tmp_file], ['tex', 'dvi', 'aux', 'log'])
+
+    #if print_debug: print('[debug] compute: create_png_from_latex: finished debris removal, starting create tex file')
+
     create_tex_file(tmp_file, input_latex_str)
 
-    if print_debug: print('[debug] compute: create_png_from_latex: input latex str =', input_latex_str)
+    #if print_debug: print('[debug] compute: create_png_from_latex: running latex against file')
 
-    process = Popen(['latex', tmp_file+'.tex'], stdout=PIPE, stderr=PIPE)
+    process = subprocess.run(['latex','-halt-on-error', tmp_file+'.tex'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
     latex_stdout, latex_stderr = process.communicate()
-    #latex_stdout = latex_stdout.decode("utf-8")
-    #latex_stderr = latex_stderr.decode("utf-8")
+    latex_stdout = latex_stdout.decode("utf-8")
+    latex_stderr = latex_stderr.decode("utf-8")
 
-    if print_debug: print('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
-    if print_debug: print('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
+    #if print_debug: print('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
+    #if print_debug: print('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
+
+    if 'Text line contains an invalid character' in latex_stdout:
+        return False, 'no png generated'
 
     name_of_png = tmp_file + '.png'
     remove_file_debris(['./'], [tmp_file], ['png'])
 
-    process = Popen(['dvipng', tmp_file + '.dvi', '-T', 'tight', '-o', name_of_png], stdout=PIPE, stderr=PIPE)
+    process = subprocess.run(['dvipng', tmp_file + '.dvi', '-T', 'tight', '-o', name_of_png], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
     png_stdout, png_stderr = process.communicate()
-    #png_stdout = png_stdout.decode("utf-8")
-    #png_stderr = png_stderr.decode("utf-8")
+    png_stdout = png_stdout.decode("utf-8")
+    png_stderr = png_stderr.decode("utf-8")
 
-    if print_debug: print('[debug] compute: create_png_from_latex: png std out', png_stdout)
-    if print_debug: print('[debug] compute: create_png_from_latex: png std err', png_stderr)
+    #if print_debug: print('[debug] compute: create_png_from_latex: png std out', png_stdout)
+    #if print_debug: print('[debug] compute: create_png_from_latex: png std err', png_stderr)
 
     destination_folder = '/home/appuser/app/static/'
     generated_png_name = find_valid_filename('png', print_debug, destination_folder)
@@ -377,8 +456,7 @@ def create_png_from_latex(input_latex_str: str) -> str:
         print('[ERROR] compute: create_png_from_latex: png already exists!')
     shutil.move(generated_png_name, destination_folder + generated_png_name)
 
-    #return latex_stdout,latex_stderr,png_stdout,png_stderr,name_of_png
-    return generated_png_name
+    return True, generated_png_name
 
 #*********************************************************
 # data structure transformations
@@ -389,6 +467,8 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
     >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'data.pkl')
     9492849
     """
+    if print_trace: print('[trace] compute; create_step')
+
     dat = read_db(path_to_pkl)
 
     step_dict = {'inf rule': inf_rule,

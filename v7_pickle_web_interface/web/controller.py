@@ -130,21 +130,51 @@ def start_new_derivation():
 #    return render_template('edit_expression.html',
 #                           expressions_dict=expressions_dict)
 
+@app.route('/list_all_operators', methods=['GET', 'POST'])
+def list_all_operators():
+    if print_trace: print('[trace] controller: list_all_operators')
+    dat = compute.read_db('data.pkl')
+    if request.method == "POST":
+        print('[debug] controller; list_all_operators; request.form =',request.form)
+    return render_template("list_all_operators.html",
+                           operators_dict=dat['operators'])
+
+@app.route('/list_all_symbols', methods=['GET', 'POST'])
+def list_all_symbols():
+    if print_trace: print('[trace] controller: list_all_symbols')
+    dat = compute.read_db('data.pkl')
+    if request.method == "POST":
+        print('[debug] controller; list_all_symbolss; request.form =',request.form)
+    return render_template("list_all_symbols.html",
+                           symbols_dict=dat['symbols'])
+
+
+@app.route('/list_all_expressions', methods=['GET', 'POST'])
+def list_all_expressions():
+    if print_trace: print('[trace] controller: list_all_expressions')
+    dat = compute.read_db('data.pkl')
+    if request.method == "POST":
+        print('[debug] controller; list_all_expressions; request.form =',request.form)
+    return render_template("list_all_expressions.html",
+                           expressions_dict=dat['expressions'])
+
 @app.route('/list_all_inference_rules', methods=['GET', 'POST'])
 def list_all_inference_rules():
     if print_trace: print('[trace] controller: list_all_inference_rules')
     dat = compute.read_db('data.pkl')
     if request.method == "POST":
-        print('[debug] compute; list_all_inference_rules; request.form =',request.form)
+        print('[debug] controller; list_all_inference_rules; request.form =',request.form)
+        # request.form = ImmutableMultiDict([('delete_inf_rule', 'multiply both sides by X')])
+        # 
     return render_template("list_all_inference_rules.html",
                            inf_rules_dict=dat['inference rules'],
-                           web_form = InferenceRuleForm(request.form))
+                           webform = InferenceRuleForm(request.form))
 
 @app.route('/select_derivation_to_edit', methods=['GET', 'POST'])
 def select_derivation_to_edit():
     if print_trace: print('[trace] controller: select_derivation_to_edit')
     if request.method == "POST":
-        print('[debug] compute; select_derivation_to_edit; request.form =',request.form)
+        print('[debug] controller; select_derivation_to_edit; request.form =',request.form)
     return render_template("select_derivation_to_edit.html",
                            derivations_list=compute.get_list_of_inf_rules('data.pkl'))
 
@@ -153,28 +183,23 @@ def select_derivation_step_to_edit(name_of_derivation: str):
     if print_trace: print('[trace] controller: select_derivation_step_to_edit')
     steps_dict = compute.get_derivation_steps(name_of_derivation,'data.pkl')
     if request.method == "POST":
-        print('[debug] compute; select_derivation_step_to_edit; request.form =',request.form)
+        print('[debug] controller; select_derivation_step_to_edit; request.form =',request.form)
     return render_template("select_derivation_step_to_edit.html",
                            name_of_derivation=name_of_derivation,
                            steps_dict=steps_dict,
                            list_of_step_ids=steps_dict.keys())
 
-@app.route('/list_all_expressions', methods=['GET', 'POST'])
-def list_all_expressions():
-    if print_trace: print('[trace] controller: list_all_expressions')
-    dat = compute.read_db('data.pkl')
-    if request.method == "POST":
-        print('[debug] compute; list_all_expressions; request.form =',request.form)
-    return render_template("list_all_expressions.html",
-                           expressions_dict=dat['expressions'])
-
 
 @app.route('/select_from_existing_derivations', methods=['GET', 'POST'])
 def select_from_existing_derivations():
-    if print_trace: print('[trace] controller: view_existing_derivations')
+    if print_trace: print('[trace] controller: select_from_existing_derivations')
     list_of_deriv = compute.get_list_of_derivations('data.pkl')
     if request.method == "POST":
         print('[debug] compute; select_from_existing_derivations; request.form =',request.form)
+        # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv')])
+        name_of_derivation = request.form['derivation_selected']
+        return redirect(url_for('review_derivation',
+                             name_of_derivation=name_of_derivation))
     return render_template("select_from_existing_derivations.html",
                            list_of_derivations=list_of_deriv)
 
@@ -231,7 +256,10 @@ def step_review(name_of_derivation: str,local_step_id: str):
     """
     if print_trace: print('[trace] controller: step_review')
 
-    step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, local_step_id, 'data.pkl')
+    valid_latex_bool, invalid_latex, step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, local_step_id, 'data.pkl')
+    if not valid_latex_bool:
+        print('[debug] controller; step_review; invalid latex detected',invalid_latex)
+        # TODO: now what?
 
     dat = compute.read_db('data.pkl')
 
@@ -282,7 +310,10 @@ def review_derivation(name_of_derivation: str):
 def modify_step(name_of_derivation: str, step_id: str):
     if print_trace: print('[trace] controller: modify_step')
     
-    step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, step_id, 'data.pkl')
+    valid_latex_bool, invalid_latex, step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, step_id, 'data.pkl')
+    if not valid_latex_bool:
+        print('invalid latex',invalid_latex)
+        # TODO: now what?
 
     steps_dict = compute.get_derivation_steps(name_of_derivation, 'data.pkl')
     this_step = steps_dict[step_id] 
@@ -300,15 +331,6 @@ def modify_step(name_of_derivation: str, step_id: str):
                             name_of_graphviz_png=step_graphviz_png,
                             step_dict=this_step,
                             expr_dict=dat['expressions'])
-
-@app.route('/view_derivation_selected/', methods=['GET', 'POST'])
-def view_derivation_selected():
-    if print_trace: print('[trace] controller: view_derivation_selected')
-    if request.method == 'POST':
-        name_of_derivation = str(request.form.get('derivation_selected'))  # this comes from the POST
-        print('[debug] controller; view_derivation_selected; name_of_derivation =', name_of_derivation)
-        review_derivation(name_of_derivation)
-    return render_template('index.html')
 
 @app.route('/create_new_inf_rule/', methods=['GET', 'POST'])
 def create_new_inf_rule():

@@ -1,16 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
 
-<P>Choices:
+<P>Derivations:
 <UL>
 <LI><a href="{{ url_for('start_new_derivation') }}">start a new derivation</a>
 <LI><a href="{{ url_for('select_from_existing_derivations') }}">view existing derivations</a> 
+<LI><a href="{{ url_for('select_from_existing_derivations') }}">edit an existing derivation</a> (points to <a href="{{ url_for('select_from_existing_derivations') }}">view existing derivations</a>)
+</UL>
 
-<LI><a href="{{ url_for('select_from_existing_derivations') }}">edit an existing derivation</a> 
-<LI><a href="{{ url_for('list_all_inference_rules') }}">edit inference rule</a> 
-<LI><a href="{{ url_for('list_all_expressions') }}">edit expression</a> 
+<P>Inference rules
+<UL>
 <LI><a href="{{ url_for('list_all_inference_rules') }}">list all inference rules</a> 
+<LI><a href="{{ url_for('list_all_inference_rules') }}">edit inference rule</a> (points to <a href="{{ url_for('list_all_inference_rules') }}">list all inference rules</a>)
+</UL>
+
+<P>Expressions
+<UL>
 <LI><a href="{{ url_for('list_all_expressions') }}">list all expressions</a> 
+<LI><a href="{{ url_for('list_all_expressions') }}">edit expression</a> (points to <a href="{{ url_for('list_all_expressions') }}">list all expressions</a>) 
+</uL>
+
+<P>symbols and operators
+<UL>
+<LI><a href="{{ url_for('list_all_symbols') }}">list all symbols</a>
+<LI><a href="{{ url_for('list_all_operators') }}">list all operators</a>
 </UL>
 
 {% endblock %}
