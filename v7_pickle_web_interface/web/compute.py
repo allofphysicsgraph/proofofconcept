@@ -19,6 +19,7 @@ import shutil
 from subprocess import PIPE # https://docs.python.org/3/library/subprocess.html
 import subprocess # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
+import collections
 import pickle
 from typing import Tuple, TextIO
 from typing_extensions import TypedDict  # https://mypy.readthedocs.io/en/stable/more_types.html
@@ -199,6 +200,72 @@ def create_expr_local_id(path_to_pkl: str) -> str:
             raise Exception("this seems unlikely")
     return proposed_local_id
 
+#********************************************
+# popularity 
+
+#def flatten_dict(dd, separator ='_', prefix =''): 
+#    """
+#    from https://www.geeksforgeeks.org/python-convert-nested-dictionary-into-flattened-dictionary/
+#    but also appears on https://www.quora.com/How-do-you-flatten-a-dictionary-in-Python
+#    and 
+
+ #   >>> flatten_dict()
+ #   """
+ #   return { prefix + separator + k if prefix else k : v 
+ #            for kk, vv in dd.items() 
+ #            for k, v in flatten_dict(vv, separator, kk).items() 
+ #            } if isinstance(dd, dict) else { prefix : dd } 
+  
+def flatten_dict(d: dict, sep: str = "_") -> dict:
+    """
+    from https://medium.com/better-programming/how-to-flatten-a-dictionary-with-nested-lists-and-dictionaries-in-python-524fd236365
+
+    >>> 
+    """ 
+    obj = collections.OrderedDict()
+    def recurse(t,parent_key=""):
+        if isinstance(t,list):
+            for i in range(len(t)):
+                recurse(t[i],parent_key + sep + str(i) if parent_key else str(i))
+        elif isinstance(t,dict):
+            for k,v in t.items():
+                recurse(v,parent_key + sep + k if parent_key else k)
+        else:
+            obj[parent_key] = t
+    recurse(d)
+    return dict(obj)        
+
+def extract_symbols_from_expression_dict(expr_id: str, path_to_pkl: str) -> list:
+    """
+    >>> extract_symbols_from_expression_dict()
+    """
+    if print_trace: print('[trace] compute; extract_symbols_from_expression_dict')
+
+    dat = read_db(path_to_pkl)
+    expr_dict = dat['expressions']
+
+    flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
+    #print('[debug] compute; extract_symbols_from_expression_dict; flt_dict=',flt_dict)
+
+    return list(flt_dict.values()) 
+
+def popularity_of_symbols(path_to_pkl: str) -> dict:
+    """
+    >>> popularity_of_symbols('data.pkl')
+    """
+    if print_trace: print('[trace] compute; popularity_of_symbols')
+    dat = read_db(path_to_pkl)
+
+    symbol_popularity_dict = {}
+    for symbol_id, symbol_dict in dat['symbols'].items():
+        list_of_uses = []
+        for expr_id, expr_dict in dat['expressions'].items():
+            list_of_symbols_for_this_expr = extract_symbols_from_expression_dict(expr_id, path_to_pkl)
+            if symbol_id in list_of_symbols_for_this_expr:
+                 list_of_uses.append(expr_id)
+        symbol_popularity_dict[symbol_id] = list_of_uses
+
+    return symbol_popularity_dict
 
 #********************************************
 # local filesystem
@@ -350,12 +417,12 @@ def create_derivation_png(name_of_derivation: str, path_to_pkl: str) -> str:
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
 #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
     process = subprocess.run(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
-    neato_stdout, neato_stderr = process.communicate()
+    #neato_stdout, neato_stderr = process.communicate()
     #neato_stdout = neato_stdout.decode("utf-8")
     #neato_stderr = neato_stderr.decode("utf-8")
 
     shutil.move(output_filename, '/home/appuser/app/static/' + output_filename)
-    return valid_latex_bool, invalid_latex_str, output_png_filename
+    return True, 'no invalid latex', output_filename
 
 
 
@@ -396,7 +463,7 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
 #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
     process = subprocess.run(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
-    neato_stdout, neato_stderr = process.communicate()
+    #neato_stdout, neato_stderr = process.communicate()
     #neato_stdout = neato_stdout.decode("utf-8")
     #neato_stderr = neato_stderr.decode("utf-8")
 
@@ -426,9 +493,10 @@ def create_png_from_latex(input_latex_str: str) -> str:
     #if print_debug: print('[debug] compute: create_png_from_latex: running latex against file')
 
     process = subprocess.run(['latex','-halt-on-error', tmp_file+'.tex'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
-    latex_stdout, latex_stderr = process.communicate()
-    latex_stdout = latex_stdout.decode("utf-8")
-    latex_stderr = latex_stderr.decode("utf-8")
+    #latex_stdout, latex_stderr = process.communicate()
+    # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
+    latex_stdout = process.stdout.decode("utf-8")
+    latex_stderr = process.stderr.decode("utf-8")
 
     #if print_debug: print('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
     #if print_debug: print('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
@@ -440,9 +508,10 @@ def create_png_from_latex(input_latex_str: str) -> str:
     remove_file_debris(['./'], [tmp_file], ['png'])
 
     process = subprocess.run(['dvipng', tmp_file + '.dvi', '-T', 'tight', '-o', name_of_png], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
-    png_stdout, png_stderr = process.communicate()
-    png_stdout = png_stdout.decode("utf-8")
-    png_stderr = png_stderr.decode("utf-8")
+    #png_stdout, png_stderr = process.communicate()
+    # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
+    png_stdout = process.stdout.decode("utf-8")
+    png_stderr = process.stderr.decode("utf-8")
 
     #if print_debug: print('[debug] compute: create_png_from_latex: png std out', png_stdout)
     #if print_debug: print('[debug] compute: create_png_from_latex: png std err', png_stderr)

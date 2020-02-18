@@ -143,10 +143,13 @@ def list_all_operators():
 def list_all_symbols():
     if print_trace: print('[trace] controller: list_all_symbols')
     dat = compute.read_db('data.pkl')
+    symbol_popularity_dict = compute.popularity_of_symbols('data.pkl')
+
     if request.method == "POST":
         print('[debug] controller; list_all_symbolss; request.form =',request.form)
     return render_template("list_all_symbols.html",
-                           symbols_dict=dat['symbols'])
+                           symbols_dict=dat['symbols'],
+                           symbol_popularity_dict=symbol_popularity_dict)
 
 
 @app.route('/list_all_expressions', methods=['GET', 'POST'])
@@ -301,7 +304,7 @@ def review_derivation(name_of_derivation: str):
         else:
             raise Exception('[ERROR] compute; review_derivation; unrecognized button:',request.form)
 
-    derivation_png = compute.create_derivation_png(name_of_derivation, 'data.pkl')
+    valid_latex_bool, invalid_latex, derivation_png = compute.create_derivation_png(name_of_derivation, 'data.pkl')
     return render_template('review_derivation.html',
                                name_of_derivation=name_of_derivation,
                                name_of_graphviz_png=derivation_png)

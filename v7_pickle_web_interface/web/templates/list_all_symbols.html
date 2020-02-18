@@ -3,9 +3,15 @@
 
 <P>a list of all symbols</P>
 
+<!--
 {% for expr_id,expr_latex in symbols_dict.items() %}
 {{ expr_id }}: {{ expr_latex }}<BR>
+{% endfor %}
+-->
 
+{% for symbol_id, symbol_use_list in symbol_popularity_dict.items() %}
+<P>{{ symbol_id }}: {{ symbols_dict[symbol_id] }}<BR>
+{{ symbol_id }} is used in expressions {{ symbol_use_list }} <BR>
 {% endfor %}
 
 {% endblock %}
