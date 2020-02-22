@@ -3,9 +3,15 @@
 
 <P>a list of all operators</P>
 
+<!--
 {% for expr_id,expr_latex in operators_dict.items() %}
 {{ expr_id }}: {{ expr_latex }}<BR>
+{% endfor %}
+-->
 
+{% for symbol_id, symbol_use_list in operator_popularity_dict.items() %}
+<P>{{ symbol_id }}: {{ operators_dict[symbol_id] }}<BR>
+{{ symbol_id }} is used in expressions {{ symbol_use_list }} <BR>
 {% endfor %}
 
 {% endblock %}

@@ -134,10 +134,13 @@ def start_new_derivation():
 def list_all_operators():
     if print_trace: print('[trace] controller: list_all_operators')
     dat = compute.read_db('data.pkl')
+    operator_popularity_dict = compute.popularity_of_operators('data.pkl')
+
     if request.method == "POST":
         print('[debug] controller; list_all_operators; request.form =',request.form)
     return render_template("list_all_operators.html",
-                           operators_dict=dat['operators'])
+                           operators_dict=dat['operators'],
+                           operator_popularity_dict=operator_popularity_dict)
 
 @app.route('/list_all_symbols', methods=['GET', 'POST'])
 def list_all_symbols():
@@ -156,10 +159,12 @@ def list_all_symbols():
 def list_all_expressions():
     if print_trace: print('[trace] controller: list_all_expressions')
     dat = compute.read_db('data.pkl')
+    expression_popularity_dict = compute.popularity_of_expressions('data.pkl')
     if request.method == "POST":
         print('[debug] controller; list_all_expressions; request.form =',request.form)
     return render_template("list_all_expressions.html",
-                           expressions_dict=dat['expressions'])
+                           expressions_dict=dat['expressions'],
+                           expression_popularity_dict=expression_popularity_dict)
 
 @app.route('/list_all_inference_rules', methods=['GET', 'POST'])
 def list_all_inference_rules():

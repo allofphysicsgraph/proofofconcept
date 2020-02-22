@@ -203,24 +203,16 @@ def create_expr_local_id(path_to_pkl: str) -> str:
 #********************************************
 # popularity 
 
-#def flatten_dict(dd, separator ='_', prefix =''): 
-#    """
-#    from https://www.geeksforgeeks.org/python-convert-nested-dictionary-into-flattened-dictionary/
-#    but also appears on https://www.quora.com/How-do-you-flatten-a-dictionary-in-Python
-#    and 
-
- #   >>> flatten_dict()
- #   """
- #   return { prefix + separator + k if prefix else k : v 
- #            for kk, vv in dd.items() 
- #            for k, v in flatten_dict(vv, separator, kk).items() 
- #            } if isinstance(dd, dict) else { prefix : dd } 
-  
 def flatten_dict(d: dict, sep: str = "_") -> dict:
     """
+    convert the AST structure
+    'AST': {'equals': [ {'nabla': ['2911']},{'function': ['1452']}]}}
+    to
+    {'equals_0_nabla_0': '2911', 'equals_1_function_0': '1452'}
+
     from https://medium.com/better-programming/how-to-flatten-a-dictionary-with-nested-lists-and-dictionaries-in-python-524fd236365
 
-    >>> 
+    >>> flatten_dict({},'_')
     """ 
     obj = collections.OrderedDict()
     def recurse(t,parent_key=""):
@@ -235,19 +227,51 @@ def flatten_dict(d: dict, sep: str = "_") -> dict:
     recurse(d)
     return dict(obj)        
 
+def popularity_of_operators(path_to_pkl: str) -> dict:
+    """
+    >>> popularity_of_operators
+    """
+    if print_trace: print('[trace] compute; popularity_of_operators')
+    dat = read_db(path_to_pkl)
+    operator_popularity_dict = {}
+    for operator, operator_dict in dat['operators'].items():
+        list_of_uses = []
+        for expr_id, expr_dict in dat['expressions'].items():
+            list_of_operators_for_this_expr = extract_operators_from_expression_dict(expr_id, path_to_pkl)
+            if operator in list_of_operators_for_this_expr:
+                list_of_uses.append(expr_id)
+        operator_popularity_dict[operator] = list_of_uses
+    return operator_popularity_dict
+
 def extract_symbols_from_expression_dict(expr_id: str, path_to_pkl: str) -> list:
     """
-    >>> extract_symbols_from_expression_dict()
+    >>> extract_symbols_from_expression_dict('data.pkl')
     """
     if print_trace: print('[trace] compute; extract_symbols_from_expression_dict')
-
     dat = read_db(path_to_pkl)
     expr_dict = dat['expressions']
-
     flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
     #print('[debug] compute; extract_symbols_from_expression_dict; flt_dict=',flt_dict)
-
     return list(flt_dict.values()) 
+
+def extract_operators_from_expression_dict(expr_id: str, path_to_pkl: str) -> list:
+    """
+    >>> 
+    """
+    if print_trace: print('[trace] compute; extract_operators_from_expression_dict')
+    dat = read_db(path_to_pkl)
+    expr_dict = dat['expressions']
+    flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
+    list_of_str = list(flt_dict.keys())
+    list_of_operators = []
+    for this_str in list_of_str:   # 'equals_0_addition_0'
+        list_of_operator_candidates = this_str.split('_')
+        for operator_candidate in list_of_operator_candidates:
+            try:
+                int(operator_candidate)
+            except ValueError:
+                list_of_operators.append(operator_candidate)
+    return list(set(list_of_operators))
 
 def popularity_of_symbols(path_to_pkl: str) -> dict:
     """
@@ -266,6 +290,13 @@ def popularity_of_symbols(path_to_pkl: str) -> dict:
         symbol_popularity_dict[symbol_id] = list_of_uses
 
     return symbol_popularity_dict
+
+def popularity_of_expressions(path_to_pkl: str) -> dict:
+    """
+    >>> 
+    """
+    expression_popularity_dict = {}
+    return expression_popularity_dict
 
 #********************************************
 # local filesystem
