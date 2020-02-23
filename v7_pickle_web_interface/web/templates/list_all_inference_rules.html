@@ -3,8 +3,15 @@
 
 <P>a list of all inference rules</P>
 
-{% for inf_rule,inf_rule_attributes_dict in inf_rules_dict.items() %}
+<!--
+{% for inf_rule,inf_rule_attributes_dict in infrules_dict.items() %}
 {{ inf_rule }}: {{ inf_rule_attributes_dict }}<BR>
+{% endfor %}
+-->
+
+{% for symbol_id, symbol_use_list in infrule_popularity_dict.items() %}
+<P>{{ symbol_id }}: {{ infrules_dict[symbol_id] }}<BR>
+{{ symbol_id }} is used in derivations {{ symbol_use_list }} <BR>
 {% endfor %}
 
 <a id="add_inf_rule"></a>
@@ -30,7 +37,7 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="delete_inf_rule" class="selectpicker form-control">
-              {% for elem in inf_rules_dict.keys() %}
+              {% for elem in infrules_dict.keys() %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>
@@ -46,7 +53,7 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="edit_inf_rule" class="selectpicker form-control">
-              {% for elem in inf_rules_dict.keys() %}
+              {% for elem in infrules_dict.keys() %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>

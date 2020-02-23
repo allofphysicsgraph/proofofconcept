@@ -227,33 +227,6 @@ def flatten_dict(d: dict, sep: str = "_") -> dict:
     recurse(d)
     return dict(obj)        
 
-def popularity_of_operators(path_to_pkl: str) -> dict:
-    """
-    >>> popularity_of_operators
-    """
-    if print_trace: print('[trace] compute; popularity_of_operators')
-    dat = read_db(path_to_pkl)
-    operator_popularity_dict = {}
-    for operator, operator_dict in dat['operators'].items():
-        list_of_uses = []
-        for expr_id, expr_dict in dat['expressions'].items():
-            list_of_operators_for_this_expr = extract_operators_from_expression_dict(expr_id, path_to_pkl)
-            if operator in list_of_operators_for_this_expr:
-                list_of_uses.append(expr_id)
-        operator_popularity_dict[operator] = list_of_uses
-    return operator_popularity_dict
-
-def extract_symbols_from_expression_dict(expr_id: str, path_to_pkl: str) -> list:
-    """
-    >>> extract_symbols_from_expression_dict('data.pkl')
-    """
-    if print_trace: print('[trace] compute; extract_symbols_from_expression_dict')
-    dat = read_db(path_to_pkl)
-    expr_dict = dat['expressions']
-    flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
-    #print('[debug] compute; extract_symbols_from_expression_dict; flt_dict=',flt_dict)
-    return list(flt_dict.values()) 
-
 def extract_operators_from_expression_dict(expr_id: str, path_to_pkl: str) -> list:
     """
     >>> 
@@ -272,6 +245,55 @@ def extract_operators_from_expression_dict(expr_id: str, path_to_pkl: str) -> li
             except ValueError:
                 list_of_operators.append(operator_candidate)
     return list(set(list_of_operators))
+
+def extract_symbols_from_expression_dict(expr_id: str, path_to_pkl: str) -> list:
+    """
+    >>> extract_symbols_from_expression_dict('data.pkl')
+    """
+    if print_trace: print('[trace] compute; extract_symbols_from_expression_dict')
+    dat = read_db(path_to_pkl)
+    expr_dict = dat['expressions']
+    flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
+    #print('[debug] compute; extract_symbols_from_expression_dict; flt_dict=',flt_dict)
+    return list(flt_dict.values())
+
+def extract_expressions_from_derivation_dict(deriv_name: str, path_to_pkl: str) -> list:
+    """
+    >>> 
+    """
+    if print_trace: print('[trace] compute; extract_expressions_from_derivation_dict')
+    dat = read_db(path_to_pkl)
+    derivations_dict = dat['derivations']
+    flt_dict = flatten_dict(derivations_dict[deriv_name])
+    return list(flt_dict.values())
+
+def extract_infrules_from_derivation_dict(deriv_name: str, path_to_pkl: str) -> list:
+    """
+    >>> extract_infrules_from_derivation_dict() 
+    """
+    if print_trace: print('[trace] compute; extract_infrules_from_derivation_dict')
+    dat = read_db(path_to_pkl)
+    list_of_infrules = []
+    for step_id, step_dict in dat['derivations'][deriv_name].items():
+        list_of_infrules = step_dict['inf rule']
+
+    return list(set(list_of_infrules))
+
+def popularity_of_operators(path_to_pkl: str) -> dict:
+    """
+    >>> popularity_of_operators('data.pkl')
+    """
+    if print_trace: print('[trace] compute; popularity_of_operators')
+    dat = read_db(path_to_pkl)
+    operator_popularity_dict = {}
+    for operator, operator_dict in dat['operators'].items():
+        list_of_uses = []
+        for expr_id, expr_dict in dat['expressions'].items():
+            list_of_operators_for_this_expr = extract_operators_from_expression_dict(expr_id, path_to_pkl)
+            if operator in list_of_operators_for_this_expr:
+                list_of_uses.append(expr_id)
+        operator_popularity_dict[operator] = list_of_uses
+    return operator_popularity_dict
 
 def popularity_of_symbols(path_to_pkl: str) -> dict:
     """
@@ -293,10 +315,35 @@ def popularity_of_symbols(path_to_pkl: str) -> dict:
 
 def popularity_of_expressions(path_to_pkl: str) -> dict:
     """
-    >>> 
+    >>> popularity_of_expressions('data.pkl')
     """
+    if print_trace: print('[trace] compute; popularity_of_expressions')
+    dat = read_db(path_to_pkl)
     expression_popularity_dict = {}
+    for expr_id, expr_dict in dat['expressions'].items():
+        list_of_uses = []
+        for deriv_name, deriv_dict in dat['derivations'].items():
+            list_of_all_expr_for_this_deriv = extract_expressions_from_derivation_dict(deriv_name, path_to_pkl)
+            if expr_id in list_of_all_expr_for_this_deriv:
+                list_of_uses.append(deriv_name)
+        expression_popularity_dict[expr_id] = list_of_uses
     return expression_popularity_dict
+
+def popularity_of_infrules(path_to_pkl: str) -> dict:
+    """
+    >>> popularity_of_infrules('data.pkl')
+    """
+    if print_trace: print('[trace] compute; popularity_of_infrules')
+    dat = read_db(path_to_pkl)
+    infrule_popularity_dict = {}
+    for infrule_name, infrule_dict in dat['inference rules'].items():
+        list_of_uses = []
+        for deriv_name, deriv_dict in dat['derivations'].items():
+            list_of_infrule_for_this_deriv = extract_infrules_from_derivation_dict(deriv_name, path_to_pkl)
+            if infrule_name in list_of_infrule_for_this_deriv:
+                list_of_uses.append(deriv_name)
+        infrule_popularity_dict[infrule_name] = list_of_uses
+    return infrule_popularity_dict
 
 #********************************************
 # local filesystem

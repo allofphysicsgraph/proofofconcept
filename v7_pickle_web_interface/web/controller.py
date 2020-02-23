@@ -170,13 +170,15 @@ def list_all_expressions():
 def list_all_inference_rules():
     if print_trace: print('[trace] controller: list_all_inference_rules')
     dat = compute.read_db('data.pkl')
+    infrule_popularity_dict = compute.popularity_of_infrules('data.pkl')
     if request.method == "POST":
         print('[debug] controller; list_all_inference_rules; request.form =',request.form)
         # request.form = ImmutableMultiDict([('delete_inf_rule', 'multiply both sides by X')])
         # 
     return render_template("list_all_inference_rules.html",
-                           inf_rules_dict=dat['inference rules'],
-                           webform = InferenceRuleForm(request.form))
+                           infrules_dict=dat['inference rules'],
+                           webform = InferenceRuleForm(request.form),
+                           infrule_popularity_dict=infrule_popularity_dict)
 
 @app.route('/select_derivation_to_edit', methods=['GET', 'POST'])
 def select_derivation_to_edit():

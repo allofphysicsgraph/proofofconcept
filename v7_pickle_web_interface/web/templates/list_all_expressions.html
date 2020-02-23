@@ -3,9 +3,15 @@
 
 <P>a list of all expressions</P>
 
+<!--
 {% for expr_id,expr_latex in expressions_dict.items() %}
 {{ expr_id }}: {{ expr_latex }}<BR>
+{% endfor %}
+-->
 
+{% for symbol_id, symbol_use_list in expression_popularity_dict.items() %}
+<P>{{ symbol_id }}: {{ expressions_dict[symbol_id] }}<BR>
+{{ symbol_id }} is used in derivations {{ expression_use_list }} <BR>
 {% endfor %}
 
 {% endblock %}
