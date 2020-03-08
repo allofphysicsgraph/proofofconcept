@@ -626,15 +626,15 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_pkl: str) -> str:
     status_msg = ""
     try:
         arg_dict['number of feeds'] = int(inf_rule_dict_from_form['num_feeds'])
-    except ValueError, e:
+    except ValueError as err:
         return "number of feeds does not seem to be an integer"
     try:
         arg_dict['number of inputs'] = int(inf_rule_dict_from_form['num_inputs'])
-    except ValueError, e:
+    except ValueError as err:
         return "number of inputs does not seem to be an integer"
     try:
         arg_dict['number of outputs'] = int(inf_rule_dict_from_form['num_outputs'])
-    except ValueError, e:
+    except ValueError as err:
         return "number of outputs does not seem to be an integer"
     arg_dict['latex'] = inf_rule_dict_from_form['latex']
     if print_debug: print('[debug] compute; add_inf_rule; arg_dict =',arg_dict)
@@ -654,6 +654,10 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_pkl: str) -> str:
     """
     dat = read_db(path_to_pkl)
     status_msg = ""
+    # TODO: is infrule referenced by any derivations?
+    infrule_popularity_dict = popularity_of_infrules(path_to_pkl)
+    if name_of_inf_rule in infrule_popularity_dict.keys():
+        status_message = name_of_inf_rule + 'cannot be deleted because it is used in' + str(infrule_popularity_dict[name_of_inf_rule])
     if name_of_inf_rule in dat['inference rules'].keys():
         del dat['inference rules'][name_of_inf_rule]
         status_msg = name_of_inf_rule + " deleted"
