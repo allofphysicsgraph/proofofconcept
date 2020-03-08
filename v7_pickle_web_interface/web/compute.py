@@ -275,8 +275,9 @@ def extract_infrules_from_derivation_dict(deriv_name: str, path_to_pkl: str) -> 
     dat = read_db(path_to_pkl)
     list_of_infrules = []
     for step_id, step_dict in dat['derivations'][deriv_name].items():
-        list_of_infrules = step_dict['inf rule']
+        list_of_infrules.append(step_dict['inf rule'])
 
+    #if print_debug: print('[debug] compute; extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
     return list(set(list_of_infrules))
 
 def popularity_of_operators(path_to_pkl: str) -> dict:
@@ -340,6 +341,10 @@ def popularity_of_infrules(path_to_pkl: str) -> dict:
         list_of_uses = []
         for deriv_name, deriv_dict in dat['derivations'].items():
             list_of_infrule_for_this_deriv = extract_infrules_from_derivation_dict(deriv_name, path_to_pkl)
+            #print('[debug] compute; popularity_of_infrules; list =',list_of_infrule_for_this_deriv)
+            #print('[debug] compute; popularity_of_infrules; infrule_name =',infrule_name)
+            #print(deriv_name)
+            #print(deriv_dict)
             if infrule_name in list_of_infrule_for_this_deriv:
                 list_of_uses.append(deriv_name)
         infrule_popularity_dict[infrule_name] = list_of_uses
@@ -607,6 +612,83 @@ def create_png_from_latex(input_latex_str: str) -> str:
 
 #*********************************************************
 # data structure transformations
+
+def add_inf_rule(inf_rule_dict_from_form: dict, path_to_pkl: str) -> str:
+    """
+    >>> request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
+    >>> add_inf_rule(request.form.to_dict(), 'data.pkl')
+    """
+    if print_trace: print('[trace] compute; add_inf_rule')
+
+    # create a data structure similar to
+    #   'begin derivation':         {'number of feeds':0, 'number of inputs':0, 'number of outputs': 1, 'latex': 'more'}
+    arg_dict = {}
+    status_msg = ""
+    try:
+        arg_dict['number of feeds'] = int(inf_rule_dict_from_form['num_feeds'])
+    except ValueError, e:
+        return "number of feeds does not seem to be an integer"
+    try:
+        arg_dict['number of inputs'] = int(inf_rule_dict_from_form['num_inputs'])
+    except ValueError, e:
+        return "number of inputs does not seem to be an integer"
+    try:
+        arg_dict['number of outputs'] = int(inf_rule_dict_from_form['num_outputs'])
+    except ValueError, e:
+        return "number of outputs does not seem to be an integer"
+    arg_dict['latex'] = inf_rule_dict_from_form['latex']
+    if print_debug: print('[debug] compute; add_inf_rule; arg_dict =',arg_dict)
+
+    dat = read_db(path_to_pkl)
+    if inf_rule_dict_from_form['inf_rule_name'] in dat['inference rules'].keys():
+        status_msg = "inference rule already exists"
+
+    dat['inference rules'][inf_rule_dict_from_form['inf_rule_name']] = arg_dict
+    write_db(path_to_pkl, dat)
+
+    return status_msg
+
+def delete_inf_rule(name_of_inf_rule: str, path_to_pkl: str) -> str:
+    """
+    >>> delete_inf_rule('multbothsidesbyx','data.pkl')
+    """
+    dat = read_db(path_to_pkl)
+    status_msg = ""
+    if name_of_inf_rule in dat['inference rules'].keys():
+        del dat['inference rules'][name_of_inf_rule]
+        status_msg = name_of_inf_rule + " deleted"
+    else:
+        status_msg = name_of_inf_rule + " does not exist in database"
+    write_db(path_to_pkl, dat)
+    return status_msg
+
+def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_to_pkl: str) -> str:
+    """
+    >>> 
+    """
+    dat = read_db(path_to_pkl)
+    status_msg = ""
+    if old_name_of_inf_rule in dat['inference rules'].keys():
+        dat['inference rules'][new_name_of_inf_rule] = dat['inference rules'][old_name_of_inf_rule]
+        del dat['inference rules'][old_name_of_inf_rule]
+        status_msg = old_name_of_inf_rule + ' renamed to ' + new_name_of_inf_rule
+    else:
+        status_msg = old_name_of_inf_rule + " does not exist in database"
+    write_db(path_to_pkl, dat)
+    return status_msg
+
+def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_pkl: str) -> str:
+    """
+    >>> 
+    """
+    dat = read_db(path_to_pkl)
+    status_msg = ""
+    if inf_rule_name in dat['inference rules'].keys():
+        dat['inference rules'][inf_rule_name]['latex'] = revised_latex
+    else:
+        status_msg = inf_rule_name + ' does not exist in database'
+    write_db(path_to_pkl, dat)
+    return status_msg
 
 def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_pkl: str) -> str:
     """

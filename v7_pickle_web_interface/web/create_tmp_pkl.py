@@ -61,9 +61,12 @@ dat['expressions'] = {
 # the glue of the Physics Derivation Graph is a concept called an "Inference rule"
 # An inference rule relates one or more expressions in a given step
 dat['inference rules'] =  {
-    'begin derivation':         {'number of feeds':0, 'number of inputs':0, 'number of outputs': 1},
-    'add X to both sides':      {'number of feeds':1, 'number of inputs':1, 'number of outputs': 1},
-    'multiply both sides by X': {'number of feeds':1, 'number of inputs':1, 'number of outputs': 1}
+    'begin derivation':         {'number of feeds':0, 'number of inputs':0, 'number of outputs': 1,
+                                 'latex': 'begin derivation using #1 to produce #2'},
+    'add X to both sides':      {'number of feeds':1, 'number of inputs':1, 'number of outputs': 1,
+                                 'latex': 'add #1 to both sides of #2 to produce #3'},
+    'multiply both sides by X': {'number of feeds':1, 'number of inputs':1, 'number of outputs': 1,
+                                 'latex': 'multiply both sides of #1 by #2 to produce #3'}
 }
 
 # A derivation is comprised of steps. 

@@ -6,7 +6,7 @@
 # convention: every function and class includes a [trace] print
 
 from flask import Flask, redirect, render_template, request, url_for
-from wtforms import Form, StringField, FloatField, validators, FieldList, FormField # type: ignore 
+from wtforms import Form, StringField, FloatField, validators, FieldList, FormField, IntegerField # type: ignore 
 import compute 
 from config import Config # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 
@@ -30,9 +30,17 @@ class EquationInputForm(Form):
 class InferenceRuleForm(Form):
     if print_trace: print('[trace] controller; class = InferenceRuleForm')
     inf_rule_name = StringField('inf rule name',     validators=[validators.InputRequired()])
-    num_inputs    = StringField('number of inputs',  validators=[validators.InputRequired()])
-    num_feeds     = StringField('number of feeds',   validators=[validators.InputRequired()])
-    num_outputs   = StringField('number of outputs', validators=[validators.InputRequired()])
+    num_inputs    = IntegerField('number of inputs',  validators=[validators.InputRequired(),
+                                                                  validators.NumberRange(min=0, max=5)])
+    num_feeds     = IntegerField('number of feeds',   validators=[validators.InputRequired(),
+                                                                  validators.NumberRange(min=0, max=5)])
+    num_outputs   = IntegerField('number of outputs', validators=[validators.InputRequired(),
+                                                                  validators.NumberRange(min=0, max=5)])
+    latex = StringField('LaTeX',validators=[validators.InputRequired()])
+
+class RevisedTextForm(Form):
+    if print_trace: print('[trace] controller; class = RevisedTextForm')
+    revised_text = StringField('revised text', validators=[validators.InputRequired()])
 
 class infRuleInputsAndOutputs(Form):
     if print_trace: print('[trace] controller: class = infRuleInputsAndOutputs')
@@ -173,11 +181,35 @@ def list_all_inference_rules():
     infrule_popularity_dict = compute.popularity_of_infrules('data.pkl')
     if request.method == "POST":
         print('[debug] controller; list_all_inference_rules; request.form =',request.form)
-        # request.form = ImmutableMultiDict([('delete_inf_rule', 'multiply both sides by X')])
-        # 
+        if 'inf_rule_name' in request.form.keys():
+            #request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
+            status_message = compute.add_inf_rule(request.form.to_dict(), 'data.pkl')
+            # https://stackoverflow.com/a/31945712/1164295
+            return redirect(url_for('list_all_inference_rules'))
+        elif 'delete_inf_rule' in request.form.keys():
+            # request.form = ImmutableMultiDict([('delete_inf_rule', 'asdf')])
+            status_message = compute.delete_inf_rule(request.form['delete_inf_rule'], 'data.pkl')
+            print(status_message)
+            return redirect(url_for('list_all_inference_rules'))
+        elif 'rename_inf_rule_from' in request.form.keys():
+            # request.form = ImmutableMultiDict([('rename_inf_rule_from', 'asdf'), ('revised_text', 'anotehr')])
+            status_message = compute.rename_inf_rule(request.form['rename_inf_rule_from'],
+                                                     request.form['revised_text'], 'data.pkl')
+            print(status_message)
+            return redirect(url_for('list_all_inference_rules'))
+        elif 'edit_inf_rule_latex' in request.form.keys():
+            # request.form = ImmutableMultiDict([('edit_inf_rule_latex', 'asdf'), ('revised_text', 'great works')])
+            status_message = compute.edit_inf_rule_latex(request.form['edit_inf_rule_latex'],
+                                                         request.form['revised_text'], 'data.pkl')
+            print(status_message)
+            return redirect(url_for('list_all_inference_rules'))
+        else:
+            print('unrecognized form result')
     return render_template("list_all_inference_rules.html",
                            infrules_dict=dat['inference rules'],
-                           webform = InferenceRuleForm(request.form),
+                           add_infrule_webform = InferenceRuleForm(request.form),
+                           rename_infrule_webform = RevisedTextForm(request.form),
+                           edit_infrule_latex_webform = RevisedTextForm(request.form),
                            infrule_popularity_dict=infrule_popularity_dict)
 
 @app.route('/select_derivation_to_edit', methods=['GET', 'POST'])
