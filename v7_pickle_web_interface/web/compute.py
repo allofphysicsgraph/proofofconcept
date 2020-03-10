@@ -66,6 +66,15 @@ def write_db(path_to_pkl: str, dat: dict) -> None:
 # query database for properties
 # read-only functions
 
+def get_sorted_list_of_expr(path_to_pkl: str) -> list:
+    """
+    >>> 
+    """
+    dat = read_db(path_to_pkl)
+    list_expr = list(dat['expressions'].keys())
+    list_expr.sort()
+    return list_expr
+
 def get_sorted_list_of_inf_rules(path_to_pkl: str) -> list:
     """
     >>>
@@ -656,13 +665,14 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_pkl: str) -> str:
     """
     >>> delete_inf_rule('multbothsidesbyx','data.pkl')
     """
+    if print_trace: print('[trace] compute; delete_inf_rule')
     dat = read_db(path_to_pkl)
     status_msg = ""
     infrule_popularity_dict = popularity_of_infrules(path_to_pkl)
     #print('name_of_inf_rule',name_of_inf_rule)
     #print(infrule_popularity_dict)
 
-    if name_of_inf_rule in list(infrule_popularity_dict.keys()):
+    if len(infrule_popularity_dict[name_of_inf_rule])>0:
         status_message = name_of_inf_rule + ' cannot be deleted because it is used in ' + str(infrule_popularity_dict[name_of_inf_rule])
         return status_message
     if name_of_inf_rule in dat['inference rules'].keys():
@@ -675,8 +685,9 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_pkl: str) -> str:
 
 def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_to_pkl: str) -> str:
     """
-    >>> 
+    >>> rename_inf_rule()
     """
+    if print_trace: print('[trace] compute; rename_inf_rule')
     dat = read_db(path_to_pkl)
     status_msg = ""
     if old_name_of_inf_rule in dat['inference rules'].keys():
@@ -697,8 +708,9 @@ def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_t
 
 def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_pkl: str) -> str:
     """
-    >>> 
+    >>> edit_inf_rule_latex()
     """
+    if print_trace: print('[trace] compute; edit_inf_rule_latex')
     dat = read_db(path_to_pkl)
     status_msg = ""
     if inf_rule_name in dat['inference rules'].keys():
@@ -707,6 +719,32 @@ def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_pkl: str
         status_msg = inf_rule_name + ' does not exist in database'
     write_db(path_to_pkl, dat)
     return status_msg
+
+def edit_expr_latex(expr_id: str, revised_latex: str, path_to_pkl: str) -> str:
+    """
+    >>> edit_expr_latex() 
+    """
+    if print_trace: print('[trace] compute; edit_expr_latex')
+    dat = read_db(path_to_pkl)
+    status_msg = ""
+    dat['expressions'][expr_id]['latex'] = revised_latex
+    # TODO: update AST based on revised latex
+    return status_msg
+
+def delete_expr(expr_id: str, path_to_pkl: str) -> str:
+    """
+    >>> delete_expr()
+    """
+    if print_trace: print('[trace] compute; delete_expr')
+    status_message = ""
+    dat = read_db(path_to_pkl)
+    expression_popularity_dict = popularity_of_expressions('data.pkl')
+    if len(expression_popularity_dict[expr_id])>0:
+        status_message = expr_id+' cannot be deleted because it is in use in '+str(expression_popularity_dict[expr_id])
+    else: # expr is not in use
+        del dat['expressions'][expr_id]
+        status_message = "successfully deleted "+expr_id
+    return status_message
 
 def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_pkl: str) -> str:
     """

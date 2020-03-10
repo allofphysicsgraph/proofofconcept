@@ -157,8 +157,21 @@ def list_all_expressions():
     expression_popularity_dict = compute.popularity_of_expressions('data.pkl')
     if request.method == "POST":
         print('[debug] controller; list_all_expressions; request.form =',request.form)
+        if 'edit_expr_latex' in request.form.keys():
+        # request.form = ImmutableMultiDict([('edit_expr_latex', '4928923942'), ('revised_text', 'asdfingasinsf')])
+            status_message = compute.edit_expr_latex(request.form['edit_expr_latex'],
+                                                     request.form['revised_text'], 'data.pkl') 
+            print(status_message)
+            return redirect(url_for('list_all_expressions'))
+        elif 'delete_expr' in request.form.keys():
+        # request.form = ImmutableMultiDict([('delete_expr', '4928923942')])
+            status_message = compute.delete_expr(request.form['delete_expr'], 'data.pkl')
+            print(status_message)
+    list_of_expr = compute.get_sorted_list_of_expr('data.pkl')
     return render_template("list_all_expressions.html",
                            expressions_dict=dat['expressions'],
+                           sorted_list_exprs = list_of_expr,
+                           edit_expr_latex_webform = RevisedTextForm(request.form),
                            expression_popularity_dict=expression_popularity_dict)
 
 @app.route('/list_all_inference_rules', methods=['GET', 'POST'])
