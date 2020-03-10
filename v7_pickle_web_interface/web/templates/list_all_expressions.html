@@ -3,16 +3,44 @@
 
 <P>a list of all expressions</P>
 
-<!--
-{% for expr_id,expr_latex in expressions_dict.items() %}
-{{ expr_id }}: {{ expr_latex }}<BR>
+{% for expr_id, expr_use_list in expression_popularity_dict.items() %}
+<P>{{ expr_id }}: {{ expressions_dict[expr_id] }}<BR>
+{{ expr_id }} is used in derivations {{ expression_use_list }} <BR>
 {% endfor %}
--->
 
-{% for symbol_id, symbol_use_list in expression_popularity_dict.items() %}
-<P>{{ symbol_id }}: {{ expressions_dict[symbol_id] }}<BR>
-{{ symbol_id }} is used in derivations {{ expression_use_list }} <BR>
-{% endfor %}
+
+<a id="delete_expression"></a>
+  <h2>Delete an expression</h2>
+<form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="delete_expr" class="selectpicker form-control">
+              {% for elem in sorted_list_exprs %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+    </div>
+    <button type="submit" class="btn btn-default">Delete</button>
+  </div>
+</form>
+
+<a id="edit_expr_latex"></a>
+  <h2>Edit the latex for an expression</h2>
+<form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="edit_expr_latex" class="selectpicker form-control">
+              {% for elem in sorted_list_exprs %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text }}
+    </div>
+    <button type="submit" class="btn btn-default">Update</button>
+  </div>
+</form>
 
 {% endblock %}
 

@@ -11,7 +11,7 @@
 
 {% for infrule, infrule_use_list in infrule_popularity_dict.items() %}
 <P>{{ infrule }}: {{ infrules_dict[infrule] }}<BR>
-{{ symbol_id }} is used in derivations {{ infrule_use_list }} <BR>
+{{ infrule }} is used in derivations {{ infrule_use_list }} <BR>
 {% endfor %}
 
 <a id="add_inf_rule"></a>
@@ -38,7 +38,7 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="delete_inf_rule" class="selectpicker form-control">
-              {% for elem in infrules_dict.keys() %}
+              {% for elem in sorted_list_infrules %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>
@@ -54,7 +54,7 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="rename_inf_rule_from" class="selectpicker form-control">
-              {% for elem in infrules_dict.keys() %}
+              {% for elem in sorted_list_infrules %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>
@@ -71,7 +71,7 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="edit_inf_rule_latex" class="selectpicker form-control">
-              {% for elem in infrules_dict.keys() %}
+              {% for elem in sorted_list_infrules %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>

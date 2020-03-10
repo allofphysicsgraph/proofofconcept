@@ -66,22 +66,26 @@ def write_db(path_to_pkl: str, dat: dict) -> None:
 # query database for properties
 # read-only functions
 
-def get_list_of_inf_rules(path_to_pkl: str) -> list:
+def get_sorted_list_of_inf_rules(path_to_pkl: str) -> list:
     """
     >>>
     """
     if print_trace: print('[trace] compute: get_list_of_inf_rules')
     dat = read_db(path_to_pkl)
-    return list(dat['inference rules'].keys())
+    list_infrule = list(dat['inference rules'].keys())
+    list_infrule.sort()
+    return list_infrule
 
 
-def get_list_of_derivations(path_to_pkl: str) -> list:
+def get_sorted_list_of_derivations(path_to_pkl: str) -> list:
     """
     >>> get_list_of_derivations('data.pkl') 
     """
     if print_trace: print('[trace] compute: get_list_of_derivation')
     dat = read_db(path_to_pkl)
-    return list(dat['derivations'].keys())
+    list_deriv = list(dat['derivations'].keys())
+    list_deriv.sort()
+    return list_deriv
 
 
 def get_derivation_steps(name_of_derivation: str, path_to_pkl: str) -> dict:
@@ -654,10 +658,13 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_pkl: str) -> str:
     """
     dat = read_db(path_to_pkl)
     status_msg = ""
-    # TODO: is infrule referenced by any derivations?
     infrule_popularity_dict = popularity_of_infrules(path_to_pkl)
-    if name_of_inf_rule in infrule_popularity_dict.keys():
-        status_message = name_of_inf_rule + 'cannot be deleted because it is used in' + str(infrule_popularity_dict[name_of_inf_rule])
+    #print('name_of_inf_rule',name_of_inf_rule)
+    #print(infrule_popularity_dict)
+
+    if name_of_inf_rule in list(infrule_popularity_dict.keys()):
+        status_message = name_of_inf_rule + ' cannot be deleted because it is used in ' + str(infrule_popularity_dict[name_of_inf_rule])
+        return status_message
     if name_of_inf_rule in dat['inference rules'].keys():
         del dat['inference rules'][name_of_inf_rule]
         status_msg = name_of_inf_rule + " deleted"
@@ -675,9 +682,16 @@ def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_t
     if old_name_of_inf_rule in dat['inference rules'].keys():
         dat['inference rules'][new_name_of_inf_rule] = dat['inference rules'][old_name_of_inf_rule]
         del dat['inference rules'][old_name_of_inf_rule]
-        status_msg = old_name_of_inf_rule + ' renamed to ' + new_name_of_inf_rule
+
+        # rename inf_rule in dat['derivations']
+        for derivation_name, deriv_dict in dat['derivations'].items():
+            for step_id, step_dict in deriv_dict.items():
+                if step_dict['inf rule']==old_name_of_inf_rule:
+                    dat['derivations'][derivation_name][step_id]['inf rule'] = new_name_of_inf_rule
+
+        status_msg = old_name_of_inf_rule + ' renamed to ' + new_name_of_inf_rule + '\n and references in derivations were updated'
     else:
-        status_msg = old_name_of_inf_rule + " does not exist in database"
+        status_msg = old_name_of_inf_rule + " does not exist in database; no action taken"
     write_db(path_to_pkl, dat)
     return status_msg
 

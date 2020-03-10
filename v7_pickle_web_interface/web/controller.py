@@ -119,19 +119,6 @@ def start_new_derivation():
                            title='start new derivation')
 
 
-#@app.route('/edit_existing_derivation', methods=['GET', 'POST'])
-#def edit_existing_derivation():
-#    if print_trace: print('[trace] controller: edit_existing_derivation')
-#    return render_template("edit_existing_derivation.html",
-#                           derivations_dict=derivations_dict)
-
-#@app.route('/edit_inference_rule', methods=['GET', 'POST'])
-#def edit_inference_rule():
-#    if print_trace: print('[trace] controller: edit_inference_rule')
-#
-#    return render_template("edit_inference_rule.html",
-#                           inf_rules_dict=inf_rules_dict)
-
 #@app.route('/edit_expression', methods=['GET', 'POST'])
 #def edit_expression():
 #    if print_trace: print('[trace] controller: edit_expression')
@@ -205,8 +192,10 @@ def list_all_inference_rules():
             return redirect(url_for('list_all_inference_rules'))
         else:
             print('unrecognized form result')
+
     return render_template("list_all_inference_rules.html",
                            infrules_dict=dat['inference rules'],
+                           sorted_list_infrules=compute.get_sorted_list_of_inf_rules('data.pkl'),
                            add_infrule_webform = InferenceRuleForm(request.form),
                            rename_infrule_webform = RevisedTextForm(request.form),
                            edit_infrule_latex_webform = RevisedTextForm(request.form),
@@ -218,7 +207,7 @@ def select_derivation_to_edit():
     if request.method == "POST":
         print('[debug] controller; select_derivation_to_edit; request.form =',request.form)
     return render_template("select_derivation_to_edit.html",
-                           derivations_list=compute.get_list_of_inf_rules('data.pkl'))
+                           derivations_list=compute.get_sorted_list_of_derivations('data.pkl'))
 
 @app.route('/select_derivation_step_to_edit/<name_of_derivation>/', methods=['GET', 'POST'])
 def select_derivation_step_to_edit(name_of_derivation: str):
@@ -235,7 +224,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
 @app.route('/select_from_existing_derivations', methods=['GET', 'POST'])
 def select_from_existing_derivations():
     if print_trace: print('[trace] controller: select_from_existing_derivations')
-    list_of_deriv = compute.get_list_of_derivations('data.pkl')
+    list_of_deriv = compute.get_sorted_list_of_derivations('data.pkl')
     if request.method == "POST":
         print('[debug] compute; select_from_existing_derivations; request.form =',request.form)
         # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv')])
@@ -248,7 +237,7 @@ def select_from_existing_derivations():
 @app.route('/new_step_select_inf_rule/<name_of_derivation>/', methods=['GET', 'POST'])
 def new_step_select_inf_rule(name_of_derivation: str):
     if print_trace: print('[trace] controller: new_step_select_inf_rule')
-    list_of_inf_rules = compute.get_list_of_inf_rules('data.pkl')
+    list_of_inf_rules = compute.get_sorted_list_of_inf_rules('data.pkl')
 
     if request.method == 'POST': # and request.form.validate(): no validation because the form was defined on the web page
         print('[debug] controller: new_step_select_inf_rule: ',request.form)
