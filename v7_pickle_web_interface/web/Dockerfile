@@ -50,7 +50,7 @@ COPY static        /home/appuser/app/static
 COPY controller.py /home/appuser/app
 COPY compute.py    /home/appuser/app
 COPY config.py     /home/appuser/app
-COPY data.pkl      /home/appuser/app
+COPY data.json     /home/appuser/app
 COPY tests.sh      /home/appuser/app
 
 USER root

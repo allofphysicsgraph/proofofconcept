@@ -10,10 +10,11 @@
 # https://mypy.readthedocs.io/en/stable/cheat_sheet_py3.html
 #
 # Every function has a doctest; https://docs.python.org/3/library/doctest.html
-# 
+#
 # formating should be PEP-8 compliant; https://www.python.org/dev/peps/pep-0008/
 
 #import math
+import json
 import os
 import shutil
 from subprocess import PIPE # https://docs.python.org/3/library/subprocess.html
@@ -40,69 +41,76 @@ STEP_DICT = TypedDict('STEP_DICT', {'inf rule': str,
 # *********************************************
 # database interaction
 
-def read_db(path_to_pkl: str) -> dict:
+def read_db(path_to_db: str) -> dict:
     """
-    >>> read_db('data.pkl')
+    >>> read_db('data.json')
     """
     if print_trace: print('[trace] compute: read_db')
-    with open(path_to_pkl, 'rb') as fil:
-        dat = pickle.load(fil)
+
+#    with open(path_to_db, 'rb') as fil:
+#        dat = pickle.load(fil)
+    with open(path_to_db) as json_file:
+        dat = json.load(json_file)
     return dat
 
 
-def write_db(path_to_pkl: str, dat: dict) -> None:
+def write_db(path_to_db: str, dat: dict) -> None:
     """
     >>> dat = {}
     >>> print_trace = False
-    >>> write_db('data.pkl', dat)
+    >>> write_db('data.json', dat)
     [trace] compute: write_db
     """
     if print_trace: print('[trace] compute: write_db')
-    with open(path_to_pkl, 'wb') as fil:
-        pickle.dump(dat, fil)
+#    with open(path_to_db, 'wb') as fil:
+#        pickle.dump(dat, fil)
+    with open(path_to_db, 'w') as outfile:
+        json.dump(dat, outfile)
+
+    shutil.copy(path_to_db,'/home/appuser/app/static/')
     return
 
 # *******************************************
 # query database for properties
 # read-only functions
 
-def get_sorted_list_of_expr(path_to_pkl: str) -> list:
+def get_sorted_list_of_expr(path_to_db: str) -> list:
     """
-    >>> 
+    >>>
     """
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     list_expr = list(dat['expressions'].keys())
     list_expr.sort()
     return list_expr
 
-def get_sorted_list_of_inf_rules(path_to_pkl: str) -> list:
+def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     """
     >>>
     """
     if print_trace: print('[trace] compute: get_list_of_inf_rules')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     list_infrule = list(dat['inference rules'].keys())
     list_infrule.sort()
     return list_infrule
 
 
-def get_sorted_list_of_derivations(path_to_pkl: str) -> list:
+def get_sorted_list_of_derivations(path_to_db: str) -> list:
     """
-    >>> get_list_of_derivations('data.pkl') 
+    >>> get_list_of_derivations('data.json')
     """
     if print_trace: print('[trace] compute: get_list_of_derivation')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     list_deriv = list(dat['derivations'].keys())
     list_deriv.sort()
     return list_deriv
 
 
-def get_derivation_steps(name_of_derivation: str, path_to_pkl: str) -> dict:
+def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
     """
-    >>> get_list_of_steps('my deriv','data.pkl') 
+    >>> get_list_of_steps('my deriv','data.json')
     """
     if print_trace: print('[trace] compute; get_list_of_steps')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     if name_of_derivation not in dat['derivations'].keys():
         raise Exception('[ERROR] compute; get_list_of_steps;', name_of_derivation,
                         'does not appear to be a key in derivations', dat['derivations'].keys())
@@ -111,7 +119,7 @@ def get_derivation_steps(name_of_derivation: str, path_to_pkl: str) -> dict:
 
 def input_output_count_for_infrule(inf_rule: str, path_to_db: str) -> Tuple[str, str, str]:
     """
-    >>> input_output_count_for_infrule('multiply both sides by X', 'data.pkl')
+    >>> input_output_count_for_infrule('multiply both sides by X', 'data.json')
     """
     if print_trace: print('[trace] compute: input_output_count_for_infrule')
     dat = read_db(path_to_db)
@@ -126,14 +134,14 @@ def input_output_count_for_infrule(inf_rule: str, path_to_db: str) -> Tuple[str,
     number_of_outputs = dat['inference rules'][inf_rule]['number of outputs']
     return number_of_feeds, number_of_inputs, number_of_outputs
 
-def create_expr_id(path_to_pkl: str) -> str:
+def create_expr_id(path_to_db: str) -> str:
     """
     search DB to find whether proposed expr ID already exists
 
-    >>> create_expr_id(False, 'data.pkl')
+    >>> create_expr_id(False, 'data.json')
     """
     if print_trace: print('[trace] compute; create_expr_id')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
 
     global_expr_ids_in_use = []
     for derivation_name, steps_dict in dat['derivations'].items():
@@ -157,15 +165,15 @@ def create_expr_id(path_to_pkl: str) -> str:
     return proposed_global_expr_id
 
 
-def create_inf_rule_id(path_to_pkl: str) -> str:
+def create_inf_rule_id(path_to_db: str) -> str:
     """
     aka step ID
 
     search DB to find whether proposed local ID already exists
-    >>> create_inf_rule_id(False, 'data.pkl')
+    >>> create_inf_rule_id(False, 'data.json')
     """
     if print_trace: print('[trace] compute; create_inf_rule_id')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
 
     inf_rule_ids_in_use = []
     for derivation_name, steps_dict in dat['derivations'].items():
@@ -184,13 +192,13 @@ def create_inf_rule_id(path_to_pkl: str) -> str:
     return proposed_inf_rule_id
 
 
-def create_expr_local_id(path_to_pkl: str) -> str:
+def create_expr_local_id(path_to_db: str) -> str:
     """
     search DB to find whether proposed local ID already exists
-    >>> create_expr_local_id(False, 'data.pkl')
+    >>> create_expr_local_id(False, 'data.json')
     """
     if print_trace: print('[trace] compute; create_expr_local_id')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
 
     local_ids_in_use = []
     for derivation_name, steps_dict in dat['derivations'].items():
@@ -214,7 +222,7 @@ def create_expr_local_id(path_to_pkl: str) -> str:
     return proposed_local_id
 
 #********************************************
-# popularity 
+# popularity
 
 def flatten_dict(d: dict, sep: str = "_") -> dict:
     """
@@ -226,7 +234,7 @@ def flatten_dict(d: dict, sep: str = "_") -> dict:
     from https://medium.com/better-programming/how-to-flatten-a-dictionary-with-nested-lists-and-dictionaries-in-python-524fd236365
 
     >>> flatten_dict({},'_')
-    """ 
+    """
     obj = collections.OrderedDict()
     def recurse(t,parent_key=""):
         if isinstance(t,list):
@@ -238,14 +246,14 @@ def flatten_dict(d: dict, sep: str = "_") -> dict:
         else:
             obj[parent_key] = t
     recurse(d)
-    return dict(obj)        
+    return dict(obj)
 
-def extract_operators_from_expression_dict(expr_id: str, path_to_pkl: str) -> list:
+def extract_operators_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     """
-    >>> 
+    >>>
     """
     if print_trace: print('[trace] compute; extract_operators_from_expression_dict')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     expr_dict = dat['expressions']
     flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
     list_of_str = list(flt_dict.keys())
@@ -259,33 +267,33 @@ def extract_operators_from_expression_dict(expr_id: str, path_to_pkl: str) -> li
                 list_of_operators.append(operator_candidate)
     return list(set(list_of_operators))
 
-def extract_symbols_from_expression_dict(expr_id: str, path_to_pkl: str) -> list:
+def extract_symbols_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     """
-    >>> extract_symbols_from_expression_dict('data.pkl')
+    >>> extract_symbols_from_expression_dict('data.json')
     """
     if print_trace: print('[trace] compute; extract_symbols_from_expression_dict')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     expr_dict = dat['expressions']
     flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
     #print('[debug] compute; extract_symbols_from_expression_dict; flt_dict=',flt_dict)
     return list(flt_dict.values())
 
-def extract_expressions_from_derivation_dict(deriv_name: str, path_to_pkl: str) -> list:
+def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
     """
-    >>> 
+    >>>
     """
     if print_trace: print('[trace] compute; extract_expressions_from_derivation_dict')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     derivations_dict = dat['derivations']
     flt_dict = flatten_dict(derivations_dict[deriv_name])
     return list(flt_dict.values())
 
-def extract_infrules_from_derivation_dict(deriv_name: str, path_to_pkl: str) -> list:
+def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
     """
-    >>> extract_infrules_from_derivation_dict() 
+    >>> extract_infrules_from_derivation_dict()
     """
     if print_trace: print('[trace] compute; extract_infrules_from_derivation_dict')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     list_of_infrules = []
     for step_id, step_dict in dat['derivations'][deriv_name].items():
         list_of_infrules.append(step_dict['inf rule'])
@@ -293,67 +301,67 @@ def extract_infrules_from_derivation_dict(deriv_name: str, path_to_pkl: str) -> 
     #if print_debug: print('[debug] compute; extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
     return list(set(list_of_infrules))
 
-def popularity_of_operators(path_to_pkl: str) -> dict:
+def popularity_of_operators(path_to_db: str) -> dict:
     """
-    >>> popularity_of_operators('data.pkl')
+    >>> popularity_of_operators('data.json')
     """
     if print_trace: print('[trace] compute; popularity_of_operators')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     operator_popularity_dict = {}
     for operator, operator_dict in dat['operators'].items():
         list_of_uses = []
         for expr_id, expr_dict in dat['expressions'].items():
-            list_of_operators_for_this_expr = extract_operators_from_expression_dict(expr_id, path_to_pkl)
+            list_of_operators_for_this_expr = extract_operators_from_expression_dict(expr_id, path_to_db)
             if operator in list_of_operators_for_this_expr:
                 list_of_uses.append(expr_id)
         operator_popularity_dict[operator] = list_of_uses
     return operator_popularity_dict
 
-def popularity_of_symbols(path_to_pkl: str) -> dict:
+def popularity_of_symbols(path_to_db: str) -> dict:
     """
-    >>> popularity_of_symbols('data.pkl')
+    >>> popularity_of_symbols('data.json')
     """
     if print_trace: print('[trace] compute; popularity_of_symbols')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
 
     symbol_popularity_dict = {}
     for symbol_id, symbol_dict in dat['symbols'].items():
         list_of_uses = []
         for expr_id, expr_dict in dat['expressions'].items():
-            list_of_symbols_for_this_expr = extract_symbols_from_expression_dict(expr_id, path_to_pkl)
+            list_of_symbols_for_this_expr = extract_symbols_from_expression_dict(expr_id, path_to_db)
             if symbol_id in list_of_symbols_for_this_expr:
                  list_of_uses.append(expr_id)
         symbol_popularity_dict[symbol_id] = list_of_uses
 
     return symbol_popularity_dict
 
-def popularity_of_expressions(path_to_pkl: str) -> dict:
+def popularity_of_expressions(path_to_db: str) -> dict:
     """
-    >>> popularity_of_expressions('data.pkl')
+    >>> popularity_of_expressions('data.json')
     """
     if print_trace: print('[trace] compute; popularity_of_expressions')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     expression_popularity_dict = {}
     for expr_id, expr_dict in dat['expressions'].items():
         list_of_uses = []
         for deriv_name, deriv_dict in dat['derivations'].items():
-            list_of_all_expr_for_this_deriv = extract_expressions_from_derivation_dict(deriv_name, path_to_pkl)
+            list_of_all_expr_for_this_deriv = extract_expressions_from_derivation_dict(deriv_name, path_to_db)
             if expr_id in list_of_all_expr_for_this_deriv:
                 list_of_uses.append(deriv_name)
         expression_popularity_dict[expr_id] = list_of_uses
     return expression_popularity_dict
 
-def popularity_of_infrules(path_to_pkl: str) -> dict:
+def popularity_of_infrules(path_to_db: str) -> dict:
     """
-    >>> popularity_of_infrules('data.pkl')
+    >>> popularity_of_infrules('data.json')
     """
     if print_trace: print('[trace] compute; popularity_of_infrules')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     infrule_popularity_dict = {}
     for infrule_name, infrule_dict in dat['inference rules'].items():
         list_of_uses = []
         for deriv_name, deriv_dict in dat['derivations'].items():
-            list_of_infrule_for_this_deriv = extract_infrules_from_derivation_dict(deriv_name, path_to_pkl)
+            list_of_infrule_for_this_deriv = extract_infrules_from_derivation_dict(deriv_name, path_to_db)
             #print('[debug] compute; popularity_of_infrules; list =',list_of_infrule_for_this_deriv)
             #print('[debug] compute; popularity_of_infrules; infrule_name =',infrule_name)
             #print(deriv_name)
@@ -407,15 +415,13 @@ def find_valid_filename(extension: str, print_debug: bool, destination_folder: s
 #*******************************************
 # create files on filesystem
 
-def create_tex_file(tmp_file: str, input_latex_str: str) -> None:
+def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
     """
-    >>> create_tex_file('filename_without_extension', 'a \dot b \\nabla')
+    >>> create_tex_file_for_expr('filename_without_extension', 'a \dot b \\nabla')
     """
-    if print_trace: print('[trace] compute; create_tex_file')
+    if print_trace: print('[trace] compute; create_tex_file_for_expr')
 
     remove_file_debris(['./'], [tmp_file], ['tex'])
-
-    print('got past file removal')
 
     with open(tmp_file+'.tex', 'w') as lat_file:
         lat_file.write('\\documentclass[12pt]{report}\n')
@@ -425,17 +431,18 @@ def create_tex_file(tmp_file: str, input_latex_str: str) -> None:
         lat_file.write('$'+input_latex_str+'$\n')
         lat_file.write('}\n')
         lat_file.write('\\end{document}\n')
-    print('wrote tex file')
+    if print_debug: print('[debug] compute; create_tex_file_for_expr; wrote tex file')
     return
 
-def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil: TextIO, path_to_pkl: str) -> None:
-    """
-    >>> fil = open('a_file','r') 
-    >>> write_step_to_graphviz_file("deriv name", "492482", fil, False, 'data.pkl')
-    """
-    if print_trace: print('[trace] compute; write_step_to_graphviz_file') 
 
-    dat = read_db(path_to_pkl)
+def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil: TextIO, path_to_db: str) -> None:
+    """
+    >>> fil = open('a_file','r')
+    >>> write_step_to_graphviz_file("deriv name", "492482", fil, False, 'data.json')
+    """
+    if print_trace: print('[trace] compute; write_step_to_graphviz_file')
+
+    dat = read_db(path_to_db)
 
     step_dict = dat['derivations'][name_of_derivation][local_step_id]
     print('[debug] compute: write_step_to_graphviz_file: step_dict =', step_dict)
@@ -449,7 +456,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
     if not valid_latex_bool:
         print('invalid latex for inference rule',step_dict['inf rule'])
         return valid_latex_bool, step_dict['inf rule']
-    fil.write(local_step_id + ' [shape=ellipse, label="",image="/home/appuser/app/static/' + 
+    fil.write(local_step_id + ' [shape=ellipse, label="",image="/home/appuser/app/static/' +
               generated_png_name + '",labelloc=b];\n')
 
     #print('[debug] compute: write_step_to_graphviz_file: inputs')
@@ -459,7 +466,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
             print('invalid latex for input',dat['expressions'][expr_global_id]['latex'])
             return valid_latex_bool,dat['expressions'][expr_global_id]['latex']
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
-        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' + 
+        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' +
                        generated_png_name + '",labelloc=b];\n')
 
     #print('[debug] compute: write_step_to_graphviz_file: outputs')
@@ -470,7 +477,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
             return valid_latex_bool, dat['expressions'][expr_global_id]['latex']
         #print('[debug] compute; write_step_to_graphviz_file; local and global',expr_local_id,expr_local_id)
         fil.write(local_step_id + ' -> ' + expr_local_id + ';\n')
-        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' + 
+        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' +
                        generated_png_name + '",labelloc=b];\n')
 
     #print('[debug] compute: write_step_to_graphviz_file: feeds')
@@ -480,20 +487,53 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
             print('invalid latex for feed',dat['expressions'][expr_global_id]['latex'])
             return valid_latex_bool, dat['expressions'][expr_global_id]['latex']
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
-        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' + 
+        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' +
                        generated_png_name + '",labelloc=b];\n')
     #print('[debug] compute: write_step_to_graphviz_file: returning')
 
     return True, 'no invalid latex'
 
+def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str:
+    """
+    >>> generate_pdf_for_derivation
+    """
+    if print_trace: print('[trace] compute; generate_pdf_for_derivation')
+    dat = read_db(path_to_db)
 
-def create_derivation_png(name_of_derivation: str, path_to_pkl: str) -> str:
+    path_to_pdf = '/home/appuser/app/static/'
+    pdf_filename = name_of_derivation.replace(' ','_')
+
+    remove_file_debris(['/home/appuser/app/static/'], [pdf_filename], ['tex','log','pdf'])
+
+    with open(pdf_filename+'.tex', 'w') as lat_file:
+        lat_file.write('\\documentclass[12pt]{report}\n')
+        lat_file.write('\\thispagestyle{empty}\n')
+        lat_file.write('\\begin{document}\n')
+        # TODO
+        lat_file.write('\\end{document}\n')
+
+
+    process = subprocess.run(['latex','-halt-on-error', tmp_file+'.tex'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
+    #latex_stdout, latex_stderr = process.communicate()
+    # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
+    latex_stdout = process.stdout.decode("utf-8")
+    latex_stderr = process.stderr.decode("utf-8")
+
+    #if print_debug: print('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
+    #if print_debug: print('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
+
+    if 'Text line contains an invalid character' in latex_stdout:
+        return False, 'no png generated'
+
+    return path_to_pdf
+
+def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
     """
     >>> create_derivation_png()
     """
     if print_trace: print('[trace] compute; create_derivation_png')
 
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
 
     dot_filename = '/home/appuser/app/static/graphviz.dot'
     with open(dot_filename, 'w') as fil:
@@ -504,7 +544,7 @@ def create_derivation_png(name_of_derivation: str, path_to_pkl: str) -> str:
 
         for step_id, step_dict in dat['derivations'][name_of_derivation].items():
 
-            valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(name_of_derivation, step_id, fil, path_to_pkl)
+            valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(name_of_derivation, step_id, fil, path_to_db)
             if not valid_latex_bool:
                 return valid_latex_bool, invalid_latex_str, 'no png created'
 
@@ -522,7 +562,7 @@ def create_derivation_png(name_of_derivation: str, path_to_pkl: str) -> str:
 
 
 
-def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_to_pkl: str) -> str:
+def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_to_db: str) -> str:
     """
     >>> step_dict = {'inf rule':'add X to both sides',
                      'inf rule local ID':'2948592',
@@ -544,7 +584,7 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
         fil.write('label="step review for ' + name_of_derivation + '";\n')
         fil.write('fontsize=12;\n')
 
-        valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_pkl)
+        valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_db)
         if not valid_latex_bool:
             return valid_latex_bool, invalid_latex_str, 'no png created'
 
@@ -584,7 +624,7 @@ def create_png_from_latex(input_latex_str: str) -> str:
 
     #if print_debug: print('[debug] compute: create_png_from_latex: finished debris removal, starting create tex file')
 
-    create_tex_file(tmp_file, input_latex_str)
+    create_tex_file_for_expr(tmp_file, input_latex_str)
 
     #if print_debug: print('[debug] compute: create_png_from_latex: running latex against file')
 
@@ -626,10 +666,10 @@ def create_png_from_latex(input_latex_str: str) -> str:
 #*********************************************************
 # data structure transformations
 
-def add_inf_rule(inf_rule_dict_from_form: dict, path_to_pkl: str) -> str:
+def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     """
     >>> request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
-    >>> add_inf_rule(request.form.to_dict(), 'data.pkl')
+    >>> add_inf_rule(request.form.to_dict(), 'data.json')
     """
     if print_trace: print('[trace] compute; add_inf_rule')
 
@@ -652,23 +692,23 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_pkl: str) -> str:
     arg_dict['latex'] = inf_rule_dict_from_form['latex']
     if print_debug: print('[debug] compute; add_inf_rule; arg_dict =',arg_dict)
 
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     if inf_rule_dict_from_form['inf_rule_name'] in dat['inference rules'].keys():
         status_msg = "inference rule already exists"
 
     dat['inference rules'][inf_rule_dict_from_form['inf_rule_name']] = arg_dict
-    write_db(path_to_pkl, dat)
+    write_db(path_to_db, dat)
 
     return status_msg
 
-def delete_inf_rule(name_of_inf_rule: str, path_to_pkl: str) -> str:
+def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
     """
-    >>> delete_inf_rule('multbothsidesbyx','data.pkl')
+    >>> delete_inf_rule('multbothsidesbyx','data.json')
     """
     if print_trace: print('[trace] compute; delete_inf_rule')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     status_msg = ""
-    infrule_popularity_dict = popularity_of_infrules(path_to_pkl)
+    infrule_popularity_dict = popularity_of_infrules(path_to_db)
     #print('name_of_inf_rule',name_of_inf_rule)
     #print(infrule_popularity_dict)
 
@@ -680,15 +720,15 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_pkl: str) -> str:
         status_msg = name_of_inf_rule + " deleted"
     else:
         status_msg = name_of_inf_rule + " does not exist in database"
-    write_db(path_to_pkl, dat)
+    write_db(path_to_db, dat)
     return status_msg
 
-def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_to_pkl: str) -> str:
+def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_to_db: str) -> str:
     """
     >>> rename_inf_rule()
     """
     if print_trace: print('[trace] compute; rename_inf_rule')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     status_msg = ""
     if old_name_of_inf_rule in dat['inference rules'].keys():
         dat['inference rules'][new_name_of_inf_rule] = dat['inference rules'][old_name_of_inf_rule]
@@ -703,42 +743,42 @@ def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_t
         status_msg = old_name_of_inf_rule + ' renamed to ' + new_name_of_inf_rule + '\n and references in derivations were updated'
     else:
         status_msg = old_name_of_inf_rule + " does not exist in database; no action taken"
-    write_db(path_to_pkl, dat)
+    write_db(path_to_db, dat)
     return status_msg
 
-def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_pkl: str) -> str:
+def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str) -> str:
     """
     >>> edit_inf_rule_latex()
     """
     if print_trace: print('[trace] compute; edit_inf_rule_latex')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     status_msg = ""
     if inf_rule_name in dat['inference rules'].keys():
         dat['inference rules'][inf_rule_name]['latex'] = revised_latex
     else:
         status_msg = inf_rule_name + ' does not exist in database'
-    write_db(path_to_pkl, dat)
+    write_db(path_to_db, dat)
     return status_msg
 
-def edit_expr_latex(expr_id: str, revised_latex: str, path_to_pkl: str) -> str:
+def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
     """
-    >>> edit_expr_latex() 
+    >>> edit_expr_latex()
     """
     if print_trace: print('[trace] compute; edit_expr_latex')
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
     status_msg = ""
     dat['expressions'][expr_id]['latex'] = revised_latex
     # TODO: update AST based on revised latex
     return status_msg
 
-def delete_expr(expr_id: str, path_to_pkl: str) -> str:
+def delete_expr(expr_id: str, path_to_db: str) -> str:
     """
     >>> delete_expr()
     """
     if print_trace: print('[trace] compute; delete_expr')
     status_message = ""
-    dat = read_db(path_to_pkl)
-    expression_popularity_dict = popularity_of_expressions('data.pkl')
+    dat = read_db(path_to_db)
+    expression_popularity_dict = popularity_of_expressions(path_to_db)
     if len(expression_popularity_dict[expr_id])>0:
         status_message = expr_id+' cannot be deleted because it is in use in '+str(expression_popularity_dict[expr_id])
     else: # expr is not in use
@@ -746,15 +786,15 @@ def delete_expr(expr_id: str, path_to_pkl: str) -> str:
         status_message = "successfully deleted "+expr_id
     return status_message
 
-def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_pkl: str) -> str:
+def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_db: str) -> str:
     """
     >>> latex_for_step_dict = ImmutableMultiDict([('output1', 'a = b')])
-    >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'data.pkl')
+    >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'data.json')
     9492849
     """
     if print_trace: print('[trace] compute; create_step')
 
-    dat = read_db(path_to_pkl)
+    dat = read_db(path_to_db)
 
     step_dict = {'inf rule': inf_rule,
                  'inputs':   {},
@@ -763,18 +803,18 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
 
     for which_eq, latex_expr_str in latex_for_step_dict.items():
         if 'input' in which_eq:
-            expr_id = create_expr_id(path_to_pkl)
+            expr_id = create_expr_id(path_to_db)
             dat['expressions'][expr_id] = {'latex': latex_expr_str, 'AST': {}}
-            expr_local_id = create_expr_local_id(path_to_pkl)
+            expr_local_id = create_expr_local_id(path_to_db)
             step_dict['inputs'][expr_local_id] = expr_id
         elif 'output' in which_eq:
-            expr_id = create_expr_id(path_to_pkl)
+            expr_id = create_expr_id(path_to_db)
             dat['expressions'][expr_id] = {'latex': latex_expr_str, 'AST': {}}
-            step_dict['outputs'][create_expr_local_id(path_to_pkl)] = expr_id
+            step_dict['outputs'][create_expr_local_id(path_to_db)] = expr_id
         elif 'feed' in which_eq:
-            expr_id = create_expr_id(path_to_pkl)
+            expr_id = create_expr_id(path_to_db)
             dat['expressions'][expr_id] = {'latex': latex_expr_str, 'AST': {}}
-            step_dict['feeds'][create_expr_local_id(path_to_pkl)] = expr_id
+            step_dict['feeds'][create_expr_local_id(path_to_db)] = expr_id
         elif 'submit_button' in which_eq:
             pass
         else:
@@ -782,15 +822,15 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
 
     print('[debug] compute; create_step; step_dict =', step_dict)
 
-    # add step_dict to dat, write dat to pkl
-    inf_rule_local_ID = create_inf_rule_id(path_to_pkl)
+    # add step_dict to dat, write dat to file
+    inf_rule_local_ID = create_inf_rule_id(path_to_db)
     if name_of_derivation not in dat['derivations'].keys():
         print('[debug] compute: create_step: starting new derivation')
         dat['derivations'][name_of_derivation] = {}
     if inf_rule_local_ID in dat['derivations'][name_of_derivation].keys():
         raise Exception('collision of inf_rule_local_id already in dat', inf_rule_local_ID)
     dat['derivations'][name_of_derivation][inf_rule_local_ID] = step_dict
-    write_db(path_to_pkl, dat)
+    write_db(path_to_db, dat)
 
     return inf_rule_local_ID
 

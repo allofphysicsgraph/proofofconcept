@@ -4,27 +4,22 @@
 <P>Derivations:
 <UL>
 <LI><a href="{{ url_for('start_new_derivation') }}">start a new derivation</a>
-<LI><a href="{{ url_for('select_from_existing_derivations') }}">view existing derivations</a> 
-<LI><a href="{{ url_for('select_from_existing_derivations') }}">edit an existing derivation</a> (points to <a href="{{ url_for('select_from_existing_derivations') }}">view existing derivations</a>)
-</UL>
-
-<P>Inference rules
-<UL>
-<LI><a href="{{ url_for('list_all_inference_rules') }}">list all inference rules</a> 
-<LI><a href="{{ url_for('list_all_inference_rules') }}">edit inference rule</a> (points to <a href="{{ url_for('list_all_inference_rules') }}">list all inference rules</a>)
-</UL>
-
-<P>Expressions
-<UL>
-<LI><a href="{{ url_for('list_all_expressions') }}">list all expressions</a> 
-<LI><a href="{{ url_for('list_all_expressions') }}">edit expression</a> (points to <a href="{{ url_for('list_all_expressions') }}">list all expressions</a>) 
-</uL>
-
-<P>symbols and operators
-<UL>
+<LI><a href="{{ url_for('select_from_existing_derivations') }}">view existing derivations</a>
+  (also edit an existing derivation)
+<LI><a href="{{ url_for('list_all_inference_rules') }}">list all inference rules</a> (also edit inference rules)
+<LI><a href="{{ url_for('list_all_expressions') }}">list all expressions</a> (also edit expression)
 <LI><a href="{{ url_for('list_all_symbols') }}">list all symbols</a>
 <LI><a href="{{ url_for('list_all_operators') }}">list all operators</a>
 </UL>
 
-{% endblock %}
+<P><a href="{{ url_for('static', filename=data_pkl) }}">Download the current database file</a><BR>
 
+<!-- https://www.google.com/search?q=flask+upload+file -->
+Upload database file:
+<!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
+<form method=post enctype=multipart/form-data>
+      <input type=file name=file>
+      <input type=submit value=Upload>
+    </form>
+</p>
+{% endblock %}
