@@ -34,4 +34,6 @@ https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_
 
 In active development as of 20200315
 
+# a small derivation
 
+![Physics derivation graph: integration by parts](https://allofphysicsgraph.github.io/proofofconcept/site/pictures/generated_from_project/graph_integration_by_parts_without_labels.png | width=400)
