@@ -22,6 +22,8 @@ print_debug = True
 app = Flask(__name__, static_folder='static')
 app.config.from_object(Config) # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 app.config['UPLOAD_FOLDER'] = '/home/appuser/uploads' # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+
 
 class EquationInputForm(Form):
     if print_trace: print('[trace] controller: class = EquationInputForm')

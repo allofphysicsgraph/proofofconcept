@@ -1,5 +1,7 @@
 #/usr/bin/env python
 
+# 20200315: switch ASTs from nested dictionaries to nested lists
+
 # 20200126: changed from list of dicts to dict of dicts
 # originally each of the top-level dicts (e.g., symbols, units, derivations, expressions) were lists of dictionaries.
 # the "list of dictionaries" design is easily transformed to a table (where the column is the key)
@@ -40,24 +42,24 @@ dat = {} # one data structure to hold all others (expressions, inference rules, 
 # The AST and LaTeX representations are intended to be equivalent
 # Ambiguous LaTeX is not allowed
 dat['expressions'] = {
-  '1492842':    {'latex': '\\nabla \\vec{x} = f(y)','AST': {'equals': [
-                                                                {'nabla': ['2911']},
-                                                                {'function': ['1452']}]}},
-  '4928923942': {'latex': 'a = b',         'AST': {'equals': ['9139', '1939']}},
-  '9499959299': {'latex': 'a + k = b + k', 'AST': {'equals': [
-                                                                {'addition': [
-                                                                    '9139', '5321']},
-                                                                {'addition': [
-                                                                    '1939', '5321']}]}},
-  '9584821911': {'latex': 'c + d = a',     'AST': {'equals': [
-                                                                {'addition': [
-                                                                    '4231', '1900']},
-                                                                '9139']}},
-  '1492811142': {'latex': 'f = x - d',     'AST': {'equals': [
+  '1492842':    {'latex': '\\nabla \\vec{x} = f(y)','AST': ['equals', [
+                                                                ['nabla', ['2911']],
+                                                                ['function', ['1452']]]]},
+  '4928923942': {'latex': 'a = b',         'AST': ['equals', ['9139', '1939']]},
+  '9499959299': {'latex': 'a + k = b + k', 'AST': ['equals', [
+                                                                ['addition', [
+                                                                    '9139', '5321']],
+                                                                ['addition', [
+                                                                    '1939', '5321']]]]},
+  '9584821911': {'latex': 'c + d = a',     'AST': ['equals', [
+                                                                ['addition', [
+                                                                    '4231', '1900']],
+                                                                '9139']]},
+  '1492811142': {'latex': 'f = x - d',     'AST': ['equals', [
                                                                 '4200',
-                                                                {'subtraction': [
-                                                                     '1464', '1900']}]}},
-   '949482919': {'latex': 'k',             'AST': '5321'} # not sure how to write an AST for a single variable as a dict
+                                                                ['subtraction', [
+                                                                     '1464', '1900']]]]},
+   '949482919': {'latex': 'k',             'AST': ['5321']} 
 #  ''{ 'latex': '', 'AST': {}},
 }
 

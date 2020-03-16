@@ -164,7 +164,6 @@ def create_expr_id(path_to_db: str) -> str:
             raise Exception("this seems unlikely")
     return proposed_global_expr_id
 
-
 def create_inf_rule_id(path_to_db: str) -> str:
     """
     aka step ID
@@ -392,8 +391,7 @@ def remove_file_debris(list_of_paths_to_files: list, list_of_file_names: list, l
 #    print('done')
     return
 
-
-def find_valid_filename(extension: str, print_debug: bool, destination_folder: str) -> str:
+def find_valid_filename(destination_folder: str, extension: str) -> str:
     """
     called by create_png_from_latex()
 
@@ -539,7 +537,7 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
     with open(dot_filename, 'w') as fil:
         fil.write('digraph physicsDerivation { \n')
         fil.write('overlap = false;\n')
-        fil.write('label="step preview for '+name_of_derivation+'";\n')
+        fil.write('label="derivation: '+name_of_derivation+'";\n')
         fil.write('fontsize=12;\n')
 
         for step_id, step_dict in dat['derivations'][name_of_derivation].items():
@@ -549,7 +547,7 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
                 return valid_latex_bool, invalid_latex_str, 'no png created'
 
         fil.write('}\n')
-    output_filename = 'graphviz.png'
+    output_filename = find_valid_filename('.', 'png')
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
 #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
     process = subprocess.run(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
@@ -581,7 +579,7 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
     with open(dot_filename, 'w') as fil:
         fil.write('digraph physicsDerivation { \n')
         fil.write('overlap = false;\n')
-        fil.write('label="step review for ' + name_of_derivation + '";\n')
+        fil.write('label="step in ' + name_of_derivation + '";\n')
         fil.write('fontsize=12;\n')
 
         valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_db)
@@ -593,7 +591,7 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
 #    with open(dot_filename,'r') as fil:
 #       print(fil.read())
 
-    output_filename = 'graphviz.png'
+    output_filename = find_valid_filename('.','.png')
     remove_file_debris(['./'], ['graphviz'], ['png'])
 
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
@@ -653,7 +651,7 @@ def create_png_from_latex(input_latex_str: str) -> str:
     #if print_debug: print('[debug] compute: create_png_from_latex: png std err', png_stderr)
 
     destination_folder = '/home/appuser/app/static/'
-    generated_png_name = find_valid_filename('png', print_debug, destination_folder)
+    generated_png_name = find_valid_filename(destination_folder, 'png')
     shutil.move(name_of_png, generated_png_name)
 
     if os.path.isfile(destination_folder + generated_png_name):

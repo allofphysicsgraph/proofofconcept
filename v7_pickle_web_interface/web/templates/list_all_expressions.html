@@ -3,11 +3,30 @@
 
 <P>a list of all expressions</P>
 
+<table border="1">
+  <tr>
+    <th>expression ID</th>
+    <th>Latex</th>
+    <th>AST</th>
+    <th>used in derivation</th>
+  </tr>
+{% for expr_id, expr_use_list in expression_popularity_dict.items() %}
+  <tr>
+    <td>{{ expr_id}}</td>
+    <td>{{ expressions_dict[expr_id]['latex'] }}</td>
+    <td>{{ expressions_dict[expr_id]['AST'] }}</td>
+    <td>{{ expression_use_list }}</td>
+  </tr>
+{% endfor %}
+  <caption>Physics Derivation Graph: Expressions</caption>
+</table>
+
+<!--
 {% for expr_id, expr_use_list in expression_popularity_dict.items() %}
 <P>{{ expr_id }}: {{ expressions_dict[expr_id] }}<BR>
 {{ expr_id }} is used in derivations {{ expression_use_list }} <BR>
 {% endfor %}
-
+-->
 
 <a id="delete_expression"></a>
   <h2>Delete an expression</h2>

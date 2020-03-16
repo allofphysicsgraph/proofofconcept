@@ -3,16 +3,41 @@
 
 <P>a list of all inference rules</P>
 
+<table border="1">
+  <tr>
+    <th>inf rule name</th>
+    <th>inputs</th>
+    <th>outputs</th>
+    <th>feeds</th>
+    <th>Latex</th>
+    <th>Used in derivations</th>
+  </tr>
+{% for infrule, infrule_use_list in infrule_popularity_dict.items() %}
+  <tr>
+    <td>{{ infrule }}</td>
+    <td>{{ infrules_dict[infrule]['number of inputs'] }}</td>
+    <td>{{ infrules_dict[infrule]['number of outputs'] }}</td>
+    <td>{{ infrules_dict[infrule]['number of feeds'] }}</td>
+    <td>{{ infrules_dict[infrule]['latex'] }}</td>
+    <td>{{ infrule_use_list }} </td>
+  </tr>
+{% endfor %}
+  <caption>Physics Derivation Graph: Inference Rules</caption>
+</table>
+
+
 <!--
 {% for inf_rule,inf_rule_attributes_dict in infrules_dict.items() %}
 {{ inf_rule }}: {{ inf_rule_attributes_dict }}<BR>
 {% endfor %}
 -->
 
+<!--
 {% for infrule, infrule_use_list in infrule_popularity_dict.items() %}
 <P>{{ infrule }}: {{ infrules_dict[infrule] }}<BR>
 {{ infrule }} is used in derivations {{ infrule_use_list }} <BR>
 {% endfor %}
+-->
 
 <a id="add_inf_rule"></a>
   <H2>Add new inference rule</h2> 
