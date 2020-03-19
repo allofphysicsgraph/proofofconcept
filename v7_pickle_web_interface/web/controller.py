@@ -278,10 +278,11 @@ def select_from_existing_derivations():
         if request.form['submit_button'] == 'generate_pdf': 
 #request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_pdf')])
             pdf_filename = compute.generate_pdf_for_derivation(name_of_derivation,'data.json')
-            return redirect(url_for('review_derivation',
-                              pdf_filename=pdf_filename,
-                              name_of_derivation=name_of_derivation))
 
+            return redirect(url_for('static', filename=pdf_filename))
+            #return redirect(url_for('review_derivation',
+            #                  pdf_filename=pdf_filename,
+            #                  name_of_derivation=name_of_derivation))
 
         elif request.form['submit_button'] == 'display_graphviz':
 #request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'display_graphviz')])

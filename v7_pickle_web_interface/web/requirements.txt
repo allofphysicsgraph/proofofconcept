@@ -4,4 +4,5 @@ flask-wtf
 mypy
 flake8
 pylint
+jsonschema
 

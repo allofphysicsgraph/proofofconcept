@@ -47,11 +47,12 @@ USER appuser
 
 COPY templates     /home/appuser/app/templates
 COPY static        /home/appuser/app/static
-COPY controller.py /home/appuser/app
-COPY compute.py    /home/appuser/app
-COPY config.py     /home/appuser/app
-COPY data.json     /home/appuser/app
-COPY tests.sh      /home/appuser/app
+COPY compute.py config.py data.json json_schema.py tests.sh controller.py /home/appuser/app/
+#COPY compute.py    /home/appuser/app
+#COPY config.py     /home/appuser/app
+#COPY data.json     /home/appuser/app
+#COPY json_schema.py /home/appuser/app
+#COPY tests.sh      /home/appuser/app
 
 USER root
 RUN chown -R appuser /home/appuser/app && chgrp -R appuser /home/appuser/app
