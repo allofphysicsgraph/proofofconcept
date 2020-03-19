@@ -72,7 +72,7 @@ def write_db(path_to_db: str, dat: dict) -> None:
     with open(path_to_db, 'w') as outfile:
         json.dump(dat, outfile)
 
-    shutil.copy(path_to_db,'/home/appuser/app/static/')
+    #shutil.copy(path_to_db,'/home/appuser/app/static/')
     return
 
 # *******************************************
@@ -297,9 +297,13 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
     """
     if print_trace: print('[trace] compute; extract_expressions_from_derivation_dict')
     dat = read_db(path_to_db)
-    derivations_dict = dat['derivations']
-    flt_dict = flatten_dict(derivations_dict[deriv_name])
-    return list(flt_dict.values())
+    flt_dict = flatten_dict(dat['derivations'][deriv_name])
+    #print('flat dict =',flt_dict)
+    list_of_expr_ids = []
+    for flattened_key, val in flt_dict.items():
+        if ('_inputs_' in flattened_key) or ('_outputs_' in flattened_key) or ('_feeds_' in flattened_key):
+            list_of_expr_ids.append(val)
+    return list_of_expr_ids
 
 def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
     """
@@ -359,9 +363,14 @@ def popularity_of_expressions(path_to_db: str) -> dict:
         list_of_uses = []
         for deriv_name, deriv_dict in dat['derivations'].items():
             list_of_all_expr_for_this_deriv = extract_expressions_from_derivation_dict(deriv_name, path_to_db)
+            #print('deriv_name=',deriv_name)
+            #print('list_of_all_expr_for_this_deriv=',list_of_all_expr_for_this_deriv)
+            #print('expr_id =', expr_id)
             if expr_id in list_of_all_expr_for_this_deriv:
+                #print('expr_id', expr_id, 'is in', deriv_name)
                 list_of_uses.append(deriv_name)
         expression_popularity_dict[expr_id] = list_of_uses
+        #print('expression_popularity_dict =',expression_popularity_dict)
     return expression_popularity_dict
 
 def popularity_of_infrules(path_to_db: str) -> dict:
@@ -841,7 +850,10 @@ def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
     if print_trace: print('[trace] compute; edit_expr_latex')
     dat = read_db(path_to_db)
     status_msg = ""
+    #print('old latex:',dat['expressions'][expr_id]['latex'])
     dat['expressions'][expr_id]['latex'] = revised_latex
+    #print('new latex:',dat['expressions'][expr_id]['latex'])
+    write_db(path_to_db, dat)
     # TODO: update AST based on revised latex
     return status_msg
 

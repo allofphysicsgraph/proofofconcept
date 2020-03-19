@@ -8,6 +8,7 @@
 from flask import Flask, redirect, render_template, request, url_for, flash
 from werkzeug.utils import secure_filename
 from wtforms import Form, StringField, FloatField, validators, FieldList, FormField, IntegerField # type: ignore
+import shutil
 import compute
 from config import Config # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 
@@ -117,6 +118,8 @@ def index():
     """
     if print_trace: print('[trace] controller: index')
 
+    shutil.copy('data.json','/home/appuser/app/static/')
+
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -134,7 +137,7 @@ def index():
             return redirect(url_for('index',
                                     filename=filename))
 
-    return render_template('index.html', data_base='data.json')
+    return render_template('index.html', database='data.json')
 
 @app.route('/start_new_derivation/', methods=['GET', 'POST'])
 def start_new_derivation():

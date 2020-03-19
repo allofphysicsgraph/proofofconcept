@@ -7,7 +7,7 @@
   <tr>
     <th>expression ID</th>
     <th>Latex</th>
-    <th>AST</th>
+    <th>Abstract Syntax Tree</th>
     <th>used in derivation</th>
   </tr>
 {% for expr_id, expr_use_list in expression_popularity_dict.items() %}
@@ -15,7 +15,7 @@
     <td>{{ expr_id}}</td>
     <td>{{ expressions_dict[expr_id]['latex'] }}</td>
     <td>{{ expressions_dict[expr_id]['AST'] }}</td>
-    <td>{{ expression_use_list }}</td>
+    <td>{{ expr_use_list }}</td>
   </tr>
 {% endfor %}
   <caption>Physics Derivation Graph: Expressions</caption>
