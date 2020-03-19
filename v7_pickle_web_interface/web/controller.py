@@ -277,11 +277,16 @@ def select_from_existing_derivations():
 
         if request.form['submit_button'] == 'generate_pdf': 
 #request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_pdf')])
-            path_to_pdf = compute.generate_pdf_for_derivation(name_of_derivation,'data.json')
+            pdf_filename = compute.generate_pdf_for_derivation(name_of_derivation,'data.json')
+            return redirect(url_for('review_derivation',
+                              pdf_filename=pdf_filename,
+                              name_of_derivation=name_of_derivation))
+
 
         elif request.form['submit_button'] == 'display_graphviz':
 #request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'display_graphviz')])
             return redirect(url_for('review_derivation',
+                              pdf_filename="NONE",
                               name_of_derivation=name_of_derivation))
         else:
             raise Exception('unrecongized button in', request.form)
@@ -357,6 +362,7 @@ def step_review(name_of_derivation: str,local_step_id: str):
                              name_of_derivation=name_of_derivation))
         if request.form['submit_button']=='accept this step; review derivation':
             return redirect(url_for('review_derivation',
+                             pdf_filename="NONE",
                              name_of_derivation=name_of_derivation))
         elif request.form['submit_button']=='modify this step':
             return redirect(url_for('modify_step',
@@ -372,8 +378,8 @@ def step_review(name_of_derivation: str,local_step_id: str):
                            expr_dict=dat['expressions'])
 
 
-@app.route('/review_derivation/<name_of_derivation>/', methods=['GET', 'POST'])
-def review_derivation(name_of_derivation: str):
+@app.route('/review_derivation/<name_of_derivation>/<pdf_filename>/', methods=['GET', 'POST'])
+def review_derivation(name_of_derivation: str, pdf_filename: str):
     if print_trace: print('[trace] controller: review_derivation')
     if request.method == 'POST':
         if request.form['submit_button'] == 'add another step':
@@ -389,6 +395,7 @@ def review_derivation(name_of_derivation: str):
 
     valid_latex_bool, invalid_latex, derivation_png = compute.create_derivation_png(name_of_derivation, 'data.json')
     return render_template('review_derivation.html',
+                               pdf_filename=pdf_filename,
                                name_of_derivation=name_of_derivation,
                                name_of_graphviz_png=derivation_png)
 

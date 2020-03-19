@@ -42,7 +42,7 @@ dat = {} # one data structure to hold all others (expressions, inference rules, 
 # The AST and LaTeX representations are intended to be equivalent
 # Ambiguous LaTeX is not allowed
 dat['expressions'] = {
-  '1492842':    {'latex': '\\nabla \\vec{x} = f(y)','AST': ['equals', [
+  '1492842000':    {'latex': '\\nabla \\vec{x} = f(y)','AST': ['equals', [
                                                                 ['nabla', ['2911']],
                                                                 ['function', ['1452']]]]},
   '4928923942': {'latex': 'a = b',         'AST': ['equals', ['9139', '1939']]},
@@ -59,12 +59,13 @@ dat['expressions'] = {
                                                                 '4200',
                                                                 ['subtraction', [
                                                                      '1464', '1900']]]]},
-   '949482919': {'latex': 'k',             'AST': ['5321']} 
+  '9494829190': {'latex': 'k',             'AST': ['5321']} 
 #  ''{ 'latex': '', 'AST': {}},
 }
 
 # the glue of the Physics Derivation Graph is a concept called an "Inference rule"
 # An inference rule relates one or more expressions in a given step
+# the order is (all feeds), (all inputs), (all outputs)
 dat['inference rules'] =  {
     'multiply LHS by unity': {'number of feeds':1, 'number of inputs':1, 'number of outputs':1,
                     'latex': 'Multiply LHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$'},
@@ -220,16 +221,26 @@ dat['derivations'] = {
      '4928482': {'inf rule': 'declare initial expr',
                  'inputs':  {},
                  'feeds':   {},
-                 'outputs': {'9428': '4928923942'}}, # key is "expr local ID", value is "expr ID"
+                 'outputs': {'9428': '4928923942'}, # key is "expr local ID", value is "expr ID"
+                 'linear index': 1}, # linear index for PDF and for graph orientation
      '2948592': {'inf rule': 'add X to both sides',
                  'inputs':  {'9428': '4928923942'},
-                 'feeds':   {'319' : '949482919'},   
-                 'outputs': {'3921': '9499959299'}}},
+                 'feeds':   {'3190': '9494829190'},   
+                 'outputs': {'3921': '9499959299'},
+                 'linear index': 2},
+     '9492942': {'inf rule': 'declare final expr',
+                 'inputs':  {'3921': '9499959299'},
+                 'feeds':   {},
+                 'outputs': {},
+                 'linear index': 3}},
   'another deriv': {
-     '491182': {'inf rule':'declare initial expr',
+     '0491182': {'inf rule':'declare initial expr',
                  'inputs':  {},
                  'feeds':   {},
-                 'outputs':{'94128': '1492842'}}}}
+                 'outputs': {'9128': '1492842000'},
+                 'linear index': 1}
+                   }
+      }
 
 
 # see also v3_CSV/databases/symbols_database.csv
@@ -318,10 +329,10 @@ dat['units'] = {
   'Kelvin':     {'measure': 'temperature', 'references': ['https://en.wikipedia.org/wiki/Kelvin']},
   'kilogram':   {'measure': 'mass', 'references': ['https://en.wikipedia.org/wiki/Kilogram']},
   'mol':        {'measure': 'amount of substance', 'references': ['https://en.wikipedia.org/wiki/Mole_(unit)']},
-  'Ampere':     {'measure': 'electric current', 'references': ['']},
+  'Ampere':     {'measure': 'electric current', 'references': ['https://en.wikipedia.org/wiki/Ampere']},
 # common units
-  'Farad':      {'measure': 'capacitance', 'references': ['']},
-  'Tesla':      {'measure': 'magnetic field', 'references': ['']},
+  'Farad':      {'measure': 'capacitance', 'references': ['https://en.wikipedia.org/wiki/Farad']},
+  'Tesla':      {'measure': 'magnetic field', 'references': ['https://en.wikipedia.org/wiki/Tesla_(unit)']},
 # https://en.wikipedia.org/wiki/List_of_unusual_units_of_measurement
   'hand':       {'measure': 'length', 'references': ['https://en.wikipedia.org/wiki/Hand_(unit)']},
   'light-year': {'measure': 'length', 'references': ['https://en.wikipedia.org/wiki/Light-year']},

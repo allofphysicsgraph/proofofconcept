@@ -13,6 +13,10 @@
 <input type="submit" name="submit_button" value="return to main menu">
 </form>
 
+{% if (pdf_filename != "NONE") %}
+<P><a href="{{ url_for('static', filename=pdf_filename) }}">PDF of derivation</a></P>
+{% endif %}
+
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
 
 {% endblock %}

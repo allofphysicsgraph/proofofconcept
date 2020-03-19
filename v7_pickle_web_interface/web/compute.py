@@ -74,9 +74,18 @@ def write_db(path_to_db: str, dat: dict) -> None:
 # query database for properties
 # read-only functions
 
+def validate_json_database(path_to_db: str) -> str:
+    """
+    >>> validate_json_database('data.pkl')
+    """
+    msg = ""
+    
+    return msg
+
 def get_sorted_list_of_expr(path_to_db: str) -> list:
     """
-    >>>
+    >>> get_sorted_list_of_expr('data.pkl')
+
     """
     dat = read_db(path_to_db)
     list_expr = list(dat['expressions'].keys())
@@ -85,7 +94,7 @@ def get_sorted_list_of_expr(path_to_db: str) -> list:
 
 def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     """
-    >>>
+    >>> get_sorted_list_of_inf_rules('data.pkl')
     """
     if print_trace: print('[trace] compute: get_list_of_inf_rules')
     dat = read_db(path_to_db)
@@ -424,6 +433,7 @@ def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
     with open(tmp_file+'.tex', 'w') as lat_file:
         lat_file.write('\\documentclass[12pt]{report}\n')
         lat_file.write('\\thispagestyle{empty}\n')
+        lat_file.write('\\usepackage{amsmath}\n') # https://tex.stackexchange.com/questions/32100/what-does-each-ams-package-do
         lat_file.write('\\begin{document}\n')
         lat_file.write('\\huge{\n')
         lat_file.write('$'+input_latex_str+'$\n')
@@ -493,6 +503,13 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
 
 def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str:
     """
+    In this iteration of the PDG (v7), I allow for inference rule names
+    to have spaces. In previous versions, the inference rule names were
+    camel case. When I implemented this function, I learned why the 
+    inference rule names had been camel case: Latex doesn't like 
+    newcommand names to have underscore in them; see https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
+    Therefore, I remove all spaces from the inference rule name
+
     >>> generate_pdf_for_derivation
     """
     if print_trace: print('[trace] compute; generate_pdf_for_derivation')
@@ -505,13 +522,49 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
 
     with open(pdf_filename+'.tex', 'w') as lat_file:
         lat_file.write('\\documentclass[12pt]{report}\n')
-        lat_file.write('\\thispagestyle{empty}\n')
+#        lat_file.write('\\thispagestyle{empty}\n')
+        lat_file.write('\\usepackage{amsmath}\n') # https://tex.stackexchange.com/questions/32100/what-does-each-ams-package-do
+
+        # first, write the inference rules as newcommand at top of .tex file
+        for infrule_name, infrule_dict in dat['inference rules'].items():
+            number_of_args = infrule_dict['number of feeds'] + infrule_dict['number of inputs'] + infrule_dict['number of outputs']
+            # https://en.wikibooks.org/wiki/LaTeX/Macros#New_commands
+            lat_file.write('\\newcommand\\' + 
+                             infrule_name.replace(' ','') + '[' + # https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
+                             str(number_of_args) + ']{' + 
+                             infrule_dict['latex'] + '}\n')
+
+        # extract the list of linear index from the derivation
+        list_of_linear_index = []
+        for step_id, step_dict in dat['derivations'][name_of_derivation].items():
+            list_of_linear_index.append(step_dict['linear index'])
+
+        list_of_linear_index.sort()
+
         lat_file.write('\\begin{document}\n')
-        # TODO
+
+        lat_file.write(name_of_derivation + '\n')
+        for linear_indx in list_of_linear_index:
+            for step_id, step_dict in dat['derivations'][name_of_derivation].items():
+                if step_dict['linear index']==linear_indx:
+                    # using the newcommand, populate the expression IDs 
+                    lat_file.write('\\' + step_dict['inf rule'].replace(' ',''))
+                    for expr_local_id, expr_global_id in step_dict['feeds'].items():
+                        lat_file.write('{' + dat['expressions'][expr_global_id]['latex'] + '}')
+                    for expr_local_id, expr_global_id in step_dict['inputs'].items():
+                        lat_file.write('{' + expr_local_id + '}')
+                    for expr_local_id, expr_global_id in step_dict['outputs'].items():
+                        lat_file.write('{' + expr_local_id + '}')
+                    lat_file.write('\n')
+                    # write output expressions 
+                    for expr_local_id, expr_global_id in step_dict['outputs'].items():
+                        lat_file.write('\\begin{equation}\n')
+                        lat_file.write(dat['expressions'][expr_global_id]['latex'] + '\n')
+                        lat_file.write('\\label{eq:' + expr_local_id + '}\n')
+                        lat_file.write('\\end{equation}\n')
         lat_file.write('\\end{document}\n')
 
-
-    process = subprocess.run(['latex','-halt-on-error', tmp_file+'.tex'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
+    process = subprocess.run(['latex', '-halt-on-error', pdf_filename + '.tex'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
     #latex_stdout, latex_stderr = process.communicate()
     # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
     latex_stdout = process.stdout.decode("utf-8")
@@ -523,7 +576,15 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
     if 'Text line contains an invalid character' in latex_stdout:
         return False, 'no png generated'
 
-    return path_to_pdf
+    # run latex a second time to enable references to work
+    process = subprocess.run(['latex','-halt-on-error', pdf_filename + '.tex'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
+
+    # https://tex.stackexchange.com/questions/73783/dvipdfm-or-dvipdfmx-or-dvipdft
+    process = subprocess.run(['dvipdfmx', pdf_filename + '.dvi'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
+
+    shutil.move(pdf_filename + '.pdf', '/home/appuser/app/static/' + pdf_filename + '.pdf')
+
+    return pdf_filename+'.pdf'
 
 def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
     """
