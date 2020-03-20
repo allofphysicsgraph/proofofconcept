@@ -195,16 +195,19 @@ def list_all_expressions():
         # request.form = ImmutableMultiDict([('edit_expr_latex', '4928923942'), ('revised_text', 'asdfingasinsf')])
             status_message = compute.edit_expr_latex(request.form['edit_expr_latex'],
                                                      request.form['revised_text'], 'data.json')
-            print(status_message)
+            print('[debug] controller; list_all_expressions; status =', status_message)
             return redirect(url_for('list_all_expressions'))
         elif 'delete_expr' in request.form.keys():
         # request.form = ImmutableMultiDict([('delete_expr', '4928923942')])
             status_message = compute.delete_expr(request.form['delete_expr'], 'data.json')
-            print(status_message)
+            print('[debug] controller; list_all_expressions; status =',status_message)
+            return redirect(url_for('list_all_expressions'))
     list_of_expr = compute.get_sorted_list_of_expr('data.json')
+    list_of_expr_not_appearing_in_any_derivations = compute.expr_not_in_derivations('data.json')
     return render_template("list_all_expressions.html",
                            expressions_dict=dat['expressions'],
                            sorted_list_exprs = list_of_expr,
+                           list_of_expr_not_appearing_in_any_derivations=list_of_expr_not_appearing_in_any_derivations,
                            edit_expr_latex_webform = RevisedTextForm(request.form),
                            expression_popularity_dict=expression_popularity_dict)
 
@@ -223,19 +226,19 @@ def list_all_inference_rules():
         elif 'delete_inf_rule' in request.form.keys():
             # request.form = ImmutableMultiDict([('delete_inf_rule', 'asdf')])
             status_message = compute.delete_inf_rule(request.form['delete_inf_rule'], 'data.json')
-            print(status_message)
+            print('[debug] controller; list_all_inference_rules; status =', status_message)
             return redirect(url_for('list_all_inference_rules'))
         elif 'rename_inf_rule_from' in request.form.keys():
             # request.form = ImmutableMultiDict([('rename_inf_rule_from', 'asdf'), ('revised_text', 'anotehr')])
             status_message = compute.rename_inf_rule(request.form['rename_inf_rule_from'],
                                                      request.form['revised_text'], 'data.json')
-            print(status_message)
+            print('[debug] controller; list_all_inference_rules; status =', status_message)
             return redirect(url_for('list_all_inference_rules'))
         elif 'edit_inf_rule_latex' in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_inf_rule_latex', 'asdf'), ('revised_text', 'great works')])
             status_message = compute.edit_inf_rule_latex(request.form['edit_inf_rule_latex'],
                                                          request.form['revised_text'], 'data.json')
-            print(status_message)
+            print('[debug] controller; list_all_inference_rules; status =', status_message)
             return redirect(url_for('list_all_inference_rules'))
         else:
             print('unrecognized form result')
@@ -275,8 +278,11 @@ def select_from_existing_derivations():
     if request.method == "POST":
         print('[debug] compute; select_from_existing_derivations; request.form =',request.form)
 
-        # dropdown menu always provides a derivation selected
-        name_of_derivation = request.form['derivation_selected']
+        # dropdown menu provides a derivation selected
+        if 'derivation_selected' in request.form.keys():
+            name_of_derivation = request.form['derivation_selected']
+        else: # no derivations exist
+            return redirect(url_for('index'))
 
         if request.form['submit_button'] == 'generate_pdf': 
 #request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_pdf')])
@@ -420,6 +426,9 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         elif request.form['submit_button'] == 'generate pdf':
             pdf_filename = compute.generate_pdf_for_derivation(name_of_derivation,'data.json')
             return redirect(url_for('static', filename=pdf_filename))
+        elif request.form['submit_button'] == 'delete derivation':
+            msg = compute.delete_derivation(name_of_derivation, 'data.json')
+            return redirect(url_for('index'))
         else:
             raise Exception('[ERROR] compute; review_derivation; unrecognized button:',request.form)
 

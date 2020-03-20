@@ -30,12 +30,13 @@
 
 <a id="delete_expression"></a>
   <h2>Delete an expression</h2>
+<P>Only expressions that do not appear in any derivation can be deleted
 <form method="post" action="">
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="delete_expr" class="selectpicker form-control">
-              {% for elem in sorted_list_exprs %}
+              {% for elem in list_of_expr_not_appearing_in_any_derivations %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>

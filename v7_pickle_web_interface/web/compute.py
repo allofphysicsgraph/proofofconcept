@@ -89,11 +89,26 @@ def write_db(path_to_db: str, dat: dict) -> None:
 #    validate(instance=dat,schema=json_schema.schema) 
 #    return
 
+def expr_not_in_derivations(path_to_db: str) -> list:
+    """
+    >>> 
+    """
+    if print_trace: print('[trace] compute: expr_not_in_derivations')
+    dat = read_db(path_to_db)
+    list_of_expr_not_in_deriv = []
+    expr_popularity_dict = popularity_of_expressions(path_to_db)
+    for expr_global_id, list_of_derivs in expr_popularity_dict.items():
+        if len(list_of_derivs)==0:
+            list_of_expr_not_in_deriv.append(expr_global_id)
+    list_of_expr_not_in_deriv.sort()
+    return list_of_expr_not_in_deriv
+
 def get_sorted_list_of_expr(path_to_db: str) -> list:
     """
     >>> get_sorted_list_of_expr('data.pkl')
 
     """
+    if print_trace: print('[trace] compute: get_sorted_list_of_expr')
     dat = read_db(path_to_db)
     list_expr = list(dat['expressions'].keys())
     list_expr.sort()
@@ -295,12 +310,12 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
     if print_trace: print('[trace] compute; extract_expressions_from_derivation_dict')
     dat = read_db(path_to_db)
     flt_dict = flatten_dict(dat['derivations'][deriv_name])
-    print('flat dict =',flt_dict)
+    print('[debug] compute; extract_expressions_from_derivation_dict; flat dict =',flt_dict)
     list_of_expr_ids = []
     for flattened_key, val in flt_dict.items():
         if ('_inputs_' in flattened_key) or ('_outputs_' in flattened_key) or ('_feeds_' in flattened_key):
             list_of_expr_ids.append(val)
-    print('list_of_expr_ids=',list_of_expr_ids)
+    print('[debug] compute; extract_expressions_from_derivation_dict; list_of_expr_ids=',list_of_expr_ids)
     return list_of_expr_ids
 
 def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
@@ -375,15 +390,15 @@ def popularity_of_expressions(path_to_db: str) -> dict:
 
         for deriv_name, deriv_dict in dat['derivations'].items():
             list_of_all_expr_local_IDs_for_this_deriv = extract_expressions_from_derivation_dict(deriv_name, path_to_db)
-            print('deriv_name=',deriv_name)
-            print('list_of_all_expr_for_this_deriv=',list_of_all_expr_local_IDs_for_this_deriv)
-            print('expr_global_id =', expr_global_id)
+            #print('deriv_name=',deriv_name)
+            #print('list_of_all_expr_for_this_deriv=',list_of_all_expr_local_IDs_for_this_deriv)
+            #print('expr_global_id =', expr_global_id)
             for expr_local_ID in list_of_local_IDs_this_global_ID_corresponds_to:
                 if expr_local_ID in list_of_all_expr_local_IDs_for_this_deriv:
-                    print('expr_global_id', expr_global_id, 'expr_local_ID', expr_local_ID, 'is in', deriv_name)
+                    #print('expr_global_id', expr_global_id, 'expr_local_ID', expr_local_ID, 'is in', deriv_name)
                     list_of_derivations_this_expr_is_used_in.append(deriv_name)
         expression_popularity_dict[expr_global_id] = list(set(list_of_derivations_this_expr_is_used_in))
-        print('expression_popularity_dict =',expression_popularity_dict)
+        print('[debug] compute; popularity_of_expressions; expression_popularity_dict =',expression_popularity_dict)
     return expression_popularity_dict
 
 def popularity_of_infrules(path_to_db: str) -> dict:
@@ -490,7 +505,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
 
     valid_latex_bool, generated_png_name = create_png_from_latex(step_dict['inf rule'])
     if not valid_latex_bool:
-        print('invalid latex for inference rule',step_dict['inf rule'])
+        print('[debug] compute; write_step_to_graphviz_file; invalid latex for inference rule',step_dict['inf rule'])
         return valid_latex_bool, step_dict['inf rule']
     fil.write(local_step_id + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/' +
               generated_png_name + '",labelloc=b];\n')
@@ -500,7 +515,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
         expr_global_id = dat['expr local to global'][expr_local_id]
         valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
         if not valid_latex_bool:
-            print('invalid latex for input',dat['expressions'][expr_global_id]['latex'])
+            print('[debug] compute: write_step_to_graphviz_file: invalid latex for input',dat['expressions'][expr_global_id]['latex'])
             return valid_latex_bool,dat['expressions'][expr_global_id]['latex']
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
         fil.write(expr_local_id + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/' +
@@ -511,7 +526,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
         expr_global_id = dat['expr local to global'][expr_local_id]
         valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
         if not valid_latex_bool:
-            print('invalid latex for output',dat['expressions'][expr_global_id]['latex'])
+            print('[debug] compute: write_step_to_graphviz_file: invalid latex for output',dat['expressions'][expr_global_id]['latex'])
             return valid_latex_bool, dat['expressions'][expr_global_id]['latex']
         #print('[debug] compute; write_step_to_graphviz_file; local and global',expr_local_id,expr_local_id)
         fil.write(local_step_id + ' -> ' + expr_local_id + ';\n')
@@ -523,7 +538,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
         expr_global_id = dat['expr local to global'][expr_local_id]
         valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
         if not valid_latex_bool:
-            print('invalid latex for feed',dat['expressions'][expr_global_id]['latex'])
+            print('[debug] compute: write_step_to_graphviz_file: invalid latex for feed',dat['expressions'][expr_global_id]['latex'])
             return valid_latex_bool, dat['expressions'][expr_global_id]['latex']
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
         fil.write(expr_local_id + ' [shape=box, color=red,label="",image="/home/appuser/app/static/' +
@@ -771,6 +786,18 @@ def create_png_from_latex(input_latex_str: str) -> str:
 #*********************************************************
 # data structure transformations
 
+def delete_derivation(name_of_derivation: str, path_to_db: str) -> str:
+    """
+    >>> delete_derivation('my cool deriv', 'data.json')
+
+    """
+    if print_trace: print('[trace] compute; add_inf_rule')
+    dat = read_db(path_to_db)
+    # TODO: if expr is only used in this derivation, does the user want dangling expressions removed?
+    del dat['derivations'][name_of_derivation]
+    write_db(path_to_db, dat)
+    return "successfully deleted "+name_of_derivation
+
 def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     """
     >>> request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
@@ -879,7 +906,7 @@ def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
     # TODO: update AST based on revised latex
     return status_msg
 
-def delete_expr(expr_id: str, path_to_db: str) -> str:
+def delete_expr(expr_global_id: str, path_to_db: str) -> str:
     """
     >>> delete_expr()
     """
@@ -887,11 +914,13 @@ def delete_expr(expr_id: str, path_to_db: str) -> str:
     status_message = ""
     dat = read_db(path_to_db)
     expression_popularity_dict = popularity_of_expressions(path_to_db)
-    if len(expression_popularity_dict[expr_id])>0:
-        status_message = expr_id+' cannot be deleted because it is in use in '+str(expression_popularity_dict[expr_id])
+    if len(expression_popularity_dict[expr_global_id])>0:
+        status_message = expr_global_id+' cannot be deleted because it is in use in '+str(expression_popularity_dict[expr_global_id])
     else: # expr is not in use
-        del dat['expressions'][expr_id]
-        status_message = "successfully deleted "+expr_id
+        del dat['expressions'][expr_global_id]
+        status_message = "successfully deleted "+expr_global_id
+    print('[debug] compute; delete_expr; dat[expr].keys =', dat['expressions'].keys())
+    write_db(path_to_db, dat)
     return status_message
 
 def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
@@ -905,10 +934,10 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
     if print_trace: print('[trace] compute; create_sympy_expr_tree_from_latex')
 
     sympy_expr = parse_latex(latex_expr_str)
-    print('Sympy expression =',sympy_expr)
+    print('[debug] compute; create_sympy_expr_tree_from_latex; Sympy expression =',sympy_expr)
 
     latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
-    print('latex as Sympy expr tree =',latex_as_sympy_expr_tree)
+    print('[debug] compute; create_sympy_expr_tree_from_latex; latex as Sympy expr tree =',latex_as_sympy_expr_tree)
 
     return latex_as_sympy_expr_tree
 
@@ -1028,6 +1057,7 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
 
     return inf_rule_local_ID
 
+
 def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str:
     """
     >>> validate_step('my cool deriv', '958282', 'data.json')
@@ -1044,32 +1074,73 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
                                  'declare assumption']:
         return "no validation is available for declarations"
 
-    if step_dict['inf rule'] in ['add X to both sides']:
-        # claim:
-        # LHS(step_dict['inputs'][0]) + step_dict['feeds'][0] == LHS(step_dict['outputs'][0])
-        # RHS(step_dict['inputs'][0]) + step_dict['feeds'][0] == RHS(step_dict['outputs'][0])
-        input_latex = latex_from_expr_local_id(step_dict['inputs'][0], path_to_db)
-        print('[debug] compute; validate_step; input_latex =', input_latex)
+    if len(step_dict['inputs']) > 0:
+        input_0_latex = latex_from_expr_local_id(step_dict['inputs'][0], path_to_db)
+        print('[debug] compute; validate_step; input_latex =', input_0_latex)
+        input_0_LHS, input_0_RHS = split_expr_into_lhs_rhs(input_0_latex)
+    if len(step_dict['inputs']) > 1:
+        input__latex = latex_from_expr_local_id(step_dict['inputs'][], path_to_db)
+        print('[debug] compute; validate_step; input_latex =', input__latex)
+        input__LHS, input__RHS = split_expr_into_lhs_rhs(input__latex)
+    if len(step_dict['inputs']) > 2:
+        input__latex = latex_from_expr_local_id(step_dict['inputs'][], path_to_db)
+        print('[debug] compute; validate_step; input_latex =', input__latex)
+        input__LHS, input__RHS = split_expr_into_lhs_rhs(input__latex)
+    if len(step_dict['feeds']) > 0:
+        feed_0_latex = latex_from_expr_local_id(step_dict['feeds'][0], path_to_db)
+        print('[debug] compute; validate_step; feed_0_latex =', feed_0_latex)
+        feed_0 = parse_latex(feed_0_latex)
+    if len(step_dict['feeds']) > 1:
+        feed_1_latex = latex_from_expr_local_id(step_dict['feeds'][1], path_to_db)
+        print('[debug] compute; validate_step; feed_1_latex =', feed_1_latex)
+        feed_1 = parse_latex(feed_1_latex)
+    if len(step_dict['feeds']) > 2:
+        feed_2_latex = latex_from_expr_local_id(step_dict['feeds'][2], path_to_db)
+        print('[debug] compute; validate_step; feed_2_latex =', feed_2_latex)
+        feed_2 = parse_latex(feed_2_latex)
+    if len(step_dict['outputs']) > 0:
+        output_0_latex = latex_from_expr_local_id(step_dict['outputs'][0], path_to_db)
+        print('[debug] compute; validate_step; output_0_latex =', output_0_latex)
+        output_0_LHS, output_0_RHS = split_expr_into_lhs_rhs(output_0_latex)
+    if len(step_dict['outputs']) > 1:
+        output_1_latex = latex_from_expr_local_id(step_dict['outputs'][1], path_to_db)
+        print('[debug] compute; validate_step; output_1_latex =', output_1_latex)
+        output_1_LHS, output_1_RHS = split_expr_into_lhs_rhs(output_1_latex)
+    if len(step_dict['outputs']) > 2:
+        output_2_latex = latex_from_expr_local_id(step_dict['outputs'][2], path_to_db)
+        print('[debug] compute; validate_step; output_2_latex =', output_2_latex)
+        output_2_LHS, output_2_RHS = split_expr_into_lhs_rhs(output_2_latex)
 
-        input_LHS, input_RHS = split_expr_into_lhs_rhs(input_latex)
-        print('input LHS is', input_LHS,'and input RHS is', input_RHS)
 
-        output_latex = latex_from_expr_local_id(step_dict['outputs'][0], path_to_db)
-        output_LHS, output_RHS = split_expr_into_lhs_rhs(output_latex)
-        print('output LHS is', output_LHS, 'and output RHS is', output_RHS)
-
-        feed_latex = latex_from_expr_local_id(step_dict['feeds'][0], path_to_db)
-        sympy_feed = parse_latex(feed_latex)
-
+    if step_dict['inf rule'] == 'add X to both sides':
         # https://docs.sympy.org/latest/gotchas.html#double-equals-signs
         # https://stackoverflow.com/questions/37112738/sympy-comparing-expressions
-        if ((sympy.simplify(sympy.Add(input_LHS, sympy_feed) - output_LHS) == 0) and 
-            (sympy.simplify(sympy.Add(input_RHS, sympy_feed) - output_RHS) == 0)):
+        if ((sympy.simplify(sympy.Add(input_0_LHS, feed_0) - output_0_LHS) == 0) and 
+            (sympy.simplify(sympy.Add(input_0_RHS, feed_0) - output_0_RHS) == 0)):
             return "step is valid"
         else:
             return ("step is not valid; <BR>"+
-                    "LHS diff is " + str(sympy.simplify(sympy.Add(input_LHS, sympy_feed) - output_LHS)) + "<BR>" +
-                    "RHS diff is " + str(sympy.simplify(sympy.Add(input_RHS, sympy_feed) - output_RHS)))
+                    "LHS diff is " + str(sympy.simplify(sympy.Add(input_0_LHS, feed_0) - output_0_LHS)) + "<BR>" +
+                    "RHS diff is " + str(sympy.simplify(sympy.Add(input_0_RHS, feed_0) - output_0_RHS)))
+    elif step_dict['inf rule'] == 'subtract X from both sides':
+        # https://docs.sympy.org/latest/tutorial/manipulation.html
+        if ((sympy.simplify(sympy.Add(input_0_LHS, Mul(-1, feed_0)) - output_0_LHS) == 0) and
+            (sympy.simplify(sympy.Add(input_0_RHS, Mul(-1, feed_0)) - output_0_RHS) == 0)):
+            return "step is valid"
+        else:
+            return ("step is not valid; <BR>"+
+                    "LHS diff is " + str(sympy.simplify(sympy.Add(input_0_LHS, Mul(-1, feed_0)) - output_0_LHS)) + "<BR>" +
+                    "RHS diff is " + str(sympy.simplify(sympy.Add(input_0_RHS, Mul(-1, feed_0)) - output_0_RHS)))        
+    elif step_dict['inf rule'] == 'divide both sides by':
+        # https://docs.sympy.org/latest/tutorial/manipulation.html
+        # x/y = Mul(x, Pow(y, -1))
+        if ((sympy.simplify(sympy.Mul(input_0_LHS, Pow(feed_0, -1)) - output_0_LHS) == 0) and
+            (sympy.simplify(sympy.Mul(input_0_RHS, Pow(feed_0, -1)) - output_0_RHS) == 0)):
+            return "step is valid"
+        else:
+            return ("step is not valid; <BR>"+
+                    "LHS diff is " + str(sympy.simplify(sympy.Mul(input_0_LHS, Pow(feed_0, -1)) - output_0_LHS)) + "<BR>" +
+                    "RHS diff is " + str(sympy.simplify(sympy.Mul(input_0_RHS, Pow(feed_0, -1)) - output_0_RHS)))
 
     return "no validation available for this inference rule"
 
