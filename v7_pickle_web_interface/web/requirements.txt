@@ -5,4 +5,6 @@ mypy
 flake8
 pylint
 jsonschema
+sympy==1.5.1
+antlr4-python3-runtime
 

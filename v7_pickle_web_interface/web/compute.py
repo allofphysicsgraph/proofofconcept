@@ -27,6 +27,8 @@ from typing_extensions import TypedDict  # https://mypy.readthedocs.io/en/stable
 # https://www.python.org/dev/peps/pep-0589/
 from jsonschema import validate
 import json_schema # a PDG file 
+import sympy
+from sympy.parsing.latex import parse_latex
 
 global print_trace
 print_trace = True
@@ -171,38 +173,39 @@ def create_expr_id(path_to_db: str) -> str:
     loop_count = 0
     while(not found_valid_id):
         loop_count += 1
-        proposed_global_expr_id = str(int(random.random()*1000000000))
+        proposed_global_expr_id = str(random.randint(1000000000, 9999999999)) # 10 digits
+
         if proposed_global_expr_id not in global_expr_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
             raise Exception("this seems unlikely")
     return proposed_global_expr_id
 
-def create_inf_rule_id(path_to_db: str) -> str:
+def create_step_id(path_to_db: str) -> str:
     """
     aka step ID
 
     search DB to find whether proposed local ID already exists
-    >>> create_inf_rule_id(False, 'data.json')
+    >>> create_step_id(False, 'data.json')
     """
-    if print_trace: print('[trace] compute; create_inf_rule_id')
+    if print_trace: print('[trace] compute; create_step_id')
     dat = read_db(path_to_db)
 
-    inf_rule_ids_in_use = []
+    step_ids_in_use = []
     for derivation_name, steps_dict in dat['derivations'].items():
         for step_id, step_dict in steps_dict.items():
-            inf_rule_ids_in_use.append(step_id) # formerly 'inf rule local ID'
+            step_ids_in_use.append(step_id) # formerly 'inf rule local ID'
 
     found_valid_id = False
     loop_count = 0
     while(not found_valid_id):
         loop_count += 1
-        proposed_inf_rule_id = str(int(random.random()*1000000000))
-        if proposed_inf_rule_id not in inf_rule_ids_in_use:
+        proposed_step_id = str(random.randint(1000000, 9999999)) # 7 digits
+        if proposed_step_id not in step_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
             raise Exception("this seems unlikely")
-    return proposed_inf_rule_id
+    return proposed_step_id
 
 
 def create_expr_local_id(path_to_db: str) -> str:
@@ -227,7 +230,7 @@ def create_expr_local_id(path_to_db: str) -> str:
     loop_count = 0
     while(not found_valid_id):
         loop_count += 1
-        proposed_local_id = str(int(random.random()*1000000000))
+        proposed_local_id = str(random.randint(1000, 9999)) # 4 digits
         if proposed_local_id not in local_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
@@ -418,7 +421,8 @@ def find_valid_filename(destination_folder: str, extension: str) -> str:
     """
     called by create_png_from_latex()
 
-    >>> find_valid_filename('png', False, '/home/appuser/app/static/')
+    >>> find_valid_filename('/home/appuser/app/static/', 'png')
+    >>> find_valid_filename('.','png')
     """
     if print_trace: print('[trace] compute; find_valid_filename')
 
@@ -478,7 +482,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
     if not valid_latex_bool:
         print('invalid latex for inference rule',step_dict['inf rule'])
         return valid_latex_bool, step_dict['inf rule']
-    fil.write(local_step_id + ' [shape=ellipse, label="",image="/home/appuser/app/static/' +
+    fil.write(local_step_id + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/' +
               generated_png_name + '",labelloc=b];\n')
 
     #print('[debug] compute: write_step_to_graphviz_file: inputs')
@@ -488,7 +492,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
             print('invalid latex for input',dat['expressions'][expr_global_id]['latex'])
             return valid_latex_bool,dat['expressions'][expr_global_id]['latex']
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
-        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' +
+        fil.write(expr_local_id + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/' +
                        generated_png_name + '",labelloc=b];\n')
 
     #print('[debug] compute: write_step_to_graphviz_file: outputs')
@@ -499,7 +503,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
             return valid_latex_bool, dat['expressions'][expr_global_id]['latex']
         #print('[debug] compute; write_step_to_graphviz_file; local and global',expr_local_id,expr_local_id)
         fil.write(local_step_id + ' -> ' + expr_local_id + ';\n')
-        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' +
+        fil.write(expr_local_id + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/' +
                        generated_png_name + '",labelloc=b];\n')
 
     #print('[debug] compute: write_step_to_graphviz_file: feeds')
@@ -509,7 +513,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
             print('invalid latex for feed',dat['expressions'][expr_global_id]['latex'])
             return valid_latex_bool, dat['expressions'][expr_global_id]['latex']
         fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
-        fil.write(expr_local_id + ' [shape=ellipse, color=red,label="",image="/home/appuser/app/static/' +
+        fil.write(expr_local_id + ' [shape=box, color=red,label="",image="/home/appuser/app/static/' +
                        generated_png_name + '",labelloc=b];\n')
     #print('[debug] compute: write_step_to_graphviz_file: returning')
 
@@ -676,7 +680,8 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
 #    with open(dot_filename,'r') as fil:
 #       print(fil.read())
 
-    output_filename = find_valid_filename('.','.png')
+    output_filename = find_valid_filename('.','png')
+    print('[debug] compute; create_step_graphviz_png; output_filename =', output_filename)
     remove_file_debris(['./'], ['graphviz'], ['png'])
 
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
@@ -872,6 +877,39 @@ def delete_expr(expr_id: str, path_to_db: str) -> str:
         status_message = "successfully deleted "+expr_id
     return status_message
 
+def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
+    """
+    Sympy provides experimental support for converting latex to AST
+
+    https://github.com/allofphysicsgraph/proofofconcept/issues/44
+
+    >>> create_sympy_expr_tree_from_latex(r"\frac {1 + \sqrt {\a}} {\b}")
+    """
+    if print_trace: print('[trace] compute; create_sympy_expr_tree_from_latex')
+
+    sympy_expr = parse_latex(latex_expr_str)
+    print('expr_tree =',sympy_expr)
+
+    latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
+    print('latex as Sympy expr tree =',latex_as_sympy_expr_tree)
+
+    return latex_as_sympy_expr_tree
+
+def get_symbols_from_latex(latex_expr_str: str) -> list:
+    """
+    Sometimes Sympy works as desired (for simple algebraic synatx)
+    >>> parse_latex(r'a + k = b + k').free_symbols
+    {b, a, k}
+
+    Sometimes the Sympy output does not reflect user intent
+    >>> parse_latex(r'\nabla \vec{x} = f(y)').free_symbols
+    {x, nabla, y, vec}
+    """
+    if print_trace: print('[trace] compute; get_symbols_from_latex')
+
+    return list(parse_latex(latex_expr_str).free_symbols)
+
+
 def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_db: str) -> str:
     """
     >>> latex_for_step_dict = ImmutableMultiDict([('output1', 'a = b')])
@@ -887,29 +925,69 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
                  'feeds':    {},
                  'outputs':  {}}  # type: STEP_DICT
 
+    # because the form is an immutable dict, we need to convert to dict before deleting keys
+    # https://tedboy.github.io/flask/generated/generated/werkzeug.ImmutableMultiDict.html
+    latex_for_step_dict = latex_for_step_dict.to_dict(flat=True)
+    print('latex_for_step_dict =',latex_for_step_dict)
+
+    inputs_and_outputs_to_delete = []
+    for which_eq, latex_expr_str in latex_for_step_dict.items():
+        if 'use_ID_for' in which_eq:  # 'use_ID_for_in1' or 'use_ID_for_in2' or 'use_ID_for_out1', etc
+            # the following leverages the dict from the web form
+            # request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('submit_button', 'Submit')])
+            if 'for_in' in which_eq:
+                this_input = 'input' + which_eq[-1]
+                expr_local_id = latex_for_step_dict[this_input]
+                step_dict['inputs'][expr_local_id] =  dat['expr local to global'][expr_local_id]
+                inputs_and_outputs_to_delete.append(this_input)
+            elif 'for_out' in which_eq:
+                this_output = 'output' + which_eq[-1]
+                expr_local_id = latex_for_step_dict[this_input]
+
+                step_dict['inputs'][expr_local_id] = dat['expr local to global'][expr_local_id]
+                inputs_and_outputs_to_delete.append(this_output)
+            else:
+                raise Exception('[ERROR] compute; create_step; unrecognized key in use_ID ', latex_for_step_dict)
+
+    # remove all the "use_ID_for" keys
+    list_of_keys = list(latex_for_step_dict.keys())
+    for this_key in list_of_keys:
+        if 'use_ID_for' in this_key:
+            del latex_for_step_dict[this_key]
+
+    # remove the inputs and outputs that were associated with 'use_ID_for'
+    for input_and_output in inputs_and_outputs_to_delete:
+        del latex_for_step_dict[input_and_output]
+
     for which_eq, latex_expr_str in latex_for_step_dict.items():
         if 'input' in which_eq:
             expr_id = create_expr_id(path_to_db)
-            dat['expressions'][expr_id] = {'latex': latex_expr_str, 'AST': {}}
+            dat['expressions'][expr_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
             expr_local_id = create_expr_local_id(path_to_db)
             step_dict['inputs'][expr_local_id] = expr_id
         elif 'output' in which_eq:
             expr_id = create_expr_id(path_to_db)
-            dat['expressions'][expr_id] = {'latex': latex_expr_str, 'AST': {}}
+            dat['expressions'][expr_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
             step_dict['outputs'][create_expr_local_id(path_to_db)] = expr_id
         elif 'feed' in which_eq:
             expr_id = create_expr_id(path_to_db)
-            dat['expressions'][expr_id] = {'latex': latex_expr_str, 'AST': {}}
+            dat['expressions'][expr_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
             step_dict['feeds'][create_expr_local_id(path_to_db)] = expr_id
         elif 'submit_button' in which_eq:
             pass
         else:
-            print('[ERROR] compute; create_step; unrecognized key in step dict', latex_for_step_dict)
+            raise Exception('[ERROR] compute; create_step; unrecognized key in step dict', latex_for_step_dict)
+
+    list_of_linear_index = []
+    for step_id, tmp_step_dict in dat['derivations'][name_of_derivation].items():
+        list_of_linear_index.append(tmp_step_dict['linear index'])
+    highest_linear_index = max(list_of_linear_index)
+    step_dict['linear index'] = highest_linear_index + 1
 
     print('[debug] compute; create_step; step_dict =', step_dict)
 
     # add step_dict to dat, write dat to file
-    inf_rule_local_ID = create_inf_rule_id(path_to_db)
+    inf_rule_local_ID = create_step_id(path_to_db)
     if name_of_derivation not in dat['derivations'].keys():
         print('[debug] compute: create_step: starting new derivation')
         dat['derivations'][name_of_derivation] = {}

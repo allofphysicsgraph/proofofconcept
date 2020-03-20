@@ -322,12 +322,23 @@ def provide_expr_for_inf_rule(name_of_derivation: str,inf_rule: str):
     """
     https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
     """
+
     if print_trace: print('[trace] controller: provide_expr_for_inf_rule')
     num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, 'data.json')
+
     if print_debug: print('[debug] controller; provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
 
     if request.method == 'POST': # and request.form.validate(): no validation because the form was defined on the web page
         latex_for_step_dict = request.form
+
+        print('request.form =',request.form)
+        # request.form = ImmutableMultiDict([('input1', 'a = b'), ('submit_button', 'Submit')])
+
+        # request.form = ImmutableMultiDict([('input1', 'asfd'), ('use_ID_for_in1', 'on'), ('submit_button', 'Submit')])
+
+# request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('feed1', 'a'), ('feed2', 'b'), ('feed3', 'c'), ('output1', 'asdf = asf'), ('submit_button', 'Submit')])
+
+
         if print_debug: print('[debug] controller: provide_expr_for_inf_rule: latex_for_step_dict = ', latex_for_step_dict)
         local_step_id = compute.create_step(latex_for_step_dict, inf_rule, name_of_derivation, 'data.json')
         if print_debug: print('[debug] controller; provide_expr_for_inf_rule; local_step_id =', local_step_id)
@@ -335,6 +346,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str,inf_rule: str):
         return redirect(url_for('step_review',
                         name_of_derivation=name_of_derivation,
                         local_step_id=local_step_id))
+    dat = compute.read_db('data.json')
 
     return render_template('provide_expr_for_inf_rule.html',
                             name_of_derivation=name_of_derivation,
@@ -342,6 +354,8 @@ def provide_expr_for_inf_rule(name_of_derivation: str,inf_rule: str):
                             number_of_inputs=int(num_inputs),
                             number_of_outputs=int(num_outputs),
                             inf_rule=inf_rule,
+                            step_dict=dat['derivations'][name_of_derivation],
+                            expr_dict=dat['expressions'],
                             webform=LatexIO(request.form))
 
 @app.route('/step_review/<name_of_derivation>/<local_step_id>/', methods=['GET', 'POST'])
@@ -378,7 +392,7 @@ def step_review(name_of_derivation: str,local_step_id: str):
     return render_template('step_review.html',
                            name_of_graphviz_png=step_graphviz_png,
                            name_of_derivation=name_of_derivation,
-                           step_dict=dat['derivations'][name_of_derivation][local_step_id],
+                           step_dict=dat['derivations'][name_of_derivation],
                            expr_dict=dat['expressions'])
 
 
@@ -398,10 +412,15 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
             raise Exception('[ERROR] compute; review_derivation; unrecognized button:',request.form)
 
     valid_latex_bool, invalid_latex, derivation_png = compute.create_derivation_png(name_of_derivation, 'data.json')
+
+    dat = compute.read_db('data.json')
+
     return render_template('review_derivation.html',
                                pdf_filename=pdf_filename,
                                name_of_derivation=name_of_derivation,
-                               name_of_graphviz_png=derivation_png)
+                               name_of_graphviz_png=derivation_png,
+                               step_dict=dat['derivations'][name_of_derivation],
+                               expr_dict=dat['expressions'])
 
 @app.route('/modify_step/<name_of_derivation>/<step_id>/', methods=['GET', 'POST'])
 def modify_step(name_of_derivation: str, step_id: str):

@@ -241,6 +241,13 @@ dat['derivations'] = {
                  'linear index': 1}
                    }
       }
+# the "expr local ID" should be in a separate lookup table with the "expr global ID"
+dat['expr local to global'] = {
+        '9428': '4928923942',
+        '3190': '9494829190',
+        '3921': '9499959299',
+        '9128': '1492842000'}
+
 
 
 # see also v3_CSV/databases/symbols_database.csv

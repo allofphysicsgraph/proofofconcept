@@ -70,13 +70,13 @@ schema = {
         "expressions" :     {"type" : "object", 
                              "additionalProperties": False,
                              "patternProperties": {"^\d{10}$": 
-                                                      {"type": "object", # # expression ID
-                                                       "additionalProperties": False,    
+                                                      {"type": "object", # expression ID
+                                                       #"additionalProperties": False,    
                                                        "properties": {
-                                                         'latex': {'type': 'string'},
-                                                         'AST': {'type': 'array'},
+                                                         'latex': {'type': 'string'}#,
+                                                       #  'AST': {'type': 'array'},
                                                                      },
-                                                       'required': ['latex', 'AST']
+                                                       'required': ['latex']#, 'AST']
                                                        }
                                                   } 
                             },
@@ -98,6 +98,7 @@ schema = {
                                                         }
                                                   } 
                             },
+         'expr local to global': {'type': 'object'},
     },
     "required": ['operators', 
                  'measures', 
@@ -105,7 +106,8 @@ schema = {
                  'derivations', 
                  'units', 
                  'expressions', 
-                 'inference rules']
+                 'inference rules',
+                 'expr local to global']
 }
 
 

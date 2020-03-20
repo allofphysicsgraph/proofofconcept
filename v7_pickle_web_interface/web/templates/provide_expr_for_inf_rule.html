@@ -13,14 +13,17 @@
 
 {% if number_of_inputs|int() > 0|int() %}
 <P>{{ webform.input1.label }}: {{ webform.input1 }}
+<input type="checkbox" name="use_ID_for_in1"/> Check if using local expression ID (no check if using Latex)
 {% endif %}
 
 {% if number_of_inputs|int() > 1|int() %}
 <P>{{ webform.input2.label }}: {{ webform.input2 }}
+<input type="checkbox" name="use_ID_for_in2"/>  Check if using local expression ID (no check if using Latex)
 {% endif %}
 
 {% if number_of_inputs|int() > 2|int() %}
 <P>{{ webform.input3.label }}: {{ webform.input3 }}
+<input type="checkbox" name="use_ID_for_in3"/>  Check if using local expression ID (no check if using Latex)
 {% endif %}
 
 {% if number_of_feeds|int() > 0|int() %} 
@@ -37,14 +40,17 @@
 
 {% if number_of_outputs|int() > 0|int() %}
 <P>{{ webform.output1.label }}: {{ webform.output1 }}
+<input type="checkbox" name="use_ID_for_out1"/> Check if using local expression ID (no check if using Latex)
 {% endif %}
 
 {% if number_of_outputs|int() > 1|int() %}
 <P>{{ webform.output2.label }}: {{ webform.output2 }}
+<input type="checkbox" name="use_ID_for_out2"/> Check if using local expression ID (no check if using Latex)
 {% endif %}
 
 {% if number_of_outputs|int() > 2|int() %}
 <P>{{ webform.output3.label }}: {{ webform.output3 }}
+<input type="checkbox" name="use_ID_for_out3"/> Check if using local expression ID (no check if using Latex)
 {% endif %}
 
 
@@ -52,6 +58,11 @@
 <P><input type="submit" name="submit_button" value="Submit">
 </form>
 
+<P>
+{% include 'table_of_derivation_steps.html' %}
+
+<P>
+{% include 'table_of_expressions.html' %}
 
 {% endblock %}
 

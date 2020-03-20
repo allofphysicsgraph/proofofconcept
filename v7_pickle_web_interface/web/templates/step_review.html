@@ -16,9 +16,12 @@
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
 
-<P>step dict: <BR>{{ step_dict }}
+<P>
+{% include 'table_of_derivation_steps.html' %}
 
-<P>expr dict: <BR>{{ expr_dict }}
+<P>
+{% include 'table_of_expressions.html' %}
+
 
 {% endblock %}
 
