@@ -29,18 +29,18 @@ schema = {
                                                       "additionalProperties": False,
                                                       "properties": {
                                                                    'inf rule' : { "type": "string"},
-                                                                   'inputs':  {"type": "object", 
-                                                                           "additionalProperties": False,
-                                                                           "patternProperties": {"^\d{4}$": 
-                                                                                    {"type":"string"}}}, # "patternProperties": "^\d{10}$"
-                                                                   'outputs': {"type": "object", 
-                                                                           "additionalProperties": False,
-                                                                           "patternProperties": {"^\d{4}$": 
-                                                                                                 {"type":"string"}}},#"^\d{10}$"}},
-                                                                   'feeds':   {"type": "object", 
-                                                                           "additionalProperties": False,
-                                                                           "patternProperties": {"^\d{4}$": 
-                                                                                                 {"type":"string"}}},#"^\d{10}$"}},
+                                                                   'inputs':  {"type": "array", 
+                                                                           "additionalProperties": False},
+                                                                           #"patternProperties": {"^\d{4}$": 
+                                                                           #         {"type":"string"}}}, # "patternProperties": "^\d{10}$"
+                                                                   'outputs': {"type": "array", 
+                                                                           "additionalProperties": False},
+                                                                           #"patternProperties": {"^\d{4}$": 
+                                                                           #                      {"type":"string"}}},#"^\d{10}$"}},
+                                                                   'feeds':   {"type": "array", 
+                                                                           "additionalProperties": False},
+                                                                           #"patternProperties": {"^\d{4}$": 
+                                                                           #                      {"type":"string"}}},#"^\d{10}$"}},
                                                                    'linear index': {"type": 'number'}
                                                                               },
                                                                'required': ['inf rule',

@@ -123,7 +123,7 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
 
 def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
     """
-    >>> get_list_of_steps('my deriv','data.json')
+    >>> get_derivation_steps('my deriv','data.json')
     """
     if print_trace: print('[trace] compute; get_list_of_steps')
     dat = read_db(path_to_db)
@@ -133,41 +133,33 @@ def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
     return dat['derivations'][name_of_derivation]
 
 
-def input_output_count_for_infrule(inf_rule: str, path_to_db: str) -> Tuple[str, str, str]:
-    """
-    >>> input_output_count_for_infrule('multiply both sides by X', 'data.json')
-    """
-    if print_trace: print('[trace] compute: input_output_count_for_infrule')
-    dat = read_db(path_to_db)
+#def input_output_count_for_infrule(inf_rule: str, path_to_db: str) -> Tuple[str, str, str]:
+#    """
+#    >>> input_output_count_for_infrule('multiply both sides by X', 'data.json')
+#    """
+#    if print_trace: print('[trace] compute: input_output_count_for_infrule')
+#    dat = read_db(path_to_db)
+#
+#    if 'inference rules' not in dat.keys():
+#        print("[ERROR] compute; input_output_count_for_infrule: dat doesn't contain 'inference rules' as a key")
+#    if inf_rule not in dat['inference rules'].keys():
+#        print("[ERROR] compute; input_output_count_for_infrule: dat['inference rules'] doesn't contain ", inf_rule)
+#
+#    number_of_feeds   = dat['inference rules'][inf_rule]['number of feeds']
+#    number_of_inputs  = dat['inference rules'][inf_rule]['number of inputs']
+#    number_of_outputs = dat['inference rules'][inf_rule]['number of outputs']
+#    return number_of_feeds, number_of_inputs, number_of_outputs
 
-    if 'inference rules' not in dat.keys():
-        print("[ERROR] compute; input_output_count_for_infrule: dat doesn't contain 'inference rules' as a key")
-    if inf_rule not in dat['inference rules'].keys():
-        print("[ERROR] compute; input_output_count_for_infrule: dat['inference rules'] doesn't contain ", inf_rule)
-
-    number_of_feeds   = dat['inference rules'][inf_rule]['number of feeds']
-    number_of_inputs  = dat['inference rules'][inf_rule]['number of inputs']
-    number_of_outputs = dat['inference rules'][inf_rule]['number of outputs']
-    return number_of_feeds, number_of_inputs, number_of_outputs
-
-def create_expr_id(path_to_db: str) -> str:
+def create_expr_global_id(path_to_db: str) -> str:
     """
     search DB to find whether proposed expr ID already exists
 
     >>> create_expr_id(False, 'data.json')
     """
-    if print_trace: print('[trace] compute; create_expr_id')
+    if print_trace: print('[trace] compute; create_expr_global_id')
     dat = read_db(path_to_db)
 
-    global_expr_ids_in_use = []
-    for derivation_name, steps_dict in dat['derivations'].items():
-        for step_id, step in steps_dict.items():
-            for expr_local_id, expr_global_id in step['inputs'].items():
-                global_expr_ids_in_use.append(expr_global_id)
-            for expr_local_id, expr_global_id in step['outputs'].items():
-                global_expr_ids_in_use.append(expr_global_id)
-            for expr_local_id, expr_global_id in step['feeds'].items():
-                global_expr_ids_in_use.append(expr_global_id)
+    global_expr_ids_in_use = list(dat['expressions'].keys())
 
     found_valid_id = False
     loop_count = 0
@@ -216,15 +208,7 @@ def create_expr_local_id(path_to_db: str) -> str:
     if print_trace: print('[trace] compute; create_expr_local_id')
     dat = read_db(path_to_db)
 
-    local_ids_in_use = []
-    for derivation_name, steps_dict in dat['derivations'].items():
-        for step_id, step in steps_dict.items():
-            for expr_local_id, expr_global_id in step['inputs'].items():
-                local_ids_in_use.append(expr_local_id)
-            for expr_local_id, expr_global_id in step['outputs'].items():
-                local_ids_in_use.append(expr_local_id)
-            for expr_local_id, expr_global_id in step['feeds'].items():
-                local_ids_in_use.append(expr_local_id)
+    local_ids_in_use = list(dat['expr local to global'].keys())
 
     found_valid_id = False
     loop_count = 0
@@ -236,6 +220,16 @@ def create_expr_local_id(path_to_db: str) -> str:
         if loop_count > 10000000000:
             raise Exception("this seems unlikely")
     return proposed_local_id
+
+#def create_new_derivation(name_of_derivation: str, path_to_db: str) -> None:
+#    """
+#    >>> 
+#    """
+#    if print_trace: print('[trace] compute; create_new_derivation')
+#    dat = read_db(path_to_db)
+#    dat['derivations'][name_of_derivation]
+#    write_db(path_to_db, dat)
+#    return
 
 #********************************************
 # popularity
@@ -301,11 +295,12 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
     if print_trace: print('[trace] compute; extract_expressions_from_derivation_dict')
     dat = read_db(path_to_db)
     flt_dict = flatten_dict(dat['derivations'][deriv_name])
-    #print('flat dict =',flt_dict)
+    print('flat dict =',flt_dict)
     list_of_expr_ids = []
     for flattened_key, val in flt_dict.items():
         if ('_inputs_' in flattened_key) or ('_outputs_' in flattened_key) or ('_feeds_' in flattened_key):
             list_of_expr_ids.append(val)
+    print('list_of_expr_ids=',list_of_expr_ids)
     return list_of_expr_ids
 
 def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
@@ -355,6 +350,18 @@ def popularity_of_symbols(path_to_db: str) -> dict:
 
     return symbol_popularity_dict
 
+def get_expr_local_IDs_for_this_expr_global_ID(expr_global_ID: str, path_to_db: str) -> list:
+    """
+    >>> 
+    """
+    if print_trace: print('[trace] compute; get_expr_local_IDs_for_this_expr_global_ID')
+    list_of_expr_local_IDs = []
+    dat = read_db(path_to_db)
+    for local_id, global_id in dat['expr local to global'].items():
+        if expr_global_ID == global_id:
+            list_of_expr_local_IDs.append(local_id)
+    return list_of_expr_local_IDs
+
 def popularity_of_expressions(path_to_db: str) -> dict:
     """
     >>> popularity_of_expressions('data.json')
@@ -362,18 +369,21 @@ def popularity_of_expressions(path_to_db: str) -> dict:
     if print_trace: print('[trace] compute; popularity_of_expressions')
     dat = read_db(path_to_db)
     expression_popularity_dict = {}
-    for expr_id, expr_dict in dat['expressions'].items():
-        list_of_uses = []
+    for expr_global_id, expr_dict in dat['expressions'].items():
+        list_of_derivations_this_expr_is_used_in = []
+        list_of_local_IDs_this_global_ID_corresponds_to = get_expr_local_IDs_for_this_expr_global_ID(expr_global_id, path_to_db)
+
         for deriv_name, deriv_dict in dat['derivations'].items():
-            list_of_all_expr_for_this_deriv = extract_expressions_from_derivation_dict(deriv_name, path_to_db)
-            #print('deriv_name=',deriv_name)
-            #print('list_of_all_expr_for_this_deriv=',list_of_all_expr_for_this_deriv)
-            #print('expr_id =', expr_id)
-            if expr_id in list_of_all_expr_for_this_deriv:
-                #print('expr_id', expr_id, 'is in', deriv_name)
-                list_of_uses.append(deriv_name)
-        expression_popularity_dict[expr_id] = list_of_uses
-        #print('expression_popularity_dict =',expression_popularity_dict)
+            list_of_all_expr_local_IDs_for_this_deriv = extract_expressions_from_derivation_dict(deriv_name, path_to_db)
+            print('deriv_name=',deriv_name)
+            print('list_of_all_expr_for_this_deriv=',list_of_all_expr_local_IDs_for_this_deriv)
+            print('expr_global_id =', expr_global_id)
+            for expr_local_ID in list_of_local_IDs_this_global_ID_corresponds_to:
+                if expr_local_ID in list_of_all_expr_local_IDs_for_this_deriv:
+                    print('expr_global_id', expr_global_id, 'expr_local_ID', expr_local_ID, 'is in', deriv_name)
+                    list_of_derivations_this_expr_is_used_in.append(deriv_name)
+        expression_popularity_dict[expr_global_id] = list(set(list_of_derivations_this_expr_is_used_in))
+        print('expression_popularity_dict =',expression_popularity_dict)
     return expression_popularity_dict
 
 def popularity_of_infrules(path_to_db: str) -> dict:
@@ -472,7 +482,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
 
     step_dict = dat['derivations'][name_of_derivation][local_step_id]
     print('[debug] compute: write_step_to_graphviz_file: step_dict =', step_dict)
-    #  step_dict = {'inf rule': 'begin derivation', 'inputs': {}, 'feeds': {}, 'outputs': {'526874110': '557883925'}}
+    #  step_dict = {'inf rule': 'begin derivation', 'inputs': [], 'feeds': [], 'outputs': ['526874110']}
     for global_id, latex_and_ast_dict in dat['expressions'].items():
         print('[debug] compute: write_step_to_graphviz_file: expr_dict has', global_id, latex_and_ast_dict['latex'])
 
@@ -486,7 +496,8 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
               generated_png_name + '",labelloc=b];\n')
 
     #print('[debug] compute: write_step_to_graphviz_file: inputs')
-    for expr_local_id, expr_global_id in step_dict['inputs'].items():
+    for expr_local_id in step_dict['inputs']:
+        expr_global_id = dat['expr local to global'][expr_local_id]
         valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
         if not valid_latex_bool:
             print('invalid latex for input',dat['expressions'][expr_global_id]['latex'])
@@ -496,7 +507,8 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
                        generated_png_name + '",labelloc=b];\n')
 
     #print('[debug] compute: write_step_to_graphviz_file: outputs')
-    for expr_local_id, expr_global_id in step_dict['outputs'].items():
+    for expr_local_id in step_dict['outputs']:
+        expr_global_id = dat['expr local to global'][expr_local_id]
         valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
         if not valid_latex_bool:
             print('invalid latex for output',dat['expressions'][expr_global_id]['latex'])
@@ -507,7 +519,8 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
                        generated_png_name + '",labelloc=b];\n')
 
     #print('[debug] compute: write_step_to_graphviz_file: feeds')
-    for expr_local_id, expr_global_id in step_dict['feeds'].items():
+    for expr_local_id in step_dict['feeds']:
+        expr_global_id = dat['expr local to global'][expr_local_id]
         valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
         if not valid_latex_bool:
             print('invalid latex for feed',dat['expressions'][expr_global_id]['latex'])
@@ -577,15 +590,19 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
                 if step_dict['linear index']==linear_indx:
                     # using the newcommand, populate the expression IDs 
                     lat_file.write('\\' + step_dict['inf rule'].replace(' ',''))
-                    for expr_local_id, expr_global_id in step_dict['feeds'].items():
+                    for expr_local_id in step_dict['feeds']:
+                        expr_global_id = dat['expr local to global'][expr_local_id]
                         lat_file.write('{' + dat['expressions'][expr_global_id]['latex'] + '}')
-                    for expr_local_id, expr_global_id in step_dict['inputs'].items():
+                    for expr_local_id in step_dict['inputs']:
+                        expr_global_id = dat['expr local to global'][expr_local_id]
                         lat_file.write('{' + expr_local_id + '}')
-                    for expr_local_id, expr_global_id in step_dict['outputs'].items():
+                    for expr_local_id in step_dict['outputs']:
+                        expr_global_id = dat['expr local to global'][expr_local_id]
                         lat_file.write('{' + expr_local_id + '}')
                     lat_file.write('\n')
                     # write output expressions 
-                    for expr_local_id, expr_global_id in step_dict['outputs'].items():
+                    for expr_local_id in step_dict['outputs']:
+                        expr_global_id = dat['expr local to global'][expr_local_id]
                         lat_file.write('\\begin{equation}\n')
                         lat_file.write(dat['expressions'][expr_global_id]['latex'] + '\n')
                         lat_file.write('\\label{eq:' + expr_local_id + '}\n')
@@ -888,7 +905,7 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
     if print_trace: print('[trace] compute; create_sympy_expr_tree_from_latex')
 
     sympy_expr = parse_latex(latex_expr_str)
-    print('expr_tree =',sympy_expr)
+    print('Sympy expression =',sympy_expr)
 
     latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
     print('latex as Sympy expr tree =',latex_as_sympy_expr_tree)
@@ -921,30 +938,30 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
     dat = read_db(path_to_db)
 
     step_dict = {'inf rule': inf_rule,
-                 'inputs':   {},
-                 'feeds':    {},
-                 'outputs':  {}}  # type: STEP_DICT
+                 'inputs':   [],
+                 'feeds':    [],
+                 'outputs':  []}  # type: STEP_DICT
 
     # because the form is an immutable dict, we need to convert to dict before deleting keys
     # https://tedboy.github.io/flask/generated/generated/werkzeug.ImmutableMultiDict.html
     latex_for_step_dict = latex_for_step_dict.to_dict(flat=True)
-    print('latex_for_step_dict =',latex_for_step_dict)
+    print('[debug] compute; create_step; latex_for_step_dict =',latex_for_step_dict)
 
     inputs_and_outputs_to_delete = []
     for which_eq, latex_expr_str in latex_for_step_dict.items():
         if 'use_ID_for' in which_eq:  # 'use_ID_for_in1' or 'use_ID_for_in2' or 'use_ID_for_out1', etc
             # the following leverages the dict from the web form
             # request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('submit_button', 'Submit')])
+            print('[debug] compute; create_step; use_ID_for is in', which_eq)
             if 'for_in' in which_eq:
                 this_input = 'input' + which_eq[-1]
                 expr_local_id = latex_for_step_dict[this_input]
-                step_dict['inputs'][expr_local_id] =  dat['expr local to global'][expr_local_id]
+                step_dict['inputs'].append(expr_local_id)
                 inputs_and_outputs_to_delete.append(this_input)
             elif 'for_out' in which_eq:
                 this_output = 'output' + which_eq[-1]
                 expr_local_id = latex_for_step_dict[this_input]
-
-                step_dict['inputs'][expr_local_id] = dat['expr local to global'][expr_local_id]
+                step_dict['inputs'].append(expr_local_id)
                 inputs_and_outputs_to_delete.append(this_output)
             else:
                 raise Exception('[ERROR] compute; create_step; unrecognized key in use_ID ', latex_for_step_dict)
@@ -960,29 +977,40 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
         del latex_for_step_dict[input_and_output]
 
     for which_eq, latex_expr_str in latex_for_step_dict.items():
+        print('[debug] compute; create_step; which_eq =', which_eq, 'and latex_expr_str =', latex_expr_str)
         if 'input' in which_eq:
-            expr_id = create_expr_id(path_to_db)
-            dat['expressions'][expr_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
+            expr_global_id = create_expr_global_id(path_to_db)
+            dat['expressions'][expr_global_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
             expr_local_id = create_expr_local_id(path_to_db)
-            step_dict['inputs'][expr_local_id] = expr_id
+            dat['expr local to global'][expr_local_id] = expr_global_id
+            step_dict['inputs'].append(expr_local_id)
         elif 'output' in which_eq:
-            expr_id = create_expr_id(path_to_db)
-            dat['expressions'][expr_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
-            step_dict['outputs'][create_expr_local_id(path_to_db)] = expr_id
+            expr_global_id = create_expr_global_id(path_to_db)
+            dat['expressions'][expr_global_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
+            expr_local_id = create_expr_local_id(path_to_db)
+            dat['expr local to global'][expr_local_id] = expr_global_id
+            step_dict['outputs'].append(expr_local_id)
         elif 'feed' in which_eq:
-            expr_id = create_expr_id(path_to_db)
-            dat['expressions'][expr_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
-            step_dict['feeds'][create_expr_local_id(path_to_db)] = expr_id
+            expr_global_id = create_expr_global_id(path_to_db)
+            dat['expressions'][expr_global_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
+            expr_local_id = create_expr_local_id(path_to_db)
+            dat['expr local to global'][expr_local_id] = expr_global_id
+            step_dict['feeds'].append(expr_local_id)
         elif 'submit_button' in which_eq:
             pass
         else:
             raise Exception('[ERROR] compute; create_step; unrecognized key in step dict', latex_for_step_dict)
 
     list_of_linear_index = []
-    for step_id, tmp_step_dict in dat['derivations'][name_of_derivation].items():
-        list_of_linear_index.append(tmp_step_dict['linear index'])
-    highest_linear_index = max(list_of_linear_index)
-    step_dict['linear index'] = highest_linear_index + 1
+
+    if name_of_derivation in dat['derivations'].keys():
+        for step_id, tmp_step_dict in dat['derivations'][name_of_derivation].items():
+            list_of_linear_index.append(tmp_step_dict['linear index'])
+        highest_linear_index = max(list_of_linear_index)
+        step_dict['linear index'] = highest_linear_index + 1
+    else: # new derivation
+        print('[debug] compute; create_step; new derivation so initializing linear index')
+        step_dict['linear index'] = 1
 
     print('[debug] compute; create_step; step_dict =', step_dict)
 
@@ -990,12 +1018,89 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
     inf_rule_local_ID = create_step_id(path_to_db)
     if name_of_derivation not in dat['derivations'].keys():
         print('[debug] compute: create_step: starting new derivation')
-        dat['derivations'][name_of_derivation] = {}
-    if inf_rule_local_ID in dat['derivations'][name_of_derivation].keys():
-        raise Exception('collision of inf_rule_local_id already in dat', inf_rule_local_ID)
-    dat['derivations'][name_of_derivation][inf_rule_local_ID] = step_dict
+        dat['derivations'][name_of_derivation] = {inf_rule_local_ID: step_dict}
+    else: # derivation exists
+        if inf_rule_local_ID in dat['derivations'][name_of_derivation].keys():
+            raise Exception('collision of inf_rule_local_id already in dat', inf_rule_local_ID)
+        dat['derivations'][name_of_derivation][inf_rule_local_ID] = step_dict
+
     write_db(path_to_db, dat)
 
     return inf_rule_local_ID
+
+def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str:
+    """
+    >>> validate_step('my cool deriv', '958282', 'data.json')
+    """
+    if print_trace: print('[trace] compute; validate_step')
+
+    dat = read_db(path_to_db)
+
+    step_dict = dat['derivations'][name_of_derivation][step_id]
+    print('[debug] compute; validate_step; step_dict =',step_dict)
+
+    if step_dict['inf rule'] in ['declare initial expr', 'declare final expr', 
+                                 'declare identity', 'declare guess solution',
+                                 'declare assumption']:
+        return "no validation is available for declarations"
+
+    if step_dict['inf rule'] in ['add X to both sides']:
+        # claim:
+        # LHS(step_dict['inputs'][0]) + step_dict['feeds'][0] == LHS(step_dict['outputs'][0])
+        # RHS(step_dict['inputs'][0]) + step_dict['feeds'][0] == RHS(step_dict['outputs'][0])
+        input_latex = latex_from_expr_local_id(step_dict['inputs'][0], path_to_db)
+        print('[debug] compute; validate_step; input_latex =', input_latex)
+
+        input_LHS, input_RHS = split_expr_into_lhs_rhs(input_latex)
+        print('input LHS is', input_LHS,'and input RHS is', input_RHS)
+
+        output_latex = latex_from_expr_local_id(step_dict['outputs'][0], path_to_db)
+        output_LHS, output_RHS = split_expr_into_lhs_rhs(output_latex)
+        print('output LHS is', output_LHS, 'and output RHS is', output_RHS)
+
+        feed_latex = latex_from_expr_local_id(step_dict['feeds'][0], path_to_db)
+        sympy_feed = parse_latex(feed_latex)
+
+        # https://docs.sympy.org/latest/gotchas.html#double-equals-signs
+        # https://stackoverflow.com/questions/37112738/sympy-comparing-expressions
+        if ((sympy.simplify(sympy.Add(input_LHS, sympy_feed) - output_LHS) == 0) and 
+            (sympy.simplify(sympy.Add(input_RHS, sympy_feed) - output_RHS) == 0)):
+            return "step is valid"
+        else:
+            return ("step is not valid; <BR>"+
+                    "LHS diff is " + str(sympy.simplify(sympy.Add(input_LHS, sympy_feed) - output_LHS)) + "<BR>" +
+                    "RHS diff is " + str(sympy.simplify(sympy.Add(input_RHS, sympy_feed) - output_RHS)))
+
+    return "no validation available for this inference rule"
+
+def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
+    """
+    >>> latex_from_expr_local_id('1029')
+    'a = b'
+    """
+    if print_trace: print('[trace] compute; latex_from_expr_local_id')
+    dat = read_db(path_to_db)
+    print('[debug] compute; latex_from_expr_local_id; expr_local_id =', expr_local_id)
+    global_id = dat['expr local to global'][expr_local_id]
+    latex_expr = dat['expressions'][global_id]['latex']
+    print('[debug] compute; latex_from_expr_local_id; latex_expr =', latex_expr)
+    return latex_expr
+
+def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
+    """
+    >>> split_expr_into_lhs_rhs('a = b')
+    'a', 'b'
+    """
+    if print_trace: print('[trace] compute; split_expr_into_lhs_rhs')
+
+    print('[debug] compute; split_expr_into_lhs_rhs; latex_expr =', latex_expr) 
+
+    sympy_expr = parse_latex(latex_expr)
+    print('[debug] compute; split_expr_into_lhs_rhs; Sympy expression =',sympy_expr)
+
+    #latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
+    #print('latex as Sympy expr tree =',latex_as_sympy_expr_tree)
+
+    return sympy_expr.lhs, sympy_expr.rhs
 
 # EOF

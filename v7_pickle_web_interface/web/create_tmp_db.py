@@ -217,27 +217,27 @@ dat['inference rules'] =  {
 # The inputs and outputs of each step have a "local ID" which is associated with a unique global ID. The global ID is associated with an expression
 dat['derivations'] = {
   'fun deriv': { 
-     # key is "inf rule local ID"
+     # key is "step ID"
      '4928482': {'inf rule': 'declare initial expr',
-                 'inputs':  {},
-                 'feeds':   {},
-                 'outputs': {'9428': '4928923942'}, # key is "expr local ID", value is "expr ID"
+                 'inputs':  [],
+                 'feeds':   [],
+                 'outputs': ['9428'], # "expr local ID"
                  'linear index': 1}, # linear index for PDF and for graph orientation
      '2948592': {'inf rule': 'add X to both sides',
-                 'inputs':  {'9428': '4928923942'},
-                 'feeds':   {'3190': '9494829190'},   
-                 'outputs': {'3921': '9499959299'},
+                 'inputs':  ['9428'],
+                 'feeds':   ['3190'],   
+                 'outputs': ['3921'],
                  'linear index': 2},
      '9492942': {'inf rule': 'declare final expr',
-                 'inputs':  {'3921': '9499959299'},
-                 'feeds':   {},
-                 'outputs': {},
+                 'inputs':  ['3921'],
+                 'feeds':   [],
+                 'outputs': [],
                  'linear index': 3}},
   'another deriv': {
      '0491182': {'inf rule':'declare initial expr',
-                 'inputs':  {},
-                 'feeds':   {},
-                 'outputs': {'9128': '1492842000'},
+                 'inputs':  [],
+                 'feeds':   [],
+                 'outputs': ['9128'],
                  'linear index': 1}
                    }
       }

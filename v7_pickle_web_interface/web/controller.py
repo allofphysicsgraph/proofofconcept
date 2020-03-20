@@ -324,9 +324,10 @@ def provide_expr_for_inf_rule(name_of_derivation: str,inf_rule: str):
     """
 
     if print_trace: print('[trace] controller: provide_expr_for_inf_rule')
-    num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, 'data.json')
+    #num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, 'data.json')
+    #if print_debug: print('[debug] controller; provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
 
-    if print_debug: print('[debug] controller; provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
+    dat = compute.read_db('data.json')
 
     if request.method == 'POST': # and request.form.validate(): no validation because the form was defined on the web page
         latex_for_step_dict = request.form
@@ -343,23 +344,29 @@ def provide_expr_for_inf_rule(name_of_derivation: str,inf_rule: str):
         local_step_id = compute.create_step(latex_for_step_dict, inf_rule, name_of_derivation, 'data.json')
         if print_debug: print('[debug] controller; provide_expr_for_inf_rule; local_step_id =', local_step_id)
 
+        step_validity_msg = compute.validate_step(name_of_derivation, local_step_id, 'data.json')
+
         return redirect(url_for('step_review',
+                        step_validity_msg=step_validity_msg,
                         name_of_derivation=name_of_derivation,
                         local_step_id=local_step_id))
-    dat = compute.read_db('data.json')
+
+    # the following is needed to handle the case where the derivation is new and no steps exist yet
+    if name_of_derivation in dat['derivations'].keys():
+        step_dict = dat['derivations'][name_of_derivation]
+    else:
+        step_dict = {}
 
     return render_template('provide_expr_for_inf_rule.html',
                             name_of_derivation=name_of_derivation,
-                            number_of_feeds=int(num_feeds),
-                            number_of_inputs=int(num_inputs),
-                            number_of_outputs=int(num_outputs),
-                            inf_rule=inf_rule,
-                            step_dict=dat['derivations'][name_of_derivation],
+                            inf_rule_dict=dat['inference rules'][inf_rule],
+                            step_dict=step_dict,
                             expr_dict=dat['expressions'],
+                            expr_local_to_gobal=dat['expr local to global'],
                             webform=LatexIO(request.form))
 
-@app.route('/step_review/<name_of_derivation>/<local_step_id>/', methods=['GET', 'POST'])
-def step_review(name_of_derivation: str,local_step_id: str):
+@app.route('/step_review/<name_of_derivation>/<local_step_id>/<step_validity_msg>', methods=['GET', 'POST'])
+def step_review(name_of_derivation: str,local_step_id: str, step_validity_msg: str):
     """
     https://teamtreehouse.com/community/getting-data-from-wtforms-formfield
     """
@@ -390,10 +397,12 @@ def step_review(name_of_derivation: str,local_step_id: str):
             raise Exception('unrecognized button in "step_review":',request.form)
 
     return render_template('step_review.html',
+                           step_validity_msg=step_validity_msg,
                            name_of_graphviz_png=step_graphviz_png,
                            name_of_derivation=name_of_derivation,
                            step_dict=dat['derivations'][name_of_derivation],
-                           expr_dict=dat['expressions'])
+                           expr_dict=dat['expressions'],
+                           expr_local_to_gobal=dat['expr local to global'])
 
 
 @app.route('/review_derivation/<name_of_derivation>/<pdf_filename>/', methods=['GET', 'POST'])
@@ -408,6 +417,9 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
                              name_of_derivation=name_of_derivation))
         elif request.form['submit_button'] == "return to main menu":
             return redirect(url_for('index'))
+        elif request.form['submit_button'] == 'generate pdf':
+            pdf_filename = compute.generate_pdf_for_derivation(name_of_derivation,'data.json')
+            return redirect(url_for('static', filename=pdf_filename))
         else:
             raise Exception('[ERROR] compute; review_derivation; unrecognized button:',request.form)
 
@@ -420,7 +432,8 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
                                name_of_derivation=name_of_derivation,
                                name_of_graphviz_png=derivation_png,
                                step_dict=dat['derivations'][name_of_derivation],
-                               expr_dict=dat['expressions'])
+                               expr_dict=dat['expressions'],
+                               expr_local_to_gobal=dat['expr local to global'])
 
 @app.route('/modify_step/<name_of_derivation>/<step_id>/', methods=['GET', 'POST'])
 def modify_step(name_of_derivation: str, step_id: str):
@@ -445,8 +458,9 @@ def modify_step(name_of_derivation: str, step_id: str):
     return render_template('modify_step.html',
                             name_of_derivation=name_of_derivation,
                             name_of_graphviz_png=step_graphviz_png,
-                            step_dict=this_step,
-                            expr_dict=dat['expressions'])
+                            step_dict=dat['derivations'][name_of_derivation],
+                            expr_dict=dat['expressions'],
+                            expr_local_to_gobal=dat['expr local to global'])
 
 @app.route('/create_new_inf_rule/', methods=['GET', 'POST'])
 def create_new_inf_rule():

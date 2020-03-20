@@ -5,50 +5,50 @@
 
 <P>name of derivation = {{ name_of_derivation }}
 
-<P>inference rule "{{ inf_rule }}" selected; provide {{ number_of_feeds }} feeds, {{ number_of_inputs }} inputs, and {{ number_of_outputs }} outputs
+<P>{{ inf_rule_dict['latex'] }}
 
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
 <form method="post" action="">
 
-{% if number_of_inputs|int() > 0|int() %}
+{% if inf_rule_dict['number of inputs']|int() > 0|int() %}
 <P>{{ webform.input1.label }}: {{ webform.input1 }}
 <input type="checkbox" name="use_ID_for_in1"/> Check if using local expression ID (no check if using Latex)
 {% endif %}
 
-{% if number_of_inputs|int() > 1|int() %}
+{% if inf_rule_dict['number of inputs']|int() > 1|int() %}
 <P>{{ webform.input2.label }}: {{ webform.input2 }}
 <input type="checkbox" name="use_ID_for_in2"/>  Check if using local expression ID (no check if using Latex)
 {% endif %}
 
-{% if number_of_inputs|int() > 2|int() %}
+{% if inf_rule_dict['number of inputs']|int() > 2|int() %}
 <P>{{ webform.input3.label }}: {{ webform.input3 }}
 <input type="checkbox" name="use_ID_for_in3"/>  Check if using local expression ID (no check if using Latex)
 {% endif %}
 
-{% if number_of_feeds|int() > 0|int() %} 
+{% if inf_rule_dict['number of feeds']|int() > 0|int() %} 
 <P>{{ webform.feed1.label }}: {{ webform.feed1 }}
 {% endif %}
 
-{% if number_of_feeds|int() > 1|int() %} 
+{% if inf_rule_dict['number of feeds']|int() > 1|int() %} 
 <P>{{ webform.feed2.label }}: {{ webform.feed2 }}
 {% endif %}
 
-{% if number_of_feeds|int() > 2|int() %} 
+{% if inf_rule_dict['number of feeds']|int() > 2|int() %} 
 <P>{{ webform.feed3.label }}: {{ webform.feed3 }}
 {% endif %}
 
-{% if number_of_outputs|int() > 0|int() %}
+{% if inf_rule_dict['number of outputs']|int() > 0|int() %}
 <P>{{ webform.output1.label }}: {{ webform.output1 }}
 <input type="checkbox" name="use_ID_for_out1"/> Check if using local expression ID (no check if using Latex)
 {% endif %}
 
-{% if number_of_outputs|int() > 1|int() %}
+{% if inf_rule_dict['number of outputs']|int() > 1|int() %}
 <P>{{ webform.output2.label }}: {{ webform.output2 }}
 <input type="checkbox" name="use_ID_for_out2"/> Check if using local expression ID (no check if using Latex)
 {% endif %}
 
-{% if number_of_outputs|int() > 2|int() %}
+{% if inf_rule_dict['number of outputs']|int() > 2|int() %}
 <P>{{ webform.output3.label }}: {{ webform.output3 }}
 <input type="checkbox" name="use_ID_for_out3"/> Check if using local expression ID (no check if using Latex)
 {% endif %}
