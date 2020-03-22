@@ -37,7 +37,7 @@ schema = {
                             },
         "derivations" :     {"type" : "object", 
                              "additionalProperties": False,
-                             "patternProperties": {"^[a-zA-Z\s_]+$": # derivation name
+                             "patternProperties": {"^[0-9a-zA-Z\s_]+$": # derivation name
                                     {"type": "object",
                                      "additionalProperties": False,
                                      "patternProperties": 

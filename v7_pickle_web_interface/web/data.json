@@ -1,1 +1,4514 @@
-{"operators": {"function": {"latex": "f", "argument count": 1, "scope": ["list"]}, "division": {"latex": "/", "argument count": 2, "scope": ["real", "vector", "matrix", "complex"]}, "indefinite intergral": {"latex": "\\int", "argument count": 2, "scope": ["real", "vector", "matrix", "complex"]}, "addition": {"latex": "+", "argument count": 2, "scope": ["real", "vector", "matrix", "complex"]}, "nabla": {"latex": "\\nabla", "argument count": 1, "scope": ["vector"]}, "equals": {"latex": "=", "argument count": 2, "scope": ["real", "vector", "matrix", "complex"]}, "element-wise addition": {"latex": "+", "argument count": 2, "scope": ["vector", "matrix"]}, "spatial vector differential": {"latex": "\\vec{\\nabla}", "argument count": 2, "scope": ["real"]}, "cross product": {"latex": "\\cross", "argument count": 2, "scope": ["vector"]}, "summation": {"latex": "\\sum", "argument count": 4, "scope": ["real", "vector", "matrix", "complex"]}, "cosine": {"latex": "\\cos", "argument count": 1, "scope": ["real"]}, "subtraction": {"latex": "-", "argument count": 2, "scope": ["real", "vector", "matrix", "complex"]}, "multiplication": {"latex": "*", "argument count": 2, "scope": ["real", "vector", "matrix", "complex"]}, "definite integral": {"latex": "\\int", "argument count": 4, "scope": ["real", "vector", "matrix", "complex"]}, "sine": {"latex": "\\sin", "argument count": 1, "scope": ["real"]}, "dot product": {"latex": "\\dot", "argument count": 2, "scope": ["vector"]}}, "measures": {"temperature": {}, "electric current": {}, "length": {"references": ["https://en.wikipedia.org/wiki/Unit_of_length"]}, "luminous intensity": {}, "mass": {}, "time": {}, "amount of substance": {}}, "expr local to global": {"9128": "1492842000", "9428": "4928923942", "3921": "9499959299", "3190": "9494829190"}, "symbols": {"2911": {"category": "variable", "latex": "\\vec{x}", "scope": ["vector"]}, "2912": {"category": "constant", "latex": "\\exp", "values": [{"units": "dimensionless", "value": "2.718"}], "name": "e", "scope": ["real"]}, "2467": {"category": "variable", "latex": "t_f", "measure": "time", "name": "final time", "scope": ["real"]}, "1223": {"category": "variable", "latex": "q", "scope": ["real", "complex"]}, "1452": {"category": "variable", "latex": "y", "scope": ["real", "complex"]}, "9492": {"category": "variable", "latex": "r", "scope": ["real", "complex"]}, "1131": {"category": "variable", "latex": "p", "scope": ["real", "complex"]}, "1357": {"category": "variable", "latex": "v", "scope": ["real", "complex"]}, "9139": {"category": "variable", "latex": "a", "scope": ["real", "complex"]}, "2456": {"category": "variable", "latex": "h", "scope": ["real", "complex"]}, "5155": {"category": "variable", "latex": "m", "scope": ["real", "complex"]}, "1345": {"category": "variable", "latex": "l", "scope": ["real", "complex"]}, "1134": {"category": "variable", "latex": "p", "measure": "mass*length/time", "name": "momentum", "scope": ["real"]}, "4563": {"category": "variable", "latex": "n", "scope": ["real", "complex"]}, "4621": {"category": "variable", "latex": "i", "scope": ["real", "complex"]}, "4567": {"category": "constant", "latex": "c", "name": "speed of light in vacuum", "values": [{"units": "meters/second", "value": "299792458"}], "scope": ["real"], "references": ["https://en.wikipedia.org/wiki/Speed_of_light"]}, "5321": {"category": "variable", "latex": "k", "scope": ["real", "complex"]}, "9199": {"category": "variable", "latex": "dx", "scope": ["real"]}, "9491": {"category": "variable", "latex": "T", "measure": "time", "name": "period", "scope": ["real"]}, "1939": {"category": "variable", "latex": "e", "scope": ["real", "complex"]}, "4568": {"category": "variable", "latex": "t_0", "measure": "time", "name": "time 0", "scope": ["real"]}, "4200": {"category": "variable", "latex": "f", "scope": ["real", "complex"]}, "4231": {"category": "variable", "latex": "c", "scope": ["real", "complex"]}, "1572": {"category": "variable", "latex": "x_0", "measure": "length", "name": "initial position", "scope": ["real"]}, "1469": {"category": "variable", "latex": "y_0", "measure": "length", "name": "initial position", "scope": ["real"]}, "1552": {"category": "variable", "latex": "j", "scope": ["real", "complex"]}, "0011": {"category": "variable", "latex": "z", "scope": ["real", "complex"]}, "3141": {"category": "constant", "latex": "\\pi", "values": [{"units": "dimensionless", "value": "3.1415"}], "name": "pi", "scope": ["real"]}, "1999": {"category": "constant", "latex": "e", "name": "charge of an electron", "values": [{"units": "Columb", "value": "1.602*10^{-19}"}], "scope": ["real"], "references": ["https://en.wikipedia.org/wiki/Elementary_charge"]}, "4291": {"category": "variable", "latex": "g", "scope": ["real", "complex"]}, "5563": {"category": "variable", "latex": "t_i", "measure": "time", "name": "initial time", "scope": ["real"]}, "1370": {"category": "constant", "latex": "\\alpha", "name": "fine-structure constant", "values": [{"units": "dimensionless", "value": "1/137.03599999"}], "scope": ["real"], "references": ["https://en.wikipedia.org/wiki/Fine-structure_constant"]}, "1456": {"category": "variable", "latex": "t", "scope": ["real", "complex"]}, "1467": {"category": "variable", "latex": "t", "measure": "time", "name": "time", "scope": ["real"]}, "1245": {"category": "variable", "latex": "v", "scope": ["real", "complex"]}, "1900": {"category": "variable", "latex": "d", "scope": ["real", "complex"]}, "5791": {"category": "variable", "latex": "s", "scope": ["real", "complex"]}, "1464": {"category": "variable", "latex": "x", "scope": ["real", "complex"]}, "6022": {"category": "constant", "latex": "N_A", "name": "Avagadro's constant", "values": [{"units": "mol^-1", "value": "6.02214086*10^{23}"}], "scope": ["real"], "references": ["https://en.wikipedia.org/wiki/Avogadro_constant"]}, "4221": {"category": "variable", "latex": "u", "scope": ["real", "complex"]}, "1157": {"category": "constant", "latex": "k_{Boltzman}", "name": "Boltzman constant", "values": [{"units": "meter^2 kilogram second^-2 Kelvin^-1", "value": "1.38064852*10^{-23}"}], "scope": ["real"], "references": ["https://en.wikipedia.org/wiki/Boltzmann_constant"]}, "1567": {"category": "variable", "latex": "i", "scope": ["real", "complex"]}}, "derivations": {"fun deriv": {"2948592": {"inputs": ["9428"], "feeds": ["3190"], "linear index": 2, "inf rule": "add X to both sides", "outputs": ["3921"]}, "4928482": {"inputs": [], "feeds": [], "linear index": 1, "inf rule": "declare initial expr", "outputs": ["9428"]}, "9492942": {"inputs": ["3921"], "feeds": [], "linear index": 3, "inf rule": "declare final expr", "outputs": []}}, "another deriv": {"0491182": {"inputs": [], "feeds": [], "linear index": 1, "inf rule": "declare initial expr", "outputs": ["9128"]}}}, "units": {"Farad": {"references": ["https://en.wikipedia.org/wiki/Farad"], "measure": "capacitance"}, "sol": {"references": ["https://en.wikipedia.org/wiki/Sol_(day_on_Mars)"], "measure": "time"}, "meter": {"references": ["https://en.wikipedia.org/wiki/Metre"], "measure": "length"}, "hand": {"references": ["https://en.wikipedia.org/wiki/Hand_(unit)"], "measure": "length"}, "second": {"references": ["https://en.wikipedia.org/wiki/Second"], "measure": "time"}, "mol": {"references": ["https://en.wikipedia.org/wiki/Mole_(unit)"], "measure": "amount of substance"}, "Ampere": {"references": ["https://en.wikipedia.org/wiki/Ampere"], "measure": "electric current"}, "parsec": {"references": ["https://en.wikipedia.org/wiki/Parsec"], "measure": "length"}, "light-year": {"references": ["https://en.wikipedia.org/wiki/Light-year"], "measure": "length"}, "Tesla": {"references": ["https://en.wikipedia.org/wiki/Tesla_(unit)"], "measure": "magnetic field"}, "Kelvin": {"references": ["https://en.wikipedia.org/wiki/Kelvin"], "measure": "temperature"}, "kilogram": {"references": ["https://en.wikipedia.org/wiki/Kilogram"], "measure": "mass"}}, "expressions": {"9499959299": {"latex": "a + k = b + k", "AST": ["equals", [["addition", ["9139", "5321"]], ["addition", ["1939", "5321"]]]]}, "9494829190": {"latex": "k", "AST": ["5321"]}, "9584821911": {"latex": "c + d = a", "AST": ["equals", [["addition", ["4231", "1900"]], "9139"]]}, "1492842000": {"latex": "\\nabla \\vec{x} = f(y)", "AST": ["equals", [["nabla", ["2911"]], ["function", ["1452"]]]]}, "1492811142": {"latex": "f = x - d", "AST": ["equals", ["4200", ["subtraction", ["1464", "1900"]]]]}, "4928923942": {"latex": "a = b", "AST": ["equals", ["9139", "1939"]]}}, "inference rules": {"indefinite integral over": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Indefinite integral of both sides of Eq.~\\ref{eq:#2} over $#1$."}, "RHS of expr X eq RHS of expr Y": {"number of outputs": 1, "number of inputs": 2, "number of feeds": 0, "latex": "RHS of Eq.~\\ref{eq:#1} is equal to RHS of Eq.~\\ref{eq:#2}."}, "factor out X from RHS": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Factor $#1$ from the RHS of Eq.~\\ref{eq:#2}."}, "indefinite intgrate RHS over": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Indefinite integral of RHS of Eq.~\\ref{eq:#2} over $#1$."}, "apply operator to Ket": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Apply operator to ket in Eq.~\\ref{eq:#1}."}, "distribute conjugate transpose to factors": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Distribute conjugate transpose to factors in Eq.~\\ref{eq:#1}."}, "factor out X": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Factor $#1$ from Eq.~\\ref{eq:#2}."}, "LHS of expr X eq LHS of expr Y": {"number of outputs": 1, "number of inputs": 2, "number of feeds": 0, "latex": "LHS of Eq.~\\ref{eq:#1} is equal to LHS of Eq.~\\ref{eq:#2}."}, "replace scalar with vector": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Replace scalar variables in Eq.~\\ref{eq:#1} with equivalent vector variables."}, "swap LHS with RHS": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Swap LHS of Eq.~\\ref{eq:#1} with RHS."}, "solve for X": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Solve Eq.~\\ref{eq:#2} for $#1$."}, "distribute conjugate to factors": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Distribute conjugate to factors in Eq.~\\ref{eq:#1}."}, "conjugate function X": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Conjugate $#1$ in Eq.~\\ref{eq:#2}."}, "make expr power": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Make Eq.~\\ref{eq:#2} the power of $#1$."}, "declare guess solution": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Judicious choice as a guessed solution to Eq.~\\ref{eq:#1} is"}, "X dot both sides": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Take inner product of $#1$ with Eq.~\\ref{eq:#2}."}, "function is odd": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 3, "latex": "$#1$ is odd with respect to $#2$, so replace $#1$ with $#3$ in Eq.~\\ref{eq:#4}."}, "take curl of both sides": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Apply curl to both sides of Eq.~\\ref{eq:#1}."}, "divide both sides by": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Divide both sides of Eq.~\\ref{eq:#2} by $#1$."}, "function is even": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 3, "latex": "$#1$ is even with respect to $#2$, so replace $#1$ with $#3$ in Eq.~\\ref{eq:#4}."}, "declare assumption": {"number of outputs": 1, "number of inputs": 0, "number of feeds": 0, "latex": "Eq.~\\ref{eq:#1} is an assumption."}, "sub RHS of expr X into expr Y": {"number of outputs": 1, "number of inputs": 2, "number of feeds": 0, "latex": "Substitute RHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}."}, "select real parts": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Select real parts of Eq.~\\ref{eq:#1}."}, "multiply both sides by": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Multiply both sides of Eq.~\\ref{eq:#2} by $#1$."}, "expand integrand": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Expand integrand of Eq.~\\ref{eq:#1}."}, "declare identity": {"number of outputs": 1, "number of inputs": 0, "number of feeds": 0, "latex": "Eq.~\\ref{eq:#1} is an identity."}, "X cross both sides by": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Take cross product of $#1$ and Eq.~\\ref{eq:#2}."}, "conjugate transpose both sides": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Conjugate transpose of both sides of Eq.~\\ref{eq:#1}."}, "conjugate both sides": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Conjugate both sides of Eq.~\\ref{eq:#1}."}, "integrate over from to": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 3, "latex": "Integrate Eq.~\\ref{eq:#4} over $#1$ from lower limit $#2$ to upper limit $#3$."}, "sub LHS of expr X into expr Y": {"number of outputs": 1, "number of inputs": 2, "number of feeds": 0, "latex": "Substitute LHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}."}, "partially differentiate with respect to": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Partially differentiate Eq.~\\ref{eq:#2} with respect to $#1$."}, "combine like terms": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Combine like terms in Eq.~\\ref{eq:#1}."}, "claim LHS equals RHS": {"number of outputs": 0, "number of inputs": 1, "number of feeds": 0, "latex": "Thus we see that LHS of Eq.~\\ref{eq:#1} is equal to RHS."}, "sum exponents RHS": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Sum exponents on RHS of Eq.~\\ref{eq:#1}."}, "both sides dot X": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Take inner product of Eq.~\\ref{eq:#2} with $#1$"}, "subtract X from both sides": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Subtract $#1$ from both sides of Eq.~\\ref{eq:#2}."}, "multiply LHS by unity": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Multiply LHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$"}, "evaluate definite integral": {"number of outputs": 1, "number of inputs": 2, "number of feeds": 0, "latex": "Integrate Eq.~\\ref{eq:#1} using identity Eq.~\\ref{eq:#2}."}, "sum exponents": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Sum exponents on LHS and RHS of Eq.~\\ref{eq:#1}."}, "add zero to RHS": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Add zero to RHS of Eq.~\\ref{eq:#2}, where $0=#1$."}, "substitue X for Y": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 2, "latex": "Substitute $#1$ for $#2$ in Eq.~\\ref{eq:#3}."}, "assume N dimensions": {"number of outputs": 1, "number of inputs": 0, "number of feeds": 1, "latex": "Assume $#1$ dimensions in Eq.~\\ref{eq:#2}."}, "indefinite integration": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Indefinite integral of both sides of Eq.~\\ref{eq:#1}."}, "add X to both sides": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Add $#1$ to both sides of Eq.~\\ref{eq:#2}."}, "boundary condition": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "A boundary condition for Eq.~\\ref{eq:#1} is"}, "simplify": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Simplify Eq.~\\ref{eq:#1}."}, "apply operator to Bra": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Apply operator to bra in Eq.~\\ref{eq:#1}."}, "select imaginary parts": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Select imaginary parts of Eq.~\\ref{eq:#1}."}, "apply gradient to scalar function": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Apply gradient to both sides of Eq.~\\ref{eq:#1}."}, "factor out X from LHS": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Factor $#1$ from the LHS of Eq.~\\ref{eq:#2}."}, "add expr X to expr Y": {"number of outputs": 1, "number of inputs": 2, "number of feeds": 0, "latex": "Add Eq.~\\ref{eq:#1} to Eq.~\\ref{eq:#2}."}, "differentiate with respect to": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Differentiate Eq.~\\ref{eq:#2} with respect to $#1$."}, "replace curl with LeviCevita summation contravariant": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Replace curl in Eq.~\\ref{eq:#1} with Levi-Cevita contravariant."}, "expand LHS": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Expand the LHS of Eq.~\\ref{eq:#1}."}, "expand magnitude to conjugate": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Expand $#1$ in Eq.~\\ref{eq:#2} with conjugate."}, "both sides cross X": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Take cross product of Eq.~\\ref{eq:#2} and $#1$"}, "add zero to LHS": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Add zero to LHS of Eq.~\\ref{eq:#2}, where $0=#1$."}, "apply divergence": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Apply divergence to both sides of Eq.~\\ref{eq:#1}."}, "raise both sides to power": {"number of outputs": 2, "number of inputs": 1, "number of feeds": 1, "latex": "Raise both sides of Eq.~\\ref{eq:#2} to $#1$."}, "replace summation notation with vector notation": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Replace summation notation in Eq.~\\ref{eq:#1} with vector notation."}, "indefinite integrate LHS over": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Indefinite integral of LHS of Eq.~\\ref{eq:#2} over $#1$."}, "expr X is true under condition expr Y": {"number of outputs": 1, "number of inputs": 2, "number of feeds": 0, "latex": "Eq.~\\ref{eq:#1} is valid when Eq.~\\ref{eq:#2} occurs."}, "multiply RHS by Unity": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 1, "latex": "Multiply RHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$"}, "declare initial expr": {"number of outputs": 1, "number of inputs": 0, "number of feeds": 0, "latex": "Eq.~\\ref{eq:#1} is an initial equation."}, "declare final expr": {"number of outputs": 0, "number of inputs": 1, "number of feeds": 0, "latex": "Eq.~\\ref{eq:#1} is one of the final equations."}, "claim expr X equals expr Y": {"number of outputs": 0, "number of inputs": 2, "number of feeds": 0, "latex": "Thus we see that Eq.~\\ref{eq:#1} is equivalent to Eq.~\\ref{eq:#2}."}, "sum exponents LHS": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Sum exponents on LHS of Eq.~\\ref{eq:#1}."}, "expand RHS": {"number of outputs": 1, "number of inputs": 1, "number of feeds": 0, "latex": "Expand the RHS of Eq.~\\ref{eq:#1}."}, "normalization condition": {"number of outputs": 1, "number of inputs": 0, "number of feeds": 0, "latex": "Normalization condition is Eq.~\\ref{eq:#1}."}, "mult expr X by expr Y": {"number of outputs": 1, "number of inputs": 2, "number of feeds": 0, "latex": "Multiply Eq.~\\ref{eq:#1} by Eq.~\\ref{eq:#2}."}}}
+{
+    "derivations": {
+        "Comptons equation for scattering": {
+            "3445641": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 2,
+                "outputs": [
+                    "2840008"
+                ]
+            },
+            "3667395": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "2491904",
+                    "1209604"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "5610925"
+                ]
+            },
+            "3871228": {
+                "feeds": [],
+                "inf rule": "swapLHSwithRHS",
+                "inputs": [
+                    "4068150"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "4200334"
+                ]
+            },
+            "4733986": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 3,
+                "outputs": [
+                    "1209604"
+                ]
+            },
+            "4738354": {
+                "feeds": [],
+                "inf rule": "multExprXbyExprY",
+                "inputs": [
+                    "4200334"
+                ],
+                "linear index": 8,
+                "outputs": [
+                    "4218805"
+                ]
+            },
+            "7952658": {
+                "feeds": [
+                    "2338514"
+                ],
+                "inf rule": "subtractXfromBothSides",
+                "inputs": [
+                    "5610925"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "4068150"
+                ]
+            },
+            "7958085": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "2840008",
+                    "4978059"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "2491904"
+                ]
+            },
+            "8668018": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "4978059"
+                ]
+            }
+        },
+        "another deriv": {
+            "0491182": {
+                "feeds": [],
+                "inf rule": "declare initial expr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "9128000"
+                ]
+            }
+        },
+        "curl curl identity": {
+            "1393411": {
+                "feeds": [],
+                "inf rule": "ReplaceSummationNotationWithVectorNotation",
+                "inputs": [
+                    "3948472"
+                ],
+                "linear index": 8,
+                "outputs": [
+                    "2109231"
+                ]
+            },
+            "2339482": {
+                "feeds": [],
+                "inf rule": "ReplaceCurlWithLeviCevitaSummationContravariant",
+                "inputs": [
+                    "1939485"
+                ],
+                "linear index": 2,
+                "outputs": [
+                    "9485482"
+                ]
+            },
+            "2930454": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "2934842",
+                    "2941319"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "3949292"
+                ]
+            },
+            "3838233": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "3844221"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "3948472"
+                ]
+            },
+            "3848292": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "3949292"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "3844221"
+                ]
+            },
+            "3948552": {
+                "feeds": [],
+                "inf rule": "ReplaceCurlWithLeviCevitaSummationContravariant",
+                "inputs": [
+                    "9485482"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "2941319"
+                ]
+            },
+            "3948572": {
+                "feeds": [],
+                "inf rule": "declareIdentity",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "1939485"
+                ]
+            },
+            "3949211": {
+                "feeds": [],
+                "inf rule": "claimLHSequalsRHS",
+                "inputs": [
+                    "2109231"
+                ],
+                "linear index": 9,
+                "outputs": []
+            },
+            "4295822": {
+                "feeds": [],
+                "inf rule": "declareIdentity",
+                "inputs": [],
+                "linear index": 4,
+                "outputs": [
+                    "2934842"
+                ]
+            }
+        },
+        "derivation of Schrodinger Eq": {
+            "1039774": {
+                "feeds": [],
+                "inf rule": "replaceScalarWithVector",
+                "inputs": [
+                    "4948325"
+                ],
+                "linear index": 14,
+                "outputs": [
+                    "2948487"
+                ]
+            },
+            "1203100": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "2100421",
+                    "4499582"
+                ],
+                "linear index": 17,
+                "outputs": [
+                    "1291313"
+                ]
+            },
+            "1204921": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "2934848"
+                ]
+            },
+            "1204929": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 19,
+                "outputs": [
+                    "1039948"
+                ]
+            },
+            "1204945": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "1203491",
+                    "1039485"
+                ],
+                "linear index": 11,
+                "outputs": [
+                    "2901049"
+                ]
+            },
+            "1294844": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 3,
+                "outputs": [
+                    "2949002"
+                ]
+            },
+            "1294945": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "2939402",
+                    "3499522"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "2949821"
+                ]
+            },
+            "1341141": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "1291313"
+                ],
+                "linear index": 18,
+                "outputs": [
+                    "1305534"
+                ]
+            },
+            "1347587": {
+                "feeds": [
+                    "6544644"
+                ],
+                "inf rule": "partialDiffWRT",
+                "inputs": [
+                    "1305534"
+                ],
+                "linear index": 24,
+                "outputs": [
+                    "2364546"
+                ]
+            },
+            "1395335": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 20,
+                "outputs": [
+                    "1353583"
+                ]
+            },
+            "1923945": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 15,
+                "outputs": [
+                    "3940505"
+                ]
+            },
+            "2030624": {
+                "feeds": [
+                    "1304952"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "1039013"
+                ],
+                "linear index": 13,
+                "outputs": [
+                    "4948325"
+                ]
+            },
+            "2322434": {
+                "feeds": [
+                    "2342425"
+                ],
+                "inf rule": "multRHSbyUnity",
+                "inputs": [
+                    "1353583"
+                ],
+                "linear index": 22,
+                "outputs": [
+                    "2326309"
+                ]
+            },
+            "2394495": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "4938589"
+                ],
+                "linear index": 32,
+                "outputs": [
+                    "1495034"
+                ]
+            },
+            "2422434": {
+                "feeds": [
+                    "2239424"
+                ],
+                "inf rule": "raiseBothSidesToPower",
+                "inputs": [
+                    "1039948"
+                ],
+                "linear index": 21,
+                "outputs": [
+                    "1432042"
+                ]
+            },
+            "2449858": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "1432042",
+                    "2326309"
+                ],
+                "linear index": 23,
+                "outputs": [
+                    "3576787"
+                ]
+            },
+            "2454535": {
+                "feeds": [],
+                "inf rule": "applyGradientToScalarFunction",
+                "inputs": [
+                    "1305534"
+                ],
+                "linear index": 28,
+                "outputs": [
+                    "5577584"
+                ]
+            },
+            "2455452": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 37,
+                "outputs": [
+                    "2344324"
+                ]
+            },
+            "2464445": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "2364546",
+                    "1305534"
+                ],
+                "linear index": 25,
+                "outputs": [
+                    "5345567"
+                ]
+            },
+            "2900428": {
+                "feeds": [
+                    "1209482"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "2934848"
+                ],
+                "linear index": 10,
+                "outputs": [
+                    "1039485"
+                ]
+            },
+            "2919311": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 2,
+                "outputs": [
+                    "9214650"
+                ]
+            },
+            "2930492": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "2949002",
+                    "2949821"
+                ],
+                "linear index": 8,
+                "outputs": [
+                    "3741728"
+                ]
+            },
+            "2938341": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "3940505",
+                    "2948487"
+                ],
+                "linear index": 16,
+                "outputs": [
+                    "2100421"
+                ]
+            },
+            "2939400": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "2901049",
+                    "2949002"
+                ],
+                "linear index": 12,
+                "outputs": [
+                    "1039013"
+                ]
+            },
+            "2954835": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "2344324",
+                    "1304924"
+                ],
+                "linear index": 38,
+                "outputs": [
+                    "2456546"
+                ]
+            },
+            "3294932": {
+                "feeds": [],
+                "inf rule": "applyDivergence",
+                "inputs": [
+                    "5535257"
+                ],
+                "linear index": 31,
+                "outputs": [
+                    "4938589"
+                ]
+            },
+            "3454353": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "3576787",
+                    "5345567"
+                ],
+                "linear index": 26,
+                "outputs": [
+                    "2495835"
+                ]
+            },
+            "3919384": {
+                "feeds": [
+                    "3949921"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "3741728"
+                ],
+                "linear index": 9,
+                "outputs": [
+                    "4499582"
+                ]
+            },
+            "3934948": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 5,
+                "outputs": [
+                    "3499522"
+                ]
+            },
+            "3949482": {
+                "feeds": [
+                    "2940021"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "9214650"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "2939402"
+                ]
+            },
+            "4059592": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "5535257",
+                    "1495034"
+                ],
+                "linear index": 33,
+                "outputs": [
+                    "1049553"
+                ]
+            },
+            "4305953": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "1049553"
+                ],
+                "linear index": 34,
+                "outputs": [
+                    "4959593"
+                ]
+            },
+            "4358635": {
+                "feeds": [
+                    "2436656"
+                ],
+                "inf rule": "multbothsidesby",
+                "inputs": [
+                    "2495835"
+                ],
+                "linear index": 27,
+                "outputs": [
+                    "3429538"
+                ]
+            },
+            "4939459": {
+                "feeds": [
+                    "5938585"
+                ],
+                "inf rule": "multbothsidesby",
+                "inputs": [
+                    "4959593"
+                ],
+                "linear index": 35,
+                "outputs": [
+                    "4349493"
+                ]
+            },
+            "5354635": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "3454565",
+                    "1305534"
+                ],
+                "linear index": 30,
+                "outputs": [
+                    "5535257"
+                ]
+            },
+            "5858694": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "5577584"
+                ],
+                "linear index": 29,
+                "outputs": [
+                    "3454565"
+                ]
+            },
+            "6756574": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "2456546"
+                ],
+                "linear index": 39,
+                "outputs": []
+            },
+            "9394834": {
+                "feeds": [],
+                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inputs": [
+                    "3429538",
+                    "4349493"
+                ],
+                "linear index": 36,
+                "outputs": [
+                    "1304924"
+                ]
+            },
+            "9394842": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 4,
+                "outputs": [
+                    "1203491"
+                ]
+            }
+        },
+        "electric field wave equation time dependent to time independent": {
+            "1002928": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "3994928",
+                    "3839493"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "1029393"
+                ]
+            },
+            "2319391": {
+                "feeds": [
+                    "3232242"
+                ],
+                "inf rule": "differentiateWRT",
+                "inputs": [
+                    "1029393"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "2939392"
+                ]
+            },
+            "3568093": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 2,
+                "outputs": [
+                    "9393848"
+                ]
+            },
+            "4585829": {
+                "feeds": [],
+                "inf rule": "declareGuessSolution",
+                "inputs": [
+                    "4758592"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "3994928"
+                ]
+            },
+            "4858282": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "9393848",
+                    "4758592"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "3839493"
+                ]
+            },
+            "4955966": {
+                "feeds": [
+                    "3232242"
+                ],
+                "inf rule": "differentiateWRT",
+                "inputs": [
+                    "2939392"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "4958573"
+                ]
+            },
+            "4958883": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "9495903"
+                ],
+                "linear index": 10,
+                "outputs": [
+                    "3949492"
+                ]
+            },
+            "5495827": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "3949492"
+                ],
+                "linear index": 11,
+                "outputs": []
+            },
+            "5839535": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "4958573",
+                    "4949582"
+                ],
+                "linear index": 9,
+                "outputs": [
+                    "9495903"
+                ]
+            },
+            "7419980": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "4758592"
+                ]
+            },
+            "8485758": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 8,
+                "outputs": [
+                    "4949582"
+                ]
+            }
+        },
+        "euler equation proof": {
+            "1029890": {
+                "feeds": [
+                    "6656532"
+                ],
+                "inf rule": "makeExprPower",
+                "inputs": [
+                    "3784785"
+                ],
+                "linear index": 10,
+                "outputs": [
+                    "9587572"
+                ]
+            },
+            "1848471": {
+                "feeds": [
+                    "4264724"
+                ],
+                "inf rule": "indefIntRHSOver",
+                "inputs": [
+                    "8883737"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "9984877"
+                ]
+            },
+            "2741906": {
+                "feeds": [
+                    "3954314"
+                ],
+                "inf rule": "multbothsidesby",
+                "inputs": [
+                    "9038289"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "1111289"
+                ]
+            },
+            "4614728": {
+                "feeds": [
+                    "7563791"
+                ],
+                "inf rule": "factorOutXfromRHS",
+                "inputs": [
+                    "1838300"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "2948271"
+                ]
+            },
+            "6462728": {
+                "feeds": [
+                    "6563727"
+                ],
+                "inf rule": "indefIntRHSOver",
+                "inputs": [
+                    "9984877"
+                ],
+                "linear index": 8,
+                "outputs": [
+                    "3747585"
+                ]
+            },
+            "6463728": {
+                "feeds": [
+                    "7636749"
+                ],
+                "inf rule": "differentiateWRT",
+                "inputs": [
+                    "1029383"
+                ],
+                "linear index": 2,
+                "outputs": [
+                    "1838300"
+                ]
+            },
+            "6466378": {
+                "feeds": [
+                    "9877781"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "1111289"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "8883737"
+                ]
+            },
+            "7364656": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "1029383"
+                ]
+            },
+            "7466748": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "1029383",
+                    "2948271"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "9038289"
+                ]
+            },
+            "7561612": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "8888888"
+                ],
+                "linear index": 12,
+                "outputs": []
+            },
+            "7563728": {
+                "feeds": [],
+                "inf rule": "swapLHSwithRHS",
+                "inputs": [
+                    "3747585"
+                ],
+                "linear index": 9,
+                "outputs": [
+                    "3784785"
+                ]
+            },
+            "7566272": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "9587572",
+                    "1029383"
+                ],
+                "linear index": 11,
+                "outputs": [
+                    "8888888"
+                ]
+            }
+        },
+        "euler equation trig relations": {
+            "1928392": {
+                "feeds": [
+                    "4829194"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "2939484"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "4383592"
+                ]
+            },
+            "2384942": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "4849888",
+                    "4849959"
+                ],
+                "linear index": 8,
+                "outputs": []
+            },
+            "2849492": {
+                "feeds": [
+                    "1921933"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "4825483"
+                ],
+                "linear index": 11,
+                "outputs": [
+                    "1133483"
+                ]
+            },
+            "2939404": {
+                "feeds": [],
+                "inf rule": "addExprXtoExprY",
+                "inputs": [
+                    "8888888",
+                    "3194924"
+                ],
+                "linear index": 10,
+                "outputs": [
+                    "4825483"
+                ]
+            },
+            "2949492": {
+                "feeds": [],
+                "inf rule": "swapLHSwithRHS",
+                "inputs": [
+                    "4383592"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "4849888"
+                ]
+            },
+            "3848592": {
+                "feeds": [],
+                "inf rule": "addExprXtoExprY",
+                "inputs": [
+                    "8888888",
+                    "8888883"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "2939484"
+                ]
+            },
+            "3848924": {
+                "feeds": [
+                    "3747849"
+                ],
+                "inf rule": "multbothsidesby",
+                "inputs": [
+                    "8888883"
+                ],
+                "linear index": 9,
+                "outputs": [
+                    "3194924"
+                ]
+            },
+            "3848927": {
+                "feeds": [
+                    "2393922",
+                    "3949052"
+                ],
+                "inf rule": "subXforY",
+                "inputs": [
+                    "8888888"
+                ],
+                "linear index": 2,
+                "outputs": [
+                    "8888881"
+                ]
+            },
+            "4294921": {
+                "feeds": [],
+                "inf rule": "swapLHSwithRHS",
+                "inputs": [
+                    "1133483"
+                ],
+                "linear index": 12,
+                "outputs": [
+                    "4849959"
+                ]
+            },
+            "4747288": {
+                "feeds": [
+                    "3919391",
+                    "3981813",
+                    "2919191"
+                ],
+                "inf rule": "functionIsOdd",
+                "inputs": [
+                    "8888882"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "8888883"
+                ]
+            },
+            "7473895": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "8888888"
+                ]
+            },
+            "9595949": {
+                "feeds": [
+                    "4849392",
+                    "1030901",
+                    "3413423"
+                ],
+                "inf rule": "functionIsEven",
+                "inputs": [
+                    "8888881"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "8888882"
+                ]
+            }
+        },
+        "euler equation trig sqrt": {
+            "1383414": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "1231131"
+                ],
+                "linear index": 16,
+                "outputs": []
+            },
+            "3040493": {
+                "feeds": [],
+                "inf rule": "declareIdentity",
+                "inputs": [],
+                "linear index": 8,
+                "outputs": [
+                    "9385720"
+                ]
+            },
+            "3841414": {
+                "feeds": [
+                    "3838111"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "7472666"
+                ],
+                "linear index": 15,
+                "outputs": [
+                    "1231131"
+                ]
+            },
+            "3984721": {
+                "feeds": [],
+                "inf rule": "swapLHSwithRHS",
+                "inputs": [
+                    "4890284"
+                ],
+                "linear index": 10,
+                "outputs": [
+                    "2936550"
+                ]
+            },
+            "5832058": {
+                "feeds": [],
+                "inf rule": "expandRHS",
+                "inputs": [
+                    "3333333"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "4444444"
+                ]
+            },
+            "6839583": {
+                "feeds": [
+                    "4089571",
+                    "4582412"
+                ],
+                "inf rule": "subXforY",
+                "inputs": [
+                    "8888888"
+                ],
+                "linear index": 2,
+                "outputs": [
+                    "9999999"
+                ]
+            },
+            "7563628": {
+                "feeds": [
+                    "6466214"
+                ],
+                "inf rule": "subtractXfromBothSides",
+                "inputs": [
+                    "9481000"
+                ],
+                "linear index": 12,
+                "outputs": [
+                    "7472641"
+                ]
+            },
+            "7566277": {
+                "feeds": [
+                    "8842811"
+                ],
+                "inf rule": "subtractXfromBothSides",
+                "inputs": [
+                    "1029911"
+                ],
+                "linear index": 14,
+                "outputs": [
+                    "7472666"
+                ]
+            },
+            "7572728": {
+                "feeds": [
+                    "7471778"
+                ],
+                "inf rule": "addXtoBothSides",
+                "inputs": [
+                    "7472641"
+                ],
+                "linear index": 13,
+                "outputs": [
+                    "1029911"
+                ]
+            },
+            "7663728": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "8888888"
+                ]
+            },
+            "8374590": {
+                "feeds": [],
+                "inf rule": "selectRealParts",
+                "inputs": [
+                    "2222222"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "5828294"
+                ]
+            },
+            "8374625": {
+                "feeds": [
+                    "7894942"
+                ],
+                "inf rule": "addXtoBothSides",
+                "inputs": [
+                    "5828294"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "4890284"
+                ]
+            },
+            "8492847": {
+                "feeds": [],
+                "inf rule": "multExprXbyExprY",
+                "inputs": [
+                    "8888888"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "3333333"
+                ]
+            },
+            "9483240": {
+                "feeds": [],
+                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inputs": [
+                    "2936550",
+                    "9123670"
+                ],
+                "linear index": 11,
+                "outputs": [
+                    "9481000"
+                ]
+            },
+            "9582956": {
+                "feeds": [],
+                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inputs": [
+                    "4444444",
+                    "9999999"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "2222222"
+                ]
+            },
+            "9832430": {
+                "feeds": [
+                    "1111111"
+                ],
+                "inf rule": "subtractXfromBothSides",
+                "inputs": [
+                    "9385720"
+                ],
+                "linear index": 9,
+                "outputs": [
+                    "9123670"
+                ]
+            }
+        },
+        "example of Godel problem": {
+            "4647381": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 2,
+                "outputs": [
+                    "4738297"
+                ]
+            },
+            "7566367": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "7572712"
+                ]
+            },
+            "8673948": {
+                "feeds": [],
+                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inputs": [
+                    "7572712",
+                    "4738297"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "4627482",
+                    "2845892"
+                ]
+            },
+            "8674920": {
+                "feeds": [],
+                "inf rule": "swapLHSwithRHS",
+                "inputs": [
+                    "4738297"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "7572712"
+                ]
+            }
+        },
+        "frequency relations": {
+            "2303943": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "3293094"
+                ]
+            },
+            "2939482": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "8482459",
+                    "3294004"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "3993940"
+                ]
+            },
+            "304948": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 2,
+                "outputs": [
+                    "3294004"
+                ]
+            },
+            "3832748": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "8374556",
+                    "3293094"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "8394853"
+                ]
+            },
+            "6822583": {
+                "feeds": [
+                    "5749291"
+                ],
+                "inf rule": "multbothsidesby",
+                "inputs": [
+                    "8482459"
+                ],
+                "linear index": 8,
+                "outputs": [
+                    "8341200"
+                ]
+            },
+            "8332941": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 3,
+                "outputs": [
+                    "9214650"
+                ]
+            },
+            "8345721": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "2934848"
+                ],
+                "linear index": 11,
+                "outputs": []
+            },
+            "8946983": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "3993940",
+                    "8394853"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "2934848"
+                ]
+            },
+            "9103516": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 4,
+                "outputs": [
+                    "8482459"
+                ]
+            },
+            "9483715": {
+                "feeds": [
+                    "8837284"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "8341200"
+                ],
+                "linear index": 9,
+                "outputs": [
+                    "9380032"
+                ]
+            },
+            "9483843": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "9380032",
+                    "9214650"
+                ],
+                "linear index": 10,
+                "outputs": [
+                    "8374556"
+                ]
+            }
+        },
+        "fun deriv": {
+            "2948592": {
+                "feeds": [
+                    "3190000"
+                ],
+                "inf rule": "add X to both sides",
+                "inputs": [
+                    "9428000"
+                ],
+                "linear index": 2,
+                "outputs": [
+                    "3921000"
+                ]
+            },
+            "4928482": {
+                "feeds": [],
+                "inf rule": "declare initial expr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "9428000"
+                ]
+            },
+            "9492942": {
+                "feeds": [],
+                "inf rule": "declare final expr",
+                "inputs": [
+                    "3921000"
+                ],
+                "linear index": 3,
+                "outputs": []
+            }
+        },
+        "integration by parts": {
+            "2839422": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "3848329"
+                ],
+                "linear index": 5,
+                "outputs": []
+            },
+            "4842942": {
+                "feeds": [
+                    "9492929"
+                ],
+                "inf rule": "subtractXfromBothSides",
+                "inputs": [
+                    "3494854"
+                ],
+                "linear index": 2,
+                "outputs": [
+                    "2938188"
+                ]
+            },
+            "4848592": {
+                "feeds": [],
+                "inf rule": "swapLHSwithRHS",
+                "inputs": [
+                    "2938188"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "2938190"
+                ]
+            },
+            "4952082": {
+                "feeds": [],
+                "inf rule": "declareIdentity",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "3494854"
+                ]
+            },
+            "8483953": {
+                "feeds": [],
+                "inf rule": "indefIntegration",
+                "inputs": [
+                    "2938190"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "3848329"
+                ]
+            }
+        },
+        "maxwell to electric field wave equation": {
+            "1010301": {
+                "feeds": [
+                    "5626421"
+                ],
+                "inf rule": "partialDiffWRT",
+                "inputs": [
+                    "1199299"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "4642245"
+                ]
+            },
+            "1939442": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "2392932",
+                    "4642245"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "2962831"
+                ]
+            },
+            "2932848": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "4757562",
+                    "1199299",
+                    "4857731"
+                ]
+            },
+            "3737384": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "3738373",
+                    "2962831"
+                ],
+                "linear index": 11,
+                "outputs": [
+                    "4758592"
+                ]
+            },
+            "3837471": {
+                "feeds": [],
+                "inf rule": "declareAssumption",
+                "inputs": [],
+                "linear index": 7,
+                "outputs": [
+                    "3984852"
+                ]
+            },
+            "3948572": {
+                "feeds": [],
+                "inf rule": "declareIdentity",
+                "inputs": [],
+                "linear index": 9,
+                "outputs": [
+                    "1939485"
+                ]
+            },
+            "3948584": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "4758592"
+                ],
+                "linear index": 12,
+                "outputs": []
+            },
+            "4224853": {
+                "feeds": [],
+                "inf rule": "takeCurlofBothSides",
+                "inputs": [
+                    "4757562"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "2392932"
+                ]
+            },
+            "4655746": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "1939485",
+                    "2837471"
+                ],
+                "linear index": 10,
+                "outputs": [
+                    "3738373"
+                ]
+            },
+            "5656372": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "4857731",
+                    "3984852"
+                ],
+                "linear index": 8,
+                "outputs": [
+                    "2837471"
+                ]
+            }
+        },
+        "particle in a 1D box": {
+            "1003049": {
+                "feeds": [
+                    "9484724",
+                    "4934845"
+                ],
+                "inf rule": "subXforY",
+                "inputs": [
+                    "1231131"
+                ],
+                "linear index": 20,
+                "outputs": [
+                    "100404"
+                ]
+            },
+            "1293948": {
+                "feeds": [
+                    "9594995"
+                ],
+                "inf rule": "raiseBothSidesToPower",
+                "inputs": [
+                    "1029384"
+                ],
+                "linear index": 32,
+                "outputs": [
+                    "9394857",
+                    "9394858"
+                ]
+            },
+            "1384011": {
+                "feeds": [],
+                "inf rule": "declareGuessSolution",
+                "inputs": [
+                    "7572748"
+                ],
+                "linear index": 2,
+                "outputs": [
+                    "7572118"
+                ]
+            },
+            "1384935": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "9394857",
+                    "3452131"
+                ],
+                "linear index": 33,
+                "outputs": [
+                    "8474766"
+                ]
+            },
+            "1911919": {
+                "feeds": [
+                    "2929944",
+                    "4948585"
+                ],
+                "inf rule": "subXforY",
+                "inputs": [
+                    "21030"
+                ],
+                "linear index": 27,
+                "outputs": [
+                    "9339495"
+                ]
+            },
+            "2029394": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "2838288"
+                ],
+                "linear index": 38,
+                "outputs": [
+                    "8474762"
+                ]
+            },
+            "3048100": {
+                "feeds": [],
+                "inf rule": "declareIdentity",
+                "inputs": [],
+                "linear index": 26,
+                "outputs": [
+                    "21030"
+                ]
+            },
+            "3048800": {
+                "feeds": [],
+                "inf rule": "declareIdentity",
+                "inputs": [],
+                "linear index": 24,
+                "outputs": [
+                    "3992939"
+                ]
+            },
+            "3329831": {
+                "feeds": [],
+                "inf rule": "EvaluateDefiniteIntegral",
+                "inputs": [
+                    "203020",
+                    "9339495"
+                ],
+                "linear index": 28,
+                "outputs": [
+                    "8584733"
+                ]
+            },
+            "3847567": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "9394858",
+                    "3452131"
+                ],
+                "linear index": 34,
+                "outputs": [
+                    "8474765"
+                ]
+            },
+            "3949284": {
+                "feeds": [],
+                "inf rule": "expandIntegrand",
+                "inputs": [
+                    "495054"
+                ],
+                "linear index": 23,
+                "outputs": [
+                    "203020"
+                ]
+            },
+            "4434559": {
+                "feeds": [],
+                "inf rule": "normalizationCondition",
+                "inputs": [],
+                "linear index": 13,
+                "outputs": [
+                    "7575626"
+                ]
+            },
+            "4455453": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "3452131",
+                    "595847"
+                ],
+                "linear index": 17,
+                "outputs": [
+                    "495950"
+                ]
+            },
+            "4485722": {
+                "feeds": [
+                    "9485858",
+                    "4831494"
+                ],
+                "inf rule": "subXforY",
+                "inputs": [
+                    "3992939"
+                ],
+                "linear index": 25,
+                "outputs": [
+                    "4948377"
+                ]
+            },
+            "4757567": {
+                "feeds": [],
+                "inf rule": "swapLHSwithRHS",
+                "inputs": [
+                    "7575626"
+                ],
+                "linear index": 15,
+                "outputs": [
+                    "5577567"
+                ]
+            },
+            "4757743": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "7572748",
+                    "7572118"
+                ],
+                "linear index": 37,
+                "outputs": [
+                    "2838288"
+                ]
+            },
+            "4948339": {
+                "feeds": [],
+                "inf rule": "subLHSofExprXintoExprY",
+                "inputs": [
+                    "3452132",
+                    "495950"
+                ],
+                "linear index": 18,
+                "outputs": [
+                    "8478550"
+                ]
+            },
+            "5751725": {
+                "feeds": [
+                    "9587738"
+                ],
+                "inf rule": "conjugateFunctionX",
+                "inputs": [
+                    "3452131"
+                ],
+                "linear index": 14,
+                "outputs": [
+                    "3452132"
+                ]
+            },
+            "5859994": {
+                "feeds": [
+                    "9485857"
+                ],
+                "inf rule": "multbothsidesby",
+                "inputs": [
+                    "9493949"
+                ],
+                "linear index": 31,
+                "outputs": [
+                    "1029384"
+                ]
+            },
+            "5940300": {
+                "feeds": [
+                    "40490"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "9485800"
+                ],
+                "linear index": 22,
+                "outputs": [
+                    "495054"
+                ]
+            },
+            "7374289": {
+                "feeds": [],
+                "inf rule": "claimLHSequalsRHS",
+                "inputs": [
+                    "1214762"
+                ],
+                "linear index": 40,
+                "outputs": []
+            },
+            "7455643": {
+                "feeds": [
+                    "9458842"
+                ],
+                "inf rule": "expandMagnitudeToConjugate",
+                "inputs": [
+                    "5577567"
+                ],
+                "linear index": 16,
+                "outputs": [
+                    "595847"
+                ]
+            },
+            "7474753": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "8474765",
+                    "8474766"
+                ],
+                "linear index": 35,
+                "outputs": []
+            },
+            "8373472": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "405049"
+                ],
+                "linear index": 30,
+                "outputs": [
+                    "9493949"
+                ]
+            },
+            "8485725": {
+                "feeds": [],
+                "inf rule": "declareIdentity",
+                "inputs": [],
+                "linear index": 19,
+                "outputs": [
+                    "1231131"
+                ]
+            },
+            "8485747": {
+                "feeds": [],
+                "inf rule": "EvaluateDefiniteIntegral",
+                "inputs": [
+                    "4948377",
+                    "8584733"
+                ],
+                "linear index": 29,
+                "outputs": [
+                    "405049"
+                ]
+            },
+            "8571277": {
+                "feeds": [],
+                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inputs": [
+                    "8577781",
+                    "7572118"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "7547581"
+                ]
+            },
+            "8572265": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "7572859",
+                    "7572118"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "7562671"
+                ]
+            },
+            "8572771": {
+                "feeds": [],
+                "inf rule": "boundaryCondition",
+                "inputs": [
+                    "7572748"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "8577781"
+                ]
+            },
+            "8572778": {
+                "feeds": [],
+                "inf rule": "boundaryCondition",
+                "inputs": [
+                    "7572748"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "8585727"
+                ]
+            },
+            "8575627": {
+                "feeds": [],
+                "inf rule": "ExprXisTrueUnderconditionExprY",
+                "inputs": [
+                    "8577672",
+                    "8577711"
+                ],
+                "linear index": 10,
+                "outputs": [
+                    "9847600"
+                ]
+            },
+            "8575717": {
+                "feeds": [],
+                "inf rule": "declareIdentity",
+                "inputs": [],
+                "linear index": 9,
+                "outputs": [
+                    "8577711"
+                ]
+            },
+            "8575761": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "9495882",
+                    "7562671"
+                ],
+                "linear index": 12,
+                "outputs": [
+                    "3452131"
+                ]
+            },
+            "8576571": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "7547581"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "7572859"
+                ]
+            },
+            "8576627": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "7572748"
+                ]
+            },
+            "8576741": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "100404",
+                    "8478550"
+                ],
+                "linear index": 21,
+                "outputs": [
+                    "9485800"
+                ]
+            },
+            "9114413": {
+                "feeds": [
+                    "1334112"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "9847600"
+                ],
+                "linear index": 11,
+                "outputs": [
+                    "9495882"
+                ]
+            },
+            "9394948": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "8474762"
+                ],
+                "linear index": 39,
+                "outputs": [
+                    "1214762"
+                ]
+            },
+            "9686782": {
+                "feeds": [],
+                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inputs": [
+                    "8585727",
+                    "7562671"
+                ],
+                "linear index": 8,
+                "outputs": [
+                    "8577672"
+                ]
+            }
+        },
+        "quadratic equation derivation": {
+            "2200910": {
+                "feeds": [
+                    "2838490",
+                    "2449291"
+                ],
+                "inf rule": "subtractXfromBothSides",
+                "inputs": [
+                    "6608123",
+                    "6608102"
+                ],
+                "linear index": 10,
+                "outputs": [
+                    "4433112",
+                    "2657355"
+                ]
+            },
+            "2211910": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "4433112",
+                    "2657355"
+                ],
+                "linear index": 11,
+                "outputs": [
+                    "8761200",
+                    "8811221"
+                ]
+            },
+            "2500423": {
+                "feeds": [
+                    "4307451"
+                ],
+                "inf rule": "addXtoBothSides",
+                "inputs": [
+                    "1212129"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "1120000"
+                ]
+            },
+            "5829110": {
+                "feeds": [
+                    "6644853"
+                ],
+                "inf rule": "subtractXfromBothSides",
+                "inputs": [
+                    "7777621"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "1212129"
+                ]
+            },
+            "7487443": {
+                "feeds": [
+                    "2367209"
+                ],
+                "inf rule": "raiseBothSidesToPower",
+                "inputs": [
+                    "2985412"
+                ],
+                "linear index": 9,
+                "outputs": [
+                    "6608123",
+                    "6608102"
+                ]
+            },
+            "7777777": {
+                "feeds": [],
+                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inputs": [
+                    "1120000",
+                    "1734000"
+                ],
+                "linear index": 8,
+                "outputs": [
+                    "2985412"
+                ]
+            },
+            "7996484": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "1239010"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "1734000"
+                ]
+            },
+            "8321038": {
+                "feeds": [
+                    "4858592",
+                    "999900"
+                ],
+                "inf rule": "subXforY",
+                "inputs": [
+                    "9091270"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "1239010"
+                ]
+            },
+            "8359402": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "8761200",
+                    "8811221"
+                ],
+                "linear index": 14,
+                "outputs": []
+            },
+            "8492932": {
+                "feeds": [
+                    "2424922"
+                ],
+                "inf rule": "dividebothsidesby",
+                "inputs": [
+                    "8882098"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "7777621"
+                ]
+            },
+            "8494551": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "8882098",
+                    "9091270"
+                ]
+            }
+        },
+        "quantum basics Hermitian operators have realvalued observables": {
+            "1294984": {
+                "feeds": [],
+                "inf rule": "declareAssumption",
+                "inputs": [],
+                "linear index": 4,
+                "outputs": [
+                    "2484892"
+                ]
+            },
+            "2394942": {
+                "feeds": [],
+                "inf rule": "distributeConjugateTransposeToFactors",
+                "inputs": [
+                    "2495954"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "2390094"
+                ]
+            },
+            "2485909": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "2484892",
+                    "2390094"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "2494040"
+                ]
+            },
+            "2490098": {
+                "feeds": [],
+                "inf rule": "subRHSofExprXintoExprY",
+                "inputs": [
+                    "2494040",
+                    "3402919"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "4930585"
+                ]
+            },
+            "2939493": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "4930585"
+                ],
+                "linear index": 7,
+                "outputs": []
+            },
+            "3403595": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "3402919"
+                ]
+            },
+            "9538385": {
+                "feeds": [],
+                "inf rule": "conjugateTransposeBothSides",
+                "inputs": [
+                    "3402919"
+                ],
+                "linear index": 2,
+                "outputs": [
+                    "2495954"
+                ]
+            }
+        },
+        "quantum basics orthogonality": {
+            "1301442": {
+                "feeds": [],
+                "inf rule": "applyOperatorToBra",
+                "inputs": [
+                    "3849595"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "4349300"
+                ]
+            },
+            "2304934": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "4940359"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "2409402"
+                ]
+            },
+            "2384852": {
+                "feeds": [],
+                "inf rule": "declareFinalExpr",
+                "inputs": [
+                    "3494855"
+                ],
+                "linear index": 9,
+                "outputs": []
+            },
+            "2455366": {
+                "feeds": [],
+                "inf rule": "declareInitialExpr",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "3849595"
+                ]
+            },
+            "3848591": {
+                "feeds": [],
+                "inf rule": "applyOperatorToKet",
+                "inputs": [
+                    "3849595"
+                ],
+                "linear index": 2,
+                "outputs": [
+                    "4940359"
+                ]
+            },
+            "4838499": {
+                "feeds": [
+                    "5395034"
+                ],
+                "inf rule": "subtractXfromBothSides",
+                "inputs": [
+                    "3495045"
+                ],
+                "linear index": 7,
+                "outputs": [
+                    "4939583"
+                ]
+            },
+            "4938400": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "4349300"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "4934893"
+                ]
+            },
+            "9878900": {
+                "feeds": [],
+                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inputs": [
+                    "2409402",
+                    "4934893"
+                ],
+                "linear index": 6,
+                "outputs": [
+                    "3495045"
+                ]
+            },
+            "9888730": {
+                "feeds": [],
+                "inf rule": "combineLikeTerms",
+                "inputs": [
+                    "4939583"
+                ],
+                "linear index": 8,
+                "outputs": [
+                    "3494855"
+                ]
+            }
+        },
+        "variance relation": {
+            "2004989": {
+                "feeds": [],
+                "inf rule": "declareIdentity",
+                "inputs": [],
+                "linear index": 1,
+                "outputs": [
+                    "3493498"
+                ]
+            },
+            "2349059": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "3493498"
+                ],
+                "linear index": 2,
+                "outputs": [
+                    "5049530"
+                ]
+            },
+            "2390498": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "5049530"
+                ],
+                "linear index": 3,
+                "outputs": [
+                    "6757584"
+                ]
+            },
+            "3848494": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "6757584"
+                ],
+                "linear index": 4,
+                "outputs": [
+                    "3294824"
+                ]
+            },
+            "4948384": {
+                "feeds": [],
+                "inf rule": "simplify",
+                "inputs": [
+                    "3294824"
+                ],
+                "linear index": 5,
+                "outputs": [
+                    "5949484"
+                ]
+            },
+            "4948955": {
+                "feeds": [],
+                "inf rule": "claimLHSequalsRHS",
+                "inputs": [
+                    "5949484"
+                ],
+                "linear index": 6,
+                "outputs": []
+            }
+        }
+    },
+    "expr local to global": {
+        "100404": "7575738420",
+        "1029383": "9492920340",
+        "1029384": "8485867742",
+        "1029393": "2029293929",
+        "1029911": "7572664728",
+        "1039013": "9999999962",
+        "1039485": "3121234211",
+        "1039948": "1029039903",
+        "1049553": "2648958382",
+        "1111289": "9848292229",
+        "1120000": "5928292841",
+        "1133483": "4843995999",
+        "1199299": "1314864131",
+        "1203491": "1020394900",
+        "1209604": "8311458118",
+        "1212129": "5938459282",
+        "1214762": "8484544728",
+        "1231131": "9988949211",
+        "1239010": "5928285821",
+        "1291313": "3948574228",
+        "1304924": "9958485859",
+        "1305534": "3948574230",
+        "1353583": "4298359835",
+        "1432042": "1029039904",
+        "1495034": "1648958381",
+        "1734000": "5959282914",
+        "1838300": "9429829482",
+        "1939485": "7575859295",
+        "203020": "1202310110",
+        "2100421": "3948574226",
+        "21030": "5857434758",
+        "2109231": "7575859312",
+        "2222222": "9483928192",
+        "2326309": "4298359845",
+        "2344324": "1158485859",
+        "2364546": "3948574233",
+        "2390094": "1010393913",
+        "2392932": "9291999979",
+        "2409402": "2394240499",
+        "2456546": "2258485859",
+        "2484892": "9294858532",
+        "2491904": "3951205425",
+        "2494040": "4948934890",
+        "2495835": "4348571256",
+        "2495954": "2394935835",
+        "2657355": "5982958248",
+        "2837471": "7466829492",
+        "2838288": "8575748999",
+        "2840008": "8257621077",
+        "2845892": "4828238421",
+        "2901049": "3121234212",
+        "2934842": "7575859304",
+        "2934848": "3121513111",
+        "2936550": "9482438243",
+        "2938188": "8489593960",
+        "2938190": "8489593962",
+        "2939392": "4985825552",
+        "2939402": "3147472131",
+        "2939484": "4742644828",
+        "2941319": "7575859302",
+        "2948271": "9482984922",
+        "2948487": "9999998870",
+        "2949002": "9999999960",
+        "2949821": "4147472132",
+        "2962831": "3947269979",
+        "2985412": "9385938295",
+        "3190000": "9494829190",
+        "3194924": "2123139121",
+        "3293094": "5900595848",
+        "3294004": "0404050504",
+        "3294824": "4949359835",
+        "3333333": "4638429483",
+        "3402919": "9999999975",
+        "3429538": "4341171256",
+        "3452131": "2944838499",
+        "3452132": "8849289982",
+        "3454565": "4943571230",
+        "3493498": "3585845894",
+        "3494854": "8489593958",
+        "3494855": "2394935831",
+        "3495045": "1203938249",
+        "3499522": "1020394902",
+        "3576787": "4298359851",
+        "3738373": "1636453295",
+        "3741728": "9999999965",
+        "3747585": "4928239482",
+        "3784785": "4923339482",
+        "3839493": "9394939493",
+        "3844221": "7575859308",
+        "3848329": "8489593964",
+        "3849595": "9596004948",
+        "3921000": "9499959299",
+        "3940505": "3948574224",
+        "3948472": "7575859310",
+        "3949292": "7575859306",
+        "3949492": "3485475729",
+        "3984852": "9919999981",
+        "3992939": "0948572140",
+        "3993940": "1293923844",
+        "3994928": "9499428242",
+        "405049": "0439492440",
+        "4068150": "5530148480",
+        "4200334": "7917051060",
+        "4218805": "6742123016",
+        "4349300": "1395858355",
+        "4349493": "5868688585",
+        "4383592": "3829492824",
+        "4433112": "9582958293",
+        "4444444": "4598294821",
+        "4499582": "9999999961",
+        "4627482": "9482948292",
+        "4642245": "1314464131",
+        "4738297": "2948293829",
+        "4757562": "9991999979",
+        "4758592": "8494839423",
+        "4825483": "3942849294",
+        "4849888": "4585932229",
+        "4849959": "2103023049",
+        "4857731": "9999999981",
+        "4890284": "9482928243",
+        "4930585": "2848934890",
+        "4934893": "3943939590",
+        "4938589": "4394958389",
+        "4939583": "3924948349",
+        "4940359": "1010393944",
+        "4948325": "9999999870",
+        "4948377": "7564894985",
+        "4949582": "4585828572",
+        "495054": "9858028950",
+        "4958573": "1858578388",
+        "495950": "0203024440",
+        "4959593": "2395958385",
+        "4978059": "1638282134",
+        "5049530": "8399484849",
+        "5345567": "3948571256",
+        "5535257": "5985371230",
+        "5577567": "8572657110",
+        "5577584": "3948574230",
+        "5610925": "8139187332",
+        "5828294": "9482928242",
+        "5949484": "2494533900",
+        "595847": "4857472413",
+        "6608102": "9582958294",
+        "6608123": "5982958249",
+        "6757584": "2404934990",
+        "7472641": "1248277773",
+        "7472666": "9889984281",
+        "7547581": "8577275751",
+        "7562671": "9059289981",
+        "7572118": "8582885111",
+        "7572712": "9829420421",
+        "7572748": "5727578862",
+        "7572859": "1293913110",
+        "7575626": "1934748140",
+        "7777621": "5958392859",
+        "8341200": "2131616531",
+        "8374556": "3132131132",
+        "8394853": "0934990943",
+        "8474762": "8485757728",
+        "8474765": "9393939992",
+        "8474766": "9393939991",
+        "8478550": "8889444440",
+        "8482459": "3131111133",
+        "8577672": "1020010291",
+        "8577711": "1857710291",
+        "8577781": "9585727710",
+        "8584733": "1202312210",
+        "8585727": "9495857278",
+        "8761200": "9999999969",
+        "8811221": "9999999968",
+        "8882098": "9285928292",
+        "8883737": "9482113948",
+        "8888881": "2394853829",
+        "8888882": "4938429482",
+        "8888883": "4938429484",
+        "8888888": "4938429483",
+        "9038289": "9848294829",
+        "9091270": "8582954722",
+        "9123670": "3285732911",
+        "9128000": "1492842000",
+        "9214650": "3131211131",
+        "9339495": "8575746378",
+        "9380032": "2113211456",
+        "9385720": "5832984291",
+        "9393848": "8572852424",
+        "9394857": "9485747245",
+        "9394858": "9485747246",
+        "9428000": "4928923942",
+        "9481000": "4827492911",
+        "9485482": "7575859300",
+        "9485800": "8576785890",
+        "9493949": "4857475848",
+        "9495882": "1858772113",
+        "9495903": "9485384858",
+        "9587572": "9482923849",
+        "9847600": "1010923823",
+        "9984877": "9482943948",
+        "9999999": "4838429483"
+    },
+    "expressions": {
+        "1010393913": {
+            "latex": "\\bra{\\psi} \\hat{A}^+ \\ket{\\psi}=\\langle a \\rangle^*"
+        },
+        "1010393944": {
+            "latex": "x = \\bra{\\psi_{\\alpha}} a_{\\beta} \\ket{\\psi_{\\beta}}"
+        },
+        "1010923823": {
+            "latex": "k W = n \\pi \\when{n \\in {\\rm Integer}}"
+        },
+        "1020010291": {
+            "latex": "0=a \\sin(k W)"
+        },
+        "10203949": {
+            "latex": "p = h/\\lambda"
+        },
+        "1020394902": {
+            "latex": "E = h f"
+        },
+        "1029039903": {
+            "latex": "p = m v"
+        },
+        "1029039904": {
+            "latex": "p^2 = m^2 v^2"
+        },
+        "1158485859": {
+            "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 = {\\cal H}"
+        },
+        "120231011": {
+            "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1}{2}\\ dx - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right)\\ dx\\when{n \\in {\\rm Integer}}"
+        },
+        "120231221": {
+            "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right)\\ dx\\when{n \\in {\\rm Integer}}"
+        },
+        "1203938249": {
+            "latex": "a_{\\beta} \\braket{\\psi_{\\alpha}}{\\psi_{\\beta}} = a_{\\alpha} \\braket{\\psi_{\\alpha}}{\\psi_{\\beta}}"
+        },
+        "1248277773": {
+            "latex": "\\cos(2x) = 1-2(\\sin(x))^2"
+        },
+        "129391311": {
+            "latex": "0=b"
+        },
+        "1293923844": {
+            "latex": "\\lambda = v\\ T"
+        },
+        "1314464131": {
+            "latex": "\\vec{\\nabla} \\times \\frac{\\partial \\vec{H}}{\\partial t} = \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}"
+        },
+        "1314864131": {
+            "latex": "\\vec{\\nabla} \\times \\vec{H} = \\epsilon_0 \\frac{\\partial }{\\partial t}\\vec{E}"
+        },
+        "1395858355": {
+            "latex": "x = \\bra{\\psi_{\\alpha}} a_{\\alpha} \\ket{\\psi_{\\beta}}"
+        },
+        "1492811142": {
+            "AST": [
+                "equals",
+                [
+                    "4200",
+                    [
+                        "subtraction",
+                        [
+                            "1464",
+                            "1900"
+                        ]
+                    ]
+                ]
+            ],
+            "latex": "f = x - d"
+        },
+        "1492842000": {
+            "AST": [
+                "equals",
+                [
+                    [
+                        "nabla",
+                        [
+                            "2911"
+                        ]
+                    ],
+                    [
+                        "function",
+                        [
+                            "1452"
+                        ]
+                    ]
+                ]
+            ],
+            "latex": "\\nabla \\vec{x} = f(y)"
+        },
+        "1636453295": {
+            "latex": "\\vec{\\nabla} \\times \\vec{\\nabla} \\times \\vec{E} =  - \\nabla^2 \\vec{E}"
+        },
+        "1638282134": {
+            "latex": "\\vec{p}_{before} = \\vec{p}_{after}"
+        },
+        "1648958381": {
+            "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\vec{\\nabla}\\psi(\\vec{r},t)\\right)"
+        },
+        "1857710291": {
+            "latex": "0=a \\sin(n \\pi) \\when{n \\in {\\rm Integer}}"
+        },
+        "1858578388": {
+            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= - \\omega^2 \\mu_0 \\epsilon_0 E(\\vec{r})\\exp(i \\omega t)"
+        },
+        "1858772113": {
+            "latex": "k = \\frac{n \\pi}{W} \\when{n \\in {\\rm Integer}}"
+        },
+        "193474814": {
+            "latex": "\\int |\\psi(x)|^2\\ dx = 1"
+        },
+        "2029293929": {
+            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E(\\vec{r})\\exp(i \\omega t)"
+        },
+        "20302444": {
+            "latex": "1= \\int_0^W a \\sin(\\frac{n \\pi}{W} x) \\psi(x)^*\\ dx\\when{n \\in {\\rm Integer}}"
+        },
+        "2103023049": {
+            "latex": "\\sin(x) = \\frac{1}{2i}\\left(\\exp(i\\ x)-\\exp(-i\\ x)\\right)"
+        },
+        "2113211456": {
+            "latex": "f=1/T"
+        },
+        "2123139121": {
+            "latex": "-\\exp(-i\\ x) = -\\cos(x)+i \\sin(x)"
+        },
+        "2131616531": {
+            "latex": "T\\ f=1"
+        },
+        "2258485859": {
+            "latex": "{\\cal H} \\psi\\left(\\vec{r},t)\\right) = i \\hbar \\frac{\\partial}{\\partial t}\\psi(\\vec{r},t)"
+        },
+        "2394240499": {
+            "latex": "x = a_{\\beta} \\braket{\\psi_{\\alpha}}{\\psi_{\\beta}}"
+        },
+        "2394853829": {
+            "latex": "\\exp(-i\\ x) = \\cos(-x)+i \\sin(-x)"
+        },
+        "2394935831": {
+            "latex": "( a_{\\beta} - a_{\\alpha} ) \\braket{\\psi_{\\alpha}}{\\psi_{\\beta}} = 0"
+        },
+        "2394935835": {
+            "latex": "\\left(\\bra{\\psi} \\hat{A} \\ket{\\psi} \\right)^+= \\left(\\langle a \\rangle\\right)^+"
+        },
+        "2395958385": {
+            "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{-p^2}{\\hbar} \\psi(\\vec{r},t)"
+        },
+        "240493499": {
+            "latex": "\\langle x^2\\rangle -2\\langle x \\rangle\\langle x \\rangle+\\langle x \\rangle^2=\\langle x^2 \\rangle-\\langle x \\rangle^2"
+        },
+        "24945339": {
+            "latex": "\\langle x^2\\rangle -\\langle x \\rangle^2=\\langle x^2 \\rangle-\\langle x \\rangle^2"
+        },
+        "2569154141": {
+            "latex": "\\vec{\\nabla} \\times \\frac{\\partial}{\\partial t}\\vec{H} = \\epsilon_0 \\frac{\\partial^2 }{\\partial t^2}\\vec{E}"
+        },
+        "2648958382": {
+            "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\frac{i}{\\hbar} \\vec{p}\\psi(\\vec{r},t)\\right)"
+        },
+        "284893489": {
+            "latex": "\\langle a \\rangle^*=\\langle a \\rangle"
+        },
+        "2944838499": {
+            "latex": "\\psi(x)=a \\sin(\\frac{n \\pi}{W} x) \\when{n \\in {\\rm Integer}}"
+        },
+        "2948293829": {
+            "latex": "a = b"
+        },
+        "3121234211": {
+            "latex": "\\frac{k}{2\\pi}=\\lambda"
+        },
+        "3121234212": {
+            "latex": "p = \\frac{h k}{2\\pi}"
+        },
+        "3121513111": {
+            "latex": "k=\\frac{2 \\pi}{\\lambda}"
+        },
+        "3131111133": {
+            "latex": "T=1/f"
+        },
+        "3131211131": {
+            "latex": "\\omega=2 \\pi f"
+        },
+        "3132131132": {
+            "latex": "\\omega=\\frac{2\\pi}{T}"
+        },
+        "3147472131": {
+            "latex": "\\frac{\\omega}{2 \\pi}= f"
+        },
+        "3285732911": {
+            "latex": "(\\cos(x))^2 = 1-(\\sin(x))^2"
+        },
+        "3485475729": {
+            "latex": "\\nabla^2 E(\\vec{r})= - \\frac{\\omega^2}{c^2} E(\\vec{r})"
+        },
+        "3585845894": {
+            "latex": "\\langle \\left(x-\\langle x \\rangle\\right)^2 \\rangle=\\langle x^2 \\rangle-\\langle x \\rangle^2"
+        },
+        "3829492824": {
+            "latex": "\\frac{1}{2}\\left(\\exp(i\\ x)+\\exp(-i\\ x)\\right) = \\cos(x)"
+        },
+        "3924948349": {
+            "latex": "a_{\\beta} \\braket{\\psi_{\\alpha}}{\\psi_{\\beta}} - a_{\\alpha} \\braket{\\psi_{\\alpha}}{\\psi_{\\beta}} = 0"
+        },
+        "3942849294": {
+            "latex": "\\exp(i\\ x)-\\exp(-i\\ x) = 2i \\sin(x)"
+        },
+        "394393959": {
+            "latex": "x = a_{\\alpha} \\braket{\\psi_{\\alpha}}{\\psi_{\\beta}}"
+        },
+        "3947269979": {
+            "latex": "\\vec{\\nabla} \\times \\vec{\\nabla} \\times \\vec{E} = -\\mu_0 \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}"
+        },
+        "3948571256": {
+            "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}E \\psi(\\vec{r},t)"
+        },
+        "394857223": {
+            "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\psi_0 \\vec{\\nabla}\\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)"
+        },
+        "3948574224": {
+            "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\vec{k}\\cdot\\vec{r} - \\omega t \\right) \\right)"
+        },
+        "3948574226": {
+            "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\omega t \\right) \\right)"
+        },
+        "3948574228": {
+            "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)"
+        },
+        "394857423": {
+            "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)"
+        },
+        "3948574233": {
+            "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\psi_0 \\frac{\\partial}{\\partial t}\\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)"
+        },
+        "3948574235": {
+            "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}E \\psi_0 \\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)"
+        },
+        "3951205425": {
+            "latex": "\\vec{p}_{after} = \\vec{p}_{1}"
+        },
+        "404050504": {
+            "latex": "\\lambda = \\frac{v}{f}"
+        },
+        "4147472132": {
+            "latex": "E = \\frac{h \\omega}{2 \\pi}"
+        },
+        "4298359835": {
+            "latex": "E = \\frac{1}{2}m v^2"
+        },
+        "4298359845": {
+            "latex": "E = \\frac{1}{2m}m^2 v^2"
+        },
+        "4298359851": {
+            "latex": "E = \\frac{p^2}{2m}"
+        },
+        "4341171256": {
+            "latex": "i \\hbar \\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{p^2}{2 m} \\psi(\\vec{r},t)"
+        },
+        "4348571256": {
+            "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}\\frac{p^2}{2 m} \\psi(\\vec{r},t)"
+        },
+        "43949244": {
+            "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2}\\left. \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)\\right|_0^W    when{n \\in {\\rm Integer}}"
+        },
+        "4394958389": {
+            "latex": "\\vec{\\nabla}\\cdot \\left(\\vec{\\nabla}\\psi(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{\\nabla}\\cdot\\left( \\vec{p} \\psi(\\vec{r},t)\\right)"
+        },
+        "4585828572": {
+            "latex": "\\epsilon_0 \\mu_0 = \\frac{1}{c^2}"
+        },
+        "4585932229": {
+            "latex": "\\cos(x) = \\frac{1}{2}\\left(\\exp(i\\ x)+\\exp(-i\\ x)\\right)"
+        },
+        "4598294821": {
+            "latex": "\\exp(2i\\ x) = (\\cos(x))^2+2i\\cos(x)\\sin(x)-(\\sin(x))^2"
+        },
+        "4638429483": {
+            "latex": "\\exp(2i\\ x) = (\\cos(x)+i \\sin(x))(\\cos(x)+i \\sin(x))"
+        },
+        "4742644828": {
+            "latex": "\\exp(i\\ x)+\\exp(-i\\ x) = 2\\cos(x)"
+        },
+        "4827492911": {
+            "latex": "\\cos(2x)+(\\sin(x))^2 = 1-(\\sin(x))^2"
+        },
+        "4828238421": {
+            "latex": "a = c"
+        },
+        "4838429483": {
+            "latex": "\\exp(2i\\ x) = \\cos(2x)+i \\sin(2x)"
+        },
+        "4843995999": {
+            "latex": "\\frac{1}{2i}\\left(\\exp(i\\ x)-\\exp(-i\\ x)\\right) = \\sin(x)"
+        },
+        "4857472413": {
+            "latex": "1= \\int \\psi(x)\\psi(x)^*\\ dx"
+        },
+        "4857475848": {
+            "latex": "\\frac{1}{a^2}= \\frac{W}{2}"
+        },
+        "4858429483": {
+            "latex": "\\exp(i\\ x)\\exp(i\\ x) = (\\cos(x)+i \\sin(x))(\\cos(x)+i \\sin(x))"
+        },
+        "4923339482": {
+            "latex": "i\\ x = \\log(y)"
+        },
+        "4928239482": {
+            "latex": "\\log(y) = i\\ x"
+        },
+        "4928923942": {
+            "AST": [
+                "equals",
+                [
+                    "9139",
+                    "1939"
+                ]
+            ],
+            "latex": "a = b"
+        },
+        "4929218492": {
+            "latex": "a+b = c"
+        },
+        "4929482992": {
+            "latex": "b = 2"
+        },
+        "4938429482": {
+            "latex": "\\exp(-i\\ x) = \\cos(x)+i \\sin(-x)"
+        },
+        "4938429483": {
+            "latex": "\\exp(i\\ x) = \\cos(x)+i \\sin(x)"
+        },
+        "4938429484": {
+            "latex": "\\exp(-i\\ x) = \\cos(x)-i \\sin(x)"
+        },
+        "494357123": {
+            "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)"
+        },
+        "494893489": {
+            "latex": "\\bra{\\psi} \\hat{A} \\ket{\\psi}=\\langle a \\rangle^*"
+        },
+        "4949359835": {
+            "latex": "\\langle x^2\\rangle -2\\langle x^2 \\rangle+\\langle x \\rangle^2=\\langle x^2 \\rangle-\\langle x \\rangle^2"
+        },
+        "4954839242": {
+            "latex": "\\cos(2x)+i\\sin(2x) = (\\cos(x)+i \\sin(x))(\\cos(x)+i \\sin(x))"
+        },
+        "4978429483": {
+            "latex": "\\exp(-i\\ x) = \\cos(-x)+i \\sin(-x)"
+        },
+        "4984892984": {
+            "latex": "a+2 = c"
+        },
+        "4985825552": {
+            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= i \\omega \\mu_0 \\epsilon_0 \\frac{\\partial}{\\partial t} E(\\vec{r})\\exp(i \\omega t)"
+        },
+        "553014848": {
+            "latex": "\\vec{p}_{1}-\\vec{p}_{2}=\\vec{p}_{electron}"
+        },
+        "5727578862": {
+            "latex": "\\frac{d^2}{dx^2} \\psi(x) = -k^2 \\psi(x)"
+        },
+        "5832984291": {
+            "latex": "(\\sin(x))^2 + (\\cos(x))^2=1"
+        },
+        "5857434758": {
+            "latex": "\\int a\\ dx = a x"
+        },
+        "5868688585": {
+            "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{p^2}{2m} \\psi(\\vec{r},t)"
+        },
+        "5900595848": {
+            "latex": "k=\\frac{\\omega}{v}"
+        },
+        "5928285821": {
+            "latex": "x^2 + 2x(b/(2a)) + (b/(2a))^2 = (x+(b/(2a)))^2"
+        },
+        "5928292841": {
+            "latex": "x^2 + (b/a)x + (b/(2a))^2 = -c/a + (b/(2a))^2"
+        },
+        "5938459282": {
+            "latex": "x^2 + (b/a)x = -c/a"
+        },
+        "5958392859": {
+            "latex": "x^2 + (b/a)x+(c/a) =0"
+        },
+        "5959282914": {
+            "latex": "x^2 + x(b/a) + (b/(2a))^2 = (x+(b/(2a)))^2"
+        },
+        "5982958248": {
+            "latex": "x = -\\sqrt{(b/(2a))^2 - (c/a)}-(b/(2a))"
+        },
+        "5982958249": {
+            "latex": "x+(b/(2a)) = -\\sqrt{(b/(2a))^2 - (c/a)}"
+        },
+        "598537123": {
+            "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi(\\vec{r},t)"
+        },
+        "6742123016": {
+            "latex": "\\vec{p}_{electron}\\cdot\\vec{p}_{electron} = (\\vec{p}_{1}\\cdot\\vec{p}_{1})+(\\vec{p}_{2}\\cdot\\vec{p}_{2})-2(\\vec{p}_{1}\\cdot\\vec{p}_{2})"
+        },
+        "7466829492": {
+            "latex": "\\vec{\\nabla} \\cdot \\vec{E} = 0"
+        },
+        "7564894985": {
+            "latex": "\\int \\cos\\left(\\frac{2n\\pi}{W} x\\right)\\ dx = \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)"
+        },
+        "7572664728": {
+            "latex": "\\cos(2x)+2(\\sin(x))^2 = 1"
+        },
+        "757573842": {
+            "latex": "\\left(\\sin\\left(\\frac{n \\pi}{W}x\\right)\\right)^2 = \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}"
+        },
+        "7575859295": {
+            "latex": "\\vec{\\nabla} \\times \\vec{\\nabla} \\times \\vec{E} = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
+        },
+        "75758593": {
+            "latex": "\\epsilon^{i,j,k} \\hat{x}_i \\nabla_j ( \\vec{\\nabla} \\times \\vec{E} )_k = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
+        },
+        "7575859302": {
+            "latex": "\\epsilon^{i,j,k} \\epsilon_{n,j,k} \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
+        },
+        "7575859304": {
+            "latex": "\\epsilon^{i,j,k} \\epsilon_{n,j,k} = \\rowContravariantColumnCovariant{\\delta}{l}{j} \\rowContravariantColumnCovariant{\\delta}{m}{k} - \\rowContravariantColumnCovariant{\\delta}{l}{k} \\rowContravariantColumnCovariant{\\delta}{m}{h}"
+        },
+        "7575859306": {
+            "latex": "\\left( \\rowContravariantColumnCovariant{\\delta}{l}{j} \\rowContravariantColumnCovariant{\\delta}{m}{k} - \\rowContravariantColumnCovariant{\\delta}{l}{k} \\rowContravariantColumnCovariant{\\delta}{m}{h} \\right) \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
+        },
+        "7575859308": {
+            "latex": "\\left( \\rowContravariantColumnCovariant{\\delta}{l}{j} \\rowContravariantColumnCovariant{\\delta}{m}{k} \\hat{x}_i \\nabla_j \\nabla^m E^n\\right)-\\left( \\rowContravariantColumnCovariant{\\delta}{l}{k} \\rowContravariantColumnCovariant{\\delta}{m}{h} \\hat{x}_i \\nabla_j \\nabla^m E^n \\right)  = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
+        },
+        "757585931": {
+            "latex": "\\hat{x}_m \\nabla_n \\nabla^m E^n - \\hat{x}_n \\nabla_m \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
+        },
+        "7575859312": {
+            "latex": "\\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E} = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
+        },
+        "791705106": {
+            "latex": "\\vec{p}_{electron} = \\vec{p}_{1}-\\vec{p}_{2}"
+        },
+        "8139187332": {
+            "latex": "\\vec{p}_{1} = \\vec{p}_{2}+\\vec{p}_{electron}"
+        },
+        "8257621077": {
+            "latex": "\\vec{p}_{before} = \\vec{p}_{1}"
+        },
+        "8311458118": {
+            "latex": "\\vec{p}_{after} = \\vec{p}_{2}+\\vec{p}_{electron}"
+        },
+        "8399484849": {
+            "latex": "\\langle x^2 -2x\\langle x \\rangle+\\langle x \\rangle^2 \\rangle=\\langle x^2 \\rangle-\\langle x \\rangle^2"
+        },
+        "8484544728": {
+            "latex": "-a k^2\\sin(k x) + -b k^2\\cos(k x) = -a k^2 \\sin(kx) + -b k^2 \\cos(k x)"
+        },
+        "8485757728": {
+            "latex": "a \\frac{d^2}{dx^2}\\sin(kx) + b \\frac{d^2}{dx^2}\\cos(k x) = -a k^2 \\sin(kx) + -b k^2 \\cos(kx)"
+        },
+        "8485867742": {
+            "latex": "\\frac{2}{W}= a^2"
+        },
+        "8489593958": {
+            "latex": "d(u\\ v) = u\\ dv + v\\ du"
+        },
+        "848959396": {
+            "latex": "d(u\\ v) - v\\ du= u\\ dv"
+        },
+        "8489593962": {
+            "latex": "u\\ dv = d(u\\ v) - v\\ du"
+        },
+        "8489593964": {
+            "latex": "\\int u\\ dv = u\\ v - \\int v\\ du"
+        },
+        "8494839423": {
+            "latex": "\\nabla^2 \\vec{E}= \\mu_0 \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}"
+        },
+        "857265711": {
+            "latex": "1= \\int |\\psi(x)|^2\\ dx"
+        },
+        "8572852424": {
+            "latex": "\\vec{E}= E(\\vec{r},t)"
+        },
+        "8575746378": {
+            "latex": "\\int \\frac{1}{2}\\ dx = \\frac{1}{2} x"
+        },
+        "8575748999": {
+            "latex": "\\frac{d^2}{dx^2} \\left(a \\sin(k x) + b \\cos(k x)\\right) = -k^2 \\left(a \\sin(kx) + b \\cos(kx)\\right)"
+        },
+        "857678589": {
+            "latex": "1= \\int_0^W a^2 \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}\\ dx\\when{n \\in {\\rm Integer}}"
+        },
+        "8577275751": {
+            "latex": "0=a \\sin(0) + b\\cos(0)"
+        },
+        "8582885111": {
+            "latex": "\\psi(x) = a \\sin(kx) + b \\cos(kx)"
+        },
+        "8582954722": {
+            "latex": "x^2 + 2xh + h^2 = (x+h)^2"
+        },
+        "8849289982": {
+            "latex": "\\psi(x)^*=a \\sin(\\frac{n \\pi}{W} x) \\when{n \\in {\\rm Integer}}"
+        },
+        "888944444": {
+            "latex": "1= \\int_0^W a^2 \\left(\\sin\\left(\\frac{n \\pi}{W} x\\right)\\right)^2\\ dx\\when{n \\in {\\rm Integer}}"
+        },
+        "9059289981": {
+            "latex": "\\psi(x)=a \\sin(k x)"
+        },
+        "9285928292": {
+            "latex": "ax^2 + bx + c = 0"
+        },
+        "9291999979": {
+            "latex": "\\vec{\\nabla} \\times \\vec{\\nabla} \\times \\vec{E} = -\\mu_0\\vec{\\nabla} \\times \\frac{\\partial \\vec{H}}{\\partial t}"
+        },
+        "9294858532": {
+            "latex": "\\hat{A}^+=\\hat{A}"
+        },
+        "934990943": {
+            "latex": "k = \\frac{2 \\pi}{v\\ T}"
+        },
+        "9385938295": {
+            "latex": "(x+(b/(2a)))^2 = -(c/a) + (b/(2a))^2"
+        },
+        "9393939991": {
+            "latex": "\\psi(x)=-\\sqrt{\\frac{2}{W}} \\sin\\left(\\frac{n \\pi}{W} x\\right) \\when{n \\in {\\rm Integer}}"
+        },
+        "9393939992": {
+            "latex": "\\psi(x)=\\sqrt{\\frac{2}{W}} \\sin\\left(\\frac{n \\pi}{W} x\\right) \\when{n \\in {\\rm Integer}}"
+        },
+        "9394939493": {
+            "latex": "\\nabla^2 E(\\vec{r},t)= \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E(\\vec{r},t)"
+        },
+        "9429829482": {
+            "latex": "\\frac{d}{dx} y= -\\sin(x) + i\\cos(x)"
+        },
+        "9482113948": {
+            "latex": "\\frac{dy}{y} = i\\ dx"
+        },
+        "9482438243": {
+            "latex": "(\\cos(x))^2=\\cos(2x)+(\\sin(x))^2"
+        },
+        "9482923849": {
+            "latex": "\\exp(i\\ x) = y"
+        },
+        "9482928242": {
+            "latex": "\\cos(2x)=(\\cos(x))^2 - (\\sin(x))^2"
+        },
+        "9482928243": {
+            "latex": "\\cos(2x)+(\\sin(x))^2=(\\cos(x))^2"
+        },
+        "9482943948": {
+            "latex": "\\log(y) = i\\ dx"
+        },
+        "9482948292": {
+            "latex": "b = c"
+        },
+        "9482984922": {
+            "latex": "\\frac{d}{dx} y= (i\\sin(x) + \\cos(x))\\ i"
+        },
+        "9483928192": {
+            "latex": "\\cos(2x)+i\\sin(2x) = (\\cos(x))^2+2i\\cos(x)\\sin(x)-(\\sin(x))^2"
+        },
+        "9485384858": {
+            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= - \\frac{\\omega^2}{c^2} E(\\vec{r})\\exp(i \\omega t)"
+        },
+        "94857214": {
+            "latex": "\\int \\cos(a x)\\ dx = \\frac{1}{a}\\sin(a x)"
+        },
+        "9485747245": {
+            "latex": "\\sqrt{\\frac{2}{W}}= a"
+        },
+        "9485747246": {
+            "latex": "-\\sqrt{\\frac{2}{W}}= a"
+        },
+        "949292034": {
+            "latex": "y = \\cos(x)+i \\sin(x)"
+        },
+        "9494829190": {
+            "AST": [
+                "5321"
+            ],
+            "latex": "k"
+        },
+        "9495857278": {
+            "latex": "\\psi(x)=0\\when{x=W}"
+        },
+        "9499428242": {
+            "latex": "E(\\vec{r},t)=E(\\vec{r})\\exp(i \\omega t)"
+        },
+        "9499959299": {
+            "AST": [
+                "equals",
+                [
+                    [
+                        "addition",
+                        [
+                            "9139",
+                            "5321"
+                        ]
+                    ],
+                    [
+                        "addition",
+                        [
+                            "1939",
+                            "5321"
+                        ]
+                    ]
+                ]
+            ],
+            "latex": "a + k = b + k"
+        },
+        "9582958293": {
+            "latex": "x =  \\sqrt{(b/(2a))^2 - (c/a)}-(b/(2a))"
+        },
+        "9582958294": {
+            "latex": "x+(b/(2a)) =  \\sqrt{(b/(2a))^2 - (c/a)}"
+        },
+        "9584821911": {
+            "AST": [
+                "equals",
+                [
+                    [
+                        "addition",
+                        [
+                            "4231",
+                            "1900"
+                        ]
+                    ],
+                    "9139"
+                ]
+            ],
+            "latex": "c + d = a"
+        },
+        "958572771": {
+            "latex": "\\psi(x)=0\\when{x=0}"
+        },
+        "9596004948": {
+            "latex": "x = \\bra{\\psi_{\\alpha}} \\hat{A} \\ket{\\psi_{\\beta}}"
+        },
+        "9829420421": {
+            "latex": "b = a"
+        },
+        "9848292229": {
+            "latex": "dy = y\\ i\\ dx"
+        },
+        "9848294829": {
+            "latex": "\\frac{d}{dx} y= y\\ i"
+        },
+        "985802895": {
+            "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}\\ dx\\when{n \\in {\\rm Integer}}"
+        },
+        "9889984281": {
+            "latex": "2(\\sin(x))^2 = 1-\\cos(2x)"
+        },
+        "9919999981": {
+            "latex": "\\rho=0"
+        },
+        "9958485859": {
+            "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 \\psi\\left(\\vec{r},t)\\right) = i \\hbar \\frac{\\partial}{\\partial t}\\psi(\\vec{r},t)"
+        },
+        "9988949211": {
+            "latex": "(\\sin(x))^2 = \\frac{1-\\cos(2x)}{2}"
+        },
+        "9991999979": {
+            "latex": "\\vec{\\nabla} \\times \\vec{E} = -\\mu_0\\frac{\\partial \\vec{H}}{\\partial t}"
+        },
+        "999999887": {
+            "latex": "\\frac{\\vec{p}}{\\hbar} = \\vec{k}"
+        },
+        "999999987": {
+            "latex": "\\frac{p}{\\hbar} = k"
+        },
+        "999999995": {
+            "latex": "\\beta = 1/(k_{Boltzmann}T)"
+        },
+        "9999999951": {
+            "latex": "\\langle x | k \\rangle = \\frac{\\exp(ikx)}{\\sqrt{2\\pi}}"
+        },
+        "9999999952": {
+            "latex": "f(x) \\delta(x-a) = f(a)"
+        },
+        "9999999953": {
+            "latex": "\\int_{-\\infty}^{\\infty} \\delta(x)\\ dx = 1"
+        },
+        "9999999954": {
+            "latex": "c = 1/\\sqrt{\\epsilon_0 \\mu_0}"
+        },
+        "9999999955": {
+            "latex": "\\vec{E} = -\\vec{\\nabla} \\Psi"
+        },
+        "9999999956": {
+            "latex": "\\vec{F} = \\frac{\\partial}{\\partial t}\\vec{p}"
+        },
+        "9999999957": {
+            "latex": "\\vec{F} = -\\vec{\\nabla} V"
+        },
+        "999999996": {
+            "latex": "\\hbar= h/(2 \\pi)"
+        },
+        "9999999961": {
+            "latex": "\\frac{E}{\\hbar} = \\omega"
+        },
+        "9999999962": {
+            "latex": "p = \\hbar k"
+        },
+        "9999999963": {
+            "latex": "\\lambda = h/p"
+        },
+        "9999999964": {
+            "latex": "\\omega = c k"
+        },
+        "9999999965": {
+            "latex": "E = \\omega \\hbar"
+        },
+        "9999999966": {
+            "latex": "\\vec{L} = \\vec{r}\\times\\vec{p}"
+        },
+        "9999999967": {
+            "latex": "\\vec{S} = \\frac{1}{\\mu_0} \\vec{E}\\times \\vec{B}"
+        },
+        "9999999968": {
+            "latex": "x=\\frac{-b-\\sqrt{b^2-4ac}}{2a}"
+        },
+        "9999999969": {
+            "latex": "x=\\frac{-b+\\sqrt{b^2-4ac}}{2a}"
+        },
+        "999999997": {
+            "latex": "\\eta_1 \\sin\\theta_1 = \\eta_2 \\sin\\theta_2"
+        },
+        "9999999971": {
+            "latex": "{\\cal H} = \\frac{p^2}{2m}+V"
+        },
+        "9999999972": {
+            "latex": "{\\cal H} \\ket{\\psi} = E \\ket{\\psi}"
+        },
+        "9999999973": {
+            "latex": "\\left( \\Delta A \\right)^2  = \\langle A^2 \\rangle - \\langle A \\rangle^2"
+        },
+        "9999999974": {
+            "latex": "\\bra{\\psi} \\hat{A} \\ket{\\psi} = \\int_{-\\infty}^{\\infty} \\psi^* A \\psi\\ dx"
+        },
+        "9999999975": {
+            "latex": "\\bra{\\psi} \\hat{A} \\ket{\\psi} = \\langle a \\rangle"
+        },
+        "9999999976": {
+            "latex": "\\hat{p} = -i \\hbar \\frac{\\partial }{\\partial x}"
+        },
+        "9999999977": {
+            "latex": "[\\hat{x},\\hat{p}] = i \\hbar"
+        },
+        "9999999978": {
+            "latex": "\\vec{\\nabla} \\times \\vec{B} = \\mu_0 \\vec{J} + \\mu_0 \\epsilon_0 \\frac{\\partial E}{\\partial t}"
+        },
+        "9999999979": {
+            "latex": "\\vec{\\nabla} \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}"
+        },
+        "999999998": {
+            "latex": "\\vec{\\nabla} \\cdot \\vec{B} = 0"
+        },
+        "9999999981": {
+            "latex": "\\vec{\\nabla} \\cdot \\vec{E} = \\rho/\\epsilon_0"
+        },
+        "9999999982": {
+            "latex": "V=I R + Q/C + L \\frac{\\partial I}{\\partial t}"
+        },
+        "9999999983": {
+            "latex": "C = V A/d"
+        },
+        "9999999984": {
+            "latex": "Q=C V"
+        },
+        "9999999985": {
+            "latex": "V=I R"
+        },
+        "9999999986": {
+            "latex": "\\left[\\begin{array}{cc}\\cos\\theta &amp; \\sin\\theta\\\\-\\sin\\theta &amp; \\cos\\theta\\end{array}\\right]\\left[\\begin{array}{c}A_x \\\\ A_y \\end{array}\\right]=\\left[\\begin{array}{c}A_{x'} \\\\ A_{y'} \\end{array}\\right]"
+        },
+        "9999999987": {
+            "latex": "1 atmosphere = 101.325 Pascal"
+        },
+        "9999999988": {
+            "latex": "1 atmosphere = 14.7 pounds/(inch^2)"
+        },
+        "9999999989": {
+            "latex": "mass_{electron} = 511000 electronVolts/(q^2)"
+        },
+        "999999999": {
+            "latex": "Tesla = 10000*Gauss"
+        },
+        "9999999991": {
+            "latex": "Pascal = Newton/(meter^2)"
+        },
+        "9999999992": {
+            "latex": "Tesla= Newton/(Ampere*meter)"
+        },
+        "9999999993": {
+            "latex": "Farad = Coulumb/Volt"
+        },
+        "9999999995": {
+            "latex": "Volt=Joule/Coulumb"
+        },
+        "9999999996": {
+            "latex": "Coulomb=Ampere/second"
+        },
+        "9999999997": {
+            "latex": "Watt=Joule/second"
+        },
+        "9999999998": {
+            "latex": "Joule = Newton*meter"
+        },
+        "9999999999": {
+            "latex": "Newton = kilogram*meter/(second^2)"
+        }
+    },
+    "inference rules": {
+        "LHS of expr X eq LHS of expr Y": {
+            "latex": "LHS of Eq.~\\ref{eq:#1} is equal to LHS of Eq.~\\ref{eq:#2}.",
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1
+        },
+        "RHS of expr X eq RHS of expr Y": {
+            "latex": "RHS of Eq.~\\ref{eq:#1} is equal to RHS of Eq.~\\ref{eq:#2}.",
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1
+        },
+        "X cross both sides by": {
+            "latex": "Take cross product of $#1$ and Eq.~\\ref{eq:#2}.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "X dot both sides": {
+            "latex": "Take inner product of $#1$ with Eq.~\\ref{eq:#2}.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "add X to both sides": {
+            "latex": "Add $#1$ to both sides of Eq.~\\ref{eq:#2}.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "add expr X to expr Y": {
+            "latex": "Add Eq.~\\ref{eq:#1} to Eq.~\\ref{eq:#2}.",
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1
+        },
+        "add zero to LHS": {
+            "latex": "Add zero to LHS of Eq.~\\ref{eq:#2}, where $0=#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "add zero to RHS": {
+            "latex": "Add zero to RHS of Eq.~\\ref{eq:#2}, where $0=#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "apply divergence": {
+            "latex": "Apply divergence to both sides of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "apply gradient to scalar function": {
+            "latex": "Apply gradient to both sides of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "apply operator to Bra": {
+            "latex": "Apply operator to bra in Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "apply operator to Ket": {
+            "latex": "Apply operator to ket in Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "assume N dimensions": {
+            "latex": "Assume $#1$ dimensions in Eq.~\\ref{eq:#2}.",
+            "number of feeds": 1,
+            "number of inputs": 0,
+            "number of outputs": 1
+        },
+        "both sides cross X": {
+            "latex": "Take cross product of Eq.~\\ref{eq:#2} and $#1$",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "both sides dot X": {
+            "latex": "Take inner product of Eq.~\\ref{eq:#2} with $#1$",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "boundary condition": {
+            "latex": "A boundary condition for Eq.~\\ref{eq:#1} is",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "claim LHS equals RHS": {
+            "latex": "Thus we see that LHS of Eq.~\\ref{eq:#1} is equal to RHS.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 0
+        },
+        "claim expr X equals expr Y": {
+            "latex": "Thus we see that Eq.~\\ref{eq:#1} is equivalent to Eq.~\\ref{eq:#2}.",
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 0
+        },
+        "combine like terms": {
+            "latex": "Combine like terms in Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "conjugate both sides": {
+            "latex": "Conjugate both sides of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "conjugate function X": {
+            "latex": "Conjugate $#1$ in Eq.~\\ref{eq:#2}.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "conjugate transpose both sides": {
+            "latex": "Conjugate transpose of both sides of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "declare assumption": {
+            "latex": "Eq.~\\ref{eq:#1} is an assumption.",
+            "number of feeds": 0,
+            "number of inputs": 0,
+            "number of outputs": 1
+        },
+        "declare final expr": {
+            "latex": "Eq.~\\ref{eq:#1} is one of the final equations.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 0
+        },
+        "declare guess solution": {
+            "latex": "Judicious choice as a guessed solution to Eq.~\\ref{eq:#1} is",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "declare identity": {
+            "latex": "Eq.~\\ref{eq:#1} is an identity.",
+            "number of feeds": 0,
+            "number of inputs": 0,
+            "number of outputs": 1
+        },
+        "declare initial expr": {
+            "latex": "Eq.~\\ref{eq:#1} is an initial equation.",
+            "number of feeds": 0,
+            "number of inputs": 0,
+            "number of outputs": 1
+        },
+        "differentiate with respect to": {
+            "latex": "Differentiate Eq.~\\ref{eq:#2} with respect to $#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "distribute conjugate to factors": {
+            "latex": "Distribute conjugate to factors in Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "distribute conjugate transpose to factors": {
+            "latex": "Distribute conjugate transpose to factors in Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "divide both sides by": {
+            "latex": "Divide both sides of Eq.~\\ref{eq:#2} by $#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "evaluate definite integral": {
+            "latex": "Integrate Eq.~\\ref{eq:#1} using identity Eq.~\\ref{eq:#2}.",
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1
+        },
+        "expand LHS": {
+            "latex": "Expand the LHS of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "expand RHS": {
+            "latex": "Expand the RHS of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "expand integrand": {
+            "latex": "Expand integrand of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "expand magnitude to conjugate": {
+            "latex": "Expand $#1$ in Eq.~\\ref{eq:#2} with conjugate.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "expr X is true under condition expr Y": {
+            "latex": "Eq.~\\ref{eq:#1} is valid when Eq.~\\ref{eq:#2} occurs.",
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1
+        },
+        "factor out X": {
+            "latex": "Factor $#1$ from Eq.~\\ref{eq:#2}.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "factor out X from LHS": {
+            "latex": "Factor $#1$ from the LHS of Eq.~\\ref{eq:#2}.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "factor out X from RHS": {
+            "latex": "Factor $#1$ from the RHS of Eq.~\\ref{eq:#2}.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "function is even": {
+            "latex": "$#1$ is even with respect to $#2$, so replace $#1$ with $#3$ in Eq.~\\ref{eq:#4}.",
+            "number of feeds": 3,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "function is odd": {
+            "latex": "$#1$ is odd with respect to $#2$, so replace $#1$ with $#3$ in Eq.~\\ref{eq:#4}.",
+            "number of feeds": 3,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "indefinite integral over": {
+            "latex": "Indefinite integral of both sides of Eq.~\\ref{eq:#2} over $#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "indefinite integrate LHS over": {
+            "latex": "Indefinite integral of LHS of Eq.~\\ref{eq:#2} over $#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "indefinite integration": {
+            "latex": "Indefinite integral of both sides of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "indefinite intgrate RHS over": {
+            "latex": "Indefinite integral of RHS of Eq.~\\ref{eq:#2} over $#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "integrate over from to": {
+            "latex": "Integrate Eq.~\\ref{eq:#4} over $#1$ from lower limit $#2$ to upper limit $#3$.",
+            "number of feeds": 3,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "make expr power": {
+            "latex": "Make Eq.~\\ref{eq:#2} the power of $#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "mult expr X by expr Y": {
+            "latex": "Multiply Eq.~\\ref{eq:#1} by Eq.~\\ref{eq:#2}.",
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1
+        },
+        "multiply LHS by unity": {
+            "latex": "Multiply LHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "multiply RHS by Unity": {
+            "latex": "Multiply RHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "multiply both sides by": {
+            "latex": "Multiply both sides of Eq.~\\ref{eq:#2} by $#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "normalization condition": {
+            "latex": "Normalization condition is Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 0,
+            "number of outputs": 1
+        },
+        "partially differentiate with respect to": {
+            "latex": "Partially differentiate Eq.~\\ref{eq:#2} with respect to $#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "raise both sides to power": {
+            "latex": "Raise both sides of Eq.~\\ref{eq:#2} to $#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 2
+        },
+        "replace curl with LeviCevita summation contravariant": {
+            "latex": "Replace curl in Eq.~\\ref{eq:#1} with Levi-Cevita contravariant.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "replace scalar with vector": {
+            "latex": "Replace scalar variables in Eq.~\\ref{eq:#1} with equivalent vector variables.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "replace summation notation with vector notation": {
+            "latex": "Replace summation notation in Eq.~\\ref{eq:#1} with vector notation.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "select imaginary parts": {
+            "latex": "Select imaginary parts of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "select real parts": {
+            "latex": "Select real parts of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "simplify": {
+            "latex": "Simplify Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "solve for X": {
+            "latex": "Solve Eq.~\\ref{eq:#2} for $#1$.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "sub LHS of expr X into expr Y": {
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}.",
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1
+        },
+        "sub RHS of expr X into expr Y": {
+            "latex": "Substitute RHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}.",
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1
+        },
+        "substitue X for Y": {
+            "latex": "Substitute $#1$ for $#2$ in Eq.~\\ref{eq:#3}.",
+            "number of feeds": 2,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "subtract X from both sides": {
+            "latex": "Subtract $#1$ from both sides of Eq.~\\ref{eq:#2}.",
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "sum exponents": {
+            "latex": "Sum exponents on LHS and RHS of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "sum exponents LHS": {
+            "latex": "Sum exponents on LHS of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "sum exponents RHS": {
+            "latex": "Sum exponents on RHS of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "swap LHS with RHS": {
+            "latex": "Swap LHS of Eq.~\\ref{eq:#1} with RHS.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "take curl of both sides": {
+            "latex": "Apply curl to both sides of Eq.~\\ref{eq:#1}.",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        }
+    },
+    "measures": {
+        "amount of substance": {},
+        "electric current": {},
+        "length": {
+            "references": [
+                "https://en.wikipedia.org/wiki/Unit_of_length"
+            ]
+        },
+        "luminous intensity": {},
+        "mass": {},
+        "temperature": {},
+        "time": {}
+    },
+    "operators": {
+        "addition": {
+            "argument count": 2,
+            "latex": "+",
+            "scope": [
+                "real",
+                "vector",
+                "matrix",
+                "complex"
+            ]
+        },
+        "cosine": {
+            "argument count": 1,
+            "latex": "\\cos",
+            "scope": [
+                "real"
+            ]
+        },
+        "cross product": {
+            "argument count": 2,
+            "latex": "\\cross",
+            "scope": [
+                "vector"
+            ]
+        },
+        "definite integral": {
+            "argument count": 4,
+            "latex": "\\int",
+            "scope": [
+                "real",
+                "vector",
+                "matrix",
+                "complex"
+            ]
+        },
+        "division": {
+            "argument count": 2,
+            "latex": "/",
+            "scope": [
+                "real",
+                "vector",
+                "matrix",
+                "complex"
+            ]
+        },
+        "dot product": {
+            "argument count": 2,
+            "latex": "\\dot",
+            "scope": [
+                "vector"
+            ]
+        },
+        "element-wise addition": {
+            "argument count": 2,
+            "latex": "+",
+            "scope": [
+                "vector",
+                "matrix"
+            ]
+        },
+        "equals": {
+            "argument count": 2,
+            "latex": "=",
+            "scope": [
+                "real",
+                "vector",
+                "matrix",
+                "complex"
+            ]
+        },
+        "function": {
+            "argument count": 1,
+            "latex": "f",
+            "scope": [
+                "list"
+            ]
+        },
+        "indefinite intergral": {
+            "argument count": 2,
+            "latex": "\\int",
+            "scope": [
+                "real",
+                "vector",
+                "matrix",
+                "complex"
+            ]
+        },
+        "multiplication": {
+            "argument count": 2,
+            "latex": "*",
+            "scope": [
+                "real",
+                "vector",
+                "matrix",
+                "complex"
+            ]
+        },
+        "nabla": {
+            "argument count": 1,
+            "latex": "\\nabla",
+            "scope": [
+                "vector"
+            ]
+        },
+        "sine": {
+            "argument count": 1,
+            "latex": "\\sin",
+            "scope": [
+                "real"
+            ]
+        },
+        "spatial vector differential": {
+            "argument count": 2,
+            "latex": "\\vec{\\nabla}",
+            "scope": [
+                "real"
+            ]
+        },
+        "subtraction": {
+            "argument count": 2,
+            "latex": "-",
+            "scope": [
+                "real",
+                "vector",
+                "matrix",
+                "complex"
+            ]
+        },
+        "summation": {
+            "argument count": 4,
+            "latex": "\\sum",
+            "scope": [
+                "real",
+                "vector",
+                "matrix",
+                "complex"
+            ]
+        }
+    },
+    "symbols": {
+        "0011": {
+            "category": "variable",
+            "latex": "z",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1131": {
+            "category": "variable",
+            "latex": "p",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1134": {
+            "category": "variable",
+            "latex": "p",
+            "measure": "mass*length/time",
+            "name": "momentum",
+            "scope": [
+                "real"
+            ]
+        },
+        "1157": {
+            "category": "constant",
+            "latex": "k_{Boltzman}",
+            "name": "Boltzman constant",
+            "references": [
+                "https://en.wikipedia.org/wiki/Boltzmann_constant"
+            ],
+            "scope": [
+                "real"
+            ],
+            "values": [
+                {
+                    "units": "meter^2 kilogram second^-2 Kelvin^-1",
+                    "value": "1.38064852*10^{-23}"
+                }
+            ]
+        },
+        "1223": {
+            "category": "variable",
+            "latex": "q",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1245": {
+            "category": "variable",
+            "latex": "v",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1345": {
+            "category": "variable",
+            "latex": "l",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1357": {
+            "category": "variable",
+            "latex": "v",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1370": {
+            "category": "constant",
+            "latex": "\\alpha",
+            "name": "fine-structure constant",
+            "references": [
+                "https://en.wikipedia.org/wiki/Fine-structure_constant"
+            ],
+            "scope": [
+                "real"
+            ],
+            "values": [
+                {
+                    "units": "dimensionless",
+                    "value": "1/137.03599999"
+                }
+            ]
+        },
+        "1452": {
+            "category": "variable",
+            "latex": "y",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1456": {
+            "category": "variable",
+            "latex": "t",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1464": {
+            "category": "variable",
+            "latex": "x",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1467": {
+            "category": "variable",
+            "latex": "t",
+            "measure": "time",
+            "name": "time",
+            "scope": [
+                "real"
+            ]
+        },
+        "1469": {
+            "category": "variable",
+            "latex": "y_0",
+            "measure": "length",
+            "name": "initial position",
+            "scope": [
+                "real"
+            ]
+        },
+        "1552": {
+            "category": "variable",
+            "latex": "j",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1567": {
+            "category": "variable",
+            "latex": "i",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1572": {
+            "category": "variable",
+            "latex": "x_0",
+            "measure": "length",
+            "name": "initial position",
+            "scope": [
+                "real"
+            ]
+        },
+        "1900": {
+            "category": "variable",
+            "latex": "d",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1939": {
+            "category": "variable",
+            "latex": "e",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "1999": {
+            "category": "constant",
+            "latex": "e",
+            "name": "charge of an electron",
+            "references": [
+                "https://en.wikipedia.org/wiki/Elementary_charge"
+            ],
+            "scope": [
+                "real"
+            ],
+            "values": [
+                {
+                    "units": "Columb",
+                    "value": "1.602*10^{-19}"
+                }
+            ]
+        },
+        "2456": {
+            "category": "variable",
+            "latex": "h",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "2467": {
+            "category": "variable",
+            "latex": "t_f",
+            "measure": "time",
+            "name": "final time",
+            "scope": [
+                "real"
+            ]
+        },
+        "2911": {
+            "category": "variable",
+            "latex": "\\vec{x}",
+            "scope": [
+                "vector"
+            ]
+        },
+        "2912": {
+            "category": "constant",
+            "latex": "\\exp",
+            "name": "e",
+            "scope": [
+                "real"
+            ],
+            "values": [
+                {
+                    "units": "dimensionless",
+                    "value": "2.718"
+                }
+            ]
+        },
+        "3141": {
+            "category": "constant",
+            "latex": "\\pi",
+            "name": "pi",
+            "scope": [
+                "real"
+            ],
+            "values": [
+                {
+                    "units": "dimensionless",
+                    "value": "3.1415"
+                }
+            ]
+        },
+        "4200": {
+            "category": "variable",
+            "latex": "f",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "4221": {
+            "category": "variable",
+            "latex": "u",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "4231": {
+            "category": "variable",
+            "latex": "c",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "4291": {
+            "category": "variable",
+            "latex": "g",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "4563": {
+            "category": "variable",
+            "latex": "n",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "4567": {
+            "category": "constant",
+            "latex": "c",
+            "name": "speed of light in vacuum",
+            "references": [
+                "https://en.wikipedia.org/wiki/Speed_of_light"
+            ],
+            "scope": [
+                "real"
+            ],
+            "values": [
+                {
+                    "units": "meters/second",
+                    "value": "299792458"
+                }
+            ]
+        },
+        "4568": {
+            "category": "variable",
+            "latex": "t_0",
+            "measure": "time",
+            "name": "time 0",
+            "scope": [
+                "real"
+            ]
+        },
+        "4621": {
+            "category": "variable",
+            "latex": "i",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "5155": {
+            "category": "variable",
+            "latex": "m",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "5321": {
+            "category": "variable",
+            "latex": "k",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "5563": {
+            "category": "variable",
+            "latex": "t_i",
+            "measure": "time",
+            "name": "initial time",
+            "scope": [
+                "real"
+            ]
+        },
+        "5791": {
+            "category": "variable",
+            "latex": "s",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "6022": {
+            "category": "constant",
+            "latex": "N_A",
+            "name": "Avagadro's constant",
+            "references": [
+                "https://en.wikipedia.org/wiki/Avogadro_constant"
+            ],
+            "scope": [
+                "real"
+            ],
+            "values": [
+                {
+                    "units": "mol^-1",
+                    "value": "6.02214086*10^{23}"
+                }
+            ]
+        },
+        "9139": {
+            "category": "variable",
+            "latex": "a",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        },
+        "9199": {
+            "category": "variable",
+            "latex": "dx",
+            "scope": [
+                "real"
+            ]
+        },
+        "9491": {
+            "category": "variable",
+            "latex": "T",
+            "measure": "time",
+            "name": "period",
+            "scope": [
+                "real"
+            ]
+        },
+        "9492": {
+            "category": "variable",
+            "latex": "r",
+            "scope": [
+                "real",
+                "complex"
+            ]
+        }
+    },
+    "units": {
+        "Ampere": {
+            "measure": "electric current",
+            "references": [
+                "https://en.wikipedia.org/wiki/Ampere"
+            ]
+        },
+        "Farad": {
+            "measure": "capacitance",
+            "references": [
+                "https://en.wikipedia.org/wiki/Farad"
+            ]
+        },
+        "Kelvin": {
+            "measure": "temperature",
+            "references": [
+                "https://en.wikipedia.org/wiki/Kelvin"
+            ]
+        },
+        "Tesla": {
+            "measure": "magnetic field",
+            "references": [
+                "https://en.wikipedia.org/wiki/Tesla_(unit)"
+            ]
+        },
+        "hand": {
+            "measure": "length",
+            "references": [
+                "https://en.wikipedia.org/wiki/Hand_(unit)"
+            ]
+        },
+        "kilogram": {
+            "measure": "mass",
+            "references": [
+                "https://en.wikipedia.org/wiki/Kilogram"
+            ]
+        },
+        "light-year": {
+            "measure": "length",
+            "references": [
+                "https://en.wikipedia.org/wiki/Light-year"
+            ]
+        },
+        "meter": {
+            "measure": "length",
+            "references": [
+                "https://en.wikipedia.org/wiki/Metre"
+            ]
+        },
+        "mol": {
+            "measure": "amount of substance",
+            "references": [
+                "https://en.wikipedia.org/wiki/Mole_(unit)"
+            ]
+        },
+        "parsec": {
+            "measure": "length",
+            "references": [
+                "https://en.wikipedia.org/wiki/Parsec"
+            ]
+        },
+        "second": {
+            "measure": "time",
+            "references": [
+                "https://en.wikipedia.org/wiki/Second"
+            ]
+        },
+        "sol": {
+            "measure": "time",
+            "references": [
+                "https://en.wikipedia.org/wiki/Sol_(day_on_Mars)"
+            ]
+        }
+    }
+}

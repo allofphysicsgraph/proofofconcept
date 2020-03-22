@@ -38,7 +38,8 @@ def write_db(path_to_db: str, dat: dict) -> None:
 #    with open(path_to_db, 'wb') as fil:
 #        pickle.dump(dat, fil)
     with open(path_to_db, 'w') as outfile:
-        json.dump(dat, outfile)
+        # http://sam.gleske.net/blog/engineering/2017/10/21/python-json-pretty-dump.html
+        json.dump(dat, outfile, indent=4, separators=(',', ': '))#, sort_keys=True)
 
     #shutil.copy(path_to_db,'/home/appuser/app/static/')
     return
