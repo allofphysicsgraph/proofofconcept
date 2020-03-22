@@ -1310,7 +1310,7 @@
                     "3993940"
                 ]
             },
-            "304948": {
+            "3049480": {
                 "feeds": [],
                 "inf rule": "declareInitialExpr",
                 "inputs": [],
@@ -2642,6 +2642,21 @@
         "9999999": "4838429483"
     },
     "expressions": {
+        "0203024440": {
+            "latex": "1= \\int_0^W a \\sin(\\frac{n \\pi}{W} x) \\psi(x)^*\\ dx\\when{n \\in {\\rm Integer}}"
+        },
+        "0404050504": {
+            "latex": "\\lambda = \\frac{v}{f}"
+        },
+        "0439492440": {
+            "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2}\\left. \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)\\right|_0^W    when{n \\in {\\rm Integer}}"
+        },
+        "0934990943": {
+            "latex": "k = \\frac{2 \\pi}{v\\ T}"
+        },
+        "0948572140": {
+            "latex": "\\int \\cos(a x)\\ dx = \\frac{1}{a}\\sin(a x)"
+        },
         "1010393913": {
             "latex": "\\bra{\\psi} \\hat{A}^+ \\ket{\\psi}=\\langle a \\rangle^*"
         },
@@ -2654,7 +2669,7 @@
         "1020010291": {
             "latex": "0=a \\sin(k W)"
         },
-        "10203949": {
+        "1020394900": {
             "latex": "p = h/\\lambda"
         },
         "1020394902": {
@@ -2669,10 +2684,10 @@
         "1158485859": {
             "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 = {\\cal H}"
         },
-        "120231011": {
+        "1202310110": {
             "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1}{2}\\ dx - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right)\\ dx\\when{n \\in {\\rm Integer}}"
         },
-        "120231221": {
+        "1202312210": {
             "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right)\\ dx\\when{n \\in {\\rm Integer}}"
         },
         "1203938249": {
@@ -2681,7 +2696,7 @@
         "1248277773": {
             "latex": "\\cos(2x) = 1-2(\\sin(x))^2"
         },
-        "129391311": {
+        "1293913110": {
             "latex": "0=b"
         },
         "1293923844": {
@@ -2750,14 +2765,11 @@
         "1858772113": {
             "latex": "k = \\frac{n \\pi}{W} \\when{n \\in {\\rm Integer}}"
         },
-        "193474814": {
+        "1934748140": {
             "latex": "\\int |\\psi(x)|^2\\ dx = 1"
         },
         "2029293929": {
             "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E(\\vec{r})\\exp(i \\omega t)"
-        },
-        "20302444": {
-            "latex": "1= \\int_0^W a \\sin(\\frac{n \\pi}{W} x) \\psi(x)^*\\ dx\\when{n \\in {\\rm Integer}}"
         },
         "2103023049": {
             "latex": "\\sin(x) = \\frac{1}{2i}\\left(\\exp(i\\ x)-\\exp(-i\\ x)\\right)"
@@ -2789,10 +2801,10 @@
         "2395958385": {
             "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{-p^2}{\\hbar} \\psi(\\vec{r},t)"
         },
-        "240493499": {
+        "2404934990": {
             "latex": "\\langle x^2\\rangle -2\\langle x \\rangle\\langle x \\rangle+\\langle x \\rangle^2=\\langle x^2 \\rangle-\\langle x \\rangle^2"
         },
-        "24945339": {
+        "2494533900": {
             "latex": "\\langle x^2\\rangle -\\langle x \\rangle^2=\\langle x^2 \\rangle-\\langle x \\rangle^2"
         },
         "2569154141": {
@@ -2801,7 +2813,7 @@
         "2648958382": {
             "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\frac{i}{\\hbar} \\vec{p}\\psi(\\vec{r},t)\\right)"
         },
-        "284893489": {
+        "2848934890": {
             "latex": "\\langle a \\rangle^*=\\langle a \\rangle"
         },
         "2944838499": {
@@ -2849,7 +2861,7 @@
         "3942849294": {
             "latex": "\\exp(i\\ x)-\\exp(-i\\ x) = 2i \\sin(x)"
         },
-        "394393959": {
+        "3943939590": {
             "latex": "x = a_{\\alpha} \\braket{\\psi_{\\alpha}}{\\psi_{\\beta}}"
         },
         "3947269979": {
@@ -2858,7 +2870,7 @@
         "3948571256": {
             "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}E \\psi(\\vec{r},t)"
         },
-        "394857223": {
+        "3948572230": {
             "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\psi_0 \\vec{\\nabla}\\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)"
         },
         "3948574224": {
@@ -2870,7 +2882,7 @@
         "3948574228": {
             "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)"
         },
-        "394857423": {
+        "3948574230": {
             "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)"
         },
         "3948574233": {
@@ -2881,9 +2893,6 @@
         },
         "3951205425": {
             "latex": "\\vec{p}_{after} = \\vec{p}_{1}"
-        },
-        "404050504": {
-            "latex": "\\lambda = \\frac{v}{f}"
         },
         "4147472132": {
             "latex": "E = \\frac{h \\omega}{2 \\pi}"
@@ -2902,9 +2911,6 @@
         },
         "4348571256": {
             "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}\\frac{p^2}{2 m} \\psi(\\vec{r},t)"
-        },
-        "43949244": {
-            "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2}\\left. \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)\\right|_0^W    when{n \\in {\\rm Integer}}"
         },
         "4394958389": {
             "latex": "\\vec{\\nabla}\\cdot \\left(\\vec{\\nabla}\\psi(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{\\nabla}\\cdot\\left( \\vec{p} \\psi(\\vec{r},t)\\right)"
@@ -2976,10 +2982,10 @@
         "4938429484": {
             "latex": "\\exp(-i\\ x) = \\cos(x)-i \\sin(x)"
         },
-        "494357123": {
+        "4943571230": {
             "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)"
         },
-        "494893489": {
+        "4948934890": {
             "latex": "\\bra{\\psi} \\hat{A} \\ket{\\psi}=\\langle a \\rangle^*"
         },
         "4949359835": {
@@ -2997,7 +3003,7 @@
         "4985825552": {
             "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= i \\omega \\mu_0 \\epsilon_0 \\frac{\\partial}{\\partial t} E(\\vec{r})\\exp(i \\omega t)"
         },
-        "553014848": {
+        "5530148480": {
             "latex": "\\vec{p}_{1}-\\vec{p}_{2}=\\vec{p}_{electron}"
         },
         "5727578862": {
@@ -3036,7 +3042,7 @@
         "5982958249": {
             "latex": "x+(b/(2a)) = -\\sqrt{(b/(2a))^2 - (c/a)}"
         },
-        "598537123": {
+        "5985371230": {
             "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi(\\vec{r},t)"
         },
         "6742123016": {
@@ -3051,13 +3057,13 @@
         "7572664728": {
             "latex": "\\cos(2x)+2(\\sin(x))^2 = 1"
         },
-        "757573842": {
+        "7575738420": {
             "latex": "\\left(\\sin\\left(\\frac{n \\pi}{W}x\\right)\\right)^2 = \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}"
         },
         "7575859295": {
             "latex": "\\vec{\\nabla} \\times \\vec{\\nabla} \\times \\vec{E} = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
         },
-        "75758593": {
+        "7575859300": {
             "latex": "\\epsilon^{i,j,k} \\hat{x}_i \\nabla_j ( \\vec{\\nabla} \\times \\vec{E} )_k = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
         },
         "7575859302": {
@@ -3072,13 +3078,13 @@
         "7575859308": {
             "latex": "\\left( \\rowContravariantColumnCovariant{\\delta}{l}{j} \\rowContravariantColumnCovariant{\\delta}{m}{k} \\hat{x}_i \\nabla_j \\nabla^m E^n\\right)-\\left( \\rowContravariantColumnCovariant{\\delta}{l}{k} \\rowContravariantColumnCovariant{\\delta}{m}{h} \\hat{x}_i \\nabla_j \\nabla^m E^n \\right)  = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
         },
-        "757585931": {
+        "7575859310": {
             "latex": "\\hat{x}_m \\nabla_n \\nabla^m E^n - \\hat{x}_n \\nabla_m \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
         },
         "7575859312": {
             "latex": "\\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E} = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})"
         },
-        "791705106": {
+        "7917051060": {
             "latex": "\\vec{p}_{electron} = \\vec{p}_{1}-\\vec{p}_{2}"
         },
         "8139187332": {
@@ -3105,7 +3111,7 @@
         "8489593958": {
             "latex": "d(u\\ v) = u\\ dv + v\\ du"
         },
-        "848959396": {
+        "8489593960": {
             "latex": "d(u\\ v) - v\\ du= u\\ dv"
         },
         "8489593962": {
@@ -3117,7 +3123,7 @@
         "8494839423": {
             "latex": "\\nabla^2 \\vec{E}= \\mu_0 \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}"
         },
-        "857265711": {
+        "8572657110": {
             "latex": "1= \\int |\\psi(x)|^2\\ dx"
         },
         "8572852424": {
@@ -3129,7 +3135,7 @@
         "8575748999": {
             "latex": "\\frac{d^2}{dx^2} \\left(a \\sin(k x) + b \\cos(k x)\\right) = -k^2 \\left(a \\sin(kx) + b \\cos(kx)\\right)"
         },
-        "857678589": {
+        "8576785890": {
             "latex": "1= \\int_0^W a^2 \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}\\ dx\\when{n \\in {\\rm Integer}}"
         },
         "8577275751": {
@@ -3144,7 +3150,7 @@
         "8849289982": {
             "latex": "\\psi(x)^*=a \\sin(\\frac{n \\pi}{W} x) \\when{n \\in {\\rm Integer}}"
         },
-        "888944444": {
+        "8889444440": {
             "latex": "1= \\int_0^W a^2 \\left(\\sin\\left(\\frac{n \\pi}{W} x\\right)\\right)^2\\ dx\\when{n \\in {\\rm Integer}}"
         },
         "9059289981": {
@@ -3158,9 +3164,6 @@
         },
         "9294858532": {
             "latex": "\\hat{A}^+=\\hat{A}"
-        },
-        "934990943": {
-            "latex": "k = \\frac{2 \\pi}{v\\ T}"
         },
         "9385938295": {
             "latex": "(x+(b/(2a)))^2 = -(c/a) + (b/(2a))^2"
@@ -3207,16 +3210,13 @@
         "9485384858": {
             "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= - \\frac{\\omega^2}{c^2} E(\\vec{r})\\exp(i \\omega t)"
         },
-        "94857214": {
-            "latex": "\\int \\cos(a x)\\ dx = \\frac{1}{a}\\sin(a x)"
-        },
         "9485747245": {
             "latex": "\\sqrt{\\frac{2}{W}}= a"
         },
         "9485747246": {
             "latex": "-\\sqrt{\\frac{2}{W}}= a"
         },
-        "949292034": {
+        "9492920340": {
             "latex": "y = \\cos(x)+i \\sin(x)"
         },
         "9494829190": {
@@ -3275,7 +3275,7 @@
             ],
             "latex": "c + d = a"
         },
-        "958572771": {
+        "9585727710": {
             "latex": "\\psi(x)=0\\when{x=0}"
         },
         "9596004948": {
@@ -3290,7 +3290,7 @@
         "9848294829": {
             "latex": "\\frac{d}{dx} y= y\\ i"
         },
-        "985802895": {
+        "9858028950": {
             "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}\\ dx\\when{n \\in {\\rm Integer}}"
         },
         "9889984281": {
@@ -3308,13 +3308,13 @@
         "9991999979": {
             "latex": "\\vec{\\nabla} \\times \\vec{E} = -\\mu_0\\frac{\\partial \\vec{H}}{\\partial t}"
         },
-        "999999887": {
+        "9999998870": {
             "latex": "\\frac{\\vec{p}}{\\hbar} = \\vec{k}"
         },
-        "999999987": {
+        "9999999870": {
             "latex": "\\frac{p}{\\hbar} = k"
         },
-        "999999995": {
+        "9999999950": {
             "latex": "\\beta = 1/(k_{Boltzmann}T)"
         },
         "9999999951": {
@@ -3338,7 +3338,7 @@
         "9999999957": {
             "latex": "\\vec{F} = -\\vec{\\nabla} V"
         },
-        "999999996": {
+        "9999999960": {
             "latex": "\\hbar= h/(2 \\pi)"
         },
         "9999999961": {
@@ -3368,7 +3368,7 @@
         "9999999969": {
             "latex": "x=\\frac{-b+\\sqrt{b^2-4ac}}{2a}"
         },
-        "999999997": {
+        "9999999970": {
             "latex": "\\eta_1 \\sin\\theta_1 = \\eta_2 \\sin\\theta_2"
         },
         "9999999971": {
@@ -3398,7 +3398,7 @@
         "9999999979": {
             "latex": "\\vec{\\nabla} \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}"
         },
-        "999999998": {
+        "9999999980": {
             "latex": "\\vec{\\nabla} \\cdot \\vec{B} = 0"
         },
         "9999999981": {
@@ -3428,7 +3428,7 @@
         "9999999989": {
             "latex": "mass_{electron} = 511000 electronVolts/(q^2)"
         },
-        "999999999": {
+        "9999999990": {
             "latex": "Tesla = 10000*Gauss"
         },
         "9999999991": {
