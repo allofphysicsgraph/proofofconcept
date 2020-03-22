@@ -1,3 +1,20 @@
+#!/usr/bin/env python3
+
+# for a tutorial on how to create a schmea, see
+# https://json-schema.org/understanding-json-schema/about.html#about
+# https://json-schema.org/understanding-json-schema/reference/object.html#pattern-properties
+
+# to use this file, load a JSON file and name the content "dat"
+#   import json
+#   from jsonschema import validate
+#   import json_schema
+#   with open('data.json') as json_file:
+#       dat = json.load(json_file)
+#   validate(instance=dat,schema=json_schema.schema)
+
+# I wasn't able to get the output to display well using either pprint or
+#   print(json.dumps(json_schema.schema, indent=4))
+
 schema = {
     "$schema": "https://json-schema.org/schema#",
     "type" : "object",
