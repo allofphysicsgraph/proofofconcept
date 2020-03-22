@@ -1,0 +1,44 @@
+
+<table border="1">
+  <tr>
+    <th>Step ID</th>
+    <th>Inference Rule</th>
+    <th>Input local ID</th>
+    <th>Input latex</th>
+    <th>Feeds latex</th>
+    <th>Output local ID</th>
+    <th>Output latex</th>
+    <th>Linear index</th>
+    <th>step validity</th>
+  </tr>
+{% for step_id, this_dict in step_dict.items() %}
+  <tr>
+    <td>{{ step_id }}</td>
+    <td>{{ this_dict['inf rule'] }}</td>
+    <td>{% for local_id in this_dict['inputs'] %}
+          {{ local_id }}
+        {% endfor %}
+    </td>
+    <td>{% for local_id in this_dict['inputs'] %}
+          {{ expr_local_to_gobal[local_id] }}: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+        {% endfor %}
+    </td>
+    <td>{% for local_id in this_dict['feeds'] %}
+          {{ expr_local_to_gobal[local_id] }}: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+        {% endfor %}
+    </td>
+    <td>{% for local_id in this_dict['outputs'] %}
+          {{ local_id }}
+        {% endfor %}
+    </td>
+    <td>{% for local_id in this_dict['outputs'] %}
+          {{ expr_local_to_gobal[local_id] }}: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+        {% endfor %}
+    </td>
+    <td>{{ this_dict['linear index'] }}</td>
+    <td>{{ step_validity_dict[step_id] }}</td>
+  </tr>
+{% endfor %}
+  <caption>Physics Derivation Graph: Steps for {{ name_of_derivation}}</caption>
+</table>
+

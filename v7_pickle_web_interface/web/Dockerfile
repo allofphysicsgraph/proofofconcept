@@ -43,11 +43,20 @@ RUN pip3 install -r /tmp/requirements.txt
 
 RUN useradd --create-home appuser
 WORKDIR /home/appuser/app
+RUN mkdir -p       /home/appuser/app/uploads
 USER appuser
 
 COPY templates     /home/appuser/app/templates
 COPY static        /home/appuser/app/static
-COPY compute.py config.py data.json json_schema.py tests.sh controller.py /home/appuser/app/
+COPY compute.py \
+     config.py \
+     data.json \
+     json_schema.py \
+     tests.sh \
+     controller.py \
+     common_lib.py \
+     validate_inference_rules_sympy.py \
+     /home/appuser/app/
 #COPY compute.py    /home/appuser/app
 #COPY config.py     /home/appuser/app
 #COPY data.json     /home/appuser/app

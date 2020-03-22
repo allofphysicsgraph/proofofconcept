@@ -14,21 +14,23 @@
 # formating should be PEP-8 compliant; https://www.python.org/dev/peps/pep-0008/
 
 #import math
-import json
+#import json
 import os
 import shutil
 from subprocess import PIPE # https://docs.python.org/3/library/subprocess.html
 import subprocess # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
 import collections
-import pickle
+#import pickle
+import validate_inference_rules_sympy as vir
+import common_lib as clib
 from typing import Tuple, TextIO
 from typing_extensions import TypedDict  # https://mypy.readthedocs.io/en/stable/more_types.html
 # https://www.python.org/dev/peps/pep-0589/
-from jsonschema import validate
-import json_schema # a PDG file 
-import sympy
-from sympy.parsing.latex import parse_latex
+
+# the following were moved to clib
+#from jsonschema import validate
+#import json_schema # a PDG file
 
 global print_trace
 print_trace = True
@@ -42,40 +44,6 @@ STEP_DICT = TypedDict('STEP_DICT', {'inf rule': str,
                                     'feeds':    dict,
                                     'outputs':  dict})
 
-# *********************************************
-# database interaction
-
-def read_db(path_to_db: str) -> dict:
-    """
-    >>> read_db('data.json')
-    """
-    if print_trace: print('[trace] compute: read_db')
-
-#    with open(path_to_db, 'rb') as fil:
-#        dat = pickle.load(fil)
-    with open(path_to_db) as json_file:
-        dat = json.load(json_file)
-
-    validate(instance=dat,schema=json_schema.schema)
-
-    return dat
-
-
-def write_db(path_to_db: str, dat: dict) -> None:
-    """
-    >>> dat = {}
-    >>> print_trace = False
-    >>> write_db('data.json', dat)
-    [trace] compute: write_db
-    """
-    if print_trace: print('[trace] compute: write_db')
-#    with open(path_to_db, 'wb') as fil:
-#        pickle.dump(dat, fil)
-    with open(path_to_db, 'w') as outfile:
-        json.dump(dat, outfile)
-
-    #shutil.copy(path_to_db,'/home/appuser/app/static/')
-    return
 
 # *******************************************
 # query database for properties
@@ -85,16 +53,16 @@ def write_db(path_to_db: str, dat: dict) -> None:
 #    """
 #    >>> validate_json_database('data.pkl')
 #    """
-#    dat = read_db(path_to_db)
-#    validate(instance=dat,schema=json_schema.schema) 
+#    dat = clib.read_db(path_to_db)
+#    validate(instance=dat,schema=json_schema.schema)
 #    return
 
 def expr_not_in_derivations(path_to_db: str) -> list:
     """
-    >>> 
+    >>>
     """
     if print_trace: print('[trace] compute: expr_not_in_derivations')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     list_of_expr_not_in_deriv = []
     expr_popularity_dict = popularity_of_expressions(path_to_db)
     for expr_global_id, list_of_derivs in expr_popularity_dict.items():
@@ -109,7 +77,7 @@ def get_sorted_list_of_expr(path_to_db: str) -> list:
 
     """
     if print_trace: print('[trace] compute: get_sorted_list_of_expr')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     list_expr = list(dat['expressions'].keys())
     list_expr.sort()
     return list_expr
@@ -119,7 +87,7 @@ def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     >>> get_sorted_list_of_inf_rules('data.pkl')
     """
     if print_trace: print('[trace] compute: get_list_of_inf_rules')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     list_infrule = list(dat['inference rules'].keys())
     list_infrule.sort()
     return list_infrule
@@ -130,7 +98,7 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
     >>> get_list_of_derivations('data.json')
     """
     if print_trace: print('[trace] compute: get_list_of_derivation')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     list_deriv = list(dat['derivations'].keys())
     list_deriv.sort()
     return list_deriv
@@ -141,7 +109,7 @@ def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
     >>> get_derivation_steps('my deriv','data.json')
     """
     if print_trace: print('[trace] compute; get_list_of_steps')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     if name_of_derivation not in dat['derivations'].keys():
         raise Exception('[ERROR] compute; get_list_of_steps;', name_of_derivation,
                         'does not appear to be a key in derivations', dat['derivations'].keys())
@@ -153,7 +121,7 @@ def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
 #    >>> input_output_count_for_infrule('multiply both sides by X', 'data.json')
 #    """
 #    if print_trace: print('[trace] compute: input_output_count_for_infrule')
-#    dat = read_db(path_to_db)
+#    dat = clib.read_db(path_to_db)
 #
 #    if 'inference rules' not in dat.keys():
 #        print("[ERROR] compute; input_output_count_for_infrule: dat doesn't contain 'inference rules' as a key")
@@ -172,7 +140,7 @@ def create_expr_global_id(path_to_db: str) -> str:
     >>> create_expr_id(False, 'data.json')
     """
     if print_trace: print('[trace] compute; create_expr_global_id')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
 
     global_expr_ids_in_use = list(dat['expressions'].keys())
 
@@ -196,7 +164,7 @@ def create_step_id(path_to_db: str) -> str:
     >>> create_step_id(False, 'data.json')
     """
     if print_trace: print('[trace] compute; create_step_id')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
 
     step_ids_in_use = []
     for derivation_name, steps_dict in dat['derivations'].items():
@@ -221,7 +189,7 @@ def create_expr_local_id(path_to_db: str) -> str:
     >>> create_expr_local_id(False, 'data.json')
     """
     if print_trace: print('[trace] compute; create_expr_local_id')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
 
     local_ids_in_use = list(dat['expr local to global'].keys())
 
@@ -238,12 +206,12 @@ def create_expr_local_id(path_to_db: str) -> str:
 
 #def create_new_derivation(name_of_derivation: str, path_to_db: str) -> None:
 #    """
-#    >>> 
+#    >>>
 #    """
 #    if print_trace: print('[trace] compute; create_new_derivation')
-#    dat = read_db(path_to_db)
+#    dat = clib.read_db(path_to_db)
 #    dat['derivations'][name_of_derivation]
-#    write_db(path_to_db, dat)
+#    clib.write_db(path_to_db, dat)
 #    return
 
 #********************************************
@@ -278,7 +246,7 @@ def extract_operators_from_expression_dict(expr_id: str, path_to_db: str) -> lis
     >>>
     """
     if print_trace: print('[trace] compute; extract_operators_from_expression_dict')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     expr_dict = dat['expressions']
     flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
     list_of_str = list(flt_dict.keys())
@@ -297,7 +265,7 @@ def extract_symbols_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     >>> extract_symbols_from_expression_dict('data.json')
     """
     if print_trace: print('[trace] compute; extract_symbols_from_expression_dict')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     expr_dict = dat['expressions']
     flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
     #print('[debug] compute; extract_symbols_from_expression_dict; flt_dict=',flt_dict)
@@ -308,7 +276,7 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
     >>>
     """
     if print_trace: print('[trace] compute; extract_expressions_from_derivation_dict')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     flt_dict = flatten_dict(dat['derivations'][deriv_name])
     print('[debug] compute; extract_expressions_from_derivation_dict; flat dict =',flt_dict)
     list_of_expr_ids = []
@@ -323,7 +291,7 @@ def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> l
     >>> extract_infrules_from_derivation_dict()
     """
     if print_trace: print('[trace] compute; extract_infrules_from_derivation_dict')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     list_of_infrules = []
     for step_id, step_dict in dat['derivations'][deriv_name].items():
         list_of_infrules.append(step_dict['inf rule'])
@@ -336,7 +304,7 @@ def popularity_of_operators(path_to_db: str) -> dict:
     >>> popularity_of_operators('data.json')
     """
     if print_trace: print('[trace] compute; popularity_of_operators')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     operator_popularity_dict = {}
     for operator, operator_dict in dat['operators'].items():
         list_of_uses = []
@@ -352,7 +320,7 @@ def popularity_of_symbols(path_to_db: str) -> dict:
     >>> popularity_of_symbols('data.json')
     """
     if print_trace: print('[trace] compute; popularity_of_symbols')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
 
     symbol_popularity_dict = {}
     for symbol_id, symbol_dict in dat['symbols'].items():
@@ -367,11 +335,11 @@ def popularity_of_symbols(path_to_db: str) -> dict:
 
 def get_expr_local_IDs_for_this_expr_global_ID(expr_global_ID: str, path_to_db: str) -> list:
     """
-    >>> 
+    >>>
     """
     if print_trace: print('[trace] compute; get_expr_local_IDs_for_this_expr_global_ID')
     list_of_expr_local_IDs = []
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     for local_id, global_id in dat['expr local to global'].items():
         if expr_global_ID == global_id:
             list_of_expr_local_IDs.append(local_id)
@@ -382,7 +350,7 @@ def popularity_of_expressions(path_to_db: str) -> dict:
     >>> popularity_of_expressions('data.json')
     """
     if print_trace: print('[trace] compute; popularity_of_expressions')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     expression_popularity_dict = {}
     for expr_global_id, expr_dict in dat['expressions'].items():
         list_of_derivations_this_expr_is_used_in = []
@@ -406,7 +374,7 @@ def popularity_of_infrules(path_to_db: str) -> dict:
     >>> popularity_of_infrules('data.json')
     """
     if print_trace: print('[trace] compute; popularity_of_infrules')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     infrule_popularity_dict = {}
     for infrule_name, infrule_dict in dat['inference rules'].items():
         list_of_uses = []
@@ -493,7 +461,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
     """
     if print_trace: print('[trace] compute; write_step_to_graphviz_file')
 
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
 
     step_dict = dat['derivations'][name_of_derivation][local_step_id]
     print('[debug] compute: write_step_to_graphviz_file: step_dict =', step_dict)
@@ -551,15 +519,15 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
     """
     In this iteration of the PDG (v7), I allow for inference rule names
     to have spaces. In previous versions, the inference rule names were
-    camel case. When I implemented this function, I learned why the 
-    inference rule names had been camel case: Latex doesn't like 
+    camel case. When I implemented this function, I learned why the
+    inference rule names had been camel case: Latex doesn't like
     newcommand names to have underscore in them; see https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
     Therefore, I remove all spaces from the inference rule name
 
     >>> generate_pdf_for_derivation
     """
     if print_trace: print('[trace] compute; generate_pdf_for_derivation')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
 
     path_to_pdf = '/home/appuser/app/static/'
     pdf_filename = name_of_derivation.replace(' ','_')
@@ -575,9 +543,9 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
         for infrule_name, infrule_dict in dat['inference rules'].items():
             number_of_args = infrule_dict['number of feeds'] + infrule_dict['number of inputs'] + infrule_dict['number of outputs']
             # https://en.wikibooks.org/wiki/LaTeX/Macros#New_commands
-            lat_file.write('\\newcommand\\' + 
+            lat_file.write('\\newcommand\\' +
                              infrule_name.replace(' ','') + '[' + # https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
-                             str(number_of_args) + ']{' + 
+                             str(number_of_args) + ']{' +
                              infrule_dict['latex'] + '}\n')
 
         # extract the list of linear index from the derivation
@@ -603,7 +571,7 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
         for linear_indx in list_of_linear_index:
             for step_id, step_dict in dat['derivations'][name_of_derivation].items():
                 if step_dict['linear index']==linear_indx:
-                    # using the newcommand, populate the expression IDs 
+                    # using the newcommand, populate the expression IDs
                     lat_file.write('\\' + step_dict['inf rule'].replace(' ',''))
                     for expr_local_id in step_dict['feeds']:
                         expr_global_id = dat['expr local to global'][expr_local_id]
@@ -615,7 +583,7 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
                         expr_global_id = dat['expr local to global'][expr_local_id]
                         lat_file.write('{' + expr_local_id + '}')
                     lat_file.write('\n')
-                    # write output expressions 
+                    # write output expressions
                     for expr_local_id in step_dict['outputs']:
                         expr_global_id = dat['expr local to global'][expr_local_id]
                         lat_file.write('\\begin{equation}\n')
@@ -652,7 +620,7 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
     """
     if print_trace: print('[trace] compute; create_derivation_png')
 
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
 
     dot_filename = '/home/appuser/app/static/graphviz.dot'
     with open(dot_filename, 'w') as fil:
@@ -769,8 +737,8 @@ def create_png_from_latex(input_latex_str: str) -> str:
     png_stdout = process.stdout.decode("utf-8")
     png_stderr = process.stderr.decode("utf-8")
 
-    #if print_debug: print('[debug] compute: create_png_from_latex: png std out', png_stdout)
-    #if print_debug: print('[debug] compute: create_png_from_latex: png std err', png_stderr)
+    if print_debug: print('[debug] compute: create_png_from_latex: png std out', png_stdout)
+    if print_debug: print('[debug] compute: create_png_from_latex: png std err', png_stderr)
 
     destination_folder = '/home/appuser/app/static/'
     generated_png_name = find_valid_filename(destination_folder, 'png')
@@ -786,16 +754,31 @@ def create_png_from_latex(input_latex_str: str) -> str:
 #*********************************************************
 # data structure transformations
 
+def modify_latex_in_step(expr_local_id_of_latex_to_modify: str, 
+                         revised_latex: str, path_to_db: str) -> None:
+    """
+    >>> modify_latex_in_step('959242', 'a = b', 'data.json')
+    """
+    if print_trace: print('[trace] compute; modify_latex_in_step')
+    dat = clib.read_db(path_to_db)
+    
+    expr_global_id = create_expr_global_id(path_to_db)
+    dat['expressions'][expr_global_id] = {'latex': revised_latex}
+    dat['expr local to global'][expr_local_id_of_latex_to_modify] = expr_global_id
+
+    clib.write_db(path_to_db, dat)
+    return
+
 def delete_derivation(name_of_derivation: str, path_to_db: str) -> str:
     """
     >>> delete_derivation('my cool deriv', 'data.json')
 
     """
     if print_trace: print('[trace] compute; add_inf_rule')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     # TODO: if expr is only used in this derivation, does the user want dangling expressions removed?
     del dat['derivations'][name_of_derivation]
-    write_db(path_to_db, dat)
+    clib.write_db(path_to_db, dat)
     return "successfully deleted "+name_of_derivation
 
 def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
@@ -824,12 +807,12 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     arg_dict['latex'] = inf_rule_dict_from_form['latex']
     if print_debug: print('[debug] compute; add_inf_rule; arg_dict =',arg_dict)
 
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     if inf_rule_dict_from_form['inf_rule_name'] in dat['inference rules'].keys():
         status_msg = "inference rule already exists"
 
     dat['inference rules'][inf_rule_dict_from_form['inf_rule_name']] = arg_dict
-    write_db(path_to_db, dat)
+    clib.write_db(path_to_db, dat)
 
     return status_msg
 
@@ -838,7 +821,7 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
     >>> delete_inf_rule('multbothsidesbyx','data.json')
     """
     if print_trace: print('[trace] compute; delete_inf_rule')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     status_msg = ""
     infrule_popularity_dict = popularity_of_infrules(path_to_db)
     #print('name_of_inf_rule',name_of_inf_rule)
@@ -852,7 +835,7 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
         status_msg = name_of_inf_rule + " deleted"
     else:
         status_msg = name_of_inf_rule + " does not exist in database"
-    write_db(path_to_db, dat)
+    clib.write_db(path_to_db, dat)
     return status_msg
 
 def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_to_db: str) -> str:
@@ -860,7 +843,7 @@ def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_t
     >>> rename_inf_rule()
     """
     if print_trace: print('[trace] compute; rename_inf_rule')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     status_msg = ""
     if old_name_of_inf_rule in dat['inference rules'].keys():
         dat['inference rules'][new_name_of_inf_rule] = dat['inference rules'][old_name_of_inf_rule]
@@ -875,7 +858,7 @@ def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_t
         status_msg = old_name_of_inf_rule + ' renamed to ' + new_name_of_inf_rule + '\n and references in derivations were updated'
     else:
         status_msg = old_name_of_inf_rule + " does not exist in database; no action taken"
-    write_db(path_to_db, dat)
+    clib.write_db(path_to_db, dat)
     return status_msg
 
 def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str) -> str:
@@ -883,13 +866,13 @@ def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str)
     >>> edit_inf_rule_latex()
     """
     if print_trace: print('[trace] compute; edit_inf_rule_latex')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     status_msg = ""
     if inf_rule_name in dat['inference rules'].keys():
         dat['inference rules'][inf_rule_name]['latex'] = revised_latex
     else:
         status_msg = inf_rule_name + ' does not exist in database'
-    write_db(path_to_db, dat)
+    clib.write_db(path_to_db, dat)
     return status_msg
 
 def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
@@ -897,12 +880,12 @@ def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
     >>> edit_expr_latex()
     """
     if print_trace: print('[trace] compute; edit_expr_latex')
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     status_msg = ""
     #print('old latex:',dat['expressions'][expr_id]['latex'])
     dat['expressions'][expr_id]['latex'] = revised_latex
     #print('new latex:',dat['expressions'][expr_id]['latex'])
-    write_db(path_to_db, dat)
+    clib.write_db(path_to_db, dat)
     # TODO: update AST based on revised latex
     return status_msg
 
@@ -912,7 +895,7 @@ def delete_expr(expr_global_id: str, path_to_db: str) -> str:
     """
     if print_trace: print('[trace] compute; delete_expr')
     status_message = ""
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
     expression_popularity_dict = popularity_of_expressions(path_to_db)
     if len(expression_popularity_dict[expr_global_id])>0:
         status_message = expr_global_id+' cannot be deleted because it is in use in '+str(expression_popularity_dict[expr_global_id])
@@ -920,41 +903,8 @@ def delete_expr(expr_global_id: str, path_to_db: str) -> str:
         del dat['expressions'][expr_global_id]
         status_message = "successfully deleted "+expr_global_id
     print('[debug] compute; delete_expr; dat[expr].keys =', dat['expressions'].keys())
-    write_db(path_to_db, dat)
+    clib.write_db(path_to_db, dat)
     return status_message
-
-def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
-    """
-    Sympy provides experimental support for converting latex to AST
-
-    https://github.com/allofphysicsgraph/proofofconcept/issues/44
-
-    >>> create_sympy_expr_tree_from_latex(r"\frac {1 + \sqrt {\a}} {\b}")
-    """
-    if print_trace: print('[trace] compute; create_sympy_expr_tree_from_latex')
-
-    sympy_expr = parse_latex(latex_expr_str)
-    print('[debug] compute; create_sympy_expr_tree_from_latex; Sympy expression =',sympy_expr)
-
-    latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
-    print('[debug] compute; create_sympy_expr_tree_from_latex; latex as Sympy expr tree =',latex_as_sympy_expr_tree)
-
-    return latex_as_sympy_expr_tree
-
-def get_symbols_from_latex(latex_expr_str: str) -> list:
-    """
-    Sometimes Sympy works as desired (for simple algebraic synatx)
-    >>> parse_latex(r'a + k = b + k').free_symbols
-    {b, a, k}
-
-    Sometimes the Sympy output does not reflect user intent
-    >>> parse_latex(r'\nabla \vec{x} = f(y)').free_symbols
-    {x, nabla, y, vec}
-    """
-    if print_trace: print('[trace] compute; get_symbols_from_latex')
-
-    return list(parse_latex(latex_expr_str).free_symbols)
-
 
 def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_db: str) -> str:
     """
@@ -964,7 +914,7 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
     """
     if print_trace: print('[trace] compute; create_step')
 
-    dat = read_db(path_to_db)
+    dat = clib.read_db(path_to_db)
 
     step_dict = {'inf rule': inf_rule,
                  'inputs':   [],
@@ -1053,125 +1003,24 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
             raise Exception('collision of inf_rule_local_id already in dat', inf_rule_local_ID)
         dat['derivations'][name_of_derivation][inf_rule_local_ID] = step_dict
 
-    write_db(path_to_db, dat)
+    clib.write_db(path_to_db, dat)
 
     return inf_rule_local_ID
 
-
-def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str:
+def determine_step_validity(name_of_derivation: str, path_to_db: str) -> dict:
     """
-    >>> validate_step('my cool deriv', '958282', 'data.json')
+    >>>
     """
-    if print_trace: print('[trace] compute; validate_step')
+    if print_trace: print('[trace] compute; determine_step_validity')
+    dat = clib.read_db(path_to_db)
+    step_validity_dict = {}
 
-    dat = read_db(path_to_db)
+    if name_of_derivation not in dat['derivations'].keys():
+        raise Exception('dat does not contain ' + name_of_derivation)
 
-    step_dict = dat['derivations'][name_of_derivation][step_id]
-    print('[debug] compute; validate_step; step_dict =',step_dict)
+    for step_id, step_dict in dat['derivations'][name_of_derivation].items():
+        step_validity_dict[step_id] = vir.validate_step(name_of_derivation, step_id, path_to_db)
+    return step_validity_dict
 
-    if step_dict['inf rule'] in ['declare initial expr', 'declare final expr', 
-                                 'declare identity', 'declare guess solution',
-                                 'declare assumption']:
-        return "no validation is available for declarations"
-
-    if len(step_dict['inputs']) > 0:
-        input_0_latex = latex_from_expr_local_id(step_dict['inputs'][0], path_to_db)
-        print('[debug] compute; validate_step; input_latex =', input_0_latex)
-        input_0_LHS, input_0_RHS = split_expr_into_lhs_rhs(input_0_latex)
-    if len(step_dict['inputs']) > 1:
-        input__latex = latex_from_expr_local_id(step_dict['inputs'][], path_to_db)
-        print('[debug] compute; validate_step; input_latex =', input__latex)
-        input__LHS, input__RHS = split_expr_into_lhs_rhs(input__latex)
-    if len(step_dict['inputs']) > 2:
-        input__latex = latex_from_expr_local_id(step_dict['inputs'][], path_to_db)
-        print('[debug] compute; validate_step; input_latex =', input__latex)
-        input__LHS, input__RHS = split_expr_into_lhs_rhs(input__latex)
-    if len(step_dict['feeds']) > 0:
-        feed_0_latex = latex_from_expr_local_id(step_dict['feeds'][0], path_to_db)
-        print('[debug] compute; validate_step; feed_0_latex =', feed_0_latex)
-        feed_0 = parse_latex(feed_0_latex)
-    if len(step_dict['feeds']) > 1:
-        feed_1_latex = latex_from_expr_local_id(step_dict['feeds'][1], path_to_db)
-        print('[debug] compute; validate_step; feed_1_latex =', feed_1_latex)
-        feed_1 = parse_latex(feed_1_latex)
-    if len(step_dict['feeds']) > 2:
-        feed_2_latex = latex_from_expr_local_id(step_dict['feeds'][2], path_to_db)
-        print('[debug] compute; validate_step; feed_2_latex =', feed_2_latex)
-        feed_2 = parse_latex(feed_2_latex)
-    if len(step_dict['outputs']) > 0:
-        output_0_latex = latex_from_expr_local_id(step_dict['outputs'][0], path_to_db)
-        print('[debug] compute; validate_step; output_0_latex =', output_0_latex)
-        output_0_LHS, output_0_RHS = split_expr_into_lhs_rhs(output_0_latex)
-    if len(step_dict['outputs']) > 1:
-        output_1_latex = latex_from_expr_local_id(step_dict['outputs'][1], path_to_db)
-        print('[debug] compute; validate_step; output_1_latex =', output_1_latex)
-        output_1_LHS, output_1_RHS = split_expr_into_lhs_rhs(output_1_latex)
-    if len(step_dict['outputs']) > 2:
-        output_2_latex = latex_from_expr_local_id(step_dict['outputs'][2], path_to_db)
-        print('[debug] compute; validate_step; output_2_latex =', output_2_latex)
-        output_2_LHS, output_2_RHS = split_expr_into_lhs_rhs(output_2_latex)
-
-
-    if step_dict['inf rule'] == 'add X to both sides':
-        # https://docs.sympy.org/latest/gotchas.html#double-equals-signs
-        # https://stackoverflow.com/questions/37112738/sympy-comparing-expressions
-        if ((sympy.simplify(sympy.Add(input_0_LHS, feed_0) - output_0_LHS) == 0) and 
-            (sympy.simplify(sympy.Add(input_0_RHS, feed_0) - output_0_RHS) == 0)):
-            return "step is valid"
-        else:
-            return ("step is not valid; <BR>"+
-                    "LHS diff is " + str(sympy.simplify(sympy.Add(input_0_LHS, feed_0) - output_0_LHS)) + "<BR>" +
-                    "RHS diff is " + str(sympy.simplify(sympy.Add(input_0_RHS, feed_0) - output_0_RHS)))
-    elif step_dict['inf rule'] == 'subtract X from both sides':
-        # https://docs.sympy.org/latest/tutorial/manipulation.html
-        if ((sympy.simplify(sympy.Add(input_0_LHS, Mul(-1, feed_0)) - output_0_LHS) == 0) and
-            (sympy.simplify(sympy.Add(input_0_RHS, Mul(-1, feed_0)) - output_0_RHS) == 0)):
-            return "step is valid"
-        else:
-            return ("step is not valid; <BR>"+
-                    "LHS diff is " + str(sympy.simplify(sympy.Add(input_0_LHS, Mul(-1, feed_0)) - output_0_LHS)) + "<BR>" +
-                    "RHS diff is " + str(sympy.simplify(sympy.Add(input_0_RHS, Mul(-1, feed_0)) - output_0_RHS)))        
-    elif step_dict['inf rule'] == 'divide both sides by':
-        # https://docs.sympy.org/latest/tutorial/manipulation.html
-        # x/y = Mul(x, Pow(y, -1))
-        if ((sympy.simplify(sympy.Mul(input_0_LHS, Pow(feed_0, -1)) - output_0_LHS) == 0) and
-            (sympy.simplify(sympy.Mul(input_0_RHS, Pow(feed_0, -1)) - output_0_RHS) == 0)):
-            return "step is valid"
-        else:
-            return ("step is not valid; <BR>"+
-                    "LHS diff is " + str(sympy.simplify(sympy.Mul(input_0_LHS, Pow(feed_0, -1)) - output_0_LHS)) + "<BR>" +
-                    "RHS diff is " + str(sympy.simplify(sympy.Mul(input_0_RHS, Pow(feed_0, -1)) - output_0_RHS)))
-
-    return "no validation available for this inference rule"
-
-def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
-    """
-    >>> latex_from_expr_local_id('1029')
-    'a = b'
-    """
-    if print_trace: print('[trace] compute; latex_from_expr_local_id')
-    dat = read_db(path_to_db)
-    print('[debug] compute; latex_from_expr_local_id; expr_local_id =', expr_local_id)
-    global_id = dat['expr local to global'][expr_local_id]
-    latex_expr = dat['expressions'][global_id]['latex']
-    print('[debug] compute; latex_from_expr_local_id; latex_expr =', latex_expr)
-    return latex_expr
-
-def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
-    """
-    >>> split_expr_into_lhs_rhs('a = b')
-    'a', 'b'
-    """
-    if print_trace: print('[trace] compute; split_expr_into_lhs_rhs')
-
-    print('[debug] compute; split_expr_into_lhs_rhs; latex_expr =', latex_expr) 
-
-    sympy_expr = parse_latex(latex_expr)
-    print('[debug] compute; split_expr_into_lhs_rhs; Sympy expression =',sympy_expr)
-
-    #latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
-    #print('latex as Sympy expr tree =',latex_as_sympy_expr_tree)
-
-    return sympy_expr.lhs, sympy_expr.rhs
 
 # EOF

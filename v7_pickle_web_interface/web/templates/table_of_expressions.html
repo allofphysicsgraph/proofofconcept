@@ -1,0 +1,15 @@
+
+<table border="1">
+  <tr>
+    <th>expression ID</th>
+    <th>Latex</th>
+  </tr>
+{% for expr_id, this_dict  in expr_dict.items() %}
+  <tr>
+    <td>{{ expr_id }}</td>
+    <td>{{ expr_dict[expr_id]['latex'] }}</td>
+  </tr>
+{% endfor %}
+  <caption>Physics Derivation Graph: Expressions</caption>
+</table>
+

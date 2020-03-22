@@ -9,6 +9,23 @@
     </head>
     <body>
         <div>PDG: <a href="/index">Home</a></div>
+
+<!-- https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/ -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% if messages|length > 1 %}
+    MESSAGES:
+    {% else %}
+    MESSAGE:
+    {% endif %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
         <hr>
         {% block content %}
 
