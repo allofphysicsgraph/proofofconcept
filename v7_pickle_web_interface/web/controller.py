@@ -167,6 +167,14 @@ def index():
 
     shutil.copy('data.json','/home/appuser/app/static/')
 
+    all_df = compute.convert_json_to_dataframes('data.json')
+    df_pkl_file = compute.convert_df_to_pkl(all_df)
+    sql_file = compute.convert_dataframes_to_sql(all_df)
+    rdf_file = compute.convert_data_to_rdf('data.json')
+    neo4j_file = compute.convert_data_to_cypher('data.json')
+    shutil.copy(sql_file, '/home/appuser/app/static/')
+    shutil.copy(rdf_file, '/home/appuser/app/static/')
+
     print('[debug] controller; index; request.method =', request.method)
 
     if request.method == 'POST':
@@ -208,7 +216,11 @@ def index():
                            number_of_expressions=len(dat['expressions'].keys()),
                            number_of_symbols=len(dat['symbols'].keys()),
                            number_of_operators=len(dat['operators'].keys()),
-                           database='data.json')
+                           database_json='data.json',
+                           database_df_pkl=df_pkl_file,
+                           database_sql=sql_file,
+                           database_neo4j=neo4j_file,
+                           database_rdf=rdf_file)
 
 @app.route('/start_new_derivation/', methods=['GET', 'POST'])
 def start_new_derivation():

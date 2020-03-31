@@ -2,6 +2,7 @@ Flask
 graphviz
 flask-wtf
 mypy
+pandas
 flake8
 pylint
 jsonschema

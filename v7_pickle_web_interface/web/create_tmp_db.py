@@ -370,6 +370,7 @@ dat['expressions'] = {
 # the glue of the Physics Derivation Graph is a concept called an "Inference rule"
 # An inference rule relates one or more expressions in a given step
 # the order is (all feeds), (all inputs), (all outputs)
+# https://github.com/allofphysicsgraph/proofofconcept/wiki/Inference-Rules
 dat['inference rules'] =  {
     'multiply LHS by unity': {'number of feeds':1, 'number of inputs':1, 'number of outputs':1,
                     'latex': 'Multiply LHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$'},
@@ -1972,7 +1973,7 @@ dat['symbols'] = {
   '1245': {'latex': 'v',            'category': 'variable', 'scope': ['real', 'complex']},
   '1464': {'latex': 'x',            'category': 'variable', 'scope': ['real', 'complex']},
   '1572': {'latex': 'x_0',          'category': 'variable', 'scope': ['real'], 'name': 'initial position', 'measure': 'length'},
-  '2911': {'latex': '\\vec{x}',      'category': 'variable', 'scope': ['vector']},
+  '2911': {'latex': '\\vec{x}',      'categ ry': 'variable', 'scope': ['vector']},
   '1452': {'latex': 'y',            'category': 'variable', 'scope': ['real', 'complex']},
   '1469': {'latex': 'y_0',          'category': 'variable', 'scope': ['real'], 'name': 'initial position', 'measure': 'length'},
   '0011': {'latex': 'z',            'category': 'variable', 'scope': ['real', 'complex']}
@@ -2012,6 +2013,7 @@ dat['units'] = {
 }
 
 # see also v3_CSV/databases/symbols_database.csv
+# https://github.com/allofphysicsgraph/proofofconcept/wiki/Operators
 dat['operators'] = {
   'equals':                      {'latex': '=',            'argument count': 2, 'scope': ['real','vector','matrix','complex']},
   'addition':                    {'latex': '+',            'argument count': 2, 'scope': ['real','vector','matrix','complex']},

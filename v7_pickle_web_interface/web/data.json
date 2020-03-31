@@ -4494,7 +4494,7 @@
             ]
         },
         "2911": {
-            "category": "variable",
+            "categ ry": "variable",
             "latex": "\\vec{x}",
             "scope": [
                 "vector"

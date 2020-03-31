@@ -21,7 +21,9 @@ from subprocess import PIPE # https://docs.python.org/3/library/subprocess.html
 import subprocess # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
 import collections
-#import pickle
+import pandas
+import sqlite3
+import pickle
 import validate_inference_rules_sympy as vir
 import common_lib as clib
 from typing import Tuple, TextIO
@@ -56,6 +58,187 @@ STEP_DICT = TypedDict('STEP_DICT', {'inf rule': str,
 #    dat = clib.read_db(path_to_db)
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
+
+def convert_json_to_dataframes(path_to_db: str) -> str:
+    """
+    >>> convert_json_to_dataframes('data.json')
+    """
+    if print_trace: print('[trace] compute: convert_data_to_dataframes')
+    dat = clib.read_db(path_to_db)
+
+    all_dfs = {}
+
+    expressions_list_of_dicts = []
+    for expression_id, expression_dict in dat['expressions'].items():
+        this_expr = {}
+        this_expr['expression id'] = expression_id
+        this_expr['expression latex'] = expression_dict['latex']
+        this_expr['AST'] = 'None'
+        if 'AST' in expression_dict.keys():
+            this_expr['AST'] = expression_dict['AST']
+        expressions_list_of_dicts.append(this_expr)
+    all_dfs['expressions'] = pandas.DataFrame(expressions_list_of_dicts)
+
+    infrules_list_of_dicts = []
+    for infrule_name, infrule_dict in dat['inference rules'].items():
+        this_infrule = {}
+        this_infrule['inference rule'] = infrule_name
+        this_infrule['number of feeds'] = infrule_dict['number of feeds']
+        this_infrule['number of inputs'] = infrule_dict['number of inputs']
+        this_infrule['number of outputs'] = infrule_dict['number of outputs']
+        this_infrule['latex'] = infrule_dict['latex']
+        infrules_list_of_dicts.append(this_infrule)
+    all_dfs['infrules'] = pandas.DataFrame(infrules_list_of_dicts)
+
+    derivations_list_of_dicts = []
+    for derivation_name, derivation_dict in dat['derivations'].items():
+        for step_id, step_dict in derivation_dict.items():
+            for connection_type in ['inputs', 'feeds', 'outputs']:
+                for expr_local_id in step_dict[connection_type]:
+                    this_derivation_step_expr = {}
+                    this_derivation_step_expr['derivation name'] = derivation_name
+                    this_derivation_step_expr['step id'] = step_id
+                    this_derivation_step_expr['inference rule'] = step_dict['inf rule']
+                    this_derivation_step_expr['linear index'] = step_dict['linear index']
+                    this_derivation_step_expr['connection type'] = connection_type
+                    this_derivation_step_expr['expression local id'] = expr_local_id
+                    derivations_list_of_dicts.append(this_derivation_step_expr) 
+    all_dfs['derivations'] = pandas.DataFrame(derivations_list_of_dicts)    
+
+    local_to_global_list_of_dicts = []
+    for local_id, global_id in dat['expr local to global'].items():
+        this_lookup = {}
+        this_lookup['expr local id'] = local_id
+        this_lookup['expr global id'] = global_id
+        local_to_global_list_of_dicts.append(this_lookup)
+    all_dfs['expr local global'] = pandas.DataFrame(local_to_global_list_of_dicts)
+
+    symbols_list_of_dicts = []
+    for symbol_id, symbol_dict in dat['symbols'].items():
+        if 'values' in symbol_dict.keys():
+            for value_dict in symbol_dict['values']:
+                this_symb = {}
+                this_symb['symbol id'] = symbol_id
+                this_symb['latex'] = symbol_dict['latex']
+                this_symb['category'] = symbol_dict['category']
+                this_symb['scope'] = ';'.join(symbol_dict['scope']) # TODO: an entry in a table should not be a list (tidy data)
+                if 'references' in symbol_dict.keys():
+                    this_symb['references'] = ' '.join(symbol_dict['references']) # TODO: an entry in a table should not be a list (tidy data)
+                if 'name' in symbol_dict.keys():
+                    this_symb['name'] = symbol_dict['name']
+                if 'measure' in symbol_dict.keys():
+                    this_symb['measure'] = symbol_dict['measure']
+                this_symb['value'] = value_dict['value']
+                this_symb['units'] = value_dict['units']
+                symbols_list_of_dicts.append(this_symb)
+        else: # no 'values' in symbol_dict.keys()
+            this_symb = {}
+            this_symb['symbol id'] = symbol_id
+            this_symb['latex'] = symbol_dict['latex']
+            if 'category' in symbol_dict.keys():
+                this_symb['category'] = symbol_dict['category']
+            this_symb['scope'] = ';'.join(symbol_dict['scope']) # TODO: an entry in a table should not be a list (tidy data)
+            if 'references' in symbol_dict.keys():
+                this_symb['references'] = ' '.join(symbol_dict['references']) # TODO: an entry in a table should not be a list (tidy data)
+            if 'name' in symbol_dict.keys():
+                this_symb['name'] = symbol_dict['name']
+            if 'measure' in symbol_dict.keys():
+                this_symb['measure'] = symbol_dict['measure']
+            symbols_list_of_dicts.append(this_symb)
+    all_dfs['symbols'] = pandas.DataFrame(symbols_list_of_dicts)
+
+    measures_list_of_dicts = []
+    for measure_name, measure_dict in dat['measures'].items():
+        if 'references' in measure_dict.keys():
+            for ref in measure_dict['references']:
+                this_measure = {}
+                this_measure['measure'] = measure_name
+                this_measure['reference'] = ref
+                measures_list_of_dicts.append(this_measure)
+        else:
+            this_measure = {}
+            this_measure['measure'] = measure_name
+            measures_list_of_dicts.append(this_measure)
+    all_dfs['measures'] = pandas.DataFrame(measures_list_of_dicts)
+
+    units_list_of_dicts = []
+    for unit_name, unit_dict in dat['units'].items():
+        for this_ref in unit_dict['references']:
+            this_unit = {}
+            this_unit['unit'] = unit_name
+            this_unit['measure'] = unit_dict['measure']
+            this_unit['reference'] = this_ref
+            units_list_of_dicts.append(this_unit)
+    all_dfs['units'] = pandas.DataFrame(units_list_of_dicts)
+
+    operators_list_of_dicts = []
+    for operator_name, operator_dict in dat['operators'].items():
+        for this_scope in operator_dict['scope']:
+            this_op = {}
+            this_op['operator'] = operator_name
+            this_op['operator latex'] = operator_dict['latex']
+            this_op['argument count'] = operator_dict['argument count']
+            this_op['scope'] = this_scope
+            operators_list_of_dicts.append(this_op)
+    all_dfs['operators'] = pandas.DataFrame(operators_list_of_dicts)
+    
+    return all_dfs
+
+def convert_df_to_pkl(all_df) -> str:
+    """
+    >>> convert_df_to_pkl(all_df) 
+    """
+    if print_trace: print('[trace] compute: convert_df_to_pkl')
+    df_pkl = 'data.pkl'
+    with open(df_pkl, 'wb') as fil:
+        pickle.dump(all_df, fil)
+    return df_pkl
+
+def convert_dataframes_to_sql(all_dfs) -> str:
+    """
+    https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html
+
+    >>> convert_dataframes_to_sql(all_dfs, 'data.json')
+    """
+    if print_trace: print('[trace] compute: convert_dataframes_to_sql')
+    sql_file = 'physics_derivation_graph.sqlite3'
+    try:
+        cnx = sqlite3.connect(sql_file)
+    except sqlite3.Error:
+        print(sqlite3.Error)
+
+    for df_name, df in all_dfs.items():
+        #print(df_name)
+        #print(df.dtypes)
+        #print(df.head())
+        df = df.astype(str)
+        df.to_sql(name=df_name, con=cnx, if_exists="replace")
+
+    return sql_file
+
+def convert_data_to_rdf(path_to_db: str) -> str:
+    """
+    https://github.com/allofphysicsgraph/proofofconcept/issues/14
+
+    https://www.w3.org/RDF/
+    https://en.wikipedia.org/wiki/Web_Ontology_Language
+    >>> convert_data_to_rdf('data.json')
+    """
+    if print_trace: print('[trace] compute: convert_data_to_rdf')
+    rdf_file = 'data.rdf'
+    with open(rdf_file, 'w') as fil:
+        fil.write('hello\n')
+    return rdf_file
+
+def convert_data_to_cypher(path_to_db: str) -> str:
+    """
+    >>> convert_data_to_cypher('data.json')
+    """
+    if print_trace: print('[trace] compute: convert_data_to_cypher')
+    cypher_file = 'neo4j.txt'
+    with open(cypher_file, 'w') as fil:
+        fil.write('howdy\n')
+    return cypher_file
 
 def expr_not_in_derivations(path_to_db: str) -> list:
     """
@@ -266,10 +449,14 @@ def extract_symbols_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     """
     if print_trace: print('[trace] compute; extract_symbols_from_expression_dict')
     dat = clib.read_db(path_to_db)
+    if print_debug: print('[debug] compute; extract_symbols_from_expression_dict; expr_id =', expr_id)
     expr_dict = dat['expressions']
-    flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
+    if 'AST' in expr_dict[expr_id].keys():
+        flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
+        return list(flt_dict.values())
+    else:
+        return [] 
     #print('[debug] compute; extract_symbols_from_expression_dict; flt_dict=',flt_dict)
-    return list(flt_dict.values())
 
 def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
     """
@@ -323,6 +510,7 @@ def popularity_of_symbols(path_to_db: str) -> dict:
     dat = clib.read_db(path_to_db)
 
     symbol_popularity_dict = {}
+    # TODO: this is a join that is really slow!
     for symbol_id, symbol_dict in dat['symbols'].items():
         list_of_uses = []
         for expr_id, expr_dict in dat['expressions'].items():

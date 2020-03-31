@@ -16,10 +16,18 @@
 <LI><a href="{{ url_for('list_all_operators') }}">list all {{ number_of_operators }} operators</a>
 </UL>
 
-<P><a href="{{ url_for('static', filename=database) }}" download="{{ database }}">Download the current database file</a><BR>
+<P>
+Download the current database file as 
+<a href="{{ url_for('static', filename=database_json) }}" download="{{ database_json }}">JSON</a> or 
+<a href="{{ url_for('static', filename=database_sql) }}" download="{{ database_sql }}">SQLite3</a> or 
+<a href="{{ url_for('static', filename=database_df_pkl) }}" download="{{ database_df_pkl }}">Pickle of dataframes</a> or 
+<a href="{{ url_for('static', filename=database_rdf) }}" download="{{ database_rdf }}">OWL RDF</a> or 
+<a href="{{ url_for('static', filename=database_neo4j) }}" download="{{ database_neo4j }}">Neo4j Cypher</a>
+</P>
+
 
 <!-- https://www.google.com/search?q=flask+upload+file -->
-Upload database file:
+Upload database file (JSON only):
 <!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
 <form method="post" enctype="multipart/form-data">
       <input type="file" name="file">
