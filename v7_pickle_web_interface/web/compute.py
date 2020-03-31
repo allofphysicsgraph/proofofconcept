@@ -20,6 +20,7 @@ import shutil
 from subprocess import PIPE # https://docs.python.org/3/library/subprocess.html
 import subprocess # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
+import logging
 import collections
 import pandas
 import sqlite3
@@ -33,6 +34,8 @@ from typing_extensions import TypedDict  # https://mypy.readthedocs.io/en/stable
 # the following were moved to clib
 #from jsonschema import validate
 #import json_schema # a PDG file
+
+logger = logging.getLogger(__name__)
 
 global print_trace
 print_trace = True
@@ -61,9 +64,11 @@ STEP_DICT = TypedDict('STEP_DICT', {'inf rule': str,
 
 def convert_json_to_dataframes(path_to_db: str) -> str:
     """
+    this conversion is lossless
+
     >>> convert_json_to_dataframes('data.json')
     """
-    if print_trace: print('[trace] compute: convert_data_to_dataframes')
+    if print_trace: logger.debug('[trace] compute: convert_data_to_dataframes')
     dat = clib.read_db(path_to_db)
 
     all_dfs = {}
@@ -186,9 +191,11 @@ def convert_json_to_dataframes(path_to_db: str) -> str:
 
 def convert_df_to_pkl(all_df) -> str:
     """
+    this conversion is lossless
+
     >>> convert_df_to_pkl(all_df) 
     """
-    if print_trace: print('[trace] compute: convert_df_to_pkl')
+    if print_trace: logger.debug('[trace] compute: convert_df_to_pkl')
     df_pkl = 'data.pkl'
     with open(df_pkl, 'wb') as fil:
         pickle.dump(all_df, fil)
@@ -196,6 +203,8 @@ def convert_df_to_pkl(all_df) -> str:
 
 def convert_dataframes_to_sql(all_dfs) -> str:
     """
+    this conversion is lossless
+
     https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html
 
     >>> convert_dataframes_to_sql(all_dfs, 'data.json')
@@ -218,6 +227,8 @@ def convert_dataframes_to_sql(all_dfs) -> str:
 
 def convert_data_to_rdf(path_to_db: str) -> str:
     """
+    this conversion is lossy
+
     https://github.com/allofphysicsgraph/proofofconcept/issues/14
 
     https://www.w3.org/RDF/
@@ -225,24 +236,99 @@ def convert_data_to_rdf(path_to_db: str) -> str:
     >>> convert_data_to_rdf('data.json')
     """
     if print_trace: print('[trace] compute: convert_data_to_rdf')
+    dat = clib.read_db(path_to_db)
+
+    rdf_str = ""
+    # https://www.w3.org/TR/1999/REC-rdf-syntax-19990222/#basic
+    rdf_str += "<?xml version=\"1.0\"?>"
+    rdf_str += "<rdf:RDF"
+    rdf_str += "  xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\""
+    rdf_str += "  xmlns:s=\"http://description.org/schema/\">"
+    for expression_id, expression_dict in dat['expressions'].items():
+        rdf_str += expression_id + " has_latex '" + expression_dict['latex'] + "'\n"
+    for infrule_name, infrule_dict in dat['inference rules'].items():
+        rdf_str += infrule_name.replace(' ','_') + " has_input_count " + str(infrule_dict['number of inputs']) + "\n"
+        rdf_str += infrule_name.replace(' ','_') + " has_feed_count " + str(infrule_dict['number of feeds']) + "\n"
+        rdf_str += infrule_name.replace(' ','_') + " has_output_count " + str(infrule_dict['number of outputs']) + "\n"
+        rdf_str += infrule_name.replace(' ','_') + " has_latex '" + infrule_dict['latex'] + "'\n"
+    for derivation_name, derivation_dict in dat['derivations'].items():
+        for step_id, step_dict in derivation_dict.items():
+            rdf_str += derivation_name + " has_step " + step_id + "\n"
+            rdf_str += step_id + " has_infrule " + step_dict['inf rule'].replace(' ','_') + "\n"
+            rdf_str += step_id + " has_linear_index " + str(step_dict['linear index']) + "\n"
+            for expr_local_id in step_dict['inputs']:
+                rdf_str += step_id + " has_input_expr " + expr_local_id + "\n"
+            for expr_local_id in step_dict['feeds']:
+                rdf_str += step_id + " has_feed_expr " + expr_local_id + "\n"
+            for expr_local_id in step_dict['outputs']:
+                rdf_str += step_id + " has_output_expr " + expr_local_id + "\n"
+    for local_id, global_id in dat['expr local to global'].items():
+        rdf_str += local_id + " local_is_global " + global_id + "\n"
+    rdf_str += "</rdf:RDF>"
+
     rdf_file = 'data.rdf'
     with open(rdf_file, 'w') as fil:
-        fil.write('hello\n')
+        fil.write(rdf_str)
     return rdf_file
 
 def convert_data_to_cypher(path_to_db: str) -> str:
     """
+    this conversion is lossy
+
+    https://hub.docker.com/_/neo4j
+
+    $ docker run --publish=7474:7474 --publish=7687:7687 --publish=7473:7473 \
+                 --volume=$HOME/neo4j/data:/data \
+                 --volume=$HOME/neo4j/logs:/logs \
+                 --volume=$HOME/neo4j/conf:/conf \
+                 --volume=$HOME/neo4j/tmp:/tmp \
+                 --env NEO4J_AUTH=none neo4j:4.0
+
+    https://neo4j.com/docs/cypher-manual/current/clauses/create/#create-create-single-node
+
     >>> convert_data_to_cypher('data.json')
     """
     if print_trace: print('[trace] compute: convert_data_to_cypher')
+
+    dat = clib.read_db(path_to_db)
+
+    cypher_str = ""
+    
+    for expression_id, expression_dict in dat['expressions'].items():
+        cypher_str += "CREATE (id" + expression_id + ":expression {\n"
+        cypher_str += "       latex: '" + expression_dict['latex'].replace('\\','\\\\').replace("'","\\'") + "'})\n"
+    for infrule_name, infrule_dict in dat['inference rules'].items():
+        cypher_str += "CREATE (" + infrule_name.replace(' ','_') + ":infrule {\n"
+        cypher_str += "       num_inputs: " + str(infrule_dict['number of inputs']) + ",\n"
+        cypher_str += "       num_feeds: " + str(infrule_dict['number of feeds']) + ",\n"
+        cypher_str += "       num_outputs: " + str(infrule_dict['number of outputs']) + ",\n"
+        cypher_str += "       latex: '" + infrule_dict['latex'] + "'})\n"
+    for derivation_name, derivation_dict in dat['derivations'].items():
+        cypher_str += "// derivation: " + derivation_name + "\n" # https://neo4j.com/docs/cypher-manual/current/syntax/comments/
+        for step_id, step_dict in derivation_dict.items():
+            cypher_str += "CREATE (id" + step_id + ":step {\n"
+            cypher_str += "       infrule: '" + step_dict['inf rule'].replace(' ','_') + "',\n"
+            cypher_str += "       linear_index: " + str(step_dict['linear index']) + "})\n"
+            for expr_local_id in step_dict['inputs']:
+                cypher_str += "CREATE (id" + step_id + ")<-[:expr]-(id" + expr_local_id + ")\n"
+            for expr_local_id in step_dict['feeds']:
+                cypher_str += "CREATE (id" + step_id + ")<-[:expr]-(id" + expr_local_id + ")\n"
+            for expr_local_id in step_dict['outputs']:
+                cypher_str += "CREATE (id" + step_id + ")-[:expr]->(id" + expr_local_id + ")\n"
+    for local_id, global_id in dat['expr local to global'].items():
+        cypher_str += "CREATE (id" + local_id + ")-[:local_is_global]->(id" + global_id + ")\n"
+    #for symbol_id, symbol_dict in dat['symbols'].items():
+    #    cypher_str += "CREATE ()"
+    #for operator_name, operator_dict in dat['operators'].items():
+    #    cypher_str += "CREATE ()"
     cypher_file = 'neo4j.txt'
     with open(cypher_file, 'w') as fil:
-        fil.write('howdy\n')
+        fil.write(cypher_str)
     return cypher_file
 
 def expr_not_in_derivations(path_to_db: str) -> list:
     """
-    >>>
+    >>> expr_not_in_derivations('data.json')
     """
     if print_trace: print('[trace] compute: expr_not_in_derivations')
     dat = clib.read_db(path_to_db)

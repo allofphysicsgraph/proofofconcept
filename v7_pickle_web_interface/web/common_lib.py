@@ -3,6 +3,8 @@
 import json
 import json_schema # a PDG file
 from jsonschema import validate
+import logging
+logger = logging.getLogger(__name__)
 
 global print_trace
 print_trace = True

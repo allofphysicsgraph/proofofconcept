@@ -14,6 +14,8 @@
 
 # I wasn't able to get the output to display well using either pprint or
 #   print(json.dumps(json_schema.schema, indent=4))
+import logging
+logger = logging.getLogger(__name__)
 
 schema = {
     "$schema": "https://json-schema.org/schema#",

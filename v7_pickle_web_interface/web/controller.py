@@ -9,6 +9,7 @@ from flask import Flask, redirect, render_template, request, url_for, flash
 from werkzeug.utils import secure_filename
 from wtforms import Form, StringField, FloatField, validators, FieldList, FormField, IntegerField # type: ignore
 import shutil
+import logging # https://docs.python.org/3/howto/logging.html
 import os
 import jsonschema
 from jsonschema import validate
@@ -32,15 +33,16 @@ app.config.from_object(Config) # https://blog.miguelgrinberg.com/post/the-flask-
 app.config['UPLOAD_FOLDER'] = '/home/appuser/app/uploads' # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
 
+logger = logging.getLogger(__name__)    
 
 class EquationInputForm(Form):
-    if print_trace: print('[trace] controller: class = EquationInputForm')
+    if print_trace: logger.debug('[trace] controller: class = EquationInputForm')
 #    r = FloatField(validators=[validators.InputRequired()])
 #    r = FloatField()
     latex = StringField('LaTeX',validators=[validators.InputRequired()])
 
 class InferenceRuleForm(Form):
-    if print_trace: print('[trace] controller; class = InferenceRuleForm')
+    if print_trace: logger.debug('[trace] controller; class = InferenceRuleForm')
     inf_rule_name = StringField('inf rule name',     validators=[validators.InputRequired()])
     num_inputs    = IntegerField('number of inputs',  validators=[validators.InputRequired(),
                                                                   validators.NumberRange(min=0, max=5)])
@@ -163,17 +165,21 @@ def index():
 
     file upload: see https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
     """
-    if print_trace: print('[trace] controller: index')
+    if print_trace: logger.debug('[trace] controller: index')
 
     shutil.copy('data.json','/home/appuser/app/static/')
 
     all_df = compute.convert_json_to_dataframes('data.json')
     df_pkl_file = compute.convert_df_to_pkl(all_df)
     sql_file = compute.convert_dataframes_to_sql(all_df)
-    rdf_file = compute.convert_data_to_rdf('data.json')
-    neo4j_file = compute.convert_data_to_cypher('data.json')
     shutil.copy(sql_file, '/home/appuser/app/static/')
+
+    rdf_file = compute.convert_data_to_rdf('data.json')
     shutil.copy(rdf_file, '/home/appuser/app/static/')
+
+    neo4j_file = compute.convert_data_to_cypher('data.json')
+    shutil.copy(neo4j_file, '/home/appuser/app/static/')
+
 
     print('[debug] controller; index; request.method =', request.method)
 
@@ -590,4 +596,12 @@ def create_new_inf_rule():
 if __name__ == '__main__':
     print_debug = False
     print_trace = True
+
+    # https://docs.python.org/3/howto/logging.html
+    logging.basicConfig(#filename='pdg.log',
+                        filemode='w',
+                        level=logging.DEBUG, 
+                        format='%(asctime)s|%(filename)-14s|%(funcName)s|%(levelname)s|%(lineno)d|%(message)s', 
+                        datefmt='%m/%d/%Y %I:%M:%S %p')
+
     app.run(debug=True, host='0.0.0.0')

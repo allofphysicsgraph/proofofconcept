@@ -31,6 +31,8 @@
 
 #import pickle
 import json
+import logging
+logger = logging.getLogger(__name__)
 
 dat = {} # one data structure to hold all others (expressions, inference rules, derivations, symbols, units, measures, operators)
 
@@ -1053,7 +1055,7 @@ dat['derivations'] = {
                  'feeds':   [],
                  'outputs': ['2837471'],
                  'linear index': 8},
-     '3948572': {'inf rule': 'declareIdentity',
+     '3948573': {'inf rule': 'declareIdentity', # this was 3948572 which conflicts with a step in 'curl curl identity' 
                  'inputs':  [],
                  'feeds':   [],
                  'outputs': ['1939485'],

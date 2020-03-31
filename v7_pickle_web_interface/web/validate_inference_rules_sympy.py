@@ -4,6 +4,8 @@ import sympy
 from sympy.parsing.latex import parse_latex
 import common_lib as clib
 from typing import Tuple, TextIO
+import logging
+logger = logging.getLogger(__name__)
 
 global print_trace
 print_trace = True
