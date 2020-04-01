@@ -3,6 +3,8 @@ graphviz
 flask-wtf
 mypy
 black
+wheel
+gunicorn
 pycallgraph
 prospector
 pandas

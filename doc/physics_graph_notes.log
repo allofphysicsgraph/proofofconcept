@@ -1,4 +1,30 @@
 
+20200401
+
+== previous dependencies ==
+==== Eq2png ====
+The Perl script uses the Perl program eq2png
+http://www-users.math.umd.edu/~olsson/eq2png/
+to generate PNG files for each equation and each operator.
+
+example use:
+    perl statement2png.pl 
+
+Common issue: error message "Can't locate XML/DOM.pm"
+This can be isolated to eq2png by issuing the command
+    perl eq2png '$\int x^2 dx$' -o file.png
+if this causes the error message, then install module
+    perl -MCPAN -e shell 'install XML::DOM'
+
+
+
+==== mash.pl ====
+Allows mathematica to be used from a shell
+http://ai.eecs.umich.edu/people/dreeves/mash/
+http://ai.eecs.umich.edu/people/dreeves/mash/mash.pl
+
+
+
 20180512
 
 Use Activity log to get a list of times and functions:

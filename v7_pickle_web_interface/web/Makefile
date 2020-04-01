@@ -6,7 +6,8 @@
 help:
 	@echo "Targets:"
 	@echo "  help: this message"
-	@echo "  webserver: start webserver"
+	@echo "  flask: start webserver"
+	@echo "  gunicorn: start webserver"
 	@echo "  clean: remove extra files"
 	@echo "  typehints for all dependent .py files; make typehints FILE_NAME=controller.py"
 	@echo "  flake8    for all .py files; make flake8"
@@ -22,8 +23,11 @@ else
 	@echo 'FILE_NAME is undefined'
 endif
 
-webserver:
+flask:
 	python3 controller.py
+
+gunicorn:
+	gunicorn --bind 0.0.0.0:5000 wsgi:app
 
 typehints:
 	mypy --check-untyped-defs $(FILE_NAME)
