@@ -170,7 +170,7 @@ def index():
 
 
 @app.route("/faq", methods=["GET", "POST"])
-def index():
+def faq():
     """
     >>> faq()
     """
