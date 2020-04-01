@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p>A simple derivation is the transition from the expression &nbsp;<i>T</i>=<i>1/f</i>&nbsp; to &nbsp;<i>f</i>=<i>1/T</i>&nbsp; -- the same example used on the <a href="../index.html">home page</a>. The purpose of this documentation is to explain how to build a graph<!-- using GraphViz, d3js, and a PDF in Latex-->.</p>
+
+<P>Converting from <i>T</i>=<i>1/f</i>&nbsp; to &nbsp;<i>f</i>=<i>1/T</i> is straight forward: multiply both sides by <i>f</i>, then divide both sides by <i>T</i>. 
+
+
+<P>First we will break the derivation into atomic steps. In words: to express frequency as a function of period, multiply both sides of the expression <i>T=1/f</i> by <i>f</i> to get a new expression, <i>T*f=1</i>. Then divide both sides of the second expression by <i>T</i> to yield the third expression, <i>f=1/T</i>.  There are four steps in this derivation:
+<OL>
+<LI>declare initial expression <i>T=1/f</i></LI>
+<LI>multiply both sides of <i>T=1/f</i> by <i>f</i> to get <i>T*f=1</i></LI>
+<LI>divide both sides of <i>T*f=1</i> by <i>T</i> to get <i>f=1/T</i></LI>
+<LI>declare final expression: <i>f=1/T</i></LI>
+</OL>
+
+This simple expansion to atomic steps is not standard practice -- I haven't seen this done anywhere else. This expansion is a burdensome process for derivations. </P>
+
+<P>The next step is to visualize this graph. I usually do this iteration by hand on paper. [Here I'm showing graphviz produced by a later step in the process.]<BR>
+<center>
+<img src="pictures/example_T_f_graphviz_output.png" width="400">
+</center></P>
+
+<P>When building a graph, there are three types of nodes: inference rules, expressions, and feeds. The graph will only have three types of edges:
+<UL>
+<LI>source:"inference rule", destination:"expression"</LI>
+<LI>source:"expression", destination:"inference rule"</LI>
+<LI>source:"feed", destination:"inference rule"</LI>
+</UL>
+
+<P>This directed graph is a set of nodes and edges, so it could be represented by the following pairs in a CSV:
+<!--<FONT FACE="Courier New"> -->
+<pre>
+declareInitialEq, "T=1/f"
+"T=1/f",          multbothsidesby
+"f",              multbothsidesby
+multbothsidesby,  "T f=1"
+"T f=1",          dividebothsidesby
+"T",              dividebothsidesby
+dividebothsidesby,"f=1/T"
+"T=1/f",          declareFinalEq
+</pre>
+In this description, the edge pairs are ordered by source and destination. 
+
+<P>At this point we have enough to generate a graph, ie using GraphViz. However, the objective is to support more complex derivations, and also to link multiple derivations. At that scale, the inference rule "multbothsidesby" may appear in multiple steps. We don't want the graph to render multiple uses of the same inference rule as the same node. We do want multiple references to the same expression to be a single node. An index which has a scope limited to the local derivation step is needed. This leads to the notion of a unique numeric index local to each inference rule. The local index for the inference rule is a unique identifier within a derivation step.</P>
+
+<P>Another complication arises regarding the expression. In the above example, I use a human readable expression, i.e. <i>T=1/f</i>. The usefulness of this format depends on what is reading the expression. Multiple readers of the expression can be expected: humans, <a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a>, and Computer Algebra Systems (i.e. <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">Mathematica</a>, <a href="https://en.wikipedia.org/wiki/SymPy">Sympy</a>). This leads to the need for a unique identifier which is associated with the expression  independent of the representation. In <a href="https://en.wikipedia.org/wiki/Logic">Logic</a>, this unique identifier is referred to as the <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>. (Similarly, the "feeds" (here <i>f</i> and <i>T</i> need unique identifiers.)<P>
+
+<P>To summarize the above points,
+<UL>
+<LI>each inference rule gets a local identifier</LI>
+<LI>each expression gets a unique identifier</LI>
+<LI>each feed gets a unique identifier</LI>
+</UL>
+
+
+<P>With the above constraints in mind, the intermediate visual representation is<BR>
+<!--<FONT FACE="Courier New"> -->
+<!--<textarea cols="100" rows="8" style="font-size: 12pt" style="font-family:Courier New">-->
+
+<!--<center>-->
+
+<center>
+<img src="pictures/simple_example_expanded_T1f.png" width="900">
+</center>
+
+<P>The expression index is the same across all derivations, whereas the local index is scoped to just the derivation step.<BR>
+Similarly, the inference rule index is specific to the derivation step.</p>
+
+<P>The inference rule needs the local index to build the graph.<BR>
+The expression needs a local index to build the Latex PDF. </P>
+
+<P>The core of the Physics Derivation Graph is an edge list of local IDs that are specific to each step:
+<pre>
+$ cat derivation_edge_list.csv
+9103516,8482459
+8482459,6822583
+5749291,6822583
+6822583,8341200
+</pre>
+But that's not very useful. It needs to be decorated with expressions
+<pre>
+$ cat expression_identifiers.csv
+3131111133,8482459
+2131616531,8341200
+</pre>
+and inference rules.
+<pre>
+$ cat inference_rule_identifiers.csv 
+6822583,multbothsidesby
+9103516,declareInitialExpression
+</pre>
+
+<P>Those two columns can be converted to a GraphViz format</P>
+
+<pre>
+$ cat derivation_edge_list.csv | sed 's/,/ -> /' > body_of_graph.dot
+$ cat expression_identifiers.csv | sed 's/,/ -> /' >> body_of_graph.dot
+$ cat inference_rule_identifiers.csv | sed 's/,/ -> /' >> body_of_graph.dot
+</pre>
+
+<P>
+<pre>
+digraph physicsDerivation {
+overlap = false;
+label="Equation relations\\nExtracted from derivation_edge_list.csv";
+fontsize=12;
+9103516 -> 8482459
+8482459 -> 6822583
+5749291 -> 6822583
+6822583 -> 8341200
+3131111133 -> 8482459
+2131616531 -> 8341200
+6822583 -> multbothsidesby
+9103516 -> declareInitialExpression
+</pre>
+
+<P>Command:<BR>
+<pre>
+neato -Tpng body_of_graph.dot &gt; out.png
+</pre></P>
+
+<P>Output:<BR>
+<center>
+<img src="pictures/example_T_f_intermediate_output.png" width="500">
+</center>
+</P>
+
+<p>However, that's not yet the pretty picture of the graph we want. We need to replace the Godel numbers (expression IDs) with pictures for expressions. Also need to collapse local IDs.</P>
+
+<P>
+<pre>
+$ cat expression_identifiers.csv | sed 's/\([0-9]\{10\}\)/[shape=ellipse, color=red,image=\"..\/..\/expressions\/\1/'
+</pre>
+</p>
+
+{% endblock %}

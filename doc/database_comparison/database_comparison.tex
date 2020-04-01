@@ -39,7 +39,8 @@
 \maketitle % declares end of title page
 
 \begin{abstract}
-A comparison of candidates for how to store elements of the graph. It is assumed here that the Introduction to the \pdg has been read. 
+A comparison of candidates for how to store elements of the graph. 
+It is assumed here that the Introduction to the \pdg has been read. 
 \end{abstract}
 
 \begin{multicols}{2}
@@ -51,7 +52,8 @@ The \pdg\ is a project designed to capture mathematical physics knowledge.
 
 % what are we comparing?
 
-In this article, we compare candidate data format options for storage of content for the \pdg. Candidate formats include XML\cite{2008_XML}, comma-separated plain-text (CSV), JSON key-value pairs, standard textbooks, Wikipedia, proprietary formats (i.e. Wolfram Alpha, Symbolab, FormulaDatabase), and other websites on the Internet (i.e. HyperPhysics). 
+In this article, we compare candidate data format options for storage of content for the \pdg. 
+Candidate formats include XML\cite{2008_XML}, comma-separated plain-text (CSV), JSON key-value pairs, standard textbooks, Wikipedia, proprietary formats (i.e. Wolfram Alpha, Symbolab, FormulaDatabase), and other websites on the Internet (i.e. HyperPhysics). 
 \end{multicols}
 \begin{tabular}{|l|c|c|c|c|c|c|c|c|}\hline
                      & XML & CSV & key-value & JSON & textbooks     & Wikipedia & proprietary   & generic websites \\\hline
@@ -61,7 +63,7 @@ open source & yes   & yes  & yes            & yes    & generally no & yes       
 \begin{multicols}{2}
 
 \section{Conclusions}
-The \pdg\ uses CSV.
+The \pdg\ uses a dictionary with nested dictionaries and lists. This data structure is suitable to JSON.
 
 \section{Bibliography}
 

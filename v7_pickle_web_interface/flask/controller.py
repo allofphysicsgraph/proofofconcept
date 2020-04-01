@@ -163,7 +163,34 @@ def page_not_found(e):
 @app.route("/", methods=["GET", "POST"])
 def index():
     """
-    index.html contains hyperlinks to pages like:
+    >>> index()
+    """
+    logger.info("[trace] index")
+    return render_template("index.html")
+
+
+@app.route("/faq", methods=["GET", "POST"])
+def index():
+    """
+    >>> faq()
+    """
+    logger.info("[trace] faq")
+    return render_template("faq.html")
+
+
+@app.route("/how_to_build_the_physics_derivation_graph", methods=["GET", "POST"])
+def how_to_build_the_physics_derivation_graph():
+    """
+    >>> how_to_build_the_physics_derivation_graph()
+    """
+    logger.info("[trace] how_to_build_the_physics_derivation_graph")
+    return render_template("how_to_build_the_physics_derivation_graph.html")
+
+
+@app.route("/editor", methods=["GET", "POST"])
+def editor():
+    """
+    editor.html contains hyperlinks to pages like:
     * start new derivation
     * edit existing derivation
     * edit inference rule
@@ -171,7 +198,7 @@ def index():
 
     file upload: see https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
     """
-    logger.info("[trace] index")
+    logger.info("[trace] editor")
 
     try:
         logger.debug("session id = %s", session_id)
@@ -228,7 +255,7 @@ def index():
     logger.debug("reading from json")
     dat = clib.read_db("data.json")
     return render_template(
-        "index.html",
+        "editor.html",
         number_of_derivations=len(dat["derivations"].keys()),
         number_of_infrules=len(dat["inference rules"].keys()),
         number_of_expressions=len(dat["expressions"].keys()),

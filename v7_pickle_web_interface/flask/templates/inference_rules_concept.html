@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<P>An inference rule is <B>the atomic step of logic that relates two mathematical expressions</B>. 
+An inference rule is a subcategory of <a href="https://en.wikipedia.org/wiki/Logical_connective">logical connectives</a>. 
+Inference rules include both <a href="https://en.wikipedia.org/wiki/Rule_of_inference">rules of inference</a> and rules of replacement. 
+
+<P>"Whereas a rule of inference is always applied to a whole logical expression, a rule of replacement may be applied to only a particular segment." (<a href="https://en.wikipedia.org/wiki/Rule_of_inference">source</a>)</P>
+
+<P>Inference rule are taught in math classes and get used in derivations. 
+For example, consider the step "given expression 1, add 2 to both sides of expression 1, which yields expressions 2." 
+The inference rule is of the form "add a value to both sides of the input expression to yield the output expression," where the value in the example is 2. 
+More complex inference rules like "integrate both sides of the expression" are taught in <a href="https://en.wikipedia.org/wiki/Calculus">Calculus</a>, and "differentiate both sides of the expression with respect to a variable" is taught in a class on <a href="https://en.wikipedia.org/wiki/Partial_differential_equation">PDE</a>s.
+
+<P>Enumerating <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v4_file_per_expression/inference_rules">all the inference rules</a> is vital to the Physics Derivation Graph because inference rules govern how derivations are described. 
+In addition to the normal topics in math, inference rules need to be capable of describing transformations in <a href="https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation">bra-ket notation</a> and <a href="https://en.wikipedia.org/wiki/Einstein_notation">Einstein summation convention</a>. 
+
+<P><i>What is an atomic step?</I><BR>
+There are many ways to accomplish the same task in a derivation. 
+For example, "add X to both sides of an expression" is equivalent to "subtract Y from both sides of an expression" where X=-Y. 
+Similarly, "divides both sides of the expression by Z" is equivalent to "multiply both sides of the expression by W" where Z=1/W. 
+The choice of which inference rules are considered for use in the Physics Derivation Graph is motivated by multiple objectives: minimize the number of inference rules, enable concise derivations (fewer steps is better), make derivations understandable to humans (improve readability), and make derivations checkable by a computer algebra system (simpler is better). 
+These objectives can yield conflict, so a subjective choice is made by the project owner.
+
+<P><i>Basis in logic for inference rules</I><BR>
+The Substitution Property of Equality seems to be the basis for a couple of the inference rules:
+<UL>
+<LI>subLHSofExprXintoExprY</LI>
+<LI>subRHSofExprXintoExprY</LI>
+<LI>subXforY</LI>
+</UL>
+The <a href="https://en.wikipedia.org/wiki/Distributive_property">Distributive property</a>, <a href="https://en.wikipedia.org/wiki/Commutative_property">Commutative property</a>, <a href="https://en.wikipedia.org/wiki/Associative_property">Associative property</a> are not included in the inference rules.</p>
+
+<P>Inference rules are effectively functions which take inputs (expressions, feeds) and produce outputs (expressions). 
+The graph visualization does not account for the fact the order matters. 
+For example, the inference rule "subLHSofExprXintoExprY" is sensitive to which expression is treated as X and which is Y. 
+Written in functional form, <BR>
+LHS_exprOut, relation_exprOut, RHS_exprOut, = subLHSofExprXintoExprY(LHS_exprX, relation_exprX, RHS_exprX, LHS_exprY, relation_exprY, RHS_exprY) </P>
+
+<P>The inference rules enable documentation of steps in <a href="https://en.wikipedia.org/wiki/Deductive_reasoning">deductive reasoning</a> for derivations.
+
+
+{% endblock %}
+

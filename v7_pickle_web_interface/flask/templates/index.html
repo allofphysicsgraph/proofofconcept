@@ -1,43 +1,107 @@
 {% extends "base.html" %}
 {% block content %}
 
-<P><a href
-
-<form method="post" action="" id="session_id">
-<input type="submit" name="session_id_button" value='generate session ID'>
-</form>
-
-<P>Derivations:
-<UL>
-<LI><a href="{{ url_for('start_new_derivation') }}">start a new derivation</a>
-{% if number_of_derivations > 0 %}
-<LI><a href="{{ url_for('select_from_existing_derivations') }}">view existing {{ number_of_derivations }} derivations</a>
-  (also edit an existing derivation)
-{% endif %}
-<LI><a href="{{ url_for('list_all_inference_rules') }}">list all {{ number_of_infrules }} inference rules</a> (also edit inference rules)
-{% if number_of_expressions > 0 %}
-<LI><a href="{{ url_for('list_all_expressions') }}">list all {{ number_of_expressions }} expressions</a> (also edit expression)
-{% endif %}
-<LI><a href="{{ url_for('list_all_symbols') }}">list all {{ number_of_symbols }} symbols</a>
-<LI><a href="{{ url_for('list_all_operators') }}">list all {{ number_of_operators }} operators</a>
-</UL>
+<P>
+  <i>Objective for this project:</i> Write down all known mathematical physics in a way that can be both read by humans and checked by a computer algebra system.<BR>
+  For the impatient, see the Physics Derivation Graph <a href="{{ url_for('editor') }}">editor</a>
+</P>
 
 <P>
-Download the current database file as 
-<a href="{{ url_for('static', filename=database_json) }}" download="{{ database_json }}">JSON</a> or 
-<a href="{{ url_for('static', filename=database_sql) }}" download="{{ database_sql }}">SQLite3</a> or 
-<a href="{{ url_for('static', filename=database_df_pkl) }}" download="{{ database_df_pkl }}">Pickle of dataframes</a> or 
-<a href="{{ url_for('static', filename=database_rdf) }}" download="{{ database_rdf }}">OWL RDF</a> or 
-<a href="{{ url_for('static', filename=database_neo4j) }}" download="{{ database_neo4j }}">Neo4j Cypher</a>
+  <i>Example:</i> A simple example is the relation between period, <i>T</i>, and linear frequency, <i>f</i>. 
+  The mathematical expression of the relation is <i>T=1/f</i>. 
+  To express frequency as a function of period, multiply both sides of the expression by <i>f</i> to get a new expression, <i>T*f=1</i>. 
+  Finally, divide both sides of the second expression by <i>T</i> to yield the third expression, <i>f=1/T</i>.
+</P>
+
+<P>
+  In this example, there are three expressions. 
+  Each expression is defined by a left-hand side, a relation operator (here "="), and a right-hand side. 
+  Two instances of the <a href="https://en.wikipedia.org/wiki/Equivalence_relation#Definition">Equivalence relation</a> relate the three expressions. 
+  These relations between expressions are called <a href="site/inference_rules.html">inference rules</a>. 
+  The generic form of the first inference rule used in the example is "multiply both sides of an expression by a quantity to yield a new expression." 
+  Similarly, the second inference rule is generically, "divide both sides of an expression by a quantity to yield a new expression."
+</P>
+
+<P>
+  The central database for documenting relations in derivations of Physics is <a href="site/inactive_avenues/example_T_f/example_T_f_csv.html">a set of 
+CSV files</a>. 
+  This can be transformed into other formats: <a href="site/example_T_f/example_T_f_dot.html">GraphViz</a>, <a href="site/example_T_f/example_T_f_json.html">JSON</a>, and <a href="site/example_T_f/example_T_f_tex.html">LaTeX</a>. 
+</P>
+
+<P>
+  <i>Motivation:</i> <a href="https://en.wikipedia.org/wiki/Mathematical_physics">Mathematical Physics</a> uses the tools of math applied to measurements of our environment. 
+  Physics is a unique field in that all existing knowledge can be recorded. 
+  Another aspect that is unique is that the result can be checked for correctness by a computer algebra system. 
+  A third unique facet to Physics is that claims can be tested by experiment.
 </P>
 
 
-<!-- https://www.google.com/search?q=flask+upload+file -->
-Upload database file (JSON only):
-<!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
-<form method="post" enctype="multipart/form-data" id="upload_form">
-  <input type="file" name="file">
-  <input type="submit" name="upload_button" value="Upload">
-</form>
+<H3>Jargon specific to this project</h3>
+
+<P>
+  A derivation is a sequence of steps. 
+  Each step in a derivation involves an "inference rule." 
+  An inference rule relates one or more "expressions." 
+  An inference rule may require one or more "feed" values. 
+  An expression is, by default, composed of (LHS, relation operator, RHS). 
+  Expression operators include both equations (the relation operator is equality) and inequalities (the relation operator is an inequality).
+</P>
+
+<P>"Inference rules", "expressions", and "feeds" are words specific to the Physics Derivation Graph. 
+  Represented graphically, 
+
+<img src="single_step.png">
+
+<P>Read this directed graph as, "The inference rule acts on the input expression and, combined with the feed, produces the output expression." Inference rules can be considered as functions; the above picture would be
+
+<pre>
+inference_rule(input_expression, feed) yields output_expression
+</pre>
+
+<P>&nbsp;
+
+<H3>Disclaimers regarding scope of the project</h3>
+<P>
+  No new research in math or physics is needed to validate these claims. 
+  This project documents the relations between derivations used to describe physical experiments.
+</P>
+
+<P>
+  There are no new algorithms. 
+  The Physics Derivation Graph is about documenting existing knowledge.
+</P>
+
+<P>
+  Derivations used in Physics are mathematical expressions linked by a finite set of inference rules. 
+  From this observation, a few claims can be made.
+  <UL>
+    <LI>
+      A finite static graph exists which relates all expressions of mathematical physics. 
+      In this graph, nodes are expressions and edges are inference rules.</LI>
+    <LI>
+      A finite number of unique inference rules are needed to express the relations between expressions.</LI>
+  </UL>
+</P>
+
+<P>
+  The Physics Derivation Graph does not include geometric arguments.
 </p>
+
+<P>
+  The Physics Derivation Graph does not include textual explanations about why algebraic manipulations are being carried out.</p>
+
+<P>
+  The Physics Derivation Graph is similar to a <a href="https://en.wikipedia.org/wiki/Schaum%27s_Outlines">Schuam's outline</a>, except it covers all known Physics and documents the relations between various governing expressions.
+</P>
+
+<p>
+  There are no automatic mechanisms for generating new content.
+</P>
+
+
+<P>
+  The Physics Derivation Graph does include boundary conditions and initial conditions.
+</P>
+
+
 {% endblock %}
