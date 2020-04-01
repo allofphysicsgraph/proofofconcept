@@ -37,8 +37,29 @@ app.config[
     "SEND_FILE_MAX_AGE_DEFAULT"
 ] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
 
-logger = logging.getLogger(__name__)
 
+if __name__ == "__main__":
+    # called from flask
+
+    # https://docs.python.org/3/howto/logging.html
+    logging.basicConfig(  # filename='pdg.log',
+        filemode="w",
+        level=logging.DEBUG,
+        format="%(asctime)s|%(filename)-13s|%(levelname)-5s|%(lineno)-4d|%(funcName)-20s|%(message)s",
+        datefmt="%m/%d/%Y %I:%M:%S %p",
+    )
+    logger = logging.getLogger(__name__)
+
+
+# https://stackoverflow.com/questions/41087790/how-to-override-gunicorns-logging-config-to-use-a-custom-formatter
+# https://medium.com/@trstringer/logging-flask-and-gunicorn-the-manageable-way-2e6f0b8beb2f
+if __name__ != "__main__":
+    # called from gunicorn
+
+    gunicorn_logger = logging.getLogger("gunicorn.error")
+    app.logger.handlers = gunicorn_logger.handlers
+    app.logger.setLevel(gunicorn_logger.level)
+    logger = app.logger
 
 class EquationInputForm(Form):
     logger.info("[trace] class = EquationInputForm")
@@ -777,18 +798,7 @@ def create_new_inf_rule():
 
 
 if __name__ == "__main__":
-    print_debug = False
-    print_trace = True
-
     session_id = compute.create_session_id()
-
-    # https://docs.python.org/3/howto/logging.html
-    logging.basicConfig(  # filename='pdg.log',
-        filemode="w",
-        level=logging.DEBUG,
-        format="%(asctime)s|%(filename)-13s|%(levelname)-5s|%(lineno)-4d|%(funcName)-20s|%(message)s",
-        datefmt="%m/%d/%Y %I:%M:%S %p",
-    )
 
     app.run(debug=True, host="0.0.0.0")
 

@@ -1,17 +1,34 @@
+# https://docs.docker.com/compose/compose-file/
 
 version: "3.7"
 
 services:
-  web:
-    build: ./web
-    ports:
-     - "5000:5000"
+  flask:
+    build:
+      context: ./flask
+      dockerfile: Dockerfile.gunicorn
+# https://docs.gunicorn.org/en/stable/settings.html
+    command: >
+      gunicorn
+      --bind 0.0.0.0:5000
+      --log-level debug
+      wsgi:app
+#      --capture-output 
+#      --access-logfile "-"
+#      --error-logfile "-"
+#      --enable-stdio-inheritance
+# using "ports" makes flask/gunicorn accessible without going through nginx
+    expose:
+      - 5000
+#    ports:
+#     - "5000:5000"
     volumes:
      - .:/code
 
   nginx:
     build: ./services/nginx
     ports:
-      - 1337:80
+     - "80:80"
+#      - 1337:80
     depends_on:
-      - web
+      - flask

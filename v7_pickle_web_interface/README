@@ -1,5 +1,9 @@
 
 
+quickstart:
+docker-compose up --build --remove-orphans
+
+as a two step process:
 docker-compose build --progress tty
 docker-compose up
 

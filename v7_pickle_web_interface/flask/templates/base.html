@@ -6,6 +6,36 @@
       {% else %}
       <title>Welcome to the Physics Derivation Graph</title>
       {% endif %}
+
+<!-- https://www.kryogenix.org/code/browser/sorttable/ -->
+<script type="text/javascript" src="{{ url_for('static', filename='sorttable.js') }}"></script>
+
+
+<!-- https://www.w3schools.com/html/html_css.asp -->
+<style>
+/* Sortable tables */
+table.sortable thead {
+    background-color:#eee;
+    color:#666666;
+    font-weight: bold;
+    cursor: default;
+}
+
+html, body {
+    height: 100%;
+    margin: 5;
+    padding: 5;
+}
+
+img {
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+</style>
+
     </head>
     <body>
         <div>PDG: <a href="/index">Home</a></div>

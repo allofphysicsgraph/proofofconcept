@@ -67,9 +67,9 @@ RUN chown -R appuser /home/appuser/app && chgrp -R appuser /home/appuser/app
 USER appuser
 
 # An ENTRYPOINT allows you to configure a container that will run as an executable.
-ENTRYPOINT ["python3"]
+#ENTRYPOINT ["python3"]
 
 # There can only be one CMD instruction in a Dockerfile
 # The CMD instruction should be used to run the software contained by your image, along with any arguments. 
-CMD ["/home/appuser/app/controller.py"]
+#CMD ["/home/appuser/app/controller.py"]
 
