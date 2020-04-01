@@ -13,12 +13,12 @@
 #
 # formating should be PEP-8 compliant; https://www.python.org/dev/peps/pep-0008/
 
-#import math
-#import json
+# import math
+# import json
 import os
 import shutil
-from subprocess import PIPE # https://docs.python.org/3/library/subprocess.html
-import subprocess # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
+from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
+import subprocess  # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
 import logging
 import collections
@@ -27,28 +27,36 @@ import pickle
 import validate_inference_rules_sympy as vir
 import common_lib as clib
 from typing import Tuple, TextIO
-from typing_extensions import TypedDict  # https://mypy.readthedocs.io/en/stable/more_types.html
+from typing_extensions import (
+    TypedDict,
+)  # https://mypy.readthedocs.io/en/stable/more_types.html
+
 # https://www.python.org/dev/peps/pep-0589/
-import pandas # type: ignore
+import pandas  # type: ignore
 
 
 logger = logging.getLogger(__name__)
 
-#global proc_timeout
-#proc_timeout = 30
+# global proc_timeout
+# proc_timeout = 30
 
-STEP_DICT = TypedDict('STEP_DICT', {'inf rule': str,
-                                    'inputs':   list,
-                                    'feeds':    list,
-                                    'outputs':  list,
-                                    'linear index': int})
+STEP_DICT = TypedDict(
+    "STEP_DICT",
+    {
+        "inf rule": str,
+        "inputs": list,
+        "feeds": list,
+        "outputs": list,
+        "linear index": int,
+    },
+)
 
 
 # *******************************************
 # query database for properties
 # read-only functions
 
-#def validate_json_database(path_to_db: str) -> None:
+# def validate_json_database(path_to_db: str) -> None:
 #    """
 #    >>> validate_json_database('data.pkl')
 #    """
@@ -56,132 +64,144 @@ STEP_DICT = TypedDict('STEP_DICT', {'inf rule': str,
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
 
+
 def convert_json_to_dataframes(path_to_db: str) -> dict:
     """
     this conversion is lossless
 
     >>> convert_json_to_dataframes('data.json')
     """
-    logger.info('[trace] convert_data_to_dataframes')
+    logger.info("[trace] convert_data_to_dataframes")
     dat = clib.read_db(path_to_db)
 
     all_dfs = {}
 
     expressions_list_of_dicts = []
-    for expression_id, expression_dict in dat['expressions'].items():
+    for expression_id, expression_dict in dat["expressions"].items():
         this_expr = {}
-        this_expr['expression id'] = expression_id
-        this_expr['expression latex'] = expression_dict['latex']
-        this_expr['AST'] = 'None'
-        if 'AST' in expression_dict.keys():
-            this_expr['AST'] = expression_dict['AST']
+        this_expr["expression id"] = expression_id
+        this_expr["expression latex"] = expression_dict["latex"]
+        this_expr["AST"] = "None"
+        if "AST" in expression_dict.keys():
+            this_expr["AST"] = expression_dict["AST"]
         expressions_list_of_dicts.append(this_expr)
-    all_dfs['expressions'] = pandas.DataFrame(expressions_list_of_dicts)
+    all_dfs["expressions"] = pandas.DataFrame(expressions_list_of_dicts)
 
     infrules_list_of_dicts = []
-    for infrule_name, infrule_dict in dat['inference rules'].items():
+    for infrule_name, infrule_dict in dat["inference rules"].items():
         this_infrule = {}
-        this_infrule['inference rule'] = infrule_name
-        this_infrule['number of feeds'] = infrule_dict['number of feeds']
-        this_infrule['number of inputs'] = infrule_dict['number of inputs']
-        this_infrule['number of outputs'] = infrule_dict['number of outputs']
-        this_infrule['latex'] = infrule_dict['latex']
+        this_infrule["inference rule"] = infrule_name
+        this_infrule["number of feeds"] = infrule_dict["number of feeds"]
+        this_infrule["number of inputs"] = infrule_dict["number of inputs"]
+        this_infrule["number of outputs"] = infrule_dict["number of outputs"]
+        this_infrule["latex"] = infrule_dict["latex"]
         infrules_list_of_dicts.append(this_infrule)
-    all_dfs['infrules'] = pandas.DataFrame(infrules_list_of_dicts)
+    all_dfs["infrules"] = pandas.DataFrame(infrules_list_of_dicts)
 
     derivations_list_of_dicts = []
-    for derivation_name, derivation_dict in dat['derivations'].items():
+    for derivation_name, derivation_dict in dat["derivations"].items():
         for step_id, step_dict in derivation_dict.items():
-            for connection_type in ['inputs', 'feeds', 'outputs']:
+            for connection_type in ["inputs", "feeds", "outputs"]:
                 for expr_local_id in step_dict[connection_type]:
                     this_derivation_step_expr = {}
-                    this_derivation_step_expr['derivation name'] = derivation_name
-                    this_derivation_step_expr['step id'] = step_id
-                    this_derivation_step_expr['inference rule'] = step_dict['inf rule']
-                    this_derivation_step_expr['linear index'] = step_dict['linear index']
-                    this_derivation_step_expr['connection type'] = connection_type
-                    this_derivation_step_expr['expression local id'] = expr_local_id
+                    this_derivation_step_expr["derivation name"] = derivation_name
+                    this_derivation_step_expr["step id"] = step_id
+                    this_derivation_step_expr["inference rule"] = step_dict["inf rule"]
+                    this_derivation_step_expr["linear index"] = step_dict[
+                        "linear index"
+                    ]
+                    this_derivation_step_expr["connection type"] = connection_type
+                    this_derivation_step_expr["expression local id"] = expr_local_id
                     derivations_list_of_dicts.append(this_derivation_step_expr)
-    all_dfs['derivations'] = pandas.DataFrame(derivations_list_of_dicts)
+    all_dfs["derivations"] = pandas.DataFrame(derivations_list_of_dicts)
 
     local_to_global_list_of_dicts = []
-    for local_id, global_id in dat['expr local to global'].items():
+    for local_id, global_id in dat["expr local to global"].items():
         this_lookup = {}
-        this_lookup['expr local id'] = local_id
-        this_lookup['expr global id'] = global_id
+        this_lookup["expr local id"] = local_id
+        this_lookup["expr global id"] = global_id
         local_to_global_list_of_dicts.append(this_lookup)
-    all_dfs['expr local global'] = pandas.DataFrame(local_to_global_list_of_dicts)
+    all_dfs["expr local global"] = pandas.DataFrame(local_to_global_list_of_dicts)
 
     symbols_list_of_dicts = []
-    for symbol_id, symbol_dict in dat['symbols'].items():
-        if 'values' in symbol_dict.keys():
-            for value_dict in symbol_dict['values']:
+    for symbol_id, symbol_dict in dat["symbols"].items():
+        if "values" in symbol_dict.keys():
+            for value_dict in symbol_dict["values"]:
                 this_symb = {}
-                this_symb['symbol id'] = symbol_id
-                this_symb['latex'] = symbol_dict['latex']
-                this_symb['category'] = symbol_dict['category']
-                this_symb['scope'] = ';'.join(symbol_dict['scope']) # TODO: an entry in a table should not be a list (tidy data)
-                if 'references' in symbol_dict.keys():
-                    this_symb['references'] = ' '.join(symbol_dict['references']) # TODO: an entry in a table should not be a list (tidy data)
-                if 'name' in symbol_dict.keys():
-                    this_symb['name'] = symbol_dict['name']
-                if 'measure' in symbol_dict.keys():
-                    this_symb['measure'] = symbol_dict['measure']
-                this_symb['value'] = value_dict['value']
-                this_symb['units'] = value_dict['units']
+                this_symb["symbol id"] = symbol_id
+                this_symb["latex"] = symbol_dict["latex"]
+                this_symb["category"] = symbol_dict["category"]
+                this_symb["scope"] = ";".join(
+                    symbol_dict["scope"]
+                )  # TODO: an entry in a table should not be a list (tidy data)
+                if "references" in symbol_dict.keys():
+                    this_symb["references"] = " ".join(
+                        symbol_dict["references"]
+                    )  # TODO: an entry in a table should not be a list (tidy data)
+                if "name" in symbol_dict.keys():
+                    this_symb["name"] = symbol_dict["name"]
+                if "measure" in symbol_dict.keys():
+                    this_symb["measure"] = symbol_dict["measure"]
+                this_symb["value"] = value_dict["value"]
+                this_symb["units"] = value_dict["units"]
                 symbols_list_of_dicts.append(this_symb)
-        else: # no 'values' in symbol_dict.keys()
+        else:  # no 'values' in symbol_dict.keys()
             this_symb = {}
-            this_symb['symbol id'] = symbol_id
-            this_symb['latex'] = symbol_dict['latex']
-            if 'category' in symbol_dict.keys():
-                this_symb['category'] = symbol_dict['category']
-            this_symb['scope'] = ';'.join(symbol_dict['scope']) # TODO: an entry in a table should not be a list (tidy data)
-            if 'references' in symbol_dict.keys():
-                this_symb['references'] = ' '.join(symbol_dict['references']) # TODO: an entry in a table should not be a list (tidy data)
-            if 'name' in symbol_dict.keys():
-                this_symb['name'] = symbol_dict['name']
-            if 'measure' in symbol_dict.keys():
-                this_symb['measure'] = symbol_dict['measure']
+            this_symb["symbol id"] = symbol_id
+            this_symb["latex"] = symbol_dict["latex"]
+            if "category" in symbol_dict.keys():
+                this_symb["category"] = symbol_dict["category"]
+            this_symb["scope"] = ";".join(
+                symbol_dict["scope"]
+            )  # TODO: an entry in a table should not be a list (tidy data)
+            if "references" in symbol_dict.keys():
+                this_symb["references"] = " ".join(
+                    symbol_dict["references"]
+                )  # TODO: an entry in a table should not be a list (tidy data)
+            if "name" in symbol_dict.keys():
+                this_symb["name"] = symbol_dict["name"]
+            if "measure" in symbol_dict.keys():
+                this_symb["measure"] = symbol_dict["measure"]
             symbols_list_of_dicts.append(this_symb)
-    all_dfs['symbols'] = pandas.DataFrame(symbols_list_of_dicts)
+    all_dfs["symbols"] = pandas.DataFrame(symbols_list_of_dicts)
 
     measures_list_of_dicts = []
-    for measure_name, measure_dict in dat['measures'].items():
-        if 'references' in measure_dict.keys():
-            for ref in measure_dict['references']:
+    for measure_name, measure_dict in dat["measures"].items():
+        if "references" in measure_dict.keys():
+            for ref in measure_dict["references"]:
                 this_measure = {}
-                this_measure['measure'] = measure_name
-                this_measure['reference'] = ref
+                this_measure["measure"] = measure_name
+                this_measure["reference"] = ref
                 measures_list_of_dicts.append(this_measure)
         else:
             this_measure = {}
-            this_measure['measure'] = measure_name
+            this_measure["measure"] = measure_name
             measures_list_of_dicts.append(this_measure)
-    all_dfs['measures'] = pandas.DataFrame(measures_list_of_dicts)
+    all_dfs["measures"] = pandas.DataFrame(measures_list_of_dicts)
 
     units_list_of_dicts = []
-    for unit_name, unit_dict in dat['units'].items():
-        for this_ref in unit_dict['references']:
+    for unit_name, unit_dict in dat["units"].items():
+        for this_ref in unit_dict["references"]:
             this_unit = {}
-            this_unit['unit'] = unit_name
-            this_unit['measure'] = unit_dict['measure']
-            this_unit['reference'] = this_ref
+            this_unit["unit"] = unit_name
+            this_unit["measure"] = unit_dict["measure"]
+            this_unit["reference"] = this_ref
             units_list_of_dicts.append(this_unit)
-    all_dfs['units'] = pandas.DataFrame(units_list_of_dicts)
+    all_dfs["units"] = pandas.DataFrame(units_list_of_dicts)
 
     operators_list_of_dicts = []
-    for operator_name, operator_dict in dat['operators'].items():
-        for this_scope in operator_dict['scope']:
+    for operator_name, operator_dict in dat["operators"].items():
+        for this_scope in operator_dict["scope"]:
             this_op = {}
-            this_op['operator'] = operator_name
-            this_op['operator latex'] = operator_dict['latex']
-            this_op['argument count'] = operator_dict['argument count']
-            this_op['scope'] = this_scope
+            this_op["operator"] = operator_name
+            this_op["operator latex"] = operator_dict["latex"]
+            this_op["argument count"] = operator_dict["argument count"]
+            this_op["scope"] = this_scope
             operators_list_of_dicts.append(this_op)
-    all_dfs['operators'] = pandas.DataFrame(operators_list_of_dicts)
+    all_dfs["operators"] = pandas.DataFrame(operators_list_of_dicts)
 
     return all_dfs
+
 
 def convert_df_to_pkl(all_df) -> str:
     """
@@ -189,11 +209,12 @@ def convert_df_to_pkl(all_df) -> str:
 
     >>> convert_df_to_pkl(all_df)
     """
-    logger.info('[trace] convert_df_to_pkl')
-    df_pkl = 'data.pkl'
-    with open(df_pkl, 'wb') as fil:
+    logger.info("[trace] convert_df_to_pkl")
+    df_pkl = "data.pkl"
+    with open(df_pkl, "wb") as fil:
         pickle.dump(all_df, fil)
     return df_pkl
+
 
 def convert_dataframes_to_sql(all_dfs) -> str:
     """
@@ -203,21 +224,22 @@ def convert_dataframes_to_sql(all_dfs) -> str:
 
     >>> convert_dataframes_to_sql(all_dfs, 'data.json')
     """
-    logger.info('[trace] convert_dataframes_to_sql')
-    sql_file = 'physics_derivation_graph.sqlite3'
+    logger.info("[trace] convert_dataframes_to_sql")
+    sql_file = "physics_derivation_graph.sqlite3"
     try:
         cnx = sqlite3.connect(sql_file)
     except sqlite3.Error:
         logger.debug(sqlite3.Error)
 
     for df_name, df in all_dfs.items():
-        #logger.debug(df_name)
-        #logger.debug(df.dtypes)
-        #logger.debug(df.head())
+        # logger.debug(df_name)
+        # logger.debug(df.dtypes)
+        # logger.debug(df.head())
         df = df.astype(str)
         df.to_sql(name=df_name, con=cnx, if_exists="replace")
 
     return sql_file
+
 
 def convert_data_to_rdf(path_to_db: str) -> str:
     """
@@ -229,41 +251,69 @@ def convert_data_to_rdf(path_to_db: str) -> str:
     https://en.wikipedia.org/wiki/Web_Ontology_Language
     >>> convert_data_to_rdf('data.json')
     """
-    logger.info('[trace] convert_data_to_rdf')
+    logger.info("[trace] convert_data_to_rdf")
     dat = clib.read_db(path_to_db)
 
     rdf_str = ""
     # https://www.w3.org/TR/1999/REC-rdf-syntax-19990222/#basic
-    rdf_str += "<?xml version=\"1.0\"?>"
+    rdf_str += '<?xml version="1.0"?>'
     rdf_str += "<rdf:RDF"
-    rdf_str += "  xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\""
-    rdf_str += "  xmlns:s=\"http://description.org/schema/\">"
-    for expression_id, expression_dict in dat['expressions'].items():
-        rdf_str += expression_id + " has_latex '" + expression_dict['latex'] + "'\n"
-    for infrule_name, infrule_dict in dat['inference rules'].items():
-        rdf_str += infrule_name.replace(' ','_') + " has_input_count " + str(infrule_dict['number of inputs']) + "\n"
-        rdf_str += infrule_name.replace(' ','_') + " has_feed_count " + str(infrule_dict['number of feeds']) + "\n"
-        rdf_str += infrule_name.replace(' ','_') + " has_output_count " + str(infrule_dict['number of outputs']) + "\n"
-        rdf_str += infrule_name.replace(' ','_') + " has_latex '" + infrule_dict['latex'] + "'\n"
-    for derivation_name, derivation_dict in dat['derivations'].items():
+    rdf_str += '  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"'
+    rdf_str += '  xmlns:s="http://description.org/schema/">'
+    for expression_id, expression_dict in dat["expressions"].items():
+        rdf_str += expression_id + " has_latex '" + expression_dict["latex"] + "'\n"
+    for infrule_name, infrule_dict in dat["inference rules"].items():
+        rdf_str += (
+            infrule_name.replace(" ", "_")
+            + " has_input_count "
+            + str(infrule_dict["number of inputs"])
+            + "\n"
+        )
+        rdf_str += (
+            infrule_name.replace(" ", "_")
+            + " has_feed_count "
+            + str(infrule_dict["number of feeds"])
+            + "\n"
+        )
+        rdf_str += (
+            infrule_name.replace(" ", "_")
+            + " has_output_count "
+            + str(infrule_dict["number of outputs"])
+            + "\n"
+        )
+        rdf_str += (
+            infrule_name.replace(" ", "_")
+            + " has_latex '"
+            + infrule_dict["latex"]
+            + "'\n"
+        )
+    for derivation_name, derivation_dict in dat["derivations"].items():
         for step_id, step_dict in derivation_dict.items():
             rdf_str += derivation_name + " has_step " + step_id + "\n"
-            rdf_str += step_id + " has_infrule " + step_dict['inf rule'].replace(' ','_') + "\n"
-            rdf_str += step_id + " has_linear_index " + str(step_dict['linear index']) + "\n"
-            for expr_local_id in step_dict['inputs']:
+            rdf_str += (
+                step_id
+                + " has_infrule "
+                + step_dict["inf rule"].replace(" ", "_")
+                + "\n"
+            )
+            rdf_str += (
+                step_id + " has_linear_index " + str(step_dict["linear index"]) + "\n"
+            )
+            for expr_local_id in step_dict["inputs"]:
                 rdf_str += step_id + " has_input_expr " + expr_local_id + "\n"
-            for expr_local_id in step_dict['feeds']:
+            for expr_local_id in step_dict["feeds"]:
                 rdf_str += step_id + " has_feed_expr " + expr_local_id + "\n"
-            for expr_local_id in step_dict['outputs']:
+            for expr_local_id in step_dict["outputs"]:
                 rdf_str += step_id + " has_output_expr " + expr_local_id + "\n"
-    for local_id, global_id in dat['expr local to global'].items():
+    for local_id, global_id in dat["expr local to global"].items():
         rdf_str += local_id + " local_is_global " + global_id + "\n"
     rdf_str += "</rdf:RDF>"
 
-    rdf_file = 'data.rdf'
-    with open(rdf_file, 'w') as fil:
+    rdf_file = "data.rdf"
+    with open(rdf_file, "w") as fil:
         fil.write(rdf_str)
     return rdf_file
+
 
 def convert_data_to_cypher(path_to_db: str) -> str:
     """
@@ -282,76 +332,103 @@ def convert_data_to_cypher(path_to_db: str) -> str:
 
     >>> convert_data_to_cypher('data.json')
     """
-    logger.info('[trace] convert_data_to_cypher')
+    logger.info("[trace] convert_data_to_cypher")
 
     dat = clib.read_db(path_to_db)
 
     cypher_str = ""
 
-    for expression_id, expression_dict in dat['expressions'].items():
+    for expression_id, expression_dict in dat["expressions"].items():
         cypher_str += "CREATE (id" + expression_id + ":expression {\n"
-        cypher_str += "       latex: '" + expression_dict['latex'].replace('\\','\\\\').replace("'","\\'") + "'})\n"
-    for infrule_name, infrule_dict in dat['inference rules'].items():
-        cypher_str += "CREATE (" + infrule_name.replace(' ','_') + ":infrule {\n"
-        cypher_str += "       num_inputs: " + str(infrule_dict['number of inputs']) + ",\n"
-        cypher_str += "       num_feeds: " + str(infrule_dict['number of feeds']) + ",\n"
-        cypher_str += "       num_outputs: " + str(infrule_dict['number of outputs']) + ",\n"
-        cypher_str += "       latex: '" + infrule_dict['latex'] + "'})\n"
-    for derivation_name, derivation_dict in dat['derivations'].items():
-        cypher_str += "// derivation: " + derivation_name + "\n" # https://neo4j.com/docs/cypher-manual/current/syntax/comments/
+        cypher_str += (
+            "       latex: '"
+            + expression_dict["latex"].replace("\\", "\\\\").replace("'", "\\'")
+            + "'})\n"
+        )
+    for infrule_name, infrule_dict in dat["inference rules"].items():
+        cypher_str += "CREATE (" + infrule_name.replace(" ", "_") + ":infrule {\n"
+        cypher_str += (
+            "       num_inputs: " + str(infrule_dict["number of inputs"]) + ",\n"
+        )
+        cypher_str += (
+            "       num_feeds: " + str(infrule_dict["number of feeds"]) + ",\n"
+        )
+        cypher_str += (
+            "       num_outputs: " + str(infrule_dict["number of outputs"]) + ",\n"
+        )
+        cypher_str += "       latex: '" + infrule_dict["latex"] + "'})\n"
+    for derivation_name, derivation_dict in dat["derivations"].items():
+        cypher_str += (
+            "// derivation: " + derivation_name + "\n"
+        )  # https://neo4j.com/docs/cypher-manual/current/syntax/comments/
         for step_id, step_dict in derivation_dict.items():
             cypher_str += "CREATE (id" + step_id + ":step {\n"
-            cypher_str += "       infrule: '" + step_dict['inf rule'].replace(' ','_') + "',\n"
-            cypher_str += "       linear_index: " + str(step_dict['linear index']) + "})\n"
-            for expr_local_id in step_dict['inputs']:
-                cypher_str += "CREATE (id" + step_id + ")<-[:expr]-(id" + expr_local_id + ")\n"
-            for expr_local_id in step_dict['feeds']:
-                cypher_str += "CREATE (id" + step_id + ")<-[:expr]-(id" + expr_local_id + ")\n"
-            for expr_local_id in step_dict['outputs']:
-                cypher_str += "CREATE (id" + step_id + ")-[:expr]->(id" + expr_local_id + ")\n"
-    for local_id, global_id in dat['expr local to global'].items():
-        cypher_str += "CREATE (id" + local_id + ")-[:local_is_global]->(id" + global_id + ")\n"
-    #for symbol_id, symbol_dict in dat['symbols'].items():
+            cypher_str += (
+                "       infrule: '" + step_dict["inf rule"].replace(" ", "_") + "',\n"
+            )
+            cypher_str += (
+                "       linear_index: " + str(step_dict["linear index"]) + "})\n"
+            )
+            for expr_local_id in step_dict["inputs"]:
+                cypher_str += (
+                    "CREATE (id" + step_id + ")<-[:expr]-(id" + expr_local_id + ")\n"
+                )
+            for expr_local_id in step_dict["feeds"]:
+                cypher_str += (
+                    "CREATE (id" + step_id + ")<-[:expr]-(id" + expr_local_id + ")\n"
+                )
+            for expr_local_id in step_dict["outputs"]:
+                cypher_str += (
+                    "CREATE (id" + step_id + ")-[:expr]->(id" + expr_local_id + ")\n"
+                )
+    for local_id, global_id in dat["expr local to global"].items():
+        cypher_str += (
+            "CREATE (id" + local_id + ")-[:local_is_global]->(id" + global_id + ")\n"
+        )
+    # for symbol_id, symbol_dict in dat['symbols'].items():
     #    cypher_str += "CREATE ()"
-    #for operator_name, operator_dict in dat['operators'].items():
+    # for operator_name, operator_dict in dat['operators'].items():
     #    cypher_str += "CREATE ()"
-    cypher_file = 'neo4j.txt'
-    with open(cypher_file, 'w') as fil:
+    cypher_file = "neo4j.txt"
+    with open(cypher_file, "w") as fil:
         fil.write(cypher_str)
     return cypher_file
+
 
 def expr_not_in_derivations(path_to_db: str) -> list:
     """
     >>> expr_not_in_derivations('data.json')
     """
-    logger.info('[trace] expr_not_in_derivations')
-    #dat = clib.read_db(path_to_db)
+    logger.info("[trace] expr_not_in_derivations")
+    # dat = clib.read_db(path_to_db)
     list_of_expr_not_in_deriv = []
     expr_popularity_dict = popularity_of_expressions(path_to_db)
     for expr_global_id, list_of_derivs in expr_popularity_dict.items():
-        if len(list_of_derivs)==0:
+        if len(list_of_derivs) == 0:
             list_of_expr_not_in_deriv.append(expr_global_id)
     list_of_expr_not_in_deriv.sort()
     return list_of_expr_not_in_deriv
+
 
 def get_sorted_list_of_expr(path_to_db: str) -> list:
     """
     >>> get_sorted_list_of_expr('data.pkl')
 
     """
-    logger.info('[trace] get_sorted_list_of_expr')
+    logger.info("[trace] get_sorted_list_of_expr")
     dat = clib.read_db(path_to_db)
-    list_expr = list(dat['expressions'].keys())
+    list_expr = list(dat["expressions"].keys())
     list_expr.sort()
     return list_expr
+
 
 def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     """
     >>> get_sorted_list_of_inf_rules('data.pkl')
     """
-    logger.info('[trace] get_list_of_inf_rules')
+    logger.info("[trace] get_list_of_inf_rules")
     dat = clib.read_db(path_to_db)
-    list_infrule = list(dat['inference rules'].keys())
+    list_infrule = list(dat["inference rules"].keys())
     list_infrule.sort()
     return list_infrule
 
@@ -360,9 +437,9 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
     """
     >>> get_list_of_derivations('data.json')
     """
-    logger.info('[trace] get_list_of_derivation')
+    logger.info("[trace] get_list_of_derivation")
     dat = clib.read_db(path_to_db)
-    list_deriv = list(dat['derivations'].keys())
+    list_deriv = list(dat["derivations"].keys())
     list_deriv.sort()
     return list_deriv
 
@@ -371,15 +448,19 @@ def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
     """
     >>> get_derivation_steps('my deriv','data.json')
     """
-    logger.info('[trace] get_list_of_steps')
+    logger.info("[trace] get_list_of_steps")
     dat = clib.read_db(path_to_db)
-    if name_of_derivation not in dat['derivations'].keys():
-        raise Exception('[ERROR] compute; get_list_of_steps;', name_of_derivation,
-                        'does not appear to be a key in derivations', dat['derivations'].keys())
-    return dat['derivations'][name_of_derivation]
+    if name_of_derivation not in dat["derivations"].keys():
+        raise Exception(
+            "[ERROR] compute; get_list_of_steps;",
+            name_of_derivation,
+            "does not appear to be a key in derivations",
+            dat["derivations"].keys(),
+        )
+    return dat["derivations"][name_of_derivation]
 
 
-#def input_output_count_for_infrule(inf_rule: str, path_to_db: str) -> Tuple[str, str, str]:
+# def input_output_count_for_infrule(inf_rule: str, path_to_db: str) -> Tuple[str, str, str]:
 #    """
 #    >>> input_output_count_for_infrule('multiply both sides by X', 'data.json')
 #    """
@@ -396,28 +477,32 @@ def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
 #    number_of_outputs = dat['inference rules'][inf_rule]['number of outputs']
 #    return number_of_feeds, number_of_inputs, number_of_outputs
 
+
 def create_expr_global_id(path_to_db: str) -> str:
     """
     search DB to find whether proposed expr ID already exists
 
     >>> create_expr_id(False, 'data.json')
     """
-    logger.info('[trace] create_expr_global_id')
+    logger.info("[trace] create_expr_global_id")
     dat = clib.read_db(path_to_db)
 
-    global_expr_ids_in_use = list(dat['expressions'].keys())
+    global_expr_ids_in_use = list(dat["expressions"].keys())
 
     found_valid_id = False
     loop_count = 0
-    while(not found_valid_id):
+    while not found_valid_id:
         loop_count += 1
-        proposed_global_expr_id = str(random.randint(1000000000, 9999999999)) # 10 digits
+        proposed_global_expr_id = str(
+            random.randint(1000000000, 9999999999)
+        )  # 10 digits
 
         if proposed_global_expr_id not in global_expr_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
             raise Exception("this seems unlikely")
     return proposed_global_expr_id
+
 
 def create_step_id(path_to_db: str) -> str:
     """
@@ -426,19 +511,19 @@ def create_step_id(path_to_db: str) -> str:
     search DB to find whether proposed local ID already exists
     >>> create_step_id(False, 'data.json')
     """
-    logger.info('[trace] create_step_id')
+    logger.info("[trace] create_step_id")
     dat = clib.read_db(path_to_db)
 
     step_ids_in_use = []
-    for derivation_name, steps_dict in dat['derivations'].items():
+    for derivation_name, steps_dict in dat["derivations"].items():
         for step_id, step_dict in steps_dict.items():
-            step_ids_in_use.append(step_id) # formerly 'inf rule local ID'
+            step_ids_in_use.append(step_id)  # formerly 'inf rule local ID'
 
     found_valid_id = False
     loop_count = 0
-    while(not found_valid_id):
+    while not found_valid_id:
         loop_count += 1
-        proposed_step_id = str(random.randint(1000000, 9999999)) # 7 digits
+        proposed_step_id = str(random.randint(1000000, 9999999))  # 7 digits
         if proposed_step_id not in step_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
@@ -451,23 +536,24 @@ def create_expr_local_id(path_to_db: str) -> str:
     search DB to find whether proposed local ID already exists
     >>> create_expr_local_id(False, 'data.json')
     """
-    logger.info('[trace] create_expr_local_id')
+    logger.info("[trace] create_expr_local_id")
     dat = clib.read_db(path_to_db)
 
-    local_ids_in_use = list(dat['expr local to global'].keys())
+    local_ids_in_use = list(dat["expr local to global"].keys())
 
     found_valid_id = False
     loop_count = 0
-    while(not found_valid_id):
+    while not found_valid_id:
         loop_count += 1
-        proposed_local_id = str(random.randint(1000, 9999)) # 4 digits
+        proposed_local_id = str(random.randint(1000, 9999))  # 4 digits
         if proposed_local_id not in local_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
             raise Exception("this seems unlikely")
     return proposed_local_id
 
-#def create_new_derivation(name_of_derivation: str, path_to_db: str) -> None:
+
+# def create_new_derivation(name_of_derivation: str, path_to_db: str) -> None:
 #    """
 #    >>>
 #    """
@@ -477,8 +563,9 @@ def create_expr_local_id(path_to_db: str) -> str:
 #    clib.write_db(path_to_db, dat)
 #    return
 
-#********************************************
+# ********************************************
 # popularity
+
 
 def flatten_dict(d: dict, sep: str = "_") -> dict:
     """
@@ -493,33 +580,35 @@ def flatten_dict(d: dict, sep: str = "_") -> dict:
     """
     obj = collections.OrderedDict()
 
-    def recurse(t,parent_key=""):
-        if isinstance(t,list):
+    def recurse(t, parent_key=""):
+        if isinstance(t, list):
             for i in range(len(t)):
-                recurse(t[i],parent_key + sep + str(i) if parent_key else str(i))
-        elif isinstance(t,dict):
-            for k,v in t.items():
-                recurse(v,parent_key + sep + k if parent_key else k)
+                recurse(t[i], parent_key + sep + str(i) if parent_key else str(i))
+        elif isinstance(t, dict):
+            for k, v in t.items():
+                recurse(v, parent_key + sep + k if parent_key else k)
         else:
             obj[parent_key] = t
+
     recurse(d)
     return dict(obj)
+
 
 def extract_operators_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     """
     >>>
     """
-    logger.info('[trace] extract_operators_from_expression_dict')
+    logger.info("[trace] extract_operators_from_expression_dict")
     dat = clib.read_db(path_to_db)
-    expr_dict = dat['expressions']
-    if 'AST' in expr_dict[expr_id].keys():
-        flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
+    expr_dict = dat["expressions"]
+    if "AST" in expr_dict[expr_id].keys():
+        flt_dict = flatten_dict(expr_dict[expr_id]["AST"])
     else:
         flt_dict = {}
     list_of_str = list(flt_dict.keys())
     list_of_operators = []
-    for this_str in list_of_str:   # 'equals_0_addition_0'
-        list_of_operator_candidates = this_str.split('_')
+    for this_str in list_of_str:  # 'equals_0_addition_0'
+        list_of_operator_candidates = this_str.split("_")
         for operator_candidate in list_of_operator_candidates:
             try:
                 int(operator_candidate)
@@ -527,160 +616,197 @@ def extract_operators_from_expression_dict(expr_id: str, path_to_db: str) -> lis
                 list_of_operators.append(operator_candidate)
     return list(set(list_of_operators))
 
+
 def extract_symbols_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     """
     >>> extract_symbols_from_expression_dict('data.json')
     """
-    logger.info('[trace] extract_symbols_from_expression_dict')
+    logger.info("[trace] extract_symbols_from_expression_dict")
     dat = clib.read_db(path_to_db)
-    logger.debug('extract_symbols_from_expression_dict; expr_id = %s', expr_id)
-    expr_dict = dat['expressions']
-    if 'AST' in expr_dict[expr_id].keys():
-        flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
+    logger.debug("extract_symbols_from_expression_dict; expr_id = %s", expr_id)
+    expr_dict = dat["expressions"]
+    if "AST" in expr_dict[expr_id].keys():
+        flt_dict = flatten_dict(expr_dict[expr_id]["AST"])
         return list(flt_dict.values())
     else:
         return []
-    #logger.debug('extract_symbols_from_expression_dict; flt_dict=',flt_dict)
+    # logger.debug('extract_symbols_from_expression_dict; flt_dict=',flt_dict)
+
 
 def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
     """
     >>>
     """
-    logger.info('[trace] extract_expressions_from_derivation_dict')
+    logger.info("[trace] extract_expressions_from_derivation_dict")
     dat = clib.read_db(path_to_db)
-    flt_dict = flatten_dict(dat['derivations'][deriv_name])
-    logger.debug('extract_expressions_from_derivation_dict; flat dict = %s',flt_dict)
+    flt_dict = flatten_dict(dat["derivations"][deriv_name])
+    logger.debug("extract_expressions_from_derivation_dict; flat dict = %s", flt_dict)
     list_of_expr_ids = []
     for flattened_key, val in flt_dict.items():
-        if ('_inputs_' in flattened_key) or ('_outputs_' in flattened_key) or ('_feeds_' in flattened_key):
+        if (
+            ("_inputs_" in flattened_key)
+            or ("_outputs_" in flattened_key)
+            or ("_feeds_" in flattened_key)
+        ):
             list_of_expr_ids.append(val)
-    logger.debug('extract_expressions_from_derivation_dict; list_of_expr_ids= %s',list_of_expr_ids)
+    logger.debug(
+        "extract_expressions_from_derivation_dict; list_of_expr_ids= %s",
+        list_of_expr_ids,
+    )
     return list_of_expr_ids
+
 
 def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
     """
     >>> extract_infrules_from_derivation_dict()
     """
-    logger.info('[trace] extract_infrules_from_derivation_dict')
+    logger.info("[trace] extract_infrules_from_derivation_dict")
     dat = clib.read_db(path_to_db)
     list_of_infrules = []
-    for step_id, step_dict in dat['derivations'][deriv_name].items():
-        list_of_infrules.append(step_dict['inf rule'])
+    for step_id, step_dict in dat["derivations"][deriv_name].items():
+        list_of_infrules.append(step_dict["inf rule"])
 
-    #logger.debug('extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
+    # logger.debug('extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
     return list(set(list_of_infrules))
+
 
 def popularity_of_operators(path_to_db: str) -> dict:
     """
     >>> popularity_of_operators('data.json')
     """
-    logger.info('[trace] popularity_of_operators')
+    logger.info("[trace] popularity_of_operators")
     dat = clib.read_db(path_to_db)
     operator_popularity_dict = {}
-    for operator, operator_dict in dat['operators'].items():
+    for operator, operator_dict in dat["operators"].items():
         list_of_uses = []
-        for expr_id, expr_dict in dat['expressions'].items():
-            list_of_operators_for_this_expr = extract_operators_from_expression_dict(expr_id, path_to_db)
+        for expr_id, expr_dict in dat["expressions"].items():
+            list_of_operators_for_this_expr = extract_operators_from_expression_dict(
+                expr_id, path_to_db
+            )
             if operator in list_of_operators_for_this_expr:
                 list_of_uses.append(expr_id)
         operator_popularity_dict[operator] = list_of_uses
     return operator_popularity_dict
 
+
 def popularity_of_symbols(path_to_db: str) -> dict:
     """
     >>> popularity_of_symbols('data.json')
     """
-    logger.info('[trace] popularity_of_symbols')
+    logger.info("[trace] popularity_of_symbols")
     dat = clib.read_db(path_to_db)
 
     symbol_popularity_dict = {}
     # TODO: this is a join that is really slow!
-    for symbol_id, symbol_dict in dat['symbols'].items():
+    for symbol_id, symbol_dict in dat["symbols"].items():
         list_of_uses = []
-        for expr_id, expr_dict in dat['expressions'].items():
-            list_of_symbols_for_this_expr = extract_symbols_from_expression_dict(expr_id, path_to_db)
+        for expr_id, expr_dict in dat["expressions"].items():
+            list_of_symbols_for_this_expr = extract_symbols_from_expression_dict(
+                expr_id, path_to_db
+            )
             if symbol_id in list_of_symbols_for_this_expr:
                 list_of_uses.append(expr_id)
         symbol_popularity_dict[symbol_id] = list_of_uses
 
     return symbol_popularity_dict
 
-def get_expr_local_IDs_for_this_expr_global_ID(expr_global_ID: str, path_to_db: str) -> list:
+
+def get_expr_local_IDs_for_this_expr_global_ID(
+    expr_global_ID: str, path_to_db: str
+) -> list:
     """
     >>>
     """
-    logger.info('[trace] get_expr_local_IDs_for_this_expr_global_ID')
+    logger.info("[trace] get_expr_local_IDs_for_this_expr_global_ID")
     list_of_expr_local_IDs = []
     dat = clib.read_db(path_to_db)
-    for local_id, global_id in dat['expr local to global'].items():
+    for local_id, global_id in dat["expr local to global"].items():
         if expr_global_ID == global_id:
             list_of_expr_local_IDs.append(local_id)
     return list_of_expr_local_IDs
+
 
 def popularity_of_expressions(path_to_db: str) -> dict:
     """
     >>> popularity_of_expressions('data.json')
     """
-    logger.info('[trace] popularity_of_expressions')
+    logger.info("[trace] popularity_of_expressions")
     dat = clib.read_db(path_to_db)
     expression_popularity_dict = {}
-    for expr_global_id, expr_dict in dat['expressions'].items():
+    for expr_global_id, expr_dict in dat["expressions"].items():
         list_of_derivations_this_expr_is_used_in = []
-        list_of_local_IDs_this_global_ID_corresponds_to = get_expr_local_IDs_for_this_expr_global_ID(expr_global_id, path_to_db)
+        list_of_local_IDs_this_global_ID_corresponds_to = get_expr_local_IDs_for_this_expr_global_ID(
+            expr_global_id, path_to_db
+        )
 
-        for deriv_name, deriv_dict in dat['derivations'].items():
-            list_of_all_expr_local_IDs_for_this_deriv = extract_expressions_from_derivation_dict(deriv_name, path_to_db)
-            #logger.debug('deriv_name=',deriv_name)
-            #logger.debug('list_of_all_expr_for_this_deriv=',list_of_all_expr_local_IDs_for_this_deriv)
-            #logger.debug('expr_global_id =', expr_global_id)
+        for deriv_name, deriv_dict in dat["derivations"].items():
+            list_of_all_expr_local_IDs_for_this_deriv = extract_expressions_from_derivation_dict(
+                deriv_name, path_to_db
+            )
+            # logger.debug('deriv_name=',deriv_name)
+            # logger.debug('list_of_all_expr_for_this_deriv=',list_of_all_expr_local_IDs_for_this_deriv)
+            # logger.debug('expr_global_id =', expr_global_id)
             for expr_local_ID in list_of_local_IDs_this_global_ID_corresponds_to:
                 if expr_local_ID in list_of_all_expr_local_IDs_for_this_deriv:
-                    #logger.debug('expr_global_id', expr_global_id, 'expr_local_ID', expr_local_ID, 'is in', deriv_name)
+                    # logger.debug('expr_global_id', expr_global_id, 'expr_local_ID', expr_local_ID, 'is in', deriv_name)
                     list_of_derivations_this_expr_is_used_in.append(deriv_name)
-        expression_popularity_dict[expr_global_id] = list(set(list_of_derivations_this_expr_is_used_in))
-        logger.debug('popularity_of_expressions; expression_popularity_dict = %s',expression_popularity_dict)
+        expression_popularity_dict[expr_global_id] = list(
+            set(list_of_derivations_this_expr_is_used_in)
+        )
+        logger.debug(
+            "popularity_of_expressions; expression_popularity_dict = %s",
+            expression_popularity_dict,
+        )
     return expression_popularity_dict
+
 
 def popularity_of_infrules(path_to_db: str) -> dict:
     """
     >>> popularity_of_infrules('data.json')
     """
-    logger.info('[trace] popularity_of_infrules')
+    logger.info("[trace] popularity_of_infrules")
     dat = clib.read_db(path_to_db)
     infrule_popularity_dict = {}
-    for infrule_name, infrule_dict in dat['inference rules'].items():
+    for infrule_name, infrule_dict in dat["inference rules"].items():
         list_of_uses = []
-        for deriv_name, deriv_dict in dat['derivations'].items():
-            list_of_infrule_for_this_deriv = extract_infrules_from_derivation_dict(deriv_name, path_to_db)
-            #logger.debug('popularity_of_infrules; list =',list_of_infrule_for_this_deriv)
-            #logger.debug('popularity_of_infrules; infrule_name =',infrule_name)
-            #logger.debug(deriv_name)
-            #logger.debug(deriv_dict)
+        for deriv_name, deriv_dict in dat["derivations"].items():
+            list_of_infrule_for_this_deriv = extract_infrules_from_derivation_dict(
+                deriv_name, path_to_db
+            )
+            # logger.debug('popularity_of_infrules; list =',list_of_infrule_for_this_deriv)
+            # logger.debug('popularity_of_infrules; infrule_name =',infrule_name)
+            # logger.debug(deriv_name)
+            # logger.debug(deriv_dict)
             if infrule_name in list_of_infrule_for_this_deriv:
                 list_of_uses.append(deriv_name)
         infrule_popularity_dict[infrule_name] = list_of_uses
     return infrule_popularity_dict
 
-#********************************************
+
+# ********************************************
 # local filesystem
 
-def remove_file_debris(list_of_paths_to_files: list, list_of_file_names: list, list_of_file_ext: list) -> None:
+
+def remove_file_debris(
+    list_of_paths_to_files: list, list_of_file_names: list, list_of_file_ext: list
+) -> None:
     """
     >>> remove_file_debris(['/path/to/file/'],['filename_without_extension'], ['ext1', 'ext2'])
     """
-    logger.info('[trace] remove_file_debris')
+    logger.info("[trace] remove_file_debris")
 
     for path_to_file in list_of_paths_to_files:
-#        logger.debug('path_to_file =',path_to_file)
+        #        logger.debug('path_to_file =',path_to_file)
         for file_name in list_of_file_names:
-#            logger.debug('file_name =',file_name)
+            #            logger.debug('file_name =',file_name)
             for file_ext in list_of_file_ext:
-#                logger.debug('file_ext =',file_ext)
+                #                logger.debug('file_ext =',file_ext)
 
-                if os.path.isfile(path_to_file + file_name + '.' + file_ext):
-                    os.remove(path_to_file + file_name +'.' + file_ext)
-#    logger.debug('done')
+                if os.path.isfile(path_to_file + file_name + "." + file_ext):
+                    os.remove(path_to_file + file_name + "." + file_ext)
+    #    logger.debug('done')
     return
+
 
 def find_valid_filename(destination_folder: str, extension: str) -> str:
     """
@@ -689,105 +815,154 @@ def find_valid_filename(destination_folder: str, extension: str) -> str:
     >>> find_valid_filename('/home/appuser/app/static/', 'png')
     >>> find_valid_filename('.','png')
     """
-    logger.info('[trace] find_valid_filename')
+    logger.info("[trace] find_valid_filename")
 
     found_valid_name = False
     loop_count = 0
-    while(not found_valid_name):
+    while not found_valid_name:
         loop_count += 1
-        proposed_file_name = str(int(random.random()*1000000000)) + '.' + extension
+        proposed_file_name = str(int(random.random() * 1000000000)) + "." + extension
         if not os.path.isfile(destination_folder + proposed_file_name):
             found_valid_name = True
         if loop_count > 10000000000:
             raise Exception("this seems unlikely")
     return proposed_file_name
 
-#*******************************************
+
+# *******************************************
 # create files on filesystem
+
 
 def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
     """
     >>> create_tex_file_for_expr('filename_without_extension', 'a \dot b \\nabla')
     """
-    logger.info('[trace] create_tex_file_for_expr')
+    logger.info("[trace] create_tex_file_for_expr")
 
-    remove_file_debris(['./'], [tmp_file], ['tex'])
+    remove_file_debris(["./"], [tmp_file], ["tex"])
 
-    with open(tmp_file + '.tex', 'w') as lat_file:
-        lat_file.write('\\documentclass[12pt]{article}\n')
-        lat_file.write('\\thispagestyle{empty}\n')
-        lat_file.write('\\usepackage{amsmath}\n') # https://tex.stackexchange.com/questions/32100/what-does-each-ams-package-do
-        lat_file.write('\\begin{document}\n')
-        lat_file.write('\\huge{\n')
-        lat_file.write('$' + input_latex_str + '$\n')
-        lat_file.write('}\n')
-        lat_file.write('\\end{document}\n')
-    logger.debug('create_tex_file_for_expr; wrote tex file')
+    with open(tmp_file + ".tex", "w") as lat_file:
+        lat_file.write("\\documentclass[12pt]{article}\n")
+        lat_file.write("\\thispagestyle{empty}\n")
+        lat_file.write(
+            "\\usepackage{amsmath}\n"
+        )  # https://tex.stackexchange.com/questions/32100/what-does-each-ams-package-do
+        lat_file.write("\\begin{document}\n")
+        lat_file.write("\\huge{\n")
+        lat_file.write("$" + input_latex_str + "$\n")
+        lat_file.write("}\n")
+        lat_file.write("\\end{document}\n")
+    logger.debug("create_tex_file_for_expr; wrote tex file")
     return
 
 
-def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil: TextIO, path_to_db: str) -> Tuple[bool, str]:
+def write_step_to_graphviz_file(
+    name_of_derivation: str, local_step_id: str, fil: TextIO, path_to_db: str
+) -> Tuple[bool, str]:
     """
     >>> fil = open('a_file','r')
     >>> write_step_to_graphviz_file("deriv name", "492482", fil, False, 'data.json')
     """
-    logger.info('[trace] write_step_to_graphviz_file')
+    logger.info("[trace] write_step_to_graphviz_file")
 
     dat = clib.read_db(path_to_db)
 
-    step_dict = dat['derivations'][name_of_derivation][local_step_id]
-    logger.debug('[debug] compute: write_step_to_graphviz_file: step_dict = %s', step_dict)
+    step_dict = dat["derivations"][name_of_derivation][local_step_id]
+    logger.debug(
+        "[debug] compute: write_step_to_graphviz_file: step_dict = %s", step_dict
+    )
     #  step_dict = {'inf rule': 'begin derivation', 'inputs': [], 'feeds': [], 'outputs': ['526874110']}
-    for global_id, latex_and_ast_dict in dat['expressions'].items():
-        logger.debug('[debug] compute: write_step_to_graphviz_file: expr_dict has %s %s', global_id, latex_and_ast_dict['latex'])
+    for global_id, latex_and_ast_dict in dat["expressions"].items():
+        logger.debug(
+            "[debug] compute: write_step_to_graphviz_file: expr_dict has %s %s",
+            global_id,
+            latex_and_ast_dict["latex"],
+        )
 
-    #logger.debug('[debug] compute: write_step_to_graphviz_file: starting write')
+    # logger.debug('[debug] compute: write_step_to_graphviz_file: starting write')
 
-    valid_latex_bool, generated_png_name = create_png_from_latex(step_dict['inf rule'])
+    valid_latex_bool, generated_png_name = create_png_from_latex(step_dict["inf rule"])
     if not valid_latex_bool:
-        logger.debug('write_step_to_graphviz_file; invalid latex for inference rule %s',step_dict['inf rule'])
-        return valid_latex_bool, step_dict['inf rule']
-    fil.write(local_step_id + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/' +
-              generated_png_name + '",labelloc=b];\n')
+        logger.debug(
+            "write_step_to_graphviz_file; invalid latex for inference rule %s",
+            step_dict["inf rule"],
+        )
+        return valid_latex_bool, step_dict["inf rule"]
+    fil.write(
+        local_step_id
+        + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
+        + generated_png_name
+        + '",labelloc=b];\n'
+    )
 
-    #logger.debug('[debug] compute: write_step_to_graphviz_file: inputs')
-    for expr_local_id in step_dict['inputs']:
-        expr_global_id = dat['expr local to global'][expr_local_id]
-        valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
+    # logger.debug('[debug] compute: write_step_to_graphviz_file: inputs')
+    for expr_local_id in step_dict["inputs"]:
+        expr_global_id = dat["expr local to global"][expr_local_id]
+        valid_latex_bool, generated_png_name = create_png_from_latex(
+            dat["expressions"][expr_global_id]["latex"]
+        )
         if not valid_latex_bool:
-            logger.debug('[debug] compute: write_step_to_graphviz_file: invalid latex for input %s',dat['expressions'][expr_global_id]['latex'])
-            return valid_latex_bool,dat['expressions'][expr_global_id]['latex']
-        fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
-        fil.write(expr_local_id + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/' +
-                       generated_png_name + '",labelloc=b];\n')
+            logger.debug(
+                "[debug] compute: write_step_to_graphviz_file: invalid latex for input %s",
+                dat["expressions"][expr_global_id]["latex"],
+            )
+            return valid_latex_bool, dat["expressions"][expr_global_id]["latex"]
+        fil.write(expr_local_id + " -> " + local_step_id + ";\n")
+        fil.write(
+            expr_local_id
+            + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
+            + generated_png_name
+            + '",labelloc=b];\n'
+        )
 
-    #logger.debug('[debug] compute: write_step_to_graphviz_file: outputs')
-    for expr_local_id in step_dict['outputs']:
-        expr_global_id = dat['expr local to global'][expr_local_id]
-        valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
+    # logger.debug('[debug] compute: write_step_to_graphviz_file: outputs')
+    for expr_local_id in step_dict["outputs"]:
+        expr_global_id = dat["expr local to global"][expr_local_id]
+        valid_latex_bool, generated_png_name = create_png_from_latex(
+            dat["expressions"][expr_global_id]["latex"]
+        )
         if not valid_latex_bool:
-            logger.debug('[debug] compute: write_step_to_graphviz_file: invalid latex for output %s',dat['expressions'][expr_global_id]['latex'])
-            return valid_latex_bool, dat['expressions'][expr_global_id]['latex']
-        #logger.debug('write_step_to_graphviz_file; local and global',expr_local_id,expr_local_id)
-        fil.write(local_step_id + ' -> ' + expr_local_id + ';\n')
-        fil.write(expr_local_id + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/' +
-                       generated_png_name + '",labelloc=b];\n')
+            logger.debug(
+                "[debug] compute: write_step_to_graphviz_file: invalid latex for output %s",
+                dat["expressions"][expr_global_id]["latex"],
+            )
+            return valid_latex_bool, dat["expressions"][expr_global_id]["latex"]
+        # logger.debug('write_step_to_graphviz_file; local and global',expr_local_id,expr_local_id)
+        fil.write(local_step_id + " -> " + expr_local_id + ";\n")
+        fil.write(
+            expr_local_id
+            + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
+            + generated_png_name
+            + '",labelloc=b];\n'
+        )
 
-    #logger.debug('[debug] compute: write_step_to_graphviz_file: feeds')
-    for expr_local_id in step_dict['feeds']:
-        expr_global_id = dat['expr local to global'][expr_local_id]
-        valid_latex_bool, generated_png_name = create_png_from_latex(dat['expressions'][expr_global_id]['latex'])
+    # logger.debug('[debug] compute: write_step_to_graphviz_file: feeds')
+    for expr_local_id in step_dict["feeds"]:
+        expr_global_id = dat["expr local to global"][expr_local_id]
+        valid_latex_bool, generated_png_name = create_png_from_latex(
+            dat["expressions"][expr_global_id]["latex"]
+        )
         if not valid_latex_bool:
-            logger.debug('[debug] compute: write_step_to_graphviz_file: invalid latex for feed %s',dat['expressions'][expr_global_id]['latex'])
-            return valid_latex_bool, dat['expressions'][expr_global_id]['latex']
-        fil.write(expr_local_id + ' -> ' + local_step_id + ';\n')
-        fil.write(expr_local_id + ' [shape=box, color=red,label="",image="/home/appuser/app/static/' +
-                       generated_png_name + '",labelloc=b];\n')
-    #logger.debug('[debug] compute: write_step_to_graphviz_file: returning')
+            logger.debug(
+                "[debug] compute: write_step_to_graphviz_file: invalid latex for feed %s",
+                dat["expressions"][expr_global_id]["latex"],
+            )
+            return valid_latex_bool, dat["expressions"][expr_global_id]["latex"]
+        fil.write(expr_local_id + " -> " + local_step_id + ";\n")
+        fil.write(
+            expr_local_id
+            + ' [shape=box, color=red,label="",image="/home/appuser/app/static/'
+            + generated_png_name
+            + '",labelloc=b];\n'
+        )
+    # logger.debug('[debug] compute: write_step_to_graphviz_file: returning')
 
-    return True, 'no invalid latex'
+    return True, "no invalid latex"
 
-def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> Tuple[bool, str]:
+
+def generate_pdf_for_derivation(
+    name_of_derivation: str, path_to_db: str
+) -> Tuple[bool, str]:
     """
     In this iteration of the PDG (v7), I allow for inference rule names
     to have spaces. In previous versions, the inference rule names were
@@ -798,130 +973,177 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> Tup
 
     >>> generate_pdf_for_derivation
     """
-    logger.info('[trace] generate_pdf_for_derivation')
+    logger.info("[trace] generate_pdf_for_derivation")
     dat = clib.read_db(path_to_db)
 
-    path_to_pdf = '/home/appuser/app/static/' # must end with /
-    pdf_filename = name_of_derivation.replace(' ','_')
+    path_to_pdf = "/home/appuser/app/static/"  # must end with /
+    pdf_filename = name_of_derivation.replace(" ", "_")
 
-    remove_file_debris([path_to_pdf], [pdf_filename], ['tex','log','pdf'])
+    remove_file_debris([path_to_pdf], [pdf_filename], ["tex", "log", "pdf"])
 
-    with open(pdf_filename+'.tex', 'w') as lat_file:
-        lat_file.write('\\documentclass[12pt]{article}\n') # article or report
-#        lat_file.write('\\thispagestyle{empty}\n')
-        lat_file.write('\\usepackage{amsmath}\n') # https://tex.stackexchange.com/questions/32100/what-does-each-ams-package-do
-        lat_file.write('\\usepackage[dvipdfmx,colorlinks=true,pdfkeywords={physics derivation graph}]{hyperref}\n')
+    with open(pdf_filename + ".tex", "w") as lat_file:
+        lat_file.write("\\documentclass[12pt]{article}\n")  # article or report
+        #        lat_file.write('\\thispagestyle{empty}\n')
+        lat_file.write(
+            "\\usepackage{amsmath}\n"
+        )  # https://tex.stackexchange.com/questions/32100/what-does-each-ams-package-do
+        lat_file.write(
+            "\\usepackage[dvipdfmx,colorlinks=true,pdfkeywords={physics derivation graph}]{hyperref}\n"
+        )
         # first, write the inference rules as newcommand at top of .tex file
-        for infrule_name, infrule_dict in dat['inference rules'].items():
-            number_of_args = infrule_dict['number of feeds'] + infrule_dict['number of inputs'] + infrule_dict['number of outputs']
+        for infrule_name, infrule_dict in dat["inference rules"].items():
+            number_of_args = (
+                infrule_dict["number of feeds"]
+                + infrule_dict["number of inputs"]
+                + infrule_dict["number of outputs"]
+            )
             # https://en.wikibooks.org/wiki/LaTeX/Macros#New_commands
-            lat_file.write('\\newcommand\\' +
-                             infrule_name.replace(' ','') + '[' + # https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
-                             str(number_of_args) + ']{' +
-                             infrule_dict['latex'] + '}\n')
+            lat_file.write(
+                "\\newcommand\\"
+                + infrule_name.replace(" ", "")
+                + "["
+                + str(  # https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
+                    number_of_args
+                )
+                + "]{"
+                + infrule_dict["latex"]
+                + "}\n"
+            )
 
         # extract the list of linear index from the derivation
         list_of_linear_index = []
-        for step_id, step_dict in dat['derivations'][name_of_derivation].items():
-            list_of_linear_index.append(step_dict['linear index'])
+        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+            list_of_linear_index.append(step_dict["linear index"])
 
         list_of_linear_index.sort()
-        lat_file.write('\\title{' + name_of_derivation + '}\n')
-        lat_file.write('\\date{\\today}\n')
+        lat_file.write("\\title{" + name_of_derivation + "}\n")
+        lat_file.write("\\date{\\today}\n")
 
-        lat_file.write('\\setlength{\\topmargin}{-.5in}\n')
-        lat_file.write('\\setlength{\\textheight}{9in}\n')
-        lat_file.write('\\setlength{\\oddsidemargin}{0in}\n')
-        lat_file.write('\\setlength{\\textwidth}{6.5in}\n')
+        lat_file.write("\\setlength{\\topmargin}{-.5in}\n")
+        lat_file.write("\\setlength{\\textheight}{9in}\n")
+        lat_file.write("\\setlength{\\oddsidemargin}{0in}\n")
+        lat_file.write("\\setlength{\\textwidth}{6.5in}\n")
 
-        lat_file.write('\\begin{document}\n')
-        lat_file.write('\\maketitle\n')
+        lat_file.write("\\begin{document}\n")
+        lat_file.write("\\maketitle\n")
 
-        lat_file.write('\\begin{abstract}\n')
-        lat_file.write('Generated by the \\href{https://allofphysicsgraph.github.io/proofofconcept/}{Physics Derivation Graph}\n')
-        lat_file.write('\\end{abstract}\n')
+        lat_file.write("\\begin{abstract}\n")
+        lat_file.write(
+            "Generated by the \\href{https://allofphysicsgraph.github.io/proofofconcept/}{Physics Derivation Graph}\n"
+        )
+        lat_file.write("\\end{abstract}\n")
         for linear_indx in list_of_linear_index:
-            for step_id, step_dict in dat['derivations'][name_of_derivation].items():
-                if step_dict['linear index']==linear_indx:
+            for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+                if step_dict["linear index"] == linear_indx:
                     # using the newcommand, populate the expression IDs
-                    lat_file.write('\\' + step_dict['inf rule'].replace(' ',''))
-                    for expr_local_id in step_dict['feeds']:
-                        expr_global_id = dat['expr local to global'][expr_local_id]
-                        lat_file.write('{' + dat['expressions'][expr_global_id]['latex'] + '}')
-                    for expr_local_id in step_dict['inputs']:
-                        expr_global_id = dat['expr local to global'][expr_local_id]
-                        lat_file.write('{' + expr_local_id + '}')
-                    for expr_local_id in step_dict['outputs']:
-                        expr_global_id = dat['expr local to global'][expr_local_id]
-                        lat_file.write('{' + expr_local_id + '}')
-                    lat_file.write('\n')
+                    lat_file.write("\\" + step_dict["inf rule"].replace(" ", ""))
+                    for expr_local_id in step_dict["feeds"]:
+                        expr_global_id = dat["expr local to global"][expr_local_id]
+                        lat_file.write(
+                            "{" + dat["expressions"][expr_global_id]["latex"] + "}"
+                        )
+                    for expr_local_id in step_dict["inputs"]:
+                        expr_global_id = dat["expr local to global"][expr_local_id]
+                        lat_file.write("{" + expr_local_id + "}")
+                    for expr_local_id in step_dict["outputs"]:
+                        expr_global_id = dat["expr local to global"][expr_local_id]
+                        lat_file.write("{" + expr_local_id + "}")
+                    lat_file.write("\n")
                     # write output expressions
-                    for expr_local_id in step_dict['outputs']:
-                        expr_global_id = dat['expr local to global'][expr_local_id]
-                        lat_file.write('\\begin{equation}\n')
-                        lat_file.write(dat['expressions'][expr_global_id]['latex'] + '\n')
-                        lat_file.write('\\label{eq:' + expr_local_id + '}\n')
-                        lat_file.write('\\end{equation}\n')
-        lat_file.write('\\end{document}\n')
+                    for expr_local_id in step_dict["outputs"]:
+                        expr_global_id = dat["expr local to global"][expr_local_id]
+                        lat_file.write("\\begin{equation}\n")
+                        lat_file.write(
+                            dat["expressions"][expr_global_id]["latex"] + "\n"
+                        )
+                        lat_file.write("\\label{eq:" + expr_local_id + "}\n")
+                        lat_file.write("\\end{equation}\n")
+        lat_file.write("\\end{document}\n")
 
-    process = subprocess.run(['latex', '-halt-on-error', pdf_filename + '.tex'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
-    #latex_stdout, latex_stderr = process.communicate()
+    process = subprocess.run(
+        ["latex", "-halt-on-error", pdf_filename + ".tex"],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
+    # latex_stdout, latex_stderr = process.communicate()
     # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
     latex_stdout = process.stdout.decode("utf-8")
     latex_stderr = process.stderr.decode("utf-8")
 
-    logger.debug('latex std out: %s', latex_stdout)
-    logger.debug('latex std err: %s', latex_stderr)
+    logger.debug("latex std out: %s", latex_stdout)
+    logger.debug("latex std err: %s", latex_stderr)
 
-    if 'Text line contains an invalid character' in latex_stdout:
-        return False, 'no png generated'
+    if "Text line contains an invalid character" in latex_stdout:
+        return False, "no png generated"
 
     # run latex a second time to enable references to work
-    process = subprocess.run(['latex','-halt-on-error', pdf_filename + '.tex'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
+    process = subprocess.run(
+        ["latex", "-halt-on-error", pdf_filename + ".tex"],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
 
     # https://tex.stackexchange.com/questions/73783/dvipdfm-or-dvipdfmx-or-dvipdft
-    process = subprocess.run(['dvipdfmx', pdf_filename + '.dvi'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
+    process = subprocess.run(
+        ["dvipdfmx", pdf_filename + ".dvi"],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
 
-    shutil.move(pdf_filename + '.pdf', path_to_pdf + pdf_filename + '.pdf')
+    shutil.move(pdf_filename + ".pdf", path_to_pdf + pdf_filename + ".pdf")
 
-    return True, pdf_filename + '.pdf'
+    return True, pdf_filename + ".pdf"
 
-def create_derivation_png(name_of_derivation: str, path_to_db: str) -> Tuple[bool, str, str]:
+
+def create_derivation_png(
+    name_of_derivation: str, path_to_db: str
+) -> Tuple[bool, str, str]:
     """
     >>> create_derivation_png()
     """
-    logger.info('[trace] create_derivation_png')
+    logger.info("[trace] create_derivation_png")
 
     dat = clib.read_db(path_to_db)
 
-    dot_filename = '/home/appuser/app/static/graphviz.dot'
-    with open(dot_filename, 'w') as fil:
-        fil.write('digraph physicsDerivation { \n')
-        fil.write('overlap = false;\n')
+    dot_filename = "/home/appuser/app/static/graphviz.dot"
+    with open(dot_filename, "w") as fil:
+        fil.write("digraph physicsDerivation { \n")
+        fil.write("overlap = false;\n")
         fil.write('label="derivation: ' + name_of_derivation + '";\n')
-        fil.write('fontsize=12;\n')
+        fil.write("fontsize=12;\n")
 
-        for step_id, step_dict in dat['derivations'][name_of_derivation].items():
+        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
 
-            valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(name_of_derivation, step_id, fil, path_to_db)
+            valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(
+                name_of_derivation, step_id, fil, path_to_db
+            )
             if not valid_latex_bool:
-                return valid_latex_bool, invalid_latex_str, 'no png created'
+                return valid_latex_bool, invalid_latex_str, "no png created"
 
-        fil.write('}\n')
-    output_filename = find_valid_filename('.', 'png')
+        fil.write("}\n")
+    output_filename = find_valid_filename(".", "png")
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
-#    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
-    process = subprocess.run(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
-    #neato_stdout, neato_stderr = process.communicate()
-    #neato_stdout = neato_stdout.decode("utf-8")
-    #neato_stderr = neato_stderr.decode("utf-8")
+    #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
+    process = subprocess.run(
+        ["neato", "-Tpng", dot_filename, "-o" + output_filename],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
+    # neato_stdout, neato_stderr = process.communicate()
+    # neato_stdout = neato_stdout.decode("utf-8")
+    # neato_stderr = neato_stderr.decode("utf-8")
 
-    shutil.move(output_filename, '/home/appuser/app/static/' + output_filename)
-    return True, 'no invalid latex', output_filename
+    shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+    return True, "no invalid latex", output_filename
 
 
-
-def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_to_db: str) -> Tuple[bool, str, str]:
+def create_step_graphviz_png(
+    name_of_derivation: str, local_step_id: str, path_to_db: str
+) -> Tuple[bool, str, str]:
     """
     >>> step_dict = {'inf rule':'add X to both sides',
                      'inf rule local ID':'2948592',
@@ -931,41 +1153,47 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
     >>> create_step_graphviz_png(step_dict, 'my derivation', False)
 
     """
-    logger.info('[trace] create_step_graphviz_png')
+    logger.info("[trace] create_step_graphviz_png")
 
-    dot_filename = '/home/appuser/app/static/graphviz.dot'
+    dot_filename = "/home/appuser/app/static/graphviz.dot"
 
-    remove_file_debris(['/home/appuser/app/static/'], ['graphviz'], ['dot'])
+    remove_file_debris(["/home/appuser/app/static/"], ["graphviz"], ["dot"])
 
-    with open(dot_filename, 'w') as fil:
-        fil.write('digraph physicsDerivation { \n')
-        fil.write('overlap = false;\n')
+    with open(dot_filename, "w") as fil:
+        fil.write("digraph physicsDerivation { \n")
+        fil.write("overlap = false;\n")
         fil.write('label="step in ' + name_of_derivation + '";\n')
-        fil.write('fontsize=12;\n')
+        fil.write("fontsize=12;\n")
 
-        valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_db)
+        valid_latex_bool, invalid_latex_str = write_step_to_graphviz_file(
+            name_of_derivation, local_step_id, fil, path_to_db
+        )
         if not valid_latex_bool:
-            return valid_latex_bool, invalid_latex_str, 'no png created'
+            return valid_latex_bool, invalid_latex_str, "no png created"
 
-        fil.write('}\n')
+        fil.write("}\n")
 
-#    with open(dot_filename,'r') as fil:
-#       logger.debug(fil.read())
+    #    with open(dot_filename,'r') as fil:
+    #       logger.debug(fil.read())
 
-    output_filename = find_valid_filename('.','png')
-    logger.debug('create_step_graphviz_png; output_filename = %s', output_filename)
-    remove_file_debris(['./'], ['graphviz'], ['png'])
+    output_filename = find_valid_filename(".", "png")
+    logger.debug("create_step_graphviz_png; output_filename = %s", output_filename)
+    remove_file_debris(["./"], ["graphviz"], ["png"])
 
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
-#    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
-    process = subprocess.run(['neato', '-Tpng', dot_filename, '-o' + output_filename], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
-    #neato_stdout, neato_stderr = process.communicate()
-    #neato_stdout = neato_stdout.decode("utf-8")
-    #neato_stderr = neato_stderr.decode("utf-8")
+    #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
+    process = subprocess.run(
+        ["neato", "-Tpng", dot_filename, "-o" + output_filename],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
+    # neato_stdout, neato_stderr = process.communicate()
+    # neato_stdout = neato_stdout.decode("utf-8")
+    # neato_stderr = neato_stderr.decode("utf-8")
 
-    shutil.move(output_filename, '/home/appuser/app/static/' + output_filename)
-    return True, 'no invalid latex', output_filename
-
+    shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+    return True, "no invalid latex", output_filename
 
 
 def create_png_from_latex(input_latex_str: str) -> Tuple[bool, str]:
@@ -975,254 +1203,305 @@ def create_png_from_latex(input_latex_str: str) -> Tuple[bool, str]:
     this function assumes generated PNG should be placed in /home/appuser/app/static/
     >>> create_png_from_latex('a \dot b \\nabla', False)
     """
-    logger.info('[trace] create_png_from_latex')
+    logger.info("[trace] create_png_from_latex")
 
-    #logger.debug('[debug] compute: create_png_from_latex: input latex str =', input_latex_str)
+    # logger.debug('[debug] compute: create_png_from_latex: input latex str =', input_latex_str)
 
-    tmp_file = 'lat'
-    remove_file_debris(['./'], [tmp_file], ['tex', 'dvi', 'aux', 'log'])
+    tmp_file = "lat"
+    remove_file_debris(["./"], [tmp_file], ["tex", "dvi", "aux", "log"])
 
-    #logger.debug('[debug] compute: create_png_from_latex: finished debris removal, starting create tex file')
+    # logger.debug('[debug] compute: create_png_from_latex: finished debris removal, starting create tex file')
 
     create_tex_file_for_expr(tmp_file, input_latex_str)
 
-    #logger.debug('[debug] compute: create_png_from_latex: running latex against file')
+    # logger.debug('[debug] compute: create_png_from_latex: running latex against file')
 
-    process = subprocess.run(['latex','-halt-on-error', tmp_file+'.tex'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
-    #latex_stdout, latex_stderr = process.communicate()
+    process = subprocess.run(
+        ["latex", "-halt-on-error", tmp_file + ".tex"],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
+    # latex_stdout, latex_stderr = process.communicate()
     # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
     latex_stdout = process.stdout.decode("utf-8")
     latex_stderr = process.stderr.decode("utf-8")
 
-    #logger.debug('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
-    #logger.debug('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
+    # logger.debug('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
+    # logger.debug('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
 
-    if 'Text line contains an invalid character' in latex_stdout:
-        return False, 'no png generated'
+    if "Text line contains an invalid character" in latex_stdout:
+        return False, "no png generated"
 
-    name_of_png = tmp_file + '.png'
-    remove_file_debris(['./'], [tmp_file], ['png'])
+    name_of_png = tmp_file + ".png"
+    remove_file_debris(["./"], [tmp_file], ["png"])
 
-    process = subprocess.run(['dvipng', tmp_file + '.dvi', '-T', 'tight', '-o', name_of_png], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
-    #png_stdout, png_stderr = process.communicate()
+    process = subprocess.run(
+        ["dvipng", tmp_file + ".dvi", "-T", "tight", "-o", name_of_png],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
+    # png_stdout, png_stderr = process.communicate()
     # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
     png_stdout = process.stdout.decode("utf-8")
     png_stderr = process.stderr.decode("utf-8")
 
-    logger.debug('[debug] compute: create_png_from_latex: png std out %s', png_stdout)
-    logger.debug('[debug] compute: create_png_from_latex: png std err %s', png_stderr)
+    logger.debug("[debug] compute: create_png_from_latex: png std out %s", png_stdout)
+    logger.debug("[debug] compute: create_png_from_latex: png std err %s", png_stderr)
 
-    destination_folder = '/home/appuser/app/static/'
-    generated_png_name = find_valid_filename(destination_folder, 'png')
+    destination_folder = "/home/appuser/app/static/"
+    generated_png_name = find_valid_filename(destination_folder, "png")
     shutil.move(name_of_png, generated_png_name)
 
     if os.path.isfile(destination_folder + generated_png_name):
-        #os.remove('/home/appuser/app/static/'+name_of_png)
-        logger.debug('[ERROR] compute: create_png_from_latex: png already exists!')
+        # os.remove('/home/appuser/app/static/'+name_of_png)
+        logger.debug("[ERROR] compute: create_png_from_latex: png already exists!")
     shutil.move(generated_png_name, destination_folder + generated_png_name)
 
     return True, generated_png_name
 
-#*********************************************************
+
+# *********************************************************
 # data structure transformations
 
-def modify_latex_in_step(expr_local_id_of_latex_to_modify: str,
-                         revised_latex: str, path_to_db: str) -> None:
+
+def modify_latex_in_step(
+    expr_local_id_of_latex_to_modify: str, revised_latex: str, path_to_db: str
+) -> None:
     """
     >>> modify_latex_in_step('959242', 'a = b', 'data.json')
     """
-    logger.info('[trace] modify_latex_in_step')
+    logger.info("[trace] modify_latex_in_step")
     dat = clib.read_db(path_to_db)
 
     expr_global_id = create_expr_global_id(path_to_db)
-    dat['expressions'][expr_global_id] = {'latex': revised_latex}
-    dat['expr local to global'][expr_local_id_of_latex_to_modify] = expr_global_id
+    dat["expressions"][expr_global_id] = {"latex": revised_latex}
+    dat["expr local to global"][expr_local_id_of_latex_to_modify] = expr_global_id
 
     clib.write_db(path_to_db, dat)
     return
+
 
 def delete_derivation(name_of_derivation: str, path_to_db: str) -> str:
     """
     >>> delete_derivation('my cool deriv', 'data.json')
 
     """
-    logger.info('[trace] add_inf_rule')
+    logger.info("[trace] add_inf_rule")
     dat = clib.read_db(path_to_db)
     # TODO: if expr is only used in this derivation, does the user want dangling expressions removed?
-    del dat['derivations'][name_of_derivation]
+    del dat["derivations"][name_of_derivation]
     clib.write_db(path_to_db, dat)
-    return "successfully deleted "+name_of_derivation
+    return "successfully deleted " + name_of_derivation
+
 
 def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     """
     >>> request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
     >>> add_inf_rule(request.form.to_dict(), 'data.json')
     """
-    logger.info('[trace] add_inf_rule')
+    logger.info("[trace] add_inf_rule")
 
     # create a data structure similar to
     #   'begin derivation':         {'number of feeds':0, 'number of inputs':0, 'number of outputs': 1, 'latex': 'more'}
     arg_dict = {}
     status_msg = ""
     try:
-        arg_dict['number of feeds'] = int(inf_rule_dict_from_form['num_feeds'])
+        arg_dict["number of feeds"] = int(inf_rule_dict_from_form["num_feeds"])
     except ValueError as err:
         return "number of feeds does not seem to be an integer"
     try:
-        arg_dict['number of inputs'] = int(inf_rule_dict_from_form['num_inputs'])
+        arg_dict["number of inputs"] = int(inf_rule_dict_from_form["num_inputs"])
     except ValueError as err:
         return "number of inputs does not seem to be an integer"
     try:
-        arg_dict['number of outputs'] = int(inf_rule_dict_from_form['num_outputs'])
+        arg_dict["number of outputs"] = int(inf_rule_dict_from_form["num_outputs"])
     except ValueError as err:
         return "number of outputs does not seem to be an integer"
-    arg_dict['latex'] = inf_rule_dict_from_form['latex']
-    logger.debug('add_inf_rule; arg_dict = %s',arg_dict)
+    arg_dict["latex"] = inf_rule_dict_from_form["latex"]
+    logger.debug("add_inf_rule; arg_dict = %s", arg_dict)
 
     dat = clib.read_db(path_to_db)
-    if inf_rule_dict_from_form['inf_rule_name'] in dat['inference rules'].keys():
+    if inf_rule_dict_from_form["inf_rule_name"] in dat["inference rules"].keys():
         status_msg = "inference rule already exists"
 
-    dat['inference rules'][inf_rule_dict_from_form['inf_rule_name']] = arg_dict
+    dat["inference rules"][inf_rule_dict_from_form["inf_rule_name"]] = arg_dict
     clib.write_db(path_to_db, dat)
 
     return status_msg
+
 
 def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
     """
     >>> delete_inf_rule('multbothsidesbyx','data.json')
     """
-    logger.info('[trace] delete_inf_rule')
+    logger.info("[trace] delete_inf_rule")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     infrule_popularity_dict = popularity_of_infrules(path_to_db)
-    #logger.debug('name_of_inf_rule',name_of_inf_rule)
-    #logger.debug(infrule_popularity_dict)
+    # logger.debug('name_of_inf_rule',name_of_inf_rule)
+    # logger.debug(infrule_popularity_dict)
 
-    if len(infrule_popularity_dict[name_of_inf_rule])>0:
-        status_message = name_of_inf_rule + ' cannot be deleted because it is used in ' + str(infrule_popularity_dict[name_of_inf_rule])
+    if len(infrule_popularity_dict[name_of_inf_rule]) > 0:
+        status_message = (
+            name_of_inf_rule
+            + " cannot be deleted because it is used in "
+            + str(infrule_popularity_dict[name_of_inf_rule])
+        )
         return status_message
-    if name_of_inf_rule in dat['inference rules'].keys():
-        del dat['inference rules'][name_of_inf_rule]
+    if name_of_inf_rule in dat["inference rules"].keys():
+        del dat["inference rules"][name_of_inf_rule]
         status_msg = name_of_inf_rule + " deleted"
     else:
         status_msg = name_of_inf_rule + " does not exist in database"
     clib.write_db(path_to_db, dat)
     return status_msg
 
-def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_to_db: str) -> str:
+
+def rename_inf_rule(
+    old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_to_db: str
+) -> str:
     """
     >>> rename_inf_rule()
     """
-    logger.info('[trace] rename_inf_rule')
+    logger.info("[trace] rename_inf_rule")
     dat = clib.read_db(path_to_db)
     status_msg = ""
-    if old_name_of_inf_rule in dat['inference rules'].keys():
-        dat['inference rules'][new_name_of_inf_rule] = dat['inference rules'][old_name_of_inf_rule]
-        del dat['inference rules'][old_name_of_inf_rule]
+    if old_name_of_inf_rule in dat["inference rules"].keys():
+        dat["inference rules"][new_name_of_inf_rule] = dat["inference rules"][
+            old_name_of_inf_rule
+        ]
+        del dat["inference rules"][old_name_of_inf_rule]
 
         # rename inf_rule in dat['derivations']
-        for derivation_name, deriv_dict in dat['derivations'].items():
+        for derivation_name, deriv_dict in dat["derivations"].items():
             for step_id, step_dict in deriv_dict.items():
-                if step_dict['inf rule']==old_name_of_inf_rule:
-                    dat['derivations'][derivation_name][step_id]['inf rule'] = new_name_of_inf_rule
+                if step_dict["inf rule"] == old_name_of_inf_rule:
+                    dat["derivations"][derivation_name][step_id][
+                        "inf rule"
+                    ] = new_name_of_inf_rule
 
-        status_msg = old_name_of_inf_rule + ' renamed to ' + new_name_of_inf_rule + '\n and references in derivations were updated'
+        status_msg = (
+            old_name_of_inf_rule
+            + " renamed to "
+            + new_name_of_inf_rule
+            + "\n and references in derivations were updated"
+        )
     else:
-        status_msg = old_name_of_inf_rule + " does not exist in database; no action taken"
+        status_msg = (
+            old_name_of_inf_rule + " does not exist in database; no action taken"
+        )
     clib.write_db(path_to_db, dat)
     return status_msg
+
 
 def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str) -> str:
     """
     >>> edit_inf_rule_latex()
     """
-    logger.info('[trace] edit_inf_rule_latex')
+    logger.info("[trace] edit_inf_rule_latex")
     dat = clib.read_db(path_to_db)
     status_msg = ""
-    if inf_rule_name in dat['inference rules'].keys():
-        dat['inference rules'][inf_rule_name]['latex'] = revised_latex
+    if inf_rule_name in dat["inference rules"].keys():
+        dat["inference rules"][inf_rule_name]["latex"] = revised_latex
     else:
-        status_msg = inf_rule_name + ' does not exist in database'
+        status_msg = inf_rule_name + " does not exist in database"
     clib.write_db(path_to_db, dat)
     return status_msg
+
 
 def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
     """
     >>> edit_expr_latex()
     """
-    logger.info('[trace] edit_expr_latex')
+    logger.info("[trace] edit_expr_latex")
     dat = clib.read_db(path_to_db)
     status_msg = ""
-    #logger.debug('old latex:',dat['expressions'][expr_id]['latex'])
-    dat['expressions'][expr_id]['latex'] = revised_latex
-    #logger.debug('new latex:',dat['expressions'][expr_id]['latex'])
+    # logger.debug('old latex:',dat['expressions'][expr_id]['latex'])
+    dat["expressions"][expr_id]["latex"] = revised_latex
+    # logger.debug('new latex:',dat['expressions'][expr_id]['latex'])
     clib.write_db(path_to_db, dat)
     # TODO: update AST based on revised latex
     return status_msg
+
 
 def delete_expr(expr_global_id: str, path_to_db: str) -> str:
     """
     >>> delete_expr()
     """
-    logger.info('[trace] delete_expr')
+    logger.info("[trace] delete_expr")
     status_message = ""
     dat = clib.read_db(path_to_db)
     expression_popularity_dict = popularity_of_expressions(path_to_db)
-    if len(expression_popularity_dict[expr_global_id])>0:
-        status_message = expr_global_id + ' cannot be deleted because it is in use in ' + str(expression_popularity_dict[expr_global_id])
-    else: # expr is not in use
-        del dat['expressions'][expr_global_id]
+    if len(expression_popularity_dict[expr_global_id]) > 0:
+        status_message = (
+            expr_global_id
+            + " cannot be deleted because it is in use in "
+            + str(expression_popularity_dict[expr_global_id])
+        )
+    else:  # expr is not in use
+        del dat["expressions"][expr_global_id]
         status_message = "successfully deleted " + expr_global_id
-    logger.debug('delete_expr; dat[expr].keys = %s', dat['expressions'].keys())
+    logger.debug("delete_expr; dat[expr].keys = %s", dat["expressions"].keys())
     clib.write_db(path_to_db, dat)
     return status_message
 
-def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_db: str) -> str:
+
+def create_step(
+    latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_db: str
+) -> str:
     """
     >>> latex_for_step_dict = ImmutableMultiDict([('output1', 'a = b')])
     >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'data.json')
     9492849
     """
-    logger.info('[trace] create_step')
+    logger.info("[trace] create_step")
 
     dat = clib.read_db(path_to_db)
 
-    step_dict = {'inf rule': inf_rule,
-                 'inputs':   [],
-                 'feeds':    [],
-                 'outputs':  [],
-                 'linear index': -1}  # type: STEP_DICT
-         # if we observe 'linear index'==-1 outside this function, it indicates a problem
+    step_dict = {
+        "inf rule": inf_rule,
+        "inputs": [],
+        "feeds": [],
+        "outputs": [],
+        "linear index": -1,
+    }  # type: STEP_DICT
+    # if we observe 'linear index'==-1 outside this function, it indicates a problem
 
     # because the form is an immutable dict, we need to convert to dict before deleting keys
     # https://tedboy.github.io/flask/generated/generated/werkzeug.ImmutableMultiDict.html
     latex_for_step_dict = latex_for_step_dict.to_dict(flat=True)
-    logger.debug('create_step; latex_for_step_dict = %s',latex_for_step_dict)
+    logger.debug("create_step; latex_for_step_dict = %s", latex_for_step_dict)
 
     inputs_and_outputs_to_delete = []
     for which_eq, latex_expr_str in latex_for_step_dict.items():
-        if 'use_ID_for' in which_eq:  # 'use_ID_for_in1' or 'use_ID_for_in2' or 'use_ID_for_out1', etc
+        if (
+            "use_ID_for" in which_eq
+        ):  # 'use_ID_for_in1' or 'use_ID_for_in2' or 'use_ID_for_out1', etc
             # the following leverages the dict from the web form
             # request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('submit_button', 'Submit')])
-            logger.debug('create_step; use_ID_for is in %s', which_eq)
-            if 'for_in' in which_eq:
-                this_input = 'input' + which_eq[-1]
+            logger.debug("create_step; use_ID_for is in %s", which_eq)
+            if "for_in" in which_eq:
+                this_input = "input" + which_eq[-1]
                 expr_local_id = latex_for_step_dict[this_input]
-                step_dict['inputs'].append(expr_local_id)
+                step_dict["inputs"].append(expr_local_id)
                 inputs_and_outputs_to_delete.append(this_input)
-            elif 'for_out' in which_eq:
-                this_output = 'output' + which_eq[-1]
+            elif "for_out" in which_eq:
+                this_output = "output" + which_eq[-1]
                 expr_local_id = latex_for_step_dict[this_input]
-                step_dict['inputs'].append(expr_local_id)
+                step_dict["inputs"].append(expr_local_id)
                 inputs_and_outputs_to_delete.append(this_output)
             else:
-                raise Exception('[ERROR] compute; create_step; unrecognized key in use_ID ', latex_for_step_dict)
+                raise Exception(
+                    "[ERROR] compute; create_step; unrecognized key in use_ID ",
+                    latex_for_step_dict,
+                )
 
     # remove all the "use_ID_for" keys
     list_of_keys = list(latex_for_step_dict.keys())
     for this_key in list_of_keys:
-        if 'use_ID_for' in this_key:
+        if "use_ID_for" in this_key:
             del latex_for_step_dict[this_key]
 
     # remove the inputs and outputs that were associated with 'use_ID_for'
@@ -1230,72 +1509,90 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
         del latex_for_step_dict[input_and_output]
 
     for which_eq, latex_expr_str in latex_for_step_dict.items():
-        logger.debug('create_step; which_eq = %s and latex_expr_str = %s', which_eq, latex_expr_str)
-        if 'input' in which_eq:
+        logger.debug(
+            "create_step; which_eq = %s and latex_expr_str = %s",
+            which_eq,
+            latex_expr_str,
+        )
+        if "input" in which_eq:
             expr_global_id = create_expr_global_id(path_to_db)
-            dat['expressions'][expr_global_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
+            dat["expressions"][expr_global_id] = {
+                "latex": latex_expr_str
+            }  # , 'AST': latex_as_AST}
             expr_local_id = create_expr_local_id(path_to_db)
-            dat['expr local to global'][expr_local_id] = expr_global_id
-            step_dict['inputs'].append(expr_local_id)
-        elif 'output' in which_eq:
+            dat["expr local to global"][expr_local_id] = expr_global_id
+            step_dict["inputs"].append(expr_local_id)
+        elif "output" in which_eq:
             expr_global_id = create_expr_global_id(path_to_db)
-            dat['expressions'][expr_global_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
+            dat["expressions"][expr_global_id] = {
+                "latex": latex_expr_str
+            }  # , 'AST': latex_as_AST}
             expr_local_id = create_expr_local_id(path_to_db)
-            dat['expr local to global'][expr_local_id] = expr_global_id
-            step_dict['outputs'].append(expr_local_id)
-        elif 'feed' in which_eq:
+            dat["expr local to global"][expr_local_id] = expr_global_id
+            step_dict["outputs"].append(expr_local_id)
+        elif "feed" in which_eq:
             expr_global_id = create_expr_global_id(path_to_db)
-            dat['expressions'][expr_global_id] = {'latex': latex_expr_str}#, 'AST': latex_as_AST}
+            dat["expressions"][expr_global_id] = {
+                "latex": latex_expr_str
+            }  # , 'AST': latex_as_AST}
             expr_local_id = create_expr_local_id(path_to_db)
-            dat['expr local to global'][expr_local_id] = expr_global_id
-            step_dict['feeds'].append(expr_local_id)
-        elif 'submit_button' in which_eq:
+            dat["expr local to global"][expr_local_id] = expr_global_id
+            step_dict["feeds"].append(expr_local_id)
+        elif "submit_button" in which_eq:
             pass
         else:
-            raise Exception('[ERROR] compute; create_step; unrecognized key in step dict', latex_for_step_dict)
+            raise Exception(
+                "[ERROR] compute; create_step; unrecognized key in step dict",
+                latex_for_step_dict,
+            )
 
     list_of_linear_index = []
 
-    if name_of_derivation in dat['derivations'].keys():
-        for step_id, tmp_step_dict in dat['derivations'][name_of_derivation].items():
-            list_of_linear_index.append(tmp_step_dict['linear index'])
+    if name_of_derivation in dat["derivations"].keys():
+        for step_id, tmp_step_dict in dat["derivations"][name_of_derivation].items():
+            list_of_linear_index.append(tmp_step_dict["linear index"])
         highest_linear_index = max(list_of_linear_index)
-        step_dict['linear index'] = highest_linear_index + 1
-    else: # new derivation
-        logger.debug('create_step; new derivation so initializing linear index')
-        step_dict['linear index'] = 1
+        step_dict["linear index"] = highest_linear_index + 1
+    else:  # new derivation
+        logger.debug("create_step; new derivation so initializing linear index")
+        step_dict["linear index"] = 1
 
-    if step_dict['linear index'] == -1:
-        raise Exception('problem with linear index!')
-    logger.debug('create_step; step_dict = %s', step_dict)
+    if step_dict["linear index"] == -1:
+        raise Exception("problem with linear index!")
+    logger.debug("create_step; step_dict = %s", step_dict)
 
     # add step_dict to dat, write dat to file
     inf_rule_local_ID = create_step_id(path_to_db)
-    if name_of_derivation not in dat['derivations'].keys():
-        logger.debug('[debug] compute: create_step: starting new derivation')
-        dat['derivations'][name_of_derivation] = {inf_rule_local_ID: step_dict}
-    else: # derivation exists
-        if inf_rule_local_ID in dat['derivations'][name_of_derivation].keys():
-            raise Exception('collision of inf_rule_local_id already in dat', inf_rule_local_ID)
-        dat['derivations'][name_of_derivation][inf_rule_local_ID] = step_dict
+    if name_of_derivation not in dat["derivations"].keys():
+        logger.debug("[debug] compute: create_step: starting new derivation")
+        dat["derivations"][name_of_derivation] = {inf_rule_local_ID: step_dict}
+    else:  # derivation exists
+        if inf_rule_local_ID in dat["derivations"][name_of_derivation].keys():
+            raise Exception(
+                "collision of inf_rule_local_id already in dat", inf_rule_local_ID
+            )
+        dat["derivations"][name_of_derivation][inf_rule_local_ID] = step_dict
 
     clib.write_db(path_to_db, dat)
 
     return inf_rule_local_ID
 
+
 def determine_step_validity(name_of_derivation: str, path_to_db: str) -> dict:
     """
     >>>
     """
-    logger.info('[trace] determine_step_validity')
+    logger.info("[trace] determine_step_validity")
     dat = clib.read_db(path_to_db)
     step_validity_dict = {}
 
-    if name_of_derivation not in dat['derivations'].keys():
-        raise Exception('dat does not contain ' + name_of_derivation)
+    if name_of_derivation not in dat["derivations"].keys():
+        raise Exception("dat does not contain " + name_of_derivation)
 
-    for step_id, step_dict in dat['derivations'][name_of_derivation].items():
-        step_validity_dict[step_id] = vir.validate_step(name_of_derivation, step_id, path_to_db)
+    for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+        step_validity_dict[step_id] = vir.validate_step(
+            name_of_derivation, step_id, path_to_db
+        )
     return step_validity_dict
 
 
