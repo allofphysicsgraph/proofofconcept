@@ -2,7 +2,7 @@
 
 import json
 import json_schema # a PDG file
-from jsonschema import validate
+from jsonschema import validate # type: ignore
 import logging
 logger = logging.getLogger(__name__)
 
@@ -18,7 +18,7 @@ def read_db(path_to_db: str) -> dict:
     """
     >>> read_db('data.json')
     """
-    if print_trace: print('[trace] compute: read_db')
+    if print_trace: logger.info('[trace] compute: read_db')
 
 #    with open(path_to_db, 'rb') as fil:
 #        dat = pickle.load(fil)
@@ -36,7 +36,7 @@ def write_db(path_to_db: str, dat: dict) -> None:
     >>> write_db('data.json', dat)
     [trace] compute: write_db
     """
-    if print_trace: print('[trace] compute: write_db')
+    if print_trace: logger.info('[trace] compute: write_db')
 #    with open(path_to_db, 'wb') as fil:
 #        pickle.dump(dat, fil)
     with open(path_to_db, 'w') as outfile:

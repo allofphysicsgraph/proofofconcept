@@ -2,6 +2,8 @@ Flask
 graphviz
 flask-wtf
 mypy
+pycallgraph
+prospector
 pandas
 flake8
 pylint

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-import sympy
-from sympy.parsing.latex import parse_latex
+import sympy # type: ignore
+from sympy.parsing.latex import parse_latex # type: ignore
 import common_lib as clib
-from typing import Tuple, TextIO
+from typing import Tuple #, TextIO
 import logging
 logger = logging.getLogger(__name__)
 
@@ -14,21 +14,20 @@ print_debug = True
 global proc_timeout
 proc_timeout = 30
 
-
 def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str, str]:
     """
     >>> split_expr_into_lhs_rhs('a = b')
     'a', 'b'
     """
-    if print_trace: print('[trace] compute; split_expr_into_lhs_rhs')
+    if print_trace: logger.info('[trace] split_expr_into_lhs_rhs')
 
-    print('[debug] compute; split_expr_into_lhs_rhs; latex_expr =', latex_expr)
+    logger.debug('split_expr_into_lhs_rhs; latex_expr = %s', latex_expr)
 
     sympy_expr = parse_latex(latex_expr)
-    print('[debug] compute; split_expr_into_lhs_rhs; Sympy expression =',sympy_expr)
+    logger.debug('split_expr_into_lhs_rhs; Sympy expression = %s',sympy_expr)
 
     #latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
-    #print('latex as Sympy expr tree =',latex_as_sympy_expr_tree)
+    #logger.debug('latex as Sympy expr tree = %s',latex_as_sympy_expr_tree)
 
     try:
         return "", sympy_expr.lhs, sympy_expr.rhs
@@ -39,12 +38,12 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
     """
     >>> validate_step('my cool deriv', '958282', 'data.json')
     """
-    if print_trace: print('[trace] compute; validate_step')
+    if print_trace: logger.info('[trace] validate_step')
 
     dat = clib.read_db(path_to_db)
 
     step_dict = dat['derivations'][name_of_derivation][step_id]
-    print('[debug] compute; validate_step; step_dict =',step_dict)
+    logger.debug('validate_step; step_dict = %s',step_dict)
 
     if step_dict['inf rule'] in ['declare initial expr', 'declare final expr',
                                  'declare identity', 'declare guess solution',
@@ -54,39 +53,39 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
     er_msg = ""
     if len(step_dict['inputs']) > 0:
         input_0_latex = latex_from_expr_local_id(step_dict['inputs'][0], path_to_db)
-        print('[debug] compute; validate_step; input_latex =', input_0_latex)
+        logger.debug('validate_step; input_latex = %s', input_0_latex)
         er_msg, input_0_LHS, input_0_RHS = split_expr_into_lhs_rhs(input_0_latex)
     if len(step_dict['inputs']) > 1:
         input_1_latex = latex_from_expr_local_id(step_dict['inputs'][1], path_to_db)
-        print('[debug] compute; validate_step; input_latex =', input_1_latex)
+        logger.debug('validate_step; input_latex = %s', input_1_latex)
         er_msg, input_1_LHS, input_1_RHS = split_expr_into_lhs_rhs(input_1_latex)
     if len(step_dict['inputs']) > 2:
         input_2_latex = latex_from_expr_local_id(step_dict['inputs'][2], path_to_db)
-        print('[debug] compute; validate_step; input_latex =', input_2_latex)
+        logger.debug('validate_step; input_latex = %s', input_2_latex)
         er_msg, input_2_LHS, input_2_RHS = split_expr_into_lhs_rhs(input_2_latex)
     if len(step_dict['feeds']) > 0:
         feed_0_latex = latex_from_expr_local_id(step_dict['feeds'][0], path_to_db)
-        print('[debug] compute; validate_step; feed_0_latex =', feed_0_latex)
+        logger.debug('validate_step; feed_0_latex = %s', feed_0_latex)
         feed_0 = parse_latex(feed_0_latex)
     if len(step_dict['feeds']) > 1:
         feed_1_latex = latex_from_expr_local_id(step_dict['feeds'][1], path_to_db)
-        print('[debug] compute; validate_step; feed_1_latex =', feed_1_latex)
+        logger.debug('validate_step; feed_1_latex = %s', feed_1_latex)
         feed_1 = parse_latex(feed_1_latex)
     if len(step_dict['feeds']) > 2:
         feed_2_latex = latex_from_expr_local_id(step_dict['feeds'][2], path_to_db)
-        print('[debug] compute; validate_step; feed_2_latex =', feed_2_latex)
+        logger.debug('validate_step; feed_2_latex = %s', feed_2_latex)
         feed_2 = parse_latex(feed_2_latex)
     if len(step_dict['outputs']) > 0:
         output_0_latex = latex_from_expr_local_id(step_dict['outputs'][0], path_to_db)
-        print('[debug] compute; validate_step; output_0_latex =', output_0_latex)
+        logger.debug('validate_step; output_0_latex = %s', output_0_latex)
         er_msg, output_0_LHS, output_0_RHS = split_expr_into_lhs_rhs(output_0_latex)
     if len(step_dict['outputs']) > 1:
         output_1_latex = latex_from_expr_local_id(step_dict['outputs'][1], path_to_db)
-        print('[debug] compute; validate_step; output_1_latex =', output_1_latex)
+        logger.debug('validate_step; output_1_latex = %s', output_1_latex)
         er_msg, output_1_LHS, output_1_RHS = split_expr_into_lhs_rhs(output_1_latex)
     if len(step_dict['outputs']) > 2:
         output_2_latex = latex_from_expr_local_id(step_dict['outputs'][2], path_to_db)
-        print('[debug] compute; validate_step; output_2_latex =', output_2_latex)
+        logger.debug('validate_step; output_2_latex = %s', output_2_latex)
         er_msg, output_2_LHS, output_2_RHS = split_expr_into_lhs_rhs(output_2_latex)
 
     if er_msg != "":
@@ -129,12 +128,12 @@ def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
     >>> latex_from_expr_local_id('1029')
     'a = b'
     """
-    if print_trace: print('[trace] compute; latex_from_expr_local_id')
+    if print_trace: logger.info('[trace] latex_from_expr_local_id')
     dat = clib.read_db(path_to_db)
-    print('[debug] compute; latex_from_expr_local_id; expr_local_id =', expr_local_id)
+    logger.debug('latex_from_expr_local_id; expr_local_id = %s', expr_local_id)
     global_id = dat['expr local to global'][expr_local_id]
     latex_expr = dat['expressions'][global_id]['latex']
-    print('[debug] compute; latex_from_expr_local_id; latex_expr =', latex_expr)
+    logger.debug('latex_from_expr_local_id; latex_expr = %s', latex_expr)
     return latex_expr
 
 
@@ -146,13 +145,13 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
 
     >>> create_sympy_expr_tree_from_latex(r"\frac {1 + \sqrt {\a}} {\b}")
     """
-    if print_trace: print('[trace] compute; create_sympy_expr_tree_from_latex')
+    if print_trace: logger.info('[trace] create_sympy_expr_tree_from_latex')
 
     sympy_expr = parse_latex(latex_expr_str)
-    print('[debug] compute; create_sympy_expr_tree_from_latex; Sympy expression =',sympy_expr)
+    logger.debug('create_sympy_expr_tree_from_latex; Sympy expression = %s',sympy_expr)
 
     latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
-    print('[debug] compute; create_sympy_expr_tree_from_latex; latex as Sympy expr tree =',latex_as_sympy_expr_tree)
+    logger.debug('create_sympy_expr_tree_from_latex; latex as Sympy expr tree = %s',latex_as_sympy_expr_tree)
 
     return latex_as_sympy_expr_tree
 
@@ -166,7 +165,7 @@ def get_symbols_from_latex(latex_expr_str: str) -> list:
     >>> parse_latex(r'\nabla \vec{x} = f(y)').free_symbols
     {x, nabla, y, vec}
     """
-    if print_trace: print('[trace] compute; get_symbols_from_latex')
+    if print_trace: logger.info('[trace] get_symbols_from_latex')
 
     return list(parse_latex(latex_expr_str).free_symbols)
 

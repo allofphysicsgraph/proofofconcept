@@ -49,12 +49,12 @@ USER appuser
 COPY templates     /home/appuser/app/templates
 COPY static        /home/appuser/app/static
 COPY compute.py \
+     controller.py \
+     common_lib.py \
      config.py \
      data.json \
      json_schema.py \
-     tests.sh \
-     controller.py \
-     common_lib.py \
+     Makefile \
      validate_inference_rules_sympy.py \
      /home/appuser/app/
 #COPY compute.py    /home/appuser/app
