@@ -11,6 +11,11 @@ logger = logging.getLogger(__name__)
 
 def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str, str]:
     """
+    input: expression as latex string
+
+    output 1: operator
+    output 2: lhs
+    output 3: rhs
     >>> split_expr_into_lhs_rhs('a = b')
     'a', 'b'
     """

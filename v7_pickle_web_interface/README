@@ -1,7 +1,13 @@
 
-from
+
+docker-compose build --progress tty
+docker-compose up
+
+docker-compose instructions are from from
 https://github.com/ChloeCodesThings/chloe_flask_docker_demo
 and
 https://codefresh.io/docker-tutorial/hello-whale-getting-started-docker-flask/
 
+combining flask, gunicorn, nginx is from
+https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/
 

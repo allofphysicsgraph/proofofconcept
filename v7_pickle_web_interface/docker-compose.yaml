@@ -1,8 +1,17 @@
 
-web:
-  build: ./web
-  ports:
-   - "5000:5000"
-  volumes:
-   - .:/code
+version: "3.7"
 
+services:
+  web:
+    build: ./web
+    ports:
+     - "5000:5000"
+    volumes:
+     - .:/code
+
+  nginx:
+    build: ./services/nginx
+    ports:
+      - 1337:80
+    depends_on:
+      - web

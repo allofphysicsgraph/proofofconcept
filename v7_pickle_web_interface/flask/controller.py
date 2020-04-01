@@ -23,7 +23,7 @@ import json_schema  # PDG
 import compute  # PDG
 import validate_inference_rules_sympy as vir  # PDG
 
-global proc_timeout
+#global proc_timeout
 proc_timeout = 30
 
 app = Flask(__name__, static_folder="static")
@@ -138,51 +138,6 @@ def page_not_found(e):
     return redirect(url_for("index"))
 
 
-def allowed_file(filename):
-    """
-    validate that the file name ends with the desired extention
-
-    from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
-    >>> allowed_file('a_file')
-    False
-    >>> allowed_file('a_file.json')
-    True
-    """
-    logger.info("[trace] allowed_file")
-
-    return "." in filename and filename.rsplit(".", 1)[1].lower() in {"json"}
-
-
-def validate_json_file(filename):
-    """
-    >>>
-    """
-    logger.info("[trace] validate_json_file")
-
-    with open(filename) as json_file:
-        try:
-            candidate_dat = json.load(json_file)
-        except json.decoder.JSONDecodeError as er:
-            logger.debug(
-                "[debug] controller; validate_json_file; ERROR in JSON schema compliance: %s",
-                er,
-            )
-            flash("uploaded file does not appear to be JSON; ignoring file")
-            return False
-    # now we know the file is actually JSON
-    # next, does the JSON conform to PDG schema?
-
-    try:
-        validate(instance=candidate_dat, schema=json_schema.schema)
-    except:  # jsonschema.exceptions.ValidationError as er:
-        logger.debug(
-            "[debug] controller; validate_json_file; ERROR in JSON schema compliance"
-        )
-        # flash(str(er))
-        return False  # JSON is not compliant with schmea
-    return True  # file is JSON and is compliant with schmea
-
-
 @app.route("/index", methods=["GET", "POST"])
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -197,6 +152,13 @@ def index():
     """
     logger.info("[trace] index")
 
+    try:
+        logger.debug("session id = %s", session_id)
+    except NameError:
+        logger.warning("session id does not appear to exist")
+        session_id = compute.create_session_id()
+        logger.debug("now the session id = %s", session_id)
+
     shutil.copy("data.json", "/home/appuser/app/static/")
 
     all_df = compute.convert_json_to_dataframes("data.json")
@@ -210,10 +172,10 @@ def index():
     neo4j_file = compute.convert_data_to_cypher("data.json")
     shutil.copy(neo4j_file, "/home/appuser/app/static/")
 
-    logger.debug("[debug] controller; index; request.method = %s", request.method)
+    logger.debug("index; request.method = %s", request.method)
 
     if request.method == "POST":
-        logger.debug("[debug]; controller; index; request.method = %s", request.method)
+        logger.debug("request.form = %s", request.form)
         # ImmutableMultiDict([('file', <FileStorage: 'prospector_output.json' ('application/json')>)])
 
         # check if the post request has the file part
@@ -230,21 +192,19 @@ def index():
             logger.debug("flash no selected file")
             flash("No selected file")
             return redirect(request.url)
-        if file_obj and allowed_file(
-            file_obj.filename
-        ):  # and validate_json_file(file_obj.filename):
+        if file_obj and compute.allowed_file(file_obj.filename):
             filename = secure_filename(file_obj.filename)
             logger.debug("filename = %s", filename)
             path_to_uploaded_file = os.path.join(app.config["UPLOAD_FOLDER"], filename)
             file_obj.save(path_to_uploaded_file)
 
-            if not validate_json_file(path_to_uploaded_file):
+            if not compute.validate_json_file(path_to_uploaded_file):
                 flash("uploaded file does not match PDG schema")
             else:  # file exists, has .json extension, is JSON, and complies with schema
                 shutil.copy(path_to_uploaded_file, "/home/appuser/app/data.json")
             return redirect(url_for("index", filename=filename))
 
-    logger.debug("[debug]; controller; index; reading from json")
+    logger.debug("reading from json")
     dat = clib.read_db("data.json")
     return render_template(
         "index.html",
@@ -268,7 +228,7 @@ def start_new_derivation():
     if request.method == "POST" and web_form.validate():
         name_of_derivation = str(web_form.name_of_derivation.data)
         logger.debug(
-            "controller: start_new_derivation: name of derivation = %s",
+            "start_new_derivation: name of derivation = %s",
             name_of_derivation,
         )
         return redirect(
@@ -294,7 +254,7 @@ def list_all_operators():
 
     if request.method == "POST":
         logger.debug(
-            "[debug] controller; list_all_operators; request.form = %s", request.form
+            "request.form = %s", request.form
         )
     return render_template(
         "list_all_operators.html",
@@ -311,7 +271,7 @@ def list_all_symbols():
 
     if request.method == "POST":
         logger.debug(
-            "[debug] controller; list_all_symbolss; request.form = %s", request.form
+            "list_all_symbolss; request.form = %s", request.form
         )
     return render_template(
         "list_all_symbols.html",
@@ -327,7 +287,7 @@ def list_all_expressions():
     expression_popularity_dict = compute.popularity_of_expressions("data.json")
     if request.method == "POST":
         logger.debug(
-            "[debug] controller; list_all_expressions; request.form = %s", request.form
+            "list_all_expressions; request.form = %s", request.form
         )
         if "edit_expr_latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_expr_latex', '4928923942'), ('revised_text', 'asdfingasinsf')])
@@ -338,7 +298,7 @@ def list_all_expressions():
             )
             flash(status_message)
             logger.debug(
-                "[debug] controller; list_all_expressions; status = %s", status_message
+                "list_all_expressions; status = %s", status_message
             )
             return redirect(url_for("list_all_expressions"))
         elif "delete_expr" in request.form.keys():
@@ -348,7 +308,7 @@ def list_all_expressions():
             )
             flash(status_message)
             logger.debug(
-                "[debug] controller; list_all_expressions; status = %s", status_message
+                "list_all_expressions; status = %s", status_message
             )
             return redirect(url_for("list_all_expressions"))
     list_of_expr = compute.get_sorted_list_of_expr("data.json")
@@ -372,7 +332,7 @@ def list_all_inference_rules():
     infrule_popularity_dict = compute.popularity_of_infrules("data.json")
     if request.method == "POST":
         logger.debug(
-            "[debug] controller; list_all_inference_rules; request.form = %s",
+            "list_all_inference_rules; request.form = %s",
             request.form,
         )
         if "inf_rule_name" in request.form.keys():
@@ -388,7 +348,7 @@ def list_all_inference_rules():
             )
             flash(status_message)
             logger.debug(
-                "[debug] controller; list_all_inference_rules; status = %s",
+                "list_all_inference_rules; status = %s",
                 status_message,
             )
             return redirect(url_for("list_all_inference_rules"))
@@ -401,7 +361,7 @@ def list_all_inference_rules():
             )
             flash(status_message)
             logger.debug(
-                "[debug] controller; list_all_inference_rules; status = %s",
+                "list_all_inference_rules; status = %s",
                 status_message,
             )
             return redirect(url_for("list_all_inference_rules"))
@@ -414,13 +374,13 @@ def list_all_inference_rules():
             )
             flash(status_message)
             logger.debug(
-                "[debug] controller; list_all_inference_rules; status = %s",
+                "list_all_inference_rules; status = %s",
                 status_message,
             )
             return redirect(url_for("list_all_inference_rules"))
         else:
             flash("unrecognized form result")
-            logger.debug("[debug] controller: ERROR: unrecognized form result")
+            logger.warning("ERROR: unrecognized form result")
 
     return render_template(
         "list_all_inference_rules.html",
@@ -438,7 +398,7 @@ def select_derivation_to_edit():
     logger.info("[trace] select_derivation_to_edit")
     if request.method == "POST":
         logger.debug(
-            "[debug] controller; select_derivation_to_edit; request.form = %s",
+            "select_derivation_to_edit; request.form = %s",
             request.form,
         )
     return render_template(
@@ -455,7 +415,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
     steps_dict = compute.get_derivation_steps(name_of_derivation, "data.json")
     if request.method == "POST":
         logger.debug(
-            "[debug] controller; select_derivation_step_to_edit; request.form = %s",
+            "select_derivation_step_to_edit; request.form = %s",
             request.form,
         )
     return render_template(
@@ -517,10 +477,10 @@ def new_step_select_inf_rule(name_of_derivation: str):
     if (
         request.method == "POST"
     ):  # and request.form.validate(): no validation because the form was defined on the web page
-        logger.debug("[debug] controller: new_step_select_inf_rule: %s", request.form)
+        logger.debug("new_step_select_inf_rule: %s", request.form)
         selected_inf_rule = request.form.get("inf_rul_select")
         logger.debug(
-            "[debug] controller: new_step_select_inf_rule; selected_inf_rule = %s",
+            "new_step_select_inf_rule; selected_inf_rule = %s",
             selected_inf_rule,
         )
         return redirect(
@@ -552,7 +512,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
     logger.info("[trace] provide_expr_for_inf_rule")
     # num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, 'data.json')
-    # logger.debug('[debug] controller; provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
+    # logger.debug('provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
 
     dat = clib.read_db("data.json")
 
@@ -569,14 +529,14 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         # request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('feed1', 'a'), ('feed2', 'b'), ('feed3', 'c'), ('output1', 'asdf = asf'), ('submit_button', 'Submit')])
 
         logger.debug(
-            "[debug] controller: provide_expr_for_inf_rule: latex_for_step_dict = %s",
+            "provide_expr_for_inf_rule: latex_for_step_dict = %s",
             latex_for_step_dict,
         )
         local_step_id = compute.create_step(
             latex_for_step_dict, inf_rule, name_of_derivation, "data.json"
         )
         logger.debug(
-            "[debug] controller; provide_expr_for_inf_rule; local_step_id = %s",
+            "provide_expr_for_inf_rule; local_step_id = %s",
             local_step_id,
         )
 
@@ -635,7 +595,7 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
     ) = compute.create_step_graphviz_png(name_of_derivation, local_step_id, "data.json")
     if not valid_latex_bool:
         logger.debug(
-            "[debug] controller; step_review; invalid latex detected %s", invalid_latex
+            "step_review; invalid latex detected %s", invalid_latex
         )
         # TODO: now what?
 
@@ -643,7 +603,7 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
 
     if request.method == "POST":
         reslt = request.form
-        logger.debug("[debug] controller: step_review: reslt = %s", reslt)
+        logger.debug("step_review: reslt = %s", reslt)
         if request.form["submit_button"] == "accept this step; add another step":
             return redirect(
                 url_for(
@@ -761,7 +721,7 @@ def modify_step(name_of_derivation: str, step_id: str):
     # this_step = steps_dict[step_id]
     dat = clib.read_db("data.json")
     if request.method == "POST":
-        logger.debug("[debug] controller; modify_step; request form = %s", request.form)
+        logger.debug("modify_step; request form = %s", request.form)
         if request.form["submit_button"] == "change inference rule":
             return redirect(
                 url_for(
@@ -811,7 +771,7 @@ def create_new_inf_rule():
     logger.info("[trace] create_new_inf_rule")
     if request.method == "POST":
         logger.debug(
-            "[debug] controller; create_new_inf_rule; request.form = %s", request.form
+            "create_new_inf_rule; request.form = %s", request.form
         )
     return render_template("create_new_inf_rule.html")
 
@@ -820,11 +780,13 @@ if __name__ == "__main__":
     print_debug = False
     print_trace = True
 
+    session_id = compute.create_session_id()
+
     # https://docs.python.org/3/howto/logging.html
     logging.basicConfig(  # filename='pdg.log',
         filemode="w",
         level=logging.DEBUG,
-        format="%(asctime)s|%(filename)-13s|%(levelname)s|%(lineno)d|%(funcName)s|%(message)s",
+        format="%(asctime)s|%(filename)-13s|%(levelname)-5s|%(lineno)-4d|%(funcName)-20s|%(message)s",
         datefmt="%m/%d/%Y %I:%M:%S %p",
     )
 

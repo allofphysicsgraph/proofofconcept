@@ -4,6 +4,9 @@ FROM phusion/baseimage:0.11
 # Ubuntu is too big 
 #FROM ubuntu:latest
 
+# PYTHONDONTWRITEBYTECODE: Prevents Python from writing pyc files to disc (equivalent to python -B option)
+ENV PYTHONDONTWRITEBYTECODE 1
+
 # https://docs.docker.com/engine/reference/builder/#run
 RUN apt-get update && \
     apt-get install -y \
@@ -48,14 +51,15 @@ USER appuser
 
 COPY templates     /home/appuser/app/templates
 COPY static        /home/appuser/app/static
-COPY compute.py \
-     controller.py \
-     common_lib.py \
+COPY common_lib.py \
+     compute.py \
      config.py \
+     controller.py \
      data.json \
      json_schema.py \
      Makefile \
      validate_inference_rules_sympy.py \
+     wsgi.py \
      /home/appuser/app/
 #COPY compute.py    /home/appuser/app
 #COPY config.py     /home/appuser/app

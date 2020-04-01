@@ -15,7 +15,7 @@ def read_db(path_to_db: str) -> dict:
     """
     >>> read_db('data.json')
     """
-    logger.info("[trace] compute: read_db")
+    logger.info("[trace] read_db")
 
     #    with open(path_to_db, 'rb') as fil:
     #        dat = pickle.load(fil)
@@ -34,7 +34,7 @@ def write_db(path_to_db: str, dat: dict) -> None:
     >>> write_db('data.json', dat)
     [trace] compute: write_db
     """
-    logger.info("[trace] compute: write_db")
+    logger.info("[trace] write_db")
     #    with open(path_to_db, 'wb') as fil:
     #        pickle.dump(dat, fil)
     with open(path_to_db, "w") as outfile:

@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask003.html
 
-# convention: every print statement starts with the string [debug] or [trace] or [ERROR],
-# followed by the name of the file, followed by the function name
-#
 # convention: every function and class includes a [trace] print
 #
 # Every function has type hinting; https://www.python.org/dev/peps/pep-0484/
@@ -17,6 +14,7 @@
 # import json
 import os
 import shutil
+import datetime
 from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
 import subprocess  # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
@@ -37,8 +35,8 @@ import pandas  # type: ignore
 
 logger = logging.getLogger(__name__)
 
-# global proc_timeout
-# proc_timeout = 30
+#global proc_timeout
+proc_timeout = 30
 
 STEP_DICT = TypedDict(
     "STEP_DICT",
@@ -51,6 +49,60 @@ STEP_DICT = TypedDict(
     },
 )
 
+# ******************************************
+# check input files
+
+def allowed_file(filename):
+    """
+    validate that the file name ends with the desired extention
+
+    from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+    >>> allowed_file('a_file')
+    False
+    >>> allowed_file('a_file.json')
+    True
+    """
+    logger.info("[trace] allowed_file")
+
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in {"json"}
+
+
+def validate_json_file(filename):
+    """
+    >>>
+    """
+    logger.info("[trace] validate_json_file")
+
+    with open(filename) as json_file:
+        try:
+            candidate_dat = json.load(json_file)
+        except json.decoder.JSONDecodeError as er:
+            logger.debug(
+                "ERROR in JSON schema compliance: %s",
+                er,
+            )
+            flash("uploaded file does not appear to be JSON; ignoring file")
+            return False
+    # now we know the file is actually JSON
+    # next, does the JSON conform to PDG schema?
+
+    try:
+        validate(instance=candidate_dat, schema=json_schema.schema)
+    except:  # jsonschema.exceptions.ValidationError as er:
+        logger.debug(
+            "ERROR in JSON schema compliance"
+        )
+        # flash(str(er))
+        return False  # JSON is not compliant with schmea
+    return True  # file is JSON and is compliant with schmea
+
+def create_session_id():
+    """
+    >>> create_session_id
+    """
+    now_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S%f")
+    rand_id = str(random.randint(100, 999))
+    return now_str + "_" + rand_id
 
 # *******************************************
 # query database for properties
@@ -869,17 +921,17 @@ def write_step_to_graphviz_file(
 
     step_dict = dat["derivations"][name_of_derivation][local_step_id]
     logger.debug(
-        "[debug] compute: write_step_to_graphviz_file: step_dict = %s", step_dict
+        "write_step_to_graphviz_file: step_dict = %s", step_dict
     )
     #  step_dict = {'inf rule': 'begin derivation', 'inputs': [], 'feeds': [], 'outputs': ['526874110']}
     for global_id, latex_and_ast_dict in dat["expressions"].items():
         logger.debug(
-            "[debug] compute: write_step_to_graphviz_file: expr_dict has %s %s",
+            "write_step_to_graphviz_file: expr_dict has %s %s",
             global_id,
             latex_and_ast_dict["latex"],
         )
 
-    # logger.debug('[debug] compute: write_step_to_graphviz_file: starting write')
+    # logger.debug('write_step_to_graphviz_file: starting write')
 
     valid_latex_bool, generated_png_name = create_png_from_latex(step_dict["inf rule"])
     if not valid_latex_bool:
@@ -895,7 +947,7 @@ def write_step_to_graphviz_file(
         + '",labelloc=b];\n'
     )
 
-    # logger.debug('[debug] compute: write_step_to_graphviz_file: inputs')
+    # logger.debug('write_step_to_graphviz_file: inputs')
     for expr_local_id in step_dict["inputs"]:
         expr_global_id = dat["expr local to global"][expr_local_id]
         valid_latex_bool, generated_png_name = create_png_from_latex(
@@ -903,7 +955,7 @@ def write_step_to_graphviz_file(
         )
         if not valid_latex_bool:
             logger.debug(
-                "[debug] compute: write_step_to_graphviz_file: invalid latex for input %s",
+                "write_step_to_graphviz_file: invalid latex for input %s",
                 dat["expressions"][expr_global_id]["latex"],
             )
             return valid_latex_bool, dat["expressions"][expr_global_id]["latex"]
@@ -915,7 +967,7 @@ def write_step_to_graphviz_file(
             + '",labelloc=b];\n'
         )
 
-    # logger.debug('[debug] compute: write_step_to_graphviz_file: outputs')
+    # logger.debug('write_step_to_graphviz_file: outputs')
     for expr_local_id in step_dict["outputs"]:
         expr_global_id = dat["expr local to global"][expr_local_id]
         valid_latex_bool, generated_png_name = create_png_from_latex(
@@ -923,7 +975,7 @@ def write_step_to_graphviz_file(
         )
         if not valid_latex_bool:
             logger.debug(
-                "[debug] compute: write_step_to_graphviz_file: invalid latex for output %s",
+                "write_step_to_graphviz_file: invalid latex for output %s",
                 dat["expressions"][expr_global_id]["latex"],
             )
             return valid_latex_bool, dat["expressions"][expr_global_id]["latex"]
@@ -936,7 +988,7 @@ def write_step_to_graphviz_file(
             + '",labelloc=b];\n'
         )
 
-    # logger.debug('[debug] compute: write_step_to_graphviz_file: feeds')
+    # logger.debug('write_step_to_graphviz_file: feeds')
     for expr_local_id in step_dict["feeds"]:
         expr_global_id = dat["expr local to global"][expr_local_id]
         valid_latex_bool, generated_png_name = create_png_from_latex(
@@ -944,7 +996,7 @@ def write_step_to_graphviz_file(
         )
         if not valid_latex_bool:
             logger.debug(
-                "[debug] compute: write_step_to_graphviz_file: invalid latex for feed %s",
+                "write_step_to_graphviz_file: invalid latex for feed %s",
                 dat["expressions"][expr_global_id]["latex"],
             )
             return valid_latex_bool, dat["expressions"][expr_global_id]["latex"]
@@ -955,7 +1007,7 @@ def write_step_to_graphviz_file(
             + generated_png_name
             + '",labelloc=b];\n'
         )
-    # logger.debug('[debug] compute: write_step_to_graphviz_file: returning')
+    # logger.debug('write_step_to_graphviz_file: returning')
 
     return True, "no invalid latex"
 
@@ -1205,16 +1257,16 @@ def create_png_from_latex(input_latex_str: str) -> Tuple[bool, str]:
     """
     logger.info("[trace] create_png_from_latex")
 
-    # logger.debug('[debug] compute: create_png_from_latex: input latex str =', input_latex_str)
+    # logger.debug('create_png_from_latex: input latex str =', input_latex_str)
 
     tmp_file = "lat"
     remove_file_debris(["./"], [tmp_file], ["tex", "dvi", "aux", "log"])
 
-    # logger.debug('[debug] compute: create_png_from_latex: finished debris removal, starting create tex file')
+    # logger.debug('create_png_from_latex: finished debris removal, starting create tex file')
 
     create_tex_file_for_expr(tmp_file, input_latex_str)
 
-    # logger.debug('[debug] compute: create_png_from_latex: running latex against file')
+    # logger.debug('create_png_from_latex: running latex against file')
 
     process = subprocess.run(
         ["latex", "-halt-on-error", tmp_file + ".tex"],
@@ -1227,8 +1279,8 @@ def create_png_from_latex(input_latex_str: str) -> Tuple[bool, str]:
     latex_stdout = process.stdout.decode("utf-8")
     latex_stderr = process.stderr.decode("utf-8")
 
-    # logger.debug('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
-    # logger.debug('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
+    # logger.debug('create_png_from_latex: latex std out:', latex_stdout)
+    # logger.debug('create_png_from_latex: latex std err', latex_stderr)
 
     if "Text line contains an invalid character" in latex_stdout:
         return False, "no png generated"
@@ -1247,8 +1299,8 @@ def create_png_from_latex(input_latex_str: str) -> Tuple[bool, str]:
     png_stdout = process.stdout.decode("utf-8")
     png_stderr = process.stderr.decode("utf-8")
 
-    logger.debug("[debug] compute: create_png_from_latex: png std out %s", png_stdout)
-    logger.debug("[debug] compute: create_png_from_latex: png std err %s", png_stderr)
+    logger.debug("create_png_from_latex: png std out %s", png_stdout)
+    logger.debug("create_png_from_latex: png std err %s", png_stderr)
 
     destination_folder = "/home/appuser/app/static/"
     generated_png_name = find_valid_filename(destination_folder, "png")
@@ -1564,7 +1616,7 @@ def create_step(
     # add step_dict to dat, write dat to file
     inf_rule_local_ID = create_step_id(path_to_db)
     if name_of_derivation not in dat["derivations"].keys():
-        logger.debug("[debug] compute: create_step: starting new derivation")
+        logger.debug("create_step: starting new derivation")
         dat["derivations"][name_of_derivation] = {inf_rule_local_ID: step_dict}
     else:  # derivation exists
         if inf_rule_local_ID in dat["derivations"][name_of_derivation].keys():

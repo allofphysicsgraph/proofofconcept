@@ -3,11 +3,9 @@
 
 <P><a href
 
-<form method="post" action="">
-<input type="submit" name="submit_button" value='generate session ID'>
-<!-- <button type="submit" class="btn btn-default">Update</button> -->
+<form method="post" action="" id="session_id">
+<input type="submit" name="session_id_button" value='generate session ID'>
 </form>
-
 
 <P>Derivations:
 <UL>
@@ -37,9 +35,9 @@ Download the current database file as
 <!-- https://www.google.com/search?q=flask+upload+file -->
 Upload database file (JSON only):
 <!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
-<form method="post" enctype="multipart/form-data">
-      <input type="file" name="file">
-      <input type="submit" value="Upload">
-    </form>
+<form method="post" enctype="multipart/form-data" id="upload_form">
+  <input type="file" name="file">
+  <input type="submit" name="upload_button" value="Upload">
+</form>
 </p>
 {% endblock %}
