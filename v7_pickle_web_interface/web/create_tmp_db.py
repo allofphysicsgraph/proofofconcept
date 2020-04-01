@@ -518,12 +518,12 @@ dat['inference rules'] =  {
                     'latex': 'Normalization condition is Eq.~\\ref{eq:#1}.'}
 }
 
-# A derivation is comprised of steps. 
+# A derivation is comprised of steps.
 # Each step has 0 or more inputs, 0 or more outputs, 0 or more feeds, and one inference rule
 # Each step is assocaited with a unique numeric identifier
 # The inputs and outputs of each step have a "local ID" which is associated with a unique global ID. The global ID is associated with an expression
 dat['derivations'] = {
-  'fun deriv': { 
+  'fun deriv': {
      # key is "step ID"
      '4928482': {'inf rule': 'declare initial expr',
                  'inputs':  [],
@@ -532,7 +532,7 @@ dat['derivations'] = {
                  'linear index': 1}, # linear index for PDF and for graph orientation
      '2948592': {'inf rule': 'add X to both sides',
                  'inputs':  ['9428000'],
-                 'feeds':   ['3190000'],   
+                 'feeds':   ['3190000'],
                  'outputs': ['3921000'],
                  'linear index': 2},
      '9492942': {'inf rule': 'declare final expr',
@@ -1055,7 +1055,7 @@ dat['derivations'] = {
                  'feeds':   [],
                  'outputs': ['2837471'],
                  'linear index': 8},
-     '3948573': {'inf rule': 'declareIdentity', # this was 3948572 which conflicts with a step in 'curl curl identity' 
+     '3948573': {'inf rule': 'declareIdentity', # this was 3948572 which conflicts with a step in 'curl curl identity'
                  'inputs':  [],
                  'feeds':   [],
                  'outputs': ['1939485'],
@@ -2042,3 +2042,4 @@ dat['operators'] = {
 with open('data.json', 'w') as outfile:
     json.dump(dat, outfile, indent=4, separators=(',', ': '), sort_keys=True)
 
+# EOF

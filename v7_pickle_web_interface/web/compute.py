@@ -34,12 +34,8 @@ import pandas # type: ignore
 
 logger = logging.getLogger(__name__)
 
-global print_trace
-print_trace = True
-global print_debug
-print_debug = True
-global proc_timeout
-proc_timeout = 30
+#global proc_timeout
+#proc_timeout = 30
 
 STEP_DICT = TypedDict('STEP_DICT', {'inf rule': str,
                                     'inputs':   list,
@@ -66,7 +62,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
 
     >>> convert_json_to_dataframes('data.json')
     """
-    if print_trace: logger.info('[trace] convert_data_to_dataframes')
+    logger.info('[trace] convert_data_to_dataframes')
     dat = clib.read_db(path_to_db)
 
     all_dfs = {}
@@ -193,7 +189,7 @@ def convert_df_to_pkl(all_df) -> str:
 
     >>> convert_df_to_pkl(all_df)
     """
-    if print_trace: logger.info('[trace] convert_df_to_pkl')
+    logger.info('[trace] convert_df_to_pkl')
     df_pkl = 'data.pkl'
     with open(df_pkl, 'wb') as fil:
         pickle.dump(all_df, fil)
@@ -207,7 +203,7 @@ def convert_dataframes_to_sql(all_dfs) -> str:
 
     >>> convert_dataframes_to_sql(all_dfs, 'data.json')
     """
-    if print_trace: logger.info('[trace] convert_dataframes_to_sql')
+    logger.info('[trace] convert_dataframes_to_sql')
     sql_file = 'physics_derivation_graph.sqlite3'
     try:
         cnx = sqlite3.connect(sql_file)
@@ -233,7 +229,7 @@ def convert_data_to_rdf(path_to_db: str) -> str:
     https://en.wikipedia.org/wiki/Web_Ontology_Language
     >>> convert_data_to_rdf('data.json')
     """
-    if print_trace: logger.info('[trace] convert_data_to_rdf')
+    logger.info('[trace] convert_data_to_rdf')
     dat = clib.read_db(path_to_db)
 
     rdf_str = ""
@@ -286,7 +282,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
 
     >>> convert_data_to_cypher('data.json')
     """
-    if print_trace: logger.info('[trace] convert_data_to_cypher')
+    logger.info('[trace] convert_data_to_cypher')
 
     dat = clib.read_db(path_to_db)
 
@@ -328,7 +324,7 @@ def expr_not_in_derivations(path_to_db: str) -> list:
     """
     >>> expr_not_in_derivations('data.json')
     """
-    if print_trace: logger.info('[trace] expr_not_in_derivations')
+    logger.info('[trace] expr_not_in_derivations')
     #dat = clib.read_db(path_to_db)
     list_of_expr_not_in_deriv = []
     expr_popularity_dict = popularity_of_expressions(path_to_db)
@@ -343,7 +339,7 @@ def get_sorted_list_of_expr(path_to_db: str) -> list:
     >>> get_sorted_list_of_expr('data.pkl')
 
     """
-    if print_trace: logger.info('[trace] get_sorted_list_of_expr')
+    logger.info('[trace] get_sorted_list_of_expr')
     dat = clib.read_db(path_to_db)
     list_expr = list(dat['expressions'].keys())
     list_expr.sort()
@@ -353,7 +349,7 @@ def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     """
     >>> get_sorted_list_of_inf_rules('data.pkl')
     """
-    if print_trace: logger.info('[trace] get_list_of_inf_rules')
+    logger.info('[trace] get_list_of_inf_rules')
     dat = clib.read_db(path_to_db)
     list_infrule = list(dat['inference rules'].keys())
     list_infrule.sort()
@@ -364,7 +360,7 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
     """
     >>> get_list_of_derivations('data.json')
     """
-    if print_trace: logger.info('[trace] get_list_of_derivation')
+    logger.info('[trace] get_list_of_derivation')
     dat = clib.read_db(path_to_db)
     list_deriv = list(dat['derivations'].keys())
     list_deriv.sort()
@@ -375,7 +371,7 @@ def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
     """
     >>> get_derivation_steps('my deriv','data.json')
     """
-    if print_trace: logger.info('[trace] get_list_of_steps')
+    logger.info('[trace] get_list_of_steps')
     dat = clib.read_db(path_to_db)
     if name_of_derivation not in dat['derivations'].keys():
         raise Exception('[ERROR] compute; get_list_of_steps;', name_of_derivation,
@@ -387,7 +383,7 @@ def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
 #    """
 #    >>> input_output_count_for_infrule('multiply both sides by X', 'data.json')
 #    """
-#    if print_trace: logger.info('[trace] input_output_count_for_infrule')
+#    logger.info('[trace] input_output_count_for_infrule')
 #    dat = clib.read_db(path_to_db)
 #
 #    if 'inference rules' not in dat.keys():
@@ -406,7 +402,7 @@ def create_expr_global_id(path_to_db: str) -> str:
 
     >>> create_expr_id(False, 'data.json')
     """
-    if print_trace: logger.info('[trace] create_expr_global_id')
+    logger.info('[trace] create_expr_global_id')
     dat = clib.read_db(path_to_db)
 
     global_expr_ids_in_use = list(dat['expressions'].keys())
@@ -430,7 +426,7 @@ def create_step_id(path_to_db: str) -> str:
     search DB to find whether proposed local ID already exists
     >>> create_step_id(False, 'data.json')
     """
-    if print_trace: logger.info('[trace] create_step_id')
+    logger.info('[trace] create_step_id')
     dat = clib.read_db(path_to_db)
 
     step_ids_in_use = []
@@ -455,7 +451,7 @@ def create_expr_local_id(path_to_db: str) -> str:
     search DB to find whether proposed local ID already exists
     >>> create_expr_local_id(False, 'data.json')
     """
-    if print_trace: logger.info('[trace] create_expr_local_id')
+    logger.info('[trace] create_expr_local_id')
     dat = clib.read_db(path_to_db)
 
     local_ids_in_use = list(dat['expr local to global'].keys())
@@ -475,7 +471,7 @@ def create_expr_local_id(path_to_db: str) -> str:
 #    """
 #    >>>
 #    """
-#    if print_trace: logger.info('[trace] create_new_derivation')
+#    logger.info('[trace] create_new_derivation')
 #    dat = clib.read_db(path_to_db)
 #    dat['derivations'][name_of_derivation]
 #    clib.write_db(path_to_db, dat)
@@ -513,7 +509,7 @@ def extract_operators_from_expression_dict(expr_id: str, path_to_db: str) -> lis
     """
     >>>
     """
-    if print_trace: logger.info('[trace] extract_operators_from_expression_dict')
+    logger.info('[trace] extract_operators_from_expression_dict')
     dat = clib.read_db(path_to_db)
     expr_dict = dat['expressions']
     if 'AST' in expr_dict[expr_id].keys():
@@ -535,9 +531,9 @@ def extract_symbols_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     """
     >>> extract_symbols_from_expression_dict('data.json')
     """
-    if print_trace: logger.info('[trace] extract_symbols_from_expression_dict')
+    logger.info('[trace] extract_symbols_from_expression_dict')
     dat = clib.read_db(path_to_db)
-    if print_debug: logger.debug('extract_symbols_from_expression_dict; expr_id = %s', expr_id)
+    logger.debug('extract_symbols_from_expression_dict; expr_id = %s', expr_id)
     expr_dict = dat['expressions']
     if 'AST' in expr_dict[expr_id].keys():
         flt_dict = flatten_dict(expr_dict[expr_id]['AST'])
@@ -550,7 +546,7 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
     """
     >>>
     """
-    if print_trace: logger.info('[trace] extract_expressions_from_derivation_dict')
+    logger.info('[trace] extract_expressions_from_derivation_dict')
     dat = clib.read_db(path_to_db)
     flt_dict = flatten_dict(dat['derivations'][deriv_name])
     logger.debug('extract_expressions_from_derivation_dict; flat dict = %s',flt_dict)
@@ -565,20 +561,20 @@ def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> l
     """
     >>> extract_infrules_from_derivation_dict()
     """
-    if print_trace: logger.info('[trace] extract_infrules_from_derivation_dict')
+    logger.info('[trace] extract_infrules_from_derivation_dict')
     dat = clib.read_db(path_to_db)
     list_of_infrules = []
     for step_id, step_dict in dat['derivations'][deriv_name].items():
         list_of_infrules.append(step_dict['inf rule'])
 
-    #if print_debug: logger.debug('extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
+    #logger.debug('extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
     return list(set(list_of_infrules))
 
 def popularity_of_operators(path_to_db: str) -> dict:
     """
     >>> popularity_of_operators('data.json')
     """
-    if print_trace: logger.info('[trace] popularity_of_operators')
+    logger.info('[trace] popularity_of_operators')
     dat = clib.read_db(path_to_db)
     operator_popularity_dict = {}
     for operator, operator_dict in dat['operators'].items():
@@ -594,7 +590,7 @@ def popularity_of_symbols(path_to_db: str) -> dict:
     """
     >>> popularity_of_symbols('data.json')
     """
-    if print_trace: logger.info('[trace] popularity_of_symbols')
+    logger.info('[trace] popularity_of_symbols')
     dat = clib.read_db(path_to_db)
 
     symbol_popularity_dict = {}
@@ -613,7 +609,7 @@ def get_expr_local_IDs_for_this_expr_global_ID(expr_global_ID: str, path_to_db: 
     """
     >>>
     """
-    if print_trace: logger.info('[trace] get_expr_local_IDs_for_this_expr_global_ID')
+    logger.info('[trace] get_expr_local_IDs_for_this_expr_global_ID')
     list_of_expr_local_IDs = []
     dat = clib.read_db(path_to_db)
     for local_id, global_id in dat['expr local to global'].items():
@@ -625,7 +621,7 @@ def popularity_of_expressions(path_to_db: str) -> dict:
     """
     >>> popularity_of_expressions('data.json')
     """
-    if print_trace: logger.info('[trace] popularity_of_expressions')
+    logger.info('[trace] popularity_of_expressions')
     dat = clib.read_db(path_to_db)
     expression_popularity_dict = {}
     for expr_global_id, expr_dict in dat['expressions'].items():
@@ -649,7 +645,7 @@ def popularity_of_infrules(path_to_db: str) -> dict:
     """
     >>> popularity_of_infrules('data.json')
     """
-    if print_trace: logger.info('[trace] popularity_of_infrules')
+    logger.info('[trace] popularity_of_infrules')
     dat = clib.read_db(path_to_db)
     infrule_popularity_dict = {}
     for infrule_name, infrule_dict in dat['inference rules'].items():
@@ -672,7 +668,7 @@ def remove_file_debris(list_of_paths_to_files: list, list_of_file_names: list, l
     """
     >>> remove_file_debris(['/path/to/file/'],['filename_without_extension'], ['ext1', 'ext2'])
     """
-    if print_trace: logger.info('[trace] remove_file_debris')
+    logger.info('[trace] remove_file_debris')
 
     for path_to_file in list_of_paths_to_files:
 #        logger.debug('path_to_file =',path_to_file)
@@ -693,7 +689,7 @@ def find_valid_filename(destination_folder: str, extension: str) -> str:
     >>> find_valid_filename('/home/appuser/app/static/', 'png')
     >>> find_valid_filename('.','png')
     """
-    if print_trace: logger.info('[trace] find_valid_filename')
+    logger.info('[trace] find_valid_filename')
 
     found_valid_name = False
     loop_count = 0
@@ -713,7 +709,7 @@ def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
     """
     >>> create_tex_file_for_expr('filename_without_extension', 'a \dot b \\nabla')
     """
-    if print_trace: logger.info('[trace] create_tex_file_for_expr')
+    logger.info('[trace] create_tex_file_for_expr')
 
     remove_file_debris(['./'], [tmp_file], ['tex'])
 
@@ -726,7 +722,7 @@ def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
         lat_file.write('$' + input_latex_str + '$\n')
         lat_file.write('}\n')
         lat_file.write('\\end{document}\n')
-    if print_debug: logger.debug('create_tex_file_for_expr; wrote tex file')
+    logger.debug('create_tex_file_for_expr; wrote tex file')
     return
 
 
@@ -735,7 +731,7 @@ def write_step_to_graphviz_file(name_of_derivation: str, local_step_id: str, fil
     >>> fil = open('a_file','r')
     >>> write_step_to_graphviz_file("deriv name", "492482", fil, False, 'data.json')
     """
-    if print_trace: logger.info('[trace] write_step_to_graphviz_file')
+    logger.info('[trace] write_step_to_graphviz_file')
 
     dat = clib.read_db(path_to_db)
 
@@ -802,7 +798,7 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> Tup
 
     >>> generate_pdf_for_derivation
     """
-    if print_trace: logger.info('[trace] generate_pdf_for_derivation')
+    logger.info('[trace] generate_pdf_for_derivation')
     dat = clib.read_db(path_to_db)
 
     path_to_pdf = '/home/appuser/app/static/' # must end with /
@@ -874,8 +870,8 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> Tup
     latex_stdout = process.stdout.decode("utf-8")
     latex_stderr = process.stderr.decode("utf-8")
 
-    if print_debug: logger.debug('latex std out: %s', latex_stdout)
-    if print_debug: logger.debug('latex std err: %s', latex_stderr)
+    logger.debug('latex std out: %s', latex_stdout)
+    logger.debug('latex std err: %s', latex_stderr)
 
     if 'Text line contains an invalid character' in latex_stdout:
         return False, 'no png generated'
@@ -894,7 +890,7 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> Tuple[boo
     """
     >>> create_derivation_png()
     """
-    if print_trace: logger.info('[trace] create_derivation_png')
+    logger.info('[trace] create_derivation_png')
 
     dat = clib.read_db(path_to_db)
 
@@ -935,7 +931,7 @@ def create_step_graphviz_png(name_of_derivation: str, local_step_id: str, path_t
     >>> create_step_graphviz_png(step_dict, 'my derivation', False)
 
     """
-    if print_trace: logger.info('[trace] create_step_graphviz_png')
+    logger.info('[trace] create_step_graphviz_png')
 
     dot_filename = '/home/appuser/app/static/graphviz.dot'
 
@@ -979,18 +975,18 @@ def create_png_from_latex(input_latex_str: str) -> Tuple[bool, str]:
     this function assumes generated PNG should be placed in /home/appuser/app/static/
     >>> create_png_from_latex('a \dot b \\nabla', False)
     """
-    if print_trace: logger.info('[trace] create_png_from_latex')
+    logger.info('[trace] create_png_from_latex')
 
-    #if print_debug: logger.debug('[debug] compute: create_png_from_latex: input latex str =', input_latex_str)
+    #logger.debug('[debug] compute: create_png_from_latex: input latex str =', input_latex_str)
 
     tmp_file = 'lat'
     remove_file_debris(['./'], [tmp_file], ['tex', 'dvi', 'aux', 'log'])
 
-    #if print_debug: logger.debug('[debug] compute: create_png_from_latex: finished debris removal, starting create tex file')
+    #logger.debug('[debug] compute: create_png_from_latex: finished debris removal, starting create tex file')
 
     create_tex_file_for_expr(tmp_file, input_latex_str)
 
-    #if print_debug: logger.debug('[debug] compute: create_png_from_latex: running latex against file')
+    #logger.debug('[debug] compute: create_png_from_latex: running latex against file')
 
     process = subprocess.run(['latex','-halt-on-error', tmp_file+'.tex'], stdout=PIPE, stderr=PIPE, timeout=proc_timeout)
     #latex_stdout, latex_stderr = process.communicate()
@@ -998,8 +994,8 @@ def create_png_from_latex(input_latex_str: str) -> Tuple[bool, str]:
     latex_stdout = process.stdout.decode("utf-8")
     latex_stderr = process.stderr.decode("utf-8")
 
-    #if print_debug: logger.debug('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
-    #if print_debug: logger.debug('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
+    #logger.debug('[debug] compute: create_png_from_latex: latex std out:', latex_stdout)
+    #logger.debug('[debug] compute: create_png_from_latex: latex std err', latex_stderr)
 
     if 'Text line contains an invalid character' in latex_stdout:
         return False, 'no png generated'
@@ -1013,8 +1009,8 @@ def create_png_from_latex(input_latex_str: str) -> Tuple[bool, str]:
     png_stdout = process.stdout.decode("utf-8")
     png_stderr = process.stderr.decode("utf-8")
 
-    if print_debug: logger.debug('[debug] compute: create_png_from_latex: png std out %s', png_stdout)
-    if print_debug: logger.debug('[debug] compute: create_png_from_latex: png std err %s', png_stderr)
+    logger.debug('[debug] compute: create_png_from_latex: png std out %s', png_stdout)
+    logger.debug('[debug] compute: create_png_from_latex: png std err %s', png_stderr)
 
     destination_folder = '/home/appuser/app/static/'
     generated_png_name = find_valid_filename(destination_folder, 'png')
@@ -1035,7 +1031,7 @@ def modify_latex_in_step(expr_local_id_of_latex_to_modify: str,
     """
     >>> modify_latex_in_step('959242', 'a = b', 'data.json')
     """
-    if print_trace: logger.info('[trace] modify_latex_in_step')
+    logger.info('[trace] modify_latex_in_step')
     dat = clib.read_db(path_to_db)
 
     expr_global_id = create_expr_global_id(path_to_db)
@@ -1050,7 +1046,7 @@ def delete_derivation(name_of_derivation: str, path_to_db: str) -> str:
     >>> delete_derivation('my cool deriv', 'data.json')
 
     """
-    if print_trace: logger.info('[trace] add_inf_rule')
+    logger.info('[trace] add_inf_rule')
     dat = clib.read_db(path_to_db)
     # TODO: if expr is only used in this derivation, does the user want dangling expressions removed?
     del dat['derivations'][name_of_derivation]
@@ -1062,7 +1058,7 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     >>> request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
     >>> add_inf_rule(request.form.to_dict(), 'data.json')
     """
-    if print_trace: logger.info('[trace] add_inf_rule')
+    logger.info('[trace] add_inf_rule')
 
     # create a data structure similar to
     #   'begin derivation':         {'number of feeds':0, 'number of inputs':0, 'number of outputs': 1, 'latex': 'more'}
@@ -1081,7 +1077,7 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     except ValueError as err:
         return "number of outputs does not seem to be an integer"
     arg_dict['latex'] = inf_rule_dict_from_form['latex']
-    if print_debug: logger.debug('add_inf_rule; arg_dict = %s',arg_dict)
+    logger.debug('add_inf_rule; arg_dict = %s',arg_dict)
 
     dat = clib.read_db(path_to_db)
     if inf_rule_dict_from_form['inf_rule_name'] in dat['inference rules'].keys():
@@ -1096,7 +1092,7 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
     """
     >>> delete_inf_rule('multbothsidesbyx','data.json')
     """
-    if print_trace: logger.info('[trace] delete_inf_rule')
+    logger.info('[trace] delete_inf_rule')
     dat = clib.read_db(path_to_db)
     status_msg = ""
     infrule_popularity_dict = popularity_of_infrules(path_to_db)
@@ -1118,7 +1114,7 @@ def rename_inf_rule(old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_t
     """
     >>> rename_inf_rule()
     """
-    if print_trace: logger.info('[trace] rename_inf_rule')
+    logger.info('[trace] rename_inf_rule')
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if old_name_of_inf_rule in dat['inference rules'].keys():
@@ -1141,7 +1137,7 @@ def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str)
     """
     >>> edit_inf_rule_latex()
     """
-    if print_trace: logger.info('[trace] edit_inf_rule_latex')
+    logger.info('[trace] edit_inf_rule_latex')
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if inf_rule_name in dat['inference rules'].keys():
@@ -1155,7 +1151,7 @@ def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
     """
     >>> edit_expr_latex()
     """
-    if print_trace: logger.info('[trace] edit_expr_latex')
+    logger.info('[trace] edit_expr_latex')
     dat = clib.read_db(path_to_db)
     status_msg = ""
     #logger.debug('old latex:',dat['expressions'][expr_id]['latex'])
@@ -1169,7 +1165,7 @@ def delete_expr(expr_global_id: str, path_to_db: str) -> str:
     """
     >>> delete_expr()
     """
-    if print_trace: logger.info('[trace] delete_expr')
+    logger.info('[trace] delete_expr')
     status_message = ""
     dat = clib.read_db(path_to_db)
     expression_popularity_dict = popularity_of_expressions(path_to_db)
@@ -1188,7 +1184,7 @@ def create_step(latex_for_step_dict: dict, inf_rule: str, name_of_derivation: st
     >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'data.json')
     9492849
     """
-    if print_trace: logger.info('[trace] create_step')
+    logger.info('[trace] create_step')
 
     dat = clib.read_db(path_to_db)
 
@@ -1291,7 +1287,7 @@ def determine_step_validity(name_of_derivation: str, path_to_db: str) -> dict:
     """
     >>>
     """
-    if print_trace: logger.info('[trace] determine_step_validity')
+    logger.info('[trace] determine_step_validity')
     dat = clib.read_db(path_to_db)
     step_validity_dict = {}
 

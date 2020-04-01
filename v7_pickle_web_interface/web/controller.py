@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 
-# convention: every print statement starts with the string [debug] or [trace] or [ERROR],
-# followed by the name of the file, followed by the function name
 # convention: every function and class includes a [trace] print
+# to help the developer understand functional dependencies and which state the program is in,
+# a "trace" is printed to the terminal at the start of each function
 
 import os
 import json
@@ -21,14 +21,8 @@ import json_schema # PDG
 import compute # PDG
 import validate_inference_rules_sympy as vir # PDG
 
-
-# to help the developer understand functional dependencies and which state the program is in,
-# a "trace" is printed to the terminal at the start of each function
-global print_trace
-print_trace = True
-# within function, seeing the content of variables is helpful
-global print_debug
-print_debug = True
+global proc_timeout
+proc_timeout = 30
 
 app = Flask(__name__, static_folder='static')
 app.config.from_object(Config) # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
@@ -38,13 +32,13 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 # https://stackoverflow.com/question
 logger = logging.getLogger(__name__)
 
 class EquationInputForm(Form):
-    if print_trace: logger.info('[trace] class = EquationInputForm')
+    logger.info('[trace] class = EquationInputForm')
 #    r = FloatField(validators=[validators.InputRequired()])
 #    r = FloatField()
     latex = StringField('LaTeX',validators=[validators.InputRequired()])
 
 class InferenceRuleForm(Form):
-    if print_trace: logger.info('[trace] class = InferenceRuleForm')
+    logger.info('[trace] class = InferenceRuleForm')
     inf_rule_name = StringField('inf rule name',     validators=[validators.InputRequired()])
     num_inputs    = IntegerField('number of inputs',  validators=[validators.InputRequired(),
                                                                   validators.NumberRange(min=0, max=5)])
@@ -55,11 +49,11 @@ class InferenceRuleForm(Form):
     latex = StringField('LaTeX',validators=[validators.InputRequired()])
 
 class RevisedTextForm(Form):
-    if print_trace: logger.info('[trace] class = RevisedTextForm')
+    logger.info('[trace] class = RevisedTextForm')
     revised_text = StringField('revised text', validators=[validators.InputRequired()])
 
 class infRuleInputsAndOutputs(Form):
-    if print_trace: logger.info('[trace] class = infRuleInputsAndOutputs')
+    logger.info('[trace] class = infRuleInputsAndOutputs')
     """
     a form with one or more latex entries
     source: https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
@@ -76,7 +70,7 @@ class infRuleInputsAndOutputs(Form):
 
 # https://stackoverflow.com/questions/37837682/python-class-input-argument/37837766
 class LatexIO(Form):
-    if print_trace: logger.info('[trace] class = LatexIO')
+    logger.info('[trace] class = LatexIO')
     feed1   = StringField('feed LaTeX 1',  validators=[validators.InputRequired()])
     feed2   = StringField('feed LaTeX 2',  validators=[validators.InputRequired()])
     feed3   = StringField('feed LaTeX 3',  validators=[validators.InputRequired()])
@@ -88,7 +82,7 @@ class LatexIO(Form):
     output3 = StringField('output LaTeX 3',validators=[validators.InputRequired()])
 
 class NameOfDerivationInputForm(Form):
-    if print_trace: logger.info('[trace] class = NameOfDerivationInputForm')
+    logger.info('[trace] class = NameOfDerivationInputForm')
     name_of_derivation = StringField(validators=[validators.InputRequired()])
 
 # goal is to prevent cached responses;
@@ -100,7 +94,7 @@ class NameOfDerivationInputForm(Form):
 #    Add headers to both force latest IE rendering engine or Chrome Frame,
 #    and also to cache the rendered page for 10 minutes.
 #    """
-#    if print_trace: logger.info('[trace] add_header')
+#    logger.info('[trace] add_header')
 #    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
 #    r.headers["Pragma"] = "no-cache"
 #    r.headers["Expires"] = "0"
@@ -112,7 +106,7 @@ def page_not_found(e):
     """
     https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
     """
-    if print_trace: logger.info('[trace] page_not_found')
+    logger.info('[trace] page_not_found')
     logger.debug(e)
     return redirect(url_for('index'))
 
@@ -126,7 +120,7 @@ def allowed_file(filename):
     >>> allowed_file('a_file.json')
     True
     """
-    if print_trace: logger.info('[trace] allowed_file')
+    logger.info('[trace] allowed_file')
 
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in {'json'}
@@ -135,7 +129,7 @@ def validate_json_file(filename):
     """
     >>>
     """
-    if print_trace: logger.info('[trace] validate_json_file')
+    logger.info('[trace] validate_json_file')
 
     with open(filename) as json_file:
         try:
@@ -167,7 +161,7 @@ def index():
 
     file upload: see https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
     """
-    if print_trace: logger.info('[trace] index')
+    logger.info('[trace] index')
 
     shutil.copy('data.json','/home/appuser/app/static/')
 
@@ -234,7 +228,7 @@ def index():
 
 @app.route('/start_new_derivation/', methods=['GET', 'POST'])
 def start_new_derivation():
-    if print_trace: logger.info('[trace] start_new_derivation')
+    logger.info('[trace] start_new_derivation')
     web_form = NameOfDerivationInputForm(request.form)
     if request.method == 'POST' and web_form.validate():
         name_of_derivation = str(web_form.name_of_derivation.data)
@@ -248,13 +242,13 @@ def start_new_derivation():
 
 #@app.route('/edit_expression', methods=['GET', 'POST'])
 #def edit_expression():
-#    if print_trace: logger.info('[trace] edit_expression')
+#    logger.info('[trace] edit_expression')
 #    return render_template('edit_expression.html',
 #                           expressions_dict=expressions_dict)
 
 @app.route('/list_all_operators', methods=['GET', 'POST'])
 def list_all_operators():
-    if print_trace: logger.info('[trace] list_all_operators')
+    logger.info('[trace] list_all_operators')
     dat = clib.read_db('data.json')
     operator_popularity_dict = compute.popularity_of_operators('data.json')
 
@@ -266,7 +260,7 @@ def list_all_operators():
 
 @app.route('/list_all_symbols', methods=['GET', 'POST'])
 def list_all_symbols():
-    if print_trace: logger.info('[trace] list_all_symbols')
+    logger.info('[trace] list_all_symbols')
     dat = clib.read_db('data.json')
     symbol_popularity_dict = compute.popularity_of_symbols('data.json')
 
@@ -279,7 +273,7 @@ def list_all_symbols():
 
 @app.route('/list_all_expressions', methods=['GET', 'POST'])
 def list_all_expressions():
-    if print_trace: logger.info('[trace] list_all_expressions')
+    logger.info('[trace] list_all_expressions')
     dat = clib.read_db('data.json')
     expression_popularity_dict = compute.popularity_of_expressions('data.json')
     if request.method == "POST":
@@ -308,7 +302,7 @@ def list_all_expressions():
 
 @app.route('/list_all_inference_rules', methods=['GET', 'POST'])
 def list_all_inference_rules():
-    if print_trace: logger.info('[trace] list_all_inference_rules')
+    logger.info('[trace] list_all_inference_rules')
     dat = clib.read_db('data.json')
     infrule_popularity_dict = compute.popularity_of_infrules('data.json')
     if request.method == "POST":
@@ -353,7 +347,7 @@ def list_all_inference_rules():
 
 @app.route('/select_derivation_to_edit', methods=['GET', 'POST'])
 def select_derivation_to_edit():
-    if print_trace: logger.info('[trace] select_derivation_to_edit')
+    logger.info('[trace] select_derivation_to_edit')
     if request.method == "POST":
         logger.debug('[debug] controller; select_derivation_to_edit; request.form = %s',request.form)
     return render_template("select_derivation_to_edit.html",
@@ -361,7 +355,7 @@ def select_derivation_to_edit():
 
 @app.route('/select_derivation_step_to_edit/<name_of_derivation>/', methods=['GET', 'POST'])
 def select_derivation_step_to_edit(name_of_derivation: str):
-    if print_trace: logger.info('[trace] select_derivation_step_to_edit')
+    logger.info('[trace] select_derivation_step_to_edit')
     steps_dict = compute.get_derivation_steps(name_of_derivation,'data.json')
     if request.method == "POST":
         logger.debug('[debug] controller; select_derivation_step_to_edit; request.form = %s',request.form)
@@ -373,7 +367,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
 
 @app.route('/select_from_existing_derivations', methods=['GET', 'POST'])
 def select_from_existing_derivations():
-    if print_trace: logger.info('[trace] select_from_existing_derivations')
+    logger.info('[trace] select_from_existing_derivations')
     list_of_deriv = compute.get_sorted_list_of_derivations('data.json')
     if request.method == "POST":
         logger.debug('select_from_existing_derivations; request.form = %s',request.form)
@@ -406,7 +400,7 @@ def select_from_existing_derivations():
 
 @app.route('/new_step_select_inf_rule/<name_of_derivation>/', methods=['GET', 'POST'])
 def new_step_select_inf_rule(name_of_derivation: str):
-    if print_trace: logger.info('[trace] new_step_select_inf_rule')
+    logger.info('[trace] new_step_select_inf_rule')
     list_of_inf_rules = compute.get_sorted_list_of_inf_rules('data.json')
 
     if request.method == 'POST': # and request.form.validate(): no validation because the form was defined on the web page
@@ -431,9 +425,9 @@ def provide_expr_for_inf_rule(name_of_derivation: str,inf_rule: str):
     >>> provide_expr_for_inf_rule()
     """
 
-    if print_trace: logger.info('[trace] provide_expr_for_inf_rule')
+    logger.info('[trace] provide_expr_for_inf_rule')
     #num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, 'data.json')
-    #if print_debug: logger.debug('[debug] controller; provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
+    #logger.debug('[debug] controller; provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
 
     dat = clib.read_db('data.json')
 
@@ -448,9 +442,9 @@ def provide_expr_for_inf_rule(name_of_derivation: str,inf_rule: str):
 # request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('feed1', 'a'), ('feed2', 'b'), ('feed3', 'c'), ('output1', 'asdf = asf'), ('submit_button', 'Submit')])
 
 
-        if print_debug: logger.debug('[debug] controller: provide_expr_for_inf_rule: latex_for_step_dict = %s', latex_for_step_dict)
+        logger.debug('[debug] controller: provide_expr_for_inf_rule: latex_for_step_dict = %s', latex_for_step_dict)
         local_step_id = compute.create_step(latex_for_step_dict, inf_rule, name_of_derivation, 'data.json')
-        if print_debug: logger.debug('[debug] controller; provide_expr_for_inf_rule; local_step_id = %s', local_step_id)
+        logger.debug('[debug] controller; provide_expr_for_inf_rule; local_step_id = %s', local_step_id)
 
         step_validity_msg = vir.validate_step(name_of_derivation, local_step_id, 'data.json')
 
@@ -484,7 +478,7 @@ def step_review(name_of_derivation: str,local_step_id: str, step_validity_msg: s
 
     >>> step_review
     """
-    if print_trace: logger.info('[trace] step_review')
+    logger.info('[trace] step_review')
 
     valid_latex_bool, invalid_latex, step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, local_step_id, 'data.json')
     if not valid_latex_bool:
@@ -495,7 +489,7 @@ def step_review(name_of_derivation: str,local_step_id: str, step_validity_msg: s
 
     if request.method == 'POST':
         reslt = request.form
-        if print_debug: logger.debug('[debug] controller: step_review: reslt = %s',reslt)
+        logger.debug('[debug] controller: step_review: reslt = %s',reslt)
         if request.form['submit_button']=='accept this step; add another step':
             return redirect(url_for('new_step_select_inf_rule',
                              name_of_derivation=name_of_derivation))
@@ -525,7 +519,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
     """
     >>> review_derivation
     """
-    if print_trace: logger.info('[trace] review_derivation')
+    logger.info('[trace] review_derivation')
     if request.method == 'POST':
         if request.form['submit_button'] == 'add another step':
             return redirect(url_for('new_step_select_inf_rule',
@@ -561,9 +555,9 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
 @app.route('/modify_step/<name_of_derivation>/<step_id>/', methods=['GET', 'POST'])
 def modify_step(name_of_derivation: str, step_id: str):
     """
-    >>> 
+    >>>
     """
-    if print_trace: logger.info('[trace] modify_step')
+    logger.info('[trace] modify_step')
 
     valid_latex_bool, invalid_latex, step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, step_id, 'data.json')
     if not valid_latex_bool:
@@ -602,9 +596,9 @@ def modify_step(name_of_derivation: str, step_id: str):
 @app.route('/create_new_inf_rule/', methods=['GET', 'POST'])
 def create_new_inf_rule():
     """
-    >>> 
+    >>>
     """
-    if print_trace: logger.info('[trace] create_new_inf_rule')
+    logger.info('[trace] create_new_inf_rule')
     if request.method == 'POST':
         logger.debug('[debug] controller; create_new_inf_rule; request.form = %s', request.form)
     return render_template('create_new_inf_rule.html')
@@ -622,3 +616,5 @@ if __name__ == '__main__':
                         datefmt='%m/%d/%Y %I:%M:%S %p')
 
     app.run(debug=True, host='0.0.0.0')
+
+# EOF

@@ -7,19 +7,13 @@ from typing import Tuple #, TextIO
 import logging
 logger = logging.getLogger(__name__)
 
-global print_trace
-print_trace = True
-global print_debug
-print_debug = True
-global proc_timeout
-proc_timeout = 30
 
 def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str, str]:
     """
     >>> split_expr_into_lhs_rhs('a = b')
     'a', 'b'
     """
-    if print_trace: logger.info('[trace] split_expr_into_lhs_rhs')
+    logger.info('[trace] split_expr_into_lhs_rhs')
 
     logger.debug('split_expr_into_lhs_rhs; latex_expr = %s', latex_expr)
 
@@ -38,7 +32,7 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
     """
     >>> validate_step('my cool deriv', '958282', 'data.json')
     """
-    if print_trace: logger.info('[trace] validate_step')
+    logger.info('[trace] validate_step')
 
     dat = clib.read_db(path_to_db)
 
@@ -128,7 +122,7 @@ def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
     >>> latex_from_expr_local_id('1029')
     'a = b'
     """
-    if print_trace: logger.info('[trace] latex_from_expr_local_id')
+    logger.info('[trace] latex_from_expr_local_id')
     dat = clib.read_db(path_to_db)
     logger.debug('latex_from_expr_local_id; expr_local_id = %s', expr_local_id)
     global_id = dat['expr local to global'][expr_local_id]
@@ -145,7 +139,7 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
 
     >>> create_sympy_expr_tree_from_latex(r"\frac {1 + \sqrt {\a}} {\b}")
     """
-    if print_trace: logger.info('[trace] create_sympy_expr_tree_from_latex')
+    logger.info('[trace] create_sympy_expr_tree_from_latex')
 
     sympy_expr = parse_latex(latex_expr_str)
     logger.debug('create_sympy_expr_tree_from_latex; Sympy expression = %s',sympy_expr)
@@ -165,7 +159,7 @@ def get_symbols_from_latex(latex_expr_str: str) -> list:
     >>> parse_latex(r'\nabla \vec{x} = f(y)').free_symbols
     {x, nabla, y, vec}
     """
-    if print_trace: logger.info('[trace] get_symbols_from_latex')
+    logger.info('[trace] get_symbols_from_latex')
 
     return list(parse_latex(latex_expr_str).free_symbols)
 
