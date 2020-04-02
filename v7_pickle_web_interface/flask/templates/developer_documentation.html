@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<P>
+  Read the <a href="">user documentation</a> and <a href="">FAQ</a> first.
+</P>
+
+<P>
+  This page provides background context for design decisions associated with the Physics Derivation Graph (PDG). 
+  Contributions to the project are welcome; see <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/CONTRIBUTING.md">CONTRIBUTING.md</a> on how to get started. 
+  The PDG is covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, so if you don't like a choice that was made you are welcome to <a href="https://github.com/allofphysicsgraph/proofofconcept/fork">fork the PDG project</a>. 
+
+
+
+
+<a name="indices"/>
+<H2>core enabling concept for the PDG is indices</H2>
+The visualization of a graph with expressions and inference rules as nodes relies on each node having a distinct index. For example, a node with the label "f" for frequency may be the same "f" for frequency as a different node, but the two should be different nodes. 
+
+<a name="latex for expressions">
+<H2>Latex representation of expressions</H2>
+There are multiple choices of how to represent a mathematical expression. The choices feature trade-offs between conciseness, ability to express the range of notations necessary for Physics, symantic meaning, and ability to use the expression in a computer algebra system (CAS). 
+
+<a name="python"/>
+<H2>Python</H2>
+Python as a "glue" language is leveraged to connect existing tools like Latex, Flask, logging, manipulation of data. Also, it's the language the project owner is most comfortable with. And it is free and open source.
+
+<a name="mvc"/>
+<H2>Model-view-controller in Flask</H2>
+
+
+<a name="containerization"/>
+<H2>Docker</H2>
+
+<a name="web stack"/>
+<H2>Flask - Gunicorn - Nginx</H2>
+
+<a name="historical evolution"/>
+<H2>historical design evolution</H2>
+
+
+{% endblock %}
