@@ -6,40 +6,47 @@
 </P>
 
 <P>
-  This page provides background context for design decisions associated with the Physics Derivation Graph (PDG). 
-  Contributions to the project are welcome; see <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/CONTRIBUTING.md">CONTRIBUTING.md</a> on how to get started. 
-  The PDG is covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, so if you don't like a choice that was made you are welcome to <a href="https://github.com/allofphysicsgraph/proofofconcept/fork">fork the PDG project</a>. 
+  This page provides background context for design decisions associated with the Physics Derivation Graph (PDG).
+  Contributions to the project are welcome; see <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/CONTRIBUTING.md">CONTRIBUTING.md</a> on how to get started.
+  The PDG is covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, so if you don't like a choice that was made you are welcome to <a href="https://github.com/allofphysicsgraph/proofofconcept/fork">fork the PDG project</a>.
+
+<div id="toc_container">
+<p class="toc_title">Contents</p>
+<OL class="toc_list">
+  <LI><a href="#indices">Indices</a></LI>
+  <LI><a href="#syntax comparison">Syntax Comparison</a></LI>
+  <OL>
+    <LI><a href="#test cases">Test cases</a></LI>
+    <LI><a href="#quantitative comparison of syntax">Quantitative</a></LI>
+    <LI><a href="#qualitative comparison of syntax">Qualitative</a></LI>
+  </OL>
+  <LI>Citations</LI>
+</OL>
+</div>
 
 
-
-
-<a name="indices"/>
-<H2>core enabling concept for the PDG is indices</H2>
-The visualization of a graph with expressions and inference rules as nodes relies on each node having a distinct index. For example, a node with the label "f" for frequency may be the same "f" for frequency as a different node, but the two should be different nodes. 
+<H2 id="indices">core enabling concept for the PDG is indices</H2>
+The visualization of a graph with expressions and inference rules as nodes relies on each node having a distinct index. For example, a node with the label "f" for frequency may be the same "f" for frequency as a different node, but the two should be different nodes.
 
 Each expression, symbol, and inference rule appears only once in the respective database.
 
 
-<a name="latex for expressions">
-<H2>Latex representation of expressions</H2>
-There are multiple choices of how to represent a mathematical expression. The choices feature trade-offs between conciseness, ability to express the range of notations necessary for Physics, symantic meaning, and ability to use the expression in a computer algebra system (CAS). 
+<H2 id="latex for expressions">Latex representation of expressions</H2>
+There are multiple choices of how to represent a mathematical expression. The choices feature trade-offs between conciseness, ability to express the range of notations necessary for Physics, symantic meaning, and ability to use the expression in a computer algebra system (CAS).
 
-<a name="python"/>
-<H2>Python</H2>
+<H2 id="python">Python</H2>
 Python as a "glue" language is leveraged to connect existing tools like Latex, Flask, logging, manipulation of data. Also, it's the language the project owner is most comfortable with. And it is free and open source.
 
-<a name="mvc"/>
-<H2>Model-view-controller in Flask</H2>
+
+<H2 id="mvc">Model-view-controller in Flask</H2>
 
 
-<a name="containerization"/>
-<H2>Docker</H2>
+<H2 id="containerization">Docker</H2>
 
-<a name="web stack"/>
-<H2>Flask - Gunicorn - Nginx</H2>
+<H2 id="web stack">Flask - Gunicorn - Nginx</H2>
 
-<a name="dependencies"/>
-<H2>Dependencies</h2>
+
+<H2 id="dependencies">Dependencies</h2>
 <P>
   The Physics Derivation Graph relies on free and open source software, including
   <UL>
@@ -55,8 +62,266 @@ Python as a "glue" language is leveraged to connect existing tools like Latex, F
     <LI>Docker
   </UL>
 </P>
-<a name="historical evolution"/>
-<H2>historical design evolution</H2>
+
+<H2 id="historical evolution">historical design evolution</H2>
+
+
+<H2 id="syntax comparison">Comparison of Syntax Options</H2>
+
+<P>
+  Here methods of capturing mathematical syntax required to describe derivations in physics are compared.
+  This survey covers Latex, Mathematical Markup Language (MathML), Mathematica, and SymPy.
+  For MathML, both Presentation and Content forms are included.
+</P>
+
+
+<P>
+Although Latex is intuitive for scientists and is concise, it is a typesetting language and not well suited for the web or use in Computer Algebra Systems (CAS). Mathematica is also concise and has wide spread use by scientists, though its cost limits accessibility. Mathematica is also proprietary, which limits the ability to explore the correctness of this CAS
+</P>
+
+<P>
+Latex is concise and is widely used in the scientific community. It does not work well for portability to other representations and is ill-suited for use by CAS. For the initial phases of development for the Physics Derivation Graph, portability and compatibilty with a CAS are not the priority. Since getting content into the graph is the priority, the Latex representation will be used.
+</P>
+
+<P>
+  For this survey it is assumed that users cares about the learning curve, leveraging previous experience, how wide spread use in their community, speed, ease of input, presentation (rendering), ability to access content across devices, OS independence, ease of setup.
+  To evaluate criteria relevant to users, including the ability to <a href="#quantitative comparison of syntax">manually input syntax</a>, the ability to <a href="#conversion of syntax">transform between representations</a>, and the ability to <a href="#correctness of derivations">audit correctness</a>.
+</P>
+
+<P>
+  Use of a single syntax for the graph content is important. To illustrate why, consider the approach where each syntax is used for its intended purpose -- Latex for rendering equation, SymPy for the CAS, and MathML for portability. This introduces a significant source of error when a single equation requires three distinct representation. The manual entry could result in the three representations not being sychronized. Thus, a single representation satisfying multiple criteria is needed. If no single syntax meets all the needs of the Physics Derivation Graph, then the requirements must be prioritized.
+</P>
+
+<P>
+This comparison is between syntax methods which do not serve the same purpose. Latex is a type-setting language, while Mathematica and SymPy are Computer Algebra Systems (CAS). The reason these approaches for rendering and CAS were picked is twofold: they are widely used in the scientific community and they address requirements for the Physics Derivation Graph.
+</P>
+
+<P>
+We can ignore syntax methods which do not support notation necessary for describing physics. Example of this include <a href="#cite:ascii">ASCII</a> and <a href="#cite:html">HTML</a>. Storage of the generated content (essentially a knowledge base for all of physics) isn't expected to exceed a Gigabyte, so compactness in terms of storage isn't a criterion in this evaluation.
+
+<H4 id="test cases">Test Cases</H4>
+<P>
+  to demonstrate the variety of uses in distinct domains of Physics, a set of test cases are provided in this section. These cases are not meant to be exhaustive of either the syntax or the scientific domain. Rather, they are examples of both capability requirements of the Physics Derivation Graph and of the syntax methods.
+</P>
+<!-- https://www.physicsforums.com/threads/formulae-of-various-topics.102736/ -->
+
+<a name="test case 1"/>
+<P>
+Case 1 is a second order polynomial. Algebra
+\begin{equation}
+a x^2 + b x + c = 0
+\label{eq:polynomial_case1_body}
+\end{equation}
+</P>
+
+<a name="test case 2"/>
+<P>
+Case 2, <a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes' theorem</a>, includes integrals, cross products, and vectors. Calculus
+\begin{equation}
+\int \int_{\sum} \vec{\nabla} \times \vec{F} \dot d\sum = \oint_{\partial \sum} \vec{F}\dot d\vec{r}
+\label{eq:stokes_case2_body}
+\end{equation}
+</P>
+
+<a name="test case 3"/>
+<P>
+Case 3: Tensor analysis. <a href="https://en.wikipedia.org/wiki/Einstein_notation">Einstein notation</a>: contravariant = superscript, covariant = subscript. Used in electrodynamics
+\begin{equation}
+Y^i(X_j) = \delta^i_{\ j}
+\label{eq:tensor_analysis_case3_body}
+\end{equation}
+</P>
+
+<P>
+Case 4 covers notation used in Quantum Mechanics. Symbols such as \(\hbar\) and Dirac notation are typically used.
+</P>
+
+<a name="test case 4a"/>
+<P>
+Case 4a is the creation operator
+\begin{equation}
+\hat{a}^+ |n\rangle = \sqrt{n+1} |n+1\rangle
+\label{eq:creation_operator_case4a_body}
+\end{equation}
+</P>
+
+<a name="test case 4b"/>
+<P>
+Case 4b is the uncertainty principle
+\begin{equation}
+\sigma_x \sigma_p \geq \frac{\hbar}{2}
+\label{eq:uncertainty_principle_case4b_body}
+\end{equation}
+</P>
+
+<a name="test case 4c"/>
+<P>
+Case 4c: L&uuml;ders projection
+\begin{equation}
+ |\psi\rangle \rightarrow \sum_n  |c_n|^2 P_n,\ \rm{where}\ P_n = \sum_i |\psi_{ni}\rangle \langle \psi_{ni}|
+\label{eq:Luders_projection_case4c_body}
+\end{equation}
+</p>
+
+<H4 id="quantitative comparison of syntax">Quantitative Comparison of Test Cases</H4>
+
+<table border="1" class="sortable">
+  <tr>
+    <th>Name</th>
+    <th>case 1</th>
+    <th>case 2</th>
+    <th>case 3</th>
+    <th>case 4a</th>
+    <th>case 4b</th>
+    <th>case 4c</th>
+  </tr>
+  <tr>
+    <td>Latex</td>
+    <td>20</td>
+    <td>101</td>
+    <td>26</td>
+    <td>45</td>
+    <td>39</td>
+    <td>110</td>
+  </tr>
+  <tr>
+    <td>PMathML</td>
+    <td>324</td>
+    <td>538</td>
+    <td>348</td>
+    <td>372</td>
+    <td>250</td>
+  </tr>
+  <tr>
+    <td>CMathML</td>
+    <td>381</td>
+  </tr>
+  <tr>
+    <td>Mathematica</td>
+  </tr>
+  <tr>
+    <td>SymPy</td>
+  </tr>
+</table>
+
+<P>
+Character count for the MathML was carried out using
+<pre>
+wc -m mathML_presentation_case*.xml
+</pre>
+</p>
+
+
+<H4 id="qualitative comparison of syntax">Qualitative Comparisons of Syntax Methods</H4>
+
+<P>
+  Latex, MathML, and SymPy are free and open source. Mathematica is proprietary and not free.
+</P>
+
+<P>
+  For Physicists comfortable writing journal articles in Latex or exploring ideas in Mathematica, these are natural syntax methods. Both Latex and Mathematica are concise, making them intuitive to read and quick to enter. MathML is a verbose syntax which is lengthy to manually enter and yield difficult to read the native XML.
+</P>
+
+<P>
+Unicode is needed to support Dirac notation and any other non-ASCII text in MathML
+</P>
+
+
+<H4 id="conversion of syntax">Transforming between Syntax options</H4>
+
+<P>
+Wolfram Research offers the ability to convert from Mathematica expressions to MathML on their site <a href="http://www.mathmlcentral.com/Tools/ToMathML.jsp">www.mathmlcentral.com/Tools/ToMathML.jsp</a>.
+
+A CAS typically produces output syntax such as Latex or MathML in a single format. However, there are often many ways to represent the same math,  equation \ref{eq:example_partial_derivative_representations}.
+</P>
+
+
+<H4 id="correctness of derivations">Auditing the Correctness of Derivations</H4>
+
+<P>
+One reason Computer Algebra Systems such as Mathematica and SymPy were included in this survey was to address the requirement of checking correctness of derivations.
+
+<P>
+  Latex and Presentation MathML are intended for rendering equations and are not easily parsed consistently by a CAS. For example, scientists and mathematicians often render the same partial differential operation in multiple ways:
+\begin{equation}
+\frac{\partial^2}{\partial t^2}F =
+\frac{\partial}{\partial t}\frac{\partial F}{\partial t} =
+\frac{\partial^2 F}{\partial t^2} =
+\frac{\partial}{\partial t}\dot{F} =
+\frac{\partial \dot{F}}{\partial t} = \ddot{F}.
+\label{eq:example_partial_derivative_representations}
+\end{equation}
+All of these are equivalent.
+</p>
+
+<H2 id="not in scope">Outside of Current Scope</h2>
+
+Not expected within the scope of the Physics Derivation Graph are inclusion of graphics, explanatory text, animations of concepts, and interactive models.
+
+
+<h2 id="bibliography">Citations</H2>
+
+<a name="cite:xml"/>
+<pre>
+@misc{2008_XML,
+url = {http://www.w3.org/TR/REC-xml/},
+title = {Extensible Markup Language (XML) 1.0 (Fifth Edition)},
+version = {W3C Recommendation 26 November 2008},
+year={2008}
+}
+</pre>
+
+<a name="cite:mathematica"/>
+<pre>
+@manual{2014_mathematica,
+title = {Mathematica},
+author = {Wolfram Research, Inc.},
+edition = {Version 10.0},
+publisher = {Wolfram Research, Inc.},
+address = {Champaign, Illinois},
+year = {2014},
+url = {http://support.wolfram.com/kb/472}
+}
+</pre>
+
+<a name="cite:sympy"/>
+<pre>
+@manual{2014_SymPy,
+title = {SymPy: Python library for symbolic mathematics},
+author = {SymPy Development Team},
+year = {2014},
+url = {http://www.sympy.org}
+}
+</pre>
+
+<a name="cite:ascii"/>
+<pre>
+@misc{1968_ASCII,
+title = {American Standard Code for Information Interchange},
+url={http://www.itl.nist.gov/History%20Documents/FIPS%201.pdf},
+year = {1968}
+}
+</pre>
+
+<a name="cite:html"/>
+<pre>
+@misc{1999_HTML,
+title = {HTML 4.01 Specification},
+url = {http://www.w3.org/TR/html4/},
+version = {W3C Recommendation 24 December 1999},
+year={1999}
+}
+</pre>
+
+<a name="cite:mathml"/>
+<pre>
+@misc{2014_MathML,
+url = {http://www.w3.org/TR/MathML/},
+title = {Mathematical Markup Language (MathML) Version 3.0 2nd Edition},
+version = {W3C Recommendation 10 April 2014},
+year = {2014}
+}
+</pre>
 
 
 {% endblock %}

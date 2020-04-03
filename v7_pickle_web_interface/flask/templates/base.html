@@ -33,9 +33,9 @@
 
 
     <!-- http://docs.mathjax.org/en/latest/web/configuration.html#loading-mathjax -->
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+    </script>
     <!-- The following is described on 
          http://docs.mathjax.org/en/latest/web/configuration.html
          but isn't available -->
@@ -53,6 +53,37 @@
         color:#666666;
         font-weight: bold;
         cursor: default;
+      }
+
+      /* TOC formatting
+        from https://www.tipsandtricks-hq.com/simple-table-of-contents-toc-using-pure-html-and-css-code-9217  */
+      #toc_container {
+        background: #f9f9f9 none repeat scroll 0 0;
+        border: 1px solid #aaa;
+        display: table;
+        font-size: 95%;
+        margin-bottom: 1em;
+        padding: 20px;
+        width: auto;
+      }
+
+      .toc_title {
+        font-weight: 700;
+        text-align: center;
+      }
+
+      /* table of contents ordering 
+      from https://jsfiddle.net/jasonkarns/6xkzv37e/
+      linked from https://stackoverflow.com/questions/14138507/creating-table-of-contents-in-html/21684020#21684020 */
+      ol {
+        counter-reset: item
+      }
+      li {
+        display: block
+      }
+      li:before {
+        content: counters(item, ".")" ";
+        counter-increment: item
       }
 
       /* a bit of space around the edges looks cleaner */

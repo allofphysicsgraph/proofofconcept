@@ -11,7 +11,9 @@
 <P>
   The Physics Derivation Graph is an effort to document knowledge about mathematical physics. <BR>
   The project uses free and open source software (see <a href="/developer_documentation#dependencies">dependencies</a>) and the content is free and open source. <BR>
-  There is no intent to profit from the work. 
+  There is no intent to profit from the work.
+  This content is free because it is intended to be accessible to anyone; cost should not be a barrier to access.
+  The content is open source so that other researchers can build upon what exists.
 </P>
 
 <H2>Context</h2>
@@ -31,10 +33,10 @@ This enables non-linear exploration of content, in contrast to a textbook which 
 
 <P>
   The Physics Derivation Graph applies the concept of non-linear documentation to mathematical physics content.
-  Instead of starting from linear text with references, this project starts with the network of mathematical relations. 
+  Instead of starting from linear text with references, this project starts with the network of mathematical relations.
   A more formal term for this network is a <a href="https://en.wikipedia.org/wiki/Graph_(mathematics)">graph</a> composed of nodes and edges.
   The graph associated with the PDG has two essential types of nodes: mathematical expressions and <a href="#inference rules">inference rules</a>.
-  Every mathematical expression is connected to an inference rule by a directed edge. 
+  Every mathematical expression is connected to an inference rule by a directed edge.
   No two expressions are directly connected without an inference rule, and no two inference rules are connected directly.
   An example is provided in the next section to illustrate the concepts.
 </P>
@@ -67,6 +69,7 @@ The relation between equations \eqref{eq:period_and_freq} and \eqref{eq:freq_is_
 </blockquote>
 </P>
 
+<P>
 In the above example, three terms used in the Physics Derivation Graph are demonstrated. There are two <U>mathematical expressions</U>: \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period}.
 These expressions are related by an <U>inference rule</U>: "Divide both sides of first expression by a scalar value to yield the second expression."
 This inference rule takes an argument, referred to here as the <U>feed</U>, which in this example is \(T\).
@@ -86,24 +89,24 @@ The relation of these terms is shown graphically below in figure 1:<!--in Fig. \
 <H2>Graph content</H2>
 
 <P>
-  The graph content takes the form of expressions (e.g., equations and inequalities), inference rules, and feeds. 
-  The expressions and feeds are built from symbols. 
+  The graph content takes the form of expressions (e.g., equations and inequalities), inference rules, and feeds.
+  The expressions and feeds are built from symbols.
   In the <a href="#example">example provided above</a>, the symbols are period \(T\), frequency \(f\), equality \(=\), division \(/\), (implicity) multiplication, and the numeric value 1.
   The two expressions are \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period}.
-  An inference rule is defined here as an atomic transformation of one expression to another. 
-  The inference rule being applied implicitly between \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first equation by a value to yield the second equation." 
-This inference rule takes an argument (the "feed"), which in this example is \(T\). 
+  An inference rule is defined here as an atomic transformation of one expression to another.
+  The inference rule being applied implicitly between \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first equation by a value to yield the second equation."
+This inference rule takes an argument (the "feed"), which in this example is \(T\).
 </P>
 
 <P>
-The Physics Derivation Graph is a collection of derivations, with each derivation composed of one or more steps. 
-Each step has one inference rule. 
-An inference rule (like "Divide both sides of first equation by a value to yield the second equation") may appear many times in the Physics Derivation Graph. 
-  Similarly, feed values (like \(f\)) can appear more than once. 
-  In contrast to inference rules and feeds, expression only appear once in the Physics Derivation Graph. 
-  This constraint is what leads to the connectedness of the graph. 
-  If multiple derivations reference \(1/T = f\), it is the same expression. 
-  Similarly, symbols are defined once for the entire Physics Derivation Graph. 
+The Physics Derivation Graph is a collection of derivations, with each derivation composed of one or more steps.
+Each step has one inference rule.
+An inference rule (like "Divide both sides of first equation by a value to yield the second equation") may appear many times in the Physics Derivation Graph.
+  Similarly, feed values (like \(f\)) can appear more than once.
+  In contrast to inference rules and feeds, expression only appear once in the Physics Derivation Graph.
+  This constraint is what leads to the connectedness of the graph.
+  If multiple derivations reference \(1/T = f\), it is the same expression.
+  Similarly, symbols are defined once for the entire Physics Derivation Graph.
 </P>
 
 <P>
@@ -118,32 +121,33 @@ a x^2+b x+c =0.
 </P>
 
 <P>
-  Each time an expression, symbol, or inference rule is used in a step in the PDG, the unique identifier is referenced. 
-  The referencing of unique node identifiers is what enables construction of the graph. 
-  For example, if \eqref{eq:period_and_freq} is used in two distinct derivations, the same expression is referenced. 
-  Similarly, when the symbol \(T\) is used in any derivation, the associated numeric identifier refers to period. 
+  Each time an expression, symbol, or inference rule is used in a step in the PDG, the unique identifier is referenced.
+  The referencing of unique node identifiers is what enables construction of the graph.
+  For example, if \eqref{eq:period_and_freq} is used in two distinct derivations, the same expression is referenced.
+  Similarly, when the symbol \(T\) is used in any derivation, the associated numeric identifier refers to period.
   The symbol \(T\) used in another context would have a different unique numeric identifier.
-This referencing of unique expressions, symbols, and inference rules is done using a numeric identifier (alphanumeric for inference rules). 
-This uniqueness of expressions, symbols, and inference rules is the core utility of the Physics Derivation Graph. 
-This results in no duplication and fixed references (a static directed graph). 
+This referencing of unique expressions, symbols, and inference rules is done using a numeric identifier (alphanumeric for inference rules).
+This uniqueness of expressions, symbols, and inference rules is the core utility of the Physics Derivation Graph.
+This results in no duplication and fixed references (a static directed graph).
 The Physics Derivation Graph is designed to show one instance of each expression, but feeds and inference rules will have duplicates on the graph.
 </P>
 
 
+<a name="inference rules"/>
+<h2>Inference Rules</H2>
 <P>
-Inference rules are necessary to perform derivations in physics, but have received little attention as they are typically left to the field of logic. 
-One result of an education in mathematics is building a library of inference rules, though that is not the common description in the field of math education. 
-In Physics, knowing that it is valid to multiply both sides of an expression by one is assumed to have been learned in a math course. 
+  Inference rules operate on expressions to produce new expressions.
+  In the <a href="#example">example</a>, the inference rule between \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first expression by a scalar value to yield the second expression."
+</P>
+
+<P>
+  Inference rules are necessary to perform derivations in physics, but have received little attention as they are typically left to the field of logic.
+  One result of an education in mathematics is building a library of inference rules, though that is not the common description in the field of math education.
+In Physics, knowing that it is valid to multiply both sides of an expression by one is assumed to have been learned in a math course.
 In the math course, the inference rule of multiplying both sides of an expression by one is taught with the common explanation that students need that inference rule to solve the relevant problems provided in the class.
 One of the consequences of constructing the Physics Derivation Graph is the enumeration of inference rules necessary for Physics.
 </P>
 
-<a name="inference rules"/>
-<h2>Inference Rules</H2>
-<P>
-Inference rules operate on expressions to produce new expressions. 
-In <a href="#example">example</a>, the inference rule between \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first expression by a scalar value to yield the second expression."
-</P>
 
 <P>
 Inference rules for the Physics Derivation Graph are intended to meet a threshold -- can the computer algebra system validate that the claim is true?
@@ -151,6 +155,142 @@ Inference rules for the Physics Derivation Graph are intended to meet a threshol
 
 <P>
 Inference rules are useful for catching simple mistakes by CAS validation. Common mistakes include not carrying the negative symbol through a derivation or unintentionally dropping a term. The inference rules are atomic (simplest step possible) and first order -- they only relate nearest-neighbor expressions.
+</P>
+
+<a name="topic scope"/>
+<H2>Physics Topics</H2>
+This requires breadth of coverage across all the domains of physics (\ie, classical mechanics, quantum mechanics, relativity, thermodynamics, statistical mechanics, etc). As a consequence, much of mathematics covered up to undergraduate level is likely to be required.
+
+
+<a name="use cases"/>
+<H2>Use cases</H2>
+
+<P>
+The Physics Derivation Graph is expected to be useful to multiple audiences and users. Viewers of the content could include students in math and physics, and analysis of the content could help shape curriculum. Contributors to the Physics Derivation Graph would be scientists who add new developments based on their work.
+</P>
+
+<a name="use case:students"/>
+<H4>Students in Math and Physics</H4>
+<P>
+Currently students in Math and Physics are taught content using lectures, textbooks, and homework.
+The method of presentation varies, but the overarching story is often historically driven.
+Algebra is old, calculus is newer, and topology is recent.
+Classical mechanics is old, thermodynamics is newer, and quantum mechanics is recent.
+When teaching, these subjects are taught by building on previous content -- calculus leverages algebra, thermodynamics leverages classical mechanics.
+</P>
+
+<a name="scientific articles"/>
+<H4>Scientific Articles</H4>
+<P>
+  Peer-reviewed journal articles are one of the current methods of demonstrating value in the scientific community. Conciseness is a feature of this writing style, and the mathematics presented is correspondingly sparse -- just sufficient to covey the author's intention. This results in a burden on the reader of the article, either to take the author's claims on faith, or to rederive the mathematical expressions. A reader's derivation is complicated by implicit assumptions made by the author and unintentional mistakes in calculation.
+
+With journals allowing supplemental materials for articles, calculations could be included. However, it is not clear what the appropriate level of detail is in supplied calculations. The intention is to be able to reproduce the work, but validation via computer
+</P>
+
+<a name="education curriculum design"/>
+<H4>Education Curriculum Design</H4>
+<P>
+  A less direct use case but potentially important impact of the Physics Derivation Graph is on understanding the relevance of what is being taught in the education system. Math classes essentially teach a set of inference rules, and physics is the application of those inference rules. The Physics Derivation Graph could answer two important questions: ``When am I going to use this inference rule?'' and ``What's the relative importance of this math skill?''
+
+The focus for students in mathematics classes is on the technique, \ie, ``integrate both sides with respect to $Y$,'' and application is necessarily of secondary importance. Physics students are expected to know the mathematical techniques and teaching is focused on application. The Physics Derivation Graph can assist both scenarios. The student in a math class can see where the inference rules they learn are applied in Physics. The student in the Physics class can see which inference rules are required in their field.
+
+Each inference rule seems equally important, since it currently isn't known what the frequency of use for that inference rule is. From the \pdg, it is simple to count utilization of inference rules. Thus, we are able to measure the ratio of how often ``multiply both sides by X'' is used relative to ``integrate both sides with respect to $Y$.''
+</P>
+
+
+
+<a name="comparison"/>
+<H2>Comparison to other projects</H2>
+
+<P>
+  Five examples are provided in this section: <a href="#hyperphysics">HyperPhysics</a>, <a href="#equationmap">EquationMap</a>, <a href="#formuladatabase">Formula Database</a>, <a href="#symbolab">Symbolab</a>, and <a href="#wolfram alpha">Wolfram Alpha</a>.
+  The use here is to contrast the scope and intention of the Physics Derivation Graph.
+</P>
+
+<a name="hyperphysics"/>
+<H4>HyperPhysics</H4>
+<P>
+  The HyperPhysics website (<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html">http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html</a>) is a static set of linked concept maps for topics in Physics.
+  Concept maps are linked to text, graphs, and equations.
+  The licensing of the content is described as ``not freeware or shareware'' by the author, though the site is free to access.
+  Although hyperlinked concept maps are a departure from the standard textbook presentation of physics, the leaves of this tree are the same content found in textbooks.
+</P>
+
+<a name="equationmap"/>
+<H4>EquationMap</H4>
+<P>
+  The website EquationMap (http://equationmap.com; site not currently available) is an interface for derivations, focused primarily on mathematical sciences.
+  There is no backend database of content; instead content is dynamically generated by the user.
+  Equations are manually entered using \LaTeX syntax and the graph of the derivation can be visualized using the same interface.
+  The content is not open source and access is currently free.
+  This is close to what the GUI for the Physics Derivation Graph is intended to behave like, with the exception that EquationMap doesn't include the concept of atomic inference rules.
+</P>
+<P>
+  <a href="{{ url_for('static', filename='equationmap_site.png') }}">
+    <img src="{{ url_for('static', filename='equationmap_site.png') }}" width=400>
+  </a>
+  Screenshot of the EquationMap website. The input mechanism is not shown because this screenshot is from the Internet Archive.
+</P>
+<P>
+  <a href="{{ url_for('static', filename='equationmap_site_menu.png') }}">
+    <img src="{{ url_for('static', filename='equationmap_site_menu.png') }}" width=400>
+  </a>
+  Screenshot of the option to provide .tex files to EquationMap website, and download .tex files.
+</P>
+
+<a name="formuladatabase"/>
+<H4>FormulaDatabase</H4>
+<P>
+  Formula Database (<a href="http://www.formula-database.com/release/">http://www.formula-database.com/release/</a>) is a website described by the authors as a ``math search engine'' which has a built-in equation editor.
+  The search feature is not just matching the Latex input -- it understands dot product and cross product.
+  They have created a browser-based equation editor, similar to the equation editor in Microsoft Word.
+  The search is of a backend database of content.
+  The backend database of equations and symbols was manually entered by the project authors.
+  A team of people have been working since about 2010 on this project.
+  The data is stored as a high-dimensional graph.
+  This project is not open source but access is currently free.
+  A commercial launch is planned, though no date has been publicized.
+  The objective is to allow students to search through literature.
+  If you are a researcher, you might want to find whether the model already exists in literature.
+  The grand view is that formula-database will serve as a universal reference for equations.
+
+<P>From the "About" page (<a href="https://web.archive.org/web/20130418062440/http://formula-database.com/release/about">https://web.archive.org/web/20130418062440/http://formula-database.com/release/about</a>
+<blockquote>
+Formula Database was founded in 2012 by a group of students and researchers at UW-Madison. The idea originated three years prior, when one of our founders, then an undergraduate, was frustrated at the difficulty in finding the correct formula he needed to solve his engineering homework.
+This challenge has been leveraged into creating an innovative search engine to allow individuals to search for formulas based upon either their contents or mathematical structure. Formula Database lets users input measurable parameters—such as mass, distance, or time—and get equations that provide a relation between these items. Alternatively, using the Equation Editor, users can write a mathematical equation exactly as they would on a whiteboard or paper and discover information about the formula’s use and purpose.
+Currently we are developing the completed product to allow users to enjoy this functionality. We anticipate launching for a beta test at the end of August 2012.
+</blockquote>
+
+<P>
+  Below are a few screenshots from the Internet Archive.
+  <a href="{{ url_for('static', filename='formuladatabase.png') }}">
+    <img src="{{ url_for('static', filename='formuladatabase.png') }}" width=400>
+  </a>
+  Frontpage of the FormulaDatabase.
+</P>
+<P>
+  <a href="{{ url_for('static', filename='formuladatabase_2.png') }}">
+    <img src="{{ url_for('static', filename='formuladatabase_2.png') }}" width=400>
+  </a>
+  Categories of data in the FormulaDatabase.
+</P>
+<P>
+  <a href="{{ url_for('static', filename='formuladatabase_3.png') }}">
+    <img src="{{ url_for('static', filename='formuladatabase_3.png') }}" width=400>
+  </a>
+Objects in the FormulaDatabase.
+</P>
+
+<a name="symbolab"/>
+<H4>SymboLab</H4>
+<P>
+  SymboLab (<a href="https://www.symbolab.com">https://www.symbolab.com</a>) is another backend database of content. This project is not open source but access is currently free.
+</P>
+
+<a name="wolfram alpha"/>
+<H4>Wolfram Alpha</H4>
+<P>
+  Wolfram Alpha (<a href="https://www.wolframalpha.com">https://www.wolframalpha.com</a>) has a backend database of content which is not open source; access is a mix of free and paid.
 </P>
 
 {% endblock %}
