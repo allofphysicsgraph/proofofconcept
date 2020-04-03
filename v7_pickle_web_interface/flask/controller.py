@@ -149,14 +149,14 @@ class NameOfDerivationInputForm(Form):
 #    return r
 
 
-@app.errorhandler(404)
-def page_not_found(e):
-    """
-    https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
-    """
-    logger.info("[trace] page_not_found")
-    logger.debug(e)
-    return redirect(url_for("index"))
+#@app.errorhandler(404)
+#def page_not_found(e):
+#    """
+#    https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+#    """
+#    logger.info("[trace] page_not_found")
+#    logger.debug(e)
+#    return redirect(url_for("index"))
 
 
 @app.route("/index", methods=["GET", "POST"])
@@ -176,6 +176,32 @@ def faq():
     """
     logger.info("[trace] faq")
     return render_template("faq.html")
+
+@app.route("/lesmis", methods=["GET", "POST"])
+def lesmis():
+    """
+    >>> lesmis()
+    """
+    logger.info("[trace] lesmis")
+    return render_template("lesmis.html")
+
+
+@app.route("/user_documentation", methods=["GET", "POST"])
+def user_documentation():
+    """
+    >>> user_documentation()
+    """
+    logger.info("[trace] user_documentation")
+    return render_template("user_documentation.html")
+
+@app.route("/developer_documentation", methods=["GET", "POST"])
+def developer_documentation():
+    """
+    >>> developer_documentation()
+    """
+    logger.info("[trace] developer_documentation")
+    return render_template("developer_documentation.html")
+
 
 @app.route("/example_T_f_d3js", methods=["GET", "POST"])
 def example_T_f_d3js():

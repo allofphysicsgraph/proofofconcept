@@ -10,6 +10,41 @@
     <!-- https://www.kryogenix.org/code/browser/sorttable/ -->
     <script type="text/javascript" src="{{ url_for('static', filename='sorttable.js') }}"></script>
 
+    <!-- if inclusion of Mathjax on pages which don't have latex becomes a significant source of latency, see
+         http://docs.mathjax.org/en/latest/web/typeset.html#loading-mathjax-only-on-pages-with-math -->
+
+    <!-- http://docs.mathjax.org/en/latest/input/tex/eqnumbers.html -->
+<script type="text/x-mathjax-config;executed=true">
+  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+</script>
+    <script type="text/javascript">
+      window.MathJax = {
+        tex: {
+          tags: 'ams'
+        }
+      };
+    </script>
+    <!-- https://docs.mathjax.org/en/v2.7-latest/start.html -->
+    <!--
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
+    </script>
+    -->
+
+
+    <!-- http://docs.mathjax.org/en/latest/web/configuration.html#loading-mathjax -->
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    <!-- The following is described on 
+         http://docs.mathjax.org/en/latest/web/configuration.html
+         but isn't available -->
+    <!--
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-svg.js">
+    </script>
+    -->
+
     <!-- https://www.w3schools.com/html/html_css.asp -->
     <style>
       /* Sortable tables */
@@ -40,7 +75,11 @@
   </head>
   <body>
     <div>
-      Physics Derivation Graph: <a href="/index">Home</a> |  <a href="/editor">Editor</a> 
+      Physics Derivation Graph: <a href="/index">Home</a> | 
+                                <a href="/editor">Editor</a> |
+                                <a href="/faq">FAQ</a> |
+                                <a href="/user_documentation">documentation for users</a> |
+                                <a href="/developer_documentation">documentation for developers</a>
     </div>
 
 <!-- https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/ -->
@@ -74,7 +113,7 @@
     <P><a href="https://physicsderivationgraph.blogspot.com/">blog</a> | 
        <a href="https://allofphysicsgraph.github.io/proofofconcept/">website</a> |
        <a href="https://github.com/allofphysicsgraph/proofofconcept/wiki">wiki</a> | 
-       <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface/web">source code</a> |
+       <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface/">source code</a> |
        <a href="https://github.com/allofphysicsgraph/proofofconcept/issues">issues</a> | 
        <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | 
        <a href="mailto:ben.is.located@gmail.com?subject=Physics Derivation Graph">Contact</a>

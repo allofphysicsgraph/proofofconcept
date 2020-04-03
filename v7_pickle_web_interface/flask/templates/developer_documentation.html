@@ -2,7 +2,7 @@
 {% block content %}
 
 <P>
-  Read the <a href="">user documentation</a> and <a href="">FAQ</a> first.
+  Recommendation: Read the <a href="">user documentation</a> and <a href="">FAQ</a> first.
 </P>
 
 <P>
@@ -16,6 +16,9 @@
 <a name="indices"/>
 <H2>core enabling concept for the PDG is indices</H2>
 The visualization of a graph with expressions and inference rules as nodes relies on each node having a distinct index. For example, a node with the label "f" for frequency may be the same "f" for frequency as a different node, but the two should be different nodes. 
+
+Each expression, symbol, and inference rule appears only once in the respective database.
+
 
 <a name="latex for expressions">
 <H2>Latex representation of expressions</H2>
@@ -35,6 +38,23 @@ Python as a "glue" language is leveraged to connect existing tools like Latex, F
 <a name="web stack"/>
 <H2>Flask - Gunicorn - Nginx</H2>
 
+<a name="dependencies"/>
+<H2>Dependencies</h2>
+<P>
+  The Physics Derivation Graph relies on free and open source software, including
+  <UL>
+    <LI><a href="https://github.com/apple/darwin-xnu">Darwin kernel</a> -- much of the code was written on a Mac</LI>
+    <LI>vi, vim, <a href="https://atom.io/">atom</a>
+    <LI>Python
+    <LI>Flask, matplotlib, black, mypy, pycallgraph, gunicorn, prospector, pandas, jsonschema, sympy, antlr4-python3-runtime, flask-wft, graphviz
+    <LI>git
+    <LI>github
+    <LI>Ubuntu (base Docker image is phusion)
+    <LI>Latex, dvipng, texlive
+    <LI>Nginx
+    <LI>Docker
+  </UL>
+</P>
 <a name="historical evolution"/>
 <H2>historical design evolution</H2>
 
