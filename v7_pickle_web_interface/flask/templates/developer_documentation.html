@@ -2,7 +2,7 @@
 {% block content %}
 
 <P>
-  Recommendation: Read the <a href="">user documentation</a> and <a href="">FAQ</a> first.
+  <i>Recommendation</i>: Read the <a href="/user_documentation">user documentation</a> and <a href="/faq">FAQ</a> first.
 </P>
 
 <P>
@@ -25,26 +25,49 @@
 </div>
 
 
-<H2 id="indices">core enabling concept for the PDG is indices</H2>
-The visualization of a graph with expressions and inference rules as nodes relies on each node having a distinct index. For example, a node with the label "f" for frequency may be the same "f" for frequency as a different node, but the two should be different nodes.
-
-Each expression, symbol, and inference rule appears only once in the respective database.
-
+<H2 id="indices">Numeric indices are the core enabling concept for the PDG</H2>
+<P>
+  The visualization of a graph with expressions and inference rules as nodes relies on each node having a distinct index. 
+  For example, a node with the label \(f\) for frequency may be the same \(f\) for frequency as a different node, but the two should be different nodes.
+  Each expression, symbol, and inference rule appears only once in the database.
+</P>
 
 <H2 id="latex for expressions">Latex representation of expressions</H2>
-There are multiple choices of how to represent a mathematical expression. The choices feature trade-offs between conciseness, ability to express the range of notations necessary for Physics, symantic meaning, and ability to use the expression in a computer algebra system (CAS).
+<P>
+  There are multiple choices of how to represent a mathematical expression. 
+  The choices feature trade-offs between conciseness, ability to express the range of notations necessary for Physics, symantic meaning, and ability to use the expression in a computer algebra system (CAS).
+</p>
 
 <H2 id="python">Python</H2>
-Python as a "glue" language is leveraged to connect existing tools like Latex, Flask, logging, manipulation of data. Also, it's the language the project owner is most comfortable with. And it is free and open source.
-
+<P>
+  Python as a "glue" language is leveraged to connect existing tools like Latex, Flask, logging, manipulation of data. 
+  Also, Python is the language the project owner is most comfortable with. 
+  And it is free and open source.
+</P>
 
 <H2 id="mvc">Model-view-controller in Flask</H2>
-
+<P>
+  The <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model-view-controller</a> (MVC) is a way to separate presentation from the backend computation and data transformation.
+</P>
+<P>
+  Note on using MVC with Flask and WTForms: For webpages with forms, the form submission should return to controller.py rather than linking to next page.
+</p>
 
 <H2 id="containerization">Docker</H2>
+<P>
+  Containerization provides documentation of software dependencies and shows the installation process, enabling reproducibility and platform independence. 
+  
+</p>
+
+<P>
+  Alpine was investigated as a candidate OS but was found to be insufficient. 
+  Ubuntu provides necessary packages
+</P>
 
 <H2 id="web stack">Flask - Gunicorn - Nginx</H2>
-
+<P>
+  To provide a web interface, Flask is used. Flask is not intended for production use, so Gunicorn serves as ??. Nginx provides ??
+</p>
 
 <H2 id="dependencies">Dependencies</h2>
 <P>
@@ -64,7 +87,51 @@ Python as a "glue" language is leveraged to connect existing tools like Latex, F
 </P>
 
 <H2 id="historical evolution">historical design evolution</H2>
+<P>
+  The Physics Derivation Graph has progressed through multiple architectures, with data structure changes keeping pace with the developer's knowledge. 
+  <OL>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v1_plain_text">plain text</a>: 
+         databases for comments, connections, equations, operators. Perl script to convert database content to images.
+      One line per entry in each database. 
+    </LI>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v2_XML">XML</a>: 
+    </LI>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v3_CSV">CSV</a>: 
+    </LI>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v4_file_per_expression">file per expression</a>: 
+    </LI> 
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v5_property_graph">property graph</a>: 
+      a very limited exploration.
+      No significant code base.
+    </LI> 
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v6_sqlite">sqlite</a>:
+      a very limited exploration.
+      No significant code base. 
+    </LI> 
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface">web interface</a>:
+      the current implementation.
+      Uses Python, Flask, Docker. 
+      Data is stored in a JSON file. 
+      Limited support for checking inference rules using Sympy. 
+    </LI> 
+  </OL>
+Each of these have required a rewrite of the code from scratch, as well as transfer code (to move from n to n+1). 
+The author didn't know about property graphs when implementing v1, v2, and v3. 
+</p>
 
+<P>
+  Within a given implementation, there are design decisions with trade-offs to evaluate. 
+  Knowing all the options or consequences is not feasible until one or more are implemented.
+  Then the inefficiencies can be observed. 
+  Knowledge gained through evolutionary iteration is expensive and takes a lot of time. 
+</P>
 
 <H2 id="syntax comparison">Comparison of Syntax Options</H2>
 

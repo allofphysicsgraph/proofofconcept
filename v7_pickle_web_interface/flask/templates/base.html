@@ -14,9 +14,9 @@
          http://docs.mathjax.org/en/latest/web/typeset.html#loading-mathjax-only-on-pages-with-math -->
 
     <!-- http://docs.mathjax.org/en/latest/input/tex/eqnumbers.html -->
-<script type="text/x-mathjax-config;executed=true">
-  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
-</script>
+    <script type="text/x-mathjax-config;executed=true">
+      MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+    </script>
     <script type="text/javascript">
       window.MathJax = {
         tex: {
@@ -55,6 +55,11 @@
         cursor: default;
       }
 
+      /* https://css-tricks.com/on-target/ */
+      :target {
+        background: yellow;
+      }
+
       /* TOC formatting
         from https://www.tipsandtricks-hq.com/simple-table-of-contents-toc-using-pure-html-and-css-code-9217  */
       #toc_container {
@@ -75,7 +80,7 @@
       /* table of contents ordering 
       from https://jsfiddle.net/jasonkarns/6xkzv37e/
       linked from https://stackoverflow.com/questions/14138507/creating-table-of-contents-in-html/21684020#21684020 */
-      ol {
+/*      ol {
         counter-reset: item
       }
       li {
@@ -85,7 +90,7 @@
         content: counters(item, ".")" ";
         counter-increment: item
       }
-
+*/
       /* a bit of space around the edges looks cleaner */
       html, body {
         height: 100%;
