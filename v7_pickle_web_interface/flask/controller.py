@@ -180,11 +180,20 @@ def faq():
 @app.route("/lesmis", methods=["GET", "POST"])
 def lesmis():
     """
+    testing d3js
     >>> lesmis()
     """
     logger.info("[trace] lesmis")
     return render_template("lesmis.html")
 
+@app.route("/simple", methods=["GET", "POST"])
+def simple():
+    """
+    testing d3js
+    >>> simple()
+    """
+    logger.info("[trace] simple")
+    return render_template("simple.html")
 
 @app.route("/user_documentation", methods=["GET", "POST"])
 def user_documentation():
