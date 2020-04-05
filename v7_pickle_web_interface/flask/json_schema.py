@@ -99,7 +99,7 @@ schema = {
                                                        }
                                                   } 
                             },
-        "inference rules" : {"type" : "object", 
+        "inference rules" : {"type" : "object", # dict
                              "additionalProperties": False,
                              "patternProperties": {"^[a-zA-Z\s-]+$": 
                                                         {"type": "object", # inference rule name
@@ -117,7 +117,12 @@ schema = {
                                                         }
                                                   } 
                             },
-         'expr local to global': {'type': 'object'},
+         'expr local to global': {'type': 'object', # dict
+                                  "additionalProperties": False,
+                                  "patternProperties": {"^\d{7}$":  
+                                                                 {"type": "string",
+                                                                  "pattern": "^\d{10}$"}}
+                                 },
     },
     "required": ['operators', 
                  'measures', 

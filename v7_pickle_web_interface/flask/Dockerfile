@@ -71,6 +71,8 @@ RUN chown -R appuser /home/appuser/app && chgrp -R appuser /home/appuser/app
 #RUN apt-get install -y wget xzdec
 #RUN /usr/bin/tlmgr install braket
 USER appuser
+RUN echo "alias python=python3" > /home/appuser/.bashrc
+RUN bash -l /home/appuser/.bashrc
 
 # An ENTRYPOINT allows you to configure a container that will run as an executable.
 ENTRYPOINT ["python3"]

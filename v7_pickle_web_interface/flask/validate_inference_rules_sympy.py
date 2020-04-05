@@ -119,9 +119,9 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
     elif step_dict["inf rule"] == "subtract X from both sides":
         # https://docs.sympy.org/latest/tutorial/manipulation.html
         if (
-            sympy.simplify(sympy.Add(input_0_LHS, Mul(-1, feed_0)) - output_0_LHS) == 0
+            sympy.simplify(sympy.Add(input_0_LHS, sympy.Mul(-1, feed_0)) - output_0_LHS) == 0
         ) and (
-            sympy.simplify(sympy.Add(input_0_RHS, Mul(-1, feed_0)) - output_0_RHS) == 0
+            sympy.simplify(sympy.Add(input_0_RHS, sympy.Mul(-1, feed_0)) - output_0_RHS) == 0
         ):
             return "step is valid"
         else:
@@ -130,14 +130,14 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
                 + "LHS diff is "
                 + str(
                     sympy.simplify(
-                        sympy.Add(input_0_LHS, Mul(-1, feed_0)) - output_0_LHS
+                        sympy.Add(input_0_LHS, sympy.Mul(-1, feed_0)) - output_0_LHS
                     )
                 )
                 + "\n"
                 + "RHS diff is "
                 + str(
                     sympy.simplify(
-                        sympy.Add(input_0_RHS, Mul(-1, feed_0)) - output_0_RHS
+                        sympy.Add(input_0_RHS, sympy.Mul(-1, feed_0)) - output_0_RHS
                     )
                 )
             )
@@ -145,9 +145,9 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
         # https://docs.sympy.org/latest/tutorial/manipulation.html
         # x/y = Mul(x, Pow(y, -1))
         if (
-            sympy.simplify(sympy.Mul(input_0_LHS, Pow(feed_0, -1)) - output_0_LHS) == 0
+            sympy.simplify(sympy.Mul(input_0_LHS, sympy.Pow(feed_0, -1)) - output_0_LHS) == 0
         ) and (
-            sympy.simplify(sympy.Mul(input_0_RHS, Pow(feed_0, -1)) - output_0_RHS) == 0
+            sympy.simplify(sympy.Mul(input_0_RHS, sympy.Pow(feed_0, -1)) - output_0_RHS) == 0
         ):
             return "step is valid"
         else:
@@ -156,14 +156,14 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
                 + "LHS diff is "
                 + str(
                     sympy.simplify(
-                        sympy.Mul(input_0_LHS, Pow(feed_0, -1)) - output_0_LHS
+                        sympy.Mul(input_0_LHS, sympy.Pow(feed_0, -1)) - output_0_LHS
                     )
                 )
                 + "\n"
                 + "RHS diff is "
                 + str(
                     sympy.simplify(
-                        sympy.Mul(input_0_RHS, Pow(feed_0, -1)) - output_0_RHS
+                        sympy.Mul(input_0_RHS, sympy.Pow(feed_0, -1)) - output_0_RHS
                     )
                 )
             )

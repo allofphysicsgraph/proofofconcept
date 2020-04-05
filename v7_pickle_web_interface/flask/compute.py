@@ -1248,7 +1248,7 @@ def list_expr_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     list_of_global_expr = []
     for local_expr in list_of_local_expr:
         list_of_global_expr.append(dat['expr local to global'][local_expr])
-    logger.debug('number of expr = %s', len(list_of_global_expr))
+    #logger.debug('number of expr = %s', len(list_of_global_expr))
     return list_of_global_expr
 
 def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
@@ -1267,7 +1267,7 @@ def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
         for local_expr in step_dict['outputs']:
             list_of_edges.append((inf_rule, dat['expr local to global'][local_expr]))
     list_of_edges = list(set(list_of_edges))
-    logger.debug('number of edges = %s', len(list_of_edges))
+    #logger.debug('number of edges = %s', len(list_of_edges))
     return list_of_edges
 
 def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
@@ -1339,10 +1339,10 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
         list_of_edge_str.append("    {\"source\": \"" + edge_tuple[0] + 
                                 "\", \"target\": \"" + edge_tuple[1] + "\", \"value\": 1},\n")
     list_of_edge_str = list(set(list_of_edge_str))
-    logger.debug('number of edges = %s', len(list_of_edge_str))
+    #logger.debug('number of edges = %s', len(list_of_edge_str))
     all_edges = "".join(list_of_edge_str)
     all_edges = all_edges[:-2]+"\n"
-    logger.debug('all edges = %s', all_edges)
+    #logger.debug('all edges = %s', all_edges)
     json_str += all_edges
     json_str += "  ]\n"
     json_str += "}\n"
@@ -1390,7 +1390,7 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
 
 def create_step_graphviz_png(
     name_of_derivation: str, local_step_id: str, path_to_db: str
-) -> None:
+) -> str:
     """
     >>> step_dict = {'inf rule':'add X to both sides',
                      'inf rule local ID':'2948592',
@@ -1438,7 +1438,7 @@ def create_step_graphviz_png(
 
     shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
     #return True, "no invalid latex", output_filename
-    return
+    return output_filename
 
 def create_png_from_latex(input_latex_str: str, png_name: str) -> Tuple[bool, str]:
     """

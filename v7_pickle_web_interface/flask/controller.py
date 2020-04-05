@@ -159,17 +159,29 @@ class NameOfDerivationInputForm(Form):
 #    logger.debug(e)
 #    return redirect(url_for("index"))
 
-# https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask
-# actually, https://gist.github.com/lost-theory/4521102
 @app.before_request
 def before_request():
+    """
+    https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask
+    actually, https://gist.github.com/lost-theory/4521102
+    >>> before_request():
+    """
     g.start = time.time()
     g.request_start_time = time.time()
-    g.request_time = lambda: "%.5fs" % (time.time() - g.request_start_time)
+    elapsed_time = lambda: "%.5fs" % (time.time() - g.request_start_time)
+    logger.info(elapsed_time)
+    g.request_time = elapsed_time
 
 
 @app.after_request
 def after_request(response):
+    """
+    https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask
+
+    I don't know how to access this measure
+
+    >>> after_request() 
+    """
     diff = time.time() - g.start
     if ((response.response) and
         (200 <= response.status_code < 300) and
@@ -711,11 +723,11 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
     logger.info("[trace] step_review")
 
     try:
-        compute.create_step_graphviz_png(name_of_derivation, local_step_id, "data.json")
+        step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, local_step_id, "data.json")
     except Exception as er:
         logger.warning(er)
         flash(er)
-    step_graphviz_png = local_step_id + '.png'
+        step_graphviz_png = "error.png"
     dat = clib.read_db("data.json")
 
     if request.method == "POST":
@@ -798,13 +810,27 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
                 "[ERROR] compute; review_derivation; unrecognized button:", request.form
             )
 
-    derivation_png = compute.create_derivation_png(
+    try:
+        derivation_png = compute.create_derivation_png(
         name_of_derivation, "data.json"
-    )
+        )
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+        derivation_png = "error.png" 
 
     d3js_json_filename = compute.create_d3js_json(name_of_derivation, "data.json")
 
     dat = clib.read_db("data.json")
+
+    try:
+        step_validity_dict = compute.determine_step_validity(
+            name_of_derivation, "data.json"
+        ),
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+        step_validity_dict = {}
 
     return render_template(
         "review_derivation.html",
@@ -813,9 +839,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         name_of_graphviz_png=derivation_png,
         json_for_d3js=d3js_json_filename,
         step_dict=dat["derivations"][name_of_derivation],
-        step_validity_dict=compute.determine_step_validity(
-            name_of_derivation, "data.json"
-        ),
+        step_validity_dict=step_validity_dict,
         expr_dict=dat["expressions"],
         expr_local_to_gobal=dat["expr local to global"],
     )
@@ -828,14 +852,12 @@ def modify_step(name_of_derivation: str, step_id: str):
     """
     logger.info("[trace] modify_step")
 
-    (
-        valid_latex_bool,
-        invalid_latex,
-        step_graphviz_png,
-    ) = compute.create_step_graphviz_png(name_of_derivation, step_id, "data.json")
-    if not valid_latex_bool:
-        logger.debug("invalid latex %s", invalid_latex)
-        # TODO: now what?
+    try:
+        step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, step_id, "data.json")
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+        step_graphviz_png = "error.png"
 
     # steps_dict = compute.get_derivation_steps(name_of_derivation, 'data.json')
     # this_step = steps_dict[step_id]
