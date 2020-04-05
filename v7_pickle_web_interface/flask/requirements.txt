@@ -3,6 +3,7 @@ graphviz
 flask-wtf
 mypy
 black
+opencv-python
 wheel
 gunicorn
 pycallgraph

@@ -64,6 +64,12 @@ COPY common_lib.py \
 
 USER root
 RUN chown -R appuser /home/appuser/app && chgrp -R appuser /home/appuser/app
+
+# TODO - https://github.com/allofphysicsgraph/proofofconcept/issues/82
+#RUN tlmgr init-usertree
+#RUN apt-get install -y texlive-base
+#RUN apt-get install -y wget xzdec
+#RUN /usr/bin/tlmgr install braket
 USER appuser
 
 # An ENTRYPOINT allows you to configure a container that will run as an executable.

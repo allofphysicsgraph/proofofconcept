@@ -3,7 +3,7 @@
         "Comptons equation for scattering": {
             "3445641": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 2,
                 "outputs": [
@@ -12,7 +12,7 @@
             },
             "3667395": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "2491904",
                     "1209604"
@@ -24,7 +24,7 @@
             },
             "3871228": {
                 "feeds": [],
-                "inf rule": "swapLHSwithRHS",
+                "inf rule": "swap LHS with RHS",
                 "inputs": [
                     "4068150"
                 ],
@@ -35,7 +35,7 @@
             },
             "4733986": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 3,
                 "outputs": [
@@ -44,8 +44,9 @@
             },
             "4738354": {
                 "feeds": [],
-                "inf rule": "multExprXbyExprY",
+                "inf rule": "mult expr X by expr Y",
                 "inputs": [
+                    "4200334",
                     "4200334"
                 ],
                 "linear index": 8,
@@ -57,7 +58,7 @@
                 "feeds": [
                     "2338514"
                 ],
-                "inf rule": "subtractXfromBothSides",
+                "inf rule": "subtract X from both sides",
                 "inputs": [
                     "5610925"
                 ],
@@ -68,7 +69,7 @@
             },
             "7958085": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "2840008",
                     "4978059"
@@ -80,7 +81,7 @@
             },
             "8668018": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -102,7 +103,7 @@
         "curl curl identity": {
             "1393411": {
                 "feeds": [],
-                "inf rule": "ReplaceSummationNotationWithVectorNotation",
+                "inf rule": "replace summation notation with vector notation",
                 "inputs": [
                     "3948472"
                 ],
@@ -113,7 +114,7 @@
             },
             "2339482": {
                 "feeds": [],
-                "inf rule": "ReplaceCurlWithLeviCevitaSummationContravariant",
+                "inf rule": "replace curl with LeviCevita summation contravariant",
                 "inputs": [
                     "1939485"
                 ],
@@ -124,7 +125,7 @@
             },
             "2930454": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "2934842",
                     "2941319"
@@ -158,7 +159,7 @@
             },
             "3948552": {
                 "feeds": [],
-                "inf rule": "ReplaceCurlWithLeviCevitaSummationContravariant",
+                "inf rule": "replace curl with LeviCevita summation contravariant",
                 "inputs": [
                     "9485482"
                 ],
@@ -169,7 +170,7 @@
             },
             "3948572": {
                 "feeds": [],
-                "inf rule": "declareIdentity",
+                "inf rule": "declare identity",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -178,7 +179,7 @@
             },
             "3949211": {
                 "feeds": [],
-                "inf rule": "claimLHSequalsRHS",
+                "inf rule": "claim LHS equals RHS",
                 "inputs": [
                     "2109231"
                 ],
@@ -187,7 +188,7 @@
             },
             "4295822": {
                 "feeds": [],
-                "inf rule": "declareIdentity",
+                "inf rule": "declare identity",
                 "inputs": [],
                 "linear index": 4,
                 "outputs": [
@@ -198,7 +199,7 @@
         "derivation of Schrodinger Eq": {
             "1039774": {
                 "feeds": [],
-                "inf rule": "replaceScalarWithVector",
+                "inf rule": "replace scalar with vector",
                 "inputs": [
                     "4948325"
                 ],
@@ -209,7 +210,7 @@
             },
             "1203100": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "2100421",
                     "4499582"
@@ -221,7 +222,7 @@
             },
             "1204921": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -230,7 +231,7 @@
             },
             "1204929": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 19,
                 "outputs": [
@@ -239,7 +240,7 @@
             },
             "1204945": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "1203491",
                     "1039485"
@@ -251,7 +252,7 @@
             },
             "1294844": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 3,
                 "outputs": [
@@ -260,7 +261,7 @@
             },
             "1294945": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "2939402",
                     "3499522"
@@ -285,7 +286,7 @@
                 "feeds": [
                     "6544644"
                 ],
-                "inf rule": "partialDiffWRT",
+                "inf rule": "partially differentiate with respect to",
                 "inputs": [
                     "1305534"
                 ],
@@ -296,7 +297,7 @@
             },
             "1395335": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 20,
                 "outputs": [
@@ -305,7 +306,7 @@
             },
             "1923945": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 15,
                 "outputs": [
@@ -316,7 +317,7 @@
                 "feeds": [
                     "1304952"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "1039013"
                 ],
@@ -329,7 +330,7 @@
                 "feeds": [
                     "2342425"
                 ],
-                "inf rule": "multRHSbyUnity",
+                "inf rule": "mult RHS by unity",
                 "inputs": [
                     "1353583"
                 ],
@@ -353,7 +354,7 @@
                 "feeds": [
                     "2239424"
                 ],
-                "inf rule": "raiseBothSidesToPower",
+                "inf rule": "raise both sides to power",
                 "inputs": [
                     "1039948"
                 ],
@@ -364,7 +365,7 @@
             },
             "2449858": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "1432042",
                     "2326309"
@@ -376,7 +377,7 @@
             },
             "2454535": {
                 "feeds": [],
-                "inf rule": "applyGradientToScalarFunction",
+                "inf rule": "apply gradient to scalar function",
                 "inputs": [
                     "1305534"
                 ],
@@ -387,7 +388,7 @@
             },
             "2455452": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 37,
                 "outputs": [
@@ -396,7 +397,7 @@
             },
             "2464445": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "2364546",
                     "1305534"
@@ -410,7 +411,7 @@
                 "feeds": [
                     "1209482"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "2934848"
                 ],
@@ -421,7 +422,7 @@
             },
             "2919311": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 2,
                 "outputs": [
@@ -430,7 +431,7 @@
             },
             "2930492": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "2949002",
                     "2949821"
@@ -442,7 +443,7 @@
             },
             "2938341": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "3940505",
                     "2948487"
@@ -454,7 +455,7 @@
             },
             "2939400": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "2901049",
                     "2949002"
@@ -466,7 +467,7 @@
             },
             "2954835": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "2344324",
                     "1304924"
@@ -478,7 +479,7 @@
             },
             "3294932": {
                 "feeds": [],
-                "inf rule": "applyDivergence",
+                "inf rule": "apply divergence",
                 "inputs": [
                     "5535257"
                 ],
@@ -489,7 +490,7 @@
             },
             "3454353": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "3576787",
                     "5345567"
@@ -503,7 +504,7 @@
                 "feeds": [
                     "3949921"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "3741728"
                 ],
@@ -514,7 +515,7 @@
             },
             "3934948": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 5,
                 "outputs": [
@@ -525,7 +526,7 @@
                 "feeds": [
                     "2940021"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "9214650"
                 ],
@@ -536,7 +537,7 @@
             },
             "4059592": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "5535257",
                     "1495034"
@@ -561,7 +562,7 @@
                 "feeds": [
                     "2436656"
                 ],
-                "inf rule": "multbothsidesby",
+                "inf rule": "multiply both sides by",
                 "inputs": [
                     "2495835"
                 ],
@@ -574,7 +575,7 @@
                 "feeds": [
                     "5938585"
                 ],
-                "inf rule": "multbothsidesby",
+                "inf rule": "multiply both sides by",
                 "inputs": [
                     "4959593"
                 ],
@@ -585,7 +586,7 @@
             },
             "5354635": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "3454565",
                     "1305534"
@@ -608,7 +609,7 @@
             },
             "6756574": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "2456546"
                 ],
@@ -617,7 +618,7 @@
             },
             "9394834": {
                 "feeds": [],
-                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inf rule": "LHS of expr X eq LHS of expr Y",
                 "inputs": [
                     "3429538",
                     "4349493"
@@ -629,7 +630,7 @@
             },
             "9394842": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 4,
                 "outputs": [
@@ -640,7 +641,7 @@
         "electric field wave equation time dependent to time independent": {
             "1002928": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "3994928",
                     "3839493"
@@ -654,7 +655,7 @@
                 "feeds": [
                     "3232242"
                 ],
-                "inf rule": "differentiateWRT",
+                "inf rule": "differentiate with respect to",
                 "inputs": [
                     "1029393"
                 ],
@@ -665,7 +666,7 @@
             },
             "3568093": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 2,
                 "outputs": [
@@ -674,7 +675,7 @@
             },
             "4585829": {
                 "feeds": [],
-                "inf rule": "declareGuessSolution",
+                "inf rule": "declare guess solution",
                 "inputs": [
                     "4758592"
                 ],
@@ -685,7 +686,7 @@
             },
             "4858282": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "9393848",
                     "4758592"
@@ -699,7 +700,7 @@
                 "feeds": [
                     "3232242"
                 ],
-                "inf rule": "differentiateWRT",
+                "inf rule": "differentiate with respect to",
                 "inputs": [
                     "2939392"
                 ],
@@ -721,7 +722,7 @@
             },
             "5495827": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "3949492"
                 ],
@@ -730,7 +731,7 @@
             },
             "5839535": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "4958573",
                     "4949582"
@@ -742,7 +743,7 @@
             },
             "7419980": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -751,7 +752,7 @@
             },
             "8485758": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 8,
                 "outputs": [
@@ -764,7 +765,7 @@
                 "feeds": [
                     "6656532"
                 ],
-                "inf rule": "makeExprPower",
+                "inf rule": "make expr power",
                 "inputs": [
                     "3784785"
                 ],
@@ -777,7 +778,7 @@
                 "feeds": [
                     "4264724"
                 ],
-                "inf rule": "indefIntRHSOver",
+                "inf rule": "indefinite intgrate RHS over",
                 "inputs": [
                     "8883737"
                 ],
@@ -790,7 +791,7 @@
                 "feeds": [
                     "3954314"
                 ],
-                "inf rule": "multbothsidesby",
+                "inf rule": "multiply both sides by",
                 "inputs": [
                     "9038289"
                 ],
@@ -803,7 +804,7 @@
                 "feeds": [
                     "7563791"
                 ],
-                "inf rule": "factorOutXfromRHS",
+                "inf rule": "factor out X from RHS",
                 "inputs": [
                     "1838300"
                 ],
@@ -816,7 +817,7 @@
                 "feeds": [
                     "6563727"
                 ],
-                "inf rule": "indefIntRHSOver",
+                "inf rule": "indefinite intgrate RHS over",
                 "inputs": [
                     "9984877"
                 ],
@@ -829,7 +830,7 @@
                 "feeds": [
                     "7636749"
                 ],
-                "inf rule": "differentiateWRT",
+                "inf rule": "differentiate with respect to",
                 "inputs": [
                     "1029383"
                 ],
@@ -842,7 +843,7 @@
                 "feeds": [
                     "9877781"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "1111289"
                 ],
@@ -853,7 +854,7 @@
             },
             "7364656": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -862,7 +863,7 @@
             },
             "7466748": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "1029383",
                     "2948271"
@@ -874,7 +875,7 @@
             },
             "7561612": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "8888888"
                 ],
@@ -883,7 +884,7 @@
             },
             "7563728": {
                 "feeds": [],
-                "inf rule": "swapLHSwithRHS",
+                "inf rule": "swap LHS with RHS",
                 "inputs": [
                     "3747585"
                 ],
@@ -894,7 +895,7 @@
             },
             "7566272": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "9587572",
                     "1029383"
@@ -910,7 +911,7 @@
                 "feeds": [
                     "4829194"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "2939484"
                 ],
@@ -921,7 +922,7 @@
             },
             "2384942": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "4849888",
                     "4849959"
@@ -933,7 +934,7 @@
                 "feeds": [
                     "1921933"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "4825483"
                 ],
@@ -944,7 +945,7 @@
             },
             "2939404": {
                 "feeds": [],
-                "inf rule": "addExprXtoExprY",
+                "inf rule": "add expr X to expr Y",
                 "inputs": [
                     "8888888",
                     "3194924"
@@ -956,7 +957,7 @@
             },
             "2949492": {
                 "feeds": [],
-                "inf rule": "swapLHSwithRHS",
+                "inf rule": "swap LHS with RHS",
                 "inputs": [
                     "4383592"
                 ],
@@ -967,7 +968,7 @@
             },
             "3848592": {
                 "feeds": [],
-                "inf rule": "addExprXtoExprY",
+                "inf rule": "add expr X to expr Y",
                 "inputs": [
                     "8888888",
                     "8888883"
@@ -981,7 +982,7 @@
                 "feeds": [
                     "3747849"
                 ],
-                "inf rule": "multbothsidesby",
+                "inf rule": "multiply both sides by",
                 "inputs": [
                     "8888883"
                 ],
@@ -995,7 +996,7 @@
                     "2393922",
                     "3949052"
                 ],
-                "inf rule": "subXforY",
+                "inf rule": "substitute X for Y",
                 "inputs": [
                     "8888888"
                 ],
@@ -1006,7 +1007,7 @@
             },
             "4294921": {
                 "feeds": [],
-                "inf rule": "swapLHSwithRHS",
+                "inf rule": "swap LHS with RHS",
                 "inputs": [
                     "1133483"
                 ],
@@ -1021,7 +1022,7 @@
                     "3981813",
                     "2919191"
                 ],
-                "inf rule": "functionIsOdd",
+                "inf rule": "function is odd",
                 "inputs": [
                     "8888882"
                 ],
@@ -1032,7 +1033,7 @@
             },
             "7473895": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -1045,7 +1046,7 @@
                     "1030901",
                     "3413423"
                 ],
-                "inf rule": "functionIsEven",
+                "inf rule": "function is even",
                 "inputs": [
                     "8888881"
                 ],
@@ -1058,7 +1059,7 @@
         "euler equation trig sqrt": {
             "1383414": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "1231131"
                 ],
@@ -1067,7 +1068,7 @@
             },
             "3040493": {
                 "feeds": [],
-                "inf rule": "declareIdentity",
+                "inf rule": "declare identity",
                 "inputs": [],
                 "linear index": 8,
                 "outputs": [
@@ -1078,7 +1079,7 @@
                 "feeds": [
                     "3838111"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "7472666"
                 ],
@@ -1089,7 +1090,7 @@
             },
             "3984721": {
                 "feeds": [],
-                "inf rule": "swapLHSwithRHS",
+                "inf rule": "swap LHS with RHS",
                 "inputs": [
                     "4890284"
                 ],
@@ -1100,7 +1101,7 @@
             },
             "5832058": {
                 "feeds": [],
-                "inf rule": "expandRHS",
+                "inf rule": "expand RHS",
                 "inputs": [
                     "3333333"
                 ],
@@ -1114,7 +1115,7 @@
                     "4089571",
                     "4582412"
                 ],
-                "inf rule": "subXforY",
+                "inf rule": "substitute X for Y",
                 "inputs": [
                     "8888888"
                 ],
@@ -1127,7 +1128,7 @@
                 "feeds": [
                     "6466214"
                 ],
-                "inf rule": "subtractXfromBothSides",
+                "inf rule": "subtract X from both sides",
                 "inputs": [
                     "9481000"
                 ],
@@ -1140,7 +1141,7 @@
                 "feeds": [
                     "8842811"
                 ],
-                "inf rule": "subtractXfromBothSides",
+                "inf rule": "subtract X from both sides",
                 "inputs": [
                     "1029911"
                 ],
@@ -1153,7 +1154,7 @@
                 "feeds": [
                     "7471778"
                 ],
-                "inf rule": "addXtoBothSides",
+                "inf rule": "add X to both sides",
                 "inputs": [
                     "7472641"
                 ],
@@ -1164,7 +1165,7 @@
             },
             "7663728": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -1173,7 +1174,7 @@
             },
             "8374590": {
                 "feeds": [],
-                "inf rule": "selectRealParts",
+                "inf rule": "select realparts",
                 "inputs": [
                     "2222222"
                 ],
@@ -1186,7 +1187,7 @@
                 "feeds": [
                     "7894942"
                 ],
-                "inf rule": "addXtoBothSides",
+                "inf rule": "add X to both sides",
                 "inputs": [
                     "5828294"
                 ],
@@ -1197,7 +1198,7 @@
             },
             "8492847": {
                 "feeds": [],
-                "inf rule": "multExprXbyExprY",
+                "inf rule": "mult expr X by expr Y",
                 "inputs": [
                     "8888888"
                 ],
@@ -1208,7 +1209,7 @@
             },
             "9483240": {
                 "feeds": [],
-                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inf rule": "LHS of expr X eq LHS of expr Y",
                 "inputs": [
                     "2936550",
                     "9123670"
@@ -1220,7 +1221,7 @@
             },
             "9582956": {
                 "feeds": [],
-                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inf rule": "LHS of expr X eq LHS of expr Y",
                 "inputs": [
                     "4444444",
                     "9999999"
@@ -1234,7 +1235,7 @@
                 "feeds": [
                     "1111111"
                 ],
-                "inf rule": "subtractXfromBothSides",
+                "inf rule": "subtract X from both sides",
                 "inputs": [
                     "9385720"
                 ],
@@ -1247,7 +1248,7 @@
         "example of Godel problem": {
             "4647381": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 2,
                 "outputs": [
@@ -1256,7 +1257,7 @@
             },
             "7566367": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -1265,7 +1266,7 @@
             },
             "8673948": {
                 "feeds": [],
-                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inf rule": "LHS of expr X eq LHS of expr Y",
                 "inputs": [
                     "7572712",
                     "4738297"
@@ -1278,7 +1279,7 @@
             },
             "8674920": {
                 "feeds": [],
-                "inf rule": "swapLHSwithRHS",
+                "inf rule": "swap LHS with RHS",
                 "inputs": [
                     "4738297"
                 ],
@@ -1291,7 +1292,7 @@
         "frequency relations": {
             "2303943": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -1300,7 +1301,7 @@
             },
             "2939482": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "8482459",
                     "3294004"
@@ -1312,7 +1313,7 @@
             },
             "3049480": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 2,
                 "outputs": [
@@ -1321,7 +1322,7 @@
             },
             "3832748": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "8374556",
                     "3293094"
@@ -1335,7 +1336,7 @@
                 "feeds": [
                     "5749291"
                 ],
-                "inf rule": "multbothsidesby",
+                "inf rule": "multiply both sides by",
                 "inputs": [
                     "8482459"
                 ],
@@ -1346,7 +1347,7 @@
             },
             "8332941": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 3,
                 "outputs": [
@@ -1355,7 +1356,7 @@
             },
             "8345721": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "2934848"
                 ],
@@ -1364,7 +1365,7 @@
             },
             "8946983": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "3993940",
                     "8394853"
@@ -1376,7 +1377,7 @@
             },
             "9103516": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 4,
                 "outputs": [
@@ -1387,7 +1388,7 @@
                 "feeds": [
                     "8837284"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "8341200"
                 ],
@@ -1398,7 +1399,7 @@
             },
             "9483843": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "9380032",
                     "9214650"
@@ -1445,7 +1446,7 @@
         "integration by parts": {
             "2839422": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "3848329"
                 ],
@@ -1456,7 +1457,7 @@
                 "feeds": [
                     "9492929"
                 ],
-                "inf rule": "subtractXfromBothSides",
+                "inf rule": "subtract X from both sides",
                 "inputs": [
                     "3494854"
                 ],
@@ -1467,7 +1468,7 @@
             },
             "4848592": {
                 "feeds": [],
-                "inf rule": "swapLHSwithRHS",
+                "inf rule": "swap LHS with RHS",
                 "inputs": [
                     "2938188"
                 ],
@@ -1478,7 +1479,7 @@
             },
             "4952082": {
                 "feeds": [],
-                "inf rule": "declareIdentity",
+                "inf rule": "declare identity",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -1487,7 +1488,7 @@
             },
             "8483953": {
                 "feeds": [],
-                "inf rule": "indefIntegration",
+                "inf rule": "indefinite integration",
                 "inputs": [
                     "2938190"
                 ],
@@ -1502,7 +1503,7 @@
                 "feeds": [
                     "5626421"
                 ],
-                "inf rule": "partialDiffWRT",
+                "inf rule": "partially differentiate with respect to",
                 "inputs": [
                     "1199299"
                 ],
@@ -1513,7 +1514,7 @@
             },
             "1939442": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "2392932",
                     "4642245"
@@ -1525,7 +1526,7 @@
             },
             "2932848": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -1536,7 +1537,7 @@
             },
             "3737384": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "3738373",
                     "2962831"
@@ -1548,7 +1549,7 @@
             },
             "3837471": {
                 "feeds": [],
-                "inf rule": "declareAssumption",
+                "inf rule": "declare assumption",
                 "inputs": [],
                 "linear index": 7,
                 "outputs": [
@@ -1557,7 +1558,7 @@
             },
             "3948573": {
                 "feeds": [],
-                "inf rule": "declareIdentity",
+                "inf rule": "declare identity",
                 "inputs": [],
                 "linear index": 9,
                 "outputs": [
@@ -1566,7 +1567,7 @@
             },
             "3948584": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "4758592"
                 ],
@@ -1575,7 +1576,7 @@
             },
             "4224853": {
                 "feeds": [],
-                "inf rule": "takeCurlofBothSides",
+                "inf rule": "take curl of both sides",
                 "inputs": [
                     "4757562"
                 ],
@@ -1586,7 +1587,7 @@
             },
             "4655746": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "1939485",
                     "2837471"
@@ -1598,7 +1599,7 @@
             },
             "5656372": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "4857731",
                     "3984852"
@@ -1615,7 +1616,7 @@
                     "9484724",
                     "4934845"
                 ],
-                "inf rule": "subXforY",
+                "inf rule": "substitute X for Y",
                 "inputs": [
                     "1231131"
                 ],
@@ -1628,7 +1629,7 @@
                 "feeds": [
                     "9594995"
                 ],
-                "inf rule": "raiseBothSidesToPower",
+                "inf rule": "raise both sides to power",
                 "inputs": [
                     "1029384"
                 ],
@@ -1640,7 +1641,7 @@
             },
             "1384011": {
                 "feeds": [],
-                "inf rule": "declareGuessSolution",
+                "inf rule": "declare guess solution",
                 "inputs": [
                     "7572748"
                 ],
@@ -1651,7 +1652,7 @@
             },
             "1384935": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "9394857",
                     "3452131"
@@ -1666,7 +1667,7 @@
                     "2929944",
                     "4948585"
                 ],
-                "inf rule": "subXforY",
+                "inf rule": "substitute X for Y",
                 "inputs": [
                     "21030"
                 ],
@@ -1688,7 +1689,7 @@
             },
             "3048100": {
                 "feeds": [],
-                "inf rule": "declareIdentity",
+                "inf rule": "declare identity",
                 "inputs": [],
                 "linear index": 26,
                 "outputs": [
@@ -1697,7 +1698,7 @@
             },
             "3048800": {
                 "feeds": [],
-                "inf rule": "declareIdentity",
+                "inf rule": "declare identity",
                 "inputs": [],
                 "linear index": 24,
                 "outputs": [
@@ -1718,7 +1719,7 @@
             },
             "3847567": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "9394858",
                     "3452131"
@@ -1750,7 +1751,7 @@
             },
             "4455453": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "3452131",
                     "595847"
@@ -1765,7 +1766,7 @@
                     "9485858",
                     "4831494"
                 ],
-                "inf rule": "subXforY",
+                "inf rule": "substitute X for Y",
                 "inputs": [
                     "3992939"
                 ],
@@ -1776,7 +1777,7 @@
             },
             "4757567": {
                 "feeds": [],
-                "inf rule": "swapLHSwithRHS",
+                "inf rule": "swap LHS with RHS",
                 "inputs": [
                     "7575626"
                 ],
@@ -1787,7 +1788,7 @@
             },
             "4757743": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "7572748",
                     "7572118"
@@ -1799,7 +1800,7 @@
             },
             "4948339": {
                 "feeds": [],
-                "inf rule": "subLHSofExprXintoExprY",
+                "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "3452132",
                     "495950"
@@ -1826,7 +1827,7 @@
                 "feeds": [
                     "9485857"
                 ],
-                "inf rule": "multbothsidesby",
+                "inf rule": "multiply both sides by",
                 "inputs": [
                     "9493949"
                 ],
@@ -1839,7 +1840,7 @@
                 "feeds": [
                     "40490"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "9485800"
                 ],
@@ -1850,7 +1851,7 @@
             },
             "7374289": {
                 "feeds": [],
-                "inf rule": "claimLHSequalsRHS",
+                "inf rule": "claim LHS equals RHS",
                 "inputs": [
                     "1214762"
                 ],
@@ -1861,7 +1862,7 @@
                 "feeds": [
                     "9458842"
                 ],
-                "inf rule": "expandMagnitudeToConjugate",
+                "inf rule": "expand magnitude to conjugate",
                 "inputs": [
                     "5577567"
                 ],
@@ -1872,7 +1873,7 @@
             },
             "7474753": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "8474765",
                     "8474766"
@@ -1893,7 +1894,7 @@
             },
             "8485725": {
                 "feeds": [],
-                "inf rule": "declareIdentity",
+                "inf rule": "declare identity",
                 "inputs": [],
                 "linear index": 19,
                 "outputs": [
@@ -1914,7 +1915,7 @@
             },
             "8571277": {
                 "feeds": [],
-                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inf rule": "LHS of expr X eq LHS of expr Y",
                 "inputs": [
                     "8577781",
                     "7572118"
@@ -1926,7 +1927,7 @@
             },
             "8572265": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "7572859",
                     "7572118"
@@ -1938,7 +1939,7 @@
             },
             "8572771": {
                 "feeds": [],
-                "inf rule": "boundaryCondition",
+                "inf rule": "boundary condition",
                 "inputs": [
                     "7572748"
                 ],
@@ -1949,7 +1950,7 @@
             },
             "8572778": {
                 "feeds": [],
-                "inf rule": "boundaryCondition",
+                "inf rule": "boundary condition",
                 "inputs": [
                     "7572748"
                 ],
@@ -1960,7 +1961,7 @@
             },
             "8575627": {
                 "feeds": [],
-                "inf rule": "ExprXisTrueUnderconditionExprY",
+                "inf rule": "expr X is true under condition expr Y",
                 "inputs": [
                     "8577672",
                     "8577711"
@@ -1972,7 +1973,7 @@
             },
             "8575717": {
                 "feeds": [],
-                "inf rule": "declareIdentity",
+                "inf rule": "declare identity",
                 "inputs": [],
                 "linear index": 9,
                 "outputs": [
@@ -1981,7 +1982,7 @@
             },
             "8575761": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "9495882",
                     "7562671"
@@ -2004,7 +2005,7 @@
             },
             "8576627": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -2013,7 +2014,7 @@
             },
             "8576741": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "100404",
                     "8478550"
@@ -2027,7 +2028,7 @@
                 "feeds": [
                     "1334112"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "9847600"
                 ],
@@ -2049,7 +2050,7 @@
             },
             "9686782": {
                 "feeds": [],
-                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inf rule": "LHS of expr X eq LHS of expr Y",
                 "inputs": [
                     "8585727",
                     "7562671"
@@ -2066,7 +2067,7 @@
                     "2838490",
                     "2449291"
                 ],
-                "inf rule": "subtractXfromBothSides",
+                "inf rule": "subtract X from both sides",
                 "inputs": [
                     "6608123",
                     "6608102"
@@ -2094,7 +2095,7 @@
                 "feeds": [
                     "4307451"
                 ],
-                "inf rule": "addXtoBothSides",
+                "inf rule": "add X to both sides",
                 "inputs": [
                     "1212129"
                 ],
@@ -2107,7 +2108,7 @@
                 "feeds": [
                     "6644853"
                 ],
-                "inf rule": "subtractXfromBothSides",
+                "inf rule": "subtract X from both sides",
                 "inputs": [
                     "7777621"
                 ],
@@ -2120,7 +2121,7 @@
                 "feeds": [
                     "2367209"
                 ],
-                "inf rule": "raiseBothSidesToPower",
+                "inf rule": "raise both sides to power",
                 "inputs": [
                     "2985412"
                 ],
@@ -2132,7 +2133,7 @@
             },
             "7777777": {
                 "feeds": [],
-                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inf rule": "LHS of expr X eq LHS of expr Y",
                 "inputs": [
                     "1120000",
                     "1734000"
@@ -2158,7 +2159,7 @@
                     "4858592",
                     "999900"
                 ],
-                "inf rule": "subXforY",
+                "inf rule": "substitute X for Y",
                 "inputs": [
                     "9091270"
                 ],
@@ -2169,7 +2170,7 @@
             },
             "8359402": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "8761200",
                     "8811221"
@@ -2181,7 +2182,7 @@
                 "feeds": [
                     "2424922"
                 ],
-                "inf rule": "dividebothsidesby",
+                "inf rule": "divide both sides by",
                 "inputs": [
                     "8882098"
                 ],
@@ -2192,7 +2193,7 @@
             },
             "8494551": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -2204,7 +2205,7 @@
         "quantum basics Hermitian operators have realvalued observables": {
             "1294984": {
                 "feeds": [],
-                "inf rule": "declareAssumption",
+                "inf rule": "declare assumption",
                 "inputs": [],
                 "linear index": 4,
                 "outputs": [
@@ -2213,7 +2214,7 @@
             },
             "2394942": {
                 "feeds": [],
-                "inf rule": "distributeConjugateTransposeToFactors",
+                "inf rule": "distribute conjugate transpose to factors",
                 "inputs": [
                     "2495954"
                 ],
@@ -2224,7 +2225,7 @@
             },
             "2485909": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "2484892",
                     "2390094"
@@ -2236,7 +2237,7 @@
             },
             "2490098": {
                 "feeds": [],
-                "inf rule": "subRHSofExprXintoExprY",
+                "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
                     "2494040",
                     "3402919"
@@ -2248,7 +2249,7 @@
             },
             "2939493": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "4930585"
                 ],
@@ -2257,7 +2258,7 @@
             },
             "3403595": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -2266,7 +2267,7 @@
             },
             "9538385": {
                 "feeds": [],
-                "inf rule": "conjugateTransposeBothSides",
+                "inf rule": "conjugate transpose both sides",
                 "inputs": [
                     "3402919"
                 ],
@@ -2279,7 +2280,7 @@
         "quantum basics orthogonality": {
             "1301442": {
                 "feeds": [],
-                "inf rule": "applyOperatorToBra",
+                "inf rule": "apply operator to bra",
                 "inputs": [
                     "3849595"
                 ],
@@ -2301,7 +2302,7 @@
             },
             "2384852": {
                 "feeds": [],
-                "inf rule": "declareFinalExpr",
+                "inf rule": "declare final expr",
                 "inputs": [
                     "3494855"
                 ],
@@ -2310,7 +2311,7 @@
             },
             "2455366": {
                 "feeds": [],
-                "inf rule": "declareInitialExpr",
+                "inf rule": "declare initial expr",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -2319,7 +2320,7 @@
             },
             "3848591": {
                 "feeds": [],
-                "inf rule": "applyOperatorToKet",
+                "inf rule": "apply operator to ket",
                 "inputs": [
                     "3849595"
                 ],
@@ -2332,7 +2333,7 @@
                 "feeds": [
                     "5395034"
                 ],
-                "inf rule": "subtractXfromBothSides",
+                "inf rule": "subtract X from both sides",
                 "inputs": [
                     "3495045"
                 ],
@@ -2354,7 +2355,7 @@
             },
             "9878900": {
                 "feeds": [],
-                "inf rule": "LHSofExprXeqLHSofExprY",
+                "inf rule": "LHS of expr X eq LHS of expr Y",
                 "inputs": [
                     "2409402",
                     "4934893"
@@ -2366,7 +2367,7 @@
             },
             "9888730": {
                 "feeds": [],
-                "inf rule": "combineLikeTerms",
+                "inf rule": "combine like terms",
                 "inputs": [
                     "4939583"
                 ],
@@ -2379,7 +2380,7 @@
         "variance relation": {
             "2004989": {
                 "feeds": [],
-                "inf rule": "declareIdentity",
+                "inf rule": "declare identity",
                 "inputs": [],
                 "linear index": 1,
                 "outputs": [
@@ -2432,7 +2433,7 @@
             },
             "4948955": {
                 "feeds": [],
-                "inf rule": "claimLHSequalsRHS",
+                "inf rule": "claim LHS equals RHS",
                 "inputs": [
                     "5949484"
                 ],
@@ -3706,73 +3707,73 @@
     },
     "inference rules": {
         "LHS of expr X eq LHS of expr Y": {
-            "latex": "LHS of Eq.~\\ref{eq:#1} is equal to LHS of Eq.~\\ref{eq:#2}.",
+            "latex": "LHS of Eq.~\\ref{eq:#1} is equal to LHS of Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 1
         },
         "RHS of expr X eq RHS of expr Y": {
-            "latex": "RHS of Eq.~\\ref{eq:#1} is equal to RHS of Eq.~\\ref{eq:#2}.",
+            "latex": "RHS of Eq.~\\ref{eq:#1} is equal to RHS of Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 1
         },
         "X cross both sides by": {
-            "latex": "Take cross product of $#1$ and Eq.~\\ref{eq:#2}.",
+            "latex": "Take cross product of $#1$ and Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "X dot both sides": {
-            "latex": "Take inner product of $#1$ with Eq.~\\ref{eq:#2}.",
+            "latex": "Take inner product of $#1$ with Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "add X to both sides": {
-            "latex": "Add $#1$ to both sides of Eq.~\\ref{eq:#2}.",
+            "latex": "Add $#1$ to both sides of Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "add expr X to expr Y": {
-            "latex": "Add Eq.~\\ref{eq:#1} to Eq.~\\ref{eq:#2}.",
+            "latex": "Add Eq.~\\ref{eq:#1} to Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 1
         },
         "add zero to LHS": {
-            "latex": "Add zero to LHS of Eq.~\\ref{eq:#2}, where $0=#1$.",
+            "latex": "Add zero to LHS of Eq.~\\ref{eq:#2}, where $0=#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "add zero to RHS": {
-            "latex": "Add zero to RHS of Eq.~\\ref{eq:#2}, where $0=#1$.",
+            "latex": "Add zero to RHS of Eq.~\\ref{eq:#2}, where $0=#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "apply divergence": {
-            "latex": "Apply divergence to both sides of Eq.~\\ref{eq:#1}.",
+            "latex": "Apply divergence to both sides of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "apply gradient to scalar function": {
-            "latex": "Apply gradient to both sides of Eq.~\\ref{eq:#1}.",
+            "latex": "Apply gradient to both sides of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "apply operator to Bra": {
-            "latex": "Apply operator to bra in Eq.~\\ref{eq:#1}.",
+            "latex": "Apply operator to bra in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "apply operator to Ket": {
-            "latex": "Apply operator to ket in Eq.~\\ref{eq:#1}.",
+            "latex": "Apply operator to ket in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
@@ -3784,19 +3785,19 @@
             "number of outputs": 1
         },
         "both sides cross X": {
-            "latex": "Take cross product of Eq.~\\ref{eq:#2} and $#1$",
+            "latex": "Take cross product of Eq.~\\ref{eq:#2} and $#1$; yields Eq.~\\ref{eq:#3}",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "both sides dot X": {
-            "latex": "Take inner product of Eq.~\\ref{eq:#2} with $#1$",
+            "latex": "Take inner product of Eq.~\\ref{eq:#2} with $#1$; yields Eq.~\\ref{eq:#3}",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "boundary condition": {
-            "latex": "A boundary condition for Eq.~\\ref{eq:#1} is",
+            "latex": "A boundary condition for Eq.~\\ref{eq:#1} is Eq.~\\ref{eq:#2}",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
@@ -3814,25 +3815,25 @@
             "number of outputs": 0
         },
         "combine like terms": {
-            "latex": "Combine like terms in Eq.~\\ref{eq:#1}.",
+            "latex": "Combine like terms in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "conjugate both sides": {
-            "latex": "Conjugate both sides of Eq.~\\ref{eq:#1}.",
+            "latex": "Conjugate both sides of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "conjugate function X": {
-            "latex": "Conjugate $#1$ in Eq.~\\ref{eq:#2}.",
+            "latex": "Conjugate $#1$ in Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "conjugate transpose both sides": {
-            "latex": "Conjugate transpose of both sides of Eq.~\\ref{eq:#1}.",
+            "latex": "Conjugate transpose of both sides of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
@@ -3868,151 +3869,151 @@
             "number of outputs": 1
         },
         "differentiate with respect to": {
-            "latex": "Differentiate Eq.~\\ref{eq:#2} with respect to $#1$.",
+            "latex": "Differentiate Eq.~\\ref{eq:#2} with respect to $#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "distribute conjugate to factors": {
-            "latex": "Distribute conjugate to factors in Eq.~\\ref{eq:#1}.",
+            "latex": "Distribute conjugate to factors in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "distribute conjugate transpose to factors": {
-            "latex": "Distribute conjugate transpose to factors in Eq.~\\ref{eq:#1}.",
+            "latex": "Distribute conjugate transpose to factors in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "divide both sides by": {
-            "latex": "Divide both sides of Eq.~\\ref{eq:#2} by $#1$.",
+            "latex": "Divide both sides of Eq.~\\ref{eq:#2} by $#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "evaluate definite integral": {
-            "latex": "Integrate Eq.~\\ref{eq:#1} using identity Eq.~\\ref{eq:#2}.",
+            "latex": "Integrate Eq.~\\ref{eq:#1} using identity Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 1
         },
         "expand LHS": {
-            "latex": "Expand the LHS of Eq.~\\ref{eq:#1}.",
+            "latex": "Expand the LHS of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "expand RHS": {
-            "latex": "Expand the RHS of Eq.~\\ref{eq:#1}.",
+            "latex": "Expand the RHS of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "expand integrand": {
-            "latex": "Expand integrand of Eq.~\\ref{eq:#1}.",
+            "latex": "Expand integrand of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "expand magnitude to conjugate": {
-            "latex": "Expand $#1$ in Eq.~\\ref{eq:#2} with conjugate.",
+            "latex": "Expand $#1$ in Eq.~\\ref{eq:#2} with conjugate; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "expr X is true under condition expr Y": {
-            "latex": "Eq.~\\ref{eq:#1} is valid when Eq.~\\ref{eq:#2} occurs.",
+            "latex": "Eq.~\\ref{eq:#1} is valid when Eq.~\\ref{eq:#2} occurs; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 1
         },
         "factor out X": {
-            "latex": "Factor $#1$ from Eq.~\\ref{eq:#2}.",
+            "latex": "Factor $#1$ from Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "factor out X from LHS": {
-            "latex": "Factor $#1$ from the LHS of Eq.~\\ref{eq:#2}.",
+            "latex": "Factor $#1$ from the LHS of Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "factor out X from RHS": {
-            "latex": "Factor $#1$ from the RHS of Eq.~\\ref{eq:#2}.",
+            "latex": "Factor $#1$ from the RHS of Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "function is even": {
-            "latex": "$#1$ is even with respect to $#2$, so replace $#1$ with $#3$ in Eq.~\\ref{eq:#4}.",
+            "latex": "$#1$ is even with respect to $#2$, so replace $#1$ with $#3$ in Eq.~\\ref{eq:#4}; yields Eq.~\\ref{eq:#5}.",
             "number of feeds": 3,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "function is odd": {
-            "latex": "$#1$ is odd with respect to $#2$, so replace $#1$ with $#3$ in Eq.~\\ref{eq:#4}.",
+            "latex": "$#1$ is odd with respect to $#2$, so replace $#1$ with $#3$ in Eq.~\\ref{eq:#4}; yields Eq.~\\ref{eq:#5}.",
             "number of feeds": 3,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "indefinite integral over": {
-            "latex": "Indefinite integral of both sides of Eq.~\\ref{eq:#2} over $#1$.",
+            "latex": "Indefinite integral of both sides of Eq.~\\ref{eq:#2} over $#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "indefinite integrate LHS over": {
-            "latex": "Indefinite integral of LHS of Eq.~\\ref{eq:#2} over $#1$.",
+            "latex": "Indefinite integral of LHS of Eq.~\\ref{eq:#2} over $#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "indefinite integration": {
-            "latex": "Indefinite integral of both sides of Eq.~\\ref{eq:#1}.",
+            "latex": "Indefinite integral of both sides of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "indefinite intgrate RHS over": {
-            "latex": "Indefinite integral of RHS of Eq.~\\ref{eq:#2} over $#1$.",
+            "latex": "Indefinite integral of RHS of Eq.~\\ref{eq:#2} over $#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "integrate over from to": {
-            "latex": "Integrate Eq.~\\ref{eq:#4} over $#1$ from lower limit $#2$ to upper limit $#3$.",
+            "latex": "Integrate Eq.~\\ref{eq:#4} over $#1$ from lower limit $#2$ to upper limit $#3$; yields Eq.~\\ref{eq:#5}.",
             "number of feeds": 3,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "make expr power": {
-            "latex": "Make Eq.~\\ref{eq:#2} the power of $#1$.",
+            "latex": "Make Eq.~\\ref{eq:#2} the power of $#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "mult expr X by expr Y": {
-            "latex": "Multiply Eq.~\\ref{eq:#1} by Eq.~\\ref{eq:#2}.",
+            "latex": "Multiply Eq.~\\ref{eq:#1} by Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 1
         },
         "multiply LHS by unity": {
-            "latex": "Multiply LHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$",
+            "latex": "Multiply LHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$; yields Eq.~\\ref{eq:#3}",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "multiply RHS by Unity": {
-            "latex": "Multiply RHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$",
+            "latex": "Multiply RHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$; yields Eq.~\\ref{eq:#3}",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "multiply both sides by": {
-            "latex": "Multiply both sides of Eq.~\\ref{eq:#2} by $#1$.",
+            "latex": "Multiply both sides of Eq.~\\ref{eq:#2} by $#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
@@ -4024,109 +4025,109 @@
             "number of outputs": 1
         },
         "partially differentiate with respect to": {
-            "latex": "Partially differentiate Eq.~\\ref{eq:#2} with respect to $#1$.",
+            "latex": "Partially differentiate Eq.~\\ref{eq:#2} with respect to $#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "raise both sides to power": {
-            "latex": "Raise both sides of Eq.~\\ref{eq:#2} to $#1$.",
+            "latex": "Raise both sides of Eq.~\\ref{eq:#2} to $#1$; yields Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 2
         },
         "replace curl with LeviCevita summation contravariant": {
-            "latex": "Replace curl in Eq.~\\ref{eq:#1} with Levi-Cevita contravariant.",
+            "latex": "Replace curl in Eq.~\\ref{eq:#1} with Levi-Cevita contravariant; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "replace scalar with vector": {
-            "latex": "Replace scalar variables in Eq.~\\ref{eq:#1} with equivalent vector variables.",
+            "latex": "Replace scalar variables in Eq.~\\ref{eq:#1} with equivalent vector variables; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "replace summation notation with vector notation": {
-            "latex": "Replace summation notation in Eq.~\\ref{eq:#1} with vector notation.",
+            "latex": "Replace summation notation in Eq.~\\ref{eq:#1} with vector notation; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "select imaginary parts": {
-            "latex": "Select imaginary parts of Eq.~\\ref{eq:#1}.",
+            "latex": "Select imaginary parts of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "select real parts": {
-            "latex": "Select real parts of Eq.~\\ref{eq:#1}.",
+            "latex": "Select real parts of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "simplify": {
-            "latex": "Simplify Eq.~\\ref{eq:#1}.",
+            "latex": "Simplify Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "solve for X": {
-            "latex": "Solve Eq.~\\ref{eq:#2} for $#1$.",
+            "latex": "Solve Eq.~\\ref{eq:#2} for $#1$; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "sub LHS of expr X into expr Y": {
-            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}.",
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 1
         },
         "sub RHS of expr X into expr Y": {
-            "latex": "Substitute RHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}.",
+            "latex": "Substitute RHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 1
         },
-        "substitue X for Y": {
-            "latex": "Substitute $#1$ for $#2$ in Eq.~\\ref{eq:#3}.",
+        "substitute X for Y": {
+            "latex": "Substitute $#1$ for $#2$ in Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
             "number of feeds": 2,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "subtract X from both sides": {
-            "latex": "Subtract $#1$ from both sides of Eq.~\\ref{eq:#2}.",
+            "latex": "Subtract $#1$ from both sides of Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "number of feeds": 1,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "sum exponents": {
-            "latex": "Sum exponents on LHS and RHS of Eq.~\\ref{eq:#1}.",
+            "latex": "Sum exponents on LHS and RHS of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "sum exponents LHS": {
-            "latex": "Sum exponents on LHS of Eq.~\\ref{eq:#1}.",
+            "latex": "Sum exponents on LHS of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "sum exponents RHS": {
-            "latex": "Sum exponents on RHS of Eq.~\\ref{eq:#1}.",
+            "latex": "Sum exponents on RHS of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "swap LHS with RHS": {
-            "latex": "Swap LHS of Eq.~\\ref{eq:#1} with RHS.",
+            "latex": "Swap LHS of Eq.~\\ref{eq:#1} with RHS; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
         },
         "take curl of both sides": {
-            "latex": "Apply curl to both sides of Eq.~\\ref{eq:#1}.",
+            "latex": "Apply curl to both sides of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1

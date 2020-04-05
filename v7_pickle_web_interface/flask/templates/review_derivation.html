@@ -4,7 +4,7 @@
 
 <P>review derivation
 
-<P>derivation name: {{ name_of_derivation}}
+<P>derivation name: {{ name_of_derivation }}
 
 <svg id='viz'></svg>
 
@@ -36,13 +36,18 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
 -->
 
-<!-- from https://bl.ocks.org/mapio/53fed7d84cd1812d6a6639ed7aa83868 -->
+<!-- code below is based on  https://bl.ocks.org/mapio/53fed7d84cd1812d6a6639ed7aa83868 
+     and is better than https://bl.ocks.org/mbostock/950642 
+     because mapio's implementation features zoom and node coloring -->
+<!-- I would like to add node enhancement on mouse-over
+      http://bl.ocks.org/eesur/be2abfb3155a38be4de4 -->
 <script>
 var width = 800;
 var height = 600;
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
-d3.json("{{ url_for('static', filename='lesmis.json') }}").then(function(graph) {
+//d3.json("{{ url_for('static', filename='lesmis.json') }}").then(function(graph) {
+d3.json("{{ url_for('static', filename=json_for_d3js) }}").then(function(graph) {
 
 var label = {
     'nodes': [],
@@ -107,19 +112,6 @@ var node = container.append("g").attr("class", "nodes")
     .attr("r", 5)
     .attr("fill", function(d) { return color(d.group); })
 
-/*  added by Ben */
-/*
-  node.append("image")
-      .attr("xlink:href", function(d, i) { return d.img; } )
-      // setting x and y both to zero is redundant -- those are the default values
-      .attr("x", 0) // off-set from center of node; upper left corner of picture is origin
-      .attr("y", 0)
-//      .attr("width", function(d, i) { return d.width/2; }) // without both width and height, image does not display
-      .attr("width", 139) // without both width and height, image does not display
-//      .attr("height", function(d, i) { return d.height/2; })
-      .attr("height", 38)
-/* end added by Ben */
-
 node.on("mouseover", focus).on("mouseout", unfocus);
 
 node.call(
@@ -134,6 +126,9 @@ var labelNode = container.append("g").attr("class", "labelNodes")
     .data(label.nodes)
     .enter()
     .append("image")
+    // alternative option, unverified: https://stackoverflow.com/questions/39908583/d3-js-labeling-nodes-with-image-in-force-layout
+    // I have no idea why the i%2 is needed; without it I get two images per node
+    // switching between i%2==1 and i%2==0 produces different image locations (?)
     .attr("xlink:href", function(d, i) { return i % 2 == 1 ? "" : d.node.img; } )
     .attr("x", 0)
     .attr("y", 0)

@@ -9,8 +9,9 @@ import os
 import json
 import shutil
 import logging  # https://docs.python.org/3/howto/logging.html
-
 from flask import Flask, redirect, render_template, request, url_for, flash
+import time
+from flask import g
 from werkzeug.utils import secure_filename
 from wtforms import Form, StringField, validators, FieldList, FormField, IntegerField  # type: ignore
 from jsonschema import validate  # type: ignore
@@ -158,6 +159,24 @@ class NameOfDerivationInputForm(Form):
 #    logger.debug(e)
 #    return redirect(url_for("index"))
 
+# https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask
+# actually, https://gist.github.com/lost-theory/4521102
+@app.before_request
+def before_request():
+    g.start = time.time()
+    g.request_start_time = time.time()
+    g.request_time = lambda: "%.5fs" % (time.time() - g.request_start_time)
+
+
+@app.after_request
+def after_request(response):
+    diff = time.time() - g.start
+    if ((response.response) and
+        (200 <= response.status_code < 300) and
+        (response.content_type.startswith('text/html'))):
+        response.set_data(response.get_data().replace(
+            b'__EXECUTION_TIME__', bytes(str(diff), 'utf-8')))
+    return response
 
 @app.route("/index", methods=["GET", "POST"])
 @app.route("/", methods=["GET", "POST"])
@@ -242,6 +261,12 @@ def editor():
     file upload: see https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
     """
     logger.info("[trace] editor")
+
+    try:
+        compute.generate_all_expr_and_infrule_pngs(False, 'data.json')
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
 
     try:
         logger.debug("session id = %s", session_id)
@@ -534,9 +559,15 @@ def select_from_existing_derivations():
 
         if request.form["submit_button"] == "generate_pdf":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_pdf')])
-            pdf_filename = compute.generate_pdf_for_derivation(
-                name_of_derivation, "data.json"
-            )
+            try:
+                pdf_filename = compute.generate_pdf_for_derivation(
+                    name_of_derivation, "data.json")
+            except Exception as er:
+                logger.warning(er)
+                flash(er)
+                return render_template(
+                    "select_from_existing_derivations.html", list_of_derivations=list_of_deriv
+                )
 
             return redirect(url_for("static", filename=pdf_filename))
             # return redirect(url_for('review_derivation',
@@ -679,17 +710,12 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
     """
     logger.info("[trace] step_review")
 
-    (
-        valid_latex_bool,
-        invalid_latex,
-        step_graphviz_png,
-    ) = compute.create_step_graphviz_png(name_of_derivation, local_step_id, "data.json")
-    if not valid_latex_bool:
-        logger.debug(
-            "step_review; invalid latex detected %s", invalid_latex
-        )
-        # TODO: now what?
-
+    try:
+        compute.create_step_graphviz_png(name_of_derivation, local_step_id, "data.json")
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+    step_graphviz_png = local_step_id + '.png'
     dat = clib.read_db("data.json")
 
     if request.method == "POST":
@@ -772,9 +798,11 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
                 "[ERROR] compute; review_derivation; unrecognized button:", request.form
             )
 
-    valid_latex_bool, invalid_latex, derivation_png = compute.create_derivation_png(
+    derivation_png = compute.create_derivation_png(
         name_of_derivation, "data.json"
     )
+
+    d3js_json_filename = compute.create_d3js_json(name_of_derivation, "data.json")
 
     dat = clib.read_db("data.json")
 
@@ -783,6 +811,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         pdf_filename=pdf_filename,
         name_of_derivation=name_of_derivation,
         name_of_graphviz_png=derivation_png,
+        json_for_d3js=d3js_json_filename,
         step_dict=dat["derivations"][name_of_derivation],
         step_validity_dict=compute.determine_step_validity(
             name_of_derivation, "data.json"
