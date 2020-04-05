@@ -1261,11 +1261,11 @@ def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     for step_id, step_dict in dat['derivations'][name_of_derivation].items():
         inf_rule = step_dict['inf rule'].replace(' ','_')
         for local_expr in step_dict['inputs']:
-            list_of_edges.append((dat['expr local to global'][local_expr], inf_rule)) 
+            list_of_edges.append((dat['expr local to global'][local_expr], step_id)) 
         for local_expr in step_dict['feeds']:
-            list_of_edges.append((dat['expr local to global'][local_expr], inf_rule))
+            list_of_edges.append((dat['expr local to global'][local_expr], step_id))
         for local_expr in step_dict['outputs']:
-            list_of_edges.append((inf_rule, dat['expr local to global'][local_expr]))
+            list_of_edges.append((step_id, dat['expr local to global'][local_expr]))
     list_of_edges = list(set(list_of_edges))
     #logger.debug('number of edges = %s', len(list_of_edges))
     return list_of_edges
@@ -1304,7 +1304,7 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
             create_png_from_latex(step_dict["inf rule"], png_name)
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
         # construct the node JSON content
-        list_of_nodes.append("    {\"id\": \"" + step_dict['inf rule'].replace(" ","_") + 
+        list_of_nodes.append("    {\"id\": \"" + step_id + 
                      "\", \"group\": " + str(step_dict['linear index']) + ", " +
                      "\"img\": \"/static/" + png_name + ".png\", " + 
                      "\"width\": " + str(image.shape[1]) + ", " + 

@@ -47,6 +47,26 @@
 
     <!-- https://www.w3schools.com/html/html_css.asp -->
     <style>
+      /* SVG region 
+         https://chartio.com/resources/tutorials/how-to-resize-an-svg-when-the-window-is-resized-in-d3-js/
+      */
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+      /* end SVG region */
+
       /* Sortable tables */
       table.sortable thead {
         background-color:#eee;
