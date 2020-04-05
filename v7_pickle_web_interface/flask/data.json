@@ -1669,7 +1669,7 @@
                 ],
                 "inf rule": "substitute X for Y",
                 "inputs": [
-                    "21030"
+                    "0021030"
                 ],
                 "linear index": 27,
                 "outputs": [
@@ -1693,7 +1693,7 @@
                 "inputs": [],
                 "linear index": 26,
                 "outputs": [
-                    "21030"
+                    "0021030"
                 ]
             },
             "3048800": {
@@ -1709,7 +1709,7 @@
                 "feeds": [],
                 "inf rule": "EvaluateDefiniteIntegral",
                 "inputs": [
-                    "203020",
+                    "0203020",
                     "9339495"
                 ],
                 "linear index": 28,
@@ -1754,7 +1754,7 @@
                 "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "3452131",
-                    "595847"
+                    "0595847"
                 ],
                 "linear index": 17,
                 "outputs": [
@@ -1803,7 +1803,7 @@
                 "inf rule": "sub LHS of expr X into expr Y",
                 "inputs": [
                     "3452132",
-                    "495950"
+                    "0495950"
                 ],
                 "linear index": 18,
                 "outputs": [
@@ -1885,7 +1885,7 @@
                 "feeds": [],
                 "inf rule": "simplify",
                 "inputs": [
-                    "405049"
+                    "0405049"
                 ],
                 "linear index": 30,
                 "outputs": [
@@ -1910,7 +1910,7 @@
                 ],
                 "linear index": 29,
                 "outputs": [
-                    "405049"
+                    "0405049"
                 ]
             },
             "8571277": {
@@ -2016,7 +2016,7 @@
                 "feeds": [],
                 "inf rule": "sub RHS of expr X into expr Y",
                 "inputs": [
-                    "100404",
+                    "0100404",
                     "8478550"
                 ],
                 "linear index": 21,
@@ -2157,7 +2157,7 @@
             "8321038": {
                 "feeds": [
                     "4858592",
-                    "999900"
+                    "0999900"
                 ],
                 "inf rule": "substitute X for Y",
                 "inputs": [

@@ -1,9 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<P>a list of all expressions</P>
-
-<table border="1">
+<table border="1"  class="sortable">
   <tr>
     <th>expression ID</th>
     <th>Latex</th>
@@ -18,7 +16,7 @@
     <td>{{ expr_use_list }}</td>
   </tr>
 {% endfor %}
-  <caption>Physics Derivation Graph: Expressions</caption>
+  <caption>Physics Derivation Graph: {{ expression_popularity_dict.keys()|length  }} Expressions</caption>
 </table>
 
 <!--

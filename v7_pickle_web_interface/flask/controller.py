@@ -168,7 +168,7 @@ def before_request():
     """
     g.start = time.time()
     g.request_start_time = time.time()
-    elapsed_time = lambda: "%.5fs" % (time.time() - g.request_start_time)
+    elapsed_time = lambda: "%.5f seconds" % (time.time() - g.request_start_time)
     logger.info(elapsed_time)
     g.request_time = elapsed_time
 
@@ -326,6 +326,10 @@ def editor():
             path_to_uploaded_file = os.path.join(app.config["UPLOAD_FOLDER"], filename)
             file_obj.save(path_to_uploaded_file)
 
+            # TODO: just because a file is JSON and passes the schema does not make it valid for the PDG
+            # for example, the inference rule names need to be consistent (in "derivations" and "inference rules")
+            # also, the expr_local_id need to have a corresponding entry in local-to-global
+            # also, every expr_global_id in local-to-global must have a corresponding entry in "inference rules"
             if not compute.validate_json_file(path_to_uploaded_file):
                 flash("uploaded file does not match PDG schema")
             else:  # file exists, has .json extension, is JSON, and complies with schema
@@ -412,7 +416,11 @@ def list_all_symbols():
 def list_all_expressions():
     logger.info("[trace] list_all_expressions")
     dat = clib.read_db("data.json")
-    expression_popularity_dict = compute.popularity_of_expressions("data.json")
+    try:
+        expression_popularity_dict = compute.popularity_of_expressions("data.json")
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
     if request.method == "POST":
         logger.debug(
             "list_all_expressions; request.form = %s", request.form
@@ -510,9 +518,14 @@ def list_all_inference_rules():
             flash("unrecognized form result")
             logger.warning("ERROR: unrecognized form result")
 
+    infrules_modified_latex_dict = {}
+    for infrule_name, infrule_dict in dat["inference rules"].items():
+        infrule_dict['latex'] = infrule_dict['latex'].replace('\\ref','ref')
+        infrules_modified_latex_dict[infrule_name] = infrule_dict
+
     return render_template(
         "list_all_inference_rules.html",
-        infrules_dict=dat["inference rules"],
+        infrules_dict=infrules_modified_latex_dict,
         sorted_list_infrules=compute.get_sorted_list_of_inf_rules("data.json"),
         add_infrule_webform=InferenceRuleForm(request.form),
         rename_infrule_webform=RevisedTextForm(request.form),

@@ -9,7 +9,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 
-def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str, str]:
+def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
     """
     input: expression as latex string
 
@@ -30,13 +30,9 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str, str]:
     # logger.debug('latex as Sympy expr tree = %s',latex_as_sympy_expr_tree)
 
     try:
-        return "", sympy_expr.lhs, sympy_expr.rhs
+        return sympy_expr.lhs, sympy_expr.rhs
     except AttributeError as error_message:
-        return (
-            "ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message),
-            "",
-            "",
-        )
+        raise Exception("ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message))
 
 
 def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str:
@@ -59,69 +55,44 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
     ]:
         return "no validation is available for declarations"
 
-    er_msg = ""
-    if len(step_dict["inputs"]) > 0:
-        input_0_latex = latex_from_expr_local_id(step_dict["inputs"][0], path_to_db)
-        logger.debug("validate_step; input_latex = %s", input_0_latex)
-        er_msg, input_0_LHS, input_0_RHS = split_expr_into_lhs_rhs(input_0_latex)
-    if len(step_dict["inputs"]) > 1:
-        input_1_latex = latex_from_expr_local_id(step_dict["inputs"][1], path_to_db)
-        logger.debug("validate_step; input_latex = %s", input_1_latex)
-        er_msg, input_1_LHS, input_1_RHS = split_expr_into_lhs_rhs(input_1_latex)
-    if len(step_dict["inputs"]) > 2:
-        input_2_latex = latex_from_expr_local_id(step_dict["inputs"][2], path_to_db)
-        logger.debug("validate_step; input_latex = %s", input_2_latex)
-        er_msg, input_2_LHS, input_2_RHS = split_expr_into_lhs_rhs(input_2_latex)
-    if len(step_dict["feeds"]) > 0:
-        feed_0_latex = latex_from_expr_local_id(step_dict["feeds"][0], path_to_db)
-        logger.debug("validate_step; feed_0_latex = %s", feed_0_latex)
-        feed_0 = parse_latex(feed_0_latex)
-    if len(step_dict["feeds"]) > 1:
-        feed_1_latex = latex_from_expr_local_id(step_dict["feeds"][1], path_to_db)
-        logger.debug("validate_step; feed_1_latex = %s", feed_1_latex)
-        feed_1 = parse_latex(feed_1_latex)
-    if len(step_dict["feeds"]) > 2:
-        feed_2_latex = latex_from_expr_local_id(step_dict["feeds"][2], path_to_db)
-        logger.debug("validate_step; feed_2_latex = %s", feed_2_latex)
-        feed_2 = parse_latex(feed_2_latex)
-    if len(step_dict["outputs"]) > 0:
-        output_0_latex = latex_from_expr_local_id(step_dict["outputs"][0], path_to_db)
-        logger.debug("validate_step; output_0_latex = %s", output_0_latex)
-        er_msg, output_0_LHS, output_0_RHS = split_expr_into_lhs_rhs(output_0_latex)
-    if len(step_dict["outputs"]) > 1:
-        output_1_latex = latex_from_expr_local_id(step_dict["outputs"][1], path_to_db)
-        logger.debug("validate_step; output_1_latex = %s", output_1_latex)
-        er_msg, output_1_LHS, output_1_RHS = split_expr_into_lhs_rhs(output_1_latex)
-    if len(step_dict["outputs"]) > 2:
-        output_2_latex = latex_from_expr_local_id(step_dict["outputs"][2], path_to_db)
-        logger.debug("validate_step; output_2_latex = %s", output_2_latex)
-        er_msg, output_2_LHS, output_2_RHS = split_expr_into_lhs_rhs(output_2_latex)
-
-    if er_msg != "":
-        return er_msg
+    latex_dict = {}
+    latex_dict['input'] = {}
+    latex_dict['feed'] = {}
+    latex_dict['output'] = {}
+    for connection_type in ['inputs', 'outputs']:
+        indx = 0
+        for expr_local_id in step_dict[connection_type]:
+            latex = dat["expressions"][ dat["expr local to global"][expr_local_id] ]["latex"]
+            LHS, RHS = split_expr_into_lhs_rhs(latex)
+            latex_dict[connection_type[:-1]][indx] = {'LHS': LHS, 'RHS': RHS}
+            indx += 1
+    indx = 0
+    for expr_local_id in step_dict['feeds']:
+        latex_dict['feed'][indx] = dat["expressions"][ dat["expr local to global"][expr_local_id] ]["latex"]
+        indx += 1
 
     if step_dict["inf rule"] == "add X to both sides":
         # https://docs.sympy.org/latest/gotchas.html#double-equals-signs
         # https://stackoverflow.com/questions/37112738/sympy-comparing-expressions
-        if (sympy.simplify(sympy.Add(input_0_LHS, feed_0) - output_0_LHS) == 0) and (
-            sympy.simplify(sympy.Add(input_0_RHS, feed_0) - output_0_RHS) == 0
+        if (sympy.simplify(sympy.Add(latex_dict['input'][0]['LHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['LHS']) == 0) and (
+            sympy.simplify(sympy.Add(latex_dict['input'][0]['RHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['RHS']) == 0
         ):
             return "step is valid"
         else:
             return (
                 "step is not valid; \n"
                 + "LHS diff is "
-                + str(sympy.simplify(sympy.Add(input_0_LHS, feed_0) - output_0_LHS))
+                + str(sympy.simplify(sympy.Add(latex_dict['input'][0]['LHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['LHS']))
                 + "\n"
                 + "RHS diff is "
-                + str(sympy.simplify(sympy.Add(input_0_RHS, feed_0) - output_0_RHS))
+                + str(sympy.simplify(sympy.Add(latex_dict['input'][0]['RHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['RHS']))
             )
     elif step_dict["inf rule"] == "subtract X from both sides":
         # https://docs.sympy.org/latest/tutorial/manipulation.html
         if (
-            sympy.simplify(sympy.Add(input_0_LHS, sympy.Mul(-1, feed_0)) - output_0_LHS) == 0
+            sympy.simplify(sympy.Add(latex_dict['input'][0]['LHS'], sympy.Mul(-1, latex_dict['feed'][0])) - latex_dict['output'][0]['LHS']) == 0
         ) and (
-            sympy.simplify(sympy.Add(input_0_RHS, sympy.Mul(-1, feed_0)) - output_0_RHS) == 0
+            sympy.simplify(sympy.Add(latex_dict['input'][0]['RHS'], sympy.Mul(-1, latex_dict['feed'][0])) - latex_dict['output'][0]['RHS']) == 0
         ):
             return "step is valid"
         else:
@@ -130,14 +101,14 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
                 + "LHS diff is "
                 + str(
                     sympy.simplify(
-                        sympy.Add(input_0_LHS, sympy.Mul(-1, feed_0)) - output_0_LHS
+                        sympy.Add(latex_dict['input'][0]['LHS'], sympy.Mul(-1, latex_dict['feed'][0])) - latex_dict['output'][0]['LHS']
                     )
                 )
                 + "\n"
                 + "RHS diff is "
                 + str(
                     sympy.simplify(
-                        sympy.Add(input_0_RHS, sympy.Mul(-1, feed_0)) - output_0_RHS
+                        sympy.Add(latex_dict['input'][0]['RHS'], sympy.Mul(-1, latex_dict['feed'][0])) - latex_dict['output'][0]['RHS']
                     )
                 )
             )
@@ -145,9 +116,9 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
         # https://docs.sympy.org/latest/tutorial/manipulation.html
         # x/y = Mul(x, Pow(y, -1))
         if (
-            sympy.simplify(sympy.Mul(input_0_LHS, sympy.Pow(feed_0, -1)) - output_0_LHS) == 0
+            sympy.simplify(sympy.Mul(latex_dict['input'][0]['LHS'], sympy.Pow(latex_dict['feed'][0], -1)) - latex_dict['output'][0]['LHS']) == 0
         ) and (
-            sympy.simplify(sympy.Mul(input_0_RHS, sympy.Pow(feed_0, -1)) - output_0_RHS) == 0
+            sympy.simplify(sympy.Mul(latex_dict['input'][0]['RHS'], sympy.Pow(latex_dict['feed'][0], -1)) - latex_dict['output'][0]['RHS']) == 0
         ):
             return "step is valid"
         else:
@@ -156,14 +127,14 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
                 + "LHS diff is "
                 + str(
                     sympy.simplify(
-                        sympy.Mul(input_0_LHS, sympy.Pow(feed_0, -1)) - output_0_LHS
+                        sympy.Mul(latex_dict['input'][0]['LHS'], sympy.Pow(latex_dict['feed'][0], -1)) - latex_dict['output'][0]['LHS']
                     )
                 )
                 + "\n"
                 + "RHS diff is "
                 + str(
                     sympy.simplify(
-                        sympy.Mul(input_0_RHS, sympy.Pow(feed_0, -1)) - output_0_RHS
+                        sympy.Mul(latex_dict['input'][0]['RHS'], sympy.Pow(latex_dict['feed'][0], -1)) - latex_dict['output'][0]['RHS']
                     )
                 )
             )

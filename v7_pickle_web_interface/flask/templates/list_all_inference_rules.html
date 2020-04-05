@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 
-<P>a list of all inference rules</P>
 
-<table border="1">
+<table border="1"  class="sortable">
   <tr>
     <th>inf rule name</th>
     <th>inputs</th>
@@ -18,11 +17,11 @@
     <td>{{ infrules_dict[infrule]['number of inputs'] }}</td>
     <td>{{ infrules_dict[infrule]['number of outputs'] }}</td>
     <td>{{ infrules_dict[infrule]['number of feeds'] }}</td>
-    <td>{{ infrules_dict[infrule]['latex'] }}</td>
+    <td>{{ infrules_dict[infrule]['latex']}}</td> <!-- https://jinja.palletsprojects.com/en/2.11.x/templates/#replace -->
     <td>{{ infrule_use_list }} </td>
   </tr>
 {% endfor %}
-  <caption>Physics Derivation Graph: Inference Rules</caption>
+  <caption>Physics Derivation Graph: {{ infrule_popularity_dict.keys()|length }} Inference Rules</caption>
 </table>
 
 

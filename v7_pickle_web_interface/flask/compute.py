@@ -706,14 +706,14 @@ def extract_symbols_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     """
     logger.info("[trace] extract_symbols_from_expression_dict")
     dat = clib.read_db(path_to_db)
-    logger.debug("extract_symbols_from_expression_dict; expr_id = %s", expr_id)
+    logger.debug("expr_id = %s", expr_id)
     expr_dict = dat["expressions"]
     if "AST" in expr_dict[expr_id].keys():
         flt_dict = flatten_dict(expr_dict[expr_id]["AST"])
         return list(flt_dict.values())
     else:
         return []
-    # logger.debug('extract_symbols_from_expression_dict; flt_dict=',flt_dict)
+    # logger.debug('flt_dict=',flt_dict)
 
 
 def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
@@ -723,7 +723,7 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
     logger.info("[trace] extract_expressions_from_derivation_dict")
     dat = clib.read_db(path_to_db)
     flt_dict = flatten_dict(dat["derivations"][deriv_name])
-    logger.debug("extract_expressions_from_derivation_dict; flat dict = %s", flt_dict)
+    logger.debug("flat dict = %s", flt_dict)
     list_of_expr_ids = []
     for flattened_key, val in flt_dict.items():
         if (
@@ -733,24 +733,24 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
         ):
             list_of_expr_ids.append(val)
     logger.debug(
-        "extract_expressions_from_derivation_dict; list_of_expr_ids= %s",
+        "list_of_expr_ids= %s",
         list_of_expr_ids,
     )
     return list_of_expr_ids
 
 
-def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
-    """
-    >>> extract_infrules_from_derivation_dict()
-    """
-    logger.info("[trace] extract_infrules_from_derivation_dict")
-    dat = clib.read_db(path_to_db)
-    list_of_infrules = []
-    for step_id, step_dict in dat["derivations"][deriv_name].items():
-        list_of_infrules.append(step_dict["inf rule"])
+#def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
+#    """
+#    >>> extract_infrules_from_derivation_dict()
+#    """
+#    logger.info("[trace] extract_infrules_from_derivation_dict")
+#    dat = clib.read_db(path_to_db)
+#    list_of_infrules = []
+#    for step_id, step_dict in dat["derivations"][deriv_name].items():
+#        list_of_infrules.append(step_dict["inf rule"])
 
     # logger.debug('extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
-    return list(set(list_of_infrules))
+#    return list(set(list_of_infrules))
 
 
 def popularity_of_operators(path_to_db: str) -> dict:
@@ -760,15 +760,31 @@ def popularity_of_operators(path_to_db: str) -> dict:
     logger.info("[trace] popularity_of_operators")
     dat = clib.read_db(path_to_db)
     operator_popularity_dict = {}
+
+
+    operators_per_expr = {}
+    for expr_id, expr_dict in dat["expressions"].items():
+        if "AST" in expr_dict.keys():
+            flt_dict = flatten_dict(expr_dict["AST"])
+        else:
+            flt_dict = {}
+        list_of_str = list(flt_dict.keys())
+        list_of_operators = []
+        for this_str in list_of_str:  # 'equals_0_addition_0'
+            list_of_operator_candidates = this_str.split("_")
+            for operator_candidate in list_of_operator_candidates:
+                 try:
+                     int(operator_candidate)
+                 except ValueError:
+                     list_of_operators.append(operator_candidate)
+        operators_per_expr[expr_id] = list(set(list_of_operators))
+
+
     for operator, operator_dict in dat["operators"].items():
-        list_of_uses = []
-        for expr_id, expr_dict in dat["expressions"].items():
-            list_of_operators_for_this_expr = extract_operators_from_expression_dict(
-                expr_id, path_to_db
-            )
-            if operator in list_of_operators_for_this_expr:
-                list_of_uses.append(expr_id)
-        operator_popularity_dict[operator] = list_of_uses
+        operator_popularity_dict[operator] = []
+        for expr_id, list_of_ops in operators_per_expr.items():
+            if operator in list_of_ops:
+                operator_popularity_dict[operator].append(expr_id)
     return operator_popularity_dict
 
 
@@ -783,30 +799,32 @@ def popularity_of_symbols(path_to_db: str) -> dict:
     # TODO: this is a join that is really slow!
     for symbol_id, symbol_dict in dat["symbols"].items():
         list_of_uses = []
-        for expr_id, expr_dict in dat["expressions"].items():
-            list_of_symbols_for_this_expr = extract_symbols_from_expression_dict(
-                expr_id, path_to_db
-            )
+        for expr_global_id, expr_dict in dat["expressions"].items():
+            if "AST" in expr_dict.keys():
+                flt_dict = flatten_dict(expr_dict["AST"])
+                list_of_symbols_for_this_expr = list(flt_dict.values())
+            else:
+                list_of_symbols_for_this_expr = []
             if symbol_id in list_of_symbols_for_this_expr:
-                list_of_uses.append(expr_id)
+                list_of_uses.append(expr_global_id)
         symbol_popularity_dict[symbol_id] = list_of_uses
 
     return symbol_popularity_dict
 
 
-def get_expr_local_IDs_for_this_expr_global_ID(
-    expr_global_ID: str, path_to_db: str
-) -> list:
-    """
-    >>>
-    """
-    logger.info("[trace] get_expr_local_IDs_for_this_expr_global_ID")
-    list_of_expr_local_IDs = []
-    dat = clib.read_db(path_to_db)
-    for local_id, global_id in dat["expr local to global"].items():
-        if expr_global_ID == global_id:
-            list_of_expr_local_IDs.append(local_id)
-    return list_of_expr_local_IDs
+#def get_expr_local_IDs_for_this_expr_global_ID(
+#    expr_global_ID: str, path_to_db: str
+#) -> list:
+#    """
+#    >>>
+#    """
+#    logger.info("[trace] get_expr_local_IDs_for_this_expr_global_ID")
+#    list_of_expr_local_IDs = []
+#    dat = clib.read_db(path_to_db)
+#    for local_id, global_id in dat["expr local to global"].items():
+#        if expr_global_ID == global_id:
+#            list_of_expr_local_IDs.append(local_id)
+#    return list_of_expr_local_IDs
 
 
 def popularity_of_expressions(path_to_db: str) -> dict:
@@ -816,30 +834,24 @@ def popularity_of_expressions(path_to_db: str) -> dict:
     logger.info("[trace] popularity_of_expressions")
     dat = clib.read_db(path_to_db)
     expression_popularity_dict = {}
-    for expr_global_id, expr_dict in dat["expressions"].items():
-        list_of_derivations_this_expr_is_used_in = []
-        list_of_local_IDs_this_global_ID_corresponds_to = get_expr_local_IDs_for_this_expr_global_ID(
-            expr_global_id, path_to_db
-        )
 
-        for deriv_name, deriv_dict in dat["derivations"].items():
-            list_of_all_expr_local_IDs_for_this_deriv = extract_expressions_from_derivation_dict(
-                deriv_name, path_to_db
-            )
-            # logger.debug('deriv_name=',deriv_name)
-            # logger.debug('list_of_all_expr_for_this_deriv=',list_of_all_expr_local_IDs_for_this_deriv)
-            # logger.debug('expr_global_id =', expr_global_id)
-            for expr_local_ID in list_of_local_IDs_this_global_ID_corresponds_to:
-                if expr_local_ID in list_of_all_expr_local_IDs_for_this_deriv:
-                    # logger.debug('expr_global_id', expr_global_id, 'expr_local_ID', expr_local_ID, 'is in', deriv_name)
-                    list_of_derivations_this_expr_is_used_in.append(deriv_name)
-        expression_popularity_dict[expr_global_id] = list(
-            set(list_of_derivations_this_expr_is_used_in)
-        )
-        logger.debug(
-            "popularity_of_expressions; expression_popularity_dict = %s",
-            expression_popularity_dict,
-        )
+    deriv_uses_expr_global_id = {}
+    for deriv_name, deriv_dict in dat["derivations"].items():
+        list_of_all_expr_global_IDs_for_this_deriv = []
+        for step_id, step_dict in deriv_dict.items():
+            for connection_type in ['inputs', 'feeds', 'outputs']:
+                for expr_local_id in step_dict[connection_type]:
+                    list_of_all_expr_global_IDs_for_this_deriv.append(dat["expr local to global"][expr_local_id])
+        deriv_uses_expr_global_id[deriv_name] = list(set(list_of_all_expr_global_IDs_for_this_deriv))
+
+    for expr_global_id, expr_dict in dat["expressions"].items():
+        expression_popularity_dict[expr_global_id] = []
+        for deriv_name, list_of_expr in deriv_uses_expr_global_id.items():
+            if expr_global_id in list_of_expr:
+                expression_popularity_dict[expr_global_id].append(deriv_name)
+        expression_popularity_dict[expr_global_id] = list(set(expression_popularity_dict[expr_global_id]))
+        
+    #logger.debug("expression_popularity_dict = %s", expression_popularity_dict)
     return expression_popularity_dict
 
 
@@ -853,9 +865,12 @@ def popularity_of_infrules(path_to_db: str) -> dict:
     for infrule_name, infrule_dict in dat["inference rules"].items():
         list_of_uses = []
         for deriv_name, deriv_dict in dat["derivations"].items():
-            list_of_infrule_for_this_deriv = extract_infrules_from_derivation_dict(
-                deriv_name, path_to_db
-            )
+            list_of_infrules = []
+            for step_id, step_dict in dat["derivations"][deriv_name].items():
+                list_of_infrules.append(step_dict["inf rule"])
+
+            list_of_infrule_for_this_deriv = list(set(list_of_infrules))
+
             # logger.debug('popularity_of_infrules; list =',list_of_infrule_for_this_deriv)
             # logger.debug('popularity_of_infrules; infrule_name =',infrule_name)
             # logger.debug(deriv_name)
