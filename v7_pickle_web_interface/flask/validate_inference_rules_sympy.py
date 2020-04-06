@@ -8,6 +8,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+# most of the validation functions are from 
+# https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v2_XML/databases/inference_rules_database.xml
 
 def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
     """
@@ -55,6 +57,11 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
     ]:
         return "no validation is available for declarations"
 
+    if step_dict["inf rule"] in [
+        "assume N dimensions",
+        "normalization condition"
+        "boundary condition"
+
     latex_dict = {}
     latex_dict['input'] = {}
     latex_dict['feed'] = {}
@@ -72,14 +79,114 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
         indx += 1
 
     if step_dict["inf rule"] == "add X to both sides":
+        return add_X_to_both_sides(latex_dict)
+    elif step_dict["inf rule"] == "subtract X from both sides":
+        return subtract_X_from_both_sides(latex_dict)
+    elif step_dict["inf rule"] == "multiply both sides by":
+        return multiply_both_sides_by(latex_dict)
+    elif step_dict["inf rule"] == "divide both sides by":
+        return divide_both_sides_by(latex_dict)
+    elif step_dict["inf rule"] == "substitute X for Y":
+        return substitute_X_for_Y(latex_dict)
+    elif step_dict["inf rule"] == "add zero to LHS":
+        return add_zero_to_LHS(latex_dict)
+    elif step_dict["inf rule"] == "add zero to RHS":
+        return add_zero_to_RHS(latex_dict)
+    elif step_dict["inf rule"] == "multiply LHS by unity":
+        return multiply_LHS_by_unity(latex_dict)
+    elif step_dict["inf rule"] == "multiply RHS by unity":
+        return multiply_RHS_by_unity(latex_dict)
+    elif step_dict["inf rule"] == "swap LHS with RHS":
+        return swap_LHS_with_RHS(latex_dict)
+    elif step_dict["inf rule"] == "take curl of both sides":
+        return take_curl_of_both_sides(latex_dict)
+    elif step_dict["inf rule"] == "apply divergence":
+        return apply_divergence(latex_dict)
+    elif step_dict["inf rule"] == "indefinite integral over":
+        return indefinite_integral_over(latex_dict)
+    elif step_dict["inf rule"] == "indefinite integration":
+        return indefinite_integration(latex_dict)
+    elif step_dict["inf rule"] == "indefinite integrate LHS over":
+        return indefinite_integrate_LHS_over(latex_dict)
+    elif step_dict["inf rule"] == "indefinite integrate RHS over":
+        return indefinite_integrate_RHS_over(latex_dict)
+    elif step_dict["inf rule"] == "integrate over from to":
+        return integrate_over_from_to(latex_dict)
+    elif step_dict["inf rule"] == "partially differentiate with respect to":
+        return partially_differentiate_with_respect_to(latex_dict)
+    elif step_dict["inf rule"] == "X cross both sides by":
+        return X_cross_both_sides_by(latex_dict)
+    elif step_dict["inf rule"] == "both sides cross X":
+        return both_sides_cross_X(latex_dict)
+    elif step_dict["inf rule"] == "X dot both sides":
+        return X_dot_both_sides(latex_dict)
+    elif step_dict["inf rule"] == "both sides dot X":
+        return both_sides_dot_X(latex_dict)
+    elif step_dict["inf rule"] == "make expr power":
+        return make_expr_power(latex_dict)
+    elif step_dict["inf rule"] == "select real parts":
+        return select_real_parts(latex_dict)
+    elif step_dict["inf rule"] == "select imag parts":
+        return select_imag_parts(latex_dict)
+    elif step_dict["inf rule"] == "sum exponents LHS":
+        return sum_exponents_LHS(latex_dict)
+    elif step_dict["inf rule"] == "sum exponents RHS":
+        return sum_exponents_RHS(latex_dict)
+    elif step_dict["inf rule"] == "add expr X to expr Y":
+        return add_expr_X_to_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "sub RHS of expr X into expr Y":
+        return sub_RHS_of_expr_X_into_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "sub LHS of expr X into expr Y":
+        return sub_LHS_of_expr_X_into_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "mult expr X by expr Y":
+        return mult_expr_X_by_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "LHS of expr X eq LHS of expr Y":
+        return LHS_of_expr_X_eq_LHS_of_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "RHS of expr X eq RHS of expr Y":
+        return RHS_of_expr_X_eq_RHS_of_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "raise both sides to power":
+        return raise_both_sides_to_power(latex_dict)
+    elif step_dict["inf rule"] == "claim expr X equals expr Y":
+        return claim_expr_X_equals_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "claim LHS equals RHS":
+        return claim_LHS_equals_RHS(latex_dict)
+    elif step_dict["inf rule"] == "expand integrand":
+        return expand_integrand(latex_dict)
+    elif step_dict["inf rule"] == "function is even":
+        return function_is_even(latex_dict)
+    elif step_dict["inf rule"] == "function is odd":
+        return function_is_odd(latex_dict)
+    elif step_dict["inf rule"] == "conjugate function X":
+        return conjugate_function_X(latex_dict)
+    elif step_dict["inf rule"] == "conjugate both sides":
+        return conjugate_both_sides(latex_dict)
+    elif step_dict["inf rule"] == "conjugate transpose both sides":
+        return conjugate_transpose_both_sides(latex_dict)
+    elif step_dict["inf rule"] == "distribute conjugate transpose to factors":
+        return distribute conjugate_transpose_to_factors(latex_dict)
+    elif step_dict["inf rule"] == "distribute conjugate to factors":
+        return distribute_conjugate_to_factors(latex_dict)
+    elif step_dict["inf rule"] == "expand magnitude to conjugate":
+        return expand_magnitude_to_conjugate(latex_dict)
+    else:
+        raise Exception('Unexpected inf rule')
+
+    return "This message should not be seen"
+
+def add_X_to_both_sides(latex_dict):
+    """
         # https://docs.sympy.org/latest/gotchas.html#double-equals-signs
         # https://stackoverflow.com/questions/37112738/sympy-comparing-expressions
-        if (sympy.simplify(sympy.Add(latex_dict['input'][0]['LHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['LHS']) == 0) and (
-            sympy.simplify(sympy.Add(latex_dict['input'][0]['RHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['RHS']) == 0
-        ):
-            return "step is valid"
-        else:
-            return (
+    >>> 
+    """
+    d1 = 
+    d2 =
+    if (sympy.simplify(sympy.Add(latex_dict['input'][0]['LHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['LHS']) == 0) and (
+        sympy.simplify(sympy.Add(latex_dict['input'][0]['RHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['RHS']) == 0
+    ):
+        return "step is valid"
+    else:
+        return (
                 "step is not valid; \n"
                 + "LHS diff is "
                 + str(sympy.simplify(sympy.Add(latex_dict['input'][0]['LHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['LHS']))
@@ -87,16 +194,19 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
                 + "RHS diff is "
                 + str(sympy.simplify(sympy.Add(latex_dict['input'][0]['RHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['RHS']))
             )
-    elif step_dict["inf rule"] == "subtract X from both sides":
+
+def subtract_X_from_both_sides():
+    """
         # https://docs.sympy.org/latest/tutorial/manipulation.html
-        if (
-            sympy.simplify(sympy.Add(latex_dict['input'][0]['LHS'], sympy.Mul(-1, latex_dict['feed'][0])) - latex_dict['output'][0]['LHS']) == 0
-        ) and (
-            sympy.simplify(sympy.Add(latex_dict['input'][0]['RHS'], sympy.Mul(-1, latex_dict['feed'][0])) - latex_dict['output'][0]['RHS']) == 0
-        ):
-            return "step is valid"
-        else:
-            return (
+
+    >>> 
+    """
+    d1 = sympy.simplify(sympy.Add(latex_dict['input'][0]['LHS'], sympy.Mul(-1, latex_dict['feed'][0])) - latex_dict['output'][0]['LHS'])
+    d2 = sympy.simplify(sympy.Add(latex_dict['input'][0]['RHS'], sympy.Mul(-1, latex_dict['feed'][0])) - latex_dict['output'][0]['RHS'])
+    if ( d1 == 0 ) and ( d2 == 0 ):
+        return "step is valid"
+    else:
+        return (
                 "step is not valid; \n"
                 + "LHS diff is "
                 + str(
@@ -112,17 +222,41 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
                     )
                 )
             )
-    elif step_dict["inf rule"] == "divide both sides by":
-        # https://docs.sympy.org/latest/tutorial/manipulation.html
-        # x/y = Mul(x, Pow(y, -1))
-        if (
-            sympy.simplify(sympy.Mul(latex_dict['input'][0]['LHS'], sympy.Pow(latex_dict['feed'][0], -1)) - latex_dict['output'][0]['LHS']) == 0
-        ) and (
-            sympy.simplify(sympy.Mul(latex_dict['input'][0]['RHS'], sympy.Pow(latex_dict['feed'][0], -1)) - latex_dict['output'][0]['RHS']) == 0
-        ):
-            return "step is valid"
-        else:
-            return (
+
+def multiply_both_sides_by(latex_dict):
+    """
+    see also dividebothsidesby
+    x*y = Mul(x,y)
+    >>> 
+    """
+    d1 = sympy.simplify( sympy.Mul(latex_dict['input'][0]['LHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['LHS']) 
+    d2 = sympy.simplify( sympy.Mul(latex_dict['input'][0]['RHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['RHS'])
+    if ( d1 == 0 ) and ( d2 == 0 ):
+        return "step is valid"
+    else:
+        return ("step is not valid; \n" + 
+                "LHS diff is " + str(d1) + "\n" +
+                "RHS diff is " + str(d2) )
+
+def divide_both_sides_by(latex_dict):
+    """
+    see also multiply_both_sides_by
+    https://docs.sympy.org/latest/tutorial/manipulation.html
+    
+    x/y = Mul(x, Pow(y, -1))
+
+    >>> divide_both_sides_by()
+    """
+    d1 = 
+    d2 = 
+    if (
+        sympy.simplify(sympy.Mul(latex_dict['input'][0]['LHS'], sympy.Pow(latex_dict['feed'][0], -1)) - latex_dict['output'][0]['LHS']) == 0
+    ) and (
+        sympy.simplify(sympy.Mul(latex_dict['input'][0]['RHS'], sympy.Pow(latex_dict['feed'][0], -1)) - latex_dict['output'][0]['RHS']) == 0
+    ):
+        return "step is valid"
+    else:
+        return (
                 "step is not valid; \n"
                 + "LHS diff is "
                 + str(
@@ -139,8 +273,366 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
                 )
             )
 
-    return "no validation available for this inference rule"
+def substitute_X_for_Y(latex_dict):
+    """
+    >>> substitute_X_for_Y
+    """
+    d1 = sympy.simplify( latex_dict['input'][0]['LHS'].subs(latex_dict['feed'][0],latex_dict['feed'][1]) - latex_dict['output'][0]['LHS'] )
+    d2 = sympy.simplify( latex_dict['input'][0]['RHS'].subs(latex_dict['feed'][0],latex_dict['feed'][1]) - latex_dict['output'][0]['RHS'] )
+    if ( d1 == 0 ) and ( d2 == 0 ):
+        return "step is valid"
+    else:
+        return ("step is not valid; \n" +
+                "LHS diff is " + str( d1 ) + "\n" +
+                "RHS diff is " + str( d2 ) )
 
+def multiply_LHS_by_unity(latex_dict):
+    """
+    see also multRHSbyUnity
+    >>> 
+    """
+    d1 = sympy.simplify( latex_dict['feed'][0] - 1 )
+    d2 = sympy.simplify( sympy.Mul(latex_dict['input'][0]['LHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['LHS'] )
+    d3 = sympy.simplify( latex_dict['input'][0]['RHS'] - latex_dict['output'][0]['RHS'] )
+    if ( d1 == 0 ) and ( d2 == 0 ) and ( d3 == 0 ):
+        return "step is valid"
+    else:
+        return ("step is not valid; \n" + 
+                "feed diff is " + str( d1 ) + "\n" +
+                "LHS diff is " + str( d2 ) + "\n" +
+                "RHS diff is " + str( d3 ) )
+
+def multiply_RHS_by_unity(latex_dict):
+    """
+    see also multLHSbyUnity
+    >>> 
+    """
+    d1 = sympy.simplify( latex_dict['feed'][0] - 1 )
+    d2 = sympy.simplify( sympy.Mul(latex_dict['input'][0]['RHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['RHS'] )
+    d3 = sympy.simplify( latex_dict['input'][0]['LHS'] - latex_dict['output'][0]['LHS'] )
+    if ( d1 == 0 ) and ( d2 == 0 ) and ( d3 == 0 ):
+        return "step is valid"
+    else:
+        return ("step is not valid; \n" + 
+                "feed diff is " + str( d1 ) + "\n" +
+                "LHS diff is " + str( d3 ) + "\n" +
+                "RHS diff is " + str( d2 ) )
+
+def add_zero_to_LHS(latex_dict):
+    """
+    see also add_zero_to_RHS
+    ((feed==0) and (out_lhs0 == (in_lhs0+zero)) and (out_rhs0 == in_rhs0))
+    >>> 
+    """
+    d = sympy.simplify( latex_dict['feed'][0] )
+    d = sympy.simplify( sympy.Add(latex_dict['input'][0]['LHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['LHS']  )
+    d = sympy.simplify( latex_dict['input'][0]['RHS'] - latex_dict['output'][0]['RHS'] )
+    if ( d1 == 0 ) and ( d2 == 0 ) and ( d3 == 0 ):
+        return "step is valid"
+    else:
+        return ("step is not valid; \n" +
+                "feed diff is " + str( d1 ) + "\n" +
+                "LHS diff is " + str( d2 ) + "\n" +
+                "RHS diff is " + str( d3 ) )
+
+def add_zero_to_RHS(latex_dict):
+    """
+    ((feed==0) and (out_rhs0 == (in_rhs0+zero)) and (out_lhs0 == in_lhs0))
+    >>> 
+    """
+    d = sympy.simplify( latex_dict['feed'][0] )
+    d = sympy.simplify( sympy.Add(latex_dict['input'][0]['RHS'], latex_dict['feed'][0]) - latex_dict['output'][0]['RHS']  )
+    d = sympy.simplify( latex_dict['input'][0]['LHS'] - latex_dict['output'][0]['LHS'] )
+    if ( d1 == 0 ) and ( d2 == 0 ) and ( d3 == 0 ):
+        return "step is valid"
+    else:
+        return ("step is not valid; \n" +
+                "feed diff is " + str( d1 ) + "\n" +
+                "LHS diff is " + str( d3 ) + "\n" +
+                "RHS diff is " + str( d2 ) )
+
+
+def take_curl_of_both_sides(latex_dict):
+    """
+    ((out_lhs0 == (\nabla \times in_lhs0)) and (out_rhs0 == \nabla \times in_rhs0))
+    >>> 
+    """
+    return 
+
+def apply_divergence(latex_dict):
+    """
+    Curl: $\vec{\nabla} \cdot$
+    >>> 
+    """
+    return
+
+def indefinite_integral_over(latex_dict):
+    """
+    ((out_lhs0 == (\int in_lhs0 feed0)) and (out_rhs0 == \int in_rhs0 feed0))
+    >>> 
+    """
+    return 
+
+def indefinite_integration(latex_dict):
+    """
+    ((out_lhs0 == (\int in_lhs0 )) and (out_rhs0 == \int in_rhs0 ))
+    >>> 
+    """
+    return
+
+def indefinite_integrate_LHS_over(latex_dict):
+    """
+    ((out_lhs0 == (\int in_lhs0 feed0)) and (out_rhs0 == in_rhs0))
+    >>> 
+    """
+    return
+
+def indefinite_integrate_RHS_over(latex_dict):
+    """
+    ((out_lhs0 == in_lhs0) and (out_rhs0 == \int in_rhs0 feed0))
+    >>> 
+    """
+    return
+
+def integrate_over_from_to(latex_dict):
+    """
+    ((out_lhs0 == (\int_{feed1}^{feed2} in_lhs0 feed0)) and (out_rhs0 == \int_{feed1}^{feed2} in_rhs0 feed0))
+    >>> 
+    """
+    return 
+
+def partially_differentiate_with_respect_to(latex_dict):
+    """
+    \frac{\partial}{\partial #1}
+    >>> 
+    """
+    return 
+
+def X_cross_both_sides_by(latex_dict):
+    """
+    arg x LHS = arg x RHS
+    >>> 
+    """
+    return 
+
+def both_sides_cross_X(latex_dict):
+    """
+    LHS x arg = RHS x arg
+    >>> 
+    """
+    return 
+
+def X_dot_both_sides(latex_dict):
+    """
+    arg \cdot LHS = arg \cdot RHS
+    >>> 
+    """
+    return 
+
+def both_sides_dot_X(latex_dict):
+    """
+    LHS \cdot arg = RHS \cdot arg
+    >>> 
+    """
+    return 
+
+def make_expr_power(latex_dict):
+    """
+    ((out_lhs0 == (feed0)**(in_lhs0)) and (out_rhs0 == (feed0)**(in_rhs0)))
+    >>> 
+    """
+    return 
+
+def select_real_parts(latex_dict):
+    """
+    sympy.re(2+3*sympy.I)==2
+    >>> 
+    """
+    return 
+
+def select_imag_parts(latex_dict):
+    """
+    sympy.im(2+3*sympy.I)==3
+    >>> 
+    """
+    return 
+
+def swap_LHS_with_RHS(latex_dict):
+    """
+    ((in_lhs0 == out_rhs0) and (in_rhs0 == out_lhs0))
+    >>> 
+    """
+    d1 = 
+    d2 = 
+    if ( d1 == 0 ) and ( d2 == 0 ):
+        return "step is valid"
+    else:
+        return ("step is not valid; \n" +
+                "LHS diff is " + str( d1 ) + "\n" +
+                "RHS diff is " + str( d1 ) )
+
+def sum_exponents_LHS(latex_dict):
+    """
+    (in_rhs0 == out_rhs0)
+    >>> 
+    """
+    d1 = 
+    d2 = 
+    return 
+
+
+def sum_exponents_RHS(latex_dict):
+    """
+    (in_lhs0 == out_lhs0)
+    >>> 
+    """
+    d1 = 
+    d2 =
+    return 
+
+def add_expr_X_to_expr_Y(latex_dict):
+    """
+    assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)
+
+    (((in_lhs0+in_lhs1)==out_lhs0) and ((in_rhs0+in_rhs1)==out_rhs0))
+    >>> 
+    """
+    d1 = 
+    d2 = 
+    return
+
+def sub_RHS_of_expr_X_into_expr_Y(latex_dict):
+    """
+
+    >>> 
+    """
+    return
+
+def sub_LHS_of_expr_X_into_expr_Y(latex_dict):
+    """
+
+    >>> 
+    """
+    return
+
+def mult_expr_X_by_expr_Y(latex_dict):
+    """
+    ((in_lhs0*in_lhs1 == out_lhs0) and (in_rhs0*in_rhs1 == out_rhs0))
+    >>> 
+    """
+    return 
+
+def LHS_of_expr_X_eq_LHS_of_expr_Y(latex_dict):
+    """
+    ((in_lhs0 == in_lhs1) and (out_lhs0 == in_rhs0) and (out_rhs0 == in_rhs1))
+    >>> 
+    """
+    return 
+
+def RHS_of_expr_X_eq_RHS_of_expr_Y(latex_dict):
+    """
+    ((in_rhs0 == in_rhs1) and (out_lhs0 == in_lhs0) and (out_rhs0 == in_lhs1))
+    >>> 
+    """
+    return
+
+def raise_both_sides_to_power(latex_dict):
+    """
+    ((out_lhs0 == (in_lhs0)**(feed0)) and (out_rhs0 == (in_rhs0)**(feed0)))
+    >>> 
+    """
+    return 
+
+def claim_expr_X_equals_expr_Y(latex_dict):
+    """
+    ((in_lhs0 == in_lhs1) and (in_rhs0 == in_rhs1))
+    >>> 
+    """
+    return 
+
+def claim_LHS_equals_RHS(latex_dict):
+    """
+    (in_lhs0 == in_rhs0)
+    >>> 
+    """
+    return 
+
+
+def expand_integrand(latex_dict):
+    """
+
+    >>> 
+    """
+    return 
+
+def function_is_even(latex_dict):
+    """
+    colloquially, 
+    sympy.cos(x)==sympy.cos(-x)
+
+    sympy.cos(x) - sympy.cos(-x) == 0
+    >>> 
+    """
+    return
+
+def function_is_odd(latex_dict):
+    """
+    colloquially, 
+    sympy.sin(-x) == -sympy.sin(x)
+
+    sympy.sin(-x) - -sympy.sin(x) == 0
+    >>> 
+    """
+    return
+
+def conjugate_function_X(latex_dict):
+    """
+    colloquially,
+    sympy.conjugate(sympy.I)==-sympy.I
+
+    replace f with f^*; replace $i$ with $-i$
+    >>> 
+    """
+    return 
+
+def conjugate_both_sides(latex_dict):
+    """
+    colloquially,
+    sympy.conjugate(sympy.I)==-sympy.I
+
+    Apply ^*; replace $i$ with $-i$
+    >>> 
+    """
+    return
+
+def conjugate_transpose_both_sides(latex_dict):
+    """
+    Apply ^+; replace $i$ with $-i$ and transpose matrices
+    >>> 
+    """
+    return
+
+def distribute conjugate_transpose_to_factors(latex_dict):
+    """
+    Apply ^+; replace $i$ with $-i$ and transpose matrices, rotate bra-ket.
+    this is a combination of "distribute conjugate" and then "distribute transpose"
+    >>> 
+    """
+    return
+
+def distribute_conjugate_to_factors(latex_dict):
+    """
+    Apply ^*; replace $i$ with $-i$
+    >>> 
+    """
+    return
+
+def expand_magnitude_to_conjugate(latex_dict):
+    """
+    replace |f|^2 with ff^*
+    >>> 
+    """
+    return
 
 def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
     """
