@@ -1,6 +1,8 @@
 Flask
 graphviz
 flask-wtf
+redis
+rejson
 mypy
 black
 opencv-python

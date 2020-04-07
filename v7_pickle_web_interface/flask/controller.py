@@ -1,19 +1,28 @@
 #!/usr/bin/env python3
-# https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 
 # convention: every function and class includes a [trace] print
 # to help the developer understand functional dependencies and which state the program is in,
 # a "trace" is printed to the terminal at the start of each function
 
+# https://runnable.com/docker/python/docker-compose-with-flask-apps
+from redis import Redis
+
+# https://pypi.org/project/rejson/
+from rejson import Client, Path
+
 import os
 import json
 import shutil
-import logging  # https://docs.python.org/3/howto/logging.html
+# https://docs.python.org/3/howto/logging.html
+import logging  
+# https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 from flask import Flask, redirect, render_template, request, url_for, flash
 import time
+# https://gist.github.com/lost-theory/4521102
 from flask import g
 from werkzeug.utils import secure_filename
 from wtforms import Form, StringField, validators, FieldList, FormField, IntegerField  # type: ignore
+# https://json-schema.org/
 from jsonschema import validate  # type: ignore
 from config import (
     Config,
@@ -37,6 +46,11 @@ app.config[
 app.config[
     "SEND_FILE_MAX_AGE_DEFAULT"
 ] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+
+# https://runnable.com/docker/python/docker-compose-with-flask-apps
+redis = Redis(host='db', port=6379)
+# https://pypi.org/project/rejson/
+rj = Client(host='db', port=6379, decode_responses=True)
 
 
 if __name__ == "__main__":
@@ -190,6 +204,13 @@ def after_request(response):
             b'__EXECUTION_TIME__', bytes(str(diff), 'utf-8')))
     return response
 
+@app.route('/db')
+def db():
+    redis.incr('hits')
+    logger.info("[trace] db")
+    return 'This counter has been viewed',str(redis.get('hits')),'times.'
+
+
 @app.route("/index", methods=["GET", "POST"])
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -289,17 +310,51 @@ def editor():
 
     shutil.copy("data.json", "/home/appuser/app/static/")
 
-    all_df = compute.convert_json_to_dataframes("data.json")
-    df_pkl_file = compute.convert_df_to_pkl(all_df)
-    sql_file = compute.convert_dataframes_to_sql(all_df)
-    shutil.copy(sql_file, "/home/appuser/app/static/")
-
-    rdf_file = compute.convert_data_to_rdf("data.json")
-    shutil.copy(rdf_file, "/home/appuser/app/static/")
-
-    neo4j_file = compute.convert_data_to_cypher("data.json")
-    shutil.copy(neo4j_file, "/home/appuser/app/static/")
-
+    try:
+        all_df = compute.convert_json_to_dataframes("data.json")
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+        all_df = ""
+    try:
+        df_pkl_file = compute.convert_df_to_pkl(all_df)
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+        df_pkl_file = ""
+    try:
+        sql_file = compute.convert_dataframes_to_sql(all_df)
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+        sql_file = ""
+    try:
+        shutil.copy(sql_file, "/home/appuser/app/static/")
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+    try:
+        rdf_file = compute.convert_data_to_rdf("data.json")
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+        rdf_file = ""
+    try:
+        shutil.copy(rdf_file, "/home/appuser/app/static/")
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+    try:
+        neo4j_file = compute.convert_data_to_cypher("data.json")
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
+        neo4j_file = ""
+    try:
+        shutil.copy(neo4j_file, "/home/appuser/app/static/")
+    except Exception as er:
+        logger.warning(er)
+        flash(er)
     logger.debug("index; request.method = %s", request.method)
 
     if request.method == "POST":
@@ -706,10 +761,11 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         step_validity_dict = (
             compute.determine_step_validity(name_of_derivation, "data.json"),
         )
-
     else:
         step_dict = {}
         step_validity_dict = {}
+
+    #logger.debug('step validity = %s', str(step_validity_dict))
 
     return render_template(
         "provide_expr_for_inf_rule.html",
@@ -771,6 +827,16 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
         else:
             raise Exception('unrecognized button in "step_review":', request.form)
 
+    try:
+        step_validity_dict=compute.determine_step_validity(
+            name_of_derivation, "data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(err)
+        step_validity_dict = {}
+
+    #logger.debug('step validity = %s', str(step_validity_dict))
+
     return render_template(
         "step_review.html",
         step_validity_msg=step_validity_msg,
@@ -778,9 +844,7 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
         name_of_derivation=name_of_derivation,
         step_dict=dat["derivations"][name_of_derivation],
         expr_dict=dat["expressions"],
-        step_validity_dict=compute.determine_step_validity(
-            name_of_derivation, "data.json"
-        ),
+        step_validity_dict=step_validity_dict,
         expr_local_to_gobal=dat["expr local to global"],
     )
 
@@ -810,12 +874,22 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         elif request.form["submit_button"] == "return to main menu":
             return redirect(url_for("index"))
         elif request.form["submit_button"] == "generate pdf":
-            pdf_filename = compute.generate_pdf_for_derivation(
-                name_of_derivation, "data.json"
-            )
+            pdf_filename = "" # TODO: there should be a default PDF in case the generation step fails
+            try:
+                pdf_filename = compute.generate_pdf_for_derivation(
+                    name_of_derivation, "data.json"
+                )
+            except Exception as err:
+                logger.warning(err)
+                flash(err)
             return redirect(url_for("static", filename=pdf_filename))
         elif request.form["submit_button"] == "delete derivation":
-            msg = compute.delete_derivation(name_of_derivation, "data.json")
+            msg = "no action taken"
+            try:
+                msg = compute.delete_derivation(name_of_derivation, "data.json")
+            except Exception as err:
+                flash(err)
+                logger.warning(err)
             flash(msg)
             return redirect(url_for("index"))
         else:
@@ -832,8 +906,12 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         flash(er)
         derivation_png = "error.png" 
 
-    d3js_json_filename = compute.create_d3js_json(name_of_derivation, "data.json")
-
+    try:
+        d3js_json_filename = compute.create_d3js_json(name_of_derivation, "data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(err)
+        d3js_json_filename = ""
     dat = clib.read_db("data.json")
 
     try:
@@ -845,6 +923,10 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         flash(er)
         step_validity_dict = {}
 
+    # TODO: why does determine_step_validity() return a tuple? It should be a dict!
+    logger.debug('step_validity_dict = %s', str(step_validity_dict))
+    logger.debug('type = %s', type(step_validity_dict[0]))
+
     return render_template(
         "review_derivation.html",
         pdf_filename=pdf_filename,
@@ -852,7 +934,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         name_of_graphviz_png=derivation_png,
         json_for_d3js=d3js_json_filename,
         step_dict=dat["derivations"][name_of_derivation],
-        step_validity_dict=step_validity_dict,
+        step_validity_dict=step_validity_dict[0],
         expr_dict=dat["expressions"],
         expr_local_to_gobal=dat["expr local to global"],
     )
@@ -885,11 +967,15 @@ def modify_step(name_of_derivation: str, step_id: str):
             )
         elif "expr_local_id_of_latex_to_modify" in request.form.keys():
             # request form = ImmutableMultiDict([('edit_expr_latex', '2244'), ('revised_text', 'a = b')])
-            compute.modify_latex_in_step(
+            try:
+                compute.modify_latex_in_step(
                 request.form["expr_local_id_of_latex_to_modify"],
                 request.form["revised_text"],
                 "data.json",
             )
+            except Exception as err:
+                flash(err)
+                logger.warning(err)
             return redirect(
                 url_for(
                     "step_review",
@@ -932,8 +1018,12 @@ def create_new_inf_rule():
 
 
 if __name__ == "__main__":
-    session_id = compute.create_session_id()
-
+    try:
+        session_id = compute.create_session_id()
+    except Exception as err:
+        flash(err)
+        logger.warning(err)
+        session_id = 0
     app.run(debug=True, host="0.0.0.0")
 
 # EOF

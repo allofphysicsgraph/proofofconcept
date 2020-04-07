@@ -12,6 +12,8 @@
 
 # import math
 # import json
+from redis import Redis
+
 from functools import wraps
 import errno
 import signal
@@ -1858,6 +1860,7 @@ def determine_step_validity(name_of_derivation: str, path_to_db: str) -> dict:
         step_validity_dict[step_id] = vir.validate_step(
             name_of_derivation, step_id, path_to_db
         )
+    logger.debug('type step = %s', type(step_validity_dict))
     return step_validity_dict
 
 

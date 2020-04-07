@@ -3666,7 +3666,7 @@
             "latex": "V=I R"
         },
         "9999999986": {
-            "latex": "\\left[\\begin{array}{cc}\\cos\\theta &amp; \\sin\\theta\\\\-\\sin\\theta &amp; \\cos\\theta\\end{array}\\right]\\left[\\begin{array}{c}A_x \\\\ A_y \\end{array}\\right]=\\left[\\begin{array}{c}A_{x'} \\\\ A_{y'} \\end{array}\\right]"
+            "latex": "\\left[\\begin{array}{cc}\\cos\\theta & \\sin\\theta\\\\-\\sin\\theta & \\cos\\theta\\end{array}\\right]\\left[\\begin{array}{c}A_x \\\\ A_y \\end{array}\\right]=\\left[\\begin{array}{c}A_{x'} \\\\ A_{y'} \\end{array}\\right]"
         },
         "9999999987": {
             "latex": "1 atmosphere = 101.325 Pascal"

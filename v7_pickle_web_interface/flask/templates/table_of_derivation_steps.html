@@ -15,27 +15,37 @@
   <tr>
     <td>{{ step_id }}</td>
     <td>{{ this_dict['inf rule'] }}</td>
+    <!-- input local ID -->
     <td>{% for local_id in this_dict['inputs'] %}
           {{ local_id }}
         {% endfor %}
     </td>
+    <!-- input latex -->
     <td>{% for local_id in this_dict['inputs'] %}
-          {{ expr_local_to_gobal[local_id] }}: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+          <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
+          {{ expr_local_to_gobal[local_id] }}</a>: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
         {% endfor %}
     </td>
+    <!-- feeds latex -->
     <td>{% for local_id in this_dict['feeds'] %}
-          {{ expr_local_to_gobal[local_id] }}: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+          <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
+          {{ expr_local_to_gobal[local_id] }}</a>: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
         {% endfor %}
     </td>
+    <!-- output local ID -->
     <td>{% for local_id in this_dict['outputs'] %}
           {{ local_id }}
         {% endfor %}
     </td>
+    <!-- output latex -->
     <td>{% for local_id in this_dict['outputs'] %}
-          {{ expr_local_to_gobal[local_id] }}: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+          <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
+          {{ expr_local_to_gobal[local_id] }}</a>: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
         {% endfor %}
     </td>
+    <!-- linear index -->
     <td>{{ this_dict['linear index'] }}</td>
+    <!-- from sympy -->
     <td>{{ step_validity_dict[step_id] }}</td>
   </tr>
 {% endfor %}
