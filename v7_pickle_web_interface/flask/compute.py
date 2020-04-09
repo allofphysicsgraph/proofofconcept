@@ -12,7 +12,6 @@
 
 # import math
 # import json
-from redis import Redis
 
 from functools import wraps
 import errno
@@ -630,7 +629,7 @@ def create_expr_local_id(path_to_db: str) -> str:
     loop_count = 0
     while not found_valid_id:
         loop_count += 1
-        proposed_local_id = str(random.randint(1000, 9999))  # 4 digits
+        proposed_local_id = str(random.randint(1000000, 9999999))  # 7 digits
         if proposed_local_id not in local_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
@@ -1844,12 +1843,11 @@ def create_step(
 
     return inf_rule_local_ID
 
-
-def determine_step_validity(name_of_derivation: str, path_to_db: str) -> dict:
+def determine_derivation_validity(name_of_derivation: str, path_to_db: str) -> dict:
     """
     >>>
     """
-    logger.info("[trace] determine_step_validity")
+    logger.info("[trace] determine_derivation_validity")
     dat = clib.read_db(path_to_db)
     step_validity_dict = {}
 
@@ -1863,5 +1861,21 @@ def determine_step_validity(name_of_derivation: str, path_to_db: str) -> dict:
     logger.debug('type step = %s', type(step_validity_dict))
     return step_validity_dict
 
+
+def determine_step_validity(step_id: str, name_of_derivation: str, path_to_db: str) -> dict:
+    """
+    >>>
+    """
+    logger.info("[trace] determine_step_validity")
+    dat = clib.read_db(path_to_db)
+    step_validity_dict = {}
+
+    if name_of_derivation not in dat["derivations"].keys():
+        raise Exception("dat does not contain " + name_of_derivation)
+
+    if step_id not in dat["derivations"][name_of_derivation].keys():
+        raise Exception("dat does not contain " + step_id + " in " + name_of_derivation)
+
+    return vir.validate_step(name_of_derivation, step_id, path_to_db)
 
 # EOF

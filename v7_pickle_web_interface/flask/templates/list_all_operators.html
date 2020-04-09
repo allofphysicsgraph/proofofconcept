@@ -3,16 +3,29 @@
 
 <P>a list of all operators</P>
 
-<!--
-{% for expr_id,expr_latex in operators_dict.items() %}
-{{ expr_id }}: {{ expr_latex }}<BR>
+<table border="1"  class="sortable">
+  <tr>
+    <th>operator</th>
+    <th>argument count</th>
+    <th>latex</th>
+    <th>scope</th>
+    <th>Used in expressions</th>
+  </tr>
+{% for operator_id, operator_use_list in operator_popularity_dict.items() %}
+  <tr>
+    <td><a name="{{ operator_id }}">{{ operator_id }}</a></td>
+    <!-- arg count -->
+    <td>{{ operators_dict[operator_id]['argument count'] }}</td>
+    <!-- latex -->
+    <td>{{ operators_dict[operator_id]['latex'] }}</td>
+    <!-- scope -->
+    <td>{{ operators_dict[operator_id]['scope'] }}</td>
+    <!-- used in -->
+    <td>{{ operator_use_list }}</td>
+  </tr>
 {% endfor %}
--->
-
-{% for symbol_id, symbol_use_list in operator_popularity_dict.items() %}
-<P>{{ symbol_id }}: {{ operators_dict[symbol_id] }}<BR>
-{{ symbol_id }} is used in expressions {{ symbol_use_list }} <BR>
-{% endfor %}
+  <caption>Physics Derivation Graph: {{ operator_popularity_dict.keys()|length  }} Operators</caption>
+</table>
 
 {% endblock %}
 

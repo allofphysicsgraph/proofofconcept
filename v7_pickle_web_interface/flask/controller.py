@@ -6,9 +6,8 @@
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
 from redis import Redis
-
 # https://pypi.org/project/rejson/
-from rejson import Client, Path
+#from rejson import Client, Path
 
 import os
 import json
@@ -48,9 +47,10 @@ app.config[
 ] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
-redis = Redis(host='db', port=6379)
+#rd = Redis(host='db', port=6379)
+clib.connect_redis()
 # https://pypi.org/project/rejson/
-rj = Client(host='db', port=6379, decode_responses=True)
+#rj = Client(host='db', port=6379, decode_responses=True)
 
 
 if __name__ == "__main__":
@@ -734,17 +734,27 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
             "provide_expr_for_inf_rule: latex_for_step_dict = %s",
             latex_for_step_dict,
         )
-        local_step_id = compute.create_step(
-            latex_for_step_dict, inf_rule, name_of_derivation, "data.json"
-        )
+        try:
+            local_step_id = compute.create_step(
+                latex_for_step_dict, inf_rule, name_of_derivation, "data.json"
+            )
+        except Exception as err:
+            flash(err)
+            logger.warning(err)
+            local_step_id = 0
         logger.debug(
             "provide_expr_for_inf_rule; local_step_id = %s",
             local_step_id,
         )
 
-        step_validity_msg = vir.validate_step(
+        try:
+            step_validity_msg = vir.validate_step(
             name_of_derivation, local_step_id, "data.json"
-        )
+            )
+        except Exception as err:
+            flash(str(err))
+            logger.warning(str(err))
+            step_validity_msg = "error in validation"
 
         return redirect(
             url_for(
@@ -758,12 +768,12 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
     # the following is needed to handle the case where the derivation is new and no steps exist yet
     if name_of_derivation in dat["derivations"].keys():
         step_dict = dat["derivations"][name_of_derivation]
-        step_validity_dict = (
-            compute.determine_step_validity(name_of_derivation, "data.json"),
+        derivation_validity_dict = (
+            compute.determine_derivation_validity(name_of_derivation, "data.json"),
         )
     else:
         step_dict = {}
-        step_validity_dict = {}
+        derivation_validity_dict = {}
 
     #logger.debug('step validity = %s', str(step_validity_dict))
 
@@ -772,7 +782,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         name_of_derivation=name_of_derivation,
         inf_rule_dict=dat["inference rules"][inf_rule],
         step_dict=step_dict,
-        step_validity_dict=step_validity_dict,
+        derivation_validity_dict=derivation_validity_dict,
         expr_dict=dat["expressions"],
         expr_local_to_gobal=dat["expr local to global"],
         webform=LatexIO(request.form),
@@ -828,12 +838,12 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
             raise Exception('unrecognized button in "step_review":', request.form)
 
     try:
-        step_validity_dict=compute.determine_step_validity(
+        derivation_validity_dict=compute.determine_derivation_validity(
             name_of_derivation, "data.json")
     except Exception as err:
         logger.warning(err)
         flash(err)
-        step_validity_dict = {}
+        derivation_validity_dict = {}
 
     #logger.debug('step validity = %s', str(step_validity_dict))
 
@@ -844,7 +854,7 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
         name_of_derivation=name_of_derivation,
         step_dict=dat["derivations"][name_of_derivation],
         expr_dict=dat["expressions"],
-        step_validity_dict=step_validity_dict,
+        derivation_validity_dict=derivation_validity_dict,
         expr_local_to_gobal=dat["expr local to global"],
     )
 
@@ -915,17 +925,12 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
     dat = clib.read_db("data.json")
 
     try:
-        step_validity_dict = compute.determine_step_validity(
-            name_of_derivation, "data.json"
-        ),
+        derivation_validity_dict = compute.determine_derivation_validity(
+            name_of_derivation, "data.json")
     except Exception as er:
         logger.warning(er)
         flash(er)
-        step_validity_dict = {}
-
-    # TODO: why does determine_step_validity() return a tuple? It should be a dict!
-    logger.debug('step_validity_dict = %s', str(step_validity_dict))
-    logger.debug('type = %s', type(step_validity_dict[0]))
+        derivation_validity_dict = {}
 
     return render_template(
         "review_derivation.html",
@@ -934,7 +939,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         name_of_graphviz_png=derivation_png,
         json_for_d3js=d3js_json_filename,
         step_dict=dat["derivations"][name_of_derivation],
-        step_validity_dict=step_validity_dict[0],
+        derivation_validity_dict=derivation_validity_dict,
         expr_dict=dat["expressions"],
         expr_local_to_gobal=dat["expr local to global"],
     )
@@ -976,14 +981,20 @@ def modify_step(name_of_derivation: str, step_id: str):
             except Exception as err:
                 flash(err)
                 logger.warning(err)
+
+            try:
+                step_validity_msg=vir.validate_step(
+                        name_of_derivation, step_id, "data.json")
+            except Exception as err:
+                flash(err)
+                logger.warning(err)
+                step_validity_msg = ""
             return redirect(
                 url_for(
                     "step_review",
                     name_of_derivation=name_of_derivation,
                     local_step_id=step_id,
-                    step_validity_msg=vir.validate_step(
-                        name_of_derivation, step_id, "data.json"
-                    ),
+                    step_validity_msg=step_validity_msg
                 )
             )
 

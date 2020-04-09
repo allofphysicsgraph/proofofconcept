@@ -15,3 +15,5 @@ https://codefresh.io/docker-tutorial/hello-whale-getting-started-docker-flask/
 combining flask, gunicorn, nginx is from
 https://testdriven.io/blog/dockerizing-flask-with-postgres-gunicorn-and-nginx/
 
+nginx timeout
+https://wiki.ssdt-ohio.org/display/rtd/Adjusting+nginx-proxy+Timeout+Configuration

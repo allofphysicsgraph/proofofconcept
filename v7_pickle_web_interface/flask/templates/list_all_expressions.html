@@ -15,17 +15,10 @@
     <td>{{ expressions_dict[expr_id]['AST'] }}</td>
     <td>{{ expr_use_list }}</td>
   </tr> 
-  </a>
 {% endfor %}
   <caption>Physics Derivation Graph: {{ expression_popularity_dict.keys()|length  }} Expressions</caption>
 </table>
 
-<!--
-{% for expr_id, expr_use_list in expression_popularity_dict.items() %}
-<P>{{ expr_id }}: {{ expressions_dict[expr_id] }}<BR>
-{{ expr_id }} is used in derivations {{ expression_use_list }} <BR>
-{% endfor %}
--->
 
 <a id="delete_expression"></a>
   <h2>Delete an expression</h2>
