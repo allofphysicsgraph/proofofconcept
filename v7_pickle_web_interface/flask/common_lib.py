@@ -71,6 +71,8 @@ def write_db(path_to_db: str, dat: dict) -> None:
     #    json.dump(dat, outfile, indent=4, separators=(",", ": "))  # , sort_keys=True)
 
     # as of 20200408
+    rd = redis.Redis(connection_pool=redis_pool)
+
     rd.set(name=path_to_db, value=json.dumps(dat))
 
     return

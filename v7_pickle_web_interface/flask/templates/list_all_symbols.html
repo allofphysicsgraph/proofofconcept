@@ -25,30 +25,36 @@
     <td>{{ symbols_dict[symbol_id]['scope'] }}</td>
     <!-- measure -->
     <td>
-{% if 'measure' in symbols_dict[symbol_id] %}
-{{ symbols_dict[symbol_id]['measure'] }}
-{% endif %}
-</td>
+    {% if 'measure' in symbols_dict[symbol_id] %}
+      {{ symbols_dict[symbol_id]['measure'] }}
+    {% endif %}
+    </td>
     <!-- name -->
     <td>
-{% if 'name' in symbols_dict[symbol_id] %}
-{{ symbols_dict[symbol_id]['name'] }}
-{% endif %}
-</td>
+    {% if 'name' in symbols_dict[symbol_id] %}
+      {{ symbols_dict[symbol_id]['name'] }}
+    {% endif %}
+    </td>
     <!-- references -->
     <td>
-{% if 'references' in symbols_dict[symbol_id] %}
-{{ symbols_dict[symbol_id]['references'] }}
-{% endif %}
-</td>
+    {% if 'references' in symbols_dict[symbol_id] %}
+      {{ symbols_dict[symbol_id]['references'] }}
+    {% endif %}
+    </td>
     <!-- value -->
     <td>
-{% if 'value' in symbols_dict[symbol_id] %}
-{{ symbols_dict[symbol_id]['value'] }}
-{% endif %}
-</td>
+    {% if 'value' in symbols_dict[symbol_id] %}
+      {{ symbols_dict[symbol_id]['value'] }}
+    {% endif %}
+    </td>
     <!-- used in expressions -->
-    <td>{{ symbol_use_list }}</td>
+    <td>
+      <UL>
+        {% for expr_id in symbol_use_list %}
+        <LI><a href="{{ url_for('list_all_expressions')}}#{{ expr_id }}"></LI>
+        {% endfor %}
+      </UL>
+    </td>
   </tr>
 {% endfor %}
   <caption>Physics Derivation Graph: {{ symbol_popularity_dict.keys()|length  }} Symbols</caption>

@@ -136,6 +136,10 @@ def create_session_id() -> str:
     rand_id = str(random.randint(100, 999))
     return now_str + "_" + rand_id
 
+
+
+
+
 # *******************************************
 # query database for properties
 # read-only functions
@@ -148,6 +152,30 @@ def create_session_id() -> str:
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
 
+def create_files_of_db_content(path_to_db):
+    """
+    >>> create_files_of_db_content('data.json')
+    """
+
+    dat = clib.read_db(path_to_db)
+    with open(path_to_db) as json_file:
+        json.dump(dat, outfile, indent=4, separators=(",", ": "))  # , sort_keys=True)
+    shutil.copy(path_to_db, "/home/appuser/app/static/")
+
+    all_df = convert_json_to_dataframes(path_to_db)
+
+    df_pkl_file = convert_df_to_pkl(all_df)
+
+    sql_file = convert_dataframes_to_sql(all_df)
+    shutil.copy(sql_file, "/home/appuser/app/static/")
+
+    rdf_file = convert_data_to_rdf("data.json")
+    shutil.copy(rdf_file,"/home/appuser/app/static/")
+
+    neo4j_file] = convert_data_to_cypher("data.json")
+    shutil.copy(neo4j_file, "/home/appuser/app/static/")
+
+    return [all_df, df_pkl_file, sql_file, rdf_file,neo4j_file]
 
 def convert_json_to_dataframes(path_to_db: str) -> dict:
     """
@@ -851,7 +879,7 @@ def popularity_of_expressions(path_to_db: str) -> dict:
             if expr_global_id in list_of_expr:
                 expression_popularity_dict[expr_global_id].append(deriv_name)
         expression_popularity_dict[expr_global_id] = list(set(expression_popularity_dict[expr_global_id]))
-        
+
     #logger.debug("expression_popularity_dict = %s", expression_popularity_dict)
     return expression_popularity_dict
 
@@ -961,7 +989,7 @@ def generate_all_expr_and_infrule_pngs(overwrite_existing: bool, path_to_db: str
                 logger.debug('PNG does not exist, creating %s', png_name)
                 create_png_from_latex(
                     infrule_name, png_name)
-    return 
+    return
 
 
 def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
@@ -1034,7 +1062,7 @@ def write_step_to_graphviz_file(
     fil.write(
         local_step_id
         + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
-        + png_name + '.png' 
+        + png_name + '.png'
         + '",labelloc=b];\n'
     )
 
@@ -1050,7 +1078,7 @@ def write_step_to_graphviz_file(
         fil.write(
             expr_local_id
             + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
-            + png_name + '.png' 
+            + png_name + '.png'
             + '",labelloc=b];\n'
         )
 
@@ -1067,7 +1095,7 @@ def write_step_to_graphviz_file(
         fil.write(
             expr_local_id
             + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
-            + png_name + '.png' 
+            + png_name + '.png'
             + '",labelloc=b];\n'
         )
 
@@ -1083,7 +1111,7 @@ def write_step_to_graphviz_file(
         fil.write(
             expr_local_id
             + ' [shape=box, color=red,label="",image="/home/appuser/app/static/'
-            + png_name + '.png' 
+            + png_name + '.png'
             + '",labelloc=b];\n'
         )
     # logger.debug('write_step_to_graphviz_file: returning')
@@ -1218,7 +1246,7 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
     if "Text line contains an invalid character" in latex_stdout:
         raise Exception("no PDF generated - tex contains invalid character")
     if "No pages of output." in latex_stdout:
-        raise Exception("no PDF generated - reason unknown") 
+        raise Exception("no PDF generated - reason unknown")
     # run latex a second time to enable references to work
     process = subprocess.run(
         ["latex", "-halt-on-error", pdf_filename + ".tex"],
@@ -1269,7 +1297,7 @@ def list_expr_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
 
 def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
-    >>> 
+    >>>
     """
     logger.info("[trace] edges_in_derivation")
     dat = clib.read_db(path_to_db)
@@ -1277,7 +1305,7 @@ def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     for step_id, step_dict in dat['derivations'][name_of_derivation].items():
         inf_rule = step_dict['inf rule'].replace(' ','_')
         for local_expr in step_dict['inputs']:
-            list_of_edges.append((dat['expr local to global'][local_expr], step_id)) 
+            list_of_edges.append((dat['expr local to global'][local_expr], step_id))
         for local_expr in step_dict['feeds']:
             list_of_edges.append((dat['expr local to global'][local_expr], step_id))
         for local_expr in step_dict['outputs']:
@@ -1301,7 +1329,7 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
 }
 
     for inspiration based on the last time I implemented this, see
-    v3_CSV/bin/create_json_per_derivation_from_connectionsDB.py 
+    v3_CSV/bin/create_json_per_derivation_from_connectionsDB.py
 
     >>> create_d3js_json('my deriv', 'data.json')
     """
@@ -1320,10 +1348,10 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
             create_png_from_latex(step_dict["inf rule"], png_name)
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
         # construct the node JSON content
-        list_of_nodes.append("    {\"id\": \"" + step_id + 
+        list_of_nodes.append("    {\"id\": \"" + step_id +
                      "\", \"group\": " + str(step_dict['linear index']) + ", " +
-                     "\"img\": \"/static/" + png_name + ".png\", " + 
-                     "\"width\": " + str(image.shape[1]) + ", " + 
+                     "\"img\": \"/static/" + png_name + ".png\", " +
+                     "\"width\": " + str(image.shape[1]) + ", " +
                      "\"height\": " + str(image.shape[0]) + ", " +
                      "\"linear index\": " + str(step_dict['linear index']) + "},\n" )
 
@@ -1334,7 +1362,7 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
             create_png_from_latex(step_dict["inf rule"], png_name)
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
         # construct the node JSON content
-        list_of_nodes.append("    {\"id\": \"" + global_expr_id + 
+        list_of_nodes.append("    {\"id\": \"" + global_expr_id +
                      "\", \"group\": 0, " +
                      "\"img\": \"/static/" + png_name + ".png\", " +
                      "\"width\": " + str(image.shape[1]) + ", " +
@@ -1348,11 +1376,11 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
 
     json_str += "  ],\n"
     json_str += "  \"links\": [\n"
-    
+
     list_of_edges = edges_in_derivation(name_of_derivation, path_to_db)
     list_of_edge_str = []
-    for edge_tuple in list_of_edges: 
-        list_of_edge_str.append("    {\"source\": \"" + edge_tuple[0] + 
+    for edge_tuple in list_of_edges:
+        list_of_edge_str.append("    {\"source\": \"" + edge_tuple[0] +
                                 "\", \"target\": \"" + edge_tuple[1] + "\", \"value\": 1},\n")
     list_of_edge_str = list(set(list_of_edge_str))
     #logger.debug('number of edges = %s', len(list_of_edge_str))
@@ -1387,7 +1415,7 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
             write_step_to_graphviz_file(name_of_derivation, step_id, fil, path_to_db)
 
         fil.write("}\n")
-    output_filename = name_of_derivation.replace(' ','_') + ".png" 
+    output_filename = name_of_derivation.replace(' ','_') + ".png"
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
     #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
     process = subprocess.run(
@@ -1467,7 +1495,7 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> Tuple[bool, st
 
     destination_folder = "/home/appuser/app/static/"
 
-    logger.debug('png_name = %s', png_name) 
+    logger.debug('png_name = %s', png_name)
     logger.debug('input latex str = %s', input_latex_str)
 
     tmp_file = "lat"

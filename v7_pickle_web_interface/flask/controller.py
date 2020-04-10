@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 
 # convention: every function and class includes a [trace] print
-# to help the developer understand functional dependencies and which state the program is in,
+# reason: to help the developer understand functional dependencies and which state the program is in,
 # a "trace" is printed to the terminal at the start of each function
+
+# convention: every call to an external module is wrapped in a try/except, with the error message (err) sent to both logger and flash
+# reason: any errors returned must be handled otherwise Flask errors and the website crashes
+
+# convention: every call to flash must be either a string or the content must be wrapped in str()
+# reason: when content is passed to flash() that cannot be serialized, the Flask error and the website crashes
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
 from redis import Redis
@@ -13,7 +19,7 @@ import os
 import json
 import shutil
 # https://docs.python.org/3/howto/logging.html
-import logging  
+import logging
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 from flask import Flask, redirect, render_template, request, url_for, flash
 import time
@@ -194,7 +200,7 @@ def after_request(response):
 
     I don't know how to access this measure
 
-    >>> after_request() 
+    >>> after_request()
     """
     diff = time.time() - g.start
     if ((response.response) and
@@ -215,6 +221,7 @@ def db():
 @app.route("/", methods=["GET", "POST"])
 def index():
     """
+    the index is a static page intended to be the landing page for new users
     >>> index()
     """
     logger.info("[trace] index")
@@ -224,32 +231,17 @@ def index():
 @app.route("/faq", methods=["GET", "POST"])
 def faq():
     """
+    "frequently asked questions" is a static page
     >>> faq()
     """
     logger.info("[trace] faq")
     return render_template("faq.html")
 
-@app.route("/lesmis", methods=["GET", "POST"])
-def lesmis():
-    """
-    testing d3js
-    >>> lesmis()
-    """
-    logger.info("[trace] lesmis")
-    return render_template("lesmis.html")
-
-@app.route("/simple", methods=["GET", "POST"])
-def simple():
-    """
-    testing d3js
-    >>> simple()
-    """
-    logger.info("[trace] simple")
-    return render_template("simple.html")
 
 @app.route("/user_documentation", methods=["GET", "POST"])
 def user_documentation():
     """
+    a static page with documentation aimed at users (not developers)
     >>> user_documentation()
     """
     logger.info("[trace] user_documentation")
@@ -258,6 +250,7 @@ def user_documentation():
 @app.route("/developer_documentation", methods=["GET", "POST"])
 def developer_documentation():
     """
+    a static page aimed at people interested in contributed code changes
     >>> developer_documentation()
     """
     logger.info("[trace] developer_documentation")
@@ -295,67 +288,26 @@ def editor():
     """
     logger.info("[trace] editor")
 
-    try:
-        compute.generate_all_expr_and_infrule_pngs(False, 'data.json')
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
+# this takes too long; removed on 20200408
+#    try:
+#        compute.generate_all_expr_and_infrule_pngs(False, 'data.json')
+#    except Exception as err:
+#        logger.warning(err)
+#        flash(str(err))
 
     try:
         logger.debug("session id = %s", session_id)
     except NameError:
         logger.warning("session id does not appear to exist")
-        session_id = compute.create_session_id()
+        try:
+            session_id = compute.create_session_id()
+        except Exception as err:
+            logger.warning(err)
+            flash(str(err))
+            session_id = '0'
         logger.debug("now the session id = %s", session_id)
 
-    shutil.copy("data.json", "/home/appuser/app/static/")
-
-    try:
-        all_df = compute.convert_json_to_dataframes("data.json")
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
-        all_df = ""
-    try:
-        df_pkl_file = compute.convert_df_to_pkl(all_df)
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
-        df_pkl_file = ""
-    try:
-        sql_file = compute.convert_dataframes_to_sql(all_df)
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
-        sql_file = ""
-    try:
-        shutil.copy(sql_file, "/home/appuser/app/static/")
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
-    try:
-        rdf_file = compute.convert_data_to_rdf("data.json")
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
-        rdf_file = ""
-    try:
-        shutil.copy(rdf_file, "/home/appuser/app/static/")
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
-    try:
-        neo4j_file = compute.convert_data_to_cypher("data.json")
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
-        neo4j_file = ""
-    try:
-        shutil.copy(neo4j_file, "/home/appuser/app/static/")
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
-    logger.debug("index; request.method = %s", request.method)
+    [all_df, df_pkl_file, sql_file, rdf_file,neo4j_file] = compute.create_files_of_db_content('data.json')
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
@@ -363,7 +315,7 @@ def editor():
 
         # check if the post request has the file part
         if "file" not in request.files:
-            logger.debug("flash for file not in request files")
+            logger.debug("file not in request files")
             flash("No file part")
             return redirect(request.url)
         file_obj = request.files["file"]
@@ -372,10 +324,16 @@ def editor():
         # if user does not select file, browser also
         # submit an empty part without filename
         if file_obj.filename == "":
-            logger.debug("flash no selected file")
+            logger.debug("no selected file")
             flash("No selected file")
             return redirect(request.url)
-        if file_obj and compute.allowed_file(file_obj.filename):
+        try:
+            allowed_bool = compute.allowed_file(file_obj.filename)
+        except Exception as err:
+            logger.warning(err)
+            flash(str(err))
+            allowed_bool = False
+        if file_obj and allowed_bool:
             filename = secure_filename(file_obj.filename)
             logger.debug("filename = %s", filename)
             path_to_uploaded_file = os.path.join(app.config["UPLOAD_FOLDER"], filename)
@@ -385,7 +343,13 @@ def editor():
             # for example, the inference rule names need to be consistent (in "derivations" and "inference rules")
             # also, the expr_local_id need to have a corresponding entry in local-to-global
             # also, every expr_global_id in local-to-global must have a corresponding entry in "inference rules"
-            if not compute.validate_json_file(path_to_uploaded_file):
+            try:
+                valid_json_bool = compute.validate_json_file(path_to_uploaded_file)
+            except Exception as err:
+                logger.warning(err)
+                flash(str(err))
+                valid_json_bool = False
+            if not valid_json_bool:
                 flash("uploaded file does not match PDG schema")
             else:  # file exists, has .json extension, is JSON, and complies with schema
                 shutil.copy(path_to_uploaded_file, "/home/appuser/app/data.json")
@@ -437,7 +401,12 @@ def start_new_derivation():
 def list_all_operators():
     logger.info("[trace] list_all_operators")
     dat = clib.read_db("data.json")
-    operator_popularity_dict = compute.popularity_of_operators("data.json")
+    try:
+        operator_popularity_dict = compute.popularity_of_operators("data.json")
+    except Exception as err:
+        flash(str(err))
+        logger.warning(err)
+        operator_popularity_dict = {}
 
     if request.method == "POST":
         logger.debug(
@@ -454,7 +423,12 @@ def list_all_operators():
 def list_all_symbols():
     logger.info("[trace] list_all_symbols")
     dat = clib.read_db("data.json")
-    symbol_popularity_dict = compute.popularity_of_symbols("data.json")
+    try:
+        symbol_popularity_dict = compute.popularity_of_symbols("data.json")
+    except Exception as err:
+        flash(str(err))
+        logger.warning(err)
+        symbol_popularity_dict = {}
 
     if request.method == "POST":
         logger.debug(
@@ -473,39 +447,57 @@ def list_all_expressions():
     dat = clib.read_db("data.json")
     try:
         expression_popularity_dict = compute.popularity_of_expressions("data.json")
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        expression_popularity_dict = {}
     if request.method == "POST":
         logger.debug(
             "list_all_expressions; request.form = %s", request.form
         )
         if "edit_expr_latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_expr_latex', '4928923942'), ('revised_text', 'asdfingasinsf')])
-            status_message = compute.edit_expr_latex(
+            try:
+                status_message = compute.edit_expr_latex(
                 request.form["edit_expr_latex"],
                 request.form["revised_text"],
-                "data.json",
-            )
-            flash(status_message)
+                "data.json")
+            except Exception as err:
+                logger.warning(err)
+                flash(str(err))
+                status_message = "error"
+            flash(str(status_message))
             logger.debug(
                 "list_all_expressions; status = %s", status_message
             )
             return redirect(url_for("list_all_expressions"))
         elif "delete_expr" in request.form.keys():
             # request.form = ImmutableMultiDict([('delete_expr', '4928923942')])
-            status_message = compute.delete_expr(
-                request.form["delete_expr"], "data.json"
-            )
-            flash(status_message)
+            try:
+                status_message = compute.delete_expr(
+                request.form["delete_expr"], "data.json")
+            except Exception as err:
+                logger.warning(err)
+                flash(str(err))
+                status_message = "error"
+            flash(str(status_message))
             logger.debug(
                 "list_all_expressions; status = %s", status_message
             )
             return redirect(url_for("list_all_expressions"))
-    list_of_expr = compute.get_sorted_list_of_expr("data.json")
-    list_of_expr_not_appearing_in_any_derivations = compute.expr_not_in_derivations(
-        "data.json"
-    )
+    try:
+        list_of_expr = compute.get_sorted_list_of_expr("data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        list_of_expr = []
+    try:
+        list_of_expr_not_appearing_in_any_derivations = compute.expr_not_in_derivations(
+        "data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        list_of_expr_not_appearing_in_any_derivations = []
     return render_template(
         "list_all_expressions.html",
         expressions_dict=dat["expressions"],
@@ -520,7 +512,12 @@ def list_all_expressions():
 def list_all_inference_rules():
     logger.info("[trace] list_all_inference_rules")
     dat = clib.read_db("data.json")
-    infrule_popularity_dict = compute.popularity_of_infrules("data.json")
+    try:
+        infrule_popularity_dict = compute.popularity_of_infrules("data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        infrule_popularity_dict = {}
     if request.method == "POST":
         logger.debug(
             "list_all_inference_rules; request.form = %s",
@@ -528,16 +525,25 @@ def list_all_inference_rules():
         )
         if "inf_rule_name" in request.form.keys():
             # request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
-            status_message = compute.add_inf_rule(request.form.to_dict(), "data.json")
-            flash(status_message)
+            try:
+                status_message = compute.add_inf_rule(request.form.to_dict(), "data.json")
+            except Exception as err:
+                flash(str(err))
+                logging.warning(err)
+                status_message = "error"
+            flash(str(status_message))
             # https://stackoverflow.com/a/31945712/1164295
             return redirect(url_for("list_all_inference_rules"))
         elif "delete_inf_rule" in request.form.keys():
             # request.form = ImmutableMultiDict([('delete_inf_rule', 'asdf')])
-            status_message = compute.delete_inf_rule(
-                request.form["delete_inf_rule"], "data.json"
-            )
-            flash(status_message)
+            try:
+                status_message = compute.delete_inf_rule(
+                request.form["delete_inf_rule"], "data.json")
+            except Exception as err:
+                flash(str(err))
+                logging.warning(err)
+                status_message = "error"
+            flash(str(status_message))
             logger.debug(
                 "list_all_inference_rules; status = %s",
                 status_message,
@@ -545,12 +551,16 @@ def list_all_inference_rules():
             return redirect(url_for("list_all_inference_rules"))
         elif "rename_inf_rule_from" in request.form.keys():
             # request.form = ImmutableMultiDict([('rename_inf_rule_from', 'asdf'), ('revised_text', 'anotehr')])
-            status_message = compute.rename_inf_rule(
+            try:
+                status_message = compute.rename_inf_rule(
                 request.form["rename_inf_rule_from"],
                 request.form["revised_text"],
-                "data.json",
-            )
-            flash(status_message)
+                "data.json")
+            except Exception as err:
+                flash(str(err))
+                logging.warning(err)
+                status_message = "error"
+            flash(str(status_message))
             logger.debug(
                 "list_all_inference_rules; status = %s",
                 status_message,
@@ -558,12 +568,16 @@ def list_all_inference_rules():
             return redirect(url_for("list_all_inference_rules"))
         elif "edit_inf_rule_latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_inf_rule_latex', 'asdf'), ('revised_text', 'great works')])
-            status_message = compute.edit_inf_rule_latex(
+            try:
+                status_message = compute.edit_inf_rule_latex(
                 request.form["edit_inf_rule_latex"],
                 request.form["revised_text"],
-                "data.json",
-            )
-            flash(status_message)
+                "data.json")
+            except Exception as err:
+                flash(str(err))
+                logging.warning(err)
+                status_message = "error"
+            flash(str(status_message))
             logger.debug(
                 "list_all_inference_rules; status = %s",
                 status_message,
@@ -578,10 +592,17 @@ def list_all_inference_rules():
         infrule_dict['latex'] = infrule_dict['latex'].replace('\\ref','ref')
         infrules_modified_latex_dict[infrule_name] = infrule_dict
 
+    try:
+        sorted_list_infrules=compute.get_sorted_list_of_inf_rules("data.json")
+    except Exception as err:
+        flash(str(err))
+        logging.warning(err)
+        sorted_list_infrules = []
+
     return render_template(
         "list_all_inference_rules.html",
         infrules_dict=infrules_modified_latex_dict,
-        sorted_list_infrules=compute.get_sorted_list_of_inf_rules("data.json"),
+        sorted_list_infrules=sorted_list_infrules,
         add_infrule_webform=InferenceRuleForm(request.form),
         rename_infrule_webform=RevisedTextForm(request.form),
         edit_infrule_latex_webform=RevisedTextForm(request.form),
@@ -597,9 +618,17 @@ def select_derivation_to_edit():
             "select_derivation_to_edit; request.form = %s",
             request.form,
         )
+
+    try:
+        derivations_list=compute.get_sorted_list_of_derivations("data.json"),
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        derivations_list = []
+
     return render_template(
         "select_derivation_to_edit.html",
-        derivations_list=compute.get_sorted_list_of_derivations("data.json"),
+        derivations_list=derivations_list,
     )
 
 
@@ -608,7 +637,12 @@ def select_derivation_to_edit():
 )
 def select_derivation_step_to_edit(name_of_derivation: str):
     logger.info("[trace] select_derivation_step_to_edit")
-    steps_dict = compute.get_derivation_steps(name_of_derivation, "data.json")
+    try:
+        steps_dict = compute.get_derivation_steps(name_of_derivation, "data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        steps_dict = {}
     if request.method == "POST":
         logger.debug(
             "select_derivation_step_to_edit; request.form = %s",
@@ -625,7 +659,12 @@ def select_derivation_step_to_edit(name_of_derivation: str):
 @app.route("/select_from_existing_derivations", methods=["GET", "POST"])
 def select_from_existing_derivations():
     logger.info("[trace] select_from_existing_derivations")
-    list_of_deriv = compute.get_sorted_list_of_derivations("data.json")
+    try:
+        list_of_deriv = compute.get_sorted_list_of_derivations("data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        list_of_deriv = []
     if request.method == "POST":
         logger.debug(
             "select_from_existing_derivations; request.form = %s", request.form
@@ -642,9 +681,9 @@ def select_from_existing_derivations():
             try:
                 pdf_filename = compute.generate_pdf_for_derivation(
                     name_of_derivation, "data.json")
-            except Exception as er:
-                logger.warning(er)
-                flash(er)
+            except Exception as err:
+                logger.warning(err)
+                flash(str(err))
                 return render_template(
                     "select_from_existing_derivations.html", list_of_derivations=list_of_deriv
                 )
@@ -664,7 +703,8 @@ def select_from_existing_derivations():
                 )
             )
         else:
-            raise Exception("unrecongized button in", request.form)
+            flash("unrecongized button in"+ str(request.form))
+
 
     return render_template(
         "select_from_existing_derivations.html", list_of_derivations=list_of_deriv
@@ -674,7 +714,12 @@ def select_from_existing_derivations():
 @app.route("/new_step_select_inf_rule/<name_of_derivation>/", methods=["GET", "POST"])
 def new_step_select_inf_rule(name_of_derivation: str):
     logger.info("[trace] new_step_select_inf_rule")
-    list_of_inf_rules = compute.get_sorted_list_of_inf_rules("data.json")
+    try:
+        list_of_inf_rules = compute.get_sorted_list_of_inf_rules("data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        list_of_inf_rules = []
 
     if (
         request.method == "POST"
@@ -739,7 +784,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
                 latex_for_step_dict, inf_rule, name_of_derivation, "data.json"
             )
         except Exception as err:
-            flash(err)
+            flash(str(err))
             logger.warning(err)
             local_step_id = 0
         logger.debug(
@@ -768,9 +813,13 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
     # the following is needed to handle the case where the derivation is new and no steps exist yet
     if name_of_derivation in dat["derivations"].keys():
         step_dict = dat["derivations"][name_of_derivation]
-        derivation_validity_dict = (
-            compute.determine_derivation_validity(name_of_derivation, "data.json"),
-        )
+        try:
+            derivation_validity_dict = (
+               compute.determine_derivation_validity(name_of_derivation, "data.json"))
+        except Exception as err:
+            logger.warning(err)
+            flash(str(err))
+            derivation_validity_dict = {}
     else:
         step_dict = {}
         derivation_validity_dict = {}
@@ -803,9 +852,9 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
 
     try:
         step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, local_step_id, "data.json")
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
         step_graphviz_png = "error.png"
     dat = clib.read_db("data.json")
 
@@ -842,7 +891,7 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
             name_of_derivation, "data.json")
     except Exception as err:
         logger.warning(err)
-        flash(err)
+        flash(str(err))
         derivation_validity_dict = {}
 
     #logger.debug('step validity = %s', str(step_validity_dict))
@@ -891,45 +940,45 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
                 )
             except Exception as err:
                 logger.warning(err)
-                flash(err)
+                flash(str(err))
             return redirect(url_for("static", filename=pdf_filename))
         elif request.form["submit_button"] == "delete derivation":
             msg = "no action taken"
             try:
                 msg = compute.delete_derivation(name_of_derivation, "data.json")
             except Exception as err:
-                flash(err)
+                flash(str(err))
                 logger.warning(err)
-            flash(msg)
+            flash(str(msg))
             return redirect(url_for("index"))
         else:
-            raise Exception(
-                "[ERROR] compute; review_derivation; unrecognized button:", request.form
+            flash(
+                "[ERROR] compute; review_derivation; unrecognized button:" + str( request.form)
             )
 
     try:
         derivation_png = compute.create_derivation_png(
         name_of_derivation, "data.json"
         )
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
-        derivation_png = "error.png" 
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        derivation_png = "error.png"
 
     try:
         d3js_json_filename = compute.create_d3js_json(name_of_derivation, "data.json")
     except Exception as err:
         logger.warning(err)
-        flash(err)
+        flash(str(err))
         d3js_json_filename = ""
     dat = clib.read_db("data.json")
 
     try:
         derivation_validity_dict = compute.determine_derivation_validity(
             name_of_derivation, "data.json")
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
         derivation_validity_dict = {}
 
     return render_template(
@@ -954,9 +1003,9 @@ def modify_step(name_of_derivation: str, step_id: str):
 
     try:
         step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, step_id, "data.json")
-    except Exception as er:
-        logger.warning(er)
-        flash(er)
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
         step_graphviz_png = "error.png"
 
     # steps_dict = compute.get_derivation_steps(name_of_derivation, 'data.json')
@@ -979,14 +1028,14 @@ def modify_step(name_of_derivation: str, step_id: str):
                 "data.json",
             )
             except Exception as err:
-                flash(err)
+                flash(str(err))
                 logger.warning(err)
 
             try:
                 step_validity_msg=vir.validate_step(
                         name_of_derivation, step_id, "data.json")
             except Exception as err:
-                flash(err)
+                flash(str(err))
                 logger.warning(err)
                 step_validity_msg = ""
             return redirect(
@@ -999,8 +1048,8 @@ def modify_step(name_of_derivation: str, step_id: str):
             )
 
         else:
-            raise Exception(
-                "[ERROR] compute; review_derivation; unrecognized button:", request.form
+            flash(
+                "[ERROR] compute; review_derivation; unrecognized button:" + str(request.form)
             )
 
     return render_template(
@@ -1032,7 +1081,7 @@ if __name__ == "__main__":
     try:
         session_id = compute.create_session_id()
     except Exception as err:
-        flash(err)
+        flash(str(err))
         logger.warning(err)
         session_id = 0
     app.run(debug=True, host="0.0.0.0")

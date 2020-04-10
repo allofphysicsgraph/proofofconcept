@@ -21,7 +21,14 @@
     <!-- scope -->
     <td>{{ operators_dict[operator_id]['scope'] }}</td>
     <!-- used in -->
-    <td>{{ operator_use_list }}</td>
+    <td>
+      <UL>
+        {% for expr_id in operator_use_list %}
+        <LI><a href="{{ url_for('list_all_expressions')}}#{{ expr_id }}"></LI>
+        {% endfor %}
+      </UL>
+    </td>
+
   </tr>
 {% endfor %}
   <caption>Physics Derivation Graph: {{ operator_popularity_dict.keys()|length  }} Operators</caption>
