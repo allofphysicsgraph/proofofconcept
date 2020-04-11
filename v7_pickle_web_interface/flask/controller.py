@@ -140,18 +140,42 @@ class LatexIO(Form):
     feed1 = StringField("feed LaTeX 1", validators=[validators.InputRequired()])
     feed2 = StringField("feed LaTeX 2", validators=[validators.InputRequired()])
     feed3 = StringField("feed LaTeX 3", validators=[validators.InputRequired()])
-    input1 = StringField("input LaTeX 1", validators=[validators.InputRequired()])
-    input1_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
-    input2 = StringField("input LaTeX 2", validators=[validators.InputRequired()])
-    input2_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
-    input3 = StringField("input LaTeX 3", validators=[validators.InputRequired()])
-    input3_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
-    output1 = StringField("output LaTeX 1", validators=[validators.InputRequired()])
-    output1_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
-    output2 = StringField("output LaTeX 2", validators=[validators.InputRequired()])
-    output2_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
-    output3 = StringField("output LaTeX 3", validators=[validators.InputRequired()])
-    output3_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
+    input1 = StringField("input LaTeX 1")#, validators=[validators.InputRequired()])
+    input1_radio = RadioField('Label', 
+                              choices=[('latex','use Latex'),
+                                       ('local','use local ID'),
+                                       ('global','use global ID')], 
+                              default='latex')#, validators=[validators.InputRequired()])
+    input2 = StringField("input LaTeX 2")#, validators=[validators.InputRequired()])
+    input2_radio = RadioField('Label',
+                              choices=[('latex','use Latex'),
+                                       ('local','use local ID'),
+                                       ('global','use global ID')],
+                              default='latex')#, validators=[validators.InputRequired()]) 
+    input3 = StringField("input LaTeX 3")#, validators=[validators.InputRequired()])
+    input3_radio = RadioField('Label', 
+                              choices=[('latex','use Latex'),
+                                       ('local','use local ID'),
+                                       ('global','use global ID')],
+                              default='latex')#, validators=[validators.InputRequired()])
+    output1 = StringField("output LaTeX 1")#, validators=[validators.InputRequired()])
+    output1_radio = RadioField('Label', 
+                              choices=[('latex','use Latex'),
+                                       ('local','use local ID'),
+                                       ('global','use global ID')],
+                              default='latex')#, validators=[validators.InputRequired()])
+    output2 = StringField("output LaTeX 2")#, validators=[validators.InputRequired()])
+    output2_radio = RadioField('Label', 
+                              choices=[('latex','use Latex'),
+                                       ('local','use local ID'),
+                                       ('global','use global ID')],
+                              default='latex')#, validators=[validators.InputRequired()])
+    output3 = StringField("output LaTeX 3")#, validators=[validators.InputRequired()])
+    output3_radio = RadioField('Label',
+                              choices=[('latex','use Latex'),
+                                       ('local','use local ID'),
+                                       ('global','use global ID')],
+                              default='latex')#, validators=[validators.InputRequired()])
 
 
 class NameOfDerivationInputForm(Form):
@@ -774,17 +798,17 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
     ):  # and request.form.validate(): no validation because the form was defined on the web page
         latex_for_step_dict = request.form
 
-        logger.debug("request.form = %s", request.form)
+        logger.debug("latex_for_step_dict = request.form = %s", request.form)
         # request.form = ImmutableMultiDict([('input1', 'a = b'), ('submit_button', 'Submit')])
 
         # request.form = ImmutableMultiDict([('input1', 'asfd'), ('use_ID_for_in1', 'on'), ('submit_button', 'Submit')])
 
         # request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('feed1', 'a'), ('feed2', 'b'), ('feed3', 'c'), ('output1', 'asdf = asf'), ('submit_button', 'Submit')])
 
-        logger.debug(
-            "provide_expr_for_inf_rule: latex_for_step_dict = %s",
-            latex_for_step_dict,
-        )
+        # request.form = ImmutableMultiDict([('input1', ''), ('input1_radio', 'global'), ('input1_global_id', '5530148480'), ('feed1', 'asgasgag'), ('output1', ''), ('output1_radio', 'global'), ('output1_glob_id', '9999999951'), ('submit_button', 'Submit')])
+
+
+
         try:
             local_step_id = compute.create_step(
                 latex_for_step_dict, inf_rule, name_of_derivation, "data.json"
@@ -794,7 +818,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
             logger.warning(err)
             local_step_id = 0
         logger.debug(
-            "provide_expr_for_inf_rule; local_step_id = %s",
+            "local_step_id = %s",
             local_step_id,
         )
 
@@ -832,10 +856,35 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
     #logger.debug('step validity = %s', str(step_validity_dict))
 
+    try:
+        expression_popularity_dict = compute.popularity_of_expressions("data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        expression_popularity_dict = {}
+
+    try:
+        list_of_local_id = compute.list_local_id_for_derivation(name_of_derivation, 'data.json')
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        list_of_local_id = []
+
+    try:
+        list_of_global_id_not_in_derivation = compute.list_global_id_not_in_derivation(name_of_derivation, 'data.json')
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        list_of_global_id_not_in_derivation = []
+
     return render_template(
         "provide_expr_for_inf_rule.html",
         name_of_derivation=name_of_derivation,
+        expression_popularity_dict=expression_popularity_dict,
+        expressions_dict=dat["expressions"],
         inf_rule_dict=dat["inference rules"][inf_rule],
+        list_of_local_id=list_of_local_id,
+        list_of_global_id_not_in_derivation=list_of_global_id_not_in_derivation,
         step_dict=step_dict,
         derivation_validity_dict=derivation_validity_dict,
         expr_dict=dat["expressions"],
@@ -900,6 +949,13 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
         flash(str(err))
         derivation_validity_dict = {}
 
+    try:
+        expression_popularity_dict = compute.popularity_of_expressions("data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        expression_popularity_dict = {}
+
     #logger.debug('step validity = %s', str(step_validity_dict))
 
     return render_template(
@@ -907,8 +963,10 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
         step_validity_msg=step_validity_msg,
         name_of_graphviz_png=step_graphviz_png,
         name_of_derivation=name_of_derivation,
+        expression_popularity_dict=expression_popularity_dict,
         step_dict=dat["derivations"][name_of_derivation],
-        expr_dict=dat["expressions"],
+        #expr_dict=dat["expressions"],
+        expressions_dict=dat["expressions"],
         derivation_validity_dict=derivation_validity_dict,
         expr_local_to_gobal=dat["expr local to global"],
     )

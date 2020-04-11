@@ -2,30 +2,10 @@
 {% block content %}
 
 
-<table border="1"  class="sortable">
-  <tr>
-    <th>inf rule name</th>
-    <th>inputs</th>
-    <th>outputs</th>
-    <th>feeds</th>
-    <th>Latex</th>
-    <th>Used in derivations</th>
-  </tr>
-{% for infrule, infrule_use_list in infrule_popularity_dict.items() %}
-  <tr>
-    <td><a name="{{ infrule }}">{{ infrule }}</a></td>
-    <td>{{ infrules_dict[infrule]['number of inputs'] }}</td>
-    <td>{{ infrules_dict[infrule]['number of outputs'] }}</td>
-    <td>{{ infrules_dict[infrule]['number of feeds'] }}</td>
-    <td>{{ infrules_dict[infrule]['latex']}}</td> <!-- https://jinja.palletsprojects.com/en/2.11.x/templates/#replace -->
-    <td>{{ infrule_use_list }} </td>
-  </tr>
-{% endfor %}
-  <caption>Physics Derivation Graph: {{ infrule_popularity_dict.keys()|length }} Inference Rules</caption>
-</table>
+<P>
+{% include '_table_of_inference_rules.html' %}
 
-
-
+<P>
 <a id="add_inf_rule"></a>
   <H2>Add new inference rule</h2> 
 <form method="post" action="">

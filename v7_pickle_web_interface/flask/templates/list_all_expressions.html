@@ -1,25 +1,10 @@
 {% extends "_base.html" %}
 {% block content %}
 
-<table border="1"  class="sortable">
-  <tr>
-    <th>expression ID</th>
-    <th>Latex</th>
-    <th>Abstract Syntax Tree</th>
-    <th>used in derivation</th>
-  </tr>
-{% for expr_id, expr_use_list in expression_popularity_dict.items() %}
-  <tr>
-    <td><a name="{{ expr_id }}">{{ expr_id}}</a></td>
-    <td>{{ expressions_dict[expr_id]['latex'] }}</td>
-    <td>{{ expressions_dict[expr_id]['AST'] }}</td>
-    <td>{{ expr_use_list }}</td>
-  </tr> 
-{% endfor %}
-  <caption>Physics Derivation Graph: {{ expression_popularity_dict.keys()|length  }} Expressions</caption>
-</table>
+<P>
+{% include '_table_of_expressions.html' %}
 
-
+<P>
 <a id="delete_expression"></a>
   <h2>Delete an expression</h2>
 <P>Only expressions that do not appear in any derivation can be deleted

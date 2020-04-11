@@ -153,11 +153,52 @@ def create_session_id() -> str:
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
 
+def list_local_id_for_derivation(name_of_derivation: str, path_to_db: str) -> list:
+    """
+    >>> list_local_id_for_derivation('fun deriv', 'data.json')
+    """
+    logger.info("[trace] list_local_id_for_derivation")
+    dat = clib.read_db(path_to_db)
+    list_of_local_id = []
+    if name_of_derivation not in dat['derivations'].keys():
+        list_of_local_id = []
+    else:
+        for step_id, step_dict in dat['derivations'][name_of_derivation].items():
+            for connection_type in ['inputs', 'feeds', 'outputs']:
+                for local_id in step_dict[connection_type]:
+                    list_of_local_id.append(local_id)
+    list_of_local_id = list(set(list_of_local_id))
+    logger.debug('list_of_local_id = %s', str(list_of_local_id))
+    return list_of_local_id
+
+
+def list_global_id_not_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
+    """
+    >>> list_global_id_not_in_derivation('fun deriv', 'data.json')
+    """
+    logger.info("[trace] list_global_id_not_in_derivation")
+    dat = clib.read_db(path_to_db)
+    # I could have called list_local_id_for_derivation but I wrote this function first
+    if name_of_derivation not in dat['derivations'].keys():
+        global_ids_in_derivation = []
+    else: # derivation exists in dat
+        for step_id, step_dict in dat['derivations'][name_of_derivation].items():
+            for connection_type in ['inputs', 'feeds', 'outputs']:
+                for local_id in step_dict[connection_type]:
+                    global_ids_in_derivation.append(dat['expr local to global'][local_id])
+    global_ids_in_derivation = list(set(global_ids_in_derivation))
+    logger.debug('len(global_ids_in_derivation) = %s', str(len(global_ids_in_derivation)))
+    all_global_ids = list(dat['expressions'].keys())
+    list_of_global_id_not_in_derivation = list(set(all_global_ids) - set(global_ids_in_derivation))
+    logger.debug('list_of_global_id_not_in_derivation = %s', str(list_of_global_id_not_in_derivation))
+    return list_of_global_id_not_in_derivation
+
 
 def create_files_of_db_content(path_to_db):
     """
     >>> create_files_of_db_content('data.json')
     """
+    logger.info("[trace] create_files_of_db_content")
 
     # the following is relevant for redis
     #    dat = clib.read_db(path_to_db)
@@ -1824,9 +1865,12 @@ def create_step(
     latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_db: str
 ) -> str:
     """
-    >>> latex_for_step_dict = ImmutableMultiDict([('output1', 'a = b')])
-    >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'data.json')
-    9492849
+    >>> latex_for_step_dict = ImmutableMultiDict([('input1', ''), ('input1_radio', 'global'), ('input1_global_id', '5530148480'), ('feed1', 'asgasgag'), ('output1', ''), ('output1_radio', 'global'), ('output1_global_id', '9999999951'), ('submit_button', 'Submit')])
+
+# prior to the radio buttons, this was the style:
+#    >>> latex_for_step_dict = ImmutableMultiDict([('output1', 'a = b')])
+#    >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'data.json')
+#    9492849
     """
     logger.info("[trace] create_step")
 
@@ -1844,79 +1888,112 @@ def create_step(
     # because the form is an immutable dict, we need to convert to dict before deleting keys
     # https://tedboy.github.io/flask/generated/generated/werkzeug.ImmutableMultiDict.html
     latex_for_step_dict = latex_for_step_dict.to_dict(flat=True)
-    logger.debug("create_step; latex_for_step_dict = %s", latex_for_step_dict)
+    logger.debug("latex_for_step_dict = %s", latex_for_step_dict)
 
-    inputs_and_outputs_to_delete = []
-    for which_eq, latex_expr_str in latex_for_step_dict.items():
-        if (
-            "use_ID_for" in which_eq
-        ):  # 'use_ID_for_in1' or 'use_ID_for_in2' or 'use_ID_for_out1', etc
-            # the following leverages the dict from the web form
-            # request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('submit_button', 'Submit')])
-            logger.debug("create_step; use_ID_for is in %s", which_eq)
-            if "for_in" in which_eq:
-                this_input = "input" + which_eq[-1]
-                expr_local_id = latex_for_step_dict[this_input]
-                step_dict["inputs"].append(expr_local_id)
-                inputs_and_outputs_to_delete.append(this_input)
-            elif "for_out" in which_eq:
-                this_output = "output" + which_eq[-1]
-                expr_local_id = latex_for_step_dict[this_input]
-                step_dict["inputs"].append(expr_local_id)
-                inputs_and_outputs_to_delete.append(this_output)
-            else:
-                raise Exception(
-                    "[ERROR] compute; create_step; unrecognized key in use_ID ",
-                    latex_for_step_dict,
-                )
-
-    # remove all the "use_ID_for" keys
-    list_of_keys = list(latex_for_step_dict.keys())
-    for this_key in list_of_keys:
-        if "use_ID_for" in this_key:
-            del latex_for_step_dict[this_key]
-
-    # remove the inputs and outputs that were associated with 'use_ID_for'
-    for input_and_output in inputs_and_outputs_to_delete:
-        del latex_for_step_dict[input_and_output]
-
-    for which_eq, latex_expr_str in latex_for_step_dict.items():
-        logger.debug(
-            "create_step; which_eq = %s and latex_expr_str = %s",
-            which_eq,
-            latex_expr_str,
-        )
-        if "input" in which_eq:
+    # start with feeds since those are the easiest
+    for key, text in latex_for_step_dict.items():
+        if 'feed' in key:
             expr_global_id = create_expr_global_id(path_to_db)
             dat["expressions"][expr_global_id] = {
-                "latex": latex_expr_str
-            }  # , 'AST': latex_as_AST}
-            expr_local_id = create_expr_local_id(path_to_db)
-            dat["expr local to global"][expr_local_id] = expr_global_id
-            step_dict["inputs"].append(expr_local_id)
-        elif "output" in which_eq:
-            expr_global_id = create_expr_global_id(path_to_db)
-            dat["expressions"][expr_global_id] = {
-                "latex": latex_expr_str
-            }  # , 'AST': latex_as_AST}
-            expr_local_id = create_expr_local_id(path_to_db)
-            dat["expr local to global"][expr_local_id] = expr_global_id
-            step_dict["outputs"].append(expr_local_id)
-        elif "feed" in which_eq:
-            expr_global_id = create_expr_global_id(path_to_db)
-            dat["expressions"][expr_global_id] = {
-                "latex": latex_expr_str
+                "latex": latex_for_step_dict[key]
             }  # , 'AST': latex_as_AST}
             expr_local_id = create_expr_local_id(path_to_db)
             dat["expr local to global"][expr_local_id] = expr_global_id
             step_dict["feeds"].append(expr_local_id)
-        elif "submit_button" in which_eq:
-            pass
-        else:
-            raise Exception(
-                "[ERROR] compute; create_step; unrecognized key in step dict",
-                latex_for_step_dict,
-            )
+
+    for connection_type in ['input', 'output']:
+        for expr_index in ['1', '2', '3']:
+            for key, text in latex_for_step_dict.items():
+                if '_radio' in key:
+                    if text == 'latex':
+                        expr_global_id = create_expr_global_id(path_to_db)
+                        dat["expressions"][expr_global_id] = {
+                              "latex": latex_for_step_dict[connection_type + '_' + expr_indx]}
+                        expr_local_id = create_expr_local_id(path_to_db)
+                        dat["expr local to global"][expr_local_id] = expr_global_id
+                        step_dict[connection_type + "s"].append(expr_local_id)
+                    elif text == 'local':
+                        expr_local_id = latex_for_step_dict[connection_type + '_' + expr_index + '_local_id']
+                        step_dict[connection_type + "s"].append(expr_local_id)
+                    elif text == 'global':
+                        expr_global_id = latex_for_step_dict[connection_type + '_' + expr_index + '_global_id']
+                        expr_local_id = create_expr_local_id(path_to_db)
+                        dat["expr local to global"][expr_local_id] = expr_global_id
+                        step_dict[connection_type + "s"].append(expr_local_id)
+                    else:
+                        raise Exception('unknown radio option: ', key, text)
+
+#    inputs_and_outputs_to_delete = []
+#    for which_eq, latex_expr_str in latex_for_step_dict.items():
+#        if (
+#            "use_ID_for" in which_eq
+#        ):  # 'use_ID_for_in1' or 'use_ID_for_in2' or 'use_ID_for_out1', etc
+#            # the following leverages the dict from the web form
+#            # request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('submit_button', 'Submit')])
+#            logger.debug("create_step; use_ID_for is in %s", which_eq)
+#            if "for_in" in which_eq:
+#                this_input = "input" + which_eq[-1]
+#                expr_local_id = latex_for_step_dict[this_input]
+#                step_dict["inputs"].append(expr_local_id)
+#                inputs_and_outputs_to_delete.append(this_input)
+#            elif "for_out" in which_eq:
+#                this_output = "output" + which_eq[-1]
+#                expr_local_id = latex_for_step_dict[this_input]
+#                step_dict["inputs"].append(expr_local_id)
+#                inputs_and_outputs_to_delete.append(this_output)
+#            else:
+#                raise Exception(
+#                    "[ERROR] compute; create_step; unrecognized key in use_ID ",
+#                    latex_for_step_dict,
+#                )
+#
+#    # remove all the "use_ID_for" keys
+#    list_of_keys = list(latex_for_step_dict.keys())
+#    for this_key in list_of_keys:
+#        if "use_ID_for" in this_key:
+#            del latex_for_step_dict[this_key]
+#
+#    # remove the inputs and outputs that were associated with 'use_ID_for'
+#    for input_and_output in inputs_and_outputs_to_delete:
+#        del latex_for_step_dict[input_and_output]
+#
+#    for which_eq, latex_expr_str in latex_for_step_dict.items():
+#        logger.debug(
+#            "create_step; which_eq = %s and latex_expr_str = %s",
+#            which_eq,
+#            latex_expr_str,
+#        )
+#        if "input" in which_eq:
+#            expr_global_id = create_expr_global_id(path_to_db)
+#            dat["expressions"][expr_global_id] = {
+#                "latex": latex_expr_str
+#            }  # , 'AST': latex_as_AST}
+#            expr_local_id = create_expr_local_id(path_to_db)
+#            dat["expr local to global"][expr_local_id] = expr_global_id
+#            step_dict["inputs"].append(expr_local_id)
+#        elif "output" in which_eq:
+#            expr_global_id = create_expr_global_id(path_to_db)
+#            dat["expressions"][expr_global_id] = {
+#                "latex": latex_expr_str
+#            }  # , 'AST': latex_as_AST}
+#            expr_local_id = create_expr_local_id(path_to_db)
+#            dat["expr local to global"][expr_local_id] = expr_global_id
+#            step_dict["outputs"].append(expr_local_id)
+#        elif "feed" in which_eq:
+#            expr_global_id = create_expr_global_id(path_to_db)
+#            dat["expressions"][expr_global_id] = {
+#                "latex": latex_expr_str
+#            }  # , 'AST': latex_as_AST}
+#            expr_local_id = create_expr_local_id(path_to_db)
+#            dat["expr local to global"][expr_local_id] = expr_global_id
+#            step_dict["feeds"].append(expr_local_id)
+#        elif "submit_button" in which_eq:
+#            pass
+#        else:
+#            raise Exception(
+#                "[ERROR] compute; create_step; unrecognized key in step dict",
+#                latex_for_step_dict,
+#            )
 
     list_of_linear_index = []
 

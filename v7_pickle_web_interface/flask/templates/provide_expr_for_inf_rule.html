@@ -10,55 +10,263 @@
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
 <form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
 
 {% if inf_rule_dict['number of inputs']|int() > 0|int() %}
-<P>{{ webform.input1.label }}: {{ webform.input1 }}<BR>
-{{ webform.input1_radio.label }}: {{ webform.input1_radio }}
+<P>
+  <table border="1">
+  <!-- from https://wtforms.readthedocs.io/en/stable/fields.html#basic-fields -->
+  <!-- and https://stackoverflow.com/questions/40086613/ansible-jinja2-string-comparison -->
+  <!-- and https://stackoverflow.com/questions/20233721/how-do-you-index-on-a-jinja-template -->
+  {% for subfield in webform.input1_radio %}
+    <tr>
+      <td>{{ subfield }}</td>
+      <td>{{ subfield.label }}</td>
+    {% if loop.index0 == 0 %}
+      <td>{{ webform.input1.label }}: {{ webform.input1 }}</td>
+    {% elif loop.index0 == 1 %}
+      <td>
+        <span class="input-group-addon">Select from</span>
+          <select name="input1_local_id" class="selectpicker form-control">
+            {% for elem in list_of_local_id %}
+            <option value="{{ elem }}">{{ elem }}</option>
+            {% endfor %}
+          </select>
+      </td>
+    {% elif loop.index0 == 2 %}
+      <td>
+        <span class="input-group-addon">Select from</span>
+          <select name="input1_global_id" class="selectpicker form-control">
+            {% for elem in list_of_global_id_not_in_derivation %}
+            <option value="{{ elem }}">{{ elem }}</option>
+            {% endfor %}
+          </select>
+      </td>
+    {% else %}
+      <td>
+        Error in radio field
+      </td>
+    {% endif %}
+    </tr>
+  {% endfor %}
+  </table>
+
 <!--
 <input type="checkbox" name="use_ID_for_in1"/> Check if using local expression ID (no check if using Latex)
 -->
 {% endif %}
 
 {% if inf_rule_dict['number of inputs']|int() > 1|int() %}
-<P>{{ webform.input2.label }}: {{ webform.input2 }}
-<input type="checkbox" name="use_ID_for_in2"/>  Check if using local expression ID (no check if using Latex)
+<P>
+  <table border="1">
+  {% for subfield in webform.input2_radio %}
+    <tr>
+      <td>{{ subfield }}</td>
+      <td>{{ subfield.label }}</td>
+    {% if loop.index0 == 0 %}
+      <td>{{ webform.input2.label }}: {{ webform.input2 }}</td>
+    {% elif loop.index0 == 1 %}
+      <td>
+        <span class="input-group-addon">Select from</span>
+          <select name="input2_local_id" class="selectpicker form-control">
+            {% for elem in list_of_local_id %}
+            <option value="{{ elem }}">{{ elem }}</option>
+            {% endfor %}
+          </select>
+      </td>
+    {% elif loop.index0 == 2 %}
+      <td>
+        <span class="input-group-addon">Select from</span>
+          <select name="input2_global_id" class="selectpicker form-control">
+            {% for elem in list_of_global_id_not_in_derivation %}
+            <option value="{{ elem }}">{{ elem }}</option>
+            {% endfor %}
+          </select>
+      </td>
+    {% else %}
+      <td>
+        Error in radio field
+      </td>
+    {% endif %}
+    </tr>
+  {% endfor %}
+  </table>
+</P>
 {% endif %}
 
+<P>
 {% if inf_rule_dict['number of inputs']|int() > 2|int() %}
-<P>{{ webform.input3.label }}: {{ webform.input3 }}
-<input type="checkbox" name="use_ID_for_in3"/>  Check if using local expression ID (no check if using Latex)
+  <table border="1">
+  {% for subfield in webform.input3_radio %}
+    <tr>
+      <td>{{ subfield }}</td>
+      <td>{{ subfield.label }}</td>
+    {% if loop.index0 == 0 %}
+      <td>{{ webform.input3.label }}: {{ webform.input3 }}</td>
+    {% elif loop.index0 == 1 %}
+      <td>
+        <span class="input-group-addon">Select from</span>
+          <select name="input3_local_id" class="selectpicker form-control">
+            {% for elem in list_of_local_id %}
+            <option value="{{ elem }}">{{ elem }}</option>
+            {% endfor %}
+          </select>
+      </td>
+    {% elif loop.index0 == 2 %}
+      <td>
+        <span class="input-group-addon">Select from</span>
+          <select name="input3_global_id" class="selectpicker form-control">
+            {% for elem in list_of_global_id_not_in_derivation %}
+            <option value="{{ elem }}">{{ elem }}</option>
+            {% endfor %}
+          </select>
+      </td>
+    {% else %}
+      <td>
+        Error in radio field
+      </td>
+    {% endif %}
+    </tr>
+  {% endfor %}
+  </table>
+</P>
 {% endif %}
 
-{% if inf_rule_dict['number of feeds']|int() > 0|int() %} 
+{% if inf_rule_dict['number of feeds']|int() > 0|int() %}
 <P>{{ webform.feed1.label }}: {{ webform.feed1 }}
+</P>
 {% endif %}
 
-{% if inf_rule_dict['number of feeds']|int() > 1|int() %} 
+{% if inf_rule_dict['number of feeds']|int() > 1|int() %}
 <P>{{ webform.feed2.label }}: {{ webform.feed2 }}
+</P>
 {% endif %}
 
-{% if inf_rule_dict['number of feeds']|int() > 2|int() %} 
+{% if inf_rule_dict['number of feeds']|int() > 2|int() %}
 <P>{{ webform.feed3.label }}: {{ webform.feed3 }}
+</P>
 {% endif %}
 
 {% if inf_rule_dict['number of outputs']|int() > 0|int() %}
-<P>{{ webform.output1.label }}: {{ webform.output1 }}
-<input type="checkbox" name="use_ID_for_out1"/> Check if using local expression ID (no check if using Latex)
+<P>
+<table border="1">
+{% for subfield in webform.output1_radio %}
+  <tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+  {% if loop.index0 == 0 %}
+    <td>{{ webform.output1.label }}: {{ webform.output1 }}</td>
+  {% elif loop.index0 == 1 %}
+    <td>
+      <span class="output-group-addon">Select from</span>
+        <select name="output1_local_id" class="selectpicker form-control">
+          {% for elem in list_of_local_id %}
+          <option value="{{ elem }}">{{ elem }}</option>
+          {% endfor %}
+        </select>
+    </td>
+  {% elif loop.index0 == 2 %}
+    <td>
+      <span class="output-group-addon">Select from</span>
+        <select name="output1_global_id" class="selectpicker form-control">
+          {% for elem in list_of_global_id_not_in_derivation %}
+          <option value="{{ elem }}">{{ elem }}</option>
+          {% endfor %}
+        </select>
+    </td>
+  {% else %}
+    <td>
+      Error in radio field
+    </td>
+  {% endif %}
+  </tr>
+{% endfor %}
+</table>
+</P>
 {% endif %}
 
 {% if inf_rule_dict['number of outputs']|int() > 1|int() %}
-<P>{{ webform.output2.label }}: {{ webform.output2 }}
-<input type="checkbox" name="use_ID_for_out2"/> Check if using local expression ID (no check if using Latex)
+<P>
+<table border="1">
+{% for subfield in webform.output2_radio %}
+  <tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+  {% if loop.index0 == 0 %}
+    <td>{{ webform.output2.label }}: {{ webform.output2 }}</td>
+  {% elif loop.index0 == 1 %}
+    <td>
+      <span class="output-group-addon">Select from</span>
+        <select name="output2_local_id" class="selectpicker form-control">
+          {% for elem in list_of_local_id %}
+          <option value="{{ elem }}">{{ elem }}</option>
+          {% endfor %}
+        </select>
+    </td>
+  {% elif loop.index0 == 2 %}
+    <td>
+      <span class="output-group-addon">Select from</span>
+        <select name="output2_global_id" class="selectpicker form-control">
+          {% for elem in list_of_global_id_not_in_derivation %}
+          <option value="{{ elem }}">{{ elem }}</option>
+          {% endfor %}
+        </select>
+    </td>
+  {% else %}
+    <td>
+      Error in radio field
+    </td>
+  {% endif %}
+  </tr>
+{% endfor %}
+</table>
+</P>
 {% endif %}
 
 {% if inf_rule_dict['number of outputs']|int() > 2|int() %}
-<P>{{ webform.output3.label }}: {{ webform.output3 }}
-<input type="checkbox" name="use_ID_for_out3"/> Check if using local expression ID (no check if using Latex)
+<P>
+<table border="1">
+{% for subfield in webform.output3_radio %}
+  <tr>
+    <td>{{ subfield }}</td>
+    <td>{{ subfield.label }}</td>
+  {% if loop.index0 == 0 %}
+    <td>{{ webform.output3.label }}: {{ webform3.output }}</td>
+  {% elif loop.index0 == 1 %}
+    <td>
+      <span class="output-group-addon">Select from</span>
+        <select name="output3_local_id" class="selectpicker form-control">
+          {% for elem in list_of_local_id %}
+          <option value="{{ elem }}">{{ elem }}</option>
+          {% endfor %}
+        </select>
+    </td>
+  {% elif loop.index0 == 2 %}
+    <td>
+      <span class="output-group-addon">Select from</span>
+        <select name="output3_global_id" class="selectpicker form-control">
+          {% for elem in list_of_global_id_not_in_derivation %}
+          <option value="{{ elem }}">{{ elem }}</option>
+          {% endfor %}
+        </select>
+    </td>
+  {% else %}
+    <td>
+      Error in radio field
+    </td>
+  {% endif %}
+  </tr>
+{% endfor %}
+</table>
+</P>
 {% endif %}
 
 
 
 <P><input type="submit" name="submit_button" value="Submit">
+    </div>
+  </div>
 </form>
 
 <P>
@@ -68,4 +276,3 @@
 {% include '_table_of_expressions.html' %}
 
 {% endblock %}
-

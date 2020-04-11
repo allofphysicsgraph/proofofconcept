@@ -1,15 +1,26 @@
 
+
 <table border="1"  class="sortable">
   <tr>
     <th>expression ID</th>
     <th>Latex</th>
+    <th>Abstract Syntax Tree</th>
+    <th>used in derivation</th>
   </tr>
-{% for expr_id, this_dict  in expr_dict.items() %}
+{% for expr_id, expr_use_list in expression_popularity_dict.items() %}
   <tr>
-    <td>{{ expr_id }}</td>
-    <td>{{ expr_dict[expr_id]['latex'] }}</td>
+    <td><a name="{{ expr_id }}">{{ expr_id}}</a></td>
+    <td>{{ expressions_dict[expr_id]['latex'] }}</td>
+    <td>{{ expressions_dict[expr_id]['AST'] }}</td>
+    <td>{{ expr_use_list }}</td>
   </tr>
 {% endfor %}
-  <caption>Physics Derivation Graph: Expressions</caption>
+  <caption>
+    <a name="table of expressions">
+      Physics Derivation Graph: {{ expression_popularity_dict.keys()|length  }} Expressions
+    </a>
+  </caption>
 </table>
+
+
 
