@@ -26,7 +26,7 @@ import time
 # https://gist.github.com/lost-theory/4521102
 from flask import g
 from werkzeug.utils import secure_filename
-from wtforms import Form, StringField, validators, FieldList, FormField, IntegerField  # type: ignore
+from wtforms import Form, StringField, validators, FieldList, FormField, IntegerField, RadioField  # type: ignore
 # https://json-schema.org/
 from jsonschema import validate  # type: ignore
 from config import (
@@ -141,11 +141,17 @@ class LatexIO(Form):
     feed2 = StringField("feed LaTeX 2", validators=[validators.InputRequired()])
     feed3 = StringField("feed LaTeX 3", validators=[validators.InputRequired()])
     input1 = StringField("input LaTeX 1", validators=[validators.InputRequired()])
+    input1_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
     input2 = StringField("input LaTeX 2", validators=[validators.InputRequired()])
+    input2_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
     input3 = StringField("input LaTeX 3", validators=[validators.InputRequired()])
+    input3_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
     output1 = StringField("output LaTeX 1", validators=[validators.InputRequired()])
+    output1_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
     output2 = StringField("output LaTeX 2", validators=[validators.InputRequired()])
+    output2_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
     output3 = StringField("output LaTeX 3", validators=[validators.InputRequired()])
+    output3_radio = RadioField('Label', coerce=int, choices=[('value','description'),('value_two','whatever')])
 
 
 class NameOfDerivationInputForm(Form):

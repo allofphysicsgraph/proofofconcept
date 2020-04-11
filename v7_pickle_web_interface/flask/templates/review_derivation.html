@@ -34,10 +34,10 @@ results in no visualization and no error message in javascript console
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
 
 <P>
-{% include 'table_of_derivation_steps.html' %}
+{% include '_table_of_derivation_steps.html' %}
 
 <P>
-{% include 'table_of_expressions.html' %}
+{% include '_table_of_expressions.html' %}
 
 
 <script src="{{ url_for('static', filename='d3.min.js') }}"></script>

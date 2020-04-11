@@ -12,8 +12,11 @@
 <form method="post" action="">
 
 {% if inf_rule_dict['number of inputs']|int() > 0|int() %}
-<P>{{ webform.input1.label }}: {{ webform.input1 }}
+<P>{{ webform.input1.label }}: {{ webform.input1 }}<BR>
+{{ webform.input1_radio.label }}: {{ webform.input1_radio }}
+<!--
 <input type="checkbox" name="use_ID_for_in1"/> Check if using local expression ID (no check if using Latex)
+-->
 {% endif %}
 
 {% if inf_rule_dict['number of inputs']|int() > 1|int() %}
@@ -59,10 +62,10 @@
 </form>
 
 <P>
-{% include 'table_of_derivation_steps.html' %}
+{% include '_table_of_derivation_steps.html' %}
 
 <P>
-{% include 'table_of_expressions.html' %}
+{% include '_table_of_expressions.html' %}
 
 {% endblock %}
 

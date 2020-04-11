@@ -11,7 +11,7 @@
 # formating should be PEP-8 compliant; https://www.python.org/dev/peps/pep-0008/
 
 # import math
-# import json
+import json
 
 from functools import wraps
 import errno
@@ -40,7 +40,7 @@ import pandas  # type: ignore
 
 logger = logging.getLogger(__name__)
 
-#global proc_timeout
+# global proc_timeout
 proc_timeout = 30
 
 STEP_DICT = TypedDict(
@@ -62,10 +62,12 @@ def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
     """
     https://stackoverflow.com/questions/2281850/timeout-function-if-it-takes-too-long-to-finish
     """
+
     def decorator(func):
         def _handle_timeout(signum, frame):
-            send_email(['ben.is.located@gmail.com'],error_message,'TIMEOUT OCCURRED')
+            send_email(["ben.is.located@gmail.com"], error_message, "TIMEOUT OCCURRED")
             raise Exception(error_message)
+
         def wrapper(*args, **kwargs):
             signal.signal(signal.SIGALRM, _handle_timeout)
             signal.alarm(seconds)
@@ -74,11 +76,15 @@ def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
             finally:
                 signal.alarm(0)
             return result
+
         return wraps(func)(wrapper)
+
     return decorator
+
 
 # ******************************************
 # check input files
+
 
 def allowed_file(filename):
     """
@@ -106,11 +112,10 @@ def validate_json_file(filename: str) -> None:
             candidate_dat = json.load(json_file)
         except json.decoder.JSONDecodeError as er:
             logger.debug(
-                "ERROR in JSON schema compliance: %s",
-                er,
+                "ERROR in JSON schema compliance: %s", er,
             )
             flash("uploaded file does not appear to be JSON; ignoring file")
-            #return False
+            # return False
             raise Exception("uploaded file does not appear to be JSON; ignoring file")
     # now we know the file is actually JSON
     # next, does the JSON conform to PDG schema?
@@ -118,15 +123,14 @@ def validate_json_file(filename: str) -> None:
     try:
         validate(instance=candidate_dat, schema=json_schema.schema)
     except:  # jsonschema.exceptions.ValidationError as er:
-        logger.debug(
-            "ERROR in JSON schema compliance"
-        )
+        logger.debug("ERROR in JSON schema compliance")
         # flash(str(er))
-        raise Exception('JSON is not compliant with schema')
-        #return False  # JSON is not compliant with schmea
+        raise Exception("JSON is not compliant with schema")
+        # return False  # JSON is not compliant with schmea
 
-#    return True  # file is JSON and is compliant with schmea
+    #    return True  # file is JSON and is compliant with schmea
     return
+
 
 def create_session_id() -> str:
     """
@@ -135,9 +139,6 @@ def create_session_id() -> str:
     now_str = datetime.datetime.now().strftime("%Y%m%d_%H%M%S%f")
     rand_id = str(random.randint(100, 999))
     return now_str + "_" + rand_id
-
-
-
 
 
 # *******************************************
@@ -152,14 +153,16 @@ def create_session_id() -> str:
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
 
+
 def create_files_of_db_content(path_to_db):
     """
     >>> create_files_of_db_content('data.json')
     """
 
-    dat = clib.read_db(path_to_db)
-    with open(path_to_db) as json_file:
-        json.dump(dat, outfile, indent=4, separators=(",", ": "))  # , sort_keys=True)
+    # the following is relevant for redis
+    #    dat = clib.read_db(path_to_db)
+    #    with open(path_to_db) as json_file:
+    #        json.dump(dat, outfile, indent=4, separators=(",", ": "))  # , sort_keys=True)
     shutil.copy(path_to_db, "/home/appuser/app/static/")
 
     all_df = convert_json_to_dataframes(path_to_db)
@@ -170,12 +173,13 @@ def create_files_of_db_content(path_to_db):
     shutil.copy(sql_file, "/home/appuser/app/static/")
 
     rdf_file = convert_data_to_rdf("data.json")
-    shutil.copy(rdf_file,"/home/appuser/app/static/")
+    shutil.copy(rdf_file, "/home/appuser/app/static/")
 
-    neo4j_file] = convert_data_to_cypher("data.json")
+    neo4j_file = convert_data_to_cypher("data.json")
     shutil.copy(neo4j_file, "/home/appuser/app/static/")
 
-    return [all_df, df_pkl_file, sql_file, rdf_file,neo4j_file]
+    return [all_df, df_pkl_file, sql_file, rdf_file, neo4j_file]
+
 
 def convert_json_to_dataframes(path_to_db: str) -> dict:
     """
@@ -762,13 +766,12 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
         ):
             list_of_expr_ids.append(val)
     logger.debug(
-        "list_of_expr_ids= %s",
-        list_of_expr_ids,
+        "list_of_expr_ids= %s", list_of_expr_ids,
     )
     return list_of_expr_ids
 
 
-#def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
+# def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
 #    """
 #    >>> extract_infrules_from_derivation_dict()
 #    """
@@ -778,7 +781,7 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
 #    for step_id, step_dict in dat["derivations"][deriv_name].items():
 #        list_of_infrules.append(step_dict["inf rule"])
 
-    # logger.debug('extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
+# logger.debug('extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
 #    return list(set(list_of_infrules))
 
 
@@ -789,7 +792,6 @@ def popularity_of_operators(path_to_db: str) -> dict:
     logger.info("[trace] popularity_of_operators")
     dat = clib.read_db(path_to_db)
     operator_popularity_dict = {}
-
 
     operators_per_expr = {}
     for expr_id, expr_dict in dat["expressions"].items():
@@ -802,12 +804,11 @@ def popularity_of_operators(path_to_db: str) -> dict:
         for this_str in list_of_str:  # 'equals_0_addition_0'
             list_of_operator_candidates = this_str.split("_")
             for operator_candidate in list_of_operator_candidates:
-                 try:
-                     int(operator_candidate)
-                 except ValueError:
-                     list_of_operators.append(operator_candidate)
+                try:
+                    int(operator_candidate)
+                except ValueError:
+                    list_of_operators.append(operator_candidate)
         operators_per_expr[expr_id] = list(set(list_of_operators))
-
 
     for operator, operator_dict in dat["operators"].items():
         operator_popularity_dict[operator] = []
@@ -841,9 +842,9 @@ def popularity_of_symbols(path_to_db: str) -> dict:
     return symbol_popularity_dict
 
 
-#def get_expr_local_IDs_for_this_expr_global_ID(
+# def get_expr_local_IDs_for_this_expr_global_ID(
 #    expr_global_ID: str, path_to_db: str
-#) -> list:
+# ) -> list:
 #    """
 #    >>>
 #    """
@@ -868,19 +869,25 @@ def popularity_of_expressions(path_to_db: str) -> dict:
     for deriv_name, deriv_dict in dat["derivations"].items():
         list_of_all_expr_global_IDs_for_this_deriv = []
         for step_id, step_dict in deriv_dict.items():
-            for connection_type in ['inputs', 'feeds', 'outputs']:
+            for connection_type in ["inputs", "feeds", "outputs"]:
                 for expr_local_id in step_dict[connection_type]:
-                    list_of_all_expr_global_IDs_for_this_deriv.append(dat["expr local to global"][expr_local_id])
-        deriv_uses_expr_global_id[deriv_name] = list(set(list_of_all_expr_global_IDs_for_this_deriv))
+                    list_of_all_expr_global_IDs_for_this_deriv.append(
+                        dat["expr local to global"][expr_local_id]
+                    )
+        deriv_uses_expr_global_id[deriv_name] = list(
+            set(list_of_all_expr_global_IDs_for_this_deriv)
+        )
 
     for expr_global_id, expr_dict in dat["expressions"].items():
         expression_popularity_dict[expr_global_id] = []
         for deriv_name, list_of_expr in deriv_uses_expr_global_id.items():
             if expr_global_id in list_of_expr:
                 expression_popularity_dict[expr_global_id].append(deriv_name)
-        expression_popularity_dict[expr_global_id] = list(set(expression_popularity_dict[expr_global_id]))
+        expression_popularity_dict[expr_global_id] = list(
+            set(expression_popularity_dict[expr_global_id])
+        )
 
-    #logger.debug("expression_popularity_dict = %s", expression_popularity_dict)
+    # logger.debug("expression_popularity_dict = %s", expression_popularity_dict)
     return expression_popularity_dict
 
 
@@ -913,6 +920,7 @@ def popularity_of_infrules(path_to_db: str) -> dict:
 # ********************************************
 # local filesystem
 
+
 def remove_file_debris(
     list_of_paths_to_files: list, list_of_file_names: list, list_of_file_ext: list
 ) -> None:
@@ -934,7 +942,7 @@ def remove_file_debris(
     return
 
 
-#def find_valid_filename(destination_folder: str, extension: str) -> str:
+# def find_valid_filename(destination_folder: str, extension: str) -> str:
 #    """
 #    called by create_png_from_latex()
 #
@@ -958,7 +966,10 @@ def remove_file_debris(
 # *******************************************
 # create files on filesystem
 
-def generate_all_expr_and_infrule_pngs(overwrite_existing: bool, path_to_db: str) -> None:
+
+def generate_all_expr_and_infrule_pngs(
+    overwrite_existing: bool, path_to_db: str
+) -> None:
     """
     >>> generate_all_expr_and_infrule_pngs()
     """
@@ -971,24 +982,23 @@ def generate_all_expr_and_infrule_pngs(overwrite_existing: bool, path_to_db: str
         png_name = expr_global_id
         if overwrite_existing:
             if os.path.isfile(destination_folder + png_name):
-                os.remove(destination_folder + png_name + '.png')
-        else: # do not overwrite existing PNG
-            if not os.path.isfile(destination_folder + png_name + '.png'):
-                logger.debug('PNG does not exist, creating %s', png_name)
+                os.remove(destination_folder + png_name + ".png")
+        else:  # do not overwrite existing PNG
+            if not os.path.isfile(destination_folder + png_name + ".png"):
+                logger.debug("PNG does not exist, creating %s", png_name)
                 create_png_from_latex(
-                    dat["expressions"][expr_global_id]["latex"],
-                    png_name)
+                    dat["expressions"][expr_global_id]["latex"], png_name
+                )
 
-    for infrule_name, infrule_dict in dat['inference rules'].items():
-        png_name = infrule_name.replace(' ','_')
+    for infrule_name, infrule_dict in dat["inference rules"].items():
+        png_name = infrule_name.replace(" ", "_")
         if overwrite_existing:
             if os.path.isfile(destination_folder + png_name):
-                os.remove(destination_folder + png_name + '.png')
-        else: # do not overwrite existing PNG
-            if not os.path.isfile(destination_folder + png_name + '.png'):
-                logger.debug('PNG does not exist, creating %s', png_name)
-                create_png_from_latex(
-                    infrule_name, png_name)
+                os.remove(destination_folder + png_name + ".png")
+        else:  # do not overwrite existing PNG
+            if not os.path.isfile(destination_folder + png_name + ".png"):
+                logger.debug("PNG does not exist, creating %s", png_name)
+                create_png_from_latex(infrule_name, png_name)
     return
 
 
@@ -1007,20 +1017,22 @@ def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
         # TODO: install braket in Docker image
         # if "usepackage{braket}" is on and the package isn't available, the process pauses while waiting for user input
         # the web interface isn't aware of this pause, so the page hangs
-        #lat_file.write("\\usepackage{braket}\n")
+        # lat_file.write("\\usepackage{braket}\n")
         lat_file.write(
             "\\usepackage{amsmath}\n"
         )  # https://tex.stackexchange.com/questions/32100/what-does-each-ams-package-do
         # TODO: these custom commands are specific to the PDG and should be removed
-        lat_file.write('\\newcommand{\\when}[1]{{\\rm \\ when\\ }#1}\n')
-        lat_file.write('\\newcommand{\\bra}[1]{\\langle #1 |}\n')
-        lat_file.write('\\newcommand{\\ket}[1]{| #1\\rangle}\n')
-        lat_file.write('\\newcommand{\\op}[1]{\\hat{#1}}\n')
-        lat_file.write('\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n')
-        lat_file.write('\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n')
-        lat_file.write('\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n')
-
-
+        lat_file.write("\\newcommand{\\when}[1]{{\\rm \\ when\\ }#1}\n")
+        lat_file.write("\\newcommand{\\bra}[1]{\\langle #1 |}\n")
+        lat_file.write("\\newcommand{\\ket}[1]{| #1\\rangle}\n")
+        lat_file.write("\\newcommand{\\op}[1]{\\hat{#1}}\n")
+        lat_file.write("\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n")
+        lat_file.write(
+            "\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n"
+        )
+        lat_file.write(
+            "\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n"
+        )
 
         lat_file.write("\\begin{document}\n")
         lat_file.write("\\huge{\n")
@@ -1043,9 +1055,7 @@ def write_step_to_graphviz_file(
     dat = clib.read_db(path_to_db)
 
     step_dict = dat["derivations"][name_of_derivation][local_step_id]
-    logger.debug(
-        "write_step_to_graphviz_file: step_dict = %s", step_dict
-    )
+    logger.debug("write_step_to_graphviz_file: step_dict = %s", step_dict)
     #  step_dict = {'inf rule': 'begin derivation', 'inputs': [], 'feeds': [], 'outputs': ['526874110']}
     for global_id, latex_and_ast_dict in dat["expressions"].items():
         logger.debug(
@@ -1056,13 +1066,14 @@ def write_step_to_graphviz_file(
 
     # logger.debug('write_step_to_graphviz_file: starting write')
 
-    png_name = step_dict["inf rule"].replace(' ','_')
+    png_name = step_dict["inf rule"].replace(" ", "_")
     if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
         create_png_from_latex(step_dict["inf rule"], png_name)
     fil.write(
         local_step_id
         + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
-        + png_name + '.png'
+        + png_name
+        + ".png"
         + '",labelloc=b];\n'
     )
 
@@ -1071,14 +1082,13 @@ def write_step_to_graphviz_file(
         expr_global_id = dat["expr local to global"][expr_local_id]
         png_name = expr_global_id
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-            create_png_from_latex(
-                dat["expressions"][expr_global_id]["latex"], png_name
-            )
+            create_png_from_latex(dat["expressions"][expr_global_id]["latex"], png_name)
         fil.write(expr_local_id + " -> " + local_step_id + ";\n")
         fil.write(
             expr_local_id
             + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
-            + png_name + '.png'
+            + png_name
+            + ".png"
             + '",labelloc=b];\n'
         )
 
@@ -1087,15 +1097,14 @@ def write_step_to_graphviz_file(
         expr_global_id = dat["expr local to global"][expr_local_id]
         png_name = expr_global_id
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-            create_png_from_latex(
-                dat["expressions"][expr_global_id]["latex"], png_name
-            )
+            create_png_from_latex(dat["expressions"][expr_global_id]["latex"], png_name)
         # logger.debug('write_step_to_graphviz_file; local and global',expr_local_id,expr_local_id)
         fil.write(local_step_id + " -> " + expr_local_id + ";\n")
         fil.write(
             expr_local_id
             + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
-            + png_name + '.png'
+            + png_name
+            + ".png"
             + '",labelloc=b];\n'
         )
 
@@ -1104,19 +1113,18 @@ def write_step_to_graphviz_file(
         expr_global_id = dat["expr local to global"][expr_local_id]
         png_name = expr_global_id
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-            create_png_from_latex(
-                dat["expressions"][expr_global_id]["latex"], png_name
-            )
+            create_png_from_latex(dat["expressions"][expr_global_id]["latex"], png_name)
         fil.write(expr_local_id + " -> " + local_step_id + ";\n")
         fil.write(
             expr_local_id
             + ' [shape=box, color=red,label="",image="/home/appuser/app/static/'
-            + png_name + '.png'
+            + png_name
+            + ".png"
             + '",labelloc=b];\n'
         )
     # logger.debug('write_step_to_graphviz_file: returning')
 
-    return #True, "no invalid latex"
+    return  # True, "no invalid latex"
 
 
 def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str:
@@ -1149,13 +1157,17 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
         )
 
         # TODO: these should not be here! They are specific to PDG. Some equations depend on them
-        lat_file.write('\\newcommand{\\when}[1]{{\\rm \\ when\\ }#1}\n')
-        lat_file.write('\\newcommand{\\bra}[1]{\\langle #1 |}\n')
-        lat_file.write('\\newcommand{\\ket}[1]{| #1\\rangle}\n')
-        lat_file.write('\\newcommand{\\op}[1]{\\hat{#1}}\n')
-        lat_file.write('\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n')
-        lat_file.write('\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n')
-        lat_file.write('\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n')
+        lat_file.write("\\newcommand{\\when}[1]{{\\rm \\ when\\ }#1}\n")
+        lat_file.write("\\newcommand{\\bra}[1]{\\langle #1 |}\n")
+        lat_file.write("\\newcommand{\\ket}[1]{| #1\\rangle}\n")
+        lat_file.write("\\newcommand{\\op}[1]{\\hat{#1}}\n")
+        lat_file.write("\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n")
+        lat_file.write(
+            "\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n"
+        )
+        lat_file.write(
+            "\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n"
+        )
 
         # first, write the inference rules as newcommand at top of .tex file
         for infrule_name, infrule_dict in dat["inference rules"].items():
@@ -1203,8 +1215,10 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
             for step_id, step_dict in dat["derivations"][name_of_derivation].items():
                 if step_dict["linear index"] == linear_indx:
                     # using the newcommand, populate the expression IDs
-                    if step_dict["inf rule"] not in dat['inference rules'].keys():
-                        raise Exception("inconsistent inference rule: ", step_dict["inf rule"])
+                    if step_dict["inf rule"] not in dat["inference rules"].keys():
+                        raise Exception(
+                            "inconsistent inference rule: ", step_dict["inf rule"]
+                        )
                     lat_file.write("\\" + step_dict["inf rule"].replace(" ", ""))
                     for expr_local_id in step_dict["feeds"]:
                         expr_global_id = dat["expr local to global"][expr_local_id]
@@ -1271,8 +1285,9 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
 
     shutil.move(pdf_filename + ".pdf", path_to_pdf + pdf_filename + ".pdf")
 
-    #return True, pdf_filename + ".pdf"
+    # return True, pdf_filename + ".pdf"
     return pdf_filename + ".pdf"
+
 
 def list_expr_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
@@ -1284,16 +1299,17 @@ def list_expr_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
 
     dat = clib.read_db(path_to_db)
     list_of_local_expr = []
-    for step_id, step_dict in dat['derivations'][name_of_derivation].items():
-        for connection_type in ['feeds', 'inputs', 'outputs']:
+    for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+        for connection_type in ["feeds", "inputs", "outputs"]:
             for local_expr in step_dict[connection_type]:
                 list_of_local_expr.append(local_expr)
     list_of_local_expr = list(set(list_of_local_expr))
     list_of_global_expr = []
     for local_expr in list_of_local_expr:
-        list_of_global_expr.append(dat['expr local to global'][local_expr])
-    #logger.debug('number of expr = %s', len(list_of_global_expr))
+        list_of_global_expr.append(dat["expr local to global"][local_expr])
+    # logger.debug('number of expr = %s', len(list_of_global_expr))
     return list_of_global_expr
+
 
 def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
@@ -1302,17 +1318,18 @@ def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     logger.info("[trace] edges_in_derivation")
     dat = clib.read_db(path_to_db)
     list_of_edges = []
-    for step_id, step_dict in dat['derivations'][name_of_derivation].items():
-        inf_rule = step_dict['inf rule'].replace(' ','_')
-        for local_expr in step_dict['inputs']:
-            list_of_edges.append((dat['expr local to global'][local_expr], step_id))
-        for local_expr in step_dict['feeds']:
-            list_of_edges.append((dat['expr local to global'][local_expr], step_id))
-        for local_expr in step_dict['outputs']:
-            list_of_edges.append((step_id, dat['expr local to global'][local_expr]))
+    for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+        inf_rule = step_dict["inf rule"].replace(" ", "_")
+        for local_expr in step_dict["inputs"]:
+            list_of_edges.append((dat["expr local to global"][local_expr], step_id))
+        for local_expr in step_dict["feeds"]:
+            list_of_edges.append((dat["expr local to global"][local_expr], step_id))
+        for local_expr in step_dict["outputs"]:
+            list_of_edges.append((step_id, dat["expr local to global"][local_expr]))
     list_of_edges = list(set(list_of_edges))
-    #logger.debug('number of edges = %s', len(list_of_edges))
+    # logger.debug('number of edges = %s', len(list_of_edges))
     return list_of_edges
+
 
 def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
     """
@@ -1335,25 +1352,38 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
     """
     logger.info("[trace] create_d3js_json")
 
-    d3js_json_filename = name_of_derivation.replace(' ','_') + '.json'
+    d3js_json_filename = name_of_derivation.replace(" ", "_") + ".json"
 
     dat = clib.read_db(path_to_db)
 
-    json_str =  "{\n"
-    json_str += "  \"nodes\": [\n"
+    json_str = "{\n"
+    json_str += '  "nodes": [\n'
     list_of_nodes = []
-    for step_id, step_dict in dat['derivations'][name_of_derivation].items():
-        png_name = step_dict["inf rule"].replace(' ','_')
+    for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+        png_name = step_dict["inf rule"].replace(" ", "_")
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
             create_png_from_latex(step_dict["inf rule"], png_name)
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
         # construct the node JSON content
-        list_of_nodes.append("    {\"id\": \"" + step_id +
-                     "\", \"group\": " + str(step_dict['linear index']) + ", " +
-                     "\"img\": \"/static/" + png_name + ".png\", " +
-                     "\"width\": " + str(image.shape[1]) + ", " +
-                     "\"height\": " + str(image.shape[0]) + ", " +
-                     "\"linear index\": " + str(step_dict['linear index']) + "},\n" )
+        list_of_nodes.append(
+            '    {"id": "'
+            + step_id
+            + '", "group": '
+            + str(step_dict["linear index"])
+            + ", "
+            + '"img": "/static/'
+            + png_name
+            + '.png", '
+            + '"width": '
+            + str(image.shape[1])
+            + ", "
+            + '"height": '
+            + str(image.shape[0])
+            + ", "
+            + '"linear index": '
+            + str(step_dict["linear index"])
+            + "},\n"
+        )
 
     list_of_expr = list_expr_in_derivation(name_of_derivation, path_to_db)
     for global_expr_id in list_of_expr:
@@ -1362,35 +1392,51 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
             create_png_from_latex(step_dict["inf rule"], png_name)
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
         # construct the node JSON content
-        list_of_nodes.append("    {\"id\": \"" + global_expr_id +
-                     "\", \"group\": 0, " +
-                     "\"img\": \"/static/" + png_name + ".png\", " +
-                     "\"width\": " + str(image.shape[1]) + ", " +
-                     "\"height\": " + str(image.shape[0]) + ", " +
-                     "\"linear index\": 0},\n" )
+        list_of_nodes.append(
+            '    {"id": "'
+            + global_expr_id
+            + '", "group": 0, '
+            + '"img": "/static/'
+            + png_name
+            + '.png", '
+            + '"width": '
+            + str(image.shape[1])
+            + ", "
+            + '"height": '
+            + str(image.shape[0])
+            + ", "
+            + '"linear index": 0},\n'
+        )
 
     list_of_nodes = list(set(list_of_nodes))
     all_nodes = "".join(list_of_nodes)
-    all_nodes=all_nodes[:-2]+"\n" # remove the trailing comma to be compliant with JSON
+    all_nodes = (
+        all_nodes[:-2] + "\n"
+    )  # remove the trailing comma to be compliant with JSON
     json_str += all_nodes
 
     json_str += "  ],\n"
-    json_str += "  \"links\": [\n"
+    json_str += '  "links": [\n'
 
     list_of_edges = edges_in_derivation(name_of_derivation, path_to_db)
     list_of_edge_str = []
     for edge_tuple in list_of_edges:
-        list_of_edge_str.append("    {\"source\": \"" + edge_tuple[0] +
-                                "\", \"target\": \"" + edge_tuple[1] + "\", \"value\": 1},\n")
+        list_of_edge_str.append(
+            '    {"source": "'
+            + edge_tuple[0]
+            + '", "target": "'
+            + edge_tuple[1]
+            + '", "value": 1},\n'
+        )
     list_of_edge_str = list(set(list_of_edge_str))
-    #logger.debug('number of edges = %s', len(list_of_edge_str))
+    # logger.debug('number of edges = %s', len(list_of_edge_str))
     all_edges = "".join(list_of_edge_str)
-    all_edges = all_edges[:-2]+"\n"
-    #logger.debug('all edges = %s', all_edges)
+    all_edges = all_edges[:-2] + "\n"
+    # logger.debug('all edges = %s', all_edges)
     json_str += all_edges
     json_str += "  ]\n"
     json_str += "}\n"
-    with open('/home/appuser/app/static/' + d3js_json_filename, 'w') as fil:
+    with open("/home/appuser/app/static/" + d3js_json_filename, "w") as fil:
         fil.write(json_str)
 
     return d3js_json_filename
@@ -1415,7 +1461,7 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
             write_step_to_graphviz_file(name_of_derivation, step_id, fil, path_to_db)
 
         fil.write("}\n")
-    output_filename = name_of_derivation.replace(' ','_') + ".png"
+    output_filename = name_of_derivation.replace(" ", "_") + ".png"
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
     #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
     process = subprocess.run(
@@ -1429,8 +1475,9 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
     # neato_stderr = neato_stderr.decode("utf-8")
 
     shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
-    #return True, "no invalid latex", output_filename
+    # return True, "no invalid latex", output_filename
     return output_filename
+
 
 def create_step_graphviz_png(
     name_of_derivation: str, local_step_id: str, path_to_db: str
@@ -1456,9 +1503,7 @@ def create_step_graphviz_png(
         fil.write('label="step in ' + name_of_derivation + '";\n')
         fil.write("fontsize=12;\n")
 
-        write_step_to_graphviz_file(
-            name_of_derivation, local_step_id, fil, path_to_db
-        )
+        write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_db)
         fil.write("}\n")
 
     #    with open(dot_filename,'r') as fil:
@@ -1481,8 +1526,9 @@ def create_step_graphviz_png(
     # neato_stderr = neato_stderr.decode("utf-8")
 
     shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
-    #return True, "no invalid latex", output_filename
+    # return True, "no invalid latex", output_filename
     return output_filename
+
 
 def create_png_from_latex(input_latex_str: str, png_name: str) -> Tuple[bool, str]:
     """
@@ -1495,8 +1541,8 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> Tuple[bool, st
 
     destination_folder = "/home/appuser/app/static/"
 
-    logger.debug('png_name = %s', png_name)
-    logger.debug('input latex str = %s', input_latex_str)
+    logger.debug("png_name = %s", png_name)
+    logger.debug("input latex str = %s", input_latex_str)
 
     tmp_file = "lat"
     remove_file_debris(["./"], [tmp_file], ["tex", "dvi", "aux", "log"])
@@ -1523,7 +1569,7 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> Tuple[bool, st
 
     if "Text line contains an invalid character" in latex_stdout:
         logging.warning("tex input contains invalid charcter")
-        shutil.copy( destination_folder + "error.png", destination_folder + png_name)
+        shutil.copy(destination_folder + "error.png", destination_folder + png_name)
         raise Exception("no png generated due to invalid character in tex input.")
     remove_file_debris(["./"], [tmp_file], ["png"])
 
@@ -1543,18 +1589,21 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> Tuple[bool, st
 
     if "No such file or directory" in png_stderr:
         logging.warning("PNG creation failed for %s", png_name)
-        shutil.copy( destination_folder + "error.png", destination_folder + png_name)
-        #return False, "no PNG created. Check usepackage in latex"
-        raise Exception("no PNG created for " + png_name + ". Check 'usepackage' in latex")
+        shutil.copy(destination_folder + "error.png", destination_folder + png_name)
+        # return False, "no PNG created. Check usepackage in latex"
+        raise Exception(
+            "no PNG created for " + png_name + ". Check 'usepackage' in latex"
+        )
 
-    shutil.move(tmp_file + ".png", destination_folder + png_name + '.png')
+    shutil.move(tmp_file + ".png", destination_folder + png_name + ".png")
 
-#    if os.path.isfile(destination_folder + png_name):
-        # os.remove('/home/appuser/app/static/'+name_of_png)
-#        logger.debug("[ERROR] create_png_from_latex: png already exists!")
+    #    if os.path.isfile(destination_folder + png_name):
+    # os.remove('/home/appuser/app/static/'+name_of_png)
+    #        logger.debug("[ERROR] create_png_from_latex: png already exists!")
 
-    #return True, "success"
+    # return True, "success"
     return
+
 
 # *********************************************************
 # data structure transformations
@@ -1707,6 +1756,35 @@ def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str)
 
 def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
     """
+    http://asciiflow.com/
+    suppose there is a step that has the following
+
+                                   +--------------------+    +------------+
+                       +---------> | old global expr ID |--->+ old latex  |
+                       |           +--------------------+    +------------+
+               +-------+-------+
+        +----->+ expr local ID |
+        |      +---------------+
+    +---+-----+
+    | step ID |
+    +---+-----+
+        |      +---------------+
+        +----->+ inf rule name |
+               +---------------+
+
+    after the change, we have
+
+               +---------------+
+        +----->+ expr local ID |
+        |      +-------+-------+
+    +---+-----+        |            +--------------------+  +-----------+
+    | step ID |        +----------->+ new global expr ID |  | new latex |
+    +---+-----+                     +--------------------+  +-----------+
+        |      +---------------+
+        +----->+ inf rule name |
+               +---------------+
+
+
     >>> edit_expr_latex()
     """
     logger.info("[trace] edit_expr_latex")
@@ -1871,6 +1949,7 @@ def create_step(
 
     return inf_rule_local_ID
 
+
 def determine_derivation_validity(name_of_derivation: str, path_to_db: str) -> dict:
     """
     >>>
@@ -1886,11 +1965,13 @@ def determine_derivation_validity(name_of_derivation: str, path_to_db: str) -> d
         step_validity_dict[step_id] = vir.validate_step(
             name_of_derivation, step_id, path_to_db
         )
-    logger.debug('type step = %s', type(step_validity_dict))
+    logger.debug("type step = %s", type(step_validity_dict))
     return step_validity_dict
 
 
-def determine_step_validity(step_id: str, name_of_derivation: str, path_to_db: str) -> dict:
+def determine_step_validity(
+    step_id: str, name_of_derivation: str, path_to_db: str
+) -> dict:
     """
     >>>
     """
@@ -1905,5 +1986,6 @@ def determine_step_validity(step_id: str, name_of_derivation: str, path_to_db: s
         raise Exception("dat does not contain " + step_id + " in " + name_of_derivation)
 
     return vir.validate_step(name_of_derivation, step_id, path_to_db)
+
 
 # EOF
