@@ -11,7 +11,7 @@
 # reason: when content is passed to flash() that cannot be serialized, the Flask error and the website crashes
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
-from redis import Redis
+#from redis import Redis
 # https://pypi.org/project/rejson/
 #from rejson import Client, Path
 
@@ -54,7 +54,7 @@ app.config[
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
 #rd = Redis(host='db', port=6379)
-clib.connect_redis()
+#clib.connect_redis()
 # https://pypi.org/project/rejson/
 #rj = Client(host='db', port=6379, decode_responses=True)
 
@@ -210,11 +210,11 @@ def after_request(response):
             b'__EXECUTION_TIME__', bytes(str(diff), 'utf-8')))
     return response
 
-@app.route('/db')
-def db():
-    redis.incr('hits')
-    logger.info("[trace] db")
-    return 'This counter has been viewed',str(redis.get('hits')),'times.'
+#@app.route('/db')
+#def db():
+#    redis.incr('hits')
+#    logger.info("[trace] db")
+#    return 'This counter has been viewed',str(redis.get('hits')),'times.'
 
 
 @app.route("/index", methods=["GET", "POST"])
