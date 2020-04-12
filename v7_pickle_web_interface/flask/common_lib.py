@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 
+# a short-lived experiment in use of redis
 # from redis import Redis
+
+# https://docs.python.org/3/library/sqlite3.html
+import sqlite3
+
+# https://docs.python.org/3/library/json.html
 import json
 import json_schema  # a PDG file
 from jsonschema import validate  # type: ignore
@@ -23,6 +29,19 @@ logger = logging.getLogger(__name__)
 #    redis_pool = redis.ConnectionPool(host='db', port=6379, db=0)
 
 
+def create_sql_connection(db_file):
+    if os.path.exists(db_file):
+        try:
+            return sqlite3.connect(db_file)
+        except sqlite3.Error:
+            logger.error(str(sqlite3.Error))
+            raise Exception(str(sqlite3.Error))
+    else:
+        logger.info(db_file + " does not seem to exist; creating it")
+        return sqlite3.connect(db_file)
+    return None
+
+
 def read_db(path_to_db: str) -> dict:
     """
     >>> read_db('data.json')
@@ -33,9 +52,9 @@ def read_db(path_to_db: str) -> dict:
     #    with open(path_to_db, 'rb') as fil:
     #        dat = pickle.load(fil)
 
-    # implementation until 20200408
-    with open(path_to_db) as json_file:
-        dat = json.load(json_file)
+    # implementation until 20200408, then again from 20200411 to 20200412
+    #    with open(path_to_db) as json_file:
+    #        dat = json.load(json_file)
 
     #    # as of 20200408 to 20200411
     #    # note: the name of the file on disk is also the redis key name
@@ -48,6 +67,19 @@ def read_db(path_to_db: str) -> dict:
     #            rd.set(name=path_to_db, value=json_file.read()) # store string in Redis
     #            dat = json.load(json_file) # load the content into a variable
 
+    # as of 20200412 to present
+    logger.info(sqlite3.version)
+
+    conn = create_sql_connection(path_to_db)
+    if conn is not None:
+        cur = conn.cursor()
+    else:
+        raise Exception("no connection to sql database")
+
+    for row in cur.execute("SELECT * FROM data"):
+        dat = json.loads(row[0])
+    conn.close()
+
     validate(instance=dat, schema=json_schema.schema)
 
     return dat
@@ -56,7 +88,6 @@ def read_db(path_to_db: str) -> dict:
 def write_db(path_to_db: str, dat: dict) -> None:
     """
     >>> dat = {}
-    >>> print_trace = False
     >>> write_db('data.json', dat)
     [trace] compute: write_db
     """
@@ -66,15 +97,52 @@ def write_db(path_to_db: str, dat: dict) -> None:
     #    with open(path_to_db, 'wb') as fil:
     #        pickle.dump(dat, fil)
 
-    # implementation until 20200408:
-    with open(path_to_db, "w") as outfile:
-        # http://sam.gleske.net/blog/engineering/2017/10/21/python-json-pretty-dump.html
-        json.dump(dat, outfile, indent=4, separators=(",", ": "))  # , sort_keys=True)
+    # implementation until 20200408, then again 20200411 to 20200412:
+    #    with open(path_to_db, "w") as outfile:
+    #        # http://sam.gleske.net/blog/engineering/2017/10/21/python-json-pretty-dump.html
+    #        json.dump(dat, outfile, indent=4, separators=(",", ": "))  # , sort_keys=True)
 
-    #    # as of 20200408
+    #    # as of 20200408 to 20200411
     #    rd = redis.Redis(connection_pool=redis_pool)
     #    rd.set(name=path_to_db, value=json.dumps(dat))
 
+    logger.info(sqlite3.version)
+
+    conn = create_sql_connection(path_to_db)
+    if conn is not None:
+        cur = conn.cursor()
+    else:
+        raise Exception("no connection to sql database")
+
+    try:
+        cur.execute("""drop table data""")
+        logger.debug("deleted table from sql")
+    except sqlite3.OperationalError as err:
+        logger.error('Unable to drop "data"; ' + err)
+
+    # table "data" with column "entry"
+    cur.execute("""CREATE TABLE data ("entry TEXT NOT NULL")""")
+
+    # https://devopsheaven.com/sqlite/databases/json/python/api/2017/10/11/sqlite-json-data-python.html
+    # https://stackoverflow.com/a/16856730/1164295
+    cur.execute("INSERT INTO data VALUES (?)", (json.dumps(dat),))
+    # according to https://www.sqlite.org/limits.html
+    # max input size defaults to 1,000,000,000 or about 1 GB of data (!)
+
+    conn.commit()
+    conn.close()
+
+    return
+
+
+def json_to_sql(path_to_json: str, path_to_sql: str) -> None:
+    """
+    >>> 
+    """
+    with open(path_to_json) as json_file:
+        dat = json.load(json_file)
+
+    write_db(path_to_sql, dat)
     return
 
 

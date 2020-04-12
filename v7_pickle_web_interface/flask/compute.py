@@ -17,9 +17,9 @@ from functools import wraps
 import errno
 import signal
 import os
-import shutil # move and copy files
+import shutil  # move and copy files
 import datetime
-import cv2 # image dimensions in pixels
+import cv2  # image dimensions in pixels
 from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
 import subprocess  # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
@@ -29,9 +29,9 @@ import sqlite3
 import pickle
 from jsonschema import validate  # type: ignore
 import json_schema  # a PDG file
-import validate_inference_rules_sympy as vir # a PDG file
-import common_lib as clib # a PDG file
-from typing import Tuple, TextIO # mypy
+import validate_inference_rules_sympy as vir  # a PDG file
+import common_lib as clib  # a PDG file
+from typing import Tuple, TextIO  # mypy
 from typing_extensions import (
     TypedDict,
 )  # https://mypy.readthedocs.io/en/stable/more_types.html
@@ -114,8 +114,7 @@ def validate_json_file(filename: str) -> None:
         try:
             candidate_dat = json.load(json_file)
         except json.decoder.JSONDecodeError as er:
-            logger.error(
-                "ERROR in JSON schema compliance: %s", er)
+            logger.error("ERROR in JSON schema compliance: %s", er)
             # return False
             raise Exception("uploaded file does not appear to be JSON; ignoring file")
     # now we know the file is actually JSON
@@ -559,6 +558,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         fil.write(cypher_str)
     return cypher_file
 
+
 def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
     """
     >>> 
@@ -570,6 +570,7 @@ def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
             list_of_symbols_not_in_use.append(symbol)
     list_of_symbols_not_in_use.sort()
     return list_of_symbols_not_in_use
+
 
 def get_sorted_list_of_operators_not_in_use(path_to_db: str) -> list:
     """
@@ -583,6 +584,7 @@ def get_sorted_list_of_operators_not_in_use(path_to_db: str) -> list:
     list_of_operators_not_in_use.sort()
     return list_of_operators_not_in_use
 
+
 def get_sorted_list_of_expr(path_to_db: str) -> list:
     """
     return: list of global IDs
@@ -594,6 +596,7 @@ def get_sorted_list_of_expr(path_to_db: str) -> list:
     list_expr = list(dat["expressions"].keys())
     list_expr.sort()
     return list_expr
+
 
 def get_sorted_list_of_expr_not_in_use(path_to_db: str) -> list:
     """
@@ -611,6 +614,7 @@ def get_sorted_list_of_expr_not_in_use(path_to_db: str) -> list:
     list_of_expr_not_in_use.sort()
     return list_of_expr_not_in_use
 
+
 def get_sorted_list_of_inf_rules_not_in_use(path_to_db: str) -> list:
     """
     >>> get_sorted_list_of_inf_rules('data.pkl')
@@ -624,6 +628,7 @@ def get_sorted_list_of_inf_rules_not_in_use(path_to_db: str) -> list:
             list_of_infrules_not_in_use.append(infrule)
     list_of_infrules_not_in_use.sort()
     return list_of_infrules_not_in_use
+
 
 def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     """
@@ -1289,10 +1294,12 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
                     # using the newcommand, populate the expression IDs
                     if step_dict["inf rule"] not in dat["inference rules"].keys():
                         logger.error(
-                            "inference rule in step is not in dat['inference rules']: ", step_dict["inf rule"]
+                            "inference rule in step is not in dat['inference rules']: ",
+                            step_dict["inf rule"],
                         )
                         raise Exception(
-                            "inference rule in step is not in dat['inference rules']: ", step_dict["inf rule"]
+                            "inference rule in step is not in dat['inference rules']: ",
+                            step_dict["inf rule"],
                         )
                     lat_file.write("\\" + step_dict["inf rule"].replace(" ", ""))
                     for expr_local_id in step_dict["feeds"]:
@@ -1836,6 +1843,7 @@ def rename_inf_rule(
     clib.write_db(path_to_db, dat)
     return status_msg
 
+
 def edit_operator_latex(operator: str, revised_latex: str, path_to_db: str) -> str:
     """
     >>> edit_operator_latex()
@@ -1843,13 +1851,14 @@ def edit_operator_latex(operator: str, revised_latex: str, path_to_db: str) -> s
     logger.info("[trace] edit_operator_latex")
     dat = clib.read_db(path_to_db)
     status_msg = ""
-    if operator in dat['operators'].keys():
-        dat['operators'][operator]['latex'] = revised_latex
+    if operator in dat["operators"].keys():
+        dat["operators"][operator]["latex"] = revised_latex
         status_msg = operator + "updated"
     else:
         status_msg = operator + " does not exist in database"
     clib.write_db(path_to_db, dat)
     return status_msg
+
 
 def edit_symbol_latex(symbol: str, revised_latex: str, path_to_db: str) -> str:
     """
@@ -1858,8 +1867,8 @@ def edit_symbol_latex(symbol: str, revised_latex: str, path_to_db: str) -> str:
     logger.info("[trace] edit_symbol_latex")
     dat = clib.read_db(path_to_db)
     status_msg = ""
-    if symbol in dat['symbols'].keys():
-        dat['symbols'][symbol]['latex'] = revised_text
+    if symbol in dat["symbols"].keys():
+        dat["symbols"][symbol]["latex"] = revised_text
         status_msg = symbol + " updated"
     else:
         status_msg = symbol + " does not exist in database"
@@ -1923,41 +1932,52 @@ def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
         dat["expressions"][expr_id]["latex"] = revised_latex
         status_msg = expr_id + " updated"
     else:
-        status_msg = expr_id + ' not in database'
+        status_msg = expr_id + " not in database"
     clib.write_db(path_to_db, dat)
     return status_msg
+
 
 def delete_symbol(symbol_to_delete: str, path_to_db: str) -> str:
     """
     >>> delete_symbol()
     """
-    logger.info('[trace] delete_symbol')
+    logger.info("[trace] delete_symbol")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     symbol_popularity_dict = popularity_of_symbols(path_to_db)
     if len(symbol_popularity_dict[symbol_to_delete]) > 0:
-        status_msg = symbol_to_delete + " cannot be deleted because it is in use in " + str(symbol_popularity_dict[symbol_to_delete])
+        status_msg = (
+            symbol_to_delete
+            + " cannot be deleted because it is in use in "
+            + str(symbol_popularity_dict[symbol_to_delete])
+        )
     else:
-        del dat['symbols'][symbol_to_delete]
+        del dat["symbols"][symbol_to_delete]
         status_message = "successfully deleted " + symbol_to_delete
     clib.write_db(path_to_db, dat)
     return status_msg
+
 
 def delete_operator(operator_to_delete: str, path_to_db: str) -> str:
     """
     >>> delete_operator()
     """
-    logger.info('[trace] delete_operator')
+    logger.info("[trace] delete_operator")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     operator_popularity_dict = popularity_of_operators(path_to_db)
     if len(operator_popularity_dict[operator_to_delete]) > 0:
-        status_msg = operator_to_delete + " cannot be deleted because it is in use in " + str(operator_popularity_dict[symbol_to_delete])
+        status_msg = (
+            operator_to_delete
+            + " cannot be deleted because it is in use in "
+            + str(operator_popularity_dict[symbol_to_delete])
+        )
     else:
-        del dat['symbols'][operator_to_delete]
+        del dat["symbols"][operator_to_delete]
         status_message = "successfully deleted " + operator_to_delete
     clib.write_db(path_to_db, dat)
     return status_msg
+
 
 def delete_expr(expr_global_id: str, path_to_db: str) -> str:
     """

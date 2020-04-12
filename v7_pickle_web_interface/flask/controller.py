@@ -286,25 +286,27 @@ def after_request(response):
     return response
 
 
-@app.route('/api/v1/resources/derivations/all', methods=['GET'])
+@app.route("/api/v1/resources/derivations/all", methods=["GET"])
 def api_all_derivations():
     """
     return the entire "derivations" dict
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(dat['derivations'])
+    return jsonify(dat["derivations"])
 
-@app.route('/api/v1/resources/derivations/list', methods=['GET'])
+
+@app.route("/api/v1/resources/derivations/list", methods=["GET"])
 def api_list_derivations():
     """
     list derivation names
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(list(dat['derivations'].keys()))
+    return jsonify(list(dat["derivations"].keys()))
 
-@app.route('/api/v1/resources/derivations', methods=['GET'])
+
+@app.route("/api/v1/resources/derivations", methods=["GET"])
 def api_read_derivation_by_name():
     """
     return a single derivation
@@ -315,17 +317,22 @@ def api_read_derivation_by_name():
     >>>
     """
     dat = clib.read_db("data.json")
-    if 'name' in request.args:
-        name = str(request.args['name'])
+    if "name" in request.args:
+        name = str(request.args["name"])
     else:
         return "Error: No name field provided. Please specify a derivation name."
-    if name in dat['derivations'].keys():
-        return jsonify(dat['derivations'][name])
+    if name in dat["derivations"].keys():
+        return jsonify(dat["derivations"][name])
     else:
-        return "Error: derivation with name "+name+" not found in derivations; see derivations/list"
+        return (
+            "Error: derivation with name "
+            + name
+            + " not found in derivations; see derivations/list"
+        )
 
-#@app.route('/api/v1/resources/derivations/create', methods=['POST'])
-#def api_new_derivation():
+
+# @app.route('/api/v1/resources/derivations/create', methods=['POST'])
+# def api_new_derivation():
 #    """
 #    /api/v1/resources/derivations/create?name=a%20new%20deriv
 #    """
@@ -340,25 +347,28 @@ def api_read_derivation_by_name():
 #        dat['derivations'][name] = {}
 #        return "new derivation "+name+" created"
 
-@app.route('/api/v1/resources/expressions/all', methods=['GET'])
+
+@app.route("/api/v1/resources/expressions/all", methods=["GET"])
 def api_all_expressions():
     """
     return the entire "expressions" dict
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(dat['expressions'])
+    return jsonify(dat["expressions"])
 
-@app.route('/api/v1/resources/expressions/list', methods=['GET'])
+
+@app.route("/api/v1/resources/expressions/list", methods=["GET"])
 def api_list_expressions():
     """
     list the expression global IDs
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(list(dat['expressions'].keys()))
+    return jsonify(list(dat["expressions"].keys()))
 
-@app.route('/api/v1/resources/expressions', methods=['GET'])
+
+@app.route("/api/v1/resources/expressions", methods=["GET"])
 def api_read_expression_by_id():
     """
     return a single expression
@@ -369,150 +379,167 @@ def api_read_expression_by_id():
     >>>
     """
     dat = clib.read_db("data.json")
-    if 'global_id' in request.args:
-        global_id = str(request.args['global_id'])
+    if "global_id" in request.args:
+        global_id = str(request.args["global_id"])
     else:
         return "Error: No global_id field provided. Please specify a global_id for the expression."
-    if global_id in dat['expressions'].keys():
-        return jsonify(dat['expressions'][global_id])
+    if global_id in dat["expressions"].keys():
+        return jsonify(dat["expressions"][global_id])
     else:
-        return "Error: expression with global_id "+global_id+" not found see expressions/list"
+        return (
+            "Error: expression with global_id "
+            + global_id
+            + " not found see expressions/list"
+        )
 
-@app.route('/api/v1/resources/infrules/all', methods=['GET'])
+
+@app.route("/api/v1/resources/infrules/all", methods=["GET"])
 def api_all_infrules():
     """
     /api/v1/resources/infrules/all
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(dat['inference rules'])
+    return jsonify(dat["inference rules"])
 
-@app.route('/api/v1/resources/infrules/list', methods=['GET'])
+
+@app.route("/api/v1/resources/infrules/list", methods=["GET"])
 def api_list_infrules():
     """
     /api/v1/resources/infrules/list
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(dat['inference rules'].keys())
+    return jsonify(dat["inference rules"].keys())
 
-@app.route('/api/v1/resources/infrules', methods=['GET'])
+
+@app.route("/api/v1/resources/infrules", methods=["GET"])
 def api_infrules_by_name():
     """
     /api/v1/resources/infrules?name=add%20zero%20to%20LHS
     >>>
     """
     dat = clib.read_db("data.json")
-    if 'name' in request.args:
-        name = str(request.args['name'])
+    if "name" in request.args:
+        name = str(request.args["name"])
     else:
         return "Error: no name field provided. Please specify a name for the inference rule."
-    if name in dat['inference rules'].keys():
-        return jsonify(dat['inference rules'][name])
+    if name in dat["inference rules"].keys():
+        return jsonify(dat["inference rules"][name])
     else:
-        return "Error: expression with name "+name+" not found; see infrules/list"
+        return "Error: expression with name " + name + " not found; see infrules/list"
 
-@app.route('/api/v1/resources/local_to_global/all', methods=['GET'])
+
+@app.route("/api/v1/resources/local_to_global/all", methods=["GET"])
 def api_all_local_to_global():
     """
     /api/v1/resources/local_to_global/all
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(dat['expr local to global'])
+    return jsonify(dat["expr local to global"])
 
-@app.route('/api/v1/resources/local_to_global/list', methods=['GET'])
+
+@app.route("/api/v1/resources/local_to_global/list", methods=["GET"])
 def api_list_local():
     """
     /api/v1/resources/local_to_global/list
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(list(dat['expr local to global'].keys()))
+    return jsonify(list(dat["expr local to global"].keys()))
 
-@app.route('/api/v1/resources/local_to_global', methods=['GET'])
+
+@app.route("/api/v1/resources/local_to_global", methods=["GET"])
 def api_local_to_global():
     """
     /api/v1/resources/local_to_global?local_id=8837284
     >>>
     """
     dat = clib.read_db("data.json")
-    if 'local_id' in request.args:
-        local_id = str(request.args['local_id'])
+    if "local_id" in request.args:
+        local_id = str(request.args["local_id"])
     else:
         return "Error: No local_id field provided. Please specify a local_id."
-    if local_id in dat['expr local to global'].keys():
-        return jsonify(dat['expr local to global'][local_id])
+    if local_id in dat["expr local to global"].keys():
+        return jsonify(dat["expr local to global"][local_id])
     else:
-        return "Error: local_id "+local_id+" not found see local_to_global/list"
+        return "Error: local_id " + local_id + " not found see local_to_global/list"
 
-@app.route('/api/v1/resources/symbols/all', methods=['GET'])
+
+@app.route("/api/v1/resources/symbols/all", methods=["GET"])
 def api_all_symbols():
     """
     /api/v1/resources/symbols/all
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(dat['symbols'])
+    return jsonify(dat["symbols"])
 
-@app.route('/api/v1/resources/symbols/list', methods=['GET'])
+
+@app.route("/api/v1/resources/symbols/list", methods=["GET"])
 def api_list_symbols():
     """
     /api/v1/resources/symbols/list
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(list(dat['symbols'].keys()))
+    return jsonify(list(dat["symbols"].keys()))
 
-@app.route('/api/v1/resources/symbols', methods=['GET'])
+
+@app.route("/api/v1/resources/symbols", methods=["GET"])
 def api_symbols_by_name():
     """
     /api/v1/resources/symbols?symbol_id=1223
     >>>
     """
     dat = clib.read_db("data.json")
-    if 'symbol_id' in request.args:
-        symbol_id = str(request.args['symbol_id'])
+    if "symbol_id" in request.args:
+        symbol_id = str(request.args["symbol_id"])
     else:
         return "Error: No symbol_id field provided. Please specify a symbol_id."
-    if symbol_id in dat['symbols'].keys():
-        return jsonify(dat['symbols'][symbol_id])
+    if symbol_id in dat["symbols"].keys():
+        return jsonify(dat["symbols"][symbol_id])
     else:
-        return "Error: symbol_id "+symbol_id+" not found see symbols/list"
+        return "Error: symbol_id " + symbol_id + " not found see symbols/list"
 
-@app.route('/api/v1/resources/operators/all', methods=['GET'])
+
+@app.route("/api/v1/resources/operators/all", methods=["GET"])
 def api_all_operators():
     """
     /api/v1/resources/operators/all
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(dat['symbols'])
+    return jsonify(dat["symbols"])
 
-@app.route('/api/v1/resources/operators/list', methods=['GET'])
+
+@app.route("/api/v1/resources/operators/list", methods=["GET"])
 def api_list_operators():
     """
     /api/v1/resources/operators/list
     >>>
     """
     dat = clib.read_db("data.json")
-    return jsonify(list(dat['operators'].keys()))
+    return jsonify(list(dat["operators"].keys()))
 
-@app.route('/api/v1/resources/operators', methods=['GET'])
+
+@app.route("/api/v1/resources/operators", methods=["GET"])
 def api_operators_by_name():
     """
     /api/v1/resources/operators?operator_id=equals
     >>>
     """
     dat = clib.read_db("data.json")
-    if 'operator_id' in request.args:
-        operator_id = str(request.args['operator_id'])
+    if "operator_id" in request.args:
+        operator_id = str(request.args["operator_id"])
     else:
         return "Error: No operator_id field provided. Please specify a operator_id."
-    if symbol_id in dat['operators'].keys():
-        return jsonify(dat['operators'][operator_id])
+    if symbol_id in dat["operators"].keys():
+        return jsonify(dat["operators"][operator_id])
     else:
-        return "Error: operator_id "+operator_id+" not found see symbols/list"
+        return "Error: operator_id " + operator_id + " not found see symbols/list"
+
 
 # @app.route('/db')
 # def db():
@@ -715,13 +742,17 @@ def list_all_operators():
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
         # request.form = ImmutableMultiDict([('delete_operator', 'indefinite intergral')])
-        if 'delete_operator' in request.form.keys():
-            compute.delete_operator(request.form['delete_operator'], 'data.json')
-        elif 'edit_operator_latex' in request.form.keys():
-            compute.edit_operator_latex(request.form['edit_operator_latex'], request.form['revised_text'], 'data.json')
+        if "delete_operator" in request.form.keys():
+            compute.delete_operator(request.form["delete_operator"], "data.json")
+        elif "edit_operator_latex" in request.form.keys():
+            compute.edit_operator_latex(
+                request.form["edit_operator_latex"],
+                request.form["revised_text"],
+                "data.json",
+            )
         else:
-            logger.error('unrecognized option')
-            flash('unrecognized option')
+            logger.error("unrecognized option")
+            flash("unrecognized option")
 
     dat = clib.read_db("data.json")
     try:
@@ -731,10 +762,11 @@ def list_all_operators():
         logger.warning(err)
         operator_popularity_dict = {}
 
-    sorted_list_operators = list(dat['operators'].keys())
+    sorted_list_operators = list(dat["operators"].keys())
     sorted_list_operators.sort()
-    sorted_list_operators_not_in_use = compute.get_sorted_list_of_operators_not_in_use('data.json')
-
+    sorted_list_operators_not_in_use = compute.get_sorted_list_of_operators_not_in_use(
+        "data.json"
+    )
 
     return render_template(
         "list_all_operators.html",
@@ -752,14 +784,18 @@ def list_all_symbols():
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
-        if 'delete_symbol' in request.form.keys():
-            compute.delete_symbol(request.form['delete_symbol'], 'data.json')
-        elif 'edit_symbol_latex' in request.form.keys():
+        if "delete_symbol" in request.form.keys():
+            compute.delete_symbol(request.form["delete_symbol"], "data.json")
+        elif "edit_symbol_latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_symbol_latex', '1245'), ('revised_text', 'asfgasg')])
-            compute.edit_symbol_latex(request.form['edit_symbol_latex'], request.form['revised_text'], 'data.json')
+            compute.edit_symbol_latex(
+                request.form["edit_symbol_latex"],
+                request.form["revised_text"],
+                "data.json",
+            )
         else:
-            logger.error('unrecognized option')
-            flash('unrecognized option')
+            logger.error("unrecognized option")
+            flash("unrecognized option")
 
     dat = clib.read_db("data.json")
     try:
@@ -769,9 +805,11 @@ def list_all_symbols():
         logger.warning(err)
         symbol_popularity_dict = {}
 
-    sorted_list_symbols = list(dat['symbols'].keys())
+    sorted_list_symbols = list(dat["symbols"].keys())
     sorted_list_symbols.sort()
-    sorted_list_symbols_not_in_use = compute.get_sorted_list_of_symbols_not_in_use('data.json')
+    sorted_list_symbols_not_in_use = compute.get_sorted_list_of_symbols_not_in_use(
+        "data.json"
+    )
 
     return render_template(
         "list_all_symbols.html",
@@ -933,7 +971,9 @@ def list_all_inference_rules():
         infrules_modified_latex_dict[infrule_name] = infrule_dict
 
     try:
-        sorted_list_infrules = compute.get_sorted_list_of_inf_rules_not_in_use("data.json")
+        sorted_list_infrules = compute.get_sorted_list_of_inf_rules_not_in_use(
+            "data.json"
+        )
     except Exception as err:
         flash(str(err))
         logging.warning(err)
@@ -989,7 +1029,9 @@ def select_derivation_step_to_edit(name_of_derivation: str):
         # request.form = ImmutableMultiDict([('step_to_delete', '0491182')])
         step_to_delete = request.form["step_to_delete"]
         try:
-            compute.delete_step_from_derivation(name_of_derivation, step_to_delete, 'data.json')
+            compute.delete_step_from_derivation(
+                name_of_derivation, step_to_delete, "data.json"
+            )
         except Exception as err:
             logger.warning(err)
             flash(str(err))
@@ -1152,7 +1194,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         except Exception as err:
             flash(str(err))
             logger.warning(err)
-            local_step_id = '0'
+            local_step_id = "0"
         logger.debug(
             "local_step_id = %s", local_step_id,
         )
@@ -1379,11 +1421,8 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
             flash(str(msg))
             return redirect(url_for("index"))
         else:
-            flash(
-                "[ERROR]  unrecognized button:"
-                + str(request.form)
-            )
-            logger.error('unrecognized button')
+            flash("[ERROR]  unrecognized button:" + str(request.form))
+            logger.error("unrecognized button")
 
     try:
         derivation_png = compute.create_derivation_png(name_of_derivation, "data.json")
@@ -1485,11 +1524,8 @@ def modify_step(name_of_derivation: str, step_id: str):
             )
 
         else:
-            flash(
-                "[ERROR] unrecognized button:"
-                + str(request.form)
-            )
-            logger.error('unrecognized button')
+            flash("[ERROR] unrecognized button:" + str(request.form))
+            logger.error("unrecognized button")
 
     return render_template(
         "modify_step.html",
@@ -1520,7 +1556,7 @@ if __name__ == "__main__":
     except Exception as err:
         flash(str(err))
         logger.warning(err)
-        session_id = '0'
+        session_id = "0"
     app.run(debug=True, host="0.0.0.0")
 
 # EOF
