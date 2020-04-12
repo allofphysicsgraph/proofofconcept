@@ -31,14 +31,19 @@ results in no visualization and no error message in javascript console
 <P><a href="{{ url_for('static', filename=pdf_filename) }}">PDF of derivation</a></P>
 {% endif %}
 
-<P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
+<P>
+  <a href="{{ url_for('static', filename=name_of_graphviz_png) }}">
+    <img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
+  </a>
+</P>
 
 <P>
 {% include '_table_of_derivation_steps.html' %}
+</P>
 
 <P>
 {% include '_table_of_expressions.html' %}
-
+</P>
 
 <script src="{{ url_for('static', filename='d3.min.js') }}"></script>
 <!--

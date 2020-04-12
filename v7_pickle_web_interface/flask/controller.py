@@ -13,22 +13,26 @@
 # convention: every "raise Exception" should be proceeded by a corresponding "logger.error()"
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
-#from redis import Redis
+# from redis import Redis
 # https://pypi.org/project/rejson/
-#from rejson import Client, Path
+# from rejson import Client, Path
 
 import os
 import json
 import shutil
+
 # https://docs.python.org/3/howto/logging.html
 import logging
+
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 from flask import Flask, redirect, render_template, request, url_for, flash
 import time
+
 # https://gist.github.com/lost-theory/4521102
 from flask import g
 from werkzeug.utils import secure_filename
 from wtforms import Form, StringField, validators, FieldList, FormField, IntegerField, RadioField  # type: ignore
+
 # https://json-schema.org/
 from jsonschema import validate  # type: ignore
 from config import (
@@ -40,7 +44,7 @@ import json_schema  # PDG
 import compute  # PDG
 import validate_inference_rules_sympy as vir  # PDG
 
-#global proc_timeout
+# global proc_timeout
 proc_timeout = 30
 
 app = Flask(__name__, static_folder="static")
@@ -55,10 +59,10 @@ app.config[
 ] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
-#rd = Redis(host='db', port=6379)
-#clib.connect_redis()
+# rd = Redis(host='db', port=6379)
+# clib.connect_redis()
 # https://pypi.org/project/rejson/
-#rj = Client(host='db', port=6379, decode_responses=True)
+# rj = Client(host='db', port=6379, decode_responses=True)
 
 
 if __name__ == "__main__":
@@ -83,6 +87,7 @@ if __name__ != "__main__":
     app.logger.handlers = gunicorn_logger.handlers
     app.logger.setLevel(gunicorn_logger.level)
     logger = app.logger
+
 
 class EquationInputForm(Form):
     logger.info("[trace] class = EquationInputForm")
@@ -142,42 +147,72 @@ class LatexIO(Form):
     feed1 = StringField("feed LaTeX 1", validators=[validators.InputRequired()])
     feed2 = StringField("feed LaTeX 2", validators=[validators.InputRequired()])
     feed3 = StringField("feed LaTeX 3", validators=[validators.InputRequired()])
-    input1 = StringField("input LaTeX 1")#, validators=[validators.InputRequired()])
-    input1_radio = RadioField('Label', 
-                              choices=[('latex','use Latex'),
-                                       ('local','use local ID'),
-                                       ('global','use global ID')], 
-                              default='latex')#, validators=[validators.InputRequired()])
-    input2 = StringField("input LaTeX 2")#, validators=[validators.InputRequired()])
-    input2_radio = RadioField('Label',
-                              choices=[('latex','use Latex'),
-                                       ('local','use local ID'),
-                                       ('global','use global ID')],
-                              default='latex')#, validators=[validators.InputRequired()]) 
-    input3 = StringField("input LaTeX 3")#, validators=[validators.InputRequired()])
-    input3_radio = RadioField('Label', 
-                              choices=[('latex','use Latex'),
-                                       ('local','use local ID'),
-                                       ('global','use global ID')],
-                              default='latex')#, validators=[validators.InputRequired()])
-    output1 = StringField("output LaTeX 1")#, validators=[validators.InputRequired()])
-    output1_radio = RadioField('Label', 
-                              choices=[('latex','use Latex'),
-                                       ('local','use local ID'),
-                                       ('global','use global ID')],
-                              default='latex')#, validators=[validators.InputRequired()])
-    output2 = StringField("output LaTeX 2")#, validators=[validators.InputRequired()])
-    output2_radio = RadioField('Label', 
-                              choices=[('latex','use Latex'),
-                                       ('local','use local ID'),
-                                       ('global','use global ID')],
-                              default='latex')#, validators=[validators.InputRequired()])
-    output3 = StringField("output LaTeX 3")#, validators=[validators.InputRequired()])
-    output3_radio = RadioField('Label',
-                              choices=[('latex','use Latex'),
-                                       ('local','use local ID'),
-                                       ('global','use global ID')],
-                              default='latex')#, validators=[validators.InputRequired()])
+    input1 = StringField("input LaTeX 1")  # , validators=[validators.InputRequired()])
+    input1_radio = RadioField(
+        "Label",
+        choices=[
+            ("latex", "use Latex"),
+            ("local", "use local ID"),
+            ("global", "use global ID"),
+        ],
+        default="latex",
+    )  # , validators=[validators.InputRequired()])
+    input2 = StringField("input LaTeX 2")  # , validators=[validators.InputRequired()])
+    input2_radio = RadioField(
+        "Label",
+        choices=[
+            ("latex", "use Latex"),
+            ("local", "use local ID"),
+            ("global", "use global ID"),
+        ],
+        default="latex",
+    )  # , validators=[validators.InputRequired()])
+    input3 = StringField("input LaTeX 3")  # , validators=[validators.InputRequired()])
+    input3_radio = RadioField(
+        "Label",
+        choices=[
+            ("latex", "use Latex"),
+            ("local", "use local ID"),
+            ("global", "use global ID"),
+        ],
+        default="latex",
+    )  # , validators=[validators.InputRequired()])
+    output1 = StringField(
+        "output LaTeX 1"
+    )  # , validators=[validators.InputRequired()])
+    output1_radio = RadioField(
+        "Label",
+        choices=[
+            ("latex", "use Latex"),
+            ("local", "use local ID"),
+            ("global", "use global ID"),
+        ],
+        default="latex",
+    )  # , validators=[validators.InputRequired()])
+    output2 = StringField(
+        "output LaTeX 2"
+    )  # , validators=[validators.InputRequired()])
+    output2_radio = RadioField(
+        "Label",
+        choices=[
+            ("latex", "use Latex"),
+            ("local", "use local ID"),
+            ("global", "use global ID"),
+        ],
+        default="latex",
+    )  # , validators=[validators.InputRequired()])
+    output3 = StringField(
+        "output LaTeX 3"
+    )  # , validators=[validators.InputRequired()])
+    output3_radio = RadioField(
+        "Label",
+        choices=[
+            ("latex", "use Latex"),
+            ("local", "use local ID"),
+            ("global", "use global ID"),
+        ],
+        default="latex",
+    )  # , validators=[validators.InputRequired()])
 
 
 class NameOfDerivationInputForm(Form):
@@ -202,14 +237,15 @@ class NameOfDerivationInputForm(Form):
 #    return r
 
 
-#@app.errorhandler(404)
-#def page_not_found(e):
+# @app.errorhandler(404)
+# def page_not_found(e):
 #    """
 #    https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
 #    """
 #    logger.info("[trace] page_not_found")
 #    logger.debug(e)
 #    return redirect(url_for("index"))
+
 
 @app.before_request
 def before_request():
@@ -235,15 +271,21 @@ def after_request(response):
     >>> after_request()
     """
     diff = time.time() - g.start
-    if ((response.response) and
-        (200 <= response.status_code < 300) and
-        (response.content_type.startswith('text/html'))):
-        response.set_data(response.get_data().replace(
-            b'__EXECUTION_TIME__', bytes(str(diff), 'utf-8')))
+    if (
+        (response.response)
+        and (200 <= response.status_code < 300)
+        and (response.content_type.startswith("text/html"))
+    ):
+        response.set_data(
+            response.get_data().replace(
+                b"__EXECUTION_TIME__", bytes(str(diff), "utf-8")
+            )
+        )
     return response
 
-#@app.route('/db')
-#def db():
+
+# @app.route('/db')
+# def db():
 #    redis.incr('hits')
 #    logger.info("[trace] db")
 #    return 'This counter has been viewed',str(redis.get('hits')),'times.'
@@ -278,6 +320,7 @@ def user_documentation():
     """
     logger.info("[trace] user_documentation")
     return render_template("user_documentation.html")
+
 
 @app.route("/developer_documentation", methods=["GET", "POST"])
 def developer_documentation():
@@ -320,12 +363,12 @@ def editor():
     """
     logger.info("[trace] editor")
 
-# this takes too long; removed on 20200408
-#    try:
-#        compute.generate_all_expr_and_infrule_pngs(False, 'data.json')
-#    except Exception as err:
-#        logger.warning(err)
-#        flash(str(err))
+    # this takes too long; removed on 20200408
+    #    try:
+    #        compute.generate_all_expr_and_infrule_pngs(False, 'data.json')
+    #    except Exception as err:
+    #        logger.warning(err)
+    #        flash(str(err))
 
     try:
         logger.debug("session id = %s", session_id)
@@ -336,10 +379,16 @@ def editor():
         except Exception as err:
             logger.warning(err)
             flash(str(err))
-            session_id = '0'
+            session_id = "0"
         logger.debug("now the session id = %s", session_id)
 
-    [all_df, df_pkl_file, sql_file, rdf_file,neo4j_file] = compute.create_files_of_db_content('data.json')
+    [
+        all_df,
+        df_pkl_file,
+        sql_file,
+        rdf_file,
+        neo4j_file,
+    ] = compute.create_files_of_db_content("data.json")
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
@@ -375,8 +424,9 @@ def editor():
             # for example, the inference rule names need to be consistent (in "derivations" and "inference rules")
             # also, the expr_local_id need to have a corresponding entry in local-to-global
             # also, every expr_global_id in local-to-global must have a corresponding entry in "inference rules"
+            valid_json_bool = True
             try:
-                valid_json_bool = compute.validate_json_file(path_to_uploaded_file)
+                compute.validate_json_file(path_to_uploaded_file)
             except Exception as err:
                 logger.warning(err)
                 flash(str(err))
@@ -411,8 +461,7 @@ def start_new_derivation():
     if request.method == "POST" and web_form.validate():
         name_of_derivation = str(web_form.name_of_derivation.data)
         logger.debug(
-            "start_new_derivation: name of derivation = %s",
-            name_of_derivation,
+            "start_new_derivation: name of derivation = %s", name_of_derivation,
         )
         return redirect(
             url_for("new_step_select_inf_rule", name_of_derivation=name_of_derivation)
@@ -441,9 +490,7 @@ def list_all_operators():
         operator_popularity_dict = {}
 
     if request.method == "POST":
-        logger.debug(
-            "request.form = %s", request.form
-        )
+        logger.debug("request.form = %s", request.form)
     return render_template(
         "list_all_operators.html",
         operators_dict=dat["operators"],
@@ -463,9 +510,7 @@ def list_all_symbols():
         symbol_popularity_dict = {}
 
     if request.method == "POST":
-        logger.debug(
-            "list_all_symbolss; request.form = %s", request.form
-        )
+        logger.debug("list_all_symbolss; request.form = %s", request.form)
     return render_template(
         "list_all_symbols.html",
         symbols_dict=dat["symbols"],
@@ -484,38 +529,34 @@ def list_all_expressions():
         flash(str(err))
         expression_popularity_dict = {}
     if request.method == "POST":
-        logger.debug(
-            "list_all_expressions; request.form = %s", request.form
-        )
+        logger.debug("list_all_expressions; request.form = %s", request.form)
         if "edit_expr_latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_expr_latex', '4928923942'), ('revised_text', 'asdfingasinsf')])
             try:
                 status_message = compute.edit_expr_latex(
-                request.form["edit_expr_latex"],
-                request.form["revised_text"],
-                "data.json")
+                    request.form["edit_expr_latex"],
+                    request.form["revised_text"],
+                    "data.json",
+                )
             except Exception as err:
                 logger.warning(err)
                 flash(str(err))
                 status_message = "error"
             flash(str(status_message))
-            logger.debug(
-                "list_all_expressions; status = %s", status_message
-            )
+            logger.debug("list_all_expressions; status = %s", status_message)
             return redirect(url_for("list_all_expressions"))
         elif "delete_expr" in request.form.keys():
             # request.form = ImmutableMultiDict([('delete_expr', '4928923942')])
             try:
                 status_message = compute.delete_expr(
-                request.form["delete_expr"], "data.json")
+                    request.form["delete_expr"], "data.json"
+                )
             except Exception as err:
                 logger.warning(err)
                 flash(str(err))
                 status_message = "error"
             flash(str(status_message))
-            logger.debug(
-                "list_all_expressions; status = %s", status_message
-            )
+            logger.debug("list_all_expressions; status = %s", status_message)
             return redirect(url_for("list_all_expressions"))
     try:
         list_of_expr = compute.get_sorted_list_of_expr("data.json")
@@ -525,7 +566,8 @@ def list_all_expressions():
         list_of_expr = []
     try:
         list_of_expr_not_appearing_in_any_derivations = compute.expr_not_in_derivations(
-        "data.json")
+            "data.json"
+        )
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -552,13 +594,14 @@ def list_all_inference_rules():
         infrule_popularity_dict = {}
     if request.method == "POST":
         logger.debug(
-            "list_all_inference_rules; request.form = %s",
-            request.form,
+            "list_all_inference_rules; request.form = %s", request.form,
         )
         if "inf_rule_name" in request.form.keys():
             # request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
             try:
-                status_message = compute.add_inf_rule(request.form.to_dict(), "data.json")
+                status_message = compute.add_inf_rule(
+                    request.form.to_dict(), "data.json"
+                )
             except Exception as err:
                 flash(str(err))
                 logging.warning(err)
@@ -570,49 +613,49 @@ def list_all_inference_rules():
             # request.form = ImmutableMultiDict([('delete_inf_rule', 'asdf')])
             try:
                 status_message = compute.delete_inf_rule(
-                request.form["delete_inf_rule"], "data.json")
+                    request.form["delete_inf_rule"], "data.json"
+                )
             except Exception as err:
                 flash(str(err))
                 logging.warning(err)
                 status_message = "error"
             flash(str(status_message))
             logger.debug(
-                "list_all_inference_rules; status = %s",
-                status_message,
+                "list_all_inference_rules; status = %s", status_message,
             )
             return redirect(url_for("list_all_inference_rules"))
         elif "rename_inf_rule_from" in request.form.keys():
             # request.form = ImmutableMultiDict([('rename_inf_rule_from', 'asdf'), ('revised_text', 'anotehr')])
             try:
                 status_message = compute.rename_inf_rule(
-                request.form["rename_inf_rule_from"],
-                request.form["revised_text"],
-                "data.json")
+                    request.form["rename_inf_rule_from"],
+                    request.form["revised_text"],
+                    "data.json",
+                )
             except Exception as err:
                 flash(str(err))
                 logging.warning(err)
                 status_message = "error"
             flash(str(status_message))
             logger.debug(
-                "list_all_inference_rules; status = %s",
-                status_message,
+                "list_all_inference_rules; status = %s", status_message,
             )
             return redirect(url_for("list_all_inference_rules"))
         elif "edit_inf_rule_latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_inf_rule_latex', 'asdf'), ('revised_text', 'great works')])
             try:
                 status_message = compute.edit_inf_rule_latex(
-                request.form["edit_inf_rule_latex"],
-                request.form["revised_text"],
-                "data.json")
+                    request.form["edit_inf_rule_latex"],
+                    request.form["revised_text"],
+                    "data.json",
+                )
             except Exception as err:
                 flash(str(err))
                 logging.warning(err)
                 status_message = "error"
             flash(str(status_message))
             logger.debug(
-                "list_all_inference_rules; status = %s",
-                status_message,
+                "list_all_inference_rules; status = %s", status_message,
             )
             return redirect(url_for("list_all_inference_rules"))
         else:
@@ -621,11 +664,11 @@ def list_all_inference_rules():
 
     infrules_modified_latex_dict = {}
     for infrule_name, infrule_dict in dat["inference rules"].items():
-        infrule_dict['latex'] = infrule_dict['latex'].replace('\\ref','ref')
+        infrule_dict["latex"] = infrule_dict["latex"].replace("\\ref", "ref")
         infrules_modified_latex_dict[infrule_name] = infrule_dict
 
     try:
-        sorted_list_infrules=compute.get_sorted_list_of_inf_rules("data.json")
+        sorted_list_infrules = compute.get_sorted_list_of_inf_rules("data.json")
     except Exception as err:
         flash(str(err))
         logging.warning(err)
@@ -647,20 +690,18 @@ def select_derivation_to_edit():
     logger.info("[trace] select_derivation_to_edit")
     if request.method == "POST":
         logger.debug(
-            "select_derivation_to_edit; request.form = %s",
-            request.form,
+            "select_derivation_to_edit; request.form = %s", request.form,
         )
 
     try:
-        derivations_list=compute.get_sorted_list_of_derivations("data.json"),
+        derivations_list = (compute.get_sorted_list_of_derivations("data.json"),)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
         derivations_list = []
 
     return render_template(
-        "select_derivation_to_edit.html",
-        derivations_list=derivations_list,
+        "select_derivation_to_edit.html", derivations_list=derivations_list,
     )
 
 
@@ -668,23 +709,53 @@ def select_derivation_to_edit():
     "/select_derivation_step_to_edit/<name_of_derivation>/", methods=["GET", "POST"]
 )
 def select_derivation_step_to_edit(name_of_derivation: str):
+    """
+    >>> select_derivation_step_to_edit('fun deriv') 
+    """
     logger.info("[trace] select_derivation_step_to_edit")
     try:
-        steps_dict = compute.get_derivation_steps(name_of_derivation, "data.json")
+        step_dict = compute.get_derivation_steps(name_of_derivation, "data.json")
     except Exception as err:
         logger.warning(err)
         flash(str(err))
-        steps_dict = {}
+        step_dict = {}
     if request.method == "POST":
-        logger.debug(
-            "select_derivation_step_to_edit; request.form = %s",
-            request.form,
-        )
+        logger.debug("request.form = %s", request.form)
+        # request.form = ImmutableMultiDict([('step_to_delete', '0491182')])
+        step_to_delete = request.form["step_to_delete"]
+        try:
+            compute.delete_step_from_derivation(name_of_derivation, step_to_delete, 'data.json')
+        except Exception as err:
+            logger.warning(err)
+            flash(str(err))
+
+    dat = clib.read_db("data.json")
+
+    if name_of_derivation in dat["derivations"].keys():
+        # step_dict = dat["derivations"][name_of_derivation]
+        try:
+            derivation_validity_dict = compute.determine_derivation_validity(
+                name_of_derivation, "data.json"
+            )
+        except Exception as err:
+            logger.warning(err)
+            flash(str(err))
+            derivation_validity_dict = {}
+    else:
+        # step_dict = {}
+        derivation_validity_dict = {}
+
+    sorted_step_ids = list(step_dict.keys())
+    sorted_step_ids.sort()
+
     return render_template(
         "select_derivation_step_to_edit.html",
         name_of_derivation=name_of_derivation,
-        steps_dict=steps_dict,
-        list_of_step_ids=steps_dict.keys(),
+        expr_local_to_gobal=dat["expr local to global"],
+        expressions_dict=dat["expressions"],
+        step_dict=step_dict,
+        derivation_validity_dict=derivation_validity_dict,
+        list_of_step_ids=sorted_step_ids,
     )
 
 
@@ -712,12 +783,14 @@ def select_from_existing_derivations():
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_pdf')])
             try:
                 pdf_filename = compute.generate_pdf_for_derivation(
-                    name_of_derivation, "data.json")
+                    name_of_derivation, "data.json"
+                )
             except Exception as err:
                 logger.warning(err)
                 flash(str(err))
                 return render_template(
-                    "select_from_existing_derivations.html", list_of_derivations=list_of_deriv
+                    "select_from_existing_derivations.html",
+                    list_of_derivations=list_of_deriv,
                 )
 
             return redirect(url_for("static", filename=pdf_filename))
@@ -735,8 +808,7 @@ def select_from_existing_derivations():
                 )
             )
         else:
-            flash("unrecongized button in"+ str(request.form))
-
+            flash("unrecongized button in" + str(request.form))
 
     return render_template(
         "select_from_existing_derivations.html", list_of_derivations=list_of_deriv
@@ -759,8 +831,7 @@ def new_step_select_inf_rule(name_of_derivation: str):
         logger.debug("new_step_select_inf_rule: %s", request.form)
         selected_inf_rule = request.form.get("inf_rul_select")
         logger.debug(
-            "new_step_select_inf_rule; selected_inf_rule = %s",
-            selected_inf_rule,
+            "new_step_select_inf_rule; selected_inf_rule = %s", selected_inf_rule,
         )
         return redirect(
             url_for(
@@ -809,7 +880,6 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
         # request.form = ImmutableMultiDict([('input1', ''), ('input1_radio', 'global'), ('input1_global_id', '5530148480'), ('feed1', 'asgasgag'), ('output1', ''), ('output1_radio', 'global'), ('output1_glob_id', '9999999951'), ('submit_button', 'Submit')])
 
-
         try:
             local_step_id = compute.create_step(
                 latex_for_step_dict, inf_rule, name_of_derivation, "data.json"
@@ -817,15 +887,14 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         except Exception as err:
             flash(str(err))
             logger.warning(err)
-            local_step_id = 0
+            local_step_id = '0'
         logger.debug(
-            "local_step_id = %s",
-            local_step_id,
+            "local_step_id = %s", local_step_id,
         )
 
         try:
             step_validity_msg = vir.validate_step(
-            name_of_derivation, local_step_id, "data.json"
+                name_of_derivation, local_step_id, "data.json"
             )
         except Exception as err:
             flash(str(err))
@@ -845,8 +914,9 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
     if name_of_derivation in dat["derivations"].keys():
         step_dict = dat["derivations"][name_of_derivation]
         try:
-            derivation_validity_dict = (
-               compute.determine_derivation_validity(name_of_derivation, "data.json"))
+            derivation_validity_dict = compute.determine_derivation_validity(
+                name_of_derivation, "data.json"
+            )
         except Exception as err:
             logger.warning(err)
             flash(str(err))
@@ -855,7 +925,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         step_dict = {}
         derivation_validity_dict = {}
 
-    #logger.debug('step validity = %s', str(step_validity_dict))
+    # logger.debug('step validity = %s', str(step_validity_dict))
 
     try:
         expression_popularity_dict = compute.popularity_of_expressions("data.json")
@@ -865,14 +935,18 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         expression_popularity_dict = {}
 
     try:
-        list_of_local_id = compute.list_local_id_for_derivation(name_of_derivation, 'data.json')
+        list_of_local_id = compute.list_local_id_for_derivation(
+            name_of_derivation, "data.json"
+        )
     except Exception as err:
         logger.warning(err)
         flash(str(err))
         list_of_local_id = []
 
     try:
-        list_of_global_id_not_in_derivation = compute.list_global_id_not_in_derivation(name_of_derivation, 'data.json')
+        list_of_global_id_not_in_derivation = compute.list_global_id_not_in_derivation(
+            name_of_derivation, "data.json"
+        )
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -880,11 +954,11 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
     infrules_modified_latex_dict = {}
     for infrule_name, infrule_dict in dat["inference rules"].items():
-        #logger.debug(infrule_name + ' has ' + str(infrule_dict))
-        #logger.debug(str(list(infrule_dict.keys())))
-        infrule_dict['latex'] = infrule_dict['latex'].replace('\\ref','ref')
+        # logger.debug(infrule_name + ' has ' + str(infrule_dict))
+        # logger.debug(str(list(infrule_dict.keys())))
+        infrule_dict["latex"] = infrule_dict["latex"].replace("\\ref", "ref")
         infrules_modified_latex_dict[infrule_name] = infrule_dict
-    #logger.debug('infrules_modified_latex_dict =' + str(infrules_modified_latex_dict))
+    # logger.debug('infrules_modified_latex_dict =' + str(infrules_modified_latex_dict))
 
     return render_template(
         "provide_expr_for_inf_rule.html",
@@ -915,7 +989,9 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
     logger.info("[trace] step_review")
 
     try:
-        step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, local_step_id, "data.json")
+        step_graphviz_png = compute.create_step_graphviz_png(
+            name_of_derivation, local_step_id, "data.json"
+        )
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -953,20 +1029,21 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
 
     if name_of_derivation in dat["derivations"].keys():
         try:
-            derivation_validity_dict=compute.determine_derivation_validity(
-                name_of_derivation, "data.json")
+            derivation_validity_dict = compute.determine_derivation_validity(
+                name_of_derivation, "data.json"
+            )
         except Exception as err:
             logger.warning(err)
             flash(str(err))
             derivation_validity_dict = {}
         try:
-            step_dict=dat["derivations"][name_of_derivation]
+            step_dict = dat["derivations"][name_of_derivation]
         except Exception as err:
             logger.warning(err)
             flash(str(err))
             step_dict = {}
     else:
-        logger.debug(name_of_derivation + 'does not exist in derivations')
+        logger.debug(name_of_derivation + "does not exist in derivations")
         derivation_validity_dict = {}
         step_dict = {}
 
@@ -977,7 +1054,7 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
         flash(str(err))
         expression_popularity_dict = {}
 
-    #logger.debug('step validity = %s', str(step_validity_dict))
+    # logger.debug('step validity = %s', str(step_validity_dict))
 
     return render_template(
         "step_review.html",
@@ -1018,7 +1095,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         elif request.form["submit_button"] == "return to main menu":
             return redirect(url_for("index"))
         elif request.form["submit_button"] == "generate pdf":
-            pdf_filename = "" # TODO: there should be a default PDF in case the generation step fails
+            pdf_filename = ""  # TODO: there should be a default PDF in case the generation step fails
             try:
                 pdf_filename = compute.generate_pdf_for_derivation(
                     name_of_derivation, "data.json"
@@ -1038,13 +1115,12 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
             return redirect(url_for("index"))
         else:
             flash(
-                "[ERROR] compute; review_derivation; unrecognized button:" + str( request.form)
+                "[ERROR] compute; review_derivation; unrecognized button:"
+                + str(request.form)
             )
 
     try:
-        derivation_png = compute.create_derivation_png(
-        name_of_derivation, "data.json"
-        )
+        derivation_png = compute.create_derivation_png(name_of_derivation, "data.json")
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -1060,7 +1136,8 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
 
     try:
         derivation_validity_dict = compute.determine_derivation_validity(
-            name_of_derivation, "data.json")
+            name_of_derivation, "data.json"
+        )
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -1081,8 +1158,8 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         json_for_d3js=d3js_json_filename,
         step_dict=dat["derivations"][name_of_derivation],
         derivation_validity_dict=derivation_validity_dict,
-        expr_dict=dat["expressions"],
-        expression_popularity_dict=expression_popularity_dict, 
+        expressions_dict=dat["expressions"],
+        expression_popularity_dict=expression_popularity_dict,
         expr_local_to_gobal=dat["expr local to global"],
     )
 
@@ -1095,14 +1172,14 @@ def modify_step(name_of_derivation: str, step_id: str):
     logger.info("[trace] modify_step")
 
     try:
-        step_graphviz_png = compute.create_step_graphviz_png(name_of_derivation, step_id, "data.json")
+        step_graphviz_png = compute.create_step_graphviz_png(
+            name_of_derivation, step_id, "data.json"
+        )
     except Exception as err:
         logger.warning(err)
         flash(str(err))
         step_graphviz_png = "error.png"
 
-    # steps_dict = compute.get_derivation_steps(name_of_derivation, 'data.json')
-    # this_step = steps_dict[step_id]
     dat = clib.read_db("data.json")
     if request.method == "POST":
         logger.debug("modify_step; request form = %s", request.form)
@@ -1116,17 +1193,18 @@ def modify_step(name_of_derivation: str, step_id: str):
             # request form = ImmutableMultiDict([('edit_expr_latex', '2244'), ('revised_text', 'a = b')])
             try:
                 compute.modify_latex_in_step(
-                request.form["expr_local_id_of_latex_to_modify"],
-                request.form["revised_text"],
-                "data.json",
-            )
+                    request.form["expr_local_id_of_latex_to_modify"],
+                    request.form["revised_text"],
+                    "data.json",
+                )
             except Exception as err:
                 flash(str(err))
                 logger.warning(err)
 
             try:
-                step_validity_msg=vir.validate_step(
-                        name_of_derivation, step_id, "data.json")
+                step_validity_msg = vir.validate_step(
+                    name_of_derivation, step_id, "data.json"
+                )
             except Exception as err:
                 flash(str(err))
                 logger.warning(err)
@@ -1136,13 +1214,14 @@ def modify_step(name_of_derivation: str, step_id: str):
                     "step_review",
                     name_of_derivation=name_of_derivation,
                     local_step_id=step_id,
-                    step_validity_msg=step_validity_msg
+                    step_validity_msg=step_validity_msg,
                 )
             )
 
         else:
             flash(
-                "[ERROR] compute; review_derivation; unrecognized button:" + str(request.form)
+                "[ERROR] compute; review_derivation; unrecognized button:"
+                + str(request.form)
             )
 
     return render_template(
@@ -1164,9 +1243,7 @@ def create_new_inf_rule():
     """
     logger.info("[trace] create_new_inf_rule")
     if request.method == "POST":
-        logger.debug(
-            "create_new_inf_rule; request.form = %s", request.form
-        )
+        logger.debug("create_new_inf_rule; request.form = %s", request.form)
     return render_template("create_new_inf_rule.html")
 
 
@@ -1176,7 +1253,7 @@ if __name__ == "__main__":
     except Exception as err:
         flash(str(err))
         logger.warning(err)
-        session_id = 0
+        session_id = '0'
     app.run(debug=True, host="0.0.0.0")
 
 # EOF

@@ -17,9 +17,9 @@ from functools import wraps
 import errno
 import signal
 import os
-import shutil
+import shutil # move and copy files
 import datetime
-import cv2
+import cv2 # image dimensions in pixels
 from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
 import subprocess  # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
@@ -27,9 +27,11 @@ import logging
 import collections
 import sqlite3
 import pickle
-import validate_inference_rules_sympy as vir
-import common_lib as clib
-from typing import Tuple, TextIO
+from jsonschema import validate  # type: ignore
+import json_schema  # a PDG file
+import validate_inference_rules_sympy as vir # a PDG file
+import common_lib as clib # a PDG file
+from typing import Tuple, TextIO # mypy
 from typing_extensions import (
     TypedDict,
 )  # https://mypy.readthedocs.io/en/stable/more_types.html
@@ -112,10 +114,8 @@ def validate_json_file(filename: str) -> None:
         try:
             candidate_dat = json.load(json_file)
         except json.decoder.JSONDecodeError as er:
-            logger.warning(
-                "ERROR in JSON schema compliance: %s", er,
-            )
-            flash("uploaded file does not appear to be JSON; ignoring file")
+            logger.error(
+                "ERROR in JSON schema compliance: %s", er)
             # return False
             raise Exception("uploaded file does not appear to be JSON; ignoring file")
     # now we know the file is actually JSON
@@ -124,8 +124,7 @@ def validate_json_file(filename: str) -> None:
     try:
         validate(instance=candidate_dat, schema=json_schema.schema)
     except:  # jsonschema.exceptions.ValidationError as er:
-        logger.warning("ERROR in JSON schema compliance")
-        # flash(str(er))
+        logger.error("ERROR in JSON schema compliance")
         raise Exception("JSON is not compliant with schema")
         # return False  # JSON is not compliant with schmea
 
@@ -154,6 +153,7 @@ def create_session_id() -> str:
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
 
+
 def list_local_id_for_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
     >>> list_local_id_for_derivation('fun deriv', 'data.json')
@@ -161,15 +161,15 @@ def list_local_id_for_derivation(name_of_derivation: str, path_to_db: str) -> li
     logger.info("[trace] list_local_id_for_derivation")
     dat = clib.read_db(path_to_db)
     list_of_local_id = []
-    if name_of_derivation not in dat['derivations'].keys():
+    if name_of_derivation not in dat["derivations"].keys():
         list_of_local_id = []
     else:
-        for step_id, step_dict in dat['derivations'][name_of_derivation].items():
-            for connection_type in ['inputs', 'feeds', 'outputs']:
+        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+            for connection_type in ["inputs", "feeds", "outputs"]:
                 for local_id in step_dict[connection_type]:
                     list_of_local_id.append(local_id)
     list_of_local_id = list(set(list_of_local_id))
-    #logger.debug('list_of_local_id = %s', str(list_of_local_id))
+    # logger.debug('list_of_local_id = %s', str(list_of_local_id))
     list_of_local_id.sort()
     return list_of_local_id
 
@@ -182,18 +182,22 @@ def list_global_id_not_in_derivation(name_of_derivation: str, path_to_db: str) -
     dat = clib.read_db(path_to_db)
     # I could have called list_local_id_for_derivation but I wrote this function first
     global_ids_in_derivation = []
-    if name_of_derivation not in dat['derivations'].keys():
+    if name_of_derivation not in dat["derivations"].keys():
         global_ids_in_derivation = []
-    else: # derivation exists in dat
-        for step_id, step_dict in dat['derivations'][name_of_derivation].items():
-            for connection_type in ['inputs', 'feeds', 'outputs']:
+    else:  # derivation exists in dat
+        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+            for connection_type in ["inputs", "feeds", "outputs"]:
                 for local_id in step_dict[connection_type]:
-                    global_ids_in_derivation.append(dat['expr local to global'][local_id])
+                    global_ids_in_derivation.append(
+                        dat["expr local to global"][local_id]
+                    )
     global_ids_in_derivation = list(set(global_ids_in_derivation))
-    #logger.debug('len(global_ids_in_derivation) = %s', str(len(global_ids_in_derivation)))
-    all_global_ids = list(dat['expressions'].keys())
-    list_of_global_id_not_in_derivation = list(set(all_global_ids) - set(global_ids_in_derivation))
-    #logger.debug('list_of_global_id_not_in_derivation = %s', str(list_of_global_id_not_in_derivation))
+    # logger.debug('len(global_ids_in_derivation) = %s', str(len(global_ids_in_derivation)))
+    all_global_ids = list(dat["expressions"].keys())
+    list_of_global_id_not_in_derivation = list(
+        set(all_global_ids) - set(global_ids_in_derivation)
+    )
+    # logger.debug('list_of_global_id_not_in_derivation = %s', str(list_of_global_id_not_in_derivation))
     list_of_global_id_not_in_derivation.sort()
     return list_of_global_id_not_in_derivation
 
@@ -613,8 +617,9 @@ def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
     logger.info("[trace] get_list_of_steps")
     dat = clib.read_db(path_to_db)
     if name_of_derivation not in dat["derivations"].keys():
-        logger.error(name_of_derivation + ' is not in derivation')
-        raise Exception(name_of_derivation,
+        logger.error(name_of_derivation + " is not in derivation")
+        raise Exception(
+            name_of_derivation,
             "does not appear to be a key in derivations",
             dat["derivations"].keys(),
         )
@@ -661,7 +666,7 @@ def create_expr_global_id(path_to_db: str) -> str:
         if proposed_global_expr_id not in global_expr_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
-            logger.error('too many -- this seems unlikely')
+            logger.error("too many -- this seems unlikely")
             raise Exception("this seems unlikely")
     return proposed_global_expr_id
 
@@ -689,7 +694,7 @@ def create_step_id(path_to_db: str) -> str:
         if proposed_step_id not in step_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
-            logger.error('too many reached; this seems unlikely')
+            logger.error("too many reached; this seems unlikely")
             raise Exception("this seems unlikely")
     return proposed_step_id
 
@@ -712,7 +717,7 @@ def create_expr_local_id(path_to_db: str) -> str:
         if proposed_local_id not in local_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
-            logger.error('unlikely')
+            logger.error("unlikely")
             raise Exception("this seems unlikely")
     return proposed_local_id
 
@@ -1264,9 +1269,11 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
                 if step_dict["linear index"] == linear_indx:
                     # using the newcommand, populate the expression IDs
                     if step_dict["inf rule"] not in dat["inference rules"].keys():
-                        logger.error("inconsistent inference rule: ", step_dict["inf rule"])
+                        logger.error(
+                            "inference rule in step is not in dat['inference rules']: ", step_dict["inf rule"]
+                        )
                         raise Exception(
-                            "inconsistent inference rule: ", step_dict["inf rule"]
+                            "inference rule in step is not in dat['inference rules']: ", step_dict["inf rule"]
                         )
                     lat_file.write("\\" + step_dict["inf rule"].replace(" ", ""))
                     for expr_local_id in step_dict["feeds"]:
@@ -1581,7 +1588,7 @@ def create_step_graphviz_png(
     return output_filename
 
 
-def create_png_from_latex(input_latex_str: str, png_name: str) -> Tuple[bool, str]:
+def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     """
     this function relies on latex  being available on the command line
     this function relies on dvipng being available on the command line
@@ -1677,6 +1684,24 @@ def modify_latex_in_step(
     return
 
 
+def delete_step_from_derivation(
+    name_of_derivation: str, step_to_delete: str, path_to_db: str
+) -> None:
+    """
+    >>> delete_step_from_derivation
+    """
+    logger.info("[trace] delete_step_from_derivation")
+    dat = clib.read_db(path_to_db)
+    if name_of_derivation in dat["derivations"].keys():
+        if step_to_delete in dat["derivations"][name_of_derivation].keys():
+            del dat["derivations"][name_of_derivation][step_to_delete]
+        else:
+            raise Exception(step_to_delete + " not in derivations dat")
+    else:
+        raise Exception(name_of_derivation + " not in derivations dat")
+    return
+
+
 def delete_derivation(name_of_derivation: str, path_to_db: str) -> str:
     """
     >>> delete_derivation('my cool deriv', 'data.json')
@@ -1685,7 +1710,10 @@ def delete_derivation(name_of_derivation: str, path_to_db: str) -> str:
     logger.info("[trace] add_inf_rule")
     dat = clib.read_db(path_to_db)
     # TODO: if expr is only used in this derivation, does the user want dangling expressions removed?
-    del dat["derivations"][name_of_derivation]
+    if name_of_derivation in dat["derivations"].keys():
+        del dat["derivations"][name_of_derivation]
+    else:
+        raise Exception("name of derivation not in dat")
     clib.write_db(path_to_db, dat)
     return "successfully deleted " + name_of_derivation
 
@@ -1886,9 +1914,9 @@ def create_step(
 
     dat = clib.read_db(path_to_db)
 
-    if name_of_derivation not in dat['derivations']:
-        logger.debug(name_of_derivation + 'was not in derivations; it has been added.')
-        dat['derivations'][name_of_derivation] = {}
+    if name_of_derivation not in dat["derivations"]:
+        logger.debug(name_of_derivation + "was not in derivations; it has been added.")
+        dat["derivations"][name_of_derivation] = {}
 
     step_dict = {
         "inf rule": inf_rule,
@@ -1906,8 +1934,8 @@ def create_step(
 
     # start with feeds since those are the easiest
     for key, text in latex_for_step_dict.items():
-        if 'feed' in key:
-            logger.debug('in feed for ' + text)
+        if "feed" in key:
+            logger.debug("in feed for " + text)
             expr_global_id = create_expr_global_id(path_to_db)
             dat["expressions"][expr_global_id] = {
                 "latex": latex_for_step_dict[key]
@@ -1916,115 +1944,120 @@ def create_step(
             dat["expr local to global"][expr_local_id] = expr_global_id
             step_dict["feeds"].append(expr_local_id)
 
-    for connection_type in ['input', 'output']:
-        for expr_index in ['1', '2', '3']:
+    for connection_type in ["input", "output"]:
+        for expr_index in ["1", "2", "3"]:
             for key, text in latex_for_step_dict.items():
-                 logger.debug('key = '+ key)
-                 if '_radio' in key and connection_type in key and expr_index in key:
+                logger.debug("key = " + key)
+                if "_radio" in key and connection_type in key and expr_index in key:
                     logger.debug(connection_type + " " + expr_index + "; radio")
-                    if text == 'latex':
-                        #logger.debug('latex')
+                    if text == "latex":
+                        # logger.debug('latex')
                         expr_global_id = create_expr_global_id(path_to_db)
                         dat["expressions"][expr_global_id] = {
-                              "latex": latex_for_step_dict[connection_type + expr_index]}
+                            "latex": latex_for_step_dict[connection_type + expr_index]
+                        }
                         expr_local_id = create_expr_local_id(path_to_db)
                         dat["expr local to global"][expr_local_id] = expr_global_id
                         step_dict[connection_type + "s"].append(expr_local_id)
-                    elif text == 'local':
-                        #logger.debug('local')
-                        #logger.debug('step dict = ' + str(latex_for_step_dict.keys()))
-                        #logger.debug('new' + latex_for_step_dict[connection_type  + expr_index + '_local_id'])
-                        expr_local_id = latex_for_step_dict[connection_type + expr_index + '_local_id']
+                    elif text == "local":
+                        # logger.debug('local')
+                        # logger.debug('step dict = ' + str(latex_for_step_dict.keys()))
+                        # logger.debug('new' + latex_for_step_dict[connection_type  + expr_index + '_local_id'])
+                        expr_local_id = latex_for_step_dict[
+                            connection_type + expr_index + "_local_id"
+                        ]
                         step_dict[connection_type + "s"].append(expr_local_id)
-                    elif text == 'global':
-                        #logger.debug('global')
-                        #logger.debug(connection_type + expr_index + '_global_id')
-                        #logger.debug('keys = ' + str(latex_for_step_dict.keys()))
-                        expr_global_id = latex_for_step_dict[connection_type + expr_index + '_global_id']
-                        #logger.debug('got global id: ' + expr_global_id)
+                    elif text == "global":
+                        # logger.debug('global')
+                        # logger.debug(connection_type + expr_index + '_global_id')
+                        # logger.debug('keys = ' + str(latex_for_step_dict.keys()))
+                        expr_global_id = latex_for_step_dict[
+                            connection_type + expr_index + "_global_id"
+                        ]
+                        # logger.debug('got global id: ' + expr_global_id)
                         expr_local_id = create_expr_local_id(path_to_db)
-                        #logger.debug('local id: ' + expr_local_id)
+                        # logger.debug('local id: ' + expr_local_id)
                         dat["expr local to global"][expr_local_id] = expr_global_id
-                        #logger.debug('added to dat' + str(dat["expr local to global"][expr_local_id]))
+                        # logger.debug('added to dat' + str(dat["expr local to global"][expr_local_id]))
                         step_dict[connection_type + "s"].append(expr_local_id)
-                        #logger.debug('end of global')
+                        # logger.debug('end of global')
                     else:
-                        logger.error('unknown radio option: ', key, text)
-                        raise Exception('unknown radio option: ', key, text)
-                    #logger.debug('end of loop')
-    logger.debug('step_dict = ' + str(step_dict))
+                        logger.error("unknown radio option: ", key, text)
+                        raise Exception("unknown radio option: ", key, text)
+                    # logger.debug('end of loop')
+    logger.debug("step_dict = " + str(step_dict))
 
-#    inputs_and_outputs_to_delete = []
-#    for which_eq, latex_expr_str in latex_for_step_dict.items():
-#        if (
-#            "use_ID_for" in which_eq
-#        ):  # 'use_ID_for_in1' or 'use_ID_for_in2' or 'use_ID_for_out1', etc
-#            # the following leverages the dict from the web form
-#            # request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('submit_button', 'Submit')])
-#            logger.debug("create_step; use_ID_for is in %s", which_eq)
-#            if "for_in" in which_eq:
-#                this_input = "input" + which_eq[-1]
-#                expr_local_id = latex_for_step_dict[this_input]
-#                step_dict["inputs"].append(expr_local_id)
-#                inputs_and_outputs_to_delete.append(this_input)
-#            elif "for_out" in which_eq:
-#                this_output = "output" + which_eq[-1]
-#                expr_local_id = latex_for_step_dict[this_input]
-#                step_dict["inputs"].append(expr_local_id)
-#                inputs_and_outputs_to_delete.append(this_output)
-#            else:
-#                raise Exception(
-#                    "[ERROR] compute; create_step; unrecognized key in use_ID ",
-#                    latex_for_step_dict,
-#                )
-#
-#    # remove all the "use_ID_for" keys
-#    list_of_keys = list(latex_for_step_dict.keys())
-#    for this_key in list_of_keys:
-#        if "use_ID_for" in this_key:
-#            del latex_for_step_dict[this_key]
-#
-#    # remove the inputs and outputs that were associated with 'use_ID_for'
-#    for input_and_output in inputs_and_outputs_to_delete:
-#        del latex_for_step_dict[input_and_output]
-#
-#    for which_eq, latex_expr_str in latex_for_step_dict.items():
-#        logger.debug(
-#            "create_step; which_eq = %s and latex_expr_str = %s",
-#            which_eq,
-#            latex_expr_str,
-#        )
-#        if "input" in which_eq:
-#            expr_global_id = create_expr_global_id(path_to_db)
-#            dat["expressions"][expr_global_id] = {
-#                "latex": latex_expr_str
-#            }  # , 'AST': latex_as_AST}
-#            expr_local_id = create_expr_local_id(path_to_db)
-#            dat["expr local to global"][expr_local_id] = expr_global_id
-#            step_dict["inputs"].append(expr_local_id)
-#        elif "output" in which_eq:
-#            expr_global_id = create_expr_global_id(path_to_db)
-#            dat["expressions"][expr_global_id] = {
-#                "latex": latex_expr_str
-#            }  # , 'AST': latex_as_AST}
-#            expr_local_id = create_expr_local_id(path_to_db)
-#            dat["expr local to global"][expr_local_id] = expr_global_id
-#            step_dict["outputs"].append(expr_local_id)
-#        elif "feed" in which_eq:
-#            expr_global_id = create_expr_global_id(path_to_db)
-#            dat["expressions"][expr_global_id] = {
-#                "latex": latex_expr_str
-#            }  # , 'AST': latex_as_AST}
-#            expr_local_id = create_expr_local_id(path_to_db)
-#            dat["expr local to global"][expr_local_id] = expr_global_id
-#            step_dict["feeds"].append(expr_local_id)
-#        elif "submit_button" in which_eq:
-#            pass
-#        else:
-#            raise Exception(
-#                "[ERROR] compute; create_step; unrecognized key in step dict",
-#                latex_for_step_dict,
-#            )
+    #    inputs_and_outputs_to_delete = []
+    #    for which_eq, latex_expr_str in latex_for_step_dict.items():
+    #        if (
+    #            "use_ID_for" in which_eq
+    #        ):  # 'use_ID_for_in1' or 'use_ID_for_in2' or 'use_ID_for_out1', etc
+    #            # the following leverages the dict from the web form
+    #            # request.form = ImmutableMultiDict([('input1', '1492842000'), ('use_ID_for_in1', 'on'), ('submit_button', 'Submit')])
+    #            logger.debug("create_step; use_ID_for is in %s", which_eq)
+    #            if "for_in" in which_eq:
+    #                this_input = "input" + which_eq[-1]
+    #                expr_local_id = latex_for_step_dict[this_input]
+    #                step_dict["inputs"].append(expr_local_id)
+    #                inputs_and_outputs_to_delete.append(this_input)
+    #            elif "for_out" in which_eq:
+    #                this_output = "output" + which_eq[-1]
+    #                expr_local_id = latex_for_step_dict[this_input]
+    #                step_dict["inputs"].append(expr_local_id)
+    #                inputs_and_outputs_to_delete.append(this_output)
+    #            else:
+    #                raise Exception(
+    #                    "[ERROR] compute; create_step; unrecognized key in use_ID ",
+    #                    latex_for_step_dict,
+    #                )
+    #
+    #    # remove all the "use_ID_for" keys
+    #    list_of_keys = list(latex_for_step_dict.keys())
+    #    for this_key in list_of_keys:
+    #        if "use_ID_for" in this_key:
+    #            del latex_for_step_dict[this_key]
+    #
+    #    # remove the inputs and outputs that were associated with 'use_ID_for'
+    #    for input_and_output in inputs_and_outputs_to_delete:
+    #        del latex_for_step_dict[input_and_output]
+    #
+    #    for which_eq, latex_expr_str in latex_for_step_dict.items():
+    #        logger.debug(
+    #            "create_step; which_eq = %s and latex_expr_str = %s",
+    #            which_eq,
+    #            latex_expr_str,
+    #        )
+    #        if "input" in which_eq:
+    #            expr_global_id = create_expr_global_id(path_to_db)
+    #            dat["expressions"][expr_global_id] = {
+    #                "latex": latex_expr_str
+    #            }  # , 'AST': latex_as_AST}
+    #            expr_local_id = create_expr_local_id(path_to_db)
+    #            dat["expr local to global"][expr_local_id] = expr_global_id
+    #            step_dict["inputs"].append(expr_local_id)
+    #        elif "output" in which_eq:
+    #            expr_global_id = create_expr_global_id(path_to_db)
+    #            dat["expressions"][expr_global_id] = {
+    #                "latex": latex_expr_str
+    #            }  # , 'AST': latex_as_AST}
+    #            expr_local_id = create_expr_local_id(path_to_db)
+    #            dat["expr local to global"][expr_local_id] = expr_global_id
+    #            step_dict["outputs"].append(expr_local_id)
+    #        elif "feed" in which_eq:
+    #            expr_global_id = create_expr_global_id(path_to_db)
+    #            dat["expressions"][expr_global_id] = {
+    #                "latex": latex_expr_str
+    #            }  # , 'AST': latex_as_AST}
+    #            expr_local_id = create_expr_local_id(path_to_db)
+    #            dat["expr local to global"][expr_local_id] = expr_global_id
+    #            step_dict["feeds"].append(expr_local_id)
+    #        elif "submit_button" in which_eq:
+    #            pass
+    #        else:
+    #            raise Exception(
+    #                "[ERROR] compute; create_step; unrecognized key in step dict",
+    #                latex_for_step_dict,
+    #            )
 
     list_of_linear_index = [0]
 
@@ -2038,7 +2071,7 @@ def create_step(
         step_dict["linear index"] = 1
 
     if step_dict["linear index"] == -1:
-        logger.error('problem with linear index')
+        logger.error("problem with linear index")
         raise Exception("problem with linear index!")
     logger.debug("create_step; step_dict = %s", step_dict)
 
@@ -2062,40 +2095,39 @@ def create_step(
 
 def determine_derivation_validity(name_of_derivation: str, path_to_db: str) -> dict:
     """
-    >>>
+    >>> determine_derivation_validity()
     """
     logger.info("[trace] determine_derivation_validity")
     dat = clib.read_db(path_to_db)
     step_validity_dict = {}
 
     if name_of_derivation not in dat["derivations"].keys():
-        logger.error('dat does not contain ' + name_of_derivation)
+        logger.error("dat does not contain " + name_of_derivation)
         raise Exception("dat does not contain " + name_of_derivation)
 
     for step_id, step_dict in dat["derivations"][name_of_derivation].items():
         step_validity_dict[step_id] = vir.validate_step(
             name_of_derivation, step_id, path_to_db
         )
-    logger.debug("type step = %s", type(step_validity_dict))
     return step_validity_dict
 
 
 def determine_step_validity(
     step_id: str, name_of_derivation: str, path_to_db: str
-) -> dict:
+) -> str:
     """
-    >>>
+    >>> determine_step_validity()
     """
     logger.info("[trace] determine_step_validity")
     dat = clib.read_db(path_to_db)
     step_validity_dict = {}
 
     if name_of_derivation not in dat["derivations"].keys():
-        logger.error('dat does not contain '+ name_of_derivation)
+        logger.error("dat does not contain " + name_of_derivation)
         raise Exception("dat does not contain " + name_of_derivation)
 
     if step_id not in dat["derivations"][name_of_derivation].keys():
-        logger.error('dat does not contain '+ step_id + " in " + name_of_derivation)
+        logger.error("dat does not contain " + step_id + " in " + name_of_derivation)
         raise Exception("dat does not contain " + step_id + " in " + name_of_derivation)
 
     return vir.validate_step(name_of_derivation, step_id, path_to_db)

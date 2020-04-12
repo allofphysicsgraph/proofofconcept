@@ -1376,7 +1376,7 @@ dat['derivations'] = {
                  'feeds':   ['2239424'],
                  'outputs': ['1432042'],
                  'linear index': 21},
-     '2322434': {'inf rule': 'mult RHS by unity',
+     '2322434': {'inf rule': 'multiply RHS by unity',
                  'inputs':  ['1353583'],
                  'feeds':   ['2342425'],
                  'outputs': ['2326309'],

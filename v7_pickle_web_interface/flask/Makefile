@@ -8,6 +8,7 @@ help:
 	@echo "  help: this message"
 	@echo "  flask: start webserver"
 	@echo "  gunicorn: start webserver"
+	@echo "  black: format py files"
 	@echo "  clean: remove extra files"
 	@echo "  typehints for all dependent .py files; make typehints FILE_NAME=controller.py"
 	@echo "  flake8    for all .py files; make flake8"
@@ -61,7 +62,14 @@ flake8:
 # E501 Line too long; https://www.flake8rules.com/rules/E501.html
 # E701 Multiple statements on one line; https://www.flake8rules.com/rules/E701.html
 
-
+black:
+	black common_lib.py
+	black compute.py
+	black config.py
+	black controller.py
+	black convert_v3_csv_infrules_to_dict.py
+	black validate_inference_rules_sympy.py
+	black wsgi.py
 
 pylint:
 	pylint $(FILE_NAME)
