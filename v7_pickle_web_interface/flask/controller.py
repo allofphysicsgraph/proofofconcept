@@ -25,7 +25,7 @@ import shutil
 import logging
 
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
-from flask import Flask, redirect, render_template, request, url_for, flash
+from flask import Flask, redirect, render_template, request, url_for, flash, jsonify
 import time
 
 # https://gist.github.com/lost-theory/4521102
@@ -57,6 +57,8 @@ app.config[
 app.config[
     "SEND_FILE_MAX_AGE_DEFAULT"
 ] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+app.config["DEBUG"] = True
+
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
 # rd = Redis(host='db', port=6379)
@@ -284,6 +286,60 @@ def after_request(response):
     return response
 
 
+@app.route('/api/v1/resources/derivations/all', methods=['GET'])
+def api_derivations():
+    """
+    return the entire "derivations" dict
+    >>> 
+    """
+    dat = clib.read_db("data.json")
+    return jsonify(dat['derivations'])
+
+@app.route('/api/v1/resources/derivations/list', methods=['GET'])
+def api_derivations():
+    """
+    list derivation names
+    >>> 
+    """
+    dat = clib.read_db("data.json")
+    return jsonify(list(dat['derivations'].keys()))
+
+@app.route('/api/v1/resources/derivations', methods=['GET'])
+def api_derivation_by_name():
+    """
+    return a single derivation
+
+    https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask
+    >>> 
+    """
+    dat = clib.read_db("data.json")
+    if 'name' in request.args:
+        name = str(request.args['name'])
+    else:
+        return "Error: No name field provided. Please specify a derivation name."
+    if name in dat['derivations'].keys():
+        return jsonify(dat['derivations'][name]
+    else:
+        return "Error: derivation with name "+name+" not found in derivations; see derivations/list"
+
+@app.route('/api/v1/resources/expressions/all', methods=['GET'])
+def api_expressions():
+    """
+    return the entire "expressions" dict
+    >>> 
+    """
+    dat = clib.read_db("data.json")
+    return jsonify(dat['expressions'])
+
+@app.route('/api/v1/resources/expressions/list', methods=['GET'])
+def api_expressions():
+    """
+    list the expression global IDs
+    >>> 
+    """
+    dat = clib.read_db("data.json")
+    return jsonify(list(dat['expressions'].keys()))
+
 # @app.route('/db')
 # def db():
 #    redis.incr('hits')
@@ -481,6 +537,18 @@ def start_new_derivation():
 @app.route("/list_all_operators", methods=["GET", "POST"])
 def list_all_operators():
     logger.info("[trace] list_all_operators")
+
+    if request.method == "POST":
+        logger.debug("request.form = %s", request.form)
+        # request.form = ImmutableMultiDict([('delete_operator', 'indefinite intergral')])
+        if 'delete_operator' in request.form.keys():
+            compute.delete_operator(request.form['delete_operator'], 'data.json')
+        elif 'edit_operator_latex' in request.form.keys():
+            compute.edit_operator_latex(request.form['edit_operator_latex'], request.form['revised_text'], 'data.json')
+        else:
+            logger.error('unrecognized option')
+            flash('unrecognized option')
+
     dat = clib.read_db("data.json")
     try:
         operator_popularity_dict = compute.popularity_of_operators("data.json")
@@ -489,21 +557,16 @@ def list_all_operators():
         logger.warning(err)
         operator_popularity_dict = {}
 
-    sorted_list_operators = compute.get_sorted_list_of_operators_not_in_use('data.json')
+    sorted_list_operators = list(dat['operators'].keys())
+    sorted_list_operators.sort()
+    sorted_list_operators_not_in_use = compute.get_sorted_list_of_operators_not_in_use('data.json')
 
-    if request.method == "POST":
-        logger.debug("request.form = %s", request.form)
-        # request.form = ImmutableMultiDict([('delete_operator', 'indefinite intergral')])
-        if 'delete_operator' in request.form.keys():
-            compute.delete_operator(request.form['delete_operator'], 'data.json')
-        else:
-            logger.error('unrecognized option')
-            flash('unrecognized option')
 
     return render_template(
         "list_all_operators.html",
         operators_dict=dat["operators"],
         sorted_list_operators=sorted_list_operators,
+        sorted_list_operators_not_in_use=sorted_list_operators_not_in_use,
         edit_latex_webform=RevisedTextForm(request.form),
         operator_popularity_dict=operator_popularity_dict,
     )
@@ -512,6 +575,18 @@ def list_all_operators():
 @app.route("/list_all_symbols", methods=["GET", "POST"])
 def list_all_symbols():
     logger.info("[trace] list_all_symbols")
+
+    if request.method == "POST":
+        logger.debug("request.form = %s", request.form)
+        if 'delete_symbol' in request.form.keys():
+            compute.delete_symbol(request.form['delete_symbol'], 'data.json')
+        elif 'edit_symbol_latex' in request.form.keys():
+            # request.form = ImmutableMultiDict([('edit_symbol_latex', '1245'), ('revised_text', 'asfgasg')])
+            compute.edit_symbol_latex(request.form['edit_symbol_latex'], request.form['revised_text'], 'data.json')
+        else:
+            logger.error('unrecognized option')
+            flash('unrecognized option')
+
     dat = clib.read_db("data.json")
     try:
         symbol_popularity_dict = compute.popularity_of_symbols("data.json")
@@ -520,20 +595,15 @@ def list_all_symbols():
         logger.warning(err)
         symbol_popularity_dict = {}
 
-    sorted_list_symbols = compute.get_sorted_list_of_symbols_not_in_use('data.json') 
-
-    if request.method == "POST":
-        logger.debug("request.form = %s", request.form)
-        if 'delete_symbol' in request.form.keys():
-            compute.delete_symbol(request.form['delete_symbol'], 'data.json')
-        else:
-            logger.error('unrecognized option')
-            flash('unrecognized option')
+    sorted_list_symbols = list(dat['symbols'].keys())
+    sorted_list_symbols.sort()
+    sorted_list_symbols_not_in_use = compute.get_sorted_list_of_symbols_not_in_use('data.json') 
 
     return render_template(
         "list_all_symbols.html",
         symbols_dict=dat["symbols"],
         sorted_list_symbols=sorted_list_symbols,
+        sorted_list_symbols_not_in_use=sorted_list_symbols_not_in_use,
         edit_latex_webform=RevisedTextForm(request.form),
         symbol_popularity_dict=symbol_popularity_dict,
     )

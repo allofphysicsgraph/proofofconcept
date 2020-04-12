@@ -13,7 +13,7 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="delete_symbol" class="selectpicker form-control">
-              {% for elem in sorted_list_symbols %}
+              {% for elem in sorted_list_symbols_not_in_use %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>

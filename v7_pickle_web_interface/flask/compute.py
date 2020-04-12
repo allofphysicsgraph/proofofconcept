@@ -1836,6 +1836,36 @@ def rename_inf_rule(
     clib.write_db(path_to_db, dat)
     return status_msg
 
+def edit_operator_latex(operator: str, revised_latex: str, path_to_db: str) -> str:
+    """
+    >>> edit_operator_latex()
+    """
+    logger.info("[trace] edit_operator_latex")
+    dat = clib.read_db(path_to_db)
+    status_msg = ""
+    if operator in dat['operators'].keys():
+        dat['operators'][operator]['latex'] = revised_latex
+        status_msg = operator + "updated"
+    else:
+        status_msg = operator + " does not exist in database"
+    clib.write_db(path_to_db, dat)
+    return status_msg
+
+def edit_symbol_latex(symbol: str, revised_latex: str, path_to_db: str) -> str:
+    """
+    >>> edit_symbol_latex()
+    """
+    logger.info("[trace] edit_symbol_latex")
+    dat = clib.read_db(path_to_db)
+    status_msg = ""
+    if symbol in dat['symbols'].keys():
+        dat['symbols'][symbol]['latex'] = revised_text
+        status_msg = symbol + " updated"
+    else:
+        status_msg = symbol + " does not exist in database"
+    clib.write_db(path_to_db, dat)
+    return status_msg
+
 
 def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str) -> str:
     """
@@ -1846,6 +1876,7 @@ def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str)
     status_msg = ""
     if inf_rule_name in dat["inference rules"].keys():
         dat["inference rules"][inf_rule_name]["latex"] = revised_latex
+        status_msg = inf_rule_name + " updated"
     else:
         status_msg = inf_rule_name + " does not exist in database"
     clib.write_db(path_to_db, dat)
@@ -1888,11 +1919,12 @@ def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
     logger.info("[trace] edit_expr_latex")
     dat = clib.read_db(path_to_db)
     status_msg = ""
-    # logger.debug('old latex:',dat['expressions'][expr_id]['latex'])
-    dat["expressions"][expr_id]["latex"] = revised_latex
-    # logger.debug('new latex:',dat['expressions'][expr_id]['latex'])
+    if expr_id in dat["expressions"].keys():
+        dat["expressions"][expr_id]["latex"] = revised_latex
+        status_msg = expr_id + " updated"
+    else:
+        status_msg = expr_id + ' not in database'
     clib.write_db(path_to_db, dat)
-    # TODO: update AST based on revised latex
     return status_msg
 
 def delete_symbol(symbol_to_delete: str, path_to_db: str) -> str:
