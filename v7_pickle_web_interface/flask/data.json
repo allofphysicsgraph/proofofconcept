@@ -330,7 +330,7 @@
                 "feeds": [
                     "2342425"
                 ],
-                "inf rule": "mult RHS by unity",
+                "inf rule": "multiply RHS by unity",
                 "inputs": [
                     "1353583"
                 ],
