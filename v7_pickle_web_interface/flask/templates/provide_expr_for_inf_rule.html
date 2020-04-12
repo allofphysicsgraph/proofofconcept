@@ -3,10 +3,10 @@
 
 {% block content %}
 
-<P>name of derivation = {{ name_of_derivation }}
-
-<P>{{ inf_rule_dict['latex'] }}
-
+<P>name of derivation: {{ name_of_derivation }}</P>
+<P>inference rule: {{ inf_rule }}: <BR>
+{{ inf_rule_dict['latex'] }}
+</P>
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
 <form method="post" action="">

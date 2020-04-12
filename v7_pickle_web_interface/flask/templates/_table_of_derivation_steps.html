@@ -3,10 +3,11 @@
   <tr>
     <th>Step ID</th>
     <th>Inference Rule</th>
-    <th>Input local ID</th>
+    <th>Input<BR>local ID</th>
     <th>Input latex</th>
+    <th>Feed<BR>local ID</th>
     <th>Feeds latex</th>
-    <th>Output local ID</th>
+    <th>Output<BR>local ID</th>
     <th>Output latex</th>
     <th>Linear index</th>
     <th>step validity</th>
@@ -23,13 +24,21 @@
     <!-- input latex -->
     <td>{% for local_id in this_dict['inputs'] %}
           <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
-          {{ expr_local_to_gobal[local_id] }}</a>: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+          {{ expr_local_to_gobal[local_id] }}</a>: <BR>
+          {{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+        {% endfor %}
+    </td>
+    <!-- feeds local ID -->
+    <td>{% for local_id in this_dict['feeds'] %}
+          <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
+          {{ local_id }}
         {% endfor %}
     </td>
     <!-- feeds latex -->
     <td>{% for local_id in this_dict['feeds'] %}
           <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
-          {{ expr_local_to_gobal[local_id] }}</a>: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+          {{ expr_local_to_gobal[local_id] }}</a>: <BR>
+          {{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
         {% endfor %}
     </td>
     <!-- output local ID -->
@@ -40,7 +49,7 @@
     <!-- output latex -->
     <td>{% for local_id in this_dict['outputs'] %}
           <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
-          {{ expr_local_to_gobal[local_id] }}</a>: {{ expr_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+          {{ expr_local_to_gobal[local_id] }}</a>: <BR>{{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
         {% endfor %}
     </td>
     <!-- linear index -->

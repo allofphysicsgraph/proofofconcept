@@ -16,10 +16,6 @@
 <input type="submit" name="submit_button" value='change inference rule'>
 </form>
 (This option deletes existing inference rule and expressions.)
-<!--
-<P>step_dict: {{ step_dict }}
-<P>expr_dict: {{ expr_dict }}
--->
 
 <!-- https://jinja.palletsprojects.com/en/2.11.x/templates/#builtin-filters -->
 {% if step_dict['inputs']|length > 0 %}
@@ -31,7 +27,7 @@
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
               {% for expr_local_id in step_dict['inputs'] %}
-              <option value="{{ expr_local_id }}">{{ expr_dict[local_to_global[expr_local_id]]['latex'] }}</option>
+              <option value="{{ expr_local_id }}">{{ expressions_dict[local_to_global[expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text }}
@@ -50,7 +46,7 @@
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
               {% for expr_local_id in step_dict['feeds'] %}
-              <option value="{{ expr_local_id }}">{{ expr_dict[local_to_global[expr_local_id]]['latex'] }}</option>
+              <option value="{{ expr_local_id }}">{{ expressions_dict[local_to_global[expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text }}
@@ -70,7 +66,7 @@
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
               {% for expr_local_id in step_dict['outputs'] %}
-              <option value="{{ expr_local_id }}">{{ expr_dict[local_to_global[expr_local_id]]['latex'] }}</option>
+              <option value="{{ expr_local_id }}">{{ expressions_dict[local_to_global[expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text }}

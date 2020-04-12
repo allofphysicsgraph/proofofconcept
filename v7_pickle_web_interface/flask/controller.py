@@ -10,6 +10,8 @@
 # convention: every call to flash must be either a string or the content must be wrapped in str()
 # reason: when content is passed to flash() that cannot be serialized, the Flask error and the website crashes
 
+# convention: every "raise Exception" should be proceeded by a corresponding "logger.error()"
+
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
 #from redis import Redis
 # https://pypi.org/project/rejson/
@@ -808,7 +810,6 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         # request.form = ImmutableMultiDict([('input1', ''), ('input1_radio', 'global'), ('input1_global_id', '5530148480'), ('feed1', 'asgasgag'), ('output1', ''), ('output1_radio', 'global'), ('output1_glob_id', '9999999951'), ('submit_button', 'Submit')])
 
 
-
         try:
             local_step_id = compute.create_step(
                 latex_for_step_dict, inf_rule, name_of_derivation, "data.json"
@@ -877,17 +878,25 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         flash(str(err))
         list_of_global_id_not_in_derivation = []
 
+    infrules_modified_latex_dict = {}
+    for infrule_name, infrule_dict in dat["inference rules"].items():
+        #logger.debug(infrule_name + ' has ' + str(infrule_dict))
+        #logger.debug(str(list(infrule_dict.keys())))
+        infrule_dict['latex'] = infrule_dict['latex'].replace('\\ref','ref')
+        infrules_modified_latex_dict[infrule_name] = infrule_dict
+    #logger.debug('infrules_modified_latex_dict =' + str(infrules_modified_latex_dict))
+
     return render_template(
         "provide_expr_for_inf_rule.html",
         name_of_derivation=name_of_derivation,
         expression_popularity_dict=expression_popularity_dict,
         expressions_dict=dat["expressions"],
-        inf_rule_dict=dat["inference rules"][inf_rule],
+        inf_rule_dict=infrules_modified_latex_dict[inf_rule],
         list_of_local_id=list_of_local_id,
         list_of_global_id_not_in_derivation=list_of_global_id_not_in_derivation,
         step_dict=step_dict,
+        inf_rule=inf_rule,
         derivation_validity_dict=derivation_validity_dict,
-        expr_dict=dat["expressions"],
         expr_local_to_gobal=dat["expr local to global"],
         webform=LatexIO(request.form),
     )
@@ -939,15 +948,27 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
                 )
             )
         else:
+            logger.error('unrecognized button in "step_review":', request.form)
             raise Exception('unrecognized button in "step_review":', request.form)
 
-    try:
-        derivation_validity_dict=compute.determine_derivation_validity(
-            name_of_derivation, "data.json")
-    except Exception as err:
-        logger.warning(err)
-        flash(str(err))
+    if name_of_derivation in dat["derivations"].keys():
+        try:
+            derivation_validity_dict=compute.determine_derivation_validity(
+                name_of_derivation, "data.json")
+        except Exception as err:
+            logger.warning(err)
+            flash(str(err))
+            derivation_validity_dict = {}
+        try:
+            step_dict=dat["derivations"][name_of_derivation]
+        except Exception as err:
+            logger.warning(err)
+            flash(str(err))
+            step_dict = {}
+    else:
+        logger.debug(name_of_derivation + 'does not exist in derivations')
         derivation_validity_dict = {}
+        step_dict = {}
 
     try:
         expression_popularity_dict = compute.popularity_of_expressions("data.json")
@@ -964,8 +985,8 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
         name_of_graphviz_png=step_graphviz_png,
         name_of_derivation=name_of_derivation,
         expression_popularity_dict=expression_popularity_dict,
-        step_dict=dat["derivations"][name_of_derivation],
-        #expr_dict=dat["expressions"],
+        step_dict=step_dict,
+        expr_dict=dat["expressions"],
         expressions_dict=dat["expressions"],
         derivation_validity_dict=derivation_validity_dict,
         expr_local_to_gobal=dat["expr local to global"],
@@ -1045,6 +1066,13 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         flash(str(err))
         derivation_validity_dict = {}
 
+    try:
+        expression_popularity_dict = compute.popularity_of_expressions("data.json")
+    except Exception as err:
+        logger.warning(err)
+        flash(str(err))
+        expression_popularity_dict = {}
+
     return render_template(
         "review_derivation.html",
         pdf_filename=pdf_filename,
@@ -1054,6 +1082,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         step_dict=dat["derivations"][name_of_derivation],
         derivation_validity_dict=derivation_validity_dict,
         expr_dict=dat["expressions"],
+        expression_popularity_dict=expression_popularity_dict, 
         expr_local_to_gobal=dat["expr local to global"],
     )
 
@@ -1061,7 +1090,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
 @app.route("/modify_step/<name_of_derivation>/<step_id>/", methods=["GET", "POST"])
 def modify_step(name_of_derivation: str, step_id: str):
     """
-    >>>
+    >>> modify_step('fun deriv', '958242')
     """
     logger.info("[trace] modify_step")
 
@@ -1122,7 +1151,7 @@ def modify_step(name_of_derivation: str, step_id: str):
         name_of_graphviz_png=step_graphviz_png,
         step_dict=dat["derivations"][name_of_derivation][step_id],
         local_to_global=dat["expr local to global"],
-        expr_dict=dat["expressions"],
+        expressions_dict=dat["expressions"],
         edit_expr_latex_webform=RevisedTextForm(request.form),
         expr_local_to_gobal=dat["expr local to global"],
     )

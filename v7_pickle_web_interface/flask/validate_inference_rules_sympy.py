@@ -37,7 +37,11 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
 
     logger.debug("split_expr_into_lhs_rhs; latex_expr = %s", latex_expr)
 
-    sympy_expr = parse_latex(latex_expr)
+    try:
+        sympy_expr = parse_latex(latex_expr)
+    except SympifyError as err:
+        logger.error(err)
+
     logger.debug("split_expr_into_lhs_rhs; Sympy expression = %s", sympy_expr)
 
     # latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
@@ -46,6 +50,7 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
     try:
         return sympy_expr.lhs, sympy_expr.rhs
     except AttributeError as error_message:
+        logger.error("ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message))
         raise Exception(
             "ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message)
         )
@@ -195,6 +200,7 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
     elif step_dict["inf rule"] == "expand magnitude to conjugate":
         return expand_magnitude_to_conjugate(latex_dict)
     else:
+        logger.error('unexpected inf rule')
         raise Exception("Unexpected inf rule")
 
     return "This message should not be seen"
