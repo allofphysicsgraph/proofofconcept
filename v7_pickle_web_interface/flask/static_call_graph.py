@@ -80,4 +80,10 @@ print('==== imports per file ====')
 for py_file, import_tuples in dict_of_imports_per_file.items():
     print(py_file, import_tuples)
 
+# for each file, look for functions that are defined within that file
+print('==== local function calls ====')
+
+# for each file, look for functions that call local functions from other local files
+print('==== function calls across modules ====')
+
 # EOF
