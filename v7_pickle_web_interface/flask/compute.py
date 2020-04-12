@@ -559,21 +559,29 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         fil.write(cypher_str)
     return cypher_file
 
-
-def expr_not_in_derivations(path_to_db: str) -> list:
+def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
     """
-    >>> expr_not_in_derivations('data.json')
+    >>> 
     """
-    logger.info("[trace] expr_not_in_derivations")
-    # dat = clib.read_db(path_to_db)
-    list_of_expr_not_in_deriv = []
-    expr_popularity_dict = popularity_of_expressions(path_to_db)
-    for expr_global_id, list_of_derivs in expr_popularity_dict.items():
-        if len(list_of_derivs) == 0:
-            list_of_expr_not_in_deriv.append(expr_global_id)
-    list_of_expr_not_in_deriv.sort()
-    return list_of_expr_not_in_deriv
+    symbol_popularity_dict = popularity_of_symbols(path_to_db)
+    list_of_symbols_not_in_use = []
+    for symbol, list_of_deriv_used_in in symbol_popularity_dict.items():
+        if len(list_of_deriv_used_in) == 0:
+            list_of_symbols_not_in_use.append(symbol)
+    list_of_symbols_not_in_use.sort()
+    return list_of_symbols_not_in_use
 
+def get_sorted_list_of_operators_not_in_use(path_to_db: str) -> list:
+    """
+    >>> 
+    """
+    operator_popularity_dict = popularity_of_operators(path_to_db)
+    list_of_operators_not_in_use = []
+    for operator, list_of_deriv_used_in in operator_popularity_dict.items():
+        if len(list_of_deriv_used_in) == 0:
+            list_of_operators_not_in_use.append(operator)
+    list_of_operators_not_in_use.sort()
+    return list_of_operators_not_in_use
 
 def get_sorted_list_of_expr(path_to_db: str) -> list:
     """
@@ -587,6 +595,35 @@ def get_sorted_list_of_expr(path_to_db: str) -> list:
     list_expr.sort()
     return list_expr
 
+def get_sorted_list_of_expr_not_in_use(path_to_db: str) -> list:
+    """
+    return: list of global IDs
+
+    >>> get_sorted_list_of_expr('data.pkl')
+    """
+    logger.info("[trace] get_sorted_list_of_expr")
+
+    expr_popularity_dict = popularity_of_expressions(path_to_db)
+    list_of_expr_not_in_use = []
+    for expr_global_id, list_of_deriv_used_in in expr_popularity_dict.items():
+        if len(list_of_deriv_used_in) == 0:
+            list_of_expr_not_in_use.append(expr_global_id)
+    list_of_expr_not_in_use.sort()
+    return list_of_expr_not_in_use
+
+def get_sorted_list_of_inf_rules_not_in_use(path_to_db: str) -> list:
+    """
+    >>> get_sorted_list_of_inf_rules('data.pkl')
+    """
+    logger.info("[trace] get_list_of_inf_rules")
+    dat = clib.read_db(path_to_db)
+    infrule_popularity_dict = popularity_of_infrules(path_to_db)
+    list_of_infrules_not_in_use = []
+    for infrule, list_of_deriv_used_in in infrule_popularity_dict.items():
+        if len(list_of_deriv_used_in) == 0:
+            list_of_infrules_not_in_use.append(infrule)
+    list_of_infrules_not_in_use.sort()
+    return list_of_infrules_not_in_use
 
 def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     """
@@ -624,24 +661,6 @@ def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
             dat["derivations"].keys(),
         )
     return dat["derivations"][name_of_derivation]
-
-
-# def input_output_count_for_infrule(inf_rule: str, path_to_db: str) -> Tuple[str, str, str]:
-#    """
-#    >>> input_output_count_for_infrule('multiply both sides by X', 'data.json')
-#    """
-#    logger.info('[trace] input_output_count_for_infrule')
-#    dat = clib.read_db(path_to_db)
-#
-#    if 'inference rules' not in dat.keys():
-#        logger.debug("[ERROR] compute; input_output_count_for_infrule: dat doesn't contain 'inference rules' as a key")
-#    if inf_rule not in dat['inference rules'].keys():
-#        logger.debug("[ERROR] compute; input_output_count_for_infrule: dat['inference rules'] doesn't contain ", inf_rule)
-#
-#    number_of_feeds   = dat['inference rules'][inf_rule]['number of feeds']
-#    number_of_inputs  = dat['inference rules'][inf_rule]['number of inputs']
-#    number_of_outputs = dat['inference rules'][inf_rule]['number of outputs']
-#    return number_of_feeds, number_of_inputs, number_of_outputs
 
 
 def create_expr_global_id(path_to_db: str) -> str:
@@ -1876,6 +1895,37 @@ def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
     # TODO: update AST based on revised latex
     return status_msg
 
+def delete_symbol(symbol_to_delete: str, path_to_db: str) -> str:
+    """
+    >>> delete_symbol()
+    """
+    logger.info('[trace] delete_symbol')
+    dat = clib.read_db(path_to_db)
+    status_msg = ""
+    symbol_popularity_dict = popularity_of_symbols(path_to_db)
+    if len(symbol_popularity_dict[symbol_to_delete]) > 0:
+        status_msg = symbol_to_delete + " cannot be deleted because it is in use in " + str(symbol_popularity_dict[symbol_to_delete])
+    else:
+        del dat['symbols'][symbol_to_delete]
+        status_message = "successfully deleted " + symbol_to_delete
+    clib.write_db(path_to_db, dat)
+    return status_msg
+
+def delete_operator(operator_to_delete: str, path_to_db: str) -> str:
+    """
+    >>> delete_operator()
+    """
+    logger.info('[trace] delete_operator')
+    dat = clib.read_db(path_to_db)
+    status_msg = ""
+    operator_popularity_dict = popularity_of_operators(path_to_db)
+    if len(operator_popularity_dict[operator_to_delete]) > 0:
+        status_msg = operator_to_delete + " cannot be deleted because it is in use in " + str(operator_popularity_dict[symbol_to_delete])
+    else:
+        del dat['symbols'][operator_to_delete]
+        status_message = "successfully deleted " + operator_to_delete
+    clib.write_db(path_to_db, dat)
+    return status_msg
 
 def delete_expr(expr_global_id: str, path_to_db: str) -> str:
     """

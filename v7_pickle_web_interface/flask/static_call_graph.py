@@ -83,7 +83,40 @@ for py_file, import_tuples in dict_of_imports_per_file.items():
 # for each file, look for functions that are defined within that file
 print('==== local function calls ====')
 
+dict_of_funcs_called_per_func_per_file = {} 
+for py_file, list_of_lines in py_code_dict.items():
+    print(py_file)
+    dict_of_funcs_called_per_func_per_file[py_file] = {}
+    for this_line in list_of_lines:
+        if not this_line.lstrip().startswith('@'):
+            if this_line.lstrip().startswith('def '):
+                which_func = re.sub('\(.*', '', this_line.replace('def ',''))
+                dict_of_funcs_called_per_func_per_file[py_file][which_func] = []
+#                print('which_func =', which_func)
+            for func_in_file in dict_of_functions_per_file[py_file]:
+                if func_in_file + '(' in this_line and func_in_file != which_func:
+#                    print(func_in_file, this_line)
+                    dict_of_funcs_called_per_func_per_file[py_file][which_func].append(func_in_file)
+    for func, called_func in dict_of_funcs_called_per_func_per_file[py_file].items():
+        print(func, 'calls', called_func)
+
 # for each file, look for functions that call local functions from other local files
 print('==== function calls across modules ====')
+dict_of_funcs_called_from_module = {}
+for origin_py_file, origin_list_of_lines in py_code_dict.items():
+    dict_of_funcs_called_from_module[origin_py_file] = {}
+    import_tuples = dict_of_imports_per_file[origin_py_file]
+    for this_tup in import_tuples:
+        print(origin_py_file, this_tup)
+        for this_line in origin_list_of_lines:
+            if not this_line.lstrip().startswith('@'):
+                if this_line.lstrip().startswith('def '):
+                    which_func = re.sub('\(.*', '', this_line.replace('def ',''))
+                    dict_of_funcs_called_from_module[origin_py_file][which_func] = []
+                if this_tup[1] in this_line:
+                    called_func = re.sub('\(.*', '', this_line)
+                    called_func = re.sub('.*'+this_tup[1], this_tup[1], called_func)
+                    print(origin_py_file, which_func, this_tup[1], called_func)
+
 
 # EOF

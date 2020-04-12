@@ -489,11 +489,22 @@ def list_all_operators():
         logger.warning(err)
         operator_popularity_dict = {}
 
+    sorted_list_operators = compute.get_sorted_list_of_operators_not_in_use('data.json')
+
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
+        # request.form = ImmutableMultiDict([('delete_operator', 'indefinite intergral')])
+        if 'delete_operator' in request.form.keys():
+            compute.delete_operator(request.form['delete_operator'], 'data.json')
+        else:
+            logger.error('unrecognized option')
+            flash('unrecognized option')
+
     return render_template(
         "list_all_operators.html",
         operators_dict=dat["operators"],
+        sorted_list_operators=sorted_list_operators,
+        edit_latex_webform=RevisedTextForm(request.form),
         operator_popularity_dict=operator_popularity_dict,
     )
 
@@ -509,11 +520,21 @@ def list_all_symbols():
         logger.warning(err)
         symbol_popularity_dict = {}
 
+    sorted_list_symbols = compute.get_sorted_list_of_symbols_not_in_use('data.json') 
+
     if request.method == "POST":
-        logger.debug("list_all_symbolss; request.form = %s", request.form)
+        logger.debug("request.form = %s", request.form)
+        if 'delete_symbol' in request.form.keys():
+            compute.delete_symbol(request.form['delete_symbol'], 'data.json')
+        else:
+            logger.error('unrecognized option')
+            flash('unrecognized option')
+
     return render_template(
         "list_all_symbols.html",
         symbols_dict=dat["symbols"],
+        sorted_list_symbols=sorted_list_symbols,
+        edit_latex_webform=RevisedTextForm(request.form),
         symbol_popularity_dict=symbol_popularity_dict,
     )
 
@@ -565,7 +586,7 @@ def list_all_expressions():
         flash(str(err))
         list_of_expr = []
     try:
-        list_of_expr_not_appearing_in_any_derivations = compute.expr_not_in_derivations(
+        list_of_expr_not_appearing_in_any_derivations = compute.get_sorted_list_of_inf_rules_not_in_use(
             "data.json"
         )
     except Exception as err:
@@ -668,7 +689,7 @@ def list_all_inference_rules():
         infrules_modified_latex_dict[infrule_name] = infrule_dict
 
     try:
-        sorted_list_infrules = compute.get_sorted_list_of_inf_rules("data.json")
+        sorted_list_infrules = compute.get_sorted_list_of_inf_rules_not_in_use("data.json")
     except Exception as err:
         flash(str(err))
         logging.warning(err)
@@ -1115,9 +1136,10 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
             return redirect(url_for("index"))
         else:
             flash(
-                "[ERROR] compute; review_derivation; unrecognized button:"
+                "[ERROR]  unrecognized button:"
                 + str(request.form)
             )
+            logger.error('unrecognized button')
 
     try:
         derivation_png = compute.create_derivation_png(name_of_derivation, "data.json")
@@ -1220,9 +1242,10 @@ def modify_step(name_of_derivation: str, step_id: str):
 
         else:
             flash(
-                "[ERROR] compute; review_derivation; unrecognized button:"
+                "[ERROR] unrecognized button:"
                 + str(request.form)
             )
+            logger.error('unrecognized button')
 
     return render_template(
         "modify_step.html",

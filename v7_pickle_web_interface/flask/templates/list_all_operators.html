@@ -4,6 +4,45 @@
 <P>
 {% include '_table_of_operators.html' %}
 
+  <h2>
+    <a id="delete operator">
+      Delete an operator
+    </a>
+  </h2>
+<form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="delete_operator" class="selectpicker form-control">
+              {% for elem in sorted_list_operators %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+    </div>
+    <button type="submit" class="btn btn-default">Delete</button>
+  </div>
+</form>
+
+  <h2>
+    <a id="edit operator latex">
+      Edit the latex for an operator
+    </a>
+  </h2>
+<form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="edit_operator_latex" class="selectpicker form-control">
+              {% for elem in sorted_list_operators %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+<P>{{ edit_latex_webform.revised_text.label }}: {{ edit_latex_webform.revised_text }}
+    </div>
+    <button type="submit" class="btn btn-default">Update</button>
+  </div>
+</form>
+
 
 {% endblock %}
 

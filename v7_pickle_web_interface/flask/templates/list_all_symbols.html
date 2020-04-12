@@ -3,6 +3,45 @@
 
 {% include '_table_of_symbols.html' %}
 
+  <h2>
+    <a id="delete symbol">
+      Delete a symbol
+    </a>
+  </h2>
+<form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="delete_symbol" class="selectpicker form-control">
+              {% for elem in sorted_list_symbols %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+    </div>
+    <button type="submit" class="btn btn-default">Delete</button>
+  </div>
+</form>
+
+  <h2>
+    <a id="edit symbol latex">
+      Edit the latex for symbol
+    </a>
+  </h2>
+<form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="edit_symbol_latex" class="selectpicker form-control">
+              {% for elem in sorted_list_symbols %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+<P>{{ edit_latex_webform.revised_text.label }}: {{ edit_latex_webform.revised_text }}
+    </div>
+    <button type="submit" class="btn btn-default">Update</button>
+  </div>
+</form>
+
 
 {% endblock %}
 
