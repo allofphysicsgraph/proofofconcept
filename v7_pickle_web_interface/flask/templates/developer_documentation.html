@@ -120,6 +120,13 @@
       Uses Python, Flask, Docker. 
       Data is stored in a JSON file. 
       Limited support for checking inference rules using Sympy. 
+      Storage formats evolved:
+      <OL>
+        <LI>nested Python dictionaries and lists stored as a Python Pickle
+        <LI>nested Python dictionaries and lists stored as a JSON file. With this approach the schema can be validated
+        <LI>nested Python dictionaries and lists stored as a JSON file stored in Redis. Retains the schema validation of JSON while preventing concurrent writes to file; see https://redis.io/topics/transactions
+        <LI>nested Python dictionaries and lists stored as a JSON file stored in SQLite3. Part of the migration towards table-based implementation. SQLite3 is better than Redis because Redis requires a Redis server to be running whereas SQLite3 is a file. 
+      </OL>
     </LI> 
   </OL>
 Each of these have required a rewrite of the code from scratch, as well as transfer code (to move from n to n+1). 
