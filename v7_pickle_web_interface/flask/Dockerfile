@@ -55,7 +55,8 @@ COPY common_lib.py \
      compute.py \
      config.py \
      controller.py \
-     data.json \
+#     data.json \
+     pdg.db \
      json_schema.py \
      Makefile \
      validate_inference_rules_sympy.py \

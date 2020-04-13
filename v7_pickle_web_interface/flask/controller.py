@@ -46,6 +46,7 @@ import validate_inference_rules_sympy as vir  # PDG
 
 # global proc_timeout
 proc_timeout = 30
+path_to_db = 'pdg.db'
 
 app = Flask(__name__, static_folder="static")
 app.config.from_object(
@@ -292,7 +293,7 @@ def api_all_derivations():
     return the entire "derivations" dict
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(dat["derivations"])
 
 
@@ -302,7 +303,7 @@ def api_list_derivations():
     list derivation names
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(list(dat["derivations"].keys()))
 
 
@@ -316,7 +317,7 @@ def api_read_derivation_by_name():
     https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     if "name" in request.args:
         name = str(request.args["name"])
     else:
@@ -336,7 +337,7 @@ def api_read_derivation_by_name():
 #    """
 #    /api/v1/resources/derivations/create?name=a%20new%20deriv
 #    """
-#    dat = clib.read_db("data.json")
+#    dat = clib.read_db(path_to_db)
 #    if 'name' in request.args:
 #        name = str(request.args['name'])
 #    else:
@@ -354,7 +355,7 @@ def api_all_expressions():
     return the entire "expressions" dict
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(dat["expressions"])
 
 
@@ -364,7 +365,7 @@ def api_list_expressions():
     list the expression global IDs
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(list(dat["expressions"].keys()))
 
 
@@ -378,7 +379,7 @@ def api_read_expression_by_id():
     https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     if "global_id" in request.args:
         global_id = str(request.args["global_id"])
     else:
@@ -399,7 +400,7 @@ def api_all_infrules():
     /api/v1/resources/infrules/all
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(dat["inference rules"])
 
 
@@ -409,7 +410,7 @@ def api_list_infrules():
     /api/v1/resources/infrules/list
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(dat["inference rules"].keys())
 
 
@@ -419,7 +420,7 @@ def api_infrules_by_name():
     /api/v1/resources/infrules?name=add%20zero%20to%20LHS
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     if "name" in request.args:
         name = str(request.args["name"])
     else:
@@ -436,7 +437,7 @@ def api_all_local_to_global():
     /api/v1/resources/local_to_global/all
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(dat["expr local to global"])
 
 
@@ -446,7 +447,7 @@ def api_list_local():
     /api/v1/resources/local_to_global/list
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(list(dat["expr local to global"].keys()))
 
 
@@ -456,7 +457,7 @@ def api_local_to_global():
     /api/v1/resources/local_to_global?local_id=8837284
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     if "local_id" in request.args:
         local_id = str(request.args["local_id"])
     else:
@@ -473,7 +474,7 @@ def api_all_symbols():
     /api/v1/resources/symbols/all
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(dat["symbols"])
 
 
@@ -483,7 +484,7 @@ def api_list_symbols():
     /api/v1/resources/symbols/list
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(list(dat["symbols"].keys()))
 
 
@@ -493,7 +494,7 @@ def api_symbols_by_name():
     /api/v1/resources/symbols?symbol_id=1223
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     if "symbol_id" in request.args:
         symbol_id = str(request.args["symbol_id"])
     else:
@@ -510,7 +511,7 @@ def api_all_operators():
     /api/v1/resources/operators/all
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(dat["symbols"])
 
 
@@ -520,7 +521,7 @@ def api_list_operators():
     /api/v1/resources/operators/list
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return jsonify(list(dat["operators"].keys()))
 
 
@@ -530,7 +531,7 @@ def api_operators_by_name():
     /api/v1/resources/operators?operator_id=equals
     >>>
     """
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     if "operator_id" in request.args:
         operator_id = str(request.args["operator_id"])
     else:
@@ -622,7 +623,7 @@ def editor():
 
     # this takes too long; removed on 20200408
     #    try:
-    #        compute.generate_all_expr_and_infrule_pngs(False, 'data.json')
+    #        compute.generate_all_expr_and_infrule_pngs(False, path_to_db)
     #    except Exception as err:
     #        logger.warning(err)
     #        flash(str(err))
@@ -645,7 +646,7 @@ def editor():
         sql_file,
         rdf_file,
         neo4j_file,
-    ] = compute.create_files_of_db_content("data.json")
+    ] = compute.create_files_of_db_content(path_to_db)
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
@@ -691,11 +692,11 @@ def editor():
             if not valid_json_bool:
                 flash("uploaded file does not match PDG schema")
             else:  # file exists, has .json extension, is JSON, and complies with schema
-                shutil.copy(path_to_uploaded_file, "/home/appuser/app/data.json")
+                shutil.copy(path_to_uploaded_file, "/home/appuser/app/"+path_to_db)
             return redirect(url_for("index", filename=filename))
 
     logger.debug("reading from json")
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     return render_template(
         "editor.html",
         number_of_derivations=len(dat["derivations"].keys()),
@@ -703,7 +704,7 @@ def editor():
         number_of_expressions=len(dat["expressions"].keys()),
         number_of_symbols=len(dat["symbols"].keys()),
         number_of_operators=len(dat["operators"].keys()),
-        database_json="data.json",
+        database_json=path_to_db,
         database_df_pkl=df_pkl_file,
         database_sql=sql_file,
         database_neo4j=neo4j_file,
@@ -743,20 +744,20 @@ def list_all_operators():
         logger.debug("request.form = %s", request.form)
         # request.form = ImmutableMultiDict([('delete_operator', 'indefinite intergral')])
         if "delete_operator" in request.form.keys():
-            compute.delete_operator(request.form["delete_operator"], "data.json")
+            compute.delete_operator(request.form["delete_operator"], path_to_db)
         elif "edit_operator_latex" in request.form.keys():
             compute.edit_operator_latex(
                 request.form["edit_operator_latex"],
                 request.form["revised_text"],
-                "data.json",
+                path_to_db,
             )
         else:
             logger.error("unrecognized option")
             flash("unrecognized option")
 
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     try:
-        operator_popularity_dict = compute.popularity_of_operators("data.json")
+        operator_popularity_dict = compute.popularity_of_operators(path_to_db)
     except Exception as err:
         flash(str(err))
         logger.warning(err)
@@ -765,7 +766,7 @@ def list_all_operators():
     sorted_list_operators = list(dat["operators"].keys())
     sorted_list_operators.sort()
     sorted_list_operators_not_in_use = compute.get_sorted_list_of_operators_not_in_use(
-        "data.json"
+        path_to_db
     )
 
     return render_template(
@@ -785,21 +786,21 @@ def list_all_symbols():
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
         if "delete_symbol" in request.form.keys():
-            compute.delete_symbol(request.form["delete_symbol"], "data.json")
+            compute.delete_symbol(request.form["delete_symbol"], path_to_db)
         elif "edit_symbol_latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_symbol_latex', '1245'), ('revised_text', 'asfgasg')])
             compute.edit_symbol_latex(
                 request.form["edit_symbol_latex"],
                 request.form["revised_text"],
-                "data.json",
+                path_to_db,
             )
         else:
             logger.error("unrecognized option")
             flash("unrecognized option")
 
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     try:
-        symbol_popularity_dict = compute.popularity_of_symbols("data.json")
+        symbol_popularity_dict = compute.popularity_of_symbols(path_to_db)
     except Exception as err:
         flash(str(err))
         logger.warning(err)
@@ -808,7 +809,7 @@ def list_all_symbols():
     sorted_list_symbols = list(dat["symbols"].keys())
     sorted_list_symbols.sort()
     sorted_list_symbols_not_in_use = compute.get_sorted_list_of_symbols_not_in_use(
-        "data.json"
+        path_to_db
     )
 
     return render_template(
@@ -824,9 +825,9 @@ def list_all_symbols():
 @app.route("/list_all_expressions", methods=["GET", "POST"])
 def list_all_expressions():
     logger.info("[trace] list_all_expressions")
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     try:
-        expression_popularity_dict = compute.popularity_of_expressions("data.json")
+        expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -839,7 +840,7 @@ def list_all_expressions():
                 status_message = compute.edit_expr_latex(
                     request.form["edit_expr_latex"],
                     request.form["revised_text"],
-                    "data.json",
+                    path_to_db,
                 )
             except Exception as err:
                 logger.warning(err)
@@ -852,7 +853,7 @@ def list_all_expressions():
             # request.form = ImmutableMultiDict([('delete_expr', '4928923942')])
             try:
                 status_message = compute.delete_expr(
-                    request.form["delete_expr"], "data.json"
+                    request.form["delete_expr"], path_to_db
                 )
             except Exception as err:
                 logger.warning(err)
@@ -862,14 +863,14 @@ def list_all_expressions():
             logger.debug("list_all_expressions; status = %s", status_message)
             return redirect(url_for("list_all_expressions"))
     try:
-        list_of_expr = compute.get_sorted_list_of_expr("data.json")
+        list_of_expr = compute.get_sorted_list_of_expr(path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
         list_of_expr = []
     try:
         list_of_expr_not_appearing_in_any_derivations = compute.get_sorted_list_of_inf_rules_not_in_use(
-            "data.json"
+            path_to_db
         )
     except Exception as err:
         logger.warning(err)
@@ -888,9 +889,9 @@ def list_all_expressions():
 @app.route("/list_all_inference_rules", methods=["GET", "POST"])
 def list_all_inference_rules():
     logger.info("[trace] list_all_inference_rules")
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     try:
-        infrule_popularity_dict = compute.popularity_of_infrules("data.json")
+        infrule_popularity_dict = compute.popularity_of_infrules(path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -903,7 +904,7 @@ def list_all_inference_rules():
             # request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
             try:
                 status_message = compute.add_inf_rule(
-                    request.form.to_dict(), "data.json"
+                    request.form.to_dict(), path_to_db
                 )
             except Exception as err:
                 flash(str(err))
@@ -916,7 +917,7 @@ def list_all_inference_rules():
             # request.form = ImmutableMultiDict([('delete_inf_rule', 'asdf')])
             try:
                 status_message = compute.delete_inf_rule(
-                    request.form["delete_inf_rule"], "data.json"
+                    request.form["delete_inf_rule"], path_to_db
                 )
             except Exception as err:
                 flash(str(err))
@@ -933,7 +934,7 @@ def list_all_inference_rules():
                 status_message = compute.rename_inf_rule(
                     request.form["rename_inf_rule_from"],
                     request.form["revised_text"],
-                    "data.json",
+                    path_to_db,
                 )
             except Exception as err:
                 flash(str(err))
@@ -950,7 +951,7 @@ def list_all_inference_rules():
                 status_message = compute.edit_inf_rule_latex(
                     request.form["edit_inf_rule_latex"],
                     request.form["revised_text"],
-                    "data.json",
+                    path_to_db,
                 )
             except Exception as err:
                 flash(str(err))
@@ -972,7 +973,7 @@ def list_all_inference_rules():
 
     try:
         sorted_list_infrules = compute.get_sorted_list_of_inf_rules_not_in_use(
-            "data.json"
+            path_to_db
         )
     except Exception as err:
         flash(str(err))
@@ -999,7 +1000,7 @@ def select_derivation_to_edit():
         )
 
     try:
-        derivations_list = (compute.get_sorted_list_of_derivations("data.json"),)
+        derivations_list = (compute.get_sorted_list_of_derivations(path_to_db),)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -1019,7 +1020,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
     """
     logger.info("[trace] select_derivation_step_to_edit")
     try:
-        step_dict = compute.get_derivation_steps(name_of_derivation, "data.json")
+        step_dict = compute.get_derivation_steps(name_of_derivation, path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -1030,19 +1031,19 @@ def select_derivation_step_to_edit(name_of_derivation: str):
         step_to_delete = request.form["step_to_delete"]
         try:
             compute.delete_step_from_derivation(
-                name_of_derivation, step_to_delete, "data.json"
+                name_of_derivation, step_to_delete, path_to_db
             )
         except Exception as err:
             logger.warning(err)
             flash(str(err))
 
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
 
     if name_of_derivation in dat["derivations"].keys():
         # step_dict = dat["derivations"][name_of_derivation]
         try:
             derivation_validity_dict = compute.determine_derivation_validity(
-                name_of_derivation, "data.json"
+                name_of_derivation, path_to_db
             )
         except Exception as err:
             logger.warning(err)
@@ -1070,7 +1071,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
 def select_from_existing_derivations():
     logger.info("[trace] select_from_existing_derivations")
     try:
-        list_of_deriv = compute.get_sorted_list_of_derivations("data.json")
+        list_of_deriv = compute.get_sorted_list_of_derivations(path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -1090,7 +1091,7 @@ def select_from_existing_derivations():
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_pdf')])
             try:
                 pdf_filename = compute.generate_pdf_for_derivation(
-                    name_of_derivation, "data.json"
+                    name_of_derivation, path_to_db
                 )
             except Exception as err:
                 logger.warning(err)
@@ -1126,7 +1127,7 @@ def select_from_existing_derivations():
 def new_step_select_inf_rule(name_of_derivation: str):
     logger.info("[trace] new_step_select_inf_rule")
     try:
-        list_of_inf_rules = compute.get_sorted_list_of_inf_rules("data.json")
+        list_of_inf_rules = compute.get_sorted_list_of_inf_rules(path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -1168,10 +1169,10 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
     """
 
     logger.info("[trace] provide_expr_for_inf_rule")
-    # num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, 'data.json')
+    # num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, path_to_db)
     # logger.debug('provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
 
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
 
     if (
         request.method == "POST"
@@ -1189,7 +1190,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
         try:
             local_step_id = compute.create_step(
-                latex_for_step_dict, inf_rule, name_of_derivation, "data.json"
+                latex_for_step_dict, inf_rule, name_of_derivation, path_to_db
             )
         except Exception as err:
             flash(str(err))
@@ -1201,7 +1202,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
         try:
             step_validity_msg = vir.validate_step(
-                name_of_derivation, local_step_id, "data.json"
+                name_of_derivation, local_step_id, path_to_db
             )
         except Exception as err:
             flash(str(err))
@@ -1222,7 +1223,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         step_dict = dat["derivations"][name_of_derivation]
         try:
             derivation_validity_dict = compute.determine_derivation_validity(
-                name_of_derivation, "data.json"
+                name_of_derivation, path_to_db
             )
         except Exception as err:
             logger.warning(err)
@@ -1235,7 +1236,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
     # logger.debug('step validity = %s', str(step_validity_dict))
 
     try:
-        expression_popularity_dict = compute.popularity_of_expressions("data.json")
+        expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -1243,7 +1244,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
     try:
         list_of_local_id = compute.list_local_id_for_derivation(
-            name_of_derivation, "data.json"
+            name_of_derivation, path_to_db
         )
     except Exception as err:
         logger.warning(err)
@@ -1252,7 +1253,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
     try:
         list_of_global_id_not_in_derivation = compute.list_global_id_not_in_derivation(
-            name_of_derivation, "data.json"
+            name_of_derivation, path_to_db
         )
     except Exception as err:
         logger.warning(err)
@@ -1297,13 +1298,13 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
 
     try:
         step_graphviz_png = compute.create_step_graphviz_png(
-            name_of_derivation, local_step_id, "data.json"
+            name_of_derivation, local_step_id, path_to_db
         )
     except Exception as err:
         logger.warning(err)
         flash(str(err))
         step_graphviz_png = "error.png"
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
 
     if request.method == "POST":
         reslt = request.form
@@ -1337,7 +1338,7 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
     if name_of_derivation in dat["derivations"].keys():
         try:
             derivation_validity_dict = compute.determine_derivation_validity(
-                name_of_derivation, "data.json"
+                name_of_derivation, path_to_db
             )
         except Exception as err:
             logger.warning(err)
@@ -1355,7 +1356,7 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
         step_dict = {}
 
     try:
-        expression_popularity_dict = compute.popularity_of_expressions("data.json")
+        expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -1405,7 +1406,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
             pdf_filename = ""  # TODO: there should be a default PDF in case the generation step fails
             try:
                 pdf_filename = compute.generate_pdf_for_derivation(
-                    name_of_derivation, "data.json"
+                    name_of_derivation, path_to_db
                 )
             except Exception as err:
                 logger.warning(err)
@@ -1414,7 +1415,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         elif request.form["submit_button"] == "delete derivation":
             msg = "no action taken"
             try:
-                msg = compute.delete_derivation(name_of_derivation, "data.json")
+                msg = compute.delete_derivation(name_of_derivation, path_to_db)
             except Exception as err:
                 flash(str(err))
                 logger.warning(err)
@@ -1425,23 +1426,23 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
             logger.error("unrecognized button")
 
     try:
-        derivation_png = compute.create_derivation_png(name_of_derivation, "data.json")
+        derivation_png = compute.create_derivation_png(name_of_derivation, path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
         derivation_png = "error.png"
 
     try:
-        d3js_json_filename = compute.create_d3js_json(name_of_derivation, "data.json")
+        d3js_json_filename = compute.create_d3js_json(name_of_derivation, path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
         d3js_json_filename = ""
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
 
     try:
         derivation_validity_dict = compute.determine_derivation_validity(
-            name_of_derivation, "data.json"
+            name_of_derivation, path_to_db
         )
     except Exception as err:
         logger.warning(err)
@@ -1449,7 +1450,7 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         derivation_validity_dict = {}
 
     try:
-        expression_popularity_dict = compute.popularity_of_expressions("data.json")
+        expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
     except Exception as err:
         logger.warning(err)
         flash(str(err))
@@ -1478,14 +1479,14 @@ def modify_step(name_of_derivation: str, step_id: str):
 
     try:
         step_graphviz_png = compute.create_step_graphviz_png(
-            name_of_derivation, step_id, "data.json"
+            name_of_derivation, step_id, path_to_db
         )
     except Exception as err:
         logger.warning(err)
         flash(str(err))
         step_graphviz_png = "error.png"
 
-    dat = clib.read_db("data.json")
+    dat = clib.read_db(path_to_db)
     if request.method == "POST":
         logger.debug("modify_step; request form = %s", request.form)
         if request.form["submit_button"] == "change inference rule":
@@ -1500,7 +1501,7 @@ def modify_step(name_of_derivation: str, step_id: str):
                 compute.modify_latex_in_step(
                     request.form["expr_local_id_of_latex_to_modify"],
                     request.form["revised_text"],
-                    "data.json",
+                    path_to_db,
                 )
             except Exception as err:
                 flash(str(err))
@@ -1508,7 +1509,7 @@ def modify_step(name_of_derivation: str, step_id: str):
 
             try:
                 step_validity_msg = vir.validate_step(
-                    name_of_derivation, step_id, "data.json"
+                    name_of_derivation, step_id, path_to_db
                 )
             except Exception as err:
                 flash(str(err))

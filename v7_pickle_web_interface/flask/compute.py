@@ -155,7 +155,7 @@ def create_session_id() -> str:
 
 def list_local_id_for_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
-    >>> list_local_id_for_derivation('fun deriv', 'data.json')
+    >>> list_local_id_for_derivation('fun deriv', 'pdg.db')
     """
     logger.info("[trace] list_local_id_for_derivation")
     dat = clib.read_db(path_to_db)
@@ -175,7 +175,7 @@ def list_local_id_for_derivation(name_of_derivation: str, path_to_db: str) -> li
 
 def list_global_id_not_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
-    >>> list_global_id_not_in_derivation('fun deriv', 'data.json')
+    >>> list_global_id_not_in_derivation('fun deriv', 'pdg.db')
     """
     logger.info("[trace] list_global_id_not_in_derivation")
     dat = clib.read_db(path_to_db)
@@ -203,7 +203,7 @@ def list_global_id_not_in_derivation(name_of_derivation: str, path_to_db: str) -
 
 def create_files_of_db_content(path_to_db):
     """
-    >>> create_files_of_db_content('data.json')
+    >>> create_files_of_db_content('pdg.db')
     """
     logger.info("[trace] create_files_of_db_content")
 
@@ -220,10 +220,10 @@ def create_files_of_db_content(path_to_db):
     sql_file = convert_dataframes_to_sql(all_df)
     shutil.copy(sql_file, "/home/appuser/app/static/")
 
-    rdf_file = convert_data_to_rdf("data.json")
+    rdf_file = convert_data_to_rdf(path_to_db)
     shutil.copy(rdf_file, "/home/appuser/app/static/")
 
-    neo4j_file = convert_data_to_cypher("data.json")
+    neo4j_file = convert_data_to_cypher(path_to_db)
     shutil.copy(neo4j_file, "/home/appuser/app/static/")
 
     return [all_df, df_pkl_file, sql_file, rdf_file, neo4j_file]
@@ -233,7 +233,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
     """
     this conversion is lossless
 
-    >>> convert_json_to_dataframes('data.json')
+    >>> convert_json_to_dataframes('pdg.db')
     """
     logger.info("[trace] convert_data_to_dataframes")
     dat = clib.read_db(path_to_db)
@@ -386,7 +386,7 @@ def convert_dataframes_to_sql(all_dfs) -> str:
 
     https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html
 
-    >>> convert_dataframes_to_sql(all_dfs, 'data.json')
+    >>> convert_dataframes_to_sql(all_dfs, 'pdg.db')
     """
     logger.info("[trace] convert_dataframes_to_sql")
     sql_file = "physics_derivation_graph.sqlite3"
@@ -413,7 +413,7 @@ def convert_data_to_rdf(path_to_db: str) -> str:
 
     https://www.w3.org/RDF/
     https://en.wikipedia.org/wiki/Web_Ontology_Language
-    >>> convert_data_to_rdf('data.json')
+    >>> convert_data_to_rdf('pdg.db')
     """
     logger.info("[trace] convert_data_to_rdf")
     dat = clib.read_db(path_to_db)
@@ -494,7 +494,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
 
     https://neo4j.com/docs/cypher-manual/current/clauses/create/#create-create-single-node
 
-    >>> convert_data_to_cypher('data.json')
+    >>> convert_data_to_cypher('pdg.db')
     """
     logger.info("[trace] convert_data_to_cypher")
 
@@ -561,7 +561,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
 
 def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
     """
-    >>> 
+    >>>
     """
     symbol_popularity_dict = popularity_of_symbols(path_to_db)
     list_of_symbols_not_in_use = []
@@ -574,7 +574,7 @@ def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
 
 def get_sorted_list_of_operators_not_in_use(path_to_db: str) -> list:
     """
-    >>> 
+    >>>
     """
     operator_popularity_dict = popularity_of_operators(path_to_db)
     list_of_operators_not_in_use = []
@@ -643,7 +643,7 @@ def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
 
 def get_sorted_list_of_derivations(path_to_db: str) -> list:
     """
-    >>> get_list_of_derivations('data.json')
+    >>> get_list_of_derivations('pdg.db')
     """
     logger.info("[trace] get_list_of_derivation")
     dat = clib.read_db(path_to_db)
@@ -654,7 +654,7 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
 
 def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
     """
-    >>> get_derivation_steps('my deriv','data.json')
+    >>> get_derivation_steps('my deriv','pdg.db')
     """
     logger.info("[trace] get_list_of_steps")
     dat = clib.read_db(path_to_db)
@@ -672,7 +672,7 @@ def create_expr_global_id(path_to_db: str) -> str:
     """
     search DB to find whether proposed expr ID already exists
 
-    >>> create_expr_id(False, 'data.json')
+    >>> create_expr_id(False, 'pdg.db')
     """
     logger.info("[trace] create_expr_global_id")
     dat = clib.read_db(path_to_db)
@@ -700,7 +700,7 @@ def create_step_id(path_to_db: str) -> str:
     aka step ID
 
     search DB to find whether proposed local ID already exists
-    >>> create_step_id(False, 'data.json')
+    >>> create_step_id(False, 'pdg.db')
     """
     logger.info("[trace] create_step_id")
     dat = clib.read_db(path_to_db)
@@ -726,7 +726,7 @@ def create_step_id(path_to_db: str) -> str:
 def create_expr_local_id(path_to_db: str) -> str:
     """
     search DB to find whether proposed local ID already exists
-    >>> create_expr_local_id(False, 'data.json')
+    >>> create_expr_local_id(False, 'pdg.db')
     """
     logger.info("[trace] create_expr_local_id")
     dat = clib.read_db(path_to_db)
@@ -812,7 +812,7 @@ def extract_operators_from_expression_dict(expr_id: str, path_to_db: str) -> lis
 
 def extract_symbols_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     """
-    >>> extract_symbols_from_expression_dict('data.json')
+    >>> extract_symbols_from_expression_dict('pdg.db')
     """
     logger.info("[trace] extract_symbols_from_expression_dict")
     dat = clib.read_db(path_to_db)
@@ -864,7 +864,7 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
 
 def popularity_of_operators(path_to_db: str) -> dict:
     """
-    >>> popularity_of_operators('data.json')
+    >>> popularity_of_operators('pdg.db')
     """
     logger.info("[trace] popularity_of_operators")
     dat = clib.read_db(path_to_db)
@@ -897,7 +897,7 @@ def popularity_of_operators(path_to_db: str) -> dict:
 
 def popularity_of_symbols(path_to_db: str) -> dict:
     """
-    >>> popularity_of_symbols('data.json')
+    >>> popularity_of_symbols('pdg.db')
     """
     logger.info("[trace] popularity_of_symbols")
     dat = clib.read_db(path_to_db)
@@ -936,7 +936,7 @@ def popularity_of_symbols(path_to_db: str) -> dict:
 
 def popularity_of_expressions(path_to_db: str) -> dict:
     """
-    >>> popularity_of_expressions('data.json')
+    >>> popularity_of_expressions('pdg.db')
     """
     logger.info("[trace] popularity_of_expressions")
     dat = clib.read_db(path_to_db)
@@ -970,7 +970,7 @@ def popularity_of_expressions(path_to_db: str) -> dict:
 
 def popularity_of_infrules(path_to_db: str) -> dict:
     """
-    >>> popularity_of_infrules('data.json')
+    >>> popularity_of_infrules('pdg.db')
     """
     logger.info("[trace] popularity_of_infrules")
     dat = clib.read_db(path_to_db)
@@ -1125,7 +1125,7 @@ def write_step_to_graphviz_file(
 ) -> None:
     """
     >>> fil = open('a_file','r')
-    >>> write_step_to_graphviz_file("deriv name", "492482", fil, False, 'data.json')
+    >>> write_step_to_graphviz_file("deriv name", "492482", fil, False, 'pdg.db')
     """
     logger.info("[trace] write_step_to_graphviz_file")
 
@@ -1377,7 +1377,7 @@ def list_expr_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
     returns a list of global expression IDs for a given derivation
 
-    >>> list_expr_in_derivation('my deriv', 'data.json')
+    >>> list_expr_in_derivation('my deriv', 'pdg.db')
     """
     logger.info("[trace] list_expr_in_derivation")
 
@@ -1432,7 +1432,7 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
     for inspiration based on the last time I implemented this, see
     v3_CSV/bin/create_json_per_derivation_from_connectionsDB.py
 
-    >>> create_d3js_json('my deriv', 'data.json')
+    >>> create_d3js_json('my deriv', 'pdg.db')
     """
     logger.info("[trace] create_d3js_json")
 
@@ -1697,7 +1697,7 @@ def modify_latex_in_step(
     expr_local_id_of_latex_to_modify: str, revised_latex: str, path_to_db: str
 ) -> None:
     """
-    >>> modify_latex_in_step('959242', 'a = b', 'data.json')
+    >>> modify_latex_in_step('959242', 'a = b', 'pdg.db')
     """
     logger.info("[trace] modify_latex_in_step")
     dat = clib.read_db(path_to_db)
@@ -1730,7 +1730,7 @@ def delete_step_from_derivation(
 
 def delete_derivation(name_of_derivation: str, path_to_db: str) -> str:
     """
-    >>> delete_derivation('my cool deriv', 'data.json')
+    >>> delete_derivation('my cool deriv', 'pdg.db')
 
     """
     logger.info("[trace] add_inf_rule")
@@ -1747,7 +1747,7 @@ def delete_derivation(name_of_derivation: str, path_to_db: str) -> str:
 def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     """
     >>> request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
-    >>> add_inf_rule(request.form.to_dict(), 'data.json')
+    >>> add_inf_rule(request.form.to_dict(), 'pdg.db')
     """
     logger.info("[trace] add_inf_rule")
 
@@ -1782,7 +1782,7 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
 
 def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
     """
-    >>> delete_inf_rule('multbothsidesbyx','data.json')
+    >>> delete_inf_rule('multbothsidesbyx','pdg.db')
     """
     logger.info("[trace] delete_inf_rule")
     dat = clib.read_db(path_to_db)
@@ -2009,7 +2009,7 @@ def create_step(
 
 # prior to the radio buttons, this was the style:
 #    >>> latex_for_step_dict = ImmutableMultiDict([('output1', 'a = b')])
-#    >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'data.json')
+#    >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'pdg.db')
 #    9492849
     """
     logger.info("[trace] create_step")
