@@ -77,13 +77,26 @@
 {% endif %}
 
 
-<!--
-<P>keep inference rule; <input type="submit" name="submit_button" value='edit input latex'>
-<P>keep inference rule; <input type="submit" name="submit_button" value='edit feed latex'>
-<P>keep inference rule; <input type="submit" name="submit_button" value='edit output latex'>
--->
-
+<H2>Delete Step</H2>
+<form method="post" action="">
+  <div class="form-group">
+    <button type="submit" class="btn btn-default">Delete</button>
+  </div>
 </form>
+</P>
+
+<P>
+  TODO: change linear index for step
+</P>
+
+<P>
+  TODO: edit note for step
+</P>
+
+
+<P>
+{% include '_table_of_derivation_steps.html' %}
+</P>
 
 {% endblock %}
 

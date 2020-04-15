@@ -12,7 +12,15 @@
     <td><a name="{{ expr_id }}">{{ expr_id}}</a></td>
     <td>{{ expressions_dict[expr_id]['latex'] }}</td>
     <td>{{ expressions_dict[expr_id]['AST'] }}</td>
-    <td>{{ expr_use_list }}</td>
+    <td>
+      <UL>
+        {% for deriv_name in expr_use_list %}
+        <LI><a href="{{ url_for('review_derivation', name_of_derivation=deriv_name) }}">
+          {{ deriv_name }}</a>
+        </LI>
+        {% endfor %}
+      </UL>
+    </td>
   </tr>
 {% endfor %}
   <caption>

@@ -48,7 +48,9 @@
     <td>
       <UL>
         {% for expr_id in symbol_use_list %}
-        <LI><a href="{{ url_for('list_all_expressions')}}#{{ expr_id }}"></LI>
+        <LI><a href="{{ url_for('list_all_expressions')}}#{{ expr_id }}">
+           {{ expr_id }} </a>
+</LI>
         {% endfor %}
       </UL>
     </td>

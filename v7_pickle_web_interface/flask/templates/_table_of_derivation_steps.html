@@ -14,43 +14,76 @@
   </tr>
 {% for step_id, this_dict in step_dict.items() %}
   <tr>
-    <td>{{ step_id }}</td>
-    <td>{{ this_dict['inf rule'] }}</td>
+    <td>
+      <a name="{{ step_id }}">
+        <a href="{{ url_for('modify_step', name_of_derivation=name_of_derivation, step_id=step_id) }}">
+          {{ step_id }}
+        </a>
+      </a>
+    </td>
+    <td><a href="{{ url_for('list_all_inference_rules') }}#{{ this_dict['inf rule'] }}">{{ this_dict['inf rule'] }}</a></td>
     <!-- input local ID -->
-    <td>{% for local_id in this_dict['inputs'] %}
-          {{ local_id }}
+    <td>
+      <OL>
+        {% for local_id in this_dict['inputs'] %}
+          <LI> <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
+          {{ local_id }}</a></LI>
         {% endfor %}
+      </OL>
     </td>
     <!-- input latex -->
-    <td>{% for local_id in this_dict['inputs'] %}
+    <td>
+      <OL>
+{% for local_id in this_dict['inputs'] %}
+        <LI>
           <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
           {{ expr_local_to_gobal[local_id] }}</a>: <BR>
           {{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+        </LI>
         {% endfor %}
+      </OL>
     </td>
     <!-- feeds local ID -->
-    <td>{% for local_id in this_dict['feeds'] %}
-          <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
-          {{ local_id }}
+    <td>
+      <OL>
+{% for local_id in this_dict['feeds'] %}
+         <LI> <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
+          {{ local_id }}</a>
+         </LI>
         {% endfor %}
+      </OL>
     </td>
     <!-- feeds latex -->
-    <td>{% for local_id in this_dict['feeds'] %}
-          <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
+    <td>
+      <OL>
+{% for local_id in this_dict['feeds'] %}
+         <LI> <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
           {{ expr_local_to_gobal[local_id] }}</a>: <BR>
           {{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+         </LI>
         {% endfor %}
+      </OL>
     </td>
     <!-- output local ID -->
-    <td>{% for local_id in this_dict['outputs'] %}
-          {{ local_id }}
+    <td>
+      <OL>
+       {% for local_id in this_dict['outputs'] %}
+       <LI><a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
+          {{ local_id }}</a>
+       </LI>
         {% endfor %}
+      </OL>
     </td>
     <!-- output latex -->
-    <td>{% for local_id in this_dict['outputs'] %}
+    <td>
+      <OL>
+ {% for local_id in this_dict['outputs'] %}
+       <LI>
           <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
           {{ expr_local_to_gobal[local_id] }}</a>: <BR>{{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
-        {% endfor %}
+       </LI> 
+     {% endfor %}
+      </OL>
     </td>
     <!-- linear index -->
     <td>{{ this_dict['linear index'] }}</td>

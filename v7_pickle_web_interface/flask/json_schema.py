@@ -22,58 +22,64 @@ schema = {
     "type" : "object",
     "additionalProperties": False,
     "properties" : {
-        "operators" :       {"type" : "object", 
+        "operators" :       {"type" : "object",
                              "additionalProperties": False,
-                             "patternProperties": {"^[a-zA-Z\s-]+$": 
+                             "patternProperties": {"^[a-zA-Z\s-]+$":
                                     { "type": "object" }} # operator name
                             },
-        "measures" :        {"type" : "object", 
+        "measures" :        {"type" : "object",
                              "additionalProperties": False,
-                             "patternProperties": {"^[a-zA-Z\s-]+$": 
+                             "patternProperties": {"^[a-zA-Z\s-]+$":
                                     { "type": "object" }} # measure name
                             },
-        "symbols" :         {"type" : "object", 
-                             "additionalProperties": False, 
-                             "patternProperties": {"^\d{4}$": 
+        "symbols" :         {"type" : "object",
+                             "additionalProperties": False,
+                             "patternProperties": {"^\d{4}$":
                                     { "type": "object" }} # symbol ID
                             },
-        "derivations" :     {"type" : "object", 
+        "derivations" :     {"type" : "object",
                              "additionalProperties": False,
-                             "patternProperties": {"^[0-9a-zA-Z\s_]+$": # derivation name
+                             "patternProperties": {"^[0-9a-zA-Z\s_:'-]+$": # derivation name
                                     {"type": "object",
                                      "additionalProperties": False,
-                                     "patternProperties": 
-                                          {"^\d{7}$": # step ID                                             
+                                     "patternProperties":
+                                          {"^\d{7}$": # step ID
                                                 {"type": "object",
                                                       "additionalProperties": False,
                                                       "properties": {
                                                                    'inf rule' : { "type": "string"},
-                                                                   'inputs':  {"type": "array", 
+                                                                   'inputs':  {"type": "array",
                                                                            "additionalProperties": False},
-                                                                           #"patternProperties": {"^\d{4}$": 
+                                                                           #"patternProperties": {"^\d{4}$":
                                                                            #         {"type":"string"}}}, # "patternProperties": "^\d{10}$"
-                                                                   'outputs': {"type": "array", 
+                                                                   'outputs': {"type": "array",
                                                                            "additionalProperties": False},
-                                                                           #"patternProperties": {"^\d{4}$": 
+                                                                           #"patternProperties": {"^\d{4}$":
                                                                            #                      {"type":"string"}}},#"^\d{10}$"}},
-                                                                   'feeds':   {"type": "array", 
+                                                                   'feeds':   {"type": "array",
                                                                            "additionalProperties": False},
-                                                                           #"patternProperties": {"^\d{4}$": 
+                                                                           #"patternProperties": {"^\d{4}$":
                                                                            #                      {"type":"string"}}},#"^\d{10}$"}},
-                                                                   'linear index': {"type": 'number'}
+                                                                   'linear index': {"type": 'number'},
+                                                                   'notes': {'type':'string'},
+                                                                   'author': {'type':'string'},
+                                                                   'creation date': {'type':'string'}
                                                                               },
                                                                'required': ['inf rule',
                                                                             'inputs',
                                                                             'outputs',
                                                                             'feeds',
-                                                                            'linear index']
+                                                                            'linear index',
+                                                                            'notes',
+                                                                            'author',
+                                                                            'creation date']
                                                               }
                                                           }
                                                      }
                                                   }
-                         
+
                             },
-        "units" :           {"type" : "object", 
+        "units" :           {"type" : "object",
                              "additionalProperties": False,
                              "patternProperties": {"^[a-zA-Z\s-]+$": # unit name
                                                        {"type": "object",
@@ -84,52 +90,67 @@ schema = {
                                                                       },
                                                         'required': ['measure','references']
                                                        }
-                                                  } 
+                                                  }
                             },
-        "expressions" :     {"type" : "object", 
+        "expressions" :     {"type" : "object",
                              "additionalProperties": False,
-                             "patternProperties": {"^\d{10}$": 
+                             "patternProperties": {"^\d{10}$":
                                                       {"type": "object", # expression ID
-                                                       #"additionalProperties": False,    
+                                                       #"additionalProperties": False,
                                                        "properties": {
+                                                         'AST': {'type': 'array'},
+                                                         'notes': {'type': 'string'},
+                                                         'name': {'type': 'string'},
+                                                         'author': {'type': 'string'},
+                                                         'creation date': {'type': 'string'},
                                                          'latex': {'type': 'string'}#,
                                                        #  'AST': {'type': 'array'},
                                                                      },
-                                                       'required': ['latex']#, 'AST']
+                                                       'required': ['latex',
+                                                                    'notes',
+                                                                    'name',
+                                                                    'author',
+                                                                    'creation date']#, 'AST']
                                                        }
-                                                  } 
+                                                  }
                             },
         "inference rules" : {"type" : "object", # dict
                              "additionalProperties": False,
-                             "patternProperties": {"^[a-zA-Z\s-]+$": 
+                             "patternProperties": {"^[a-zA-Z\s-]+$":
                                                         {"type": "object", # inference rule name
-                                                         "additionalProperties": False,    
+                                                         "additionalProperties": False,
                                                          'properties':{
                                                               'latex': {'type':'string'},
                                                               'number of feeds': {'type': 'number'},
                                                               'number of inputs': {'type': 'number'},
-                                                              'number of outputs': {'type': 'number'}
+                                                              'number of outputs': {'type': 'number'},
+                                                              'notes': {'type':'string'},
+                                                              'author': {'type':'string'},
+                                                              'creation date': {'type':'string'}
                                                              },
-                                                         'required': ['latex', 
-                                                                      'number of feeds', 
-                                                                      'number of inputs', 
-                                                                      'number of outputs']
+                                                         'required': ['latex',
+                                                                      'number of feeds',
+                                                                      'number of inputs',
+                                                                      'number of outputs',
+                                                                      'notes',
+                                                                      'author',
+                                                                      'creation date']
                                                         }
-                                                  } 
+                                                  }
                             },
          'expr local to global': {'type': 'object', # dict
                                   "additionalProperties": False,
-                                  "patternProperties": {"^\d{7}$":  
+                                  "patternProperties": {"^\d{7}$":
                                                                  {"type": "string",
                                                                   "pattern": "^\d{10}$"}}
                                  },
     },
-    "required": ['operators', 
-                 'measures', 
-                 'symbols', 
-                 'derivations', 
-                 'units', 
-                 'expressions', 
+    "required": ['operators',
+                 'measures',
+                 'symbols',
+                 'derivations',
+                 'units',
+                 'expressions',
                  'inference rules',
                  'expr local to global']
 }

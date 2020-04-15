@@ -39,7 +39,7 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
 
     try:
         sympy_expr = parse_latex(latex_expr)
-    except SympifyError as err:
+    except sympy.SympifyError as err:
         logger.error(err)
 
     logger.debug("split_expr_into_lhs_rhs; Sympy expression = %s", sympy_expr)
@@ -209,6 +209,8 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
         return expand_magnitude_to_conjugate(latex_dict)
     elif step_dict["inf rule"] == "replace scalar with vector":
         return replace_scalar_with_vector(latex_dict)
+    elif step_dict["inf rule"] == "simplify":
+        return simplify(latex_dict)
     else:
         logger.error("unexpected inf rule:" + step_dict["inf rule"])
         raise Exception("Unexpected inf rule: " + step_dict["inf rule"])
@@ -248,7 +250,7 @@ def add_X_to_both_sides(latex_dict):
         )
 
 
-def subtract_X_from_both_sides():
+def subtract_X_from_both_sides(latex_dict):
     """
         # https://docs.sympy.org/latest/tutorial/manipulation.html
 
@@ -1101,6 +1103,19 @@ def replace_scalar_with_vector(latex_dict):
     >>> replace_scalar_with_vector(latex_dict)
     """
     return
+
+def simplify(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> simplify(latex_dict)
+    """
+    return
+
+
+
 
 
 def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:

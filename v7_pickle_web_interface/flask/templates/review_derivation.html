@@ -20,8 +20,10 @@ results in no visualization and no error message in javascript console
 <form method="post" action="">
 <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
 <input type="submit" name="submit_button" value='add another step'>
-<input type="submit" name="submit_button" value="edit existing step">
+<!-- <input type="submit" name="submit_button" value="edit existing step"> -->
+<input type="submit" name="submit_button" value="generate tex">
 <input type="submit" name="submit_button" value="generate pdf">
+<input type="submit" name="submit_button" value="rename derivation">
 <input type="submit" name="submit_button" value="return to main menu">
 &nbsp; &nbsp;
 <input type="submit" style="background-color:lightcoral" name="submit_button" value="delete derivation">
@@ -41,9 +43,6 @@ results in no visualization and no error message in javascript console
 {% include '_table_of_derivation_steps.html' %}
 </P>
 
-<P>
-{% include '_table_of_expressions.html' %}
-</P>
 
 <script src="{{ url_for('static', filename='d3.min.js') }}"></script>
 <!--

@@ -47,6 +47,8 @@ import validate_inference_rules_sympy as vir  # PDG
 # global proc_timeout
 proc_timeout = 30
 path_to_db = 'pdg.db'
+# the following is done once upon program load
+clib.json_to_sql('data.json', path_to_db)
 
 app = Flask(__name__, static_folder="static")
 app.config.from_object(
@@ -70,6 +72,7 @@ app.config["DEBUG"] = True
 
 if __name__ == "__main__":
     # called from flask
+    print('called from flask')
 
     # https://docs.python.org/3/howto/logging.html
     logging.basicConfig(  # filename='pdg.log',
@@ -80,11 +83,11 @@ if __name__ == "__main__":
     )
     logger = logging.getLogger(__name__)
 
-
 # https://stackoverflow.com/questions/41087790/how-to-override-gunicorns-logging-config-to-use-a-custom-formatter
 # https://medium.com/@trstringer/logging-flask-and-gunicorn-the-manageable-way-2e6f0b8beb2f
-if __name__ != "__main__":
-    # called from gunicorn
+#if __name__ != "__main__":
+else:
+    print('called from gunicorn')
 
     gunicorn_logger = logging.getLogger("gunicorn.error")
     app.logger.handlers = gunicorn_logger.handlers
@@ -641,6 +644,7 @@ def editor():
         logger.debug("now the session id = %s", session_id)
 
     [
+        json_file,
         all_df,
         df_pkl_file,
         sql_file,
@@ -704,7 +708,7 @@ def editor():
         number_of_expressions=len(dat["expressions"].keys()),
         number_of_symbols=len(dat["symbols"].keys()),
         number_of_operators=len(dat["operators"].keys()),
-        database_json=path_to_db,
+        database_json=json_file,
         database_df_pkl=df_pkl_file,
         database_sql=sql_file,
         database_neo4j=neo4j_file,
@@ -727,13 +731,6 @@ def start_new_derivation():
     return render_template(
         "start_new_derivation.html", form=web_form, title="start new derivation"
     )
-
-
-# @app.route('/edit_expression', methods=['GET', 'POST'])
-# def edit_expression():
-#    logger.info('[trace] edit_expression')
-#    return render_template('edit_expression.html',
-#                           expressions_dict=expressions_dict)
 
 
 @app.route("/list_all_operators", methods=["GET", "POST"])
@@ -1028,14 +1025,15 @@ def select_derivation_step_to_edit(name_of_derivation: str):
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
         # request.form = ImmutableMultiDict([('step_to_delete', '0491182')])
-        step_to_delete = request.form["step_to_delete"]
-        try:
-            compute.delete_step_from_derivation(
-                name_of_derivation, step_to_delete, path_to_db
-            )
-        except Exception as err:
-            logger.warning(err)
-            flash(str(err))
+        if "step_to_delete" in request.form.keys():
+            step_to_delete = request.form["step_to_delete"]
+            try:
+                compute.delete_step_from_derivation(
+                    name_of_derivation, step_to_delete, path_to_db)
+                return redirect(url_for("review_derivation", name_of_derivation=name_of_derivation))
+            except Exception as err:
+               logger.warning(err)
+               flash(str(err))
 
     dat = clib.read_db(path_to_db)
 
@@ -1102,16 +1100,29 @@ def select_from_existing_derivations():
                 )
 
             return redirect(url_for("static", filename=pdf_filename))
-            # return redirect(url_for('review_derivation',
-            #                  pdf_filename=pdf_filename,
-            #                  name_of_derivation=name_of_derivation))
+
+        if request.form["submit_button"] == "generate_tex":
+            # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_tex')])
+            try:
+                tex_filename = compute.generate_tex_for_derivation(
+                    name_of_derivation, path_to_db
+                )
+            except Exception as err:
+                logger.warning(err)
+                flash(str(err))
+                return render_template(
+                    "select_from_existing_derivations.html",
+                    list_of_derivations=list_of_deriv,
+                )
+
+            return redirect(url_for("static", filename=tex_filename))
+
 
         elif request.form["submit_button"] == "display_graphviz":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'display_graphviz')])
             return redirect(
                 url_for(
                     "review_derivation",
-                    pdf_filename="NONE",
                     name_of_derivation=name_of_derivation,
                 )
             )
@@ -1212,7 +1223,6 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         return redirect(
             url_for(
                 "step_review",
-                step_validity_msg=step_validity_msg,
                 name_of_derivation=name_of_derivation,
                 local_step_id=local_step_id,
             )
@@ -1285,10 +1295,10 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
 
 @app.route(
-    "/step_review/<name_of_derivation>/<local_step_id>/<step_validity_msg>",
+    "/step_review/<name_of_derivation>/<local_step_id>/",
     methods=["GET", "POST"],
 )
-def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: str):
+def step_review(name_of_derivation: str, local_step_id: str):
     """
     https://teamtreehouse.com/community/getting-data-from-wtforms-formfield
 
@@ -1319,7 +1329,6 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
             return redirect(
                 url_for(
                     "review_derivation",
-                    pdf_filename="NONE",
                     name_of_derivation=name_of_derivation,
                 )
             )
@@ -1366,7 +1375,6 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
 
     return render_template(
         "step_review.html",
-        step_validity_msg=step_validity_msg,
         name_of_graphviz_png=step_graphviz_png,
         name_of_derivation=name_of_derivation,
         expression_popularity_dict=expression_popularity_dict,
@@ -1377,15 +1385,39 @@ def step_review(name_of_derivation: str, local_step_id: str, step_validity_msg: 
         expr_local_to_gobal=dat["expr local to global"],
     )
 
+@app.route("/rename_derivation/<name_of_derivation>/", methods=["GET", "POST"])
+def rename_derivation(name_of_derivation: str):
+    """
+    >>> 
+    """
+    logger.info("[trace] rename_derivation")
+    if request.method == "POST":
+        #logger.debug(request.form)
+        # ImmutableMultiDict([('revised_text', 'test case 1')])
+        if 'revised_text' in request.form.keys():
+            status_msg = compute.rename_derivation(name_of_derivation, request.form['revised_text'], path_to_db)
+            flash(status_msg)
+            return redirect(url_for("review_derivation", name_of_derivation=request.form['revised_text']))
+        else:
+            logger.error(str(request.form))
+            flash('unrecognized option: ' + str(request.form))
+
+    return render_template("rename_derivation.html",
+                   name_of_derivation=name_of_derivation,
+        edit_name_webform=RevisedTextForm(request.form))
 
 @app.route(
-    "/review_derivation/<name_of_derivation>/<pdf_filename>/", methods=["GET", "POST"]
+    "/review_derivation/<name_of_derivation>/", methods=["GET", "POST"]
 )
-def review_derivation(name_of_derivation: str, pdf_filename: str):
+def review_derivation(name_of_derivation: str):
     """
     >>> review_derivation
     """
     logger.info("[trace] review_derivation")
+    pdf_filename = "NONE"  
+    # caveat: the review_derivation HTML relies on the filename to be "NONE" if there is no PDF
+    # TODO: there should be a default PDF in case the generation step fails
+
     if request.method == "POST":
         if request.form["submit_button"] == "add another step":
             return redirect(
@@ -1393,6 +1425,8 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
                     "new_step_select_inf_rule", name_of_derivation=name_of_derivation
                 )
             )
+        elif request.form["submit_button"] == "rename derivation":
+            return redirect(url_for("rename_derivation", name_of_derivation=name_of_derivation))
         elif request.form["submit_button"] == "edit existing step":
             return redirect(
                 url_for(
@@ -1403,7 +1437,6 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
         elif request.form["submit_button"] == "return to main menu":
             return redirect(url_for("index"))
         elif request.form["submit_button"] == "generate pdf":
-            pdf_filename = ""  # TODO: there should be a default PDF in case the generation step fails
             try:
                 pdf_filename = compute.generate_pdf_for_derivation(
                     name_of_derivation, path_to_db
@@ -1412,6 +1445,15 @@ def review_derivation(name_of_derivation: str, pdf_filename: str):
                 logger.warning(err)
                 flash(str(err))
             return redirect(url_for("static", filename=pdf_filename))
+        elif request.form["submit_button"] == "generate tex":
+            try:
+                tex_filename = compute.generate_tex_for_derivation(
+                    name_of_derivation, path_to_db
+                )
+            except Exception as err:
+                logger.warning(err)
+                flash(str(err))
+            return redirect(url_for("static", filename=tex_filename))
         elif request.form["submit_button"] == "delete derivation":
             msg = "no action taken"
             try:
@@ -1520,7 +1562,6 @@ def modify_step(name_of_derivation: str, step_id: str):
                     "step_review",
                     name_of_derivation=name_of_derivation,
                     local_step_id=step_id,
-                    step_validity_msg=step_validity_msg,
                 )
             )
 

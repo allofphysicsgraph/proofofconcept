@@ -12,7 +12,7 @@ import json_schema  # a PDG file
 from jsonschema import validate  # type: ignore
 import logging
 import os
-import redis
+#import redis
 
 logger = logging.getLogger(__name__)
 
@@ -30,6 +30,12 @@ logger = logging.getLogger(__name__)
 
 
 def create_sql_connection(db_file):
+    """
+    If SQL is slow, investigate use of WAL
+    https://www.sqlite.org/wal.html
+    https://charlesleifer.com/blog/going-fast-with-sqlite-and-python/
+    >>> 
+    """
     if os.path.exists(db_file):
         try:
             return sqlite3.connect(db_file)
@@ -80,7 +86,11 @@ def read_db(path_to_db: str) -> dict:
         dat = json.loads(row[0])
     conn.close()
 
-    validate(instance=dat, schema=json_schema.schema)
+    try:
+        validate(instance=dat, schema=json_schema.schema)
+    except Exception as err:
+        logger.error(str(err))
+        raise Exception('validation of database failed; ' + str(err))
 
     return dat
 
@@ -118,7 +128,7 @@ def write_db(path_to_db: str, dat: dict) -> None:
         cur.execute("""drop table data""")
         logger.debug("deleted table from sql")
     except sqlite3.OperationalError as err:
-        logger.error('Unable to drop "data"; ' + err)
+        logger.error('Unable to drop "data"; ' + str(err))
 
     # table "data" with column "entry"
     cur.execute("""CREATE TABLE data ("entry TEXT NOT NULL")""")

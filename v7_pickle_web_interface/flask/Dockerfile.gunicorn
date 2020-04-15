@@ -16,6 +16,7 @@ RUN apt-get update && \
                python3-dev \
 #               python2.7 \
 #               python-pip \
+               python3-sphinx \
                build-essential  \
                graphviz \
                dvipng \
@@ -55,8 +56,7 @@ COPY common_lib.py \
      compute.py \
      config.py \
      controller.py \
-#     data.json \
-     pdg.db \
+     data.json \
      json_schema.py \
      Makefile \
      validate_inference_rules_sympy.py \

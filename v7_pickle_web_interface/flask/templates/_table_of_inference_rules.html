@@ -15,7 +15,13 @@
     <td>{{ infrules_dict[infrule]['number of outputs'] }}</td>
     <td>{{ infrules_dict[infrule]['number of feeds'] }}</td>
     <td>{{ infrules_dict[infrule]['latex']}}</td> <!-- https://jinja.palletsprojects.com/en/2.11.x/templates/#replace -->
-    <td>{{ infrule_use_list }} </td>
+    <td>
+      <UL>
+        {% for deriv_name in infrule_use_list %} 
+        <LI><a href="{{ url_for('review_derivation', name_of_derivation=deriv_name) }}">{{ deriv_name }}</a></LI>
+        {% endfor %}
+      </UL>
+    </td>
   </tr>
 {% endfor %}
   <caption>
