@@ -9,6 +9,10 @@
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
 
+<form method="post" action="">
+<input type="submit" name="submit_button" value='view exploded graph'>
+</form>
+
 
 <P>Options:
 <P>change inference rule
@@ -19,8 +23,9 @@
 
 <!-- https://jinja.palletsprojects.com/en/2.11.x/templates/#builtin-filters -->
 {% if step_dict['inputs']|length > 0 %}
-<a id="edit_expr_latex"></a>
+<a id="edit input expr latex">
   <h3>Edit the latex for an input expression</h3>
+</a>
 <form method="post" action="">
   <div class="form-group">
     <div class="input-group">
@@ -38,8 +43,9 @@
 {% endif %}
 
 {% if step_dict['feeds']|length > 0 %}
-<a id="edit_expr_latex"></a>
+<a name="edit feed expr latex">
   <h3>Edit the latex for a feed expression</h3>
+</a>
 <form method="post" action="">
   <div class="form-group">
     <div class="input-group">
@@ -58,8 +64,9 @@
 
 
 {% if step_dict['outputs']|length > 0 %}
-<a id="edit_expr_latex"></a>
+<a id="edit output expr latex">
   <h3>Edit the latex for an output expression</h3>
+</a>
 <form method="post" action="">
   <div class="form-group">
     <div class="input-group">
@@ -76,8 +83,10 @@
 </form>
 {% endif %}
 
-
+<P>
+<a name="delete step">
 <H2>Delete Step</H2>
+</a>
 <form method="post" action="">
   <div class="form-group">
     <button type="submit" class="btn btn-default">Delete</button>
@@ -86,7 +95,19 @@
 </P>
 
 <P>
-  TODO: change linear index for step
+<a name="change linear index of step">
+  <h3>change linear index for step</h3>
+ </a>
+New linear index must be a rational number greater than zero and must not exist<BR>
+List of linear indicies in use: {{ list_of_linear_indices }}
+<form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
+<P>{{ edit_linear_index_webform.revised_text.label }}: {{ edit_linear_index_webform.revised_text }}
+    </div>
+    <button type="submit" class="btn btn-default">Update</button>
+  </div>
+</form>
 </P>
 
 <P>

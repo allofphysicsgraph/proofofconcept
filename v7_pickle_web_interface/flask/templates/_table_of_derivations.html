@@ -1,0 +1,34 @@
+
+<table border="1"  class="sortable">
+  <tr>
+    <th>derivation name</th>
+    <th>number of steps</th>
+    <th>shares expressions with</th>
+  </tr>
+{% for deriv_name, deriv_attributes_dict in derivations_popularity_dict.items() %}
+  <tr>
+    <td>
+      <a name="{{ deriv_name }}">
+        <a href="{{ url_for('review_derivation', name_of_derivation=deriv_name) }}">
+          {{ deriv_name }}
+        </a>
+      </a>
+    </td>
+    <td>{{ deriv_attributes_dict['number of steps'] }}</td>
+    <td>
+      <UL>
+        {% for tup in deriv_attributes_dict['shares expressions with'] %} 
+        <LI><a href="{{ url_for('review_derivation', name_of_derivation=tup[0]) }}">{{ tup[0] }}</a></LI>
+        {% endfor %}
+      </UL>
+    </td>
+  </tr>
+{% endfor %}
+  <caption>
+    <a name="table of derivations">
+      Physics Derivation Graph: {{ derivations_popularity_dict.keys()|length }} Derivations
+    </a>
+  </caption>
+</table>
+
+

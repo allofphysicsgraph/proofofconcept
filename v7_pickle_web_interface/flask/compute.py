@@ -154,6 +154,18 @@ def create_session_id() -> str:
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
 
+def get_linear_indices(name_of_derivation: str, path_to_db: str) -> list:
+    """
+    >>> get_linear_indices()
+    """
+    logger.info("[trace] get_linear_indices")
+    dat = clib.read_db(path_to_db)
+    list_of_linear_indices = []
+    if name_of_derivation in dat['derivations'].keys():
+        for step_id, step_dict in dat['derivations'][name_of_derivation].items():
+            list_of_linear_indices.append(step_dict['linear index']) 
+    list_of_linear_indices.sort()
+    return list_of_linear_indices
 
 def list_local_id_for_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
@@ -692,7 +704,7 @@ def create_expr_global_id(path_to_db: str) -> str:
         if proposed_global_expr_id not in global_expr_ids_in_use:
             found_valid_id = True
         if loop_count > 10000000000:
-            logger.error("too many -- this seems unlikely")
+            logger.error("too many; this seems unlikely")
             raise Exception("this seems unlikely")
     return proposed_global_expr_id
 
@@ -863,6 +875,45 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
 # logger.debug('extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
 #    return list(set(list_of_infrules))
 
+def popularity_of_derivations(path_to_db: str) -> dict:
+    """
+    output:
+    derivations_popularity_dict['name of deriv']['number of steps'] = 4
+    derivations_popularity_dict['name of deriv']['shares expressions with'] = ['fun deriv', 'another deriv']
+
+    >>> popularity_of_derivations('pdg.db')
+    """
+    logger.info("[trace] popularity_of_derivations")
+    dat = clib.read_db(path_to_db)
+    derivations_popularity_dict = {}
+    expressions_per_derivation = {}
+    for deriv_name, deriv_dict in dat['derivations'].items():
+        derivations_popularity_dict[deriv_name] = {'number of steps': len(list(deriv_dict.keys())),
+                                                   'shares expressions with': [] }
+        # which expressions are shared?
+        # first, build a list of expr_global_id per derivation
+        #logger.debug('build a list of expr_global_id per derivation')
+        expressions_per_derivation[deriv_name] = []
+        for step_id, step_dict in deriv_dict.items():
+            for connection_type in ['inputs', 'feeds', 'outputs']:
+                for expr_local_id in step_dict[connection_type]:
+                    expressions_per_derivation[deriv_name].append(dat['expr local to global'][expr_local_id])
+        #logger.debug('remove duplicates')
+        # remove duplicates
+        expressions_per_derivation[deriv_name] = list(set(expressions_per_derivation[deriv_name]))
+    #logger.debug('find intersections')
+    # find intersections
+    
+    for deriv_name1, list1_of_expr_global_id in expressions_per_derivation.items():
+        for deriv_name2, list2_of_expr_global_id in expressions_per_derivation.items():
+            if deriv_name1 != deriv_name2:
+                for expr_global_id1 in list1_of_expr_global_id:
+                    if expr_global_id1 in list2_of_expr_global_id:
+                        tup = (deriv_name2, expr_global_id1)
+                        #logger.debug(str(tup))
+                        derivations_popularity_dict[deriv_name1]['shares expressions with'].append(tup)
+
+    return derivations_popularity_dict
 
 def popularity_of_operators(path_to_db: str) -> dict:
     """
@@ -1118,8 +1169,82 @@ def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
         lat_file.write("$" + input_latex_str + "$\n")
         lat_file.write("}\n")
         lat_file.write("\\end{document}\n")
-    logger.debug("wrote tex file")
+    #logger.debug("wrote tex file")
     return
+
+def generate_map_of_derivations(path_to_db: str) -> str:
+    """
+    for a clear description of the graphviz language, see
+    https://www.graphviz.org/doc/info/lang.html
+
+    potentially relevant: https://graphviz.gitlab.io/_pages/Gallery/undirected/fdpclust.html
+
+    >>> generate_map_of_derivations()
+    """
+    logger.info("[trace] generate_map_of_derivations")
+    derivation_popularity_dict = popularity_of_derivations(path_to_db)
+    logger.debug("derivation_popularity_dict = %s", str(derivation_popularity_dict))
+
+    dat = clib.read_db(path_to_db)
+
+    dot_filename = "/home/appuser/app/static/graphviz.dot"
+    with open(dot_filename, "w") as fil:
+        fil.write("graph physicsDerivation { \n")
+        fil.write("overlap = false;\n")
+        fil.write('label="all derivations";\n')
+        fil.write("fontsize=12;\n")
+
+        for deriv_name, deriv_dict in derivation_popularity_dict.items():
+            this_deriv = deriv_name.replace(' ','')
+            if not os.path.isfile("/home/appuser/app/static/" + this_deriv + ".png"):
+               create_png_from_latex("\\text{" + deriv_name + "}", this_deriv)
+               fil.write('"' + this_deriv 
+                   + '" [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
+                   + this_deriv + ".png" + '",labelloc=b];\n')
+
+        list_of_edges = []
+        list_of_nodes = []
+
+        for deriv_name, deriv_dict in derivation_popularity_dict.items():
+            this_deriv = deriv_name.replace(' ','')
+            for tup in deriv_dict['shares expressions with']:
+                other_deriv_name = tup[0].replace(' ','')
+                expr_global_id = tup[1]
+                if not os.path.isfile("/home/appuser/app/static/" + expr_global_id + ".png"):
+                    expr_latex = dat['expressions'][expr_global_id]['latex']
+                    create_png_from_latex(expr_latex, expr_global_id)
+
+                list_of_nodes.append(expr_global_id + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
+            + expr_global_id
+            + ".png"
+            + '",labelloc=b];\n')
+                list_of_edges.append('"' + this_deriv + '" -- ' + expr_global_id + ';\n')
+                list_of_edges.append('"' + other_deriv_name + '" -- ' + expr_global_id + ';\n')
+
+        for this_node in set(list_of_nodes):
+            fil.write(this_node)
+        for this_edge in set(list_of_edges):
+            fil.write(this_edge)
+
+        fil.write("}\n")
+    output_filename = "all_derivation.png"
+    # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
+    #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
+    process = subprocess.run(
+        ["neato", "-Tpng", dot_filename, "-o" + output_filename],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
+    neato_stdout = process.stdout.decode("utf-8")
+    if len(neato_stdout)>0:
+        logger.debug(neato_stdout)
+    neato_stderr = process.stderr.decode("utf-8")
+    if len(neato_stderr)>0:
+        logger.debug(neato_stderr)
+
+    shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+    return output_filename
 
 
 def write_step_to_graphviz_file(
@@ -1134,16 +1259,15 @@ def write_step_to_graphviz_file(
     dat = clib.read_db(path_to_db)
 
     step_dict = dat["derivations"][name_of_derivation][local_step_id]
-    logger.debug("write_step_to_graphviz_file: step_dict = %s", step_dict)
+    logger.debug("step_dict = %s", step_dict)
     #  step_dict = {'inf rule': 'begin derivation', 'inputs': [], 'feeds': [], 'outputs': ['526874110']}
-    for global_id, latex_and_ast_dict in dat["expressions"].items():
-        logger.debug(
-            "write_step_to_graphviz_file: expr_dict has %s %s",
-            global_id,
-            latex_and_ast_dict["latex"],
-        )
+#    for global_id, latex_and_ast_dict in dat["expressions"].items():
+#        logger.debug(
+#            "expr_dict has %s %s",
+#            global_id,
+#            latex_and_ast_dict["latex"],
+#        )
 
-    # logger.debug('write_step_to_graphviz_file: starting write')
 
     png_name = step_dict["inf rule"].replace(" ", "_")
     if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
@@ -1156,7 +1280,6 @@ def write_step_to_graphviz_file(
         + '",labelloc=b];\n'
     )
 
-    # logger.debug('write_step_to_graphviz_file: inputs')
     for expr_local_id in step_dict["inputs"]:
         expr_global_id = dat["expr local to global"][expr_local_id]
         png_name = expr_global_id
@@ -1171,13 +1294,11 @@ def write_step_to_graphviz_file(
             + '",labelloc=b];\n'
         )
 
-    # logger.debug('write_step_to_graphviz_file: outputs')
     for expr_local_id in step_dict["outputs"]:
         expr_global_id = dat["expr local to global"][expr_local_id]
         png_name = expr_global_id
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
             create_png_from_latex(dat["expressions"][expr_global_id]["latex"], png_name)
-        # logger.debug('write_step_to_graphviz_file; local and global',expr_local_id,expr_local_id)
         fil.write(local_step_id + " -> " + expr_local_id + ";\n")
         fil.write(
             expr_local_id
@@ -1187,7 +1308,6 @@ def write_step_to_graphviz_file(
             + '",labelloc=b];\n'
         )
 
-    # logger.debug('write_step_to_graphviz_file: feeds')
     for expr_local_id in step_dict["feeds"]:
         expr_global_id = dat["expr local to global"][expr_local_id]
         png_name = expr_global_id
@@ -1201,7 +1321,6 @@ def write_step_to_graphviz_file(
             + ".png"
             + '",labelloc=b];\n'
         )
-    # logger.debug('write_step_to_graphviz_file: returning')
 
     return  # True, "no invalid latex"
 
@@ -1356,7 +1475,6 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
         stderr=PIPE,
         timeout=proc_timeout,
     )
-    # latex_stdout, latex_stderr = process.communicate()
     # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
     latex_stdout = process.stdout.decode("utf-8")
     latex_stderr = process.stderr.decode("utf-8")
@@ -1555,6 +1673,9 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
 
 def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
     """
+    for a clear description of the graphviz language, see
+    https://www.graphviz.org/doc/info/lang.html
+
     >>> create_derivation_png()
     """
     logger.info("[trace] create_derivation_png")
@@ -1581,9 +1702,13 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
         stderr=PIPE,
         timeout=proc_timeout,
     )
-    # neato_stdout, neato_stderr = process.communicate()
-    # neato_stdout = neato_stdout.decode("utf-8")
-    # neato_stderr = neato_stderr.decode("utf-8")
+
+    neato_stdout = process.stdout.decode("utf-8")
+    if len(neato_stdout)>0:
+        logger.debug(neato_stdout)
+    neato_stderr = process.stderr.decode("utf-8")
+    if len(neato_stderr)>0:
+        logger.debug(neato_stderr)
 
     shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
     # return True, "no invalid latex", output_filename
@@ -1594,6 +1719,9 @@ def create_step_graphviz_png(
     name_of_derivation: str, local_step_id: str, path_to_db: str
 ) -> str:
     """
+    for a clear description of the graphviz language, see
+    https://www.graphviz.org/doc/info/lang.html
+
     >>> step_dict = {'inf rule':'add X to both sides',
                      'inf rule local ID':'2948592',
                      'inputs':[{'expr local ID':'9428', 'expr ID':'4928923942'}],
@@ -1632,9 +1760,12 @@ def create_step_graphviz_png(
         stderr=PIPE,
         timeout=proc_timeout,
     )
-    # neato_stdout, neato_stderr = process.communicate()
-    # neato_stdout = neato_stdout.decode("utf-8")
-    # neato_stderr = neato_stderr.decode("utf-8")
+    neato_stdout = process.stdout.decode("utf-8")
+    if len(neato_stdout)>0:
+        logger.debug(neato_stdout)
+    neato_stderr = process.stderr.decode("utf-8")
+    if len(neato_stderr)>0:
+        logger.debug(neato_stderr)
 
     shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
     # return True, "no invalid latex", output_filename
@@ -1652,8 +1783,8 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 
     destination_folder = "/home/appuser/app/static/"
 
-    logger.debug("png_name = %s", png_name)
-    logger.debug("input latex str = %s", input_latex_str)
+#    logger.debug("png_name = %s", png_name)
+#    logger.debug("input latex str = %s", input_latex_str)
 
     tmp_file = "lat"
     remove_file_debris(["./"], [tmp_file], ["tex", "dvi", "aux", "log"])
@@ -1670,7 +1801,6 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
         stderr=PIPE,
         timeout=proc_timeout,
     )
-    # latex_stdout, latex_stderr = process.communicate()
     # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
     latex_stdout = process.stdout.decode("utf-8")
     latex_stderr = process.stderr.decode("utf-8")
@@ -1690,13 +1820,15 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
         stderr=PIPE,
         timeout=proc_timeout,
     )
-    # png_stdout, png_stderr = process.communicate()
     # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
     png_stdout = process.stdout.decode("utf-8")
     png_stderr = process.stderr.decode("utf-8")
 
-    logger.debug("png std out %s", png_stdout)
-    logger.debug("png std err %s", png_stderr)
+    if len(png_stdout)>0:
+        if "This is dvipng" not in png_stdout:
+            logger.debug("png std out %s", png_stdout)
+    if len(png_stderr)>0:
+        logger.debug("png std err %s", png_stderr)
 
     if "No such file or directory" in png_stderr:
         logging.error("PNG creation failed for %s", png_name)

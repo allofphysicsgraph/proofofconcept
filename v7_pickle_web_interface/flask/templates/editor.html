@@ -7,6 +7,7 @@
 
 <P>Derivations:
 <UL>
+<LI><a href="{{ url_for('show_all_derivations') }}">show all derivations</a>
 <LI><a href="{{ url_for('start_new_derivation') }}">start a new derivation</a>
 {% if number_of_derivations > 0 %}
 <LI><a href="{{ url_for('select_from_existing_derivations') }}">view existing {{ number_of_derivations }} derivations</a>

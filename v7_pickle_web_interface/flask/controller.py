@@ -628,7 +628,7 @@ def editor():
     #    try:
     #        compute.generate_all_expr_and_infrule_pngs(False, path_to_db)
     #    except Exception as err:
-    #        logger.warning(err)
+    #        logger.error(str(err))
     #        flash(str(err))
 
     try:
@@ -638,7 +638,7 @@ def editor():
         try:
             session_id = compute.create_session_id()
         except Exception as err:
-            logger.warning(err)
+            logger.error(str(err))
             flash(str(err))
             session_id = "0"
         logger.debug("now the session id = %s", session_id)
@@ -673,7 +673,7 @@ def editor():
         try:
             allowed_bool = compute.allowed_file(file_obj.filename)
         except Exception as err:
-            logger.warning(err)
+            logger.error(str(err))
             flash(str(err))
             allowed_bool = False
         if file_obj and allowed_bool:
@@ -690,7 +690,7 @@ def editor():
             try:
                 compute.validate_json_file(path_to_uploaded_file)
             except Exception as err:
-                logger.warning(err)
+                logger.error(str(err))
                 flash(str(err))
                 valid_json_bool = False
             if not valid_json_bool:
@@ -732,9 +732,38 @@ def start_new_derivation():
         "start_new_derivation.html", form=web_form, title="start new derivation"
     )
 
+@app.route("/show_all_derivations", methods=["GET", "POST"])
+def show_all_derivations():
+    """
+    >>>
+    """
+    logger.info("[trace] show_all_derivations")
+    if request.method == "POST":
+        logger.debug("request.form = %s", request.form)
+
+    try:
+        map_of_derivations = compute.generate_map_of_derivations(path_to_db)
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        map_of_derivations = "error.png"
+
+    try:
+        derivations_popularity_dict = compute.popularity_of_derivations(path_to_db)
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        derivations_popularity_dict = {}
+
+    return render_template('show_all_derivations.html',
+           map_of_derivations=map_of_derivations,
+           derivations_popularity_dict=derivations_popularity_dict)
 
 @app.route("/list_all_operators", methods=["GET", "POST"])
 def list_all_operators():
+    """
+    >>>
+    """
     logger.info("[trace] list_all_operators")
 
     if request.method == "POST":
@@ -757,7 +786,7 @@ def list_all_operators():
         operator_popularity_dict = compute.popularity_of_operators(path_to_db)
     except Exception as err:
         flash(str(err))
-        logger.warning(err)
+        logger.error(str(err))
         operator_popularity_dict = {}
 
     sorted_list_operators = list(dat["operators"].keys())
@@ -800,7 +829,7 @@ def list_all_symbols():
         symbol_popularity_dict = compute.popularity_of_symbols(path_to_db)
     except Exception as err:
         flash(str(err))
-        logger.warning(err)
+        logger.error(str(err))
         symbol_popularity_dict = {}
 
     sorted_list_symbols = list(dat["symbols"].keys())
@@ -826,7 +855,7 @@ def list_all_expressions():
     try:
         expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         expression_popularity_dict = {}
     if request.method == "POST":
@@ -840,7 +869,7 @@ def list_all_expressions():
                     path_to_db,
                 )
             except Exception as err:
-                logger.warning(err)
+                logger.error(str(err))
                 flash(str(err))
                 status_message = "error"
             flash(str(status_message))
@@ -853,7 +882,7 @@ def list_all_expressions():
                     request.form["delete_expr"], path_to_db
                 )
             except Exception as err:
-                logger.warning(err)
+                logger.error(str(err))
                 flash(str(err))
                 status_message = "error"
             flash(str(status_message))
@@ -862,7 +891,7 @@ def list_all_expressions():
     try:
         list_of_expr = compute.get_sorted_list_of_expr(path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         list_of_expr = []
     try:
@@ -870,7 +899,7 @@ def list_all_expressions():
             path_to_db
         )
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         list_of_expr_not_appearing_in_any_derivations = []
     return render_template(
@@ -890,7 +919,7 @@ def list_all_inference_rules():
     try:
         infrule_popularity_dict = compute.popularity_of_infrules(path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         infrule_popularity_dict = {}
     if request.method == "POST":
@@ -999,7 +1028,7 @@ def select_derivation_to_edit():
     try:
         derivations_list = (compute.get_sorted_list_of_derivations(path_to_db),)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         derivations_list = []
 
@@ -1019,7 +1048,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
     try:
         step_dict = compute.get_derivation_steps(name_of_derivation, path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         step_dict = {}
     if request.method == "POST":
@@ -1032,7 +1061,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
                     name_of_derivation, step_to_delete, path_to_db)
                 return redirect(url_for("review_derivation", name_of_derivation=name_of_derivation))
             except Exception as err:
-               logger.warning(err)
+               logger.error(str(err))
                flash(str(err))
 
     dat = clib.read_db(path_to_db)
@@ -1044,7 +1073,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
                 name_of_derivation, path_to_db
             )
         except Exception as err:
-            logger.warning(err)
+            logger.error(str(err))
             flash(str(err))
             derivation_validity_dict = {}
     else:
@@ -1071,7 +1100,7 @@ def select_from_existing_derivations():
     try:
         list_of_deriv = compute.get_sorted_list_of_derivations(path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         list_of_deriv = []
     if request.method == "POST":
@@ -1092,7 +1121,7 @@ def select_from_existing_derivations():
                     name_of_derivation, path_to_db
                 )
             except Exception as err:
-                logger.warning(err)
+                logger.error(str(err))
                 flash(str(err))
                 return render_template(
                     "select_from_existing_derivations.html",
@@ -1108,7 +1137,7 @@ def select_from_existing_derivations():
                     name_of_derivation, path_to_db
                 )
             except Exception as err:
-                logger.warning(err)
+                logger.error(str(err))
                 flash(str(err))
                 return render_template(
                     "select_from_existing_derivations.html",
@@ -1140,7 +1169,7 @@ def new_step_select_inf_rule(name_of_derivation: str):
     try:
         list_of_inf_rules = compute.get_sorted_list_of_inf_rules(path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         list_of_inf_rules = []
 
@@ -1205,7 +1234,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
             )
         except Exception as err:
             flash(str(err))
-            logger.warning(err)
+            logger.error(str(err))
             local_step_id = "0"
         logger.debug(
             "local_step_id = %s", local_step_id,
@@ -1236,7 +1265,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
                 name_of_derivation, path_to_db
             )
         except Exception as err:
-            logger.warning(err)
+            logger.error(str(err))
             flash(str(err))
             derivation_validity_dict = {}
     else:
@@ -1248,7 +1277,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
     try:
         expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         expression_popularity_dict = {}
 
@@ -1257,7 +1286,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
             name_of_derivation, path_to_db
         )
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         list_of_local_id = []
 
@@ -1266,7 +1295,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
             name_of_derivation, path_to_db
         )
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         list_of_global_id_not_in_derivation = []
 
@@ -1311,7 +1340,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
             name_of_derivation, local_step_id, path_to_db
         )
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         step_graphviz_png = "error.png"
     dat = clib.read_db(path_to_db)
@@ -1350,13 +1379,13 @@ def step_review(name_of_derivation: str, local_step_id: str):
                 name_of_derivation, path_to_db
             )
         except Exception as err:
-            logger.warning(err)
+            logger.error(str(err))
             flash(str(err))
             derivation_validity_dict = {}
         try:
             step_dict = dat["derivations"][name_of_derivation]
         except Exception as err:
-            logger.warning(err)
+            logger.error(str(err))
             flash(str(err))
             step_dict = {}
     else:
@@ -1367,7 +1396,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
     try:
         expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         expression_popularity_dict = {}
 
@@ -1388,7 +1417,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
 @app.route("/rename_derivation/<name_of_derivation>/", methods=["GET", "POST"])
 def rename_derivation(name_of_derivation: str):
     """
-    >>> 
+    >>>
     """
     logger.info("[trace] rename_derivation")
     if request.method == "POST":
@@ -1414,7 +1443,7 @@ def review_derivation(name_of_derivation: str):
     >>> review_derivation
     """
     logger.info("[trace] review_derivation")
-    pdf_filename = "NONE"  
+    pdf_filename = "NONE"
     # caveat: the review_derivation HTML relies on the filename to be "NONE" if there is no PDF
     # TODO: there should be a default PDF in case the generation step fails
 
@@ -1442,7 +1471,7 @@ def review_derivation(name_of_derivation: str):
                     name_of_derivation, path_to_db
                 )
             except Exception as err:
-                logger.warning(err)
+                logger.error(str(err))
                 flash(str(err))
             return redirect(url_for("static", filename=pdf_filename))
         elif request.form["submit_button"] == "generate tex":
@@ -1451,7 +1480,7 @@ def review_derivation(name_of_derivation: str):
                     name_of_derivation, path_to_db
                 )
             except Exception as err:
-                logger.warning(err)
+                logger.error(str(err))
                 flash(str(err))
             return redirect(url_for("static", filename=tex_filename))
         elif request.form["submit_button"] == "delete derivation":
@@ -1460,7 +1489,7 @@ def review_derivation(name_of_derivation: str):
                 msg = compute.delete_derivation(name_of_derivation, path_to_db)
             except Exception as err:
                 flash(str(err))
-                logger.warning(err)
+                logger.error(str(err))
             flash(str(msg))
             return redirect(url_for("index"))
         else:
@@ -1470,14 +1499,14 @@ def review_derivation(name_of_derivation: str):
     try:
         derivation_png = compute.create_derivation_png(name_of_derivation, path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         derivation_png = "error.png"
 
     try:
         d3js_json_filename = compute.create_d3js_json(name_of_derivation, path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         d3js_json_filename = ""
     dat = clib.read_db(path_to_db)
@@ -1487,14 +1516,14 @@ def review_derivation(name_of_derivation: str):
             name_of_derivation, path_to_db
         )
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         derivation_validity_dict = {}
 
     try:
         expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         expression_popularity_dict = {}
 
@@ -1520,11 +1549,20 @@ def modify_step(name_of_derivation: str, step_id: str):
     logger.info("[trace] modify_step")
 
     try:
+        derivation_validity_dict = compute.determine_derivation_validity(
+                name_of_derivation, path_to_db
+            )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        derivation_validity_dict = {}
+
+    try:
         step_graphviz_png = compute.create_step_graphviz_png(
             name_of_derivation, step_id, path_to_db
         )
     except Exception as err:
-        logger.warning(err)
+        logger.error(str(err))
         flash(str(err))
         step_graphviz_png = "error.png"
 
@@ -1547,7 +1585,7 @@ def modify_step(name_of_derivation: str, step_id: str):
                 )
             except Exception as err:
                 flash(str(err))
-                logger.warning(err)
+                logger.error(str(err))
 
             try:
                 step_validity_msg = vir.validate_step(
@@ -1555,7 +1593,7 @@ def modify_step(name_of_derivation: str, step_id: str):
                 )
             except Exception as err:
                 flash(str(err))
-                logger.warning(err)
+                logger.error(str(err))
                 step_validity_msg = ""
             return redirect(
                 url_for(
@@ -1569,14 +1607,24 @@ def modify_step(name_of_derivation: str, step_id: str):
             flash("[ERROR] unrecognized button:" + str(request.form))
             logger.error("unrecognized button")
 
+    try:
+        list_of_linear_indices = compute.get_linear_indices(name_of_derivation, path_to_db)
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        list_of_linear_indices = []
+
     return render_template(
         "modify_step.html",
         name_of_derivation=name_of_derivation,
         name_of_graphviz_png=step_graphviz_png,
         step_dict=dat["derivations"][name_of_derivation][step_id],
         local_to_global=dat["expr local to global"],
+        derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],
+        list_of_linear_indices=list_of_linear_indices,
         edit_expr_latex_webform=RevisedTextForm(request.form),
+        edit_linear_index_webform=RevisedTextForm(request.form),
         expr_local_to_gobal=dat["expr local to global"],
     )
 
@@ -1597,7 +1645,7 @@ if __name__ == "__main__":
         session_id = compute.create_session_id()
     except Exception as err:
         flash(str(err))
-        logger.warning(err)
+        logger.error(str(err))
         session_id = "0"
     app.run(debug=True, host="0.0.0.0")
 
