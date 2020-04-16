@@ -23,18 +23,19 @@
 import os
 import json
 import shutil
+import time
 
 # https://docs.python.org/3/howto/logging.html
 import logging
 
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 from flask import Flask, redirect, render_template, request, url_for, flash, jsonify
-import time
-
+# https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
+from flask_login import LoginManager, UserMixin, login_required
 # https://gist.github.com/lost-theory/4521102
 from flask import g
 from werkzeug.utils import secure_filename
-from wtforms import Form, StringField, validators, FieldList, FormField, IntegerField, RadioField  # type: ignore
+from wtforms import Form, StringField, validators, FieldList, FormField, IntegerField, RadioField, PasswordField, SubmitField  # type: ignore
 
 # https://json-schema.org/
 from jsonschema import validate  # type: ignore
@@ -53,6 +54,9 @@ path_to_db = "pdg.db"
 # the following is done once upon program load
 clib.json_to_sql("data.json", path_to_db)
 
+# https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager.user_loader
+login_manager = LoginManager()
+
 app = Flask(__name__, static_folder="static")
 app.config.from_object(
     Config
@@ -64,6 +68,9 @@ app.config[
     "SEND_FILE_MAX_AGE_DEFAULT"
 ] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
 app.config["DEBUG"] = True
+
+# https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager.user_loader
+login_manager.init_app(app)
 
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
@@ -97,18 +104,42 @@ else:
     app.logger.setLevel(gunicorn_logger.level)
     logger = app.logger
 
+# https://wtforms.readthedocs.io/en/stable/crash_course.html
+# https://stackoverflow.com/questions/46092054/flask-login-documentation-loginform
+class LoginForm(Form):
+    username = StringField('Username')
+    submit = SubmitField('Submit')
+
+# https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
+class User(UserMixin):
+    """
+    https://realpython.com/using-flask-login-for-user-management-with-flask/
+    and
+    https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
+    """
+    email = 'ben.is.loc'
+    authenticated = True
+
+    def is_active(self):
+        return True
+#    def get_id(self):
+#        return self.email
+#    def is_authenticated(self):
+#        return self.authenticated
+    def __repr__(self):
+        return '<User {}>'.format(self.username)
 
 class EquationInputForm(Form):
     logger.info("[trace] class = EquationInputForm")
     #    r = FloatField(validators=[validators.InputRequired()])
     #    r = FloatField()
-    latex = StringField("LaTeX", validators=[validators.InputRequired()])
-
+    latex = StringField("LaTeX", validators=[validators.InputRequired(),
+                                             validators.Length(max=1000)])
 
 class InferenceRuleForm(Form):
     logger.info("[trace] class = InferenceRuleForm")
     inf_rule_name = StringField(
-        "inf rule name", validators=[validators.InputRequired()]
+        "inf rule name", validators=[validators.InputRequired(), validators.Length(max=1000)]
     )
     num_inputs = IntegerField(
         "number of inputs",
@@ -124,11 +155,9 @@ class InferenceRuleForm(Form):
     )
     latex = StringField("LaTeX", validators=[validators.InputRequired()])
 
-
 class RevisedTextForm(Form):
     logger.info("[trace] class = RevisedTextForm")
-    revised_text = StringField("revised text", validators=[validators.InputRequired()])
-
+    revised_text = StringField("revised text", validators=[validators.InputRequired(),validators.Length(max=1000)])
 
 class infRuleInputsAndOutputs(Form):
     logger.info("[trace] class = infRuleInputsAndOutputs")
@@ -151,12 +180,13 @@ class infRuleInputsAndOutputs(Form):
 #    inputs_and_outputs = FieldList(EquationInputForm, min_entries=1)
 
 # https://stackoverflow.com/questions/37837682/python-class-input-argument/37837766
+# https://wtforms.readthedocs.io/en/stable/validators.html
 class LatexIO(Form):
     logger.info("[trace] class = LatexIO")
-    feed1 = StringField("feed LaTeX 1", validators=[validators.InputRequired()])
-    feed2 = StringField("feed LaTeX 2", validators=[validators.InputRequired()])
-    feed3 = StringField("feed LaTeX 3", validators=[validators.InputRequired()])
-    input1 = StringField("input LaTeX 1")  # , validators=[validators.InputRequired()])
+    feed1 = StringField("feed LaTeX 1", validators=[validators.InputRequired(),validators.Length(max=1000)])
+    feed2 = StringField("feed LaTeX 2", validators=[validators.InputRequired(),validators.Length(max=1000)])
+    feed3 = StringField("feed LaTeX 3", validators=[validators.InputRequired(),validators.Length(max=1000)])
+    input1 = StringField("input LaTeX 1", validators=[validators.Length(max=1000)])
     input1_radio = RadioField(
         "Label",
         choices=[
@@ -166,7 +196,7 @@ class LatexIO(Form):
         ],
         default="latex",
     )  # , validators=[validators.InputRequired()])
-    input2 = StringField("input LaTeX 2")  # , validators=[validators.InputRequired()])
+    input2 = StringField("input LaTeX 2", validators=[validators.Length(max=1000)])
     input2_radio = RadioField(
         "Label",
         choices=[
@@ -176,7 +206,7 @@ class LatexIO(Form):
         ],
         default="latex",
     )  # , validators=[validators.InputRequired()])
-    input3 = StringField("input LaTeX 3")  # , validators=[validators.InputRequired()])
+    input3 = StringField("input LaTeX 3" , validators=[validators.Length(max=1000)])
     input3_radio = RadioField(
         "Label",
         choices=[
@@ -187,8 +217,7 @@ class LatexIO(Form):
         default="latex",
     )  # , validators=[validators.InputRequired()])
     output1 = StringField(
-        "output LaTeX 1"
-    )  # , validators=[validators.InputRequired()])
+        "output LaTeX 1" , validators=[validators.Length(max=1000)])
     output1_radio = RadioField(
         "Label",
         choices=[
@@ -197,10 +226,9 @@ class LatexIO(Form):
             ("global", "use global ID"),
         ],
         default="latex",
-    )  # , validators=[validators.InputRequired()])
+    )
     output2 = StringField(
-        "output LaTeX 2"
-    )  # , validators=[validators.InputRequired()])
+        "output LaTeX 2" , validators=[validators.Length(max=1000)])
     output2_radio = RadioField(
         "Label",
         choices=[
@@ -211,8 +239,7 @@ class LatexIO(Form):
         default="latex",
     )  # , validators=[validators.InputRequired()])
     output3 = StringField(
-        "output LaTeX 3"
-    )  # , validators=[validators.InputRequired()])
+        "output LaTeX 3", validators=[validators.Length(max=1000)])
     output3_radio = RadioField(
         "Label",
         choices=[
@@ -226,7 +253,7 @@ class LatexIO(Form):
 
 class NameOfDerivationInputForm(Form):
     logger.info("[trace] class = NameOfDerivationInputForm")
-    name_of_derivation = StringField(validators=[validators.InputRequired()])
+    name_of_derivation = StringField(validators=[validators.InputRequired(),validators.Length(max=1000)])
 
 
 # goal is to prevent cached responses;
@@ -254,6 +281,56 @@ class NameOfDerivationInputForm(Form):
 #    logger.info("[trace] page_not_found")
 #    logger.debug(e)
 #    return redirect(url_for("index"))
+
+@login_manager.user_loader
+def load_user(user_id):
+    """
+    https://flask-login.readthedocs.io/en/latest/
+    also https://realpython.com/using-flask-login-for-user-management-with-flask/
+    """
+    return User.get_id(user_id)
+
+def is_safe_url(target):
+    """
+    https://github.com/fengsp/flask-snippets/blob/master/security/redirect_back.py
+    """
+    ref_url = urlparse(request.host_url)
+    test_url = urlparse(urljoin(request.host_url, target))
+    return test_url.scheme in ('http', 'https') and \
+           ref_url.netloc == test_url.netloc
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """
+    from https://flask-login.readthedocs.io/en/latest/
+    and https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
+
+    Here we use a class of some kind to represent and validate our
+    client-side form data. For example, WTForms is a library that will
+    handle this for us, and we use a custom LoginForm to validate.
+    """
+    form = LoginForm()
+    if form.validate_on_submit():
+        # Login and validate the user.
+        # user should be an instance of your `User` class
+        logger.debug("username= %s", form.username.data)
+        user = User.get_id(form.username.data)
+        if user is None: # or not user.check_password(form.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        logger.debug('user is not none')
+        login_user(user, remember=form.remember_me.data)
+        logger.debug('user logged in')
+        flash('Logged in successfully.')
+
+        next = request.args.get('next')
+        # is_safe_url should check if the url is safe for redirects.
+        # See http://flask.pocoo.org/snippets/62/ for an example.
+        if not is_safe_url(next):
+            return abort(400)
+
+        return redirect(next or flask.url_for('index'))
+    return render_template('login.html', form=form)
 
 
 @app.before_request
@@ -720,6 +797,7 @@ def editor():
 
 
 @app.route("/start_new_derivation/", methods=["GET", "POST"])
+@login_required # https://flask-login.readthedocs.io/en/latest/
 def start_new_derivation():
     logger.info("[trace] start_new_derivation")
     web_form = NameOfDerivationInputForm(request.form)
@@ -1170,6 +1248,7 @@ def select_from_existing_derivations():
 
 
 @app.route("/new_step_select_inf_rule/<name_of_derivation>/", methods=["GET", "POST"])
+@login_required # https://flask-login.readthedocs.io/en/latest/
 def new_step_select_inf_rule(name_of_derivation: str):
     logger.info("[trace] new_step_select_inf_rule")
     try:
@@ -1182,10 +1261,10 @@ def new_step_select_inf_rule(name_of_derivation: str):
     if (
         request.method == "POST"
     ):  # and request.form.validate(): no validation because the form was defined on the web page
-        logger.debug("new_step_select_inf_rule: %s", request.form)
+        logger.debug("request form %s", request.form)
         selected_inf_rule = request.form.get("inf_rul_select")
         logger.debug(
-            "new_step_select_inf_rule; selected_inf_rule = %s", selected_inf_rule,
+            "selected_inf_rule = %s", selected_inf_rule,
         )
         return redirect(
             url_for(
@@ -1220,9 +1299,13 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
     dat = clib.read_db(path_to_db)
 
-    if (
-        request.method == "POST"
-    ):  # and request.form.validate(): no validation because the form was defined on the web page
+    webform=LatexIO(request.form)
+
+#    if request.method == "POST" and not webform.validate():
+#        if len(str(webform.input1.data))>10:
+#            flash(str(webform.input1.data) + " is more than 10 characters"
+
+    if  request.method == "POST"  and webform.validate():
         latex_for_step_dict = request.form
 
         logger.debug("latex_for_step_dict = request.form = %s", request.form)
@@ -1325,7 +1408,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         inf_rule=inf_rule,
         derivation_validity_dict=derivation_validity_dict,
         expr_local_to_gobal=dat["expr local to global"],
-        webform=LatexIO(request.form),
+        webform=webform,
     )
 
 
@@ -1569,6 +1652,8 @@ def modify_step(name_of_derivation: str, step_id: str):
                     "new_step_select_inf_rule", name_of_derivation=name_of_derivation
                 )
             )
+
+            # https://github.com/allofphysicsgraph/proofofconcept/issues/108
             elif request.form["submit_button"] == "view exploded graph":
                 # ImmutableMultiDict([('submit_button', 'view exploded graph')])
                 return redirect(url_for("exploded_step", name_of_derivation, step_id))
@@ -1663,7 +1748,8 @@ def modify_step(name_of_derivation: str, step_id: str):
 @app.route("/exploded_step/<name_of_derivation>/<step_id>/", methods=["GET", "POST"])
 def exploded_step(name_of_derivation: str, step_id:str):
     """
-    >>>
+    https://github.com/allofphysicsgraph/proofofconcept/issues/108
+    >>> exploded_step()
     """
     try:
         name_of_graphviz_file = compute.generate_graphviz_of_exploded_step(name_of_derivation, step_id, path_to_db)
