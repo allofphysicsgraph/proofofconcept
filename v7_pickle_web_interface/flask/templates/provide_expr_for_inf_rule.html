@@ -24,7 +24,7 @@
       <td>{{ subfield }}</td>
       <td>{{ subfield.label }}</td>
     {% if loop.index0 == 0 %}
-      <td>{{ webform.input1.label }}: {{ webform.input1 }}</td>
+      <td>{{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
     {% elif loop.index0 == 1 %}
       <td>
         <span class="input-group-addon">Select from</span>
@@ -65,7 +65,7 @@
       <td>{{ subfield }}</td>
       <td>{{ subfield.label }}</td>
     {% if loop.index0 == 0 %}
-      <td>{{ webform.input2.label }}: {{ webform.input2 }}</td>
+      <td>{{ webform.input2.label }}: {{ webform.input2(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
     {% elif loop.index0 == 1 %}
       <td>
         <span class="input-group-addon">Select from</span>
@@ -103,7 +103,7 @@
       <td>{{ subfield }}</td>
       <td>{{ subfield.label }}</td>
     {% if loop.index0 == 0 %}
-      <td>{{ webform.input3.label }}: {{ webform.input3 }}</td>
+      <td>{{ webform.input3.label }}: {{ webform.input3(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
     {% elif loop.index0 == 1 %}
       <td>
         <span class="input-group-addon">Select from</span>
@@ -134,17 +134,17 @@
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 0|int() %}
-<P>{{ webform.feed1.label }}: {{ webform.feed1 }}
+<P>{{ webform.feed1.label }}: {{ webform.feed1(size=50, maxlength=100) }} <small>max length = 100 characters</small>
 </P>
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 1|int() %}
-<P>{{ webform.feed2.label }}: {{ webform.feed2 }}
+<P>{{ webform.feed2.label }}: {{ webform.feed2(size=50, maxlength=100) }} <small>max length = 100 characters</small>
 </P>
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 2|int() %}
-<P>{{ webform.feed3.label }}: {{ webform.feed3 }}
+<P>{{ webform.feed3.label }}: {{ webform.feed3(size=50, maxlength=100) }} <small>max length = 100 characters</small></td>
 </P>
 {% endif %}
 
@@ -156,7 +156,7 @@
     <td>{{ subfield }}</td>
     <td>{{ subfield.label }}</td>
   {% if loop.index0 == 0 %}
-    <td>{{ webform.output1.label }}: {{ webform.output1 }}</td>
+    <td>{{ webform.output1.label }}: {{ webform.output1(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
   {% elif loop.index0 == 1 %}
     <td>
       <span class="output-group-addon">Select from</span>
@@ -194,7 +194,7 @@
     <td>{{ subfield }}</td>
     <td>{{ subfield.label }}</td>
   {% if loop.index0 == 0 %}
-    <td>{{ webform.output2.label }}: {{ webform.output2 }}</td>
+    <td>{{ webform.output2.label }}: {{ webform.output2(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
   {% elif loop.index0 == 1 %}
     <td>
       <span class="output-group-addon">Select from</span>
@@ -232,7 +232,7 @@
     <td>{{ subfield }}</td>
     <td>{{ subfield.label }}</td>
   {% if loop.index0 == 0 %}
-    <td>{{ webform.output3.label }}: {{ webform3.output }}</td>
+    <td>{{ webform.output3.label }}: {{ webform3.output(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
   {% elif loop.index0 == 1 %}
     <td>
       <span class="output-group-addon">Select from</span>

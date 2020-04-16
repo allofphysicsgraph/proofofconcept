@@ -4,7 +4,7 @@
 <P>start new derivation
 
 <form method="post" action="">
-  <P>Specify name of derivation: {{ form.name_of_derivation }}
+  <P>Specify name of derivation: {{ form.name_of_derivation(size=50, maxlength=300) }} <small>max length = 300 characters</small>
 
   <input type="submit" value="begin">
 </form>

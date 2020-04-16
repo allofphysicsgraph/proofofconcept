@@ -1,0 +1,12 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<!-- https://www.oreilly.com/library/view/flask-web-development/9781491947586/ch04.html -->
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!--  https://pythonhosted.org/Flask-Bootstrap/forms.html -->
+{{ wtf.quick_form(form) }}
+
+
+{% endblock %}
+
