@@ -1,0 +1,18 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>modify step
+
+<P>derivation name: {{ name_of_derivation}}
+
+<P>step ID: {{ step_id }}
+
+<!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
+<P><img src="{{ url_for('static', filename=name_of_graphviz_file) }}">
+
+<P>Return to <a href="{{ url_for('modify_step', name_of_derivation=name_of_derivation, step_id=step_id) }}">modify step</a> or 
+             <a href="{{ url_for('review_derivation', name_of_derivation=name_of_derivation) }}">review derivation</a> or
+             <a href="{{ url_for('editor') }}">editor</a>.
+
+{% endblock %}
+

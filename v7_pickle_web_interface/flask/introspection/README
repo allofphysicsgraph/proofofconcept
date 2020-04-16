@@ -1,0 +1,16 @@
+This directory contains analysis of the code
+
+== git commit history ==
+
+== generation of static call graph ==
+
+static_call_graph.py
+
+== visualization of static call graph ==
+
+fdp -Tpng function_dependence_without_commonlib.dot -o function_dependence_without_commonlib.png
+
+
+fdp -Tpng function_dependence_without_commonlib_without_validation.dot -o function_dependence_without_commonlib_without_validation.png
+
+

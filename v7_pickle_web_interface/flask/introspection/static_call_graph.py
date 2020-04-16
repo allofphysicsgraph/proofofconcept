@@ -53,7 +53,10 @@ for py_file, list_of_lines in py_code_dict.items():
 
 print('==== functions per file ====')
 for py_file, func_list in dict_of_functions_per_file.items():
-    print(py_file, func_list)
+    print("    subgraph cluster_" + py_file.replace('.py','') + "{")
+    for func in func_list:
+        print('        "' + py_file.replace(".py","") + '.' + func + '";')
+    print("    }")
 
 dict_of_imports_per_file = {}
 for py_file, list_of_lines in py_code_dict.items():
@@ -98,7 +101,9 @@ for py_file, list_of_lines in py_code_dict.items():
 #                    print(func_in_file, this_line)
                     dict_of_funcs_called_per_func_per_file[py_file][which_func].append(func_in_file)
     for func, called_func in dict_of_funcs_called_per_func_per_file[py_file].items():
-        print(func, 'calls', called_func)
+        if len(called_func)>0:
+            for func in called_func:
+                print('    "' + py_file.replace(".py","") + '.' + func + '" --> "' + py_file.replace(".py","") + '.' + func + '";')
 
 # for each file, look for functions that call local functions from other local files
 print('==== function calls across modules ====')
@@ -116,7 +121,8 @@ for origin_py_file, origin_list_of_lines in py_code_dict.items():
                 if this_tup[1] in this_line:
                     called_func = re.sub('\(.*', '', this_line)
                     called_func = re.sub('.*'+this_tup[1], this_tup[1], called_func)
-                    print(origin_py_file, which_func, this_tup[1], called_func)
-
+                    #print(origin_py_file, which_func, this_tup[1], called_func)
+                    
+                    print('    "' + origin_py_file.replace(".py","") + '.' + which_func + '" --> "' + called_func + '";')
 
 # EOF
