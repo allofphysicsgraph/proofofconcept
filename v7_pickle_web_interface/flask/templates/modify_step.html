@@ -9,13 +9,15 @@
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
 
+<P>Options:
+
+<P>
 <form method="post" action="">
 <input type="submit" name="submit_button" value='view exploded graph'>
 </form>
 
 
-<P>Options:
-<P>change inference rule
+<P>
 <form method="post" action="">
 <input type="submit" name="submit_button" value='change inference rule'>
 </form>
@@ -111,7 +113,18 @@ List of linear indicies in use: {{ list_of_linear_indices }}
 </P>
 
 <P>
-  TODO: edit note for step
+  <a name="edit note for step">
+    <h3>Edit note for step</H3>
+  </a>
+  Current note is: {{ step_note }}
+<form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
+<P>{{ edit_step_note_webform.revised_text.label }}: {{ edit_step_note_webform.revised_text }}
+    </div>
+    <button type="submit" class="btn btn-default">Update</button>
+  </div>
+</form>
 </P>
 
 

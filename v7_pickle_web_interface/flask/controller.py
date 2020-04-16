@@ -1584,6 +1584,10 @@ def modify_step(name_of_derivation: str, step_id: str):
                     "new_step_select_inf_rule", name_of_derivation=name_of_derivation
                 )
             )
+        elif request.form["submit_button"] == "view exploded graph":
+            # ImmutableMultiDict([('submit_button', 'view exploded graph')])
+            return redirect(url_for("exploded_step", name_of_derivation, step_id))
+
         elif "expr_local_id_of_latex_to_modify" in request.form.keys():
             # request form = ImmutableMultiDict([('edit_expr_latex', '2244'), ('revised_text', 'a = b')])
             try:
@@ -1636,9 +1640,26 @@ def modify_step(name_of_derivation: str, step_id: str):
         list_of_linear_indices=list_of_linear_indices,
         edit_expr_latex_webform=RevisedTextForm(request.form),
         edit_linear_index_webform=RevisedTextForm(request.form),
+        edit_step_note_webform=RevisedTextForm(request.form),
         expr_local_to_gobal=dat["expr local to global"],
     )
 
+@app.route("/exploded_step/<name_of_derivation>/<step_id>/", methods=["GET", "POST"])
+def exploded_step(name_of_derivation: str, step_id:str):
+    """
+    >>> 
+    """ 
+    try:
+        name_of_graphviz_file = compute.generate_graphviz_of_exploded_step(name_of_derivation, step_id, path_to_db)
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        name_of_graphviz_file = "error.png"
+
+    return render_template("exploded_step.html",
+           name_of_derivation=name_of_derivation,
+           name_of_graphviz_file=name_of_graphviz_file,
+           step_id=step_id)
 
 @app.route("/create_new_inf_rule/", methods=["GET", "POST"])
 def create_new_inf_rule():

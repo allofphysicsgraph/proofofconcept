@@ -1299,7 +1299,7 @@ def write_step_to_graphviz_file(
 
     png_name = step_dict["inf rule"].replace(" ", "_")
     if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-        create_png_from_latex(step_dict["inf rule"], png_name)
+        create_png_from_latex("\\text{" +step_dict["inf rule"] + "}", png_name)
     fil.write(
         local_step_id
         + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
@@ -1764,15 +1764,13 @@ def create_step_graphviz_png(
 
     """
     logger.info("[trace] create_step_graphviz_png")
-
     dot_filename = "/home/appuser/app/static/graphviz.dot"
-
     remove_file_debris(["/home/appuser/app/static/"], ["graphviz"], ["dot"])
 
     with open(dot_filename, "w") as fil:
         fil.write("digraph physicsDerivation { \n")
         fil.write("overlap = false;\n")
-        fil.write('label="step in ' + name_of_derivation + '";\n')
+        fil.write('label="step ' + local_step_id + ' in ' + name_of_derivation + '";\n')
         fil.write("fontsize=12;\n")
 
         write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_db)
@@ -1804,6 +1802,123 @@ def create_step_graphviz_png(
     # return True, "no invalid latex", output_filename
     return output_filename
 
+def generate_graphviz_of_exploded_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str:
+    """
+    >>> 
+    """
+    logger.info("[trace] create_graphviz_of_exploded_step")
+    dot_filename = "/home/appuser/app/static/graphviz.dot"
+    dat = clib.read_db(path_to_db)
+    if name_of_derivation in dat['derivations'].keys():
+        if step_id in dat['derivations'][name_of_derivation].keys():
+            step_dict = dat['derivations'][name_of_derivation][step_id]
+        else:
+            logger.error("step_id " + step_id + " not in " + name_of_derivation)
+            raise Exception("step_id " + step_id + " not in " + name_of_derivation)
+    else:
+        logger.error(name_of_derivation + " not in database")
+        raise Exception(name_of_derivation + " not in database")
+
+    remove_file_debris(["/home/appuser/app/static/"], ["graphviz"], ["dot"])
+    with open(dot_filename, "w") as fil:
+        fil.write("digraph physicsDerivation { \n")
+        fil.write("overlap = false;\n")
+        fil.write('label="step ' + step_id + ' in ' + name_of_derivation + '";\n')
+        fil.write("fontsize=12;\n")
+
+# the following code is similar to write_step_to_graphviz_file()
+        infrule_png_name = step_dict["inf rule"].replace(" ", "_")
+        if not os.path.isfile("/home/appuser/app/static/" + infrule_png_name + ".png"):
+            create_png_from_latex("\\text{" +step_dict["inf rule"] + "}", infrule_png_name)
+        fil.write(
+        infrule_png_name
+        + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
+        + infrule_png_name
+        + ".png"
+        + '",labelloc=b];\n')
+
+        stepid_png_name = "step_id_" + step_id
+        if not os.path.isfile("/home/appuser/app/static/" + stepid_png_name + ".png"):
+            create_png_from_latex("\\text{" +step_dict["inf rule"] + "}", stepid_png_name)
+        fil.write(
+        step_id
+        + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
+        + stepid_png_name
+        + ".png"
+        + '",labelloc=b];\n')
+        fil.write(infrule_png_name + " -> " + step_id + ";\n")
+
+        for expr_local_id in step_dict["inputs"]:
+            # TODO: 
+            # latex -> global_id -> local_id -> step_id
+
+            expr_global_id = dat["expr local to global"][expr_local_id]
+            latex_png_name = expr_global_id
+            if not os.path.isfile("/home/appuser/app/static/" + latex_png_name + ".png"):
+                create_png_from_latex(dat["expressions"][expr_global_id]["latex"], png_name)
+            fil.write(expr_local_id + " -> " + local_step_id + ";\n")
+            fil.write(
+            expr_local_id
+            + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
+            + png_name
+            + ".png"
+            + '",labelloc=b];\n'
+        )
+
+
+        for expr_local_id in step_dict["outputs"]:
+            # TODO:
+            # step_id -> local_id -> global_id -> latex
+
+            expr_global_id = dat["expr local to global"][expr_local_id]
+            png_name = expr_global_id
+            if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
+                create_png_from_latex(dat["expressions"][expr_global_id]["latex"], png_name)
+            fil.write(local_step_id + " -> " + expr_local_id + ";\n")
+            fil.write(
+            expr_local_id
+            + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
+            + png_name
+            + ".png"
+            + '",labelloc=b];\n'
+        )
+
+        for expr_local_id in step_dict["feeds"]:
+            expr_global_id = dat["expr local to global"][expr_local_id]
+            png_name = expr_global_id
+            if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
+                create_png_from_latex(dat["expressions"][expr_global_id]["latex"], png_name)
+            fil.write(expr_local_id + " -> " + local_step_id + ";\n")
+            fil.write(
+            expr_local_id
+            + ' [shape=box, color=red,label="",image="/home/appuser/app/static/'
+            + png_name
+            + ".png"
+            + '",labelloc=b];\n'
+        )
+
+    output_filename = local_step_id + "_exploded.png"
+    logger.debug("output_filename = %s", output_filename)
+    remove_file_debris(["./"], ["graphviz"], ["png"])
+
+    # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
+    #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
+    process = subprocess.run(
+        ["neato", "-Tpng", dot_filename, "-o" + output_filename],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
+    neato_stdout = process.stdout.decode("utf-8")
+    if len(neato_stdout) > 0:
+        logger.debug(neato_stdout)
+    neato_stderr = process.stderr.decode("utf-8")
+    if len(neato_stderr) > 0:
+        logger.debug(neato_stderr)
+
+    shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+    # return True, "no invalid latex", output_filename
+    return output_filename
 
 def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     """
