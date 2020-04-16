@@ -155,8 +155,9 @@ def create_session_id() -> str:
 #    return
 
 
-def get_linear_indices(name_of_derivation: str, path_to_db: str) -> list:
+def list_new_linear_indices(name_of_derivation: str, path_to_db: str) -> list:
     """
+    # https://github.com/allofphysicsgraph/proofofconcept/issues/116
     >>> get_linear_indices()
     """
     logger.info("[trace] get_linear_indices")
@@ -166,7 +167,16 @@ def get_linear_indices(name_of_derivation: str, path_to_db: str) -> list:
         for step_id, step_dict in dat["derivations"][name_of_derivation].items():
             list_of_linear_indices.append(step_dict["linear index"])
     list_of_linear_indices.sort()
-    return list_of_linear_indices
+    #logger.debug('list_of_linear_indices = %s', str(list_of_linear_indices))
+    new_list = []
+    for indx, valu in enumerate(list_of_linear_indices[:-1]):
+        #logger.debug('indx = ' + str(indx) + '; valu =' + str(valu))
+        new_list.append( round((valu + list_of_linear_indices[indx+1])/2,3))
+    new_list.append(list_of_linear_indices[-1]+1)
+    lowest_valu = round( list_of_linear_indices[0]/2, 3)
+    new_list.insert(0, lowest_valu)
+    #logger.debug('new_list = %s', str(new_list))
+    return new_list
 
 
 def list_local_id_for_derivation(name_of_derivation: str, path_to_db: str) -> list:
@@ -764,16 +774,6 @@ def create_expr_local_id(path_to_db: str) -> str:
     return proposed_local_id
 
 
-# def create_new_derivation(name_of_derivation: str, path_to_db: str) -> None:
-#    """
-#    >>>
-#    """
-#    logger.info('[trace] create_new_derivation')
-#    dat = clib.read_db(path_to_db)
-#    dat['derivations'][name_of_derivation]
-#    clib.write_db(path_to_db, dat)
-#    return
-
 # ********************************************
 # popularity
 
@@ -864,20 +864,6 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
         "list_of_expr_ids= %s", list_of_expr_ids,
     )
     return list_of_expr_ids
-
-
-# def extract_infrules_from_derivation_dict(deriv_name: str, path_to_db: str) -> list:
-#    """
-#    >>> extract_infrules_from_derivation_dict()
-#    """
-#    logger.info("[trace] extract_infrules_from_derivation_dict")
-#    dat = clib.read_db(path_to_db)
-#    list_of_infrules = []
-#    for step_id, step_dict in dat["derivations"][deriv_name].items():
-#        list_of_infrules.append(step_dict["inf rule"])
-
-# logger.debug('extract_infrules_from_derivation_dict',list(set(list_of_infrules)))
-#    return list(set(list_of_infrules))
 
 
 def popularity_of_derivations(path_to_db: str) -> dict:
@@ -986,19 +972,6 @@ def popularity_of_symbols(path_to_db: str) -> dict:
     return symbol_popularity_dict
 
 
-# def get_expr_local_IDs_for_this_expr_global_ID(
-#    expr_global_ID: str, path_to_db: str
-# ) -> list:
-#    """
-#    >>>
-#    """
-#    logger.info("[trace] get_expr_local_IDs_for_this_expr_global_ID")
-#    list_of_expr_local_IDs = []
-#    dat = clib.read_db(path_to_db)
-#    for local_id, global_id in dat["expr local to global"].items():
-#        if expr_global_ID == global_id:
-#            list_of_expr_local_IDs.append(local_id)
-#    return list_of_expr_local_IDs
 
 
 def popularity_of_expressions(path_to_db: str) -> dict:
@@ -1085,26 +1058,6 @@ def remove_file_debris(
     #    logger.debug('done')
     return
 
-
-# def find_valid_filename(destination_folder: str, extension: str) -> str:
-#    """
-#    called by create_png_from_latex()
-#
-#    >>> find_valid_filename('/home/appuser/app/static/', 'png')
-#    >>> find_valid_filename('.','png')
-#    """
-#    logger.info("[trace] find_valid_filename")
-#
-#    found_valid_name = False
-#    loop_count = 0
-#    while not found_valid_name:
-#        loop_count += 1
-#        proposed_file_name = str(int(random.random() * 1000000000)) + "." + extension
-#        if not os.path.isfile(destination_folder + proposed_file_name):
-#            found_valid_name = True
-#        if loop_count > 10000000000:
-#            raise Exception("this seems unlikely")
-#    return proposed_file_name
 
 
 # *******************************************
@@ -1572,10 +1525,32 @@ def list_expr_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     # logger.debug('number of expr = %s', len(list_of_global_expr))
     return list_of_global_expr
 
+def update_linear_index(name_of_derivation: str, step_id: str, valu: str, path_to_db: str) -> None:
+    """
+    # https://github.com/allofphysicsgraph/proofofconcept/issues/116
+    >>> modify_linear_index()
+    """
+    logger.info("[trace] modify_linear_index")
+    dat = clib.read_db(path_to_db)
+    if '.' not in valu:
+        valu = int(valu)
+    else:
+        valu = float(valu)
+    if name_of_derivation in dat['derivations'].keys():
+        if step_id in dat['derivations'][name_of_derivation].keys():
+            dat['derivations'][name_of_derivation][step_id]['linear index'] = valu
+        else:
+            logger.error("missing " + step_id + ' in ' + name_of_derivation)
+            raise Exception("missing " + step_id + ' in ' + name_of_derivation)
+    else:
+        logger.error("missing " + name_of_derivation)
+        raise Exception("missing " + name_of_derivation)
+    clib.write_db(path_to_db, dat)
+    return
 
 def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
-    >>>
+    >>> edges_in_derivation
     """
     logger.info("[trace] edges_in_derivation")
     dat = clib.read_db(path_to_db)

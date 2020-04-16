@@ -3,8 +3,7 @@
 
 <P>modify step
 
-<P>derivation name: {{ name_of_derivation}}
-
+<P>derivation name: <a href="{{ url_for=('review_derivation', name_of_derivation=name_of_derivation)  }}">{{ name_of_derivation}}</a>
 
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
@@ -100,12 +99,17 @@
 <a name="change linear index of step">
   <h3>change linear index for step</h3>
  </a>
-New linear index must be a rational number greater than zero and must not exist<BR>
-List of linear indicies in use: {{ list_of_linear_indices }}
+ Current step index is {{ current_linear_index }}.<BR>
+ Change step index to 
+<!-- New linear index must be a rational number greater than zero and must not exist<BR> -->
 <form method="post" action="">
   <div class="form-group">
     <div class="input-group">
-<P>{{ edit_linear_index_webform.revised_text.label }}: {{ edit_linear_index_webform.revised_text }}
+            <select name="linear_index_to_modify" class="selectpicker form-control">
+              {% for new_linear_index in list_of_new_linear_indices %}
+              <option value="{{ new_linear_index }}">{{ new_linear_index }}</option>
+              {% endfor %}
+            </select>
     </div>
     <button type="submit" class="btn btn-default">Update</button>
   </div>

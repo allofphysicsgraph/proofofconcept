@@ -12,6 +12,9 @@
 
 # convention: every "raise Exception" should be proceeded by a corresponding "logger.error()"
 
+# convention: the conditional "POST" operations should happen before the "GET" operations
+# reason: sometimes the "POST" operation changes the data and the page content needs to be updated
+
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
 # from redis import Redis
 # https://pypi.org/project/rejson/
@@ -1557,36 +1560,28 @@ def modify_step(name_of_derivation: str, step_id: str):
     """
     logger.info("[trace] modify_step")
 
-    try:
-        derivation_validity_dict = compute.determine_derivation_validity(
-            name_of_derivation, path_to_db
-        )
-    except Exception as err:
-        logger.error(str(err))
-        flash(str(err))
-        derivation_validity_dict = {}
-
-    try:
-        step_graphviz_png = compute.create_step_graphviz_png(
-            name_of_derivation, step_id, path_to_db
-        )
-    except Exception as err:
-        logger.error(str(err))
-        flash(str(err))
-        step_graphviz_png = "error.png"
-
-    dat = clib.read_db(path_to_db)
     if request.method == "POST":
         logger.debug("modify_step; request form = %s", request.form)
-        if request.form["submit_button"] == "change inference rule":
-            return redirect(
-                url_for(
+        if "submit_button" in request.form.keys():
+            if request.form["submit_button"] == "change inference rule":
+                return redirect(
+                    url_for(
                     "new_step_select_inf_rule", name_of_derivation=name_of_derivation
                 )
             )
-        elif request.form["submit_button"] == "view exploded graph":
-            # ImmutableMultiDict([('submit_button', 'view exploded graph')])
-            return redirect(url_for("exploded_step", name_of_derivation, step_id))
+            elif request.form["submit_button"] == "view exploded graph":
+                # ImmutableMultiDict([('submit_button', 'view exploded graph')])
+                return redirect(url_for("exploded_step", name_of_derivation, step_id))
+
+        # https://github.com/allofphysicsgraph/proofofconcept/issues/116
+        elif 'linear_index_to_modify' in request.form.keys():
+            # ImmutableMultiDict([('linear_index_to_modify', '0.5')])
+            try:
+                compute.update_linear_index(name_of_derivation, step_id,
+                      request.form['expr_local_id_of_latex_to_modify'], path_to_db)
+            except Exception as err:
+                flash(str(err))
+                logger.error(str(err))
 
         elif "expr_local_id_of_latex_to_modify" in request.form.keys():
             # request form = ImmutableMultiDict([('edit_expr_latex', '2244'), ('revised_text', 'a = b')])
@@ -1620,26 +1615,47 @@ def modify_step(name_of_derivation: str, step_id: str):
             flash("[ERROR] unrecognized button:" + str(request.form))
             logger.error("unrecognized button")
 
+
     try:
-        list_of_linear_indices = compute.get_linear_indices(
+        derivation_validity_dict = compute.determine_derivation_validity(
+            name_of_derivation, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        derivation_validity_dict = {}
+
+    try:
+        step_graphviz_png = compute.create_step_graphviz_png(
+            name_of_derivation, step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        step_graphviz_png = "error.png"
+
+    dat = clib.read_db(path_to_db)
+
+    try:
+        list_of_new_linear_indices = compute.list_new_linear_indices(
             name_of_derivation, path_to_db
         )
     except Exception as err:
         flash(str(err))
         logger.error(str(err))
-        list_of_linear_indices = []
+        list_of_new_linear_indices = ["none"]
 
     return render_template(
         "modify_step.html",
         name_of_derivation=name_of_derivation,
         name_of_graphviz_png=step_graphviz_png,
-        step_dict=dat["derivations"][name_of_derivation][step_id],
+        current_linear_index=dat["derivations"][name_of_derivation][step_id]['linear index'],
+        step_dict=dat["derivations"][name_of_derivation],
         local_to_global=dat["expr local to global"],
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],
-        list_of_linear_indices=list_of_linear_indices,
+        list_of_new_linear_indices=list_of_new_linear_indices,
         edit_expr_latex_webform=RevisedTextForm(request.form),
-        edit_linear_index_webform=RevisedTextForm(request.form),
         edit_step_note_webform=RevisedTextForm(request.form),
         expr_local_to_gobal=dat["expr local to global"],
     )
@@ -1647,8 +1663,8 @@ def modify_step(name_of_derivation: str, step_id: str):
 @app.route("/exploded_step/<name_of_derivation>/<step_id>/", methods=["GET", "POST"])
 def exploded_step(name_of_derivation: str, step_id:str):
     """
-    >>> 
-    """ 
+    >>>
+    """
     try:
         name_of_graphviz_file = compute.generate_graphviz_of_exploded_step(name_of_derivation, step_id, path_to_db)
     except Exception as err:
