@@ -3977,7 +3977,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "0=a \\sin(k W)",
+            "latex": "0 = a \\sin(k W)",
             "name": "",
             "notes": ""
         },
@@ -4057,7 +4057,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "0=b",
+            "latex": "0 = b",
             "name": "",
             "notes": ""
         },
@@ -4165,7 +4165,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "0=a \\sin(n \\pi) \\when{n \\in {\\rm Integer}}",
+            "latex": "0 = a \\sin(n \\pi) \\when{n \\in {\\rm Integer}}",
             "name": "",
             "notes": ""
         },
@@ -5171,7 +5171,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "0=a \\sin(0) + b\\cos(0)",
+            "latex": "0 = a \\sin(0) + b\\cos(0)",
             "name": "",
             "notes": ""
         },

@@ -37,6 +37,7 @@ def create_sql_connection(db_file):
     https://charlesleifer.com/blog/going-fast-with-sqlite-and-python/
     >>> 
     """
+    logger.info("[trace] create_sql_connection")
     if os.path.exists(db_file):
         try:
             return sqlite3.connect(db_file)
@@ -75,7 +76,7 @@ def read_db(path_to_db: str) -> dict:
     #            dat = json.load(json_file) # load the content into a variable
 
     # as of 20200412 to present
-    logger.info(sqlite3.version)
+    #logger.info(sqlite3.version)
 
     conn = create_sql_connection(path_to_db)
     if conn is not None:

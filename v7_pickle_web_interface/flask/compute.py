@@ -1779,7 +1779,8 @@ def create_step_graphviz_png(
 
 def generate_graphviz_of_exploded_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str:
     """
-    >>> 
+    https://github.com/allofphysicsgraph/proofofconcept/issues/108
+    >>> generate_graphviz_of_exploded_step()
     """
     logger.info("[trace] create_graphviz_of_exploded_step")
     dot_filename = "/home/appuser/app/static/graphviz.dot"
@@ -2360,7 +2361,7 @@ def create_step(
     for connection_type in ["input", "output"]:
         for expr_index in ["1", "2", "3"]:
             for key, text in latex_for_step_dict.items():
-                logger.debug("key = " + key)
+                #logger.debug("key = " + key)
                 if "_radio" in key and connection_type in key and expr_index in key:
                     logger.debug(connection_type + " " + expr_index + "; radio")
                     if text == "latex":
