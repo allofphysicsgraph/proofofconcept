@@ -30,12 +30,17 @@ import logging
 
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 from flask import Flask, redirect, render_template, request, url_for, flash, jsonify
+# https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
+from flask_wtf import FlaskForm
+# https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
+from flask_bootstrap import Bootstrap
+
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
 from flask_login import LoginManager, UserMixin, login_required
 # https://gist.github.com/lost-theory/4521102
 from flask import g
 from werkzeug.utils import secure_filename
-from wtforms import Form, StringField, validators, FieldList, FormField, IntegerField, RadioField, PasswordField, SubmitField  # type: ignore
+from wtforms import Form, StringField, validators, FieldList, FormField, IntegerField, RadioField, PasswordField, SubmitField, BooleanField  # type: ignore
 
 # https://json-schema.org/
 from jsonschema import validate  # type: ignore
@@ -72,6 +77,7 @@ app.config["DEBUG"] = True
 # https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager.user_loader
 login_manager.init_app(app)
 
+Bootstrap(app)
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
 # rd = Redis(host='db', port=6379)
@@ -106,9 +112,12 @@ else:
 
 # https://wtforms.readthedocs.io/en/stable/crash_course.html
 # https://stackoverflow.com/questions/46092054/flask-login-documentation-loginform
-class LoginForm(Form):
-    username = StringField('Username')
-    submit = SubmitField('Submit')
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[validators.DataRequired()])
+    # password = PasswordField("Password")
+    submit = SubmitField('sign in')
+    # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms 
+    remember_me = BooleanField("remember me")
 
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
 class User(UserMixin):
