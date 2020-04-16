@@ -46,9 +46,9 @@ import validate_inference_rules_sympy as vir  # PDG
 
 # global proc_timeout
 proc_timeout = 30
-path_to_db = 'pdg.db'
+path_to_db = "pdg.db"
 # the following is done once upon program load
-clib.json_to_sql('data.json', path_to_db)
+clib.json_to_sql("data.json", path_to_db)
 
 app = Flask(__name__, static_folder="static")
 app.config.from_object(
@@ -72,7 +72,7 @@ app.config["DEBUG"] = True
 
 if __name__ == "__main__":
     # called from flask
-    print('called from flask')
+    print("called from flask")
 
     # https://docs.python.org/3/howto/logging.html
     logging.basicConfig(  # filename='pdg.log',
@@ -85,9 +85,9 @@ if __name__ == "__main__":
 
 # https://stackoverflow.com/questions/41087790/how-to-override-gunicorns-logging-config-to-use-a-custom-formatter
 # https://medium.com/@trstringer/logging-flask-and-gunicorn-the-manageable-way-2e6f0b8beb2f
-#if __name__ != "__main__":
+# if __name__ != "__main__":
 else:
-    print('called from gunicorn')
+    print("called from gunicorn")
 
     gunicorn_logger = logging.getLogger("gunicorn.error")
     app.logger.handlers = gunicorn_logger.handlers
@@ -696,7 +696,7 @@ def editor():
             if not valid_json_bool:
                 flash("uploaded file does not match PDG schema")
             else:  # file exists, has .json extension, is JSON, and complies with schema
-                shutil.copy(path_to_uploaded_file, "/home/appuser/app/"+path_to_db)
+                shutil.copy(path_to_uploaded_file, "/home/appuser/app/" + path_to_db)
             return redirect(url_for("index", filename=filename))
 
     logger.debug("reading from json")
@@ -732,6 +732,7 @@ def start_new_derivation():
         "start_new_derivation.html", form=web_form, title="start new derivation"
     )
 
+
 @app.route("/show_all_derivations", methods=["GET", "POST"])
 def show_all_derivations():
     """
@@ -755,9 +756,12 @@ def show_all_derivations():
         logger.error(str(err))
         derivations_popularity_dict = {}
 
-    return render_template('show_all_derivations.html',
-           map_of_derivations=map_of_derivations,
-           derivations_popularity_dict=derivations_popularity_dict)
+    return render_template(
+        "show_all_derivations.html",
+        map_of_derivations=map_of_derivations,
+        derivations_popularity_dict=derivations_popularity_dict,
+    )
+
 
 @app.route("/list_all_operators", methods=["GET", "POST"])
 def list_all_operators():
@@ -1058,11 +1062,14 @@ def select_derivation_step_to_edit(name_of_derivation: str):
             step_to_delete = request.form["step_to_delete"]
             try:
                 compute.delete_step_from_derivation(
-                    name_of_derivation, step_to_delete, path_to_db)
-                return redirect(url_for("review_derivation", name_of_derivation=name_of_derivation))
+                    name_of_derivation, step_to_delete, path_to_db
+                )
+                return redirect(
+                    url_for("review_derivation", name_of_derivation=name_of_derivation)
+                )
             except Exception as err:
-               logger.error(str(err))
-               flash(str(err))
+                logger.error(str(err))
+                flash(str(err))
 
     dat = clib.read_db(path_to_db)
 
@@ -1146,14 +1153,10 @@ def select_from_existing_derivations():
 
             return redirect(url_for("static", filename=tex_filename))
 
-
         elif request.form["submit_button"] == "display_graphviz":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'display_graphviz')])
             return redirect(
-                url_for(
-                    "review_derivation",
-                    name_of_derivation=name_of_derivation,
-                )
+                url_for("review_derivation", name_of_derivation=name_of_derivation,)
             )
         else:
             flash("unrecongized button in" + str(request.form))
@@ -1324,8 +1327,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
 
 @app.route(
-    "/step_review/<name_of_derivation>/<local_step_id>/",
-    methods=["GET", "POST"],
+    "/step_review/<name_of_derivation>/<local_step_id>/", methods=["GET", "POST"],
 )
 def step_review(name_of_derivation: str, local_step_id: str):
     """
@@ -1356,10 +1358,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
             )
         if request.form["submit_button"] == "accept this step; review derivation":
             return redirect(
-                url_for(
-                    "review_derivation",
-                    name_of_derivation=name_of_derivation,
-                )
+                url_for("review_derivation", name_of_derivation=name_of_derivation,)
             )
         elif request.form["submit_button"] == "modify this step":
             return redirect(
@@ -1414,6 +1413,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
         expr_local_to_gobal=dat["expr local to global"],
     )
 
+
 @app.route("/rename_derivation/<name_of_derivation>/", methods=["GET", "POST"])
 def rename_derivation(name_of_derivation: str):
     """
@@ -1421,23 +1421,30 @@ def rename_derivation(name_of_derivation: str):
     """
     logger.info("[trace] rename_derivation")
     if request.method == "POST":
-        #logger.debug(request.form)
+        # logger.debug(request.form)
         # ImmutableMultiDict([('revised_text', 'test case 1')])
-        if 'revised_text' in request.form.keys():
-            status_msg = compute.rename_derivation(name_of_derivation, request.form['revised_text'], path_to_db)
+        if "revised_text" in request.form.keys():
+            status_msg = compute.rename_derivation(
+                name_of_derivation, request.form["revised_text"], path_to_db
+            )
             flash(status_msg)
-            return redirect(url_for("review_derivation", name_of_derivation=request.form['revised_text']))
+            return redirect(
+                url_for(
+                    "review_derivation", name_of_derivation=request.form["revised_text"]
+                )
+            )
         else:
             logger.error(str(request.form))
-            flash('unrecognized option: ' + str(request.form))
+            flash("unrecognized option: " + str(request.form))
 
-    return render_template("rename_derivation.html",
-                   name_of_derivation=name_of_derivation,
-        edit_name_webform=RevisedTextForm(request.form))
+    return render_template(
+        "rename_derivation.html",
+        name_of_derivation=name_of_derivation,
+        edit_name_webform=RevisedTextForm(request.form),
+    )
 
-@app.route(
-    "/review_derivation/<name_of_derivation>/", methods=["GET", "POST"]
-)
+
+@app.route("/review_derivation/<name_of_derivation>/", methods=["GET", "POST"])
 def review_derivation(name_of_derivation: str):
     """
     >>> review_derivation
@@ -1455,7 +1462,9 @@ def review_derivation(name_of_derivation: str):
                 )
             )
         elif request.form["submit_button"] == "rename derivation":
-            return redirect(url_for("rename_derivation", name_of_derivation=name_of_derivation))
+            return redirect(
+                url_for("rename_derivation", name_of_derivation=name_of_derivation)
+            )
         elif request.form["submit_button"] == "edit existing step":
             return redirect(
                 url_for(
@@ -1550,8 +1559,8 @@ def modify_step(name_of_derivation: str, step_id: str):
 
     try:
         derivation_validity_dict = compute.determine_derivation_validity(
-                name_of_derivation, path_to_db
-            )
+            name_of_derivation, path_to_db
+        )
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
@@ -1608,7 +1617,9 @@ def modify_step(name_of_derivation: str, step_id: str):
             logger.error("unrecognized button")
 
     try:
-        list_of_linear_indices = compute.get_linear_indices(name_of_derivation, path_to_db)
+        list_of_linear_indices = compute.get_linear_indices(
+            name_of_derivation, path_to_db
+        )
     except Exception as err:
         flash(str(err))
         logger.error(str(err))

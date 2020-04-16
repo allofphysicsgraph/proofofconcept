@@ -1104,6 +1104,7 @@ def replace_scalar_with_vector(latex_dict):
     """
     return
 
+
 def simplify(latex_dict):
     """
     >>> latex_dict = {}
@@ -1113,9 +1114,6 @@ def simplify(latex_dict):
     >>> simplify(latex_dict)
     """
     return
-
-
-
 
 
 def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:

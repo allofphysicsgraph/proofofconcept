@@ -12,7 +12,8 @@ import json_schema  # a PDG file
 from jsonschema import validate  # type: ignore
 import logging
 import os
-#import redis
+
+# import redis
 
 logger = logging.getLogger(__name__)
 
@@ -90,7 +91,7 @@ def read_db(path_to_db: str) -> dict:
         validate(instance=dat, schema=json_schema.schema)
     except Exception as err:
         logger.error(str(err))
-        raise Exception('validation of database failed; ' + str(err))
+        raise Exception("validation of database failed; " + str(err))
 
     return dat
 
