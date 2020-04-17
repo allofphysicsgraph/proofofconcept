@@ -5,8 +5,12 @@
 {% include '_table_of_expressions.html' %}
 
 <P>
-<a id="delete_expression"></a>
-  <h2>Delete an expression</h2>
+  <a id="delete_expression">
+    <h2>Delete an expression</h2>
+  </a>
+  {% if current_user.is_anonymous %}
+  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  {% else %}
 <P>Only expressions that do not appear in any derivation can be deleted
 <form method="post" action="">
   <div class="form-group">
@@ -21,9 +25,16 @@
     <button type="submit" class="btn btn-default">Delete</button>
   </div>
 </form>
+{% endif %}
+</P>
 
-<a id="edit_expr_latex"></a>
-  <h2>Edit the latex for an expression</h2>
+<P>
+  <a id="edit_expr_latex">
+    <h2>Edit the latex for an expression</h2>
+  </a>
+  {% if current_user.is_anonymous %}
+  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  {% else %}
 <form method="post" action="">
   <div class="form-group">
     <div class="input-group">
@@ -38,6 +49,8 @@
     <button type="submit" class="btn btn-default">Update</button>
   </div>
 </form>
+  {% endif %}
+</P>
 
 {% endblock %}
 

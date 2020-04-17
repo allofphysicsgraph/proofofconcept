@@ -4,11 +4,15 @@
 <P>
 {% include '_table_of_operators.html' %}
 
+<P>
   <h2>
     <a id="delete operator">
       Delete an operator
     </a>
   </h2>
+  {% if current_user.is_anonymous %}
+  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  {% else %}
 <form method="post" action="">
   <div class="form-group">
     <div class="input-group">
@@ -22,12 +26,18 @@
     <button type="submit" class="btn btn-default">Delete</button>
   </div>
 </form>
+{% endif %}
+</P>
 
+<P>
   <h2>
     <a id="edit operator latex">
       Edit the latex for an operator
     </a>
   </h2>
+  {% if current_user.is_anonymous %}
+  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  {% else %}
 <form method="post" action="">
   <div class="form-group">
     <div class="input-group">
@@ -42,7 +52,7 @@
     <button type="submit" class="btn btn-default">Update</button>
   </div>
 </form>
-
+{% endif %}
 
 {% endblock %}
 

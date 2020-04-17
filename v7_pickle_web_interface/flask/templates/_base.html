@@ -131,8 +131,22 @@
   </head>
   <body>
     <div>
-      Physics Derivation Graph: <a href="/index">Home</a> | 
-                                <a href="/editor">Editor</a>
+     <table width="100%">
+       <tr>
+         <td>
+           <a href="{{ url_for('editor') }}">Physics Derivation Graph Editor</a>
+         </td>
+       <td align="right">
+<!-- https://github.com/allofphysicsgraph/proofofconcept/issues/110 -->
+{% if not current_user.is_anonymous %}
+   Logged in as {{ current_user.username }} | 
+    <a href="{{ url_for('logout') }}">Log out</a> 
+{% else %}
+    <a href="{{ url_for('login') }}">Sign in</a>
+{% endif %}
+       </td>
+      </tr>
+   </table>
     </div>
 
 <!-- https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/ -->
@@ -163,9 +177,11 @@
 
 <div align="center">
     <hr width="50%" align="center">
-    <P>                         <a href="/faq">FAQ</a> |
-                                <a href="/user_documentation">documentation for users</a> |
-                                <a href="/developer_documentation">documentation for developers</a>
+    <P>
+       <a href="{{ url_for('index') }}">Physics Derivation Graph homepage</a>
+            <a href="/faq">FAQ</a> |
+            <a href="/user_documentation">documentation for users</a> |
+            <a href="/developer_documentation">documentation for developers</a>
 
     <P><font color="red">Warning: features and data on this site are not persistent or stable.</font></P>
 

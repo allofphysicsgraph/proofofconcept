@@ -36,7 +36,9 @@ from flask_wtf import FlaskForm
 from flask_bootstrap import Bootstrap
 
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
-from flask_login import LoginManager, UserMixin, login_required
+# https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
+# https://en.wikipedia.org/wiki/Mixin
+from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
 # https://gist.github.com/lost-theory/4521102
 from flask import g
 from werkzeug.utils import secure_filename
@@ -47,6 +49,7 @@ from jsonschema import validate  # type: ignore
 from config import (
     Config,
 )  # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
+from urllib.parse  import urlparse, urljoin
 
 import common_lib as clib  # PDG common library
 import json_schema  # PDG
@@ -126,13 +129,15 @@ class User(UserMixin):
     and
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
     """
-    email = 'ben.is.loc'
-    authenticated = True
+    id = 423
+    username = "ben"
+    email = "ben@gmail"
+
 
     def is_active(self):
         return True
-#    def get_id(self):
-#        return self.email
+    def get_id(self):
+        return 'ben@gmail' 
 #    def is_authenticated(self):
 #        return self.authenticated
     def __repr__(self):
@@ -296,8 +301,10 @@ def load_user(user_id):
     """
     https://flask-login.readthedocs.io/en/latest/
     also https://realpython.com/using-flask-login-for-user-management-with-flask/
+    https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
     """
-    return User.get_id(user_id)
+    user = User()
+    return user #User.get_id(user_id)
 
 def is_safe_url(target):
     """
@@ -311,6 +318,8 @@ def is_safe_url(target):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """
+    https://github.com/allofphysicsgraph/proofofconcept/issues/110 
+
     from https://flask-login.readthedocs.io/en/latest/
     and https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
 
@@ -322,12 +331,17 @@ def login():
     if form.validate_on_submit():
         # Login and validate the user.
         # user should be an instance of your `User` class
+
+        # the following is what the person entered into the form
         logger.debug("username= %s", form.username.data)
-        user = User.get_id(form.username.data)
+#        user = User(form.username.data)
+        user = User()
         if user is None: # or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
         logger.debug('user is not none')
+        logger.debug('user = %s', str(user))
+        # https://flask-login.readthedocs.io/en/latest/#flask_login.login_user
         login_user(user, remember=form.remember_me.data)
         logger.debug('user logged in')
         flash('Logged in successfully.')
@@ -338,9 +352,18 @@ def login():
         if not is_safe_url(next):
             return abort(400)
 
-        return redirect(next or flask.url_for('index'))
+        return redirect(next or url_for('index'))
     return render_template('login.html', form=form)
 
+@app.route("/logout")
+@login_required
+def logout():
+    """ 
+    https://flask-login.readthedocs.io/en/latest/#login-example
+    >>> 
+    """
+    logout_user()
+    return redirect(url_for('index'))
 
 @app.before_request
 def before_request():
@@ -1314,7 +1337,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 #        if len(str(webform.input1.data))>10:
 #            flash(str(webform.input1.data) + " is more than 10 characters"
 
-    if  request.method == "POST"  and webform.validate():
+    if  request.method == "POST": #  and webform.validate():
         latex_for_step_dict = request.form
 
         logger.debug("latex_for_step_dict = request.form = %s", request.form)
@@ -1510,6 +1533,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
 
 
 @app.route("/rename_derivation/<name_of_derivation>/", methods=["GET", "POST"])
+@login_required
 def rename_derivation(name_of_derivation: str):
     """
     >>>
@@ -1646,6 +1670,7 @@ def review_derivation(name_of_derivation: str):
 
 
 @app.route("/modify_step/<name_of_derivation>/<step_id>/", methods=["GET", "POST"])
+@login_required
 def modify_step(name_of_derivation: str, step_id: str):
     """
     >>> modify_step('fun deriv', '958242')

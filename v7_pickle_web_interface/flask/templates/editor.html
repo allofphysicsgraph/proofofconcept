@@ -1,25 +1,51 @@
 {% extends "_base.html" %}
 {% block content %}
 
-<!-- https://github.com/allofphysicsgraph/proofofconcept/issues/110 -->
-<P><a href="create_account">Create an account</a> or <a href="sign_in">Sign in</a> to edit and add content.</P>
 
-
-<P>Derivations:
-<UL>
-<LI><a href="{{ url_for('show_all_derivations') }}">show all derivations</a>
-<LI><a href="{{ url_for('start_new_derivation') }}">start a new derivation</a>
-{% if number_of_derivations > 0 %}
-<LI><a href="{{ url_for('select_from_existing_derivations') }}">view existing {{ number_of_derivations }} derivations</a>
-  (also edit an existing derivation)
-{% endif %}
-<LI><a href="{{ url_for('list_all_inference_rules') }}">list all {{ number_of_infrules }} inference rules</a> (also edit inference rules)
-{% if number_of_expressions > 0 %}
-<LI><a href="{{ url_for('list_all_expressions') }}">list all {{ number_of_expressions }} expressions</a> (also edit expression)
-{% endif %}
-<LI><a href="{{ url_for('list_all_symbols') }}">list all {{ number_of_symbols }} symbols</a>
-<LI><a href="{{ url_for('list_all_operators') }}">list all {{ number_of_operators }} operators</a>
-</UL>
+<P>From the Physics Derivation Graph editor, you can
+  <UL>
+    <LI>
+      <a href="{{ url_for('show_all_derivations') }}">show all derivations</a>
+    </LI>
+    <LI>
+      <a href="{{ url_for('start_new_derivation') }}">start a new derivation</a>
+      {% if current_user.is_anonymous %}
+        -- requires being <a href="{{ url_for('login') }}">signed in</a>)
+      {% endif %}
+    </LI>
+    {% if number_of_derivations > 0 %}
+    <LI>
+      <a href="{{ url_for('select_from_existing_derivations') }}">view existing {{ number_of_derivations }} derivations</a>; 
+      also edit an existing derivation
+      {% if current_user.is_anonymous %}
+        if you are <a href="{{ url_for('login') }}">signed in</a>
+      {% endif %}
+    </LI>
+    {% endif %}
+    <LI>
+      <a href="{{ url_for('list_all_inference_rules') }}">list all {{ number_of_infrules }} inference rules</a>; 
+      also edit inference rules
+      {% if current_user.is_anonymous %}
+        if you are <a href="{{ url_for('login') }}">signed in</a>
+      {% endif %}
+    </LI>
+    {% if number_of_expressions > 0 %}
+      <LI>
+        <a href="{{ url_for('list_all_expressions') }}">list all {{ number_of_expressions }} expressions</a>; 
+        also edit expressions
+      {% if current_user.is_anonymous %}
+        if you are <a href="{{ url_for('login') }}">signed in</a>
+      {% endif %}
+      </LI>
+    {% endif %}
+    <LI>
+      <a href="{{ url_for('list_all_symbols') }}">list all {{ number_of_symbols }} symbols</a>
+    </LI>
+    <LI>
+      <a href="{{ url_for('list_all_operators') }}">list all {{ number_of_operators }} operators</a>
+    </LI>
+  </UL>
+</P>
 
 <P>
 Download the current database file as 
@@ -31,6 +57,9 @@ Download the current database file as
 </P>
 
 
+      {% if current_user.is_anonymous %}
+        Upload database file if you are <a href="{{ url_for('login') }}">signed in</a>
+      {% else %}
 <!-- https://www.google.com/search?q=flask+upload+file -->
 Upload database file (JSON only):
 <!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
@@ -39,4 +68,6 @@ Upload database file (JSON only):
   <input type="submit" name="upload_button" value="Upload">
 </form>
 </p>
+{% endif %}
+
 {% endblock %}
