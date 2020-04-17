@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
 Parse source files and print the abstract syntax trees.
+
+from https://github.com/python/mypy/blob/master/misc/dump-ast.py
 """
 
 from typing import Tuple
