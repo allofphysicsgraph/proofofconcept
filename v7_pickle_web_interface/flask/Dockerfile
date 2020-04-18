@@ -59,6 +59,7 @@ COPY common_lib.py \
      data.json \
      json_schema.py \
      Makefile \
+     pdg_api.py \
      validate_inference_rules_sympy.py \
      wsgi.py \
      /home/appuser/app/
