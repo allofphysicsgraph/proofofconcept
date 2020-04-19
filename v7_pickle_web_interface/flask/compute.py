@@ -606,7 +606,7 @@ def get_list_of_symbols_in_derivation_step(name_of_derivation: str, step_id: str
     if name_of_derivation in dat['derivations'].keys():
         if step_id in dat['derivations'][name_of_derivation].keys():
             for connection_type in ['inputs', 'feeds', 'outputs']:
-                for expr_local_id in dat['derivations'][name_of_derivation][connection_type]:
+                for expr_local_id in dat['derivations'][name_of_derivation][step_id][connection_type]:
                     expr_latex = dat['expressions'][ dat['expr local to global'][expr_local_id] ]['latex']
                     list_of_symbols_per_expr = get_symbols_from_latex(expr_latex, path_to_db)
                     for symb in list_of_symbols_per_expr:
