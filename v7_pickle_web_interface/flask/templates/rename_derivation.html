@@ -5,6 +5,8 @@
 <a id="edit_expr_latex"></a>
   <h2>rename derivation from {{ name_of_derivation }}</h2>
 <form method="post" action="">
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    {{ edit_name_webform.csrf_token }}
   <div class="form-group">
     <div class="input-group">
 <P>{{ edit_name_webform.revised_text.label }}: {{ edit_name_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>

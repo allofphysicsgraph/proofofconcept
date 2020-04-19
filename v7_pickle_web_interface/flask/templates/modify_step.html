@@ -12,12 +12,16 @@
 
 <P>
 <form method="post" action="">
+<!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 <input type="submit" name="submit_button" value='view exploded graph'>
 </form>
 
 
 <P>
 <form method="post" action="">
+<!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 <input type="submit" name="submit_button" value='change inference rule'>
 </form>
 (This option deletes existing inference rule and expressions.)
@@ -28,7 +32,9 @@
   <h3>Edit the latex for an input expression</h3>
 </a>
 <form method="post" action="">
-  <div class="form-group">
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    {{ edit_expr_latex_webform.csrf_token }}  
+<div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
@@ -48,6 +54,8 @@
   <h3>Edit the latex for a feed expression</h3>
 </a>
 <form method="post" action="">
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    {{ edit_expr_latex_webform.csrf_token }}
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
@@ -69,6 +77,8 @@
   <h3>Edit the latex for an output expression</h3>
 </a>
 <form method="post" action="">
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    {{ edit_expr_latex_webform.csrf_token }}
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
@@ -89,6 +99,8 @@
 <H2>Delete Step</H2>
 </a>
 <form method="post" action="">
+<!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <button type="submit" class="btn btn-default">Delete</button>
   </div>
@@ -103,6 +115,8 @@
  Change step index to 
 <!-- New linear index must be a rational number greater than zero and must not exist<BR> -->
 <form method="post" action="">
+<!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <div class="input-group">
             <select name="linear_index_to_modify" class="selectpicker form-control">
