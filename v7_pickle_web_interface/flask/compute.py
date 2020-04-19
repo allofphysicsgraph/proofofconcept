@@ -101,7 +101,7 @@ def allowed_file(filename):
     >>> allowed_file('a_file.json')
     True
     """
-    logger.info("[trace] allowed_file")
+    logger.info("[trace]")
 
     return "." in filename and filename.rsplit(".", 1)[1].lower() in {"json"}
 
@@ -110,7 +110,7 @@ def validate_json_file(filename: str) -> None:
     """
     >>> validate_json_file('filename.json')
     """
-    logger.info("[trace] validate_json_file")
+    logger.info("[trace]")
 
     with open(filename) as json_file:
         try:
@@ -160,7 +160,7 @@ def list_new_linear_indices(name_of_derivation: str, path_to_db: str) -> list:
     # https://github.com/allofphysicsgraph/proofofconcept/issues/116
     >>> get_linear_indices()
     """
-    logger.info("[trace] get_linear_indices")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_of_linear_indices = []
     if name_of_derivation in dat["derivations"].keys():
@@ -183,7 +183,7 @@ def list_local_id_for_derivation(name_of_derivation: str, path_to_db: str) -> li
     """
     >>> list_local_id_for_derivation('fun deriv', 'pdg.db')
     """
-    logger.info("[trace] list_local_id_for_derivation")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_of_local_id = []
     if name_of_derivation not in dat["derivations"].keys():
@@ -203,7 +203,7 @@ def list_global_id_not_in_derivation(name_of_derivation: str, path_to_db: str) -
     """
     >>> list_global_id_not_in_derivation('fun deriv', 'pdg.db')
     """
-    logger.info("[trace] list_global_id_not_in_derivation")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     # I could have called list_local_id_for_derivation but I wrote this function first
     global_ids_in_derivation = []
@@ -231,7 +231,7 @@ def create_files_of_db_content(path_to_db):
     """
     >>> create_files_of_db_content('pdg.db')
     """
-    logger.info("[trace] create_files_of_db_content")
+    logger.info("[trace]")
 
     dat = clib.read_db(path_to_db)
     json_file_name = "data.json"
@@ -263,7 +263,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
 
     >>> convert_json_to_dataframes('pdg.db')
     """
-    logger.info("[trace] convert_data_to_dataframes")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
     all_dfs = {}
@@ -401,7 +401,7 @@ def convert_df_to_pkl(all_df) -> str:
 
     >>> convert_df_to_pkl(all_df)
     """
-    logger.info("[trace] convert_df_to_pkl")
+    logger.info("[trace]")
     df_pkl = "data.pkl"
     with open(df_pkl, "wb") as fil:
         pickle.dump(all_df, fil)
@@ -416,7 +416,7 @@ def convert_dataframes_to_sql(all_dfs) -> str:
 
     >>> convert_dataframes_to_sql(all_dfs, 'pdg.db')
     """
-    logger.info("[trace] convert_dataframes_to_sql")
+    logger.info("[trace]")
     sql_file = "physics_derivation_graph.sqlite3"
     try:
         cnx = sqlite3.connect(sql_file)
@@ -443,7 +443,7 @@ def convert_data_to_rdf(path_to_db: str) -> str:
     https://en.wikipedia.org/wiki/Web_Ontology_Language
     >>> convert_data_to_rdf('pdg.db')
     """
-    logger.info("[trace] convert_data_to_rdf")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
     rdf_str = ""
@@ -524,7 +524,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
 
     >>> convert_data_to_cypher('pdg.db')
     """
-    logger.info("[trace] convert_data_to_cypher")
+    logger.info("[trace]")
 
     dat = clib.read_db(path_to_db)
 
@@ -619,7 +619,7 @@ def get_sorted_list_of_expr(path_to_db: str) -> list:
 
     >>> get_sorted_list_of_expr('data.pkl')
     """
-    logger.info("[trace] get_sorted_list_of_expr")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_expr = list(dat["expressions"].keys())
     list_expr.sort()
@@ -632,7 +632,7 @@ def get_sorted_list_of_expr_not_in_use(path_to_db: str) -> list:
 
     >>> get_sorted_list_of_expr('data.pkl')
     """
-    logger.info("[trace] get_sorted_list_of_expr")
+    logger.info("[trace]")
 
     expr_popularity_dict = popularity_of_expressions(path_to_db)
     list_of_expr_not_in_use = []
@@ -647,7 +647,7 @@ def get_sorted_list_of_inf_rules_not_in_use(path_to_db: str) -> list:
     """
     >>> get_sorted_list_of_inf_rules('data.pkl')
     """
-    logger.info("[trace] get_list_of_inf_rules")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     infrule_popularity_dict = popularity_of_infrules(path_to_db)
     list_of_infrules_not_in_use = []
@@ -662,7 +662,7 @@ def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     """
     >>> get_sorted_list_of_inf_rules('data.pkl')
     """
-    logger.info("[trace] get_list_of_inf_rules")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_infrule = list(dat["inference rules"].keys())
     list_infrule.sort()
@@ -673,7 +673,7 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
     """
     >>> get_list_of_derivations('pdg.db')
     """
-    logger.info("[trace] get_list_of_derivation")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_deriv = list(dat["derivations"].keys())
     list_deriv.sort()
@@ -684,7 +684,7 @@ def get_derivation_steps(name_of_derivation: str, path_to_db: str) -> dict:
     """
     >>> get_derivation_steps('my deriv','pdg.db')
     """
-    logger.info("[trace] get_list_of_steps")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     if name_of_derivation not in dat["derivations"].keys():
         logger.error(name_of_derivation + " is not in derivation")
@@ -702,7 +702,7 @@ def create_expr_global_id(path_to_db: str) -> str:
 
     >>> create_expr_id(False, 'pdg.db')
     """
-    logger.info("[trace] create_expr_global_id")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
     global_expr_ids_in_use = list(dat["expressions"].keys())
@@ -730,7 +730,7 @@ def create_step_id(path_to_db: str) -> str:
     search DB to find whether proposed local ID already exists
     >>> create_step_id(False, 'pdg.db')
     """
-    logger.info("[trace] create_step_id")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
     step_ids_in_use = []
@@ -756,7 +756,7 @@ def create_expr_local_id(path_to_db: str) -> str:
     search DB to find whether proposed local ID already exists
     >>> create_expr_local_id(False, 'pdg.db')
     """
-    logger.info("[trace] create_expr_local_id")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
     local_ids_in_use = list(dat["expr local to global"].keys())
@@ -809,7 +809,7 @@ def extract_operators_from_expression_dict(expr_id: str, path_to_db: str) -> lis
     """
     >>>
     """
-    logger.info("[trace] extract_operators_from_expression_dict")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     expr_dict = dat["expressions"]
     if "AST" in expr_dict[expr_id].keys():
@@ -832,7 +832,7 @@ def extract_symbols_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     """
     >>> extract_symbols_from_expression_dict('pdg.db')
     """
-    logger.info("[trace] extract_symbols_from_expression_dict")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     logger.debug("expr_id = %s", expr_id)
     expr_dict = dat["expressions"]
@@ -848,7 +848,7 @@ def extract_expressions_from_derivation_dict(deriv_name: str, path_to_db: str) -
     """
     >>>
     """
-    logger.info("[trace] extract_expressions_from_derivation_dict")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     flt_dict = flatten_dict(dat["derivations"][deriv_name])
     logger.debug("flat dict = %s", flt_dict)
@@ -874,7 +874,7 @@ def popularity_of_derivations(path_to_db: str) -> dict:
 
     >>> popularity_of_derivations('pdg.db')
     """
-    logger.info("[trace] popularity_of_derivations")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     derivations_popularity_dict = {}
     expressions_per_derivation = {}
@@ -919,7 +919,7 @@ def popularity_of_operators(path_to_db: str) -> dict:
     """
     >>> popularity_of_operators('pdg.db')
     """
-    logger.info("[trace] popularity_of_operators")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     operator_popularity_dict = {}
 
@@ -952,7 +952,7 @@ def popularity_of_symbols(path_to_db: str) -> dict:
     """
     >>> popularity_of_symbols('pdg.db')
     """
-    logger.info("[trace] popularity_of_symbols")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
     symbol_popularity_dict = {}
@@ -978,7 +978,7 @@ def popularity_of_expressions(path_to_db: str) -> dict:
     """
     >>> popularity_of_expressions('pdg.db')
     """
-    logger.info("[trace] popularity_of_expressions")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     expression_popularity_dict = {}
 
@@ -1012,7 +1012,7 @@ def popularity_of_infrules(path_to_db: str) -> dict:
     """
     >>> popularity_of_infrules('pdg.db')
     """
-    logger.info("[trace] popularity_of_infrules")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     infrule_popularity_dict = {}
     for infrule_name, infrule_dict in dat["inference rules"].items():
@@ -1044,7 +1044,7 @@ def remove_file_debris(
     """
     >>> remove_file_debris(['/path/to/file/'],['filename_without_extension'], ['ext1', 'ext2'])
     """
-    logger.info("[trace] remove_file_debris")
+    logger.info("[trace]")
 
     for path_to_file in list_of_paths_to_files:
         #        logger.debug('path_to_file =',path_to_file)
@@ -1070,7 +1070,7 @@ def generate_all_expr_and_infrule_pngs(
     """
     >>> generate_all_expr_and_infrule_pngs()
     """
-    logger.info("[trace] generate_all_expr_and_infrule_pngs")
+    logger.info("[trace]")
 
     dat = clib.read_db(path_to_db)
     destination_folder = "/home/appuser/app/static/"
@@ -1103,7 +1103,7 @@ def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
     """
     >>> create_tex_file_for_expr('filename_without_extension', 'a \dot b \\nabla')
     """
-    logger.info("[trace] create_tex_file_for_expr")
+    logger.info("[trace]")
 
     remove_file_debris(["./"], [tmp_file], ["tex"])
 
@@ -1149,7 +1149,7 @@ def generate_map_of_derivations(path_to_db: str) -> str:
 
     >>> generate_map_of_derivations()
     """
-    logger.info("[trace] generate_map_of_derivations")
+    logger.info("[trace]")
     derivation_popularity_dict = popularity_of_derivations(path_to_db)
     logger.debug("derivation_popularity_dict = %s", str(derivation_popularity_dict))
 
@@ -1236,7 +1236,7 @@ def write_step_to_graphviz_file(
     >>> fil = open('a_file','r')
     >>> write_step_to_graphviz_file("deriv name", "492482", fil, False, 'pdg.db')
     """
-    logger.info("[trace] write_step_to_graphviz_file")
+    logger.info("[trace]")
 
     dat = clib.read_db(path_to_db)
 
@@ -1318,7 +1318,7 @@ def generate_tex_for_derivation(name_of_derivation: str, path_to_db: str) -> str
     >>> generate_tex_for_derivation()
     """
 
-    logger.info("[trace] generate_tex_for_derivation")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
     path_to_tex = "/home/appuser/app/static/"  # must end with /
@@ -1442,7 +1442,7 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
     """
     >>> generate_pdf_for_derivation()
     """
-    logger.info("[trace] generate_pdf_for_derivation")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
     path_to_pdf = "/home/appuser/app/static/"  # must end with /
@@ -1510,7 +1510,7 @@ def list_expr_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
 
     >>> list_expr_in_derivation('my deriv', 'pdg.db')
     """
-    logger.info("[trace] list_expr_in_derivation")
+    logger.info("[trace]")
 
     dat = clib.read_db(path_to_db)
     list_of_local_expr = []
@@ -1530,7 +1530,7 @@ def update_linear_index(name_of_derivation: str, step_id: str, valu: str, path_t
     # https://github.com/allofphysicsgraph/proofofconcept/issues/116
     >>> modify_linear_index()
     """
-    logger.info("[trace] modify_linear_index")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     if '.' not in valu:
         valu = int(valu)
@@ -1552,7 +1552,7 @@ def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
     >>> edges_in_derivation
     """
-    logger.info("[trace] edges_in_derivation")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_of_edges = []
     for step_id, step_dict in dat["derivations"][name_of_derivation].items():
@@ -1587,7 +1587,7 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
 
     >>> create_d3js_json('my deriv', 'pdg.db')
     """
-    logger.info("[trace] create_d3js_json")
+    logger.info("[trace]")
 
     d3js_json_filename = name_of_derivation.replace(" ", "_") + ".json"
 
@@ -1686,7 +1686,7 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
 
     >>> create_derivation_png()
     """
-    logger.info("[trace] create_derivation_png")
+    logger.info("[trace]")
 
     dat = clib.read_db(path_to_db)
 
@@ -1738,7 +1738,7 @@ def create_step_graphviz_png(
     >>> create_step_graphviz_png(step_dict, 'my derivation', False)
 
     """
-    logger.info("[trace] create_step_graphviz_png")
+    logger.info("[trace]")
     dot_filename = "/home/appuser/app/static/graphviz.dot"
     remove_file_debris(["/home/appuser/app/static/"], ["graphviz"], ["dot"])
 
@@ -1782,7 +1782,7 @@ def generate_graphviz_of_exploded_step(name_of_derivation: str, step_id: str, pa
     https://github.com/allofphysicsgraph/proofofconcept/issues/108
     >>> generate_graphviz_of_exploded_step()
     """
-    logger.info("[trace] create_graphviz_of_exploded_step")
+    logger.info("[trace]")
     dot_filename = "/home/appuser/app/static/graphviz.dot"
     dat = clib.read_db(path_to_db)
     if name_of_derivation in dat['derivations'].keys():
@@ -1825,7 +1825,7 @@ def generate_graphviz_of_exploded_step(name_of_derivation: str, step_id: str, pa
         fil.write(infrule_png_name + " -> " + step_id + ";\n")
 
         for expr_local_id in step_dict["inputs"]:
-            # TODO: 
+            # TODO:
             # latex -> global_id -> local_id -> step_id
 
             expr_global_id = dat["expr local to global"][expr_local_id]
@@ -1903,7 +1903,7 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     this function assumes generated PNG should be placed in /home/appuser/app/static/
     >>> create_png_from_latex('a \dot b \\nabla', False)
     """
-    logger.info("[trace] create_png_from_latex")
+    logger.info("[trace]")
 
     destination_folder = "/home/appuser/app/static/"
 
@@ -1982,7 +1982,7 @@ def modify_latex_in_step(
     """
     >>> modify_latex_in_step('959242', 'a = b', 'pdg.db')
     """
-    logger.info("[trace] modify_latex_in_step")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
     expr_global_id = create_expr_global_id(path_to_db)
@@ -1999,7 +1999,7 @@ def delete_step_from_derivation(
     """
     >>> delete_step_from_derivation
     """
-    logger.info("[trace] delete_step_from_derivation")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     if name_of_derivation in dat["derivations"].keys():
         if step_to_delete in dat["derivations"][name_of_derivation].keys():
@@ -2055,7 +2055,7 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     arg_dict["notes"] = inf_rule_dict_from_form["notes"]
     arg_dict["author"] = 'Ben'
     arg_dict["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
- 
+
     logger.debug("add_inf_rule; arg_dict = %s", arg_dict)
 
     dat = clib.read_db(path_to_db)
@@ -2074,7 +2074,7 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
     """
     >>> delete_inf_rule('multbothsidesbyx','pdg.db')
     """
-    logger.info("[trace] delete_inf_rule")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     infrule_popularity_dict = popularity_of_infrules(path_to_db)
@@ -2102,7 +2102,7 @@ def rename_derivation(old_name: str, new_name: str, path_to_db: str) -> str:
     """
     >>> rename_derivation()
     """
-    logger.info("[trace] rename_derivation")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if old_name in dat["derivations"].keys():
@@ -2121,7 +2121,7 @@ def rename_inf_rule(
     """
     >>> rename_inf_rule()
     """
-    logger.info("[trace] rename_inf_rule")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if old_name_of_inf_rule in dat["inference rules"].keys():
@@ -2156,7 +2156,7 @@ def edit_operator_latex(operator: str, revised_latex: str, path_to_db: str) -> s
     """
     >>> edit_operator_latex()
     """
-    logger.info("[trace] edit_operator_latex")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if operator in dat["operators"].keys():
@@ -2172,7 +2172,7 @@ def edit_symbol_latex(symbol: str, revised_latex: str, path_to_db: str) -> str:
     """
     >>> edit_symbol_latex()
     """
-    logger.info("[trace] edit_symbol_latex")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if symbol in dat["symbols"].keys():
@@ -2188,7 +2188,7 @@ def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str)
     """
     >>> edit_inf_rule_latex()
     """
-    logger.info("[trace] edit_inf_rule_latex")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if inf_rule_name in dat["inference rules"].keys():
@@ -2233,7 +2233,7 @@ def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
 
     >>> edit_expr_latex()
     """
-    logger.info("[trace] edit_expr_latex")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if expr_id in dat["expressions"].keys():
@@ -2249,7 +2249,7 @@ def delete_symbol(symbol_to_delete: str, path_to_db: str) -> str:
     """
     >>> delete_symbol()
     """
-    logger.info("[trace] delete_symbol")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     symbol_popularity_dict = popularity_of_symbols(path_to_db)
@@ -2270,7 +2270,7 @@ def delete_operator(operator_to_delete: str, path_to_db: str) -> str:
     """
     >>> delete_operator()
     """
-    logger.info("[trace] delete_operator")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     operator_popularity_dict = popularity_of_operators(path_to_db)
@@ -2291,7 +2291,7 @@ def delete_expr(expr_global_id: str, path_to_db: str) -> str:
     """
     >>> delete_expr()
     """
-    logger.info("[trace] delete_expr")
+    logger.info("[trace]")
     status_message = ""
     dat = clib.read_db(path_to_db)
     expression_popularity_dict = popularity_of_expressions(path_to_db)
@@ -2322,7 +2322,7 @@ def create_step(
 #    >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', False, 'pdg.db')
 #    9492849
     """
-    logger.info("[trace] create_step")
+    logger.info("[trace]")
 
     dat = clib.read_db(path_to_db)
 
@@ -2524,7 +2524,7 @@ def determine_derivation_validity(name_of_derivation: str, path_to_db: str) -> d
     """
     >>> determine_derivation_validity()
     """
-    logger.info("[trace] determine_derivation_validity")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     step_validity_dict = {}
 
@@ -2545,7 +2545,7 @@ def determine_step_validity(
     """
     >>> determine_step_validity()
     """
-    logger.info("[trace] determine_step_validity")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     step_validity_dict = {}
 
