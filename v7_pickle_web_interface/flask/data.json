@@ -129,7 +129,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "1029383",
                     "2948271"
@@ -170,7 +170,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "9587572",
                     "1029383"
@@ -626,7 +626,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "2392932",
                     "4642245"
@@ -677,7 +677,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "3738373",
                     "2962831"
@@ -742,7 +742,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "1939485",
                     "2837471"
@@ -757,7 +757,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "4857731",
                     "3984852"
@@ -802,7 +802,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "2934842",
                     "2941319"
@@ -911,7 +911,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "2100421",
                     "4499582"
@@ -950,7 +950,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "1203491",
                     "1039485"
@@ -977,7 +977,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "2939402",
                     "3499522"
@@ -1108,7 +1108,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "1432042",
                     "2326309"
@@ -1149,7 +1149,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "2364546",
                     "1305534"
@@ -1192,7 +1192,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "2949002",
                     "2949821"
@@ -1207,7 +1207,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "3940505",
                     "2948487"
@@ -1222,7 +1222,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "2901049",
                     "2949002"
@@ -1237,7 +1237,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "2344324",
                     "1304924"
@@ -1266,7 +1266,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "3576787",
                     "5345567"
@@ -1325,7 +1325,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "5535257",
                     "1495034"
@@ -1386,7 +1386,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "3454565",
                     "1305534"
@@ -1456,7 +1456,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "3994928",
                     "3839493"
@@ -1513,7 +1513,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "9393848",
                     "4758592"
@@ -1570,7 +1570,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "4958573",
                     "4949582"
@@ -1623,7 +1623,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "8482459",
                     "3294004"
@@ -1650,7 +1650,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "8374556",
                     "3293094"
@@ -1705,7 +1705,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "3993940",
                     "8394853"
@@ -1748,7 +1748,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "9380032",
                     "9214650"
@@ -1883,7 +1883,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "9394857",
                     "3452131"
@@ -1968,7 +1968,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "9394858",
                     "3452131"
@@ -2009,7 +2009,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "3452131",
                     "0595847"
@@ -2055,7 +2055,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "7572748",
                     "7572118"
@@ -2070,7 +2070,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "3452132",
                     "0495950"
@@ -2230,7 +2230,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "7572859",
                     "7572118"
@@ -2300,7 +2300,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "9495882",
                     "7562671"
@@ -2341,7 +2341,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "0100404",
                     "8478550"
@@ -2650,7 +2650,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "2484892",
                     "2390094"
@@ -2665,7 +2665,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub RHS of expr X into expr Y",
+                "inf rule": "substitute RHS of expr X into expr Y",
                 "inputs": [
                     "2494040",
                     "3402919"
@@ -2941,7 +2941,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "2491904",
                     "1209604"
@@ -3013,7 +3013,7 @@
                 "author": "Ben",
                 "creation date": "2020-04-14",
                 "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
+                "inf rule": "substitute LHS of expr X into expr Y",
                 "inputs": [
                     "2840008",
                     "4978059"
@@ -6399,24 +6399,6 @@
             "number of inputs": 1,
             "number of outputs": 1
         },
-        "sub LHS of expr X into expr Y": {
-            "author": "Ben",
-            "creation date": "2020-04-14",
-            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
-            "notes": "",
-            "number of feeds": 0,
-            "number of inputs": 2,
-            "number of outputs": 1
-        },
-        "sub RHS of expr X into expr Y": {
-            "author": "Ben",
-            "creation date": "2020-04-14",
-            "latex": "Substitute RHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
-            "notes": "",
-            "number of feeds": 0,
-            "number of inputs": 2,
-            "number of outputs": 1
-        },
         "substitute X for Y": {
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -6478,6 +6460,33 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "substitute list of new variables X for list of old variables Y": {
+            "number of feeds": 2,
+            "number of inputs": 1,
+            "number of outputs": 1,
+            "latex": "Substitute list of variables $#1$ for list of variables $#2$ in Eq.~ref{eq:#3}; yields Eq.~ref{eq:#4}.",
+            "notes": "rename a batch of variables all at once; whereas \"substitute X for Y\" is for one variable",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "substitute LHS of expr X into expr Y": {
+            "author": "Ben",
+            "creation date": "2020-04-14",
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
+            "notes": "",
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1
+        },
+        "substitute RHS of expr X into expr Y": {
+            "author": "Ben",
+            "creation date": "2020-04-14",
+            "latex": "Substitute RHS of Eq.~\\ref{eq:#1} into Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
+            "notes": "",
+            "number of feeds": 0,
+            "number of inputs": 2,
             "number of outputs": 1
         }
     },
