@@ -456,6 +456,9 @@ def login():
             return abort(400)
 
         return redirect(next or url_for('index'))
+
+    # intentionally delay the responsiveness of the login page to limit brute force attacks
+    time.sleep(2)
     return render_template('login.html', webform=form)
 
 @app.route("/logout", methods=['GET', 'POST'])
