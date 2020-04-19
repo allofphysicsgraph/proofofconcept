@@ -43,6 +43,7 @@ from flask_login import LoginManager, UserMixin, login_required, login_user, log
 # https://gist.github.com/lost-theory/4521102
 from flask import g
 from werkzeug.utils import secure_filename
+# removed "Form" from wtforms; see https://stackoverflow.com/a/20577177/1164295
 from wtforms import StringField, validators, FieldList, FormField, IntegerField, RadioField, PasswordField, SubmitField, BooleanField  # type: ignore
 
 # https://json-schema.org/
@@ -134,6 +135,17 @@ class LoginForm(FlaskForm):
     # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
     remember_me = BooleanField("remember me")
 
+# https://pythonprogramming.net/flask-user-registration-form-tutorial/
+class RegistrationForm(FlaskForm):
+    username = StringField('Username', [validators.Length(min=3, max=20)])
+    email = StringField('Email Address', [validators.Length(min=4, max=50)])
+    password = PasswordField('New Password', [
+        validators.Required(),
+        validators.EqualTo('confirm', message='Passwords must match')
+    ])
+    confirm = PasswordField('Repeat Password')
+
+
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
 class User(UserMixin):
     """
@@ -155,14 +167,14 @@ class User(UserMixin):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
-class EquationInputForm(Form):
+class EquationInputForm(FlaskForm):
     logger.info("[trace] class = EquationInputForm")
     #    r = FloatField(validators=[validators.InputRequired()])
     #    r = FloatField()
     latex = StringField("LaTeX", validators=[validators.InputRequired(),
                                              validators.Length(max=1000)])
 
-class InferenceRuleForm(Form):
+class InferenceRuleForm(FlaskForm):
     logger.info("[trace] class = InferenceRuleForm")
     inf_rule_name = StringField(
         "inf rule name", validators=[validators.InputRequired(), validators.Length(max=1000)]
@@ -182,11 +194,11 @@ class InferenceRuleForm(Form):
     latex = StringField("LaTeX", validators=[validators.InputRequired()])
     notes = StringField("notes")
 
-class RevisedTextForm(Form):
+class RevisedTextForm(FlaskForm):
     logger.info("[trace] class = RevisedTextForm")
     revised_text = StringField("revised text", validators=[validators.InputRequired(),validators.Length(max=1000)])
 
-class infRuleInputsAndOutputs(Form):
+class infRuleInputsAndOutputs(FlaskForm):
     logger.info("[trace] class = infRuleInputsAndOutputs")
     """
     a form with one or more latex entries
@@ -208,7 +220,7 @@ class infRuleInputsAndOutputs(Form):
 
 # https://stackoverflow.com/questions/37837682/python-class-input-argument/37837766
 # https://wtforms.readthedocs.io/en/stable/validators.html
-class LatexIO(Form):
+class LatexIO(FlaskForm):
     logger.info("[trace] class = LatexIO")
     feed1 = StringField("feed LaTeX 1", validators=[validators.InputRequired(),validators.Length(max=1000)])
     feed2 = StringField("feed LaTeX 2", validators=[validators.InputRequired(),validators.Length(max=1000)])
@@ -278,7 +290,7 @@ class LatexIO(Form):
     )  # , validators=[validators.InputRequired()])
 
 
-class NameOfDerivationInputForm(Form):
+class NameOfDerivationInputForm(FlaskForm):
     logger.info("[trace] class = NameOfDerivationInputForm")
     name_of_derivation = StringField(validators=[validators.InputRequired(),validators.Length(max=1000)])
 
@@ -342,7 +354,7 @@ def login():
     """
     form = LoginForm()
 
-    print('------ {0}'.format(request.form))
+    logger.debug(str(request.form))
 
     if form.validate_on_submit():
         # Login and validate the user.
@@ -381,6 +393,25 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+@app.route('/create_new_account', methods=['GET', 'POST'])
+def create_new_account():
+    """
+    >>> 
+    """
+    webform=RegistrationForm()
+
+    logger.debug("request.form = %s", request.form)
+
+    if request.method == "POST" and not webform.validate():
+        flash('something is wrong in the form, like the passwords did not  match')
+        logger.debug("request.form = %s", request.form)
+    elif request.method == "POST" and webform.validate():
+        logger.debug("request.form = %s", request.form) 
+        flash("nothing actually happens yet")
+        return redirect(url_for('login'))
+    return render_template('create_new_account.html',
+        webform=webform)
+
 
 @app.route("/user/<user_name>/", methods=['GET', 'POST'])
 def user(user_name):
@@ -398,7 +429,7 @@ def user(user_name):
     # TODO
     list_of_exprs = ['424252', '525252']
 
-    return redirect(url_for('user'),
+    return render_template('user.html',
     user_name=user_name,
     sign_up_date=sign_up_date,
     last_previous_contribution_date=last_previous_contribution_date,
@@ -817,7 +848,7 @@ def list_all_expressions():
 @app.route("/list_all_inference_rules", methods=["GET", "POST"])
 def list_all_inference_rules():
     logger.info("[trace] list_all_inference_rules")
-    print('------ {0}'.format(request.form))
+    logger.debug(str(request.form))
     dat = clib.read_db(path_to_db)
     try:
         infrule_popularity_dict = compute.popularity_of_infrules(path_to_db)

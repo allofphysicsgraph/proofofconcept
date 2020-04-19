@@ -91,7 +91,7 @@
   {% if not current_user.is_anonymous %}
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
-    {{ edit_infrule_webform.csrf_token }}
+    {{ edit_infrule_latex_webform.csrf_token }}
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>

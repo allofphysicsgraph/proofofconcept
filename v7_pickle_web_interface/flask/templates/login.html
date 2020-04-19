@@ -10,6 +10,7 @@
 
 <P>
   {% if current_user.is_anonymous %}
+
     <form method="post" action="">
   {{ webform.hidden_tag() }}
       <div class="form-group">
@@ -20,6 +21,12 @@
     </div>
       </div>
     </form>
+
+
+<P>
+  If you do not have an account, you can <a href="{{ url_for('create_new_account') }}">create an account</a>
+</P>
+
   {% else %}
   You are already signed in
   {% endif %}

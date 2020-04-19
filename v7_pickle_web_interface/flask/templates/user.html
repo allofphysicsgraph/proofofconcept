@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block content %}
+
+
+Hello {{ user_name }}
+
+Your contributions:
+
+You have been a user since {{ sign_up_date }}
+
+Your most recent contribution was on {{ last_previous_contribution_date }}
+
+Derivations you created:
+<UL>
+{% for deriv_name in list_of_derivs %}
+  <LI><a href="{{ deriv_name }}">{{ deriv_name }}</a></LI>
+{% endfor %}
+</UL>
+
+Expressions you created:
+<UL>
+{% for expr_id in list_of_exprs %}
+  <LI><a href="{{ expr_id }}">{{ expr_id }}</a></LI>
+{% endfor %}
+</UL>
+
+
+{% endblock %}
+
