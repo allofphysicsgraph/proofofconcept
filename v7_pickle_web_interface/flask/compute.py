@@ -1947,6 +1947,9 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 
     # logger.debug('create_png_from_latex: running latex against file')
 
+    logger.debug(str(os.listdir()))
+
+
     process = subprocess.run(
         ["latex", "-halt-on-error", tmp_file + ".tex"],
         stdout=PIPE,
@@ -1957,14 +1960,16 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     latex_stdout = process.stdout.decode("utf-8")
     latex_stderr = process.stderr.decode("utf-8")
 
-    # logger.debug('create_png_from_latex: latex std out:', latex_stdout)
-    # logger.debug('create_png_from_latex: latex std err', latex_stderr)
+    logger.debug(str(os.listdir()))
+
+    logger.debug('latex std out:' + str(latex_stdout))
+    logger.debug('latex std err:' + str(latex_stderr))
 
     if "Text line contains an invalid character" in latex_stdout:
         logging.error("tex input contains invalid charcter")
         shutil.copy(destination_folder + "error.png", destination_folder + png_name)
         raise Exception("no png generated due to invalid character in tex input.")
-    remove_file_debris(["./"], [tmp_file], ["png"])
+#    remove_file_debris(["./"], [tmp_file], ["png"])
 
     process = subprocess.run(
         ["dvipng", tmp_file + ".dvi", "-T", "tight", "-o", tmp_file + ".png"],
@@ -1981,6 +1986,8 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
             logger.debug("png std out %s", png_stdout)
     if len(png_stderr) > 0:
         logger.debug("png std err %s", png_stderr)
+
+    logger.debug(str(os.listdir()))
 
     if "No such file or directory" in png_stderr:
         logging.error("PNG creation failed for %s", png_name)
@@ -2014,7 +2021,16 @@ def modify_latex_in_step(
     dat = clib.read_db(path_to_db)
 
     expr_global_id = create_expr_global_id(path_to_db)
-    dat["expressions"][expr_global_id] = {"latex": revised_latex}
+
+    entry = {}
+    entry['latex'] = revised_latex
+    entry['creation date'] = datetime.datetime.now().strftime("%Y-%m-%d")
+    entry['author'] = 'Ben'
+    entry['notes'] = dat['expressions'][ dat['expr local to global'][expr_local_id_of_latex_to_modify] ]['notes']
+    entry['name'] = dat['expressions'][ dat['expr local to global'][expr_local_id_of_latex_to_modify] ]['name']
+    entry['AST'] = []
+
+    dat["expressions"][expr_global_id] = entry
     dat["expr local to global"][expr_local_id_of_latex_to_modify] = expr_global_id
 
     clib.write_db(path_to_db, dat)
