@@ -647,7 +647,7 @@ def editor():
 @app.route("/start_new_derivation/", methods=["GET", "POST"])
 @login_required # https://flask-login.readthedocs.io/en/latest/
 def start_new_derivation():
-    logger.info("[trace] start_new_derivation")
+    logger.info("[trace] " + str(current_user.username))
     web_form = NameOfDerivationInputForm(request.form)
     if request.method == "POST" and web_form.validate():
         name_of_derivation = str(web_form.name_of_derivation.data)
@@ -1099,7 +1099,7 @@ def select_from_existing_derivations():
 @app.route("/new_step_select_inf_rule/<name_of_derivation>/", methods=["GET", "POST"])
 @login_required # https://flask-login.readthedocs.io/en/latest/
 def new_step_select_inf_rule(name_of_derivation: str):
-    logger.info("[trace] new_step_select_inf_rule")
+    logger.info("[trace] " + str(current_user.username))
     try:
         list_of_inf_rules = compute.get_sorted_list_of_inf_rules(path_to_db)
     except Exception as err:
