@@ -9,6 +9,9 @@
 <P>
 <form method="post" action=""> 
 <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
    <input type="submit" name="submit_button" value='accept this step; add another step'>
    <input type="submit" name="submit_button" value='accept this step; review derivation'>
    <input type="submit" name="submit_button" value='modify this step'>
@@ -16,6 +19,48 @@
 
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
+
+<P>
+  <a id="define symbol">
+    <H2>Define Symbols used</h2>
+  </a>
+  {% if not current_user.is_anonymous %}
+          <form method="post" action="">
+            <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+            {{ webform.csrf_token }}
+            <div class="form-group">
+
+    {% for this_symbol in list_of_symbols %}
+
+    <P>{{ this_symbol }}
+    <table border="1">
+    {% for subfield in webform.symbol_radio %}
+      <tr>
+        <td>{{ subfield }}</td>
+        <td>{{ subfield.label }}</td>
+        {% if loop.index0 == 0 %}
+        <td>select existing symbol ID</td>
+        {% elif loop.index0 == 1 %}
+        <td>
+          <div class="input-group">
+            <P>{{ webform.symbol_latex.label }}: {{ webform.symbol_latex(size=50, maxlength=300) }}
+            <P>{{ webform.symbol_name.label }}: {{ webform.symbol_name(size=50, maxlength=300) }}
+            <P>{{ webform.symbol_reference.label }}: {{ webform.symbol_reference(size=50, maxlength=500) }}
+          </div>
+          <button type="submit" class="btn btn-default">Add</button>
+        </td>
+        {% endif %}
+      </tr>
+    {% endfor %}
+    </table>
+
+    {% endfor %}
+            </div>
+          </form>
+  {% else %}
+  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  {% endif %}
+</P>
 
 <P>
 {% include '_table_of_derivation_steps.html' %}

@@ -26,7 +26,8 @@
       <td>{{ subfield }}</td>
       <td>{{ subfield.label }}</td>
     {% if loop.index0 == 0 %}
-      <td>{{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
+      <td>{{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300) }}<BR>
+           <small>max length = 300 characters</small></td>
       <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300) }}</td>
       <td>{{ webform.input1_note.label }}: {{ webform.input1_note(size=20, maxlength=300) }}</td>
     {% elif loop.index0 == 1 %}
@@ -55,10 +56,6 @@
     </tr>
   {% endfor %}
   </table>
-
-<!--
-<input type="checkbox" name="use_ID_for_in1"/> Check if using local expression ID (no check if using Latex)
--->
 {% endif %}
 
 {% if inf_rule_dict['number of inputs']|int() > 1|int() %}
@@ -69,7 +66,8 @@
       <td>{{ subfield }}</td>
       <td>{{ subfield.label }}</td>
     {% if loop.index0 == 0 %}
-      <td>{{ webform.input2.label }}: {{ webform.input2(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
+      <td>{{ webform.input2.label }}: {{ webform.input2(size=50, maxlength=300) }} <BR>
+           <small>max length = 300 characters</small></td>
       <td>{{ webform.input2_name.label }}: {{ webform.input2_name(size=20, maxlength=300) }}</td>
       <td>{{ webform.input2_note.label }}: {{ webform.input2_note(size=20, maxlength=300) }}</td>
     {% elif loop.index0 == 1 %}
@@ -109,7 +107,8 @@
       <td>{{ subfield }}</td>
       <td>{{ subfield.label }}</td>
     {% if loop.index0 == 0 %}
-      <td>{{ webform.input3.label }}: {{ webform.input3(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
+      <td>{{ webform.input3.label }}: {{ webform.input3(size=50, maxlength=300) }} <BR>
+            <small>max length = 300 characters</small></td>
       <td>{{ webform.input3_name.label }}: {{ webform.input3_name(size=20, maxlength=300) }}</td>
       <td>{{ webform.input3_note.label }}: {{ webform.input3_note(size=20, maxlength=300) }}</td>
     {% elif loop.index0 == 1 %}
@@ -164,7 +163,8 @@
     <td>{{ subfield }}</td>
     <td>{{ subfield.label }}</td>
   {% if loop.index0 == 0 %}
-    <td>{{ webform.output1.label }}: {{ webform.output1(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
+    <td>{{ webform.output1.label }}: {{ webform.output1(size=50, maxlength=300) }} <BR>
+           <small>max length = 300 characters</small></td>
       <td>{{ webform.output1_name.label }}: {{ webform.output1_name(size=20, maxlength=300) }}</td>
       <td>{{ webform.output1_note.label }}: {{ webform.output1_note(size=20, maxlength=300) }}</td>
   {% elif loop.index0 == 1 %}
@@ -204,7 +204,8 @@
     <td>{{ subfield }}</td>
     <td>{{ subfield.label }}</td>
   {% if loop.index0 == 0 %}
-    <td>{{ webform.output2.label }}: {{ webform.output2(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
+    <td>{{ webform.output2.label }}: {{ webform.output2(size=50, maxlength=300) }} <BR>
+           <small>max length = 300 characters</small></td>
       <td>{{ webform.output2_name.label }}: {{ webform.output2_name(size=20, maxlength=300) }}</td>
       <td>{{ webform.output2_note.label }}: {{ webform.output2_note(size=20, maxlength=300) }}</td>
   {% elif loop.index0 == 1 %}
@@ -244,7 +245,8 @@
     <td>{{ subfield }}</td>
     <td>{{ subfield.label }}</td>
   {% if loop.index0 == 0 %}
-    <td>{{ webform.output3.label }}: {{ webform3.output(size=50, maxlength=300) }} <small>max length = 300 characters</small></td>
+    <td>{{ webform.output3.label }}: {{ webform3.output(size=50, maxlength=300) }}<BR>
+              <small>max length = 300 characters</small></td>
       <td>{{ webform.output3_name.label }}: {{ webform.output3_name(size=20, maxlength=300) }}</td>
       <td>{{ webform.output3_note.label }}: {{ webform.output3_note(size=20, maxlength=300) }}</td>
   {% elif loop.index0 == 1 %}
@@ -273,10 +275,10 @@
   </tr>
 {% endfor %}
 </table>
-{{ webform.step_note.label}}: {{ webform.step_note }}
 </P>
 {% endif %}
 
+{{ webform.step_note.label}}: {{ webform.step_note }}
 
 
 <P><input type="submit" name="submit_button" value="Submit">

@@ -129,6 +129,7 @@ else:
 # https://wtforms.readthedocs.io/en/stable/crash_course.html
 # https://stackoverflow.com/questions/46092054/flask-login-documentation-loginform
 class LoginForm(FlaskForm):
+    logger.info('[trace]')
     username = StringField('Username', validators=[validators.DataRequired()])
     # password = PasswordField("Password")
     submit = SubmitField('sign in')
@@ -137,6 +138,7 @@ class LoginForm(FlaskForm):
 
 # https://pythonprogramming.net/flask-user-registration-form-tutorial/
 class RegistrationForm(FlaskForm):
+    logger.info('[trace]')
     username = StringField('Username', [validators.Length(min=3, max=20)])
     email = StringField('Email Address', [validators.Length(min=4, max=50)])
     password = PasswordField('New Password', [
@@ -153,6 +155,8 @@ class User(UserMixin):
     and
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
     """
+    logger.info('[trace]')
+
     id = 423
     username = "ben"
     email = "ben@gmail"
@@ -168,14 +172,14 @@ class User(UserMixin):
         return '<User {}>'.format(self.username)
 
 class EquationInputForm(FlaskForm):
-    logger.info("[trace] class = EquationInputForm")
+    logger.info("[trace]")
     #    r = FloatField(validators=[validators.InputRequired()])
     #    r = FloatField()
     latex = StringField("LaTeX", validators=[validators.InputRequired(),
                                              validators.Length(max=1000)])
 
 class InferenceRuleForm(FlaskForm):
-    logger.info("[trace] class = InferenceRuleForm")
+    logger.info("[trace]")
     inf_rule_name = StringField(
         "inf rule name", validators=[validators.InputRequired(), validators.Length(max=1000)]
     )
@@ -195,11 +199,11 @@ class InferenceRuleForm(FlaskForm):
     notes = StringField("notes")
 
 class RevisedTextForm(FlaskForm):
-    logger.info("[trace] class = RevisedTextForm")
+    logger.info("[trace]")
     revised_text = StringField("revised text", validators=[validators.InputRequired(),validators.Length(max=1000)])
 
 class infRuleInputsAndOutputs(FlaskForm):
-    logger.info("[trace] class = infRuleInputsAndOutputs")
+    logger.info("[trace]")
     """
     a form with one or more latex entries
     source: https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
@@ -221,7 +225,7 @@ class infRuleInputsAndOutputs(FlaskForm):
 # https://stackoverflow.com/questions/37837682/python-class-input-argument/37837766
 # https://wtforms.readthedocs.io/en/stable/validators.html
 class LatexIO(FlaskForm):
-    logger.info("[trace] class = LatexIO")
+    logger.info("[trace]")
     feed1 = StringField("feed LaTeX 1", validators=[validators.InputRequired(),validators.Length(max=1000)])
     feed2 = StringField("feed LaTeX 2", validators=[validators.InputRequired(),validators.Length(max=1000)])
     feed3 = StringField("feed LaTeX 3", validators=[validators.InputRequired(),validators.Length(max=1000)])
@@ -302,8 +306,21 @@ class LatexIO(FlaskForm):
     )  # , validators=[validators.InputRequired()])
     step_note = StringField("step note")
 
+class symbolEntry(FlaskForm):
+    logger.info("[trace]")
+    symbol_radio = RadioField(
+        "Label",
+        choices=[
+            ("already_exists", "already exists"),
+            ("create_new", "create new"),
+        ],
+        default="already_exists")
+    symbol_latex = StringField("latex")
+    symbol_name = StringField("name")
+    symbol_reference = StringField("reference")
+
 class NameOfDerivationInputForm(FlaskForm):
-    logger.info("[trace] class = NameOfDerivationInputForm")
+    logger.info("[trace]")
     name_of_derivation = StringField(validators=[validators.InputRequired(),validators.Length(max=1000)])
 
 
@@ -1182,6 +1199,8 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
         # request.form = ImmutableMultiDict([('input1', ''), ('input1_radio', 'global'), ('input1_global_id', '5530148480'), ('feed1', 'asgasgag'), ('output1', ''), ('output1_radio', 'global'), ('output1_glob_id', '9999999951'), ('submit_button', 'Submit')])
 
+        # request.form = ImmutableMultiDict([('input1_radio', 'latex'), ('input1', 'a = b'), ('input1_name', ''), ('input1_note', ''), ('input1_global_id', '0000040490'), ('feed1', '2'), ('output1_radio', 'latex'), ('output1', 'a + 2 = b + 2'), ('output1_name', ''), ('output1_note', ''), ('output1_global_id', '0000040490'), ('submit_button', 'Submit')])
+
         try:
             local_step_id = compute.create_step(
                 latex_for_step_dict, inf_rule, name_of_derivation, current_user.username, path_to_db
@@ -1288,19 +1307,10 @@ def step_review(name_of_derivation: str, local_step_id: str):
     """
     logger.info("[trace] step_review")
 
-    try:
-        step_graphviz_png = compute.create_step_graphviz_png(
-            name_of_derivation, local_step_id, path_to_db
-        )
-    except Exception as err:
-        logger.error(str(err))
-        flash(str(err))
-        step_graphviz_png = "error.png"
-    dat = clib.read_db(path_to_db)
+    webform = symbolEntry()
 
     if request.method == "POST":
-        reslt = request.form
-        logger.debug("step_review: reslt = %s", reslt)
+        logger.debug("step_review: reslt = %s", str(request.form))
         if request.form["submit_button"] == "accept this step; add another step":
             return redirect(
                 url_for(
@@ -1322,6 +1332,18 @@ def step_review(name_of_derivation: str, local_step_id: str):
         else:
             logger.error('unrecognized button in "step_review":', request.form)
             raise Exception('unrecognized button in "step_review":', request.form)
+
+
+    try:
+        step_graphviz_png = compute.create_step_graphviz_png(
+            name_of_derivation, local_step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        step_graphviz_png = "error.png"
+    dat = clib.read_db(path_to_db)
+
 
     if name_of_derivation in dat["derivations"].keys():
         try:
@@ -1352,12 +1374,21 @@ def step_review(name_of_derivation: str, local_step_id: str):
 
     # logger.debug('step validity = %s', str(step_validity_dict))
 
+    try:
+        list_of_symbols = compute.get_list_of_symbols(name_of_derivation, local_step_id, path_to_db)
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_symbols = []
+
     return render_template(
         "step_review.html",
+        webform=webform,
         name_of_graphviz_png=step_graphviz_png,
         name_of_derivation=name_of_derivation,
         expression_popularity_dict=expression_popularity_dict,
         step_dict=step_dict,
+        list_of_symbols=list_of_symbols,
         expr_dict=dat["expressions"],
         expressions_dict=dat["expressions"],
         derivation_validity_dict=derivation_validity_dict,

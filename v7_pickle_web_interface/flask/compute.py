@@ -2310,7 +2310,7 @@ def delete_expr(expr_global_id: str, path_to_db: str) -> str:
 
 
 def create_step(
-    latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, path_to_db: str
+    latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, user_name: str, path_to_db: str
 ) -> str:
     """
     https://strftime.org/
@@ -2330,22 +2330,24 @@ def create_step(
         logger.debug(name_of_derivation + "was not in derivations; it has been added.")
         dat["derivations"][name_of_derivation] = {}
 
+    # because the form is an immutable dict, we need to convert to dict before deleting keys
+    # https://tedboy.github.io/flask/generated/generated/werkzeug.ImmutableMultiDict.html
+    latex_for_step_dict = latex_for_step_dict.to_dict(flat=True)
+    logger.debug("latex_for_step_dict = %s", latex_for_step_dict)
+
     step_dict = {
         "inf rule": inf_rule,
         "inputs": [],
         "feeds": [],
         "outputs": [],
         "linear index": -1,
-        "notes": "",
-        "author": "Ben",
+        "notes": latex_for_step_dict['step_note'], 
+        "author": user_name,
         "creation date": datetime.datetime.now().strftime("%Y-%m-%d"),
     }  # type: STEP_DICT
     # if we observe 'linear index'==-1 outside this function, it indicates a problem
 
-    # because the form is an immutable dict, we need to convert to dict before deleting keys
-    # https://tedboy.github.io/flask/generated/generated/werkzeug.ImmutableMultiDict.html
-    latex_for_step_dict = latex_for_step_dict.to_dict(flat=True)
-    logger.debug("latex_for_step_dict = %s", latex_for_step_dict)
+    logger.debug('initialized step_dict to %s', str(step_dict))
 
     # start with feeds since those are the easiest
     for key, text in latex_for_step_dict.items():
@@ -2364,6 +2366,8 @@ def create_step(
             dat["expr local to global"][expr_local_id] = expr_global_id
             step_dict["feeds"].append(expr_local_id)
 
+    logger.debug('entered feed to dat')
+
     for connection_type in ["input", "output"]:
         for expr_index in ["1", "2", "3"]:
             for key, text in latex_for_step_dict.items():
@@ -2376,8 +2380,8 @@ def create_step(
                         dat["expressions"][expr_global_id] = {
                             "latex": latex_for_step_dict[connection_type + expr_index],
                             "AST": [],
-                            "name": "",
-                            "notes": "",
+                            "name": latex_for_step_dict[connection_type + expr_index + "_name"],
+                            "notes": latex_for_step_dict[connection_type + expr_index + "_note"],
                             "author": "Ben",
                             "creation date": datetime.datetime.now().strftime(
                                 "%Y-%m-%d"
