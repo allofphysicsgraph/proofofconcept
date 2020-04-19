@@ -3097,7 +3097,7 @@
             "8636739": {
                 "inf rule": "multiply both sides by",
                 "inputs": [
-                    "5495736"
+                    "6350246"
                 ],
                 "feeds": [
                     "8830175"
@@ -3106,6 +3106,148 @@
                     "7867574"
                 ],
                 "linear index": 5,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "9916897": {
+                "inf rule": "simplify",
+                "inputs": [
+                    "7867574"
+                ],
+                "feeds": [],
+                "outputs": [
+                    "5714636"
+                ],
+                "linear index": 6,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "6790653": {
+                "inf rule": "simplify",
+                "inputs": [
+                    "5714636"
+                ],
+                "feeds": [],
+                "outputs": [
+                    "6229292"
+                ],
+                "linear index": 7,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "2750343": {
+                "inf rule": "RHS of expr X eq RHS of expr Y",
+                "inputs": [
+                    "6229292",
+                    "1414263"
+                ],
+                "feeds": [],
+                "outputs": [
+                    "7647794"
+                ],
+                "linear index": 8,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "7763037": {
+                "inf rule": "declare final expr",
+                "inputs": [
+                    "7647794"
+                ],
+                "feeds": [],
+                "outputs": [],
+                "linear index": 9,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            }
+        },
+        "Euler equation to e^(i pi) + 1 = 0": {
+            "6831079": {
+                "inf rule": "declare initial expr",
+                "inputs": [],
+                "feeds": [],
+                "outputs": [
+                    "1580045"
+                ],
+                "linear index": 1,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "5103914": {
+                "inf rule": "substitute X for Y",
+                "inputs": [
+                    "1580045"
+                ],
+                "feeds": [
+                    "9050111",
+                    "9850626"
+                ],
+                "outputs": [
+                    "1148677"
+                ],
+                "linear index": 2,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "1530591": {
+                "inf rule": "simplify",
+                "inputs": [
+                    "1148677"
+                ],
+                "feeds": [],
+                "outputs": [
+                    "8524301"
+                ],
+                "linear index": 3,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "8755752": {
+                "inf rule": "simplify",
+                "inputs": [
+                    "8524301"
+                ],
+                "feeds": [],
+                "outputs": [
+                    "9610540"
+                ],
+                "linear index": 4,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "8465659": {
+                "inf rule": "add X to both sides",
+                "inputs": [
+                    "9610540"
+                ],
+                "feeds": [
+                    "2097240"
+                ],
+                "outputs": [
+                    "9472905"
+                ],
+                "linear index": 5,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "9932332": {
+                "inf rule": "declare final expr",
+                "inputs": [
+                    "9472905"
+                ],
+                "feeds": [],
+                "outputs": [],
+                "linear index": 6,
                 "notes": "",
                 "author": "ben",
                 "creation date": "2020-04-19"
@@ -3380,8 +3522,18 @@
         "5011637": "4585932229",
         "6350246": "3470587782",
         "8830175": "8642992037",
-        "5495736": "5511805910",
-        "7867574": "9894826550"
+        "7867574": "9894826550",
+        "5714636": "8699789241",
+        "6229292": "9180861128",
+        "7647794": "2405307372",
+        "1580045": "4938429483",
+        "9050111": "3268645065",
+        "9850626": "9350663581",
+        "1148677": "8332931442",
+        "8524301": "6885625907",
+        "9610540": "3331824625",
+        "2097240": "4901237716",
+        "9472905": "2501591100"
     },
     "expressions": {
         "0000040490": {
@@ -5962,16 +6114,112 @@
             "author": "Ben",
             "creation date": "2020-04-19"
         },
-        "5511805910": {
-            "latex": "",
+        "9894826550": {
+            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right) \\left(\\exp(i x)+\\exp(-i x)\\right)",
             "AST": [],
             "name": "",
             "notes": "",
             "author": "Ben",
             "creation date": "2020-04-19"
         },
-        "9894826550": {
-            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right) \\left(\\exp(i x)+\\exp(-i x)\\right)",
+        "4257214632": {
+            "latex": "\\frac{1}{2 i} \\left( \\exp(i 2 x) - 1 + 1 - \\exp(-i 2 x)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "5182812819": {
+            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - \\exp(-i 2 x)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "9639088529": {
+            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - 1 + 1 - \\exp(-i 2 x)",
+            "creation date": "2020-04-19",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "8699789241": {
+            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - 1 + 1 - \\exp(-i 2 x) \\right)",
+            "creation date": "2020-04-19",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "9180861128": {
+            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - \\exp(-i 2 x) \\right)",
+            "creation date": "2020-04-19",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "2405307372": {
+            "latex": "\\sin(2 x) = 2 \\sin(x) \\cos(x)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "3268645065": {
+            "latex": "x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "9350663581": {
+            "latex": "\\pi",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "8332931442": {
+            "latex": "\\exp(i \\pi) = \\cos(\\pi)+i \\sin(\\pi)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "6885625907": {
+            "latex": "\\exp(i \\pi) = -1 + i 0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "3331824625": {
+            "latex": "\\exp(i \\pi) = -1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "4901237716": {
+            "latex": "1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "2501591100": {
+            "latex": "\\exp(i \\pi) + 1 = 0",
             "AST": [],
             "name": "",
             "notes": "",
