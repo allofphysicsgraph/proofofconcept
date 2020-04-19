@@ -37,6 +37,7 @@
     <h2>Delete an inference rule</h2>
   </a>
   {% if not current_user.is_anonymous %}
+Only inference rules not in use can be deleted.
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -45,7 +46,7 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="delete_inf_rule" class="selectpicker form-control">
-              {% for elem in sorted_list_infrules %}
+              {% for elem in sorted_list_infrules_not_in_use %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>

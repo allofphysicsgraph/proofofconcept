@@ -965,18 +965,22 @@ def list_all_inference_rules():
         infrules_modified_latex_dict[infrule_name] = infrule_dict
 
     try:
-        sorted_list_infrules = compute.get_sorted_list_of_inf_rules_not_in_use(
+        sorted_list_infrules_not_in_use = compute.get_sorted_list_of_inf_rules_not_in_use(
             path_to_db
         )
     except Exception as err:
         flash(str(err))
         logging.warning(err)
-        sorted_list_infrules = []
+        sorted_list_infrules_not_in_use = []
+
+    sorted_list_infrules = list(dat['inference rules'].keys())
+    sorted_list_infrules.sort()
 
     return render_template(
         "list_all_inference_rules.html",
         infrules_dict=infrules_modified_latex_dict,
         sorted_list_infrules=sorted_list_infrules,
+        sorted_list_infrules_not_in_use=sorted_list_infrules_not_in_use,
         add_infrule_webform=InferenceRuleForm(request.form),
         rename_infrule_webform=RevisedTextForm(request.form),
         edit_infrule_latex_webform=RevisedTextForm(request.form),
