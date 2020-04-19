@@ -31,9 +31,10 @@ import logging
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 from flask import Flask, redirect, render_template, request, url_for, flash, jsonify
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
-from flask_wtf import FlaskForm
-# https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
-from flask_bootstrap import Bootstrap
+# https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
+from flask_wtf import FlaskForm, CSRFProtect, Form
+## https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
+#from flask_bootstrap import Bootstrap
 
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
@@ -42,7 +43,7 @@ from flask_login import LoginManager, UserMixin, login_required, login_user, log
 # https://gist.github.com/lost-theory/4521102
 from flask import g
 from werkzeug.utils import secure_filename
-from wtforms import Form, StringField, validators, FieldList, FormField, IntegerField, RadioField, PasswordField, SubmitField, BooleanField  # type: ignore
+from wtforms import StringField, validators, FieldList, FormField, IntegerField, RadioField, PasswordField, SubmitField, BooleanField  # type: ignore
 
 # https://json-schema.org/
 from jsonschema import validate  # type: ignore
@@ -65,6 +66,10 @@ clib.json_to_sql("data.json", path_to_db)
 # https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager.user_loader
 login_manager = LoginManager()
 
+# https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
+csrf = CSRFProtect()
+
+
 app = Flask(__name__, static_folder="static")
 app.config.from_object(
     Config
@@ -80,8 +85,12 @@ app.config["DEBUG"] = True
 # https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager.user_loader
 login_manager.init_app(app)
 
+# https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
+csrf.init_app(app)
+
+
 # TODO: get rid of this!
-Bootstrap(app)
+#Bootstrap(app)
 
 import pdg_api
 
@@ -171,6 +180,7 @@ class InferenceRuleForm(Form):
         validators=[validators.InputRequired(), validators.NumberRange(min=0, max=5)],
     )
     latex = StringField("LaTeX", validators=[validators.InputRequired()])
+    notes = StringField("notes")
 
 class RevisedTextForm(Form):
     logger.info("[trace] class = RevisedTextForm")
@@ -331,6 +341,9 @@ def login():
     handle this for us, and we use a custom LoginForm to validate.
     """
     form = LoginForm()
+
+    print('------ {0}'.format(request.form))
+
     if form.validate_on_submit():
         # Login and validate the user.
         # user should be an instance of your `User` class
@@ -356,7 +369,7 @@ def login():
             return abort(400)
 
         return redirect(next or url_for('index'))
-    return render_template('login.html', form=form)
+    return render_template('login.html', webform=form)
 
 @app.route("/logout", methods=['GET', 'POST'])
 @login_required
@@ -415,7 +428,12 @@ def after_request(response):
 
     >>> after_request()
     """
-    diff = time.time() - g.start
+    try:
+        diff = time.time() - g.start
+    except AttributeError as err:
+        flash(str(err))
+        logger.error(str(err))
+        diff = 0
     if (
         (response.response)
         and (200 <= response.status_code < 300)
@@ -799,6 +817,7 @@ def list_all_expressions():
 @app.route("/list_all_inference_rules", methods=["GET", "POST"])
 def list_all_inference_rules():
     logger.info("[trace] list_all_inference_rules")
+    print('------ {0}'.format(request.form))
     dat = clib.read_db(path_to_db)
     try:
         infrule_popularity_dict = compute.popularity_of_infrules(path_to_db)

@@ -2017,7 +2017,7 @@ def delete_derivation(name_of_derivation: str, path_to_db: str) -> str:
     >>> delete_derivation('my cool deriv', 'pdg.db')
 
     """
-    logger.info("[trace] add_inf_rule")
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     # TODO: if expr is only used in this derivation, does the user want dangling expressions removed?
     if name_of_derivation in dat["derivations"].keys():
@@ -2033,7 +2033,7 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     >>> request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
     >>> add_inf_rule(request.form.to_dict(), 'pdg.db')
     """
-    logger.info("[trace] add_inf_rule")
+    logger.info("[trace]")
 
     # create a data structure similar to
     #   'begin derivation':         {'number of feeds':0, 'number of inputs':0, 'number of outputs': 1, 'latex': 'more'}
@@ -2052,15 +2052,21 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     except ValueError as err:
         return "number of outputs does not seem to be an integer"
     arg_dict["latex"] = inf_rule_dict_from_form["latex"]
+    arg_dict["notes"] = inf_rule_dict_from_form["notes"]
+    arg_dict["author"] = 'Ben'
+    arg_dict["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
+ 
     logger.debug("add_inf_rule; arg_dict = %s", arg_dict)
 
     dat = clib.read_db(path_to_db)
     if inf_rule_dict_from_form["inf_rule_name"] in dat["inference rules"].keys():
         status_msg = "inference rule already exists"
-
-    dat["inference rules"][inf_rule_dict_from_form["inf_rule_name"]] = arg_dict
-    clib.write_db(path_to_db, dat)
-
+        logger.error(status_msg)
+        raise Exception(status_msg)
+    else:
+        dat["inference rules"][inf_rule_dict_from_form["inf_rule_name"]] = arg_dict
+        clib.write_db(path_to_db, dat)
+        status_msg = "success"
     return status_msg
 
 

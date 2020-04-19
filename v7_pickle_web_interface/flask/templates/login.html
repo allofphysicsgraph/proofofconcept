@@ -2,10 +2,28 @@
 {% block content %}
 
 <!-- https://www.oreilly.com/library/view/flask-web-development/9781491947586/ch04.html -->
-{% import "bootstrap/wtf.html" as wtf %}
+<!-- { % import "bootstrap/wtf.html" as wtf % } -->
 
 <!--  https://pythonhosted.org/Flask-Bootstrap/forms.html -->
-{{ wtf.quick_form(form) }}
+<!-- { { wtf.quick_form(form) } } -->
+
+
+<P>
+  {% if current_user.is_anonymous %}
+    <form method="post" action="">
+  {{ webform.hidden_tag() }}
+      <div class="form-group">
+        <div class="input-group">
+      <P>{{ webform.username.label }}: {{ webform.username(size=50, maxlength=100) }} <small>max length = 100 characters</small>
+      <P>{{ webform.submit.label }}:    {{ webform.submit }}
+      <P>{{ webform.remember_me.label }}:  {{ webform.remember_me }}
+    </div>
+      </div>
+    </form>
+  {% else %}
+  You are already signed in
+  {% endif %}
+</P>
 
 
 {% endblock %}
