@@ -1375,11 +1375,12 @@ def step_review(name_of_derivation: str, local_step_id: str):
     # logger.debug('step validity = %s', str(step_validity_dict))
 
     try:
-        list_of_symbols = compute.get_list_of_symbols(name_of_derivation, local_step_id, path_to_db)
+        list_of_symbols = compute.get_list_of_symbols_in_derivation_step(name_of_derivation, local_step_id, path_to_db)
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
         list_of_symbols = []
+
 
     return render_template(
         "step_review.html",
@@ -1389,6 +1390,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
         expression_popularity_dict=expression_popularity_dict,
         step_dict=step_dict,
         list_of_symbols=list_of_symbols,
+        symbols=dat["symbols"],
         expr_dict=dat["expressions"],
         expressions_dict=dat["expressions"],
         derivation_validity_dict=derivation_validity_dict,

@@ -4,7 +4,7 @@ FROM phusion/baseimage:0.11
 # Ubuntu is too big 
 #FROM ubuntu:latest
 
-# PYTHONDONTWRITEBYTECODE: Prevents Python from writing pyc files to disc (equivalent to python -B option)
+# PYTHONDONTWRITEBYTECODE: Prevents Python from writing pyc files to disk (equivalent to python -B option)
 ENV PYTHONDONTWRITEBYTECODE 1
 
 # https://docs.docker.com/engine/reference/builder/#run
@@ -56,7 +56,6 @@ COPY common_lib.py \
      compute.py \
      config.py \
      controller.py \
-     data.json \
      json_schema.py \
      Makefile \
      pdg_api.py \

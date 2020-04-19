@@ -3,7 +3,9 @@
 
 
 <a id="edit_expr_latex"></a>
-  <h2>rename derivation from {{ name_of_derivation }}</h2>
+  <h2>rename derivation from</h2>
+ {{ name_of_derivation }}<BR>
+to
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
     {{ edit_name_webform.csrf_token }}

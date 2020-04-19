@@ -1,118 +1,5 @@
 {
     "derivations": {
-        "Comptons equation for scattering": {
-            "3445641": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "declare initial expr",
-                "inputs": [],
-                "linear index": 2,
-                "notes": "",
-                "outputs": [
-                    "2840008"
-                ]
-            },
-            "3667395": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
-                "inputs": [
-                    "2491904",
-                    "1209604"
-                ],
-                "linear index": 5,
-                "notes": "",
-                "outputs": [
-                    "5610925"
-                ]
-            },
-            "3871228": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "swap LHS with RHS",
-                "inputs": [
-                    "4068150"
-                ],
-                "linear index": 7,
-                "notes": "",
-                "outputs": [
-                    "4200334"
-                ]
-            },
-            "4733986": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "declare initial expr",
-                "inputs": [],
-                "linear index": 3,
-                "notes": "",
-                "outputs": [
-                    "1209604"
-                ]
-            },
-            "4738354": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "mult expr X by expr Y",
-                "inputs": [
-                    "4200334",
-                    "4200334"
-                ],
-                "linear index": 8,
-                "notes": "",
-                "outputs": [
-                    "4218805"
-                ]
-            },
-            "7952658": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [
-                    "2338514"
-                ],
-                "inf rule": "subtract X from both sides",
-                "inputs": [
-                    "5610925"
-                ],
-                "linear index": 6,
-                "notes": "",
-                "outputs": [
-                    "4068150"
-                ]
-            },
-            "7958085": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "sub LHS of expr X into expr Y",
-                "inputs": [
-                    "2840008",
-                    "4978059"
-                ],
-                "linear index": 4,
-                "notes": "",
-                "outputs": [
-                    "2491904"
-                ]
-            },
-            "8668018": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "declare initial expr",
-                "inputs": [],
-                "linear index": 1,
-                "notes": "",
-                "outputs": [
-                    "4978059"
-                ]
-            }
-        },
         "Euler equation proof": {
             "1029890": {
                 "author": "Ben",
@@ -879,20 +766,6 @@
                 "notes": "",
                 "outputs": [
                     "2837471"
-                ]
-            }
-        },
-        "another deriv": {
-            "0491182": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "declare initial expr",
-                "inputs": [],
-                "linear index": 1,
-                "notes": "",
-                "outputs": [
-                    "9128000"
                 ]
             }
         },
@@ -1733,62 +1606,6 @@
                 ]
             }
         },
-        "example of Godel problem": {
-            "4647381": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "declare initial expr",
-                "inputs": [],
-                "linear index": 2,
-                "notes": "",
-                "outputs": [
-                    "4738297"
-                ]
-            },
-            "7566367": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "declare initial expr",
-                "inputs": [],
-                "linear index": 1,
-                "notes": "",
-                "outputs": [
-                    "7572712"
-                ]
-            },
-            "8673948": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "LHS of expr X eq LHS of expr Y",
-                "inputs": [
-                    "7572712",
-                    "4738297"
-                ],
-                "linear index": 3,
-                "notes": "",
-                "outputs": [
-                    "4627482",
-                    "2845892"
-                ]
-            },
-            "8674920": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "swap LHS with RHS",
-                "inputs": [
-                    "4738297"
-                ],
-                "linear index": 4,
-                "notes": "",
-                "outputs": [
-                    "7572712"
-                ]
-            }
-        },
         "frequency relations": {
             "2303943": {
                 "author": "Ben",
@@ -1941,48 +1758,6 @@
                 "outputs": [
                     "8374556"
                 ]
-            }
-        },
-        "fun deriv": {
-            "2948592": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [
-                    "3190000"
-                ],
-                "inf rule": "add X to both sides",
-                "inputs": [
-                    "9428000"
-                ],
-                "linear index": 2,
-                "notes": "",
-                "outputs": [
-                    "3921000"
-                ]
-            },
-            "4928482": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "declare initial expr",
-                "inputs": [],
-                "linear index": 1,
-                "notes": "",
-                "outputs": [
-                    "9428000"
-                ]
-            },
-            "9492942": {
-                "author": "Ben",
-                "creation date": "2020-04-14",
-                "feeds": [],
-                "inf rule": "declare final expr",
-                "inputs": [
-                    "3921000"
-                ],
-                "linear index": 3,
-                "notes": "",
-                "outputs": []
             }
         },
         "integration by parts": {
@@ -3147,6 +2922,119 @@
                 "linear index": 6,
                 "notes": "",
                 "outputs": []
+            }
+        },
+        "Compton's equation for scattering": {
+            "3445641": {
+                "author": "Ben",
+                "creation date": "2020-04-14",
+                "feeds": [],
+                "inf rule": "declare initial expr",
+                "inputs": [],
+                "linear index": 2,
+                "notes": "",
+                "outputs": [
+                    "2840008"
+                ]
+            },
+            "3667395": {
+                "author": "Ben",
+                "creation date": "2020-04-14",
+                "feeds": [],
+                "inf rule": "sub LHS of expr X into expr Y",
+                "inputs": [
+                    "2491904",
+                    "1209604"
+                ],
+                "linear index": 5,
+                "notes": "",
+                "outputs": [
+                    "5610925"
+                ]
+            },
+            "3871228": {
+                "author": "Ben",
+                "creation date": "2020-04-14",
+                "feeds": [],
+                "inf rule": "swap LHS with RHS",
+                "inputs": [
+                    "4068150"
+                ],
+                "linear index": 7,
+                "notes": "",
+                "outputs": [
+                    "4200334"
+                ]
+            },
+            "4733986": {
+                "author": "Ben",
+                "creation date": "2020-04-14",
+                "feeds": [],
+                "inf rule": "declare initial expr",
+                "inputs": [],
+                "linear index": 3,
+                "notes": "",
+                "outputs": [
+                    "1209604"
+                ]
+            },
+            "4738354": {
+                "author": "Ben",
+                "creation date": "2020-04-14",
+                "feeds": [],
+                "inf rule": "mult expr X by expr Y",
+                "inputs": [
+                    "4200334",
+                    "4200334"
+                ],
+                "linear index": 8,
+                "notes": "",
+                "outputs": [
+                    "4218805"
+                ]
+            },
+            "7952658": {
+                "author": "Ben",
+                "creation date": "2020-04-14",
+                "feeds": [
+                    "2338514"
+                ],
+                "inf rule": "subtract X from both sides",
+                "inputs": [
+                    "5610925"
+                ],
+                "linear index": 6,
+                "notes": "",
+                "outputs": [
+                    "4068150"
+                ]
+            },
+            "7958085": {
+                "author": "Ben",
+                "creation date": "2020-04-14",
+                "feeds": [],
+                "inf rule": "sub LHS of expr X into expr Y",
+                "inputs": [
+                    "2840008",
+                    "4978059"
+                ],
+                "linear index": 4,
+                "notes": "",
+                "outputs": [
+                    "2491904"
+                ]
+            },
+            "8668018": {
+                "author": "Ben",
+                "creation date": "2020-04-14",
+                "feeds": [],
+                "inf rule": "declare initial expr",
+                "inputs": [],
+                "linear index": 1,
+                "notes": "",
+                "outputs": [
+                    "4978059"
+                ]
             }
         }
     },

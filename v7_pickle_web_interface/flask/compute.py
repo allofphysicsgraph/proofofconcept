@@ -586,6 +586,34 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         fil.write(cypher_str)
     return cypher_file
 
+def get_symbols_from_latex(expr_latex: str, path_to_db: str) -> list:
+    """
+    >>> 
+    """
+    list_of_symbols = []
+
+    return list_of_symbols
+
+def get_list_of_symbols_in_derivation_step(name_of_derivation: str, step_id: str, path_to_db: str) -> list:
+    """
+    https://github.com/allofphysicsgraph/proofofconcept/issues/124
+    >>> get_list_of_symbols
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    list_of_symbols = []
+
+    if name_of_derivation in dat['derivations'].keys():
+        if step_id in dat['derivations'][name_of_derivation].keys():
+            for connection_type in ['inputs', 'feeds', 'outputs']:
+                for expr_local_id in dat['derivations'][name_of_derivation][connection_type]:
+                    expr_latex = dat['expressions'][ dat['expr local to global'][expr_local_id] ]['latex']
+                    list_of_symbols_per_expr = get_symbols_from_latex(expr_latex, path_to_db)
+                    for symb in list_of_symbols_per_expr:
+                        list_of_symbols.append(symb)
+    list_of_symbols = list(set(list_of_symbols))
+    list_of_symbols.sort()
+    return list_of_symbols
 
 def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
     """

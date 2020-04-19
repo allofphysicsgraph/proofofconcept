@@ -56,7 +56,6 @@ COPY common_lib.py \
      compute.py \
      config.py \
      controller.py \
-     data.json \
      json_schema.py \
      Makefile \
      pdg_api.py \
