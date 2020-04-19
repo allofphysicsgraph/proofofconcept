@@ -226,6 +226,8 @@ class LatexIO(FlaskForm):
     feed2 = StringField("feed LaTeX 2", validators=[validators.InputRequired(),validators.Length(max=1000)])
     feed3 = StringField("feed LaTeX 3", validators=[validators.InputRequired(),validators.Length(max=1000)])
     input1 = StringField("input LaTeX 1", validators=[validators.Length(max=1000)])
+    input1_name = StringField("input name 1", validators=[validators.Length(max=1000)])
+    input1_note = StringField("input note 1", validators=[validators.Length(max=1000)])
     input1_radio = RadioField(
         "Label",
         choices=[
@@ -236,6 +238,8 @@ class LatexIO(FlaskForm):
         default="latex",
     )  # , validators=[validators.InputRequired()])
     input2 = StringField("input LaTeX 2", validators=[validators.Length(max=1000)])
+    input2_name = StringField("input name 2", validators=[validators.Length(max=1000)])
+    input2_note = StringField("input note 2", validators=[validators.Length(max=1000)])
     input2_radio = RadioField(
         "Label",
         choices=[
@@ -246,6 +250,8 @@ class LatexIO(FlaskForm):
         default="latex",
     )  # , validators=[validators.InputRequired()])
     input3 = StringField("input LaTeX 3" , validators=[validators.Length(max=1000)])
+    input3_name = StringField("input name 3", validators=[validators.Length(max=1000)])
+    input3_note = StringField("input note 3", validators=[validators.Length(max=1000)])
     input3_radio = RadioField(
         "Label",
         choices=[
@@ -257,6 +263,8 @@ class LatexIO(FlaskForm):
     )  # , validators=[validators.InputRequired()])
     output1 = StringField(
         "output LaTeX 1" , validators=[validators.Length(max=1000)])
+    output1_name = StringField("output name 1", validators=[validators.Length(max=1000)])
+    output1_note = StringField("output note 1", validators=[validators.Length(max=1000)])
     output1_radio = RadioField(
         "Label",
         choices=[
@@ -268,6 +276,8 @@ class LatexIO(FlaskForm):
     )
     output2 = StringField(
         "output LaTeX 2" , validators=[validators.Length(max=1000)])
+    output2_name = StringField("output name 2", validators=[validators.Length(max=1000)])
+    output2_note = StringField("output note 2", validators=[validators.Length(max=1000)])
     output2_radio = RadioField(
         "Label",
         choices=[
@@ -279,6 +289,8 @@ class LatexIO(FlaskForm):
     )  # , validators=[validators.InputRequired()])
     output3 = StringField(
         "output LaTeX 3", validators=[validators.Length(max=1000)])
+    output3_name = StringField("output name 3", validators=[validators.Length(max=1000)])
+    output3_note = StringField("output note 3", validators=[validators.Length(max=1000)])
     output3_radio = RadioField(
         "Label",
         choices=[
@@ -288,7 +300,7 @@ class LatexIO(FlaskForm):
         ],
         default="latex",
     )  # , validators=[validators.InputRequired()])
-
+    step_note = StringField("step note")
 
 class NameOfDerivationInputForm(FlaskForm):
     logger.info("[trace] class = NameOfDerivationInputForm")
@@ -320,6 +332,52 @@ class NameOfDerivationInputForm(FlaskForm):
 #    logger.info("[trace] page_not_found")
 #    logger.debug(e)
 #    return redirect(url_for("index"))
+
+@app.before_request
+def before_request():
+    """
+    Note: this function need to be before almost all other functions
+
+    https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask
+    actually, https://gist.github.com/lost-theory/4521102
+    >>> before_request():
+    """
+    g.start = time.time()
+    g.request_start_time = time.time()
+    elapsed_time = lambda: "%.5f seconds" % (time.time() - g.request_start_time)
+    logger.info(elapsed_time)
+    g.request_time = elapsed_time
+
+
+@app.after_request
+def after_request(response):
+    """
+    https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask
+
+    I don't know how to access this measure
+
+    >>> after_request()
+    """
+    try:
+        diff = time.time() - g.start
+    except AttributeError as err:
+        flash(str(err))
+        logger.error(str(err))
+        diff = 0
+    if (
+        (response.response)
+        and (200 <= response.status_code < 300)
+        and (response.content_type.startswith("text/html"))
+    ):
+        response.set_data(
+            response.get_data().replace(
+                b"__EXECUTION_TIME__", bytes(str(diff), "utf-8")
+            )
+        )
+    return response
+
+
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -435,48 +493,6 @@ def user(user_name):
     last_previous_contribution_date=last_previous_contribution_date,
     list_of_derivs=list_of_derivs,
     list_of_exprs=list_of_exprs)
-
-@app.before_request
-def before_request():
-    """
-    https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask
-    actually, https://gist.github.com/lost-theory/4521102
-    >>> before_request():
-    """
-    g.start = time.time()
-    g.request_start_time = time.time()
-    elapsed_time = lambda: "%.5f seconds" % (time.time() - g.request_start_time)
-    logger.info(elapsed_time)
-    g.request_time = elapsed_time
-
-
-@app.after_request
-def after_request(response):
-    """
-    https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask
-
-    I don't know how to access this measure
-
-    >>> after_request()
-    """
-    try:
-        diff = time.time() - g.start
-    except AttributeError as err:
-        flash(str(err))
-        logger.error(str(err))
-        diff = 0
-    if (
-        (response.response)
-        and (200 <= response.status_code < 300)
-        and (response.content_type.startswith("text/html"))
-    ):
-        response.set_data(
-            response.get_data().replace(
-                b"__EXECUTION_TIME__", bytes(str(diff), "utf-8")
-            )
-        )
-    return response
-
 
 
 
@@ -1168,7 +1184,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
         try:
             local_step_id = compute.create_step(
-                latex_for_step_dict, inf_rule, name_of_derivation, path_to_db
+                latex_for_step_dict, inf_rule, name_of_derivation, current_user.username, path_to_db
             )
         except Exception as err:
             flash(str(err))
