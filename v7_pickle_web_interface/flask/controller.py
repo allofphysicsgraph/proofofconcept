@@ -1333,6 +1333,8 @@ def step_review(name_of_derivation: str, local_step_id: str):
         neo4j_file,
     ] = compute.create_files_of_db_content(path_to_db)
 
+    flash('saved to file')
+
     if request.method == "POST":
         logger.debug("step_review: reslt = %s", str(request.form))
         if request.form["submit_button"] == "accept this step; add another step":
