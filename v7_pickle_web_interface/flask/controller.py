@@ -1660,6 +1660,7 @@ def modify_step(name_of_derivation: str, step_id: str):
         name_of_graphviz_png=step_graphviz_png,
         current_linear_index=dat["derivations"][name_of_derivation][step_id]['linear index'],
         step_dict=dat["derivations"][name_of_derivation],
+        this_step=dat["derivations"][name_of_derivation][step_id],
         local_to_global=dat["expr local to global"],
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],

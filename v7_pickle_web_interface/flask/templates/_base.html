@@ -67,6 +67,28 @@
 }
       /* end SVG region */
 
+      /* 
+       reveal options if radio is checked
+       https://css-tricks.com/exposing-form-fields-radio-button-css/
+       https://github.com/allofphysicsgraph/proofofconcept/issues/130
+      */
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transform: scale(0.8);
+  transition: 0.5s;
+  input[type="radio"]:checked ~ &,
+  input[type="checkbox"]:checked ~ & {
+    opacity: 1;
+    max-height: 100px;
+    overflow: visible;
+    padding: 10px 20px;
+    transform: scale(1);
+  }
+}
+
+
       /* Sortable tables */
       table.sortable thead {
         background-color:#eee;

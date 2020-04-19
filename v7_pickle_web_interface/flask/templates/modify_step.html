@@ -24,11 +24,21 @@
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 <input type="submit" name="submit_button" value='change inference rule'>
 </form>
-(This option deletes existing inference rule and expressions.)
+(Changing the inference rule deletes existing inference rule and expressions.)
 
 <!-- https://jinja.palletsprojects.com/en/2.11.x/templates/#builtin-filters -->
-{% if step_dict['inputs']|length > 0 %}
-<a id="edit input expr latex">
+{% if this_step['inputs']|length > 0 %}
+<a name="change global id">
+  <h3>Update the global ID</h3>
+</a>
+TODO -- not implemented
+<form method="post" action="">
+ <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+</form>
+
+
+<a name="edit input expr latex">
   <h3>Edit the latex for an input expression</h3>
 </a>
 <form method="post" action="">
@@ -38,7 +48,7 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
-              {% for expr_local_id in step_dict['inputs'] %}
+              {% for expr_local_id in this_step['inputs'] %}
               <option value="{{ expr_local_id }}">{{ expressions_dict[local_to_global[expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
@@ -49,7 +59,7 @@
 </form>
 {% endif %}
 
-{% if step_dict['feeds']|length > 0 %}
+{% if this_step['feeds']|length > 0 %}
 <a name="edit feed expr latex">
   <h3>Edit the latex for a feed expression</h3>
 </a>
@@ -60,7 +70,7 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
-              {% for expr_local_id in step_dict['feeds'] %}
+              {% for expr_local_id in this_step['feeds'] %}
               <option value="{{ expr_local_id }}">{{ expressions_dict[local_to_global[expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
@@ -72,7 +82,7 @@
 {% endif %}
 
 
-{% if step_dict['outputs']|length > 0 %}
+{% if this_step['outputs']|length > 0 %}
 <a id="edit output expr latex">
   <h3>Edit the latex for an output expression</h3>
 </a>
@@ -83,7 +93,7 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
-              {% for expr_local_id in step_dict['outputs'] %}
+              {% for expr_local_id in this_step['outputs'] %}
               <option value="{{ expr_local_id }}">{{ expressions_dict[local_to_global[expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
@@ -96,7 +106,7 @@
 
 <P>
 <a name="delete step">
-<H2>Delete Step</H2>
+<H3>Delete Step</H3>
 </a>
 <form method="post" action="">
 <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->

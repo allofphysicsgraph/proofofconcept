@@ -26,10 +26,16 @@
       <td>{{ subfield }}</td>
       <td>{{ subfield.label }}</td>
     {% if loop.index0 == 0 %}
-      <td>{{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300) }}<BR>
-           <small>max length = 300 characters</small></td>
-      <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300) }}</td>
-      <td>{{ webform.input1_note.label }}: {{ webform.input1_note(size=20, maxlength=300) }}</td>
+        <td>
+          <!-- https://css-tricks.com/exposing-form-fields-radio-button-css/ -->
+          <!-- https://github.com/allofphysicsgraph/proofofconcept/issues/130 -->
+          <!-- <div class="reveal-if-active"> -->
+           {{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300) }}<BR>
+           <small>max length = 300 characters</small>
+          </div>
+        </td>
+        <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300) }}</td>
+        <td>{{ webform.input1_note.label }}: {{ webform.input1_note(size=20, maxlength=300) }}</td>
     {% elif loop.index0 == 1 %}
       <td>
         <span class="input-group-addon">Select from</span>
