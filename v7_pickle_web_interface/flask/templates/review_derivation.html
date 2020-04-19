@@ -16,6 +16,9 @@ results in no visualization and no error message in javascript console
 -->
 
 <form method="post" action="">
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
 <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
 <input type="submit" name="submit_button" value='add another step'>
 <!-- <input type="submit" name="submit_button" value="edit existing step"> -->
