@@ -1,0 +1,58 @@
+{% extends "_base.html" %}
+{% from "_form_macros.html" import render_field %}
+
+{% block content %}
+
+<P>
+  Select derivation step to edit in {{ name_of_derivation }}
+<P>
+
+<P>
+ <a name="edit step">
+  <h2>Edit Step</h2>
+ </a>
+<form method="post" action="">
+  <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select a step ID to edit: </span>
+            <select name="step_to_edit" class="selectpicker form-control">
+              {% for elem in list_of_step_ids %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+    </div>
+    <button type="submit" class="btn btn-default">Edit</button>
+  </div>
+</form>
+</P>
+
+<P>
+ <a name="delete step">
+<H2>Delete Step</h2>
+ </a>
+<form method="post" action="">
+  <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select a step ID to edit: </span>
+            <select name="step_to_delete" class="selectpicker form-control">
+              {% for elem in list_of_step_ids %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+    </div>
+    <button type="submit" class="btn btn-default">Delete</button>
+  </div>
+</form>
+</P>
+
+
+<P>
+{% include '_table_of_derivation_steps.html' %}
+</P>
+
+
+{% endblock %}

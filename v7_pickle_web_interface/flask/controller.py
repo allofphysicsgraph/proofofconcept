@@ -595,17 +595,17 @@ def editor():
     #        logger.error(str(err))
     #        flash(str(err))
 
-    try:
-        logger.debug("session id = %s", session_id)
-    except NameError:
-        logger.warning("session id does not appear to exist")
-        try:
-            session_id = compute.create_session_id()
-        except Exception as err:
-            logger.error(str(err))
-            flash(str(err))
-            session_id = "0"
-        logger.debug("now the session id = %s", session_id)
+#    try:
+#        logger.debug("session id = %s", session_id)
+#    except NameError:
+#        logger.warning("session id does not appear to exist")
+#        try:
+#            session_id = compute.create_session_id()
+#        except Exception as err:
+#            logger.error(str(err))
+#            flash(str(err))
+#            session_id = "0"
+#        logger.debug("now the session id = %s", session_id)
 
     [
         json_file,
@@ -996,7 +996,7 @@ def select_derivation_to_edit():
     logger.info("[trace] select_derivation_to_edit")
     if request.method == "POST":
         logger.debug(
-            "select_derivation_to_edit; request.form = %s", request.form,
+            "request.form = %s", request.form,
         )
 
     try:
@@ -1028,7 +1028,14 @@ def select_derivation_step_to_edit(name_of_derivation: str):
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
         # request.form = ImmutableMultiDict([('step_to_delete', '0491182')])
-        if "step_to_delete" in request.form.keys():
+
+        if "step_to_edit" in request.form.keys():
+            step_to_edit = request.form['step_to_edit']
+            return redirect(url_for(                    "modify_step",
+                    name_of_derivation=name_of_derivation,
+                    step_id=step_to_edit))
+
+        elif "step_to_delete" in request.form.keys():
             step_to_delete = request.form["step_to_delete"]
             try:
                 compute.delete_step_from_derivation(
@@ -1040,6 +1047,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
+
 
     dat = clib.read_db(path_to_db)
 
@@ -1315,6 +1323,15 @@ def step_review(name_of_derivation: str, local_step_id: str):
     logger.info("[trace] step_review")
 
     webform = symbolEntry()
+
+    [
+        json_file,
+        all_df,
+        df_pkl_file,
+        sql_file,
+        rdf_file,
+        neo4j_file,
+    ] = compute.create_files_of_db_content(path_to_db)
 
     if request.method == "POST":
         logger.debug("step_review: reslt = %s", str(request.form))
