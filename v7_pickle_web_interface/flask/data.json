@@ -3036,6 +3036,80 @@
                     "4978059"
                 ]
             }
+        },
+        "identity sin(2 x) = 2 sin(x) cos(x) using Euler's equation": {
+            "5887774": {
+                "inf rule": "declare initial expr",
+                "inputs": [],
+                "feeds": [],
+                "outputs": [
+                    "6060683"
+                ],
+                "linear index": 1,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "6240603": {
+                "inf rule": "substitute X for Y",
+                "inputs": [
+                    "6060683"
+                ],
+                "feeds": [
+                    "2597988",
+                    "7992949"
+                ],
+                "outputs": [
+                    "1414263"
+                ],
+                "linear index": 2,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "6131891": {
+                "inf rule": "declare initial expr",
+                "inputs": [],
+                "feeds": [],
+                "outputs": [
+                    "5011637"
+                ],
+                "linear index": 3,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "1541045": {
+                "inf rule": "mult expr X by expr Y",
+                "inputs": [
+                    "6060683",
+                    "5011637"
+                ],
+                "feeds": [],
+                "outputs": [
+                    "6350246"
+                ],
+                "linear index": 4,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            },
+            "8636739": {
+                "inf rule": "multiply both sides by",
+                "inputs": [
+                    "5495736"
+                ],
+                "feeds": [
+                    "8830175"
+                ],
+                "outputs": [
+                    "7867574"
+                ],
+                "linear index": 5,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-19"
+            }
         }
     },
     "expr local to global": {
@@ -3298,7 +3372,16 @@
         "9847600": "1010923823",
         "9877781": "0009877781",
         "9984877": "9482943948",
-        "9999999": "4838429483"
+        "9999999": "4838429483",
+        "6060683": "2103023049",
+        "2597988": "4961662865",
+        "7992949": "9110536742",
+        "1414263": "8483686863",
+        "5011637": "4585932229",
+        "6350246": "3470587782",
+        "8830175": "8642992037",
+        "5495736": "5511805910",
+        "7867574": "9894826550"
     },
     "expressions": {
         "0000040490": {
@@ -5838,6 +5921,62 @@
             "latex": "Newton = kilogram*meter/(second^2)",
             "name": "",
             "notes": ""
+        },
+        "4961662865": {
+            "latex": "x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "9110536742": {
+            "latex": "2 x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "8483686863": {
+            "latex": "\\sin(2 x) = \\frac{1}{2i}\\left(\\exp(i 2 x)-\\exp(-i 2 x)\\right)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "3470587782": {
+            "latex": "\\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i\\ x)-\\exp(-i\\ x)\\right) \\frac{1}{2}\\left(\\exp(i\\ x)+\\exp(-i\\ x)\\right)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "8642992037": {
+            "latex": "2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "5511805910": {
+            "latex": "",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
+        },
+        "9894826550": {
+            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right) \\left(\\exp(i x)+\\exp(-i x)\\right)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-19"
         }
     },
     "inference rules": {
