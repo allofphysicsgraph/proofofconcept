@@ -211,6 +211,10 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
         return replace_scalar_with_vector(latex_dict)
     elif step_dict["inf rule"] == "simplify":
         return simplify(latex_dict)
+    elif step_dict["inf rule"] == "substitute list of new variables X for list of old variables Y":
+        return substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict)
+    elif step_dict["inf rule"] == "subtract expr X from expr Y":
+        return subtract_expr_X_from_expr_Y(latex_dict)
     else:
         logger.error("unexpected inf rule:" + step_dict["inf rule"])
         raise Exception("Unexpected inf rule: " + step_dict["inf rule"])
@@ -1115,6 +1119,26 @@ def simplify(latex_dict):
     """
     return
 
+def substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict)
+    """
+    return
+
+
+def subtract_expr_X_from_expr_Y(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> subtract_expr_X_from_expr_Y(latex_dict)
+    """
+    return
 
 def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
     """
