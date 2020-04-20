@@ -173,10 +173,10 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
         return sum_exponents_RHS(latex_dict)
     elif step_dict["inf rule"] == "add expr X to expr Y":
         return add_expr_X_to_expr_Y(latex_dict)
-    elif step_dict["inf rule"] == "sub RHS of expr X into expr Y":
-        return sub_RHS_of_expr_X_into_expr_Y(latex_dict)
-    elif step_dict["inf rule"] == "sub LHS of expr X into expr Y":
-        return sub_LHS_of_expr_X_into_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "substitute RHS of expr X into expr Y":
+        return substitute_RHS_of_expr_X_into_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "substitute LHS of expr X into expr Y":
+        return substitute_LHS_of_expr_X_into_expr_Y(latex_dict)
     elif step_dict["inf rule"] == "mult expr X by expr Y":
         return mult_expr_X_by_expr_Y(latex_dict)
     elif step_dict["inf rule"] == "LHS of expr X eq LHS of expr Y":
@@ -211,8 +211,13 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
         return replace_scalar_with_vector(latex_dict)
     elif step_dict["inf rule"] == "simplify":
         return simplify(latex_dict)
-    elif step_dict["inf rule"] == "substitute list of new variables X for list of old variables Y":
-        return substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict)
+    elif (
+        step_dict["inf rule"]
+        == "substitute list of new variables X for list of old variables Y"
+    ):
+        return substitute_list_of_new_variables_X_for_list_of_old_variables_Y(
+            latex_dict
+        )
     elif step_dict["inf rule"] == "subtract expr X from expr Y":
         return subtract_expr_X_from_expr_Y(latex_dict)
     else:
@@ -805,7 +810,7 @@ def add_expr_X_to_expr_Y(latex_dict):
         )
 
 
-def sub_RHS_of_expr_X_into_expr_Y(latex_dict):
+def substitute_RHS_of_expr_X_into_expr_Y(latex_dict):
     """
 
     >>> latex_dict = {}
@@ -817,7 +822,7 @@ def sub_RHS_of_expr_X_into_expr_Y(latex_dict):
     return
 
 
-def sub_LHS_of_expr_X_into_expr_Y(latex_dict):
+def substitute_LHS_of_expr_X_into_expr_Y(latex_dict):
     """
 
     >>> latex_dict = {}
@@ -1119,6 +1124,7 @@ def simplify(latex_dict):
     """
     return
 
+
 def substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict):
     """
     >>> latex_dict = {}
@@ -1139,6 +1145,7 @@ def subtract_expr_X_from_expr_Y(latex_dict):
     >>> subtract_expr_X_from_expr_Y(latex_dict)
     """
     return
+
 
 def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
     """

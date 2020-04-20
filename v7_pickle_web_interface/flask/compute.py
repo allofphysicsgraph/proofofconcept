@@ -167,15 +167,15 @@ def list_new_linear_indices(name_of_derivation: str, path_to_db: str) -> list:
         for step_id, step_dict in dat["derivations"][name_of_derivation].items():
             list_of_linear_indices.append(step_dict["linear index"])
     list_of_linear_indices.sort()
-    #logger.debug('list_of_linear_indices = %s', str(list_of_linear_indices))
+    # logger.debug('list_of_linear_indices = %s', str(list_of_linear_indices))
     new_list = []
     for indx, valu in enumerate(list_of_linear_indices[:-1]):
-        #logger.debug('indx = ' + str(indx) + '; valu =' + str(valu))
-        new_list.append( round((valu + list_of_linear_indices[indx+1])/2,3))
-    new_list.append(list_of_linear_indices[-1]+1)
-    lowest_valu = round( list_of_linear_indices[0]/2, 3)
+        # logger.debug('indx = ' + str(indx) + '; valu =' + str(valu))
+        new_list.append(round((valu + list_of_linear_indices[indx + 1]) / 2, 3))
+    new_list.append(list_of_linear_indices[-1] + 1)
+    lowest_valu = round(list_of_linear_indices[0] / 2, 3)
     new_list.insert(0, lowest_valu)
-    #logger.debug('new_list = %s', str(new_list))
+    # logger.debug('new_list = %s', str(new_list))
     return new_list
 
 
@@ -586,6 +586,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         fil.write(cypher_str)
     return cypher_file
 
+
 def get_symbols_from_latex(expr_latex: str, path_to_db: str) -> list:
     """
     >>> 
@@ -594,7 +595,10 @@ def get_symbols_from_latex(expr_latex: str, path_to_db: str) -> list:
 
     return list_of_symbols
 
-def get_list_of_symbols_in_derivation_step(name_of_derivation: str, step_id: str, path_to_db: str) -> list:
+
+def get_list_of_symbols_in_derivation_step(
+    name_of_derivation: str, step_id: str, path_to_db: str
+) -> list:
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/124
     >>> get_list_of_symbols
@@ -603,17 +607,24 @@ def get_list_of_symbols_in_derivation_step(name_of_derivation: str, step_id: str
     dat = clib.read_db(path_to_db)
     list_of_symbols = []
 
-    if name_of_derivation in dat['derivations'].keys():
-        if step_id in dat['derivations'][name_of_derivation].keys():
-            for connection_type in ['inputs', 'feeds', 'outputs']:
-                for expr_local_id in dat['derivations'][name_of_derivation][step_id][connection_type]:
-                    expr_latex = dat['expressions'][ dat['expr local to global'][expr_local_id] ]['latex']
-                    list_of_symbols_per_expr = get_symbols_from_latex(expr_latex, path_to_db)
+    if name_of_derivation in dat["derivations"].keys():
+        if step_id in dat["derivations"][name_of_derivation].keys():
+            for connection_type in ["inputs", "feeds", "outputs"]:
+                for expr_local_id in dat["derivations"][name_of_derivation][step_id][
+                    connection_type
+                ]:
+                    expr_latex = dat["expressions"][
+                        dat["expr local to global"][expr_local_id]
+                    ]["latex"]
+                    list_of_symbols_per_expr = get_symbols_from_latex(
+                        expr_latex, path_to_db
+                    )
                     for symb in list_of_symbols_per_expr:
                         list_of_symbols.append(symb)
     list_of_symbols = list(set(list_of_symbols))
     list_of_symbols.sort()
     return list_of_symbols
+
 
 def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
     """
@@ -1000,8 +1011,6 @@ def popularity_of_symbols(path_to_db: str) -> dict:
     return symbol_popularity_dict
 
 
-
-
 def popularity_of_expressions(path_to_db: str) -> dict:
     """
     >>> popularity_of_expressions('pdg.db')
@@ -1085,7 +1094,6 @@ def remove_file_debris(
                     os.remove(path_to_file + file_name + "." + file_ext)
     #    logger.debug('done')
     return
-
 
 
 # *******************************************
@@ -1280,7 +1288,7 @@ def write_step_to_graphviz_file(
 
     png_name = step_dict["inf rule"].replace(" ", "_")
     if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-        create_png_from_latex("\\text{" +step_dict["inf rule"] + "}", png_name)
+        create_png_from_latex("\\text{" + step_dict["inf rule"] + "}", png_name)
     fil.write(
         local_step_id
         + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
@@ -1553,28 +1561,32 @@ def list_expr_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     # logger.debug('number of expr = %s', len(list_of_global_expr))
     return list_of_global_expr
 
-def update_linear_index(name_of_derivation: str, step_id: str, valu: str, path_to_db: str) -> None:
+
+def update_linear_index(
+    name_of_derivation: str, step_id: str, valu: str, path_to_db: str
+) -> None:
     """
     # https://github.com/allofphysicsgraph/proofofconcept/issues/116
     >>> modify_linear_index()
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
-    if '.' not in valu:
+    if "." not in valu:
         valu = int(valu)
     else:
         valu = float(valu)
-    if name_of_derivation in dat['derivations'].keys():
-        if step_id in dat['derivations'][name_of_derivation].keys():
-            dat['derivations'][name_of_derivation][step_id]['linear index'] = valu
+    if name_of_derivation in dat["derivations"].keys():
+        if step_id in dat["derivations"][name_of_derivation].keys():
+            dat["derivations"][name_of_derivation][step_id]["linear index"] = valu
         else:
-            logger.error("missing " + step_id + ' in ' + name_of_derivation)
-            raise Exception("missing " + step_id + ' in ' + name_of_derivation)
+            logger.error("missing " + step_id + " in " + name_of_derivation)
+            raise Exception("missing " + step_id + " in " + name_of_derivation)
     else:
         logger.error("missing " + name_of_derivation)
         raise Exception("missing " + name_of_derivation)
     clib.write_db(path_to_db, dat)
     return
+
 
 def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     """
@@ -1773,7 +1785,7 @@ def create_step_graphviz_png(
     with open(dot_filename, "w") as fil:
         fil.write("digraph physicsDerivation { \n")
         fil.write("overlap = false;\n")
-        fil.write('label="step ' + local_step_id + ' in ' + name_of_derivation + '";\n')
+        fil.write('label="step ' + local_step_id + " in " + name_of_derivation + '";\n')
         fil.write("fontsize=12;\n")
 
         write_step_to_graphviz_file(name_of_derivation, local_step_id, fil, path_to_db)
@@ -1805,7 +1817,10 @@ def create_step_graphviz_png(
     # return True, "no invalid latex", output_filename
     return output_filename
 
-def generate_graphviz_of_exploded_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str:
+
+def generate_graphviz_of_exploded_step(
+    name_of_derivation: str, step_id: str, path_to_db: str
+) -> str:
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/108
     >>> generate_graphviz_of_exploded_step()
@@ -1813,9 +1828,9 @@ def generate_graphviz_of_exploded_step(name_of_derivation: str, step_id: str, pa
     logger.info("[trace]")
     dot_filename = "/home/appuser/app/static/graphviz.dot"
     dat = clib.read_db(path_to_db)
-    if name_of_derivation in dat['derivations'].keys():
-        if step_id in dat['derivations'][name_of_derivation].keys():
-            step_dict = dat['derivations'][name_of_derivation][step_id]
+    if name_of_derivation in dat["derivations"].keys():
+        if step_id in dat["derivations"][name_of_derivation].keys():
+            step_dict = dat["derivations"][name_of_derivation][step_id]
         else:
             logger.error("step_id " + step_id + " not in " + name_of_derivation)
             raise Exception("step_id " + step_id + " not in " + name_of_derivation)
@@ -1827,29 +1842,35 @@ def generate_graphviz_of_exploded_step(name_of_derivation: str, step_id: str, pa
     with open(dot_filename, "w") as fil:
         fil.write("digraph physicsDerivation { \n")
         fil.write("overlap = false;\n")
-        fil.write('label="step ' + step_id + ' in ' + name_of_derivation + '";\n')
+        fil.write('label="step ' + step_id + " in " + name_of_derivation + '";\n')
         fil.write("fontsize=12;\n")
 
-# the following code is similar to write_step_to_graphviz_file()
+        # the following code is similar to write_step_to_graphviz_file()
         infrule_png_name = step_dict["inf rule"].replace(" ", "_")
         if not os.path.isfile("/home/appuser/app/static/" + infrule_png_name + ".png"):
-            create_png_from_latex("\\text{" +step_dict["inf rule"] + "}", infrule_png_name)
+            create_png_from_latex(
+                "\\text{" + step_dict["inf rule"] + "}", infrule_png_name
+            )
         fil.write(
-        infrule_png_name
-        + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
-        + infrule_png_name
-        + ".png"
-        + '",labelloc=b];\n')
+            infrule_png_name
+            + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
+            + infrule_png_name
+            + ".png"
+            + '",labelloc=b];\n'
+        )
 
         stepid_png_name = "step_id_" + step_id
         if not os.path.isfile("/home/appuser/app/static/" + stepid_png_name + ".png"):
-            create_png_from_latex("\\text{" +step_dict["inf rule"] + "}", stepid_png_name)
+            create_png_from_latex(
+                "\\text{" + step_dict["inf rule"] + "}", stepid_png_name
+            )
         fil.write(
-        step_id
-        + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
-        + stepid_png_name
-        + ".png"
-        + '",labelloc=b];\n')
+            step_id
+            + ' [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
+            + stepid_png_name
+            + ".png"
+            + '",labelloc=b];\n'
+        )
         fil.write(infrule_png_name + " -> " + step_id + ";\n")
 
         for expr_local_id in step_dict["inputs"]:
@@ -1858,17 +1879,20 @@ def generate_graphviz_of_exploded_step(name_of_derivation: str, step_id: str, pa
 
             expr_global_id = dat["expr local to global"][expr_local_id]
             latex_png_name = expr_global_id
-            if not os.path.isfile("/home/appuser/app/static/" + latex_png_name + ".png"):
-                create_png_from_latex(dat["expressions"][expr_global_id]["latex"], png_name)
+            if not os.path.isfile(
+                "/home/appuser/app/static/" + latex_png_name + ".png"
+            ):
+                create_png_from_latex(
+                    dat["expressions"][expr_global_id]["latex"], png_name
+                )
             fil.write(expr_local_id + " -> " + local_step_id + ";\n")
             fil.write(
-            expr_local_id
-            + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
-            + png_name
-            + ".png"
-            + '",labelloc=b];\n'
-        )
-
+                expr_local_id
+                + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
+                + png_name
+                + ".png"
+                + '",labelloc=b];\n'
+            )
 
         for expr_local_id in step_dict["outputs"]:
             # TODO:
@@ -1877,29 +1901,33 @@ def generate_graphviz_of_exploded_step(name_of_derivation: str, step_id: str, pa
             expr_global_id = dat["expr local to global"][expr_local_id]
             png_name = expr_global_id
             if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-                create_png_from_latex(dat["expressions"][expr_global_id]["latex"], png_name)
+                create_png_from_latex(
+                    dat["expressions"][expr_global_id]["latex"], png_name
+                )
             fil.write(local_step_id + " -> " + expr_local_id + ";\n")
             fil.write(
-            expr_local_id
-            + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
-            + png_name
-            + ".png"
-            + '",labelloc=b];\n'
-        )
+                expr_local_id
+                + ' [shape=ellipse, color=black,label="",image="/home/appuser/app/static/'
+                + png_name
+                + ".png"
+                + '",labelloc=b];\n'
+            )
 
         for expr_local_id in step_dict["feeds"]:
             expr_global_id = dat["expr local to global"][expr_local_id]
             png_name = expr_global_id
             if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-                create_png_from_latex(dat["expressions"][expr_global_id]["latex"], png_name)
+                create_png_from_latex(
+                    dat["expressions"][expr_global_id]["latex"], png_name
+                )
             fil.write(expr_local_id + " -> " + local_step_id + ";\n")
             fil.write(
-            expr_local_id
-            + ' [shape=box, color=red,label="",image="/home/appuser/app/static/'
-            + png_name
-            + ".png"
-            + '",labelloc=b];\n'
-        )
+                expr_local_id
+                + ' [shape=box, color=red,label="",image="/home/appuser/app/static/'
+                + png_name
+                + ".png"
+                + '",labelloc=b];\n'
+            )
 
     output_filename = local_step_id + "_exploded.png"
     logger.debug("output_filename = %s", output_filename)
@@ -1923,6 +1951,7 @@ def generate_graphviz_of_exploded_step(name_of_derivation: str, step_id: str, pa
     shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
     # return True, "no invalid latex", output_filename
     return output_filename
+
 
 def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     """
@@ -1949,7 +1978,6 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 
     logger.debug(str(os.listdir()))
 
-
     process = subprocess.run(
         ["latex", "-halt-on-error", tmp_file + ".tex"],
         stdout=PIPE,
@@ -1962,14 +1990,14 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 
     logger.debug(str(os.listdir()))
 
-    logger.debug('latex std out:' + str(latex_stdout))
-    logger.debug('latex std err:' + str(latex_stderr))
+    logger.debug("latex std out:" + str(latex_stdout))
+    logger.debug("latex std err:" + str(latex_stderr))
 
     if "Text line contains an invalid character" in latex_stdout:
         logging.error("tex input contains invalid charcter")
         shutil.copy(destination_folder + "error.png", destination_folder + png_name)
         raise Exception("no png generated due to invalid character in tex input.")
-#    remove_file_debris(["./"], [tmp_file], ["png"])
+    #    remove_file_debris(["./"], [tmp_file], ["png"])
 
     process = subprocess.run(
         ["dvipng", tmp_file + ".dvi", "-T", "tight", "-o", tmp_file + ".png"],
@@ -2023,12 +2051,16 @@ def modify_latex_in_step(
     expr_global_id = create_expr_global_id(path_to_db)
 
     entry = {}
-    entry['latex'] = revised_latex
-    entry['creation date'] = datetime.datetime.now().strftime("%Y-%m-%d")
-    entry['author'] = 'Ben'
-    entry['notes'] = dat['expressions'][ dat['expr local to global'][expr_local_id_of_latex_to_modify] ]['notes']
-    entry['name'] = dat['expressions'][ dat['expr local to global'][expr_local_id_of_latex_to_modify] ]['name']
-    entry['AST'] = []
+    entry["latex"] = revised_latex
+    entry["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
+    entry["author"] = "Ben"
+    entry["notes"] = dat["expressions"][
+        dat["expr local to global"][expr_local_id_of_latex_to_modify]
+    ]["notes"]
+    entry["name"] = dat["expressions"][
+        dat["expr local to global"][expr_local_id_of_latex_to_modify]
+    ]["name"]
+    entry["AST"] = []
 
     dat["expressions"][expr_global_id] = entry
     dat["expr local to global"][expr_local_id_of_latex_to_modify] = expr_global_id
@@ -2097,7 +2129,7 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
         return "number of outputs does not seem to be an integer"
     arg_dict["latex"] = inf_rule_dict_from_form["latex"]
     arg_dict["notes"] = inf_rule_dict_from_form["notes"]
-    arg_dict["author"] = 'Ben'
+    arg_dict["author"] = "Ben"
     arg_dict["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
 
     logger.debug("add_inf_rule; arg_dict = %s", arg_dict)
@@ -2354,7 +2386,11 @@ def delete_expr(expr_global_id: str, path_to_db: str) -> str:
 
 
 def create_step(
-    latex_for_step_dict: dict, inf_rule: str, name_of_derivation: str, user_name: str, path_to_db: str
+    latex_for_step_dict: dict,
+    inf_rule: str,
+    name_of_derivation: str,
+    user_name: str,
+    path_to_db: str,
 ) -> str:
     """
     https://strftime.org/
@@ -2385,13 +2421,13 @@ def create_step(
         "feeds": [],
         "outputs": [],
         "linear index": -1,
-        "notes": latex_for_step_dict['step_note'], 
+        "notes": latex_for_step_dict["step_note"],
         "author": user_name,
         "creation date": datetime.datetime.now().strftime("%Y-%m-%d"),
     }  # type: STEP_DICT
     # if we observe 'linear index'==-1 outside this function, it indicates a problem
 
-    logger.debug('initialized step_dict to %s', str(step_dict))
+    logger.debug("initialized step_dict to %s", str(step_dict))
 
     # start with feeds since those are the easiest
     for key, text in latex_for_step_dict.items():
@@ -2410,22 +2446,29 @@ def create_step(
             dat["expr local to global"][expr_local_id] = expr_global_id
             step_dict["feeds"].append(expr_local_id)
 
-    logger.debug('entered feed to dat')
+    logger.debug("entered feed to dat")
 
     for connection_type in ["input", "output"]:
         for expr_index in ["1", "2", "3"]:
             for key, text in latex_for_step_dict.items():
-                #logger.debug("key = " + key)
+                # logger.debug("key = " + key)
                 if "_radio" in key and connection_type in key and expr_index in key:
                     logger.debug(connection_type + " " + expr_index + "; radio")
                     if text == "latex":
                         # logger.debug('latex')
                         expr_global_id = create_expr_global_id(path_to_db)
+                        if latex_for_step_dict[connection_type + expr_index] == "":
+                            logger.error("empty Latex is not accepted")
+                            raise Exception("empty Latex is not accepted")
                         dat["expressions"][expr_global_id] = {
                             "latex": latex_for_step_dict[connection_type + expr_index],
                             "AST": [],
-                            "name": latex_for_step_dict[connection_type + expr_index + "_name"],
-                            "notes": latex_for_step_dict[connection_type + expr_index + "_note"],
+                            "name": latex_for_step_dict[
+                                connection_type + expr_index + "_name"
+                            ],
+                            "notes": latex_for_step_dict[
+                                connection_type + expr_index + "_note"
+                            ],
                             "author": "Ben",
                             "creation date": datetime.datetime.now().strftime(
                                 "%Y-%m-%d"

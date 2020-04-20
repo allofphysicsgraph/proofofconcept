@@ -30,19 +30,30 @@ import logging
 
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 from flask import Flask, redirect, render_template, request, url_for, flash, jsonify
+
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 from flask_wtf import FlaskForm, CSRFProtect, Form
+
 ## https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
-#from flask_bootstrap import Bootstrap
+# from flask_bootstrap import Bootstrap
 
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
 # https://en.wikipedia.org/wiki/Mixin
-from flask_login import LoginManager, UserMixin, login_required, login_user, logout_user, current_user
+from flask_login import (
+    LoginManager,
+    UserMixin,
+    login_required,
+    login_user,
+    logout_user,
+    current_user,
+)
+
 # https://gist.github.com/lost-theory/4521102
 from flask import g
 from werkzeug.utils import secure_filename
+
 # removed "Form" from wtforms; see https://stackoverflow.com/a/20577177/1164295
 from wtforms import StringField, validators, FieldList, FormField, IntegerField, RadioField, PasswordField, SubmitField, BooleanField  # type: ignore
 
@@ -51,7 +62,7 @@ from jsonschema import validate  # type: ignore
 from config import (
     Config,
 )  # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
-from urllib.parse  import urlparse, urljoin
+from urllib.parse import urlparse, urljoin
 
 import common_lib as clib  # PDG common library
 import json_schema  # PDG
@@ -91,7 +102,7 @@ csrf.init_app(app)
 
 
 # TODO: get rid of this!
-#Bootstrap(app)
+# Bootstrap(app)
 
 import pdg_api
 
@@ -129,23 +140,27 @@ else:
 # https://wtforms.readthedocs.io/en/stable/crash_course.html
 # https://stackoverflow.com/questions/46092054/flask-login-documentation-loginform
 class LoginForm(FlaskForm):
-    logger.info('[trace]')
-    username = StringField('Username', validators=[validators.DataRequired()])
+    logger.info("[trace]")
+    username = StringField("Username", validators=[validators.DataRequired()])
     # password = PasswordField("Password")
-    submit = SubmitField('sign in')
+    submit = SubmitField("sign in")
     # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
     remember_me = BooleanField("remember me")
 
+
 # https://pythonprogramming.net/flask-user-registration-form-tutorial/
 class RegistrationForm(FlaskForm):
-    logger.info('[trace]')
-    username = StringField('Username', [validators.Length(min=3, max=20)])
-    email = StringField('Email Address', [validators.Length(min=4, max=50)])
-    password = PasswordField('New Password', [
-        validators.Required(),
-        validators.EqualTo('confirm', message='Passwords must match')
-    ])
-    confirm = PasswordField('Repeat Password')
+    logger.info("[trace]")
+    username = StringField("Username", [validators.Length(min=3, max=20)])
+    email = StringField("Email Address", [validators.Length(min=4, max=50)])
+    password = PasswordField(
+        "New Password",
+        [
+            validators.Required(),
+            validators.EqualTo("confirm", message="Passwords must match"),
+        ],
+    )
+    confirm = PasswordField("Repeat Password")
 
 
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
@@ -155,33 +170,39 @@ class User(UserMixin):
     and
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
     """
-    logger.info('[trace]')
+
+    logger.info("[trace]")
 
     id = 423
     username = "ben"
     email = "ben@gmail"
 
-
     def is_active(self):
         return True
+
     def get_id(self):
-        return 'ben@gmail'
-#    def is_authenticated(self):
-#        return self.authenticated
+        return "ben@gmail"
+
+    #    def is_authenticated(self):
+    #        return self.authenticated
     def __repr__(self):
-        return '<User {}>'.format(self.username)
+        return "<User {}>".format(self.username)
+
 
 class EquationInputForm(FlaskForm):
     logger.info("[trace]")
     #    r = FloatField(validators=[validators.InputRequired()])
     #    r = FloatField()
-    latex = StringField("LaTeX", validators=[validators.InputRequired(),
-                                             validators.Length(max=1000)])
+    latex = StringField(
+        "LaTeX", validators=[validators.InputRequired(), validators.Length(max=1000)]
+    )
+
 
 class InferenceRuleForm(FlaskForm):
     logger.info("[trace]")
     inf_rule_name = StringField(
-        "inf rule name", validators=[validators.InputRequired(), validators.Length(max=1000)]
+        "inf rule name",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
     )
     num_inputs = IntegerField(
         "number of inputs",
@@ -198,9 +219,14 @@ class InferenceRuleForm(FlaskForm):
     latex = StringField("LaTeX", validators=[validators.InputRequired()])
     notes = StringField("notes")
 
+
 class RevisedTextForm(FlaskForm):
     logger.info("[trace]")
-    revised_text = StringField("revised text", validators=[validators.InputRequired(),validators.Length(max=1000)])
+    revised_text = StringField(
+        "revised text",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+
 
 class infRuleInputsAndOutputs(FlaskForm):
     logger.info("[trace]")
@@ -226,9 +252,18 @@ class infRuleInputsAndOutputs(FlaskForm):
 # https://wtforms.readthedocs.io/en/stable/validators.html
 class LatexIO(FlaskForm):
     logger.info("[trace]")
-    feed1 = StringField("feed LaTeX 1", validators=[validators.InputRequired(),validators.Length(max=1000)])
-    feed2 = StringField("feed LaTeX 2", validators=[validators.InputRequired(),validators.Length(max=1000)])
-    feed3 = StringField("feed LaTeX 3", validators=[validators.InputRequired(),validators.Length(max=1000)])
+    feed1 = StringField(
+        "feed LaTeX 1",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    feed2 = StringField(
+        "feed LaTeX 2",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    feed3 = StringField(
+        "feed LaTeX 3",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
     input1 = StringField("input LaTeX 1", validators=[validators.Length(max=1000)])
     input1_name = StringField("input name 1", validators=[validators.Length(max=1000)])
     input1_note = StringField("input note 1", validators=[validators.Length(max=1000)])
@@ -253,7 +288,7 @@ class LatexIO(FlaskForm):
         ],
         default="latex",
     )  # , validators=[validators.InputRequired()])
-    input3 = StringField("input LaTeX 3" , validators=[validators.Length(max=1000)])
+    input3 = StringField("input LaTeX 3", validators=[validators.Length(max=1000)])
     input3_name = StringField("input name 3", validators=[validators.Length(max=1000)])
     input3_note = StringField("input note 3", validators=[validators.Length(max=1000)])
     input3_radio = RadioField(
@@ -265,10 +300,13 @@ class LatexIO(FlaskForm):
         ],
         default="latex",
     )  # , validators=[validators.InputRequired()])
-    output1 = StringField(
-        "output LaTeX 1" , validators=[validators.Length(max=1000)])
-    output1_name = StringField("output name 1", validators=[validators.Length(max=1000)])
-    output1_note = StringField("output note 1", validators=[validators.Length(max=1000)])
+    output1 = StringField("output LaTeX 1", validators=[validators.Length(max=1000)])
+    output1_name = StringField(
+        "output name 1", validators=[validators.Length(max=1000)]
+    )
+    output1_note = StringField(
+        "output note 1", validators=[validators.Length(max=1000)]
+    )
     output1_radio = RadioField(
         "Label",
         choices=[
@@ -278,10 +316,13 @@ class LatexIO(FlaskForm):
         ],
         default="latex",
     )
-    output2 = StringField(
-        "output LaTeX 2" , validators=[validators.Length(max=1000)])
-    output2_name = StringField("output name 2", validators=[validators.Length(max=1000)])
-    output2_note = StringField("output note 2", validators=[validators.Length(max=1000)])
+    output2 = StringField("output LaTeX 2", validators=[validators.Length(max=1000)])
+    output2_name = StringField(
+        "output name 2", validators=[validators.Length(max=1000)]
+    )
+    output2_note = StringField(
+        "output note 2", validators=[validators.Length(max=1000)]
+    )
     output2_radio = RadioField(
         "Label",
         choices=[
@@ -291,10 +332,13 @@ class LatexIO(FlaskForm):
         ],
         default="latex",
     )  # , validators=[validators.InputRequired()])
-    output3 = StringField(
-        "output LaTeX 3", validators=[validators.Length(max=1000)])
-    output3_name = StringField("output name 3", validators=[validators.Length(max=1000)])
-    output3_note = StringField("output note 3", validators=[validators.Length(max=1000)])
+    output3 = StringField("output LaTeX 3", validators=[validators.Length(max=1000)])
+    output3_name = StringField(
+        "output name 3", validators=[validators.Length(max=1000)]
+    )
+    output3_note = StringField(
+        "output note 3", validators=[validators.Length(max=1000)]
+    )
     output3_radio = RadioField(
         "Label",
         choices=[
@@ -306,22 +350,24 @@ class LatexIO(FlaskForm):
     )  # , validators=[validators.InputRequired()])
     step_note = StringField("step note")
 
+
 class symbolEntry(FlaskForm):
     logger.info("[trace]")
     symbol_radio = RadioField(
         "Label",
-        choices=[
-            ("already_exists", "already exists"),
-            ("create_new", "create new"),
-        ],
-        default="already_exists")
+        choices=[("already_exists", "already exists"), ("create_new", "create new"),],
+        default="already_exists",
+    )
     symbol_latex = StringField("latex")
     symbol_name = StringField("name")
     symbol_reference = StringField("reference")
 
+
 class NameOfDerivationInputForm(FlaskForm):
     logger.info("[trace]")
-    name_of_derivation = StringField(validators=[validators.InputRequired(),validators.Length(max=1000)])
+    name_of_derivation = StringField(
+        validators=[validators.InputRequired(), validators.Length(max=1000)]
+    )
 
 
 # goal is to prevent cached responses;
@@ -349,6 +395,7 @@ class NameOfDerivationInputForm(FlaskForm):
 #    logger.info("[trace] page_not_found")
 #    logger.debug(e)
 #    return redirect(url_for("index"))
+
 
 @app.before_request
 def before_request():
@@ -394,8 +441,6 @@ def after_request(response):
     return response
 
 
-
-
 @login_manager.user_loader
 def load_user(user_id):
     """
@@ -404,7 +449,8 @@ def load_user(user_id):
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
     """
     user = User()
-    return user #User.get_id(user_id)
+    return user  # User.get_id(user_id)
+
 
 def is_safe_url(target):
     """
@@ -412,10 +458,10 @@ def is_safe_url(target):
     """
     ref_url = urlparse(request.host_url)
     test_url = urlparse(urljoin(request.host_url, target))
-    return test_url.scheme in ('http', 'https') and \
-           ref_url.netloc == test_url.netloc
+    return test_url.scheme in ("http", "https") and ref_url.netloc == test_url.netloc
 
-@app.route('/login', methods=['GET', 'POST'])
+
+@app.route("/login", methods=["GET", "POST"])
 def login():
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/110
@@ -437,31 +483,32 @@ def login():
 
         # the following is what the person entered into the form
         logger.debug("username= %s", form.username.data)
-#        user = User(form.username.data)
+        #        user = User(form.username.data)
         user = User()
-        if user is None: # or not user.check_password(form.password.data):
-            flash('Invalid username or password')
-            return redirect(url_for('login'))
-        logger.debug('user is not none')
-        logger.debug('user = %s', str(user))
+        if user is None:  # or not user.check_password(form.password.data):
+            flash("Invalid username or password")
+            return redirect(url_for("login"))
+        logger.debug("user is not none")
+        logger.debug("user = %s", str(user))
         # https://flask-login.readthedocs.io/en/latest/#flask_login.login_user
         login_user(user, remember=form.remember_me.data)
-        logger.debug('user logged in')
-        flash('Logged in successfully.')
+        logger.debug("user logged in")
+        flash("Logged in successfully.")
 
-        next = request.args.get('next')
+        next = request.args.get("next")
         # is_safe_url should check if the url is safe for redirects.
         # See http://flask.pocoo.org/snippets/62/ for an example.
         if not is_safe_url(next):
             return abort(400)
 
-        return redirect(next or url_for('index'))
+        return redirect(next or url_for("index"))
 
     # intentionally delay the responsiveness of the login page to limit brute force attacks
     time.sleep(2)
-    return render_template('login.html', webform=form)
+    return render_template("login.html", webform=form)
 
-@app.route("/logout", methods=['GET', 'POST'])
+
+@app.route("/logout", methods=["GET", "POST"])
 @login_required
 def logout():
     """
@@ -469,29 +516,29 @@ def logout():
     >>>
     """
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for("index"))
 
-@app.route('/create_new_account', methods=['GET', 'POST'])
+
+@app.route("/create_new_account", methods=["GET", "POST"])
 def create_new_account():
     """
     >>> 
     """
-    webform=RegistrationForm()
+    webform = RegistrationForm()
 
     logger.debug("request.form = %s", request.form)
 
     if request.method == "POST" and not webform.validate():
-        flash('something is wrong in the form, like the passwords did not  match')
+        flash("something is wrong in the form, like the passwords did not  match")
         logger.debug("request.form = %s", request.form)
     elif request.method == "POST" and webform.validate():
-        logger.debug("request.form = %s", request.form) 
+        logger.debug("request.form = %s", request.form)
         flash("nothing actually happens yet")
-        return redirect(url_for('login'))
-    return render_template('create_new_account.html',
-        webform=webform)
+        return redirect(url_for("login"))
+    return render_template("create_new_account.html", webform=webform)
 
 
-@app.route("/user/<user_name>/", methods=['GET', 'POST'])
+@app.route("/user/<user_name>/", methods=["GET", "POST"])
 def user(user_name):
     """
     # TODO -- this is just a stub
@@ -499,21 +546,22 @@ def user(user_name):
     >>>
     """
     # TODO
-    sign_up_date = '2020-04-12'
+    sign_up_date = "2020-04-12"
     # TODO
-    last_previous_contribution_date = '2020-04-10'
+    last_previous_contribution_date = "2020-04-10"
     # TODO
-    list_of_derivs = ['fun deriv', 'another deriv']
+    list_of_derivs = ["fun deriv", "another deriv"]
     # TODO
-    list_of_exprs = ['424252', '525252']
+    list_of_exprs = ["424252", "525252"]
 
-    return render_template('user.html',
-    user_name=user_name,
-    sign_up_date=sign_up_date,
-    last_previous_contribution_date=last_previous_contribution_date,
-    list_of_derivs=list_of_derivs,
-    list_of_exprs=list_of_exprs)
-
+    return render_template(
+        "user.html",
+        user_name=user_name,
+        sign_up_date=sign_up_date,
+        last_previous_contribution_date=last_previous_contribution_date,
+        list_of_derivs=list_of_derivs,
+        list_of_exprs=list_of_exprs,
+    )
 
 
 @app.route("/index", methods=["GET", "POST"])
@@ -595,17 +643,17 @@ def editor():
     #        logger.error(str(err))
     #        flash(str(err))
 
-#    try:
-#        logger.debug("session id = %s", session_id)
-#    except NameError:
-#        logger.warning("session id does not appear to exist")
-#        try:
-#            session_id = compute.create_session_id()
-#        except Exception as err:
-#            logger.error(str(err))
-#            flash(str(err))
-#            session_id = "0"
-#        logger.debug("now the session id = %s", session_id)
+    #    try:
+    #        logger.debug("session id = %s", session_id)
+    #    except NameError:
+    #        logger.warning("session id does not appear to exist")
+    #        try:
+    #            session_id = compute.create_session_id()
+    #        except Exception as err:
+    #            logger.error(str(err))
+    #            flash(str(err))
+    #            session_id = "0"
+    #        logger.debug("now the session id = %s", session_id)
 
     [
         json_file,
@@ -681,7 +729,7 @@ def editor():
 
 
 @app.route("/start_new_derivation/", methods=["GET", "POST"])
-@login_required # https://flask-login.readthedocs.io/en/latest/
+@login_required  # https://flask-login.readthedocs.io/en/latest/
 def start_new_derivation():
     logger.info("[trace] " + str(current_user.username))
     web_form = NameOfDerivationInputForm(request.form)
@@ -976,7 +1024,7 @@ def list_all_inference_rules():
         logging.warning(err)
         sorted_list_infrules_not_in_use = []
 
-    sorted_list_infrules = list(dat['inference rules'].keys())
+    sorted_list_infrules = list(dat["inference rules"].keys())
     sorted_list_infrules.sort()
 
     return render_template(
@@ -1030,10 +1078,14 @@ def select_derivation_step_to_edit(name_of_derivation: str):
         # request.form = ImmutableMultiDict([('step_to_delete', '0491182')])
 
         if "step_to_edit" in request.form.keys():
-            step_to_edit = request.form['step_to_edit']
-            return redirect(url_for(                    "modify_step",
+            step_to_edit = request.form["step_to_edit"]
+            return redirect(
+                url_for(
+                    "modify_step",
                     name_of_derivation=name_of_derivation,
-                    step_id=step_to_edit))
+                    step_id=step_to_edit,
+                )
+            )
 
         elif "step_to_delete" in request.form.keys():
             step_to_delete = request.form["step_to_delete"]
@@ -1047,7 +1099,6 @@ def select_derivation_step_to_edit(name_of_derivation: str):
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-
 
     dat = clib.read_db(path_to_db)
 
@@ -1145,7 +1196,7 @@ def select_from_existing_derivations():
 
 
 @app.route("/new_step_select_inf_rule/<name_of_derivation>/", methods=["GET", "POST"])
-@login_required # https://flask-login.readthedocs.io/en/latest/
+@login_required  # https://flask-login.readthedocs.io/en/latest/
 def new_step_select_inf_rule(name_of_derivation: str):
     logger.info("[trace] " + str(current_user.username))
     try:
@@ -1196,13 +1247,13 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
     dat = clib.read_db(path_to_db)
 
-    webform=LatexIO(request.form)
+    webform = LatexIO(request.form)
 
-#    if request.method == "POST" and not webform.validate():
-#        if len(str(webform.input1.data))>10:
-#            flash(str(webform.input1.data) + " is more than 10 characters"
+    #    if request.method == "POST" and not webform.validate():
+    #        if len(str(webform.input1.data))>10:
+    #            flash(str(webform.input1.data) + " is more than 10 characters"
 
-    if  request.method == "POST": #  and webform.validate():
+    if request.method == "POST":  #  and webform.validate():
         latex_for_step_dict = request.form
 
         logger.debug("latex_for_step_dict = request.form = %s", request.form)
@@ -1218,7 +1269,11 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
         try:
             local_step_id = compute.create_step(
-                latex_for_step_dict, inf_rule, name_of_derivation, current_user.username, path_to_db
+                latex_for_step_dict,
+                inf_rule,
+                name_of_derivation,
+                current_user.username,
+                path_to_db,
             )
         except Exception as err:
             flash(str(err))
@@ -1333,7 +1388,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
         neo4j_file,
     ] = compute.create_files_of_db_content(path_to_db)
 
-    flash('saved to file')
+    flash("saved to file")
 
     if request.method == "POST":
         logger.debug("step_review: reslt = %s", str(request.form))
@@ -1359,7 +1414,6 @@ def step_review(name_of_derivation: str, local_step_id: str):
             logger.error('unrecognized button in "step_review":', request.form)
             raise Exception('unrecognized button in "step_review":', request.form)
 
-
     try:
         step_graphviz_png = compute.create_step_graphviz_png(
             name_of_derivation, local_step_id, path_to_db
@@ -1369,7 +1423,6 @@ def step_review(name_of_derivation: str, local_step_id: str):
         flash(str(err))
         step_graphviz_png = "error.png"
     dat = clib.read_db(path_to_db)
-
 
     if name_of_derivation in dat["derivations"].keys():
         try:
@@ -1401,12 +1454,13 @@ def step_review(name_of_derivation: str, local_step_id: str):
     # logger.debug('step validity = %s', str(step_validity_dict))
 
     try:
-        list_of_symbols = compute.get_list_of_symbols_in_derivation_step(name_of_derivation, local_step_id, path_to_db)
+        list_of_symbols = compute.get_list_of_symbols_in_derivation_step(
+            name_of_derivation, local_step_id, path_to_db
+        )
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
         list_of_symbols = []
-
 
     return render_template(
         "step_review.html",
@@ -1575,9 +1629,10 @@ def modify_step(name_of_derivation: str, step_id: str):
             if request.form["submit_button"] == "change inference rule":
                 return redirect(
                     url_for(
-                    "new_step_select_inf_rule", name_of_derivation=name_of_derivation
+                        "new_step_select_inf_rule",
+                        name_of_derivation=name_of_derivation,
+                    )
                 )
-            )
 
             # https://github.com/allofphysicsgraph/proofofconcept/issues/108
             elif request.form["submit_button"] == "view exploded graph":
@@ -1585,11 +1640,15 @@ def modify_step(name_of_derivation: str, step_id: str):
                 return redirect(url_for("exploded_step", name_of_derivation, step_id))
 
         # https://github.com/allofphysicsgraph/proofofconcept/issues/116
-        elif 'linear_index_to_modify' in request.form.keys():
+        elif "linear_index_to_modify" in request.form.keys():
             # ImmutableMultiDict([('linear_index_to_modify', '0.5')])
             try:
-                compute.update_linear_index(name_of_derivation, step_id,
-                      request.form['expr_local_id_of_latex_to_modify'], path_to_db)
+                compute.update_linear_index(
+                    name_of_derivation,
+                    step_id,
+                    request.form["expr_local_id_of_latex_to_modify"],
+                    path_to_db,
+                )
             except Exception as err:
                 flash(str(err))
                 logger.error(str(err))
@@ -1626,7 +1685,6 @@ def modify_step(name_of_derivation: str, step_id: str):
             flash("[ERROR] unrecognized button:" + str(request.form))
             logger.error("unrecognized button")
 
-
     try:
         derivation_validity_dict = compute.determine_derivation_validity(
             name_of_derivation, path_to_db
@@ -1660,7 +1718,9 @@ def modify_step(name_of_derivation: str, step_id: str):
         "modify_step.html",
         name_of_derivation=name_of_derivation,
         name_of_graphviz_png=step_graphviz_png,
-        current_linear_index=dat["derivations"][name_of_derivation][step_id]['linear index'],
+        current_linear_index=dat["derivations"][name_of_derivation][step_id][
+            "linear index"
+        ],
         step_dict=dat["derivations"][name_of_derivation],
         this_step=dat["derivations"][name_of_derivation][step_id],
         local_to_global=dat["expr local to global"],
@@ -1672,23 +1732,29 @@ def modify_step(name_of_derivation: str, step_id: str):
         expr_local_to_gobal=dat["expr local to global"],
     )
 
+
 @app.route("/exploded_step/<name_of_derivation>/<step_id>/", methods=["GET", "POST"])
-def exploded_step(name_of_derivation: str, step_id:str):
+def exploded_step(name_of_derivation: str, step_id: str):
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/108
     >>> exploded_step()
     """
     try:
-        name_of_graphviz_file = compute.generate_graphviz_of_exploded_step(name_of_derivation, step_id, path_to_db)
+        name_of_graphviz_file = compute.generate_graphviz_of_exploded_step(
+            name_of_derivation, step_id, path_to_db
+        )
     except Exception as err:
         flash(str(err))
         logger.error(str(err))
         name_of_graphviz_file = "error.png"
 
-    return render_template("exploded_step.html",
-           name_of_derivation=name_of_derivation,
-           name_of_graphviz_file=name_of_graphviz_file,
-           step_id=step_id)
+    return render_template(
+        "exploded_step.html",
+        name_of_derivation=name_of_derivation,
+        name_of_graphviz_file=name_of_graphviz_file,
+        step_id=step_id,
+    )
+
 
 @app.route("/create_new_inf_rule/", methods=["GET", "POST"])
 def create_new_inf_rule():
