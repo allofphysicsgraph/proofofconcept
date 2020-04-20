@@ -3252,6 +3252,69 @@
                 "author": "ben",
                 "creation date": "2020-04-19"
             }
+        },
+        "time invariant force conserves energy": {
+            "5181988": {
+                "inf rule": "declare initial expr",
+                "inputs": [],
+                "feeds": [],
+                "outputs": [
+                    "8844119"
+                ],
+                "linear index": 1,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-20"
+            },
+            "5590554": {
+                "inf rule": "substitute list of new variables X for list of old variables Y",
+                "inputs": [
+                    "8844119"
+                ],
+                "feeds": [
+                    "6146628",
+                    "4714953"
+                ],
+                "outputs": [
+                    "5642407"
+                ],
+                "linear index": 2,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-20"
+            },
+            "8346419": {
+                "inf rule": "substitute list of new variables X for list of old variables Y",
+                "inputs": [
+                    "8844119"
+                ],
+                "feeds": [
+                    "6021355",
+                    "1724851"
+                ],
+                "outputs": [
+                    "1298003"
+                ],
+                "linear index": 3,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-20"
+            },
+            "6886472": {
+                "inf rule": "subtract expr X from expr Y",
+                "inputs": [
+                    "1298003",
+                    "5642407"
+                ],
+                "feeds": [],
+                "outputs": [
+                    "2443387"
+                ],
+                "linear index": 5,
+                "notes": "",
+                "author": "ben",
+                "creation date": "2020-04-20"
+            }
         }
     },
     "expr local to global": {
@@ -3533,7 +3596,17 @@
         "8524301": "6885625907",
         "9610540": "3331824625",
         "2097240": "4901237716",
-        "9472905": "2501591100"
+        "9472905": "2501591100",
+        "8844119": "5136652623",
+        "6146628": "7915321076",
+        "4714953": "3192374582",
+        "5642407": "7875206161",
+        "6021355": "4229092186",
+        "1724851": "1490821948",
+        "1298003": "4303372136",
+        "2137677": "9080406681",
+        "7634995": "3021493603",
+        "2443387": "5514556106"
     },
     "expressions": {
         "0000040490": {
@@ -6225,6 +6298,86 @@
             "notes": "",
             "author": "Ben",
             "creation date": "2020-04-19"
+        },
+        "5136652623": {
+            "latex": "E = KE + PE",
+            "AST": [],
+            "name": "mechanical energy is the sum of the potential plus kinetic energies",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-20"
+        },
+        "7915321076": {
+            "latex": "E, KE, PE",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-20"
+        },
+        "3192374582": {
+            "latex": "E_2, KE_2, PE_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-20"
+        },
+        "7875206161": {
+            "latex": "E_2 = KE_2 + PE_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-20"
+        },
+        "4229092186": {
+            "latex": "E, KE, PE",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-20"
+        },
+        "1490821948": {
+            "latex": "E_1, KE_1, PE_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-20"
+        },
+        "4303372136": {
+            "latex": "E_1 = KE_1 + PE_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-20"
+        },
+        "9080406681": {
+            "latex": "",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-20"
+        },
+        "3021493603": {
+            "latex": "E_2 - E_1 = (KE_2 - KE_1) + (PE_2 - PE_1)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-20"
+        },
+        "5514556106": {
+            "latex": "E_2 - E_1 = (KE_2 - KE_1) + (PE_2 - PE_1)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-20"
         }
     },
     "inference rules": {
@@ -6875,6 +7028,15 @@
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 1
+        },
+        "subtract expr X from expr Y": {
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1,
+            "latex": "Subtract Eq.~ref{eq:#1} from Eq.~ref{eq:#2}; yields Eq.~ref{eq:#2}.",
+            "notes": "complement of \"add expr X to expr Y\"",
+            "author": "Ben",
+            "creation date": "2020-04-20"
         }
     },
     "measures": {
