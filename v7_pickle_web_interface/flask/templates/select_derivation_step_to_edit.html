@@ -37,7 +37,7 @@
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon">Select a step ID to edit: </span>
+        <span class="input-group-addon">Select a step ID to delete: </span>
             <select name="step_to_delete" class="selectpicker form-control">
               {% for elem in list_of_step_ids %}
               <option value="{{ elem }}">{{ elem }}</option>
