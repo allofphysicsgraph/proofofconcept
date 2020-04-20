@@ -116,7 +116,7 @@ schema = {
                             },
         "inference rules" : {"type" : "object", # dict
                              "additionalProperties": False,
-                             "patternProperties": {"^[a-zA-Z\s-]+$":
+                             "patternProperties": {"^[a-zA-Z0-9\s-]+$":
                                                         {"type": "object", # inference rule name
                                                          "additionalProperties": False,
                                                          'properties':{
