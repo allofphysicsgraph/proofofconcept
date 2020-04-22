@@ -171,22 +171,22 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
         return sum_exponents_LHS(latex_dict)
     elif step_dict["inf rule"] == "sum exponents RHS":
         return sum_exponents_RHS(latex_dict)
-    elif step_dict["inf rule"] == "add expr X to expr Y":
-        return add_expr_X_to_expr_Y(latex_dict)
-    elif step_dict["inf rule"] == "substitute RHS of expr X into expr Y":
-        return substitute_RHS_of_expr_X_into_expr_Y(latex_dict)
-    elif step_dict["inf rule"] == "substitute LHS of expr X into expr Y":
-        return substitute_LHS_of_expr_X_into_expr_Y(latex_dict)
-    elif step_dict["inf rule"] == "mult expr X by expr Y":
-        return mult_expr_X_by_expr_Y(latex_dict)
-    elif step_dict["inf rule"] == "LHS of expr X eq LHS of expr Y":
-        return LHS_of_expr_X_eq_LHS_of_expr_Y(latex_dict)
-    elif step_dict["inf rule"] == "RHS of expr X eq RHS of expr Y":
-        return RHS_of_expr_X_eq_RHS_of_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "add expr 1 to expr 2":
+        return add_expr_1_to_expr_2(latex_dict)
+    elif step_dict["inf rule"] == "substitute RHS of expr 1 into expr 2":
+        return substitute_RHS_of_expr_1_into_expr_2(latex_dict)
+    elif step_dict["inf rule"] == "substitute LHS of expr 1 into expr 2":
+        return substitute_LHS_of_expr_1_into_expr_2(latex_dict)
+    elif step_dict["inf rule"] == "mult expr 1 by expr 2":
+        return mult_expr_1_by_expr_2(latex_dict)
+    elif step_dict["inf rule"] == "LHS of expr 1 eq LHS of expr 2":
+        return LHS_of_expr_1_eq_LHS_of_expr_2(latex_dict)
+    elif step_dict["inf rule"] == "RHS of expr 1 eq RHS of expr 2":
+        return RHS_of_expr_1_eq_RHS_of_expr_2(latex_dict)
     elif step_dict["inf rule"] == "raise both sides to power":
         return raise_both_sides_to_power(latex_dict)
-    elif step_dict["inf rule"] == "claim expr X equals expr Y":
-        return claim_expr_X_equals_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "claim expr 1 equals expr 2":
+        return claim_expr_1_equals_expr_2(latex_dict)
     elif step_dict["inf rule"] == "claim LHS equals RHS":
         return claim_LHS_equals_RHS(latex_dict)
     elif step_dict["inf rule"] == "expand integrand":
@@ -218,8 +218,8 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
         return substitute_list_of_new_variables_X_for_list_of_old_variables_Y(
             latex_dict
         )
-    elif step_dict["inf rule"] == "subtract expr X from expr Y":
-        return subtract_expr_X_from_expr_Y(latex_dict)
+    elif step_dict["inf rule"] == "subtract expr 1 from expr 2":
+        return subtract_expr_1_from_expr_2(latex_dict)
     else:
         logger.error("unexpected inf rule:" + step_dict["inf rule"])
         raise Exception("Unexpected inf rule: " + step_dict["inf rule"])
@@ -778,7 +778,7 @@ def sum_exponents_RHS(latex_dict):
     return
 
 
-def add_expr_X_to_expr_Y(latex_dict):
+def add_expr_1_to_expr_2(latex_dict):
     """
     assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)
 
@@ -810,7 +810,7 @@ def add_expr_X_to_expr_Y(latex_dict):
         )
 
 
-def substitute_RHS_of_expr_X_into_expr_Y(latex_dict):
+def substitute_RHS_of_expr_1_into_expr_2(latex_dict):
     """
 
     >>> latex_dict = {}
@@ -822,7 +822,7 @@ def substitute_RHS_of_expr_X_into_expr_Y(latex_dict):
     return
 
 
-def substitute_LHS_of_expr_X_into_expr_Y(latex_dict):
+def substitute_LHS_of_expr_1_into_expr_2(latex_dict):
     """
 
     >>> latex_dict = {}
@@ -834,7 +834,7 @@ def substitute_LHS_of_expr_X_into_expr_Y(latex_dict):
     return
 
 
-def mult_expr_X_by_expr_Y(latex_dict):
+def mult_expr_1_by_expr_2(latex_dict):
     """
     ((in_lhs0*in_lhs1 == out_lhs0) and (in_rhs0*in_rhs1 == out_rhs0))
     >>> latex_dict = {}
@@ -864,7 +864,7 @@ def mult_expr_X_by_expr_Y(latex_dict):
         )
 
 
-def LHS_of_expr_X_eq_LHS_of_expr_Y(latex_dict):
+def LHS_of_expr_1_eq_LHS_of_expr_2(latex_dict):
     """
     ((in_lhs0 == in_lhs1) and (out_lhs0 == in_rhs0) and (out_rhs0 == in_rhs1))
     >>> latex_dict = {}
@@ -892,7 +892,7 @@ def LHS_of_expr_X_eq_LHS_of_expr_Y(latex_dict):
         )
 
 
-def RHS_of_expr_X_eq_RHS_of_expr_Y(latex_dict):
+def RHS_of_expr_1_eq_RHS_of_expr_2(latex_dict):
     """
     ((in_rhs0 == in_rhs1) and (out_lhs0 == in_lhs0) and (out_rhs0 == in_lhs1))
     >>> latex_dict = {}
@@ -942,7 +942,7 @@ def raise_both_sides_to_power(latex_dict):
         )
 
 
-def claim_expr_X_equals_expr_Y(latex_dict):
+def claim_expr_1_equals_expr_2(latex_dict):
     """
     ((in_lhs0 == in_lhs1) and (in_rhs0 == in_rhs1))
     >>> latex_dict = {}
@@ -1136,13 +1136,13 @@ def substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict):
     return
 
 
-def subtract_expr_X_from_expr_Y(latex_dict):
+def subtract_expr_1_from_expr_2(latex_dict):
     """
     >>> latex_dict = {}
     >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
     >>> latex_dict['feed'] = ['']
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
-    >>> subtract_expr_X_from_expr_Y(latex_dict)
+    >>> subtract_expr_1_from_expr_2(latex_dict)
     """
     return
 
