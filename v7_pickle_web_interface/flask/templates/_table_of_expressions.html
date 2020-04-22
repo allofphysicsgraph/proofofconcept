@@ -4,7 +4,8 @@
   <tr>
     <th>expression ID</th>
     <th>Latex</th>
-    <th>Abstract Syntax Tree</th> 
+    <th>list of symbols</th>
+<!--    <th>Abstract Syntax Tree</th> -->
     <th>name</th>
     <th>notes</th>
     <th>used in derivation</th>
@@ -13,7 +14,17 @@
   <tr>
     <td><a name="{{ expr_id }}">{{ expr_id}}</a></td>
     <td>{{ expressions_dict[expr_id]['latex'] }}</td>
-    <td>{{ expressions_dict[expr_id]['AST'] }}</td>
+    <td>
+      <UL>
+      {% for symbol_tup in expressions_dict[expr_id]['list of symbols'] %}
+        <LI>
+          <a href="{{ url_for('list_all_symbols') }}#{{ symbol_tup[0] }}">
+            {{ symbol_tup[1] }}
+          </a>
+        </LI>
+      {% endfor %}
+      </UL>
+    </td>
     <td>{{ expressions_dict[expr_id]['name'] }}</td>
     <td><small>{{ expressions_dict[expr_id]['notes'] }}</small></td>
     <td>

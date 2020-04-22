@@ -589,10 +589,51 @@ def convert_data_to_cypher(path_to_db: str) -> str:
     return cypher_file
 
 
+def flatten_list(list_of_lists: list):
+    """
+    https://stackoverflow.com/a/5286571/1164295
+
+    >>> l = ['aab', 'aimign', ['agian', 'agag', ['gagag', 'gasg']]]
+    >>> list(flatten_list(l))
+    ['aab', 'aimign', 'agian', 'agag', 'gagag', 'gasg']
+    """
+    for x in list_of_lists:
+        if hasattr(x, '__iter__') and not isinstance(x, str):
+            for y in flatten_list(x):
+                yield y
+        else:
+            yield x
+
+
+def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
+    """
+    >>> generate_expr_dict_with_symbol_list()
+    """
+    logger.info('[trace]')
+    dat = clib.read_db(path_to_db)
+
+    expr_dict_with_symbol_list = dat['expressions']
+    for expr_global_id, expr_dict in dat['expressions'].items():
+        list_of_symbols = list(flatten_list(expr_dict['AST']))
+
+        list_of_tuples = []
+        for this_symbol in list_of_symbols:
+            try:
+                symbol_latex = dat['symbols'][this_symbol]['latex']
+            except:
+                symbol_latex = ""
+            list_of_tuples.append((this_symbol, symbol_latex))
+        expr_dict_with_symbol_list[expr_global_id]['list of symbols'] = list_of_tuples
+
+    logger.debug(str(expr_dict_with_symbol_list))
+    return expr_dict_with_symbol_list
+
 def get_symbols_from_latex(expr_latex: str, path_to_db: str) -> list:
     """
+    # requires call to Sympy
     >>> 
     """
+    logger.info('[trace]')
     list_of_symbols = []
 
     return list_of_symbols
@@ -2020,7 +2061,7 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     latex_stdout = process.stdout.decode("utf-8")
     latex_stderr = process.stderr.decode("utf-8")
 
-    logger.debug(str(os.listdir()))
+#    logger.debug(str(os.listdir()))
 
     logger.debug("latex std out:" + str(latex_stdout))
     logger.debug("latex std err:" + str(latex_stderr))
@@ -2047,7 +2088,7 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     if len(png_stderr) > 0:
         logger.debug("png std err %s", png_stderr)
 
-    logger.debug(str(os.listdir()))
+    #logger.debug(str(os.listdir()))
 
     if "No such file or directory" in png_stderr:
         logging.error("PNG creation failed for %s", png_name)

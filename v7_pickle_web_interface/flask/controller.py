@@ -926,9 +926,16 @@ def list_all_expressions():
         logger.error(str(err))
         flash(str(err))
         list_of_expr_not_appearing_in_any_derivations = []
+    try:
+        expr_dict_with_symbol_list = compute.generate_expr_dict_with_symbol_list(path_to_db)
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        expr_dict_with_symbol_list = {}
+        
     return render_template(
         "list_all_expressions.html",
-        expressions_dict=dat["expressions"],
+        expressions_dict=expr_dict_with_symbol_list,
         sorted_list_exprs=list_of_expr,
         list_of_expr_not_appearing_in_any_derivations=list_of_expr_not_appearing_in_any_derivations,
         edit_expr_latex_webform=RevisedTextForm(request.form),
