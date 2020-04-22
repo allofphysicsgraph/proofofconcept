@@ -456,25 +456,25 @@ def convert_data_to_rdf(path_to_db: str) -> str:
         rdf_str += expression_id + " has_latex '" + expression_dict["latex"] + "'\n"
     for infrule_name, infrule_dict in dat["inference rules"].items():
         rdf_str += (
-            infrule_name.replace(" ", "_")
+            ''.join(filter(str.isalnum, infrule_name))
             + " has_input_count "
             + str(infrule_dict["number of inputs"])
             + "\n"
         )
         rdf_str += (
-            infrule_name.replace(" ", "_")
+            ''.join(filter(str.isalnum, infrule_name))
             + " has_feed_count "
             + str(infrule_dict["number of feeds"])
             + "\n"
         )
         rdf_str += (
-            infrule_name.replace(" ", "_")
+            ''.join(filter(str.isalnum, infrule_name))
             + " has_output_count "
             + str(infrule_dict["number of outputs"])
             + "\n"
         )
         rdf_str += (
-            infrule_name.replace(" ", "_")
+            ''.join(filter(str.isalnum, infrule_name))
             + " has_latex '"
             + infrule_dict["latex"]
             + "'\n"
@@ -485,7 +485,7 @@ def convert_data_to_rdf(path_to_db: str) -> str:
             rdf_str += (
                 step_id
                 + " has_infrule "
-                + step_dict["inf rule"].replace(" ", "_")
+                + ''.join(filter(str.isalnum, step_dict["inf rule"]))
                 + "\n"
             )
             rdf_str += (
@@ -538,7 +538,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
             + "'})\n"
         )
     for infrule_name, infrule_dict in dat["inference rules"].items():
-        cypher_str += "CREATE (" + infrule_name.replace(" ", "_") + ":infrule {\n"
+        cypher_str += "CREATE (" + ''.join(filter(str.isalnum, infrule_name)) + ":infrule {\n"
         cypher_str += (
             "       num_inputs: " + str(infrule_dict["number of inputs"]) + ",\n"
         )
@@ -556,7 +556,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         for step_id, step_dict in derivation_dict.items():
             cypher_str += "CREATE (id" + step_id + ":step {\n"
             cypher_str += (
-                "       infrule: '" + step_dict["inf rule"].replace(" ", "_") + "',\n"
+                "       infrule: '" + ''.join(filter(str.isalnum, step_dict["inf rule"])) + "',\n"
             )
             cypher_str += (
                 "       linear_index: " + str(step_dict["linear index"]) + "})\n"
@@ -1153,7 +1153,7 @@ def generate_all_expr_and_infrule_pngs(
                 )
 
     for infrule_name, infrule_dict in dat["inference rules"].items():
-        png_name = infrule_name.replace(" ", "_")
+        png_name = ''.join(filter(str.isalnum, infrule_name))
         if overwrite_existing:
             if os.path.isfile(destination_folder + png_name):
                 os.remove(destination_folder + png_name + ".png")
@@ -1228,9 +1228,9 @@ def generate_map_of_derivations(path_to_db: str) -> str:
         fil.write("fontsize=12;\n")
 
         for deriv_name, deriv_dict in derivation_popularity_dict.items():
-            this_deriv = deriv_name.replace(" ", "")
+            this_deriv = ''.join(filter(str.isalnum, deriv_name))
             if not os.path.isfile("/home/appuser/app/static/" + this_deriv + ".png"):
-                create_png_from_latex("\\text{" + deriv_name + "}", this_deriv)
+                create_png_from_latex("\\text{" + deriv_name.replace('^','') + "}", this_deriv)
                 fil.write(
                     '"'
                     + this_deriv
@@ -1244,9 +1244,9 @@ def generate_map_of_derivations(path_to_db: str) -> str:
         list_of_nodes = []
 
         for deriv_name, deriv_dict in derivation_popularity_dict.items():
-            this_deriv = deriv_name.replace(" ", "")
+            this_deriv = ''.join(filter(str.isalnum, deriv_name))
             for tup in deriv_dict["shares expressions with"]:
-                other_deriv_name = tup[0].replace(" ", "")
+                other_deriv_name = ''.join(filter(str.isalnum, tup[0]))
                 expr_global_id = tup[1]
                 if not os.path.isfile(
                     "/home/appuser/app/static/" + expr_global_id + ".png"
@@ -1315,7 +1315,7 @@ def write_step_to_graphviz_file(
     #            latex_and_ast_dict["latex"],
     #        )
 
-    png_name = step_dict["inf rule"].replace(" ", "_")
+    png_name = ''.join(filter(str.isalnum, step_dict["inf rule"]))
     if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
         create_png_from_latex("\\text{" + step_dict["inf rule"] + "}", png_name)
     fil.write(
@@ -1387,7 +1387,7 @@ def generate_tex_for_derivation(name_of_derivation: str, path_to_db: str) -> str
     dat = clib.read_db(path_to_db)
 
     path_to_tex = "/home/appuser/app/static/"  # must end with /
-    tex_filename = name_of_derivation.replace(" ", "_")
+    tex_filename = ''.join(filter(str.isalnum, name_of_derivation))
 
     remove_file_debris([path_to_tex, "./"], [tex_filename], ["tex", "log", "pdf"])
 
@@ -1427,7 +1427,7 @@ def generate_tex_for_derivation(name_of_derivation: str, path_to_db: str) -> str
             # https://en.wikibooks.org/wiki/LaTeX/Macros#New_commands
             lat_file.write(
                 "\\newcommand\\"
-                + infrule_name.replace(" ", "")
+                + ''.join(filter(str.isalpha, infrule_name))
                 + "["
                 + str(  # https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
                     number_of_args
@@ -1474,7 +1474,7 @@ def generate_tex_for_derivation(name_of_derivation: str, path_to_db: str) -> str
                             step_dict["inf rule"],
                         )
                     lat_file.write("% step ID = " + step_id + "\n")
-                    lat_file.write("\\" + step_dict["inf rule"].replace(" ", ""))
+                    lat_file.write("\\" + ''.join(filter(str.isalnum, step_dict["inf rule"])))
                     for expr_local_id in step_dict["feeds"]:
                         expr_global_id = dat["expr local to global"][expr_local_id]
                         lat_file.write(
@@ -1511,7 +1511,7 @@ def generate_pdf_for_derivation(name_of_derivation: str, path_to_db: str) -> str
     dat = clib.read_db(path_to_db)
 
     path_to_pdf = "/home/appuser/app/static/"  # must end with /
-    pdf_filename = name_of_derivation.replace(" ", "_")
+    pdf_filename = ''.join(filter(str.isalnum, name_of_derivation))
 
     remove_file_debris([path_to_pdf], [pdf_filename], ["log", "pdf"])
 
@@ -1625,7 +1625,7 @@ def edges_in_derivation(name_of_derivation: str, path_to_db: str) -> list:
     dat = clib.read_db(path_to_db)
     list_of_edges = []
     for step_id, step_dict in dat["derivations"][name_of_derivation].items():
-        inf_rule = step_dict["inf rule"].replace(" ", "_")
+        inf_rule = ''.join(filter(str.isalnum, step_dict["inf rule"]))
         for local_expr in step_dict["inputs"]:
             list_of_edges.append((dat["expr local to global"][local_expr], step_id))
         for local_expr in step_dict["feeds"]:
@@ -1658,7 +1658,7 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
     """
     logger.info("[trace]")
 
-    d3js_json_filename = name_of_derivation.replace(" ", "_") + ".json"
+    d3js_json_filename = ''.join(filter(str.isalnum, name_of_derivation)) + ".json"
 
     dat = clib.read_db(path_to_db)
 
@@ -1666,7 +1666,7 @@ def create_d3js_json(name_of_derivation: str, path_to_db: str) -> str:
     json_str += '  "nodes": [\n'
     list_of_nodes = []
     for step_id, step_dict in dat["derivations"][name_of_derivation].items():
-        png_name = step_dict["inf rule"].replace(" ", "_")
+        png_name = ''.join(filter(str.isalnum, step_dict["inf rule"]))
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
             create_png_from_latex(step_dict["inf rule"], png_name)
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
@@ -1770,7 +1770,7 @@ def create_derivation_png(name_of_derivation: str, path_to_db: str) -> str:
             write_step_to_graphviz_file(name_of_derivation, step_id, fil, path_to_db)
 
         fil.write("}\n")
-    output_filename = name_of_derivation.replace(" ", "_") + ".png"
+    output_filename = ''.join(filter(str.isalnum, name_of_derivation)) + ".png"
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
     #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
     process = subprocess.run(
@@ -1875,7 +1875,7 @@ def generate_graphviz_of_exploded_step(
         fil.write("fontsize=12;\n")
 
         # the following code is similar to write_step_to_graphviz_file()
-        infrule_png_name = step_dict["inf rule"].replace(" ", "_")
+        infrule_png_name = ''.join(filter(str.isalnum, step_dict["inf rule"]))
         if not os.path.isfile("/home/appuser/app/static/" + infrule_png_name + ".png"):
             create_png_from_latex(
                 "\\text{" + step_dict["inf rule"] + "}", infrule_png_name
