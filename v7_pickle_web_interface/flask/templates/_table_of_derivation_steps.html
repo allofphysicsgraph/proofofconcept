@@ -2,23 +2,31 @@
 
 <table border="1" class="sortable">
   <tr>
-    <th>Step ID</th>
+    <th>Index</th>
     <th>Inference Rule</th>
     <th>Input<BR>local ID</th>
     <th>Input latex</th>
-    <th>Feed<BR>local ID</th>
+<!--    <th>Feed<BR>local ID</th> -->
     <th>Feeds latex</th>
     <th>Output<BR>local ID</th>
     <th>Output latex</th>
-    <th>Linear index</th>
     <th>step validity</th>
+    <th>notes</th>
   </tr>
 {% for step_id, this_dict in step_dict.items() %}
   <tr>
     <td>
+<!--
       <a name="{{ step_id }}">
         <a href="{{ url_for('modify_step', name_of_derivation=name_of_derivation, step_id=step_id) }}">
           {{ step_id }}
+        </a>
+      </a>
+-->
+      <a name="{{ step_id }}">
+        <a href="{{ url_for('modify_step', name_of_derivation=name_of_derivation, step_id=step_id) }}">
+          <!-- linear index -->
+          {{ this_dict['linear index'] }}
         </a>
       </a>
     </td>
@@ -45,6 +53,7 @@
       </OL>
     </td>
     <!-- feeds local ID -->
+    <!--
     <td>
       <OL>
 {% for local_id in this_dict['feeds'] %}
@@ -54,6 +63,7 @@
         {% endfor %}
       </OL>
     </td>
+    -->
     <!-- feeds latex -->
     <td>
       <OL>
@@ -86,10 +96,9 @@
      {% endfor %}
       </OL>
     </td>
-    <!-- linear index -->
-    <td>{{ this_dict['linear index'] }}</td>
     <!-- from sympy -->
     <td>{{ derivation_validity_dict[step_id] }}</td>
+    <td>{{ this_dict['notes'] }}</td>
   </tr>
 {% endfor %}
   <caption>
