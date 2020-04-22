@@ -2642,7 +2642,7 @@ def create_step(
 
     return inf_rule_local_ID
 
-
+# the following was moved into controller.py so that when a single step fails the notice is provided to the user
 #def determine_derivation_validity(name_of_derivation: str, path_to_db: str) -> dict:
 #    """
 #    >>> determine_derivation_validity()
@@ -2662,25 +2662,25 @@ def create_step(
 #    return step_validity_dict
 
 
-def determine_step_validity(
-    step_id: str, name_of_derivation: str, path_to_db: str
-) -> str:
-    """
-    >>> determine_step_validity()
-    """
-    logger.info("[trace]")
-    dat = clib.read_db(path_to_db)
-    step_validity_dict = {}
-
-    if name_of_derivation not in dat["derivations"].keys():
-        logger.error("dat does not contain " + name_of_derivation)
-        raise Exception("dat does not contain " + name_of_derivation)
-
-    if step_id not in dat["derivations"][name_of_derivation].keys():
-        logger.error("dat does not contain " + step_id + " in " + name_of_derivation)
-        raise Exception("dat does not contain " + step_id + " in " + name_of_derivation)
-
-    return vir.validate_step(name_of_derivation, step_id, path_to_db)
+#def determine_step_validity(
+#    step_id: str, name_of_derivation: str, path_to_db: str
+#) -> str:
+#    """
+#    >>> determine_step_validity()
+#    """
+#    logger.info("[trace]")
+#    dat = clib.read_db(path_to_db)
+#    step_validity_dict = {}
+#
+#    if name_of_derivation not in dat["derivations"].keys():
+#        logger.error("dat does not contain " + name_of_derivation)
+#        raise Exception("dat does not contain " + name_of_derivation)
+#
+#    if step_id not in dat["derivations"][name_of_derivation].keys():
+#        logger.error("dat does not contain " + step_id + " in " + name_of_derivation)
+#        raise Exception("dat does not contain " + step_id + " in " + name_of_derivation)
+#
+#    return vir.validate_step(name_of_derivation, step_id, path_to_db)
 
 
 # EOF
