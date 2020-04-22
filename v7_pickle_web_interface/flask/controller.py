@@ -440,6 +440,13 @@ def after_request(response):
         )
     return response
 
+@login_manager.unauthorized_handler
+def unauthorized():
+    """
+    https://flask-login.readthedocs.io/en/latest/
+    >>> 
+    """
+    return redirect(url_for('login'))
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -843,7 +850,7 @@ def list_all_symbols():
 
     dat = clib.read_db(path_to_db)
     try:
-        symbol_popularity_dict = compute.popularity_of_symbols(path_to_db)
+        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(path_to_db)
     except Exception as err:
         flash(str(err))
         logger.error(str(err))

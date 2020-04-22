@@ -630,7 +630,7 @@ def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
     """
     >>>
     """
-    symbol_popularity_dict = popularity_of_symbols(path_to_db)
+    symbol_popularity_dict = popularity_of_symbols_in_expressions(path_to_db)
     list_of_symbols_not_in_use = []
     for symbol, list_of_deriv_used_in in symbol_popularity_dict.items():
         if len(list_of_deriv_used_in) == 0:
@@ -987,9 +987,9 @@ def popularity_of_operators(path_to_db: str) -> dict:
     return operator_popularity_dict
 
 
-def popularity_of_symbols(path_to_db: str) -> dict:
+def popularity_of_symbols_in_expressions(path_to_db: str) -> dict:
     """
-    >>> popularity_of_symbols('pdg.db')
+    >>> popularity_of_symbols_in_expressions('pdg.db')
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
@@ -1010,6 +1010,35 @@ def popularity_of_symbols(path_to_db: str) -> dict:
 
     return symbol_popularity_dict
 
+def popularity_of_symbols_in_derivations(path_to_db: str) -> dict:
+    """
+    >>> popularity_of_symbols_in_derivations('pdg.db')
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+
+    symbol_popularity_dict_in_deriv = {}
+    
+    # symbol per expression
+    symbol_popularity_dict_in_expr = popularity_of_symbols_in_expressions(path_to_db)
+    #logger.debug(str(symbol_popularity_dict_in_expr))
+   
+    # expression per derivation
+    expression_popularity_dict = popularity_of_expressions(path_to_db)
+    #logger.debug(str(expression_popularity_dict))
+
+    for symbol_id, list_of_expr in symbol_popularity_dict_in_expr.items():
+        #logger.debug(symbol_id)
+        this_symbol_is_in_derivations = []
+        for expr_global_id in list_of_expr:
+            #logger.debug(expr_global_id)
+            for deriv_name in expression_popularity_dict[expr_global_id]:
+                this_symbol_is_in_derivations.append(deriv_name)
+        #logger.debug(this_symbol_is_in_derivations)
+        #logger.debug(symbol_id)
+        symbol_popularity_dict_in_deriv[symbol_id] = list(set(this_symbol_is_in_derivations))
+
+    return symbol_popularity_dict_in_deriv
 
 def popularity_of_expressions(path_to_db: str) -> dict:
     """
@@ -2328,7 +2357,7 @@ def delete_symbol(symbol_to_delete: str, path_to_db: str) -> str:
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
-    symbol_popularity_dict = popularity_of_symbols(path_to_db)
+    symbol_popularity_dict = popularity_of_symbols_in_expressions(path_to_db)
     if len(symbol_popularity_dict[symbol_to_delete]) > 0:
         status_msg = (
             symbol_to_delete
