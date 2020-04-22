@@ -456,6 +456,7 @@ def convert_data_to_rdf(path_to_db: str) -> str:
         rdf_str += expression_id + " has_latex '" + expression_dict["latex"] + "'\n"
     for infrule_name, infrule_dict in dat["inference rules"].items():
         rdf_str += (
+            # https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string
             ''.join(filter(str.isalnum, infrule_name))
             + " has_input_count "
             + str(infrule_dict["number of inputs"])
@@ -538,6 +539,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
             + "'})\n"
         )
     for infrule_name, infrule_dict in dat["inference rules"].items():
+        # https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string
         cypher_str += "CREATE (" + ''.join(filter(str.isalnum, infrule_name)) + ":infrule {\n"
         cypher_str += (
             "       num_inputs: " + str(infrule_dict["number of inputs"]) + ",\n"
@@ -1228,6 +1230,7 @@ def generate_map_of_derivations(path_to_db: str) -> str:
         fil.write("fontsize=12;\n")
 
         for deriv_name, deriv_dict in derivation_popularity_dict.items():
+            # https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string
             this_deriv = ''.join(filter(str.isalnum, deriv_name))
             if not os.path.isfile("/home/appuser/app/static/" + this_deriv + ".png"):
                 create_png_from_latex("\\text{" + deriv_name.replace('^','') + "}", this_deriv)
@@ -2640,23 +2643,23 @@ def create_step(
     return inf_rule_local_ID
 
 
-def determine_derivation_validity(name_of_derivation: str, path_to_db: str) -> dict:
-    """
-    >>> determine_derivation_validity()
-    """
-    logger.info("[trace]")
-    dat = clib.read_db(path_to_db)
-    step_validity_dict = {}
-
-    if name_of_derivation not in dat["derivations"].keys():
-        logger.error("dat does not contain " + name_of_derivation)
-        raise Exception("dat does not contain " + name_of_derivation)
-
-    for step_id, step_dict in dat["derivations"][name_of_derivation].items():
-        step_validity_dict[step_id] = vir.validate_step(
-            name_of_derivation, step_id, path_to_db
-        )
-    return step_validity_dict
+#def determine_derivation_validity(name_of_derivation: str, path_to_db: str) -> dict:
+#    """
+#    >>> determine_derivation_validity()
+#    """
+#    logger.info("[trace]")
+#    dat = clib.read_db(path_to_db)
+#    step_validity_dict = {}
+#
+#    if name_of_derivation not in dat["derivations"].keys():
+#        logger.error("dat does not contain " + name_of_derivation)
+#        raise Exception("dat does not contain " + name_of_derivation)
+#
+#    for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+#        step_validity_dict[step_id] = vir.validate_step(
+#            name_of_derivation, step_id, path_to_db
+#        )
+#    return step_validity_dict
 
 
 def determine_step_validity(

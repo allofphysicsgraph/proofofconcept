@@ -1111,17 +1111,19 @@ def select_derivation_step_to_edit(name_of_derivation: str):
 
     if name_of_derivation in dat["derivations"].keys():
         # step_dict = dat["derivations"][name_of_derivation]
-        try:
-            derivation_validity_dict = compute.determine_derivation_validity(
-                name_of_derivation, path_to_db
-            )
-        except Exception as err:
-            logger.error(str(err))
-            flash(str(err))
-            derivation_validity_dict = {}
+
+        # previously 
+        derivation_validity_dict = {}
+        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+            try:
+                derivation_validity_dict[step_id] = vir.validate_step(name_of_derivation, step_id, path_to_db)
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                derivation_validity_dict[step_id] = "failed"
     else:
         # step_dict = {}
-        derivation_validity_dict = {}
+         derivation_validity_dict = {}
 
     sorted_step_ids = list(step_dict.keys())
     sorted_step_ids.sort()
@@ -1310,14 +1312,16 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
     # the following is needed to handle the case where the derivation is new and no steps exist yet
     if name_of_derivation in dat["derivations"].keys():
         step_dict = dat["derivations"][name_of_derivation]
-        try:
-            derivation_validity_dict = compute.determine_derivation_validity(
-                name_of_derivation, path_to_db
-            )
-        except Exception as err:
-            logger.error(str(err))
-            flash(str(err))
-            derivation_validity_dict = {}
+        # previously there was a separate function in compute.py
+        # in that design, any failure of a step caused the entire derivation check to fail
+        derivation_validity_dict = {}
+        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+            try:
+                derivation_validity_dict[step_id] = vir.validate_step(name_of_derivation, step_id, path_to_db)
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                derivation_validity_dict[step_id] = "failed"
     else:
         step_dict = {}
         derivation_validity_dict = {}
@@ -1432,14 +1436,16 @@ def step_review(name_of_derivation: str, local_step_id: str):
     dat = clib.read_db(path_to_db)
 
     if name_of_derivation in dat["derivations"].keys():
-        try:
-            derivation_validity_dict = compute.determine_derivation_validity(
-                name_of_derivation, path_to_db
-            )
-        except Exception as err:
-            logger.error(str(err))
-            flash(str(err))
-            derivation_validity_dict = {}
+        # previously there was a separate function in compute.py
+        # in that design, any failure of a step caused the entire derivation check to fail
+        derivation_validity_dict = {}
+        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+            try:
+                derivation_validity_dict[step_id] = vir.validate_step(name_of_derivation, step_id, path_to_db)
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                derivation_validity_dict[step_id] = "failed"
         try:
             step_dict = dat["derivations"][name_of_derivation]
         except Exception as err:
@@ -1592,14 +1598,17 @@ def review_derivation(name_of_derivation: str):
         d3js_json_filename = ""
     dat = clib.read_db(path_to_db)
 
-    try:
-        derivation_validity_dict = compute.determine_derivation_validity(
-            name_of_derivation, path_to_db
-        )
-    except Exception as err:
-        logger.error(str(err))
-        flash(str(err))
+    if name_of_derivation in dat['derivations'].keys():
+        # previously there was a separate function in compute.py
+        # in that design, any failure of a step caused the entire derivation check to fail
         derivation_validity_dict = {}
+        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+            try:
+                derivation_validity_dict[step_id] = vir.validate_step(name_of_derivation, step_id, path_to_db)
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                derivation_validity_dict[step_id] = "failed"
 
     try:
         expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
