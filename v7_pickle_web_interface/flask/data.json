@@ -6388,7 +6388,9 @@
             "notes": ""
         },
         "9999999950": {
-            "AST": ["1157"],
+            "AST": [
+                "1157"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\beta = 1/(k_{Boltzmann}T)",
