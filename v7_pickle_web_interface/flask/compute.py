@@ -625,7 +625,7 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
             list_of_tuples.append((this_symbol, symbol_latex))
         expr_dict_with_symbol_list[expr_global_id]['list of symbols'] = list_of_tuples
 
-    logger.debug(str(expr_dict_with_symbol_list))
+    #logger.debug(str(expr_dict_with_symbol_list))
     return expr_dict_with_symbol_list
 
 def get_symbols_from_latex(expr_latex: str, path_to_db: str) -> list:
@@ -1219,25 +1219,23 @@ def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
         lat_file.write("\\documentclass[12pt]{article}\n")
         lat_file.write("\\thispagestyle{empty}\n")
         # https://tex.stackexchange.com/questions/73016/how-do-i-install-an-individual-package-on-a-linux-system
-        # TODO: install braket in Docker image
         # if "usepackage{braket}" is on and the package isn't available, the process pauses while waiting for user input
         # the web interface isn't aware of this pause, so the page hangs
         # lat_file.write("\\usepackage{braket}\n")
         lat_file.write(
             "\\usepackage{amsmath}\n"
         )  # https://tex.stackexchange.com/questions/32100/what-does-each-ams-package-do
-        # TODO: these custom commands are specific to the PDG and should be removed
-        lat_file.write("\\newcommand{\\when}[1]{{\\rm \\ when\\ }#1}\n")
-        lat_file.write("\\newcommand{\\bra}[1]{\\langle #1 |}\n")
-        lat_file.write("\\newcommand{\\ket}[1]{| #1\\rangle}\n")
-        lat_file.write("\\newcommand{\\op}[1]{\\hat{#1}}\n")
-        lat_file.write("\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n")
-        lat_file.write(
-            "\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n"
-        )
-        lat_file.write(
-            "\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n"
-        )
+        #lat_file.write("\\newcommand{\\when}[1]{{\\rm \\ when\\ }#1}\n")
+        #lat_file.write("\\newcommand{\\bra}[1]{\\langle #1 |}\n")
+        #lat_file.write("\\newcommand{\\ket}[1]{| #1\\rangle}\n")
+        #lat_file.write("\\newcommand{\\op}[1]{\\hat{#1}}\n")
+        #lat_file.write("\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n")
+        #lat_file.write(
+        #    "\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n"
+        #)
+        #lat_file.write(
+        #    "\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n"
+        #)
 
         lat_file.write("\\begin{document}\n")
         lat_file.write("\\huge{\n")
@@ -1447,18 +1445,17 @@ def generate_tex_for_derivation(name_of_derivation: str, path_to_db: str) -> str
         lat_file.write(
             "\\usepackage[dvipdfmx,colorlinks=true,pdfkeywords={physics derivation graph}]{hyperref}\n"
         )
-        # TODO: these should not be here! They are specific to PDG. Some equations depend on them
-        lat_file.write("\\newcommand{\\when}[1]{{\\rm \\ when\\ }#1}\n")
-        lat_file.write("\\newcommand{\\bra}[1]{\\langle #1 |}\n")
-        lat_file.write("\\newcommand{\\ket}[1]{| #1\\rangle}\n")
-        lat_file.write("\\newcommand{\\op}[1]{\\hat{#1}}\n")
-        lat_file.write("\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n")
-        lat_file.write(
-            "\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n"
-        )
-        lat_file.write(
-            "\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n"
-        )
+        #lat_file.write("\\newcommand{\\when}[1]{{\\rm \\ when\\ }#1}\n")
+        #lat_file.write("\\newcommand{\\bra}[1]{\\langle #1 |}\n")
+        #lat_file.write("\\newcommand{\\ket}[1]{| #1\\rangle}\n")
+        #lat_file.write("\\newcommand{\\op}[1]{\\hat{#1}}\n")
+        #lat_file.write("\\newcommand{\\braket}[2]{\\langle #1 | #2 \\rangle}\n")
+        #lat_file.write(
+        #    "\\newcommand{\\rowCovariantColumnContravariant}[3]{#1_{#2}^{\\ \\ #3}} % left-bottom, right-upper\n"
+        #)
+        #lat_file.write(
+        #    "\\newcommand{\\rowContravariantColumnCovariant}[3]{#1^{#2}_{\\ \\ #3}} % left-upper, right-bottom\n"
+        #)
 
         # first, write the inference rules as newcommand at top of .tex file
         lat_file.write("% inference rules as newcommand for use in the body\n")
