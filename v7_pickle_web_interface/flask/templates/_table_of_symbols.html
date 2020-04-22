@@ -9,7 +9,7 @@
     <th>name</th>
     <th>references</th>
     <th>value</th>
-    <th>Used in expressions</th>
+    <th>Used in derivations</th>
   </tr>
 {% for symbol_id, symbol_use_list in symbol_popularity_dict.items() %}
   <tr>
@@ -47,9 +47,9 @@
     <!-- used in expressions -->
     <td>
       <UL>
-        {% for expr_id in symbol_use_list %}
-        <LI><a href="{{ url_for('list_all_expressions')}}#{{ expr_id }}">
-           {{ expr_id }} </a>
+        {% for deriv_name in symbol_use_list %}
+        <LI><a href="{{ url_for('review_derivation', name_of_derivation=deriv_name) }}">
+           {{ deriv_name }} </a>
 </LI>
         {% endfor %}
       </UL>
