@@ -47,7 +47,7 @@
         <LI>
           <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
           {{ expr_local_to_gobal[local_id] }}</a>: <BR>
-          {{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+          \({{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}\)<BR>
         </LI>
         {% endfor %}
       </OL>
@@ -70,7 +70,7 @@
 {% for local_id in this_dict['feeds'] %}
          <LI> <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
           {{ expr_local_to_gobal[local_id] }}</a>: <BR>
-          {{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+          \({{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}\)<BR>
          </LI>
         {% endfor %}
       </OL>
@@ -91,7 +91,8 @@
  {% for local_id in this_dict['outputs'] %}
        <LI>
           <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_gobal[local_id] }}">
-          {{ expr_local_to_gobal[local_id] }}</a>: <BR>{{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}<BR>
+          {{ expr_local_to_gobal[local_id] }}</a>: <BR>
+          \({{ expressions_dict[expr_local_to_gobal[local_id]]['latex'] }}\)<BR>
        </LI> 
      {% endfor %}
       </OL>
