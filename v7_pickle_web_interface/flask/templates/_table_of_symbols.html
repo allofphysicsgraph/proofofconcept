@@ -7,9 +7,9 @@
     <th>scope</th>
     <th>measure</th>
     <th>name</th>
-    <th>references</th>
     <th>value</th>
     <th>Used in derivations</th>
+    <th>references</th>
   </tr>
 {% for symbol_id, symbol_use_list in symbol_popularity_dict.items() %}
   <tr>
@@ -32,12 +32,6 @@
       {{ symbols_dict[symbol_id]['name'] }}
     {% endif %}
     </td>
-    <!-- references -->
-    <td>
-    {% if 'references' in symbols_dict[symbol_id] %}
-      <small>{{ symbols_dict[symbol_id]['references'] }}</small>
-    {% endif %}
-    </td>
     <!-- value -->
     <td>
     {% if 'value' in symbols_dict[symbol_id] %}
@@ -53,6 +47,12 @@
 </LI>
         {% endfor %}
       </UL>
+    </td>
+    <!-- references -->
+    <td>
+    {% if 'references' in symbols_dict[symbol_id] %}
+      <small>{{ symbols_dict[symbol_id]['references'] }}</small>
+    {% endif %}
     </td>
   </tr>
 {% endfor %}
