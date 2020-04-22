@@ -37,7 +37,7 @@ def create_sql_connection(db_file):
     https://charlesleifer.com/blog/going-fast-with-sqlite-and-python/
     >>> 
     """
-    logger.info("[trace] create_sql_connection")
+    logger.info("[trace]")
     if os.path.exists(db_file):
         try:
             return sqlite3.connect(db_file)
@@ -54,7 +54,7 @@ def read_db(path_to_db: str) -> dict:
     """
     >>> read_db('data.json')
     """
-    logger.info("[trace] read_db")
+    logger.info("[trace]")
 
     # OLD implementation:
     #    with open(path_to_db, 'rb') as fil:
@@ -103,7 +103,7 @@ def write_db(path_to_db: str, dat: dict) -> None:
     >>> write_db('data.json', dat)
     [trace] compute: write_db
     """
-    logger.info("[trace] write_db")
+    logger.info("[trace]")
 
     # OLD implementation:
     #    with open(path_to_db, 'wb') as fil:
@@ -151,6 +151,7 @@ def json_to_sql(path_to_json: str, path_to_sql: str) -> None:
     """
     >>> 
     """
+    logger.info('[trace]')
     with open(path_to_json) as json_file:
         dat = json.load(json_file)
 
