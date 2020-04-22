@@ -2629,6 +2629,8 @@ dat['symbols'] = {
   '4200': {'latex': 'f',            'category': 'variable', 'scope': ['real', 'complex']},
   '4291': {'latex': 'g',            'category': 'variable', 'scope': ['real', 'complex']},
   '2456': {'latex': 'h',            'category': 'variable', 'scope': ['real', 'complex']},
+  '1054': {'latex': '\\hbar',       'category': 'constant', 'scope': ['real'], 'name': 'Reduced Planck\'s constant',
+                          'values': [{'value': '1.0545718*10^{-34}', 'units': 'm^2 kg/s'}]}
   '4621': {'latex': 'i',            'category': 'variable', 'scope': ['real', 'complex']},
   '1567': {'latex': 'i',            'category': 'variable', 'scope': ['real', 'complex']},
   '1552': {'latex': 'j',            'category': 'variable', 'scope': ['real', 'complex']},
