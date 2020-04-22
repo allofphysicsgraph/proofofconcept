@@ -27,6 +27,15 @@
   If you do not have an account, you can <a href="{{ url_for('create_new_account') }}">create an account</a>
 </P>
 
+<P>
+  If you do not want to create an account, there are alternative options:
+  <UL>
+    <LI>You can download a <a href="https://hub.docker.com/repository/docker/benislocated/proofofconcept">Docker image from Dockerhub</a></LI>
+    <LI>You can build the Docker image from this <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/Dockerfile">Dockerfile</a></LI>
+    <LI>You can download and run <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface/flask">the source code</a></LI>
+  </UL>
+</P>
+
   {% else %}
   You are already signed in
   {% endif %}
