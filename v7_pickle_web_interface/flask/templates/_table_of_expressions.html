@@ -4,7 +4,7 @@
   <tr>
     <th>expression ID</th>
     <th>Latex</th>
-<!--    <th>Abstract Syntax Tree</th> -->
+    <th>Abstract Syntax Tree</th> 
     <th>name</th>
     <th>notes</th>
     <th>used in derivation</th>
@@ -13,9 +13,9 @@
   <tr>
     <td><a name="{{ expr_id }}">{{ expr_id}}</a></td>
     <td>{{ expressions_dict[expr_id]['latex'] }}</td>
-<!--    <td>{{ expressions_dict[expr_id]['AST'] }}</td> -->
+    <td>{{ expressions_dict[expr_id]['AST'] }}</td>
     <td>{{ expressions_dict[expr_id]['name'] }}</td>
-    <td>{{ expressions_dict[expr_id]['notes'] }}</td>
+    <td><small>{{ expressions_dict[expr_id]['notes'] }}</small></td>
     <td>
       <UL>
         {% for deriv_name in expr_use_list %}
