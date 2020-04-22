@@ -4065,7 +4065,9 @@
     },
     "expressions": {
         "0000040490": {
-            "AST": [],
+            "AST": [
+                "9139"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "a^2",
@@ -4073,7 +4075,10 @@
             "notes": ""
         },
         "0000999900": {
-            "AST": [],
+            "AST": [
+                "1939",
+                "9139"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "b/(2a)",
@@ -4081,7 +4086,9 @@
             "notes": ""
         },
         "0001030901": {
-            "AST": [],
+            "AST": [
+                "1464"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\cos(x)",
@@ -4089,7 +4096,9 @@
             "notes": ""
         },
         "0001111111": {
-            "AST": [],
+            "AST": [
+                "1464"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "(\\sin(x))^2",
@@ -4097,7 +4106,9 @@
             "notes": ""
         },
         "0001209482": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "2 \\pi",
@@ -4105,7 +4116,9 @@
             "notes": ""
         },
         "0001304952": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\hbar",
@@ -4177,7 +4190,9 @@
             "notes": ""
         },
         "0002436656": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "i \\hbar",
@@ -4217,7 +4232,9 @@
             "notes": ""
         },
         "0002940021": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "2 \\pi",
@@ -4273,7 +4290,9 @@
             "notes": ""
         },
         "0003949921": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\hbar",
@@ -4401,7 +4420,9 @@
             "notes": ""
         },
         "0005938585": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{-\\hbar^2}{2m}",
@@ -4505,7 +4526,9 @@
             "notes": ""
         },
         "0009484724": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{n \\pi}{W}x",
@@ -4521,7 +4544,9 @@
             "notes": ""
         },
         "0009485858": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{2n\\pi}{W}",
@@ -4561,7 +4586,9 @@
             "notes": ""
         },
         "0203024440": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "1= \\int_0^W a \\sin(\\frac{n \\pi}{W} x) \\psi(x)^*\\ dx\\when{n \\in {\\rm Integer}}",
@@ -4577,7 +4604,9 @@
             "notes": ""
         },
         "0439492440": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2}\\left. \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)\\right|_0^W    when{n \\in {\\rm Integer}}",
@@ -4585,7 +4614,10 @@
             "notes": ""
         },
         "0934990943": {
-            "AST": [],
+            "AST": [
+                "3141",
+                "9491"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "k = \\frac{2 \\pi}{v\\ T}",
@@ -4617,7 +4649,9 @@
             "notes": ""
         },
         "1010923823": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "k W = n \\pi \\when{n \\in {\\rm Integer}}",
@@ -4649,7 +4683,9 @@
             "notes": ""
         },
         "1029039903": {
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "p = m v",
@@ -4657,7 +4693,9 @@
             "notes": ""
         },
         "1029039904": {
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "p^2 = m^2 v^2",
@@ -4665,7 +4703,9 @@
             "notes": ""
         },
         "1158485859": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 = {\\cal H}",
@@ -4673,7 +4713,9 @@
             "notes": ""
         },
         "1202310110": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1}{2}\\ dx - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right)\\ dx\\when{n \\in {\\rm Integer}}",
@@ -4681,7 +4723,9 @@
             "notes": ""
         },
         "1202312210": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right)\\ dx\\when{n \\in {\\rm Integer}}",
@@ -4713,7 +4757,9 @@
             "notes": ""
         },
         "1293923844": {
-            "AST": [],
+            "AST": [
+                "9491"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\lambda = v\\: T",
@@ -4721,7 +4767,9 @@
             "notes": ""
         },
         "1314464131": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{\\nabla} \\times \\frac{\\partial \\vec{H}}{\\partial t} = \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}",
@@ -4729,7 +4777,9 @@
             "notes": ""
         },
         "1314864131": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{\\nabla} \\times \\vec{H} = \\epsilon_0 \\frac{\\partial }{\\partial t}\\vec{E}",
@@ -4805,7 +4855,10 @@
             "notes": ""
         },
         "1648958381": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\vec{\\nabla}\\psi(\\vec{r},t)\\right)",
@@ -4813,7 +4866,9 @@
             "notes": ""
         },
         "1857710291": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "0 = a \\sin(n \\pi) \\when{n \\in {\\rm Integer}}",
@@ -4821,7 +4876,9 @@
             "notes": ""
         },
         "1858578388": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= - \\omega^2 \\mu_0 \\epsilon_0 E(\\vec{r})\\exp(i \\omega t)",
@@ -4829,7 +4886,9 @@
             "notes": ""
         },
         "1858772113": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "k = \\frac{n \\pi}{W} \\when{n \\in {\\rm Integer}}",
@@ -4845,7 +4904,9 @@
             "notes": ""
         },
         "2029293929": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E(\\vec{r})\\exp(i \\omega t)",
@@ -4885,7 +4946,10 @@
             "notes": ""
         },
         "2258485859": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "{\\cal H} \\psi\\left(\\vec{r},t)\\right) = i \\hbar \\frac{\\partial}{\\partial t}\\psi(\\vec{r},t)",
@@ -4925,7 +4989,10 @@
             "notes": ""
         },
         "2395958385": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{-p^2}{\\hbar} \\psi(\\vec{r},t)",
@@ -4949,7 +5016,9 @@
             "notes": ""
         },
         "2569154141": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{\\nabla} \\times \\frac{\\partial}{\\partial t}\\vec{H} = \\epsilon_0 \\frac{\\partial^2 }{\\partial t^2}\\vec{E}",
@@ -4957,7 +5026,9 @@
             "notes": ""
         },
         "2648958382": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\frac{i}{\\hbar} \\vec{p}\\psi(\\vec{r},t)\\right)",
@@ -4973,7 +5044,9 @@
             "notes": ""
         },
         "2944838499": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\psi(x)=a \\sin(\\frac{n \\pi}{W} x) \\when{n \\in {\\rm Integer}}",
@@ -4989,7 +5062,9 @@
             "notes": ""
         },
         "3121234211": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{k}{2\\pi}=\\lambda",
@@ -4997,7 +5072,9 @@
             "notes": ""
         },
         "3121234212": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "p = \\frac{h k}{2\\pi}",
@@ -5005,7 +5082,9 @@
             "notes": ""
         },
         "3121513111": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "k=\\frac{2 \\pi}{\\lambda}",
@@ -5021,7 +5100,9 @@
             "notes": ""
         },
         "3131211131": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\omega=2 \\pi f",
@@ -5029,7 +5110,9 @@
             "notes": ""
         },
         "3132131132": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\omega=\\frac{2\\pi}{T}",
@@ -5037,7 +5120,9 @@
             "notes": ""
         },
         "3147472131": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\omega}{2 \\pi}= f",
@@ -5101,7 +5186,9 @@
             "notes": ""
         },
         "3947269979": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{\\nabla} \\times \\vec{\\nabla} \\times \\vec{E} = -\\mu_0 \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}",
@@ -5109,7 +5196,10 @@
             "notes": ""
         },
         "3948571256": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}E \\psi(\\vec{r},t)",
@@ -5117,7 +5207,10 @@
             "notes": ""
         },
         "3948572230": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\psi_0 \\vec{\\nabla}\\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
@@ -5125,7 +5218,9 @@
             "notes": ""
         },
         "3948574224": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\vec{k}\\cdot\\vec{r} - \\omega t \\right) \\right)",
@@ -5133,7 +5228,10 @@
             "notes": ""
         },
         "3948574226": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\omega t \\right) \\right)",
@@ -5141,7 +5239,9 @@
             "notes": ""
         },
         "3948574228": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
@@ -5149,7 +5249,9 @@
             "notes": ""
         },
         "3948574230": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
@@ -5157,7 +5259,10 @@
             "notes": ""
         },
         "3948574233": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\psi_0 \\frac{\\partial}{\\partial t}\\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
@@ -5165,7 +5270,10 @@
             "notes": ""
         },
         "3948574235": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}E \\psi_0 \\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
@@ -5181,7 +5289,9 @@
             "notes": ""
         },
         "4147472132": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "E = \\frac{h \\omega}{2 \\pi}",
@@ -5213,7 +5323,11 @@
             "notes": ""
         },
         "4341171256": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467",
+                "5156"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "i \\hbar \\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{p^2}{2 m} \\psi(\\vec{r},t)",
@@ -5221,7 +5335,11 @@
             "notes": ""
         },
         "4348571256": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467",
+                "5156"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}\\frac{p^2}{2 m} \\psi(\\vec{r},t)",
@@ -5229,7 +5347,10 @@
             "notes": ""
         },
         "4394958389": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{\\nabla}\\cdot \\left(\\vec{\\nabla}\\psi(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{\\nabla}\\cdot\\left( \\vec{p} \\psi(\\vec{r},t)\\right)",
@@ -5363,7 +5484,10 @@
             "notes": ""
         },
         "4929218492": {
-            "AST": [],
+            "AST": [
+                "9139",
+                "1939"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "a+b = c",
@@ -5403,7 +5527,10 @@
             "notes": ""
         },
         "4943571230": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
@@ -5451,7 +5578,9 @@
             "notes": ""
         },
         "4985825552": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= i \\omega \\mu_0 \\epsilon_0 \\frac{\\partial}{\\partial t} E(\\vec{r})\\exp(i \\omega t)",
@@ -5491,7 +5620,10 @@
             "notes": ""
         },
         "5868688585": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{p^2}{2m} \\psi(\\vec{r},t)",
@@ -5563,7 +5695,10 @@
             "notes": ""
         },
         "5985371230": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi(\\vec{r},t)",
@@ -5587,7 +5722,9 @@
             "notes": ""
         },
         "7564894985": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\int \\cos\\left(\\frac{2n\\pi}{W} x\\right)\\ dx = \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)",
@@ -5603,7 +5740,9 @@
             "notes": ""
         },
         "7575738420": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\left(\\sin\\left(\\frac{n \\pi}{W}x\\right)\\right)^2 = \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}",
@@ -5811,7 +5950,9 @@
             "notes": ""
         },
         "8576785890": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "1= \\int_0^W a^2 \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}\\ dx\\when{n \\in {\\rm Integer}}",
@@ -5843,7 +5984,9 @@
             "notes": ""
         },
         "8849289982": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\psi(x)^*=a \\sin(\\frac{n \\pi}{W} x) \\when{n \\in {\\rm Integer}}",
@@ -5851,7 +5994,9 @@
             "notes": ""
         },
         "8889444440": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "1= \\int_0^W a^2 \\left(\\sin\\left(\\frac{n \\pi}{W} x\\right)\\right)^2\\ dx\\when{n \\in {\\rm Integer}}",
@@ -5899,7 +6044,9 @@
             "notes": ""
         },
         "9393939991": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\psi(x)=-\\sqrt{\\frac{2}{W}} \\sin\\left(\\frac{n \\pi}{W} x\\right) \\when{n \\in {\\rm Integer}}",
@@ -5907,7 +6054,9 @@
             "notes": ""
         },
         "9393939992": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\psi(x)=\\sqrt{\\frac{2}{W}} \\sin\\left(\\frac{n \\pi}{W} x\\right) \\when{n \\in {\\rm Integer}}",
@@ -6053,7 +6202,9 @@
             "notes": ""
         },
         "9499428242": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "E(\\vec{r},t)=E(\\vec{r})\\exp(i \\omega t)",
@@ -6163,7 +6314,9 @@
             "notes": ""
         },
         "9858028950": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}\\ dx\\when{n \\in {\\rm Integer}}",
@@ -6187,7 +6340,9 @@
             "notes": ""
         },
         "9958485859": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 \\psi\\left(\\vec{r},t)\\right) = i \\hbar \\frac{\\partial}{\\partial t}\\psi(\\vec{r},t)",
@@ -6203,7 +6358,9 @@
             "notes": ""
         },
         "9991999979": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{\\nabla} \\times \\vec{E} = -\\mu_0\\frac{\\partial \\vec{H}}{\\partial t}",
@@ -6211,7 +6368,9 @@
             "notes": ""
         },
         "9999998870": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\vec{p}}{\\hbar} = \\vec{k}",
@@ -6219,7 +6378,9 @@
             "notes": ""
         },
         "9999999870": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{p}{\\hbar} = k",
@@ -6235,7 +6396,9 @@
             "notes": ""
         },
         "9999999951": {
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\langle x | k \\rangle = \\frac{\\exp(ikx)}{\\sqrt{2\\pi}}",
@@ -6275,7 +6438,9 @@
             "notes": ""
         },
         "9999999956": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{F} = \\frac{\\partial}{\\partial t}\\vec{p}",
@@ -6291,7 +6456,10 @@
             "notes": ""
         },
         "9999999960": {
-            "AST": [],
+            "AST": [
+                "1054",
+                "3141"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\hbar= h/(2 \\pi)",
@@ -6299,7 +6467,9 @@
             "notes": ""
         },
         "9999999961": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{E}{\\hbar} = \\omega",
@@ -6307,7 +6477,9 @@
             "notes": ""
         },
         "9999999962": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "p = \\hbar k",
@@ -6331,7 +6503,9 @@
             "notes": ""
         },
         "9999999965": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "E = \\omega \\hbar",
@@ -6419,7 +6593,9 @@
             "notes": ""
         },
         "9999999976": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\hat{p} = -i \\hbar \\frac{\\partial }{\\partial x}",
@@ -6427,7 +6603,9 @@
             "notes": ""
         },
         "9999999977": {
-            "AST": [],
+            "AST": [
+                "1054"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "[\\hat{x},\\hat{p}] = i \\hbar",
@@ -6443,7 +6621,9 @@
             "notes": ""
         },
         "9999999979": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\vec{\\nabla} \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}",
@@ -6467,7 +6647,9 @@
             "notes": ""
         },
         "9999999982": {
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "V=I R + Q/C + L \\frac{\\partial I}{\\partial t}",
@@ -6708,7 +6890,9 @@
         },
         "9350663581": {
             "latex": "\\pi",
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6716,7 +6900,9 @@
         },
         "8332931442": {
             "latex": "\\exp(i \\pi) = \\cos(\\pi)+i \\sin(\\pi)",
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6724,7 +6910,9 @@
         },
         "6885625907": {
             "latex": "\\exp(i \\pi) = -1 + i 0",
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6732,7 +6920,9 @@
         },
         "3331824625": {
             "latex": "\\exp(i \\pi) = -1",
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6748,7 +6938,9 @@
         },
         "2501591100": {
             "latex": "\\exp(i \\pi) + 1 = 0",
-            "AST": [],
+            "AST": [
+                "3141"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6756,7 +6948,11 @@
         },
         "5136652623": {
             "latex": "E = KE + PE",
-            "AST": [],
+            "AST": [
+                "4929",
+                "4930",
+                "4931"
+            ],
             "name": "mechanical energy is the sum of the potential plus kinetic energies",
             "notes": "",
             "author": "Ben",
@@ -6764,7 +6960,11 @@
         },
         "7915321076": {
             "latex": "E, KE, PE",
-            "AST": [],
+            "AST": [
+                "4929",
+                "4930",
+                "4931"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6788,7 +6988,11 @@
         },
         "4229092186": {
             "latex": "E, KE, PE",
-            "AST": [],
+            "AST": [
+                "4929",
+                "4930",
+                "4931"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6836,7 +7040,10 @@
         },
         "8357234146": {
             "latex": "KE = \\frac{1}{2} m v^2",
-            "AST": [],
+            "AST": [
+                "4929",
+                "5156"
+            ],
             "name": "kinetic energy",
             "notes": "https://en.wikipedia.org/wiki/Kinetic_energy",
             "author": "Ben",
@@ -6852,7 +7059,9 @@
         },
         "8082557839": {
             "latex": "KE, v",
-            "AST": [],
+            "AST": [
+                "4929"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6860,7 +7069,9 @@
         },
         "7676652285": {
             "latex": "KE_2 = \\frac{1}{2} m v_2^2",
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6876,7 +7087,9 @@
         },
         "9880327189": {
             "latex": "KE, v",
-            "AST": [],
+            "AST": [
+                "4929"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6884,7 +7097,9 @@
         },
         "4928007622": {
             "latex": "KE_1 = \\frac{1}{2} m v_1^2",
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6900,7 +7115,9 @@
         },
         "9347678744": {
             "latex": "KE, v",
-            "AST": [],
+            "AST": [
+                "4929"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6908,7 +7125,9 @@
         },
         "7511241619": {
             "latex": "KE_1 = \\frac{1}{2} m v_1^2",
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6916,7 +7135,9 @@
         },
         "5733146966": {
             "latex": "KE_2 - KE_1 = \\frac{1}{2} m \\left(v_2^2 - v_1^2\\right)",
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6932,7 +7153,9 @@
         },
         "4270680309": {
             "latex": "\\frac{KE_2 - KE_1}{t} = \\frac{1}{2} m \\frac{\\left( v_2^2 - v_1^2 \\right)}{t}",
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6972,7 +7195,9 @@
         },
         "9356924046": {
             "latex": "\\frac{KE_2 - KE_1}{t} = m \\frac{v_2 + v_1}{2} \\frac{ v_2 - v_1 }{t}",
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -6996,7 +7221,9 @@
         },
         "7735737409": {
             "latex": "\\frac{KE_2 - KE_1}{t} = m v \\frac{ v_2 - v_1 }{t}",
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7004,7 +7231,9 @@
         },
         "4784793837": {
             "latex": "\\frac{KE_2 - KE_1}{t} = m v a",
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7012,7 +7241,9 @@
         },
         "5345738321": {
             "latex": "F = m a",
-            "AST": [],
+            "AST": [
+                "5156"
+            ],
             "name": "Newton's second law of motion",
             "notes": "https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Newton's_second_law",
             "author": "Ben",
@@ -7028,7 +7259,9 @@
         },
         "6715248283": {
             "latex": "PE = -F x",
-            "AST": [],
+            "AST": [
+                "4930"
+            ],
             "name": "potential energy",
             "notes": "https://en.wikipedia.org/wiki/Potential_energy",
             "author": "Ben",
@@ -7044,7 +7277,9 @@
         },
         "7388921188": {
             "latex": "PE, x",
-            "AST": [],
+            "AST": [
+                "4930"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7068,7 +7303,9 @@
         },
         "9937169749": {
             "latex": "PE, x",
-            "AST": [],
+            "AST": [
+                "4930"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7132,7 +7369,9 @@
         },
         "2770069250": {
             "latex": "\\frac{E_2 - E_1}{t} = \\frac{(KE_2 - KE_1)}{t} + \\frac{(PE_2 - PE_1)}{t}",
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7140,7 +7379,9 @@
         },
         "3591237106": {
             "latex": "\\frac{E_2 - E_1}{t} = \\frac{(KE_2 - KE_1)}{t} - F v",
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7148,7 +7389,9 @@
         },
         "1772416655": {
             "latex": "\\frac{E_2 - E_1}{t} = v F - F v",
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7156,7 +7399,9 @@
         },
         "1809909100": {
             "latex": "\\frac{E_2 - E_1}{t} = 0",
-            "AST": [],
+            "AST": [
+                "1467"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8007,6 +8252,29 @@
         }
     },
     "symbols": {
+        "4929": {
+            "category": "variable",
+            "latex": "KE",
+            "name": "kinetic energy",
+            "scope": [
+                "real"
+            ]
+        },
+        "4930": {
+            "category": "variable",
+            "latex": "potential energy",
+            "scope": [
+                "real"
+            ]
+        },
+        "4931": {
+            "category": "variable",
+            "latex": "E",
+            "name": "energy",
+            "scope": [
+                "real"
+            ]
+        },
         "0011": {
             "category": "variable",
             "latex": "z",
@@ -8046,6 +8314,23 @@
                 {
                     "units": "meter^2 kilogram second^-2 Kelvin^-1",
                     "value": "1.38064852*10^{-23}"
+                }
+            ]
+        },
+        "1054": {
+            "category": "constant",
+            "latex": "\\hbar",
+            "name": "Reduced Planck's constant",
+            "references": [
+                "https://en.wikipedia.org/wiki/Planck_constant#Value"
+            ],
+            "scope": [
+                "real"
+            ],
+            "values": [
+                {
+                    "units": "meter^2 kilogram second^-1",
+                    "value": "1.0545718*10^{-34}"
                 }
             ]
         },
@@ -8330,6 +8615,15 @@
             "scope": [
                 "real",
                 "complex"
+            ]
+        },
+        "5156": {
+            "category": "variable",
+            "latex": "m",
+            "name": "mass",
+            "measure": "mass",
+            "scope": [
+                "real"
             ]
         },
         "5321": {
