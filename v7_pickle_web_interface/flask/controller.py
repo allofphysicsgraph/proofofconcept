@@ -1408,7 +1408,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         inf_rule_dict=infrules_modified_latex_dict[inf_rule],
         list_of_local_id=list_of_local_id,
         list_of_global_id_not_in_derivation=list_of_global_id_not_in_derivation,
-        step_dict=step_dict,
+        step_dict=dat['derivations'][deriv_id]['steps'],
         inf_rule=inf_rule,
         derivation_validity_dict=derivation_validity_dict,
         expr_local_to_gobal=dat["expr local to global"],
