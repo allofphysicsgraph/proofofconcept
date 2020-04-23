@@ -4062,6 +4062,70 @@
                     "creation date": "2020-04-23"
                 }
             }
+        },
+        "884319": {
+            "name": "frequency and period",
+            "author": "bp",
+            "notes": "subset of the frequency relation derivation. Intended for display on the homepage",
+            "creation date": "2020-04-23",
+            "steps": {
+                "9278347": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6650345"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "bp",
+                    "creation date": "2020-04-23"
+                },
+                "4718871": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "6650345"
+                    ],
+                    "feeds": [
+                        "4277577"
+                    ],
+                    "outputs": [
+                        "2414344"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "bp",
+                    "creation date": "2020-04-23"
+                },
+                "2169431": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "2414344"
+                    ],
+                    "feeds": [
+                        "8147899"
+                    ],
+                    "outputs": [
+                        "5564581"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "bp",
+                    "creation date": "2020-04-23"
+                },
+                "6286448": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "5564581"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "bp",
+                    "creation date": "2020-04-23"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -4426,7 +4490,12 @@
         "5179630": "3417126140",
         "2844676": "5453995431",
         "9430397": "6023986360",
-        "8186016": "8495187962"
+        "8186016": "8495187962",
+        "6650345": "3131111133",
+        "4277577": "9040079362",
+        "2414344": "2131616531",
+        "8147899": "9565166889",
+        "5564581": "2113211456"
     },
     "expressions": {
         "0000040490": {
@@ -8037,6 +8106,22 @@
             "notes": "",
             "name": "",
             "AST": []
+        },
+        "9040079362": {
+            "latex": "f",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "9565166889": {
+            "latex": "T",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
         }
     },
     "inference rules": {

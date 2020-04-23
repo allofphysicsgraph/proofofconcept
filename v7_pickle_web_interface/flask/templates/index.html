@@ -14,7 +14,7 @@
 </P>
 
 <P>
-  <a href="{{ url_for('example_T_f_d3js') }}">example_T_f_d3js</a>
+<svg id='viz'></svg>
 </P>
 
 <P>
@@ -106,6 +106,9 @@ inference_rule(input_expression, feed) yields output_expression
 <P>
   The Physics Derivation Graph does include boundary conditions and initial conditions.
 </P>
+
+
+{% include '_d3_js.html' %}
 
 
 {% endblock %}

@@ -618,8 +618,19 @@ def index():
     the index is a static page intended to be the landing page for new users
     >>> index()
     """
-    logger.info("[trace] index")
-    return render_template("index.html")
+    logger.info("[trace]")
+
+    try:
+        d3js_json_filename = compute.create_d3js_json("884319" , path_to_db)
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        d3js_json_filename = ""
+    dat = clib.read_db(path_to_db)
+
+
+    return render_template("index.html",
+        json_for_d3js=d3js_json_filename)
 
 
 @app.route("/faq", methods=["GET", "POST"])
@@ -628,7 +639,7 @@ def faq():
     "frequently asked questions" is a static page
     >>> faq()
     """
-    logger.info("[trace] faq")
+    logger.info("[trace]")
     return render_template("faq.html")
 
 
