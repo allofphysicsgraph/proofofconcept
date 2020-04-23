@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from __main__ import app
 import common_lib as clib
-from flask import jsonify
+from flask import jsonify, request
 path_to_db = "pdg.db"
 
 
@@ -237,7 +237,7 @@ def api_operators_by_name():
         operator_id = str(request.args["operator_id"])
     else:
         return "Error: No operator_id field provided. Please specify a operator_id."
-    if symbol_id in dat["operators"].keys():
+    if operator_id in dat["operators"].keys():
         return jsonify(dat["operators"][operator_id])
     else:
         return "Error: operator_id " + operator_id + " not found see symbols/list"
