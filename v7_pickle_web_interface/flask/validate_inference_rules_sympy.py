@@ -238,7 +238,7 @@ def add_X_to_both_sides(latex_dict):
     >>> latex_dict['feed'] = ['']
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(
         sympy.Add(latex_dict["input"][0]["LHS"], latex_dict["feed"][0])
         - latex_dict["output"][0]["LHS"]
@@ -270,7 +270,7 @@ def subtract_X_from_both_sides(latex_dict):
     >>> latex_dict['feed'] = ['']
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
 
     d1 = sympy.simplify(
         sympy.Add(latex_dict["input"][0]["LHS"], sympy.Mul(-1, latex_dict["feed"][0]))
@@ -308,7 +308,7 @@ def multiply_both_sides_by(latex_dict):
     >>> latex_dict['feed'] = ['d']
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(
         sympy.Mul(latex_dict["input"][0]["LHS"], latex_dict["feed"][0])
         - latex_dict["output"][0]["LHS"]
@@ -347,7 +347,7 @@ def divide_both_sides_by(latex_dict):
     >>> latex_dict['feed'] = ['d']
     >>> divide_both_sides_by(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(
         sympy.Mul(latex_dict["input"][0]["LHS"], sympy.Pow(latex_dict["feed"][0], -1))
         - latex_dict["output"][0]["LHS"]
@@ -381,7 +381,7 @@ def substitute_X_for_Y(latex_dict):
     >>> latex_dict['output'] = [{'LHS': 'a + d', 'RHS': 'c'}]
     >>> substitute_X_for_Y(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(
         latex_dict["input"][0]["LHS"].subs(latex_dict["feed"][0], latex_dict["feed"][1])
         - latex_dict["output"][0]["LHS"]
@@ -412,7 +412,7 @@ def multiply_LHS_by_unity(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> multiply_LHS_by_unity(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(latex_dict["feed"][0] - 1)
     d2 = sympy.simplify(
         sympy.Mul(latex_dict["input"][0]["LHS"], latex_dict["feed"][0])
@@ -444,7 +444,7 @@ def multiply_RHS_by_unity(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> multiply_RHS_by_unity(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(latex_dict["feed"][0] - 1)
     d2 = sympy.simplify(
         sympy.Mul(latex_dict["input"][0]["RHS"], latex_dict["feed"][0])
@@ -478,7 +478,7 @@ def add_zero_to_LHS(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> add_zero_to_LHS(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(latex_dict["feed"][0])
     d2 = sympy.simplify(
         sympy.Add(latex_dict["input"][0]["LHS"], latex_dict["feed"][0])
@@ -510,7 +510,7 @@ def add_zero_to_RHS(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> add_zero_to_RHS(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(latex_dict["feed"][0])
     d2 = sympy.simplify(
         sympy.Add(latex_dict["input"][0]["RHS"], latex_dict["feed"][0])
@@ -542,7 +542,7 @@ def take_curl_of_both_sides(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> take_curl_of_both_sides(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -555,7 +555,7 @@ def apply_divergence(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> apply_divergence(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
 
     return "no check performed"
 
@@ -569,7 +569,7 @@ def indefinite_integral_over(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> indefinite_integral_over(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -582,7 +582,7 @@ def indefinite_integration(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> indefinite_integration(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -595,7 +595,7 @@ def indefinite_integrate_LHS_over(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> indefinite_integrate_LHS_over(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -608,7 +608,7 @@ def indefinite_integrate_RHS_over(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> indefinite_integrate_RHS_over(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -621,7 +621,7 @@ def integrate_over_from_to(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> integrate_over_from_to(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -634,7 +634,7 @@ def partially_differentiate_with_respect_to(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> partially_differentiate_with_respect_to(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -647,7 +647,7 @@ def X_cross_both_sides_by(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> X_cross_both_sides_by(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -660,7 +660,7 @@ def both_sides_cross_X(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> both_sides_cross_X(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -673,7 +673,7 @@ def X_dot_both_sides(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> X_dot_both_sides(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -686,7 +686,7 @@ def both_sides_dot_X(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> both_sides_dot_X(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -699,7 +699,7 @@ def make_expr_power(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> make_expr_power(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(
         latex_dict["output"][0]["LHS"]
         - sympy.Pow(latex_dict["feed"][0], latex_dict["input"][0]["LHS"])
@@ -730,7 +730,7 @@ def select_real_parts(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> select_real_parts(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -743,7 +743,7 @@ def select_imag_parts(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> select_imag_parts(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -759,7 +759,7 @@ def swap_LHS_with_RHS(latex_dict):
     >>> latex_dict['output'] = [{'LHS': 'c', 'RHS': 'a + b'}]
     >>> swap_LHS_with_RHS(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["output"][0]["RHS"])
     d2 = sympy.simplify(latex_dict["input"][0]["RHS"] - latex_dict["output"][0]["LHS"])
     if (d1 == 0) and (d2 == 0):
@@ -785,7 +785,7 @@ def sum_exponents_LHS(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = 0  # not sure what this should be yet
     d2 = sympy.simplify(latex_dict["input"][0]["RHS"] - latex_dict["output"][0]["LHS"])
     return "no check performed"
@@ -801,7 +801,7 @@ def sum_exponents_RHS(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["output"][0]["RHS"])
     d2 = 0  # not sure what this should be yet
     return "no check performed"
@@ -818,7 +818,7 @@ def add_expr_1_to_expr_2(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(
         sympy.Add(latex_dict["input"][0]["LHS"], latex_dict["input"][1]["LHS"])
         - latex_dict["output"][0]["LHS"]
@@ -849,7 +849,7 @@ def substitute_RHS_of_expr_1_into_expr_2(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -862,7 +862,7 @@ def substitute_LHS_of_expr_1_into_expr_2(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -875,7 +875,7 @@ def mult_expr_1_by_expr_2(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(
         sympy.Mul(latex_dict["input"][0]["LHS"], latex_dict["input"][1]["LHS"])
         - latex_dict["output"][0]["LHS"]
@@ -906,7 +906,7 @@ def LHS_of_expr_1_eq_LHS_of_expr_2(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][1]["LHS"])
     d2 = sympy.simplify(latex_dict["output"][0]["LHS"] - latex_dict["input"][0]["RHS"])
     d3 = sympy.simplify(latex_dict["output"][0]["RHS"] - latex_dict["input"][1]["RHS"])
@@ -935,7 +935,7 @@ def RHS_of_expr_1_eq_RHS_of_expr_2(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(latex_dict["input"][0]["RHS"] - latex_dict["input"][1]["RHS"])
     d2 = sympy.simplify(latex_dict["output"][0]["LHS"] - latex_dict["input"][0]["LHS"])
     d3 = sympy.simplify(latex_dict["output"][0]["RHS"] - latex_dict["input"][1]["LHS"])
@@ -964,10 +964,10 @@ def raise_both_sides_to_power(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check is performed"
-    d1 = 'not set'
-    d2 = 'not set'
+    d1 = "not set"
+    d2 = "not set"
     if (d1 == 0) and (d2 == 0):
         return "step is valid"
     else:
@@ -990,7 +990,7 @@ def claim_expr_1_equals_expr_2(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
 
     d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["output"][0]["LHS"])
     d2 = sympy.simplify(latex_dict["input"][0]["RHS"] - latex_dict["output"][0]["RHS"])
@@ -1016,7 +1016,7 @@ def claim_LHS_equals_RHS(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     d1 = sympy.simplify(latex_dict["input"][0]["RHS"] - latex_dict["input"][0]["LHS"])
     if d1 == 0:
         return "step is valid"
@@ -1033,7 +1033,7 @@ def expand_integrand(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1049,7 +1049,7 @@ def function_is_even(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1065,7 +1065,7 @@ def function_is_odd(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1081,7 +1081,7 @@ def conjugate_function_X(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1097,7 +1097,7 @@ def conjugate_both_sides(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1110,7 +1110,7 @@ def conjugate_transpose_both_sides(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1124,7 +1124,7 @@ def distribute_conjugate_transpose_to_factors(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1137,7 +1137,7 @@ def distribute_conjugate_to_factors(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> distribute_conjugate_to_factors(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1150,7 +1150,7 @@ def expand_magnitude_to_conjugate(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> expand_magnitude_to_conjugate(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1162,7 +1162,7 @@ def replace_scalar_with_vector(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> replace_scalar_with_vector(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1174,7 +1174,7 @@ def simplify(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> simplify(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1186,7 +1186,7 @@ def substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict):
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict)
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 

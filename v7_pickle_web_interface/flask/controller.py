@@ -440,13 +440,15 @@ def after_request(response):
         )
     return response
 
+
 @login_manager.unauthorized_handler
 def unauthorized():
     """
     https://flask-login.readthedocs.io/en/latest/
     >>> 
     """
-    return redirect(url_for('login'))
+    return redirect(url_for("login"))
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -850,7 +852,9 @@ def list_all_symbols():
 
     dat = clib.read_db(path_to_db)
     try:
-        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(path_to_db)
+        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
+            path_to_db
+        )
     except Exception as err:
         flash(str(err))
         logger.error(str(err))
@@ -927,12 +931,14 @@ def list_all_expressions():
         flash(str(err))
         list_of_expr_not_appearing_in_any_derivations = []
     try:
-        expr_dict_with_symbol_list = compute.generate_expr_dict_with_symbol_list(path_to_db)
+        expr_dict_with_symbol_list = compute.generate_expr_dict_with_symbol_list(
+            path_to_db
+        )
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
         expr_dict_with_symbol_list = {}
-        
+
     return render_template(
         "list_all_expressions.html",
         expressions_dict=expr_dict_with_symbol_list,
@@ -1119,18 +1125,20 @@ def select_derivation_step_to_edit(name_of_derivation: str):
     if name_of_derivation in dat["derivations"].keys():
         # step_dict = dat["derivations"][name_of_derivation]
 
-        # previously 
+        # previously
         derivation_validity_dict = {}
         for step_id, step_dict in dat["derivations"][name_of_derivation].items():
             try:
-                derivation_validity_dict[step_id] = vir.validate_step(name_of_derivation, step_id, path_to_db)
+                derivation_validity_dict[step_id] = vir.validate_step(
+                    name_of_derivation, step_id, path_to_db
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
                 derivation_validity_dict[step_id] = "failed"
     else:
         # step_dict = {}
-         derivation_validity_dict = {}
+        derivation_validity_dict = {}
 
     sorted_step_ids = list(step_dict.keys())
     sorted_step_ids.sort()
@@ -1324,7 +1332,9 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         derivation_validity_dict = {}
         for step_id, step_dict in dat["derivations"][name_of_derivation].items():
             try:
-                derivation_validity_dict[step_id] = vir.validate_step(name_of_derivation, step_id, path_to_db)
+                derivation_validity_dict[step_id] = vir.validate_step(
+                    name_of_derivation, step_id, path_to_db
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -1448,7 +1458,9 @@ def step_review(name_of_derivation: str, local_step_id: str):
         derivation_validity_dict = {}
         for step_id, step_dict in dat["derivations"][name_of_derivation].items():
             try:
-                derivation_validity_dict[step_id] = vir.validate_step(name_of_derivation, step_id, path_to_db)
+                derivation_validity_dict[step_id] = vir.validate_step(
+                    name_of_derivation, step_id, path_to_db
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -1605,13 +1617,15 @@ def review_derivation(name_of_derivation: str):
         d3js_json_filename = ""
     dat = clib.read_db(path_to_db)
 
-    if name_of_derivation in dat['derivations'].keys():
+    if name_of_derivation in dat["derivations"].keys():
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
         derivation_validity_dict = {}
         for step_id, step_dict in dat["derivations"][name_of_derivation].items():
             try:
-                derivation_validity_dict[step_id] = vir.validate_step(name_of_derivation, step_id, path_to_db)
+                derivation_validity_dict[step_id] = vir.validate_step(
+                    name_of_derivation, step_id, path_to_db
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -1660,7 +1674,7 @@ def modify_step(name_of_derivation: str, step_id: str):
             # https://github.com/allofphysicsgraph/proofofconcept/issues/108
             elif request.form["submit_button"] == "view exploded graph":
                 # ImmutableMultiDict([('submit_button', 'view exploded graph')])
-                return redirect(url_for("exploded_step", name_of_derivation, step_id))
+                return redirect(url_for("exploded_step", name_of_derivation=name_of_derivation, step_id=step_id))
 
         # https://github.com/allofphysicsgraph/proofofconcept/issues/116
         elif "linear_index_to_modify" in request.form.keys():
@@ -1708,14 +1722,22 @@ def modify_step(name_of_derivation: str, step_id: str):
             flash("[ERROR] unrecognized button:" + str(request.form))
             logger.error("unrecognized button")
 
-    try:
-        derivation_validity_dict = compute.determine_derivation_validity(
-            name_of_derivation, path_to_db
-        )
-    except Exception as err:
-        logger.error(str(err))
-        flash(str(err))
+    dat = clib.read_db(path_to_db)
+
+    if name_of_derivation in dat["derivations"].keys():
         derivation_validity_dict = {}
+        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+            try:
+                derivation_validity_dict[step_id] = vir.validate_step(
+                    name_of_derivation, step_id, path_to_db
+                )
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                derivation_validity_dict[step_id] = "failed"
+    else:
+        logger.error("ERROR: "+name_of_derivation+" is not in derivations")
+        flash("ERROR: "+name_of_derivation+" is not in derivations")
 
     try:
         step_graphviz_png = compute.create_step_graphviz_png(
@@ -1725,8 +1747,6 @@ def modify_step(name_of_derivation: str, step_id: str):
         logger.error(str(err))
         flash(str(err))
         step_graphviz_png = "error.png"
-
-    dat = clib.read_db(path_to_db)
 
     try:
         list_of_new_linear_indices = compute.list_new_linear_indices(
