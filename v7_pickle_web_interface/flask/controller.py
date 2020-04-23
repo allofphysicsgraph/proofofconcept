@@ -1057,6 +1057,7 @@ def list_all_inference_rules():
 
     return render_template(
         "list_all_inference_rules.html",
+        dat=dat,
         infrules_dict=infrules_modified_latex_dict,
         sorted_list_infrules=sorted_list_infrules,
         sorted_list_infrules_not_in_use=sorted_list_infrules_not_in_use,
