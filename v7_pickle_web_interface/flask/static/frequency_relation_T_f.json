@@ -1,0 +1,21 @@
+{"nodes":[
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/declareInitialExpr.png", "width": 218, "height": 32},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_expression_png/3131111133.png" , "width": 121, "height": 34},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/multbothsidesby.png", "width": 226, "height": 31},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_feed_png/5749291.png", "width": 18, "height": 31},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_expression_png/2131616531.png", "width": 113, "height": 31},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/dividebothsidesby.png", "width": 245, "height": 31},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_feed_png/8837284.png", "width": 24, "height": 23},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_expression_png/2113211456.png", "width": 121, "height": 34},
+  {"img": "http://allofphysicsgraph.github.io/proofofconcept/v3_CSV/lib/images_infrule_png/declareFinalExpr.png", "width": 206, "height": 32}  
+],
+   "links":[
+  {"source":0,"target":1},
+  {"source":1,"target":2},
+  {"source":3,"target":2},
+  {"source":2,"target":4},
+  {"source":4,"target":5},
+  {"source":6,"target":5},
+  {"source":5,"target":7},
+  {"source":7,"target":8}
+]}
