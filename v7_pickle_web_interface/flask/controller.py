@@ -579,6 +579,7 @@ def create_new_account():
         logger.debug("request.form = %s", request.form)
     elif request.method == "POST" and webform.validate():
         logger.debug("request.form = %s", request.form)
+        # request.form = ImmutableMultiDict([('username', 'ben'), ('email', 'sadfag'), ('password', 'asdfag'), ('confirm', 'asdfag')])
         flash("nothing actually happens yet")
         return redirect(url_for("login"))
     return render_template("create_new_account.html", webform=webform)
