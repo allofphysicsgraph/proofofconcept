@@ -151,7 +151,7 @@ def json_to_sql(path_to_json: str, path_to_sql: str) -> None:
     """
     >>> 
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     with open(path_to_json) as json_file:
         dat = json.load(json_file)
 
