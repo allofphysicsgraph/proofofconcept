@@ -1286,7 +1286,7 @@ def generate_map_of_derivations(path_to_db: str) -> str:
             this_deriv = deriv_id
             if not os.path.isfile("/home/appuser/app/static/" + this_deriv + ".png"):
                 create_png_from_latex(
-                    "\\text{" + deriv_id + "}", this_deriv
+                    "\\text{" + dat['derivations'][deriv_id]['name'].replace('^','') + "}", this_deriv
                 )
                 fil.write(
                     '"'
