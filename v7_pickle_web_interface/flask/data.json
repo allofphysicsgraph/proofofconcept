@@ -4698,7 +4698,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "1= \\int_0^W a \\sin(\\frac{n \\pi}{W} x) \\psi(x)^* dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "1 = \\int_0^W a \\sin(\\frac{n \\pi}{W} x) \\psi(x)^* dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -4716,7 +4716,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2}\\left. \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)\\right|_0^W    {\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\frac{1}{a^2} = \\frac{1}{2}W - \\frac{1}{2}\\left. \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)\\right|_0^W    {\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -4743,7 +4743,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\langle \\psi| \\hat{A}^+ |\\psi \\rangle=\\langle a \\rangle^*",
+            "latex": "\\langle \\psi| \\hat{A}^+ |\\psi \\rangle = \\langle a \\rangle^*",
             "name": "",
             "notes": ""
         },
@@ -4825,7 +4825,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1}{2} dx - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right) dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\frac{1}{a^2} = \\int_0^W \\frac{1}{2} dx - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right) dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -4835,7 +4835,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right) dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\frac{1}{a^2} = \\frac{1}{2}W - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right) dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -4988,7 +4988,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= - \\omega^2 \\mu_0 \\epsilon_0 E(\\vec{r})\\exp(i \\omega t)",
+            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t) = - \\omega^2 \\mu_0 \\epsilon_0 E(\\vec{r})\\exp(i \\omega t)",
             "name": "",
             "notes": ""
         },
@@ -5016,7 +5016,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E(\\vec{r})\\exp(i \\omega t)",
+            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t) = \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E(\\vec{r})\\exp(i \\omega t)",
             "name": "",
             "notes": ""
         },
@@ -5032,7 +5032,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "f=1/T",
+            "latex": "f = 1/T",
             "name": "",
             "notes": ""
         },
@@ -5048,7 +5048,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "T f=1",
+            "latex": "T f = 1",
             "name": "",
             "notes": ""
         },
@@ -5091,7 +5091,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\left(\\langle\\psi| \\hat{A} |\\psi\\rangle \\right)^+= \\left(\\langle a \\rangle\\right)^+",
+            "latex": "\\left(\\langle\\psi| \\hat{A} |\\psi\\rangle \\right)^+ = \\left(\\langle a \\rangle\\right)^+",
             "name": "",
             "notes": ""
         },
@@ -5110,7 +5110,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\langle x^2\\rangle -2\\langle x \\rangle\\langle x \\rangle+\\langle x \\rangle^2=\\langle x^2 \\rangle-\\langle x \\rangle^2",
+            "latex": "\\langle x^2\\rangle -2\\langle x \\rangle\\langle x \\rangle+\\langle x \\rangle^2 = \\langle x^2 \\rangle-\\langle x \\rangle^2",
             "name": "",
             "notes": ""
         },
@@ -5118,7 +5118,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\langle x^2\\rangle -\\langle x \\rangle^2=\\langle x^2 \\rangle-\\langle x \\rangle^2",
+            "latex": "\\langle x^2\\rangle -\\langle x \\rangle^2 = \\langle x^2 \\rangle-\\langle x \\rangle^2",
             "name": "",
             "notes": ""
         },
@@ -5146,7 +5146,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\langle a \\rangle^*=\\langle a \\rangle",
+            "latex": "\\langle a \\rangle^* = \\langle a \\rangle",
             "name": "",
             "notes": ""
         },
@@ -5156,7 +5156,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\psi(x)=a \\sin(\\frac{n \\pi}{W} x) {\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\psi(x) = a \\sin(\\frac{n \\pi}{W} x) {\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -5174,7 +5174,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{k}{2\\pi}=\\lambda",
+            "latex": "\\frac{k}{2\\pi} = \\lambda",
             "name": "",
             "notes": ""
         },
@@ -5194,7 +5194,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "k=\\frac{2 \\pi}{\\lambda}",
+            "latex": "k = \\frac{2 \\pi}{\\lambda}",
             "name": "",
             "notes": ""
         },
@@ -5202,7 +5202,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "T=1/f",
+            "latex": "T = 1/f",
             "name": "",
             "notes": ""
         },
@@ -5212,7 +5212,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\omega=2 \\pi f",
+            "latex": "\\omega = 2 \\pi f",
             "name": "",
             "notes": ""
         },
@@ -5222,7 +5222,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\omega=\\frac{2\\pi}{T}",
+            "latex": "\\omega = \\frac{2\\pi}{T}",
             "name": "",
             "notes": ""
         },
@@ -5232,7 +5232,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{\\omega}{2 \\pi}= f",
+            "latex": "\\frac{\\omega}{2 \\pi} = f",
             "name": "",
             "notes": ""
         },
@@ -5248,7 +5248,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r})= - \\frac{\\omega^2}{c^2} E(\\vec{r})",
+            "latex": "\\nabla^2 E(\\vec{r}) = - \\frac{\\omega^2}{c^2} E(\\vec{r})",
             "name": "",
             "notes": ""
         },
@@ -5256,7 +5256,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\langle \\left(x-\\langle x \\rangle\\right)^2 \\rangle=\\langle x^2 \\rangle-\\langle x \\rangle^2",
+            "latex": "\\langle \\left(x-\\langle x \\rangle\\right)^2 \\rangle = \\langle x^2 \\rangle-\\langle x \\rangle^2",
             "name": "",
             "notes": ""
         },
@@ -5540,7 +5540,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "1= \\int \\psi(x)\\psi(x)^* dx",
+            "latex": "1 = \\int \\psi(x)\\psi(x)^* dx",
             "name": "",
             "notes": ""
         },
@@ -5548,7 +5548,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{a^2}= \\frac{W}{2}",
+            "latex": "\\frac{1}{a^2} = \\frac{W}{2}",
             "name": "",
             "notes": ""
         },
@@ -5648,7 +5648,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\langle \\psi| \\hat{A} |\\psi\\rangle=\\langle a \\rangle^*",
+            "latex": "\\langle \\psi| \\hat{A} |\\psi\\rangle = \\langle a \\rangle^*",
             "name": "",
             "notes": ""
         },
@@ -5656,7 +5656,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\langle x^2\\rangle -2\\langle x^2 \\rangle+\\langle x \\rangle^2=\\langle x^2 \\rangle-\\langle x \\rangle^2",
+            "latex": "\\langle x^2\\rangle -2\\langle x^2 \\rangle+\\langle x \\rangle^2 = \\langle x^2 \\rangle-\\langle x \\rangle^2",
             "name": "",
             "notes": ""
         },
@@ -5690,7 +5690,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= i \\omega \\mu_0 \\epsilon_0 \\frac{\\partial}{\\partial t} E(\\vec{r})\\exp(i \\omega t)",
+            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t) = i \\omega \\mu_0 \\epsilon_0 \\frac{\\partial}{\\partial t} E(\\vec{r})\\exp(i \\omega t)",
             "name": "",
             "notes": ""
         },
@@ -5698,7 +5698,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\vec{p}_{1}-\\vec{p}_{2}=\\vec{p}_{electron}",
+            "latex": "\\vec{p}_{1}-\\vec{p}_{2} = \\vec{p}_{electron}",
             "name": "",
             "notes": ""
         },
@@ -5714,7 +5714,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "(\\sin(x))^2 + (\\cos(x))^2=1",
+            "latex": "(\\sin(x))^2 + (\\cos(x))^2 = 1",
             "name": "",
             "notes": ""
         },
@@ -5741,7 +5741,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "k=\\frac{\\omega}{v}",
+            "latex": "k = \\frac{\\omega}{v}",
             "name": "",
             "notes": ""
         },
@@ -5773,7 +5773,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "x^2 + (b/a)x+(c/a) =0",
+            "latex": "x^2 + (b/a)x+(c/a) = 0",
             "name": "",
             "notes": ""
         },
@@ -5956,7 +5956,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\langle x^2 -2x\\langle x \\rangle+\\langle x \\rangle^2 \\rangle=\\langle x^2 \\rangle-\\langle x \\rangle^2",
+            "latex": "\\langle x^2 -2x\\langle x \\rangle+\\langle x \\rangle^2 \\rangle = \\langle x^2 \\rangle-\\langle x \\rangle^2",
             "name": "",
             "notes": ""
         },
@@ -5980,7 +5980,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{2}{W}= a^2",
+            "latex": "\\frac{2}{W} = a^2",
             "name": "",
             "notes": ""
         },
@@ -5996,7 +5996,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "d(u v) - v du= u dv",
+            "latex": "d(u v) - v du = u dv",
             "name": "",
             "notes": ""
         },
@@ -6020,7 +6020,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 \\vec{E}= \\mu_0 \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}",
+            "latex": "\\nabla^2 \\vec{E} = \\mu_0 \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}",
             "name": "",
             "notes": ""
         },
@@ -6028,7 +6028,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "1= \\int |\\psi(x)|^2 dx",
+            "latex": "1 = \\int |\\psi(x)|^2 dx",
             "name": "",
             "notes": ""
         },
@@ -6036,7 +6036,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\vec{E}= E(\\vec{r},t)",
+            "latex": "\\vec{E} = E(\\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -6062,7 +6062,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "1= \\int_0^W a^2 \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2} dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "1 = \\int_0^W a^2 \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2} dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -6096,7 +6096,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\psi(x)^*=a \\sin(\\frac{n \\pi}{W} x) {\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\psi(x)^* = a \\sin(\\frac{n \\pi}{W} x) {\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -6106,7 +6106,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "1= \\int_0^W a^2 \\left(\\sin\\left(\\frac{n \\pi}{W} x\\right)\\right)^2 dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "1 = \\int_0^W a^2 \\left(\\sin\\left(\\frac{n \\pi}{W} x\\right)\\right)^2 dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -6114,7 +6114,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\psi(x)=a \\sin(k x)",
+            "latex": "\\psi(x) = a \\sin(k x)",
             "name": "",
             "notes": ""
         },
@@ -6138,7 +6138,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\hat{A}^+=\\hat{A}",
+            "latex": "\\hat{A}^+ = \\hat{A}",
             "name": "",
             "notes": ""
         },
@@ -6156,7 +6156,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\psi(x)=-\\sqrt{\\frac{2}{W}} \\sin\\left(\\frac{n \\pi}{W} x\\right) {\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\psi(x) = -\\sqrt{\\frac{2}{W}} \\sin\\left(\\frac{n \\pi}{W} x\\right) {\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -6166,7 +6166,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\psi(x)=\\sqrt{\\frac{2}{W}} \\sin\\left(\\frac{n \\pi}{W} x\\right) {\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\psi(x) = \\sqrt{\\frac{2}{W}} \\sin\\left(\\frac{n \\pi}{W} x\\right) {\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -6174,7 +6174,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r},t)= \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E(\\vec{r},t)",
+            "latex": "\\nabla^2 E(\\vec{r},t) = \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E(\\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -6182,7 +6182,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{d}{dx} y= -\\sin(x) + i\\cos(x)",
+            "latex": "\\frac{d}{dx} y = -\\sin(x) + i\\cos(x)",
             "name": "",
             "notes": ""
         },
@@ -6198,7 +6198,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "(\\cos(x))^2=\\cos(2x)+(\\sin(x))^2",
+            "latex": "(\\cos(x))^2 = \\cos(2x)+(\\sin(x))^2",
             "name": "",
             "notes": ""
         },
@@ -6214,7 +6214,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\cos(2x)=(\\cos(x))^2 - (\\sin(x))^2",
+            "latex": "\\cos(2x) = (\\cos(x))^2 - (\\sin(x))^2",
             "name": "",
             "notes": ""
         },
@@ -6222,7 +6222,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\cos(2x)+(\\sin(x))^2=(\\cos(x))^2",
+            "latex": "\\cos(2x)+(\\sin(x))^2 = (\\cos(x))^2",
             "name": "",
             "notes": ""
         },
@@ -6246,7 +6246,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{d}{dx} y= (i\\sin(x) + \\cos(x)) i",
+            "latex": "\\frac{d}{dx} y = (i\\sin(x) + \\cos(x)) i",
             "name": "",
             "notes": ""
         },
@@ -6262,7 +6262,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t)= - \\frac{\\omega^2}{c^2} E(\\vec{r})\\exp(i \\omega t)",
+            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t) = - \\frac{\\omega^2}{c^2} E(\\vec{r})\\exp(i \\omega t)",
             "name": "",
             "notes": ""
         },
@@ -6270,7 +6270,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\sqrt{\\frac{2}{W}}= a",
+            "latex": "\\sqrt{\\frac{2}{W}} = a",
             "name": "",
             "notes": ""
         },
@@ -6278,7 +6278,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "-\\sqrt{\\frac{2}{W}}= a",
+            "latex": "-\\sqrt{\\frac{2}{W}} = a",
             "name": "",
             "notes": ""
         },
@@ -6304,7 +6304,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\psi(x)=0{\\rm \\ when\\ }x=W",
+            "latex": "\\psi(x) = 0{\\rm \\ when\\ }x=W",
             "name": "",
             "notes": ""
         },
@@ -6314,7 +6314,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "E(\\vec{r},t)=E(\\vec{r})\\exp(i \\omega t)",
+            "latex": "E(\\vec{r},t) = E(\\vec{r})\\exp(i \\omega t)",
             "name": "",
             "notes": ""
         },
@@ -6384,7 +6384,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\psi(x)=0{\\rm \\ when\\ }x=0",
+            "latex": "\\psi(x) = 0{\\rm \\ when\\ }x = 0",
             "name": "",
             "notes": ""
         },
@@ -6416,7 +6416,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{d}{dx} y= y i",
+            "latex": "\\frac{d}{dx} y = y i",
             "name": "",
             "notes": ""
         },
@@ -6426,7 +6426,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2} dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\frac{1}{a^2} = \\int_0^W \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2} dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -6442,7 +6442,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\rho=0",
+            "latex": "\\rho = 0",
             "name": "",
             "notes": ""
         },
@@ -6571,7 +6571,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\hbar= h/(2 \\pi)",
+            "latex": "\\hbar = h/(2 \\pi)",
             "name": "",
             "notes": ""
         },
@@ -6641,7 +6641,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "x=\\frac{-b-\\sqrt{b^2-4ac}}{2a}",
+            "latex": "x = \\frac{-b-\\sqrt{b^2-4ac}}{2a}",
             "name": "",
             "notes": ""
         },
@@ -6649,7 +6649,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "x=\\frac{-b+\\sqrt{b^2-4ac}}{2a}",
+            "latex": "x = \\frac{-b+\\sqrt{b^2-4ac}}{2a}",
             "name": "",
             "notes": ""
         },
@@ -6761,7 +6761,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "V=I R + Q/C + L \\frac{\\partial I}{\\partial t}",
+            "latex": "V = I R + Q/C + L \\frac{\\partial I}{\\partial t}",
             "name": "",
             "notes": ""
         },
@@ -6777,7 +6777,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "Q=C V",
+            "latex": "Q = C V",
             "name": "",
             "notes": ""
         },
@@ -6785,7 +6785,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "V=I R",
+            "latex": "V = I R",
             "name": "",
             "notes": ""
         },
@@ -6793,7 +6793,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\left[\\begin{array}{cc}\\cos\\theta & \\sin\\theta\\\\-\\sin\\theta & \\cos\\theta\\end{array}\\right]\\left[\\begin{array}{c}A_x \\\\ A_y \\end{array}\\right]=\\left[\\begin{array}{c}A_{x'} \\\\ A_{y'} \\end{array}\\right]",
+            "latex": "\\left[\\begin{array}{cc}\\cos\\theta & \\sin\\theta\\\\-\\sin\\theta & \\cos\\theta\\end{array}\\right]\\left[\\begin{array}{c}A_x \\\\ A_y \\end{array}\\right] = \\left[\\begin{array}{c}A_{x'} \\\\ A_{y'} \\end{array}\\right]",
             "name": "",
             "notes": ""
         },
@@ -6833,7 +6833,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "Pascal = Newton/(meter^2)",
+            "latex": "Pascal = Newton / (meter^2)",
             "name": "",
             "notes": ""
         },
@@ -6841,7 +6841,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "Tesla= Newton/(Ampere*meter)",
+            "latex": "Tesla = Newton / (Ampere*meter)",
             "name": "",
             "notes": ""
         },
@@ -6849,7 +6849,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "Farad = Coulumb/Volt",
+            "latex": "Farad = Coulumb / Volt",
             "name": "",
             "notes": ""
         },
@@ -6857,7 +6857,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "Volt=Joule/Coulumb",
+            "latex": "Volt = Joule / Coulumb",
             "name": "",
             "notes": ""
         },
@@ -6865,7 +6865,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "Coulomb=Ampere/second",
+            "latex": "Coulomb = Ampere / second",
             "name": "",
             "notes": ""
         },
@@ -6873,7 +6873,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "Watt=Joule/second",
+            "latex": "Watt = Joule / second",
             "name": "",
             "notes": ""
         },
