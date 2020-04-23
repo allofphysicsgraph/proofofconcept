@@ -788,6 +788,28 @@ def get_derivation_steps(deriv_id: str, path_to_db: str) -> dict:
         )
     return dat["derivations"][deriv_id]['steps']
 
+def create_deriv_id(path_to_db: str) -> str:
+    """
+    >>> create_deriv_id()
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    deriv_ids_in_use = list(dat['derivations'].keys())
+
+    found_valid_id = False
+    loop_count = 0
+    while not found_valid_id:
+        loop_count += 1
+        proposed_deriv_id = str(
+            random.randint(100000, 999999)
+        )  # 6 digits
+
+        if proposed_deriv_id not in deriv_ids_in_use:
+            found_valid_id = True
+        if loop_count > 10000000:
+            logger.error("too many; this seems unlikely")
+            raise Exception("this seems unlikely")
+    return proposed_deriv_id
 
 def create_expr_global_id(path_to_db: str) -> str:
     """
@@ -1115,6 +1137,8 @@ def popularity_of_expressions(path_to_db: str) -> dict:
                     list_of_all_expr_global_IDs_for_this_deriv.append(
                         dat["expr local to global"][expr_local_id]
                     )
+        #logger.debug(deriv_id + ":" + str(list_of_all_expr_global_IDs_for_this_deriv))
+
         deriv_uses_expr_global_id[deriv_id] = list(
             set(list_of_all_expr_global_IDs_for_this_deriv)
         )
@@ -1866,6 +1890,8 @@ def create_step_graphviz_png(
 
     """
     logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+
     dot_filename = "/home/appuser/app/static/graphviz.dot"
     remove_file_debris(["/home/appuser/app/static/"], ["graphviz"], ["dot"])
 
@@ -2184,7 +2210,7 @@ def delete_derivation(deriv_id: str, path_to_db: str) -> str:
     dat = clib.read_db(path_to_db)
     # TODO: if expr is only used in this derivation, does the user want dangling expressions removed?
     if deriv_id in dat["derivations"].keys():
-        del dat["derivations"][deriv_id]['steps']
+        del dat["derivations"][deriv_id]
     else:
         raise Exception("name of derivation not in dat")
     clib.write_db(path_to_db, dat)
@@ -2471,6 +2497,22 @@ def delete_expr(expr_global_id: str, path_to_db: str) -> str:
     clib.write_db(path_to_db, dat)
     return status_message
 
+def initialize_derivation(name_of_derivation: str, current_username: str, notes: str, path_to_db: str) -> str:
+    """
+    >>> initialize_derivation()
+    """
+    logger.info('[trace] ' + current_username)
+    dat = clib.read_db(path_to_db)
+    deriv_id = create_deriv_id(path_to_db) 
+    dat['derivations'][deriv_id] = {
+                            'name': name_of_derivation,
+                            'author': current_username,
+                            'notes': notes,
+                            'creation date': datetime.datetime.now().strftime("%Y-%m-%d"),
+                            'steps': {} }
+    clib.write_db(path_to_db, dat)
+ 
+    return deriv_id
 
 def create_step(
     latex_for_step_dict: dict,
