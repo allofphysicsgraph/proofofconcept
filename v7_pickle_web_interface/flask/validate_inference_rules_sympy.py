@@ -211,6 +211,14 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         return replace_scalar_with_vector(latex_dict)
     elif step_dict["inf rule"] == "simplify":
         return simplify(latex_dict)
+    elif step_dict["inf rule"] == "factor out X":
+        return factor_out_x(latex_dict)
+    elif step_dict["inf rule"] == "factor out X from LHS":
+        return factor_out_x_from_lhs(latex_dict)
+    elif step_dict["inf rule"] == "factor out X from RHS":
+        return factor_out_x_from_rhs(latex_dict)
+    elif step_dict["inf rule"] == "differentiate with respect to":
+        return differentiate_with_respect_to(latex_dict)
     elif (
         step_dict["inf rule"]
         == "substitute list of new variables X for list of old variables Y"
@@ -1200,6 +1208,45 @@ def subtract_expr_1_from_expr_2(latex_dict):
     """
     return "no check performed"
 
+def factor_out_x(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> factor_out_x(latex_dict)
+    """
+    return "no check performed"
+
+def factor_out_x_from_lhs(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> factor_out_x_from_lhs(latex_dict)
+    """
+    return "no check performed"
+
+def factor_out_x_from_rhs(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> factor_out_x_from_rhs(latex_dict)
+    """
+    return "no check performed"
+
+def differentiate_with_respect_to(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> differentiate_with_respect_to(latex_dict)
+    """
+    return "no check performed"
 
 def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
     """
