@@ -4168,7 +4168,11 @@
         "8639236": "5778176146",
         "2075807": "3806977900",
         "3423567": "5960438249",
-        "1781127": "8558338742"
+        "1781127": "8558338742",
+        "2690984": "8517613459",
+        "8321379": "5095822224",
+        "8050064": "6257526854",
+        "5410092": "7221917737"
     },
     "expressions": {
         "0000040490": {
@@ -4869,7 +4873,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\lambda = v\\: T",
+            "latex": "\\lambda = v T",
             "name": "",
             "notes": ""
         },
@@ -7539,6 +7543,38 @@
             "notes": "",
             "author": "Ben",
             "creation date": "2020-04-20"
+        },
+        "8517613459": {
+            "latex": "asidfnaingiag",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "5095822224": {
+            "latex": "fisngiasngiasg",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "6257526854": {
+            "latex": "gaignaig",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "7221917737": {
+            "latex": "asdfag",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
         }
     },
     "inference rules": {
