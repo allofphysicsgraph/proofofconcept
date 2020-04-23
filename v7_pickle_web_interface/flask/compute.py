@@ -769,8 +769,15 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
-    list_deriv = list(dat["derivations"].keys())
-    list_deriv.sort()
+    list_of_tups = []
+    for deriv_id in dat["derivations"].keys():
+        list_of_tups.append((deriv_id, dat["derivations"][deriv_id]['name'].lower()))
+        
+    list_deriv = []
+    # https://stackoverflow.com/a/10695161/1164295
+    for this_tup in sorted(list_of_tups, key=lambda x: x[1]):
+        list_deriv.append(this_tup[0])
+
     return list_deriv
 
 
@@ -2229,15 +2236,15 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     arg_dict = {}
     status_msg = ""
     try:
-        arg_dict["number of feeds"] = str(int(inf_rule_dict_from_form["num_feeds"]))
+        arg_dict["number of feeds"] = int(inf_rule_dict_from_form["num_feeds"])
     except ValueError as err:
         return "number of feeds does not seem to be an integer"
     try:
-        arg_dict["number of inputs"] = str(int(inf_rule_dict_from_form["num_inputs"]))
+        arg_dict["number of inputs"] = int(inf_rule_dict_from_form["num_inputs"])
     except ValueError as err:
         return "number of inputs does not seem to be an integer"
     try:
-        arg_dict["number of outputs"] = str(int(inf_rule_dict_from_form["num_outputs"]))
+        arg_dict["number of outputs"] = int(inf_rule_dict_from_form["num_outputs"])
     except ValueError as err:
         return "number of outputs does not seem to be an integer"
     arg_dict["latex"] = inf_rule_dict_from_form["latex"]
