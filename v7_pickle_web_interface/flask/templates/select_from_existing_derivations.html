@@ -15,7 +15,7 @@
         <span class="input-group-addon">Please select</span>
             <select name="derivation_selected" class="selectpicker form-control">
               {% for elem in list_of_derivations %}
-              <option value="{{ elem }}">{{ elem }}</option>
+              <option value="{{ elem }}">{{ dat['derivations'][elem]['name'] }}</option>
               {% endfor %}
             </select>
     </div>
