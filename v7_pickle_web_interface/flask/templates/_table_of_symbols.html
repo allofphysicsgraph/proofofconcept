@@ -41,9 +41,9 @@
     <!-- used in expressions -->
     <td>
       <UL>
-        {% for deriv_name in symbol_use_list %}
-        <LI><a href="{{ url_for('review_derivation', name_of_derivation=deriv_name) }}">
-           {{ deriv_name }} </a>
+        {% for deriv_id in symbol_use_list %}
+        <LI><a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}">
+           {{ deriv_id }} </a>
 </LI>
         {% endfor %}
       </UL>

@@ -39,12 +39,19 @@ schema = {
                             },
         "derivations" :     {"type" : "object",
                              "additionalProperties": False,
-                             "patternProperties": {"^[0-9a-zA-Z\s_:'-\+/\*\^=\(\)\[\]]+$": # derivation name
+                             "patternProperties": {"^\d{6}$": # deriv_id
                                     {"type": "object",
                                      "additionalProperties": False,
-                                     "patternProperties":
-                                          {"^\d{7}$": # step ID
-                                                {"type": "object",
+                                     "properties": {
+                                        "notes": {"type": "string"},
+                                        "name": {"type": "string"},
+                                        "author": {"type": "string"},
+                                        "creation date": {"type": "string"},
+                                        "steps": {"type": "object", 
+                                            "additionalProperties": False,
+                                            "patternProperties":
+                                             {"^\d{7}$": # step ID
+                                                 {"type": "object",
                                                       "additionalProperties": False,
                                                       "properties": {
                                                                    'inf rule' : { "type": "string"},
@@ -77,7 +84,7 @@ schema = {
                                                           }
                                                      }
                                                   }
-
+                                      }     }
                             },
         "units" :           {"type" : "object",
                              "additionalProperties": False,

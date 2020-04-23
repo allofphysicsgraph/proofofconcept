@@ -445,7 +445,7 @@ def after_request(response):
 def unauthorized():
     """
     https://flask-login.readthedocs.io/en/latest/
-    >>> 
+    >>>
     """
     return redirect(url_for("login"))
 
@@ -531,7 +531,7 @@ def logout():
 @app.route("/create_new_account", methods=["GET", "POST"])
 def create_new_account():
     """
-    >>> 
+    >>>
     """
     webform = RegistrationForm()
 
@@ -1080,15 +1080,15 @@ def select_derivation_to_edit():
 
 
 @app.route(
-    "/select_derivation_step_to_edit/<name_of_derivation>/", methods=["GET", "POST"]
+    "/select_derivation_step_to_edit/<deriv_id>/", methods=["GET", "POST"]
 )
-def select_derivation_step_to_edit(name_of_derivation: str):
+def select_derivation_step_to_edit(deriv_id: str):
     """
     >>> select_derivation_step_to_edit('fun deriv')
     """
     logger.info("[trace] select_derivation_step_to_edit")
     try:
-        step_dict = compute.get_derivation_steps(name_of_derivation, path_to_db)
+        step_dict = compute.get_derivation_steps(deriv_id, path_to_db)
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
@@ -1102,7 +1102,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
             return redirect(
                 url_for(
                     "modify_step",
-                    name_of_derivation=name_of_derivation,
+                    deriv_id=deriv_id,
                     step_id=step_to_edit,
                 )
             )
@@ -1111,10 +1111,10 @@ def select_derivation_step_to_edit(name_of_derivation: str):
             step_to_delete = request.form["step_to_delete"]
             try:
                 compute.delete_step_from_derivation(
-                    name_of_derivation, step_to_delete, path_to_db
+                    deriv_id, step_to_delete, path_to_db
                 )
                 return redirect(
-                    url_for("review_derivation", name_of_derivation=name_of_derivation)
+                    url_for("review_derivation", deriv_id=deriv_id)
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -1122,15 +1122,15 @@ def select_derivation_step_to_edit(name_of_derivation: str):
 
     dat = clib.read_db(path_to_db)
 
-    if name_of_derivation in dat["derivations"].keys():
-        # step_dict = dat["derivations"][name_of_derivation]
+    if deriv_id in dat["derivations"].keys():
+        # step_dict = dat["derivations"][deriv_id]['steps']
 
         # previously
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
-                    name_of_derivation, step_id, path_to_db
+                    deriv_id, step_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -1145,7 +1145,7 @@ def select_derivation_step_to_edit(name_of_derivation: str):
 
     return render_template(
         "select_derivation_step_to_edit.html",
-        name_of_derivation=name_of_derivation,
+        deriv_id=deriv_id,
         expr_local_to_gobal=dat["expr local to global"],
         expressions_dict=dat["expressions"],
         step_dict=step_dict,
@@ -1170,7 +1170,7 @@ def select_from_existing_derivations():
 
         # dropdown menu provides a derivation selected
         if "derivation_selected" in request.form.keys():
-            name_of_derivation = request.form["derivation_selected"]
+            deriv_id = request.form["derivation_selected"]
         else:  # no derivations exist
             return redirect(url_for("index"))
 
@@ -1178,7 +1178,7 @@ def select_from_existing_derivations():
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_pdf')])
             try:
                 pdf_filename = compute.generate_pdf_for_derivation(
-                    name_of_derivation, path_to_db
+                    deriv_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -1194,7 +1194,7 @@ def select_from_existing_derivations():
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_tex')])
             try:
                 tex_filename = compute.generate_tex_for_derivation(
-                    name_of_derivation, path_to_db
+                    deriv_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -1209,7 +1209,7 @@ def select_from_existing_derivations():
         elif request.form["submit_button"] == "display_graphviz":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'display_graphviz')])
             return redirect(
-                url_for("review_derivation", name_of_derivation=name_of_derivation,)
+                url_for("review_derivation", deriv_id=deriv_id,)
             )
         else:
             flash("unrecongized button in" + str(request.form))
@@ -1219,9 +1219,9 @@ def select_from_existing_derivations():
     )
 
 
-@app.route("/new_step_select_inf_rule/<name_of_derivation>/", methods=["GET", "POST"])
+@app.route("/new_step_select_inf_rule/<deriv_id>/", methods=["GET", "POST"])
 @login_required  # https://flask-login.readthedocs.io/en/latest/
-def new_step_select_inf_rule(name_of_derivation: str):
+def new_step_select_inf_rule(deriv_id: str):
     logger.info("[trace] " + str(current_user.username))
     try:
         list_of_inf_rules = compute.get_sorted_list_of_inf_rules(path_to_db)
@@ -1241,7 +1241,7 @@ def new_step_select_inf_rule(name_of_derivation: str):
         return redirect(
             url_for(
                 "provide_expr_for_inf_rule",
-                name_of_derivation=name_of_derivation,
+                deriv_id=deriv_id,
                 inf_rule=selected_inf_rule,
             )
         )
@@ -1250,15 +1250,15 @@ def new_step_select_inf_rule(name_of_derivation: str):
         "new_step_select_inf_rule.html",
         title=name_of_derivation,
         inf_rule_list=list_of_inf_rules,
-        name_of_derivation=name_of_derivation,
+        deriv_id=deriv_id,
     )
 
 
 @app.route(
-    "/provide_expr_for_inf_rule/<name_of_derivation>/<inf_rule>",
+    "/provide_expr_for_inf_rule/<deriv_id>/<inf_rule>",
     methods=["GET", "POST"],
 )
-def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
+def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
     """
     https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
 
@@ -1295,7 +1295,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
             local_step_id = compute.create_step(
                 latex_for_step_dict,
                 inf_rule,
-                name_of_derivation,
+                deriv_id,
                 current_user.username,
                 path_to_db,
             )
@@ -1309,7 +1309,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
         try:
             step_validity_msg = vir.validate_step(
-                name_of_derivation, local_step_id, path_to_db
+                deriv_id, local_step_id, path_to_db
             )
         except Exception as err:
             flash(str(err))
@@ -1319,21 +1319,21 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
         return redirect(
             url_for(
                 "step_review",
-                name_of_derivation=name_of_derivation,
+                deriv_id=deriv_id,
                 local_step_id=local_step_id,
             )
         )
 
     # the following is needed to handle the case where the derivation is new and no steps exist yet
-    if name_of_derivation in dat["derivations"].keys():
-        step_dict = dat["derivations"][name_of_derivation]
+    if deriv_id in dat["derivations"].keys():
+        step_dict = dat["derivations"][deriv_id]['steps']
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
-                    name_of_derivation, step_id, path_to_db
+                    deriv_id, step_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -1354,7 +1354,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
     try:
         list_of_local_id = compute.list_local_id_for_derivation(
-            name_of_derivation, path_to_db
+            deriv_id, path_to_db
         )
     except Exception as err:
         logger.error(str(err))
@@ -1363,7 +1363,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
     try:
         list_of_global_id_not_in_derivation = compute.list_global_id_not_in_derivation(
-            name_of_derivation, path_to_db
+            deriv_id, path_to_db
         )
     except Exception as err:
         logger.error(str(err))
@@ -1380,7 +1380,7 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
     return render_template(
         "provide_expr_for_inf_rule.html",
-        name_of_derivation=name_of_derivation,
+        deriv_id=deriv_id,
         expression_popularity_dict=expression_popularity_dict,
         expressions_dict=dat["expressions"],
         inf_rule_dict=infrules_modified_latex_dict[inf_rule],
@@ -1395,9 +1395,9 @@ def provide_expr_for_inf_rule(name_of_derivation: str, inf_rule: str):
 
 
 @app.route(
-    "/step_review/<name_of_derivation>/<local_step_id>/", methods=["GET", "POST"],
+    "/step_review/<deriv_id>/<local_step_id>/", methods=["GET", "POST"],
 )
-def step_review(name_of_derivation: str, local_step_id: str):
+def step_review(deriv_id: str, local_step_id: str):
     """
     https://teamtreehouse.com/community/getting-data-from-wtforms-formfield
 
@@ -1423,18 +1423,18 @@ def step_review(name_of_derivation: str, local_step_id: str):
         if request.form["submit_button"] == "accept this step; add another step":
             return redirect(
                 url_for(
-                    "new_step_select_inf_rule", name_of_derivation=name_of_derivation
+                    "new_step_select_inf_rule", deriv_id=deriv_id
                 )
             )
         if request.form["submit_button"] == "accept this step; review derivation":
             return redirect(
-                url_for("review_derivation", name_of_derivation=name_of_derivation,)
+                url_for("review_derivation", deriv_id=deriv_id,)
             )
         elif request.form["submit_button"] == "modify this step":
             return redirect(
                 url_for(
                     "modify_step",
-                    name_of_derivation=name_of_derivation,
+                    deriv_id=deriv_id,
                     step_id=local_step_id,
                 )
             )
@@ -1444,7 +1444,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
 
     try:
         step_graphviz_png = compute.create_step_graphviz_png(
-            name_of_derivation, local_step_id, path_to_db
+            deriv_id, local_step_id, path_to_db
         )
     except Exception as err:
         logger.error(str(err))
@@ -1452,27 +1452,27 @@ def step_review(name_of_derivation: str, local_step_id: str):
         step_graphviz_png = "error.png"
     dat = clib.read_db(path_to_db)
 
-    if name_of_derivation in dat["derivations"].keys():
+    if deriv_id in dat["derivations"].keys():
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
-                    name_of_derivation, step_id, path_to_db
+                    deriv_id, step_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
                 derivation_validity_dict[step_id] = "failed"
         try:
-            step_dict = dat["derivations"][name_of_derivation]
+            step_dict = dat["derivations"][deriv_id]['steps']
         except Exception as err:
             logger.error(str(err))
             flash(str(err))
             step_dict = {}
     else:
-        logger.debug(name_of_derivation + "does not exist in derivations")
+        logger.debug(deriv_id + "does not exist in derivations")
         derivation_validity_dict = {}
         step_dict = {}
 
@@ -1487,7 +1487,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
 
     try:
         list_of_symbols = compute.get_list_of_symbols_in_derivation_step(
-            name_of_derivation, local_step_id, path_to_db
+            deriv_id, local_step_id, path_to_db
         )
     except Exception as err:
         logger.error(str(err))
@@ -1498,7 +1498,7 @@ def step_review(name_of_derivation: str, local_step_id: str):
         "step_review.html",
         webform=webform,
         name_of_graphviz_png=step_graphviz_png,
-        name_of_derivation=name_of_derivation,
+        deriv_id=deriv_id,
         expression_popularity_dict=expression_popularity_dict,
         step_dict=step_dict,
         list_of_symbols=list_of_symbols,
@@ -1510,9 +1510,9 @@ def step_review(name_of_derivation: str, local_step_id: str):
     )
 
 
-@app.route("/rename_derivation/<name_of_derivation>/", methods=["GET", "POST"])
+@app.route("/rename_derivation/<deriv_id>/", methods=["GET", "POST"])
 @login_required
-def rename_derivation(name_of_derivation: str):
+def rename_derivation(deriv_id: str):
     """
     >>>
     """
@@ -1522,7 +1522,7 @@ def rename_derivation(name_of_derivation: str):
         # ImmutableMultiDict([('revised_text', 'test case 1')])
         if "revised_text" in request.form.keys():
             status_msg = compute.rename_derivation(
-                name_of_derivation, request.form["revised_text"], path_to_db
+                deriv_id, request.form["revised_text"], path_to_db
             )
             flash(status_msg)
             return redirect(
@@ -1536,13 +1536,13 @@ def rename_derivation(name_of_derivation: str):
 
     return render_template(
         "rename_derivation.html",
-        name_of_derivation=name_of_derivation,
+        deriv_id=deriv_id,
         edit_name_webform=RevisedTextForm(request.form),
     )
 
 
-@app.route("/review_derivation/<name_of_derivation>/", methods=["GET", "POST"])
-def review_derivation(name_of_derivation: str):
+@app.route("/review_derivation/<deriv_id>/", methods=["GET", "POST"])
+def review_derivation(deriv_id: str):
     """
     >>> review_derivation
     """
@@ -1555,18 +1555,18 @@ def review_derivation(name_of_derivation: str):
         if request.form["submit_button"] == "add another step":
             return redirect(
                 url_for(
-                    "new_step_select_inf_rule", name_of_derivation=name_of_derivation
+                    "new_step_select_inf_rule", deriv_id=deriv_id
                 )
             )
         elif request.form["submit_button"] == "rename derivation":
             return redirect(
-                url_for("rename_derivation", name_of_derivation=name_of_derivation)
+                url_for("rename_derivation", deriv_id=deriv_id)
             )
         elif request.form["submit_button"] == "edit existing step":
             return redirect(
                 url_for(
                     "select_derivation_step_to_edit",
-                    name_of_derivation=name_of_derivation,
+                    deriv_id=deriv_id,
                 )
             )
         elif request.form["submit_button"] == "return to main menu":
@@ -1574,7 +1574,7 @@ def review_derivation(name_of_derivation: str):
         elif request.form["submit_button"] == "generate pdf":
             try:
                 pdf_filename = compute.generate_pdf_for_derivation(
-                    name_of_derivation, path_to_db
+                    deriv_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -1583,7 +1583,7 @@ def review_derivation(name_of_derivation: str):
         elif request.form["submit_button"] == "generate tex":
             try:
                 tex_filename = compute.generate_tex_for_derivation(
-                    name_of_derivation, path_to_db
+                    deriv_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -1592,7 +1592,7 @@ def review_derivation(name_of_derivation: str):
         elif request.form["submit_button"] == "delete derivation":
             msg = "no action taken"
             try:
-                msg = compute.delete_derivation(name_of_derivation, path_to_db)
+                msg = compute.delete_derivation(deriv_id, path_to_db)
             except Exception as err:
                 flash(str(err))
                 logger.error(str(err))
@@ -1603,28 +1603,28 @@ def review_derivation(name_of_derivation: str):
             logger.error("unrecognized button")
 
     try:
-        derivation_png = compute.create_derivation_png(name_of_derivation, path_to_db)
+        derivation_png = compute.create_derivation_png(deriv_id, path_to_db)
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
         derivation_png = "error.png"
 
     try:
-        d3js_json_filename = compute.create_d3js_json(name_of_derivation, path_to_db)
+        d3js_json_filename = compute.create_d3js_json(deriv_id, path_to_db)
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
         d3js_json_filename = ""
     dat = clib.read_db(path_to_db)
 
-    if name_of_derivation in dat["derivations"].keys():
+    if deriv_id in dat["derivations"].keys():
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
-                    name_of_derivation, step_id, path_to_db
+                    deriv_id, step_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -1641,10 +1641,10 @@ def review_derivation(name_of_derivation: str):
     return render_template(
         "review_derivation.html",
         pdf_filename=pdf_filename,
-        name_of_derivation=name_of_derivation,
+        deriv_id=deriv_id,
         name_of_graphviz_png=derivation_png,
         json_for_d3js=d3js_json_filename,
-        step_dict=dat["derivations"][name_of_derivation],
+        step_dict=dat["derivations"][deriv_id]['steps'],
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],
         expression_popularity_dict=expression_popularity_dict,
@@ -1652,9 +1652,9 @@ def review_derivation(name_of_derivation: str):
     )
 
 
-@app.route("/modify_step/<name_of_derivation>/<step_id>/", methods=["GET", "POST"])
+@app.route("/modify_step/<deriv_id>/<step_id>/", methods=["GET", "POST"])
 @login_required
-def modify_step(name_of_derivation: str, step_id: str):
+def modify_step(deriv_id: str, step_id: str):
     """
     >>> modify_step('fun deriv', '958242')
     """
@@ -1667,21 +1667,21 @@ def modify_step(name_of_derivation: str, step_id: str):
                 return redirect(
                     url_for(
                         "new_step_select_inf_rule",
-                        name_of_derivation=name_of_derivation,
+                        deriv_id=deriv_id,
                     )
                 )
 
             # https://github.com/allofphysicsgraph/proofofconcept/issues/108
             elif request.form["submit_button"] == "view exploded graph":
                 # ImmutableMultiDict([('submit_button', 'view exploded graph')])
-                return redirect(url_for("exploded_step", name_of_derivation=name_of_derivation, step_id=step_id))
+                return redirect(url_for("exploded_step", deriv_id=deriv_id, step_id=step_id))
 
         # https://github.com/allofphysicsgraph/proofofconcept/issues/116
         elif "linear_index_to_modify" in request.form.keys():
             # ImmutableMultiDict([('linear_index_to_modify', '0.5')])
             try:
                 compute.update_linear_index(
-                    name_of_derivation,
+                    deriv_id,
                     step_id,
                     request.form["expr_local_id_of_latex_to_modify"],
                     path_to_db,
@@ -1704,7 +1704,7 @@ def modify_step(name_of_derivation: str, step_id: str):
 
             try:
                 step_validity_msg = vir.validate_step(
-                    name_of_derivation, step_id, path_to_db
+                    deriv_id, step_id, path_to_db
                 )
             except Exception as err:
                 flash(str(err))
@@ -1713,7 +1713,7 @@ def modify_step(name_of_derivation: str, step_id: str):
             return redirect(
                 url_for(
                     "step_review",
-                    name_of_derivation=name_of_derivation,
+                    deriv_id=deriv_id,
                     local_step_id=step_id,
                 )
             )
@@ -1724,24 +1724,24 @@ def modify_step(name_of_derivation: str, step_id: str):
 
     dat = clib.read_db(path_to_db)
 
-    if name_of_derivation in dat["derivations"].keys():
+    if deriv_id in dat["derivations"].keys():
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][name_of_derivation].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
-                    name_of_derivation, step_id, path_to_db
+                    deriv_id, step_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
                 derivation_validity_dict[step_id] = "failed"
     else:
-        logger.error("ERROR: "+name_of_derivation+" is not in derivations")
-        flash("ERROR: "+name_of_derivation+" is not in derivations")
+        logger.error("ERROR: "+deriv_id+" is not in derivations")
+        flash("ERROR: "+deriv_id+" is not in derivations")
 
     try:
         step_graphviz_png = compute.create_step_graphviz_png(
-            name_of_derivation, step_id, path_to_db
+            deriv_id, step_id, path_to_db
         )
     except Exception as err:
         logger.error(str(err))
@@ -1750,7 +1750,7 @@ def modify_step(name_of_derivation: str, step_id: str):
 
     try:
         list_of_new_linear_indices = compute.list_new_linear_indices(
-            name_of_derivation, path_to_db
+            deriv_id, path_to_db
         )
     except Exception as err:
         flash(str(err))
@@ -1759,13 +1759,13 @@ def modify_step(name_of_derivation: str, step_id: str):
 
     return render_template(
         "modify_step.html",
-        name_of_derivation=name_of_derivation,
+        deriv_id=deriv_id,
         name_of_graphviz_png=step_graphviz_png,
-        current_linear_index=dat["derivations"][name_of_derivation][step_id][
+        current_linear_index=dat["derivations"][deriv_id]['steps'][step_id][
             "linear index"
         ],
-        step_dict=dat["derivations"][name_of_derivation],
-        this_step=dat["derivations"][name_of_derivation][step_id],
+        step_dict=dat["derivations"][deriv_id]['steps'],
+        this_step=dat["derivations"][deriv_id]['steps'][step_id],
         local_to_global=dat["expr local to global"],
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],
@@ -1776,15 +1776,15 @@ def modify_step(name_of_derivation: str, step_id: str):
     )
 
 
-@app.route("/exploded_step/<name_of_derivation>/<step_id>/", methods=["GET", "POST"])
-def exploded_step(name_of_derivation: str, step_id: str):
+@app.route("/exploded_step/<deriv_id>/<step_id>/", methods=["GET", "POST"])
+def exploded_step(deriv_id: str, step_id: str):
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/108
     >>> exploded_step()
     """
     try:
         name_of_graphviz_file = compute.generate_graphviz_of_exploded_step(
-            name_of_derivation, step_id, path_to_db
+            deriv_id, step_id, path_to_db
         )
     except Exception as err:
         flash(str(err))
@@ -1793,7 +1793,7 @@ def exploded_step(name_of_derivation: str, step_id: str):
 
     return render_template(
         "exploded_step.html",
-        name_of_derivation=name_of_derivation,
+        deriv_id=deriv_id,
         name_of_graphviz_file=name_of_graphviz_file,
         step_id=step_id,
     )

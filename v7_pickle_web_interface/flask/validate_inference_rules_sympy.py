@@ -60,7 +60,7 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
         )
 
 
-def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str:
+def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     """
     There are 4 possible return strings from this function:
     * "no validation is available..."
@@ -74,7 +74,7 @@ def validate_step(name_of_derivation: str, step_id: str, path_to_db: str) -> str
 
     dat = clib.read_db(path_to_db)
 
-    step_dict = dat["derivations"][name_of_derivation][step_id]
+    step_dict = dat["derivations"][deriv_id]['steps'][step_id]
     logger.debug("validate_step; step_dict = %s", step_dict)
 
     if step_dict["inf rule"] in [
