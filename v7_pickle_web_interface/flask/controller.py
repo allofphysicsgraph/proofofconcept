@@ -365,9 +365,10 @@ class symbolEntry(FlaskForm):
 
 class NameOfDerivationInputForm(FlaskForm):
     logger.info("[trace]")
-    name_of_derivation = StringField(
+    name_of_derivation = StringField("name of derivation",
         validators=[validators.InputRequired(), validators.Length(max=1000)]
     )
+    notes = StringField("notes")
 
 
 # goal is to prevent cached responses;
@@ -744,11 +745,14 @@ def start_new_derivation():
     web_form = NameOfDerivationInputForm(request.form)
     if request.method == "POST" and web_form.validate():
         name_of_derivation = str(web_form.name_of_derivation.data)
+        notes = str(web_form.notes.data)
+
         logger.debug(
             "start_new_derivation: name of derivation = %s", name_of_derivation,
         )
+        deriv_id = compute.initialize_derivation(name_of_derivation, str(current_user.username), notes, path_to_db)
         return redirect(
-            url_for("new_step_select_inf_rule", name_of_derivation=name_of_derivation)
+            url_for("new_step_select_inf_rule", deriv_id=deriv_id)
         )
     return render_template(
         "start_new_derivation.html", form=web_form, title="start new derivation"
@@ -1258,9 +1262,12 @@ def new_step_select_inf_rule(deriv_id: str):
             )
         )
 
+    dat = clib.read_db(path_to_db)
+
     return render_template(
         "new_step_select_inf_rule.html",
-        title=name_of_derivation,
+        title=dat['derivations'][deriv_id]['name'],
+        name_of_derivation=dat['derivations'][deriv_id]['name'],
         inf_rule_list=list_of_inf_rules,
         deriv_id=deriv_id,
     )
@@ -1393,6 +1400,8 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
     return render_template(
         "provide_expr_for_inf_rule.html",
         deriv_id=deriv_id,
+        dat=dat,
+        name_of_derivation=dat['derivations'][deriv_id]['name'],
         expression_popularity_dict=expression_popularity_dict,
         expressions_dict=dat["expressions"],
         inf_rule_dict=infrules_modified_latex_dict[inf_rule],
@@ -1511,6 +1520,7 @@ def step_review(deriv_id: str, local_step_id: str):
         webform=webform,
         name_of_graphviz_png=step_graphviz_png,
         deriv_id=deriv_id,
+        dat=dat,
         expression_popularity_dict=expression_popularity_dict,
         step_dict=step_dict,
         list_of_symbols=list_of_symbols,
