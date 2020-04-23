@@ -6,8 +6,10 @@
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
     {{ form.csrf_token }}
-  <P>Specify name of derivation: {{ form.name_of_derivation(size=50, maxlength=300) }} <BR><small>max length = 300 characters</small>
-
+  <P>Specify {{ form.name_of_derivation.label}}: {{ form.name_of_derivation(size=50, maxlength=300) }} <BR>
+ <small>max length = 300 characters</small><BR>
+  {{form.notes.label }}: {{ form.notes(size=100, maxlength=300) }}<BR>
+<small>max length = 300 characters</small><BR>
   <input type="submit" value="begin">
 </form>
 
