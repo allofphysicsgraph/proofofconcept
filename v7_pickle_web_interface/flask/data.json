@@ -28,7 +28,7 @@
                     "feeds": [
                         "4264724"
                     ],
-                    "inf rule": "indefinite intgrate RHS over",
+                    "inf rule": "indefinite integrate RHS over",
                     "inputs": [
                         "8883737"
                     ],
@@ -76,7 +76,7 @@
                     "feeds": [
                         "6563727"
                     ],
-                    "inf rule": "indefinite intgrate RHS over",
+                    "inf rule": "indefinite integrate RHS over",
                     "inputs": [
                         "9984877"
                     ],
@@ -4664,7 +4664,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "v\\ du",
+            "latex": "v du",
             "name": "",
             "notes": ""
         },
@@ -4698,7 +4698,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "1= \\int_0^W a \\sin(\\frac{n \\pi}{W} x) \\psi(x)^*\\ dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "1= \\int_0^W a \\sin(\\frac{n \\pi}{W} x) \\psi(x)^* dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -4727,7 +4727,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "k = \\frac{2 \\pi}{v\\ T}",
+            "latex": "k = \\frac{2 \\pi}{v T}",
             "name": "",
             "notes": ""
         },
@@ -4735,7 +4735,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\int \\cos(a x)\\ dx = \\frac{1}{a}\\sin(a x)",
+            "latex": "\\int \\cos(a x) dx = \\frac{1}{a}\\sin(a x)",
             "name": "",
             "notes": ""
         },
@@ -4825,7 +4825,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1}{2}\\ dx - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right)\\ dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1}{2} dx - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right) dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -4835,7 +4835,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right)\\ dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\frac{1}{a^2}= \\frac{1}{2}W - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right) dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -5006,7 +5006,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\int |\\psi(x)|^2\\ dx = 1",
+            "latex": "\\int |\\psi(x)|^2 dx = 1",
             "name": "",
             "notes": ""
         },
@@ -5048,7 +5048,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "T\\ f=1",
+            "latex": "T f=1",
             "name": "",
             "notes": ""
         },
@@ -5540,7 +5540,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "1= \\int \\psi(x)\\psi(x)^*\\ dx",
+            "latex": "1= \\int \\psi(x)\\psi(x)^* dx",
             "name": "",
             "notes": ""
         },
@@ -5722,7 +5722,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\int a\\ dx = a x",
+            "latex": "\\int a dx = a x",
             "name": "",
             "notes": ""
         },
@@ -5834,7 +5834,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\int \\cos\\left(\\frac{2n\\pi}{W} x\\right)\\ dx = \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)",
+            "latex": "\\int \\cos\\left(\\frac{2n\\pi}{W} x\\right) dx = \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)",
             "name": "",
             "notes": ""
         },
@@ -5988,7 +5988,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "d(u\\ v) = u\\ dv + v\\ du",
+            "latex": "d(u v) = u dv + v du",
             "name": "",
             "notes": ""
         },
@@ -5996,7 +5996,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "d(u\\ v) - v\\ du= u\\ dv",
+            "latex": "d(u v) - v du= u dv",
             "name": "",
             "notes": ""
         },
@@ -6004,7 +6004,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "u\\ dv = d(u\\ v) - v\\ du",
+            "latex": "u dv = d(u v) - v du",
             "name": "",
             "notes": ""
         },
@@ -6012,7 +6012,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\int u\\ dv = u\\ v - \\int v\\ du",
+            "latex": "\\int u dv = u v - \\int v du",
             "name": "",
             "notes": ""
         },
@@ -6028,7 +6028,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "1= \\int |\\psi(x)|^2\\ dx",
+            "latex": "1= \\int |\\psi(x)|^2 dx",
             "name": "",
             "notes": ""
         },
@@ -6044,7 +6044,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\int \\frac{1}{2}\\ dx = \\frac{1}{2} x",
+            "latex": "\\int \\frac{1}{2} dx = \\frac{1}{2} x",
             "name": "",
             "notes": ""
         },
@@ -6062,7 +6062,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "1= \\int_0^W a^2 \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}\\ dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "1= \\int_0^W a^2 \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2} dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -6106,7 +6106,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "1= \\int_0^W a^2 \\left(\\sin\\left(\\frac{n \\pi}{W} x\\right)\\right)^2\\ dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "1= \\int_0^W a^2 \\left(\\sin\\left(\\frac{n \\pi}{W} x\\right)\\right)^2 dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -6190,7 +6190,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{dy}{y} = i\\ dx",
+            "latex": "\\frac{dy}{y} = i dx",
             "name": "",
             "notes": ""
         },
@@ -6230,7 +6230,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\log(y) = i\\ dx",
+            "latex": "\\log(y) = i dx",
             "name": "",
             "notes": ""
         },
@@ -6246,7 +6246,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{d}{dx} y= (i\\sin(x) + \\cos(x))\\ i",
+            "latex": "\\frac{d}{dx} y= (i\\sin(x) + \\cos(x)) i",
             "name": "",
             "notes": ""
         },
@@ -6408,7 +6408,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "dy = y\\ i\\ dx",
+            "latex": "dy = y i dx",
             "name": "",
             "notes": ""
         },
@@ -6416,7 +6416,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{d}{dx} y= y\\ i",
+            "latex": "\\frac{d}{dx} y= y i",
             "name": "",
             "notes": ""
         },
@@ -6426,7 +6426,7 @@
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}\\ dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
+            "latex": "\\frac{1}{a^2}= \\int_0^W \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2} dx{\\rm \\ when\\ }n \\in {\\rm Integer}",
             "name": "",
             "notes": ""
         },
@@ -6526,7 +6526,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\int_{-\\infty}^{\\infty} \\delta(x)\\ dx = 1",
+            "latex": "\\int_{-\\infty}^{\\infty} \\delta(x) dx = 1",
             "name": "",
             "notes": ""
         },
@@ -6689,7 +6689,7 @@
             "AST": [],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\langle \\psi| \\hat{A} |\\psi\\rangle = \\int_{-\\infty}^{\\infty} \\psi^* A \\psi\\ dx",
+            "latex": "\\langle \\psi| \\hat{A} |\\psi\\rangle = \\int_{-\\infty}^{\\infty} \\psi^* A \\psi dx",
             "name": "",
             "notes": ""
         },
@@ -7902,7 +7902,7 @@
             "number of inputs": 1,
             "number of outputs": 1
         },
-        "indefinite intgrate RHS over": {
+        "indefinite integrate RHS over": {
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "Indefinite integral of RHS of Eq.~\\ref{eq:#2} over $#1$; yields Eq.~\\ref{eq:#3}.",
