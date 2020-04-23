@@ -100,11 +100,7 @@ login_manager.init_app(app)
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 csrf.init_app(app)
 
-
-# TODO: get rid of this!
-# Bootstrap(app)
-
-import pdg_api
+import pdg_api # PDG API
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
 # rd = Redis(host='db', port=6379)
@@ -142,7 +138,7 @@ else:
 class LoginForm(FlaskForm):
     logger.info("[trace]")
     username = StringField("Username", validators=[validators.DataRequired()])
-    # password = PasswordField("Password")
+    password = PasswordField("Password", validators=[validators.DataRequired()])
     submit = SubmitField("sign in")
     # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
     remember_me = BooleanField("remember me")
@@ -166,6 +162,11 @@ class RegistrationForm(FlaskForm):
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
 class User(UserMixin):
     """
+    inherits from UserMixin which is defined here
+    https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html#UserMixin
+    in order to support required features; see
+    https://flask-login.readthedocs.io/en/latest/#your-user-class
+
     https://realpython.com/using-flask-login-for-user-management-with-flask/
     and
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
@@ -173,20 +174,31 @@ class User(UserMixin):
 
     logger.info("[trace]")
 
-    id = 423
-    username = "ben"
-    email = "ben@gmail"
+    def __init__(self, name, id, active=True):
+        self.name = name
+        self.id = id
+        self.active = active
 
     def is_active(self):
-        return True
+        return self.active
 
-    def get_id(self):
-        return "ben@gmail"
+#    def __init__(self, user_name, pass_word):
+#        self.username = user_name
+#        self.password = pass_word
 
     #    def is_authenticated(self):
     #        return self.authenticated
     def __repr__(self):
         return "<User {}>".format(self.username)
+
+# the following is a hack not meant for publication
+# https://gist.github.com/bkdinoop/6698956
+USERS = {
+    1: User(u"bp", 1),
+    2: User(u"mg", 2),
+    3: User(u"tl", 3, False),
+}
+USER_NAMES = dict((u.name, u) for u in USERS.values())
 
 
 class EquationInputForm(FlaskForm):
@@ -458,8 +470,8 @@ def load_user(user_id):
     also https://realpython.com/using-flask-login-for-user-management-with-flask/
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
     """
-    user = User()
-    return user  # User.get_id(user_id)
+    logger.debug(user_id)
+    return USERS.get(int(user_id)) #User.get_id(user_id)
 
 
 def is_safe_url(target):
@@ -487,31 +499,55 @@ def login():
 
     logger.debug(str(request.form))
 
+    #request.referrer = "http://localhost:5000/login"
+
     if form.validate_on_submit():
         # Login and validate the user.
         # user should be an instance of your `User` class
 
         # the following is what the person entered into the form
         logger.debug("username= %s", form.username.data)
-        #        user = User(form.username.data)
-        user = User()
-        if user is None:  # or not user.check_password(form.password.data):
-            flash("Invalid username or password")
-            return redirect(url_for("login"))
-        logger.debug("user is not none")
-        logger.debug("user = %s", str(user))
-        # https://flask-login.readthedocs.io/en/latest/#flask_login.login_user
-        login_user(user, remember=form.remember_me.data)
-        logger.debug("user logged in")
-        flash("Logged in successfully.")
+        #user = User()
+        #if user is None:  # or not user.check_password(form.password.data):
+        username = form.username.data
 
-        next = request.args.get("next")
+        #logger.debug('next =' + str(request.args.get("next")))
+        
+        # https://stackoverflow.com/a/28593313/1164295 
+        #logger.debug(request.headers.get("Referer")) = "http://localhost:5000/login"
+
+        # https://gist.github.com/bkdinoop/6698956
+        if username in USER_NAMES:
+            remember = request.form.get("remember", "no") == "yes"
+            if login_user(USER_NAMES[username], remember=remember):
+                flash("logged in")
+                logger.debug(current_user)
+                current_user.username = username
+                return redirect(url_for("editor"))
+            else:
+                flash("Invalid password; sleeping for 3 seconds")
+                time.sleep(3)
+                logger.debug("invalid password")
+                return redirect(url_for("login"))
+        else:
+            flash("invalid username; sleeping for 3 seconds")
+            time.sleep(3)
+            logger.debug("invalid username")
+            return redirect(url_for("create_new_account"))
+        # https://flask-login.readthedocs.io/en/latest/#flask_login.login_user
+        #login_user(user, remember=form.remember_me.data)
+        #logger.debug("user logged in")
+        #flash("Logged in successfully.")
+
+        #next = request.args.get("next")
         # is_safe_url should check if the url is safe for redirects.
         # See http://flask.pocoo.org/snippets/62/ for an example.
-        if not is_safe_url(next):
-            return abort(400)
+        #if not is_safe_url(next):
+        #    return abort(400)
 
-        return redirect(next or url_for("index"))
+        logger.error("Should not reach this condition")
+
+        return redirect(url_for("index"))
 
     # intentionally delay the responsiveness of the login page to limit brute force attacks
     time.sleep(2)
@@ -876,6 +912,7 @@ def list_all_symbols():
     return render_template(
         "list_all_symbols.html",
         symbols_dict=dat["symbols"],
+        dat=dat,
         sorted_list_symbols=sorted_list_symbols,
         sorted_list_symbols_not_in_use=sorted_list_symbols_not_in_use,
         edit_latex_webform=RevisedTextForm(request.form),
