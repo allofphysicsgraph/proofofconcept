@@ -1,12 +1,12 @@
 # QUICK START:
 docker build -t flask_ub .; docker run -it --rm -v`pwd`/data.json:/home/appuser/app/data.json --publish 5000:5000 flask_ub
 
+# MANUAL start
+docker build -t flask_ub .; docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
 
-# OLD quick start, with static data.json file
-python create_tmp_db.py ; docker build -t flask_ub .; docker run -it --rm --publish 5000:5000 flask_ub
 
-# to run linting and type checking, get a shell using
-python create_tmp_db.py ; docker build -t flask_ub .; docker run -it --rm -v `pwd`:/scratch --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
+
+
 
 # Build the image
 docker build -t flask_ub .
