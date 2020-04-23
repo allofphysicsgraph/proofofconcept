@@ -3833,6 +3833,235 @@
                     "creation date": "2020-04-20"
                 }
             }
+        },
+        "522862": {
+            "name": "optics: Law of refraction to Brewster's angle",
+            "author": "ben",
+            "notes": "from Halliday, Resnick, and Walker \"Fundamental Physics\", 6th edition (2001); see figure 34-27 on page 824",
+            "creation date": "2020-04-23",
+            "steps": {
+                "7919446": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5563180"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "9582699": {
+                    "inf rule": "subtract X from both sides",
+                    "inputs": [
+                        "5563180"
+                    ],
+                    "feeds": [
+                        "7475090"
+                    ],
+                    "outputs": [
+                        "3893026"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "2215432": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9932375"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "5372769": {
+                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inputs": [
+                        "9932375"
+                    ],
+                    "feeds": [
+                        "8773482",
+                        "7517122"
+                    ],
+                    "outputs": [
+                        "4176694"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "5001869": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "3893026",
+                        "4176694"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4962698"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "1148993": {
+                    "inf rule": "declare identity",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3940135"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "9056504": {
+                    "inf rule": "substitute X for Y",
+                    "inputs": [
+                        "3940135"
+                    ],
+                    "feeds": [
+                        "8421271",
+                        "9516318"
+                    ],
+                    "outputs": [
+                        "7426234"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "1206301": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "7426234",
+                        "4962698"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9701820"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "3169869": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "9701820"
+                    ],
+                    "feeds": [
+                        "2502645"
+                    ],
+                    "outputs": [
+                        "9314305"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "8509796": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "9314305"
+                    ],
+                    "feeds": [
+                        "6763636"
+                    ],
+                    "outputs": [
+                        "8585856"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "2967028": {
+                    "inf rule": "declare identity",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2621708"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "6119314": {
+                    "inf rule": "substitute X for Y",
+                    "inputs": [
+                        "2621708"
+                    ],
+                    "feeds": [
+                        "4429055",
+                        "1588002"
+                    ],
+                    "outputs": [
+                        "1898054"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "6146931": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "1898054",
+                        "8585856"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5179630"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "8072315": {
+                    "inf rule": "apply function to both sides of expression",
+                    "inputs": [
+                        "5179630"
+                    ],
+                    "feeds": [
+                        "2844676",
+                        "9430397"
+                    ],
+                    "outputs": [
+                        "8186016"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                },
+                "2068603": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "8186016"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 15,
+                    "notes": "",
+                    "author": "ben",
+                    "creation date": "2020-04-23"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -4172,7 +4401,32 @@
         "2690984": "8517613459",
         "8321379": "5095822224",
         "8050064": "6257526854",
-        "5410092": "7221917737"
+        "5410092": "7221917737",
+        "5563180": "8945218208",
+        "7475090": "9025853427",
+        "3893026": "1310571337",
+        "9932375": "6450985774",
+        "8773482": "1779497048",
+        "7517122": "7322344455",
+        "4176694": "2575937347",
+        "4962698": "7696214507",
+        "3940135": "8588429722",
+        "8421271": "7375348852",
+        "9516318": "1512581563",
+        "7426234": "6831637424",
+        "9701820": "3061811650",
+        "2502645": "7857757625",
+        "9314305": "9756089533",
+        "6763636": "5632428182",
+        "8585856": "2768857871",
+        "2621708": "4968680693",
+        "4429055": "7321695558",
+        "1588002": "9906920183",
+        "1898054": "4501377629",
+        "5179630": "3417126140",
+        "2844676": "5453995431",
+        "9430397": "6023986360",
+        "8186016": "8495187962"
     },
     "expressions": {
         "0000040490": {
@@ -7575,6 +7829,214 @@
             "notes": "",
             "author": "Ben",
             "creation date": "2020-04-23"
+        },
+        "8945218208": {
+            "latex": "\\theta_{Brewster} + \\theta_{refracted} = 90^{\\circ}",
+            "AST": [],
+            "name": "",
+            "notes": "based on figure 34-27 on page 824 in 2001_HRW",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "9025853427": {
+            "latex": "\\theta_{Brewster}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "1310571337": {
+            "latex": "\\theta_{refracted} = 90^{\\circ} - \\theta_{Brewster}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "6450985774": {
+            "latex": "n_1 \\sin( \\theta_1 ) = n_2 \\sin( \\theta_2 )",
+            "AST": [],
+            "name": "Law of Refraction",
+            "notes": "eq 34-44 on page 819 in 2001_HRW",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "1779497048": {
+            "latex": "\\theta_{Brewster}, \\theta_{refraction}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "7322344455": {
+            "latex": "\\theta_1, \\theta_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "2575937347": {
+            "latex": "n_1 \\sin( \\theta_{Brewster} ) = n_2 \\sin( \\theta_{refraction} )",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "7696214507": {
+            "latex": "n_1 \\sin( \\theta_{Brewster} ) = n_2 \\sin( 90^{\\circ} - \\theta_{Brewster} )",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "8588429722": {
+            "latex": "\\sin( 90^{\\circ} - x ) = cos( x )",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "7375348852": {
+            "latex": "\\theta_{Brewster}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "1512581563": {
+            "latex": "x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "6831637424": {
+            "latex": "\\sin( 90^{\\circ} - \\theta_{Brewster} ) = cos( \\theta_{Brewster} )",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "3061811650": {
+            "latex": "n_1 \\sin( \\theta_{Brewster} ) = n_2 \\cos( \\theta_{Brewster} )",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "7857757625": {
+            "latex": "n_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "9756089533": {
+            "latex": " \\sin( \\theta_{Brewster} ) = \\frac{n_2}{n_1} \\cos( \\theta_{Brewster} )",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "5632428182": {
+            "latex": "\\cos( \\theta_{Brewster} )",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "2768857871": {
+            "latex": "\\frac{\\sin( \\theta_{Brewster} )}{\\cos( \\theta_{Brewster} )} = \\frac{n_2}{n_1} ",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "4968680693": {
+            "latex": "\\tan( x ) = \\frac{ \\sin( x )}{\\cos( x )}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "7321695558": {
+            "latex": "\\theta_{Brewster}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "9906920183": {
+            "latex": "x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "4501377629": {
+            "latex": "\\tan( \\theta_{Brewster} ) = \\frac{ \\sin( \\theta_{Brewster} )}{\\cos( \\theta_{Brewster} )}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "3417126140": {
+            "latex": "\\tan( \\theta_{Brewster} ) = \\frac{ n_2 }{ n_1 }",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "5453995431": {
+            "latex": "\\arctan{ x }",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "6023986360": {
+            "latex": "x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "5129762388": {
+            "latex": "\\theta_{refracted} = \\arctan{ \\frac{ n_1 }{ n_2 } }",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-04-23"
+        },
+        "8495187962": {
+            "latex": "\\theta_{Brewster} = \\arctan{ \\left( \\frac{ n_1 }{ n_2 } \\right) }",
+            "creation date": "2020-04-23",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
         }
     },
     "inference rules": {
@@ -8234,6 +8696,15 @@
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 0
+        },
+        "apply function to both sides of expression": {
+            "number of feeds": 2,
+            "number of inputs": 1,
+            "number of outputs": 1,
+            "latex": "Apply function $#1$ with argument $#2$ to Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}",
+            "notes": "Example: apply sin(x) to \"a = b + c\"",
+            "author": "Ben",
+            "creation date": "2020-04-23"
         }
     },
     "measures": {
