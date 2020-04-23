@@ -761,6 +761,8 @@ def show_all_derivations():
     >>>
     """
     logger.info("[trace] show_all_derivations")
+    dat = clib.read_db(path_to_db)
+
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
 
@@ -782,6 +784,7 @@ def show_all_derivations():
         "show_all_derivations.html",
         map_of_derivations=map_of_derivations,
         derivations_popularity_dict=derivations_popularity_dict,
+        dat=dat,
     )
 
 
@@ -941,6 +944,7 @@ def list_all_expressions():
 
     return render_template(
         "list_all_expressions.html",
+        dat=dat,
         expressions_dict=expr_dict_with_symbol_list,
         sorted_list_exprs=list_of_expr,
         list_of_expr_not_appearing_in_any_derivations=list_of_expr_not_appearing_in_any_derivations,
@@ -1087,12 +1091,7 @@ def select_derivation_step_to_edit(deriv_id: str):
     >>> select_derivation_step_to_edit('fun deriv')
     """
     logger.info("[trace] select_derivation_step_to_edit")
-    try:
-        step_dict = compute.get_derivation_steps(deriv_id, path_to_db)
-    except Exception as err:
-        logger.error(str(err))
-        flash(str(err))
-        step_dict = {}
+
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
         # request.form = ImmutableMultiDict([('step_to_delete', '0491182')])
@@ -1140,6 +1139,14 @@ def select_derivation_step_to_edit(deriv_id: str):
         # step_dict = {}
         derivation_validity_dict = {}
 
+    try:
+        step_dict = compute.get_derivation_steps(deriv_id, path_to_db)
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        step_dict = {}
+    #logger.debug(str(step_dict))
+
     sorted_step_ids = list(step_dict.keys())
     sorted_step_ids.sort()
 
@@ -1149,6 +1156,7 @@ def select_derivation_step_to_edit(deriv_id: str):
         expr_local_to_gobal=dat["expr local to global"],
         expressions_dict=dat["expressions"],
         step_dict=step_dict,
+        name_of_derivation=dat['derivations'][deriv_id]['name'],
         derivation_validity_dict=derivation_validity_dict,
         list_of_step_ids=sorted_step_ids,
     )
@@ -1214,8 +1222,12 @@ def select_from_existing_derivations():
         else:
             flash("unrecongized button in" + str(request.form))
 
+    dat = clib.read_db(path_to_db)
+
     return render_template(
-        "select_from_existing_derivations.html", list_of_derivations=list_of_deriv
+        "select_from_existing_derivations.html", 
+        dat=dat,
+        list_of_derivations=list_of_deriv
     )
 
 
@@ -1642,6 +1654,7 @@ def review_derivation(deriv_id: str):
         "review_derivation.html",
         pdf_filename=pdf_filename,
         deriv_id=deriv_id,
+        name_of_derivation=dat["derivations"][deriv_id]['name'],
         name_of_graphviz_png=derivation_png,
         json_for_d3js=d3js_json_filename,
         step_dict=dat["derivations"][deriv_id]['steps'],
