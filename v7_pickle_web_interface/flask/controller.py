@@ -574,6 +574,7 @@ def logout():
     https://flask-login.readthedocs.io/en/latest/#login-example
     >>>
     """
+    logger.info("[trace]" + str(current_user.username))
     logout_user()
     return redirect(url_for("index"))
 
@@ -1340,6 +1341,7 @@ def new_step_select_inf_rule(deriv_id: str):
     "/provide_expr_for_inf_rule/<deriv_id>/<inf_rule>",
     methods=["GET", "POST"],
 )
+@login_required
 def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
     """
     https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
@@ -1347,7 +1349,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
     >>> provide_expr_for_inf_rule()
     """
 
-    logger.info("[trace] provide_expr_for_inf_rule")
+    logger.info("[trace]" + str(current_user.username))
     # num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, path_to_db)
     # logger.debug('provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
 
@@ -1481,13 +1483,14 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
 @app.route(
     "/step_review/<deriv_id>/<local_step_id>/", methods=["GET", "POST"],
 )
+@login_required
 def step_review(deriv_id: str, local_step_id: str):
     """
     https://teamtreehouse.com/community/getting-data-from-wtforms-formfield
 
     >>> step_review
     """
-    logger.info("[trace] step_review")
+    logger.info("[trace]" + str(current_user.username))
 
     webform = symbolEntry()
 
@@ -1503,7 +1506,7 @@ def step_review(deriv_id: str, local_step_id: str):
     flash("saved to file")
 
     if request.method == "POST":
-        logger.debug("step_review: reslt = %s", str(request.form))
+        logger.debug("reslt = %s", str(request.form))
         if request.form["submit_button"] == "accept this step; add another step":
             return redirect(
                 url_for(
@@ -1599,9 +1602,9 @@ def step_review(deriv_id: str, local_step_id: str):
 @login_required
 def rename_derivation(deriv_id: str):
     """
-    >>>
+    >>> rename_derivation()
     """
-    logger.info("[trace] rename_derivation")
+    logger.info("[trace]" + str(current_user.username))
     if request.method == "POST":
         # logger.debug(request.form)
         # ImmutableMultiDict([('revised_text', 'test case 1')])
@@ -1744,7 +1747,7 @@ def modify_step(deriv_id: str, step_id: str):
     """
     >>> modify_step('fun deriv', '958242')
     """
-    logger.info("[trace] modify_step")
+    logger.info("[trace]" + str(current_user.username))
 
     if request.method == "POST":
         logger.debug("modify_step; request form = %s", request.form)
