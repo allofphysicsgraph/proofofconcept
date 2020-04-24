@@ -7,9 +7,6 @@
     <title>Welcome to the Physics Derivation Graph</title>
     {% endif %}
 
-    <!-- https://www.kryogenix.org/code/browser/sorttable/ -->
-    <script type="text/javascript" src="{{ url_for('static', filename='sorttable.js') }}"></script>
-
     <!-- if inclusion of Mathjax on pages which don't have latex becomes a significant source of latency, see
          http://docs.mathjax.org/en/latest/web/typeset.html#loading-mathjax-only-on-pages-with-math -->
 
@@ -32,10 +29,16 @@
     -->
 
 
+    <script id="MathJax-script" async
+    src="http://localhost:5009/tex-svg.js"></script>
+
+    <!-- THE FOLLOWING WORKS -->
     <!-- http://docs.mathjax.org/en/latest/web/configuration.html#loading-mathjax -->
+<!--
     <script type="text/javascript" id="MathJax-script" async
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
+-->
     <!-- The following is described on 
          http://docs.mathjax.org/en/latest/web/configuration.html
          but isn't available -->
@@ -44,6 +47,34 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.0.0/es5/latest?tex-svg.js">
     </script>
     -->
+
+
+
+    <!-- https://www.kryogenix.org/code/browser/sorttable/ -->
+    <script type="text/javascript" src="{{ url_for('static', filename='sorttable.js') }}"></script>
+    <style>
+      /*
+         Sortable tables 
+         https://www.kryogenix.org/code/browser/sorttable/
+         https://github.com/allofphysicsgraph/proofofconcept/issues/68
+       */
+      table.sortable thead {
+        background-color:#eee;
+        color:#666666;
+        font-weight: bold;
+        cursor: default;
+      }
+    </style>
+
+
+   <style>
+      /* https://css-tricks.com/on-target/ */
+      :target {
+        background: yellow;
+      }
+   </style>
+
+
 
     <!-- https://www.w3schools.com/html/html_css.asp -->
     <style>
@@ -89,22 +120,6 @@
 }
 
 
-      /*
-         Sortable tables 
-         https://www.kryogenix.org/code/browser/sorttable/
-         https://github.com/allofphysicsgraph/proofofconcept/issues/68
-       */
-      table.sortable thead {
-        background-color:#eee;
-        color:#666666;
-        font-weight: bold;
-        cursor: default;
-      }
-
-      /* https://css-tricks.com/on-target/ */
-      :target {
-        background: yellow;
-      }
 
       /* TOC formatting
         from https://www.tipsandtricks-hq.com/simple-table-of-contents-toc-using-pure-html-and-css-code-9217  */
