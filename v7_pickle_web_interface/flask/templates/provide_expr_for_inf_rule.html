@@ -9,24 +9,185 @@
 </P>
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
+<style>
+input, textarea, select {
+        background: #f9f909;
+        color: black;
+        cursor: default;
+    }
+input[disabled='disabled'], textarea[disabled='disabled'], select[disabled='disabled'] {
+        background: #cccccc;
+    }
 
+    input[type="text"]:disabled, input[type="select"]:disabled {
+        background: #cccccc;
+    }
+</style>
 
 <script>
 
-function enable(enabled){
-  var pdg  = document.getElementById('pdg');
-  var pdg2 = document.getElementById('pdg2');
-  var pdg3 = document.getElementById('pdg3');
-  if(enabled){
-    pdg.removeAttribute('disabled');
-    pdg2.removeAttribute('disabled');
-    pdg3.removeAttribute('disabled');
-  } else {
-    pdg.setAttribute('disabled','disabled');
-    pdg2.setAttribute('disabled','disabled');
-    pdg3.setAttribute('disabled','disabled');
-  }
+function enable_input1_radio1(enabled){
+    document.getElementById('input1_latex').removeAttribute('disabled');
+    document.getElementById('input1_name').removeAttribute('disabled');
+    document.getElementById('input1_note').removeAttribute('disabled');
+
+    document.getElementById('input1_local').setAttribute('disabled','disabled');
+    document.getElementById('input1_global').setAttribute('disabled','disabled');
 }
+
+function enable_input1_radio2(enabled){
+    document.getElementById('input1_local').removeAttribute('disabled');
+
+    document.getElementById('input1_latex').setAttribute('disabled','disabled');
+    document.getElementById('input1_name').setAttribute('disabled','disabled');
+    document.getElementById('input1_note').setAttribute('disabled','disabled');
+    document.getElementById('input1_global').setAttribute('disabled','disabled');
+}
+
+function enable_input1_radio3(enabled){
+    document.getElementById('input1_global').removeAttribute('disabled');
+
+    document.getElementById('input1_latex').setAttribute('disabled','disabled');
+    document.getElementById('input1_name').setAttribute('disabled','disabled');
+    document.getElementById('input1_note').setAttribute('disabled','disabled');
+    document.getElementById('input1_local').setAttribute('disabled','disabled');
+}
+
+function enable_input2_radio1(enabled){
+    document.getElementById('input2_latex').removeAttribute('disabled');
+    document.getElementById('input2_name').removeAttribute('disabled');
+    document.getElementById('input2_note').removeAttribute('disabled');
+
+    document.getElementById('input2_local').setAttribute('disabled','disabled');
+    document.getElementById('input2_global').setAttribute('disabled','disabled');
+}
+
+function enable_input2_radio2(enabled){
+    document.getElementById('input2_local').removeAttribute('disabled');
+
+    document.getElementById('input2_latex').setAttribute('disabled','disabled');
+    document.getElementById('input2_name').setAttribute('disabled','disabled');
+    document.getElementById('input2_note').setAttribute('disabled','disabled');
+    document.getElementById('input2_global').setAttribute('disabled','disabled');
+}
+
+function enable_input2_radio3(enabled){
+    document.getElementById('input2_global').removeAttribute('disabled');
+
+    document.getElementById('input2_latex').setAttribute('disabled','disabled');
+    document.getElementById('input2_name').setAttribute('disabled','disabled');
+    document.getElementById('input2_note').setAttribute('disabled','disabled');
+    document.getElementById('input2_local').setAttribute('disabled','disabled');
+}
+
+function enable_input3_radio1(enabled){
+    document.getElementById('input3_latex').removeAttribute('disabled');
+    document.getElementById('input3_name').removeAttribute('disabled');
+    document.getElementById('input3_note').removeAttribute('disabled');
+
+    document.getElementById('input3_local').setAttribute('disabled','disabled');
+    document.getElementById('input3_global').setAttribute('disabled','disabled');
+}
+
+function enable_input3_radio2(enabled){
+    document.getElementById('input3_local').removeAttribute('disabled');
+
+    document.getElementById('input3_latex').setAttribute('disabled','disabled');
+    document.getElementById('input3_name').setAttribute('disabled','disabled');
+    document.getElementById('input3_note').setAttribute('disabled','disabled');
+    document.getElementById('input3_global').setAttribute('disabled','disabled');
+}
+
+function enable_input3_radio3(enabled){
+    document.getElementById('input3_global').removeAttribute('disabled');
+
+    document.getElementById('input3_latex').setAttribute('disabled','disabled');
+    document.getElementById('input3_name').setAttribute('disabled','disabled');
+    document.getElementById('input3_note').setAttribute('disabled','disabled');
+    document.getElementById('input3_local').setAttribute('disabled','disabled');
+}
+
+function enable_output1_radio1(enabled){
+    document.getElementById('output1_latex').removeAttribute('disabled');
+    document.getElementById('output1_name').removeAttribute('disabled');
+    document.getElementById('output1_note').removeAttribute('disabled');
+
+    document.getElementById('output1_local').setAttribute('disabled','disabled');
+    document.getElementById('output1_global').setAttribute('disabled','disabled');
+}
+
+function enable_output1_radio2(enabled){
+    document.getElementById('output1_local').removeAttribute('disabled');
+
+    document.getElementById('output1_latex').setAttribute('disabled','disabled');
+    document.getElementById('output1_name').setAttribute('disabled','disabled');
+    document.getElementById('output1_note').setAttribute('disabled','disabled');
+    document.getElementById('output1_global').setAttribute('disabled','disabled');
+}
+
+function enable_output1_radio3(enabled){
+    document.getElementById('output1_global').removeAttribute('disabled');
+
+    document.getElementById('output1_latex').setAttribute('disabled','disabled');
+    document.getElementById('output1_name').setAttribute('disabled','disabled');
+    document.getElementById('output1_note').setAttribute('disabled','disabled');
+    document.getElementById('output1_local').setAttribute('disabled','disabled');
+}
+
+function enable_output2_radio1(enabled){
+    document.getElementById('output2_latex').removeAttribute('disabled');
+    document.getElementById('output2_name').removeAttribute('disabled');
+    document.getElementById('output2_note').removeAttribute('disabled');
+
+    document.getElementById('output2_local').setAttribute('disabled','disabled');
+    document.getElementById('output2_global').setAttribute('disabled','disabled');
+}
+
+function enable_output2_radio2(enabled){
+    document.getElementById('output2_local').removeAttribute('disabled');
+
+    document.getElementById('output2_latex').setAttribute('disabled','disabled');
+    document.getElementById('output2_name').setAttribute('disabled','disabled');
+    document.getElementById('output2_note').setAttribute('disabled','disabled');
+    document.getElementById('output2_global').setAttribute('disabled','disabled');
+}
+
+function enable_output2_radio3(enabled){
+    document.getElementById('output2_global').removeAttribute('disabled');
+
+    document.getElementById('output2_latex').setAttribute('disabled','disabled');
+    document.getElementById('output2_name').setAttribute('disabled','disabled');
+    document.getElementById('output2_note').setAttribute('disabled','disabled');
+    document.getElementById('output2_local').setAttribute('disabled','disabled');
+}
+
+function enable_output3_radio1(enabled){
+    document.getElementById('output3_latex').removeAttribute('disabled');
+    document.getElementById('output3_name').removeAttribute('disabled');
+    document.getElementById('output3_note').removeAttribute('disabled');
+
+    document.getElementById('output3_local').setAttribute('disabled','disabled');
+    document.getElementById('output3_global').setAttribute('disabled','disabled');
+}
+
+function enable_output3_radio2(enabled){
+    document.getElementById('output3_local').removeAttribute('disabled');
+
+    document.getElementById('output3_latex').setAttribute('disabled','disabled');
+    document.getElementById('output3_name').setAttribute('disabled','disabled');
+    document.getElementById('output3_note').setAttribute('disabled','disabled');
+    document.getElementById('output3_global').setAttribute('disabled','disabled');
+}
+
+function enable_output3_radio3(enabled){
+    document.getElementById('output3_global').removeAttribute('disabled');
+
+    document.getElementById('output3_latex').setAttribute('disabled','disabled');
+    document.getElementById('output3_name').setAttribute('disabled','disabled');
+    document.getElementById('output3_note').setAttribute('disabled','disabled');
+    document.getElementById('output3_local').setAttribute('disabled','disabled');
+}
+
 
 </script>
 
@@ -46,25 +207,25 @@ function enable(enabled){
   {% for subfield in webform.input1_radio %}
     <tr>
     {% if loop.index0 == 0 %}
-      <td>{{ subfield(onclick='enable(false)') }}</td>
+      <td>{{ subfield(onclick='enable_input1_radio1(true)') }}</td>
       <td>{{ subfield.label }}</td>
         <td>
           <!-- https://css-tricks.com/exposing-form-fields-radio-button-css/ -->
           <!-- https://github.com/allofphysicsgraph/proofofconcept/issues/130 -->
           <!-- <div class="reveal-if-active"> -->
-           {{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300) }}<BR>
+           {{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300, id="input1_latex", onchange="onChangeFunction();") }}<BR>
            <small>max length = 300 characters</small>
           </div>
         </td>
-        <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300) }}</td>
-        <td>{{ webform.input1_note.label }}: {{ webform.input1_note(size=20, maxlength=300) }}</td>
+        <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300, id="input1_name", onchange="onChangeFunction();") }}</td>
+        <td>{{ webform.input1_note.label }}: {{ webform.input1_note(size=20, maxlength=300, id="input1_note", onchange="onChangeFunction();") }}</td>
     {% elif loop.index0 == 1 %}
       {% if list_of_local_id|length > 0 %}
-      <td>{{ subfield(onclick='enable(true)') }}</td>
+      <td>{{ subfield(onclick='enable_input1_radio2(true)') }}</td>
       <td>{{ subfield.label }}</td>
       <td>
         <span class="input-group-addon">Select from</span>
-          <select name="input1_local_id" class="selectpicker form-control" id="pdg" onchange="onChangeFunction();" disabled="disabled">
+          <select name="input1_local_id" class="selectpicker form-control" id="input1_local" onchange="onChangeFunction();" disabled="disabled">
             {% for elem in list_of_local_id %}
             <option value="{{ elem }}">{{ elem }}</option>
             {% endfor %}
@@ -72,11 +233,11 @@ function enable(enabled){
       </td>
       {% endif %}
     {% elif loop.index0 == 2 %}
-      <td>{{ subfield(onclick='enable(true)') }}</td>
+      <td>{{ subfield(onclick='enable_input1_radio3(true)') }}</td>
       <td>{{ subfield.label }}</td>
       <td>
         <span class="input-group-addon">Select from</span>
-          <select name="input1_global_id" class="selectpicker form-control" id="pdg" onchange="onChangeFunction();" disabled="disabled">
+          <select name="input1_global_id" class="selectpicker form-control" id="input1_global" onchange="onChangeFunction();" disabled="disabled">
             {% for elem in list_of_global_id_not_in_derivation %}
             <option value="{{ elem }}">{{ elem }}</option>
             {% endfor %}
@@ -97,26 +258,33 @@ function enable(enabled){
   <table border="1">
   {% for subfield in webform.input2_radio %}
     <tr>
-      <td>{{ subfield }}</td>
-      <td>{{ subfield.label }}</td>
     {% if loop.index0 == 0 %}
-      <td>{{ webform.input2.label }}: {{ webform.input2(size=50, maxlength=300) }} <BR>
+      <td>{{ subfield(onclick='enable_input2_radio1(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
+      <td>{{ webform.input2.label }}: {{ webform.input2(size=50, maxlength=300, id="input2_latex", onchange="onChangeFunction();") }} <BR>
            <small>max length = 300 characters</small></td>
-      <td>{{ webform.input2_name.label }}: {{ webform.input2_name(size=20, maxlength=300) }}</td>
-      <td>{{ webform.input2_note.label }}: {{ webform.input2_note(size=20, maxlength=300) }}</td>
+      <td>{{ webform.input2_name.label }}: {{ webform.input2_name(size=20, maxlength=300, id="input2_name", onchange="onChangeFunction();") }}</td>
+      <td>{{ webform.input2_note.label }}: {{ webform.input2_note(size=20, maxlength=300, id="input2_note", onchange="onChangeFunction();") }}</td>
     {% elif loop.index0 == 1 %}
+      <td>{{ subfield(onclick='enable_input2_radio2(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
       <td>
         <span class="input-group-addon">Select from</span>
-          <select name="input2_local_id" class="selectpicker form-control">
+          <select name="input2_local_id" class="selectpicker form-control" id="input2_local" onchange="onChangeFunction();" disabled="disabled">
             {% for elem in list_of_local_id %}
             <option value="{{ elem }}">{{ elem }}</option>
             {% endfor %}
           </select>
       </td>
     {% elif loop.index0 == 2 %}
+      <td>{{ subfield(onclick='enable_input2_radio3(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
       <td>
         <span class="input-group-addon">Select from</span>
-          <select name="input2_global_id" class="selectpicker form-control">
+          <select name="input2_global_id" class="selectpicker form-control" id="input2_global" onchange="onChangeFunction();" disabled="disabled">
             {% for elem in list_of_global_id_not_in_derivation %}
             <option value="{{ elem }}">{{ elem }}</option>
             {% endfor %}
@@ -138,26 +306,33 @@ function enable(enabled){
   <table border="1">
   {% for subfield in webform.input3_radio %}
     <tr>
-      <td>{{ subfield }}</td>
-      <td>{{ subfield.label }}</td>
     {% if loop.index0 == 0 %}
-      <td>{{ webform.input3.label }}: {{ webform.input3(size=50, maxlength=300) }} <BR>
+      <td>{{ subfield(onclick='enable_input3_radio1(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
+      <td>{{ webform.input3.label }}: {{ webform.input3(size=50, maxlength=300, id="input3_latex", onchange="onChangeFunction();") }} <BR>
             <small>max length = 300 characters</small></td>
-      <td>{{ webform.input3_name.label }}: {{ webform.input3_name(size=20, maxlength=300) }}</td>
-      <td>{{ webform.input3_note.label }}: {{ webform.input3_note(size=20, maxlength=300) }}</td>
+      <td>{{ webform.input3_name.label }}: {{ webform.input3_name(size=20, maxlength=300, id="input3_name", onchange="onChangeFunction();") }}</td>
+      <td>{{ webform.input3_note.label }}: {{ webform.input3_note(size=20, maxlength=300, id="input3_note", onchange="onChangeFunction();") }}</td>
     {% elif loop.index0 == 1 %}
+      <td>{{ subfield(onclick='enable_input3_radio2(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
       <td>
         <span class="input-group-addon">Select from</span>
-          <select name="input3_local_id" class="selectpicker form-control">
+          <select name="input3_local_id" class="selectpicker form-control" id="input3_local" onchange="onChangeFunction();" disabled="disabled">
             {% for elem in list_of_local_id %}
             <option value="{{ elem }}">{{ elem }}</option>
             {% endfor %}
           </select>
       </td>
     {% elif loop.index0 == 2 %}
+      <td>{{ subfield(onclick='enable_input3_radio3(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
       <td>
         <span class="input-group-addon">Select from</span>
-          <select name="input3_global_id" class="selectpicker form-control">
+          <select name="input3_global_id" class="selectpicker form-control" id="input3_global" onchange="onChangeFunction();" disabled="disabled">
             {% for elem in list_of_global_id_not_in_derivation %}
             <option value="{{ elem }}">{{ elem }}</option>
             {% endfor %}
@@ -194,26 +369,33 @@ function enable(enabled){
 <table border="1">
 {% for subfield in webform.output1_radio %}
   <tr>
-    <td>{{ subfield }}</td>
-    <td>{{ subfield.label }}</td>
   {% if loop.index0 == 0 %}
-    <td>{{ webform.output1.label }}: {{ webform.output1(size=50, maxlength=300) }} <BR>
+      <td>{{ subfield(onclick='enable_output1_radio1(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
+    <td>{{ webform.output1.label }}: {{ webform.output1(size=50, maxlength=300, id="output1_latex", onchange="onChangeFunction();") }} <BR>
            <small>max length = 300 characters</small></td>
-      <td>{{ webform.output1_name.label }}: {{ webform.output1_name(size=20, maxlength=300) }}</td>
-      <td>{{ webform.output1_note.label }}: {{ webform.output1_note(size=20, maxlength=300) }}</td>
+      <td>{{ webform.output1_name.label }}: {{ webform.output1_name(size=20, maxlength=300, id="output1_name", onchange="onChangeFunction();") }}</td>
+      <td>{{ webform.output1_note.label }}: {{ webform.output1_note(size=20, maxlength=300, id="output1_note", onchange="onChangeFunction();") }}</td>
   {% elif loop.index0 == 1 %}
+      <td>{{ subfield(onclick='enable_output1_radio2(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
     <td>
       <span class="output-group-addon">Select from</span>
-        <select name="output1_local_id" class="selectpicker form-control">
+        <select name="output1_local_id" class="selectpicker form-control" id="output1_local" onchange="onChangeFunction();" disabled="disabled">
           {% for elem in list_of_local_id %}
           <option value="{{ elem }}">{{ elem }}</option>
           {% endfor %}
         </select>
     </td>
   {% elif loop.index0 == 2 %}
+      <td>{{ subfield(onclick='enable_output1_radio3(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
     <td>
       <span class="output-group-addon">Select from</span>
-        <select name="output1_global_id" class="selectpicker form-control">
+        <select name="output1_global_id" class="selectpicker form-control" id="output1_global" onchange="onChangeFunction();" disabled="disabled">
           {% for elem in list_of_global_id_not_in_derivation %}
           <option value="{{ elem }}">{{ elem }}</option>
           {% endfor %}
@@ -235,26 +417,33 @@ function enable(enabled){
 <table border="1">
 {% for subfield in webform.output2_radio %}
   <tr>
-    <td>{{ subfield }}</td>
-    <td>{{ subfield.label }}</td>
   {% if loop.index0 == 0 %}
-    <td>{{ webform.output2.label }}: {{ webform.output2(size=50, maxlength=300) }} <BR>
+      <td>{{ subfield(onclick='enable_output2_radio1(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
+    <td>{{ webform.output2.label }}: {{ webform.output2(size=50, maxlength=300, id="output2_latex", onchange="onChangeFunction();") }} <BR>
            <small>max length = 300 characters</small></td>
-      <td>{{ webform.output2_name.label }}: {{ webform.output2_name(size=20, maxlength=300) }}</td>
-      <td>{{ webform.output2_note.label }}: {{ webform.output2_note(size=20, maxlength=300) }}</td>
+      <td>{{ webform.output2_name.label }}: {{ webform.output2_name(size=20, maxlength=300, id="output2_name", onchange="onChangeFunction();") }}</td>
+      <td>{{ webform.output2_note.label }}: {{ webform.output2_note(size=20, maxlength=300, id="output2_note", onchange="onChangeFunction();") }}</td>
   {% elif loop.index0 == 1 %}
+      <td>{{ subfield(onclick='enable_output2_radio2(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
     <td>
       <span class="output-group-addon">Select from</span>
-        <select name="output2_local_id" class="selectpicker form-control">
+        <select name="output2_local_id" class="selectpicker form-control" id="output2_local" onchange="onChangeFunction();" disabled="disabled">
           {% for elem in list_of_local_id %}
           <option value="{{ elem }}">{{ elem }}</option>
           {% endfor %}
         </select>
     </td>
   {% elif loop.index0 == 2 %}
+      <td>{{ subfield(onclick='enable_output2_radio3(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
     <td>
       <span class="output-group-addon">Select from</span>
-        <select name="output2_global_id" class="selectpicker form-control">
+        <select name="output2_global_id" class="selectpicker form-control" id="output2_global" onchange="onChangeFunction();" disabled="disabled">
           {% for elem in list_of_global_id_not_in_derivation %}
           <option value="{{ elem }}">{{ elem }}</option>
           {% endfor %}
@@ -276,26 +465,32 @@ function enable(enabled){
 <table border="1">
 {% for subfield in webform.output3_radio %}
   <tr>
-    <td>{{ subfield }}</td>
-    <td>{{ subfield.label }}</td>
   {% if loop.index0 == 0 %}
-    <td>{{ webform.output3.label }}: {{ webform3.output(size=50, maxlength=300) }}<BR>
+      <td>{{ subfield(onclick='enable_output3_radio1(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
+    <td>{{ webform.output3.label }}: {{ webform3.output(size=50, maxlength=300, id="output3_latex", onchange="onChangeFunction();") }}<BR>
               <small>max length = 300 characters</small></td>
-      <td>{{ webform.output3_name.label }}: {{ webform.output3_name(size=20, maxlength=300) }}</td>
-      <td>{{ webform.output3_note.label }}: {{ webform.output3_note(size=20, maxlength=300) }}</td>
+      <td>{{ webform.output3_name.label }}: {{ webform.output3_name(size=20, maxlength=300, id="output3_name", onchange="onChangeFunction();") }}</td>
+      <td>{{ webform.output3_note.label }}: {{ webform.output3_note(size=20, maxlength=300, id="output3_note", onchange="onChangeFunction();") }}</td>
   {% elif loop.index0 == 1 %}
+      <td>{{ subfield(onclick='enable_output3_radio2(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+
     <td>
       <span class="output-group-addon">Select from</span>
-        <select name="output3_local_id" class="selectpicker form-control">
+        <select name="output3_local_id" class="selectpicker form-control" id="output3_local" onchange="onChangeFunction();" disabled="disabled">
           {% for elem in list_of_local_id %}
           <option value="{{ elem }}">{{ elem }}</option>
           {% endfor %}
         </select>
     </td>
   {% elif loop.index0 == 2 %}
+      <td>{{ subfield(onclick='enable_output3_radio3(true)') }}</td>
+      <td>{{ subfield.label }}</td>
     <td>
       <span class="output-group-addon">Select from</span>
-        <select name="output3_global_id" class="selectpicker form-control">
+        <select name="output3_global_id" class="selectpicker form-control" id="output3_global" onchange="onChangeFunction();" disabled="disabled">
           {% for elem in list_of_global_id_not_in_derivation %}
           <option value="{{ elem }}">{{ elem }}</option>
           {% endfor %}
