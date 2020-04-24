@@ -13,9 +13,9 @@ services:
       --bind 0.0.0.0:5000
       --log-level debug
       wsgi:app
-#      --capture-output 
-#      --access-logfile "-"
-#      --error-logfile "-"
+      --capture-output 
+      --access-logfile "-"
+      --error-logfile "-"
 #      --enable-stdio-inheritance
 # using "ports" makes flask/gunicorn accessible without going through nginx
     expose:
@@ -23,14 +23,15 @@ services:
 #    ports:
 #     - "5000:5000"
     volumes:
-     - .:/code
+#     - .:/scratch
+     - ${PWD}/flask/data.json:/home/appuser/app/data.json
     depends_on:
-     - db
+     - mathjax
 
-  db:
-    image: redis
-    expose:
-     - 6379
+#  db:
+#    image: redis
+#    expose:
+#     - 6379
 #    ports:
 #     - "6379:6379"
 
@@ -42,4 +43,7 @@ services:
     depends_on:
       - flask
 
-
+  mathjax:
+    build: ./services/mathjax
+    ports:
+     - "5009:5009"
