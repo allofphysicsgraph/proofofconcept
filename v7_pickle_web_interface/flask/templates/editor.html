@@ -10,7 +10,7 @@
     <LI>
       <a href="{{ url_for('start_new_derivation') }}">start a new derivation</a>
       {% if current_user.is_anonymous %}
-        -- requires being <a href="{{ url_for('login') }}">signed in</a>)
+        -- requires being <a href="{{ url_for('login') }}">signed in</a>
       {% endif %}
     </LI>
     {% if number_of_derivations > 0 %}
