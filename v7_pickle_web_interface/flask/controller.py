@@ -100,7 +100,7 @@ login_manager.init_app(app)
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 csrf.init_app(app)
 
-import pdg_api # PDG API
+#import pdg_api # PDG API
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
 # rd = Redis(host='db', port=6379)
@@ -193,6 +193,8 @@ class User(UserMixin):
 
 # the following is a hack not meant for publication
 # https://gist.github.com/bkdinoop/6698956
+# which is linked from
+# https://stackoverflow.com/a/12081788/1164295
 USERS = {
     1: User(u"bp", 1),
     2: User(u"mg", 2),
