@@ -8955,7 +8955,8 @@
         },
         "4930": {
             "category": "variable",
-            "latex": "potential energy",
+            "latex": "PE",
+            "name": "potential energy",
             "scope": [
                 "real"
             ]
