@@ -9,6 +9,28 @@
 </P>
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
+
+
+<script>
+
+function enable(enabled){
+  var pdg  = document.getElementById('pdg');
+  var pdg2 = document.getElementById('pdg2');
+  var pdg3 = document.getElementById('pdg3');
+  if(enabled){
+    pdg.removeAttribute('disabled');
+    pdg2.removeAttribute('disabled');
+    pdg3.removeAttribute('disabled');
+  } else {
+    pdg.setAttribute('disabled','disabled');
+    pdg2.setAttribute('disabled','disabled');
+    pdg3.setAttribute('disabled','disabled');
+  }
+}
+
+</script>
+
+
 <form method="post" action="">
   <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
   {{ webform.csrf_token }}
@@ -23,9 +45,9 @@
   <!-- and https://stackoverflow.com/questions/20233721/how-do-you-index-on-a-jinja-template -->
   {% for subfield in webform.input1_radio %}
     <tr>
-      <td>{{ subfield }}</td>
-      <td>{{ subfield.label }}</td>
     {% if loop.index0 == 0 %}
+      <td>{{ subfield(onclick='enable(false)') }}</td>
+      <td>{{ subfield.label }}</td>
         <td>
           <!-- https://css-tricks.com/exposing-form-fields-radio-button-css/ -->
           <!-- https://github.com/allofphysicsgraph/proofofconcept/issues/130 -->
@@ -37,18 +59,24 @@
         <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300) }}</td>
         <td>{{ webform.input1_note.label }}: {{ webform.input1_note(size=20, maxlength=300) }}</td>
     {% elif loop.index0 == 1 %}
+      {% if list_of_local_id|length > 0 %}
+      <td>{{ subfield(onclick='enable(true)') }}</td>
+      <td>{{ subfield.label }}</td>
       <td>
         <span class="input-group-addon">Select from</span>
-          <select name="input1_local_id" class="selectpicker form-control">
+          <select name="input1_local_id" class="selectpicker form-control" id="pdg" onchange="onChangeFunction();" disabled="disabled">
             {% for elem in list_of_local_id %}
             <option value="{{ elem }}">{{ elem }}</option>
             {% endfor %}
           </select>
       </td>
+      {% endif %}
     {% elif loop.index0 == 2 %}
+      <td>{{ subfield(onclick='enable(true)') }}</td>
+      <td>{{ subfield.label }}</td>
       <td>
         <span class="input-group-addon">Select from</span>
-          <select name="input1_global_id" class="selectpicker form-control">
+          <select name="input1_global_id" class="selectpicker form-control" id="pdg" onchange="onChangeFunction();" disabled="disabled">
             {% for elem in list_of_global_id_not_in_derivation %}
             <option value="{{ elem }}">{{ elem }}</option>
             {% endfor %}
