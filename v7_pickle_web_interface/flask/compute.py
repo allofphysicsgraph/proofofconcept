@@ -1678,7 +1678,7 @@ def list_expr_in_derivation(deriv_id: str, path_to_db: str) -> list:
     list_of_global_expr = []
     for local_expr in list_of_local_expr:
         list_of_global_expr.append(dat["expr local to global"][local_expr])
-    # logger.debug('number of expr = %s', len(list_of_global_expr))
+    logger.debug('number of expr = %s', len(list_of_global_expr))
     #logger.debug(str(list_of_global_expr))
     return list_of_global_expr
 
@@ -1787,7 +1787,7 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
     for global_expr_id in list_of_expr:
         png_name = global_expr_id
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-            create_png_from_latex(dat['expressions'][global_expr_id], png_name)
+            create_png_from_latex(dat['expressions'][global_expr_id]['latex'], png_name)
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
         # construct the node JSON content
         list_of_nodes.append(
@@ -1827,10 +1827,10 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
             + '", "value": 1},\n'
         )
     list_of_edge_str = list(set(list_of_edge_str))
-    # logger.debug('number of edges = %s', len(list_of_edge_str))
+    #logger.debug('number of edges = %s', len(list_of_edge_str))
     all_edges = "".join(list_of_edge_str)
     all_edges = all_edges[:-2] + "\n"
-    # logger.debug('all edges = %s', all_edges)
+    #logger.debug('all edges = %s', all_edges)
     json_str += all_edges
     json_str += "  ]\n"
     json_str += "}\n"
@@ -2299,21 +2299,90 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
         status_msg = name_of_inf_rule + " does not exist in database"
     return status_msg
 
+def edit_expr_note(expr_global_id: str, new_note: str, path_to_db: str) -> str:
+    """
+    >>> 
+    """
+    logger.info('[trace]')
+    dat = clib.read_db(path_to_db)
+    status_msg = ""
+    if expr_global_id in dat['expressions'].keys():
+        dat['expressions'][expr_global_id]['notes'] = new_note
+        status_msg = "updated note"
+        clib.write_db(path_to_db, dat)
+    else:
+        status_msg = expr_global_id + " is not in expressions"
+        logger.error(status_msg)
+    return status_msg
+    
 
-def rename_derivation(old_name: str, new_name: str, path_to_db: str) -> str:
+def edit_expr_name(expr_global_id: str, new_name: str, path_to_db: str) -> str:
+    """
+    >>> 
+    """
+    logger.info('[trace]')
+    dat = clib.read_db(path_to_db)
+    status_msg = ""
+    if expr_global_id in dat['expressions'].keys():
+        dat['expressions'][expr_global_id]['name'] = new_name
+        status_msg = "updated name to " + new_name
+        clib.write_db(path_to_db, dat)
+    else:
+        status_msg = expr_global_id + " is not in expressions"
+        logger.error(status_msg)
+    return status_msg
+
+
+def edit_step_note(deriv_id: str, step_id: str, new_note: str, path_to_db: str) -> str:
+    """
+    >>> edit_step_note()
+    """
+    logger.info('[trace]')
+    dat = clib.read_db(path_to_db)
+    status_msg = ""
+    if deriv_id in dat["derivations"].keys():
+        if step_id in dat["derivations"][deriv_id]['steps'].keys():
+            dat["derivations"][deriv_id]['steps'][step_id]['notes'] = new_note
+            status_msg = "updated note"
+            clib.write_db(path_to_db, dat)
+        else:
+            status_msg = step_id + " is not in derivation " + deriv_id
+            logger.error(step_id + " is not in derivation " + deriv_id)
+    else:
+        status_msg = deriv_id + " is not in dat"
+        logger.error(deriv_id + " is not in dat")
+    return status_msg
+
+def edit_derivation_note(deriv_id: str, new_note: str, path_to_db: str) -> str:
+    """
+    >>> edit_derivation_note()
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    status_msg = ""
+    if deriv_id in dat["derivations"].keys():
+        dat["derivations"][deriv_id]['notes'] = new_note
+        status_msg = "updated note"
+        clib.write_db(path_to_db, dat)
+    else:
+        status_msg = deriv_id + " does not appear in derivations; no change made"
+        logger.error(status_msg)
+    return status_msg
+
+
+def rename_derivation(deriv_id: str, new_name: str, path_to_db: str) -> str:
     """
     >>> rename_derivation()
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
-    if old_name in dat["derivations"].keys():
-        dat["derivations"][new_name] = dat["derivations"][old_name]
-        del dat["derivations"][old_name]
-        status_msg = "renamed " + old_name + " to " + new_name
+    if deriv_id in dat["derivations"].keys():
+        dat["derivations"][deriv_id]['name'] = new_name
+        status_msg = "renamed to " + new_name
         clib.write_db(path_to_db, dat)
     else:
-        status_msg = old_name + " does not appear in derivations; no change made"
+        status_msg = deriv_id + " does not appear in derivations; no change made"
     return status_msg
 
 

@@ -27,7 +27,7 @@
 (Changing the inference rule deletes existing inference rule and expressions.)
 
 <!-- https://jinja.palletsprojects.com/en/2.11.x/templates/#builtin-filters -->
-{% if this_step['inputs']|length > 0 %}
+{% if dat["derivations"][deriv_id]['steps'][step_id]['inputs']|length > 0 %}
 <a name="change global id">
   <h3>Update the global ID</h3>
 </a>
@@ -48,18 +48,20 @@ TODO -- not implemented
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
-              {% for expr_local_id in this_step['inputs'] %}
-              <option value="{{ expr_local_id }}">{{ expressions_dict[local_to_global[expr_local_id]]['latex'] }}</option>
+              {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['inputs'] %}
+              <option value="{{ expr_local_id }}">{{ expressions_dict[expr_local_to_global[expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
     </div>
-    <button type="submit" class="btn btn-default">Update</button>
+<!--    <button type="submit" class="btn btn-default">Update</button> -->
+<input type="submit" name="submit_button" value='edit input expr latex'>
+
   </div>
 </form>
 {% endif %}
 
-{% if this_step['feeds']|length > 0 %}
+{% if dat["derivations"][deriv_id]['steps'][step_id]['feeds']|length > 0 %}
 <a name="edit feed expr latex">
   <h3>Edit the latex for a feed expression</h3>
 </a>
@@ -70,19 +72,21 @@ TODO -- not implemented
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
-              {% for expr_local_id in this_step['feeds'] %}
-              <option value="{{ expr_local_id }}">{{ expressions_dict[local_to_global[expr_local_id]]['latex'] }}</option>
+              {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['feeds'] %}
+              <option value="{{ expr_local_id }}">{{ expressions_dict[expr_local_to_global[expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
     </div>
-    <button type="submit" class="btn btn-default">Update</button>
+    <!--<button type="submit" class="btn btn-default">Update</button> -->
+<input type="submit" name="submit_button" value='edit feed expr latex'>
+
   </div>
 </form>
 {% endif %}
 
 
-{% if this_step['outputs']|length > 0 %}
+{% if dat["derivations"][deriv_id]['steps'][step_id]['outputs']|length > 0 %}
 <a id="edit output expr latex">
   <h3>Edit the latex for an output expression</h3>
 </a>
@@ -93,13 +97,15 @@ TODO -- not implemented
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
-              {% for expr_local_id in this_step['outputs'] %}
-              <option value="{{ expr_local_id }}">{{ expressions_dict[local_to_global[expr_local_id]]['latex'] }}</option>
+              {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['outputs'] %}
+              <option value="{{ expr_local_id }}">{{ expressions_dict[expr_local_to_global[expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
     </div>
-    <button type="submit" class="btn btn-default">Update</button>
+    <!--<button type="submit" class="btn btn-default">Update</button>-->
+<input type="submit" name="submit_button" value='edit output expr latex'>
+
   </div>
 </form>
 {% endif %}
@@ -112,7 +118,9 @@ TODO -- not implemented
 <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
-    <button type="submit" class="btn btn-default">Delete</button>
+    <!-- <button type="submit" class="btn btn-default">Delete</button>-->
+<input type="submit" name="submit_button" value='delete step'>
+
   </div>
 </form>
 </P>
@@ -121,7 +129,7 @@ TODO -- not implemented
 <a name="change linear index of step">
   <h3>change linear index for step</h3>
  </a>
- Current step index is {{ current_linear_index }}.<BR>
+ Current step index is {{ dat["derivations"][deriv_id]['steps'][step_id]["linear index"] }}.<BR>
  Change step index to 
 <!-- New linear index must be a rational number greater than zero and must not exist<BR> -->
 <form method="post" action="">
@@ -135,7 +143,9 @@ TODO -- not implemented
               {% endfor %}
             </select>
     </div>
-    <button type="submit" class="btn btn-default">Update</button>
+    <!--<button type="submit" class="btn btn-default">Update</button>-->
+<input type="submit" name="submit_button" value='change linear index of step'>
+
   </div>
 </form>
 </P>
@@ -144,13 +154,15 @@ TODO -- not implemented
   <a name="edit note for step">
     <h3>Edit note for step</H3>
   </a>
-  Current note is: {{ step_note }}
+  Current note is: {{ dat['derivations'][deriv_id]['steps'][step_id]['notes'] }}
 <form method="post" action="">
+{{ edit_step_note_webform.csrf_token }}
   <div class="form-group">
     <div class="input-group">
 <P>{{ edit_step_note_webform.revised_text.label }}: {{ edit_step_note_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
     </div>
-    <button type="submit" class="btn btn-default">Update</button>
+<!--     <button type="submit" class="btn btn-default">Update</button> -->
+<input type="submit" name="submit_button" value='edit note for step'>
   </div>
 </form>
 </P>

@@ -5,7 +5,7 @@
 {% include '_table_of_expressions.html' %}
 
 <P>
-  <a id="delete_expression">
+  <a id="delete expression">
     <h2>Delete an expression</h2>
   </a>
   {% if current_user.is_anonymous %}
@@ -16,7 +16,7 @@
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
-            <select name="delete_expr" class="selectpicker form-control">
+            <select name="delete expr" class="selectpicker form-control">
               {% for elem in list_of_expr_not_appearing_in_any_derivations %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
@@ -29,7 +29,7 @@
 </P>
 
 <P>
-  <a id="edit_expr_latex">
+  <a id="edit expr latex">
     <h2>Edit the latex for an expression</h2>
   </a>
   {% if current_user.is_anonymous %}
@@ -51,6 +51,56 @@
 </form>
   {% endif %}
 </P>
+
+<P>
+  <a id="edit expr name">
+    <h2>Edit the name of an expression</h2>
+  </a>
+  {% if current_user.is_anonymous %}
+  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  {% else %}
+<form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="edit_expr_name" class="selectpicker form-control">
+              {% for elem in sorted_list_exprs %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+<P>{{ edit_expr_name_webform.revised_text.label }}: {{ edit_expr_name_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
+    </div>
+    <button type="submit" class="btn btn-default">Update</button>
+  </div>
+</form>
+  {% endif %}
+</P>
+
+<P>
+  <a id="edit expr note">
+    <h2>Edit the note for an expression</h2>
+  </a>
+  {% if current_user.is_anonymous %}
+  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  {% else %}
+<form method="post" action="">
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="edit_expr_note" class="selectpicker form-control">
+              {% for elem in sorted_list_exprs %}
+              <option value="{{ elem }}">{{ elem }}</option>
+              {% endfor %}
+            </select>
+<P>{{ edit_expr_note_webform.revised_text.label }}: {{ edit_expr_note_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
+    </div>
+    <button type="submit" class="btn btn-default">Update</button>
+  </div>
+</form>
+  {% endif %}
+</P>
+
+
 
 {% endblock %}
 

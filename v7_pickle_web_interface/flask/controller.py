@@ -962,11 +962,11 @@ def list_all_expressions():
         expression_popularity_dict = {}
     if request.method == "POST":
         logger.debug("list_all_expressions; request.form = %s", request.form)
-        if "edit_expr_latex" in request.form.keys():
+        if "edit expr latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_expr_latex', '4928923942'), ('revised_text', 'asdfingasinsf')])
             try:
                 status_message = compute.edit_expr_latex(
-                    request.form["edit_expr_latex"],
+                    request.form["edit expr latex"],
                     request.form["revised_text"],
                     path_to_db,
                 )
@@ -977,11 +977,11 @@ def list_all_expressions():
             flash(str(status_message))
             logger.debug("list_all_expressions; status = %s", status_message)
             return redirect(url_for("list_all_expressions"))
-        elif "delete_expr" in request.form.keys():
+        elif "delete expr" in request.form.keys():
             # request.form = ImmutableMultiDict([('delete_expr', '4928923942')])
             try:
                 status_message = compute.delete_expr(
-                    request.form["delete_expr"], path_to_db
+                    request.form["delete expr"], path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -990,6 +990,30 @@ def list_all_expressions():
             flash(str(status_message))
             logger.debug("list_all_expressions; status = %s", status_message)
             return redirect(url_for("list_all_expressions"))
+        elif "edit expr name" in request.form.keys():
+            try:
+                status_msg = compute.edit_expr_name(request.form['edit expr name'], request.form['revised_text'], path_to_db)
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                status_message = "error"
+            flash(str(status_message))
+            logger.debug("list_all_expressions; status = %s", status_message)
+            return redirect(url_for("list_all_expressions"))
+        elif "edit expr note" in request.form.keys():
+            try:
+                status_msg = compute.edit_expr_note(request.form['edit expr note'], request.form['revised_text'], path_to_db)
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                status_message = "error"
+            flash(str(status_message))
+            logger.debug("list_all_expressions; status = %s", status_message)
+            return redirect(url_for("list_all_expressions"))
+        else:
+            flash("unknown button: " + str(request.form))
+            logger.error("unknown button: " + str(request.form))
+
     try:
         list_of_expr = compute.get_sorted_list_of_expr(path_to_db)
     except Exception as err:
@@ -997,7 +1021,7 @@ def list_all_expressions():
         flash(str(err))
         list_of_expr = []
     try:
-        list_of_expr_not_appearing_in_any_derivations = compute.get_sorted_list_of_inf_rules_not_in_use(
+        list_of_expr_not_appearing_in_any_derivations = compute.get_sorted_list_of_expr_not_in_use(
             path_to_db
         )
     except Exception as err:
@@ -1226,7 +1250,7 @@ def select_derivation_step_to_edit(deriv_id: str):
     return render_template(
         "select_derivation_step_to_edit.html",
         deriv_id=deriv_id,
-        expr_local_to_gobal=dat["expr local to global"],
+        expr_local_to_global=dat["expr local to global"],
         expressions_dict=dat["expressions"],
         step_dict=step_dict,
         name_of_derivation=dat['derivations'][deriv_id]['name'],
@@ -1485,7 +1509,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         step_dict=dat['derivations'][deriv_id]['steps'],
         inf_rule=inf_rule,
         derivation_validity_dict=derivation_validity_dict,
-        expr_local_to_gobal=dat["expr local to global"],
+        expr_local_to_global=dat["expr local to global"],
         webform=webform,
     )
 
@@ -1607,7 +1631,7 @@ def step_review(deriv_id: str, local_step_id: str):
         expr_dict=dat["expressions"],
         expressions_dict=dat["expressions"],
         derivation_validity_dict=derivation_validity_dict,
-        expr_local_to_gobal=dat["expr local to global"],
+        expr_local_to_global=dat["expr local to global"],
     )
 
 
@@ -1621,19 +1645,28 @@ def rename_derivation(deriv_id: str):
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
         return redirect( url_for('login'))
+
+    dat = clib.read_db(path_to_db)
+
     if request.method == "POST":
-        # logger.debug(request.form)
-        # ImmutableMultiDict([('revised_text', 'test case 1')])
-        if "revised_text" in request.form.keys():
-            status_msg = compute.rename_derivation(
-                deriv_id, request.form["revised_text"], path_to_db
-            )
-            flash(status_msg)
-            return redirect(
-                url_for(
-                    "review_derivation", name_of_derivation=request.form["revised_text"]
-                )
-            )
+        logger.debug(str(request.form))
+        # ImmutableMultiDict([ ('revised_text', 'a new notes'), ('submit_button', 'revised derivation note')])
+        if 'submit_button' in request.form.keys():
+            if 'revised derivation note' in request.form['submit_button']:
+                status_msg = compute.edit_derivation_note(
+                    deriv_id, request.form["revised_text"], path_to_db)
+                flash(status_msg)
+                return redirect(
+                    url_for("review_derivation", deriv_id=deriv_id ))
+            elif "rename derivation" in request.form['submit_button']:
+                status_msg = compute.rename_derivation(
+                    deriv_id, request.form["revised_text"], path_to_db)
+                flash(status_msg)
+                return redirect(
+                    url_for("review_derivation", deriv_id=deriv_id ))
+            else:
+                logger.error(str(request.form))
+                flash("unrecognized option: " + str(request.form))
         else:
             logger.error(str(request.form))
             flash("unrecognized option: " + str(request.form))
@@ -1641,7 +1674,9 @@ def rename_derivation(deriv_id: str):
     return render_template(
         "rename_derivation.html",
         deriv_id=deriv_id,
+        dat=dat,
         edit_name_webform=RevisedTextForm(request.form),
+        edit_note_webform=RevisedTextForm(request.form),
     )
 
 
@@ -1673,6 +1708,8 @@ def review_derivation(deriv_id: str):
                     deriv_id=deriv_id,
                 )
             )
+        elif request.form["submit_button"] == "edit derivation note":
+            return redirect(url_for("rename_derivation", deriv_id=deriv_id))
         elif request.form["submit_button"] == "return to main menu":
             return redirect(url_for("index"))
         elif request.form["submit_button"] == "generate pdf":
@@ -1739,6 +1776,7 @@ def review_derivation(deriv_id: str):
     return render_template(
         "review_derivation.html",
         pdf_filename=pdf_filename,
+        dat=dat,
         deriv_id=deriv_id,
         name_of_derivation=dat["derivations"][deriv_id]['name'],
         name_of_graphviz_png=derivation_png,
@@ -1747,7 +1785,7 @@ def review_derivation(deriv_id: str):
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],
         expression_popularity_dict=expression_popularity_dict,
-        expr_local_to_gobal=dat["expr local to global"],
+        expr_local_to_global=dat["expr local to global"],
     )
 
 
@@ -1763,62 +1801,73 @@ def modify_step(deriv_id: str, step_id: str):
         return redirect( url_for('login'))
 
     if request.method == "POST":
-        logger.debug("modify_step; request form = %s", request.form)
+        logger.debug(request.form)
+        # ImmutableMultiDict([('revised_text', 'a asdfaf'), ('submit_button', 'edit note for step')])
         if "submit_button" in request.form.keys():
             if request.form["submit_button"] == "change inference rule":
                 return redirect(
                     url_for(
                         "new_step_select_inf_rule",
-                        deriv_id=deriv_id,
-                    )
-                )
+                        deriv_id=deriv_id))
 
             # https://github.com/allofphysicsgraph/proofofconcept/issues/108
             elif request.form["submit_button"] == "view exploded graph":
                 # ImmutableMultiDict([('submit_button', 'view exploded graph')])
                 return redirect(url_for("exploded_step", deriv_id=deriv_id, step_id=step_id))
 
-        # https://github.com/allofphysicsgraph/proofofconcept/issues/116
-        elif "linear_index_to_modify" in request.form.keys():
-            # ImmutableMultiDict([('linear_index_to_modify', '0.5')])
-            try:
-                compute.update_linear_index(
-                    deriv_id,
-                    step_id,
-                    request.form["expr_local_id_of_latex_to_modify"],
-                    path_to_db,
-                )
-            except Exception as err:
-                flash(str(err))
-                logger.error(str(err))
-
-        elif "expr_local_id_of_latex_to_modify" in request.form.keys():
-            # request form = ImmutableMultiDict([('edit_expr_latex', '2244'), ('revised_text', 'a = b')])
-            try:
-                compute.modify_latex_in_step(
+            elif (request.form["submit_button"] == 'edit input expr latex' or
+                  request.form["submit_button"] == 'edit feed expr latex'  or
+                  request.form["submit_button"] == 'edit output expr latex'):
+                try:
+                    compute.modify_latex_in_step(
                     request.form["expr_local_id_of_latex_to_modify"],
                     request.form["revised_text"],
-                    path_to_db,
-                )
-            except Exception as err:
-                flash(str(err))
-                logger.error(str(err))
+                    path_to_db)
+                except Exception as err:
+                    flash(str(err))
+                    logger.error(str(err))
 
-            try:
-                step_validity_msg = vir.validate_step(
-                    deriv_id, step_id, path_to_db
-                )
-            except Exception as err:
-                flash(str(err))
-                logger.error(str(err))
-                step_validity_msg = ""
-            return redirect(
-                url_for(
+                try:
+                    step_validity_msg = vir.validate_step(
+                        deriv_id, step_id, path_to_db)
+                except Exception as err:
+                    flash(str(err))
+                    logger.error(str(err))
+                    step_validity_msg = ""
+                return redirect(
+                    url_for(
                     "step_review",
                     deriv_id=deriv_id,
-                    local_step_id=step_id,
-                )
-            )
+                    local_step_id=step_id))
+            elif request.form["submit_button"] == 'delete step':
+                try:
+                    compute.delete_step_from_derivation(
+                        deriv_id, step_id, path_to_db)
+                    return redirect(
+                        url_for("review_derivation", deriv_id=deriv_id))
+                except Exception as err:
+                    logger.error(str(err))
+                    flash(str(err))
+            elif request.form["submit_button"] == 'change linear index of step':
+                # https://github.com/allofphysicsgraph/proofofconcept/issues/116
+                try:
+                    compute.update_linear_index(
+                    deriv_id,
+                    step_id,
+                    request.form["linear_index_to_modify"],
+                    path_to_db)
+                except Exception as err:
+                    flash(str(err))
+                    logger.error(str(err))
+            elif request.form["submit_button"] == 'edit note for step':
+                try:
+                    status_msg = compute.edit_step_note(deriv_id, step_id, request.form['revised_text'], path_to_db)
+                except Exception as err:
+                    flash(str(err))
+                    logger.error(str(err))
+            else:
+                flash("[ERROR] unrecognized button:" + str(request.form))
+                logger.error("unrecognized button")
 
         else:
             flash("[ERROR] unrecognized button:" + str(request.form))
@@ -1862,19 +1911,16 @@ def modify_step(deriv_id: str, step_id: str):
     return render_template(
         "modify_step.html",
         deriv_id=deriv_id,
+        step_id=step_id,
         name_of_graphviz_png=step_graphviz_png,
-        current_linear_index=dat["derivations"][deriv_id]['steps'][step_id][
-            "linear index"
-        ],
+        dat=dat,
         step_dict=dat["derivations"][deriv_id]['steps'],
-        this_step=dat["derivations"][deriv_id]['steps'][step_id],
-        local_to_global=dat["expr local to global"],
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],
         list_of_new_linear_indices=list_of_new_linear_indices,
         edit_expr_latex_webform=RevisedTextForm(request.form),
         edit_step_note_webform=RevisedTextForm(request.form),
-        expr_local_to_gobal=dat["expr local to global"],
+        expr_local_to_global=dat["expr local to global"],
     )
 
 
