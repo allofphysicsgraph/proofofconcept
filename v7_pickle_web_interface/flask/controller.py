@@ -213,7 +213,6 @@ USERS = {
 }
 USER_NAMES = dict((u.name, u) for u in USERS.values())
 
-
 class EquationInputForm(FlaskForm):
     logger.info("[trace]")
     #    r = FloatField(validators=[validators.InputRequired()])
@@ -534,7 +533,6 @@ def login():
             remember = request.form.get("remember", "no") == "yes"
             if login_user(USER_NAMES[username], remember=remember):
                 flash("logged in")
-                logger.debug(str(current_user))
                 current_user.username = username
                 return redirect(url_for("editor"))
             else:
@@ -803,7 +801,10 @@ def editor():
 @app.route("/start_new_derivation/", methods=["GET", "POST"])
 @login_required  # https://flask-login.readthedocs.io/en/latest/
 def start_new_derivation():
-    logger.info("[trace] " + str(current_user.username))
+    try:
+        logger.info("[trace] " + str(current_user.username))
+    except AttributeError:
+        return redirect( url_for('login'))
     web_form = NameOfDerivationInputForm(request.form)
     if request.method == "POST" and web_form.validate():
         name_of_derivation = str(web_form.name_of_derivation.data)
