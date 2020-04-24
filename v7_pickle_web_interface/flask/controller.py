@@ -534,7 +534,7 @@ def login():
             remember = request.form.get("remember", "no") == "yes"
             if login_user(USER_NAMES[username], remember=remember):
                 flash("logged in")
-                logger.debug(current_user)
+                logger.debug(str(current_user))
                 current_user.username = username
                 return redirect(url_for("editor"))
             else:

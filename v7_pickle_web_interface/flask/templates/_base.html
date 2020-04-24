@@ -28,10 +28,13 @@
     </script>
     -->
 
-
+    <script id="MathJax-script" async
+    src="{{ url_for('static', filename='mathjax/tex-svg.js') }}"></script>
+<!--
+the following is for mathjax in a separate docker image connected via docker-compose
     <script id="MathJax-script" async
     src="http://localhost:5009/tex-svg.js"></script>
-
+-->
     <!-- THE FOLLOWING WORKS -->
     <!-- http://docs.mathjax.org/en/latest/web/configuration.html#loading-mathjax -->
 <!--
