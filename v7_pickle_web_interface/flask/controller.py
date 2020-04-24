@@ -50,6 +50,9 @@ from flask_login import (
     current_user,
 )
 
+# https://stackoverflow.com/a/56993644/1164295
+from gunicorn import glogging
+
 # https://gist.github.com/lost-theory/4521102
 from flask import g
 from werkzeug.utils import secure_filename
@@ -127,6 +130,14 @@ if __name__ == "__main__":
 # if __name__ != "__main__":
 else:
     print("called from gunicorn")
+
+    # from https://stackoverflow.com/a/56993644/1164295
+    # didn't make a difference 
+    glogging.Logger.error_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f", "Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
+    glogging.Logger.datefmt = ""
+
+    glogging.Logger.access_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f","Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
+    glogging.Logger.syslog_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f","Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
 
     gunicorn_logger = logging.getLogger("gunicorn.error")
     app.logger.handlers = gunicorn_logger.handlers
