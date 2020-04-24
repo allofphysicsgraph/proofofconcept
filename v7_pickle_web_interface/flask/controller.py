@@ -1694,14 +1694,8 @@ def review_derivation(deriv_id: str):
                 flash(str(err))
             return redirect(url_for("static", filename=tex_filename))
         elif request.form["submit_button"] == "delete derivation":
-            msg = "no action taken"
-            try:
-                msg = compute.delete_derivation(deriv_id, path_to_db)
-            except Exception as err:
-                flash(str(err))
-                logger.error(str(err))
-            flash(str(msg))
-            return redirect(url_for("index"))
+            return redirect(url_for("confirm_delete_derivation", deriv_id=deriv_id))
+
         else:
             flash("[ERROR]  unrecognized button:" + str(request.form))
             logger.error("unrecognized button")
@@ -1890,6 +1884,7 @@ def exploded_step(deriv_id: str, step_id: str):
     https://github.com/allofphysicsgraph/proofofconcept/issues/108
     >>> exploded_step()
     """
+    logger.info("[trace]")
     try:
         name_of_graphviz_file = compute.generate_graphviz_of_exploded_step(
             deriv_id, step_id, path_to_db
@@ -1906,15 +1901,58 @@ def exploded_step(deriv_id: str, step_id: str):
         step_id=step_id,
     )
 
+@app.route("/confirm_delete_derivation/<deriv_id>/" , methods=["GET", "POST"])
+@login_required
+def confirm_delete_derivation(deriv_id):
+    """
+    >>> 
+    """
+    try:
+        logger.info("[trace]" + str(current_user.username))
+    except AttributeError:
+        return redirect( url_for('login'))
+
+    dat = clib.read_db(path_to_db)
+    name_of_derivation=dat['derivations'][deriv_id]['name']
+
+    if request.method == "POST":
+        logger.debug("request.form = %s", request.form)
+       # request.form = ImmutableMultiDict([('revised_text', 'asdfina'), ('submit_button', 'delete derivation')])
+
+        if request.form["submit_button"] == "delete derivation" and request.form['revised_text'] == name_of_derivation:
+            logger.debug("form to delete " + str(deriv_id) + " submitted")
+
+            try:
+                msg = compute.delete_derivation(deriv_id, path_to_db)
+                msg += "; " + deriv_id + " = " + name_of_derivation
+            except Exception as err:
+                flash(str(err))
+                logger.error(str(err))
+                msg = "no deletion occurred due to issue in database"
+            flash(str(msg))
+            return redirect(url_for("editor"))
+        else:
+            flash("submitted form did not comply; no deletion occurred")
+            return redirect(url_for('review_derivation', deriv_id=deriv_id))
+
+    return render_template("confirm_delete_derivation.html", 
+    name_of_derivation=name_of_derivation,
+    confirm_deriv_name=RevisedTextForm(request.form)
+)
 
 @app.route("/create_new_inf_rule/", methods=["GET", "POST"])
+@login_required
 def create_new_inf_rule():
     """
     >>>
     """
-    logger.info("[trace] create_new_inf_rule")
+    try:
+        logger.info("[trace]" + str(current_user.username))
+    except AttributeError:
+        return redirect( url_for('login'))
+
     if request.method == "POST":
-        logger.debug("create_new_inf_rule; request.form = %s", request.form)
+        logger.debug("request.form = %s", request.form)
     return render_template("create_new_inf_rule.html")
 
 
