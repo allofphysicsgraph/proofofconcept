@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+{% block content %}
+
+
+<P>step review
+
+<P>derivation name: {{ name_of_derivation}}
+
+<form method="post" action="">
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+Whoops, I didn't mean to go to this page: <input type="submit" name="submit_button" value="return to main menu">
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+
+<!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
+
+<P>Type the name of the derivation to confirm deletion: {{ confirm_deriv_name.revised_text.label }}: {{ confirm_deriv_name.revised_text }}
+
+
+<P>No, I do not want to delete this derivation: <input type="submit" name="submit_button" value="return to main menu">
+
+<P>Yes, delete this derivation: <input type="submit" style="background-color:lightcoral" name="submit_button" value="delete derivation">
+</form>
+
+
+
+{% endblock %}
+
