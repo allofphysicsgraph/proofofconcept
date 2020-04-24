@@ -748,7 +748,7 @@ def get_sorted_list_of_inf_rules_not_in_use(path_to_db: str) -> list:
     for infrule, list_of_deriv_used_in in infrule_popularity_dict.items():
         if len(list_of_deriv_used_in) == 0:
             list_of_infrules_not_in_use.append(infrule)
-    list_of_infrules_not_in_use = [x.lower() for x in list_of_infrules_not_in_use]
+    #list_of_infrules_not_in_use = [x.lower() for x in list_of_infrules_not_in_use]
     list_of_infrules_not_in_use.sort()
     return list_of_infrules_not_in_use
 
@@ -760,7 +760,7 @@ def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_infrule = list(dat["inference rules"].keys())
-    list_infrule = [x.lower() for x in list_infrule]
+    #list_infrule = [x.lower() for x in list_infrule]
     list_infrule.sort()
     return list_infrule
 

@@ -572,7 +572,10 @@ def logout():
     https://flask-login.readthedocs.io/en/latest/#login-example
     >>>
     """
-    logger.info("[trace]" + str(current_user.username))
+    try:
+        logger.info("[trace]" + str(current_user.username))
+    except AttributeError:
+        flash("username not available")
     logout_user()
     return redirect(url_for("index"))
 
@@ -1155,6 +1158,7 @@ def select_derivation_to_edit():
 @app.route(
     "/select_derivation_step_to_edit/<deriv_id>/", methods=["GET", "POST"]
 )
+@login_required
 def select_derivation_step_to_edit(deriv_id: str):
     """
     >>> select_derivation_step_to_edit('fun deriv')
@@ -1303,7 +1307,10 @@ def select_from_existing_derivations():
 @app.route("/new_step_select_inf_rule/<deriv_id>/", methods=["GET", "POST"])
 @login_required  # https://flask-login.readthedocs.io/en/latest/
 def new_step_select_inf_rule(deriv_id: str):
-    logger.info("[trace] " + str(current_user.username))
+    try:
+        logger.info("[trace] " + str(current_user.username))
+    except AttributeError:
+        return redirect( url_for('login'))
     try:
         list_of_inf_rules = compute.get_sorted_list_of_inf_rules(path_to_db)
     except Exception as err:
@@ -1349,8 +1356,10 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
 
     >>> provide_expr_for_inf_rule()
     """
-
-    logger.info("[trace]" + str(current_user.username))
+    try:
+        logger.info("[trace]" + str(current_user.username))
+    except AttributeError:
+        return redirect( url_for('login'))
     # num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, path_to_db)
     # logger.debug('provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
 
@@ -1491,7 +1500,10 @@ def step_review(deriv_id: str, local_step_id: str):
 
     >>> step_review
     """
-    logger.info("[trace]" + str(current_user.username))
+    try:
+        logger.info("[trace]" + str(current_user.username))
+    except AttributeError:
+        return redirect( url_for('login'))
 
     webform = symbolEntry()
 
@@ -1605,7 +1617,10 @@ def rename_derivation(deriv_id: str):
     """
     >>> rename_derivation()
     """
-    logger.info("[trace]" + str(current_user.username))
+    try:
+        logger.info("[trace]" + str(current_user.username))
+    except AttributeError:
+        return redirect( url_for('login'))
     if request.method == "POST":
         # logger.debug(request.form)
         # ImmutableMultiDict([('revised_text', 'test case 1')])
@@ -1748,7 +1763,10 @@ def modify_step(deriv_id: str, step_id: str):
     """
     >>> modify_step('fun deriv', '958242')
     """
-    logger.info("[trace]" + str(current_user.username))
+    try:
+        logger.info("[trace]" + str(current_user.username))
+    except AttributeError:
+        return redirect( url_for('login'))
 
     if request.method == "POST":
         logger.debug("modify_step; request form = %s", request.form)
