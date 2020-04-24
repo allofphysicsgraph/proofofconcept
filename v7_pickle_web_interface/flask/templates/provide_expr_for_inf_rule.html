@@ -214,11 +214,13 @@ function enable_output3_radio3(enabled){
           <!-- https://github.com/allofphysicsgraph/proofofconcept/issues/130 -->
           <!-- <div class="reveal-if-active"> -->
            {{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300, id="input1_latex", onchange="onChangeFunction();") }}<BR>
-           <small>max length = 300 characters</small>
+           <small><B>Required</B>; max length = 300 characters</small>
           </div>
         </td>
-        <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300, id="input1_name", onchange="onChangeFunction();") }}</td>
-        <td>{{ webform.input1_note.label }}: {{ webform.input1_note(size=20, maxlength=300, id="input1_note", onchange="onChangeFunction();") }}</td>
+        <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300, id="input1_name", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
+        <td>{{ webform.input1_note.label }}: {{ webform.input1_note(size=20, maxlength=300, id="input1_note", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
     {% elif loop.index0 == 1 %}
       {% if list_of_local_id|length > 0 %}
       <td>{{ subfield(onclick='enable_input1_radio2(true)') }}</td>
@@ -263,9 +265,11 @@ function enable_output3_radio3(enabled){
       <td>{{ subfield.label }}</td>
 
       <td>{{ webform.input2.label }}: {{ webform.input2(size=50, maxlength=300, id="input2_latex", onchange="onChangeFunction();") }} <BR>
-           <small>max length = 300 characters</small></td>
-      <td>{{ webform.input2_name.label }}: {{ webform.input2_name(size=20, maxlength=300, id="input2_name", onchange="onChangeFunction();") }}</td>
-      <td>{{ webform.input2_note.label }}: {{ webform.input2_note(size=20, maxlength=300, id="input2_note", onchange="onChangeFunction();") }}</td>
+           <small><B>Required</B>; max length = 300 characters</small></td>
+      <td>{{ webform.input2_name.label }}: {{ webform.input2_name(size=20, maxlength=300, id="input2_name", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
+      <td>{{ webform.input2_note.label }}: {{ webform.input2_note(size=20, maxlength=300, id="input2_note", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
     {% elif loop.index0 == 1 %}
       <td>{{ subfield(onclick='enable_input2_radio2(true)') }}</td>
       <td>{{ subfield.label }}</td>
@@ -311,9 +315,11 @@ function enable_output3_radio3(enabled){
       <td>{{ subfield.label }}</td>
 
       <td>{{ webform.input3.label }}: {{ webform.input3(size=50, maxlength=300, id="input3_latex", onchange="onChangeFunction();") }} <BR>
-            <small>max length = 300 characters</small></td>
-      <td>{{ webform.input3_name.label }}: {{ webform.input3_name(size=20, maxlength=300, id="input3_name", onchange="onChangeFunction();") }}</td>
-      <td>{{ webform.input3_note.label }}: {{ webform.input3_note(size=20, maxlength=300, id="input3_note", onchange="onChangeFunction();") }}</td>
+            <small><B>Required</B>; max length = 300 characters</small></td>
+      <td>{{ webform.input3_name.label }}: {{ webform.input3_name(size=20, maxlength=300, id="input3_name", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
+      <td>{{ webform.input3_note.label }}: {{ webform.input3_note(size=20, maxlength=300, id="input3_note", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
     {% elif loop.index0 == 1 %}
       <td>{{ subfield(onclick='enable_input3_radio2(true)') }}</td>
       <td>{{ subfield.label }}</td>
@@ -350,17 +356,17 @@ function enable_output3_radio3(enabled){
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 0|int() %}
-<P>{{ webform.feed1.label }}: {{ webform.feed1(size=50, maxlength=100) }} <small>max length = 100 characters</small>
+<P>{{ webform.feed1.label }}: {{ webform.feed1(size=50, maxlength=100) }} <small><B>Required</B>; max length = 100 characters</small>
 </P>
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 1|int() %}
-<P>{{ webform.feed2.label }}: {{ webform.feed2(size=50, maxlength=100) }} <small>max length = 100 characters</small>
+<P>{{ webform.feed2.label }}: {{ webform.feed2(size=50, maxlength=100) }} <small><B>Required</B>; max length = 100 characters</small>
 </P>
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 2|int() %}
-<P>{{ webform.feed3.label }}: {{ webform.feed3(size=50, maxlength=100) }} <small>max length = 100 characters</small></td>
+<P>{{ webform.feed3.label }}: {{ webform.feed3(size=50, maxlength=100) }} <small><B>Required</B>; max length = 100 characters</small></td>
 </P>
 {% endif %}
 
@@ -374,9 +380,11 @@ function enable_output3_radio3(enabled){
       <td>{{ subfield.label }}</td>
 
     <td>{{ webform.output1.label }}: {{ webform.output1(size=50, maxlength=300, id="output1_latex", onchange="onChangeFunction();") }} <BR>
-           <small>max length = 300 characters</small></td>
-      <td>{{ webform.output1_name.label }}: {{ webform.output1_name(size=20, maxlength=300, id="output1_name", onchange="onChangeFunction();") }}</td>
-      <td>{{ webform.output1_note.label }}: {{ webform.output1_note(size=20, maxlength=300, id="output1_note", onchange="onChangeFunction();") }}</td>
+           <small><B>Required</B>; max length = 300 characters</small></td>
+      <td>{{ webform.output1_name.label }}: {{ webform.output1_name(size=20, maxlength=300, id="output1_name", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
+      <td>{{ webform.output1_note.label }}: {{ webform.output1_note(size=20, maxlength=300, id="output1_note", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
   {% elif loop.index0 == 1 %}
       <td>{{ subfield(onclick='enable_output1_radio2(true)') }}</td>
       <td>{{ subfield.label }}</td>
@@ -422,9 +430,11 @@ function enable_output3_radio3(enabled){
       <td>{{ subfield.label }}</td>
 
     <td>{{ webform.output2.label }}: {{ webform.output2(size=50, maxlength=300, id="output2_latex", onchange="onChangeFunction();") }} <BR>
-           <small>max length = 300 characters</small></td>
-      <td>{{ webform.output2_name.label }}: {{ webform.output2_name(size=20, maxlength=300, id="output2_name", onchange="onChangeFunction();") }}</td>
-      <td>{{ webform.output2_note.label }}: {{ webform.output2_note(size=20, maxlength=300, id="output2_note", onchange="onChangeFunction();") }}</td>
+           <small><B>Required</B>; max length = 300 characters</small></td>
+      <td>{{ webform.output2_name.label }}: {{ webform.output2_name(size=20, maxlength=300, id="output2_name", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
+      <td>{{ webform.output2_note.label }}: {{ webform.output2_note(size=20, maxlength=300, id="output2_note", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
   {% elif loop.index0 == 1 %}
       <td>{{ subfield(onclick='enable_output2_radio2(true)') }}</td>
       <td>{{ subfield.label }}</td>
@@ -470,9 +480,11 @@ function enable_output3_radio3(enabled){
       <td>{{ subfield.label }}</td>
 
     <td>{{ webform.output3.label }}: {{ webform3.output(size=50, maxlength=300, id="output3_latex", onchange="onChangeFunction();") }}<BR>
-              <small>max length = 300 characters</small></td>
-      <td>{{ webform.output3_name.label }}: {{ webform.output3_name(size=20, maxlength=300, id="output3_name", onchange="onChangeFunction();") }}</td>
-      <td>{{ webform.output3_note.label }}: {{ webform.output3_note(size=20, maxlength=300, id="output3_note", onchange="onChangeFunction();") }}</td>
+              <small><B>Required</B>; max length = 300 characters</small></td>
+      <td>{{ webform.output3_name.label }}: {{ webform.output3_name(size=20, maxlength=300, id="output3_name", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
+      <td>{{ webform.output3_note.label }}: {{ webform.output3_note(size=20, maxlength=300, id="output3_note", onchange="onChangeFunction();") }}<BR>
+           <small><i>optional</i></small></td>
   {% elif loop.index0 == 1 %}
       <td>{{ subfield(onclick='enable_output3_radio2(true)') }}</td>
       <td>{{ subfield.label }}</td>
