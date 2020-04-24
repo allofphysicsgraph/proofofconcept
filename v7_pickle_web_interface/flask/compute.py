@@ -1679,6 +1679,7 @@ def list_expr_in_derivation(deriv_id: str, path_to_db: str) -> list:
     for local_expr in list_of_local_expr:
         list_of_global_expr.append(dat["expr local to global"][local_expr])
     # logger.debug('number of expr = %s', len(list_of_global_expr))
+    #logger.debug(str(list_of_global_expr))
     return list_of_global_expr
 
 
@@ -1786,7 +1787,7 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
     for global_expr_id in list_of_expr:
         png_name = global_expr_id
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-            create_png_from_latex(step_dict["inf rule"], png_name)
+            create_png_from_latex(dat['expressions'][global_expr_id], png_name)
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
         # construct the node JSON content
         list_of_nodes.append(
@@ -2094,6 +2095,7 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 
     # logger.debug('create_png_from_latex: finished debris removal, starting create tex file')
 
+    logger.debug('latex = ' + str(input_latex_str))
     create_tex_file_for_expr(tmp_file, input_latex_str)
 
     # logger.debug('create_png_from_latex: running latex against file')
@@ -2148,6 +2150,8 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
         )
 
     shutil.move(tmp_file + ".png", destination_folder + png_name + ".png")
+
+    logger.debug(destination_folder + png_name + ".png")
 
     #    if os.path.isfile(destination_folder + png_name):
     # os.remove('/home/appuser/app/static/'+name_of_png)
