@@ -152,6 +152,11 @@ def json_to_sql(path_to_json: str, path_to_sql: str) -> None:
     >>> 
     """
     logger.info("[trace]")
+
+    if not os.path.exists(path_to_json):
+        logger.error("file " + path_to_json + " does not exist")
+        raise Exception("file " + path_to_json + " does not exist")
+
     with open(path_to_json) as json_file:
         dat = json.load(json_file)
 
