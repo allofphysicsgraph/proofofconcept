@@ -86,6 +86,41 @@
   </UL>
 </P>
 
+<H2 id="running the code">Running the Physics Derivation Graph code</H2>
+
+<H3 id="run flask container">Run Flask container</H3>
+<P>
+  Quick start:
+  <pre>
+  git clone https://github.com/allofphysicsgraph/proofofconcept.git
+  cd proofofconcept/v7_pickle_web_interface/flask/
+  docker build -t flask_ub .
+  docker run -it --rm -v`pwd`/data.json:/home/appuser/app/data.json --publish 5000:5000 flask_ub
+  </pre>
+
+  To enter the container, use
+  <pre>
+  docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
+  python controller.py
+  </pre>
+  Inside the container there is also a Makefile with code maintenance tools
+  <pre>
+  docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
+  make
+  </pre>
+</p>
+<H3 id="run gunicorn container">Run gunicorn container</H3>
+<P>
+  Quick start:
+  <pre>
+  git clone https://github.com/allofphysicsgraph/proofofconcept.git
+  cd proofofconcept/v7_pickle_web_interface/flask/
+  docker build -t gunicorn_ub --file Dockerfile.gunicorn .
+  docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json --entrypoint='' --publish 5000:5000 gunicorn_ub /bin/bash
+  gunicorn --bind :5000 wsgi:app --log-level=debug --access-logfile gunicorn_access.log --error-logfile gunicorn_error.log
+  </pre>
+</P>
+
 <H2 id="historical evolution">historical design evolution</H2>
 <P>
   The Physics Derivation Graph has progressed through multiple architectures, with data structure changes keeping pace with the developer's knowledge. 
