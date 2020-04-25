@@ -1303,7 +1303,7 @@ def generate_map_of_derivations(path_to_db: str) -> str:
     """
     logger.info("[trace]")
     derivation_popularity_dict = popularity_of_derivations(path_to_db)
-    logger.debug("derivation_popularity_dict = %s", str(derivation_popularity_dict))
+    #logger.debug("derivation_popularity_dict = %s", str(derivation_popularity_dict))
 
     dat = clib.read_db(path_to_db)
 
@@ -2090,8 +2090,8 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     #    logger.debug("png_name = %s", png_name)
     #    logger.debug("input latex str = %s", input_latex_str)
 
-    tmp_file = "lat"
-    remove_file_debris(["./"], [tmp_file], ["tex", "dvi", "aux", "log"])
+    tmp_file = "tmp/lat"
+    remove_file_debris(["./tmp"], [tmp_file], ["tex", "dvi", "aux", "log"])
 
     # logger.debug('create_png_from_latex: finished debris removal, starting create tex file')
 
