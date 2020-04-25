@@ -124,13 +124,14 @@ if True:
     # maxBytes=100000 = 100kB
     # maxBytes=1000000 = 1MB
     # maxBytes=10000000 = 10MB
+    log_size = 10000000
     # maxBytes=100000000 = 100MB
     # https://gist.github.com/ibeex/3257877
-    handler_debug = RotatingFileHandler('logs/flask_critical_and_error_and_warning_and_info_and_debug.log', maxBytes=10000, backupCount=1)
+    handler_debug = RotatingFileHandler('logs/flask_critical_and_error_and_warning_and_info_and_debug.log', maxBytes=log_size, backupCount=2)
     handler_debug.setLevel(logging.DEBUG)
-    handler_info  = RotatingFileHandler('logs/flask_critical_and_error_and_warning_and_info.log', maxBytes=10000, backupCount=1)
+    handler_info  = RotatingFileHandler('logs/flask_critical_and_error_and_warning_and_info.log', maxBytes=log_size, backupCount=2)
     handler_info.setLevel(logging.INFO)
-    handler_warning  = RotatingFileHandler('logs/flask_critical_and_error_and_warning.log', maxBytes=10000, backupCount=1)
+    handler_warning  = RotatingFileHandler('logs/flask_critical_and_error_and_warning.log', maxBytes=log_size, backupCount=2)
     handler_warning.setLevel(logging.WARNING)
 
     # https://docs.python.org/3/howto/logging.html
