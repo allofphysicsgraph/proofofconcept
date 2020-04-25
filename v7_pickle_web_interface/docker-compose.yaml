@@ -1,12 +1,13 @@
 # https://docs.docker.com/compose/compose-file/
 
-version: "3.7"
+version: "3.6"
 
 services:
   flask:
     build:
       context: ./flask
       dockerfile: Dockerfile.gunicorn
+    restart: always
 # https://docs.gunicorn.org/en/stable/settings.html
 # https://pythonspeed.com/articles/gunicorn-in-docker/
     command: >
@@ -32,15 +33,6 @@ services:
 #     - .:/scratch
      - ${PWD}/flask/logs:/home/appuser/app/logs/
      - ${PWD}/flask/data.json:/home/appuser/app/data.json
-#    depends_on:
-#     - mathjax
-
-#  db:
-#    image: redis
-#    expose:
-#     - 6379
-#    ports:
-#     - "6379:6379"
 
   nginx:
     build: ./services/nginx
@@ -52,7 +44,3 @@ services:
     depends_on:
       - flask
 
-#  mathjax:
-#    build: ./services/mathjax
-#    ports:
-#     - "5009:5009"
