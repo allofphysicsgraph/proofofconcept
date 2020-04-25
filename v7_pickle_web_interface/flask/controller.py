@@ -27,6 +27,9 @@ import time
 
 # https://docs.python.org/3/howto/logging.html
 import logging
+# https://gist.github.com/ibeex/3257877
+from logging.handlers import RotatingFileHandler
+
 
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
 from flask import Flask, redirect, render_template, request, url_for, flash, jsonify
@@ -112,37 +115,68 @@ csrf.init_app(app)
 # rj = Client(host='db', port=6379, decode_responses=True)
 
 
-if __name__ == "__main__":
+#if __name__ == "__main__":
+if True:
     # called from flask
-    print("called from flask")
+    #print("called from flask")
+
+    # maxBytes=10000 = 10kB
+    # maxBytes=100000 = 100kB
+    # maxBytes=1000000 = 1MB
+    # maxBytes=10000000 = 10MB
+    # maxBytes=100000000 = 100MB
+    # https://gist.github.com/ibeex/3257877
+    handler_debug = RotatingFileHandler('flask_critical_and_error_and_warning_and_info_and_debug.log', maxBytes=10000, backupCount=1)
+    handler_debug.setLevel(logging.DEBUG)
+    handler_info  = RotatingFileHandler('flask_critical_and_error_and_warning_and_info.log', maxBytes=10000, backupCount=1)
+    handler_info.setLevel(logging.INFO)
+    handler_warning  = RotatingFileHandler('flask_critical_and_error_and_warning.log', maxBytes=10000, backupCount=1)
+    handler_warning.setLevel(logging.WARNING)
 
     # https://docs.python.org/3/howto/logging.html
-    logging.basicConfig(  # filename='pdg.log',
-        filemode="w",
+    logging.basicConfig( 
+        # either (filename + filemode) XOR handlers
+        #filename="test.log", # to save entries to file instead of displaying to stderr
+        #filemode="w", # https://docs.python.org/dev/library/functions.html#filemodes
+        handlers=[handler_debug, handler_info, handler_warning],
+        # if the severity level is INFO, 
+        # the logger will handle only INFO, WARNING, ERROR, and CRITICAL messages 
+        # and will ignore DEBUG messages
         level=logging.DEBUG,
         format="%(asctime)s|%(filename)-13s|%(levelname)-5s|%(lineno)-4d|%(funcName)-20s|%(message)s",
         datefmt="%m/%d/%Y %I:%M:%S %p",
     )
+
+#    logger = logging.getLogger(__name__)
+
+    # https://docs.python.org/3/howto/logging.html
+    # if the severity level is INFO, the logger will handle only INFO, WARNING, ERROR, and CRITICAL messages and will ignore DEBUG messages
+    #handler.setLevel(logging.INFO)
+    #handler.setLevel(logging.DEBUG)
+
     logger = logging.getLogger(__name__)
+
+#    logger.addHandler(handler)
 
 # https://stackoverflow.com/questions/41087790/how-to-override-gunicorns-logging-config-to-use-a-custom-formatter
 # https://medium.com/@trstringer/logging-flask-and-gunicorn-the-manageable-way-2e6f0b8beb2f
-# if __name__ != "__main__":
-else:
+if __name__ != "__main__":
+#else:
     print("called from gunicorn")
 
     # from https://stackoverflow.com/a/56993644/1164295
     # didn't make a difference 
-    glogging.Logger.error_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f", "Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
-    glogging.Logger.datefmt = ""
+#    glogging.Logger.error_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f", "Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
+#    glogging.Logger.datefmt = ""
 
-    glogging.Logger.access_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f","Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
-    glogging.Logger.syslog_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f","Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
+#    glogging.Logger.access_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f","Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
+#    glogging.Logger.syslog_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f","Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
 
     gunicorn_logger = logging.getLogger("gunicorn.error")
-    app.logger.handlers = gunicorn_logger.handlers
-    app.logger.setLevel(gunicorn_logger.level)
-    logger = app.logger
+    logger.handlers.extend(gunicorn_logger.handlers) # https://stackoverflow.com/a/37595908/1164295
+    #app.logger.handlers = gunicorn_logger.handlers # works but doesn't display PDG logs
+#    logger.setLevel(gunicorn_logger.level)
+#    logger = app.logger
 
 # https://wtforms.readthedocs.io/en/stable/crash_course.html
 # https://stackoverflow.com/questions/46092054/flask-login-documentation-loginform
@@ -1261,7 +1295,7 @@ def select_derivation_step_to_edit(deriv_id: str):
 
 @app.route("/select_from_existing_derivations", methods=["GET", "POST"])
 def select_from_existing_derivations():
-    logger.info("[trace] select_from_existing_derivations")
+    logger.info("[trace]")
     try:
         list_of_deriv = compute.get_sorted_list_of_derivations(path_to_db)
     except Exception as err:
@@ -1752,6 +1786,7 @@ def review_derivation(deriv_id: str):
         d3js_json_filename = ""
     dat = clib.read_db(path_to_db)
 
+
     if deriv_id in dat["derivations"].keys():
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
@@ -1765,6 +1800,9 @@ def review_derivation(deriv_id: str):
                 logger.error(str(err))
                 flash(str(err))
                 derivation_validity_dict[step_id] = "failed"
+    else:
+        flash(deriv_id + " is not in database")
+        logger.error(deriv_id + " is not in database")
 
     try:
         expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
@@ -2003,12 +2041,13 @@ def create_new_inf_rule():
 
 
 if __name__ == "__main__":
-    try:
-        session_id = compute.create_session_id()
-    except Exception as err:
-        flash(str(err))
-        logger.error(str(err))
-        session_id = "0"
+#    try:
+#        session_id = compute.create_session_id()
+#    except Exception as err:
+#        flash(str(err))
+#        logger.error(str(err))
+#        session_id = "0"
+    # this is only applicable for flask (and not gunicorn)
     app.run(debug=True, host="0.0.0.0")
 
 # EOF
