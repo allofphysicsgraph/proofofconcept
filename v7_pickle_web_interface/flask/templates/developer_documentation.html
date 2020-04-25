@@ -95,17 +95,17 @@
   git clone https://github.com/allofphysicsgraph/proofofconcept.git
   cd proofofconcept/v7_pickle_web_interface/flask/
   docker build -t flask_ub .
-  docker run -it --rm -v`pwd`/data.json:/home/appuser/app/data.json --publish 5000:5000 flask_ub
+  docker run -it --rm -v`pwd`/data.json:/home/appuser/app/data.json -v`pwd`/logs/:/home/appuser/app/logs/ --publish 5000:5000 flask_ub
   </pre>
 
   To enter the container, use
   <pre>
-  docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
+  docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json -v`pwd`/logs/:/home/appuser/app/logs/ --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
   python controller.py
   </pre>
   Inside the container there is also a Makefile with code maintenance tools
   <pre>
-  docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
+  docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json -v`pwd`/logs/:/home/appuser/app/logs/ --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
   make
   </pre>
 </p>
@@ -116,8 +116,8 @@
   git clone https://github.com/allofphysicsgraph/proofofconcept.git
   cd proofofconcept/v7_pickle_web_interface/flask/
   docker build -t gunicorn_ub --file Dockerfile.gunicorn .
-  docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json --entrypoint='' --publish 5000:5000 gunicorn_ub /bin/bash
-  gunicorn --bind :5000 wsgi:app --log-level=debug --access-logfile gunicorn_access.log --error-logfile gunicorn_error.log
+  docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json -v`pwd`/logs/:/home/appuser/app/logs/ --entrypoint='' --publish 5000:5000 gunicorn_ub /bin/bash
+  gunicorn --bind :5000 wsgi:app --log-level=debug --access-logfile logs/gunicorn_access.log --error-logfile logs/gunicorn_error.log
   </pre>
 </P>
 
