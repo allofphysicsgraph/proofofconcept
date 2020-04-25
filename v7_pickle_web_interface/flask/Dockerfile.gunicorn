@@ -54,8 +54,9 @@ RUN npm install mathjax@3
 RUN pip3 install -r /tmp/requirements.txt
 
 RUN useradd --create-home appuser
-WORKDIR /home/appuser/app
-RUN mkdir -p       /home/appuser/app/uploads
+WORKDIR       /home/appuser/app
+RUN mkdir -p  /home/appuser/app/uploads
+RUN mkdir -p  /home/appuser/app/tmp
 USER appuser
 
 COPY templates     /home/appuser/app/templates
