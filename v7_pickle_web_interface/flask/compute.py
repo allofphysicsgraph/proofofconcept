@@ -2090,7 +2090,9 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     #    logger.debug("png_name = %s", png_name)
     #    logger.debug("input latex str = %s", input_latex_str)
 
-    tmp_file = "tmp/lat"
+    # TODO: I'd like to have the latex build process take place in an isolated directory
+    # instead of the /home/appuser/app/ location used now
+    tmp_file = "lat"
     remove_file_debris(["./tmp"], [tmp_file], ["tex", "dvi", "aux", "log"])
 
     # logger.debug('create_png_from_latex: finished debris removal, starting create tex file')
