@@ -47,6 +47,8 @@ services:
     ports:
      - "80:80"
 #      - 1337:80
+    volumes:
+    - ${PWD}/flask/logs/:/logs/
     depends_on:
       - flask
 
