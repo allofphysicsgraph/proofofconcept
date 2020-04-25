@@ -8,16 +8,17 @@ services:
       context: ./flask
       dockerfile: Dockerfile.gunicorn
 # https://docs.gunicorn.org/en/stable/settings.html
+# https://pythonspeed.com/articles/gunicorn-in-docker/
     command: >
       gunicorn
-      --bind :5000
+      --bind 0.0.0.0:5000
       --log-level debug
       wsgi:app
       --capture-output 
       --log-file=logs/gunicorn_logs.log
       --access-logfile=logs/gunicorn_access.log
       --error-logfile=logs/gunicorn_error.log
-      --worker-tmp-dir /dev/shm # https://pythonspeed.com/articles/gunicorn-in-docker/
+      --worker-tmp-dir /dev/shm
       --workers=2 
       --threads=4 
       --worker-class=gthread 
