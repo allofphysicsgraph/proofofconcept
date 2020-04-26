@@ -907,7 +907,7 @@ def generate_stats():
     """
     logger.info("[trace]")
 
-    df = logs_to_stats.auth_log_to_df('/var/logs/auth.log', 'iso3166.csv')
+    df = logs_to_stats.auth_log_to_df('/var/logs/auth.log', '/home/appuser/app/static/iso3166.csv')
 
     logger.debug('generated df from auth log')
 
