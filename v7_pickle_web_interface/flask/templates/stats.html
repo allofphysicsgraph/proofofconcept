@@ -1,0 +1,14 @@
+{% extends "_base.html" %}
+{% block content %}
+
+
+<H2>Stats</H2>
+
+<center>
+{% for this_pic in list_of_pics %}
+<P><img src="{{ url_for=('static', filename=this_pic) }}"></P>
+{% endfor %}
+</center>
+
+{% endblock %}
+

@@ -16,4 +16,5 @@ pylint
 jsonschema
 sympy==1.5.1
 antlr4-python3-runtime
-
+python-geoip-geolite2
+python-geoip-python3

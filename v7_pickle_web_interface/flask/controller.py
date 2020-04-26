@@ -683,6 +683,20 @@ def index():
         json_for_d3js=d3js_json_filename)
 
 
+@app.route("/stats", methods=["GET", "POST"])
+def stats():
+    """
+    "stats" is a static page
+    >>> stats()
+    """
+    logger.info("[trace]")
+    list_of_pics = compute.generate_stats()
+    logger.debug(str(list_of_pics))
+
+    return render_template("stats.html", 
+                            list_of_pics=list_of_pics)
+
+
 @app.route("/faq", methods=["GET", "POST"])
 def faq():
     """

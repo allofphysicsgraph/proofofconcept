@@ -30,6 +30,7 @@ from jsonschema import validate  # type: ignore
 import json_schema  # a PDG file
 import validate_inference_rules_sympy as vir  # a PDG file
 import common_lib as clib  # a PDG file
+import logs_to_stats
 from typing import Tuple, TextIO, List  # mypy
 from typing_extensions import (
     TypedDict,
@@ -897,6 +898,32 @@ def create_expr_local_id(path_to_db: str) -> str:
             raise Exception("this seems unlikely")
     return proposed_local_id
 
+# *******************************************
+# stats
+
+def generate_stats():
+    """
+    >>> 
+    """
+    logger.info("[trace]")
+
+    df = logs_to_stats.auth_log_to_df('/var/logs/auth.log', 'iso3166.csv')
+
+    logger.debug('generated df from auth log')
+
+    creation_date = datetime.datetime.now().strftime("%Y-%m-%d")
+
+    logs_to_stats.plot_username_distribution(df, "/home/appuser/app/static/", 'unique_usernames_'+creation_date)
+    logs_to_stats.plot_ip_vs_time(df, "/home/appuser/app/static/", 'unique_IP_address_per_day_'+creation_date)
+    logs_to_stats.plot_username_vs_time(df, "/home/appuser/app/static/", 'unique_user_names_per_day_'+creation_date)
+    logs_to_stats.plot_country_per_day_vs_time(df, "/home/appuser/app/static/", 'unique_IP_address_per_country_above_threshold_per_day_'+creation_date)
+
+    list_of_picture_names = ['unique_usernames_'+creation_date+'.png',
+                          'unique_IP_address_per_day_'+creation_date+'.png',
+                           'unique_user_names_per_day_'+creation_date+'.png',
+                          'unique_IP_address_per_country_above_threshold_per_day_'+creation_date+'.png']
+
+    return list_of_picture_names
 
 # ********************************************
 # popularity
