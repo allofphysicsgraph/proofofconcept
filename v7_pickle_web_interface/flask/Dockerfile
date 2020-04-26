@@ -65,6 +65,7 @@ COPY common_lib.py \
      compute.py \
      config.py \
      controller.py \
+     logs_to_stats.py \
      json_schema.py \
      Makefile \
      pdg_api.py \
