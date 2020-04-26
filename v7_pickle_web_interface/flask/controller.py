@@ -693,6 +693,17 @@ def faq():
     return render_template("faq.html")
 
 
+@app.route("/other_projects", methods=["GET", "POST"])
+def other_projects():
+    """
+    "other projects" is a static page
+    >>> other_projects()
+    """
+    logger.info("[trace]")
+    return render_template("other_projects.html")
+
+
+
 @app.route("/user_documentation", methods=["GET", "POST"])
 def user_documentation():
     """

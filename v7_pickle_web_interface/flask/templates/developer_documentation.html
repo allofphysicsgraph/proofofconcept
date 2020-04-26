@@ -32,6 +32,11 @@
   Each expression, symbol, and inference rule appears only once in the database.
 </P>
 
+<h2 id="data structure">Data structure used in the PDG</H2>
+<P>
+  The Physics Derivation Graph is currently stored in a single JSON file. <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/data.json">The JSON file</a> is read into Python as a dictionary. 
+</P>
+
 <H2 id="latex for expressions">Latex representation of expressions</H2>
 <P>
   There are multiple choices of how to represent a mathematical expression. 
@@ -121,7 +126,7 @@
   </pre>
 </P>
 
-<H2 id="historical evolution">historical design evolution</H2>
+<H2 id="historical evolution">Historical design evolution</H2>
 <P>
   The Physics Derivation Graph has progressed through multiple architectures, with data structure changes keeping pace with the developer's knowledge. 
   <OL>
