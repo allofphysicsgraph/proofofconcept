@@ -739,22 +739,22 @@ def developer_documentation():
     return render_template("developer_documentation.html")
 
 
-@app.route("/example_T_f_d3js", methods=["GET", "POST"])
-def example_T_f_d3js():
-    """
-    >>> example_T_f_d3js()
-    """
-    logger.info("[trace] example_T_f_d3js")
-    return render_template("example_T_f_d3js.html")
+#@app.route("/example_T_f_d3js", methods=["GET", "POST"])
+#def example_T_f_d3js():
+#    """
+#    >>> example_T_f_d3js()
+#    """
+#    logger.info("[trace] example_T_f_d3js")
+#    return render_template("example_T_f_d3js.html")
 
 
-@app.route("/how_to_build_the_physics_derivation_graph", methods=["GET", "POST"])
-def how_to_build_the_physics_derivation_graph():
-    """
-    >>> how_to_build_the_physics_derivation_graph()
-    """
-    logger.info("[trace] how_to_build_the_physics_derivation_graph")
-    return render_template("how_to_build_the_physics_derivation_graph.html")
+#@app.route("/how_to_build_the_physics_derivation_graph", methods=["GET", "POST"])
+#def how_to_build_the_physics_derivation_graph():
+#    """
+#    >>> how_to_build_the_physics_derivation_graph()
+#    """
+#    logger.info("[trace] how_to_build_the_physics_derivation_graph")
+#    return render_template("how_to_build_the_physics_derivation_graph.html")
 
 
 @app.route("/editor", methods=["GET", "POST"])
