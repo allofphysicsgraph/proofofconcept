@@ -901,29 +901,46 @@ def create_expr_local_id(path_to_db: str) -> str:
 # *******************************************
 # stats
 
-def generate_stats():
+def generate_stats(number_of_lines_of_log_tail: int) -> None:
     """
     >>> 
     """
     logger.info("[trace]")
 
-    df = logs_to_stats.auth_log_to_df('/var/logs/auth.log', '/home/appuser/app/static/iso3166.csv')
+    df = logs_to_stats.auth_log_to_df('/home/appuser/app/logs/auth.log', '/home/appuser/app/static/iso3166.csv')
 
     logger.debug('generated df from auth log')
 
     creation_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
-    logs_to_stats.plot_username_distribution(df, "/home/appuser/app/static/", 'unique_usernames_'+creation_date)
-    logs_to_stats.plot_ip_vs_time(df, "/home/appuser/app/static/", 'unique_IP_address_per_day_'+creation_date)
-    logs_to_stats.plot_username_vs_time(df, "/home/appuser/app/static/", 'unique_user_names_per_day_'+creation_date)
-    logs_to_stats.plot_country_per_day_vs_time(df, "/home/appuser/app/static/", 'unique_IP_address_per_country_above_threshold_per_day_'+creation_date)
+    list_of_picture_names = []
 
-    list_of_picture_names = ['unique_usernames_'+creation_date+'.png',
-                          'unique_IP_address_per_day_'+creation_date+'.png',
-                           'unique_user_names_per_day_'+creation_date+'.png',
-                          'unique_IP_address_per_country_above_threshold_per_day_'+creation_date+'.png']
+    pic_name = 'unique_usernames_'+creation_date+'.png'
+    if not os.path.exists("/home/appuser/app/static/" + pic_name):
+        logs_to_stats.plot_username_distribution(df, "/home/appuser/app/static/", pic_name)
+    list_of_picture_names.append(pic_name)
 
-    return list_of_picture_names
+    pic_name = 'unique_IP_address_per_day_'+creation_date+'.png'
+    if not os.path.exists("/home/appuser/app/static/" + pic_name):
+        logs_to_stats.plot_ip_vs_time(df, "/home/appuser/app/static/", pic_name)
+    list_of_picture_names.append(pic_name)
+
+    pic_name = 'unique_user_names_per_day_'+creation_date+'.png'
+    if not os.path.exists("/home/appuser/app/static/" + pic_name):
+        logs_to_stats.plot_username_vs_time(df, "/home/appuser/app/static/", pic_name)
+    list_of_picture_names.append(pic_name)
+
+    pic_name = 'unique_IP_address_per_country_above_threshold_per_day_'+creation_date+'.png'
+    if not os.path.exists("/home/appuser/app/static/" + pic_name):
+        logs_to_stats.plot_country_per_day_vs_time(df, "/home/appuser/app/static/", pic_name)
+    list_of_picture_names.append(pic_name)
+
+    with open('/home/appuser/app/logs/auth.log','r') as f:
+        lines = f.readlines()
+
+    tail_of_log_as_list = lines[-1*number_of_lines_of_log_tail:]
+
+    return list_of_picture_names, tail_of_log_as_list
 
 # ********************************************
 # popularity

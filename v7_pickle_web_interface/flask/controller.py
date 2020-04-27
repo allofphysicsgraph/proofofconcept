@@ -690,11 +690,12 @@ def stats():
     >>> stats()
     """
     logger.info("[trace]")
-    list_of_pics = compute.generate_stats()
+    list_of_pics, tail_of_auth_log_as_list = compute.generate_stats(10)
     logger.debug(str(list_of_pics))
 
     return render_template("stats.html", 
-                            list_of_pics=list_of_pics)
+                            list_of_pics=list_of_pics,
+                            tail_of_auth_log_as_list=tail_of_auth_log_as_list)
 
 
 @app.route("/faq", methods=["GET", "POST"])

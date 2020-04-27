@@ -11,12 +11,16 @@ import time
 import matplotlib.pyplot as plt
 from geoip import geolite2 # https://pythonhosted.org/python-geoip/
 import os
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 def extract_username(msg):
     """
     >>> 
     """
-    logger.trace('[trace]')
+    logger.info('[trace]')
     if msg.startswith('Failed password for invalid user '):
         return msg.replace('Failed password for invalid user ','').split(' ')[0]
     elif msg.startswith('Failed password for '):
@@ -30,7 +34,7 @@ def extract_ip(msg):
     """
     >>> 
     """
-    logger.trace('[trace]')
+    logger.info('[trace]')
 
 # ### append IP as column in df
     res = re.findall('(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.'+
@@ -44,30 +48,46 @@ def extract_ip(msg):
     else:
         raise Exception(res)
 
-def country_if_ip(ip):
-    """
-    >>> 
-    """
-    logger.trace('[trace]')
-    # ## IP to country code using library, then country code to name using lookup table
-    if ip:
-        match = geolite2.lookup(ip)
-        if match:
-            return country_code_df[country_code_df['country code']==match.country]['name'].values[0]
-        else:
-            return None
-    else:
-        return None
+#def country_if_ip(ip, country_code_df):
+#    """
+#    >>> 
+#    """
+#    logger.info('[trace]')
+#    # ## IP to country code using library, then country code to name using lookup table
+#    if ip:
+#        match = geolite2.lookup(ip)
+#        if match:
+#            return country_code_df[country_code_df['country code']==match.country]['name'].values[0]
+#        else:
+#            return None
+#    else:
+#        return None
 
 
 def auth_log_to_df(path_to_auth_log, path_to_country_code_table):
     """
     >>> auth_log_to_df('logs/auth.log', 'iso3166.csv')
     """
-    logger.trace('[trace]')
+    logger.info('[trace]')
     # download country code lookup table from https://dev.maxmind.com/geoip/legacy/codes/iso3166/
     # https://dev.maxmind.com/static/csv/codes/iso3166.csv
     country_code_df = pandas.read_csv(path_to_country_code_table, header=None, names=['country code', 'name'])
+
+    def country_if_ip(ip):
+        """
+        >>> 
+        """
+        logger.info('[trace]')
+        # ## IP to country code using library, then country code to name using lookup table
+        if ip:
+            match = geolite2.lookup(ip)
+            if match:
+                return country_code_df[country_code_df['country code']==match.country]['name'].values[0]
+            else:
+                return None
+        else:
+            return None
+        return None
 
 
     if not os.path.exists(path_to_auth_log):
@@ -129,16 +149,18 @@ def plot_username_distribution(df,path_to_save_to: str,output_filename: str) -> 
     >>> path_to_save_to = "/home/appuser/app/static/"
     >>> plot_username_distribution(df,path_to_save_to)
     """
-    logger.trace('[trace]')
+    logger.info('[trace]')
     user_name_series = df['username'].value_counts().head(20)
 
+    # https://stackoverflow.com/a/8228808/1164295
+    plt.close('all')
     # https://stackoverflow.com/a/16014873/1164295
     plt.bar(range(len(user_name_series)), list(user_name_series.values), align='center')
     _=plt.xticks(range(len(user_name_series)), list(user_name_series.index), rotation='vertical')
     _=plt.ylabel('number of login attempts')
     _=plt.xlabel('user name attempted')
-    plt.savefig(output_filename, format='png')
-    shutil.move(output_filename + ".png", path_to_save_to + output_filename + '.png')
+    plt.savefig(output_filename, format='png', bbox_inches = "tight")
+    shutil.move(output_filename, path_to_save_to + output_filename)
     return
 
 
@@ -150,14 +172,17 @@ def plot_ip_vs_time(df,path_to_save_to: str,output_filename: str) -> None:
     >>> path_to_save_to = "/home/appuser/app/static/"
     >>>
     """
-    logger.trace('[trace]')
+    logger.info('[trace]')
+
+    # https://stackoverflow.com/a/8228808/1164295
+    plt.close('all')
 
     gb = df.groupby([(df['year']),(df['month']), (df['day'])]).nunique()['ip'].plot(kind='bar')
     _=plt.ylabel('number of unique IP addresses')
     _=plt.title('IP addresses observed per day')
 
-    plt.savefig(output_filename, format='png')
-    shutil.move(output_filename + ".png", path_to_save_to + output_filename + '.png')
+    plt.savefig(output_filename, format='png', bbox_inches = "tight")
+    shutil.move(output_filename, path_to_save_to + output_filename)
     return
 
 
@@ -167,15 +192,18 @@ def plot_username_vs_time(df,path_to_save_to: str,output_filename: str) -> None:
     >>> path_to_save_to = "/home/appuser/app/static/"
     >>>
     """
-    logger.trace('[trace]')
+    logger.info('[trace]')
+
+    # https://stackoverflow.com/a/8228808/1164295
+    plt.close('all')
 
     gb = df.groupby([(df['year']),(df['month']), (df['day'])]).nunique()['username'].plot(kind='bar')
     _=plt.ylabel('number of unique user names')
     _=plt.title('unique user name attempts observed per day')
     creation_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
-    plt.savefig(output_filename, format='png')
-    shutil.move(output_filename + ".png", path_to_save_to + output_filename + '.png')
+    plt.savefig(output_filename, format='png', bbox_inches = "tight")
+    shutil.move(output_filename, path_to_save_to + output_filename)
     return
 
 def plot_country_per_day_vs_time(df,path_to_save_to: str,output_filename: str) -> None:
@@ -184,7 +212,10 @@ def plot_country_per_day_vs_time(df,path_to_save_to: str,output_filename: str) -
     >>> path_to_save_to = "/home/appuser/app/static/"
     >>>
     """
-    logger.trace('[trace]')
+    logger.info('[trace]')
+
+    # https://stackoverflow.com/a/8228808/1164295
+    plt.close('all')
 
     # https://stackoverflow.com/questions/26683654/making-a-stacked-barchart-in-pandas
     # https://stackoverflow.com/questions/34917727/stacked-bar-plot-by-grouped-data-with-pandas
@@ -196,8 +227,8 @@ def plot_country_per_day_vs_time(df,path_to_save_to: str,output_filename: str) -
     _=plt.ylabel('unique IP addresses per country')
     _=plt.title('IP address per country observed per day where count>4')
 
-    plt.savefig(output_filename, format='png')
-    shutil.move(output_filename + ".png", path_to_save_to + output_filename + '.png')
+    plt.savefig(output_filename, format='png', bbox_inches = "tight")
+    shutil.move(output_filename, path_to_save_to + output_filename)
     return
 
 # EOF

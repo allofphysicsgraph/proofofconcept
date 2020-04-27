@@ -2,11 +2,19 @@
 {% block content %}
 
 
-<H2>Stats</H2>
+<H2>Stats from /var/logs/auth.log</H2>
+
+<P>
+  <font face = "courier">
+  {% for line in tail_of_auth_log_as_list %}
+  {{ line }}<BR>
+  {% endfor %}
+  </font>
+</P>
 
 <center>
 {% for this_pic in list_of_pics %}
-<P><img src="{{ url_for=('static', filename=this_pic) }}"></P>
+<P><img src="{{ url_for('static', filename=this_pic) }}"></P>
 {% endfor %}
 </center>
 
