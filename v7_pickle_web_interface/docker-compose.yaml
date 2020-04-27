@@ -33,7 +33,7 @@ services:
 #     - .:/scratch
      - ${PWD}/flask/logs:/home/appuser/app/logs/
      - ${PWD}/flask/data.json:/home/appuser/app/data.json
-
+     - /var/logs/auth.log:/home/appuser/app/logs/auth.log
   nginx:
     build: ./services/nginx
     ports:
