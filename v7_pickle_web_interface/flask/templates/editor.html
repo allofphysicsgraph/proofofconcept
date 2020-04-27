@@ -1,5 +1,20 @@
-{% extends "_base.html" %}
-{% block content %}
+<!-- unlike all other pages, this page does not inherit from _base.html
+     That's because the "sign in" and "editor" links are not shown at the top of the page -->
+<!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
+<html>
+  <head>
+    {% if title %}
+    <title>Physics Derivation Graph: {{ title }}</title>
+    {% else %}
+    <title>Welcome to the Physics Derivation Graph</title>
+    {% endif %}
+
+{% include '_js_head.html' %}
+
+
+
+  </head>
+  <body>
 
 
 <P>From the Physics Derivation Graph editor, you can
@@ -70,4 +85,8 @@ Upload database file (JSON only):
 </p>
 {% endif %}
 
-{% endblock %}
+
+{% include '_footer.html' %}
+
+    </body>
+</html>

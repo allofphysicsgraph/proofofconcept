@@ -89,7 +89,7 @@ The relation of these terms is shown graphically below in figure 1:<!--in Fig. \
 
 <P>
   The graph content takes the form of <a href="#expressions">expressions</a> (e.g., equations and inequalities), <a href="#inference rules">inference rules</a>, and feeds.
-  The expressions and feeds are built from <a href="{{ url_for=('list_all_symbols') }}">symbols</a>.
+  The expressions and feeds are built from <a href="{{ url_for('list_all_symbols') }}">symbols</a>.
   In the <a href="#example">example provided above</a>, the symbols are period \(T\), frequency \(f\), equality \(=\), division \(/\), (implicity) multiplication, and the numeric value 1.
   The two expressions are \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period}.
   An inference rule is defined here as an atomic transformation of one expression to another.
@@ -137,7 +137,7 @@ The Physics Derivation Graph is designed to show one instance of each expression
 </P>
 
 <P>
-  The <a href="{{ url_for=('list_all_expressions') }}">list of expressions used in the Physics Derivation Graph</a> is intended to be comprehensive.
+  The <a href="{{ url_for('list_all_expressions') }}">list of expressions used in the Physics Derivation Graph</a> is intended to be comprehensive.
 </P>
 
 <h2 id="inference rules">Inference Rules</H2>
@@ -159,7 +159,7 @@ The Physics Derivation Graph is designed to show one instance of each expression
 Inference rules for the Physics Derivation Graph are intended to meet a threshold -- can the computer algebra system validate that the claim is true?
 </P>
 
-<P>The <a href="{{ url_for=('list_all_inference_rules') }}">list of inference rules used in the Physics Derivation Graph</a> is intended to short enough to fit in a person's memory while also being sufficiently narrow to be tested by Sympy.
+<P>The <a href="{{ url_for('list_all_inference_rules') }}">list of inference rules used in the Physics Derivation Graph</a> is intended to short enough to fit in a person's memory while also being sufficiently narrow to be tested by Sympy.
 
 <P>
 Inference rules are useful for catching simple mistakes by CAS validation. Common mistakes include not carrying the negative symbol through a derivation or unintentionally dropping a term. The inference rules are atomic (simplest step possible) and first order -- they only relate nearest-neighbor expressions.
