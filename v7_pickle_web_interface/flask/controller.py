@@ -1110,6 +1110,7 @@ def list_all_expressions():
         list_of_expr_not_appearing_in_any_derivations=list_of_expr_not_appearing_in_any_derivations,
         edit_expr_latex_webform=RevisedTextForm(request.form),
         edit_expr_name_webform=RevisedTextForm(request.form),
+        edit_expr_note_webform=RevisedTextForm(request.form),
         expression_popularity_dict=expression_popularity_dict,
     )
 
