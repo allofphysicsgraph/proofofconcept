@@ -870,6 +870,7 @@ def start_new_derivation():
         logger.info("[trace] " + str(current_user.username))
     except AttributeError:
 #        return redirect( url_for('login'))
+        current_user.username = "Ben"
         logger.info('[trace]')
 
     web_form = NameOfDerivationInputForm(request.form)
@@ -1449,6 +1450,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
+        current_user.username = "Ben"
         logger.info('[trace]')
 #        return redirect( url_for('login'))
 
