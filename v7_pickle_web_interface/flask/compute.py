@@ -1354,7 +1354,11 @@ def generate_map_of_derivations(path_to_db: str) -> str:
     dot_filename = "/home/appuser/app/static/graphviz.dot"
     with open(dot_filename, "w") as fil:
         fil.write("graph physicsDerivation { \n")
-        fil.write("overlap = false;\n")
+        # the following can cause graphviz to crash; see 
+        # https://github.com/allofphysicsgraph/proofofconcept/issues/2
+        #fil.write("overlap = false;\n") 
+        fil.write("overlap = prism;\n") # https://www.graphviz.org/doc/info/attrs.html#d:overlap
+        fil.write("pack = true;\n") # https://www.graphviz.org/doc/info/attrs.html#d:pack
         fil.write('label="all derivations";\n')
         fil.write("fontsize=12;\n")
 
