@@ -1365,7 +1365,7 @@ def generate_map_of_derivations(path_to_db: str) -> str:
                 create_png_from_latex(
                     "\\text{" + dat['derivations'][deriv_id]['name'].replace('^','') + "}", this_deriv
                 )
-                fil.write(
+            fil.write(
                     '"'
                     + this_deriv
                     + '" [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
