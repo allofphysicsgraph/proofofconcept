@@ -18,9 +18,11 @@ logger = logging.getLogger(__name__)
 
 def extract_username(msg):
     """
+        Helper functions should not have trace turned on
+        because the logger is triggered per dataframe row
     >>> 
     """
-    logger.info('[trace]')
+#    logger.info('[trace]')
     if msg.startswith('Failed password for invalid user '):
         return msg.replace('Failed password for invalid user ','').split(' ')[0]
     elif msg.startswith('Failed password for '):
@@ -32,9 +34,11 @@ def extract_username(msg):
 
 def extract_ip(msg):
     """
+        Helper functions should not have trace turned on
+        because the logger is triggered per dataframe row
     >>> 
     """
-    logger.info('[trace]')
+#    logger.info('[trace]')
 
 # ### append IP as column in df
     res = re.findall('(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.'+
@@ -75,9 +79,11 @@ def auth_log_to_df(path_to_auth_log, path_to_country_code_table):
 
     def country_if_ip(ip):
         """
+        Helper functions should not have trace turned on
+        because the logger is triggered per dataframe row
         >>> 
         """
-        logger.info('[trace]')
+#        logger.info('[trace]')
         # ## IP to country code using library, then country code to name using lookup table
         if ip:
             match = geolite2.lookup(ip)
