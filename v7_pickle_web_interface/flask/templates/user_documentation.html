@@ -10,7 +10,7 @@
 <H2 id="about PDG">About the project</H2>
 <P>
   The Physics Derivation Graph is an effort to document knowledge about mathematical physics. <BR>
-  The project uses free and open source software (see <a href="{{ url_for('developer_documentation') }}#dependencies?referrer=user_documentation">dependencies</a>) and the content is free and open source. <BR>
+  The project uses free and open source software (see <a href="{{ url_for('developer_documentation') }}?referrer=user_documentation#dependencies">dependencies</a>) and the content is free and open source. <BR>
   There is no intent to profit from the work.
   This content is free because it is intended to be accessible to anyone; cost should not be a barrier to access.
   The content is open source so that other researchers can build upon what exists.
@@ -35,7 +35,7 @@ This enables non-linear exploration of content, in contrast to a textbook which 
   The Physics Derivation Graph applies the concept of non-linear documentation to mathematical physics content.
   Instead of starting from linear text with references, this project starts with the network of mathematical relations.
   A more formal term for this network is a <a href="https://en.wikipedia.org/wiki/Graph_(mathematics)">graph</a> composed of nodes and edges.
-  The graph associated with the PDG has two essential types of nodes: mathematical expressions and <a href="#inference rules?referrer=user_documentation">inference rules</a>.
+  The graph associated with the PDG has two essential types of nodes: mathematical expressions and <a href="#inference rules">inference rules</a>.
   Every mathematical expression is connected to an inference rule by a directed edge.
   No two expressions are directly connected without an inference rule, and no two inference rules are connected directly.
   An example is provided in the next section to illustrate the concepts.
@@ -88,9 +88,9 @@ The relation of these terms is shown graphically below in figure 1:<!--in Fig. \
 <H2 id="graph content">Graph content</H2>
 
 <P>
-  The graph content takes the form of <a href="#expressions?referrer=user_documentation">expressions</a> (e.g., equations and inequalities), <a href="#inference rules?referrer=user_documentation">inference rules</a>, and feeds.
+  The graph content takes the form of <a href="#expressions">expressions</a> (e.g., equations and inequalities), <a href="#inference rules">inference rules</a>, and feeds.
   The expressions and feeds are built from <a href="{{ url_for('list_all_symbols') }}?referrer=user_documentation">symbols</a>.
-  In the <a href="#example?referrer=user_documentation">example provided above</a>, the symbols are period \(T\), frequency \(f\), equality \(=\), division \(/\), (implicity) multiplication, and the numeric value 1.
+  In the <a href="#example">example provided above</a>, the symbols are period \(T\), frequency \(f\), equality \(=\), division \(/\), (implicity) multiplication, and the numeric value 1.
   The two expressions are \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period}.
   An inference rule is defined here as an atomic transformation of one expression to another.
   The inference rule being applied implicitly between \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first equation by a value to yield the second equation."

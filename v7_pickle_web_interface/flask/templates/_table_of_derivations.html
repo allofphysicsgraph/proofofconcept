@@ -9,7 +9,7 @@
   <tr>
     <td>
       <a name="{{ deriv_id }}">
-        <a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}">
+        <a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}?referrer=_table_of_derivations">
           {{ dat['derivations'][deriv_id]['name'] }}
         </a>
       </a>
@@ -18,7 +18,7 @@
     <td>
       <UL>
         {% for tup in deriv_attributes_dict['shares expressions with'] %} 
-        <LI><a href="{{ url_for('review_derivation', deriv_id=tup[0]) }}">{{ dat['derivations'][tup[0]]['name'] }}</a></LI>
+        <LI><a href="{{ url_for('review_derivation', deriv_id=tup[0]) }}?referrer=_table_of_derivations">{{ dat['derivations'][tup[0]]['name'] }}</a></LI>
         {% endfor %}
       </UL>
     </td>
