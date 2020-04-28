@@ -1109,6 +1109,7 @@ def list_all_expressions():
         sorted_list_exprs=list_of_expr,
         list_of_expr_not_appearing_in_any_derivations=list_of_expr_not_appearing_in_any_derivations,
         edit_expr_latex_webform=RevisedTextForm(request.form),
+        edit_expr_name_webform=RevisedTextForm(request.form),
         expression_popularity_dict=expression_popularity_dict,
     )
 
