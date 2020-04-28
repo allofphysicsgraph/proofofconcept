@@ -10,7 +10,7 @@
 <H2 id="about PDG">About the project</H2>
 <P>
   The Physics Derivation Graph is an effort to document knowledge about mathematical physics. <BR>
-  The project uses free and open source software (see <a href="/developer_documentation#dependencies">dependencies</a>) and the content is free and open source. <BR>
+  The project uses free and open source software (see <a href="{{ url_for('developer_documentation') }}#dependencies?referrer=user_documentation">dependencies</a>) and the content is free and open source. <BR>
   There is no intent to profit from the work.
   This content is free because it is intended to be accessible to anyone; cost should not be a barrier to access.
   The content is open source so that other researchers can build upon what exists.
@@ -35,7 +35,7 @@ This enables non-linear exploration of content, in contrast to a textbook which 
   The Physics Derivation Graph applies the concept of non-linear documentation to mathematical physics content.
   Instead of starting from linear text with references, this project starts with the network of mathematical relations.
   A more formal term for this network is a <a href="https://en.wikipedia.org/wiki/Graph_(mathematics)">graph</a> composed of nodes and edges.
-  The graph associated with the PDG has two essential types of nodes: mathematical expressions and <a href="#inference rules">inference rules</a>.
+  The graph associated with the PDG has two essential types of nodes: mathematical expressions and <a href="#inference rules?referrer=user_documentation">inference rules</a>.
   Every mathematical expression is connected to an inference rule by a directed edge.
   No two expressions are directly connected without an inference rule, and no two inference rules are connected directly.
   An example is provided in the next section to illustrate the concepts.
@@ -88,9 +88,9 @@ The relation of these terms is shown graphically below in figure 1:<!--in Fig. \
 <H2 id="graph content">Graph content</H2>
 
 <P>
-  The graph content takes the form of <a href="#expressions">expressions</a> (e.g., equations and inequalities), <a href="#inference rules">inference rules</a>, and feeds.
-  The expressions and feeds are built from <a href="{{ url_for('list_all_symbols') }}">symbols</a>.
-  In the <a href="#example">example provided above</a>, the symbols are period \(T\), frequency \(f\), equality \(=\), division \(/\), (implicity) multiplication, and the numeric value 1.
+  The graph content takes the form of <a href="#expressions?referrer=user_documentation">expressions</a> (e.g., equations and inequalities), <a href="#inference rules?referrer=user_documentation">inference rules</a>, and feeds.
+  The expressions and feeds are built from <a href="{{ url_for('list_all_symbols') }}?referrer=user_documentation">symbols</a>.
+  In the <a href="#example?referrer=user_documentation">example provided above</a>, the symbols are period \(T\), frequency \(f\), equality \(=\), division \(/\), (implicity) multiplication, and the numeric value 1.
   The two expressions are \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period}.
   An inference rule is defined here as an atomic transformation of one expression to another.
   The inference rule being applied implicitly between \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first equation by a value to yield the second equation."
@@ -137,7 +137,7 @@ The Physics Derivation Graph is designed to show one instance of each expression
 </P>
 
 <P>
-  The <a href="{{ url_for('list_all_expressions') }}">list of expressions used in the Physics Derivation Graph</a> is intended to be comprehensive.
+  The <a href="{{ url_for('list_all_expressions') }}?referrer=user_documentation">list of expressions used in the Physics Derivation Graph</a> is intended to be comprehensive.
 </P>
 
 <h2 id="inference rules">Inference Rules</H2>
@@ -159,7 +159,7 @@ The Physics Derivation Graph is designed to show one instance of each expression
 Inference rules for the Physics Derivation Graph are intended to meet a threshold -- can the computer algebra system validate that the claim is true?
 </P>
 
-<P>The <a href="{{ url_for('list_all_inference_rules') }}">list of inference rules used in the Physics Derivation Graph</a> is intended to short enough to fit in a person's memory while also being sufficiently narrow to be tested by Sympy.
+<P>The <a href="{{ url_for('list_all_inference_rules') }}?referrer=user_documentation">list of inference rules used in the Physics Derivation Graph</a> is intended to short enough to fit in a person's memory while also being sufficiently narrow to be tested by Sympy.
 
 <P>
 Inference rules are useful for catching simple mistakes by CAS validation. Common mistakes include not carrying the negative symbol through a derivation or unintentionally dropping a term. The inference rules are atomic (simplest step possible) and first order -- they only relate nearest-neighbor expressions.
@@ -226,13 +226,13 @@ Each inference rule seems equally important, since it currently isn't known what
   This is close to what the GUI for the Physics Derivation Graph is intended to behave like, with the exception that EquationMap doesn't include the concept of atomic inference rules.
 </P>
 <P>
-  <a href="{{ url_for('static', filename='equationmap_site.png') }}">
+  <a href="{{ url_for('static', filename='equationmap_site.png') }}?referrer=user_documentation">
     <img src="{{ url_for('static', filename='equationmap_site.png') }}" width=400>
   </a>
   Screenshot of the EquationMap website. The input mechanism is not shown because this screenshot is from the Internet Archive.
 </P>
 <P>
-  <a href="{{ url_for('static', filename='equationmap_site_menu.png') }}">
+  <a href="{{ url_for('static', filename='equationmap_site_menu.png') }}?referrer=user_documentation">
     <img src="{{ url_for('static', filename='equationmap_site_menu.png') }}" width=400>
   </a>
   Screenshot of the option to provide .tex files to EquationMap website, and download .tex files.
@@ -262,19 +262,19 @@ Currently we are developing the completed product to allow users to enjoy this f
 
 <P>
   Below are a few screenshots from the Internet Archive.
-  <a href="{{ url_for('static', filename='formuladatabase.png') }}">
+  <a href="{{ url_for('static', filename='formuladatabase.png') }}?referrer=user_documentation">
     <img src="{{ url_for('static', filename='formuladatabase.png') }}" width=400>
   </a>
   Frontpage of the FormulaDatabase.
 </P>
 <P>
-  <a href="{{ url_for('static', filename='formuladatabase_2.png') }}">
+  <a href="{{ url_for('static', filename='formuladatabase_2.png') }}?referrer=user_documentation">
     <img src="{{ url_for('static', filename='formuladatabase_2.png') }}" width=400>
   </a>
   Categories of data in the FormulaDatabase.
 </P>
 <P>
-  <a href="{{ url_for('static', filename='formuladatabase_3.png') }}">
+  <a href="{{ url_for('static', filename='formuladatabase_3.png') }}?referrer=user_documentation">
     <img src="{{ url_for('static', filename='formuladatabase_3.png') }}" width=400>
   </a>
 Objects in the FormulaDatabase.

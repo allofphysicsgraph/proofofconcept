@@ -2,7 +2,7 @@
 {% block content %}
 
 <P>
-  <i>Recommendation</i>: Read the <a href="/user_documentation">user documentation</a> and <a href="/faq">FAQ</a> first.
+  <i>Recommendation</i>: Read the <a href="{{ url_for('user_documentation') }}?referrer=developer_documentation">user documentation</a> and <a href="{{ url_for('faq') }}?referrer=developer_documentation">FAQ</a> first.
 </P>
 
 <P>

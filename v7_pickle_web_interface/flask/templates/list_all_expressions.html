@@ -9,7 +9,7 @@
     <h2>Delete an expression</h2>
   </a>
   {% if current_user.is_anonymous %}
-  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
   {% else %}
 <P>Only expressions that do not appear in any derivation can be deleted
 <form method="post" action="">
@@ -33,7 +33,7 @@
     <h2>Edit the latex for an expression</h2>
   </a>
   {% if current_user.is_anonymous %}
-  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
   {% else %}
 <form method="post" action="">
   <div class="form-group">
@@ -57,7 +57,7 @@
     <h2>Edit the name of an expression</h2>
   </a>
   {% if current_user.is_anonymous %}
-  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
   {% else %}
 <form method="post" action="">
   <div class="form-group">
@@ -81,7 +81,7 @@
     <h2>Edit the note for an expression</h2>
   </a>
   {% if current_user.is_anonymous %}
-  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
   {% else %}
 <form method="post" action="">
   <div class="form-group">

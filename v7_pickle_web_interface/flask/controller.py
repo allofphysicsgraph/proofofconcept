@@ -1588,7 +1588,10 @@ def step_review(deriv_id: str, local_step_id: str):
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-        return redirect( url_for('login') + '?referrer=step_review')
+        # the referrer does not appear in the logs 
+        #return redirect( url_for('login') + '?referrer=step_review')
+        # as per https://stackoverflow.com/a/23144200/1164295
+        return redirect( url_for('login', referrer='step_review'))
 
     webform = symbolEntry()
 

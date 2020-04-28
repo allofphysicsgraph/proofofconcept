@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 {% block content %}
 
-<P>See the <a href="{{ url_for('user_documentation') }}#inference rules">documentation</a> for background on inference rules.
+<P>See the <a href="{{ url_for('user_documentation') }}#inference rules?referrer=list_all_inference_rules">documentation</a> for background on inference rules.
 <P>
 {% include '_table_of_inference_rules.html' %}
 
@@ -28,7 +28,7 @@
       </div>
     </form>
   {% else %}
-  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_inference_rules">signed in</a>
   {% endif %}
 </P>
 
@@ -55,7 +55,7 @@ Only inference rules not in use can be deleted.
   </div>
 </form>
   {% else %}
-  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_inference_rules">signed in</a>
   {% endif %}
 </P>
 
@@ -81,7 +81,7 @@ Only inference rules not in use can be deleted.
   </div>
 </form>
   {% else %}
-  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_inference_rules">signed in</a>
   {% endif %}
 </P>
 
@@ -107,7 +107,7 @@ Only inference rules not in use can be deleted.
   </div>
 </form>
   {% else %}
-  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_inference_rules">signed in</a>
   {% endif %}
 </P>
 
