@@ -5,60 +5,60 @@
 <P>From the Physics Derivation Graph editor, you can
   <UL>
     <LI>
-      <a href="{{ url_for('show_all_derivations') }}">show all derivations</a>
+      <a href="{{ url_for('show_all_derivations') }}?referrer=editor">show all derivations</a>
     </LI>
     <LI>
-      <a href="{{ url_for('start_new_derivation') }}">start a new derivation</a>
+      <a href="{{ url_for('start_new_derivation') }}?referrer=editor">start a new derivation</a>
       {% if current_user.is_anonymous %}
-        -- requires being <a href="{{ url_for('login') }}">signed in</a>
+        -- requires being <a href="{{ url_for('login') }}?referrer=editor">signed in</a>
       {% endif %}
     </LI>
     {% if number_of_derivations > 0 %}
     <LI>
-      <a href="{{ url_for('select_from_existing_derivations') }}">view one of the existing {{ number_of_derivations }} derivations</a>; 
+      <a href="{{ url_for('select_from_existing_derivations') }}?referrer=editor">view one of the existing {{ number_of_derivations }} derivations</a>; 
       also edit an existing derivation
       {% if current_user.is_anonymous %}
-        if you are <a href="{{ url_for('login') }}">signed in</a>
+        if you are <a href="{{ url_for('login') }}?referrer=editor">signed in</a>
       {% endif %}
     </LI>
     {% endif %}
     <LI>
-      <a href="{{ url_for('list_all_inference_rules') }}">list all {{ number_of_infrules }} inference rules</a>; 
+      <a href="{{ url_for('list_all_inference_rules') }}?referrer=editor">list all {{ number_of_infrules }} inference rules</a>; 
       also edit inference rules
       {% if current_user.is_anonymous %}
-        if you are <a href="{{ url_for('login') }}">signed in</a>
+        if you are <a href="{{ url_for('login') }}?referrer=editor">signed in</a>
       {% endif %}
     </LI>
     {% if number_of_expressions > 0 %}
       <LI>
-        <a href="{{ url_for('list_all_expressions') }}">list all {{ number_of_expressions }} expressions</a>; 
+        <a href="{{ url_for('list_all_expressions') }}?referrer=editor">list all {{ number_of_expressions }} expressions</a>; 
         also edit expressions
       {% if current_user.is_anonymous %}
-        if you are <a href="{{ url_for('login') }}">signed in</a>
+        if you are <a href="{{ url_for('login') }}?referrer=editor">signed in</a>
       {% endif %}
       </LI>
     {% endif %}
     <LI>
-      <a href="{{ url_for('list_all_symbols') }}">list all {{ number_of_symbols }} symbols</a>
+      <a href="{{ url_for('list_all_symbols') }}?referrer=editor">list all {{ number_of_symbols }} symbols</a>
     </LI>
     <LI>
-      <a href="{{ url_for('list_all_operators') }}">list all {{ number_of_operators }} operators</a>
+      <a href="{{ url_for('list_all_operators') }}?referrer=editor">list all {{ number_of_operators }} operators</a>
     </LI>
   </UL>
 </P>
 
 <P>
 Download the current database file as 
-<a href="{{ url_for('static', filename=database_json) }}" download="{{ database_json }}">JSON</a> or 
-<a href="{{ url_for('static', filename=database_sql) }}" download="{{ database_sql }}">SQLite3</a> or 
-<a href="{{ url_for('static', filename=database_df_pkl) }}" download="{{ database_df_pkl }}">Pickle of dataframes</a> or 
-<a href="{{ url_for('static', filename=database_rdf) }}" download="{{ database_rdf }}">OWL RDF</a> or 
-<a href="{{ url_for('static', filename=database_neo4j) }}" download="{{ database_neo4j }}">Neo4j Cypher</a>
+<a href="{{ url_for('static', filename=database_json) }}?referrer=editor" download="{{ database_json }}">JSON</a> or 
+<a href="{{ url_for('static', filename=database_sql) }}?referrer=editor" download="{{ database_sql }}">SQLite3</a> or 
+<a href="{{ url_for('static', filename=database_df_pkl) }}?referrer=editor" download="{{ database_df_pkl }}">Pickle of dataframes</a> or 
+<a href="{{ url_for('static', filename=database_rdf) }}?referrer=editor" download="{{ database_rdf }}">OWL RDF</a> or 
+<a href="{{ url_for('static', filename=database_neo4j) }}?referrer=editor" download="{{ database_neo4j }}">Neo4j Cypher</a>
 </P>
 
 
       {% if current_user.is_anonymous %}
-        Upload database file if you are <a href="{{ url_for('login') }}">signed in</a>
+        Upload database file if you are <a href="{{ url_for('login') }}?referrer=editor">signed in</a>
       {% else %}
 <!-- https://www.google.com/search?q=flask+upload+file -->
 Upload database file (JSON only):
