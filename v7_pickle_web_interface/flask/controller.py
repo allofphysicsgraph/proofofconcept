@@ -610,7 +610,8 @@ def logout():
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-        flash("username not available")
+        logger.info('[trace]')
+#        flash("username not available")
     logout_user()
     return redirect(url_for("index"))
 
@@ -868,7 +869,9 @@ def start_new_derivation():
     try:
         logger.info("[trace] " + str(current_user.username))
     except AttributeError:
-        return redirect( url_for('login'))
+#        return redirect( url_for('login'))
+        logger.info('[trace]')
+
     web_form = NameOfDerivationInputForm(request.form)
     if request.method == "POST" and web_form.validate():
         name_of_derivation = str(web_form.name_of_derivation.data)
@@ -1395,7 +1398,9 @@ def new_step_select_inf_rule(deriv_id: str):
     try:
         logger.info("[trace] " + str(current_user.username))
     except AttributeError:
-        return redirect( url_for('login'))
+#        return redirect( url_for('login'))
+        logger.info('[trace]')
+
     try:
         list_of_inf_rules = compute.get_sorted_list_of_inf_rules(path_to_db)
     except Exception as err:
@@ -1444,7 +1449,9 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-        return redirect( url_for('login'))
+        logger.info('[trace]')
+#        return redirect( url_for('login'))
+
     # num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, path_to_db)
     # logger.debug('provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
 
@@ -1591,7 +1598,8 @@ def step_review(deriv_id: str, local_step_id: str):
         # the referrer does not appear in the logs 
         #return redirect( url_for('login') + '?referrer=step_review')
         # as per https://stackoverflow.com/a/23144200/1164295
-        return redirect( url_for('login', referrer='step_review'))
+#        return redirect( url_for('login', referrer='step_review'))
+        logger.info('[trace]')
 
     webform = symbolEntry()
 
@@ -1708,7 +1716,8 @@ def rename_derivation(deriv_id: str):
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-        return redirect( url_for('login'))
+#        return redirect( url_for('login'))
+        logger.info('[trace]')
 
     dat = clib.read_db(path_to_db)
 
@@ -1866,7 +1875,8 @@ def modify_step(deriv_id: str, step_id: str):
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-        return redirect( url_for('login'))
+#        return redirect( url_for('login'))
+        logger.info('[trace]')
 
     if request.method == "POST":
         logger.debug(request.form)
@@ -2024,7 +2034,8 @@ def confirm_delete_derivation(deriv_id):
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-        return redirect( url_for('login'))
+#        return redirect( url_for('login'))
+        logger.info('[trace]')
 
     dat = clib.read_db(path_to_db)
     name_of_derivation=dat['derivations'][deriv_id]['name']
@@ -2063,7 +2074,8 @@ def create_new_inf_rule():
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-        return redirect( url_for('login'))
+#        return redirect( url_for('login'))
+        logger.info('[trace]')
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
