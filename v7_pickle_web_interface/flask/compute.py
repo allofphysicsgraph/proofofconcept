@@ -1362,10 +1362,10 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
             this_deriv = deriv_id
             if not os.path.isfile("/home/appuser/app/static/" + this_deriv + ".png"):
                 create_png_from_latex(
-                    "\\text{" + dat['derivations'][deriv_id]['name'].replace('^','') + "}", this_deriv
+                    "\\text{" + dat['derivations'][deriv_id]['name'].replace('^','') + "}", this_deriv + '_name'
                 )
-            image = cv2.imread("/home/appuser/app/static/" + this_deriv + ".png")
-            list_of_nodes.append('    {"id": "'+this_deriv+'", "group": 0, "img": "/static/'+ this_deriv + '.png", '
+            image = cv2.imread("/home/appuser/app/static/" + this_deriv+ '_name' + ".png")
+            list_of_nodes.append('    {"id": "'+this_deriv+'", "group": 0, "img": "/static/'+ this_deriv+ '_name' + '.png", '
             +'"width": '+str(image.shape[1])+", "+'"height": '+str(image.shape[0])+', "linear index": 0},\n')
 
 
