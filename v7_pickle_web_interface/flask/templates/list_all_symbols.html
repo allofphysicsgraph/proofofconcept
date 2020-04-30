@@ -52,5 +52,88 @@
   </div>
 </form>
 {% endif %}
+</p>
+
+<style>
+input, textarea, select {
+        background: #f9f909;
+        color: black;
+        cursor: default;
+    }
+input[disabled='disabled'], textarea[disabled='disabled'], select[disabled='disabled'] {
+        background: #cccccc;
+    }
+
+    input[type="text"]:disabled, input[type="select"]:disabled {
+        background: #cccccc;
+    }
+</style>
+
+<script>
+function enable_category_radio1(enabled){
+    document.getElementById('symbol_value').setAttribute('disabled','disabled');
+    document.getElementById('symbol_units').setAttribute('disabled','disabled');
+}
+
+function enable_category_radio2(enabled){
+    document.getElementById('symbol_value').removeAttribute('disabled');
+    document.getElementById('symbol_units').removeAttribute('disabled');
+}
+</script>
+
+<P>
+  <h2>
+    <a id="add symbol">
+      Add a symbol
+    </a>
+  </h2>
+  {% if current_user.is_anonymous %}
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_symbols">signed in</a>
+  {% else %}
+
+  <form method="post" action="">
+  <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+  {{ new_symbol_form.csrf_token }}
+    <div class="form-group">
+      <div class="input-group">
+
+        Category:
+  <table>
+  {% for subfield in new_symbol_form.symbol_category %}
+    <tr>
+    {% if loop.index0 == 0 %}
+      <td>{{ subfield(onclick='enable_category_radio1(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+    {% elif loop.index0 == 1 %}
+      <td>{{ subfield(onclick='enable_category_radio2(true)') }}</td>
+      <td>{{ subfield.label }}</td>
+    {% else %}
+      <td>
+        Error in radio field
+      </td>
+    {% endif %}
+    </tr>
+  {% endfor %}
+  </table>
+
+
+        {{ new_symbol_form.symbol_latex.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_latex }}<BR>
+        {{ new_symbol_form.symbol_name.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_name }}<BR>
+        {{ new_symbol_form.symbol_scope_real.label }}: {{ new_symbol_form.symbol_scope_real }}<BR>
+        {{ new_symbol_form.symbol_scope_complex.label }}: {{ new_symbol_form.symbol_scope_complex }}<BR>
+        {{ new_symbol_form.symbol_reference.label }}(<small><i>optional</i></small>): {{ new_symbol_form.symbol_reference }}<BR>
+        {{ new_symbol_form.symbol_value.label }}(<small><i>optional</i></small>): {{ new_symbol_form.symbol_value(size=50, maxlength=300, id="symbol_value", disabled="disabled", onchange="onChangeFunction();") }}<BR>
+        {{ new_symbol_form.symbol_units.label }}(<small><i>optional</i></small>): {{ new_symbol_form.symbol_units(size=50, maxlength=300, id="symbol_units", disabled="disabled", onchange="onChangeFunction();") }}<BR>
+
+
+        <P><input type="submit" name="submit_button" value="Submit">
+      </div>
+    </div>
+  </form>
+
+
+{% endif %}
+</P>
+
 
 {% endblock %}

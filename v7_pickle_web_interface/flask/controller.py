@@ -256,6 +256,21 @@ class EquationInputForm(FlaskForm):
         "LaTeX", validators=[validators.InputRequired(), validators.Length(max=1000)]
     )
 
+class NewSymbolForm(FlaskForm):
+    logger.info('[trace]')
+    symbol_category = RadioField(
+        "Label",
+        choices=[("variable", "variable"), ("constant", "constant"),],
+        default="variable",
+    )
+    symbol_scope_real = BooleanField(label='Real', description='check this', default='checked')
+    symbol_scope_complex = BooleanField(label='Complex', description='check this')
+
+    symbol_latex = StringField("latex", validators=[validators.InputRequired()])
+    symbol_name = StringField("name", validators=[validators.InputRequired()])
+    symbol_reference = StringField("reference")
+    symbol_value = StringField("value")
+    symbol_units = StringField("units")
 
 class InferenceRuleForm(FlaskForm):
     logger.info("[trace]")
@@ -410,16 +425,13 @@ class LatexIO(FlaskForm):
     step_note = StringField("step note")
 
 
-class symbolEntry(FlaskForm):
+class SymbolEntry(FlaskForm):
     logger.info("[trace]")
     symbol_radio = RadioField(
         "Label",
         choices=[("already_exists", "already exists"), ("create_new", "create new"),],
         default="already_exists",
     )
-    symbol_latex = StringField("latex")
-    symbol_name = StringField("name")
-    symbol_reference = StringField("reference")
 
 
 class NameOfDerivationInputForm(FlaskForm):
@@ -1038,6 +1050,32 @@ def list_all_symbols():
                 request.form["revised_text"],
                 path_to_db,
             )
+        elif "symbol_latex" in request.form.keys():
+            # request.form = ImmutableMultiDict([('symbol_category', 'constant'), ('symbol_latex', 'asdf'), ('symbol_name', 'asdfafasdf'), ('symbol_reference', ''), ('symbol_value', ''), ('symbol_units', ''), ('symbol_scope_real', 'y'), ('symbol_scope_complex', 'y') ('submit_button', 'Submit')])
+
+            if 'symbol_value' not in request.form.keys():
+                value = ""
+            else:
+                value = request.form['symbol_value'] 
+            if 'symbol_units' not in request.form.keys():
+                units = ""
+            else:
+                units = request.form['symbol_units']
+            if 'symbol_scope_complex' not in request.form.keys():
+                scope = ['real']
+            elif ('symbol_scope_real' in request.form.keys() and request.form['symbol_scope_real'] == 'n'):
+                scope = ['complex']
+            elif ('symbol_scope_real' in request.form.keys() and 'symbol_scope_complex' in request.form.keys() and 
+                  request.form['symbol_scope_real'] == 'y' and request.form['symbol_scope_complex'] == 'y'):
+                scope = ['real','complex']
+            compute.add_symbol(request.form['symbol_category'], 
+                               request.form['symbol_latex'], 
+                               request.form['symbol_name'], 
+                               request.form['symbol_reference'], 
+                               value, 
+                               units, 
+                               scope,
+                               path_to_db)
         else:
             logger.error("unrecognized option")
             flash("unrecognized option")
@@ -1062,6 +1100,7 @@ def list_all_symbols():
         "list_all_symbols.html",
         symbols_dict=dat["symbols"],
         dat=dat,
+        new_symbol_form=NewSymbolForm(request.form),
         sorted_list_symbols=sorted_list_symbols,
         sorted_list_symbols_not_in_use=sorted_list_symbols_not_in_use,
         edit_latex_webform=RevisedTextForm(request.form),
@@ -1663,7 +1702,7 @@ def step_review(deriv_id: str, local_step_id: str):
 #        return redirect( url_for('login', referrer='step_review'))
         logger.info('[trace]')
 
-    webform = symbolEntry()
+    webform = SymbolEntry()
 
     [
         json_file,

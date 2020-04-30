@@ -798,6 +798,28 @@ def get_derivation_steps(deriv_id: str, path_to_db: str) -> dict:
         )
     return dat["derivations"][deriv_id]['steps']
 
+def create_symbol_id(path_to_db: str) -> str:
+    """
+    >>> create_symbol_id()
+    """ 
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    symbol_ids_in_use = list(dat['symbols'].keys())
+    found_valid_id = False
+    loop_count = 0
+    while not found_valid_id:
+        loop_count += 1
+        proposed_symbol_id = str(
+            random.randint(1000, 9999)
+        )  # 4 digits
+
+        if proposed_symbol_id not in symbol_ids_in_use:
+            found_valid_id = True
+        if loop_count > 100000:
+            logger.error("too many; this seems unlikely")
+            raise Exception("this seems unlikely")
+    return proposed_symbol_id
+
 def create_deriv_id(path_to_db: str) -> str:
     """
     >>> create_deriv_id()
@@ -2363,6 +2385,32 @@ def delete_derivation(deriv_id: str, path_to_db: str) -> str:
     clib.write_db(path_to_db, dat)
     return "successfully deleted " + deriv_id
 
+def add_symbol(category: str, latex: str, name: str, reference: str, value: str, units: str, scope: str, path_to_db: str) -> None:
+    """
+    >>> add_symbol()
+    """
+    logger.info('[trace]')
+    dat = clib.read_db(path_to_db)
+
+    symbol_dict = {}
+    symbol_dict['category'] = category
+    symbol_dict['latex'] = latex
+    symbol_dict['name'] = name
+    symbol_dict['scope'] = scope
+    symbol_dict['references'] = [reference]
+    if category=='constant' and len(value)>0:
+        symbol_dict['value'] = value
+        symbol_dict['units'] = units
+    symbol_dict["author"] = "Ben"
+    symbol_dict["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
+    symbol_id = create_symbol_id(path_to_db)
+    logger.debug('new symbol ID:' + symbol_id)
+    dat['symbols'][symbol_id] = symbol_dict
+
+    logger.debug(str(symbol_dict))
+    clib.write_db(path_to_db, dat)
+
+    return 
 
 def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     """
