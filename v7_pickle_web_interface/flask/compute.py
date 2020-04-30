@@ -1360,7 +1360,7 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
         for deriv_id, deriv_dict in derivation_popularity_dict.items():
             # https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string
             this_deriv = deriv_id
-            if not os.path.isfile("/home/appuser/app/static/" + this_deriv + ".png"):
+            if not os.path.isfile("/home/appuser/app/static/" + this_deriv + '_name' + ".png"):
                 create_png_from_latex(
                     "\\text{" + dat['derivations'][deriv_id]['name'].replace('^','') + "}", this_deriv + '_name'
                 )
