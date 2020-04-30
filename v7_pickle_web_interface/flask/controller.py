@@ -135,13 +135,13 @@ if True:
     handler_warning.setLevel(logging.WARNING)
 
     # https://docs.python.org/3/howto/logging.html
-    logging.basicConfig( 
+    logging.basicConfig(
         # either (filename + filemode) XOR handlers
         #filename="test.log", # to save entries to file instead of displaying to stderr
         #filemode="w", # https://docs.python.org/dev/library/functions.html#filemodes
         handlers=[handler_debug, handler_info, handler_warning],
-        # if the severity level is INFO, 
-        # the logger will handle only INFO, WARNING, ERROR, and CRITICAL messages 
+        # if the severity level is INFO,
+        # the logger will handle only INFO, WARNING, ERROR, and CRITICAL messages
         # and will ignore DEBUG messages
         level=logging.DEBUG,
         format="%(asctime)s|%(filename)-13s|%(levelname)-5s|%(lineno)-4d|%(funcName)-20s|%(message)s",
@@ -166,7 +166,7 @@ if __name__ != "__main__":
     print("called from gunicorn")
 
     # from https://stackoverflow.com/a/56993644/1164295
-    # didn't make a difference 
+    # didn't make a difference
 #    glogging.Logger.error_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f", "Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
 #    glogging.Logger.datefmt = ""
 
@@ -559,8 +559,8 @@ def login():
         username = form.username.data
 
         #logger.debug('next =' + str(request.args.get("next")))
-        
-        # https://stackoverflow.com/a/28593313/1164295 
+
+        # https://stackoverflow.com/a/28593313/1164295
         #logger.debug(request.headers.get("Referer")) = "http://localhost:5000/login"
 
         # https://gist.github.com/bkdinoop/6698956
@@ -569,7 +569,7 @@ def login():
             if login_user(USER_NAMES[username], remember=remember):
                 flash("logged in")
                 current_user.username = username
-                return redirect(url_for("editor"))
+                return redirect(url_for("navigation"))
             else:
                 flash("Invalid password; sleeping for 3 seconds")
                 time.sleep(3)
@@ -694,7 +694,7 @@ def stats():
     list_of_pics, tail_of_auth_log_as_list = compute.generate_stats(10)
     logger.debug(str(list_of_pics))
 
-    return render_template("stats.html", 
+    return render_template("stats.html",
                             list_of_pics=list_of_pics,
                             tail_of_auth_log_as_list=tail_of_auth_log_as_list)
 
@@ -758,10 +758,10 @@ def developer_documentation():
 #    return render_template("how_to_build_the_physics_derivation_graph.html")
 
 
-@app.route("/editor", methods=["GET", "POST"])
-def editor():
+@app.route("/navigation", methods=["GET", "POST"])
+def navigation():
     """
-    editor.html contains hyperlinks to pages like:
+    navigation.html contains hyperlinks to pages like:
     * start new derivation
     * edit existing derivation
     * edit inference rule
@@ -769,7 +769,7 @@ def editor():
 
     file upload: see https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
     """
-    logger.info("[trace] editor")
+    logger.info("[trace]")
 
     # this takes too long; removed on 20200408
     #    try:
@@ -849,7 +849,7 @@ def editor():
     logger.debug("reading from json")
     dat = clib.read_db(path_to_db)
     return render_template(
-        "editor.html",
+        "navigation.html",
         number_of_derivations=len(dat["derivations"].keys()),
         number_of_infrules=len(dat["inference rules"].keys()),
         number_of_expressions=len(dat["expressions"].keys()),
@@ -1389,7 +1389,7 @@ def select_from_existing_derivations():
     dat = clib.read_db(path_to_db)
 
     return render_template(
-        "select_from_existing_derivations.html", 
+        "select_from_existing_derivations.html",
         dat=dat,
         list_of_derivations=list_of_deriv
     )
@@ -1599,7 +1599,7 @@ def step_review(deriv_id: str, local_step_id: str):
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-        # the referrer does not appear in the logs 
+        # the referrer does not appear in the logs
         #return redirect( url_for('login') + '?referrer=step_review')
         # as per https://stackoverflow.com/a/23144200/1164295
 #        return redirect( url_for('login', referrer='step_review'))
@@ -2033,7 +2033,7 @@ def exploded_step(deriv_id: str, step_id: str):
 @login_required
 def confirm_delete_derivation(deriv_id):
     """
-    >>> 
+    >>>
     """
     try:
         logger.info("[trace]" + str(current_user.username))
@@ -2059,12 +2059,12 @@ def confirm_delete_derivation(deriv_id):
                 logger.error(str(err))
                 msg = "no deletion occurred due to issue in database"
             flash(str(msg))
-            return redirect(url_for("editor"))
+            return redirect(url_for("navigation"))
         else:
             flash("submitted form did not comply; no deletion occurred")
             return redirect(url_for('review_derivation', deriv_id=deriv_id))
 
-    return render_template("confirm_delete_derivation.html", 
+    return render_template("confirm_delete_derivation.html",
     name_of_derivation=name_of_derivation,
     confirm_deriv_name=RevisedTextForm(request.form)
 )

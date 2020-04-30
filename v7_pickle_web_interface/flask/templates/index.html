@@ -1,5 +1,5 @@
 <!-- unlike all other pages, this page does not inherit from _base.html
-     That's because the "sign in" and "editor" links are not shown at the top of the page -->
+     That's because the "sign in" and "navigation" links are not shown at the top of the page -->
 <!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
 <html>
   <head>
@@ -22,7 +22,7 @@
 
 <P>
   <i>Objective for this project:</i> Write down all known mathematical physics in a way that can be both read by humans and checked by a computer algebra system.<BR>
-  For the impatient, see the Physics Derivation Graph <a href="{{ url_for('editor') }}?referrer=index">editor</a>.
+  For the impatient, see the Physics Derivation Graph <a href="{{ url_for('navigation') }}?referrer=index">navigation</a>.
 </P>
 
 <P>
@@ -47,7 +47,7 @@
 
 <P>
   The central database for documenting relations in derivations of Physics is <a href="{{ url_for('developer_documentation') }}?referrer=index#data structure">a JSON file</a>.
-  This can be transformed into other formats; see the <a href="{{ url_for('editor') }}?referrer=index">PDG editor</a> page.
+  This can be transformed into other formats; see the <a href="{{ url_for('navigation') }}?referrer=index">PDG navigation</a> page.
 </P>
 
 <P>
@@ -83,7 +83,7 @@ inference_rule(input_expression, feed) yields output_expression
 <H3>Where to get started?</H3>
 
 <P>
-  Use the Physics Derivation Graph <a href="{{ url_for('editor') }}?referrer=index">editor</a>, or read the <a href="{{ url_for('faq') }}">FAQ</a>, or review the <a href="{{ url_for('user_documentation') }}">documentation</a>.
+  Use the Physics Derivation Graph <a href="{{ url_for('navigation') }}?referrer=index">navigation</a>, or read the <a href="{{ url_for('faq') }}">FAQ</a>, or review the <a href="{{ url_for('user_documentation') }}">documentation</a>.
 
 {% include '_d3_js.html' %}
 

@@ -17,13 +17,13 @@
      <table width="100%">
        <tr>
          <td>
-           <a href="{{ url_for('editor') }}">Physics Derivation Graph Editor</a>
+           <a href="{{ url_for('navigation') }}">Physics Derivation Graph navigation</a>
          </td>
        <td align="right">
 <!-- https://github.com/allofphysicsgraph/proofofconcept/issues/110 -->
 {% if not current_user.is_anonymous %}
-   Logged in as {{ current_user.username }} | 
-    <a href="{{ url_for('logout') }}">Log out</a> 
+   Logged in as {{ current_user.username }} |
+    <a href="{{ url_for('logout') }}">Log out</a>
 {% else %}
     <a href="{{ url_for('login') }}">Sign in</a>
 {% endif %}
@@ -57,5 +57,3 @@
 
     </body>
 </html>
-
-
