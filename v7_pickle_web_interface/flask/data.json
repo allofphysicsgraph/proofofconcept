@@ -4625,7 +4625,7 @@
         },
         "0002436656": {
             "AST": [
-                "1054"
+                "1054", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5311,7 +5311,7 @@
         },
         "1858578388": {
             "AST": [
-                "1467"
+                "1467", "2718", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5339,7 +5339,7 @@
         },
         "2029293929": {
             "AST": [
-                "1467"
+                "1467", "2718", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5348,7 +5348,7 @@
             "notes": ""
         },
         "2103023049": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\sin(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right)",
@@ -5364,7 +5364,7 @@
             "notes": ""
         },
         "2123139121": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "-\\exp(-i x) = -\\cos(x)+i \\sin(x)",
@@ -5382,7 +5382,7 @@
         "2258485859": {
             "AST": [
                 "1054",
-                "1467"
+                "1467", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5399,7 +5399,7 @@
             "notes": ""
         },
         "2394853829": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(-x)+i \\sin(-x)",
@@ -5588,7 +5588,7 @@
             "notes": ""
         },
         "3829492824": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x)\\right) = \\cos(x)",
@@ -5604,10 +5604,10 @@
             "notes": ""
         },
         "3942849294": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\exp(i x)-\\exp(-i x) = 2i \\sin(x)",
+            "latex": "\\exp(i x)-\\exp(-i x) = 2 i \\sin(x)",
             "name": "",
             "notes": ""
         },
@@ -5643,7 +5643,7 @@
         "3948572230": {
             "AST": [
                 "1054",
-                "1467"
+                "1467", "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5653,7 +5653,7 @@
         },
         "3948574224": {
             "AST": [
-                "1467"
+                "1467", "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5664,7 +5664,7 @@
         "3948574226": {
             "AST": [
                 "1054",
-                "1467"
+                "1467", "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5674,7 +5674,7 @@
         },
         "3948574228": {
             "AST": [
-                "1054"
+                "1054", "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5684,7 +5684,7 @@
         },
         "3948574230": {
             "AST": [
-                "1054"
+                "1054", "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5695,7 +5695,7 @@
         "3948574233": {
             "AST": [
                 "1054",
-                "1467"
+                "1467", "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5706,7 +5706,7 @@
         "3948574235": {
             "AST": [
                 "1054",
-                "1467"
+                "1467", "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5760,7 +5760,7 @@
             "AST": [
                 "1054",
                 "1467",
-                "5156"
+                "5156", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5800,7 +5800,7 @@
             "notes": ""
         },
         "4585932229": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\cos(x) = \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x)\\right)",
@@ -5808,7 +5808,7 @@
             "notes": ""
         },
         "4598294821": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(2 i x) = (\\cos(x))^2+2i\\cos(x)\\sin(x)-(\\sin(x))^2",
@@ -5816,15 +5816,15 @@
             "notes": ""
         },
         "4638429483": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\exp(2 i x) = (\\cos(x)+i \\sin(x))(\\cos(x)+i \\sin(x))",
+            "latex": "\\exp(2 i x) = (\\cos(x)+ i \\sin(x))(\\cos(x)+ i \\sin(x))",
             "name": "",
             "notes": ""
         },
         "4742644828": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x)+\\exp(-i x) = 2 \\cos(x)",
@@ -5848,7 +5848,7 @@
             "notes": ""
         },
         "4838429483": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(2 i x) = \\cos(2 x)+i \\sin(2 x)",
@@ -5856,7 +5856,7 @@
             "notes": ""
         },
         "4843995999": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{2 i}\\left(\\exp(i x)-\\exp(-i x)\\right) = \\sin(x)",
@@ -5880,15 +5880,15 @@
             "notes": ""
         },
         "4858429483": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\exp(i x)\\exp(i x) = (\\cos(x)+i \\sin(x))(\\cos(x)+i \\sin(x))",
+            "latex": "\\exp(i x)\\exp(i x) = (\\cos(x)+ i \\sin(x))(\\cos(x)+ i \\sin(x))",
             "name": "",
             "notes": ""
         },
         "4923339482": {
-            "AST": [],
+            "AST": ["4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "i x = \\log(y)",
@@ -5896,7 +5896,7 @@
             "notes": ""
         },
         "4928239482": {
-            "AST": [],
+            "AST": ["4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\log(y) = i x",
@@ -5937,7 +5937,7 @@
             "notes": ""
         },
         "4938429482": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(x)+i \\sin(-x)",
@@ -5945,7 +5945,7 @@
             "notes": ""
         },
         "4938429483": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x) = \\cos(x)+i \\sin(x)",
@@ -5953,7 +5953,7 @@
             "notes": ""
         },
         "4938429484": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(x)-i \\sin(x)",
@@ -5963,7 +5963,7 @@
         "4943571230": {
             "AST": [
                 "1054",
-                "1467"
+                "1467", "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5988,7 +5988,7 @@
             "notes": ""
         },
         "4954839242": {
-            "AST": [],
+            "AST": ["4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\cos(2x)+i\\sin(2x) = (\\cos(x)+i \\sin(x))(\\cos(x)+i \\sin(x))",
@@ -5996,7 +5996,7 @@
             "notes": ""
         },
         "4978429483": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(-x)+i \\sin(-x)",
@@ -6013,7 +6013,7 @@
         },
         "4985825552": {
             "AST": [
-                "1467"
+                "1467", "2718", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -6192,7 +6192,7 @@
             "notes": ""
         },
         "7575859300": {
-            "AST": [],
+            "AST": ["1552"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\epsilon^{i,j,k} \\hat{x}_i \\nabla_j ( \\vec{\\nabla} \\times \\vec{E} )_k = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -6200,7 +6200,7 @@
             "notes": ""
         },
         "7575859302": {
-            "AST": [],
+            "AST": ["1567", "1552"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\epsilon^{i,j,k} \\epsilon_{n,j,k} \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -6216,7 +6216,7 @@
             "notes": ""
         },
         "7575859306": {
-            "AST": [],
+            "AST": ["1567", "1552"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\left( \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} - \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h} \\right) \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -6224,7 +6224,7 @@
             "notes": ""
         },
         "7575859308": {
-            "AST": [],
+            "AST": ["1567", "1552"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\left( \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} \\hat{x}_i \\nabla_j \\nabla^m E^n\\right)-\\left( \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h} \\hat{x}_i \\nabla_j \\nabla^m E^n \\right)  = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -6514,7 +6514,7 @@
             "notes": ""
         },
         "9482113948": {
-            "AST": [],
+            "AST": ["4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{dy}{y} = i dx",
@@ -6530,7 +6530,7 @@
             "notes": ""
         },
         "9482923849": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x) = y",
@@ -6554,7 +6554,7 @@
             "notes": ""
         },
         "9482943948": {
-            "AST": [],
+            "AST": ["4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\log(y) = i dx",
@@ -6586,7 +6586,7 @@
             "notes": ""
         },
         "9485384858": {
-            "AST": [],
+            "AST": ["2718", "4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t) = - \\frac{\\omega^2}{c^2} E(\\vec{r})\\exp(i \\omega t)",
@@ -6610,7 +6610,7 @@
             "notes": ""
         },
         "9492920340": {
-            "AST": [],
+            "AST": ["4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "y = \\cos(x)+i \\sin(x)",
@@ -6637,7 +6637,7 @@
         },
         "9499428242": {
             "AST": [
-                "1467"
+                "1467", "2718", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -6732,7 +6732,7 @@
             "notes": ""
         },
         "9848292229": {
-            "AST": [],
+            "AST": ["4621"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "dy = y i dx",
@@ -6775,7 +6775,7 @@
         },
         "9958485859": {
             "AST": [
-                "1054"
+                "1054", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -6833,11 +6833,11 @@
         },
         "9999999951": {
             "AST": [
-                "3141"
+                "3141", "2718", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "\\langle x | k \\rangle = \\frac{\\exp(ikx)}{\\sqrt{2\\pi}}",
+            "latex": "\\langle x | k \\rangle = \\frac{\\exp(i k x)}{\\sqrt{2\\pi}}",
             "name": "",
             "notes": ""
         },
@@ -7030,7 +7030,7 @@
         },
         "9999999976": {
             "AST": [
-                "1054"
+                "1054", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -7040,7 +7040,7 @@
         },
         "9999999977": {
             "AST": [
-                "1054"
+                "1054", "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -7238,7 +7238,7 @@
         },
         "8483686863": {
             "latex": "\\sin(2 x) = \\frac{1}{2i}\\left(\\exp(i 2 x)-\\exp(-i 2 x)\\right)",
-            "AST": [],
+            "AST": ["2718", "4621"],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7246,7 +7246,7 @@
         },
         "3470587782": {
             "latex": "\\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right) \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x)\\right)",
-            "AST": [],
+            "AST": ["2718", "4621"],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7262,7 +7262,7 @@
         },
         "9894826550": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right) \\left(\\exp(i x)+\\exp(-i x)\\right)",
-            "AST": [],
+            "AST": ["2718", "4621"],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7270,7 +7270,7 @@
         },
         "4257214632": {
             "latex": "\\frac{1}{2 i} \\left( \\exp(i 2 x) - 1 + 1 - \\exp(-i 2 x) \\right)",
-            "AST": [],
+            "AST": ["2718", "4621"],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7278,7 +7278,7 @@
         },
         "5182812819": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - \\exp(-i 2 x) \\right)",
-            "AST": [],
+            "AST": ["2718", "4621"],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7290,7 +7290,7 @@
             "author": "Ben",
             "notes": "",
             "name": "",
-            "AST": []
+            "AST": ["2718", "4621"]
         },
         "8699789241": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - 1 + 1 - \\exp(-i 2 x) \\right)",
@@ -7298,7 +7298,7 @@
             "author": "Ben",
             "notes": "",
             "name": "",
-            "AST": []
+            "AST": ["2718", "4621"]
         },
         "9180861128": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - \\exp(-i 2 x) \\right)",
@@ -7306,7 +7306,7 @@
             "author": "Ben",
             "notes": "",
             "name": "",
-            "AST": []
+            "AST": ["2718", "4621"]
         },
         "2405307372": {
             "latex": "\\sin(2 x) = 2 \\sin(x) \\cos(x)",
@@ -7337,7 +7337,7 @@
         "8332931442": {
             "latex": "\\exp(i \\pi) = \\cos(\\pi)+i \\sin(\\pi)",
             "AST": [
-                "3141"
+                "3141", "2718", "4621"
             ],
             "name": "",
             "notes": "",
@@ -7347,7 +7347,7 @@
         "6885625907": {
             "latex": "\\exp(i \\pi) = -1 + i 0",
             "AST": [
-                "3141"
+                "3141", "2718", "4621"
             ],
             "name": "",
             "notes": "",
@@ -7357,7 +7357,7 @@
         "3331824625": {
             "latex": "\\exp(i \\pi) = -1",
             "AST": [
-                "3141"
+                "3141", "2718", "4621"
             ],
             "name": "",
             "notes": "",
@@ -7375,7 +7375,7 @@
         "2501591100": {
             "latex": "\\exp(i \\pi) + 1 = 0",
             "AST": [
-                "3141"
+                "3141", "2718", "4621"
             ],
             "name": "",
             "notes": "",
@@ -8992,6 +8992,8 @@
     "symbols": {
         "2941": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "n_1",
             "name": "index of refraction for material 1",
             "scope": [
@@ -9000,6 +9002,8 @@
         },
         "4929": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "KE",
             "name": "kinetic energy",
             "scope": [
@@ -9008,6 +9012,8 @@
         },
         "4930": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "PE",
             "name": "potential energy",
             "scope": [
@@ -9016,6 +9022,8 @@
         },
         "4931": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "E",
             "name": "energy",
             "scope": [
@@ -9024,6 +9032,8 @@
         },
         "0011": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "z",
             "scope": [
                 "real",
@@ -9032,6 +9042,8 @@
         },
         "1131": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "p",
             "scope": [
                 "real",
@@ -9040,6 +9052,8 @@
         },
         "1134": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "p",
             "measure": "mass*length/time",
             "name": "momentum",
@@ -9049,6 +9063,8 @@
         },
         "4928": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "\\theta_{Brewster}",
             "references": [
                 "https://en.wikipedia.org/wiki/Brewster%27s_angle"
@@ -9059,6 +9075,8 @@
         },
         "1157": {
             "category": "constant",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "k_{Boltzman}",
             "name": "Boltzman constant",
             "references": [
@@ -9076,6 +9094,8 @@
         },
         "1054": {
             "category": "constant",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "\\hbar",
             "name": "Reduced Planck's constant",
             "references": [
@@ -9093,6 +9113,8 @@
         },
         "1223": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "q",
             "scope": [
                 "real",
@@ -9101,6 +9123,8 @@
         },
         "1245": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "v",
             "scope": [
                 "real",
@@ -9109,6 +9133,8 @@
         },
         "1345": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "l",
             "scope": [
                 "real",
@@ -9117,6 +9143,8 @@
         },
         "1357": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "v",
             "scope": [
                 "real",
@@ -9125,6 +9153,8 @@
         },
         "1370": {
             "category": "constant",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "\\alpha",
             "name": "fine-structure constant",
             "references": [
@@ -9142,6 +9172,8 @@
         },
         "1452": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "y",
             "scope": [
                 "real",
@@ -9150,6 +9182,8 @@
         },
         "1456": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "t",
             "scope": [
                 "real",
@@ -9158,6 +9192,8 @@
         },
         "1464": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "x",
             "scope": [
                 "real",
@@ -9166,6 +9202,8 @@
         },
         "1467": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "t",
             "measure": "time",
             "name": "time",
@@ -9175,6 +9213,8 @@
         },
         "1469": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "y_0",
             "measure": "length",
             "name": "initial position",
@@ -9184,22 +9224,28 @@
         },
         "1552": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "j",
+            "name": "index",
             "scope": [
-                "real",
-                "complex"
+                "integer"
             ]
         },
         "1567": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "i",
+            "name": "index",
             "scope": [
-                "real",
-                "complex"
+                "integer"
             ]
         },
         "1572": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "x_0",
             "measure": "length",
             "name": "initial position",
@@ -9209,6 +9255,8 @@
         },
         "1900": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "d",
             "scope": [
                 "real",
@@ -9217,6 +9265,9 @@
         },
         "2718": {
             "category": "constant",
+            "author": "Ben",
+            "name": "e",
+            "creation date": "2020-04-26",
             "latex": "\\exp",
             "references": [
                 "https://en.wikipedia.org/wiki/E_(mathematical_constant)"
@@ -9233,6 +9284,8 @@
         },
         "1999": {
             "category": "constant",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "e",
             "name": "charge of an electron",
             "references": [
@@ -9250,6 +9303,8 @@
         },
         "2456": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "h",
             "scope": [
                 "real",
@@ -9258,6 +9313,8 @@
         },
         "2467": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "t_f",
             "measure": "time",
             "name": "final time",
@@ -9267,27 +9324,17 @@
         },
         "2911": {
             "categ ry": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "\\vec{x}",
             "scope": [
                 "vector"
             ]
         },
-        "2912": {
-            "category": "constant",
-            "latex": "\\exp",
-            "name": "e",
-            "scope": [
-                "real"
-            ],
-            "values": [
-                {
-                    "units": "dimensionless",
-                    "value": "2.718"
-                }
-            ]
-        },
         "3141": {
             "category": "constant",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "\\pi",
             "name": "pi",
             "scope": [
@@ -9302,6 +9349,8 @@
         },
         "4200": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "f",
             "scope": [
                 "real",
@@ -9310,6 +9359,8 @@
         },
         "4221": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "u",
             "scope": [
                 "real",
@@ -9318,6 +9369,8 @@
         },
         "4231": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "c",
             "scope": [
                 "real",
@@ -9326,6 +9379,8 @@
         },
         "4291": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "g",
             "scope": [
                 "real",
@@ -9334,6 +9389,8 @@
         },
         "4563": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "n",
             "scope": [
                 "real",
@@ -9342,6 +9399,8 @@
         },
         "4567": {
             "category": "constant",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "c",
             "name": "speed of light in vacuum",
             "references": [
@@ -9359,6 +9418,8 @@
         },
         "4568": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "t_0",
             "measure": "time",
             "name": "time 0",
@@ -9368,14 +9429,19 @@
         },
         "4621": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
+            "name": "imaginary unit",
+            "references": ["https://en.wikipedia.org/wiki/Imaginary_unit"],
             "latex": "i",
             "scope": [
-                "real",
-                "complex"
+                "imaginary"
             ]
         },
         "5155": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "m",
             "scope": [
                 "real",
@@ -9384,6 +9450,8 @@
         },
         "5156": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "m",
             "name": "mass",
             "measure": "mass",
@@ -9393,6 +9461,8 @@
         },
         "5321": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "k",
             "scope": [
                 "real",
@@ -9401,6 +9471,8 @@
         },
         "5563": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "t_i",
             "measure": "time",
             "name": "initial time",
@@ -9410,6 +9482,8 @@
         },
         "5791": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "s",
             "scope": [
                 "real",
@@ -9418,6 +9492,8 @@
         },
         "6022": {
             "category": "constant",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "N_A",
             "name": "Avagadro's constant",
             "references": [
@@ -9435,6 +9511,8 @@
         },
         "9139": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "a",
             "scope": [
                 "real",
@@ -9443,6 +9521,8 @@
         },
         "1939": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "b",
             "scope": [
                 "real",
@@ -9451,6 +9531,8 @@
         },
         "9199": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "dx",
             "scope": [
                 "real"
@@ -9458,6 +9540,8 @@
         },
         "9491": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "T",
             "measure": "time",
             "name": "period",
@@ -9467,6 +9551,8 @@
         },
         "9492": {
             "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
             "latex": "r",
             "scope": [
                 "real",
