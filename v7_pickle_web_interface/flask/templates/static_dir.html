@@ -4,10 +4,10 @@
 <H3> File listing of static</H3>
 
 <UL>
-{% for file in list_of_files_in_static %}
+{% for file in list_of_files %}
   <LI>
-    <a href="{{ url_for('static_dir', filename=file) }}">
-      file
+    <a href="{{ url_for('static', filename=file) }}">
+      {{ file }}
     </a>
   </LI>
 {% endfor %}
