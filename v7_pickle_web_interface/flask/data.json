@@ -8750,7 +8750,7 @@
             "number of feeds": 0,
             "number of inputs": 2,
             "number of outputs": 1,
-            "latex": "Subtract Eq.~ref{eq:#1} from Eq.~ref{eq:#2}; yields Eq.~ref{eq:#2}.",
+            "latex": "Subtract Eq.~\\ref{eq:#1} from Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#2}.",
             "notes": "complement of \"add expr X to expr Y\"",
             "author": "Ben",
             "creation date": "2020-04-20"
