@@ -651,6 +651,18 @@ def get_symbols_from_latex(expr_latex: str, path_to_db: str) -> list:
 
     return list_of_symbols
 
+def get_list_of_files_in_static() -> list:
+    """
+    I could have used glob.glob('/home/appuser/app/static/*')
+    >>> 
+    """
+    logger.info("[trace]")
+
+    # https://stackoverflow.com/a/3207973/1164295
+    (_, _, filenames) = next(os.walk('static'))
+
+    filenames.sort()
+    return filenames
 
 def get_list_of_symbols_in_derivation_step(
     deriv_id: str, step_id: str, path_to_db: str

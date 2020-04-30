@@ -698,6 +698,16 @@ def stats():
                             list_of_pics=list_of_pics,
                             tail_of_auth_log_as_list=tail_of_auth_log_as_list)
 
+@app.route("/static_dir", methods=["GET", "POST"])
+def static():
+    """
+    "static_dir" is a directory listing
+    >>> ()
+    """
+    logger.info("[trace]")
+    list_of_files_in_static = compute.get_list_of_files_in_static()
+    return render_template("static_dir.html",
+                           list_of_files_in_static=list_of_files_in_static)
 
 @app.route("/faq", methods=["GET", "POST"])
 def faq():
