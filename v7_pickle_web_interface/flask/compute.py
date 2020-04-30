@@ -651,18 +651,6 @@ def get_symbols_from_latex(expr_latex: str, path_to_db: str) -> list:
 
     return list_of_symbols
 
-def get_list_of_files_in_static() -> list:
-    """
-    I could have used glob.glob('/home/appuser/app/static/*')
-    >>> 
-    """
-    logger.info("[trace]")
-
-    # https://stackoverflow.com/a/3207973/1164295
-    (_, _, filenames) = next(os.walk('static'))
-
-    filenames.sort()
-    return filenames
 
 def get_list_of_symbols_in_derivation_step(
     deriv_id: str, step_id: str, path_to_db: str
@@ -1576,7 +1564,7 @@ def generate_tex_for_derivation(deriv_id: str, path_to_db: str) -> str:
             # https://en.wikibooks.org/wiki/LaTeX/Macros#New_commands
             lat_file.write(
                 "\\newcommand\\"
-                + "".join(filter(str.isalpha, infrule_name))
+                + "".join(filter(str.isalpha, infrule_name)) # digits cannot be used to name macros
                 + "["
                 + str(  # https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
                     number_of_args
@@ -1624,7 +1612,8 @@ def generate_tex_for_derivation(deriv_id: str, path_to_db: str) -> str:
                         )
                     lat_file.write("% step ID = " + step_id + "\n")
                     lat_file.write(
-                        "\\" + "".join(filter(str.isalnum, step_dict["inf rule"]))
+                        # digits cannot be used to name macros
+                        "\\" + "".join(filter(str.isalpha, step_dict["inf rule"]))
                     )
                     for expr_local_id in step_dict["feeds"]:
                         expr_global_id = dat["expr local to global"][expr_local_id]
