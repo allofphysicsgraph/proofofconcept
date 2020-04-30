@@ -699,15 +699,56 @@ def stats():
                             tail_of_auth_log_as_list=tail_of_auth_log_as_list)
 
 @app.route("/static_dir", methods=["GET", "POST"])
-def static():
+def static_dir():
     """
     "static_dir" is a directory listing
     >>> ()
     """
     logger.info("[trace]")
-    list_of_files_in_static = compute.get_list_of_files_in_static()
+    # https://stackoverflow.com/a/3207973/1164295
+    (_, _, filenames) = next(os.walk('static'))
+    filenames.sort()
     return render_template("static_dir.html",
-                           list_of_files_in_static=list_of_files_in_static)
+                           list_of_files=filenames)
+
+#@app.route("/templates_dir", methods=["GET", "POST"])
+#def templates_dir():
+#    """
+#    "templates_dir" is a directory listing
+#    >>> ()
+#    """
+#    logger.info("[trace]")
+#    # https://stackoverflow.com/a/3207973/1164295
+#    (_, _, filenames) = next(os.walk('templates'))
+#    filenames.sort()
+#    return render_template("templates_dir.html",
+#                           list_of_files=filenames)
+
+#@app.route("/root_dir", methods=["GET", "POST"])
+#def root_dir():
+#    """
+#    "root_dir" is a directory listing
+#    >>> ()
+#    """
+#    logger.info("[trace]")
+#    # https://stackoverflow.com/a/3207973/1164295
+#    (_, _, filenames) = next(os.walk('.'))
+#    filenames.sort()
+#    return render_template("root_dir.html",
+ #                          list_of_files=filenames)
+
+#@app.route("/logs_dir", methods=["GET", "POST"])
+#def static_dir():
+#    """
+#    "logs_dir" is a directory listing
+#    >>> ()
+#    """
+#    logger.info("[trace]")
+#    # https://stackoverflow.com/a/3207973/1164295
+#    (_, _, filenames) = next(os.walk('logs'))
+#    filenames.sort()
+#    return render_template("logs_dir.html",
+#                           list_of_files=filenames)
 
 @app.route("/faq", methods=["GET", "POST"])
 def faq():
@@ -1345,6 +1386,9 @@ def select_from_existing_derivations():
         logger.error(str(err))
         flash(str(err))
         list_of_deriv = []
+
+    dat = clib.read_db(path_to_db)
+
     if request.method == "POST":
         logger.debug(
             "select_from_existing_derivations; request.form = %s", request.form
@@ -1367,6 +1411,7 @@ def select_from_existing_derivations():
                 flash(str(err))
                 return render_template(
                     "select_from_existing_derivations.html",
+                    dat=dat,
                     list_of_derivations=list_of_deriv,
                 )
 
