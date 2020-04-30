@@ -6,14 +6,18 @@
 
 
 <P>
-  <a href="{{ url_for('static', filename=map_of_derivations) }}?referrer=show_all_derivations">
-    <img src="{{ url_for('static', filename=map_of_derivations) }}">
+<!--
+  <a href="{ { url_for('static', filename=map_of_derivations) }}?referrer=show_all_derivations">
+    <img src="{ { url_for('static', filename=map_of_derivations) }}">
   </a>
+-->
+  <svg id='viz'></svg>
 </P>
 
 <P>
 {% include '_table_of_derivations.html' %}
 </P>
 
-{% endblock %}
+{% include '_d3_js.html' %}
 
+{% endblock %}

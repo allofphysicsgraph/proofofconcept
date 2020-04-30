@@ -775,7 +775,7 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
     list_of_tups = []
     for deriv_id in dat["derivations"].keys():
         list_of_tups.append((deriv_id, dat["derivations"][deriv_id]['name'].lower()))
-        
+
     list_deriv = []
     # https://stackoverflow.com/a/10695161/1164295
     for this_tup in sorted(list_of_tups, key=lambda x: x[1]):
@@ -903,7 +903,7 @@ def create_expr_local_id(path_to_db: str) -> str:
 
 def generate_stats(number_of_lines_of_log_tail: int) -> None:
     """
-    >>> 
+    >>>
     """
     logger.info("[trace]")
 
@@ -1336,7 +1336,90 @@ def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
     return
 
 
-def generate_map_of_derivations(path_to_db: str) -> str:
+def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
+    """
+    >>> generate_d3js_json_map_of_derivations()
+    """
+    logger.info("[trace]")
+    derivation_popularity_dict = popularity_of_derivations(path_to_db)
+    #logger.debug("derivation_popularity_dict = %s", str(derivation_popularity_dict))
+
+    dat = clib.read_db(path_to_db)
+
+#    json_filename = "all_derivations.json"
+#    with open(json_filename, "w") as fil:
+    json_str = ""
+
+    json_str += "{ \n"
+    json_str += '  "nodes": [\n'
+
+    if True:
+        list_of_nodes = []
+        list_of_edges = []
+
+        for deriv_id, deriv_dict in derivation_popularity_dict.items():
+            # https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string
+            this_deriv = deriv_id
+            if not os.path.isfile("/home/appuser/app/static/" + this_deriv + ".png"):
+                create_png_from_latex(
+                    "\\text{" + dat['derivations'][deriv_id]['name'].replace('^','') + "}", this_deriv
+                )
+            image = cv2.imread("/home/appuser/app/static/" + this_deriv + ".png")
+            list_of_nodes.append('    {"id": "'+this_deriv+'", "group": 0, "img": "/static/'+ this_deriv + '.png", '
+            +'"width": '+str(image.shape[1])+", "+'"height": '+str(image.shape[0])+', "linear index": 0},\n')
+
+
+        for deriv_id, deriv_dict in derivation_popularity_dict.items():
+            this_deriv = deriv_id
+            for tup in deriv_dict["shares expressions with"]:
+                other_deriv_name = tup[0]
+                expr_global_id = tup[1]
+                if not os.path.isfile(
+                    "/home/appuser/app/static/" + expr_global_id + ".png"
+                ):
+                    expr_latex = dat["expressions"][expr_global_id]["latex"]
+                    create_png_from_latex(expr_latex, expr_global_id)
+                image = cv2.imread("/home/appuser/app/static/" + expr_global_id + ".png")
+                list_of_nodes.append('    {"id": "'+expr_global_id+'", "group": 1, "img": "/static/'+expr_global_id+'.png", '
+                +'"width": '+str(image.shape[1])+", "+'"height": '+str(image.shape[0])+', "linear index": 0},\n')
+
+
+                list_of_edges.append(
+                    '    {"source": "' + this_deriv + '", "target": "' + expr_global_id + '", "value": 1},\n'
+                )
+                list_of_edges.append(
+                    '    {"source": "' + other_deriv_name + '", "target": "' + expr_global_id + '", "value": 1},\n'
+                )
+
+
+    list_of_nodes = list(set(list_of_nodes))
+    all_nodes = "".join(list_of_nodes)
+    all_nodes = (
+        all_nodes[:-2] + "\n"
+    )  # remove the trailing comma to be compliant with JSON
+    json_str += all_nodes
+
+    json_str += '  ],\n'
+    json_str += '  "links": [\n'
+
+    list_of_edges = list(set(list_of_edges))
+    all_edges = "".join(list_of_edges)
+    all_edges = (
+        all_edges[:-2] + "\n"
+    )
+    json_str += all_edges
+
+    json_str += "  ]\n"
+    json_str += '}'
+
+    json_filename = "all_derivations.json"
+    with open(json_filename, "w") as fil:
+        fil.write(json_str)
+
+    shutil.move(json_filename, "/home/appuser/app/static/" + json_filename)
+    return json_filename
+
+def generate_graphviz_map_of_derivations(path_to_db: str) -> str:
     """
     for a clear description of the graphviz language, see
     https://www.graphviz.org/doc/info/lang.html
@@ -1354,9 +1437,9 @@ def generate_map_of_derivations(path_to_db: str) -> str:
     dot_filename = "/home/appuser/app/static/graphviz.dot"
     with open(dot_filename, "w") as fil:
         fil.write("graph physicsDerivation { \n")
-        # the following can cause graphviz to crash; see 
+        # the following can cause graphviz to crash; see
         # https://github.com/allofphysicsgraph/proofofconcept/issues/2
-        #fil.write("overlap = false;\n") 
+        #fil.write("overlap = false;\n")
         fil.write("overlap = prism;\n") # https://www.graphviz.org/doc/info/attrs.html#d:overlap
         fil.write("pack = true;\n") # https://www.graphviz.org/doc/info/attrs.html#d:pack
         fil.write('label="all derivations";\n')
@@ -2352,7 +2435,7 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
 
 def edit_expr_note(expr_global_id: str, new_note: str, path_to_db: str) -> str:
     """
-    >>> 
+    >>>
     """
     logger.info('[trace]')
     dat = clib.read_db(path_to_db)
@@ -2365,11 +2448,11 @@ def edit_expr_note(expr_global_id: str, new_note: str, path_to_db: str) -> str:
         status_msg = expr_global_id + " is not in expressions"
         logger.error(status_msg)
     return status_msg
-    
+
 
 def edit_expr_name(expr_global_id: str, new_name: str, path_to_db: str) -> str:
     """
-    >>> 
+    >>>
     """
     logger.info('[trace]')
     dat = clib.read_db(path_to_db)
@@ -2636,7 +2719,7 @@ def initialize_derivation(name_of_derivation: str, current_username: str, notes:
     """
     logger.info('[trace] ' + current_username)
     dat = clib.read_db(path_to_db)
-    deriv_id = create_deriv_id(path_to_db) 
+    deriv_id = create_deriv_id(path_to_db)
     dat['derivations'][deriv_id] = {
                             'name': name_of_derivation,
                             'author': current_username,
@@ -2644,7 +2727,7 @@ def initialize_derivation(name_of_derivation: str, current_username: str, notes:
                             'creation date': datetime.datetime.now().strftime("%Y-%m-%d"),
                             'steps': {} }
     clib.write_db(path_to_db, dat)
- 
+
     return deriv_id
 
 def create_step(

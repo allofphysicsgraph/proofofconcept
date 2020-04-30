@@ -953,11 +953,13 @@ def show_all_derivations():
         logger.debug("request.form = %s", request.form)
 
     try:
-        map_of_derivations = compute.generate_map_of_derivations(path_to_db)
+        #map_of_derivations = compute.generate_map_of_derivations(path_to_db)
+        json_all_derivations = compute.generate_d3js_json_map_of_derivations(path_to_db)
     except Exception as err:
         flash(str(err))
         logger.error(str(err))
-        map_of_derivations = "error.png"
+        json_all_derivations = ""
+        #map_of_derivations = "error.png"
 
     try:
         derivations_popularity_dict = compute.popularity_of_derivations(path_to_db)
@@ -968,7 +970,8 @@ def show_all_derivations():
 
     return render_template(
         "show_all_derivations.html",
-        map_of_derivations=map_of_derivations,
+        #map_of_derivations=map_of_derivations,
+        json_for_d3js=json_all_derivations,
         derivations_popularity_dict=derivations_popularity_dict,
         dat=dat,
     )
