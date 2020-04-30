@@ -3,7 +3,7 @@
 
 <P>modify step
 
-<P>derivation name: <a href="{{ url_for('review_derivation', deriv_id=deriv_id)  }}">{{ name_of_derivation}}</a>
+<P>derivation name: <a href="{{ url_for('review_derivation', deriv_id=deriv_id)  }}?referrer=modify_step">{{ name_of_derivation}}</a>
 
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
@@ -43,7 +43,7 @@ TODO -- not implemented
 </a>
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
-    {{ edit_expr_latex_webform.csrf_token }}  
+    {{ edit_expr_latex_webform.csrf_token }}
 <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
@@ -130,7 +130,7 @@ TODO -- not implemented
   <h3>change linear index for step</h3>
  </a>
  Current step index is {{ dat["derivations"][deriv_id]['steps'][step_id]["linear index"] }}.<BR>
- Change step index to 
+ Change step index to
 <!-- New linear index must be a rational number greater than zero and must not exist<BR> -->
 <form method="post" action="">
 <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
@@ -173,4 +173,3 @@ TODO -- not implemented
 </P>
 
 {% endblock %}
-

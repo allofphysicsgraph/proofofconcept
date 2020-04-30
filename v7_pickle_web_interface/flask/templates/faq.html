@@ -13,7 +13,7 @@ As of March 2020, a single developer is actively contributing to the project in 
   <a name="login">
     <i>Why is a login required for some links and actions?</i>
   </a><BR>
-  Static content is displayed with everyone. 
+  Static content is displayed for and accessible to anyone.
   The ability to change the graph content requires a user to be signed in to prevent defacement and to track who contributed what in case a rollback is needed.
 </P>
 
@@ -21,7 +21,7 @@ As of March 2020, a single developer is actively contributing to the project in 
   <a name="how to contribute">
 <i>How to contribute to the Physics Derivation Graph?</i>
 </a><BR>
-If you are a physicist, mathematician, or logician of any type, feedback would be useful.<BR>
+If you are a physicist, mathematician, or logician of any type, <a href="#contact">feedback</a> would be useful.<BR>
 If you have derivations to add, you will need to <a href="{{ url_for('login') }}?referrer=faq">log in.</a> To create an account, <a href="#contact">contact us</a>.<BR>
 If you are a researcher in another field (biology, computer science, chemistry, linguistics, etc), do you think this approach applies to your field?<BR>
 If you are a programmer and would like to review the code, comments are welcome. Pulls and merges are also possible. Feel free to create a fork.</P>
@@ -33,30 +33,69 @@ If you are a programmer and would like to review the code, comments are welcome.
 Email is the best method: ben.is.located AT gmail.com
 </P>
 
-<H3>Scope</H3>
+<H3>Scope and Definitions</H3>
   <a name="define inference rule">
 <P><i>What is an inference rule?</i>
 </a><BR>
-An inference rule is the atomic step of logic that relates two mathematical expressions. See the full explanation <a href="{{ url_for('user_documentation') }}#inference rules?referrer=faq">in the documentation</a>.
+An inference rule is the atomic step of logic that relates two mathematical expressions. See the full explanation <a href="{{ url_for('user_documentation') }}?referrer=faq#inference rules">in the documentation</a>.
 <P>
 
 <P>
   <a name="proofs">
 <i>What is the role of proofs in the Physics Derivation Graph?</i>
 </a><BR>
-The Physics Derivation Graph does not prove anything; it merely documents the mathematical manipulations applied in Physics. 
+The Physics Derivation Graph does not prove anything; it merely documents the mathematical manipulations applied in Physics.
 </P>
 
 <P>
   <a name="validity of content">
 <I>Does use of the Physics Derivation Graph and verification of steps in a derivation mean that the content is valid?</I><BR>
-No. Simply carrying out mathematical manipulations of expressions does not necessarily lead to physically valid outcomes. 
+No. Simply carrying out mathematical manipulations of expressions does not necessarily lead to physically valid outcomes.
 
 <P>
   <a name="indices">
 <I>What's the purpose of the many numerical indices associated with the expressions and inference rules?</I>
 </a><BR>
 Each expression index is a <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>. This is a way of uniquely identifying each component in the graph. Separate from that, a unique identifier is also need for inference rules to distinguish the use in different steps.
+
+
+<P>
+  No new research in math or physics is needed to validate these claims.
+  This project documents the relations between derivations used to describe physical experiments.
+</P>
+
+<P>
+  There are no new algorithms.
+  The Physics Derivation Graph is about documenting existing knowledge.
+</P>
+
+
+<P>
+  The Physics Derivation Graph does not include geometric arguments.
+</p>
+
+<P>
+  The Physics Derivation Graph does not include textual explanations about why algebraic manipulations are being carried out.</p>
+
+<P>
+  The Physics Derivation Graph is similar to a <a href="https://en.wikipedia.org/wiki/Schaum%27s_Outlines">Schuam's outline</a>, except it covers all known Physics and documents the relations between various governing expressions.
+</P>
+
+<p>
+  There are no automatic mechanisms for generating new content.
+</P>
+
+<H3>Objectives</H3>
+
+<P>
+  Observation: Derivations used in Physics are mathematical expressions linked by a finite set of inference rules.
+
+<P>
+  The purpose of this project is to test the claim that a finite static graph exists which relates all expressions of mathematical physics.
+  In this graph, nodes are expressions and edges are inference rules.
+
+<P>
+  A second claim to be tested is that a finite number of unique inference rules are needed to express the relations between expressions.
 
 <H3>Audience</H3>
 <P>
@@ -79,7 +118,7 @@ For math students, this project could address questions like, "when would I appl
   <a name="learn Physics">
 <I>Is the Physics Derivation Graph a good way to learn Physics?</I>
 </a><BR>
-No. For tips on how to learn Physics, see this comment: 
+No. For tips on how to learn Physics, see this comment:
 <a href="https://news.ycombinator.com/item?id=22691009">https://news.ycombinator.com/item?id=22691009</a>
 </P>
 
@@ -119,21 +158,21 @@ The purpose of the Physics Derivation Graph is to document known knowledge. No n
   <a name="output">
 <i>What is the output of the Physics Derivation Graph?</i>
 </a><BR>
-The output is typically a graph visualization or a PDF of the same content in a linear text format. 
+The output is typically a graph visualization or a PDF of the same content in a linear text format.
 </P>
 
 <P>
   <a name="visualization">
 <i>How can the Physics Derivation Graph be visualized?</i>
 </a><BR>
-The graph output can be visualized in a web browser, a static GraphViz output, and other formats. 
+The graph output can be visualized in a web browser, a static GraphViz output, and other formats.
 </P>
 
 <P>
   <a name="validation">
 <i>How can the Physics Derivation Graph be checked?</i>
 </a><BR>
-A <a href="https://en.wikipedia.org/wiki/Computer_algebra_system">computer algebra system</a> can be used to verify that each inference rule has been applied correctly to input and output expressions. 
+A <a href="https://en.wikipedia.org/wiki/Computer_algebra_system">computer algebra system</a> can be used to verify that each inference rule has been applied correctly to input and output expressions.
 </P>
 
 <P>
@@ -146,7 +185,7 @@ The expressions, symbols, and connections are stored Latex in a JSON file. This 
   <a name="supported subfields of Physics">
 <i>What subfields of Physics is this project capable of including?</i>
 </a><BR>
-Anything from <a href="https://en.wikipedia.org/wiki/Classical_mechanics">Classical mechanics</a> to <a href="https://en.wikipedia.org/wiki/Topological_quantum_field_theory">Topological quantum field theory</a> should be capable of being included. 
+Anything from <a href="https://en.wikipedia.org/wiki/Classical_mechanics">Classical mechanics</a> to <a href="https://en.wikipedia.org/wiki/Topological_quantum_field_theory">Topological quantum field theory</a> should be capable of being included.
 </P>
 
 <P>
@@ -202,7 +241,7 @@ step 1 | has inference rule | multiply both sides by
 step 1 | has feed | 2
 step 1 | has output | 2*y = 2*m*x + 2*b
 </pre>
-While it's easy to convert, I don't see any advantage of using RDF. 
+While it's easy to convert, I don't see any advantage of using RDF.
 </P>
 
 <P>

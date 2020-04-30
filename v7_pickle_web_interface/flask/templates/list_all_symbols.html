@@ -10,7 +10,7 @@
     </a>
   </h2>
   {% if current_user.is_anonymous %}
-  This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_symbols">signed in</a>
   {% else %}
 <form method="post" action="">
   <div class="form-group">
@@ -54,4 +54,3 @@
 {% endif %}
 
 {% endblock %}
-

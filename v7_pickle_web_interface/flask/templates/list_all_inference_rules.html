@@ -1,13 +1,13 @@
 {% extends "_base.html" %}
 {% block content %}
 
-<P>See the <a href="{{ url_for('user_documentation') }}#inference rules?referrer=list_all_inference_rules">documentation</a> for background on inference rules.
+<P>See the <a href="{{ url_for('user_documentation') }}?referrer=list_all_inference_rules#inference rules">documentation</a> for background on inference rules.
 <P>
 {% include '_table_of_inference_rules.html' %}
 
 <P>
   <a id="add_inf_rule">
-    <H2>Add new inference rule</h2> 
+    <H2>Add new inference rule</h2>
   </a>
   {% if not current_user.is_anonymous %}
     <form method="post" action="">
@@ -113,4 +113,3 @@ Only inference rules not in use can be deleted.
 
 
 {% endblock %}
-

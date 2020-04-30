@@ -24,7 +24,7 @@
       <UL>
       {% for symbol_tup in expressions_dict[expr_id]['list of symbols'] %}
         <LI>
-          <a href="{{ url_for('list_all_symbols') }}#{{ symbol_tup[0] }}">
+          <a href="{{ url_for('list_all_symbols') }}?referrer=_table_of_expressions#{{ symbol_tup[0] }}">
             {{ symbol_tup[1] }}
           </a>
         </LI>
@@ -50,6 +50,3 @@
     </a>
   </caption>
 </table>
-
-
-

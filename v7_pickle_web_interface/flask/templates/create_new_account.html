@@ -1,7 +1,7 @@
 {% extends "_base.html" %}
 {% block content %}
 
-<P>This form is not in use; for an account please <a href="{{ url_for('faq')#contact }}">contact the owner</a>.
+<P>This form is not in use; for an account please <a href="{{ url_for('faq')?referrer=create_new_account#contact }}">contact the owner</a>.
 <!-- alternatively, see https://flask-user.readthedocs.io/en/latest/index.html -->
 
 <P>
@@ -22,4 +22,3 @@
 		</form>
 
 {% endblock %}
-

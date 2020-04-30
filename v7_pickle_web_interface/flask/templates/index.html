@@ -26,9 +26,9 @@
 </P>
 
 <P>
-  <i>Example:</i> A simple example is the relation between period, <i>T</i>, and linear frequency, <i>f</i>. 
-  The mathematical expression of the relation is <i>T=1/f</i>. 
-  To express frequency as a function of period, multiply both sides of the expression by <i>f</i> to get a new expression, <i>T*f=1</i>. 
+  <i>Example:</i> A simple example is the relation between period, <i>T</i>, and linear frequency, <i>f</i>.
+  The mathematical expression of the relation is <i>T=1/f</i>.
+  To express frequency as a function of period, multiply both sides of the expression by <i>f</i> to get a new expression, <i>T*f=1</i>.
   Finally, divide both sides of the second expression by <i>T</i> to yield the third expression, <i>f=1/T</i>.
 </P>
 
@@ -37,23 +37,23 @@
 </P>
 
 <P>
-  In this example, there are three expressions. 
-  Each expression is defined by a left-hand side, a relation operator (here "="), and a right-hand side. 
-  Two instances of the <a href="https://en.wikipedia.org/wiki/Equivalence_relation#Definition">Equivalence relation</a> relate the three expressions. 
-  These relations between expressions are called <a href="{{ url_for('user_documentation') }}#inference rules?referrer=index">inference rules</a>. 
-  The generic form of the first inference rule used in the example is "multiply both sides of an expression by a quantity to yield a new expression." 
+  In this example, there are three expressions.
+  Each expression is defined by a left-hand side, a relation operator (here "="), and a right-hand side.
+  Two instances of the <a href="https://en.wikipedia.org/wiki/Equivalence_relation#Definition">Equivalence relation</a> relate the three expressions.
+  These relations between expressions are called <a href="{{ url_for('user_documentation') }}?referrer=index#inference rules">inference rules</a>.
+  The generic form of the first inference rule used in the example is "multiply both sides of an expression by a quantity to yield a new expression."
   Similarly, the second inference rule is generically, "divide both sides of an expression by a quantity to yield a new expression."
 </P>
 
 <P>
-  The central database for documenting relations in derivations of Physics is <a href="{{ url_for('developer_documentation') }}#data structure?referrer=index">a JSON file</a>. 
-  This can be transformed into other formats; see the <a href="{{ url_for('editor') }}?referrer=index">PDG editor</a> page. 
+  The central database for documenting relations in derivations of Physics is <a href="{{ url_for('developer_documentation') }}?referrer=index#data structure">a JSON file</a>.
+  This can be transformed into other formats; see the <a href="{{ url_for('editor') }}?referrer=index">PDG editor</a> page.
 </P>
 
 <P>
-  <i>Motivation:</i> <a href="https://en.wikipedia.org/wiki/Mathematical_physics">Mathematical Physics</a> uses the tools of math applied to measurements of our environment. 
-  Physics is a unique field in that all existing knowledge can be recorded. 
-  Another aspect that is unique is that the result can be checked for correctness by a computer algebra system. 
+  <i>Motivation:</i> <a href="https://en.wikipedia.org/wiki/Mathematical_physics">Mathematical Physics</a> uses the tools of math applied to measurements of our environment.
+  Physics is a unique field in that all existing knowledge can be recorded.
+  Another aspect that is unique is that the result can be checked for correctness by a computer algebra system.
   A third unique facet to Physics is that claims can be tested by experiment.
 </P>
 
@@ -61,16 +61,16 @@
 <H3>Jargon specific to this project</h3>
 
 <P>
-  A derivation is a sequence of steps. 
-  Each step in a derivation involves an "inference rule." 
-  An inference rule relates one or more "expressions." 
-  An inference rule may require one or more "feed" values. 
-  An expression is, by default, composed of (LHS, relation operator, RHS). 
+  A derivation is a sequence of steps.
+  Each step in a derivation involves an "<a href="{{ url_for('user_documentation')?referrer=index#inference rules">inference rule</a>."
+  An inference rule relates one or more "expressions."
+  An inference rule may require one or more "feed" values.
+  An expression is, by default, composed of (LHS, relation operator, RHS).
   Expression operators include both equations (the relation operator is equality) and inequalities (the relation operator is an inequality).
 </P>
 
-<P>"Inference rules", "expressions", and "feeds" are words specific to the Physics Derivation Graph. 
-  Represented graphically, 
+<P>"Inference rules", "expressions", and "feeds" are words specific to the Physics Derivation Graph.
+  Represented graphically,
 
 <img src="{{ url_for('static', filename='single_step.png') }}">
 
@@ -80,51 +80,10 @@
 inference_rule(input_expression, feed) yields output_expression
 </pre>
 
-<P>&nbsp;
-
-<H3>Disclaimers regarding scope of the project</h3>
-<P>
-  No new research in math or physics is needed to validate these claims. 
-  This project documents the relations between derivations used to describe physical experiments.
-</P>
+<H3>Where to get started?</H3>
 
 <P>
-  There are no new algorithms. 
-  The Physics Derivation Graph is about documenting existing knowledge.
-</P>
-
-<P>
-  Derivations used in Physics are mathematical expressions linked by a finite set of inference rules. 
-  From this observation, a few claims can be made.
-  <UL>
-    <LI>
-      A finite static graph exists which relates all expressions of mathematical physics. 
-      In this graph, nodes are expressions and edges are inference rules.</LI>
-    <LI>
-      A finite number of unique inference rules are needed to express the relations between expressions.</LI>
-  </UL>
-</P>
-
-<P>
-  The Physics Derivation Graph does not include geometric arguments.
-</p>
-
-<P>
-  The Physics Derivation Graph does not include textual explanations about why algebraic manipulations are being carried out.</p>
-
-<P>
-  The Physics Derivation Graph is similar to a <a href="https://en.wikipedia.org/wiki/Schaum%27s_Outlines">Schuam's outline</a>, except it covers all known Physics and documents the relations between various governing expressions.
-</P>
-
-<p>
-  There are no automatic mechanisms for generating new content.
-</P>
-
-
-<P>
-  The Physics Derivation Graph does include boundary conditions and initial conditions.
-</P>
-
+  Use the Physics Derivation Graph <a href="{{ url_for('editor') }}?referrer=index">editor</a>, or read the <a href="{{ url_for('faq') }}">FAQ</a>, or review the <a href="{{ url_for('user_documentation') }}">documentation</a>.
 
 {% include '_d3_js.html' %}
 
