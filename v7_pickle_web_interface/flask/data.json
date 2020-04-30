@@ -7901,7 +7901,9 @@
         },
         "8945218208": {
             "latex": "\\theta_{Brewster} + \\theta_{refracted} = 90^{\\circ}",
-            "AST": ["4928"],
+            "AST": [
+                "4928"
+            ],
             "name": "",
             "notes": "based on figure 34-27 on page 824 in 2001_HRW",
             "author": "Ben",
@@ -7909,7 +7911,9 @@
         },
         "9025853427": {
             "latex": "\\theta_{Brewster}",
-            "AST": ["4928"],
+            "AST": [
+                "4928"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7917,7 +7921,9 @@
         },
         "1310571337": {
             "latex": "\\theta_{refracted} = 90^{\\circ} - \\theta_{Brewster}",
-            "AST": ["4928"],
+            "AST": [
+                "4928"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7925,7 +7931,9 @@
         },
         "6450985774": {
             "latex": "n_1 \\sin( \\theta_1 ) = n_2 \\sin( \\theta_2 )",
-            "AST": ["2941"],
+            "AST": [
+                "2941"
+            ],
             "name": "Law of Refraction",
             "notes": "eq 34-44 on page 819 in 2001_HRW",
             "author": "Ben",
@@ -7933,7 +7941,9 @@
         },
         "1779497048": {
             "latex": "\\theta_{Brewster}, \\theta_{refraction}",
-            "AST": ["4928"],
+            "AST": [
+                "4928"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7949,7 +7959,10 @@
         },
         "2575937347": {
             "latex": "n_1 \\sin( \\theta_{Brewster} ) = n_2 \\sin( \\theta_{refraction} )",
-            "AST": ["4928", "2941"],
+            "AST": [
+                "4928",
+                "2941"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7957,7 +7970,10 @@
         },
         "7696214507": {
             "latex": "n_1 \\sin( \\theta_{Brewster} ) = n_2 \\sin( 90^{\\circ} - \\theta_{Brewster} )",
-            "AST": ["4928", "2941"],
+            "AST": [
+                "4928",
+                "2941"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7973,7 +7989,9 @@
         },
         "7375348852": {
             "latex": "\\theta_{Brewster}",
-            "AST": ["4928"],
+            "AST": [
+                "4928"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7989,7 +8007,9 @@
         },
         "6831637424": {
             "latex": "\\sin( 90^{\\circ} - \\theta_{Brewster} ) = cos( \\theta_{Brewster} )",
-            "AST": ["4928"],
+            "AST": [
+                "4928"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7997,7 +8017,10 @@
         },
         "3061811650": {
             "latex": "n_1 \\sin( \\theta_{Brewster} ) = n_2 \\cos( \\theta_{Brewster} )",
-            "AST": ["4928", "2941"],
+            "AST": [
+                "4928",
+                "2941"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8005,7 +8028,9 @@
         },
         "7857757625": {
             "latex": "n_1",
-            "AST": ["2941"],
+            "AST": [
+                "2941"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8013,7 +8038,10 @@
         },
         "9756089533": {
             "latex": " \\sin( \\theta_{Brewster} ) = \\frac{n_2}{n_1} \\cos( \\theta_{Brewster} )",
-            "AST": ["4928", "2941"],
+            "AST": [
+                "4928",
+                "2941"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8021,7 +8049,9 @@
         },
         "5632428182": {
             "latex": "\\cos( \\theta_{Brewster} )",
-            "AST": ["4928"],
+            "AST": [
+                "4928"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8029,7 +8059,10 @@
         },
         "2768857871": {
             "latex": "\\frac{\\sin( \\theta_{Brewster} )}{\\cos( \\theta_{Brewster} )} = \\frac{n_2}{n_1} ",
-            "AST": ["4928", "2941"],
+            "AST": [
+                "4928",
+                "2941"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8045,7 +8078,9 @@
         },
         "7321695558": {
             "latex": "\\theta_{Brewster}",
-            "AST": ["4928"],
+            "AST": [
+                "4928"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8061,7 +8096,9 @@
         },
         "4501377629": {
             "latex": "\\tan( \\theta_{Brewster} ) = \\frac{ \\sin( \\theta_{Brewster} )}{\\cos( \\theta_{Brewster} )}",
-            "AST": ["4928"],
+            "AST": [
+                "4928"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8069,7 +8106,10 @@
         },
         "3417126140": {
             "latex": "\\tan( \\theta_{Brewster} ) = \\frac{ n_2 }{ n_1 }",
-            "AST": ["4928", "2941"],
+            "AST": [
+                "4928",
+                "2941"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8093,7 +8133,9 @@
         },
         "5129762388": {
             "latex": "\\theta_{refracted} = \\arctan{ \\frac{ n_1 }{ n_2 } }",
-            "AST": ["2941"],
+            "AST": [
+                "2941"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8105,7 +8147,10 @@
             "author": "Ben",
             "notes": "",
             "name": "",
-            "AST": ["4928", "2941"]
+            "AST": [
+                "4928",
+                "2941"
+            ]
         },
         "9040079362": {
             "latex": "f",
@@ -8949,7 +8994,9 @@
             "category": "variable",
             "latex": "n_1",
             "name": "index of refraction for material 1",
-            "scope": [ "real" ]
+            "scope": [
+                "real"
+            ]
         },
         "4929": {
             "category": "variable",
@@ -9003,8 +9050,12 @@
         "4928": {
             "category": "variable",
             "latex": "\\theta_{Brewster}",
-            "references": [ "https://en.wikipedia.org/wiki/Brewster%27s_angle" ],
-            "scope": [ "real" ]
+            "references": [
+                "https://en.wikipedia.org/wiki/Brewster%27s_angle"
+            ],
+            "scope": [
+                "real"
+            ]
         },
         "1157": {
             "category": "constant",
