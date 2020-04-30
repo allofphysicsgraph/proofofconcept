@@ -50,7 +50,8 @@ def extract_ip(msg):
     elif len(res)==1:
         return '.'.join(res[0])
     else:
-        raise Exception(res)
+        return '.'.join(res[1])
+        #raise Exception(res)
 
 #def country_if_ip(ip, country_code_df):
 #    """
