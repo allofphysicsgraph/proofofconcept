@@ -8696,7 +8696,7 @@
             "number of feeds": 2,
             "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Substitute list of variables $#1$ for list of variables $#2$ in Eq.~ref{eq:#3}; yields Eq.~ref{eq:#4}.",
+            "latex": "Substitute list of variables $#1$ for list of variables $#2$ in Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
             "notes": "rename a batch of variables all at once; whereas \"substitute X for Y\" is for one variable",
             "author": "Ben",
             "creation date": "2020-04-19"
