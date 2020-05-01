@@ -27,6 +27,7 @@ import time
 
 # https://docs.python.org/3/howto/logging.html
 import logging
+
 # https://gist.github.com/ibeex/3257877
 from logging.handlers import RotatingFileHandler
 
@@ -106,7 +107,7 @@ login_manager.init_app(app)
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 csrf.init_app(app)
 
-#import pdg_api # PDG API
+# import pdg_api # PDG API
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
 # rd = Redis(host='db', port=6379)
@@ -115,10 +116,10 @@ csrf.init_app(app)
 # rj = Client(host='db', port=6379, decode_responses=True)
 
 
-#if __name__ == "__main__":
+# if __name__ == "__main__":
 if True:
     # called from flask
-    #print("called from flask")
+    # print("called from flask")
 
     # maxBytes=10000 = 10kB
     # maxBytes=100000 = 100kB
@@ -127,18 +128,30 @@ if True:
     log_size = 10000000
     # maxBytes=100000000 = 100MB
     # https://gist.github.com/ibeex/3257877
-    handler_debug = RotatingFileHandler('logs/flask_critical_and_error_and_warning_and_info_and_debug.log', maxBytes=log_size, backupCount=2)
+    handler_debug = RotatingFileHandler(
+        "logs/flask_critical_and_error_and_warning_and_info_and_debug.log",
+        maxBytes=log_size,
+        backupCount=2,
+    )
     handler_debug.setLevel(logging.DEBUG)
-    handler_info  = RotatingFileHandler('logs/flask_critical_and_error_and_warning_and_info.log', maxBytes=log_size, backupCount=2)
+    handler_info = RotatingFileHandler(
+        "logs/flask_critical_and_error_and_warning_and_info.log",
+        maxBytes=log_size,
+        backupCount=2,
+    )
     handler_info.setLevel(logging.INFO)
-    handler_warning  = RotatingFileHandler('logs/flask_critical_and_error_and_warning.log', maxBytes=log_size, backupCount=2)
+    handler_warning = RotatingFileHandler(
+        "logs/flask_critical_and_error_and_warning.log",
+        maxBytes=log_size,
+        backupCount=2,
+    )
     handler_warning.setLevel(logging.WARNING)
 
     # https://docs.python.org/3/howto/logging.html
     logging.basicConfig(
         # either (filename + filemode) XOR handlers
-        #filename="test.log", # to save entries to file instead of displaying to stderr
-        #filemode="w", # https://docs.python.org/dev/library/functions.html#filemodes
+        # filename="test.log", # to save entries to file instead of displaying to stderr
+        # filemode="w", # https://docs.python.org/dev/library/functions.html#filemodes
         handlers=[handler_debug, handler_info, handler_warning],
         # if the severity level is INFO,
         # the logger will handle only INFO, WARNING, ERROR, and CRITICAL messages
@@ -148,12 +161,12 @@ if True:
         datefmt="%m/%d/%Y %I:%M:%S %p",
     )
 
-#    logger = logging.getLogger(__name__)
+    #    logger = logging.getLogger(__name__)
 
     # https://docs.python.org/3/howto/logging.html
     # if the severity level is INFO, the logger will handle only INFO, WARNING, ERROR, and CRITICAL messages and will ignore DEBUG messages
-    #handler.setLevel(logging.INFO)
-    #handler.setLevel(logging.DEBUG)
+    # handler.setLevel(logging.INFO)
+    # handler.setLevel(logging.DEBUG)
 
     logger = logging.getLogger(__name__)
 
@@ -162,20 +175,22 @@ if True:
 # https://stackoverflow.com/questions/41087790/how-to-override-gunicorns-logging-config-to-use-a-custom-formatter
 # https://medium.com/@trstringer/logging-flask-and-gunicorn-the-manageable-way-2e6f0b8beb2f
 if __name__ != "__main__":
-#else:
+    # else:
     print("called from gunicorn")
 
     # from https://stackoverflow.com/a/56993644/1164295
     # didn't make a difference
-#    glogging.Logger.error_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f", "Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
-#    glogging.Logger.datefmt = ""
+    #    glogging.Logger.error_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f", "Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
+    #    glogging.Logger.datefmt = ""
 
-#    glogging.Logger.access_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f","Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
-#    glogging.Logger.syslog_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f","Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
+    #    glogging.Logger.access_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f","Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
+    #    glogging.Logger.syslog_fmt = '{"AppName": "%(name)s", "logLevel": "%(levelname)s", "Timestamp": "%(created)f","Class_Name":"%(module)s", "Method_name": "%(funcName)s", "process_id":%(process)d, "message": "%(message)s"}'
 
     gunicorn_logger = logging.getLogger("gunicorn.error")
-    logger.handlers.extend(gunicorn_logger.handlers) # https://stackoverflow.com/a/37595908/1164295
-    #app.logger.handlers = gunicorn_logger.handlers # works but doesn't display PDG logs
+    logger.handlers.extend(
+        gunicorn_logger.handlers
+    )  # https://stackoverflow.com/a/37595908/1164295
+    # app.logger.handlers = gunicorn_logger.handlers # works but doesn't display PDG logs
 #    logger.setLevel(gunicorn_logger.level)
 #    logger = app.logger
 
@@ -228,14 +243,15 @@ class User(UserMixin):
     def is_active(self):
         return self.active
 
-#    def __init__(self, user_name, pass_word):
-#        self.username = user_name
-#        self.password = pass_word
+    #    def __init__(self, user_name, pass_word):
+    #        self.username = user_name
+    #        self.password = pass_word
 
     #    def is_authenticated(self):
     #        return self.authenticated
     def __repr__(self):
         return "<User {}>".format(self.username)
+
 
 # the following is a hack not meant for publication
 # https://gist.github.com/bkdinoop/6698956
@@ -248,6 +264,7 @@ USERS = {
 }
 USER_NAMES = dict((u.name, u) for u in USERS.values())
 
+
 class EquationInputForm(FlaskForm):
     logger.info("[trace]")
     #    r = FloatField(validators=[validators.InputRequired()])
@@ -256,21 +273,25 @@ class EquationInputForm(FlaskForm):
         "LaTeX", validators=[validators.InputRequired(), validators.Length(max=1000)]
     )
 
+
 class NewSymbolForm(FlaskForm):
-    logger.info('[trace]')
+    logger.info("[trace]")
     symbol_category = RadioField(
         "Label",
         choices=[("variable", "variable"), ("constant", "constant"),],
         default="variable",
     )
-    symbol_scope_real = BooleanField(label='Real', description='check this', default='checked')
-    symbol_scope_complex = BooleanField(label='Complex', description='check this')
+    symbol_scope_real = BooleanField(
+        label="Real", description="check this", default="checked"
+    )
+    symbol_scope_complex = BooleanField(label="Complex", description="check this")
 
     symbol_latex = StringField("latex", validators=[validators.InputRequired()])
     symbol_name = StringField("name", validators=[validators.InputRequired()])
     symbol_reference = StringField("reference")
     symbol_value = StringField("value")
     symbol_units = StringField("units")
+
 
 class InferenceRuleForm(FlaskForm):
     logger.info("[trace]")
@@ -436,8 +457,9 @@ class SymbolEntry(FlaskForm):
 
 class NameOfDerivationInputForm(FlaskForm):
     logger.info("[trace]")
-    name_of_derivation = StringField("name of derivation",
-        validators=[validators.InputRequired(), validators.Length(max=1000)]
+    name_of_derivation = StringField(
+        "name of derivation",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
     )
     notes = StringField("notes")
 
@@ -530,7 +552,7 @@ def load_user(user_id):
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
     """
     logger.debug(user_id)
-    return USERS.get(int(user_id)) #User.get_id(user_id)
+    return USERS.get(int(user_id))  # User.get_id(user_id)
 
 
 def is_safe_url(target):
@@ -558,7 +580,7 @@ def login():
 
     logger.debug(str(request.form))
 
-    #request.referrer = "http://localhost:5000/login"
+    # request.referrer = "http://localhost:5000/login"
 
     if form.validate_on_submit():
         # Login and validate the user.
@@ -566,14 +588,14 @@ def login():
 
         # the following is what the person entered into the form
         logger.debug("username= %s", form.username.data)
-        #user = User()
-        #if user is None:  # or not user.check_password(form.password.data):
+        # user = User()
+        # if user is None:  # or not user.check_password(form.password.data):
         username = form.username.data
 
-        #logger.debug('next =' + str(request.args.get("next")))
+        # logger.debug('next =' + str(request.args.get("next")))
 
         # https://stackoverflow.com/a/28593313/1164295
-        #logger.debug(request.headers.get("Referer")) = "http://localhost:5000/login"
+        # logger.debug(request.headers.get("Referer")) = "http://localhost:5000/login"
 
         # https://gist.github.com/bkdinoop/6698956
         if username in USER_NAMES:
@@ -593,14 +615,14 @@ def login():
             logger.debug("invalid username")
             return redirect(url_for("create_new_account"))
         # https://flask-login.readthedocs.io/en/latest/#flask_login.login_user
-        #login_user(user, remember=form.remember_me.data)
-        #logger.debug("user logged in")
-        #flash("Logged in successfully.")
+        # login_user(user, remember=form.remember_me.data)
+        # logger.debug("user logged in")
+        # flash("Logged in successfully.")
 
-        #next = request.args.get("next")
+        # next = request.args.get("next")
         # is_safe_url should check if the url is safe for redirects.
         # See http://flask.pocoo.org/snippets/62/ for an example.
-        #if not is_safe_url(next):
+        # if not is_safe_url(next):
         #    return abort(400)
 
         logger.error("Should not reach this condition")
@@ -622,8 +644,8 @@ def logout():
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-        logger.info('[trace]')
-#        flash("username not available")
+        logger.info("[trace]")
+    #        flash("username not available")
     logout_user()
     return redirect(url_for("index"))
 
@@ -684,16 +706,14 @@ def index():
     logger.info("[trace]")
 
     try:
-        d3js_json_filename = compute.create_d3js_json("884319" , path_to_db)
+        d3js_json_filename = compute.create_d3js_json("884319", path_to_db)
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
         d3js_json_filename = ""
     dat = clib.read_db(path_to_db)
 
-
-    return render_template("index.html",
-        json_for_d3js=d3js_json_filename)
+    return render_template("index.html", json_for_d3js=d3js_json_filename)
 
 
 @app.route("/stats", methods=["GET", "POST"])
@@ -706,9 +726,12 @@ def stats():
     list_of_pics, tail_of_auth_log_as_list = compute.generate_stats(10)
     logger.debug(str(list_of_pics))
 
-    return render_template("stats.html",
-                            list_of_pics=list_of_pics,
-                            tail_of_auth_log_as_list=tail_of_auth_log_as_list)
+    return render_template(
+        "stats.html",
+        list_of_pics=list_of_pics,
+        tail_of_auth_log_as_list=tail_of_auth_log_as_list,
+    )
+
 
 @app.route("/static_dir", methods=["GET", "POST"])
 def static_dir():
@@ -718,13 +741,13 @@ def static_dir():
     """
     logger.info("[trace]")
     # https://stackoverflow.com/a/3207973/1164295
-    (_, _, filenames) = next(os.walk('static'))
+    (_, _, filenames) = next(os.walk("static"))
     filenames.sort()
-    return render_template("static_dir.html",
-                           list_of_files=filenames)
+    return render_template("static_dir.html", list_of_files=filenames)
 
-#@app.route("/templates_dir", methods=["GET", "POST"])
-#def templates_dir():
+
+# @app.route("/templates_dir", methods=["GET", "POST"])
+# def templates_dir():
 #    """
 #    "templates_dir" is a directory listing
 #    >>> ()
@@ -736,8 +759,8 @@ def static_dir():
 #    return render_template("templates_dir.html",
 #                           list_of_files=filenames)
 
-#@app.route("/root_dir", methods=["GET", "POST"])
-#def root_dir():
+# @app.route("/root_dir", methods=["GET", "POST"])
+# def root_dir():
 #    """
 #    "root_dir" is a directory listing
 #    >>> ()
@@ -747,10 +770,10 @@ def static_dir():
 #    (_, _, filenames) = next(os.walk('.'))
 #    filenames.sort()
 #    return render_template("root_dir.html",
- #                          list_of_files=filenames)
+#                          list_of_files=filenames)
 
-#@app.route("/logs_dir", methods=["GET", "POST"])
-#def static_dir():
+# @app.route("/logs_dir", methods=["GET", "POST"])
+# def static_dir():
 #    """
 #    "logs_dir" is a directory listing
 #    >>> ()
@@ -761,6 +784,7 @@ def static_dir():
 #    filenames.sort()
 #    return render_template("logs_dir.html",
 #                           list_of_files=filenames)
+
 
 @app.route("/faq", methods=["GET", "POST"])
 def faq():
@@ -780,7 +804,6 @@ def other_projects():
     """
     logger.info("[trace]")
     return render_template("other_projects.html")
-
 
 
 @app.route("/user_documentation", methods=["GET", "POST"])
@@ -803,8 +826,8 @@ def developer_documentation():
     return render_template("developer_documentation.html")
 
 
-#@app.route("/example_T_f_d3js", methods=["GET", "POST"])
-#def example_T_f_d3js():
+# @app.route("/example_T_f_d3js", methods=["GET", "POST"])
+# def example_T_f_d3js():
 #    """
 #    >>> example_T_f_d3js()
 #    """
@@ -812,8 +835,8 @@ def developer_documentation():
 #    return render_template("example_T_f_d3js.html")
 
 
-#@app.route("/how_to_build_the_physics_derivation_graph", methods=["GET", "POST"])
-#def how_to_build_the_physics_derivation_graph():
+# @app.route("/how_to_build_the_physics_derivation_graph", methods=["GET", "POST"])
+# def how_to_build_the_physics_derivation_graph():
 #    """
 #    >>> how_to_build_the_physics_derivation_graph()
 #    """
@@ -932,9 +955,9 @@ def start_new_derivation():
     try:
         logger.info("[trace] " + str(current_user.username))
     except AttributeError:
-#        return redirect( url_for('login'))
+        #        return redirect( url_for('login'))
         current_user.username = "Ben"
-        logger.info('[trace]')
+        logger.info("[trace]")
 
     web_form = NameOfDerivationInputForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -944,10 +967,10 @@ def start_new_derivation():
         logger.debug(
             "start_new_derivation: name of derivation = %s", name_of_derivation,
         )
-        deriv_id = compute.initialize_derivation(name_of_derivation, str(current_user.username), notes, path_to_db)
-        return redirect(
-            url_for("new_step_select_inf_rule", deriv_id=deriv_id)
+        deriv_id = compute.initialize_derivation(
+            name_of_derivation, str(current_user.username), notes, path_to_db
         )
+        return redirect(url_for("new_step_select_inf_rule", deriv_id=deriv_id))
     return render_template(
         "start_new_derivation.html", form=web_form, title="start new derivation"
     )
@@ -965,13 +988,13 @@ def show_all_derivations():
         logger.debug("request.form = %s", request.form)
 
     try:
-        #map_of_derivations = compute.generate_map_of_derivations(path_to_db)
+        # map_of_derivations = compute.generate_map_of_derivations(path_to_db)
         json_all_derivations = compute.generate_d3js_json_map_of_derivations(path_to_db)
     except Exception as err:
         flash(str(err))
         logger.error(str(err))
         json_all_derivations = ""
-        #map_of_derivations = "error.png"
+        # map_of_derivations = "error.png"
 
     try:
         derivations_popularity_dict = compute.popularity_of_derivations(path_to_db)
@@ -982,7 +1005,7 @@ def show_all_derivations():
 
     return render_template(
         "show_all_derivations.html",
-        #map_of_derivations=map_of_derivations,
+        # map_of_derivations=map_of_derivations,
         json_for_d3js=json_all_derivations,
         derivations_popularity_dict=derivations_popularity_dict,
         dat=dat,
@@ -1053,29 +1076,38 @@ def list_all_symbols():
         elif "symbol_latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('symbol_category', 'constant'), ('symbol_latex', 'asdf'), ('symbol_name', 'asdfafasdf'), ('symbol_reference', ''), ('symbol_value', ''), ('symbol_units', ''), ('symbol_scope_real', 'y'), ('symbol_scope_complex', 'y') ('submit_button', 'Submit')])
 
-            if 'symbol_value' not in request.form.keys():
+            if "symbol_value" not in request.form.keys():
                 value = ""
             else:
-                value = request.form['symbol_value'] 
-            if 'symbol_units' not in request.form.keys():
+                value = request.form["symbol_value"]
+            if "symbol_units" not in request.form.keys():
                 units = ""
             else:
-                units = request.form['symbol_units']
-            if 'symbol_scope_complex' not in request.form.keys():
-                scope = ['real']
-            elif ('symbol_scope_real' in request.form.keys() and request.form['symbol_scope_real'] == 'n'):
-                scope = ['complex']
-            elif ('symbol_scope_real' in request.form.keys() and 'symbol_scope_complex' in request.form.keys() and 
-                  request.form['symbol_scope_real'] == 'y' and request.form['symbol_scope_complex'] == 'y'):
-                scope = ['real','complex']
-            compute.add_symbol(request.form['symbol_category'], 
-                               request.form['symbol_latex'], 
-                               request.form['symbol_name'], 
-                               request.form['symbol_reference'], 
-                               value, 
-                               units, 
-                               scope,
-                               path_to_db)
+                units = request.form["symbol_units"]
+            if "symbol_scope_complex" not in request.form.keys():
+                scope = ["real"]
+            elif (
+                "symbol_scope_real" in request.form.keys()
+                and request.form["symbol_scope_real"] == "n"
+            ):
+                scope = ["complex"]
+            elif (
+                "symbol_scope_real" in request.form.keys()
+                and "symbol_scope_complex" in request.form.keys()
+                and request.form["symbol_scope_real"] == "y"
+                and request.form["symbol_scope_complex"] == "y"
+            ):
+                scope = ["real", "complex"]
+            compute.add_symbol(
+                request.form["symbol_category"],
+                request.form["symbol_latex"],
+                request.form["symbol_name"],
+                request.form["symbol_reference"],
+                value,
+                units,
+                scope,
+                path_to_db,
+            )
         else:
             logger.error("unrecognized option")
             flash("unrecognized option")
@@ -1150,7 +1182,11 @@ def list_all_expressions():
             return redirect(url_for("list_all_expressions"))
         elif "edit expr name" in request.form.keys():
             try:
-                status_msg = compute.edit_expr_name(request.form['edit expr name'], request.form['revised_text'], path_to_db)
+                status_msg = compute.edit_expr_name(
+                    request.form["edit expr name"],
+                    request.form["revised_text"],
+                    path_to_db,
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -1160,7 +1196,11 @@ def list_all_expressions():
             return redirect(url_for("list_all_expressions"))
         elif "edit expr note" in request.form.keys():
             try:
-                status_msg = compute.edit_expr_note(request.form['edit expr note'], request.form['revised_text'], path_to_db)
+                status_msg = compute.edit_expr_note(
+                    request.form["edit expr note"],
+                    request.form["revised_text"],
+                    path_to_db,
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -1339,9 +1379,7 @@ def select_derivation_to_edit():
     )
 
 
-@app.route(
-    "/select_derivation_step_to_edit/<deriv_id>/", methods=["GET", "POST"]
-)
+@app.route("/select_derivation_step_to_edit/<deriv_id>/", methods=["GET", "POST"])
 @login_required
 def select_derivation_step_to_edit(deriv_id: str):
     """
@@ -1356,11 +1394,7 @@ def select_derivation_step_to_edit(deriv_id: str):
         if "step_to_edit" in request.form.keys():
             step_to_edit = request.form["step_to_edit"]
             return redirect(
-                url_for(
-                    "modify_step",
-                    deriv_id=deriv_id,
-                    step_id=step_to_edit,
-                )
+                url_for("modify_step", deriv_id=deriv_id, step_id=step_to_edit,)
             )
 
         elif "step_to_delete" in request.form.keys():
@@ -1369,9 +1403,7 @@ def select_derivation_step_to_edit(deriv_id: str):
                 compute.delete_step_from_derivation(
                     deriv_id, step_to_delete, path_to_db
                 )
-                return redirect(
-                    url_for("review_derivation", deriv_id=deriv_id)
-                )
+                return redirect(url_for("review_derivation", deriv_id=deriv_id))
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -1383,7 +1415,7 @@ def select_derivation_step_to_edit(deriv_id: str):
 
         # previously
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
                     deriv_id, step_id, path_to_db
@@ -1402,7 +1434,7 @@ def select_derivation_step_to_edit(deriv_id: str):
         logger.error(str(err))
         flash(str(err))
         step_dict = {}
-    #logger.debug(str(step_dict))
+    # logger.debug(str(step_dict))
 
     sorted_step_ids = list(step_dict.keys())
     sorted_step_ids.sort()
@@ -1413,7 +1445,7 @@ def select_derivation_step_to_edit(deriv_id: str):
         expr_local_to_global=dat["expr local to global"],
         expressions_dict=dat["expressions"],
         step_dict=step_dict,
-        name_of_derivation=dat['derivations'][deriv_id]['name'],
+        name_of_derivation=dat["derivations"][deriv_id]["name"],
         derivation_validity_dict=derivation_validity_dict,
         list_of_step_ids=sorted_step_ids,
     )
@@ -1445,9 +1477,7 @@ def select_from_existing_derivations():
         if request.form["submit_button"] == "generate_pdf":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_pdf')])
             try:
-                pdf_filename = compute.generate_pdf_for_derivation(
-                    deriv_id, path_to_db
-                )
+                pdf_filename = compute.generate_pdf_for_derivation(deriv_id, path_to_db)
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -1462,9 +1492,7 @@ def select_from_existing_derivations():
         if request.form["submit_button"] == "generate_tex":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_tex')])
             try:
-                tex_filename = compute.generate_tex_for_derivation(
-                    deriv_id, path_to_db
-                )
+                tex_filename = compute.generate_tex_for_derivation(deriv_id, path_to_db)
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -1477,9 +1505,7 @@ def select_from_existing_derivations():
 
         elif request.form["submit_button"] == "display_graphviz":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'display_graphviz')])
-            return redirect(
-                url_for("review_derivation", deriv_id=deriv_id,)
-            )
+            return redirect(url_for("review_derivation", deriv_id=deriv_id,))
         else:
             flash("unrecongized button in" + str(request.form))
 
@@ -1488,7 +1514,7 @@ def select_from_existing_derivations():
     return render_template(
         "select_from_existing_derivations.html",
         dat=dat,
-        list_of_derivations=list_of_deriv
+        list_of_derivations=list_of_deriv,
     )
 
 
@@ -1498,8 +1524,8 @@ def new_step_select_inf_rule(deriv_id: str):
     try:
         logger.info("[trace] " + str(current_user.username))
     except AttributeError:
-#        return redirect( url_for('login'))
-        logger.info('[trace]')
+        #        return redirect( url_for('login'))
+        logger.info("[trace]")
 
     try:
         list_of_inf_rules = compute.get_sorted_list_of_inf_rules(path_to_db)
@@ -1528,16 +1554,15 @@ def new_step_select_inf_rule(deriv_id: str):
 
     return render_template(
         "new_step_select_inf_rule.html",
-        title=dat['derivations'][deriv_id]['name'],
-        name_of_derivation=dat['derivations'][deriv_id]['name'],
+        title=dat["derivations"][deriv_id]["name"],
+        name_of_derivation=dat["derivations"][deriv_id]["name"],
         inf_rule_list=list_of_inf_rules,
         deriv_id=deriv_id,
     )
 
 
 @app.route(
-    "/provide_expr_for_inf_rule/<deriv_id>/<inf_rule>",
-    methods=["GET", "POST"],
+    "/provide_expr_for_inf_rule/<deriv_id>/<inf_rule>", methods=["GET", "POST"],
 )
 @login_required
 def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
@@ -1550,8 +1575,8 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
         current_user.username = "Ben"
-        logger.info('[trace]')
-#        return redirect( url_for('login'))
+        logger.info("[trace]")
+    #        return redirect( url_for('login'))
 
     # num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, path_to_db)
     # logger.debug('provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
@@ -1595,29 +1620,23 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         )
 
         try:
-            step_validity_msg = vir.validate_step(
-                deriv_id, local_step_id, path_to_db
-            )
+            step_validity_msg = vir.validate_step(deriv_id, local_step_id, path_to_db)
         except Exception as err:
             flash(str(err))
             logger.warning(str(err))
             step_validity_msg = "error in validation"
 
         return redirect(
-            url_for(
-                "step_review",
-                deriv_id=deriv_id,
-                local_step_id=local_step_id,
-            )
+            url_for("step_review", deriv_id=deriv_id, local_step_id=local_step_id,)
         )
 
     # the following is needed to handle the case where the derivation is new and no steps exist yet
     if deriv_id in dat["derivations"].keys():
-        step_dict = dat["derivations"][deriv_id]['steps']
+        step_dict = dat["derivations"][deriv_id]["steps"]
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
                     deriv_id, step_id, path_to_db
@@ -1640,9 +1659,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         expression_popularity_dict = {}
 
     try:
-        list_of_local_id = compute.list_local_id_for_derivation(
-            deriv_id, path_to_db
-        )
+        list_of_local_id = compute.list_local_id_for_derivation(deriv_id, path_to_db)
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
@@ -1669,13 +1686,13 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         "provide_expr_for_inf_rule.html",
         deriv_id=deriv_id,
         dat=dat,
-        name_of_derivation=dat['derivations'][deriv_id]['name'],
+        name_of_derivation=dat["derivations"][deriv_id]["name"],
         expression_popularity_dict=expression_popularity_dict,
         expressions_dict=dat["expressions"],
         inf_rule_dict=infrules_modified_latex_dict[inf_rule],
         list_of_local_id=list_of_local_id,
         list_of_global_id_not_in_derivation=list_of_global_id_not_in_derivation,
-        step_dict=dat['derivations'][deriv_id]['steps'],
+        step_dict=dat["derivations"][deriv_id]["steps"],
         inf_rule=inf_rule,
         derivation_validity_dict=derivation_validity_dict,
         expr_local_to_global=dat["expr local to global"],
@@ -1697,10 +1714,10 @@ def step_review(deriv_id: str, local_step_id: str):
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
         # the referrer does not appear in the logs
-        #return redirect( url_for('login') + '?referrer=step_review')
+        # return redirect( url_for('login') + '?referrer=step_review')
         # as per https://stackoverflow.com/a/23144200/1164295
-#        return redirect( url_for('login', referrer='step_review'))
-        logger.info('[trace]')
+        #        return redirect( url_for('login', referrer='step_review'))
+        logger.info("[trace]")
 
     webform = SymbolEntry()
 
@@ -1718,22 +1735,12 @@ def step_review(deriv_id: str, local_step_id: str):
     if request.method == "POST":
         logger.debug("reslt = %s", str(request.form))
         if request.form["submit_button"] == "accept this step; add another step":
-            return redirect(
-                url_for(
-                    "new_step_select_inf_rule", deriv_id=deriv_id
-                )
-            )
+            return redirect(url_for("new_step_select_inf_rule", deriv_id=deriv_id))
         if request.form["submit_button"] == "accept this step; review derivation":
-            return redirect(
-                url_for("review_derivation", deriv_id=deriv_id,)
-            )
+            return redirect(url_for("review_derivation", deriv_id=deriv_id,))
         elif request.form["submit_button"] == "modify this step":
             return redirect(
-                url_for(
-                    "modify_step",
-                    deriv_id=deriv_id,
-                    step_id=local_step_id,
-                )
+                url_for("modify_step", deriv_id=deriv_id, step_id=local_step_id,)
             )
         else:
             logger.error('unrecognized button in "step_review":', request.form)
@@ -1753,7 +1760,7 @@ def step_review(deriv_id: str, local_step_id: str):
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
                     deriv_id, step_id, path_to_db
@@ -1763,7 +1770,7 @@ def step_review(deriv_id: str, local_step_id: str):
                 flash(str(err))
                 derivation_validity_dict[step_id] = "failed"
         try:
-            step_dict = dat["derivations"][deriv_id]['steps']
+            step_dict = dat["derivations"][deriv_id]["steps"]
         except Exception as err:
             logger.error(str(err))
             flash(str(err))
@@ -1817,27 +1824,27 @@ def rename_derivation(deriv_id: str):
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-#        return redirect( url_for('login'))
-        logger.info('[trace]')
+        #        return redirect( url_for('login'))
+        logger.info("[trace]")
 
     dat = clib.read_db(path_to_db)
 
     if request.method == "POST":
         logger.debug(str(request.form))
         # ImmutableMultiDict([ ('revised_text', 'a new notes'), ('submit_button', 'revised derivation note')])
-        if 'submit_button' in request.form.keys():
-            if 'revised derivation note' in request.form['submit_button']:
+        if "submit_button" in request.form.keys():
+            if "revised derivation note" in request.form["submit_button"]:
                 status_msg = compute.edit_derivation_note(
-                    deriv_id, request.form["revised_text"], path_to_db)
+                    deriv_id, request.form["revised_text"], path_to_db
+                )
                 flash(status_msg)
-                return redirect(
-                    url_for("review_derivation", deriv_id=deriv_id ))
-            elif "rename derivation" in request.form['submit_button']:
+                return redirect(url_for("review_derivation", deriv_id=deriv_id))
+            elif "rename derivation" in request.form["submit_button"]:
                 status_msg = compute.rename_derivation(
-                    deriv_id, request.form["revised_text"], path_to_db)
+                    deriv_id, request.form["revised_text"], path_to_db
+                )
                 flash(status_msg)
-                return redirect(
-                    url_for("review_derivation", deriv_id=deriv_id ))
+                return redirect(url_for("review_derivation", deriv_id=deriv_id))
             else:
                 logger.error(str(request.form))
                 flash("unrecognized option: " + str(request.form))
@@ -1866,21 +1873,12 @@ def review_derivation(deriv_id: str):
 
     if request.method == "POST":
         if request.form["submit_button"] == "add another step":
-            return redirect(
-                url_for(
-                    "new_step_select_inf_rule", deriv_id=deriv_id
-                )
-            )
+            return redirect(url_for("new_step_select_inf_rule", deriv_id=deriv_id))
         elif request.form["submit_button"] == "rename derivation":
-            return redirect(
-                url_for("rename_derivation", deriv_id=deriv_id)
-            )
+            return redirect(url_for("rename_derivation", deriv_id=deriv_id))
         elif request.form["submit_button"] == "edit existing step":
             return redirect(
-                url_for(
-                    "select_derivation_step_to_edit",
-                    deriv_id=deriv_id,
-                )
+                url_for("select_derivation_step_to_edit", deriv_id=deriv_id,)
             )
         elif request.form["submit_button"] == "edit derivation note":
             return redirect(url_for("rename_derivation", deriv_id=deriv_id))
@@ -1888,18 +1886,14 @@ def review_derivation(deriv_id: str):
             return redirect(url_for("index"))
         elif request.form["submit_button"] == "generate pdf":
             try:
-                pdf_filename = compute.generate_pdf_for_derivation(
-                    deriv_id, path_to_db
-                )
+                pdf_filename = compute.generate_pdf_for_derivation(deriv_id, path_to_db)
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
             return redirect(url_for("static", filename=pdf_filename))
         elif request.form["submit_button"] == "generate tex":
             try:
-                tex_filename = compute.generate_tex_for_derivation(
-                    deriv_id, path_to_db
-                )
+                tex_filename = compute.generate_tex_for_derivation(deriv_id, path_to_db)
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -1926,12 +1920,11 @@ def review_derivation(deriv_id: str):
         d3js_json_filename = ""
     dat = clib.read_db(path_to_db)
 
-
     if deriv_id in dat["derivations"].keys():
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
                     deriv_id, step_id, path_to_db
@@ -1956,10 +1949,10 @@ def review_derivation(deriv_id: str):
         pdf_filename=pdf_filename,
         dat=dat,
         deriv_id=deriv_id,
-        name_of_derivation=dat["derivations"][deriv_id]['name'],
+        name_of_derivation=dat["derivations"][deriv_id]["name"],
         name_of_graphviz_png=derivation_png,
         json_for_d3js=d3js_json_filename,
-        step_dict=dat["derivations"][deriv_id]['steps'],
+        step_dict=dat["derivations"][deriv_id]["steps"],
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],
         expression_popularity_dict=expression_popularity_dict,
@@ -1976,71 +1969,71 @@ def modify_step(deriv_id: str, step_id: str):
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-#        return redirect( url_for('login'))
-        logger.info('[trace]')
+        #        return redirect( url_for('login'))
+        logger.info("[trace]")
 
     if request.method == "POST":
         logger.debug(request.form)
         # ImmutableMultiDict([('revised_text', 'a asdfaf'), ('submit_button', 'edit note for step')])
         if "submit_button" in request.form.keys():
             if request.form["submit_button"] == "change inference rule":
-                return redirect(
-                    url_for(
-                        "new_step_select_inf_rule",
-                        deriv_id=deriv_id))
+                return redirect(url_for("new_step_select_inf_rule", deriv_id=deriv_id))
 
             # https://github.com/allofphysicsgraph/proofofconcept/issues/108
             elif request.form["submit_button"] == "view exploded graph":
                 # ImmutableMultiDict([('submit_button', 'view exploded graph')])
-                return redirect(url_for("exploded_step", deriv_id=deriv_id, step_id=step_id))
+                return redirect(
+                    url_for("exploded_step", deriv_id=deriv_id, step_id=step_id)
+                )
 
-            elif (request.form["submit_button"] == 'edit input expr latex' or
-                  request.form["submit_button"] == 'edit feed expr latex'  or
-                  request.form["submit_button"] == 'edit output expr latex'):
+            elif (
+                request.form["submit_button"] == "edit input expr latex"
+                or request.form["submit_button"] == "edit feed expr latex"
+                or request.form["submit_button"] == "edit output expr latex"
+            ):
                 try:
                     compute.modify_latex_in_step(
-                    request.form["expr_local_id_of_latex_to_modify"],
-                    request.form["revised_text"],
-                    path_to_db)
+                        request.form["expr_local_id_of_latex_to_modify"],
+                        request.form["revised_text"],
+                        path_to_db,
+                    )
                 except Exception as err:
                     flash(str(err))
                     logger.error(str(err))
 
                 try:
-                    step_validity_msg = vir.validate_step(
-                        deriv_id, step_id, path_to_db)
+                    step_validity_msg = vir.validate_step(deriv_id, step_id, path_to_db)
                 except Exception as err:
                     flash(str(err))
                     logger.error(str(err))
                     step_validity_msg = ""
                 return redirect(
-                    url_for(
-                    "step_review",
-                    deriv_id=deriv_id,
-                    local_step_id=step_id))
-            elif request.form["submit_button"] == 'delete step':
+                    url_for("step_review", deriv_id=deriv_id, local_step_id=step_id)
+                )
+            elif request.form["submit_button"] == "delete step":
                 try:
-                    compute.delete_step_from_derivation(
-                        deriv_id, step_id, path_to_db)
-                    return redirect(
-                        url_for("review_derivation", deriv_id=deriv_id))
+                    compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
+                    return redirect(url_for("review_derivation", deriv_id=deriv_id))
                 except Exception as err:
                     logger.error(str(err))
                     flash(str(err))
-            elif request.form["submit_button"] == 'change linear index of step':
+            elif request.form["submit_button"] == "change linear index of step":
                 # https://github.com/allofphysicsgraph/proofofconcept/issues/116
                 try:
                     compute.update_linear_index(
-                    deriv_id,
-                    step_id,
-                    request.form["linear_index_to_modify"],
-                    path_to_db)
+                        deriv_id,
+                        step_id,
+                        request.form["linear_index_to_modify"],
+                        path_to_db,
+                    )
                 except Exception as err:
                     flash(str(err))
                     logger.error(str(err))
-            elif request.form["submit_button"] == 'edit note for step':
+            elif request.form["submit_button"] == "edit note for step":
                 try:
-                    status_msg = compute.edit_step_note(deriv_id, step_id, request.form['revised_text'], path_to_db)
+                    status_msg = compute.edit_step_note(
+                        deriv_id, step_id, request.form["revised_text"], path_to_db
+                    )
                 except Exception as err:
                     flash(str(err))
                     logger.error(str(err))
@@ -2056,7 +2049,7 @@ def modify_step(deriv_id: str, step_id: str):
 
     if deriv_id in dat["derivations"].keys():
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
                     deriv_id, step_id, path_to_db
@@ -2066,8 +2059,8 @@ def modify_step(deriv_id: str, step_id: str):
                 flash(str(err))
                 derivation_validity_dict[step_id] = "failed"
     else:
-        logger.error("ERROR: "+deriv_id+" is not in derivations")
-        flash("ERROR: "+deriv_id+" is not in derivations")
+        logger.error("ERROR: " + deriv_id + " is not in derivations")
+        flash("ERROR: " + deriv_id + " is not in derivations")
 
     try:
         step_graphviz_png = compute.create_step_graphviz_png(
@@ -2093,7 +2086,7 @@ def modify_step(deriv_id: str, step_id: str):
         step_id=step_id,
         name_of_graphviz_png=step_graphviz_png,
         dat=dat,
-        step_dict=dat["derivations"][deriv_id]['steps'],
+        step_dict=dat["derivations"][deriv_id]["steps"],
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],
         list_of_new_linear_indices=list_of_new_linear_indices,
@@ -2126,7 +2119,8 @@ def exploded_step(deriv_id: str, step_id: str):
         step_id=step_id,
     )
 
-@app.route("/confirm_delete_derivation/<deriv_id>/" , methods=["GET", "POST"])
+
+@app.route("/confirm_delete_derivation/<deriv_id>/", methods=["GET", "POST"])
 @login_required
 def confirm_delete_derivation(deriv_id):
     """
@@ -2135,17 +2129,20 @@ def confirm_delete_derivation(deriv_id):
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-#        return redirect( url_for('login'))
-        logger.info('[trace]')
+        #        return redirect( url_for('login'))
+        logger.info("[trace]")
 
     dat = clib.read_db(path_to_db)
-    name_of_derivation=dat['derivations'][deriv_id]['name']
+    name_of_derivation = dat["derivations"][deriv_id]["name"]
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
-       # request.form = ImmutableMultiDict([('revised_text', 'asdfina'), ('submit_button', 'delete derivation')])
+        # request.form = ImmutableMultiDict([('revised_text', 'asdfina'), ('submit_button', 'delete derivation')])
 
-        if request.form["submit_button"] == "delete derivation" and request.form['revised_text'] == name_of_derivation:
+        if (
+            request.form["submit_button"] == "delete derivation"
+            and request.form["revised_text"] == name_of_derivation
+        ):
             logger.debug("form to delete " + str(deriv_id) + " submitted")
 
             try:
@@ -2159,12 +2156,14 @@ def confirm_delete_derivation(deriv_id):
             return redirect(url_for("navigation"))
         else:
             flash("submitted form did not comply; no deletion occurred")
-            return redirect(url_for('review_derivation', deriv_id=deriv_id))
+            return redirect(url_for("review_derivation", deriv_id=deriv_id))
 
-    return render_template("confirm_delete_derivation.html",
-    name_of_derivation=name_of_derivation,
-    confirm_deriv_name=RevisedTextForm(request.form)
-)
+    return render_template(
+        "confirm_delete_derivation.html",
+        name_of_derivation=name_of_derivation,
+        confirm_deriv_name=RevisedTextForm(request.form),
+    )
+
 
 @app.route("/create_new_inf_rule/", methods=["GET", "POST"])
 @login_required
@@ -2175,8 +2174,8 @@ def create_new_inf_rule():
     try:
         logger.info("[trace]" + str(current_user.username))
     except AttributeError:
-#        return redirect( url_for('login'))
-        logger.info('[trace]')
+        #        return redirect( url_for('login'))
+        logger.info("[trace]")
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
@@ -2184,12 +2183,12 @@ def create_new_inf_rule():
 
 
 if __name__ == "__main__":
-#    try:
-#        session_id = compute.create_session_id()
-#    except Exception as err:
-#        flash(str(err))
-#        logger.error(str(err))
-#        session_id = "0"
+    #    try:
+    #        session_id = compute.create_session_id()
+    #    except Exception as err:
+    #        flash(str(err))
+    #        logger.error(str(err))
+    #        session_id = "0"
     # this is only applicable for flask (and not gunicorn)
     app.run(debug=True, host="0.0.0.0")
 

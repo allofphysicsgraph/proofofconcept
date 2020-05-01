@@ -62,11 +62,13 @@ STEP_DICT = TypedDict(
 # ******************************************
 # debugging, error handling
 
-def send_email(list_of_addresses: list, msg_body: str, subject:str) -> None:
+
+def send_email(list_of_addresses: list, msg_body: str, subject: str) -> None:
     """
     >>>
     """
     return
+
 
 # from https://gist.github.com/bhpayne/54fb2c8d864d02750c9168ae734fb21e
 def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
@@ -172,7 +174,7 @@ def list_new_linear_indices(deriv_id: str, path_to_db: str) -> list:
     dat = clib.read_db(path_to_db)
     list_of_linear_indices = []
     if deriv_id in dat["derivations"].keys():
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             list_of_linear_indices.append(step_dict["linear index"])
     list_of_linear_indices.sort()
     # logger.debug('list_of_linear_indices = %s', str(list_of_linear_indices))
@@ -197,7 +199,7 @@ def list_local_id_for_derivation(deriv_id: str, path_to_db: str) -> list:
     if deriv_id not in dat["derivations"].keys():
         list_of_local_id = []
     else:
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             for connection_type in ["inputs", "feeds", "outputs"]:
                 for local_id in step_dict[connection_type]:
                     list_of_local_id.append(local_id)
@@ -218,7 +220,7 @@ def list_global_id_not_in_derivation(deriv_id: str, path_to_db: str) -> list:
     if deriv_id not in dat["derivations"].keys():
         global_ids_in_derivation = []
     else:  # derivation exists in dat
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             for connection_type in ["inputs", "feeds", "outputs"]:
                 for local_id in step_dict[connection_type]:
                     global_ids_in_derivation.append(
@@ -300,11 +302,13 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
 
     derivations_list_of_dicts = []
     for deriv_id in dat["derivations"].keys():
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             for connection_type in ["inputs", "feeds", "outputs"]:
                 for expr_local_id in step_dict[connection_type]:
                     this_derivation_step_expr = {}
-                    this_derivation_step_expr["derivation name"] = dat["derivations"][deriv_id]['name']
+                    this_derivation_step_expr["derivation name"] = dat["derivations"][
+                        deriv_id
+                    ]["name"]
                     this_derivation_step_expr["step id"] = step_id
                     this_derivation_step_expr["inference rule"] = step_dict["inf rule"]
                     this_derivation_step_expr["linear index"] = step_dict[
@@ -489,7 +493,7 @@ def convert_data_to_rdf(path_to_db: str) -> str:
             + "'\n"
         )
     for deriv_id in dat["derivations"].keys():
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             rdf_str += deriv_id + " has_step " + step_id + "\n"
             rdf_str += (
                 step_id
@@ -563,9 +567,9 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         cypher_str += "       latex: '" + infrule_dict["latex"] + "'})\n"
     for deriv_id in dat["derivations"].keys():
         cypher_str += (
-            "// derivation: " + dat["derivations"][deriv_id]['name'] + "\n"
+            "// derivation: " + dat["derivations"][deriv_id]["name"] + "\n"
         )  # https://neo4j.com/docs/cypher-manual/current/syntax/comments/
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             cypher_str += "CREATE (id" + step_id + ":step {\n"
             cypher_str += (
                 "       infrule: '"
@@ -664,9 +668,9 @@ def get_list_of_symbols_in_derivation_step(
     list_of_symbols = []
 
     if deriv_id in dat["derivations"].keys():
-        if step_id in dat["derivations"][deriv_id]['steps'].keys():
+        if step_id in dat["derivations"][deriv_id]["steps"].keys():
             for connection_type in ["inputs", "feeds", "outputs"]:
-                for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id][
+                for expr_local_id in dat["derivations"][deriv_id]["steps"][step_id][
                     connection_type
                 ]:
                     expr_latex = dat["expressions"][
@@ -749,7 +753,7 @@ def get_sorted_list_of_inf_rules_not_in_use(path_to_db: str) -> list:
     for infrule, list_of_deriv_used_in in infrule_popularity_dict.items():
         if len(list_of_deriv_used_in) == 0:
             list_of_infrules_not_in_use.append(infrule)
-    #list_of_infrules_not_in_use = [x.lower() for x in list_of_infrules_not_in_use]
+    # list_of_infrules_not_in_use = [x.lower() for x in list_of_infrules_not_in_use]
     list_of_infrules_not_in_use.sort()
     return list_of_infrules_not_in_use
 
@@ -761,7 +765,7 @@ def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_infrule = list(dat["inference rules"].keys())
-    #list_infrule = [x.lower() for x in list_infrule]
+    # list_infrule = [x.lower() for x in list_infrule]
     list_infrule.sort()
     return list_infrule
 
@@ -774,7 +778,7 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
     dat = clib.read_db(path_to_db)
     list_of_tups = []
     for deriv_id in dat["derivations"].keys():
-        list_of_tups.append((deriv_id, dat["derivations"][deriv_id]['name'].lower()))
+        list_of_tups.append((deriv_id, dat["derivations"][deriv_id]["name"].lower()))
 
     list_deriv = []
     # https://stackoverflow.com/a/10695161/1164295
@@ -792,26 +796,28 @@ def get_derivation_steps(deriv_id: str, path_to_db: str) -> dict:
     dat = clib.read_db(path_to_db)
     if deriv_id not in dat["derivations"].keys():
         logger.error(deriv_id + " is not in derivation")
-        raise Exception(str( deriv_id +
-            " does not appear to be a key in derivations: " +
-            str(dat["derivations"].keys()))
+        raise Exception(
+            str(
+                deriv_id
+                + " does not appear to be a key in derivations: "
+                + str(dat["derivations"].keys())
+            )
         )
-    return dat["derivations"][deriv_id]['steps']
+    return dat["derivations"][deriv_id]["steps"]
+
 
 def create_symbol_id(path_to_db: str) -> str:
     """
     >>> create_symbol_id()
-    """ 
+    """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
-    symbol_ids_in_use = list(dat['symbols'].keys())
+    symbol_ids_in_use = list(dat["symbols"].keys())
     found_valid_id = False
     loop_count = 0
     while not found_valid_id:
         loop_count += 1
-        proposed_symbol_id = str(
-            random.randint(1000, 9999)
-        )  # 4 digits
+        proposed_symbol_id = str(random.randint(1000, 9999))  # 4 digits
 
         if proposed_symbol_id not in symbol_ids_in_use:
             found_valid_id = True
@@ -820,21 +826,20 @@ def create_symbol_id(path_to_db: str) -> str:
             raise Exception("this seems unlikely")
     return proposed_symbol_id
 
+
 def create_deriv_id(path_to_db: str) -> str:
     """
     >>> create_deriv_id()
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
-    deriv_ids_in_use = list(dat['derivations'].keys())
+    deriv_ids_in_use = list(dat["derivations"].keys())
 
     found_valid_id = False
     loop_count = 0
     while not found_valid_id:
         loop_count += 1
-        proposed_deriv_id = str(
-            random.randint(100000, 999999)
-        )  # 6 digits
+        proposed_deriv_id = str(random.randint(100000, 999999))  # 6 digits
 
         if proposed_deriv_id not in deriv_ids_in_use:
             found_valid_id = True
@@ -842,6 +847,7 @@ def create_deriv_id(path_to_db: str) -> str:
             logger.error("too many; this seems unlikely")
             raise Exception("this seems unlikely")
     return proposed_deriv_id
+
 
 def create_expr_global_id(path_to_db: str) -> str:
     """
@@ -882,7 +888,7 @@ def create_step_id(path_to_db: str) -> str:
 
     step_ids_in_use = []
     for deriv_id in dat["derivations"].keys():
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             step_ids_in_use.append(step_id)  # formerly 'inf rule local ID'
 
     found_valid_id = False
@@ -920,8 +926,10 @@ def create_expr_local_id(path_to_db: str) -> str:
             raise Exception("this seems unlikely")
     return proposed_local_id
 
+
 # *******************************************
 # stats
+
 
 def generate_stats(number_of_lines_of_log_tail: int) -> None:
     """
@@ -929,40 +937,51 @@ def generate_stats(number_of_lines_of_log_tail: int) -> None:
     """
     logger.info("[trace]")
 
-    df = logs_to_stats.auth_log_to_df('/home/appuser/app/logs/auth.log', '/home/appuser/app/static/iso3166.csv')
+    df = logs_to_stats.auth_log_to_df(
+        "/home/appuser/app/logs/auth.log", "/home/appuser/app/static/iso3166.csv"
+    )
 
-    logger.debug('generated df from auth log')
+    logger.debug("generated df from auth log")
 
     creation_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
     list_of_picture_names = []
 
-    pic_name = 'unique_usernames_'+creation_date+'.png'
+    pic_name = "unique_usernames_" + creation_date + ".png"
     if not os.path.exists("/home/appuser/app/static/" + pic_name):
-        logs_to_stats.plot_username_distribution(df, "/home/appuser/app/static/", pic_name)
+        logs_to_stats.plot_username_distribution(
+            df, "/home/appuser/app/static/", pic_name
+        )
     list_of_picture_names.append(pic_name)
 
-    pic_name = 'unique_IP_address_per_day_'+creation_date+'.png'
+    pic_name = "unique_IP_address_per_day_" + creation_date + ".png"
     if not os.path.exists("/home/appuser/app/static/" + pic_name):
         logs_to_stats.plot_ip_vs_time(df, "/home/appuser/app/static/", pic_name)
     list_of_picture_names.append(pic_name)
 
-    pic_name = 'unique_user_names_per_day_'+creation_date+'.png'
+    pic_name = "unique_user_names_per_day_" + creation_date + ".png"
     if not os.path.exists("/home/appuser/app/static/" + pic_name):
         logs_to_stats.plot_username_vs_time(df, "/home/appuser/app/static/", pic_name)
     list_of_picture_names.append(pic_name)
 
-    pic_name = 'unique_IP_address_per_country_above_threshold_per_day_'+creation_date+'.png'
+    pic_name = (
+        "unique_IP_address_per_country_above_threshold_per_day_"
+        + creation_date
+        + ".png"
+    )
     if not os.path.exists("/home/appuser/app/static/" + pic_name):
-        logs_to_stats.plot_country_per_day_vs_time(df, "/home/appuser/app/static/", pic_name)
+        logs_to_stats.plot_country_per_day_vs_time(
+            df, "/home/appuser/app/static/", pic_name
+        )
     list_of_picture_names.append(pic_name)
 
-    with open('/home/appuser/app/logs/auth.log','r') as f:
+    with open("/home/appuser/app/logs/auth.log", "r") as f:
         lines = f.readlines()
 
-    tail_of_log_as_list = lines[-1*number_of_lines_of_log_tail:]
+    tail_of_log_as_list = lines[-1 * number_of_lines_of_log_tail :]
 
     return list_of_picture_names, tail_of_log_as_list
+
 
 # ********************************************
 # popularity
@@ -1070,14 +1089,14 @@ def popularity_of_derivations(path_to_db: str) -> dict:
     expressions_per_derivation = {}
     for deriv_id in dat["derivations"].keys():
         derivations_popularity_dict[deriv_id] = {
-            "number of steps": len(list(dat["derivations"][deriv_id]['steps'].keys())),
+            "number of steps": len(list(dat["derivations"][deriv_id]["steps"].keys())),
             "shares expressions with": [],
         }
         # which expressions are shared?
         # first, build a list of expr_global_id per derivation
         # logger.debug('build a list of expr_global_id per derivation')
         expressions_per_derivation[deriv_id] = []
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             for connection_type in ["inputs", "feeds", "outputs"]:
                 for expr_local_id in step_dict[connection_type]:
                     expressions_per_derivation[deriv_id].append(
@@ -1206,13 +1225,13 @@ def popularity_of_expressions(path_to_db: str) -> dict:
     deriv_uses_expr_global_id = {}
     for deriv_id in dat["derivations"].keys():
         list_of_all_expr_global_IDs_for_this_deriv = []
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             for connection_type in ["inputs", "feeds", "outputs"]:
                 for expr_local_id in step_dict[connection_type]:
                     list_of_all_expr_global_IDs_for_this_deriv.append(
                         dat["expr local to global"][expr_local_id]
                     )
-        #logger.debug(deriv_id + ":" + str(list_of_all_expr_global_IDs_for_this_deriv))
+        # logger.debug(deriv_id + ":" + str(list_of_all_expr_global_IDs_for_this_deriv))
 
         deriv_uses_expr_global_id[deriv_id] = list(
             set(list_of_all_expr_global_IDs_for_this_deriv)
@@ -1242,7 +1261,7 @@ def popularity_of_infrules(path_to_db: str) -> dict:
         list_of_uses = []
         for deriv_id in dat["derivations"].keys():
             list_of_infrules = []
-            for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+            for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
                 list_of_infrules.append(step_dict["inf rule"])
 
             list_of_infrule_for_this_deriv = list(set(list_of_infrules))
@@ -1364,12 +1383,12 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
     """
     logger.info("[trace]")
     derivation_popularity_dict = popularity_of_derivations(path_to_db)
-    #logger.debug("derivation_popularity_dict = %s", str(derivation_popularity_dict))
+    # logger.debug("derivation_popularity_dict = %s", str(derivation_popularity_dict))
 
     dat = clib.read_db(path_to_db)
 
-#    json_filename = "all_derivations.json"
-#    with open(json_filename, "w") as fil:
+    #    json_filename = "all_derivations.json"
+    #    with open(json_filename, "w") as fil:
     json_str = ""
 
     json_str += "{ \n"
@@ -1382,14 +1401,32 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
         for deriv_id, deriv_dict in derivation_popularity_dict.items():
             # https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string
             this_deriv = deriv_id
-            if not os.path.isfile("/home/appuser/app/static/" + this_deriv + '_name' + ".png"):
+            if not os.path.isfile(
+                "/home/appuser/app/static/" + this_deriv + "_name" + ".png"
+            ):
                 create_png_from_latex(
-                    "\\text{" + dat['derivations'][deriv_id]['name'].replace('^','') + "}", this_deriv + '_name'
+                    "\\text{"
+                    + dat["derivations"][deriv_id]["name"].replace("^", "")
+                    + "}",
+                    this_deriv + "_name",
                 )
-            image = cv2.imread("/home/appuser/app/static/" + this_deriv+ '_name' + ".png")
-            list_of_nodes.append('    {"id": "'+this_deriv+'", "group": 0, "img": "/static/'+ this_deriv+ '_name' + '.png", '
-            +'"width": '+str(image.shape[1])+", "+'"height": '+str(image.shape[0])+', "linear index": 0},\n')
-
+            image = cv2.imread(
+                "/home/appuser/app/static/" + this_deriv + "_name" + ".png"
+            )
+            list_of_nodes.append(
+                '    {"id": "'
+                + this_deriv
+                + '", "group": 0, "img": "/static/'
+                + this_deriv
+                + "_name"
+                + '.png", '
+                + '"width": '
+                + str(image.shape[1])
+                + ", "
+                + '"height": '
+                + str(image.shape[0])
+                + ', "linear index": 0},\n'
+            )
 
         for deriv_id, deriv_dict in derivation_popularity_dict.items():
             this_deriv = deriv_id
@@ -1401,18 +1438,37 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
                 ):
                     expr_latex = dat["expressions"][expr_global_id]["latex"]
                     create_png_from_latex(expr_latex, expr_global_id)
-                image = cv2.imread("/home/appuser/app/static/" + expr_global_id + ".png")
-                list_of_nodes.append('    {"id": "'+expr_global_id+'", "group": 1, "img": "/static/'+expr_global_id+'.png", '
-                +'"width": '+str(image.shape[1])+", "+'"height": '+str(image.shape[0])+', "linear index": 0},\n')
-
+                image = cv2.imread(
+                    "/home/appuser/app/static/" + expr_global_id + ".png"
+                )
+                list_of_nodes.append(
+                    '    {"id": "'
+                    + expr_global_id
+                    + '", "group": 1, "img": "/static/'
+                    + expr_global_id
+                    + '.png", '
+                    + '"width": '
+                    + str(image.shape[1])
+                    + ", "
+                    + '"height": '
+                    + str(image.shape[0])
+                    + ', "linear index": 0},\n'
+                )
 
                 list_of_edges.append(
-                    '    {"source": "' + this_deriv + '", "target": "' + expr_global_id + '", "value": 1},\n'
+                    '    {"source": "'
+                    + this_deriv
+                    + '", "target": "'
+                    + expr_global_id
+                    + '", "value": 1},\n'
                 )
                 list_of_edges.append(
-                    '    {"source": "' + other_deriv_name + '", "target": "' + expr_global_id + '", "value": 1},\n'
+                    '    {"source": "'
+                    + other_deriv_name
+                    + '", "target": "'
+                    + expr_global_id
+                    + '", "value": 1},\n'
                 )
-
 
     list_of_nodes = list(set(list_of_nodes))
     all_nodes = "".join(list_of_nodes)
@@ -1421,18 +1477,16 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
     )  # remove the trailing comma to be compliant with JSON
     json_str += all_nodes
 
-    json_str += '  ],\n'
+    json_str += "  ],\n"
     json_str += '  "links": [\n'
 
     list_of_edges = list(set(list_of_edges))
     all_edges = "".join(list_of_edges)
-    all_edges = (
-        all_edges[:-2] + "\n"
-    )
+    all_edges = all_edges[:-2] + "\n"
     json_str += all_edges
 
     json_str += "  ]\n"
-    json_str += '}'
+    json_str += "}"
 
     json_filename = "all_derivations.json"
     with open(json_filename, "w") as fil:
@@ -1440,6 +1494,7 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
 
     shutil.move(json_filename, "/home/appuser/app/static/" + json_filename)
     return json_filename
+
 
 def generate_graphviz_map_of_derivations(path_to_db: str) -> str:
     """
@@ -1452,7 +1507,7 @@ def generate_graphviz_map_of_derivations(path_to_db: str) -> str:
     """
     logger.info("[trace]")
     derivation_popularity_dict = popularity_of_derivations(path_to_db)
-    #logger.debug("derivation_popularity_dict = %s", str(derivation_popularity_dict))
+    # logger.debug("derivation_popularity_dict = %s", str(derivation_popularity_dict))
 
     dat = clib.read_db(path_to_db)
 
@@ -1461,9 +1516,13 @@ def generate_graphviz_map_of_derivations(path_to_db: str) -> str:
         fil.write("graph physicsDerivation { \n")
         # the following can cause graphviz to crash; see
         # https://github.com/allofphysicsgraph/proofofconcept/issues/2
-        #fil.write("overlap = false;\n")
-        fil.write("overlap = prism;\n") # https://www.graphviz.org/doc/info/attrs.html#d:overlap
-        fil.write("pack = true;\n") # https://www.graphviz.org/doc/info/attrs.html#d:pack
+        # fil.write("overlap = false;\n")
+        fil.write(
+            "overlap = prism;\n"
+        )  # https://www.graphviz.org/doc/info/attrs.html#d:overlap
+        fil.write(
+            "pack = true;\n"
+        )  # https://www.graphviz.org/doc/info/attrs.html#d:pack
         fil.write('label="all derivations";\n')
         fil.write("fontsize=12;\n")
 
@@ -1472,16 +1531,19 @@ def generate_graphviz_map_of_derivations(path_to_db: str) -> str:
             this_deriv = deriv_id
             if not os.path.isfile("/home/appuser/app/static/" + this_deriv + ".png"):
                 create_png_from_latex(
-                    "\\text{" + dat['derivations'][deriv_id]['name'].replace('^','') + "}", this_deriv
+                    "\\text{"
+                    + dat["derivations"][deriv_id]["name"].replace("^", "")
+                    + "}",
+                    this_deriv,
                 )
             fil.write(
-                    '"'
-                    + this_deriv
-                    + '" [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
-                    + this_deriv
-                    + ".png"
-                    + '",labelloc=b];\n'
-                )
+                '"'
+                + this_deriv
+                + '" [shape=invtrapezium, color=blue, label="",image="/home/appuser/app/static/'
+                + this_deriv
+                + ".png"
+                + '",labelloc=b];\n'
+            )
 
         list_of_edges = []
         list_of_nodes = []
@@ -1548,7 +1610,7 @@ def write_step_to_graphviz_file(
 
     dat = clib.read_db(path_to_db)
 
-    step_dict = dat["derivations"][deriv_id]['steps'][step_id]
+    step_dict = dat["derivations"][deriv_id]["steps"][step_id]
     logger.debug("step_dict = %s", step_dict)
     #  step_dict = {'inf rule': 'begin derivation', 'inputs': [], 'feeds': [], 'outputs': ['526874110']}
     #    for global_id, latex_and_ast_dict in dat["expressions"].items():
@@ -1669,7 +1731,9 @@ def generate_tex_for_derivation(deriv_id: str, path_to_db: str) -> str:
             # https://en.wikibooks.org/wiki/LaTeX/Macros#New_commands
             lat_file.write(
                 "\\newcommand\\"
-                + "".join(filter(str.isalpha, infrule_name)) # digits cannot be used to name macros
+                + "".join(
+                    filter(str.isalpha, infrule_name)
+                )  # digits cannot be used to name macros
                 + "["
                 + str(  # https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
                     number_of_args
@@ -1681,11 +1745,11 @@ def generate_tex_for_derivation(deriv_id: str, path_to_db: str) -> str:
 
         # extract the list of linear index from the derivation
         list_of_linear_index = []
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             list_of_linear_index.append(step_dict["linear index"])
 
         list_of_linear_index.sort()
-        lat_file.write("\\title{" + dat["derivations"][deriv_id]['name'] + "}\n")
+        lat_file.write("\\title{" + dat["derivations"][deriv_id]["name"] + "}\n")
         lat_file.write("\\date{\\today}\n")
         # TODO: include author (based on signed in account)
         lat_file.write("\\setlength{\\topmargin}{-.5in}\n")
@@ -1703,7 +1767,7 @@ def generate_tex_for_derivation(deriv_id: str, path_to_db: str) -> str:
         lat_file.write("\\end{abstract}\n")
 
         for linear_indx in list_of_linear_index:
-            for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+            for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
                 if step_dict["linear index"] == linear_indx:
                     # using the newcommand, populate the expression IDs
                     if step_dict["inf rule"] not in dat["inference rules"].keys():
@@ -1718,7 +1782,8 @@ def generate_tex_for_derivation(deriv_id: str, path_to_db: str) -> str:
                     lat_file.write("% step ID = " + step_id + "\n")
                     lat_file.write(
                         # digits cannot be used to name macros
-                        "\\" + "".join(filter(str.isalpha, step_dict["inf rule"]))
+                        "\\"
+                        + "".join(filter(str.isalpha, step_dict["inf rule"]))
                     )
                     for expr_local_id in step_dict["feeds"]:
                         expr_global_id = dat["expr local to global"][expr_local_id]
@@ -1760,9 +1825,7 @@ def generate_pdf_for_derivation(deriv_id: str, path_to_db: str) -> str:
 
     remove_file_debris([path_to_pdf], [pdf_filename], ["log", "pdf"])
 
-    tex_filename_with_extension = generate_tex_for_derivation(
-        deriv_id, path_to_db
-    )
+    tex_filename_with_extension = generate_tex_for_derivation(deriv_id, path_to_db)
 
     # first of two latex runs
     process = subprocess.run(
@@ -1824,7 +1887,7 @@ def list_expr_in_derivation(deriv_id: str, path_to_db: str) -> list:
 
     dat = clib.read_db(path_to_db)
     list_of_local_expr = []
-    for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+    for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
         for connection_type in ["feeds", "inputs", "outputs"]:
             for local_expr in step_dict[connection_type]:
                 list_of_local_expr.append(local_expr)
@@ -1832,8 +1895,8 @@ def list_expr_in_derivation(deriv_id: str, path_to_db: str) -> list:
     list_of_global_expr = []
     for local_expr in list_of_local_expr:
         list_of_global_expr.append(dat["expr local to global"][local_expr])
-    logger.debug('number of expr = %s', len(list_of_global_expr))
-    #logger.debug(str(list_of_global_expr))
+    logger.debug("number of expr = %s", len(list_of_global_expr))
+    # logger.debug(str(list_of_global_expr))
     return list_of_global_expr
 
 
@@ -1851,8 +1914,8 @@ def update_linear_index(
     else:
         valu = str(float(valu))
     if deriv_id in dat["derivations"].keys():
-        if step_id in dat["derivations"][deriv_id]['steps'].keys():
-            dat["derivations"][deriv_id]['steps'][step_id]["linear index"] = valu
+        if step_id in dat["derivations"][deriv_id]["steps"].keys():
+            dat["derivations"][deriv_id]["steps"][step_id]["linear index"] = valu
         else:
             logger.error("missing " + step_id + " in " + deriv_id)
             raise Exception("missing " + step_id + " in " + deriv_id)
@@ -1870,7 +1933,7 @@ def edges_in_derivation(deriv_id: str, path_to_db: str) -> list:
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_of_edges = []
-    for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+    for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
         inf_rule = "".join(filter(str.isalnum, step_dict["inf rule"]))
         for local_expr in step_dict["inputs"]:
             list_of_edges.append((dat["expr local to global"][local_expr], step_id))
@@ -1911,7 +1974,7 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
     json_str = "{\n"
     json_str += '  "nodes": [\n'
     list_of_nodes = []
-    for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+    for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
         png_name = "".join(filter(str.isalnum, step_dict["inf rule"]))
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
             create_png_from_latex(step_dict["inf rule"], png_name)
@@ -1941,7 +2004,7 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
     for global_expr_id in list_of_expr:
         png_name = global_expr_id
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-            create_png_from_latex(dat['expressions'][global_expr_id]['latex'], png_name)
+            create_png_from_latex(dat["expressions"][global_expr_id]["latex"], png_name)
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
         # construct the node JSON content
         list_of_nodes.append(
@@ -1981,10 +2044,10 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
             + '", "value": 1},\n'
         )
     list_of_edge_str = list(set(list_of_edge_str))
-    #logger.debug('number of edges = %s', len(list_of_edge_str))
+    # logger.debug('number of edges = %s', len(list_of_edge_str))
     all_edges = "".join(list_of_edge_str)
     all_edges = all_edges[:-2] + "\n"
-    #logger.debug('all edges = %s', all_edges)
+    # logger.debug('all edges = %s', all_edges)
     json_str += all_edges
     json_str += "  ]\n"
     json_str += "}\n"
@@ -2009,10 +2072,10 @@ def create_derivation_png(deriv_id: str, path_to_db: str) -> str:
     with open(dot_filename, "w") as fil:
         fil.write("digraph physicsDerivation { \n")
         fil.write("overlap = false;\n")
-        fil.write('label="derivation: ' + dat['derivations'][deriv_id]['name'] + '";\n')
+        fil.write('label="derivation: ' + dat["derivations"][deriv_id]["name"] + '";\n')
         fil.write("fontsize=12;\n")
 
-        for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             write_step_to_graphviz_file(deriv_id, step_id, fil, path_to_db)
 
         fil.write("}\n")
@@ -2038,9 +2101,7 @@ def create_derivation_png(deriv_id: str, path_to_db: str) -> str:
     return output_filename
 
 
-def create_step_graphviz_png(
-    deriv_id: str, step_id: str, path_to_db: str
-) -> str:
+def create_step_graphviz_png(deriv_id: str, step_id: str, path_to_db: str) -> str:
     """
     for a clear description of the graphviz language, see
     https://www.graphviz.org/doc/info/lang.html
@@ -2062,7 +2123,13 @@ def create_step_graphviz_png(
     with open(dot_filename, "w") as fil:
         fil.write("digraph physicsDerivation { \n")
         fil.write("overlap = false;\n")
-        fil.write('label="step ' + step_id + " in " + dat['derivations'][deriv_id]['name'] + '";\n')
+        fil.write(
+            'label="step '
+            + step_id
+            + " in "
+            + dat["derivations"][deriv_id]["name"]
+            + '";\n'
+        )
         fil.write("fontsize=12;\n")
 
         write_step_to_graphviz_file(deriv_id, step_id, fil, path_to_db)
@@ -2106,11 +2173,15 @@ def generate_graphviz_of_exploded_step(
     dot_filename = "/home/appuser/app/static/graphviz.dot"
     dat = clib.read_db(path_to_db)
     if deriv_id in dat["derivations"].keys():
-        if step_id in dat["derivations"][deriv_id]['steps'].keys():
-            step_dict = dat["derivations"][deriv_id]['steps'][step_id]
+        if step_id in dat["derivations"][deriv_id]["steps"].keys():
+            step_dict = dat["derivations"][deriv_id]["steps"][step_id]
         else:
-            logger.error("step_id " + step_id + " not in " + dat['derivations'][deriv_id]['name'])
-            raise Exception("step_id " + step_id + " not in " + dat['derivations'][deriv_id]['name'])
+            logger.error(
+                "step_id " + step_id + " not in " + dat["derivations"][deriv_id]["name"]
+            )
+            raise Exception(
+                "step_id " + step_id + " not in " + dat["derivations"][deriv_id]["name"]
+            )
     else:
         logger.error(deriv_id + " not in database")
         raise Exception(deriv_id + " not in database")
@@ -2119,7 +2190,13 @@ def generate_graphviz_of_exploded_step(
     with open(dot_filename, "w") as fil:
         fil.write("digraph physicsDerivation { \n")
         fil.write("overlap = false;\n")
-        fil.write('label="step ' + step_id + " in " + dat['derivations'][deriv_id]['name'] + '";\n')
+        fil.write(
+            'label="step '
+            + step_id
+            + " in "
+            + dat["derivations"][deriv_id]["name"]
+            + '";\n'
+        )
         fil.write("fontsize=12;\n")
 
         # the following code is similar to write_step_to_graphviz_file()
@@ -2251,12 +2328,12 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 
     # logger.debug('create_png_from_latex: finished debris removal, starting create tex file')
 
-    logger.debug('latex = ' + str(input_latex_str))
+    logger.debug("latex = " + str(input_latex_str))
     create_tex_file_for_expr(tmp_file, input_latex_str)
 
     # logger.debug('create_png_from_latex: running latex against file')
 
-    #logger.debug(str(os.listdir()))
+    # logger.debug(str(os.listdir()))
 
     process = subprocess.run(
         ["latex", "-halt-on-error", tmp_file + ".tex"],
@@ -2360,8 +2437,8 @@ def delete_step_from_derivation(
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     if deriv_id in dat["derivations"].keys():
-        if step_to_delete in dat["derivations"][deriv_id]['steps'].keys():
-            del dat["derivations"][deriv_id]['steps'][step_to_delete]
+        if step_to_delete in dat["derivations"][deriv_id]["steps"].keys():
+            del dat["derivations"][deriv_id]["steps"][step_to_delete]
             clib.write_db(path_to_db, dat)
         else:
             raise Exception(step_to_delete + " not in derivations dat")
@@ -2385,32 +2462,43 @@ def delete_derivation(deriv_id: str, path_to_db: str) -> str:
     clib.write_db(path_to_db, dat)
     return "successfully deleted " + deriv_id
 
-def add_symbol(category: str, latex: str, name: str, reference: str, value: str, units: str, scope: str, path_to_db: str) -> None:
+
+def add_symbol(
+    category: str,
+    latex: str,
+    name: str,
+    reference: str,
+    value: str,
+    units: str,
+    scope: str,
+    path_to_db: str,
+) -> None:
     """
     >>> add_symbol()
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
     symbol_dict = {}
-    symbol_dict['category'] = category
-    symbol_dict['latex'] = latex
-    symbol_dict['name'] = name
-    symbol_dict['scope'] = scope
-    symbol_dict['references'] = [reference]
-    if category=='constant' and len(value)>0:
-        symbol_dict['value'] = value
-        symbol_dict['units'] = units
+    symbol_dict["category"] = category
+    symbol_dict["latex"] = latex
+    symbol_dict["name"] = name
+    symbol_dict["scope"] = scope
+    symbol_dict["references"] = [reference]
+    if category == "constant" and len(value) > 0:
+        symbol_dict["value"] = value
+        symbol_dict["units"] = units
     symbol_dict["author"] = "Ben"
     symbol_dict["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
     symbol_id = create_symbol_id(path_to_db)
-    logger.debug('new symbol ID:' + symbol_id)
-    dat['symbols'][symbol_id] = symbol_dict
+    logger.debug("new symbol ID:" + symbol_id)
+    dat["symbols"][symbol_id] = symbol_dict
 
     logger.debug(str(symbol_dict))
     clib.write_db(path_to_db, dat)
 
-    return 
+    return
+
 
 def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
     """
@@ -2481,15 +2569,16 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
         status_msg = name_of_inf_rule + " does not exist in database"
     return status_msg
 
+
 def edit_expr_note(expr_global_id: str, new_note: str, path_to_db: str) -> str:
     """
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
-    if expr_global_id in dat['expressions'].keys():
-        dat['expressions'][expr_global_id]['notes'] = new_note
+    if expr_global_id in dat["expressions"].keys():
+        dat["expressions"][expr_global_id]["notes"] = new_note
         status_msg = "updated note"
         clib.write_db(path_to_db, dat)
     else:
@@ -2502,11 +2591,11 @@ def edit_expr_name(expr_global_id: str, new_name: str, path_to_db: str) -> str:
     """
     >>>
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
-    if expr_global_id in dat['expressions'].keys():
-        dat['expressions'][expr_global_id]['name'] = new_name
+    if expr_global_id in dat["expressions"].keys():
+        dat["expressions"][expr_global_id]["name"] = new_name
         status_msg = "updated name to " + new_name
         clib.write_db(path_to_db, dat)
     else:
@@ -2519,12 +2608,12 @@ def edit_step_note(deriv_id: str, step_id: str, new_note: str, path_to_db: str) 
     """
     >>> edit_step_note()
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if deriv_id in dat["derivations"].keys():
-        if step_id in dat["derivations"][deriv_id]['steps'].keys():
-            dat["derivations"][deriv_id]['steps'][step_id]['notes'] = new_note
+        if step_id in dat["derivations"][deriv_id]["steps"].keys():
+            dat["derivations"][deriv_id]["steps"][step_id]["notes"] = new_note
             status_msg = "updated note"
             clib.write_db(path_to_db, dat)
         else:
@@ -2535,6 +2624,7 @@ def edit_step_note(deriv_id: str, step_id: str, new_note: str, path_to_db: str) 
         logger.error(deriv_id + " is not in dat")
     return status_msg
 
+
 def edit_derivation_note(deriv_id: str, new_note: str, path_to_db: str) -> str:
     """
     >>> edit_derivation_note()
@@ -2543,7 +2633,7 @@ def edit_derivation_note(deriv_id: str, new_note: str, path_to_db: str) -> str:
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if deriv_id in dat["derivations"].keys():
-        dat["derivations"][deriv_id]['notes'] = new_note
+        dat["derivations"][deriv_id]["notes"] = new_note
         status_msg = "updated note"
         clib.write_db(path_to_db, dat)
     else:
@@ -2560,7 +2650,7 @@ def rename_derivation(deriv_id: str, new_name: str, path_to_db: str) -> str:
     dat = clib.read_db(path_to_db)
     status_msg = ""
     if deriv_id in dat["derivations"].keys():
-        dat["derivations"][deriv_id]['name'] = new_name
+        dat["derivations"][deriv_id]["name"] = new_name
         status_msg = "renamed to " + new_name
         clib.write_db(path_to_db, dat)
     else:
@@ -2585,9 +2675,9 @@ def rename_inf_rule(
 
         # rename inf_rule in dat['derivations']
         for deriv_id in dat["derivations"].keys():
-            for step_id, step_dict in dat['derivations'][deriv_id]['steps'].items():
+            for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
                 if step_dict["inf rule"] == old_name_of_inf_rule:
-                    dat["derivations"][deriv_id]['steps'][step_id][
+                    dat["derivations"][deriv_id]["steps"][step_id][
                         "inf rule"
                     ] = new_name_of_inf_rule
 
@@ -2761,22 +2851,27 @@ def delete_expr(expr_global_id: str, path_to_db: str) -> str:
     clib.write_db(path_to_db, dat)
     return status_message
 
-def initialize_derivation(name_of_derivation: str, current_username: str, notes: str, path_to_db: str) -> str:
+
+def initialize_derivation(
+    name_of_derivation: str, current_username: str, notes: str, path_to_db: str
+) -> str:
     """
     >>> initialize_derivation()
     """
-    logger.info('[trace] ' + current_username)
+    logger.info("[trace] " + current_username)
     dat = clib.read_db(path_to_db)
     deriv_id = create_deriv_id(path_to_db)
-    dat['derivations'][deriv_id] = {
-                            'name': name_of_derivation,
-                            'author': current_username,
-                            'notes': notes,
-                            'creation date': datetime.datetime.now().strftime("%Y-%m-%d"),
-                            'steps': {} }
+    dat["derivations"][deriv_id] = {
+        "name": name_of_derivation,
+        "author": current_username,
+        "notes": notes,
+        "creation date": datetime.datetime.now().strftime("%Y-%m-%d"),
+        "steps": {},
+    }
     clib.write_db(path_to_db, dat)
 
     return deriv_id
+
 
 def create_step(
     latex_for_step_dict: dict,
@@ -2976,7 +3071,7 @@ def create_step(
     list_of_linear_index = [0]
 
     if deriv_id in dat["derivations"].keys():
-        for step_id, tmp_step_dict in dat["derivations"][deriv_id]['steps'].items():
+        for step_id, tmp_step_dict in dat["derivations"][deriv_id]["steps"].items():
             list_of_linear_index.append(tmp_step_dict["linear index"])
         highest_linear_index = max(list_of_linear_index)
         step_dict["linear index"] = highest_linear_index + 1
@@ -2993,14 +3088,14 @@ def create_step(
     inf_rule_local_ID = create_step_id(path_to_db)
     if deriv_id not in dat["derivations"].keys():
         logger.debug("create_step: starting new derivation")
-        dat["derivations"][deriv_id]['steps'] = {inf_rule_local_ID: step_dict}
+        dat["derivations"][deriv_id]["steps"] = {inf_rule_local_ID: step_dict}
     else:  # derivation exists
-        if inf_rule_local_ID in dat["derivations"][deriv_id]['steps'].keys():
+        if inf_rule_local_ID in dat["derivations"][deriv_id]["steps"].keys():
             logger.error("collision of inf_rule_local_id already in dat")
             raise Exception(
                 "collision of inf_rule_local_id already in dat", inf_rule_local_ID
             )
-        dat["derivations"][deriv_id]['steps'][inf_rule_local_ID] = step_dict
+        dat["derivations"][deriv_id]["steps"][inf_rule_local_ID] = step_dict
 
     clib.write_db(path_to_db, dat)
 

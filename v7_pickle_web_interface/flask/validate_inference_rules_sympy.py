@@ -74,8 +74,8 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
 
     dat = clib.read_db(path_to_db)
 
-    step_dict = dat["derivations"][deriv_id]['steps'][step_id]
-    #logger.debug("validate_step; step_dict = %s", step_dict)
+    step_dict = dat["derivations"][deriv_id]["steps"][step_id]
+    # logger.debug("validate_step; step_dict = %s", step_dict)
 
     if step_dict["inf rule"] in [
         "declare initial expr",
@@ -1210,6 +1210,7 @@ def subtract_expr_1_from_expr_2(latex_dict):
     """
     return "no check performed"
 
+
 def factor_out_x(latex_dict):
     """
     >>> latex_dict = {}
@@ -1219,6 +1220,7 @@ def factor_out_x(latex_dict):
     >>> factor_out_x(latex_dict)
     """
     return "no check performed"
+
 
 def factor_out_x_from_lhs(latex_dict):
     """
@@ -1230,6 +1232,7 @@ def factor_out_x_from_lhs(latex_dict):
     """
     return "no check performed"
 
+
 def factor_out_x_from_rhs(latex_dict):
     """
     >>> latex_dict = {}
@@ -1239,6 +1242,7 @@ def factor_out_x_from_rhs(latex_dict):
     >>> factor_out_x_from_rhs(latex_dict)
     """
     return "no check performed"
+
 
 def differentiate_with_respect_to(latex_dict):
     """
@@ -1250,6 +1254,7 @@ def differentiate_with_respect_to(latex_dict):
     """
     return "no check performed"
 
+
 def apply_function_to_both_sides_of_expression(latex_dict):
     """
     >>> latex_dict = {}
@@ -1259,7 +1264,6 @@ def apply_function_to_both_sides_of_expression(latex_dict):
     >>> apply_function_to_both_sides_of_expression(latex_dict)
     """
     return "no check performed"
-
 
 
 def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
