@@ -35,7 +35,14 @@ schema = {
         "symbols" :         {"type" : "object",
                              "additionalProperties": False,
                              "patternProperties": {"^\d{4}$":
-                                    { "type": "object" }} # symbol ID
+                                    { "type": "object",
+                                    "properties": {
+                                       "author": {"type": "string"},
+                                       "creation date": {"type": "string"},
+                                       "name": {"type": "string"},
+                                       "latex": {"type": "string"},
+                                       "category": {"type": "string"}
+                                    } }} # symbol ID
                             },
         "derivations" :     {"type" : "object",
                              "additionalProperties": False,
@@ -47,7 +54,7 @@ schema = {
                                         "name": {"type": "string"},
                                         "author": {"type": "string"},
                                         "creation date": {"type": "string"},
-                                        "steps": {"type": "object", 
+                                        "steps": {"type": "object",
                                             "additionalProperties": False,
                                             "patternProperties":
                                              {"^\d{7}$": # step ID
