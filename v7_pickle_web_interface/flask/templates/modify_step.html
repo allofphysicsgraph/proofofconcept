@@ -3,12 +3,36 @@
 
 <P>modify step
 
-<P>derivation name: <a href="{{ url_for('review_derivation', deriv_id=deriv_id)  }}?referrer=modify_step">{{ name_of_derivation}}</a>
+<P>derivation name: <a href="{{ url_for('review_derivation', deriv_id=deriv_id)  }}?referrer=modify_step">{{ dat["derivations"][deriv_id]['name'] }}</a>
 
+<h2>Step graph</h2>
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
 
-<P>Options:
+<h2>AST for each expression in step</h2>
+<P>From Sympy's parsing of the Latex
+{% for ast_png_and_id in list_of_expression_AST_pictures %}
+  <P><a href="{{ url_for('list_all_expressions') }}?referrer=modify_step#{{ ast_png_and_id[1] }}">{{ ast_png_and_id[1] }}</a>: \({{ dat['expressions'][ast_png_and_id[1]]['latex'] }}\)<BR>
+    <img src="{{ url_for('static', filename=ast_png_and_id[0]) }}">
+{% endfor %}
+
+<H2>Symbols in use in this step</h2>
+<P>From Sympy's parsing of the Latex
+<UL>
+  {% for symbol_latex in list_of_symbols_from_sympy %}
+  <LI> {{ symbol_latex }} </LI>
+  {% endfor %}
+</UL>
+
+<h2>Symbols in PDG AST for this step</h2>
+<UL>
+  {% for symbol_id in list_of_symbols_from_PDG_AST %}
+  <LI> <a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#{{ symbol_id }}">{{ symbol_id }}</a>: 
+     {{ dat['symbols'][symbol_id]['latex'] }}
+  {% endfor %}
+</UL>
+
+<H2>Options</h2>
 
 <P>
 <form method="post" action="">
@@ -24,7 +48,7 @@
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 <input type="submit" name="submit_button" value='change inference rule'>
 </form>
-(Changing the inference rule deletes existing inference rule and expressions.)
+(Changing the inference rule deletes existing step and prompts for a new step creation.)
 
 <!-- https://jinja.palletsprojects.com/en/2.11.x/templates/#builtin-filters -->
 {% if dat["derivations"][deriv_id]['steps'][step_id]['inputs']|length > 0 %}

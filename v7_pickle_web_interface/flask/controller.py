@@ -503,8 +503,9 @@ def before_request():
     g.start = time.time()
     g.request_start_time = time.time()
     elapsed_time = lambda: "%.5f seconds" % (time.time() - g.request_start_time)
-    logger.debug("elapsed time = " + elapsed_time)
+    logger.debug("created elapsed_time function")
     g.request_time = elapsed_time
+    return 
 
 
 @app.after_request
@@ -1848,7 +1849,7 @@ def step_review(deriv_id: str, local_step_id: str):
     # logger.debug('step validity = %s', str(step_validity_dict))
 
     try:
-        list_of_symbols = compute.get_list_of_symbols_in_derivation_step(
+        list_of_symbols = compute.list_symbols_used_in_step_from_PDG_AST(
             deriv_id, local_step_id, path_to_db
         )
     except Exception as err:
@@ -2041,6 +2042,7 @@ def modify_step(deriv_id: str, step_id: str):
         # ImmutableMultiDict([('revised_text', 'a asdfaf'), ('submit_button', 'edit note for step')])
         if "submit_button" in request.form.keys():
             if request.form["submit_button"] == "change inference rule":
+                compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
                 return redirect(url_for("new_step_select_inf_rule", deriv_id=deriv_id))
 
             # https://github.com/allofphysicsgraph/proofofconcept/issues/108
@@ -2112,6 +2114,8 @@ def modify_step(deriv_id: str, step_id: str):
     dat = clib.read_db(path_to_db)
 
     if deriv_id in dat["derivations"].keys():
+        # even though this HTML page focuses on a single step, 
+        # the derivation steps table is shown, so we need to vaildate the step
         derivation_validity_dict = {}
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
@@ -2136,6 +2140,28 @@ def modify_step(deriv_id: str, step_id: str):
         step_graphviz_png = "error.png"
 
     try:
+        list_of_expression_AST_pictures = compute.create_AST_png_per_expression_in_step( deriv_id, step_id, path_to_db)
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_expression_AST_pictures = []
+
+    try:
+        list_of_symbols_from_sympy = compute.list_symbols_used_in_step_from_sympy(deriv_id, step_id, path_to_db)
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_symbols_from_sympy = []
+
+    try:
+       list_of_symbols_from_PDG_AST = compute.list_symbols_used_in_step_from_PDG_AST(deriv_id, step_id, path_to_db)
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_symbols_from_PDG_AST = []
+
+
+    try:
         list_of_new_linear_indices = compute.list_new_linear_indices(
             deriv_id, path_to_db
         )
@@ -2150,6 +2176,9 @@ def modify_step(deriv_id: str, step_id: str):
         step_id=step_id,
         name_of_graphviz_png=step_graphviz_png,
         dat=dat,
+        list_of_symbols_from_sympy=list_of_symbols_from_sympy,
+        list_of_symbols_from_PDG_AST=list_of_symbols_from_PDG_AST,
+        list_of_expression_AST_pictures=list_of_expression_AST_pictures,
         step_dict=dat["derivations"][deriv_id]["steps"],
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],

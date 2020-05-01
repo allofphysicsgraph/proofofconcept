@@ -21,6 +21,8 @@ import datetime
 
 # image dimensions in pixels
 import cv2  # type: ignore
+import sympy
+from sympy.parsing.latex import parse_latex
 from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
 import subprocess  # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
@@ -166,6 +168,93 @@ def create_session_id() -> str:
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
 
+def list_symbols_used_in_step_from_PDG_AST(deriv_id, step_id, path_to_db) -> list:
+    """
+    for all expressions in a step, what variables and constants are present?
+
+    >>> 
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    list_of_symbol_ids = []
+
+    step_dict = dat['derivations'][deriv_id]['steps'][step_id]
+    for connection_type in ["inputs", "feeds", "outputs"]:
+        for local_id in step_dict[connection_type]:
+            expr_global_id = dat["expr local to global"][local_id]
+            list_of_symbols_and_operators = list(flatten_list( dat['expressions'][expr_global_id]['AST'] )) 
+
+            for this_symbol_id in list_of_symbols_and_operators:
+                try:
+                    symbol_latex = dat["symbols"][this_symbol_id]["latex"]
+                except:
+                    symbol_latex = ""
+                if len(symbol_latex)>0:
+                    list_of_symbol_ids.append(this_symbol_id)
+
+    list_of_symbol_ids = list(set(list_of_symbol_ids))
+    return list_of_symbol_ids
+
+def list_symbols_used_in_step_from_sympy(deriv_id, step_id, path_to_db) -> list:
+    """
+    for all expressions in a step, what variables and constants are present?
+
+    >>> 
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    list_of_symbols = []
+
+    step_dict = dat['derivations'][deriv_id]['steps'][step_id]
+    for connection_type in ["inputs", "feeds", "outputs"]:
+        for local_id in step_dict[connection_type]:
+            expr_global_id = dat["expr local to global"][local_id]
+            expr_latex = dat['expressions'][expr_global_id]['latex']
+            logger.debug(expr_latex)
+            symp_lat = parse_latex(expr_latex)
+            for symb in symp_lat.atoms(sympy.Symbol):                
+                list_of_symbols.append(symb)
+    list_of_symbols = list(set(list_of_symbols))
+    return list_of_symbols
+
+def create_AST_png_per_expression_in_step(deriv_id: str, step_id: str, path_to_db: str) -> list:
+    """
+    for each expression in a step, create the AST PNG from Sympy
+
+    >>> 
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    list_of_expression_AST_pictures = []
+
+    step_dict = dat['derivations'][deriv_id]['steps'][step_id]
+    for connection_type in ["inputs", "feeds", "outputs"]:
+        for local_id in step_dict[connection_type]:
+            expr_global_id = dat["expr local to global"][local_id]
+            expr_latex = dat['expressions'][expr_global_id]['latex']
+            logger.debug(expr_latex)
+            symp_lat = parse_latex(expr_latex)
+            graphviz_of_AST_for_expr = sympy.printing.dot.dotprint(symp_lat)
+            dot_filename = 'tmp.dot'
+            with open(dot_filename,'w') as fil:
+                fil.write(graphviz_of_AST_for_expr)
+
+            output_filename = expr_global_id + "_ast.png"
+            # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
+            process = subprocess.run( ["neato", "-Tpng", dot_filename, "-o" + output_filename],
+                          stdout=PIPE,        stderr=PIPE,        timeout=proc_timeout )
+            neato_stdout = process.stdout.decode("utf-8")
+            if len(neato_stdout) > 0:
+                logger.debug(neato_stdout)
+            neato_stderr = process.stderr.decode("utf-8")
+            if len(neato_stderr) > 0:
+                logger.debug(neato_stderr)
+
+            shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+            pic_and_id = (output_filename, expr_global_id)
+            list_of_expression_AST_pictures.append(pic_and_id)
+
+    return list_of_expression_AST_pictures
 
 def list_new_linear_indices(deriv_id: str, path_to_db: str) -> list:
     """
@@ -645,47 +734,6 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
 
     # logger.debug(str(expr_dict_with_symbol_list))
     return expr_dict_with_symbol_list
-
-
-def get_symbols_from_latex(expr_latex: str, path_to_db: str) -> list:
-    """
-    # requires call to Sympy
-    >>>
-    """
-    logger.info("[trace]")
-    list_of_symbols: List[str] = []
-
-    return list_of_symbols
-
-
-def get_list_of_symbols_in_derivation_step(
-    deriv_id: str, step_id: str, path_to_db: str
-) -> list:
-    """
-    https://github.com/allofphysicsgraph/proofofconcept/issues/124
-    >>> get_list_of_symbols
-    """
-    logger.info("[trace]")
-    dat = clib.read_db(path_to_db)
-    list_of_symbols = []
-
-    if deriv_id in dat["derivations"].keys():
-        if step_id in dat["derivations"][deriv_id]["steps"].keys():
-            for connection_type in ["inputs", "feeds", "outputs"]:
-                for expr_local_id in dat["derivations"][deriv_id]["steps"][step_id][
-                    connection_type
-                ]:
-                    expr_latex = dat["expressions"][
-                        dat["expr local to global"][expr_local_id]
-                    ]["latex"]
-                    list_of_symbols_per_expr = get_symbols_from_latex(
-                        expr_latex, path_to_db
-                    )
-                    for symb in list_of_symbols_per_expr:
-                        list_of_symbols.append(symb)
-    list_of_symbols = list(set(list_of_symbols))
-    list_of_symbols.sort()
-    return list_of_symbols
 
 
 def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
