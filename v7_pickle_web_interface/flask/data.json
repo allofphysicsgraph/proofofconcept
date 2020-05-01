@@ -4625,7 +4625,8 @@
         },
         "0002436656": {
             "AST": [
-                "1054", "4621"
+                "1054",
+                "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5311,7 +5312,10 @@
         },
         "1858578388": {
             "AST": [
-                "1467", "2718", "4621"
+                "1467",
+                "2718",
+                "4621",
+                "2321"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5339,7 +5343,10 @@
         },
         "2029293929": {
             "AST": [
-                "1467", "2718", "4621"
+                "1467",
+                "2718",
+                "4621",
+                "2321"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5348,7 +5355,10 @@
             "notes": ""
         },
         "2103023049": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\sin(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right)",
@@ -5356,7 +5366,9 @@
             "notes": ""
         },
         "2113211456": {
-            "AST": [],
+            "AST": [
+                "4201"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "f = 1/T",
@@ -5364,7 +5376,10 @@
             "notes": ""
         },
         "2123139121": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "-\\exp(-i x) = -\\cos(x)+i \\sin(x)",
@@ -5372,7 +5387,10 @@
             "notes": ""
         },
         "2131616531": {
-            "AST": [],
+            "AST": [
+                "4201",
+                "9491"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "T f = 1",
@@ -5382,7 +5400,8 @@
         "2258485859": {
             "AST": [
                 "1054",
-                "1467", "4621"
+                "1467",
+                "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5399,7 +5418,10 @@
             "notes": ""
         },
         "2394853829": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(-x)+i \\sin(-x)",
@@ -5526,16 +5548,21 @@
             "notes": ""
         },
         "3131111133": {
-            "AST": [],
+            "AST": [
+                "9491",
+                "4201"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "T = 1/f",
+            "latex": "T = 1 / f",
             "name": "",
             "notes": ""
         },
         "3131211131": {
             "AST": [
-                "3141"
+                "3141",
+                "2321",
+                "4201"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5545,7 +5572,8 @@
         },
         "3132131132": {
             "AST": [
-                "3141"
+                "3141",
+                "2321"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5555,7 +5583,9 @@
         },
         "3147472131": {
             "AST": [
-                "3141"
+                "3141",
+                "2321",
+                "4201"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5572,7 +5602,9 @@
             "notes": ""
         },
         "3485475729": {
-            "AST": [],
+            "AST": [
+                "2321", "4567"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E(\\vec{r}) = - \\frac{\\omega^2}{c^2} E(\\vec{r})",
@@ -5588,7 +5620,10 @@
             "notes": ""
         },
         "3829492824": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x)\\right) = \\cos(x)",
@@ -5604,7 +5639,10 @@
             "notes": ""
         },
         "3942849294": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x)-\\exp(-i x) = 2 i \\sin(x)",
@@ -5643,7 +5681,8 @@
         "3948572230": {
             "AST": [
                 "1054",
-                "1467", "2718"
+                "1467",
+                "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5653,7 +5692,9 @@
         },
         "3948574224": {
             "AST": [
-                "1467", "2718"
+                "1467",
+                "2718",
+                "2321"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5664,7 +5705,9 @@
         "3948574226": {
             "AST": [
                 "1054",
-                "1467", "2718"
+                "1467",
+                "2718",
+                "2321"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5674,7 +5717,8 @@
         },
         "3948574228": {
             "AST": [
-                "1054", "2718"
+                "1054",
+                "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5684,7 +5728,8 @@
         },
         "3948574230": {
             "AST": [
-                "1054", "2718"
+                "1054",
+                "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5695,7 +5740,8 @@
         "3948574233": {
             "AST": [
                 "1054",
-                "1467", "2718"
+                "1467",
+                "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5706,7 +5752,8 @@
         "3948574235": {
             "AST": [
                 "1054",
-                "1467", "2718"
+                "1467",
+                "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5724,7 +5771,8 @@
         },
         "4147472132": {
             "AST": [
-                "3141"
+                "3141",
+                "2321"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5760,7 +5808,8 @@
             "AST": [
                 "1054",
                 "1467",
-                "5156", "4621"
+                "5156",
+                "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5792,7 +5841,7 @@
             "notes": ""
         },
         "4585828572": {
-            "AST": [],
+            "AST": ["4567"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\epsilon_0 \\mu_0 = \\frac{1}{c^2}",
@@ -5800,7 +5849,10 @@
             "notes": ""
         },
         "4585932229": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\cos(x) = \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x)\\right)",
@@ -5808,7 +5860,10 @@
             "notes": ""
         },
         "4598294821": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(2 i x) = (\\cos(x))^2+2i\\cos(x)\\sin(x)-(\\sin(x))^2",
@@ -5816,7 +5871,10 @@
             "notes": ""
         },
         "4638429483": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(2 i x) = (\\cos(x)+ i \\sin(x))(\\cos(x)+ i \\sin(x))",
@@ -5824,7 +5882,10 @@
             "notes": ""
         },
         "4742644828": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x)+\\exp(-i x) = 2 \\cos(x)",
@@ -5848,7 +5909,10 @@
             "notes": ""
         },
         "4838429483": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(2 i x) = \\cos(2 x)+i \\sin(2 x)",
@@ -5856,7 +5920,10 @@
             "notes": ""
         },
         "4843995999": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{2 i}\\left(\\exp(i x)-\\exp(-i x)\\right) = \\sin(x)",
@@ -5880,7 +5947,10 @@
             "notes": ""
         },
         "4858429483": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x)\\exp(i x) = (\\cos(x)+ i \\sin(x))(\\cos(x)+ i \\sin(x))",
@@ -5888,7 +5958,9 @@
             "notes": ""
         },
         "4923339482": {
-            "AST": ["4621"],
+            "AST": [
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "i x = \\log(y)",
@@ -5896,7 +5968,9 @@
             "notes": ""
         },
         "4928239482": {
-            "AST": ["4621"],
+            "AST": [
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\log(y) = i x",
@@ -5937,7 +6011,10 @@
             "notes": ""
         },
         "4938429482": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(x)+i \\sin(-x)",
@@ -5945,7 +6022,10 @@
             "notes": ""
         },
         "4938429483": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x) = \\cos(x)+i \\sin(x)",
@@ -5953,7 +6033,10 @@
             "notes": ""
         },
         "4938429484": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(x)-i \\sin(x)",
@@ -5963,7 +6046,8 @@
         "4943571230": {
             "AST": [
                 "1054",
-                "1467", "2718"
+                "1467",
+                "2718"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -5988,7 +6072,9 @@
             "notes": ""
         },
         "4954839242": {
-            "AST": ["4621"],
+            "AST": [
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\cos(2x)+i\\sin(2x) = (\\cos(x)+i \\sin(x))(\\cos(x)+i \\sin(x))",
@@ -5996,7 +6082,10 @@
             "notes": ""
         },
         "4978429483": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(-x)+i \\sin(-x)",
@@ -6013,7 +6102,10 @@
         },
         "4985825552": {
             "AST": [
-                "1467", "2718", "4621"
+                "1467",
+                "2718",
+                "4621",
+                "2321"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -6065,7 +6157,9 @@
             "notes": ""
         },
         "5900595848": {
-            "AST": [],
+            "AST": [
+                "2321"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "k = \\frac{\\omega}{v}",
@@ -6192,7 +6286,9 @@
             "notes": ""
         },
         "7575859300": {
-            "AST": ["1552"],
+            "AST": [
+                "1552"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\epsilon^{i,j,k} \\hat{x}_i \\nabla_j ( \\vec{\\nabla} \\times \\vec{E} )_k = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -6200,7 +6296,10 @@
             "notes": ""
         },
         "7575859302": {
-            "AST": ["1567", "1552"],
+            "AST": [
+                "1567",
+                "1552"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\epsilon^{i,j,k} \\epsilon_{n,j,k} \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -6216,7 +6315,10 @@
             "notes": ""
         },
         "7575859306": {
-            "AST": ["1567", "1552"],
+            "AST": [
+                "1567",
+                "1552"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\left( \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} - \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h} \\right) \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -6224,7 +6326,10 @@
             "notes": ""
         },
         "7575859308": {
-            "AST": ["1567", "1552"],
+            "AST": [
+                "1567",
+                "1552"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\left( \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} \\hat{x}_i \\nabla_j \\nabla^m E^n\\right)-\\left( \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h} \\hat{x}_i \\nabla_j \\nabla^m E^n \\right)  = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -6514,7 +6619,9 @@
             "notes": ""
         },
         "9482113948": {
-            "AST": ["4621"],
+            "AST": [
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\frac{dy}{y} = i dx",
@@ -6530,7 +6637,10 @@
             "notes": ""
         },
         "9482923849": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x) = y",
@@ -6554,7 +6664,9 @@
             "notes": ""
         },
         "9482943948": {
-            "AST": ["4621"],
+            "AST": [
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\log(y) = i dx",
@@ -6586,7 +6698,11 @@
             "notes": ""
         },
         "9485384858": {
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621",
+                "2321", "4567"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t) = - \\frac{\\omega^2}{c^2} E(\\vec{r})\\exp(i \\omega t)",
@@ -6610,7 +6726,9 @@
             "notes": ""
         },
         "9492920340": {
-            "AST": ["4621"],
+            "AST": [
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "y = \\cos(x)+i \\sin(x)",
@@ -6637,7 +6755,10 @@
         },
         "9499428242": {
             "AST": [
-                "1467", "2718", "4621"
+                "1467",
+                "2718",
+                "4621",
+                "2321"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -6732,7 +6853,9 @@
             "notes": ""
         },
         "9848292229": {
-            "AST": ["4621"],
+            "AST": [
+                "4621"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "dy = y i dx",
@@ -6775,7 +6898,8 @@
         },
         "9958485859": {
             "AST": [
-                "1054", "4621"
+                "1054",
+                "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -6833,7 +6957,9 @@
         },
         "9999999951": {
             "AST": [
-                "3141", "2718", "4621"
+                "3141",
+                "2718",
+                "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -6858,7 +6984,7 @@
             "notes": ""
         },
         "9999999954": {
-            "AST": [],
+            "AST": ["4567"],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "c = 1/\\sqrt{\\epsilon_0 \\mu_0}",
@@ -6904,7 +7030,8 @@
         },
         "9999999961": {
             "AST": [
-                "1054"
+                "1054",
+                "2321"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -6931,7 +7058,9 @@
             "notes": ""
         },
         "9999999964": {
-            "AST": [],
+            "AST": [
+                "2321", "4567"
+            ],
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\omega = c k",
@@ -6940,7 +7069,8 @@
         },
         "9999999965": {
             "AST": [
-                "1054"
+                "1054",
+                "2321"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -7030,7 +7160,8 @@
         },
         "9999999976": {
             "AST": [
-                "1054", "4621"
+                "1054",
+                "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -7040,7 +7171,8 @@
         },
         "9999999977": {
             "AST": [
-                "1054", "4621"
+                "1054",
+                "4621"
             ],
             "author": "Ben",
             "creation date": "2020-04-14",
@@ -7238,7 +7370,10 @@
         },
         "8483686863": {
             "latex": "\\sin(2 x) = \\frac{1}{2i}\\left(\\exp(i 2 x)-\\exp(-i 2 x)\\right)",
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7246,7 +7381,10 @@
         },
         "3470587782": {
             "latex": "\\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right) \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x)\\right)",
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7262,7 +7400,10 @@
         },
         "9894826550": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right) \\left(\\exp(i x)+\\exp(-i x)\\right)",
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7270,7 +7411,10 @@
         },
         "4257214632": {
             "latex": "\\frac{1}{2 i} \\left( \\exp(i 2 x) - 1 + 1 - \\exp(-i 2 x) \\right)",
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7278,7 +7422,10 @@
         },
         "5182812819": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - \\exp(-i 2 x) \\right)",
-            "AST": ["2718", "4621"],
+            "AST": [
+                "2718",
+                "4621"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7290,7 +7437,10 @@
             "author": "Ben",
             "notes": "",
             "name": "",
-            "AST": ["2718", "4621"]
+            "AST": [
+                "2718",
+                "4621"
+            ]
         },
         "8699789241": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - 1 + 1 - \\exp(-i 2 x) \\right)",
@@ -7298,7 +7448,10 @@
             "author": "Ben",
             "notes": "",
             "name": "",
-            "AST": ["2718", "4621"]
+            "AST": [
+                "2718",
+                "4621"
+            ]
         },
         "9180861128": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - \\exp(-i 2 x) \\right)",
@@ -7306,7 +7459,10 @@
             "author": "Ben",
             "notes": "",
             "name": "",
-            "AST": ["2718", "4621"]
+            "AST": [
+                "2718",
+                "4621"
+            ]
         },
         "2405307372": {
             "latex": "\\sin(2 x) = 2 \\sin(x) \\cos(x)",
@@ -7337,7 +7493,9 @@
         "8332931442": {
             "latex": "\\exp(i \\pi) = \\cos(\\pi)+i \\sin(\\pi)",
             "AST": [
-                "3141", "2718", "4621"
+                "3141",
+                "2718",
+                "4621"
             ],
             "name": "",
             "notes": "",
@@ -7347,7 +7505,9 @@
         "6885625907": {
             "latex": "\\exp(i \\pi) = -1 + i 0",
             "AST": [
-                "3141", "2718", "4621"
+                "3141",
+                "2718",
+                "4621"
             ],
             "name": "",
             "notes": "",
@@ -7357,7 +7517,9 @@
         "3331824625": {
             "latex": "\\exp(i \\pi) = -1",
             "AST": [
-                "3141", "2718", "4621"
+                "3141",
+                "2718",
+                "4621"
             ],
             "name": "",
             "notes": "",
@@ -7375,7 +7537,9 @@
         "2501591100": {
             "latex": "\\exp(i \\pi) + 1 = 0",
             "AST": [
-                "3141", "2718", "4621"
+                "3141",
+                "2718",
+                "4621"
             ],
             "name": "",
             "notes": "",
@@ -7470,7 +7634,8 @@
             "latex": "KE = \\frac{1}{2} m v^2",
             "AST": [
                 "4929",
-                "5156"
+                "5156",
+                "1357"
             ],
             "name": "kinetic energy",
             "notes": "https://en.wikipedia.org/wiki/Kinetic_energy",
@@ -7488,7 +7653,8 @@
         "8082557839": {
             "latex": "KE, v",
             "AST": [
-                "4929"
+                "4929",
+                "1357"
             ],
             "name": "",
             "notes": "",
@@ -7516,7 +7682,8 @@
         "9880327189": {
             "latex": "KE, v",
             "AST": [
-                "4929"
+                "4929",
+                "1357"
             ],
             "name": "",
             "notes": "",
@@ -7544,7 +7711,8 @@
         "9347678744": {
             "latex": "KE, v",
             "AST": [
-                "4929"
+                "4929",
+                "1357"
             ],
             "name": "",
             "notes": "",
@@ -7633,7 +7801,9 @@
         },
         "9397152918": {
             "latex": "v = \\frac{v_1 + v_2}{2}",
-            "AST": [],
+            "AST": [
+                "1357"
+            ],
             "name": "average velocity",
             "notes": "",
             "author": "Ben",
@@ -7650,7 +7820,8 @@
         "7735737409": {
             "latex": "\\frac{KE_2 - KE_1}{t} = m v \\frac{ v_2 - v_1 }{t}",
             "AST": [
-                "5156"
+                "5156",
+                "1357"
             ],
             "name": "",
             "notes": "",
@@ -7660,7 +7831,8 @@
         "4784793837": {
             "latex": "\\frac{KE_2 - KE_1}{t} = m v a",
             "AST": [
-                "5156"
+                "5156",
+                "1357"
             ],
             "name": "",
             "notes": "",
@@ -7670,7 +7842,9 @@
         "5345738321": {
             "latex": "F = m a",
             "AST": [
-                "5156"
+                "5156",
+                "9140",
+                "4202"
             ],
             "name": "Newton's second law of motion",
             "notes": "https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Newton's_second_law",
@@ -7679,7 +7853,10 @@
         },
         "2186083170": {
             "latex": "\\frac{KE_2 - KE_1}{t} = v F",
-            "AST": [],
+            "AST": [
+                "1357",
+                "4202"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7688,7 +7865,8 @@
         "6715248283": {
             "latex": "PE = -F x",
             "AST": [
-                "4930"
+                "4930",
+                "4202"
             ],
             "name": "potential energy",
             "notes": "https://en.wikipedia.org/wiki/Potential_energy",
@@ -7715,7 +7893,9 @@
         },
         "2431507955": {
             "latex": "PE_2 = -F x_2",
-            "AST": [],
+            "AST": [
+                "4202"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7741,7 +7921,9 @@
         },
         "4669290568": {
             "latex": "PE_1 = -F x_1",
-            "AST": [],
+            "AST": [
+                "4202"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7749,7 +7931,9 @@
         },
         "7734996511": {
             "latex": "PE_2 - PE_1 = -F ( x_2 - x_1 )",
-            "AST": [],
+            "AST": [
+                "4202"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7765,7 +7949,9 @@
         },
         "7267155233": {
             "latex": "\\frac{PE_2 - PE_1}{t} = -F \\left( \\frac{x_2 - x_1}{t} \\right)",
-            "AST": [],
+            "AST": [
+                "4202"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7773,7 +7959,9 @@
         },
         "9337785146": {
             "latex": "v = \\frac{x_2 - x_1}{t}",
-            "AST": [],
+            "AST": [
+                "1357"
+            ],
             "name": "average velocity",
             "notes": "",
             "author": "Ben",
@@ -7781,7 +7969,10 @@
         },
         "4872970974": {
             "latex": "\\frac{PE_2 - PE_1}{t} = -F v",
-            "AST": [],
+            "AST": [
+                "4202",
+                "1357"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -7808,7 +7999,9 @@
         "3591237106": {
             "latex": "\\frac{E_2 - E_1}{t} = \\frac{(KE_2 - KE_1)}{t} - F v",
             "AST": [
-                "1467"
+                "1467",
+                "4202",
+                "1357"
             ],
             "name": "",
             "notes": "",
@@ -7818,7 +8011,9 @@
         "1772416655": {
             "latex": "\\frac{E_2 - E_1}{t} = v F - F v",
             "AST": [
-                "1467"
+                "1467",
+                "1357",
+                "4202"
             ],
             "name": "",
             "notes": "",
@@ -7980,7 +8175,7 @@
             "creation date": "2020-04-23"
         },
         "8588429722": {
-            "latex": "\\sin( 90^{\\circ} - x ) = cos( x )",
+            "latex": "\\sin( 90^{\\circ} - x ) = \\cos( x )",
             "AST": [],
             "name": "",
             "notes": "",
@@ -8006,7 +8201,7 @@
             "creation date": "2020-04-23"
         },
         "6831637424": {
-            "latex": "\\sin( 90^{\\circ} - \\theta_{Brewster} ) = cos( \\theta_{Brewster} )",
+            "latex": "\\sin( 90^{\\circ} - \\theta_{Brewster} ) = \\cos( \\theta_{Brewster} )",
             "AST": [
                 "4928"
             ],
@@ -8990,6 +9185,19 @@
         }
     },
     "symbols": {
+        "2321": {
+            "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
+            "latex": "\\omega",
+            "references": [
+                "https://en.wikipedia.org/wiki/Angular_frequency"
+            ],
+            "name": "angular frequency",
+            "scope": [
+                "real"
+            ]
+        },
         "2941": {
             "category": "variable",
             "author": "Ben",
@@ -9146,9 +9354,9 @@
             "author": "Ben",
             "creation date": "2020-04-26",
             "latex": "v",
+            "name": "velocity",
             "scope": [
-                "real",
-                "complex"
+                "real"
             ]
         },
         "1370": {
@@ -9347,6 +9555,32 @@
                 }
             ]
         },
+        "4202": {
+            "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
+            "name": "force",
+            "references": [
+                "https://en.wikipedia.org/wiki/Force"
+            ],
+            "latex": "F",
+            "scope": [
+                "real"
+            ]
+        },
+        "4201": {
+            "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
+            "name": "frequency",
+            "references": [
+                "https://en.wikipedia.org/wiki/Frequency"
+            ],
+            "latex": "f",
+            "scope": [
+                "real"
+            ]
+        },
         "4200": {
             "category": "variable",
             "author": "Ben",
@@ -9432,7 +9666,9 @@
             "author": "Ben",
             "creation date": "2020-04-26",
             "name": "imaginary unit",
-            "references": ["https://en.wikipedia.org/wiki/Imaginary_unit"],
+            "references": [
+                "https://en.wikipedia.org/wiki/Imaginary_unit"
+            ],
             "latex": "i",
             "scope": [
                 "imaginary"
@@ -9507,6 +9743,16 @@
                     "units": "mol^-1",
                     "value": "6.02214086*10^{23}"
                 }
+            ]
+        },
+        "9140": {
+            "category": "variable",
+            "author": "Ben",
+            "creation date": "2020-04-26",
+            "latex": "a",
+            "name": "acceleration",
+            "scope": [
+                "real"
             ]
         },
         "9139": {
