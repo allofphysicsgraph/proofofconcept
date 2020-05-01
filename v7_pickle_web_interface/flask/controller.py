@@ -503,7 +503,7 @@ def before_request():
     g.start = time.time()
     g.request_start_time = time.time()
     elapsed_time = lambda: "%.5f seconds" % (time.time() - g.request_start_time)
-    logger.info(elapsed_time)
+    logger.debug('elapsed time = ' + elapsed_time)
     g.request_time = elapsed_time
 
 
@@ -519,7 +519,7 @@ def after_request(response):
     try:
         diff = time.time() - g.start
     except AttributeError as err:
-        flash(str(err))
+        flash('after_request:' + str(err))
         logger.error(str(err))
         diff = 0
     if (
@@ -532,6 +532,7 @@ def after_request(response):
                 b"__EXECUTION_TIME__", bytes(str(diff), "utf-8")
             )
         )
+    logger.debug('response = ' + str(response))
     return response
 
 
