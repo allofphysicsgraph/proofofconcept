@@ -37,7 +37,7 @@ from flask import Flask, redirect, render_template, request, url_for, flash, jso
 
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
-from flask_wtf import FlaskForm, CSRFProtect, Form
+from flask_wtf import FlaskForm, CSRFProtect, Form # type: ignore
 
 ## https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
 # from flask_bootstrap import Bootstrap
@@ -52,10 +52,10 @@ from flask_login import (
     login_user,
     logout_user,
     current_user,
-)
+) # type: ignore
 
 # https://stackoverflow.com/a/56993644/1164295
-from gunicorn import glogging
+from gunicorn import glogging # type: ignore
 
 # https://gist.github.com/lost-theory/4521102
 from flask import g
@@ -790,6 +790,7 @@ def static_dir():
 def faq():
     """
     "frequently asked questions" is a static page
+
     >>> faq()
     """
     logger.info("[trace]")
@@ -800,6 +801,7 @@ def faq():
 def other_projects():
     """
     "other projects" is a static page
+
     >>> other_projects()
     """
     logger.info("[trace]")
@@ -810,6 +812,7 @@ def other_projects():
 def user_documentation():
     """
     a static page with documentation aimed at users (not developers)
+
     >>> user_documentation()
     """
     logger.info("[trace] user_documentation")
@@ -820,6 +823,7 @@ def user_documentation():
 def developer_documentation():
     """
     a static page aimed at people interested in contributed code changes
+
     >>> developer_documentation()
     """
     logger.info("[trace] developer_documentation")
@@ -1060,6 +1064,11 @@ def list_all_operators():
 
 @app.route("/list_all_symbols", methods=["GET", "POST"])
 def list_all_symbols():
+    """
+    list all symbols
+
+    >>> list_all_symbols()
+    """
     logger.info("[trace] list_all_symbols")
 
     if request.method == "POST":
@@ -1142,6 +1151,11 @@ def list_all_symbols():
 
 @app.route("/list_all_expressions", methods=["GET", "POST"])
 def list_all_expressions():
+    """
+    list all expressions
+    
+    >>> list_all_expressions()
+    """
     logger.info("[trace] list_all_expressions")
     dat = clib.read_db(path_to_db)
     try:
@@ -1250,6 +1264,11 @@ def list_all_expressions():
 
 @app.route("/list_all_inference_rules", methods=["GET", "POST"])
 def list_all_inference_rules():
+    """
+    list all inference rules
+
+    >>> list_all_inference_rules() 
+    """
     logger.info("[trace] list_all_inference_rules")
     logger.debug(str(request.form))
     dat = clib.read_db(path_to_db)
@@ -1361,6 +1380,11 @@ def list_all_inference_rules():
 
 @app.route("/select_derivation_to_edit", methods=["GET", "POST"])
 def select_derivation_to_edit():
+    """
+    Which derivation should be edited?
+
+    >>> select_derivation_to_edit()
+    """
     logger.info("[trace] select_derivation_to_edit")
     if request.method == "POST":
         logger.debug(
@@ -1383,6 +1407,8 @@ def select_derivation_to_edit():
 @login_required
 def select_derivation_step_to_edit(deriv_id: str):
     """
+    Which step in a derivation should be edited?
+
     >>> select_derivation_step_to_edit('fun deriv')
     """
     logger.info("[trace] select_derivation_step_to_edit")
@@ -1453,6 +1479,12 @@ def select_derivation_step_to_edit(deriv_id: str):
 
 @app.route("/select_from_existing_derivations", methods=["GET", "POST"])
 def select_from_existing_derivations():
+    """
+    Which derivation does the user want to review?
+    Alternatively, the user can generate a PDF 
+
+    >>> select_from_existing_derivations()
+    """
     logger.info("[trace]")
     try:
         list_of_deriv = compute.get_sorted_list_of_derivations(path_to_db)
@@ -1521,6 +1553,11 @@ def select_from_existing_derivations():
 @app.route("/new_step_select_inf_rule/<deriv_id>/", methods=["GET", "POST"])
 @login_required  # https://flask-login.readthedocs.io/en/latest/
 def new_step_select_inf_rule(deriv_id: str):
+    """
+    What inference rule should be used for this step?
+
+    >>> new_step_select_inf_rule()
+    """
     try:
         logger.info("[trace] " + str(current_user.username))
     except AttributeError:
@@ -1819,6 +1856,8 @@ def step_review(deriv_id: str, local_step_id: str):
 @login_required
 def rename_derivation(deriv_id: str):
     """
+    Change the name of the derivation
+
     >>> rename_derivation()
     """
     try:
@@ -1864,7 +1903,9 @@ def rename_derivation(deriv_id: str):
 @app.route("/review_derivation/<deriv_id>/", methods=["GET", "POST"])
 def review_derivation(deriv_id: str):
     """
-    >>> review_derivation
+    What step does the derivation contain?
+
+    >>> review_derivation()
     """
     logger.info("[trace] review_derivation")
     pdf_filename = "NONE"
@@ -1964,6 +2005,8 @@ def review_derivation(deriv_id: str):
 @login_required
 def modify_step(deriv_id: str, step_id: str):
     """
+    User wants to change some aspect of a step
+
     >>> modify_step('fun deriv', '958242')
     """
     try:
@@ -2100,6 +2143,7 @@ def modify_step(deriv_id: str, step_id: str):
 def exploded_step(deriv_id: str, step_id: str):
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/108
+
     >>> exploded_step()
     """
     logger.info("[trace]")
@@ -2124,7 +2168,10 @@ def exploded_step(deriv_id: str, step_id: str):
 @login_required
 def confirm_delete_derivation(deriv_id):
     """
-    >>>
+    User has selected to delete the derivation they were reviewing.
+    Need to confirm before actually deleting.
+
+    >>> confirm_delete_derivation()
     """
     try:
         logger.info("[trace]" + str(current_user.username))
@@ -2169,7 +2216,7 @@ def confirm_delete_derivation(deriv_id):
 @login_required
 def create_new_inf_rule():
     """
-    >>>
+    >>> create_new_inf_rule()
     """
     try:
         logger.info("[trace]" + str(current_user.username))

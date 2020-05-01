@@ -5,10 +5,10 @@
 
 import shutil  # move and copy files
 import datetime
-import pandas
+import pandas # type: ignore
 import re # https://docs.python.org/3/library/re.html
 import time
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt # type: ignore
 from geoip import geolite2 # https://pythonhosted.org/python-geoip/
 import os
 import logging

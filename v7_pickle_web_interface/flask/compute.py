@@ -18,7 +18,8 @@ import signal
 import os
 import shutil  # move and copy files
 import datetime
-import cv2  # image dimensions in pixels
+# image dimensions in pixels
+import cv2  # type: ignore
 from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
 import subprocess  # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
@@ -931,7 +932,7 @@ def create_expr_local_id(path_to_db: str) -> str:
 # stats
 
 
-def generate_stats(number_of_lines_of_log_tail: int) -> None:
+def generate_stats(number_of_lines_of_log_tail: int) -> Tuple[list, list]:
     """
     >>>
     """
