@@ -716,20 +716,29 @@ def index():
     return render_template("index.html", json_for_d3js=d3js_json_filename)
 
 
-@app.route("/stats", methods=["GET", "POST"])
-def stats():
+@app.route("/monitoring", methods=["GET", "POST"])
+def monitoring():
     """
-    "stats" is a static page
-    >>> stats()
+    >>> monitoring()
     """
     logger.info("[trace]")
-    list_of_pics, tail_of_auth_log_as_list = compute.generate_stats(10)
+    number_of_lines_to_tail = 100
+    list_of_pics = compute.generate_auth_summary()
     logger.debug(str(list_of_pics))
+    tail_of_auth_log_as_list = compute.file_tail("/home/appuser/app/logs/auth.log", number_of_lines_to_tail)
+    tail_of_ufw_log_as_list = compute.file_tail("/home/appuser/app/logs/ufw.log", number_of_lines_to_tail)
+    tail_of_nginx_log_as_list = compute.file_tail("/home/appuser/app/logs/nginx_access.log", number_of_lines_to_tail)
+    tail_of_gunicorn_log_as_list = compute.file_tail("/home/appuser/app/logs/gunicorn_access.log", number_of_lines_to_tail)
+    tail_of_flask_log_as_list = compute.file_tail("/home/appuser/app/logs/flask_critical_and_error_and_warning_and_info_and_debug.log", number_of_lines_to_tail)
 
     return render_template(
-        "stats.html",
+        "monitoring.html",
         list_of_pics=list_of_pics,
         tail_of_auth_log_as_list=tail_of_auth_log_as_list,
+        tail_of_ufw_log_as_list=tail_of_ufw_log_as_list,
+        tail_of_nginx_log_as_list=tail_of_nginx_log_as_list,
+        tail_of_gunicorn_log_as_list=tail_of_gunicorn_log_as_list,
+        tail_of_flask_log_as_list=tail_of_flask_log_as_list,
     )
 
 

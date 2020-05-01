@@ -931,10 +931,22 @@ def create_expr_local_id(path_to_db: str) -> str:
 # *******************************************
 # stats
 
-
-def generate_stats(number_of_lines_of_log_tail: int) -> Tuple[list, list]:
+def file_tail(full_path_to_file: str, number_of_lines_of_log_tail: int) -> list:
     """
-    >>>
+    >>> 
+    """
+    logger.info("[trace]")
+    lines = []
+    tail_of_log_as_list = []
+    with open(full_path_to_file, "r") as f:
+        lines = f.readlines()
+    tail_of_log_as_list = lines[-1 * number_of_lines_of_log_tail :]
+    return tail_of_log_as_list
+
+
+def generate_auth_summary() -> list:
+    """
+    >>> generate_auth_summary()
     """
     logger.info("[trace]")
 
@@ -976,12 +988,7 @@ def generate_stats(number_of_lines_of_log_tail: int) -> Tuple[list, list]:
         )
     list_of_picture_names.append(pic_name)
 
-    with open("/home/appuser/app/logs/auth.log", "r") as f:
-        lines = f.readlines()
-
-    tail_of_log_as_list = lines[-1 * number_of_lines_of_log_tail :]
-
-    return list_of_picture_names, tail_of_log_as_list
+    return list_of_picture_names
 
 
 # ********************************************
