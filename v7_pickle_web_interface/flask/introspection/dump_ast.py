@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 """
 Parse source files and print the abstract syntax trees.
-
-from https://github.com/python/mypy/blob/master/misc/dump-ast.py
 """
 
 from typing import Tuple
@@ -13,23 +11,59 @@ from mypy.errors import CompileError
 from mypy.options import Options
 from mypy import defaults
 from mypy.parse import parse
+import mypy
+from snoop import spy
+
 
 
 def dump(fname: str,
          python_version: Tuple[int, int],
          quiet: bool = False) -> None:
+    """
+    Parameters
+    ----------
+    fname : str
+        DESCRIPTION.
+    python_version : Tuple[int, int]
+        DESCRIPTION.
+    quiet : bool, optional
+        DESCRIPTION. The default is False.
+
+    Returns
+    -------
+    None
+        DESCRIPTION.
+
+    """
     options = Options()
     options.python_version = python_version
-    with open(fname, 'rb') as f:
-        s = f.read()
-        tree = parse(s, fname, None, errors=None, options=options)
+    with open(fname, 'rb') as f_name:
+        string = f_name.read()
+        tree = parse(string, fname, None, errors=None, options=options)
+        from pudb import set_trace
+        seen = set()
         if not quiet:
-            print(tree)
-            return tree
-    return tree
+            lst = tree.defs
+            for xs in lst:
+                if isinstance(xs,mypy.nodes.FuncDef):
+                    seen.add((xs.line,xs.name))
+                if isinstance(xs,mypy.nodes.ExpressionStmt):
+                   resp = xs.expr
+                   for ix in resp.args:
+                       seen.add((ix.line,ix))
+                
+                if isinstance(xs,mypy.nodes.Decorator):
+                    for node in xs.decorators:
+                        seen.add((xs.line,xs.name))
+
+    for item in sorted(list(seen),key=lambda x:x[0]):
+        print(item[0],item[1])
+                
 
 def main() -> None:
+    """
     # Parse a file and dump the AST (or display errors).
+    """
     parser = argparse.ArgumentParser(
         description="Parse source files and print the abstract syntax tree (AST).",
     )
@@ -47,8 +81,8 @@ def main() -> None:
     for fname in args.FILE:
         try:
             dump(fname, pyversion, args.quiet)
-        except CompileError as e:
-            for msg in e.messages:
+        except CompileError as error:
+            for msg in error.messages:
                 sys.stderr.write('%s\n' % msg)
             status = 1
     sys.exit(status)
