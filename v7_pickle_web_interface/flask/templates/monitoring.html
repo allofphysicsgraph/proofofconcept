@@ -1,0 +1,58 @@
+{% extends "_base.html" %}
+{% block content %}
+
+
+<H2>tail and visualizations from /var/logs/auth.log</H2>
+<P>
+  <font face = "courier">
+  {% for line in tail_of_auth_log_as_list %}
+  {{ line }}<BR>
+  {% endfor %}
+  </font>
+</P>
+
+<center>
+{% for this_pic in list_of_pics %}
+<P><img src="{{ url_for('static', filename=this_pic) }}"></P>
+{% endfor %}
+</center>
+
+<H2>tail from /var/logs/ufw.log</H2>
+<P>
+  <font face = "courier">
+  {% for line in tail_of_ufw_log_as_list %}
+  {{ line }}<BR>
+  {% endfor %}
+  </font>
+</P>
+
+<H2>tail from nginx_access.log</H2>
+<P>
+  <font face = "courier">
+  {% for line in tail_of_nginx_log_as_list %}
+  {{ line }}<BR>
+  {% endfor %}
+  </font>
+</P>
+
+<H2>tail from gunicorn_access.log</H2>
+<P>
+  <font face = "courier">
+  {% for line in tail_of_gunicorn_log_as_list %}
+  {{ line }}<BR>
+  {% endfor %}
+  </font>
+</P>
+
+<H2>tail from flask.log</H2>
+<P>
+  <font face = "courier">
+  {% for line in tail_of_flask_log_as_list %}
+  {{ line }}<BR>
+  {% endfor %}
+  </font>
+</P>
+
+
+{% endblock %}
+
