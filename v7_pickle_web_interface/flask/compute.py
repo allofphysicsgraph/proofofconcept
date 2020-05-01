@@ -18,6 +18,7 @@ import signal
 import os
 import shutil  # move and copy files
 import datetime
+
 # image dimensions in pixels
 import cv2  # type: ignore
 from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
@@ -930,6 +931,7 @@ def create_expr_local_id(path_to_db: str) -> str:
 
 # *******************************************
 # stats
+
 
 def file_tail(full_path_to_file: str, number_of_lines_of_log_tail: int) -> list:
     """

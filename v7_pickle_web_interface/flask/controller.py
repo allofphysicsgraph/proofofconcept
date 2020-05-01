@@ -37,7 +37,7 @@ from flask import Flask, redirect, render_template, request, url_for, flash, jso
 
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
-from flask_wtf import FlaskForm, CSRFProtect, Form # type: ignore
+from flask_wtf import FlaskForm, CSRFProtect, Form  # type: ignore
 
 ## https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
 # from flask_bootstrap import Bootstrap
@@ -52,10 +52,10 @@ from flask_login import (
     login_user,
     logout_user,
     current_user,
-) # type: ignore
+)  # type: ignore
 
 # https://stackoverflow.com/a/56993644/1164295
-from gunicorn import glogging # type: ignore
+from gunicorn import glogging  # type: ignore
 
 # https://gist.github.com/lost-theory/4521102
 from flask import g
@@ -503,7 +503,7 @@ def before_request():
     g.start = time.time()
     g.request_start_time = time.time()
     elapsed_time = lambda: "%.5f seconds" % (time.time() - g.request_start_time)
-    logger.debug('elapsed time = ' + elapsed_time)
+    logger.debug("elapsed time = " + elapsed_time)
     g.request_time = elapsed_time
 
 
@@ -519,7 +519,7 @@ def after_request(response):
     try:
         diff = time.time() - g.start
     except AttributeError as err:
-        flash('after_request:' + str(err))
+        flash("after_request:" + str(err))
         logger.error(str(err))
         diff = 0
     if (
@@ -532,7 +532,7 @@ def after_request(response):
                 b"__EXECUTION_TIME__", bytes(str(diff), "utf-8")
             )
         )
-    logger.debug('response = ' + str(response))
+    logger.debug("response = " + str(response))
     return response
 
 
@@ -726,11 +726,22 @@ def monitoring():
     number_of_lines_to_tail = 100
     list_of_pics = compute.generate_auth_summary()
     logger.debug(str(list_of_pics))
-    tail_of_auth_log_as_list = compute.file_tail("/home/appuser/app/logs/auth.log", number_of_lines_to_tail)
-    tail_of_ufw_log_as_list = compute.file_tail("/home/appuser/app/logs/ufw.log", number_of_lines_to_tail)
-    tail_of_nginx_log_as_list = compute.file_tail("/home/appuser/app/logs/nginx_access.log", number_of_lines_to_tail)
-    tail_of_gunicorn_log_as_list = compute.file_tail("/home/appuser/app/logs/gunicorn_access.log", number_of_lines_to_tail)
-    tail_of_flask_log_as_list = compute.file_tail("/home/appuser/app/logs/flask_critical_and_error_and_warning_and_info_and_debug.log", number_of_lines_to_tail)
+    tail_of_auth_log_as_list = compute.file_tail(
+        "/home/appuser/app/logs/auth.log", number_of_lines_to_tail
+    )
+    tail_of_ufw_log_as_list = compute.file_tail(
+        "/home/appuser/app/logs/ufw.log", number_of_lines_to_tail
+    )
+    tail_of_nginx_log_as_list = compute.file_tail(
+        "/home/appuser/app/logs/nginx_access.log", number_of_lines_to_tail
+    )
+    tail_of_gunicorn_log_as_list = compute.file_tail(
+        "/home/appuser/app/logs/gunicorn_access.log", number_of_lines_to_tail
+    )
+    tail_of_flask_log_as_list = compute.file_tail(
+        "/home/appuser/app/logs/flask_critical_and_error_and_warning_and_info_and_debug.log",
+        number_of_lines_to_tail,
+    )
 
     return render_template(
         "monitoring.html",
