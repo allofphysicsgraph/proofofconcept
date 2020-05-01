@@ -51,7 +51,17 @@
     <!-- references -->
     <td>
     {% if 'references' in symbols_dict[symbol_id] %}
-      <small>{{ symbols_dict[symbol_id]['references'] }}</small>
+        <UL>
+        {% for str_note in symbols_dict[symbol_id]['references'] %}
+          <!-- https://stackoverflow.com/a/43058043/1164295 -->
+          {% if str_note.startswith('http') %}
+            <LI><a href="{{ str_note }}">{{ str_note.split('/')[-1] }}</a>
+          {% else %}
+          <LI> str_note
+          {% endif %}
+
+        {% endfor %}
+        </UL>
     {% endif %}
     </td>
   </tr>
