@@ -1584,12 +1584,7 @@ def select_from_existing_derivations():
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                return render_template(
-                    "select_from_existing_derivations.html",
-                    dat=dat,
-                    list_of_derivations=list_of_deriv,
-                    title="select from existing derivations",
-                )
+                return redirect( url_for("select_from_existing_derivations"))
 
             return redirect(
                 url_for(
@@ -1606,11 +1601,7 @@ def select_from_existing_derivations():
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                return render_template(
-                    "select_from_existing_derivations.html",
-                    list_of_derivations=list_of_deriv,
-                    title="select from existing derivations",
-                )
+                return redirect( url_for("select_from_existing_derivations"))
 
             return redirect(
                 url_for(
@@ -2187,11 +2178,11 @@ def modify_step(deriv_id: str, step_id: str):
                 )
 
             # https://github.com/allofphysicsgraph/proofofconcept/issues/108
-            elif request.form["submit_button"] == "view exploded graph":
-                # ImmutableMultiDict([('submit_button', 'view exploded graph')])
+            elif request.form["submit_button"] == "view step with numeric IDs":
+                # ImmutableMultiDict([('submit_button', 'view step with numeric IDs')])
                 return redirect(
                     url_for(
-                        "exploded_step",
+                        "step_with_numeric_ids",
                         deriv_id=deriv_id,
                         step_id=step_id,
                         referrer="modify_step",
@@ -2350,7 +2341,7 @@ def modify_step(deriv_id: str, step_id: str):
         dict_of_ranked_list=dict_of_ranked_list,
         list_of_symbols_from_sympy=list_of_symbols_from_sympy,
         list_of_symbols_from_PDG_AST=list_of_symbols_from_PDG_AST,
-        list_of_expression_AST_dicts=list_of_expression_AST_dicts,
+        list_of_expression_AST_pictures=list_of_expression_AST_dicts,
         step_dict=dat["derivations"][deriv_id]["steps"],
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],
@@ -2362,16 +2353,16 @@ def modify_step(deriv_id: str, step_id: str):
     )
 
 
-@app.route("/exploded_step/<deriv_id>/<step_id>/", methods=["GET", "POST"])
-def exploded_step(deriv_id: str, step_id: str):
+@app.route("/step_with_numeric_ids/<deriv_id>/<step_id>/", methods=["GET", "POST"])
+def step_with_numeric_ids(deriv_id: str, step_id: str):
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/108
 
-    >>> exploded_step()
+    >>> step_with_numeric_ids()
     """
     logger.info("[trace]")
     try:
-        name_of_graphviz_file = compute.generate_graphviz_of_exploded_step(
+        name_of_graphviz_file = compute.generate_graphviz_of_step_with_numeric_IDs(
             deriv_id, step_id, path_to_db
         )
     except Exception as err:
@@ -2380,11 +2371,11 @@ def exploded_step(deriv_id: str, step_id: str):
         name_of_graphviz_file = "error.png"
 
     return render_template(
-        "exploded_step.html",
+        "step_with_numeric_ids.html",
         deriv_id=deriv_id,
         name_of_graphviz_file=name_of_graphviz_file,
         step_id=step_id,
-        title="exploded step",
+        title="step with numeric IDs",
     )
 
 

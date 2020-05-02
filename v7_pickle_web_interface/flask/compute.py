@@ -2270,12 +2270,12 @@ def create_step_graphviz_png(deriv_id: str, step_id: str, path_to_db: str) -> st
     return output_filename
 
 
-def generate_graphviz_of_exploded_step(
+def generate_graphviz_of_step_with_numeric_IDs(
     deriv_id: str, step_id: str, path_to_db: str
 ) -> str:
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/108
-    >>> generate_graphviz_of_exploded_step()
+    >>> generate_graphviz_of_step_with_numeric_IDs()
     """
     logger.info("[trace]")
     dot_filename = "/home/appuser/app/static/graphviz.dot"
@@ -2391,7 +2391,7 @@ def generate_graphviz_of_exploded_step(
                 + '",labelloc=b];\n'
             )
 
-    output_filename = step_id + "_exploded.png"
+    output_filename = step_id + "_with_numeric_IDs.png"
     logger.debug("output_filename = %s", output_filename)
     remove_file_debris(["./"], ["graphviz"], ["png"])
 
