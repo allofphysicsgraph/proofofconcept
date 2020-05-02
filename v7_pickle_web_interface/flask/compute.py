@@ -168,7 +168,24 @@ def create_session_id() -> str:
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
 
-def list_symbols_used_in_step_from_PDG_AST(deriv_id, step_id, path_to_db) -> list:
+def rank_candidate_pdg_symbols_for_sympy_symbol(sympy_symbol: str, symbol_IDs_used_in_step_from_PDG_AST: list, path_to_db: str) -> list:
+    """
+    >>> rank_candidate_pdg_symbols_for_sympy_symbol()
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    list_of_candidate_symbol_ids = []
+    
+    # most likely candidate is if symbol is already present in step
+    for symbol_id in symbol_IDs_used_in_step_from_PDG_AST:
+        if sympy_symbol in dat['symbols'][symbol_id]['latex']:
+            list_of_candidate_symbol_ids.append(symbol_id)
+    for symbol_id, symbol_dict in dat['symbols'].items():
+        if sympy_symbol in dat['symbols'][symbol_id]['latex'] and symbol_id not in list_of_candidate_symbol_ids:
+            list_of_candidate_symbol_ids.append(symbol_id)
+    return list_of_candidate_symbol_ids
+
+def list_symbols_used_in_step_from_PDG_AST(deriv_id: str, step_id: str, path_to_db: str) -> list:
     """
     for all expressions in a step, what variables and constants are present?
 
@@ -178,22 +195,25 @@ def list_symbols_used_in_step_from_PDG_AST(deriv_id, step_id, path_to_db) -> lis
     dat = clib.read_db(path_to_db)
     list_of_symbol_ids = []
 
-    step_dict = dat['derivations'][deriv_id]['steps'][step_id]
+    step_dict = dat["derivations"][deriv_id]["steps"][step_id]
     for connection_type in ["inputs", "feeds", "outputs"]:
         for local_id in step_dict[connection_type]:
             expr_global_id = dat["expr local to global"][local_id]
-            list_of_symbols_and_operators = list(flatten_list( dat['expressions'][expr_global_id]['AST'] )) 
+            list_of_symbols_and_operators = list(
+                flatten_list(dat["expressions"][expr_global_id]["AST"])
+            )
 
             for this_symbol_id in list_of_symbols_and_operators:
                 try:
                     symbol_latex = dat["symbols"][this_symbol_id]["latex"]
                 except:
                     symbol_latex = ""
-                if len(symbol_latex)>0:
+                if len(symbol_latex) > 0:
                     list_of_symbol_ids.append(this_symbol_id)
 
     list_of_symbol_ids = list(set(list_of_symbol_ids))
     return list_of_symbol_ids
+
 
 def list_symbols_used_in_step_from_sympy(deriv_id, step_id, path_to_db) -> list:
     """
@@ -205,19 +225,50 @@ def list_symbols_used_in_step_from_sympy(deriv_id, step_id, path_to_db) -> list:
     dat = clib.read_db(path_to_db)
     list_of_symbols = []
 
-    step_dict = dat['derivations'][deriv_id]['steps'][step_id]
+    step_dict = dat["derivations"][deriv_id]["steps"][step_id]
     for connection_type in ["inputs", "feeds", "outputs"]:
         for local_id in step_dict[connection_type]:
             expr_global_id = dat["expr local to global"][local_id]
-            expr_latex = dat['expressions'][expr_global_id]['latex']
+            expr_latex = dat["expressions"][expr_global_id]["latex"]
             logger.debug(expr_latex)
             symp_lat = parse_latex(expr_latex)
-            for symb in symp_lat.atoms(sympy.Symbol):                
+            for symb in symp_lat.atoms(sympy.Symbol):
                 list_of_symbols.append(symb)
     list_of_symbols = list(set(list_of_symbols))
     return list_of_symbols
 
-def create_AST_png_per_expression_in_step(deriv_id: str, step_id: str, path_to_db: str) -> list:
+def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
+    """
+    >>> 
+    """
+    logger.info("[trace]")
+
+    symp_lat = parse_latex(expr_latex)
+    graphviz_of_AST_for_expr = sympy.printing.dot.dotprint(symp_lat)
+    dot_filename = "tmp.dot"
+    with open(dot_filename, "w") as fil:
+        fil.write(graphviz_of_AST_for_expr)
+
+    # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
+    process = subprocess.run(
+                ["dot", "-Tpng", dot_filename, "-o" + output_filename],
+                stdout=PIPE,
+                stderr=PIPE,
+                timeout=proc_timeout,
+            )
+    neato_stdout = process.stdout.decode("utf-8")
+    if len(neato_stdout) > 0:
+        logger.debug(neato_stdout)
+    neato_stderr = process.stderr.decode("utf-8")
+    if len(neato_stderr) > 0:
+        logger.debug(neato_stderr)
+
+    shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+    return
+
+def create_AST_png_per_expression_in_step(
+    deriv_id: str, step_id: str, path_to_db: str
+) -> list:
     """
     for each expression in a step, create the AST PNG from Sympy
 
@@ -225,36 +276,24 @@ def create_AST_png_per_expression_in_step(deriv_id: str, step_id: str, path_to_d
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
-    list_of_expression_AST_pictures = []
+    list_of_expression_AST_dicts = []
 
-    step_dict = dat['derivations'][deriv_id]['steps'][step_id]
+    step_dict = dat["derivations"][deriv_id]["steps"][step_id]
     for connection_type in ["inputs", "feeds", "outputs"]:
         for local_id in step_dict[connection_type]:
             expr_global_id = dat["expr local to global"][local_id]
-            expr_latex = dat['expressions'][expr_global_id]['latex']
+            expr_latex = dat["expressions"][expr_global_id]["latex"]
             logger.debug(expr_latex)
-            symp_lat = parse_latex(expr_latex)
-            graphviz_of_AST_for_expr = sympy.printing.dot.dotprint(symp_lat)
-            dot_filename = 'tmp.dot'
-            with open(dot_filename,'w') as fil:
-                fil.write(graphviz_of_AST_for_expr)
-
             output_filename = expr_global_id + "_ast.png"
-            # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
-            process = subprocess.run( ["neato", "-Tpng", dot_filename, "-o" + output_filename],
-                          stdout=PIPE,        stderr=PIPE,        timeout=proc_timeout )
-            neato_stdout = process.stdout.decode("utf-8")
-            if len(neato_stdout) > 0:
-                logger.debug(neato_stdout)
-            neato_stderr = process.stderr.decode("utf-8")
-            if len(neato_stderr) > 0:
-                logger.debug(neato_stderr)
 
-            shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+            create_AST_png_for_latex(expr_latex, output_filename)
+            #this_dict = {'ast png filename': output_filename, 
+            #             'expr global id': expr_global_id,
             pic_and_id = (output_filename, expr_global_id)
             list_of_expression_AST_pictures.append(pic_and_id)
 
     return list_of_expression_AST_pictures
+
 
 def list_new_linear_indices(deriv_id: str, path_to_db: str) -> list:
     """
