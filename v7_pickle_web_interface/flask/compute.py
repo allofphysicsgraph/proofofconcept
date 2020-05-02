@@ -168,24 +168,33 @@ def create_session_id() -> str:
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
 
-def rank_candidate_pdg_symbols_for_sympy_symbol(sympy_symbol: str, symbol_IDs_used_in_step_from_PDG_AST: list, path_to_db: str) -> list:
+
+def rank_candidate_pdg_symbols_for_sympy_symbol(
+    sympy_symbol: str, symbol_IDs_used_in_step_from_PDG_AST: list, path_to_db: str
+) -> list:
     """
     >>> rank_candidate_pdg_symbols_for_sympy_symbol()
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_of_candidate_symbol_ids = []
-    
+
     # most likely candidate is if symbol is already present in step
     for symbol_id in symbol_IDs_used_in_step_from_PDG_AST:
-        if sympy_symbol in dat['symbols'][symbol_id]['latex']:
+        if sympy_symbol in dat["symbols"][symbol_id]["latex"]:
             list_of_candidate_symbol_ids.append(symbol_id)
-    for symbol_id, symbol_dict in dat['symbols'].items():
-        if sympy_symbol in dat['symbols'][symbol_id]['latex'] and symbol_id not in list_of_candidate_symbol_ids:
+    for symbol_id, symbol_dict in dat["symbols"].items():
+        if (
+            sympy_symbol in dat["symbols"][symbol_id]["latex"]
+            and symbol_id not in list_of_candidate_symbol_ids
+        ):
             list_of_candidate_symbol_ids.append(symbol_id)
     return list_of_candidate_symbol_ids
 
-def list_symbols_used_in_step_from_PDG_AST(deriv_id: str, step_id: str, path_to_db: str) -> list:
+
+def list_symbols_used_in_step_from_PDG_AST(
+    deriv_id: str, step_id: str, path_to_db: str
+) -> list:
     """
     for all expressions in a step, what variables and constants are present?
 
@@ -237,6 +246,7 @@ def list_symbols_used_in_step_from_sympy(deriv_id, step_id, path_to_db) -> list:
     list_of_symbols = list(set(list_of_symbols))
     return list_of_symbols
 
+
 def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
     """
     >>> 
@@ -251,11 +261,11 @@ def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
 
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
     process = subprocess.run(
-                ["dot", "-Tpng", dot_filename, "-o" + output_filename],
-                stdout=PIPE,
-                stderr=PIPE,
-                timeout=proc_timeout,
-            )
+        ["dot", "-Tpng", dot_filename, "-o" + output_filename],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
     neato_stdout = process.stdout.decode("utf-8")
     if len(neato_stdout) > 0:
         logger.debug(neato_stdout)
@@ -265,6 +275,7 @@ def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
 
     shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
     return
+
 
 def create_AST_png_per_expression_in_step(
     deriv_id: str, step_id: str, path_to_db: str
@@ -287,7 +298,7 @@ def create_AST_png_per_expression_in_step(
             output_filename = expr_global_id + "_ast.png"
 
             create_AST_png_for_latex(expr_latex, output_filename)
-            #this_dict = {'ast png filename': output_filename, 
+            # this_dict = {'ast png filename': output_filename,
             #             'expr global id': expr_global_id,
             pic_and_id = (output_filename, expr_global_id)
             list_of_expression_AST_pictures.append(pic_and_id)
