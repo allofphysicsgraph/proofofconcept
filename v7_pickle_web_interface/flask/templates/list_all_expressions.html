@@ -13,6 +13,7 @@
   {% else %}
 <P>Only expressions that do not appear in any derivation can be deleted
 <form method="post" action="">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
@@ -36,6 +37,7 @@
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
   {% else %}
 <form method="post" action="">
+{{ edit_expr_latex_webform.csrf_token }}
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
@@ -60,6 +62,7 @@
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
   {% else %}
 <form method="post" action="">
+{{ edit_expr_name_webform.csrf_token }}
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
@@ -84,6 +87,7 @@
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
   {% else %}
 <form method="post" action="">
+{{ edit_expr_note_webform.csrf_token }}
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
