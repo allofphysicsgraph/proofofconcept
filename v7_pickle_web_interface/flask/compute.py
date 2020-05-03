@@ -169,6 +169,17 @@ def create_session_id() -> str:
 #    return
 
 
+def check_symbol_completeness_for_expr(
+    list_of_sympy_symbols: list, list_of_PDG_AST_symbol_ids: list, path_to_db: str
+) -> bool:
+    """
+    >>> 
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    return
+
+
 def rank_candidate_pdg_symbols_for_sympy_symbol(
     sympy_symbol: str, symbol_IDs_used_in_step_from_PDG_AST: list, path_to_db: str
 ) -> list:
@@ -183,6 +194,7 @@ def rank_candidate_pdg_symbols_for_sympy_symbol(
     for symbol_id in symbol_IDs_used_in_step_from_PDG_AST:
         if sympy_symbol in dat["symbols"][symbol_id]["latex"]:
             list_of_candidate_symbol_ids.append(symbol_id)
+
     for symbol_id, symbol_dict in dat["symbols"].items():
         if (
             sympy_symbol in dat["symbols"][symbol_id]["latex"]
@@ -190,6 +202,41 @@ def rank_candidate_pdg_symbols_for_sympy_symbol(
         ):
             list_of_candidate_symbol_ids.append(symbol_id)
     return list_of_candidate_symbol_ids
+
+
+def list_symbols_used_in_expr_from_sympy(expr_latex: str) -> list:
+    """
+    >>> 
+    """
+    logger.info("[trace]")
+    list_of_symbols = []
+    symp_lat = parse_latex(expr_latex)
+    for symb in symp_lat.atoms(sympy.Symbol):
+        list_of_symbols.append(symb)
+    return list(set(list_of_symbols))
+
+
+def list_symbols_used_in_expr_from_PDG_AST(ast_as_list: list, path_to_db: str) -> list:
+    """
+    >>> list_symbols_used_in_expr_from_PDG_AST()
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+
+    list_of_symbol_ids = []
+    logger.debug(str(ast_as_list))
+    list_of_symbols_and_operators = list(flatten_list(ast_as_list))
+    logger.debug(str(list_of_symbols_and_operators))
+
+    for this_symbol_id in list_of_symbols_and_operators:
+        try:
+            symbol_latex = dat["symbols"][this_symbol_id]["latex"]
+        except:
+            symbol_latex = ""
+        if len(symbol_latex) > 0:
+            list_of_symbol_ids.append(this_symbol_id)
+    logger.debug(str(list_of_symbol_ids))
+    return list(set(list_of_symbol_ids))
 
 
 def list_symbols_used_in_step_from_PDG_AST(
@@ -208,17 +255,13 @@ def list_symbols_used_in_step_from_PDG_AST(
     for connection_type in ["inputs", "feeds", "outputs"]:
         for local_id in step_dict[connection_type]:
             expr_global_id = dat["expr local to global"][local_id]
-            list_of_symbols_and_operators = list(
-                flatten_list(dat["expressions"][expr_global_id]["AST"])
+            logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
+            symbols_per_expr = list_symbols_used_in_expr_from_PDG_AST(
+                dat["expressions"][expr_global_id]["AST"], path_to_db
             )
-
-            for this_symbol_id in list_of_symbols_and_operators:
-                try:
-                    symbol_latex = dat["symbols"][this_symbol_id]["latex"]
-                except:
-                    symbol_latex = ""
-                if len(symbol_latex) > 0:
-                    list_of_symbol_ids.append(this_symbol_id)
+            logger.debug(str(symbols_per_expr))
+            for symbol_id in symbols_per_expr:
+                list_of_symbol_ids.append(symbol_id)
 
     list_of_symbol_ids = list(set(list_of_symbol_ids))
     return list_of_symbol_ids
@@ -240,9 +283,10 @@ def list_symbols_used_in_step_from_sympy(deriv_id, step_id, path_to_db) -> list:
             expr_global_id = dat["expr local to global"][local_id]
             expr_latex = dat["expressions"][expr_global_id]["latex"]
             logger.debug(expr_latex)
-            symp_lat = parse_latex(expr_latex)
-            for symb in symp_lat.atoms(sympy.Symbol):
-                list_of_symbols.append(symb)
+            symbols_per_expr = list_symbols_used_in_expr_from_sympy(expr_latex)
+            for symb in symbols_per_expr:
+                list_of_symbols.append(str(symb))
+
     list_of_symbols = list(set(list_of_symbols))
     return list_of_symbols
 
@@ -287,29 +331,52 @@ def create_AST_png_per_expression_in_step(
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
-    list_of_expression_AST_dicts = []
+    list_of_expression_AST_pictures = []
 
     step_dict = dat["derivations"][deriv_id]["steps"][step_id]
     for connection_type in ["inputs", "feeds", "outputs"]:
         for local_id in step_dict[connection_type]:
             expr_global_id = dat["expr local to global"][local_id]
             expr_latex = dat["expressions"][expr_global_id]["latex"]
-            logger.debug(expr_latex)
+            # logger.debug('latex = ' + expr_latex)
             output_filename = expr_global_id + "_ast.png"
 
             create_AST_png_for_latex(expr_latex, output_filename)
-            # this_dict = {'ast png filename': output_filename,
-            #             'expr global id': expr_global_id,
-            pic_and_id = (output_filename, expr_global_id)
-            list_of_expression_AST_pictures.append(pic_and_id)
+            this_dict = {
+                "ast png filename": output_filename,
+                "expr global id": expr_global_id,
+                "symbols from sympy": list_symbols_used_in_expr_from_sympy(expr_latex),
+                "symbols from PDG AST": list_symbols_used_in_expr_from_PDG_AST(
+                    dat["expressions"][expr_global_id]["AST"], path_to_db
+                ),
+            }
+            # pic_and_id = (output_filename, expr_global_id)
+            list_of_expression_AST_pictures.append(this_dict)
 
     return list_of_expression_AST_pictures
 
 
-def list_new_linear_indices(deriv_id: str, path_to_db: str) -> list:
+def linear_index_to_step_id(
+    deriv_id: str, step_linear_index: str, path_to_db: str
+) -> str:
     """
-    # https://github.com/allofphysicsgraph/proofofconcept/issues/116
-    >>> get_linear_indices()
+    >>> linear_index_to_step_id() 
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    if deriv_id in dat["derivations"].keys():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+            if step_linear_index == str(step_dict["linear index"]):
+                return step_id
+    else:
+        raise Exception(deriv_id + "not in dat")
+    raise Exception(step_linear_index + "not found in derivation " + deriv_id)
+    return "ERROR"
+
+
+def get_list_of_sorted_linear_indices(deriv_id: str, path_to_db: str) -> list:
+    """
+    >>> 
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
@@ -317,9 +384,26 @@ def list_new_linear_indices(deriv_id: str, path_to_db: str) -> list:
     if deriv_id in dat["derivations"].keys():
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             list_of_linear_indices.append(step_dict["linear index"])
+    else:
+        raise Exception(deriv_id + "not in dat")
+
     list_of_linear_indices.sort()
+    return list_of_linear_indices
+
+
+def list_new_linear_indices(deriv_id: str, path_to_db: str) -> list:
+    """
+    https://github.com/allofphysicsgraph/proofofconcept/issues/116
+
+    Given a list of indices in a derivation, what new linear indices can be inserted?
+
+    >>> get_linear_indices()
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    list_of_linear_indices = get_list_of_sorted_linear_indices(deriv_id, path_to_db)
     # logger.debug('list_of_linear_indices = %s', str(list_of_linear_indices))
-    new_list = []
+    new_list = []  # potential linear indices available for insertion
     for indx, valu in enumerate(list_of_linear_indices[:-1]):
         # logger.debug('indx = ' + str(indx) + '; valu =' + str(valu))
         new_list.append(round((valu + list_of_linear_indices[indx + 1]) / 2, 3))
@@ -332,6 +416,8 @@ def list_new_linear_indices(deriv_id: str, path_to_db: str) -> list:
 
 def list_local_id_for_derivation(deriv_id: str, path_to_db: str) -> list:
     """
+    list the expr_local_id used in a derivation
+
     >>> list_local_id_for_derivation('fun deriv', 'pdg.db')
     """
     logger.info("[trace]")
@@ -886,24 +972,6 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
         list_deriv.append(this_tup[0])
 
     return list_deriv
-
-
-def get_derivation_steps(deriv_id: str, path_to_db: str) -> dict:
-    """
-    >>> get_derivation_steps('my deriv','pdg.db')
-    """
-    logger.info("[trace]")
-    dat = clib.read_db(path_to_db)
-    if deriv_id not in dat["derivations"].keys():
-        logger.error(deriv_id + " is not in derivation")
-        raise Exception(
-            str(
-                deriv_id
-                + " does not appear to be a key in derivations: "
-                + str(dat["derivations"].keys())
-            )
-        )
-    return dat["derivations"][deriv_id]["steps"]
 
 
 def create_symbol_id(path_to_db: str) -> str:

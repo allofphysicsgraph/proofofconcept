@@ -1193,7 +1193,7 @@ def list_all_symbols():
 def list_all_expressions():
     """
     list all expressions
-    
+
     >>> list_all_expressions()
     """
     logger.info("[trace] list_all_expressions")
@@ -1316,7 +1316,7 @@ def list_all_inference_rules():
     """
     list all inference rules
 
-    >>> list_all_inference_rules() 
+    >>> list_all_inference_rules()
     """
     logger.info("[trace] list_all_inference_rules")
     logger.debug(str(request.form))
@@ -1448,6 +1448,7 @@ def select_derivation_to_edit():
         logger.debug(
             "request.form = %s", request.form,
         )
+        # TODO: go to correct page
 
     try:
         derivations_list = (compute.get_sorted_list_of_derivations(path_to_db),)
@@ -1478,22 +1479,28 @@ def select_derivation_step_to_edit(deriv_id: str):
         # request.form = ImmutableMultiDict([('step_to_delete', '0491182')])
 
         if "step_to_edit" in request.form.keys():
-            step_to_edit = request.form["step_to_edit"]
+            step_linear_index = request.form["step_to_edit"]
+            logger.debug("step linear index to edit: " + step_linear_index)
+            step_id = compute.linear_index_to_step_id(
+                deriv_id, step_linear_index, path_to_db
+            )
             return redirect(
                 url_for(
                     "modify_step",
                     deriv_id=deriv_id,
-                    step_id=step_to_edit,
+                    step_id=step_id,
                     referrer="select_derivation_step_to_edit",
                 )
             )
 
         elif "step_to_delete" in request.form.keys():
-            step_to_delete = request.form["step_to_delete"]
+            step_linear_index = request.form["step_to_delete"]
+            logger.debug("step to delete: " + step_linear_index)
+            step_id = compute.linear_index_to_step_id(
+                deriv_id, step_linear_index, path_to_db
+            )
             try:
-                compute.delete_step_from_derivation(
-                    deriv_id, step_to_delete, path_to_db
-                )
+                compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
                 return redirect(
                     url_for("review_derivation", deriv_id=deriv_id),
                     referrer="select_derivation_step_to_edit",
@@ -1522,26 +1529,20 @@ def select_derivation_step_to_edit(deriv_id: str):
         # step_dict = {}
         derivation_validity_dict = {}
 
-    try:
-        step_dict = compute.get_derivation_steps(deriv_id, path_to_db)
-    except Exception as err:
-        logger.error(str(err))
-        flash(str(err))
-        step_dict = {}
-    # logger.debug(str(step_dict))
-
-    sorted_step_ids = list(step_dict.keys())
-    sorted_step_ids.sort()
+    list_of_sorted_linear_indices = compute.get_list_of_sorted_linear_indices(
+        deriv_id, path_to_db
+    )
 
     return render_template(
         "select_derivation_step_to_edit.html",
         deriv_id=deriv_id,
-        expr_local_to_global=dat["expr local to global"],
-        expressions_dict=dat["expressions"],
-        step_dict=step_dict,
-        name_of_derivation=dat["derivations"][deriv_id]["name"],
+        dat=dat,
+        # expr_local_to_global=dat["expr local to global"],
+        # expressions_dict=dat["expressions"],
+        # step_dict=step_dict,
+        # name_of_derivation=dat["derivations"][deriv_id]["name"],
         derivation_validity_dict=derivation_validity_dict,
-        list_of_step_ids=sorted_step_ids,
+        list_of_sorted_linear_indices=list_of_sorted_linear_indices,
         title="select derivation steps to edit",
     )
 
@@ -1550,7 +1551,7 @@ def select_derivation_step_to_edit(deriv_id: str):
 def select_from_existing_derivations():
     """
     Which derivation does the user want to review?
-    Alternatively, the user can generate a PDF 
+    Alternatively, the user can generate a PDF
 
     >>> select_from_existing_derivations()
     """
@@ -1584,7 +1585,7 @@ def select_from_existing_derivations():
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                return redirect( url_for("select_from_existing_derivations"))
+                return redirect(url_for("select_from_existing_derivations"))
 
             return redirect(
                 url_for(
@@ -1601,7 +1602,7 @@ def select_from_existing_derivations():
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                return redirect( url_for("select_from_existing_derivations"))
+                return redirect(url_for("select_from_existing_derivations"))
 
             return redirect(
                 url_for(
@@ -2258,23 +2259,6 @@ def modify_step(deriv_id: str, step_id: str):
 
     dat = clib.read_db(path_to_db)
 
-    if deriv_id in dat["derivations"].keys():
-        # even though this HTML page focuses on a single step,
-        # the derivation steps table is shown, so we need to vaildate the step
-        derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
-            try:
-                derivation_validity_dict[step_id] = vir.validate_step(
-                    deriv_id, step_id, path_to_db
-                )
-            except Exception as err:
-                logger.error(str(err))
-                flash(str(err))
-                derivation_validity_dict[step_id] = "failed"
-    else:
-        logger.error("ERROR: " + deriv_id + " is not in derivations")
-        flash("ERROR: " + deriv_id + " is not in derivations")
-
     try:
         step_graphviz_png = compute.create_step_graphviz_png(
             deriv_id, step_id, path_to_db
@@ -2291,7 +2275,7 @@ def modify_step(deriv_id: str, step_id: str):
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
-        list_of_expression_AST_dicts = []
+        list_of_expression_AST_dicts = {}
 
     try:
         list_of_symbols_from_sympy = compute.list_symbols_used_in_step_from_sympy(
@@ -2310,6 +2294,7 @@ def modify_step(deriv_id: str, step_id: str):
         logger.error(str(err))
         flash(str(err))
         list_of_symbols_from_PDG_AST = []
+    logger.debug(list_of_symbols_from_PDG_AST)
 
     dict_of_ranked_list = {}
     for sympy_symbol in list_of_symbols_from_sympy:
@@ -2332,6 +2317,23 @@ def modify_step(deriv_id: str, step_id: str):
         logger.error(str(err))
         list_of_new_linear_indices = ["none"]
 
+    if deriv_id in dat["derivations"].keys():
+        # even though this HTML page focuses on a single step,
+        # the derivation steps table is shown, so we need to vaildate the step
+        derivation_validity_dict = {}
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+            try:
+                derivation_validity_dict[step_id] = vir.validate_step(
+                    deriv_id, step_id, path_to_db
+                )
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                derivation_validity_dict[step_id] = "failed"
+    else:
+        logger.error("ERROR: " + deriv_id + " is not in derivations")
+        flash("ERROR: " + deriv_id + " is not in derivations")
+
     return render_template(
         "modify_step.html",
         deriv_id=deriv_id,
@@ -2341,7 +2343,7 @@ def modify_step(deriv_id: str, step_id: str):
         dict_of_ranked_list=dict_of_ranked_list,
         list_of_symbols_from_sympy=list_of_symbols_from_sympy,
         list_of_symbols_from_PDG_AST=list_of_symbols_from_PDG_AST,
-        list_of_expression_AST_pictures=list_of_expression_AST_dicts,
+        list_of_expression_AST_dicts=list_of_expression_AST_dicts,
         step_dict=dat["derivations"][deriv_id]["steps"],
         derivation_validity_dict=derivation_validity_dict,
         expressions_dict=dat["expressions"],
