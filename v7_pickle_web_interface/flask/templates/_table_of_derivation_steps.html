@@ -12,7 +12,7 @@
     <th>step validity</th>
     <th>notes</th>
   </tr>
-{% for step_id, this_dict in step_dict.items() %}
+{% for step_id, this_dict in dat["derivations"][deriv_id]['steps'].items() %}
   <tr>
     <td>
       <a name="{{ step_id }}">
@@ -27,7 +27,7 @@
     <td>
       <OL>
         {% for local_id in this_dict['inputs'] %}
-          <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ expr_local_to_global[local_id] }}">
+          <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
           {{ local_id }}</a></LI>
         {% endfor %}
       </OL>
@@ -37,9 +37,9 @@
       <OL>
 {% for local_id in this_dict['inputs'] %}
         <LI>
-          <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ expr_local_to_global[local_id] }}">
-          {{ expr_local_to_global[local_id] }}</a>: <BR>
-          \({{ expressions_dict[expr_local_to_global[local_id]]['latex'] }}\)<BR>
+          <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+          {{ dat["expr local to global"][local_id] }}</a>: <BR>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
         </LI>
         {% endfor %}
       </OL>
@@ -49,7 +49,7 @@
     <td>
       <OL>
 {% for local_id in this_dict['feeds'] %}
-         <LI> <a href="{{ url_for('list_all_expressions')}}#{{ expr_local_to_global[local_id] }}">
+         <LI> <a href="{{ url_for('list_all_expressions')}}#{{ dat["expr local to global"][local_id] }}">
           {{ local_id }}</a>
          </LI>
         {% endfor %}
@@ -60,9 +60,9 @@
     <td>
       <OL>
 {% for local_id in this_dict['feeds'] %}
-         <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ expr_local_to_global[local_id] }}">
-          {{ expr_local_to_global[local_id] }}</a>: <BR>
-          \({{ expressions_dict[expr_local_to_global[local_id]]['latex'] }}\)<BR>
+         <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+          {{ dat["expr local to global"][local_id] }}</a>: <BR>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
          </LI>
         {% endfor %}
       </OL>
@@ -71,7 +71,7 @@
     <td>
       <OL>
        {% for local_id in this_dict['outputs'] %}
-       <LI><a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ expr_local_to_global[local_id] }}">
+       <LI><a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
           {{ local_id }}</a>
        </LI>
         {% endfor %}
@@ -82,9 +82,9 @@
       <OL>
  {% for local_id in this_dict['outputs'] %}
        <LI>
-          <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ expr_local_to_global[local_id] }}">
-          {{ expr_local_to_global[local_id] }}</a>: <BR>
-          \({{ expressions_dict[expr_local_to_global[local_id]]['latex'] }}\)<BR>
+          <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+          {{ dat["expr local to global"][local_id] }}</a>: <BR>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
        </LI> 
      {% endfor %}
       </OL>

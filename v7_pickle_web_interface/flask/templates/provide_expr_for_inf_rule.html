@@ -3,7 +3,7 @@
 
 {% block content %}
 
-<P>name of derivation: {{ name_of_derivation }}</P>
+<P>name of derivation: {{ dat["derivations"][deriv_id]["name"] }}</P>
 <P>inference rule: {{ inf_rule }}: <BR>
 {{ inf_rule_dict['latex'] }}
 </P>

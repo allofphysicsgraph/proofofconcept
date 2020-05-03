@@ -4,7 +4,7 @@
 {% block content %}
 
 <P>
-  Select derivation step to edit in {{ name_of_derivation }}
+  Select derivation step to edit in {{ dat["derivations"][deriv_id]["name"] }}
 <P>
 
 <P>
@@ -16,9 +16,9 @@
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon">Select a step ID to edit: </span>
+        <span class="input-group-addon">Select a step index to edit: </span>
             <select name="step_to_edit" class="selectpicker form-control">
-              {% for elem in list_of_step_ids %}
+              {% for elem in list_of_sorted_linear_indices %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>
@@ -37,9 +37,9 @@
   <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
   <div class="form-group">
     <div class="input-group">
-        <span class="input-group-addon">Select a step ID to delete: </span>
+        <span class="input-group-addon">Select a step index to delete: </span>
             <select name="step_to_delete" class="selectpicker form-control">
-              {% for elem in list_of_step_ids %}
+              {% for elem in list_of_sorted_linear_indices %}
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>

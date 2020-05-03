@@ -11,9 +11,14 @@
 
 <h2>AST for each expression in step</h2>
 <P>From Sympy's parsing of the Latex
-{% for ast_png_and_id in list_of_expression_AST_pictures %}
-  <P><a href="{{ url_for('list_all_expressions') }}?referrer=modify_step#{{ ast_png_and_id[1] }}">{{ ast_png_and_id[1] }}</a>: \({{ dat['expressions'][ast_png_and_id[1]]['latex'] }}\)<BR>
-    <img src="{{ url_for('static', filename=ast_png_and_id[0]) }}">
+{% for ast_png_and_id in list_of_expression_AST_dicts %}
+  <P><a href="{{ url_for('list_all_expressions') }}?referrer=modify_step#{{ ast_png_and_id['expr global id'] }}">{{ ast_png_and_id['expr global id'] }}</a>: \({{ dat['expressions'][ast_png_and_id['expr global id']]['latex'] }}\)<BR>
+symbols from Sympy: {{ ast_png_and_id['symbols from sympy'] }}<BR>
+symbols from PDG AST: {% for symbol_id in ast_png_and_id['symbols from PDG AST'] %}
+    (<a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#{{ symbol_id }}">{{ symbol_id }}</a>: {{ dat['symbols'][symbol_id]['latex'] }}), 
+    {% endfor %}
+<BR>
+    <img src="{{ url_for('static', filename=ast_png_and_id['ast png filename']) }}">
 {% endfor %}
 
 <H2>Symbols in use in this step</h2>
@@ -42,7 +47,7 @@
 <form method="post" action="">
 <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-<input type="submit" name="submit_button" value='view exploded graph'>
+<input type="submit" name="submit_button" value='view step with numeric IDs'>
 </form>
 
 
@@ -77,7 +82,7 @@ TODO -- not implemented
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
               {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['inputs'] %}
-              <option value="{{ expr_local_id }}">{{ expressions_dict[expr_local_to_global[expr_local_id]]['latex'] }}</option>
+              <option value="{{ expr_local_id }}">{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
@@ -101,7 +106,7 @@ TODO -- not implemented
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
               {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['feeds'] %}
-              <option value="{{ expr_local_id }}">{{ expressions_dict[expr_local_to_global[expr_local_id]]['latex'] }}</option>
+              <option value="{{ expr_local_id }}">{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
@@ -126,7 +131,7 @@ TODO -- not implemented
         <span class="input-group-addon">Select from</span>
             <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
               {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['outputs'] %}
-              <option value="{{ expr_local_id }}">{{ expressions_dict[expr_local_to_global[expr_local_id]]['latex'] }}</option>
+              <option value="{{ expr_local_id }}">{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>

@@ -17,12 +17,12 @@
            https://github.com/allofphysicsgraph/proofofconcept/issues/123
            also, the use of MathJax prevents search of Latex using ctrl+f
            https://github.com/allofphysicsgraph/proofofconcept/issues/121
-      \ ( { {  expressions_dict[expr_id]['latex'] } } \ ) -->
-      {{ expressions_dict[expr_id]['latex'] }}
+      \ ( { {  dat["expressions"][expr_id]['latex'] } } \ ) -->
+      {{ dat["expressions"][expr_id]['latex'] }}
     </td>
     <td>
       <UL>
-      {% for symbol_tup in expressions_dict[expr_id]['list of symbols'] %}
+      {% for symbol_tup in dat["expressions"][expr_id]['list of symbols'] %}
         <LI>
           <a href="{{ url_for('list_all_symbols') }}?referrer=_table_of_expressions#{{ symbol_tup[0] }}">
             {{ symbol_tup[1] }}
@@ -31,8 +31,8 @@
       {% endfor %}
       </UL>
     </td>
-    <td>{{ expressions_dict[expr_id]['name'] }}</td>
-    <td><small>{{ expressions_dict[expr_id]['notes'] }}</small></td>
+    <td>{{ dat["expressions"][expr_id]['name'] }}</td>
+    <td><small>{{ dat["expressions"][expr_id]['notes'] }}</small></td>
     <td>
       <UL>
         {% for deriv_id in expr_use_list %}
