@@ -22,7 +22,7 @@
     </td>
     <td>
       <UL>
-      {% for symbol_tup in dat["expressions"][expr_id]['list of symbols'] %}
+      {% for symbol_tup in expr_dict_with_symbol_list[expr_id]["list of symbols"] %}
         <LI>
           <a href="{{ url_for('list_all_symbols') }}?referrer=_table_of_expressions#{{ symbol_tup[0] }}">
             {{ symbol_tup[1] }}
@@ -34,6 +34,19 @@
     <td>{{ dat["expressions"][expr_id]['name'] }}</td>
     <td><small>{{ dat["expressions"][expr_id]['notes'] }}</small></td>
     <td>
+      {% if expr_use_list|length == 0 %}
+{% if not current_user.is_anonymous %}
+<form method="post" action="">
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <input type="submit" name="submit_button" value='delete step'>
+    <input name="expr ID to delete" type="hidden" value="{{ expr_id }}"></input>
+</form>
+{% else %}
+   &nbsp;
+{% endif %}
+      
+      {% else %}
       <UL>
         {% for deriv_id in expr_use_list %}
         <LI><a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}">
@@ -41,6 +54,7 @@
         </LI>
         {% endfor %}
       </UL>
+      {% endif %}
     </td>
   </tr>
 {% endfor %}

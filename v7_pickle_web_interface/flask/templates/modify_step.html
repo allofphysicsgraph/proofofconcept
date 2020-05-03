@@ -26,7 +26,7 @@ symbols from PDG AST: {% for symbol_id in ast_png_and_id['symbols from PDG AST']
     <img src="{{ url_for('static', filename=ast_png_and_id['ast png filename']) }}">
 {% endfor %}
 
-<H2>Symbols in use in this step</h2>
+<H2>Symbols in use in this step according to Sympy</h2>
 <P>From Sympy's parsing of the Latex
 <UL>
   {% for symbol_latex in list_of_symbols_from_sympy %}
@@ -42,10 +42,18 @@ symbols from PDG AST: {% for symbol_id in ast_png_and_id['symbols from PDG AST']
   {% endfor %}
 </UL>
 
+{% if dict_of_ranked_list.keys()|length > 0 %}
 <H2>Symbol matching</H2>
-
-{{ dict_of_ranked_list }}
-
+{% for sympy_symbol, list_of_PDG_symbol_IDs in dict_of_ranked_list.items() %}
+  {% if list_of_PDG_symbol_IDs|length == 0 %}
+    <P>For the symbol {{ sympy_symbol }}, a <a href="{{ url_for('list_all_symbols') }}#add symbol">new symbol entry</a> is probably needed since no match is available.
+  {% else %}
+    {{ sympy_symbol }} candidates: {{ list_of_PDG_symbol_IDs }}<BR>
+  {% endif %}
+{% endfor %}
+{% else %}
+<P>There are no unmatched symbols for this step when comparing Sympy and the PDG ASTs.
+{% endif %}
 <H2>Options</h2>
 
 <P>
