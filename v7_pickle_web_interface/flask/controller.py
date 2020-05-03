@@ -1302,6 +1302,7 @@ def list_all_expressions():
         dat=dat,
         expressions_dict=expr_dict_with_symbol_list,
         sorted_list_exprs=list_of_expr,
+        expr_dict_with_symbol_list=expr_dict_with_symbol_list,
         list_of_expr_not_appearing_in_any_derivations=list_of_expr_not_appearing_in_any_derivations,
         edit_expr_latex_webform=RevisedTextForm(request.form),
         edit_expr_name_webform=RevisedTextForm(request.form),
@@ -2326,18 +2327,17 @@ def modify_step(deriv_id: str, step_id: str):
         logger.error(str(err))
         flash(str(err))
         list_of_symbols_from_PDG_AST = []
-    logger.debug(list_of_symbols_from_PDG_AST)
 
+    list_of_symbols_without_id = []
+    for expr_AST_dict in list_of_expression_AST_dicts:
+        for symb in expr_AST_dict["sympy symbols without PDG AST ID"]:
+            list_of_symbols_without_id.append(symb)
+    list_of_symbols_without_id = list(set(list_of_symbols_without_id))
     dict_of_ranked_list = {}
-    for sympy_symbol in list_of_symbols_from_sympy:
-        try:
-            ranked_list_of_candidate_symbol_ids = compute.rank_candidate_pdg_symbols_for_sympy_symbol(
-                sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
-            )
-        except Exception as err:
-            logger.error(str(err))
-            flash(str(err))
-            ranked_list_of_candidate_symbol_ids = []
+    for sympy_symbol in list_of_symbols_without_id:
+        ranked_list_of_candidate_symbol_ids = compute.rank_candidate_pdg_symbols_for_sympy_symbol(
+            sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
+        )
         dict_of_ranked_list[sympy_symbol] = ranked_list_of_candidate_symbol_ids
 
     try:
