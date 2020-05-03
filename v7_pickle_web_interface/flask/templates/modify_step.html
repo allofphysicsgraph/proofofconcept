@@ -18,6 +18,11 @@ symbols from PDG AST: {% for symbol_id in ast_png_and_id['symbols from PDG AST']
     (<a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#{{ symbol_id }}">{{ symbol_id }}</a>: {{ dat['symbols'][symbol_id]['latex'] }}), 
     {% endfor %}
 <BR>
+{% if ast_png_and_id["sympy symbols without PDG AST ID"]|length > 0 %}
+    Sympy symbols lacking PDG AST ID: {{ ast_png_and_id["sympy symbols without PDG AST ID"] }}<BR>
+{% else %}
+    all Sympy symbols have corresponding PDG AST IDs<BR>
+{% endif %}
     <img src="{{ url_for('static', filename=ast_png_and_id['ast png filename']) }}">
 {% endfor %}
 

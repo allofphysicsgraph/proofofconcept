@@ -171,12 +171,103 @@ def create_session_id() -> str:
 
 def check_symbol_completeness_for_expr(
     list_of_sympy_symbols: list, list_of_PDG_AST_symbol_ids: list, path_to_db: str
-) -> bool:
+) -> list:
     """
-    >>> 
+    input: list of symbols detected by Sympy; each element is a string
+    returns: list of Sympy symbols that don't seem to have a corresponding entry in the PDG AST list of symbol IDs
+
+    >>> check_symbol_completeness_for_expr() 
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
+    list_of_sympy_symbols_lacking_PDG_id = []
+
+    for sympy_symbol in list_of_sympy_symbols:
+        sympy_symbol_has_PDG_AST_id = False
+        for symbol_id in list_of_PDG_AST_symbol_ids:
+            symbol_latex = dat["symbols"][symbol_id]["latex"]
+            if sympy_symbol in symbol_latex:
+                sympy_symbol_has_PDG_AST_id = True
+        if not sympy_symbol_has_PDG_AST_id:
+            list_of_sympy_symbols_lacking_PDG_id.append(sympy_symbol)
+
+    return list_of_sympy_symbols_lacking_PDG_id
+
+
+def guess_missing_PDG_AST_ids(
+    list_of_expression_AST_dicts: list, deriv_id: str, step_id: str, path_to_db: str
+) -> dict:
+    """
+    this runs as a second pass after create_AST_png_per_expression_in_step()
+    and fills in symbol_id based on what is present in other expressions within this step
+
+    >>> guess_missing_PDG_AST_ids()
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+
+    list_of_symbols_lacking_id = []  # with respect to this step
+    for expr_dict in list_of_expression_AST_dicts:
+        for sympy_symbol_missing_id in expr_dict["sympy symbols without PDG AST ID"]:
+            list_of_symbols_lacking_id.append(sympy_symbol_missing_id)
+    list_of_symbols_lacking_id = list(set(list_of_symbols_lacking_id))
+    logger.debug(
+        "list of symbols from Sympy that lack PDG symbol ID: "
+        + str(list_of_symbols_lacking_id)
+    )
+
+    list_of_PDG_symbol_ids = []  # with respect to this step
+    for expr_dict in list_of_expression_AST_dicts:
+        for symbol_id in expr_dict["symbols from PDG AST"]:
+            list_of_PDG_symbol_ids.append(symbol_id)
+    list_of_PDG_symbol_ids = list(set(list_of_PDG_symbol_ids))
+    logger.debug("list of symbol_ids in this step: " + str(list_of_PDG_symbol_ids))
+
+    symbol_candidate_dict = {}
+    for sympy_symbol_without_id in list_of_symbols_lacking_id:
+        list_of_candidate_ids = []
+        for PDG_symbol_id in list_of_PDG_symbol_ids:
+            if sympy_symbol_without_id in dat["symbols"][PDG_symbol_id]["latex"]:
+                list_of_candidate_ids.append(PDG_symbol_id)
+        symbol_candidate_dict[sympy_symbol_without_id] = list_of_candidate_ids
+    return symbol_candidate_dict
+
+
+def fill_in_missing_PDG_AST_ids(
+    symbol_candidate_dict, list_of_expression_AST_dicts, deriv_id, step_id, path_to_db
+) -> None:
+    """
+    if a symbol detected by Sympy has only one candidate ID, then update 
+
+    >>> list_of_expression_AST_dicts = {
+    ...         "expr global id": expr_global_id,
+    ...         "symbols from sympy": symbols_from_sympy,
+    ...         "symbols from PDG AST": symbols_from_PDG_AST,
+    ...         "sympy symbols without PDG AST ID": list_of_sympy_symbols_lacking_PDG_id}
+    >>> fill_in_missing_PDG_AST_ids()
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+
+    for sympy_symbol_without_id, list_of_candidate_ids in symbol_candidate_dict.items():
+        if len(list_of_candidate_ids) == 1:
+            logger.debug(
+                "updating sympy's "
+                + sympy_symbol_without_id
+                + " using symbol ID "
+                + list_of_candidate_ids[0]
+            )
+            for indx, expression_AST_dict in enumerate(list_of_expression_AST_dicts):
+                if (
+                    sympy_symbol_without_id
+                    in expression_AST_dict["sympy symbols without PDG AST ID"]
+                ):
+                    # list_of_expression_AST_dicts[indx]["sympy symbols without PDG AST ID"].remove(sympy_symbol_without_id)
+                    # list_of_expression_AST_dicts[indx]["symbols from PDG AST"].append(list_of_candidate_ids[0])
+                    dat["expressions"][
+                        list_of_expression_AST_dicts[indx]["expr global id"]
+                    ]["AST"].append(list_of_candidate_ids[0])
+    clib.write_db(path_to_db, dat)
     return
 
 
@@ -184,6 +275,9 @@ def rank_candidate_pdg_symbols_for_sympy_symbol(
     sympy_symbol: str, symbol_IDs_used_in_step_from_PDG_AST: list, path_to_db: str
 ) -> list:
     """
+    input: symbol (detected by Sympy) as string
+    returns: ranked list of PDG symbol IDs
+
     >>> rank_candidate_pdg_symbols_for_sympy_symbol()
     """
     logger.info("[trace]")
@@ -206,13 +300,17 @@ def rank_candidate_pdg_symbols_for_sympy_symbol(
 
 def list_symbols_used_in_expr_from_sympy(expr_latex: str) -> list:
     """
-    >>> 
+    input: latex expression as string
+
+    returns list of symbols detected by Sympy; each element is a string
+
+    >>> list_symbols_used_in_expr_from_sympy('a = b')
     """
     logger.info("[trace]")
     list_of_symbols = []
     symp_lat = parse_latex(expr_latex)
     for symb in symp_lat.atoms(sympy.Symbol):
-        list_of_symbols.append(symb)
+        list_of_symbols.append(str(symb))
     return list(set(list_of_symbols))
 
 
@@ -340,15 +438,23 @@ def create_AST_png_per_expression_in_step(
             expr_latex = dat["expressions"][expr_global_id]["latex"]
             # logger.debug('latex = ' + expr_latex)
             output_filename = expr_global_id + "_ast.png"
-
             create_AST_png_for_latex(expr_latex, output_filename)
+
+            symbols_from_sympy = list_symbols_used_in_expr_from_sympy(expr_latex)
+            symbols_from_PDG_AST = list_symbols_used_in_expr_from_PDG_AST(
+                dat["expressions"][expr_global_id]["AST"], path_to_db
+            )
+
+            list_of_sympy_symbols_lacking_PDG_id = check_symbol_completeness_for_expr(
+                symbols_from_sympy, symbols_from_PDG_AST, path_to_db
+            )
+
             this_dict = {
                 "ast png filename": output_filename,
                 "expr global id": expr_global_id,
-                "symbols from sympy": list_symbols_used_in_expr_from_sympy(expr_latex),
-                "symbols from PDG AST": list_symbols_used_in_expr_from_PDG_AST(
-                    dat["expressions"][expr_global_id]["AST"], path_to_db
-                ),
+                "symbols from sympy": symbols_from_sympy,
+                "symbols from PDG AST": symbols_from_PDG_AST,
+                "sympy symbols without PDG AST ID": list_of_sympy_symbols_lacking_PDG_id,
             }
             # pic_and_id = (output_filename, expr_global_id)
             list_of_expression_AST_pictures.append(this_dict)

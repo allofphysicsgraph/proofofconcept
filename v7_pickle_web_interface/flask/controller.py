@@ -2268,6 +2268,7 @@ def modify_step(deriv_id: str, step_id: str):
         flash(str(err))
         step_graphviz_png = "error.png"
 
+    # first run finds symbols that lack IDs
     try:
         list_of_expression_AST_dicts = compute.create_AST_png_per_expression_in_step(
             deriv_id, step_id, path_to_db
@@ -2275,7 +2276,38 @@ def modify_step(deriv_id: str, step_id: str):
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
-        list_of_expression_AST_dicts = {}
+        list_of_expression_AST_dicts = []
+
+    try:
+        symbol_candidate_dict = compute.guess_missing_PDG_AST_ids(
+            list_of_expression_AST_dicts, deriv_id, step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        symbol_candidate_dict = {}
+
+    try:
+        compute.fill_in_missing_PDG_AST_ids(
+            symbol_candidate_dict,
+            list_of_expression_AST_dicts,
+            deriv_id,
+            step_id,
+            path_to_db,
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+
+    # second run after having addressed the missing IDs
+    try:
+        list_of_expression_AST_dicts = compute.create_AST_png_per_expression_in_step(
+            deriv_id, step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_expression_AST_dicts = []
 
     try:
         list_of_symbols_from_sympy = compute.list_symbols_used_in_step_from_sympy(
