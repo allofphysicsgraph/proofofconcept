@@ -9821,6 +9821,19 @@
                 "real",
                 "complex"
             ]
+        },
+        "1115": {
+            "category": "variable",
+            "latex": "\\lambda",
+            "name": "wavelength",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Wavelength"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-03"
         }
     },
     "units": {
