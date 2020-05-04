@@ -2269,38 +2269,26 @@ def modify_step(deriv_id: str, step_id: str):
         flash(str(err))
         step_graphviz_png = "error.png"
 
-    # first run finds symbols that lack IDs
-    try:
-        list_of_expression_AST_dicts = compute.create_AST_png_per_expression_in_step(
-            deriv_id, step_id, path_to_db
-        )
-    except Exception as err:
-        logger.error(str(err))
-        flash(str(err))
-        list_of_expression_AST_dicts = []
+    # find symbols that lack IDs
+    list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
+        deriv_id, step_id, path_to_db
+    )
+    flash(
+        "list of symbols in step that lack ID: "
+        + str(list_of_symbols_in_step_that_lack_id)
+    )
+    logger.debug(
+        "list of symbols in step that lack ID: "
+        + str(list_of_symbols_in_step_that_lack_id)
+    )
 
-    try:
-        symbol_candidate_dict = compute.guess_missing_PDG_AST_ids(
-            list_of_expression_AST_dicts, deriv_id, step_id, path_to_db
-        )
-    except Exception as err:
-        logger.error(str(err))
-        flash(str(err))
-        symbol_candidate_dict = {}
+    symbol_candidate_dict = compute.guess_missing_PDG_AST_ids(
+        list_of_symbols_in_step_that_lack_id, deriv_id, step_id, path_to_db
+    )
+    compute.fill_in_missing_PDG_AST_ids(
+        symbol_candidate_dict, deriv_id, step_id, path_to_db
+    )
 
-    try:
-        compute.fill_in_missing_PDG_AST_ids(
-            symbol_candidate_dict,
-            list_of_expression_AST_dicts,
-            deriv_id,
-            step_id,
-            path_to_db,
-        )
-    except Exception as err:
-        logger.error(str(err))
-        flash(str(err))
-
-    # second run after having addressed the missing IDs
     try:
         list_of_expression_AST_dicts = compute.create_AST_png_per_expression_in_step(
             deriv_id, step_id, path_to_db
@@ -2328,9 +2316,12 @@ def modify_step(deriv_id: str, step_id: str):
         flash(str(err))
         list_of_symbols_from_PDG_AST = []
 
+    flash(str(list_of_expression_AST_dicts))
     list_of_symbols_without_id = []
     for expr_AST_dict in list_of_expression_AST_dicts:
         for symb in expr_AST_dict["sympy symbols without PDG AST ID"]:
+            flash("Sympy symbol without ID: " + symb)
+            logger.debug("Sympy symbol without ID: " + symb)
             list_of_symbols_without_id.append(symb)
     list_of_symbols_without_id = list(set(list_of_symbols_without_id))
     dict_of_ranked_list = {}

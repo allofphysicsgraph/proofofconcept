@@ -169,33 +169,44 @@ def create_session_id() -> str:
 #    return
 
 
-def check_symbol_completeness_for_expr(
-    list_of_sympy_symbols: list, list_of_PDG_AST_symbol_ids: list, path_to_db: str
+def find_symbols_in_step_that_lack_id(
+    deriv_id: str, step_id: str, path_to_db: str
 ) -> list:
     """
+    for a given step
     input: list of symbols detected by Sympy; each element is a string
     returns: list of Sympy symbols that don't seem to have a corresponding entry in the PDG AST list of symbol IDs
 
-    >>> check_symbol_completeness_for_expr() 
+    >>> find_symbols_in_step_that_lack_id() 
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     list_of_sympy_symbols_lacking_PDG_id = []
 
-    for sympy_symbol in list_of_sympy_symbols:
+    list_of_sympy_symbols_in_step = list_symbols_used_in_step_from_sympy(
+        deriv_id, step_id, path_to_db
+    )
+    list_of_PDG_AST_symbol_ids_in_step = list_symbols_used_in_step_from_PDG_AST(
+        deriv_id, step_id, path_to_db
+    )
+
+    for sympy_symbol in list_of_sympy_symbols_in_step:
         sympy_symbol_has_PDG_AST_id = False
-        for symbol_id in list_of_PDG_AST_symbol_ids:
+        for symbol_id in list_of_PDG_AST_symbol_ids_in_step:
             symbol_latex = dat["symbols"][symbol_id]["latex"]
             if sympy_symbol in symbol_latex:
                 sympy_symbol_has_PDG_AST_id = True
         if not sympy_symbol_has_PDG_AST_id:
             list_of_sympy_symbols_lacking_PDG_id.append(sympy_symbol)
 
-    return list_of_sympy_symbols_lacking_PDG_id
+    return list(set(list_of_sympy_symbols_lacking_PDG_id))
 
 
 def guess_missing_PDG_AST_ids(
-    list_of_expression_AST_dicts: list, deriv_id: str, step_id: str, path_to_db: str
+    list_of_symbols_in_step_lacking_id: list,
+    deriv_id: str,
+    step_id: str,
+    path_to_db: str,
 ) -> dict:
     """
     this runs as a second pass after create_AST_png_per_expression_in_step()
@@ -206,44 +217,41 @@ def guess_missing_PDG_AST_ids(
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
 
-    list_of_symbols_lacking_id = []  # with respect to this step
-    for expr_dict in list_of_expression_AST_dicts:
-        for sympy_symbol_missing_id in expr_dict["sympy symbols without PDG AST ID"]:
-            list_of_symbols_lacking_id.append(sympy_symbol_missing_id)
-    list_of_symbols_lacking_id = list(set(list_of_symbols_lacking_id))
     logger.debug(
         "list of symbols from Sympy that lack PDG symbol ID: "
-        + str(list_of_symbols_lacking_id)
+        + str(list_of_symbols_in_step_lacking_id)
     )
 
-    list_of_PDG_symbol_ids = []  # with respect to this step
-    for expr_dict in list_of_expression_AST_dicts:
-        for symbol_id in expr_dict["symbols from PDG AST"]:
-            list_of_PDG_symbol_ids.append(symbol_id)
-    list_of_PDG_symbol_ids = list(set(list_of_PDG_symbol_ids))
-    logger.debug("list of symbol_ids in this step: " + str(list_of_PDG_symbol_ids))
+    list_of_PDG_symbol_ids_in_step = list_symbols_used_in_step_from_PDG_AST(
+        deriv_id, step_id, path_to_db
+    )
+    logger.debug(
+        "list of symbol_ids in this step: " + str(list_of_PDG_symbol_ids_in_step)
+    )
 
     symbol_candidate_dict = {}
-    for sympy_symbol_without_id in list_of_symbols_lacking_id:
+    for sympy_symbol_without_id in list_of_symbols_in_step_lacking_id:
         list_of_candidate_ids = []
-        for PDG_symbol_id in list_of_PDG_symbol_ids:
+        for PDG_symbol_id in list_of_PDG_symbol_ids_in_step:
             if sympy_symbol_without_id in dat["symbols"][PDG_symbol_id]["latex"]:
                 list_of_candidate_ids.append(PDG_symbol_id)
         symbol_candidate_dict[sympy_symbol_without_id] = list_of_candidate_ids
+        if len(list_of_candidate_ids) == 0:  # no matches in step, look elsewhere
+            for symbol_id, symbol_dict in dat["symbols"].items():
+                if sympy_symbol_without_id in dat["symbols"][symbol_id]["latex"]:
+                    list_of_candidate_ids.append(symbol_id)
+            symbol_candidate_dict[sympy_symbol_without_id] = list_of_candidate_ids
+
+    logger.debug("symbol candidate dict: " + str(symbol_candidate_dict))
     return symbol_candidate_dict
 
 
 def fill_in_missing_PDG_AST_ids(
-    symbol_candidate_dict, list_of_expression_AST_dicts, deriv_id, step_id, path_to_db
+    symbol_candidate_dict, deriv_id, step_id, path_to_db
 ) -> None:
     """
     if a symbol detected by Sympy has only one candidate ID, then update 
 
-    >>> list_of_expression_AST_dicts = {
-    ...         "expr global id": expr_global_id,
-    ...         "symbols from sympy": symbols_from_sympy,
-    ...         "symbols from PDG AST": symbols_from_PDG_AST,
-    ...         "sympy symbols without PDG AST ID": list_of_sympy_symbols_lacking_PDG_id}
     >>> fill_in_missing_PDG_AST_ids()
     """
     logger.info("[trace]")
@@ -257,16 +265,20 @@ def fill_in_missing_PDG_AST_ids(
                 + " using symbol ID "
                 + list_of_candidate_ids[0]
             )
-            for indx, expression_AST_dict in enumerate(list_of_expression_AST_dicts):
-                if (
-                    sympy_symbol_without_id
-                    in expression_AST_dict["sympy symbols without PDG AST ID"]
-                ):
-                    # list_of_expression_AST_dicts[indx]["sympy symbols without PDG AST ID"].remove(sympy_symbol_without_id)
-                    # list_of_expression_AST_dicts[indx]["symbols from PDG AST"].append(list_of_candidate_ids[0])
-                    dat["expressions"][
-                        list_of_expression_AST_dicts[indx]["expr global id"]
-                    ]["AST"].append(list_of_candidate_ids[0])
+            for expr_global_id in list_expr_in_step(deriv_id, step_id, path_to_db):
+                expr_latex = dat["expressions"][expr_global_id]["latex"]
+                symbols_in_expr = list_symbols_used_in_expr_from_sympy(expr_latex)
+                if sympy_symbol_without_id in symbols_in_expr:
+                    dat["expressions"][expr_global_id]["AST"].append(
+                        list_of_candidate_ids[0]
+                    )
+        else:
+            logger.debug(
+                "sympy symbol "
+                + sympy_symbol_without_id
+                + " has more than one ID: "
+                + str(list_of_candidate_ids)
+            )
     clib.write_db(path_to_db, dat)
     return
 
@@ -365,7 +377,9 @@ def list_symbols_used_in_step_from_PDG_AST(
     return list_of_symbol_ids
 
 
-def list_symbols_used_in_step_from_sympy(deriv_id, step_id, path_to_db) -> list:
+def list_symbols_used_in_step_from_sympy(
+    deriv_id: str, step_id: str, path_to_db: str
+) -> list:
     """
     for all expressions in a step, what variables and constants are present?
 
@@ -445,8 +459,8 @@ def create_AST_png_per_expression_in_step(
                 dat["expressions"][expr_global_id]["AST"], path_to_db
             )
 
-            list_of_sympy_symbols_lacking_PDG_id = check_symbol_completeness_for_expr(
-                symbols_from_sympy, symbols_from_PDG_AST, path_to_db
+            list_of_sympy_symbols_lacking_PDG_id = find_symbols_in_step_that_lack_id(
+                deriv_id, step_id, path_to_db
             )
 
             this_dict = {
@@ -2157,6 +2171,20 @@ def generate_pdf_for_derivation(deriv_id: str, path_to_db: str) -> str:
 
     # return True, pdf_filename + ".pdf"
     return pdf_filename + ".pdf"
+
+
+def list_expr_in_step(deriv_id: str, step_id: str, path_to_db: str) -> list:
+    """
+    >>> list_expr_in_step()
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    list_of_global_expr = []
+    for connection_type in ["feeds", "inputs", "outputs"]:
+        for local_id in dat["derivations"][deriv_id]["steps"][step_id][connection_type]:
+            expr_global_id = dat["expr local to global"][local_id]
+            list_of_global_expr.append(expr_global_id)
+    return list_of_global_expr
 
 
 def list_expr_in_derivation(deriv_id: str, path_to_db: str) -> list:
