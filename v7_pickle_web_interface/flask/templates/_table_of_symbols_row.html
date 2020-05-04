@@ -1,0 +1,57 @@
+
+<!-- used by _table_of_symbols.html and modify_step.html and step_review.html -->
+<!-- in _table_of_symbols this is wrapped in
+     { % for symbol_id, symbol_use_list in symbol_popularity_dict.items() % } -->
+
+
+    <td><a name="{{ symbol_id }}">{{ symbol_id }}</a></td>
+    <!-- category -->
+    <td>{{ symbols_dict[symbol_id]['category'] }}</td>
+    <!-- latex -->
+    <td>\({{ symbols_dict[symbol_id]['latex'] }}\)</td>
+    <!-- scope -->
+    <td>{{ symbols_dict[symbol_id]['scope'] }}</td>
+    <!-- measure -->
+    <td>
+    {% if 'measure' in symbols_dict[symbol_id] %}
+      {{ symbols_dict[symbol_id]['measure'] }}
+    {% endif %}
+    </td>
+    <!-- name -->
+    <td>
+    {% if 'name' in symbols_dict[symbol_id] %}
+      {{ symbols_dict[symbol_id]['name'] }}
+    {% endif %}
+    </td>
+    <!-- value -->
+    <td>
+    {% if 'value' in symbols_dict[symbol_id] %}
+      {{ symbols_dict[symbol_id]['value'] }}
+    {% endif %}
+    </td>
+    <!-- used in derivations -->
+    <td>
+      <UL>
+        {% for deriv_id in symbol_popularity_dict[symbol_id] %}
+        <LI><a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}">
+           {{ dat['derivations'][deriv_id]['name'] }} </a>
+</LI>
+        {% endfor %}
+      </UL>
+    </td>
+    <!-- references -->
+    <td>
+    {% if 'references' in symbols_dict[symbol_id] %}
+        <UL>
+        {% for str_note in symbols_dict[symbol_id]['references'] %}
+          <!-- https://stackoverflow.com/a/43058043/1164295 -->
+          {% if str_note.startswith('http') %}
+            <LI><a href="{{ str_note }}">{{ str_note.split('/')[-1] }}</a>
+          {% else %}
+          <LI> str_note
+          {% endif %}
+
+        {% endfor %}
+        </UL>
+    {% endif %}
+    </td>
