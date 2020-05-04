@@ -6,44 +6,76 @@
 
     <td><a name="{{ symbol_id }}">{{ symbol_id }}</a></td>
     <!-- category -->
-    <td>{{ symbols_dict[symbol_id]['category'] }}</td>
+    <td>{{ dat["symbols"][symbol_id]['category'] }}</td>
     <!-- latex -->
-    <td>\({{ symbols_dict[symbol_id]['latex'] }}\)</td>
+    <td>\({{ dat["symbols"][symbol_id]['latex'] }}\)</td>
     <!-- scope -->
-    <td>{{ symbols_dict[symbol_id]['scope'] }}</td>
+    <td>{{ dat["symbols"][symbol_id]['scope'] }}</td>
     <!-- measure -->
     <td>
-    {% if 'measure' in symbols_dict[symbol_id] %}
-      {{ symbols_dict[symbol_id]['measure'] }}
+    {% if 'measure' in dat["symbols"][symbol_id] %}
+      {{ dat["symbols"][symbol_id]['measure'] }}
+    {% else %}
+      {% if current_user.is_anonymous %}
+        &nbsp;
+      {% else %}
+
+        {% if hide_symbol_forms is not defined %}
+        <form method="post" action="">
+          {{ dimensional_webform.csrf_token }}
+          <div class="form-group">
+            <div class="input-group">
+              {{ dimensional_webform.revised_text.label }}: {{ dimensional_webform.revised_text(size=10, maxlength=100) }}
+            </div>
+          <button type="submit" class="btn btn-default">Update</button>
+          </div>
+        </form>
+        {% endif %}
+      {% endif %}
     {% endif %}
     </td>
     <!-- name -->
     <td>
-    {% if 'name' in symbols_dict[symbol_id] %}
-      {{ symbols_dict[symbol_id]['name'] }}
+    {% if 'name' in dat["symbols"][symbol_id] %}
+      {{ dat["symbols"][symbol_id]['name'] }}
     {% endif %}
     </td>
     <!-- value -->
     <td>
-    {% if 'value' in symbols_dict[symbol_id] %}
-      {{ symbols_dict[symbol_id]['value'] }}
+    {% if 'value' in dat["symbols"][symbol_id] %}
+      {{ dat["symbols"][symbol_id]['value'] }}
     {% endif %}
     </td>
     <!-- used in derivations -->
     <td>
+    {% if symbol_popularity_dict[symbol_id]|length == 0 %}
+      {% if current_user.is_anonymous %}
+        &nbsp;
+      {% else %}
+        {% if hide_symbol_forms is not defined %}
+        <form method="post" action="">
+          <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+          <input type="submit" name="submit_button" value='delete symbol'>
+          <input name="symbol ID to delete" type="hidden" value="{{ symbol_id }}"></input>
+        </form>
+        {% endif %}
+      {% endif %}
+    {% else %}
       <UL>
         {% for deriv_id in symbol_popularity_dict[symbol_id] %}
-        <LI><a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}">
-           {{ dat['derivations'][deriv_id]['name'] }} </a>
-</LI>
+          <LI><a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}">
+            {{ dat['derivations'][deriv_id]['name'] }} </a>
+          </LI>
         {% endfor %}
       </UL>
+    {% endif %}
     </td>
     <!-- references -->
     <td>
-    {% if 'references' in symbols_dict[symbol_id] %}
+    {% if 'references' in dat["symbols"][symbol_id] %}
         <UL>
-        {% for str_note in symbols_dict[symbol_id]['references'] %}
+        {% for str_note in dat["symbols"][symbol_id]['references'] %}
           <!-- https://stackoverflow.com/a/43058043/1164295 -->
           {% if str_note.startswith('http') %}
             <LI><a href="{{ str_note }}">{{ str_note.split('/')[-1] }}</a>

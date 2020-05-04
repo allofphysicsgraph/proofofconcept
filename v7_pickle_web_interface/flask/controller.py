@@ -450,7 +450,19 @@ class SymbolEntry(FlaskForm):
     logger.info("[trace]")
     symbol_radio = RadioField(
         "Label",
-        choices=[("already_exists", "already exists"), ("create_new", "create new"),],
+        choices=[("opt 1", "opt 1"),
+                 ("opt 2", "opt 2"),
+                 ("opt 3", "opt 3"),
+                 ("opt 4", "opt 4"),
+                 ("opt 5", "opt 5"),
+                 ("opt 6", "opt 6"),
+                 ("opt 7", "opt 7"),
+                 ("opt 8", "opt 8"),
+                 ("opt 9", "opt 9"),
+                 ("opt 10", "opt 10"),
+                 ("opt 11", "opt 11"),
+                 ("use_existing", "use existing"), 
+                 ("create_new", "create new"),],
         default="already_exists",
     )
 
@@ -1178,8 +1190,9 @@ def list_all_symbols():
 
     return render_template(
         "list_all_symbols.html",
-        symbols_dict=dat["symbols"],
+        #symbols_dict=dat["symbols"],
         dat=dat,
+        dimensional_webform=RevisedTextForm(request.form),
         new_symbol_form=NewSymbolForm(request.form),
         sorted_list_symbols=sorted_list_symbols,
         sorted_list_symbols_not_in_use=sorted_list_symbols_not_in_use,
@@ -1288,6 +1301,7 @@ def list_all_expressions():
         logger.error(str(err))
         flash(str(err))
         list_of_expr_not_appearing_in_any_derivations = []
+
     try:
         expr_dict_with_symbol_list = compute.generate_expr_dict_with_symbol_list(
             path_to_db
@@ -1678,7 +1692,7 @@ def new_step_select_inf_rule(deriv_id: str):
     return render_template(
         "new_step_select_inf_rule.html",
         title=dat["derivations"][deriv_id]["name"],
-        name_of_derivation=dat["derivations"][deriv_id]["name"],
+        dat=dat,
         inf_rule_list=list_of_inf_rules,
         deriv_id=deriv_id,
     )
@@ -1810,20 +1824,26 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         infrules_modified_latex_dict[infrule_name] = infrule_dict
     # logger.debug('infrules_modified_latex_dict =' + str(infrules_modified_latex_dict))
 
+    try:
+        expr_dict_with_symbol_list = compute.generate_expr_dict_with_symbol_list(
+            path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        expr_dict_with_symbol_list = {}
+
     return render_template(
         "provide_expr_for_inf_rule.html",
         deriv_id=deriv_id,
         dat=dat,
-        name_of_derivation=dat["derivations"][deriv_id]["name"],
         expression_popularity_dict=expression_popularity_dict,
-        expressions_dict=dat["expressions"],
         inf_rule_dict=infrules_modified_latex_dict[inf_rule],
         list_of_local_id=list_of_local_id,
         list_of_global_id_not_in_derivation=list_of_global_id_not_in_derivation,
-        step_dict=dat["derivations"][deriv_id]["steps"],
+        expr_dict_with_symbol_list=expr_dict_with_symbol_list,
         inf_rule=inf_rule,
         derivation_validity_dict=derivation_validity_dict,
-        expr_local_to_global=dat["expr local to global"],
         webform=webform,
         title="provide expr for inference rule",
     )
@@ -2344,10 +2364,10 @@ def modify_step(deriv_id: str, step_id: str):
         # even though this HTML page focuses on a single step,
         # the derivation steps table is shown, so we need to vaildate the step
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+        for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
-                    deriv_id, step_id, path_to_db
+                    deriv_id, this_step_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -2357,23 +2377,33 @@ def modify_step(deriv_id: str, step_id: str):
         logger.error("ERROR: " + deriv_id + " is not in derivations")
         flash("ERROR: " + deriv_id + " is not in derivations")
 
+    dat = clib.read_db(path_to_db)
+    try:
+        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
+            path_to_db
+        )
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        symbol_popularity_dict = {}
+
     return render_template(
         "modify_step.html",
         deriv_id=deriv_id,
         step_id=step_id,
         name_of_graphviz_png=step_graphviz_png,
         dat=dat,
+        symbol_popularity_dict=symbol_popularity_dict,
         dict_of_ranked_list=dict_of_ranked_list,
+        dimensional_webform=RevisedTextForm(request.form),
         list_of_symbols_from_sympy=list_of_symbols_from_sympy,
         list_of_symbols_from_PDG_AST=list_of_symbols_from_PDG_AST,
         list_of_expression_AST_dicts=list_of_expression_AST_dicts,
-        step_dict=dat["derivations"][deriv_id]["steps"],
         derivation_validity_dict=derivation_validity_dict,
-        expressions_dict=dat["expressions"],
         list_of_new_linear_indices=list_of_new_linear_indices,
         edit_expr_latex_webform=RevisedTextForm(request.form),
         edit_step_note_webform=RevisedTextForm(request.form),
-        expr_local_to_global=dat["expr local to global"],
+        select_symbol_webform=SymbolEntry(request.form),
         title="modify step",
     )
 

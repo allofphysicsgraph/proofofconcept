@@ -48,7 +48,19 @@
 </UL>
 
 {% if dict_of_ranked_list.keys()|length > 0 %}
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<legend>
+  <a name="symbol matching">
   <H2>Symbol matching</H2>
+  </a>
+</legend>
+<form method="post" action="">
+  <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+  <div class="form-group">
+    <div class="input-group">
+
   {% for sympy_symbol, list_of_PDG_symbol_IDs in dict_of_ranked_list.items() %}
     {% if list_of_PDG_symbol_IDs|length == 0 %}
       <P>For the symbol {{ sympy_symbol }}, a <a href="{{ url_for('list_all_symbols') }}#add symbol">new symbol entry</a> is probably needed since no match is available.
@@ -56,6 +68,7 @@
       {{ sympy_symbol }} candidates:
 <table border="1">
     <tr>
+      <th>select one</th>
       <th>symbol ID</th>
       <th>category</th>
       <th>latex</th>
@@ -66,24 +79,36 @@
       <th>Used in derivations</th>
       <th>references</th>
     </tr>
-{% for symbol_id in list_of_PDG_symbol_IDs %}
 
+{% for symbol_id in list_of_PDG_symbol_IDs %}
   <tr>
-    {% include '_table_of_symbols_row.html' %}
-    <!--
-    <td>{ { symbol_id }}</td>
-    <td>{ { dat['symbols'][ symbol_id ]['latex'] }}</td>
-    -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio -->
+    <td><input name="symbol_radio" type="radio" value="symbol radio {{ symbol_id }}"></td>
+    {% set hide_symbol_forms = "true" %}
+    {% include '_table_of_symbols_row.html' %} 
   </tr>
 {% endfor %}
   <tr>
-    <td colspan="2">select an existing symbol</td>
+    <td><input name="symbol_radio" type="radio" value="symbol radio existing"></td>
+    <td colspan="5">select an existing symbol
+            <select name="existing symbol" class="selectpicker form-control">
+              {% for sid, symbol_dict in dat['symbols']|dictsort %}
+              <option value="{{ sid }}">{{ sid }}, {{ dat['symbols'][sid]['latex'] }}</option>
+              {% endfor %}
+            </select>
+</td>
   </tr>
   <tr>
-    <td colspan="2">create new symbol</td>
+    <td>&nbsp;</td>
+    <td colspan="5"><a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#add symbol">create new symbol</a>
+</td>
   </tr>
 </table>
-
+<P><input type="submit" name="submit_button" value="Submit">
+    </div>
+  </div>
+</form>
+</fieldset>
 <BR>
     {% endif %}
   {% endfor %}
@@ -111,19 +136,27 @@
 
 <!-- https://jinja.palletsprojects.com/en/2.11.x/templates/#builtin-filters -->
 {% if dat["derivations"][deriv_id]['steps'][step_id]['inputs']|length > 0 %}
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<legend>
 <a name="change global id">
   <h3>Update the global ID</h3>
 </a>
+</legend>
 TODO -- not implemented
 <form method="post" action="">
  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-
 </form>
+</fieldset>
+{% endif %}
 
 
+{% if dat["derivations"][deriv_id]['steps'][step_id]['inputs']|length > 0 %}
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<legend>
 <a name="edit input expr latex">
   <h3>Edit the latex for an input expression</h3>
 </a>
+</legend>
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
     {{ edit_expr_latex_webform.csrf_token }}
@@ -142,12 +175,16 @@ TODO -- not implemented
 
   </div>
 </form>
+</fieldset>
 {% endif %}
 
 {% if dat["derivations"][deriv_id]['steps'][step_id]['feeds']|length > 0 %}
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<legend>
 <a name="edit feed expr latex">
   <h3>Edit the latex for a feed expression</h3>
 </a>
+</legend>
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
     {{ edit_expr_latex_webform.csrf_token }}
@@ -166,13 +203,17 @@ TODO -- not implemented
 
   </div>
 </form>
+</fieldset>
 {% endif %}
 
 
 {% if dat["derivations"][deriv_id]['steps'][step_id]['outputs']|length > 0 %}
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<legend>
 <a id="edit output expr latex">
   <h3>Edit the latex for an output expression</h3>
 </a>
+</legend>
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
     {{ edit_expr_latex_webform.csrf_token }}
@@ -191,12 +232,16 @@ TODO -- not implemented
 
   </div>
 </form>
+</fieldset>
 {% endif %}
 
 <P>
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<legend>
 <a name="delete step">
 <H3>Delete Step</H3>
 </a>
+</legend>
 <form method="post" action="">
 <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -206,13 +251,18 @@ TODO -- not implemented
 
   </div>
 </form>
+</fieldset>
 </P>
 
+
 <P>
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<legend>
 <a name="change linear index of step">
   <h3>change linear index for step</h3>
  </a>
- Current step index is {{ dat["derivations"][deriv_id]['steps'][step_id]["linear index"] }}.<BR>
+ </legend>
+Current step index is {{ dat["derivations"][deriv_id]['steps'][step_id]["linear index"] }}.<BR>
  Change step index to
 <!-- New linear index must be a rational number greater than zero and must not exist<BR> -->
 <form method="post" action="">
@@ -231,12 +281,16 @@ TODO -- not implemented
 
   </div>
 </form>
+</fieldset>
 </P>
 
 <P>
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<legend>
   <a name="edit note for step">
     <h3>Edit note for step</H3>
   </a>
+</legend>
   Current note is: {{ dat['derivations'][deriv_id]['steps'][step_id]['notes'] }}
 <form method="post" action="">
 {{ edit_step_note_webform.csrf_token }}
@@ -248,6 +302,7 @@ TODO -- not implemented
 <input type="submit" name="submit_button" value='edit note for step'>
   </div>
 </form>
+</fieldset>
 </P>
 
 
