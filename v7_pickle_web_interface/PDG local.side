@@ -1,0 +1,117 @@
+{
+  "id": "ef44caaf-d584-4594-8cec-d61faf3fcb6b",
+  "version": "2.0",
+  "name": "PDG local",
+  "url": "http://localhost:5000",
+  "tests": [{
+    "id": "742577d3-6a48-4201-afeb-a4d1077fc5de",
+    "name": "input new derivation asdf and \"begin derivation\" with \"a = b\"",
+    "commands": [{
+      "id": "09123f0c-da5f-404d-a5ed-a24e5f4d60bc",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "78c9b284-0945-4234-af08-587e448a792f",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6d5c3432-67f2-4b3f-9baa-337a9fb30c4f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=navigation",
+      "targets": [
+        ["linkText=navigation", "linkText"],
+        ["css=body > p:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'navigation')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/navigation?referrer=index')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'navigation')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5ecb4959-2784-4154-8417-bed9f5f4a493",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=show all derivations",
+      "targets": [
+        ["linkText=show all derivations", "linkText"],
+        ["css=li:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'show all derivations')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/show_all_derivations?referrer=navigation')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'show all derivations')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "cbe65843-ca73-4c9a-a257-81e2e2bd55af",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Euler equation proof",
+      "targets": [
+        ["linkText=Euler equation proof", "linkText"],
+        ["css=tr:nth-child(1) a:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Euler equation proof')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/review_derivation/000001/?referrer=_table_of_derivations')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Euler equation proof')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7153c21c-8c1d-498e-aaf6-e495e6111e37",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=4923339482",
+      "targets": [
+        ["linkText=4923339482", "linkText"],
+        ["css=tr:nth-child(1) > td:nth-child(4) a", "css:finder"],
+        ["xpath=//a[contains(text(),'4923339482')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/list_all_expressions?referrer=_table_of_derivation_steps#4923339482')])[2]", "xpath:href"],
+        ["xpath=//td[4]/ol/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'4923339482')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "d2795fa5-482e-4aa3-a74f-fef5e0eedbc6",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(143) > td:nth-child(3) li:nth-child(1) > a",
+      "targets": [
+        ["css=tr:nth-child(143) > td:nth-child(3) li:nth-child(1) > a", "css:finder"],
+        ["xpath=(//a[contains(text(),'\\hbar')])[19]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/list_all_symbols?referrer=_table_of_expressions#1054')])[19]", "xpath:href"],
+        ["xpath=//tr[143]/td[3]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0f905747-009d-4024-9a54-d17a5e23c2c3",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Physics Derivation Graph navigation",
+      "targets": [
+        ["linkText=Physics Derivation Graph navigation", "linkText"],
+        ["css=tbody:nth-child(1) td:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Physics Derivation Graph navigation')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/navigation')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Physics Derivation Graph navigation')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "0ec8e502-cb56-4461-bef0-fe0348b0e30f",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["742577d3-6a48-4201-afeb-a4d1077fc5de"]
+  }],
+  "urls": ["http://localhost:5000/"],
+  "plugins": []
+}

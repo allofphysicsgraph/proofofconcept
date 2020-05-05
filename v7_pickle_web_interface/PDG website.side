@@ -1,0 +1,184 @@
+{
+  "id": "4237990c-07df-4ad7-8bb6-493b81c26ff6",
+  "version": "2.0",
+  "name": "PDG website",
+  "url": "http://derivationmap.net",
+  "tests": [{
+    "id": "c9e60a23-7b24-4922-b18b-fbbdbc500f3b",
+    "name": "PDG no signin",
+    "commands": [{
+      "id": "5fa500e4-a0e2-4778-82bb-bb9148ce6c46",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "8c06c9c2-05dd-4028-8ac3-29ca3d388365",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1280x824",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2cb16d52-a6e3-473f-9cd1-119dabaf9d50",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=navigation",
+      "targets": [
+        ["linkText=navigation", "linkText"],
+        ["css=body > p:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'navigation')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/navigation?referrer=index')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'navigation')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5ac2cdb2-50aa-42b8-adf9-6a23f107406f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=show all derivations",
+      "targets": [
+        ["linkText=show all derivations", "linkText"],
+        ["css=li:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'show all derivations')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/show_all_derivations?referrer=navigation')]", "xpath:href"],
+        ["xpath=//li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'show all derivations')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "471430fc-3a46-419c-bc84-05f9aff9b368",
+      "comment": "",
+      "command": "click",
+      "target": "css=tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(1)",
+      "targets": [
+        ["css=tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(1)", "css:finder"],
+        ["xpath=//p[3]/table/tbody/tr/td", "xpath:position"],
+        ["xpath=//td[contains(.,'Euler equation proof')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a036ef87-2130-45bd-81f6-64cabb82bf4c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Euler equation proof",
+      "targets": [
+        ["linkText=Euler equation proof", "linkText"],
+        ["css=tr:nth-child(1) a:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Euler equation proof')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/review_derivation/000001/?referrer=_table_of_derivations')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'Euler equation proof')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ac2551fc-1879-4ffc-9081-01ab3ae82574",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=9482923849",
+      "targets": [
+        ["linkText=9482923849", "linkText"],
+        ["css=tr:nth-child(1) > td:nth-child(7) a", "css:finder"],
+        ["xpath=//a[contains(text(),'9482923849')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/list_all_expressions?referrer=_table_of_derivation_steps#9482923849')])[2]", "xpath:href"],
+        ["xpath=//td[7]/ol/li/a", "xpath:position"],
+        ["xpath=//a[contains(.,'9482923849')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7c2f412a-bc22-4301-9ecf-a9087f7720e6",
+      "comment": "",
+      "command": "click",
+      "target": "css=tr:nth-child(226) > td:nth-child(3) a",
+      "targets": [
+        ["css=tr:nth-child(226) > td:nth-child(3) a", "css:finder"],
+        ["xpath=(//a[contains(text(),'\\pi')])[26]", "xpath:link"],
+        ["xpath=(//a[contains(@href, '/list_all_symbols?referrer=_table_of_expressions#3141')])[26]", "xpath:href"],
+        ["xpath=//tr[226]/td[3]/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "18a2f846-17cc-4753-8170-b20ecf4bfbe3",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Physics Derivation Graph navigation",
+      "targets": [
+        ["linkText=Physics Derivation Graph navigation", "linkText"],
+        ["css=tbody:nth-child(1) td:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Physics Derivation Graph navigation')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/navigation')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Physics Derivation Graph navigation')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9e312668-d92b-492c-8576-d6e11598b40f",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=documentation for developers",
+      "targets": [
+        ["linkText=documentation for developers", "linkText"],
+        ["css=p:nth-child(2) > a:nth-child(4)", "css:finder"],
+        ["xpath=//a[contains(text(),'documentation for developers')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/developer_documentation')]", "xpath:href"],
+        ["xpath=//div/p/a[4]", "xpath:position"],
+        ["xpath=//a[contains(.,'documentation for developers')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "687223fd-7482-4f69-bc7f-426d2b009e84",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=user documentation",
+      "targets": [
+        ["linkText=user documentation", "linkText"],
+        ["css=p:nth-child(3) > a:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'user documentation')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/user_documentation?referrer=developer_documentation')]", "xpath:href"],
+        ["xpath=//p/a", "xpath:position"],
+        ["xpath=//a[contains(.,'user documentation')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a78aa65a-d390-4acc-bf7f-a140579567fb",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=FAQ",
+      "targets": [
+        ["linkText=FAQ", "linkText"],
+        ["css=p:nth-child(2) > a:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'FAQ')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/faq')]", "xpath:href"],
+        ["xpath=//div/p/a[2]", "xpath:position"],
+        ["xpath=//a[contains(.,'FAQ')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "dbf61c10-5dc9-4748-996d-c87b306f7d2b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Physics Derivation Graph navigation",
+      "targets": [
+        ["linkText=Physics Derivation Graph navigation", "linkText"],
+        ["css=td:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Physics Derivation Graph navigation')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/navigation')]", "xpath:href"],
+        ["xpath=//a", "xpath:position"],
+        ["xpath=//a[contains(.,'Physics Derivation Graph navigation')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "a8669441-9c6e-4cc6-9973-19b3ad625d58",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["c9e60a23-7b24-4922-b18b-fbbdbc500f3b"]
+  }],
+  "urls": ["http://derivationmap.net/"],
+  "plugins": []
+}
