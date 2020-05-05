@@ -8,9 +8,17 @@
 <!-- { { wtf.quick_form(form) } } -->
 
 
+
+
 <P>
   {% if current_user.is_anonymous %}
-<P>If you already have an account, then log in:</P>
+<P>If you already have an account, then you can either log in using Google</P>
+
+<!-- https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin -->
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+<P>or log into a local account</P>
+
     <form method="post" action="">
   {{ webform.hidden_tag() }}
       <div class="form-group">
@@ -23,6 +31,16 @@
       </div>
     </form>
 
+<!-- https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin -->
+<script>
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+</script>
 
 <P>
   If you do not have an account, you can <a href="{{ url_for('create_new_account') }}?referrer=login">create an account</a>

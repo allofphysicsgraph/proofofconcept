@@ -23,9 +23,21 @@
 <!-- https://github.com/allofphysicsgraph/proofofconcept/issues/110 -->
 {% if not current_user.is_anonymous %}
    Logged in as {{ current_user.username }} |
-    <a href="{{ url_for('logout') }}">Log out</a>
+    <a href="{{ url_for('logout') }}">Log out locally</a>
+
+<!-- https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin -->
+<a href="#" onclick="signOut();">Sign out of Google</a>
+<script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+
 {% else %}
-    <a href="{{ url_for('login') }}">Sign in</a>
+    <a href="{{ url_for('login') }}">Sign in</a> 
 {% endif %}
        </td>
       </tr>
