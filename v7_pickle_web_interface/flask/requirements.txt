@@ -1,21 +1,45 @@
 Flask
-graphviz
 flask-wtf
 flask-login
 flask_bootstrap
-mypy
-black
+
+# image size
 opencv-python
+
+# visualize graphs as static PNG or SVG
+graphviz
+
 wheel
 gunicorn
-pycallgraph
-prospector
+
+# convert internal data structure to dataframe; 
+# also used for monitoring page when parsing logs
 pandas
+
+# code formatting and consistency checking
+mypy
+prospector
+pycallgraph
+black
 flake8
 pylint
+
+# validate JSON
 jsonschema
+
+# step validation
 sympy==1.5.1
 antlr4-python3-runtime
+
+# monitoring logs
 matplotlib
 python-geoip-geolite2
 python-geoip-python3
+
+# Sign in with Google
+google-api-python-client
+oauth2client
+# https://google-auth.readthedocs.io/en/latest/reference/google.auth.transport.requests.html
+google-auth-httplib2 
+google-auth-oauthlib
+

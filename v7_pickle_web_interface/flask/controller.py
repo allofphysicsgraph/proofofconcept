@@ -557,8 +557,6 @@ def after_request(response):
     return response
 
 
-
-
 @login_manager.unauthorized_handler
 def unauthorized():
     """
@@ -695,6 +693,7 @@ def create_new_account():
         "create_new_account.html", webform=webform, title="Create new account"
     )
 
+
 @app.route("/tokensignin", methods=["GET", "POST"])
 def tokensignin():
     """
@@ -710,23 +709,24 @@ def tokensignin():
         # if idinfo['aud'] not in [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]:
         #     raise ValueError('Could not verify audience.')
 
-        if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-            raise ValueError('Wrong issuer.')
+        if idinfo["iss"] not in ["accounts.google.com", "https://accounts.google.com"]:
+            raise ValueError("Wrong issuer.")
 
         # If auth request is from a G Suite domain:
         # if idinfo['hd'] != GSUITE_DOMAIN_NAME:
         #     raise ValueError('Wrong hosted domain.')
 
         # ID token is valid. Get the user's Google Account ID from the decoded token.
-        userid = idinfo['sub']
+        userid = idinfo["sub"]
         logger.debug(userid)
         flash(userid)
     except ValueError:
         # Invalid token
-        logger.debug('invalid token according to Google')
-        flash('invalid token according to Google')
+        logger.debug("invalid token according to Google")
+        flash("invalid token according to Google")
         pass
-    return redirect(url_for('navigation', referrer='tokensignin'))
+    return redirect(url_for("navigation", referrer="tokensignin"))
+
 
 @app.route("/user/<user_name>/", methods=["GET", "POST"])
 def user(user_name):
