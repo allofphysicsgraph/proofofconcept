@@ -2208,17 +2208,46 @@ def modify_step(deriv_id: str, step_id: str):
                 #                      ('existing symbol selection for v', 'NONE'),
                 #                      ('symbol_radio_3', 'symbol radio 5156 m'),
                 #                      ('existing symbol selection for m', 'NONE'),
-                #                      ('symbol_radio_2', 'existing symbol radio for E'),
-                #                      ('existing symbol selection for E', '4931'),
+                #                      ('symbol_radio_2', 'existing symbol for E'),
+                #                      ('existing symbol for E', '4931'),
                 #                      ('submit_button', 'update symbols')])
                 for this_key in request.form.keys():
                     if this_key.startswith("symbol_radio_"):
                         if request.form[this_key].startswith("symbol radio "):
-                            pass
-                        elif request.form[this_key].startswith(
-                            "existing symbol radio for "
-                        ):
-                            pass
+                            selected_string = request.form[this_key]
+                            selected_string = selected_string.replace(
+                                "symbol radio ", ""
+                            )
+                            new_symbol_id = selected_string.split(" ")[0]
+                            sympy_symbol = selected_string.split(" ")[1]
+                            compute.update_symbol_in_step(
+                                sympy_symbol,
+                                new_symbol_id,
+                                deriv_id,
+                                step_id,
+                                path_to_db,
+                            )
+                            flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
+                        elif request.form[this_key].startswith("existing symbol for "):
+                            for find_key in request.form.keys():
+                                if find_key == request.form[this_key]:
+                                    new_symbol_id = request.form[find_key]
+                                    sympy_symbol = find_key.replace(
+                                        "existing symbol for ", ""
+                                    )
+                                    compute.update_symbol_in_step(
+                                        sympy_symbol,
+                                        new_symbol_id,
+                                        deriv_id,
+                                        step_id,
+                                        path_to_db,
+                                    )
+                                    flash(
+                                        "updated "
+                                        + sympy_symbol
+                                        + " as ID "
+                                        + new_symbol_id
+                                    )
                         else:
                             flash("unrecognized button text")
                             logger.error("unrecognized button text")

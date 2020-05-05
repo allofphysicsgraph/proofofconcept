@@ -167,6 +167,26 @@ def create_session_id() -> str:
 #    dat = clib.read_db(path_to_db)
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
+def update_symbol_in_step(
+    sympy_symbol: str, symbol_id: str, deriv_id: str, step_id: str, path_to_db: str
+) -> None:
+    """
+    In a webform a user associated a sympy symbol with a PDG symbol_id.
+    This function updates the database to reflect that selection
+
+    >>> update_symbol_in_step()
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+
+    for expr_global_id in list_expr_in_step(deriv_id, step_id, path_to_db):
+        expr_latex = dat["expressions"][expr_global_id]["latex"]
+        symbols_in_expr = list_symbols_used_in_expr_from_sympy(expr_latex)
+        if sympy_symbol in symbols_in_expr:
+            dat["expressions"][expr_global_id]["AST"].append(symbol_id)
+
+    clib.write_db(path_to_db, dat)
+    return
 
 
 def find_symbols_in_step_that_lack_id(
