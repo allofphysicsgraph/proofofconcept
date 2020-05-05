@@ -34,6 +34,16 @@
 <!-- https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin -->
 <script>
 function onSignIn(googleUser) {
+  // https://developers.google.com/identity/sign-in/web/backend-auth
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', "{{ url_for('tokensignin') }}");
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.onload = function() {
+    console.log('Signed in as: ' + xhr.responseText);
+  };
+  xhr.send('idtoken=' + id_token);
+
+  // from https://developers.google.com/identity/sign-in/web/sign-in
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
   console.log('Name: ' + profile.getName());
