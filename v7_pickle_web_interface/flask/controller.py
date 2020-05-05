@@ -2204,22 +2204,33 @@ def modify_step(deriv_id: str, step_id: str):
                 )
 
             elif request.form["submit_button"] == "update symbols":
-            # ImmutableMultiDict([ ('symbol_radio_1', 'symbol radio 1357 v'), 
-            #                      ('existing symbol selection for v', 'NONE'), 
-            #                      ('symbol_radio_3', 'symbol radio 5156 m'), 
-            #                      ('existing symbol selection for m', 'NONE'), 
-            #                      ('symbol_radio_2', 'existing symbol radio for E'), 
-            #                      ('existing symbol selection for E', '4931'), 
-            #                      ('submit_button', 'update symbols')])
+                # ImmutableMultiDict([ ('symbol_radio_1', 'symbol radio 1357 v'),
+                #                      ('existing symbol selection for v', 'NONE'),
+                #                      ('symbol_radio_3', 'symbol radio 5156 m'),
+                #                      ('existing symbol selection for m', 'NONE'),
+                #                      ('symbol_radio_2', 'existing symbol radio for E'),
+                #                      ('existing symbol selection for E', '4931'),
+                #                      ('submit_button', 'update symbols')])
                 for this_key in request.form.keys():
-                    if this_key.startswith('symbol_radio_'):
-                        if request.form[this_key].startswith('symbol radio '):
-                        elif request.form[this_key].startswith('existing symbol radio for '):
+                    if this_key.startswith("symbol_radio_"):
+                        if request.form[this_key].startswith("symbol radio "):
+                            pass
+                        elif request.form[this_key].startswith(
+                            "existing symbol radio for "
+                        ):
+                            pass
                         else:
-                            flash('unrecognized button text')
-                            logger.error('unrecognized button text')
-                #compute.update_symbols_in_step(deriv_id, step_id, path_to_db)
-                return redirect(url_for("modify_step", deriv_id=deriv_id, step_id=step_id,referrer="modify_step"))
+                            flash("unrecognized button text")
+                            logger.error("unrecognized button text")
+                # compute.update_symbols_in_step(deriv_id, step_id, path_to_db)
+                return redirect(
+                    url_for(
+                        "modify_step",
+                        deriv_id=deriv_id,
+                        step_id=step_id,
+                        referrer="modify_step",
+                    )
+                )
 
             # https://github.com/allofphysicsgraph/proofofconcept/issues/108
             elif request.form["submit_button"] == "view step with numeric IDs":
@@ -2315,14 +2326,14 @@ def modify_step(deriv_id: str, step_id: str):
     list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
         deriv_id, step_id, path_to_db
     )
-    #flash(
+    # flash(
     #    "list of symbols in step that lack ID: "
     #    + str(list_of_symbols_in_step_that_lack_id)
-    #)
-    #logger.debug(
+    # )
+    # logger.debug(
     #    "list of symbols in step that lack ID: "
     #    + str(list_of_symbols_in_step_that_lack_id)
-    #)
+    # )
 
     symbol_candidate_dict = compute.guess_missing_PDG_AST_ids(
         list_of_symbols_in_step_that_lack_id, deriv_id, step_id, path_to_db
@@ -2362,8 +2373,8 @@ def modify_step(deriv_id: str, step_id: str):
     list_of_symbols_without_id = []
     for expr_AST_dict in list_of_expression_AST_dicts:
         for symb in expr_AST_dict["sympy symbols without PDG AST ID"]:
-            #flash("Sympy symbol without ID: " + symb)
-            #logger.debug("Sympy symbol without ID: " + symb)
+            # flash("Sympy symbol without ID: " + symb)
+            # logger.debug("Sympy symbol without ID: " + symb)
             list_of_symbols_without_id.append(symb)
     list_of_symbols_without_id = list(set(list_of_symbols_without_id))
     dict_of_ranked_list = {}
