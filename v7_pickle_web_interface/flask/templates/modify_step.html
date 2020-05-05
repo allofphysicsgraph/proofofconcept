@@ -74,6 +74,8 @@
       <div class="input-group">
 
         {% for sympy_symbol, list_of_PDG_symbol_IDs in dict_of_ranked_list.items() %}
+          <!-- tracking the outer loop index is necessary for the radio groups -->
+          {% set outer_loop = loop %} <!-- https://stackoverflow.com/questions/1567291/get-loop-index-of-outer-loop -->
           {% if list_of_PDG_symbol_IDs|length == 0 %}
             <P>For the symbol {{ sympy_symbol }}, a 
               <a href="{{ url_for('list_all_symbols') }}#add symbol">
@@ -99,16 +101,16 @@
                 <tr>
                 <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio -->
                   <td>
-                    <input name="symbol_radio_{{ loop.index0 }}" type="radio" value="symbol radio {{ symbol_id }} {{ sympy_symbol }}">
+                    <input name="symbol_radio_{{ outer_loop.index0 }}" type="radio" value="symbol radio {{ symbol_id }} {{ sympy_symbol }}">
                   </td>
                   {% set hide_symbol_forms = "true" %}
                   {% include '_table_of_symbols_row.html' %} 
                 </tr>
               {% endfor %}
               <tr>
-                <td><input name="symbol_radio_{{ loop.index0 }}" type="radio" value="existing symbol radio for {{ sympy_symbol }}"></td>
+                <td><input name="symbol_radio_{{ outer_loop.index0 }}" type="radio" value="existing symbol for {{ sympy_symbol }}"></td>
                 <td colspan="9">select an existing symbol
-                  <select name="existing symbol selection for {{ sympy_symbol }}" class="selectpicker form-control">
+                  <select name="existing symbol for {{ sympy_symbol }}" class="selectpicker form-control">
                       <option value="NONE">&nbsp;</option>
                     {% for sid, symbol_dict in dat['symbols']|dictsort %}
                       <option value="{{ sid }}">{{ sid }}, {{ dat['symbols'][sid]['latex'] }}</option>
@@ -125,7 +127,9 @@
             </table>
           {% endif %} <!-- list_of_PDG_symbol_IDs|length == 0 -->
         {% endfor %}
-        <input type="submit" name="submit_button" value="update symbols">
+        <P>
+          <input type="submit" name="submit_button" value="update symbols">
+        </p>
       </div>
     </div>
   </form>
