@@ -1,13 +1,23 @@
 {% extends "_base.html" %}
 {% block content %}
 
-<P>modify step
+<P>
+  modify step
+</P>
 
-<P>derivation name: <a href="{{ url_for('review_derivation', deriv_id=deriv_id)  }}?referrer=modify_step">{{ dat["derivations"][deriv_id]['name'] }}</a>
+<P>
+  derivation name: 
+  <a href="{{ url_for('review_derivation', deriv_id=deriv_id)  }}?referrer=modify_step">
+    {{ dat["derivations"][deriv_id]['name'] }}
+  </a>
+</P>
+
 
 <h2>Step graph</h2>
   <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
-  <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
+  <P>
+    <img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
+  </P>
 
 <h2>AST for each expression in step</h2>
   <P>From Sympy's parsing of the Latex
@@ -49,69 +59,77 @@
 
 {% if dict_of_ranked_list.keys()|length > 0 %}
 <fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
-<legend>
-  <a name="symbol matching">
-  <H2>Symbol matching</H2>
-  </a>
-</legend>
-<form method="post" action="">
-  <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
-  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  <legend>
+    <a name="symbol matching">
+      <H2>
+        Symbol matching
+      </H2>
+    </a>
+  </legend>
+  <form method="post" action="">
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
-  <div class="form-group">
-    <div class="input-group">
+    <div class="form-group">
+      <div class="input-group">
 
-  {% for sympy_symbol, list_of_PDG_symbol_IDs in dict_of_ranked_list.items() %}
-    {% if list_of_PDG_symbol_IDs|length == 0 %}
-      <P>For the symbol {{ sympy_symbol }}, a <a href="{{ url_for('list_all_symbols') }}#add symbol">new symbol entry</a> is probably needed since no match is available.
-    {% else %}
-      {{ sympy_symbol }} candidates:
-<table border="1">
-    <tr>
-      <th>select one</th>
-      <th>symbol ID</th>
-      <th>category</th>
-      <th>latex</th>
-      <th>scope</th>
-      <th>measure</th>
-      <th>name</th>
-      <th>value</th>
-      <th>Used in derivations</th>
-      <th>references</th>
-    </tr>
-
-{% for symbol_id in list_of_PDG_symbol_IDs %}
-  <tr>
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio -->
-    <td><input name="symbol_radio" type="radio" value="symbol radio {{ symbol_id }}"></td>
-    {% set hide_symbol_forms = "true" %}
-    {% include '_table_of_symbols_row.html' %} 
-  </tr>
-{% endfor %}
-  <tr>
-    <td><input name="symbol_radio" type="radio" value="symbol radio existing"></td>
-    <td colspan="5">select an existing symbol
-            <select name="existing symbol" class="selectpicker form-control">
-              {% for sid, symbol_dict in dat['symbols']|dictsort %}
-              <option value="{{ sid }}">{{ sid }}, {{ dat['symbols'][sid]['latex'] }}</option>
+        {% for sympy_symbol, list_of_PDG_symbol_IDs in dict_of_ranked_list.items() %}
+          {% if list_of_PDG_symbol_IDs|length == 0 %}
+            <P>For the symbol {{ sympy_symbol }}, a 
+              <a href="{{ url_for('list_all_symbols') }}#add symbol">
+                 new symbol entry
+              </a> is probably needed since no match is available. <BR>
+              Or you can manually assign an existing symbol:
+          {% else %}
+            <P>candidates for {{ sympy_symbol }}:
+            <table border="1">
+              <tr>
+                <th>select one</th>
+                <th>symbol ID</th>
+                <th>category</th>
+                <th>latex</th>
+                <th>scope</th>
+                <th>measure</th>
+                <th>name</th>
+                <th>value</th>
+                <th>Used in derivations</th>
+                <th>references</th>
+              </tr>
+              {% for symbol_id in list_of_PDG_symbol_IDs %}
+                <tr>
+                <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio -->
+                  <td>
+                    <input name="symbol_radio_{{ loop.index0 }}" type="radio" value="symbol radio {{ symbol_id }} {{ sympy_symbol }}">
+                  </td>
+                  {% set hide_symbol_forms = "true" %}
+                  {% include '_table_of_symbols_row.html' %} 
+                </tr>
               {% endfor %}
-            </select>
-</td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td colspan="5"><a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#add symbol">create new symbol</a>
-</td>
-  </tr>
-</table>
-<P><input type="submit" name="submit_button" value="Submit">
+              <tr>
+                <td><input name="symbol_radio_{{ loop.index0 }}" type="radio" value="existing symbol radio for {{ sympy_symbol }}"></td>
+                <td colspan="9">select an existing symbol
+                  <select name="existing symbol selection for {{ sympy_symbol }}" class="selectpicker form-control">
+                      <option value="NONE">&nbsp;</option>
+                    {% for sid, symbol_dict in dat['symbols']|dictsort %}
+                      <option value="{{ sid }}">{{ sid }}, {{ dat['symbols'][sid]['latex'] }}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td> <!-- no radio button for "create new symbol" -->
+                <td colspan="9">
+                  <a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#add symbol">create new symbol</a>
+                </td>
+              </tr>
+            </table>
+          {% endif %} <!-- list_of_PDG_symbol_IDs|length == 0 -->
+        {% endfor %}
+        <input type="submit" name="submit_button" value="update symbols">
+      </div>
     </div>
-  </div>
-</form>
+  </form>
 </fieldset>
-<BR>
-    {% endif %}
-  {% endfor %}
 {% else %}
   <P>There are no unmatched symbols for this step when comparing Sympy and the PDG ASTs.
 {% endif %}
@@ -119,36 +137,43 @@
 <H2>Options</h2>
 
 <P>
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<legend>view step with numeric IDs</legend>
 <form method="post" action="">
 <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 <input type="submit" name="submit_button" value='view step with numeric IDs'>
 </form>
-
+</fieldset>
 
 <P>
+<fieldset>
+<legend>change inference rule</legend>
 <form method="post" action="">
 <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 <input type="submit" name="submit_button" value='change inference rule'>
 </form>
 (Changing the inference rule deletes existing step and prompts for a new step creation.)
+</fieldset>
+
 
 <!-- https://jinja.palletsprojects.com/en/2.11.x/templates/#builtin-filters -->
+<!--
 {% if dat["derivations"][deriv_id]['steps'][step_id]['inputs']|length > 0 %}
-<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<fieldset><!- - https://www.w3.org/WAI/tutorials/forms/grouping/ - ->
 <legend>
 <a name="change global id">
   <h3>Update the global ID</h3>
 </a>
 </legend>
-TODO -- not implemented
+TODO - - not implemented
 <form method="post" action="">
  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 </form>
 </fieldset>
 {% endif %}
-
+-->
 
 {% if dat["derivations"][deriv_id]['steps'][step_id]['inputs']|length > 0 %}
 <fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->

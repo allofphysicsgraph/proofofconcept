@@ -450,19 +450,21 @@ class SymbolEntry(FlaskForm):
     logger.info("[trace]")
     symbol_radio = RadioField(
         "Label",
-        choices=[("opt 1", "opt 1"),
-                 ("opt 2", "opt 2"),
-                 ("opt 3", "opt 3"),
-                 ("opt 4", "opt 4"),
-                 ("opt 5", "opt 5"),
-                 ("opt 6", "opt 6"),
-                 ("opt 7", "opt 7"),
-                 ("opt 8", "opt 8"),
-                 ("opt 9", "opt 9"),
-                 ("opt 10", "opt 10"),
-                 ("opt 11", "opt 11"),
-                 ("use_existing", "use existing"), 
-                 ("create_new", "create new"),],
+        choices=[
+            ("opt 1", "opt 1"),
+            ("opt 2", "opt 2"),
+            ("opt 3", "opt 3"),
+            ("opt 4", "opt 4"),
+            ("opt 5", "opt 5"),
+            ("opt 6", "opt 6"),
+            ("opt 7", "opt 7"),
+            ("opt 8", "opt 8"),
+            ("opt 9", "opt 9"),
+            ("opt 10", "opt 10"),
+            ("opt 11", "opt 11"),
+            ("use_existing", "use existing"),
+            ("create_new", "create new"),
+        ],
         default="already_exists",
     )
 
@@ -1190,7 +1192,7 @@ def list_all_symbols():
 
     return render_template(
         "list_all_symbols.html",
-        #symbols_dict=dat["symbols"],
+        # symbols_dict=dat["symbols"],
         dat=dat,
         dimensional_webform=RevisedTextForm(request.form),
         new_symbol_form=NewSymbolForm(request.form),
@@ -2188,6 +2190,8 @@ def modify_step(deriv_id: str, step_id: str):
     if request.method == "POST":
         logger.debug(request.form)
         # ImmutableMultiDict([('revised_text', 'a asdfaf'), ('submit_button', 'edit note for step')])
+        # ImmutableMultiDict([('symbol_radio', 'symbol radio 1357'), ('existing symbol', '0011'), ('submit_button', 'update symbols')])
+
         if "submit_button" in request.form.keys():
             if request.form["submit_button"] == "change inference rule":
                 compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
@@ -2198,6 +2202,24 @@ def modify_step(deriv_id: str, step_id: str):
                         referrer="modify_step",
                     )
                 )
+
+            elif request.form["submit_button"] == "update symbols":
+            # ImmutableMultiDict([ ('symbol_radio_1', 'symbol radio 1357 v'), 
+            #                      ('existing symbol selection for v', 'NONE'), 
+            #                      ('symbol_radio_3', 'symbol radio 5156 m'), 
+            #                      ('existing symbol selection for m', 'NONE'), 
+            #                      ('symbol_radio_2', 'existing symbol radio for E'), 
+            #                      ('existing symbol selection for E', '4931'), 
+            #                      ('submit_button', 'update symbols')])
+                for this_key in request.form.keys():
+                    if this_key.startswith('symbol_radio_'):
+                        if request.form[this_key].startswith('symbol radio '):
+                        elif request.form[this_key].startswith('existing symbol radio for '):
+                        else:
+                            flash('unrecognized button text')
+                            logger.error('unrecognized button text')
+                #compute.update_symbols_in_step(deriv_id, step_id, path_to_db)
+                return redirect(url_for("modify_step", deriv_id=deriv_id, step_id=step_id,referrer="modify_step"))
 
             # https://github.com/allofphysicsgraph/proofofconcept/issues/108
             elif request.form["submit_button"] == "view step with numeric IDs":
@@ -2293,14 +2315,14 @@ def modify_step(deriv_id: str, step_id: str):
     list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
         deriv_id, step_id, path_to_db
     )
-    flash(
-        "list of symbols in step that lack ID: "
-        + str(list_of_symbols_in_step_that_lack_id)
-    )
-    logger.debug(
-        "list of symbols in step that lack ID: "
-        + str(list_of_symbols_in_step_that_lack_id)
-    )
+    #flash(
+    #    "list of symbols in step that lack ID: "
+    #    + str(list_of_symbols_in_step_that_lack_id)
+    #)
+    #logger.debug(
+    #    "list of symbols in step that lack ID: "
+    #    + str(list_of_symbols_in_step_that_lack_id)
+    #)
 
     symbol_candidate_dict = compute.guess_missing_PDG_AST_ids(
         list_of_symbols_in_step_that_lack_id, deriv_id, step_id, path_to_db
@@ -2340,8 +2362,8 @@ def modify_step(deriv_id: str, step_id: str):
     list_of_symbols_without_id = []
     for expr_AST_dict in list_of_expression_AST_dicts:
         for symb in expr_AST_dict["sympy symbols without PDG AST ID"]:
-            flash("Sympy symbol without ID: " + symb)
-            logger.debug("Sympy symbol without ID: " + symb)
+            #flash("Sympy symbol without ID: " + symb)
+            #logger.debug("Sympy symbol without ID: " + symb)
             list_of_symbols_without_id.append(symb)
     list_of_symbols_without_id = list(set(list_of_symbols_without_id))
     dict_of_ranked_list = {}

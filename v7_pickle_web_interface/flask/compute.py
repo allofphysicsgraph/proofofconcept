@@ -334,9 +334,9 @@ def list_symbols_used_in_expr_from_PDG_AST(ast_as_list: list, path_to_db: str) -
     dat = clib.read_db(path_to_db)
 
     list_of_symbol_ids = []
-    logger.debug(str(ast_as_list))
+    #logger.debug(str(ast_as_list))
     list_of_symbols_and_operators = list(flatten_list(ast_as_list))
-    logger.debug(str(list_of_symbols_and_operators))
+    #logger.debug(str(list_of_symbols_and_operators))
 
     for this_symbol_id in list_of_symbols_and_operators:
         try:
@@ -345,7 +345,7 @@ def list_symbols_used_in_expr_from_PDG_AST(ast_as_list: list, path_to_db: str) -
             symbol_latex = ""
         if len(symbol_latex) > 0:
             list_of_symbol_ids.append(this_symbol_id)
-    logger.debug(str(list_of_symbol_ids))
+    #logger.debug(str(list_of_symbol_ids))
     return list(set(list_of_symbol_ids))
 
 
@@ -394,7 +394,7 @@ def list_symbols_used_in_step_from_sympy(
         for local_id in step_dict[connection_type]:
             expr_global_id = dat["expr local to global"][local_id]
             expr_latex = dat["expressions"][expr_global_id]["latex"]
-            logger.debug(expr_latex)
+            #logger.debug(expr_latex)
             symbols_per_expr = list_symbols_used_in_expr_from_sympy(expr_latex)
             for symb in symbols_per_expr:
                 list_of_symbols.append(str(symb))

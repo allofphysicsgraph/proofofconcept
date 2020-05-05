@@ -27,7 +27,7 @@
     <td>
       <OL>
         {% for local_id in this_dict['inputs'] %}
-          <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+          <LI> <!--<a href="{ { url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{ { dat["expr local to global"][local_id] }}"> -->
           {{ local_id }}</a></LI>
         {% endfor %}
       </OL>
@@ -71,7 +71,7 @@
     <td>
       <OL>
        {% for local_id in this_dict['outputs'] %}
-       <LI><a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+       <LI><!-- <a href="{ { url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{ { dat["expr local to global"][local_id] }}"> -->
           {{ local_id }}</a>
        </LI>
         {% endfor %}
