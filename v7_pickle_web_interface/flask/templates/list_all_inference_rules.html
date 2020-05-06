@@ -6,9 +6,12 @@
 {% include '_table_of_inference_rules.html' %}
 
 <P>
+<fieldset>
+<legend>
   <a id="add_inf_rule">
     <H2>Add new inference rule</h2>
   </a>
+</legend>
   {% if not current_user.is_anonymous %}
     <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
@@ -31,11 +34,15 @@
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_inference_rules">signed in</a>
   {% endif %}
 </P>
+</fieldset>
 
 <P>
+<fieldset>
+<legend>
   <a id="delete_inf_rule">
     <h2>Delete an inference rule</h2>
   </a>
+</legend>
   {% if not current_user.is_anonymous %}
 Only inference rules not in use can be deleted.
 <form method="post" action="">
@@ -57,12 +64,16 @@ Only inference rules not in use can be deleted.
   {% else %}
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_inference_rules">signed in</a>
   {% endif %}
+</fieldset>
 </P>
 
 <P>
+<fieldset>
+<legend>
   <a id="rename_inf_rule">
     <h2>Rename an inference rule</h2>
   </a>
+</legend>
   {% if not current_user.is_anonymous %}
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
@@ -83,12 +94,16 @@ Only inference rules not in use can be deleted.
   {% else %}
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_inference_rules">signed in</a>
   {% endif %}
+</fieldset>
 </P>
 
 <P>
+<fieldset>
+<legend>
   <a id="edit_inf_rule_latex">
     <h2>Edit the latex for an inference rule</h2>
   </a>
+</legend>
   {% if not current_user.is_anonymous %}
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
@@ -109,6 +124,7 @@ Only inference rules not in use can be deleted.
   {% else %}
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_inference_rules">signed in</a>
   {% endif %}
+</fieldset>
 </P>
 
 

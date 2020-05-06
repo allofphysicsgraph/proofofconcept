@@ -10,9 +10,9 @@
       Delete a symbol
     </a>
   </h2>
-  {% if current_user.is_anonymous %}
+  { % if current_user.is_anonymous %}
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_symbols">signed in</a>
-  {% else %}
+  { % else %}
 <form method="post" action="">
   <div class="form-group">
     <div class="input-group">
@@ -26,16 +26,19 @@
     <button type="submit" class="btn btn-default">Delete</button>
   </div>
 </form>
-{% endif %}
+{ % endif %}
 </P>
 -->
 
 <P>
+<fieldset>
+<legend>
   <h2>
     <a id="edit symbol latex">
       Edit the latex for symbol
     </a>
   </h2>
+</legend>
   {% if current_user.is_anonymous %}
   This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
   {% else %}
@@ -54,6 +57,7 @@
   </div>
 </form>
 {% endif %}
+</fieldset>
 </p>
 
 <style>
@@ -84,11 +88,14 @@ function enable_category_radio2(enabled){
 </script>
 
 <P>
+<fieldset>
+<legend>
   <h2>
     <a id="add symbol">
       Add a symbol
     </a>
   </h2>
+</legend>
   {% if current_user.is_anonymous %}
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_symbols">signed in</a>
   {% else %}
@@ -135,6 +142,7 @@ function enable_category_radio2(enabled){
 
 
 {% endif %}
+</fieldset>
 </P>
 
 

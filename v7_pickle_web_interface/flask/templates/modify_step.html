@@ -135,7 +135,9 @@
   </form>
 </fieldset>
 {% else %}
-  <P>There are no unmatched symbols for this step when comparing Sympy and the PDG ASTs.
+  <P>There are no unmatched symbols for this step when comparing Sympy and the PDG ASTs.<BR>
+If Sympy's analysis was incorrect or the PDG AST is incomplete, you can update the symbols per expression in the 
+<a href="{{ url_for('list_all_expressions', referrer='modify_step') }}">list of all expressions</a>.
 {% endif %}
 
 <H2>Options</h2>

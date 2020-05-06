@@ -28,19 +28,30 @@
 <H2 id="indices">Numeric indices are the core enabling concept for the PDG</H2>
 <P>
   The visualization of a graph with expressions and inference rules as nodes relies on each node having a distinct index. 
-  Each expression, symbol, and inference rule appears only once in the database.
+  Each expression, symbol, and inference rule appears only once in the database. 
+  This is made possible through use of numeric IDs associated with every facet of the visualization.
+  To see what this means in terms of the "period and frequency" example on <a href="{{ url_for('index', referrer="developer_documentation") }}">the homepage</a>, here is a view of the indices supporting that visualization for a single step:
 </P>
 <img src="{{ url_for('static', filename='frequency_and_period_exploded_steps.png') }}">
-
+<P>
+  Manipulating these indices underlies all other tasks in the Physics Derivation Graph. 
+  Access to these indices is performed through a single data structure.
+</P>
 <h2 id="data structure">Data structure used in the PDG</H2>
 <P>
   The Physics Derivation Graph is currently stored in a single JSON file. <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/data.json">The JSON file</a> is read into Python as a dictionary. 
 </P>
+<P>
+  JSON is convenient because it is plain text and the ease of detailed validation available using schemas.
+  The many alternatives to JSON (e.g., SQLite, Redis, Python Pickle, CSV, GraphML) offer trade-offs, a few of which <a href="#historical evolution">have been explored</a>.
 
 <H2 id="latex for expressions">Latex representation of expressions</H2>
 <P>
   There are multiple choices of how to represent a mathematical expression. 
   The choices feature trade-offs between conciseness, ability to express the range of notations necessary for Physics, symantic meaning, and ability to use the expression in a computer algebra system (CAS).
+  See the <a href="#comparison:syntax">comparison of synatx</a> below.
+  Latex was selected primarily because of the common use in Physics, display of complex math, conciseness, and expressiveness. 
+  The use of Latex means other tasks like parsing symbols and resolving ambiguity are harder.
 </p>
 
 <H2 name="software">Software used in the Physics Derivation Graph</H2>
@@ -215,6 +226,10 @@
   The expression needs a local index to build the Latex PDF. 
 </P>
 
+<P>
+  In addition to the inference rules and expressions, each Latex expression actually represents an Abstract Syntax Tree (AST) composed of symbols. 
+</P>
+<img src="{{ url_for('static', filename='single_step_with_AST_per_expression_and_symbols.png') }}">
 
 
 <H2 name="historical evolution">Historical design evolution</H2>

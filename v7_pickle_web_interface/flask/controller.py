@@ -2438,16 +2438,12 @@ def modify_step(deriv_id: str, step_id: str):
         flash(str(err))
         list_of_symbols_from_PDG_AST = []
 
-    flash(str(list_of_expression_AST_dicts))
-    list_of_symbols_without_id = []
-    for expr_AST_dict in list_of_expression_AST_dicts:
-        for symb in expr_AST_dict["sympy symbols without PDG AST ID"]:
-            # flash("Sympy symbol without ID: " + symb)
-            # logger.debug("Sympy symbol without ID: " + symb)
-            list_of_symbols_without_id.append(symb)
-    list_of_symbols_without_id = list(set(list_of_symbols_without_id))
+    # find symbols that lack IDs
+    list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
+        deriv_id, step_id, path_to_db
+    )
     dict_of_ranked_list = {}
-    for sympy_symbol in list_of_symbols_without_id:
+    for sympy_symbol in list_of_symbols_in_step_that_lack_id:
         ranked_list_of_candidate_symbol_ids = compute.rank_candidate_pdg_symbols_for_sympy_symbol(
             sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
         )

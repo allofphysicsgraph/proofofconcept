@@ -5,9 +5,12 @@
 {% include '_table_of_expressions.html' %}
 
 <P>
+<fieldset>
+<legend>
   <a id="delete expression">
     <h2>Delete an expression</h2>
   </a>
+</legend>
   {% if current_user.is_anonymous %}
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
   {% else %}
@@ -27,6 +30,7 @@
   </div>
 </form>
 {% endif %}
+</fieldset>
 </P>
 
 <!--
@@ -57,9 +61,12 @@
 -->
 
 <P>
+<fieldset>
+<legend>
   <a id="edit expr name">
     <h2>Edit the name of an expression</h2>
   </a>
+</legend>
   {% if current_user.is_anonymous %}
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
   {% else %}
@@ -79,12 +86,16 @@
   </div>
 </form>
   {% endif %}
+</fieldset>
 </P>
 
 <P>
+<fieldset>
+<legend>
   <a id="edit expr note">
     <h2>Edit the note for an expression</h2>
   </a>
+</legend>
   {% if current_user.is_anonymous %}
   This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
   {% else %}
@@ -104,6 +115,7 @@
   </div>
 </form>
   {% endif %}
+</fieldset>
 </P>
 
 
