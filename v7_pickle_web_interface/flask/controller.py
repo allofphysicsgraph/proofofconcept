@@ -294,6 +294,7 @@ class NewSymbolForm(FlaskForm):
 
     symbol_latex = StringField("latex", validators=[validators.InputRequired()])
     symbol_name = StringField("name", validators=[validators.InputRequired()])
+    symbol_measure = StringField("dimensions", validators=[validators.InputRequired()])
     symbol_reference = StringField("reference")
     symbol_value = StringField("value")
     symbol_units = StringField("units")
@@ -1204,6 +1205,7 @@ def list_all_symbols():
                 request.form["symbol_category"],
                 request.form["symbol_latex"],
                 request.form["symbol_name"],
+                request.form["symbol_measure"],
                 request.form["symbol_reference"],
                 value,
                 units,
@@ -1973,12 +1975,12 @@ def step_review(deriv_id: str, local_step_id: str):
                 logger.error(str(err))
                 flash(str(err))
                 derivation_validity_dict[step_id] = "failed"
-        try:
-            step_dict = dat["derivations"][deriv_id]["steps"]
-        except Exception as err:
-            logger.error(str(err))
-            flash(str(err))
-            step_dict = {}
+        #try:
+        #    step_dict = dat["derivations"][deriv_id]["steps"]
+        #except Exception as err:
+        #    logger.error(str(err))
+        #    flash(str(err))
+        #    step_dict = {}
     else:
         logger.debug(deriv_id + "does not exist in derivations")
         derivation_validity_dict = {}
@@ -2002,6 +2004,15 @@ def step_review(deriv_id: str, local_step_id: str):
         flash(str(err))
         list_of_symbols = []
 
+    try:
+        expr_dict_with_symbol_list = compute.generate_expr_dict_with_symbol_list(
+            path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        expr_dict_with_symbol_list = {}
+
     return render_template(
         "step_review.html",
         webform=webform,
@@ -2009,13 +2020,14 @@ def step_review(deriv_id: str, local_step_id: str):
         deriv_id=deriv_id,
         dat=dat,
         expression_popularity_dict=expression_popularity_dict,
-        step_dict=step_dict,
+        expr_dict_with_symbol_list=expr_dict_with_symbol_list,
+        #step_dict=step_dict,
         list_of_symbols=list_of_symbols,
-        symbols=dat["symbols"],
-        expr_dict=dat["expressions"],
-        expressions_dict=dat["expressions"],
+        #symbols=dat["symbols"],
+        #expr_dict=dat["expressions"],
+        #expressions_dict=dat["expressions"],
         derivation_validity_dict=derivation_validity_dict,
-        expr_local_to_global=dat["expr local to global"],
+        #expr_local_to_global=dat["expr local to global"],
         title="step review",
     )
 

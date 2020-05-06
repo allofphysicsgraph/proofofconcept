@@ -2797,6 +2797,7 @@ def add_symbol(
     category: str,
     latex: str,
     name: str,
+    dimension: str,
     reference: str,
     value: str,
     units: str,
@@ -2813,6 +2814,7 @@ def add_symbol(
     symbol_dict["category"] = category
     symbol_dict["latex"] = latex
     symbol_dict["name"] = name
+    symbol_dict["measure"] = dimension
     symbol_dict["scope"] = scope
     symbol_dict["references"] = [reference]
     if category == "constant" and len(value) > 0:

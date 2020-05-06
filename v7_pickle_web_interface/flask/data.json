@@ -4126,6 +4126,43 @@
                     "creation date": "2020-04-23"
                 }
             }
+        },
+        "387954": {
+            "name": "speed of Earth around Sun",
+            "author": "Ben",
+            "notes": "from Tipler and Llewellyn, third edition, page 9",
+            "creation date": "2020-05-06",
+            "steps": {
+                "9784411": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "1131405"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-06"
+                },
+                "5700345": {
+                    "inf rule": "substitute X for Y",
+                    "inputs": [
+                        "1131405"
+                    ],
+                    "feeds": [
+                        "1022830",
+                        "8635770"
+                    ],
+                    "outputs": [
+                        "7360652"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-06"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -4495,7 +4532,11 @@
         "4277577": "9040079362",
         "2414344": "2131616531",
         "8147899": "9565166889",
-        "5564581": "2113211456"
+        "5564581": "2113211456",
+        "1131405": "5426308937",
+        "1022830": "7476820482",
+        "8635770": "1277713901",
+        "7360652": "6946088325"
     },
     "expressions": {
         "0000040490": {
@@ -8391,6 +8432,42 @@
             "notes": "",
             "author": "Ben",
             "creation date": "2020-04-23"
+        },
+        "5426308937": {
+            "latex": "v = \\frac{d}{t}",
+            "AST": [
+                "1467",
+                "1357",
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-06"
+        },
+        "7476820482": {
+            "latex": "C",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-06"
+        },
+        "1277713901": {
+            "latex": "d",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-06"
+        },
+        "6946088325": {
+            "latex": "v = \\frac{C}{t}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-06"
         }
     },
     "inference rules": {
@@ -9846,6 +9923,19 @@
             ],
             "author": "Ben",
             "creation date": "2020-05-03"
+        },
+        "1943": {
+            "category": "variable",
+            "latex": "d",
+            "name": "displacement",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Displacement_(geometry)"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-06"
         }
     },
     "units": {
