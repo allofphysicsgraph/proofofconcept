@@ -4190,6 +4190,134 @@
                     "notes": "",
                     "author": "Ben",
                     "creation date": "2020-05-07"
+                },
+                "6456434": {
+                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inputs": [
+                        "7360652"
+                    ],
+                    "feeds": [
+                        "6953798",
+                        "9444800"
+                    ],
+                    "outputs": [
+                        "5320197"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
+                },
+                "1317920": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "5753220",
+                        "5320197"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9129246"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
+                },
+                "6292792": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9494155"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
+                },
+                "9626463": {
+                    "inf rule": "multiply RHS by Unity",
+                    "inputs": [
+                        "9494155"
+                    ],
+                    "feeds": [
+                        "4603243"
+                    ],
+                    "outputs": [
+                        "9417128"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
+                },
+                "3035476": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "9417128",
+                        "9129246"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1441436"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
+                },
+                "5559943": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4133484"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
+                },
+                "9955987": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "4133484",
+                        "1441436"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8698819"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
+                },
+                "1909003": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "8698819"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1001745"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
+                },
+                "1143551": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "1001745"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
                 }
             }
         }
@@ -4569,7 +4697,18 @@
         "7959026": "6785303857",
         "9640823": "2113447367",
         "2565754": "4816195267",
-        "5753220": "6348260313"
+        "5753220": "6348260313",
+        "6953798": "6406487188",
+        "9444800": "3847777611",
+        "5320197": "3046191961",
+        "9129246": "3080027960",
+        "9494155": "7175416299",
+        "4603243": "3219318145",
+        "9417128": "8721295221",
+        "1441436": "4593428198",
+        "4133484": "3472836147",
+        "8698819": "6998364753",
+        "1001745": "4180845508"
     },
     "expressions": {
         "0000040490": {
@@ -5592,14 +5731,6 @@
             "name": "",
             "notes": ""
         },
-        "2948293829": {
-            "AST": [],
-            "author": "Ben",
-            "creation date": "2020-04-14",
-            "latex": "a = b",
-            "name": "",
-            "notes": ""
-        },
         "3121234211": {
             "AST": [
                 "3141"
@@ -5992,14 +6123,6 @@
             "author": "Ben",
             "creation date": "2020-04-14",
             "latex": "\\cos(2x)+(\\sin(x))^2 = 1-(\\sin(x))^2",
-            "name": "",
-            "notes": ""
-        },
-        "4828238421": {
-            "AST": [],
-            "author": "Ben",
-            "creation date": "2020-04-14",
-            "latex": "a = c",
             "name": "",
             "notes": ""
         },
@@ -6940,14 +7063,6 @@
             "name": "",
             "notes": ""
         },
-        "9829420421": {
-            "AST": [],
-            "author": "Ben",
-            "creation date": "2020-04-14",
-            "latex": "b = a",
-            "name": "",
-            "notes": ""
-        },
         "9848292229": {
             "AST": [
                 "4621"
@@ -7519,28 +7634,6 @@
             "author": "Ben",
             "creation date": "2020-04-19"
         },
-        "5182812819": {
-            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - \\exp(-i 2 x) \\right)",
-            "AST": [
-                "2718",
-                "4621"
-            ],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-04-19"
-        },
-        "9639088529": {
-            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - 1 + 1 - \\exp(-i 2 x) \\right)",
-            "creation date": "2020-04-19",
-            "author": "Ben",
-            "notes": "",
-            "name": "",
-            "AST": [
-                "2718",
-                "4621"
-            ]
-        },
         "8699789241": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - 1 + 1 - \\exp(-i 2 x) \\right)",
             "creation date": "2020-04-19",
@@ -7713,14 +7806,6 @@
             "author": "Ben",
             "creation date": "2020-04-20"
         },
-        "3021493603": {
-            "latex": "E_2 - E_1 = (KE_2 - KE_1) + (PE_2 - PE_1)",
-            "AST": [],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-04-20"
-        },
         "5514556106": {
             "latex": "E_2 - E_1 = (KE_2 - KE_1) + (PE_2 - PE_1)",
             "AST": [],
@@ -7790,35 +7875,6 @@
             "creation date": "2020-04-20"
         },
         "4928007622": {
-            "latex": "KE_1 = \\frac{1}{2} m v_1^2",
-            "AST": [
-                "5156"
-            ],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-04-20"
-        },
-        "3926460426": {
-            "latex": "KE_1, v_1",
-            "AST": [],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-04-20"
-        },
-        "9347678744": {
-            "latex": "KE, v",
-            "AST": [
-                "4929",
-                "1357"
-            ],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-04-20"
-        },
-        "7511241619": {
             "latex": "KE_1 = \\frac{1}{2} m v_1^2",
             "AST": [
                 "5156"
@@ -8161,38 +8217,6 @@
             "author": "Ben",
             "creation date": "2020-04-20"
         },
-        "8517613459": {
-            "latex": "asidfnaingiag",
-            "AST": [],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-04-23"
-        },
-        "5095822224": {
-            "latex": "fisngiasngiasg",
-            "AST": [],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-04-23"
-        },
-        "6257526854": {
-            "latex": "gaignaig",
-            "AST": [],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-04-23"
-        },
-        "7221917737": {
-            "latex": "asdfag",
-            "AST": [],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-04-23"
-        },
         "8945218208": {
             "latex": "\\theta_{Brewster} + \\theta_{refracted} = 90^{\\circ}",
             "AST": [
@@ -8425,16 +8449,6 @@
             "author": "Ben",
             "creation date": "2020-04-23"
         },
-        "5129762388": {
-            "latex": "\\theta_{refracted} = \\arctan{ \\frac{ n_1 }{ n_2 } }",
-            "AST": [
-                "2941"
-            ],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-04-23"
-        },
         "8495187962": {
             "latex": "\\theta_{Brewster} = \\arctan{ \\left( \\frac{ n_1 }{ n_2 } \\right) }",
             "creation date": "2020-04-23",
@@ -8496,7 +8510,11 @@
         },
         "6946088325": {
             "latex": "v = \\frac{C}{t}",
-            "AST": [],
+            "AST": [
+                "3034",
+                "1467",
+                "1357"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8514,14 +8532,6 @@
             "author": "Ben",
             "creation date": "2020-05-07"
         },
-        "7239163527": {
-            "latex": "C_{earth orbit}, r_{earth orbit}",
-            "AST": [],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-05-07"
-        },
         "4816195267": {
             "latex": "C, r",
             "AST": [],
@@ -8529,46 +8539,6 @@
             "notes": "",
             "author": "Ben",
             "creation date": "2020-05-07"
-        },
-        "4626433991": {
-            "latex": "C_{earth orbit} = 2 \\pi r_{earth orbit}",
-            "AST": [],
-            "name": "",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-05-07"
-        },
-        "3778363165": {
-            "latex": "C_{Earth's\\ orbit} = 2 \\pi r_{Earth's\\ orbit}",
-            "creation date": "2020-05-07",
-            "author": "Ben",
-            "notes": "",
-            "name": "",
-            "AST": []
-        },
-        "2963552923": {
-            "latex": "C_{Earth's\\ orbit} = 2 \\pi r_{Earth's\\ orbit}",
-            "creation date": "2020-05-07",
-            "author": "Ben",
-            "notes": "",
-            "name": "",
-            "AST": []
-        },
-        "1409391267": {
-            "latex": "C_{Earth\\'s\\ orbit} = 2 \\pi r_{Earth\\'s\\ orbit}",
-            "creation date": "2020-05-07",
-            "author": "Ben",
-            "notes": "",
-            "name": "",
-            "AST": []
-        },
-        "6769589602": {
-            "latex": "C_{\\rm{Earth's orbit}}, r_{\\rm{Earth's\\ orbit}}",
-            "creation date": "2020-05-07",
-            "author": "Ben",
-            "notes": "",
-            "name": "",
-            "AST": []
         },
         "2113447367": {
             "latex": "C_{\\rm{Earth\\ orbit}}, r_{\\rm{Earth\\ orbit}}",
@@ -8585,6 +8555,96 @@
             "notes": "",
             "name": "",
             "AST": []
+        },
+        "3847777611": {
+            "latex": "C, v, t",
+            "AST": [
+                "3034"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "6406487188": {
+            "latex": "C_{\\rm{Earth\\ orbit}}, v_{\\rm{Earth\\ orbit}}, t_{\\rm{Earth\\ orbit}}",
+            "creation date": "2020-05-07",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "3046191961": {
+            "latex": "v_{\\rm{Earth\\ orbit}} = \\frac{C_{\\rm{Earth\\ orbit}}}{t_{\\rm{Earth\\ orbit}}}",
+            "creation date": "2020-05-07",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "3080027960": {
+            "latex": "v_{\\rm{Earth\\ orbit}} = \\frac{2 \\pi r_{\\rm{Earth\\ orbit}}}{t_{\\rm{Earth\\ orbit}}}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "7175416299": {
+            "latex": "t_{\\rm{Earth\\ orbit}} = 1 {\\rm{year}}",
+            "creation date": "2020-05-07",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "3219318145": {
+            "latex": "\\frac{365 {\\rm days}}{1 {\\rm year}} \\frac{24 {\\rm hours}}{1 {\\rm day}} \\frac{60 {\\rm minutes}}{1 {\\rm hour}} \\frac{60 {\\rm seconds}}{1 {\\rm minute}}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "8721295221": {
+            "latex": "t_{\\rm{Earth\\ orbit}} = 3.16 10^7 {\\rm{seconds}}",
+            "creation date": "2020-05-07",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "4593428198": {
+            "latex": "v_{\\rm{Earth\\ orbit}} = \\frac{2 \\pi r_{\\rm{Earth\\ orbit}}}{3.16\\ 10^7 {\\rm seconds}}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "3472836147": {
+            "latex": "r_{\\rm{Earth\\ orbit}} = 1.496\\ 10^8 {\\rm km}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "6998364753": {
+            "latex": "v_{\\rm{Earth\\ orbit}} = \\frac{2 \\pi \\left( 1.496\\ 10^8 {\\rm km} \\right)}{3.16\\ 10^7 {\\rm seconds}}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "4180845508": {
+            "latex": "v_{\\rm{Earth\\ orbit}} = 29.8 \\frac{{\\rm km}}{{\\rm sec}}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
         }
     },
     "inference rules": {
@@ -10084,7 +10144,7 @@
         },
         "6081": {
             "category": "constant",
-            "latex": "r_{Earth's\\ orbit}",
+            "latex": "r_{\\rm{Earth\\ orbit}}",
             "name": "radius of Earth's orbit",
             "measure": "length",
             "scope": [
