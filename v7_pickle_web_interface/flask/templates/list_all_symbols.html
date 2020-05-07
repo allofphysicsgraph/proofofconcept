@@ -43,6 +43,7 @@
   This action requires you to be <a href="{{ url_for('login') }}">signed in</a>
   {% else %}
 <form method="post" action="">
+{{ edit_latex_webform.csrf_token }}
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
@@ -51,7 +52,13 @@
               <option value="{{ elem }}">{{ elem }}</option>
               {% endfor %}
             </select>
-<P>{{ edit_latex_webform.revised_text.label }}: {{ edit_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
+<P>{{ edit_latex_webform.revised_text.label }}: {{ edit_latex_webform.revised_text(size=50, maxlength=300, onchange="UpdateMath1(this.value)") }} <small>max length = 300 characters</small>
+
+<div class="box" id="box_1" style="visibility:hidden">
+<div id="MathOutput_1" class="output">\({}\)</div>
+</div>
+
+
     </div>
     <button type="submit" class="btn btn-default">Update</button>
   </div>
@@ -126,10 +133,10 @@ function enable_category_radio2(enabled){
   </table>
 
 
-        {{ new_symbol_form.symbol_latex.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_latex(onchange="UpdateMath(this.value)") }} &nbsp;
+        {{ new_symbol_form.symbol_latex.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_latex(onchange="UpdateMath2(this.value)") }} &nbsp;
 
-<div class="box" id="box" style="visibility:hidden">
-<div id="MathOutput" class="output">\({}\)</div>
+<div class="box" id="box_2" style="visibility:hidden">
+<div id="MathOutput_2" class="output">\({}\)</div>
 </div>
 
 

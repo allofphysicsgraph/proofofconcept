@@ -213,7 +213,13 @@ function enable_output3_radio3(enabled){
           <!-- https://css-tricks.com/exposing-form-fields-radio-button-css/ -->
           <!-- https://github.com/allofphysicsgraph/proofofconcept/issues/130 -->
           <!-- <div class="reveal-if-active"> -->
-           {{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300, id="input1_latex", onchange="onChangeFunction();") }}<BR>
+           {{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300, id="input1_latex", onchange="onChangeFunction();") }}
+<!--
+<div class="box" id="box_1" style="visibility:hidden">
+<div id="MathOutput_1" class="output">\({}\)</div>
+</div>
+-->
+<BR>
            <small><B>Required</B>; max length = 300 characters</small>
           </div>
         </td>
@@ -356,17 +362,20 @@ function enable_output3_radio3(enabled){
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 0|int() %}
-<P>{{ webform.feed1.label }}: {{ webform.feed1(size=50, maxlength=100) }} <small><B>Required</B>; max length = 100 characters</small>
+<P>{{ webform.feed1.label }}: {{ webform.feed1(size=100, maxlength=300, onchange="UpdateMath2(this.value)") }} <small><B>Required</B>; max length = 300 characters</small>
+<div class="box" id="box_2" style="visibility:hidden">
+<div id="MathOutput_2" class="output">\({}\)</div>
+</div>
 </P>
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 1|int() %}
-<P>{{ webform.feed2.label }}: {{ webform.feed2(size=50, maxlength=100) }} <small><B>Required</B>; max length = 100 characters</small>
+<P>{{ webform.feed2.label }}: {{ webform.feed2(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small>
 </P>
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 2|int() %}
-<P>{{ webform.feed3.label }}: {{ webform.feed3(size=50, maxlength=100) }} <small><B>Required</B>; max length = 100 characters</small></td>
+<P>{{ webform.feed3.label }}: {{ webform.feed3(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small></td>
 </P>
 {% endif %}
 
@@ -379,7 +388,13 @@ function enable_output3_radio3(enabled){
       <td>{{ subfield(onclick='enable_output1_radio1(true)') }}</td>
       <td>{{ subfield.label }}</td>
 
-    <td>{{ webform.output1.label }}: {{ webform.output1(size=50, maxlength=300, id="output1_latex", onchange="onChangeFunction();") }} <BR>
+    <td>{{ webform.output1.label }}: {{ webform.output1(size=50, maxlength=300, id="output1_latex", onchange="onChangeFunction();") }} 
+<!--
+<div class="box" id="box_3" style="visibility:hidden">
+<div id="MathOutput_3" class="output">\({}\)</div>
+</div>
+-->
+<BR>
            <small><B>Required</B>; max length = 300 characters</small></td>
       <td>{{ webform.output1_name.label }}: {{ webform.output1_name(size=20, maxlength=300, id="output1_name", onchange="onChangeFunction();") }}<BR>
            <small><i>optional</i></small></td>
@@ -526,6 +541,8 @@ function enable_output3_radio3(enabled){
     </div>
   </div>
 </form>
+
+<P><a href="{{ url_for('new_step_select_inf_rule', deriv_id=deriv_id, referrer='provide_expr_for_inf_rule') }}">Go back and select a difference inference rule</a></P>
 
 <P>
 {% include '_table_of_derivation_steps.html' %}

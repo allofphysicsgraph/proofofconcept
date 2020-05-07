@@ -93,20 +93,24 @@ the following is for mathjax in a separate docker image connected via docker-com
   //
   (function () {
     var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
-    var math = null, box = null;    // the element jax for the math output, and the box it's in
+    var math1 = null, box1 = null;    // the element jax for the math output, and the box it's in
 
     //
     //  Hide and show the box (so it doesn't flicker as much)
     //
-    var HIDEBOX = function () {box.style.visibility = "hidden"}
-    var SHOWBOX = function () {box.style.visibility = "visible"}
-
+    if (box1 !== null) {
+    var HIDEBOX = function () {box1.style.visibility = "hidden"}
+    var SHOWBOX = function () {box1.style.visibility = "visible"}
+    } else {
+      var HIDEBOX = function () {}
+      var SHOWBOX = function () {}
+    }
     //
     //  Get the element jax when MathJax has produced it.
     //
     QUEUE.Push(function () {
-      math = MathJax.Hub.getAllJax("MathOutput")[0];
-      box = document.getElementById("box");
+      math1 = MathJax.Hub.getAllJax("MathOutput_1")[0];
+      box1 = document.getElementById("box_1");
       SHOWBOX(); // box is initially hidden so the braces don't show
     });
 
@@ -115,11 +119,97 @@ the following is for mathjax in a separate docker image connected via docker-com
     //  by the user.  Hide the box, then typeset, then show it again
     //  so we don't see a flash as the math is cleared and replaced.
     //
-    window.UpdateMath = function (TeX) {
+    window.UpdateMath1 = function (TeX) {
       QUEUE.Push(
           HIDEBOX,
           ["resetEquationNumbers",MathJax.InputJax.TeX],
-          ["Text",math,"\\displaystyle{"+TeX+"}"],
+          ["Text",math1,"\\displaystyle{"+TeX+"}"],
+          SHOWBOX
+      );
+    }
+  })();
+</script>
+<script>
+  //
+  //  Use a closure to hide the local variables from the
+  //  global namespace
+  //
+  (function () {
+    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
+    var math2 = null, box2 = null;    // the element jax for the math output, and the box it's in
+
+    //
+    //  Hide and show the box (so it doesn't flicker as much)
+    //
+    if (box2 !== null) {
+    var HIDEBOX = function () {box2.style.visibility = "hidden"}
+    var SHOWBOX = function () {box2.style.visibility = "visible"}
+    } else {
+      var HIDEBOX = function () {}
+      var SHOWBOX = function () {}
+    }
+    //
+    //  Get the element jax when MathJax has produced it.
+    //
+    QUEUE.Push(function () {
+      math2 = MathJax.Hub.getAllJax("MathOutput_2")[0];
+      box2 = document.getElementById("box_2");
+      SHOWBOX(); // box is initially hidden so the braces don't show
+    });
+
+    //
+    //  The onchange event handler that typesets the math entered
+    //  by the user.  Hide the box, then typeset, then show it again
+    //  so we don't see a flash as the math is cleared and replaced.
+    //
+    window.UpdateMath2 = function (TeX) {
+      QUEUE.Push(
+          HIDEBOX,
+          ["resetEquationNumbers",MathJax.InputJax.TeX],
+          ["Text",math2,"\\displaystyle{"+TeX+"}"],
+          SHOWBOX
+      );
+    }
+  })();
+</script>
+<script>
+  //
+  //  Use a closure to hide the local variables from the
+  //  global namespace
+  //
+  (function () {
+    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
+    var math3 = null, box3 = null;    // the element jax for the math output, and the box it's in
+
+    //
+    //  Hide and show the box (so it doesn't flicker as much)
+    //
+    if (box3 !== null) {
+      var HIDEBOX = function () {box3.style.visibility = "hidden"}
+      var SHOWBOX = function () {box3.style.visibility = "visible"}
+    } else {
+      var HIDEBOX = function () {}
+      var SHOWBOX = function () {}
+    }
+    //
+    //  Get the element jax when MathJax has produced it.
+    //
+    QUEUE.Push(function () {
+      math3 = MathJax.Hub.getAllJax("MathOutput_3")[0];
+      box3 = document.getElementById("box_3");
+      SHOWBOX(); // box is initially hidden so the braces don't show
+    });
+
+    //
+    //  The onchange event handler that typesets the math entered
+    //  by the user.  Hide the box, then typeset, then show it again
+    //  so we don't see a flash as the math is cleared and replaced.
+    //
+    window.UpdateMath3 = function (TeX) {
+      QUEUE.Push(
+          HIDEBOX,
+          ["resetEquationNumbers",MathJax.InputJax.TeX],
+          ["Text",math3,"\\displaystyle{"+TeX+"}"],
           SHOWBOX
       );
     }

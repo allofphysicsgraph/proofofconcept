@@ -32,14 +32,21 @@
       </UL>
     </td>
     <td>{{ dat["expressions"][expr_id]['name'] }}</td>
-    <td><small>{{ dat["expressions"][expr_id]['notes'] }}</small></td>
+    <td>
+      <!-- https://stackoverflow.com/a/43058043/1164295 -->
+      {% if dat["expressions"][expr_id]['notes'].startswith('http') %}
+        <small><a href="{{ dat['expressions'][expr_id]['notes'] }}">{{ dat["expressions"][expr_id]['notes'].split('/')[-1] }}</a></small>
+      {% else %}
+        <small>{{ dat["expressions"][expr_id]['notes'] }}</small>
+      {% endif %}
+    </td>
     <td>
       {% if expr_use_list|length == 0 %}
 {% if not current_user.is_anonymous %}
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-    <input type="submit" name="submit_button" value='delete step'>
+    <input type="submit" name="submit_button" value='delete expr'>
     <input name="expr ID to delete" type="hidden" value="{{ expr_id }}"></input>
 </form>
 {% else %}

@@ -199,7 +199,11 @@ TODO - - not implemented
               <option value="{{ expr_local_id }}">{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
-<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
+<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300, onchange="UpdateMath1(this.value)") }} <small>max length = 300 characters</small>
+<div class="box" id="box_1" style="visibility:hidden">
+<div id="MathOutput_1" class="output">\({}\)</div>
+</div>
+
     </div>
 <!--    <button type="submit" class="btn btn-default">Update</button> -->
 <input type="submit" name="submit_button" value='edit input expr latex'>
@@ -227,7 +231,10 @@ TODO - - not implemented
               <option value="{{ expr_local_id }}">{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
-<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
+<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300, onchange="UpdateMath2(this.value)") }} <small>max length = 300 characters</small>
+<div class="box" id="box_2" style="visibility:hidden">
+<div id="MathOutput_2" class="output">\({}\)</div>
+</div>
     </div>
     <!--<button type="submit" class="btn btn-default">Update</button> -->
 <input type="submit" name="submit_button" value='edit feed expr latex'>
@@ -256,7 +263,10 @@ TODO - - not implemented
               <option value="{{ expr_local_id }}">{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
-<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
+<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300, onchange="UpdateMath3(this.value)") }} <small>max length = 300 characters</small>
+<div class="box" id="box_3" style="visibility:hidden">
+<div id="MathOutput_3" class="output">\({}\)</div>
+</div>
     </div>
     <!--<button type="submit" class="btn btn-default">Update</button>-->
 <input type="submit" name="submit_button" value='edit output expr latex'>

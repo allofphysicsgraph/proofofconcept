@@ -1280,11 +1280,11 @@ def list_all_expressions():
             return redirect(
                 url_for("list_all_expressions", referrer="list_all_expressions")
             )
-        elif "delete expr" in request.form.keys():
+        elif "expr ID to delete" in request.form.keys():
             # request.form = ImmutableMultiDict([('delete_expr', '4928923942')])
             try:
                 status_message = compute.delete_expr(
-                    request.form["delete expr"], path_to_db
+                    request.form["expr ID to delete"], path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
