@@ -20,7 +20,6 @@
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
 
-
 <h2>AST for each expression in step</h2>
   <P>From Sympy's parsing of the Latex
     {% for ast_png_and_id in list_of_expression_AST_dicts %}
@@ -59,6 +58,88 @@
   {% endfor %}
 </UL>
 
+{% if dict_of_ranked_list.keys()|length > 0 %}
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+  <legend>
+    <a name="symbol matching">
+      <H2>
+        Symbol matching
+      </H2>
+    </a>
+  </legend>
+  <form method="post" action="">
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+    <div class="form-group">
+      <div class="input-group">
+
+        {% for sympy_symbol, list_of_PDG_symbol_IDs in dict_of_ranked_list.items() %}
+          <!-- tracking the outer loop index is necessary for the radio groups -->
+          {% set outer_loop = loop %} <!-- https://stackoverflow.com/questions/1567291/get-loop-index-of-outer-loop -->
+          {% if list_of_PDG_symbol_IDs|length == 0 %}
+            <P>For the symbol {{ sympy_symbol }}, a 
+              <a href="{{ url_for('list_all_symbols') }}#add symbol">
+                 new symbol entry
+              </a> is probably needed since no match is available. <BR>
+              Or you can manually assign an existing symbol:
+          {% else %}
+            <P>candidates for {{ sympy_symbol }}:
+            <table border="1">
+              <tr>
+                <th>select one</th>
+                <th>symbol ID</th>
+                <th>category</th>
+                <th>latex</th>
+                <th>scope</th>
+                <th>measure</th>
+                <th>name</th>
+                <th>value</th>
+                <th>Used in derivations</th>
+                <th>references</th>
+              </tr>
+              {% for symbol_id in list_of_PDG_symbol_IDs %}
+                <tr>
+                <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio -->
+                  <td>
+                    <input name="symbol_radio_{{ outer_loop.index0 }}" type="radio" value="symbol radio {{ symbol_id }} {{ sympy_symbol }}">
+                  </td>
+                  {% set hide_symbol_forms = "true" %}
+                  {% include '_table_of_symbols_row.html' %} 
+                </tr>
+              {% endfor %}
+              <tr>
+                <td><input name="symbol_radio_{{ outer_loop.index0 }}" type="radio" value="existing symbol for {{ sympy_symbol }}"></td>
+                <td colspan="9">select an existing symbol
+                  <select name="existing symbol for {{ sympy_symbol }}" class="selectpicker form-control">
+                      <option value="NONE">&nbsp;</option>
+                    {% for sid, symbol_dict in dat['symbols']|dictsort %}
+                      <option value="{{ sid }}">{{ sid }}, {{ dat['symbols'][sid]['latex'] }}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td> <!-- no radio button for "create new symbol" -->
+                <td colspan="9">
+                  <a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#add symbol">create new symbol</a>
+                </td>
+              </tr>
+            </table>
+          {% endif %} <!-- list_of_PDG_symbol_IDs|length == 0 -->
+        {% endfor %}
+        <P>
+          <input type="submit" name="submit_button" value="update symbols">
+        </p>
+      </div>
+    </div>
+  </form>
+</fieldset>
+{% else %}
+  <P>There are no unmatched symbols for this step when comparing Sympy and the PDG ASTs.<BR>
+If Sympy's analysis was incorrect or the PDG AST is incomplete, you can update the symbols per expression in the 
+<a href="{{ url_for('list_all_expressions', referrer='modify_step') }}">list of all expressions</a>.
+{% endif %}
 
 
 

@@ -340,7 +340,15 @@ def list_symbols_used_in_expr_from_sympy(expr_latex: str) -> list:
     """
     logger.info("[trace]")
     list_of_symbols = []
-    symp_lat = parse_latex(expr_latex)
+    try:
+        symp_lat = parse_latex(expr_latex)
+    except sympy.SympifyError as err:
+        logger.error(err)
+        raise Exception("Sympy unable to parse latex (1): " + expr_latex)
+    except sympy.parsing.latex.errors.LaTeXParsingError as err:
+        logger.error(err)
+        raise Exception("Sympy unable to parse latex (2): " + expr_latex)
+
     for symb in symp_lat.atoms(sympy.Symbol):
         list_of_symbols.append(str(symb))
     return list(set(list_of_symbols))
@@ -429,7 +437,12 @@ def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
     """
     logger.info("[trace]")
 
-    symp_lat = parse_latex(expr_latex)
+    try:
+        symp_lat = parse_latex(expr_latex)
+    except sympy.SympifyError as err:
+        logger.error(err)
+        raise Exception("Sympy unable to parse latex: " + expr_latex)
+        sympy_lat = ""
     graphviz_of_AST_for_expr = sympy.printing.dot.dotprint(symp_lat)
     dot_filename = "tmp.dot"
     with open(dot_filename, "w") as fil:
@@ -493,6 +506,7 @@ def create_AST_png_per_expression_in_step(
             # pic_and_id = (output_filename, expr_global_id)
             list_of_expression_AST_pictures.append(this_dict)
 
+    logger.debug(str(list_of_expression_AST_pictures))
     return list_of_expression_AST_pictures
 
 

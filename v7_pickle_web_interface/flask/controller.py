@@ -1785,7 +1785,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         # request.form = ImmutableMultiDict([('input1_radio', 'latex'), ('input1', 'a = b'), ('input1_name', ''), ('input1_note', ''), ('input1_global_id', '0000040490'), ('feed1', '2'), ('output1_radio', 'latex'), ('output1', 'a + 2 = b + 2'), ('output1_name', ''), ('output1_note', ''), ('output1_global_id', '0000040490'), ('submit_button', 'Submit')])
 
         try:
-            local_step_id = compute.create_step(
+            step_id = compute.create_step(
                 latex_for_step_dict,
                 inf_rule,
                 deriv_id,
@@ -1795,13 +1795,13 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         except Exception as err:
             flash(str(err))
             logger.error(str(err))
-            local_step_id = "0"
+            step_id = "0"
         logger.debug(
-            "local_step_id = %s", local_step_id,
+            "step_id = %s", step_id,
         )
 
         try:
-            step_validity_msg = vir.validate_step(deriv_id, local_step_id, path_to_db)
+            step_validity_msg = vir.validate_step(deriv_id, step_id, path_to_db)
         except Exception as err:
             flash(str(err))
             logger.warning(str(err))
@@ -1811,7 +1811,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
             url_for(
                 "step_review",
                 deriv_id=deriv_id,
-                local_step_id=local_step_id,
+                step_id=step_id,
                 referrer="provide_expr_for_inf_rule",
             )
         )
@@ -1894,10 +1894,10 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
 
 
 @app.route(
-    "/step_review/<deriv_id>/<local_step_id>/", methods=["GET", "POST"],
+    "/step_review/<deriv_id>/<step_id>/", methods=["GET", "POST"],
 )
 @login_required
-def step_review(deriv_id: str, local_step_id: str):
+def step_review(deriv_id: str, step_id: str):
     """
     https://teamtreehouse.com/community/getting-data-from-wtforms-formfield
 
@@ -1914,6 +1914,7 @@ def step_review(deriv_id: str, local_step_id: str):
 
     webform = NewSymbolForm()
 
+    # the following forces a save to disk
     [
         json_file,
         all_df,
@@ -1944,17 +1945,63 @@ def step_review(deriv_id: str, local_step_id: str):
                 url_for(
                     "modify_step",
                     deriv_id=deriv_id,
-                    step_id=local_step_id,
+                    step_id=step_id,
                     referrer="step_review",
                 )
             )
+        elif request.form["submit_button"] == "update symbols":
+            for this_key in request.form.keys():
+                if this_key.startswith("symbol_radio_"):
+                    if request.form[this_key].startswith("symbol radio "):
+                        selected_string = request.form[this_key]
+                        selected_string = selected_string.replace("symbol radio ", "")
+                        new_symbol_id = selected_string.split(" ")[0]
+                        sympy_symbol = selected_string.split(" ")[1]
+                        compute.update_symbol_in_step(
+                            sympy_symbol, new_symbol_id, deriv_id, step_id, path_to_db,
+                        )
+                        flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
+                    elif request.form[this_key].startswith("existing symbol for "):
+                        for find_key in request.form.keys():
+                            if find_key == request.form[this_key]:
+                                new_symbol_id = request.form[find_key]
+                                sympy_symbol = find_key.replace(
+                                    "existing symbol for ", ""
+                                )
+                                compute.update_symbol_in_step(
+                                    sympy_symbol,
+                                    new_symbol_id,
+                                    deriv_id,
+                                    step_id,
+                                    path_to_db,
+                                )
+                                flash(
+                                    "updated "
+                                    + sympy_symbol
+                                    + " as ID "
+                                    + new_symbol_id
+                                )
+                    else:
+                        flash("unrecognized button text")
+                        logger.error("unrecognized button text")
+            return redirect(url_for("step_review", deriv_id=deriv_id, step_id=step_id))
+        elif request.form["submit_button"] == "delete step":
+            try:
+                compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
+                return redirect(
+                    url_for("review_derivation", deriv_id=deriv_id),
+                    referrer="modify_step",
+                )
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
         else:
             logger.error('unrecognized button in "step_review":', request.form)
             raise Exception('unrecognized button in "step_review":', request.form)
 
     try:
         step_graphviz_png = compute.create_step_graphviz_png(
-            deriv_id, local_step_id, path_to_db
+            deriv_id, step_id, path_to_db
         )
     except Exception as err:
         logger.error(str(err))
@@ -1966,18 +2013,18 @@ def step_review(deriv_id: str, local_step_id: str):
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
         derivation_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+        for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
                 derivation_validity_dict[step_id] = vir.validate_step(
-                    deriv_id, step_id, path_to_db
+                    deriv_id, this_step_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                derivation_validity_dict[step_id] = "failed"
-        #try:
+                derivation_validity_dict[this_step_id] = "failed"
+        # try:
         #    step_dict = dat["derivations"][deriv_id]["steps"]
-        #except Exception as err:
+        # except Exception as err:
         #    logger.error(str(err))
         #    flash(str(err))
         #    step_dict = {}
@@ -1993,16 +2040,75 @@ def step_review(deriv_id: str, local_step_id: str):
         flash(str(err))
         expression_popularity_dict = {}
 
-    # logger.debug('step validity = %s', str(step_validity_dict))
+    try:
+        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
+            path_to_db
+        )
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        symbol_popularity_dict = {}
+
+    # the following is also used in modify_step
+    try:
+        list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
+            deriv_id, step_id, path_to_db
+        )
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        list_of_symbols_in_step_that_lack_id = []
+
+    symbol_candidate_dict = compute.guess_missing_PDG_AST_ids(
+        list_of_symbols_in_step_that_lack_id, deriv_id, step_id, path_to_db
+    )
+    compute.fill_in_missing_PDG_AST_ids(
+        symbol_candidate_dict, deriv_id, step_id, path_to_db
+    )
 
     try:
-        list_of_symbols = compute.list_symbols_used_in_step_from_PDG_AST(
-            deriv_id, local_step_id, path_to_db
+        list_of_expression_AST_dicts = compute.create_AST_png_per_expression_in_step(
+            deriv_id, step_id, path_to_db
         )
     except Exception as err:
         logger.error(str(err))
         flash(str(err))
-        list_of_symbols = []
+        list_of_expression_AST_dicts = []
+
+    try:
+        list_of_symbols_from_sympy = compute.list_symbols_used_in_step_from_sympy(
+            deriv_id, step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_symbols_from_sympy = []
+
+    try:
+        list_of_symbols_from_PDG_AST = compute.list_symbols_used_in_step_from_PDG_AST(
+            deriv_id, step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_symbols_from_PDG_AST = []
+
+    # find symbols that lack IDs
+    try:
+        list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
+            deriv_id, step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_symbols_in_step_that_lack_id = []
+
+    dict_of_ranked_list = {}
+    for sympy_symbol in list_of_symbols_in_step_that_lack_id:
+        ranked_list_of_candidate_symbol_ids = compute.rank_candidate_pdg_symbols_for_sympy_symbol(
+            sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
+        )
+        dict_of_ranked_list[sympy_symbol] = ranked_list_of_candidate_symbol_ids
 
     try:
         expr_dict_with_symbol_list = compute.generate_expr_dict_with_symbol_list(
@@ -2019,15 +2125,14 @@ def step_review(deriv_id: str, local_step_id: str):
         name_of_graphviz_png=step_graphviz_png,
         deriv_id=deriv_id,
         dat=dat,
+        list_of_expression_AST_dicts=list_of_expression_AST_dicts,
+        symbol_popularity_dict=symbol_popularity_dict,
+        dict_of_ranked_list=dict_of_ranked_list,
         expression_popularity_dict=expression_popularity_dict,
         expr_dict_with_symbol_list=expr_dict_with_symbol_list,
-        #step_dict=step_dict,
-        list_of_symbols=list_of_symbols,
-        #symbols=dat["symbols"],
-        #expr_dict=dat["expressions"],
-        #expressions_dict=dat["expressions"],
+        list_of_symbols_from_sympy=list_of_symbols_from_sympy,
+        list_of_symbols_from_PDG_AST=list_of_symbols_from_PDG_AST,
         derivation_validity_dict=derivation_validity_dict,
-        #expr_local_to_global=dat["expr local to global"],
         title="step review",
     )
 
@@ -2303,7 +2408,6 @@ def modify_step(deriv_id: str, step_id: str):
                         else:
                             flash("unrecognized button text")
                             logger.error("unrecognized button text")
-                # compute.update_symbols_in_step(deriv_id, step_id, path_to_db)
                 return redirect(
                     url_for(
                         "modify_step",
@@ -2350,7 +2454,7 @@ def modify_step(deriv_id: str, step_id: str):
                     url_for(
                         "step_review",
                         deriv_id=deriv_id,
-                        local_step_id=step_id,
+                        step_id=step_id,
                         referrer="modify_step",
                     )
                 )
@@ -2404,17 +2508,14 @@ def modify_step(deriv_id: str, step_id: str):
         step_graphviz_png = "error.png"
 
     # find symbols that lack IDs
-    list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
-        deriv_id, step_id, path_to_db
-    )
-    # flash(
-    #    "list of symbols in step that lack ID: "
-    #    + str(list_of_symbols_in_step_that_lack_id)
-    # )
-    # logger.debug(
-    #    "list of symbols in step that lack ID: "
-    #    + str(list_of_symbols_in_step_that_lack_id)
-    # )
+    try:
+        list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
+            deriv_id, step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_symbols_in_step_that_lack_id = []
 
     symbol_candidate_dict = compute.guess_missing_PDG_AST_ids(
         list_of_symbols_in_step_that_lack_id, deriv_id, step_id, path_to_db
@@ -2451,9 +2552,14 @@ def modify_step(deriv_id: str, step_id: str):
         list_of_symbols_from_PDG_AST = []
 
     # find symbols that lack IDs
-    list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
-        deriv_id, step_id, path_to_db
-    )
+    try:
+        list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
+            deriv_id, step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_symbols_in_step_that_lack_id = []
     dict_of_ranked_list = {}
     for sympy_symbol in list_of_symbols_in_step_that_lack_id:
         ranked_list_of_candidate_symbol_ids = compute.rank_candidate_pdg_symbols_for_sympy_symbol(
@@ -2482,7 +2588,7 @@ def modify_step(deriv_id: str, step_id: str):
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                derivation_validity_dict[step_id] = "failed"
+                derivation_validity_dict[this_step_id] = "failed"
     else:
         logger.error("ERROR: " + deriv_id + " is not in derivations")
         flash("ERROR: " + deriv_id + " is not in derivations")

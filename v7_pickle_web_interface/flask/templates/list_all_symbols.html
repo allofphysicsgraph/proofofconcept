@@ -126,7 +126,13 @@ function enable_category_radio2(enabled){
   </table>
 
 
-        {{ new_symbol_form.symbol_latex.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_latex }}<BR>
+        {{ new_symbol_form.symbol_latex.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_latex(onchange="UpdateMath(this.value)") }} &nbsp;
+
+<div class="box" id="box" style="visibility:hidden">
+<div id="MathOutput" class="output">\({}\)</div>
+</div>
+
+
         {{ new_symbol_form.symbol_name.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_name }}<BR>
         {{ new_symbol_form.symbol_measure.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_measure }}<BR>
         {{ new_symbol_form.symbol_scope_real.label }}: {{ new_symbol_form.symbol_scope_real }}<BR>

@@ -45,19 +45,19 @@
   JSON is convenient because it is plain text and the ease of detailed validation available using schemas.
   The many alternatives to JSON (e.g., SQLite, Redis, Python Pickle, CSV, GraphML) offer trade-offs, a few of which <a href="#historical evolution">have been explored</a>.
 
-<H2 id="latex for expressions">Latex representation of expressions</H2>
+<H2 id="latex for expressions">\(\rm\LaTeX\) representation of expressions</H2>
 <P>
   There are multiple choices of how to represent a mathematical expression. 
   The choices feature trade-offs between conciseness, ability to express the range of notations necessary for Physics, symantic meaning, and ability to use the expression in a computer algebra system (CAS).
   See the <a href="#comparison:syntax">comparison of synatx</a> below.
-  Latex was selected primarily because of the common use in Physics, display of complex math, conciseness, and expressiveness. 
-  The use of Latex means other tasks like parsing symbols and resolving ambiguity are harder.
+  \(\rm\LaTeX\) was selected primarily because of the common use in Physics, display of complex math, conciseness, and expressiveness. 
+  The use of \(\rm\LaTeX\) means other tasks like parsing symbols and resolving ambiguity are harder.
 </p>
 
 <H2 name="software">Software used in the Physics Derivation Graph</H2>
 <H3 id="python">Python</H3>
 <P>
-  Python as a "glue" language is leveraged to connect existing tools like Latex, Flask, logging, manipulation of data. 
+  Python as a "glue" language is leveraged to connect existing tools like \(\rm\LaTeX\), Flask, logging, manipulation of data. 
   Also, Python is the language the project owner is most comfortable with. 
   And it is free and open source.
 </P>
@@ -223,11 +223,11 @@
 
 <P>
   The inference rule needs the local index to build the graph.
-  The expression needs a local index to build the Latex PDF. 
+  The expression needs a local index to build the \(\rm\LaTeX\) PDF. 
 </P>
 
 <P>
-  In addition to the inference rules and expressions, each Latex expression actually represents an Abstract Syntax Tree (AST) composed of symbols. 
+  In addition to the inference rules and expressions, each \(\rm\LaTeX\) expression actually represents an Abstract Syntax Tree (AST) composed of symbols. 
 </P>
 <img src="{{ url_for('static', filename='single_step_with_AST_per_expression_and_symbols.png') }}">
 
@@ -360,17 +360,17 @@ http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
 
 <P>
   Here methods of capturing mathematical syntax required to describe derivations in physics are compared.
-  This survey covers Latex, Mathematical Markup Language (MathML), Mathematica, and SymPy.
+  This survey covers \(\rm\LaTeX\), Mathematical Markup Language (MathML), Mathematica, and SymPy.
   For MathML, both Presentation and Content forms are included.
 </P>
 
 
 <P>
-Although Latex is intuitive for scientists and is concise, it is a typesetting language and not well suited for the web or use in Computer Algebra Systems (CAS). Mathematica is also concise and has wide spread use by scientists, though its cost limits accessibility. Mathematica is also proprietary, which limits the ability to explore the correctness of this CAS
+Although \(\rm\LaTeX\) is intuitive for scientists and is concise, it is a typesetting language and not well suited for the web or use in Computer Algebra Systems (CAS). Mathematica is also concise and has wide spread use by scientists, though its cost limits accessibility. Mathematica is also proprietary, which limits the ability to explore the correctness of this CAS
 </P>
 
 <P>
-Latex is concise and is widely used in the scientific community. It does not work well for portability to other representations and is ill-suited for use by CAS. For the initial phases of development for the Physics Derivation Graph, portability and compatibilty with a CAS are not the priority. Since getting content into the graph is the priority, the Latex representation will be used.
+\(\rm\LaTeX\) is concise and is widely used in the scientific community. It does not work well for portability to other representations and is ill-suited for use by CAS. For the initial phases of development for the Physics Derivation Graph, portability and compatibilty with a CAS are not the priority. Since getting content into the graph is the priority, the Latex representation will be used.
 </P>
 
 <P>

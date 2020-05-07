@@ -4161,6 +4161,35 @@
                     "notes": "",
                     "author": "Ben",
                     "creation date": "2020-05-06"
+                },
+                "3198144": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7959026"
+                    ],
+                    "linear index": 3,
+                    "notes": "circumference of a circle",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
+                },
+                "9488257": {
+                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inputs": [
+                        "7959026"
+                    ],
+                    "feeds": [
+                        "9640823",
+                        "2565754"
+                    ],
+                    "outputs": [
+                        "5753220"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-07"
                 }
             }
         }
@@ -4536,7 +4565,11 @@
         "1131405": "5426308937",
         "1022830": "7476820482",
         "8635770": "1277713901",
-        "7360652": "6946088325"
+        "7360652": "6946088325",
+        "7959026": "6785303857",
+        "9640823": "2113447367",
+        "2565754": "4816195267",
+        "5753220": "6348260313"
     },
     "expressions": {
         "0000040490": {
@@ -8468,6 +8501,90 @@
             "notes": "",
             "author": "Ben",
             "creation date": "2020-05-06"
+        },
+        "6785303857": {
+            "latex": "C = 2 \\pi r",
+            "AST": [
+                "3141",
+                "3034",
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "7239163527": {
+            "latex": "C_{earth orbit}, r_{earth orbit}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "4816195267": {
+            "latex": "C, r",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "4626433991": {
+            "latex": "C_{earth orbit} = 2 \\pi r_{earth orbit}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "3778363165": {
+            "latex": "C_{Earth's\\ orbit} = 2 \\pi r_{Earth's\\ orbit}",
+            "creation date": "2020-05-07",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "2963552923": {
+            "latex": "C_{Earth's\\ orbit} = 2 \\pi r_{Earth's\\ orbit}",
+            "creation date": "2020-05-07",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "1409391267": {
+            "latex": "C_{Earth\\'s\\ orbit} = 2 \\pi r_{Earth\\'s\\ orbit}",
+            "creation date": "2020-05-07",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "6769589602": {
+            "latex": "C_{\\rm{Earth's orbit}}, r_{\\rm{Earth's\\ orbit}}",
+            "creation date": "2020-05-07",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "2113447367": {
+            "latex": "C_{\\rm{Earth\\ orbit}}, r_{\\rm{Earth\\ orbit}}",
+            "creation date": "2020-05-07",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "6348260313": {
+            "latex": "C_{\\rm{Earth\\ orbit}} = 2 \\pi r_{\\rm{Earth\\ orbit}}",
+            "creation date": "2020-05-07",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
         }
     },
     "inference rules": {
@@ -9936,6 +10053,50 @@
             ],
             "author": "Ben",
             "creation date": "2020-05-06"
+        },
+        "3034": {
+            "category": "variable",
+            "latex": "C",
+            "name": "circumfrence",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Circumference"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "2530": {
+            "category": "variable",
+            "latex": "r",
+            "name": "radius",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Radius"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-07"
+        },
+        "6081": {
+            "category": "constant",
+            "latex": "r_{Earth's\\ orbit}",
+            "name": "radius of Earth's orbit",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Earth%27s_orbit"
+            ],
+            "value": "1.496*10^8",
+            "units": "km",
+            "author": "Ben",
+            "creation date": "2020-05-07"
         }
     },
     "units": {

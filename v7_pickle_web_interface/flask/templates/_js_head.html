@@ -6,6 +6,17 @@
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <meta name="google-signin-client_id" content="897942275285-el3oi54h7fg973tnqp6b0ioou46h5t16.apps.googleusercontent.com">
 
+
+
+
+
+
+
+
+
+
+
+
     <!-- if inclusion of Mathjax on pages which don't have latex becomes a significant source of latency, see
          http://docs.mathjax.org/en/latest/web/typeset.html#loading-mathjax-only-on-pages-with-math -->
     <!-- http://docs.mathjax.org/en/latest/input/tex/eqnumbers.html -->
@@ -20,14 +31,36 @@
       };
     </script>
     <!-- https://docs.mathjax.org/en/v2.7-latest/start.html -->
-    <!--
+<!--
     <script type="text/javascript" async
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-MML-AM_CHTML">
     </script>
-    -->
+-->
+<!--
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+-->
+    <script type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
 
+<!-- the following works for live preview of input based on
+     https://cdn.rawgit.com/mathjax/MathJax/2.7.1/test/sample-dynamic.html
+<script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<!--
+    <script id="MathJax-script"
+    src="{{ url_for('static', filename='mathjax/tex-svg.js') }}"></script
+-->
+<!--
+the following is for Mathjax 3 that is loaded in the Docker build process using npm
     <script id="MathJax-script" async
     src="{{ url_for('static', filename='mathjax/tex-svg.js') }}"></script>
+-->
+
+
+
 <!--
 the following is for mathjax in a separate docker image connected via docker-compose
     <script id="MathJax-script" async
@@ -51,6 +84,70 @@ the following is for mathjax in a separate docker image connected via docker-com
 
 
 
+<!-- https://physicsderivationgraph.blogspot.com/2020/05/live-display-of-input.html -->
+<!-- https://cdn.rawgit.com/mathjax/MathJax/2.7.1/test/sample-dynamic.html -->
+<script>
+  //
+  //  Use a closure to hide the local variables from the
+  //  global namespace
+  //
+  (function () {
+    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
+    var math = null, box = null;    // the element jax for the math output, and the box it's in
+
+    //
+    //  Hide and show the box (so it doesn't flicker as much)
+    //
+    var HIDEBOX = function () {box.style.visibility = "hidden"}
+    var SHOWBOX = function () {box.style.visibility = "visible"}
+
+    //
+    //  Get the element jax when MathJax has produced it.
+    //
+    QUEUE.Push(function () {
+      math = MathJax.Hub.getAllJax("MathOutput")[0];
+      box = document.getElementById("box");
+      SHOWBOX(); // box is initially hidden so the braces don't show
+    });
+
+    //
+    //  The onchange event handler that typesets the math entered
+    //  by the user.  Hide the box, then typeset, then show it again
+    //  so we don't see a flash as the math is cleared and replaced.
+    //
+    window.UpdateMath = function (TeX) {
+      QUEUE.Push(
+          HIDEBOX,
+          ["resetEquationNumbers",MathJax.InputJax.TeX],
+          ["Text",math,"\\displaystyle{"+TeX+"}"],
+          SHOWBOX
+      );
+    }
+  })();
+</script>
+<script>
+  //
+  //  IE doesn't fire onchange events for RETURN, so
+  //   use onkeypress to do a blur (and refocus) to
+  //   force the onchange to occur
+  //
+  if (MathJax.Hub.Browser.isMSIE) {
+    MathInput.onkeypress = function () {
+      if (window.event && window.event.keyCode === 13) {this.blur(); this.focus()}
+    }
+  }
+</script>
+
+
+
+
+
+
+    <!-- updated sorttable from 
+         https://github.com/stuartlangridge/sorttable/blob/master/sorttable/sorttable.js
+         to fix this problem
+         https://github.com/stuartlangridge/sorttable/issues/6
+    -->
     <!-- https://www.kryogenix.org/code/browser/sorttable/ -->
     <script type="text/javascript" src="{{ url_for('static', filename='sorttable.js') }}"></script>
     <style>
