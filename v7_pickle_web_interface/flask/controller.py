@@ -729,8 +729,8 @@ def tokensignin():
     return redirect(url_for("navigation", referrer="tokensignin"))
 
 
-#@app.route("/user/<user_name>/", methods=["GET", "POST"])
-#def user(user_name):
+# @app.route("/user/<user_name>/", methods=["GET", "POST"])
+# def user(user_name):
 #    """
 #    # TODO -- this is just a stub
 #    https://github.com/allofphysicsgraph/proofofconcept/issues/126
@@ -801,7 +801,6 @@ def api_read_derivation_by_name():
         )
 
 
-
 @app.route("/api/v1/resources/expressions/all", methods=["GET"])
 def api_all_expressions():
     """
@@ -810,6 +809,7 @@ def api_all_expressions():
     """
     dat = clib.read_db(path_to_db)
     return jsonify(dat["expressions"])
+
 
 @app.route("/api/v1/resources/expressions/list", methods=["GET"])
 def api_list_expressions():
@@ -992,8 +992,6 @@ def api_operators_by_name():
         return jsonify(dat["operators"][operator_id])
     else:
         return "Error: operator_id " + operator_id + " not found see symbols/list"
-
-
 
 
 @app.route("/index", methods=["GET", "POST"])
