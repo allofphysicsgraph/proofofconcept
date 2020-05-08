@@ -1,6 +1,34 @@
 {% extends "_base.html" %}
 {% block content %}
 
+<!-- https://www.w3schools.com/howto/howto_js_filter_table.asp -->
+latex: <input type="text" id="latex_input" onkeyup="latex_filter()" placeholder="Search latex">
+
+<script>
+function latex_filter() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("latex_input");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("expr_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    console.log(td)
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
 <P>
 {% include '_table_of_expressions.html' %}
 
@@ -21,8 +49,8 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="delete expr" class="selectpicker form-control">
-              {% for elem in list_of_expr_not_appearing_in_any_derivations %}
-              <option value="{{ elem }}">{{ elem }}</option>
+              {% for expr_global_id in list_of_expr_not_appearing_in_any_derivations %}
+              <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
               {% endfor %}
             </select>
     </div>
@@ -76,8 +104,8 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="edit_expr_name" class="selectpicker form-control">
-              {% for elem in sorted_list_exprs %}
-              <option value="{{ elem }}">{{ elem }}</option>
+              {% for expr_global_id in sorted_list_exprs %}
+              <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_name_webform.revised_text.label }}: {{ edit_expr_name_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
@@ -105,8 +133,8 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="edit_expr_note" class="selectpicker form-control">
-              {% for elem in sorted_list_exprs %}
-              <option value="{{ elem }}">{{ elem }}</option>
+              {% for expr_global_id in sorted_list_exprs %}
+              <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
               {% endfor %}
             </select>
 <P>{{ edit_expr_note_webform.revised_text.label }}: {{ edit_expr_note_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>

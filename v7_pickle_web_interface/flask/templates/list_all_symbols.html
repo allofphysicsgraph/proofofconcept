@@ -1,34 +1,61 @@
 {% extends "_base.html" %}
 {% block content %}
 
+<!-- https://www.w3schools.com/howto/howto_js_filter_table.asp -->
+Symbol latex: <input type="text" id="symbol_input" onkeyup="symbol_filter()" placeholder="Search symbol latex"> &nbsp; XOR &nbsp;
+Name: <input type="text" id="name_input" onkeyup="name_filter()" placeholder="Search symbol name">
+
+<script>
+function name_filter() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("name_input");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("symbols_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[5];
+    console.log(td)
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function symbol_filter() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("symbol_input");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("symbols_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    console.log(td)
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+</script>
+
 {% include '_table_of_symbols.html' %}
 
-<!--
-<P>
-  <h2>
-    <a id="delete symbol">
-      Delete a symbol
-    </a>
-  </h2>
-  { % if current_user.is_anonymous %}
-  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_symbols">signed in</a>
-  { % else %}
-<form method="post" action="">
-  <div class="form-group">
-    <div class="input-group">
-        <span class="input-group-addon">Select from</span>
-            <select name="delete_symbol" class="selectpicker form-control">
-              {% for elem in sorted_list_symbols_not_in_use %}
-              <option value="{{ elem }}">{{ elem }}</option>
-              {% endfor %}
-            </select>
-    </div>
-    <button type="submit" class="btn btn-default">Delete</button>
-  </div>
-</form>
-{ % endif %}
-</P>
--->
 
 <P>
 <fieldset>
@@ -48,16 +75,21 @@
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="edit_symbol_latex" class="selectpicker form-control">
-              {% for elem in sorted_list_symbols %}
-              <option value="{{ elem }}">{{ elem }}</option>
+              {% for sid, symbol_dict in dat['symbols']|dictsort %}
+              <option value="{{ sid }}">{{ sid }}, {{ symbol_dict['latex'] }}</option>
               {% endfor %}
             </select>
-<P>{{ edit_latex_webform.revised_text.label }}: {{ edit_latex_webform.revised_text(size=50, maxlength=300, onchange="UpdateMath1(this.value)") }} <small>max length = 300 characters</small>
+<P>{{ edit_latex_webform.revised_text.label }}:
+   {{ edit_latex_webform.revised_text(size=50, maxlength=300, id="edit_latex") }}
+   <small>max length = 300 characters</small><BR>
 
-<div class="box" id="box_1" style="visibility:hidden">
-<div id="MathOutput_1" class="output">\({}\)</div>
-</div>
+   <input type="checkbox" id="display_edit_latex" checked="" onchange="convert('edit_latex','display_edit_latex', 'preview_edit_latex','output_edit_latex')">
+   <small><label for="display_edit_latex">Display style</label></small>
 
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_edit_latex" onclick="convert('edit_latex','display_edit_latex', 'preview_edit_latex','output_edit_latex')">
+
+   <br clear="all">
+   <div id="output_edit_latex"></div>
 
     </div>
     <button type="submit" class="btn btn-default">Update</button>
@@ -133,11 +165,15 @@ function enable_category_radio2(enabled){
   </table>
 
 
-        {{ new_symbol_form.symbol_latex.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_latex(onchange="UpdateMath2(this.value)") }} &nbsp;
+        {{ new_symbol_form.symbol_latex.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_latex(id="symbol_latex") }}<BR>
 
-<div class="box" id="box_2" style="visibility:hidden">
-<div id="MathOutput_2" class="output">\({}\)</div>
-</div>
+   <input type="checkbox" id="display_symbol_latex" checked="" onchange="convert('symbol_latex','display_symbol_latex', 'preview_symbol_latex','output_symbol_latex')">
+   <small><label for="display_symbol_latex">Display style</label></small>
+
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_symbol_latex" onclick="convert('symbol_latex','display_symbol_latex', 'preview_symbol_latex','output_symbol_latex')">
+
+   <br clear="all">
+   <div id="output_symbol_latex"></div>
 
 
         {{ new_symbol_form.symbol_name.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_name }}<BR>

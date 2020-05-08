@@ -220,7 +220,16 @@ function enable_output3_radio3(enabled){
 </div>
 -->
 <BR>
-           <small><B>Required</B>; max length = 300 characters</small>
+           <small><B>Required</B>; max length = 300 characters</small><BR>
+
+   <input type="checkbox" id="display_input1_latex" checked="" onchange="convert('input1_latex','display_input1_latex', 'preview_input1_latex','output_input1_latex')">
+   <small><label for="display_input1_latex">Display style</label></small>
+
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_input1_latex" onclick="convert('input1_latex','display_input1_latex', 'preview_input1_latex','output_input1_latex')">
+
+   <br clear="all">
+   <div id="output_input1_latex"></div>
+
           </div>
         </td>
         <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300, id="input1_name", onchange="onChangeFunction();") }}<BR>
@@ -234,8 +243,8 @@ function enable_output3_radio3(enabled){
       <td>
         <span class="input-group-addon">Select from</span>
           <select name="input1_local_id" class="selectpicker form-control" id="input1_local" onchange="onChangeFunction();" disabled="disabled">
-            {% for elem in list_of_local_id %}
-            <option value="{{ elem }}">{{ elem }}</option>
+            {% for expr_local_id in list_of_local_id %}
+            <option value="{{ expr_local_id }}">{{ expr_local_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>
             {% endfor %}
           </select>
       </td>
@@ -283,8 +292,8 @@ function enable_output3_radio3(enabled){
       <td>
         <span class="input-group-addon">Select from</span>
           <select name="input2_local_id" class="selectpicker form-control" id="input2_local" onchange="onChangeFunction();" disabled="disabled">
-            {% for elem in list_of_local_id %}
-            <option value="{{ elem }}">{{ elem }}</option>
+            {% for expr_local_id in list_of_local_id %}
+            <option value="{{ expr_local_id }}">{{ expr_local_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>
             {% endfor %}
           </select>
       </td>
@@ -333,8 +342,8 @@ function enable_output3_radio3(enabled){
       <td>
         <span class="input-group-addon">Select from</span>
           <select name="input3_local_id" class="selectpicker form-control" id="input3_local" onchange="onChangeFunction();" disabled="disabled">
-            {% for elem in list_of_local_id %}
-            <option value="{{ elem }}">{{ elem }}</option>
+            {% for expr_local_id in list_of_local_id %}
+            <option value="{{ expr_local_id }}">{{ expr_local_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>            
             {% endfor %}
           </select>
       </td>
@@ -362,10 +371,15 @@ function enable_output3_radio3(enabled){
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 0|int() %}
-<P>{{ webform.feed1.label }}: {{ webform.feed1(size=100, maxlength=300, onchange="UpdateMath2(this.value)") }} <small><B>Required</B>; max length = 300 characters</small>
-<div class="box" id="box_2" style="visibility:hidden">
-<div id="MathOutput_2" class="output">\({}\)</div>
-</div>
+<P>{{ webform.feed1.label }}: {{ webform.feed1(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+   <input type="checkbox" id="display_feed1_latex" checked="" onchange="convert('feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
+   <small><label for="display_feed1_latex">Display style</label></small>
+
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_feed1_latex" onclick="convert('feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
+
+   <br clear="all">
+   <div id="output_feed1_latex"></div>
+
 </P>
 {% endif %}
 
@@ -389,13 +403,18 @@ function enable_output3_radio3(enabled){
       <td>{{ subfield.label }}</td>
 
     <td>{{ webform.output1.label }}: {{ webform.output1(size=50, maxlength=300, id="output1_latex", onchange="onChangeFunction();") }} 
-<!--
-<div class="box" id="box_3" style="visibility:hidden">
-<div id="MathOutput_3" class="output">\({}\)</div>
-</div>
--->
 <BR>
-           <small><B>Required</B>; max length = 300 characters</small></td>
+           <small><B>Required</B>; max length = 300 characters</small><BR>
+   <input type="checkbox" id="display_output1_latex" checked="" onchange="convert('output1_latex','display_output1_latex', 'preview_output1_latex','output_output1_latex')">
+   <small><label for="display_output1_latex">Display style</label></small>
+
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_output1_latex" onclick="convert('output1_latex','display_output1_latex', 'preview_output1_latex','output_output1_latex')">
+
+   <br clear="all">
+   <div id="output_output1_latex"></div>
+
+
+</td>
       <td>{{ webform.output1_name.label }}: {{ webform.output1_name(size=20, maxlength=300, id="output1_name", onchange="onChangeFunction();") }}<BR>
            <small><i>optional</i></small></td>
       <td>{{ webform.output1_note.label }}: {{ webform.output1_note(size=20, maxlength=300, id="output1_note", onchange="onChangeFunction();") }}<BR>
@@ -407,9 +426,9 @@ function enable_output3_radio3(enabled){
     <td>
       <span class="output-group-addon">Select from</span>
         <select name="output1_local_id" class="selectpicker form-control" id="output1_local" onchange="onChangeFunction();" disabled="disabled">
-          {% for elem in list_of_local_id %}
-          <option value="{{ elem }}">{{ elem }}</option>
-          {% endfor %}
+            {% for expr_local_id in list_of_local_id %}
+            <option value="{{ expr_local_id }}">{{ expr_local_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>          
+            {% endfor %}
         </select>
     </td>
   {% elif loop.index0 == 2 %}
@@ -457,9 +476,9 @@ function enable_output3_radio3(enabled){
     <td>
       <span class="output-group-addon">Select from</span>
         <select name="output2_local_id" class="selectpicker form-control" id="output2_local" onchange="onChangeFunction();" disabled="disabled">
-          {% for elem in list_of_local_id %}
-          <option value="{{ elem }}">{{ elem }}</option>
-          {% endfor %}
+            {% for expr_local_id in list_of_local_id %}
+            <option value="{{ expr_local_id }}">{{ expr_local_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>          
+            {% endfor %}
         </select>
     </td>
   {% elif loop.index0 == 2 %}
@@ -507,9 +526,9 @@ function enable_output3_radio3(enabled){
     <td>
       <span class="output-group-addon">Select from</span>
         <select name="output3_local_id" class="selectpicker form-control" id="output3_local" onchange="onChangeFunction();" disabled="disabled">
-          {% for elem in list_of_local_id %}
-          <option value="{{ elem }}">{{ elem }}</option>
-          {% endfor %}
+            {% for expr_local_id in list_of_local_id %}
+            <option value="{{ expr_local_id }}">{{ expr_local_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>          
+{% endfor %}
         </select>
     </td>
   {% elif loop.index0 == 2 %}
