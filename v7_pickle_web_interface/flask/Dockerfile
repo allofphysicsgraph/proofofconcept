@@ -39,8 +39,8 @@ RUN apt-get update && \
 COPY requirements.txt /tmp
 
 # https://www.npmjs.com/package/mathjax
-#RUN npm install mathjax@3
-RUN npm install mathjax
+RUN npm install mathjax@3
+#RUN npm install mathjax
 
 # convert DVI to SVG
 # not necessary, and written in Python2. Conversion to Python3 using 2to3 failed :(
