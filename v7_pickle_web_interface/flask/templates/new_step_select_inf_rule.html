@@ -6,23 +6,72 @@
 
 <!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
 
+<fieldset>
+<legend>
+  <H2>Select inference rule from list</h2>
+</legend>
+
+<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
+<input type="text" id="inf_rule_input" onkeyup="select_infrule()" placeholder="Select inference rule">
+
+<UL id="inf_rules_UL">
+  {% for inf_rule in inf_rule_list %}
+  <LI><a href="{{ url_for("provide_expr_for_inf_rule",
+                deriv_id=deriv_id,
+                inf_rule=inf_rule,
+                referrer="new_step_select_inf_rule") }}">{{inf_rule}}</a></LI>
+  {% endfor %}
+</UL>
+
+</UL>
+</fieldset>
+
+<script>
+function select_infrule() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('inf_rule_input');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("inf_rules_UL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+<!--
+<P>XOR
+<fieldset>
+<legend>
+  <H2>Select inference rule from dropdown</h2>
+</legend>
 <form class="form-inline" method="POST" action="">
-    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    <!- - https://flask-wtf.readthedocs.io/en/v0.12/csrf.html - ->
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
             <select name="inf_rul_select" class="selectpicker form-control">
-              {% for elem in inf_rule_list %}
+              { % for elem in inf_rule_list %}
               <option value="{{ elem }}">{{ elem }}</option>
-              {% endfor %}
+              { % endfor %}
             </select>
     </div>
     <button type="submit" class="btn btn-default">Next</button>
   </div>
 </form>
-
+</fieldset>
+-->
 
 {% endblock %}
 
