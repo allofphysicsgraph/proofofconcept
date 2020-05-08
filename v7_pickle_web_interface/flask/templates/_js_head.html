@@ -1,5 +1,5 @@
 
-    <!-- Google Sign In 
+    <!-- Google Sign In
     https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin
     https://github.com/allofphysicsgraph/proofofconcept/issues/119
       -->
@@ -41,10 +41,11 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
 -->
+<!--
     <script type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
-
+-->
 <!-- the following works for live preview of input based on
      https://cdn.rawgit.com/mathjax/MathJax/2.7.1/test/sample-dynamic.html
 <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.7/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -55,10 +56,13 @@
 -->
 <!--
 the following is for Mathjax 3 that is loaded in the Docker build process using npm
+-->
+<!--
     <script id="MathJax-script" async
     src="{{ url_for('static', filename='mathjax/tex-svg.js') }}"></script>
 -->
-
+    <script id="MathJax-script" async
+    src="{{ url_for('static', filename='mathjax/tex-chtml.js') }}"></script>
 
 
 <!--
@@ -73,7 +77,7 @@ the following is for mathjax in a separate docker image connected via docker-com
       src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
     </script>
 -->
-    <!-- The following is described on 
+    <!-- The following is described on
          http://docs.mathjax.org/en/latest/web/configuration.html
          but isn't available -->
     <!--
@@ -85,146 +89,56 @@ the following is for mathjax in a separate docker image connected via docker-com
 
 
 <!-- https://physicsderivationgraph.blogspot.com/2020/05/live-display-of-input.html -->
-<!-- https://cdn.rawgit.com/mathjax/MathJax/2.7.1/test/sample-dynamic.html -->
 <script>
-  //
-  //  Use a closure to hide the local variables from the
-  //  global namespace
-  //
-  (function () {
-    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
-    var math1 = null, box1 = null;    // the element jax for the math output, and the box it's in
-
+  function convert(input_id, display_checkbox_id, preview_id, output_id) {
+    //console.log(input_id)
+    //console.log(display_checkbox_id)
+    //console.log(preview_id)
+    //console.log(output_id)
     //
-    //  Hide and show the box (so it doesn't flicker as much)
+    //  Get the TeX input
     //
-    if (box1 !== null) {
-    var HIDEBOX = function () {box1.style.visibility = "hidden"}
-    var SHOWBOX = function () {box1.style.visibility = "visible"}
-    } else {
-      var HIDEBOX = function () {}
-      var SHOWBOX = function () {}
-    }
+    var input = document.getElementById(input_id).value.trim();
     //
-    //  Get the element jax when MathJax has produced it.
+    //  Disable the display and render buttons until MathJax is done
     //
-    QUEUE.Push(function () {
-      math1 = MathJax.Hub.getAllJax("MathOutput_1")[0];
-      box1 = document.getElementById("box_1");
-      SHOWBOX(); // box is initially hidden so the braces don't show
+    var display = document.getElementById(display_checkbox_id);
+    var button = document.getElementById(preview_id);
+    button.disabled = display.disabled = true;
+    //
+    //  Clear the old output
+    //
+    output = document.getElementById(output_id);
+    output.innerHTML = '';
+    //
+    //  Reset the tex labels (and automatic equation numbers, though there aren't any here).
+    //  Get the conversion options (metrics and display settings)
+    //  Convert the input to CommonHTML output and use a promise to wait for it to be ready
+    //    (in case an extension needs to be loaded dynamically).
+    //
+    MathJax.texReset();
+    var options = MathJax.getMetricsFor(output);
+    options.display = display.checked;
+    MathJax.tex2chtmlPromise(input, options).then(function (node) {
+      //
+      //  The promise returns the typeset node, which we add to the output
+      //  Then update the document to include the adjusted CSS for the
+      //    content of the new equation.
+      //
+      output.appendChild(node);
+      MathJax.startup.document.clear();
+      MathJax.startup.document.updateDocument();
+    }).catch(function (err) {
+      //
+      //  If there was an error, put the message into the output instead
+      //
+      output.appendChild(document.createElement('pre')).appendChild(document.createTextNode(err.message));
+    }).then(function () {
+      //
+      //  Error or not, re-enable the display and render buttons
+      //
+      button.disabled = display.disabled = false;
     });
-
-    //
-    //  The onchange event handler that typesets the math entered
-    //  by the user.  Hide the box, then typeset, then show it again
-    //  so we don't see a flash as the math is cleared and replaced.
-    //
-    window.UpdateMath1 = function (TeX) {
-      QUEUE.Push(
-          HIDEBOX,
-          ["resetEquationNumbers",MathJax.InputJax.TeX],
-          ["Text",math1,"\\displaystyle{"+TeX+"}"],
-          SHOWBOX
-      );
-    }
-  })();
-</script>
-<script>
-  //
-  //  Use a closure to hide the local variables from the
-  //  global namespace
-  //
-  (function () {
-    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
-    var math2 = null, box2 = null;    // the element jax for the math output, and the box it's in
-
-    //
-    //  Hide and show the box (so it doesn't flicker as much)
-    //
-    if (box2 !== null) {
-    var HIDEBOX = function () {box2.style.visibility = "hidden"}
-    var SHOWBOX = function () {box2.style.visibility = "visible"}
-    } else {
-      var HIDEBOX = function () {}
-      var SHOWBOX = function () {}
-    }
-    //
-    //  Get the element jax when MathJax has produced it.
-    //
-    QUEUE.Push(function () {
-      math2 = MathJax.Hub.getAllJax("MathOutput_2")[0];
-      box2 = document.getElementById("box_2");
-      SHOWBOX(); // box is initially hidden so the braces don't show
-    });
-
-    //
-    //  The onchange event handler that typesets the math entered
-    //  by the user.  Hide the box, then typeset, then show it again
-    //  so we don't see a flash as the math is cleared and replaced.
-    //
-    window.UpdateMath2 = function (TeX) {
-      QUEUE.Push(
-          HIDEBOX,
-          ["resetEquationNumbers",MathJax.InputJax.TeX],
-          ["Text",math2,"\\displaystyle{"+TeX+"}"],
-          SHOWBOX
-      );
-    }
-  })();
-</script>
-<script>
-  //
-  //  Use a closure to hide the local variables from the
-  //  global namespace
-  //
-  (function () {
-    var QUEUE = MathJax.Hub.queue;  // shorthand for the queue
-    var math3 = null, box3 = null;    // the element jax for the math output, and the box it's in
-
-    //
-    //  Hide and show the box (so it doesn't flicker as much)
-    //
-    if (box3 !== null) {
-      var HIDEBOX = function () {box3.style.visibility = "hidden"}
-      var SHOWBOX = function () {box3.style.visibility = "visible"}
-    } else {
-      var HIDEBOX = function () {}
-      var SHOWBOX = function () {}
-    }
-    //
-    //  Get the element jax when MathJax has produced it.
-    //
-    QUEUE.Push(function () {
-      math3 = MathJax.Hub.getAllJax("MathOutput_3")[0];
-      box3 = document.getElementById("box_3");
-      SHOWBOX(); // box is initially hidden so the braces don't show
-    });
-
-    //
-    //  The onchange event handler that typesets the math entered
-    //  by the user.  Hide the box, then typeset, then show it again
-    //  so we don't see a flash as the math is cleared and replaced.
-    //
-    window.UpdateMath3 = function (TeX) {
-      QUEUE.Push(
-          HIDEBOX,
-          ["resetEquationNumbers",MathJax.InputJax.TeX],
-          ["Text",math3,"\\displaystyle{"+TeX+"}"],
-          SHOWBOX
-      );
-    }
-  })();
-</script>
-<script>
-  //
-  //  IE doesn't fire onchange events for RETURN, so
-  //   use onkeypress to do a blur (and refocus) to
-  //   force the onchange to occur
-  //
-  if (MathJax.Hub.Browser.isMSIE) {
-    MathInput.onkeypress = function () {
-      if (window.event && window.event.keyCode === 13) {this.blur(); this.focus()}
-    }
   }
 </script>
 
@@ -233,7 +147,7 @@ the following is for mathjax in a separate docker image connected via docker-com
 
 
 
-    <!-- updated sorttable from 
+    <!-- updated sorttable from
          https://github.com/stuartlangridge/sorttable/blob/master/sorttable/sorttable.js
          to fix this problem
          https://github.com/stuartlangridge/sorttable/issues/6
@@ -242,7 +156,7 @@ the following is for mathjax in a separate docker image connected via docker-com
     <script type="text/javascript" src="{{ url_for('static', filename='sorttable.js') }}"></script>
     <style>
       /*
-         Sortable tables 
+         Sortable tables
          https://www.kryogenix.org/code/browser/sorttable/
          https://github.com/allofphysicsgraph/proofofconcept/issues/68
        */
@@ -266,7 +180,7 @@ the following is for mathjax in a separate docker image connected via docker-com
 
     <!-- https://www.w3schools.com/html/html_css.asp -->
     <style>
-      /* SVG region 
+      /* SVG region
          https://chartio.com/resources/tutorials/how-to-resize-an-svg-when-the-window-is-resized-in-d3-js/
       */
 
@@ -286,7 +200,7 @@ the following is for mathjax in a separate docker image connected via docker-com
 }
       /* end SVG region */
 
-      /* 
+      /*
        reveal options if radio is checked
        https://css-tricks.com/exposing-form-fields-radio-button-css/
        https://github.com/allofphysicsgraph/proofofconcept/issues/130
@@ -326,7 +240,7 @@ the following is for mathjax in a separate docker image connected via docker-com
         text-align: center;
       }
 
-      /* table of contents ordering 
+      /* table of contents ordering
       from https://jsfiddle.net/jasonkarns/6xkzv37e/
       linked from https://stackoverflow.com/questions/14138507/creating-table-of-contents-in-html/21684020#21684020 */
 /*      ol {
@@ -356,5 +270,3 @@ the following is for mathjax in a separate docker image connected via docker-com
         max-width: 100%;
       }
     </style>
-
-
