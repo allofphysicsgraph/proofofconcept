@@ -15,6 +15,9 @@ results in no visualization and no error message in javascript console
 </div>
 -->
 <P>{{ dat['derivations'][deriv_id]['notes'] }}</P>
+
+<fieldset>
+<legend>Options</legend>
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
@@ -32,6 +35,8 @@ results in no visualization and no error message in javascript console
 &nbsp; &nbsp;
 <input type="submit" style="background-color:lightcoral" name="submit_button" value="delete derivation">
 </form>
+<P>To edit a step, click on the number in the "Index" column in the table below</P>
+</fieldset>
 
 {% if (pdf_filename != "NONE") %}
 <P><a href="{{ url_for('static', filename=pdf_filename) }}">PDF of derivation</a></P>
