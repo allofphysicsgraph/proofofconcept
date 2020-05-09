@@ -51,12 +51,31 @@
   </P>
 
 <h2>Symbols in PDG AST for this step</h2>
-<UL>
+            <table border="1">
+              <tr>
+                <th>symbol ID</th>
+                <th>category</th>
+                <th>latex</th>
+                <th>scope</th>
+                <th>dimension</th>
+                <th>name</th>
+                <th>value</th>
+                <th>Used in derivations</th>
+                <th>references</th>
+              </tr>
   {% for symbol_id in list_of_symbols_from_PDG_AST %}
-    <LI> <a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#{{ symbol_id }}">{{ symbol_id }}</a>:
-     {{ dat['symbols'][symbol_id]['latex'] }}
+              <tr>
+                  {% set hide_symbol_forms = "true" %}
+                  {% include '_table_of_symbols_row.html' %}
+                </tr>
   {% endfor %}
+   </table>
+<!--
+    <LI> <a href="{ { url_for('list_all_symbols') }}?referrer=modify_step#{ { symbol_id }}">{ { symbol_id }}</a>:
+     { { dat['symbols'][symbol_id]['latex'] }}
+  { % endfor %}
 </UL>
+-->
 
 {% if dict_of_ranked_list.keys()|length > 0 %}
 <fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
@@ -92,7 +111,7 @@
                 <th>category</th>
                 <th>latex</th>
                 <th>scope</th>
-                <th>measure</th>
+                <th>dimension</th>
                 <th>name</th>
                 <th>value</th>
                 <th>Used in derivations</th>
