@@ -260,7 +260,7 @@ function enable_output3_radio3(enabled){
         <span class="input-group-addon">Select from</span>
           <select name="input1_global_id" class="selectpicker form-control" id="input1_global" onchange="onChangeFunction();" disabled="disabled">
             {% for expr_global_id in list_of_global_id_not_in_derivation %}
-            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
             {% endfor %}
           </select>
       </td>
@@ -309,7 +309,7 @@ function enable_output3_radio3(enabled){
         <span class="input-group-addon">Select from</span>
           <select name="input2_global_id" class="selectpicker form-control" id="input2_global" onchange="onChangeFunction();" disabled="disabled">
             {% for expr_global_id in list_of_global_id_not_in_derivation %}
-            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
             {% endfor %}
           </select>
       </td>
@@ -359,7 +359,7 @@ function enable_output3_radio3(enabled){
         <span class="input-group-addon">Select from</span>
           <select name="input3_global_id" class="selectpicker form-control" id="input3_global" onchange="onChangeFunction();" disabled="disabled">
             {% for expr_global_id in list_of_global_id_not_in_derivation %}
-            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
             {% endfor %}
           </select>
       </td>
@@ -414,7 +414,7 @@ Number of feeds:
    <input type="checkbox" id="display_feed1_latex" checked="" onchange="convert('static_feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
    <small><label for="display_feed1_latex">Display style</label></small>
 
-   <input type="button" value="optional preview of TeX before submitting form" id="preview_feed1_latex" onclick="convert('feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_feed1_latex" onclick="convert('static_feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
 
    <br clear="all">
    <div id="output_feed1_latex"></div>
@@ -424,11 +424,25 @@ Number of feeds:
 
 {% if inf_rule_dict['number of feeds']|int() > 1|int() %}
 <P>{{ webform.static_feed2.label }}: {{ webform.static_feed2(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small>
+   <input type="checkbox" id="display_feed2_latex" checked="" onchange="convert('static_feed2','display_feed2_latex', 'preview_feed2_latex','output_feed2_latex')">
+   <small><label for="display_feed2_latex">Display style</label></small>
+
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_feed2_latex" onclick="convert('static_feed2','display_feed2_latex', 'preview_feed2_latex','output_feed2_latex')">
+
+   <br clear="all">
+   <div id="output_feed2_latex"></div>
 </P>
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 2|int() %}
 <P>{{ webform.static_feed3.label }}: {{ webform.static_feed3(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small></td>
+   <input type="checkbox" id="display_feed3_latex" checked="" onchange="convert('static_feed3','display_feed3_latex', 'preview_feed3_latex','output_feed3_latex')">
+   <small><label for="display_feed3_latex">Display style</label></small>
+
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_feed3_latex" onclick="convert('static_feed3','display_feed3_latex', 'preview_feed3_latex','output_feed3_latex')">
+
+   <br clear="all">
+   <div id="output_feed3_latex"></div>
 </P>
 {% endif %}
 
@@ -480,7 +494,7 @@ Number of feeds:
       <span class="output-group-addon">Select from</span>
         <select name="output1_global_id" class="selectpicker form-control" id="output1_global" onchange="onChangeFunction();" disabled="disabled">
             {% for expr_global_id in list_of_global_id_not_in_derivation %}
-            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
           {% endfor %}
         </select>
     </td>
@@ -505,7 +519,17 @@ Number of feeds:
       <td>{{ subfield.label }}</td>
 
     <td>{{ webform.output2.label }}: {{ webform.output2(size=50, maxlength=300, id="output2_latex", onchange="onChangeFunction();") }} <BR>
-           <small><B>Required</B>; max length = 300 characters</small></td>
+           <small><B>Required</B>; max length = 300 characters</small>
+
+   <input type="checkbox" id="display_output2_latex" checked="" onchange="convert('output2_latex','display_output2_latex', 'preview_output2_latex','output_output2_latex')">
+   <small><label for="display_output2_latex">Display style</label></small>
+
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_output2_latex" onclick="convert('output2_latex','display_output2_latex', 'preview_output2_latex','output_output2_latex')">
+
+   <br clear="all">
+   <div id="output_output2_latex"></div>
+
+</td>
       <td>{{ webform.output2_name.label }}: {{ webform.output2_name(size=20, maxlength=300, id="output2_name", onchange="onChangeFunction();") }}<BR>
            <small><i>optional</i></small></td>
       <td>{{ webform.output2_note.label }}: {{ webform.output2_note(size=20, maxlength=300, id="output2_note", onchange="onChangeFunction();") }}<BR>
@@ -530,7 +554,7 @@ Number of feeds:
       <span class="output-group-addon">Select from</span>
         <select name="output2_global_id" class="selectpicker form-control" id="output2_global" onchange="onChangeFunction();" disabled="disabled">
             {% for expr_global_id in list_of_global_id_not_in_derivation %}
-            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
           {% endfor %}
         </select>
     </td>
@@ -555,7 +579,17 @@ Number of feeds:
       <td>{{ subfield.label }}</td>
 
     <td>{{ webform.output3.label }}: {{ webform3.output(size=50, maxlength=300, id="output3_latex", onchange="onChangeFunction();") }}<BR>
-              <small><B>Required</B>; max length = 300 characters</small></td>
+              <small><B>Required</B>; max length = 300 characters</small>
+
+   <input type="checkbox" id="display_output3_latex" checked="" onchange="convert('output3_latex','display_output3_latex', 'preview_output3_latex','output_output3_latex')">
+   <small><label for="display_output3_latex">Display style</label></small>
+
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_output3_latex" onclick="convert('output3_latex','display_output3_latex', 'preview_output3_latex','output_output3_latex')">
+
+   <br clear="all">
+   <div id="output_output3_latex"></div>
+
+</td>
       <td>{{ webform.output3_name.label }}: {{ webform.output3_name(size=20, maxlength=300, id="output3_name", onchange="onChangeFunction();") }}<BR>
            <small><i>optional</i></small></td>
       <td>{{ webform.output3_note.label }}: {{ webform.output3_note(size=20, maxlength=300, id="output3_note", onchange="onChangeFunction();") }}<BR>
@@ -579,7 +613,7 @@ Number of feeds:
       <span class="output-group-addon">Select from</span>
         <select name="output3_global_id" class="selectpicker form-control" id="output3_global" onchange="onChangeFunction();" disabled="disabled">
             {% for expr_global_id in list_of_global_id_not_in_derivation %}
-            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+            <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
           {% endfor %}
         </select>
     </td>
@@ -608,7 +642,8 @@ Number of feeds:
 <P>
 {% include '_table_of_derivation_steps.html' %}
 
+<!--
 <P>
-{% include '_table_of_expressions.html' %}
-
+{ % include '_table_of_expressions.html' %}
+-->
 {% endblock %}
