@@ -221,6 +221,14 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         return differentiate_with_respect_to(latex_dict)
     elif step_dict["inf rule"] == "apply function to both sides of expression":
         return apply_function_to_both_sides_of_expression(latex_dict)
+    elif step_dict["inf rule"] == "substitute LHS of multiple expressions into expr 1":
+        return substitute_LHS_of_multiple_expressions_into_expr(latex_dict)
+    elif step_dict["inf rule"] == "expr 1 is equivalent to expr 2 under the condition":
+        return expr_is_equivalent_to_expr_under_the_condition(latex_dict)
+#    elif step_dict["inf rule"] == "":
+#        return (latex_dict)
+#    elif step_dict["inf rule"] == "":
+#        return (latex_dict)
     elif (
         step_dict["inf rule"]
         == "substitute list of new variables X for list of old variables Y"
@@ -1262,6 +1270,26 @@ def apply_function_to_both_sides_of_expression(latex_dict):
     >>> latex_dict['feed'] = ['']
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> apply_function_to_both_sides_of_expression(latex_dict)
+    """
+    return "no check performed"
+
+def substitute_LHS_of_multiple_expressions_into_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_LHS_of_multiple_expressions_into_expr(latex_dict)
+    """
+    return "no check performed"
+
+def expr_is_equivalent_to_expr_under_the_condition(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> expr_is_equivalent_to_expr_under_the_condition(latex_dict)
     """
     return "no check performed"
 
