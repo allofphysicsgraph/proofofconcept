@@ -19,7 +19,7 @@
       <UL>
         {% for deriv_id in infrule_use_list %} 
         <LI>
-          <a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}">
+          <a href="{{ url_for('review_derivation', deriv_id=deriv_id, referrer='_table_of_inference_rules') }}">
             {{ dat['derivations'][deriv_id]['name'] }}
           </a>
         </LI>
