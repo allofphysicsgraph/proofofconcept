@@ -61,32 +61,6 @@ function latex_filter() {
 </fieldset>
 </P>
 
-<!--
-<P>
-  <a id="edit expr latex">
-    <h2>Edit the latex for an expression</h2>
-  </a>
-  {% if current_user.is_anonymous %}
-  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
-  {% else %}
-<form method="post" action="">
-{{ edit_expr_latex_webform.csrf_token }}
-  <div class="form-group">
-    <div class="input-group">
-        <span class="input-group-addon">Select from</span>
-            <select name="edit_expr_latex" class="selectpicker form-control">
-              {% for elem in sorted_list_exprs %}
-              <option value="{{ elem }}">{{ elem }}</option>
-              {% endfor %}
-            </select>
-<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
-    </div>
-    <button type="submit" class="btn btn-default">Update</button>
-  </div>
-</form>
-  {% endif %}
-</P>
--->
 
 <P>
 <fieldset>
@@ -116,6 +90,83 @@ function latex_filter() {
   {% endif %}
 </fieldset>
 </P>
+
+<P>
+<fieldset>
+<legend>
+  <a id="add symbol to AST">
+    <h2>Add a symbol to the AST for an expression</h2>
+  </a>
+</legend>
+  {% if current_user.is_anonymous %}
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
+  {% else %}
+<form method="post" action="">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="add_symbol_to_expr_id" class="selectpicker form-control">
+              {% for expr_global_id in sorted_list_exprs %}
+              <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+              {% endfor %}
+            </select>
+
+            <select name="symbol_id_to_add" class="selectpicker form-control">
+              {% for sid, symbol_dict in dat['symbols']|dictsort %}
+              <option value="{{ sid }}">{{ sid }}, {{ symbol_dict['latex'] }}</option>
+              {% endfor %}   
+            </select>
+
+      </div>
+    <button type="submit" class="btn btn-default">Update</button>
+  </div>
+</form>
+  {% endif %}
+</fieldset>
+</P>
+
+<P>
+<fieldset>
+<legend>
+  <a id="edit expr latex">
+    <h2>Edit the latex for an expression</h2>
+  </a>
+</legend>
+  {% if current_user.is_anonymous %}
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
+  {% else %}
+<P>
+  Caveat: altering the latex of an expression may break the validation of one or more steps if this expression is used in a derivation
+</P>
+<form method="post" action="">
+{{ edit_expr_note_webform.csrf_token }}
+  <div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="edit_expr_latex" class="selectpicker form-control">
+              {% for expr_global_id in sorted_list_exprs %}
+              <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+              {% endfor %}
+            </select>
+<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300, id="input_latex") }} <small>max length = 300 characters</small>
+
+   <input type="checkbox" id="display_input_latex" checked="" onchange="convert('input_latex','display_input_latex', 'preview_input_latex','output_input_latex')">
+   <small><label for="display_input_latex">Display style</label></small>
+
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_input_latex" onclick="convert('input_latex','display_input_latex', 'preview_input_latex','output_input_latex')">
+
+   <br clear="all">
+   <div id="output_input_latex"></div>
+
+    </div>
+    <button type="submit" class="btn btn-default">Update</button>
+  </div>
+</form>
+  {% endif %}
+</fieldset>
+</P>
+-->
 
 <P>
 <fieldset>
