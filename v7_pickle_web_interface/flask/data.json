@@ -4060,6 +4060,30 @@
                     "notes": "",
                     "author": "ben",
                     "creation date": "2020-04-23"
+                },
+                "2797732": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9873426"
+                    ],
+                    "linear index": 16,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "3353717": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "1539856"
+                    ],
+                    "linear index": 17,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
                 }
             }
         },
@@ -4175,13 +4199,13 @@
                     "creation date": "2020-05-07"
                 },
                 "9488257": {
-                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inf rule": "substitute multiple variables into expr 1",
                     "inputs": [
                         "7959026"
                     ],
                     "feeds": [
-                        "9640823",
-                        "2565754"
+                        "3915320",
+                        "3383852"
                     ],
                     "outputs": [
                         "5753220"
@@ -4192,13 +4216,14 @@
                     "creation date": "2020-05-07"
                 },
                 "6456434": {
-                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inf rule": "substitute multiple variables into expr 1",
                     "inputs": [
                         "7360652"
                     ],
                     "feeds": [
-                        "6953798",
-                        "9444800"
+                        "3915320",
+                        "6364366",
+                        "4443760"
                     ],
                     "outputs": [
                         "5320197"
@@ -4318,6 +4343,54 @@
                     "notes": "",
                     "author": "Ben",
                     "creation date": "2020-05-07"
+                },
+                "6381075": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3915320"
+                    ],
+                    "linear index": 14,
+                    "notes": "replacement of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "3044094": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3383852"
+                    ],
+                    "linear index": 15,
+                    "notes": "replacement of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "9547906": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6364366"
+                    ],
+                    "linear index": 16,
+                    "notes": "replacement of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "1959152": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4443760"
+                    ],
+                    "linear index": 17,
+                    "notes": "replacement of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
                 }
             }
         },
@@ -4968,7 +5041,13 @@
         "6373138": "6101803533",
         "5915398": "9231495607",
         "7325954": "8664264194",
-        "4326342": "9805063945"
+        "4326342": "9805063945",
+        "3915320": "4057686137",
+        "3383852": "2346150725",
+        "6364366": "9753878784",
+        "4443760": "8135396036",
+        "9873426": "2773628333",
+        "1539856": "7154592211"
     },
     "expressions": {
         "0000040490": {
@@ -9136,6 +9215,60 @@
             "notes": "",
             "author": "Ben",
             "creation date": "2020-05-09"
+        },
+        "4057686137": {
+            "latex": "C \\to C_{\\rm{Earth\\ orbit}}",
+            "AST": [
+                "3034"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "2346150725": {
+            "latex": "r \\to r_{\\rm{Earth\\ orbit}}",
+            "AST": [
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "9753878784": {
+            "latex": "v \\to v_{\\rm{Earth\\ orbit}}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "8135396036": {
+            "latex": "t \\to t_{\\rm{Earth\\ orbit}}",
+            "AST": [
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "2773628333": {
+            "latex": "\\theta_1 \\to \\theta_{Brewster}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "7154592211": {
+            "latex": "\\theta_2 \\to \\theta_{\\rm refracted}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
         }
     },
     "inference rules": {
@@ -9822,6 +9955,24 @@
             "notes": "",
             "author": "Ben",
             "creation date": "2020-05-08"
+        },
+        "declare variable replacement": {
+            "number of feeds": 0,
+            "number of inputs": 0,
+            "number of outputs": 1,
+            "latex": "replace variable according to Eq.~\\ref{eq:#1}.",
+            "notes": "indicate change using \"OLD \\to NEW\"",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "substitute multiple variables into expr 1": {
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1,
+            "latex": "Substitute multiple variables into Eq.~ref{eq:#1}; yields Eq.~ref{eq:#2}.",
+            "notes": "arbitrary number of feeds",
+            "author": "Ben",
+            "creation date": "2020-05-09"
         }
     },
     "measures": {
