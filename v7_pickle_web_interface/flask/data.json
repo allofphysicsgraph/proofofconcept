@@ -3374,13 +3374,14 @@
                     "creation date": "2020-04-20"
                 },
                 "5590554": {
-                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inf rule": "substitute multiple variables into expr 1",
                     "inputs": [
                         "8844119"
                     ],
                     "feeds": [
-                        "6146628",
-                        "4714953"
+                        "9398614",
+                        "7874068",
+                        "7552472"
                     ],
                     "outputs": [
                         "5642407"
@@ -3391,13 +3392,14 @@
                     "creation date": "2020-04-20"
                 },
                 "8346419": {
-                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inf rule": "substitute multiple variables into expr 1",
                     "inputs": [
                         "8844119"
                     ],
                     "feeds": [
-                        "6021355",
-                        "1724851"
+                        "8946473",
+                        "6566357",
+                        "7978426"
                     ],
                     "outputs": [
                         "1298003"
@@ -3435,13 +3437,13 @@
                     "creation date": "2020-04-20"
                 },
                 "4803359": {
-                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inf rule": "substitute multiple variables into expr 1",
                     "inputs": [
                         "6559987"
                     ],
                     "feeds": [
-                        "5476171",
-                        "3179075"
+                        "7874068",
+                        "3735003"
                     ],
                     "outputs": [
                         "6632540"
@@ -3452,13 +3454,13 @@
                     "creation date": "2020-04-20"
                 },
                 "7113502": {
-                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inf rule": "substitute multiple variables into expr 1",
                     "inputs": [
                         "6559987"
                     ],
                     "feeds": [
-                        "2150605",
-                        "2663005"
+                        "6566357",
+                        "1988214"
                     ],
                     "outputs": [
                         "4208138"
@@ -3512,13 +3514,13 @@
                     "creation date": "2020-04-20"
                 },
                 "7835026": {
-                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inf rule": "substitute multiple variables into expr 1",
                     "inputs": [
                         "2776565"
                     ],
                     "feeds": [
-                        "1232050",
-                        "3887554"
+                        "4758524",
+                        "3257704"
                     ],
                     "outputs": [
                         "8696678"
@@ -3637,13 +3639,13 @@
                     "creation date": "2020-04-20"
                 },
                 "6719788": {
-                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inf rule": "substitute multiple variables into expr 1",
                     "inputs": [
                         "8497204"
                     ],
                     "feeds": [
-                        "5161829",
-                        "4414062"
+                        "7552472",
+                        "7519917"
                     ],
                     "outputs": [
                         "3988671"
@@ -3654,13 +3656,13 @@
                     "creation date": "2020-04-20"
                 },
                 "5969230": {
-                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inf rule": "substitute multiple variables into expr 1",
                     "inputs": [
                         "8497204"
                     ],
                     "feeds": [
-                        "3247029",
-                        "6443589"
+                        "7978426",
+                        "7633243"
                     ],
                     "outputs": [
                         "9081932"
@@ -3949,6 +3951,30 @@
                     ],
                     "linear index": 44,
                     "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "4514045": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3257704"
+                    ],
+                    "linear index": 45,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "1884029": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4758524"
+                    ],
+                    "linear index": 46,
+                    "notes": "change of variable",
                     "author": "Ben",
                     "creation date": "2020-05-09"
                 }
@@ -5177,7 +5203,9 @@
         "1988214": "5398681503",
         "3735003": "9305761407",
         "7633243": "4218009993",
-        "7519917": "4188639044"
+        "7519917": "4188639044",
+        "3257704": "8173074178",
+        "4758524": "1025759423"
     },
     "expressions": {
         "0000040490": {
@@ -8383,7 +8411,10 @@
         },
         "5781981178": {
             "latex": "x^2 - y^2 = (x+y)(x-y)",
-            "AST": [],
+            "AST": [
+                "1452",
+                "1464"
+            ],
             "name": "difference of squares",
             "notes": "https://en.wikipedia.org/wiki/Difference_of_two_squares",
             "author": "Ben",
@@ -8399,7 +8430,9 @@
         },
         "6675701064": {
             "latex": "x, y",
-            "AST": [],
+            "AST": [
+                "1464"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -8490,7 +8523,8 @@
             "latex": "PE = -F x",
             "AST": [
                 "4930",
-                "4202"
+                "4202",
+                "4037"
             ],
             "name": "potential energy",
             "notes": "https://en.wikipedia.org/wiki/Potential_energy",
@@ -9402,7 +9436,9 @@
         },
         "3749492596": {
             "latex": "E \\to E_1",
-            "AST": [],
+            "AST": [
+                "4931"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -9484,6 +9520,26 @@
             "latex": "x \\to x_2",
             "AST": [
                 "4037"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "8173074178": {
+            "latex": "x \\to v_2",
+            "AST": [
+                "1464"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "1025759423": {
+            "latex": "y \\to v_1",
+            "AST": [
+                "1452"
             ],
             "name": "",
             "notes": "",
@@ -10058,15 +10114,6 @@
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1
-        },
-        "substitute list of new variables X for list of old variables Y": {
-            "number of feeds": 2,
-            "number of inputs": 1,
-            "number of outputs": 1,
-            "latex": "Substitute list of variables $#1$ for list of variables $#2$ in Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
-            "notes": "rename a batch of variables all at once; whereas \"substitute X for Y\" is for one variable",
-            "author": "Ben",
-            "creation date": "2020-04-19"
         },
         "multiply expr 1 by expr 2": {
             "author": "Ben",
