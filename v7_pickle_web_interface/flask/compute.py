@@ -389,18 +389,20 @@ def list_symbols_used_in_step_from_PDG_AST(
     dat = clib.read_db(path_to_db)
     list_of_symbol_ids = []
 
-    step_dict = dat["derivations"][deriv_id]["steps"][step_id]
-    for connection_type in ["inputs", "feeds", "outputs"]:
-        for local_id in step_dict[connection_type]:
-            expr_global_id = dat["expr local to global"][local_id]
-            logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
-            symbols_per_expr = list_symbols_used_in_expr_from_PDG_AST(
-                dat["expressions"][expr_global_id]["AST"], path_to_db
-            )
-            logger.debug(str(symbols_per_expr))
-            for symbol_id in symbols_per_expr:
-                list_of_symbol_ids.append(symbol_id)
-
+    if step_id in dat["derivations"][deriv_id]["steps"].keys():
+        step_dict = dat["derivations"][deriv_id]["steps"][step_id]
+        for connection_type in ["inputs", "feeds", "outputs"]:
+            for local_id in step_dict[connection_type]:
+                expr_global_id = dat["expr local to global"][local_id]
+                logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
+                symbols_per_expr = list_symbols_used_in_expr_from_PDG_AST(
+                    dat["expressions"][expr_global_id]["AST"], path_to_db
+                )
+                logger.debug(str(symbols_per_expr))
+                for symbol_id in symbols_per_expr:
+                    list_of_symbol_ids.append(symbol_id)
+    else:  # step_id not in steps
+        list_of_symbol_ids = []
     list_of_symbol_ids = list(set(list_of_symbol_ids))
     return list_of_symbol_ids
 
@@ -417,15 +419,18 @@ def list_symbols_used_in_step_from_sympy(
     dat = clib.read_db(path_to_db)
     list_of_symbols = []
 
-    step_dict = dat["derivations"][deriv_id]["steps"][step_id]
-    for connection_type in ["inputs", "feeds", "outputs"]:
-        for local_id in step_dict[connection_type]:
-            expr_global_id = dat["expr local to global"][local_id]
-            expr_latex = dat["expressions"][expr_global_id]["latex"]
-            # logger.debug(expr_latex)
-            symbols_per_expr = list_symbols_used_in_expr_from_sympy(expr_latex)
-            for symb in symbols_per_expr:
-                list_of_symbols.append(str(symb))
+    if step_id in dat["derivations"][deriv_id]["steps"].keys():
+        step_dict = dat["derivations"][deriv_id]["steps"][step_id]
+        for connection_type in ["inputs", "feeds", "outputs"]:
+            for local_id in step_dict[connection_type]:
+                expr_global_id = dat["expr local to global"][local_id]
+                expr_latex = dat["expressions"][expr_global_id]["latex"]
+                # logger.debug(expr_latex)
+                symbols_per_expr = list_symbols_used_in_expr_from_sympy(expr_latex)
+                for symb in symbols_per_expr:
+                    list_of_symbols.append(str(symb))
+    else:  # step_id not available
+        list_of_symbols = []
 
     list_of_symbols = list(set(list_of_symbols))
     return list_of_symbols
@@ -2916,6 +2921,23 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
     return status_msg
 
 
+def add_symbol_to_expr(expr_global_id: str, symbol_id: str, path_to_db: str) -> None:
+    """
+    >>> 
+    """
+    logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    if expr_global_id in dat["expressions"].keys():
+        if symbol_id in dat["symbols"].keys():
+            dat["expressions"][expr_global_id]["AST"].append(symbol_id)
+            clib.write_db(path_to_db, dat)
+        else:
+            return Exception(symbol_id + " is not in symbols")
+    else:
+        return Exception(expr_global_id + " is not in expressions list")
+    return
+
+
 def edit_expr_note(expr_global_id: str, new_note: str, path_to_db: str) -> str:
     """
     >>>
@@ -3265,8 +3287,8 @@ def create_step(
 
     # start with feeds since those are the easiest
     for key, text in latex_for_step_dict.items():
-        if "feed" in key:
-            logger.debug("in feed for " + text)
+        if "static_feed" in key:  # novel latex
+            # logger.debug("in feed for " + text)
             expr_global_id = create_expr_global_id(path_to_db)
             dat["expressions"][expr_global_id] = {
                 "latex": latex_for_step_dict[key],
@@ -3279,6 +3301,8 @@ def create_step(
             expr_local_id = create_expr_local_id(path_to_db)
             dat["expr local to global"][expr_local_id] = expr_global_id
             step_dict["feeds"].append(expr_local_id)
+        elif "dynamic_feed" in key:  # reference to existing expression ID
+            step_dict["feeds"].append(latex_for_step_dict[key])
 
     logger.debug("entered feed to dat")
 

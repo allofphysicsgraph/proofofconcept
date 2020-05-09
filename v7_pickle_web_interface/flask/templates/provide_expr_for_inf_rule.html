@@ -191,6 +191,10 @@ function enable_output3_radio3(enabled){
 
 </script>
 
+<fieldset>
+<legend>
+<H2>Provide inputs and feeds and outputs for step</H2>
+</legend>
 
 <form method="post" action="">
   <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
@@ -370,9 +374,44 @@ function enable_output3_radio3(enabled){
 </P>
 {% endif %}
 
+
+{% if inf_rule == 'substitute LHS of multiple expressions into expr 1' %} <!-- variable feed count -->
+
+<!-- https://jsfiddle.net/t656N/1/ 
+    which is from
+    https://stackoverflow.com/a/14853880/1164295
+    in support of 
+    https://github.com/allofphysicsgraph/proofofconcept/issues/149
+-->
+Number of feeds: 
+<input type="text" id="feed_count_input" name="feed_count_input" value=""><br />
+<a href="#" id="filldetails" onclick="addFeeds()">Provide local expression IDs</a>
+    <div id="feed_container"/>
+
+<script>
+        function addFeeds() {
+          var number = document.getElementById("feed_count_input").value;
+          var container = document.getElementById("feed_container");
+//          while (container.hasChildNodes()) {
+//            container.removeChild(container.lastChild);
+//          }
+          for (i = 0; i < number; i++) {
+            container.appendChild(document.createTextNode("local expr ID for feed " + (i + 1)));
+            var input = document.createElement("input");
+            input.type = "text";
+            input.name = "dynamic_feed_"+(i+1);
+            input.id = "dynamic_feed_"+(i+1);
+            container.appendChild(input);
+            container.appendChild(document.createElement("br"));
+          }
+        }
+</script>
+
+{% else %} <!-- static feed count -->
+
 {% if inf_rule_dict['number of feeds']|int() > 0|int() %}
-<P>{{ webform.feed1.label }}: {{ webform.feed1(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
-   <input type="checkbox" id="display_feed1_latex" checked="" onchange="convert('feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
+<P>{{ webform.static_feed1.label }}: {{ webform.static_feed1(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+   <input type="checkbox" id="display_feed1_latex" checked="" onchange="convert('static_feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
    <small><label for="display_feed1_latex">Display style</label></small>
 
    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed1_latex" onclick="convert('feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
@@ -384,14 +423,16 @@ function enable_output3_radio3(enabled){
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 1|int() %}
-<P>{{ webform.feed2.label }}: {{ webform.feed2(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small>
+<P>{{ webform.static_feed2.label }}: {{ webform.static_feed2(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small>
 </P>
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 2|int() %}
-<P>{{ webform.feed3.label }}: {{ webform.feed3(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small></td>
+<P>{{ webform.static_feed3.label }}: {{ webform.static_feed3(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small></td>
 </P>
 {% endif %}
+
+{% endif %} 
 
 {% if inf_rule_dict['number of outputs']|int() > 0|int() %}
 <P>
@@ -560,6 +601,7 @@ function enable_output3_radio3(enabled){
     </div>
   </div>
 </form>
+</fieldset>
 
 <P><a href="{{ url_for('new_step_select_inf_rule', deriv_id=deriv_id, referrer='provide_expr_for_inf_rule') }}">Go back and select a difference inference rule</a></P>
 

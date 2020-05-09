@@ -1500,7 +1500,7 @@ def list_all_expressions():
         flash(str(err))
         expression_popularity_dict = {}
     if request.method == "POST":
-        logger.debug("list_all_expressions; request.form = %s", request.form)
+        logger.debug("request.form = %s", request.form)
         if "edit expr latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_expr_latex', '4928923942'), ('revised_text', 'asdfingasinsf')])
             try:
@@ -1518,6 +1518,16 @@ def list_all_expressions():
             return redirect(
                 url_for("list_all_expressions", referrer="list_all_expressions")
             )
+        elif "edit_expr_latex" in request.form.keys():
+            try:
+                compute.modify_latex_in_step(
+                    request.form["edit_expr_latex"],
+                    request.form["revised_text"],
+                    path_to_db,
+                )
+            except Exception as err:
+                flash(str(err))
+                logger.error(str(err))
         elif "expr ID to delete" in request.form.keys():
             # request.form = ImmutableMultiDict([('delete_expr', '4928923942')])
             try:
@@ -1565,6 +1575,20 @@ def list_all_expressions():
             return redirect(
                 url_for("list_all_expressions", referrer="list_all_expressions")
             )
+        elif "add_symbol_to_expr_id" in request.form.keys():
+            try:
+                compute.add_symbol_to_expr(
+                    request.form["add_symbol_to_expr_id"],
+                    request.form["symbol_id_to_add"],
+                    path_to_db,
+                )
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+            return redirect(
+                url_for("list_all_expressions", referrer="list_all_expressions")
+            )
+
         else:
             flash("unknown button: " + str(request.form))
             logger.error("unknown button: " + str(request.form))
@@ -2879,9 +2903,12 @@ def step_with_numeric_ids(deriv_id: str, step_id: str):
         logger.error(str(err))
         name_of_graphviz_file = "error.png"
 
+    dat = clib.read_db(path_to_db)
+
     return render_template(
         "step_with_numeric_ids.html",
         deriv_id=deriv_id,
+        dat=dat,
         name_of_graphviz_file=name_of_graphviz_file,
         step_id=step_id,
         title="step with numeric IDs",
@@ -2937,7 +2964,8 @@ def confirm_delete_derivation(deriv_id):
 
     return render_template(
         "confirm_delete_derivation.html",
-        name_of_derivation=name_of_derivation,
+        dat=dat,
+        deriv_id=deriv_id,
         confirm_deriv_name=RevisedTextForm(request.form),
         title="confirm delete derivation",
     )
