@@ -12,20 +12,62 @@
 
 <div id="toc_container">
 <p class="toc_title">Contents</p>
+<!-- the following table was generated on the command line using
+cat developer_documentation.html |\
+     grep "<H" |\
+     sed 's/<\/H.*>/<\/a><\/LI>/' |\
+     sed 's/<H2 name="/  <LI><a href="#/' |\
+     sed 's/<H3 name="/    <LI><a href="#/' |\
+     sed 's/<H4 name="/      <LI><a href="#/'
+-->
 <OL class="toc_list">
-  <LI><a href="#indices">Indices</a></LI>
-  <LI><a href="#syntax comparison">Syntax Comparison</a></LI>
+  <LI><a href="#indices">Numeric indices are the core enabling concept for the PDG</a></LI>
+  <LI><a href="#data structure">Data structure used in the PDG</a></LI>
+  <LI><a href="#latex for expressions">\(\rm\LaTeX\) representation of expressions</a></LI>
+  <LI><a href="#software">Software used in the Physics Derivation Graph</a></LI>
   <OL>
-    <LI><a href="#test cases">Test cases</a></LI>
-    <LI><a href="#quantitative comparison of syntax">Quantitative</a></LI>
-    <LI><a href="#qualitative comparison of syntax">Qualitative</a></LI>
+    <LI><a href="#python">Python</a></LI>
+    <LI><a href="#mvc">Model-view-controller in Flask</a></LI>
+    <LI><a href="#containerization">Docker</a></LI>
+    <LI><a href="#web stack">Flask - Gunicorn - Nginx</a></LI>
+    <LI><a href="#software:latex">Latex</a></LI>
+    <LI><a href="#software:git">git</a></LI>
   </OL>
-  <LI>Citations</LI>
+  <LI><a href="#running the code">Running the Physics Derivation Graph code</a></LI>
+  <OL>
+    <LI><a href="#run flask container">Run Flask container</a></LI>
+    <LI><a href="#run gunicorn container">Run gunicorn container</a></LI>
+  </OL>
+  <LI><a href="#frequency period from first principles">Derivation to Graph from First Principles</a></LI>
+  <LI><a href="#historical evolution">Historical design evolution</a></LI>
+  <OL>
+    <LI><a href="#other avenues">Other approaches</a></LI>
+    <OL>
+      <LI><a href="#networkx">Networkx</a></LI>
+      <LI><a href="#graphml">GraphML</a></LI>
+    </OL>
+  </OL>
+  <LI><a href="#comparison:syntax">Comparison of Syntax Options</a></LI>
+  <OL>
+    <LI><a href="#test cases">Test Cases</a></LI>
+    <LI><a href="#quantitative comparison of syntax">Quantitative Comparison of Test Cases</a></LI>
+    <LI><a href="#qualitative comparison of syntax">Qualitative Comparisons of Syntax Methods</a></LI>
+    <LI><a href="#conversion of syntax">Transforming between Syntax options</a></LI>
+    <LI><a href="#correctness of derivations">Auditing the Correctness of Derivations</a></LI>
+  </OL>
+  <LI><a href="#comparison:computer algebra systems">Comparison of Computer Algebra Systems</a></LI>
+  <OL>
+    <LI><a href="#cas:sage">Sage</a></LI>
+    <LI><a href="#cas:mathematica">Mathematica</a></LI>
+    <LI><a href="#cas:sympy">Sympy</a></LI>
+    <LI><a href="#HOLLight">HOL Light theorem prover</a></LI>
+  </OL>
+  <LI><a href="#not in scope">Outside of Current Scope</a></LI>
 </OL>
 </div>
 
 
-<H2 id="indices">Numeric indices are the core enabling concept for the PDG</H2>
+<H2 name="indices">Numeric indices are the core enabling concept for the PDG</H2>
 <P>
   The visualization of a graph with expressions and inference rules as nodes relies on each node having a distinct index. 
   Each expression, symbol, and inference rule appears only once in the database. 
@@ -37,7 +79,7 @@
   Manipulating these indices underlies all other tasks in the Physics Derivation Graph. 
   Access to these indices is performed through a single data structure.
 </P>
-<h2 id="data structure">Data structure used in the PDG</H2>
+<H2 name="data structure">Data structure used in the PDG</H2>
 <P>
   The Physics Derivation Graph is currently stored in a single JSON file. <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/data.json">The JSON file</a> is read into Python as a dictionary. 
 </P>
@@ -45,7 +87,7 @@
   JSON is convenient because it is plain text and the ease of detailed validation available using schemas.
   The many alternatives to JSON (e.g., SQLite, Redis, Python Pickle, CSV, GraphML) offer trade-offs, a few of which <a href="#historical evolution">have been explored</a>.
 
-<H2 id="latex for expressions">\(\rm\LaTeX\) representation of expressions</H2>
+<H2 name="latex for expressions">\(\rm\LaTeX\) representation of expressions</H2>
 <P>
   There are multiple choices of how to represent a mathematical expression. 
   The choices feature trade-offs between conciseness, ability to express the range of notations necessary for Physics, symantic meaning, and ability to use the expression in a computer algebra system (CAS).
@@ -55,7 +97,7 @@
 </p>
 
 <H2 name="software">Software used in the Physics Derivation Graph</H2>
-<H3 id="python">Python</H3>
+<H3 name="python">Python</H3>
 <P>
   Python as a "glue" language is leveraged to connect existing tools like \(\rm\LaTeX\), Flask, logging, manipulation of data. 
   Also, Python is the language the project owner is most comfortable with. 
@@ -66,7 +108,7 @@
   Python libraries: matplotlib, black, mypy, pycallgraph, gunicorn, prospector, pandas, jsonschema, sympy, antlr4-python3-runtime, flask-wft, graphviz
 
 
-<H3 id="mvc">Model-view-controller in Flask</H3>
+<H3 name="mvc">Model-view-controller in Flask</H3>
 <P>
   The <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model-view-controller</a> (MVC) is a way to separate presentation from the backend computation and data transformation.
 </P>
@@ -74,7 +116,7 @@
   Note on using MVC with Flask and WTForms: For webpages with forms, the form submission should return to controller.py rather than linking to next page.
 </p>
 
-<H3 id="containerization">Docker</H3>
+<H3 name="containerization">Docker</H3>
 <P>
   Containerization provides documentation of software dependencies and shows the installation process, enabling reproducibility and platform independence. 
   
@@ -85,7 +127,7 @@
   Ubuntu provides necessary packages
 </P>
 
-<H3 id="web stack">Flask - Gunicorn - Nginx</H3>
+<H3 name="web stack">Flask - Gunicorn - Nginx</H3>
 <P>
   To provide a web interface, Flask is used. Flask is not intended for production use, so Gunicorn serves as ??. Nginx provides ??
 </p>
@@ -98,7 +140,7 @@
 <P>git, github
 
 <!--
-<H3 id="dependencies">Additional Software</h3>
+<h3 id="dependencies">Additional Software</h3>
 <P>
   The Physics Derivation Graph relies on free and open source software, including
   <UL> 
@@ -116,9 +158,9 @@
 -->
 </P>
 
-<H2 id="running the code">Running the Physics Derivation Graph code</H2>
+<H2 name="running the code">Running the Physics Derivation Graph code</H2>
 
-<H3 id="run flask container">Run Flask container</H3>
+<H3 name="run flask container">Run Flask container</H3>
 <P>
   Quick start:
   <pre>
@@ -151,7 +193,7 @@
   </pre>
 </P>
 
-<H2 name="frequency period from first principles">Derivation to Graph from First Principles</h2>
+<H2 name="frequency period from first principles">Derivation to Graph from First Principles</H2>
 
 <!-- this content is derived from 
      https://allofphysicsgraph.github.io/proofofconcept/site/how_to_build_the_physics_derivation.html
@@ -289,7 +331,8 @@ The author didn't know about property graphs when implementing v1, v2, and v3.
 <P>
   A few storage methods were considered and then rejected without a full implementation.
 
-<H4 id="networkx">Networkx</H4>
+<H3 name="other avenues">Other approaches</H3>
+<H4 name="networkx">Networkx</H4>
 <!-- from https://allofphysicsgraph.github.io/proofofconcept/site/more_aspects/example_T_f_networkx.html -->
 <pre><code>
 import networkx as nx
@@ -356,7 +399,7 @@ http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
 </graphml>
 </textarea>
 
-<H2 id="comparison:syntax">Comparison of Syntax Options</H2>
+<H2 name="comparison:syntax">Comparison of Syntax Options</H2>
 
 <P>
   Here methods of capturing mathematical syntax required to describe derivations in physics are compared.
@@ -389,7 +432,7 @@ This comparison is between syntax methods which do not serve the same purpose. L
 <P>
 We can ignore syntax methods which do not support notation necessary for describing physics. Example of this include <a href="#cite:ascii">ASCII</a> and <a href="#cite:html">HTML</a>. Storage of the generated content (essentially a knowledge base for all of physics) isn't expected to exceed a Gigabyte, so compactness in terms of storage isn't a criterion in this evaluation.
 
-<H4 id="test cases">Test Cases</H4>
+<H3 name="test cases">Test Cases</H3>
 <P>
   to demonstrate the variety of uses in distinct domains of Physics, a set of test cases are provided in this section. These cases are not meant to be exhaustive of either the syntax or the scientific domain. Rather, they are examples of both capability requirements of the Physics Derivation Graph and of the syntax methods.
 </P>
@@ -453,7 +496,7 @@ Case 4c: L&uuml;ders projection
 \end{equation}
 </p>
 
-<H4 id="quantitative comparison of syntax">Quantitative Comparison of Test Cases</H4>
+<H3 name="quantitative comparison of syntax">Quantitative Comparison of Test Cases</H3>
 
 <table border="1" class="sortable">
   <tr>
@@ -508,7 +551,7 @@ wc -m mathML_presentation_case*.xml
 </p>
 
 
-<H4 id="qualitative comparison of syntax">Qualitative Comparisons of Syntax Methods</H4>
+<H3 name="qualitative comparison of syntax">Qualitative Comparisons of Syntax Methods</H3>
 
 <P>
   Latex, MathML, and SymPy are free and open source. Mathematica is proprietary and not free.
@@ -523,7 +566,7 @@ Unicode is needed to support Dirac notation and any other non-ASCII text in Math
 </P>
 
 
-<H4 id="conversion of syntax">Transforming between Syntax options</H4>
+<H3 name="conversion of syntax">Transforming between Syntax options</H3>
 
 <P>
 Wolfram Research offers the ability to convert from Mathematica expressions to MathML on their site <a href="http://www.mathmlcentral.com/Tools/ToMathML.jsp">www.mathmlcentral.com/Tools/ToMathML.jsp</a>.
@@ -532,7 +575,7 @@ A CAS typically produces output syntax such as Latex or MathML in a single forma
 </P>
 
 
-<H4 id="correctness of derivations">Auditing the Correctness of Derivations</H4>
+<H3 name="correctness of derivations">Auditing the Correctness of Derivations</H3>
 
 
 <P>
@@ -548,12 +591,12 @@ A CAS typically produces output syntax such as Latex or MathML in a single forma
 All of these are equivalent.
 </p>
 
-<H2 name="comparison:computer algebra systems">Comparison of Computer Algebra Systems</h2>
+<H2 name="comparison:computer algebra systems">Comparison of Computer Algebra Systems</H2>
 
 <P>
   Sage, Mathematica, and SymPy are candidates capable of checking the correctness of derivations.
 
-<H3 name="cas:sage">Sage</h3>
+<H3 name="cas:sage">Sage</H3>
 
 <P>
   The following Sage code checks that the claimed step as stated by the inference rule is carried out correctly:
@@ -631,7 +674,7 @@ func = subXforY[func, Last[func], ±Last[func]]
 func = subtractXfromBothSides [func, b/(2 a)]
 </pre>
 
-<H3 name="cas:sympy">Sympy</h3>
+<H3 name="cas:sympy">Sympy</H3>
 <P>
   The motives for using Sympy are the cost (free), the code (open source), the integration (Python), support for Physics, and the support for parsing Latex.
 
@@ -642,7 +685,7 @@ func = subtractXfromBothSides [func, b/(2 a)]
 
 <a href="https://www.cl.cam.ac.uk/~jrh13/hol-light/tutorial.pdf">HOL Light tutorial</a>
 
-<H2 id="not in scope">Outside of Current Scope</h2>
+<H2 name="not in scope">Outside of Current Scope</H2>
 
 Not expected within the scope of the Physics Derivation Graph are inclusion of graphics, explanatory text, animations of concepts, and interactive models.
 
