@@ -354,15 +354,15 @@ class infRuleInputsAndOutputs(FlaskForm):
 # https://wtforms.readthedocs.io/en/stable/validators.html
 class LatexIO(FlaskForm):
     logger.info("[trace]")
-    feed1 = StringField(
+    static_feed1 = StringField(
         "feed LaTeX 1",
         validators=[validators.InputRequired(), validators.Length(max=1000)],
     )
-    feed2 = StringField(
+    static_feed2 = StringField(
         "feed LaTeX 2",
         validators=[validators.InputRequired(), validators.Length(max=1000)],
     )
-    feed3 = StringField(
+    static_feed3 = StringField(
         "feed LaTeX 3",
         validators=[validators.InputRequired(), validators.Length(max=1000)],
     )
