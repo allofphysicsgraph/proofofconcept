@@ -4320,6 +4320,240 @@
                     "creation date": "2020-05-07"
                 }
             }
+        },
+        "551770": {
+            "name": "Lorentz transformation",
+            "author": "Ben",
+            "notes": "source: Tipler and Llewellyn, \"Modern Physics\", third edition, page 21; see also https://en.wikipedia.org/wiki/Lorentz_transformation",
+            "creation date": "2020-05-08",
+            "steps": {
+                "1337934": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5427510"
+                    ],
+                    "linear index": 1,
+                    "notes": "equation 1-13 on page 21 in Tipler and Llewellyn \"Modern Physics\" third edition",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "9869359": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2283140"
+                    ],
+                    "linear index": 2,
+                    "notes": "equation 1-14 on page 21 in Tipler and Llewellyn \"Modern Physics\" third edition",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "6150706": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "5427510",
+                        "2283140"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4471422"
+                    ],
+                    "linear index": 3,
+                    "notes": "solve output expr for t'",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "4777578": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "4471422"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7169020"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "5708661": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "7169020"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6463955"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "3244831": {
+                    "inf rule": "subtract X from both sides",
+                    "inputs": [
+                        "6463955"
+                    ],
+                    "feeds": [
+                        "8548879"
+                    ],
+                    "outputs": [
+                        "8494407"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "9520931": {
+                    "inf rule": "factor out X from LHS",
+                    "inputs": [
+                        "8494407"
+                    ],
+                    "feeds": [
+                        "6980367"
+                    ],
+                    "outputs": [
+                        "3992172"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "8199201": {
+                    "inf rule": "add X to both sides",
+                    "inputs": [
+                        "3992172"
+                    ],
+                    "feeds": [
+                        "4820907"
+                    ],
+                    "outputs": [
+                        "6047713"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "6431475": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "6047713"
+                    ],
+                    "feeds": [
+                        "9446753"
+                    ],
+                    "outputs": [
+                        "5995189"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "4052521": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "5995189"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7546640"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "3002960": {
+                    "inf rule": "swap LHS with RHS",
+                    "inputs": [
+                        "7546640"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1693888"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "3151962": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6319661"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "5637413": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5649086"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "5796383": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6316097"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "2712078": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7666907"
+                    ],
+                    "linear index": 15,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-08"
+                },
+                "8057586": {
+                    "inf rule": "substitute LHS of multiple expressions into expr 1",
+                    "inputs": [
+                        "5649086"
+                    ],
+                    "feeds": [
+                        "7666907",
+                        "6316097",
+                        "1693888",
+                        "5427510"
+                    ],
+                    "outputs": [
+                        "4326342"
+                    ],
+                    "linear index": 16,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -4708,7 +4942,33 @@
         "1441436": "4593428198",
         "4133484": "3472836147",
         "8698819": "6998364753",
-        "1001745": "4180845508"
+        "1001745": "4180845508",
+        "5427510": "4662369843",
+        "2283140": "2983053062",
+        "4471422": "3426941928",
+        "7169020": "2096918413",
+        "6463955": "7741202861",
+        "8548879": "7337056406",
+        "8494407": "4139999399",
+        "6980367": "3495403335",
+        "3992172": "9031609275",
+        "4820907": "8014566709",
+        "6047713": "9409776983",
+        "9446753": "2226340358",
+        "5995189": "1974334644",
+        "7546640": "8730201316",
+        "1693888": "5148266645",
+        "6319661": "4287102261",
+        "5649086": "1201689765",
+        "6316097": "7057864873",
+        "7666907": "8515803375",
+        "1712804": "6153463771",
+        "5690076": "4746576736",
+        "3857829": "1027270623",
+        "6373138": "6101803533",
+        "5915398": "9231495607",
+        "7325954": "8664264194",
+        "4326342": "9805063945"
     },
     "expressions": {
         "0000040490": {
@@ -8645,6 +8905,237 @@
             "notes": "",
             "author": "Ben",
             "creation date": "2020-05-07"
+        },
+        "4662369843": {
+            "latex": "x' = \\gamma (x - v t)",
+            "AST": [
+                "4037",
+                "1467",
+                "1357",
+                "5456",
+                "1790"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "2983053062": {
+            "latex": "x = \\gamma (x' + v t')",
+            "AST": [
+                "1790",
+                "4037"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "3426941928": {
+            "latex": "x = \\gamma ( \\gamma (x - v t) + v t' )",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "2096918413": {
+            "latex": "x = \\gamma ( \\gamma x - \\gamma v t + v t' )",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "7741202861": {
+            "latex": "x = \\gamma^2 x - \\gamma^2 v t + \\gamma v t'",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "7337056406": {
+            "latex": "\\gamma^2 x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "4139999399": {
+            "latex": "x - \\gamma^2 x =  - \\gamma^2 v t + \\gamma v t'",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "3495403335": {
+            "latex": "x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "9031609275": {
+            "latex": "x (1 - \\gamma^2 ) = - \\gamma^2 v t + \\gamma v t'",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "8014566709": {
+            "latex": "\\gamma^2 v t",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "9409776983": {
+            "latex": "x (1 - \\gamma^2 ) + \\gamma^2 v t = \\gamma v t'",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "2226340358": {
+            "latex": "\\gamma v",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "6417705759": {
+            "latex": "\\frac{x (1 - \\gamma^2 )}{\\gamma v} + \\frac{\\gamma^2 v t}{\\gamma v} = \\gamma v t'",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "8730201316": {
+            "latex": "\\frac{\\gamma x (1 - \\gamma^2 )}{\\gamma^2 v} + \\gamma t = t'",
+            "AST": [],
+            "name": "",
+            "notes": "first term was multiplied by \\gamma/\\gamma",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "1974334644": {
+            "latex": "\\frac{x (1 - \\gamma^2 )}{\\gamma v} + \\frac{\\gamma^2 v t}{\\gamma v} = t'",
+            "creation date": "2020-05-08",
+            "author": "Ben",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "5148266645": {
+            "latex": "t' = \\frac{\\gamma x (1 - \\gamma^2 )}{\\gamma^2 v} + \\gamma t",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "4287102261": {
+            "latex": "x^2 + y^2 + z^2 = c^2 t^2",
+            "AST": [
+                "4567",
+                "4037",
+                "6728",
+                "1467",
+                "5647"
+            ],
+            "name": "",
+            "notes": "describes a spherical wavefront",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "1201689765": {
+            "latex": "x'^2 + y'^2 + z'^2 = c^2 t'^2",
+            "AST": [],
+            "name": "",
+            "notes": "describes a spherical wavefront for an observer in a moving frame of reference",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "7057864873": {
+            "latex": "y' = y",
+            "AST": [],
+            "name": "",
+            "notes": "frame of reference is moving only along x direction",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "8515803375": {
+            "latex": "z' = z",
+            "AST": [],
+            "name": "",
+            "notes": "frame of reference is moving only along x direction",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "6153463771": {
+            "latex": "3",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "4746576736": {
+            "latex": "asdf",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "1027270623": {
+            "latex": "minga",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "6101803533": {
+            "latex": "ming",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "9231495607": {
+            "latex": "a = b",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "8664264194": {
+            "latex": "b + 2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "9805063945": {
+            "latex": "\\gamma^2 (x - v t)^2 + y^2 + z^2 = c^2 \\gamma^2 \\left( t + \\frac{ 1 - \\gamma^2 }{ \\gamma^2 } \\frac{x}{v} \\right)^2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
         }
     },
     "inference rules": {
@@ -9313,6 +9804,24 @@
             "notes": "Example: apply sin(x) to \"a = b + c\"",
             "author": "Ben",
             "creation date": "2020-04-23"
+        },
+        "substitute LHS of multiple expressions into expr 1": {
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1,
+            "latex": "Substitute LHS of equations into Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "expr 1 is equivalent to expr 2 under the condition": {
+            "number of feeds": 0,
+            "number of inputs": 2,
+            "number of outputs": 1,
+            "latex": "Eq.~\\ref{eq:#1} is equivalent to Eq.~\\ref{eq:#2} under the condition in Eq.~\\ref{eq:#3}.",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-08"
         }
     },
     "measures": {
@@ -10157,6 +10666,104 @@
             "units": "km",
             "author": "Ben",
             "creation date": "2020-05-07"
+        },
+        "4037": {
+            "category": "variable",
+            "latex": "x",
+            "name": "position",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Position_(geometry)"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "5456": {
+            "category": "variable",
+            "latex": "x'",
+            "name": "position in moving reference frame",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Frame_of_reference"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "1888": {
+            "category": "variable",
+            "latex": "y'",
+            "name": "position in moving reference frame",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Frame_of_reference"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "4306": {
+            "category": "variable",
+            "latex": "z'",
+            "name": "position in moving reference frame",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Frame_of_reference"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "6728": {
+            "category": "variable",
+            "latex": "z",
+            "name": "position",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Position_(geometry)"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "5647": {
+            "category": "variable",
+            "latex": "y",
+            "name": "position",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Position_(geometry)"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-08"
+        },
+        "1790": {
+            "category": "variable",
+            "latex": "\\gamma",
+            "name": "Lorentz factor",
+            "measure": "dimensionless",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Lorentz_factor"
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-08"
         }
     },
     "units": {
