@@ -820,6 +820,7 @@ def convert_dataframes_to_sql(all_dfs) -> str:
         cnx = sqlite3.connect(sql_file)
     except sqlite3.Error:
         logger.debug(sqlite3.Error)
+        raise Exception("unable to connect to SQL file " + sql_file)
 
     for df_name, df in all_dfs.items():
         # logger.debug(df_name)

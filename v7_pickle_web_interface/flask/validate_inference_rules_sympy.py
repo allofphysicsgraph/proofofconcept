@@ -225,8 +225,8 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         return substitute_LHS_of_multiple_expressions_into_expr(latex_dict)
     elif step_dict["inf rule"] == "expr 1 is equivalent to expr 2 under the condition":
         return expr_is_equivalent_to_expr_under_the_condition(latex_dict)
-    #    elif step_dict["inf rule"] == "":
-    #        return (latex_dict)
+    elif step_dict["inf rule"] == "substitute multiple variables into expr 1":
+        return substitute_multiple_variables_in_expr(latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        return (latex_dict)
     elif (
@@ -1292,6 +1292,17 @@ def expr_is_equivalent_to_expr_under_the_condition(latex_dict):
     >>> latex_dict['feed'] = ['']
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> expr_is_equivalent_to_expr_under_the_condition(latex_dict)
+    """
+    return "no check performed"
+
+
+def substitute_multiple_variables_in_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_multiple_variables_in_expr(latex_dict)
     """
     return "no check performed"
 
