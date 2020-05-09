@@ -135,7 +135,7 @@
   </form>
 </fieldset>
 {% else %}
-  <P>There are no unmatched symbols for this step when comparing Sympy and the PDG ASTs.<BR>
+  <P>There are no Sympy symbols that lack PDG AST references. <BR>
 If Sympy's analysis was incorrect or the PDG AST is incomplete, you can update the symbols per expression in the 
 <a href="{{ url_for('list_all_expressions', referrer='modify_step') }}">list of all expressions</a>.
 {% endif %}
@@ -191,7 +191,8 @@ TODO - - not implemented
 
 <UL>
 {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['inputs'] %}
-  <LI>{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</LI>
+  <LI>{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}<BR>
+      \({{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}\)</LI>
 {% endfor %}
 </UL>
 
