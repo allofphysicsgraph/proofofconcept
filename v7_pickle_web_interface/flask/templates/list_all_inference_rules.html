@@ -2,6 +2,35 @@
 {% block content %}
 
 <P>See the <a href="{{ url_for('user_documentation') }}?referrer=list_all_inference_rules#inference rules">documentation</a> for background on inference rules.
+
+Name: <input type="text" id="name_input" onkeyup="name_filter()" placeholder="Search infrule name">
+
+<script>
+function name_filter() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("name_input");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("infrule_table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    console.log(td)
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+
 <P>
 {% include '_table_of_inference_rules.html' %}
 
