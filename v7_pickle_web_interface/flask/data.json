@@ -3831,6 +3831,126 @@
                     "notes": "",
                     "author": "ben",
                     "creation date": "2020-04-20"
+                },
+                "5468317": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "8946473"
+                    ],
+                    "linear index": 35,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "4114319": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9398614"
+                    ],
+                    "linear index": 36,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "9873532": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6566357"
+                    ],
+                    "linear index": 37,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "9666127": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7978426"
+                    ],
+                    "linear index": 38,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "3508995": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7874068"
+                    ],
+                    "linear index": 39,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "3136363": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7552472"
+                    ],
+                    "linear index": 40,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "9630166": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "1988214"
+                    ],
+                    "linear index": 41,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "5932115": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3735003"
+                    ],
+                    "linear index": 42,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "6879719": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7633243"
+                    ],
+                    "linear index": 43,
+                    "notes": "change of variable",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
+                },
+                "2362912": {
+                    "inf rule": "declare variable replacement",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7519917"
+                    ],
+                    "linear index": 44,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-09"
                 }
             }
         },
@@ -3881,13 +4001,13 @@
                     "creation date": "2020-04-23"
                 },
                 "5372769": {
-                    "inf rule": "substitute list of new variables X for list of old variables Y",
+                    "inf rule": "substitute multiple variables into expr 1",
                     "inputs": [
                         "9932375"
                     ],
                     "feeds": [
-                        "8773482",
-                        "7517122"
+                        "1539856",
+                        "9873426"
                     ],
                     "outputs": [
                         "4176694"
@@ -5047,7 +5167,17 @@
         "6364366": "9753878784",
         "4443760": "8135396036",
         "9873426": "2773628333",
-        "1539856": "7154592211"
+        "1539856": "7154592211",
+        "8946473": "3749492596",
+        "9398614": "1258245373",
+        "6566357": "4147101187",
+        "7978426": "3809726424",
+        "7874068": "6383056612",
+        "7552472": "5075406409",
+        "1988214": "5398681503",
+        "3735003": "9305761407",
+        "7633243": "4218009993",
+        "7519917": "4188639044"
     },
     "expressions": {
         "0000040490": {
@@ -9265,6 +9395,96 @@
         "7154592211": {
             "latex": "\\theta_2 \\to \\theta_{\\rm refracted}",
             "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "3749492596": {
+            "latex": "E \\to E_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "1258245373": {
+            "latex": "E \\to E_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "4147101187": {
+            "latex": "KE \\to KE_1",
+            "AST": [
+                "4929"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "3809726424": {
+            "latex": "PE \\to PE_1",
+            "AST": [
+                "4930"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "6383056612": {
+            "latex": "KE \\to KE_2",
+            "AST": [
+                "4929"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "5075406409": {
+            "latex": "PE \\to PE_2",
+            "AST": [
+                "4930"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "5398681503": {
+            "latex": "v \\to v_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "9305761407": {
+            "latex": "v \\to v_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "4218009993": {
+            "latex": "x \\to x_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-09"
+        },
+        "4188639044": {
+            "latex": "x \\to x_2",
+            "AST": [
+                "4037"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
