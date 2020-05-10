@@ -10728,6 +10728,9 @@
         "addition": {
             "argument count": 2,
             "latex": "+",
+            "latex macros": [
+                "\\addition[2]{ #1 + #2}"
+            ],
             "scope": [
                 "real",
                 "vector",
@@ -10738,6 +10741,9 @@
         "cosine": {
             "argument count": 1,
             "latex": "\\cos",
+            "latex macros": [
+                "\\cosine[1]{\\cos #1}"
+            ],
             "scope": [
                 "real"
             ]
@@ -10745,6 +10751,9 @@
         "cross product": {
             "argument count": 2,
             "latex": "\\cross",
+            "latex macros": [
+                "\\cross[2]{ #1 \\cross #2}"
+            ],
             "scope": [
                 "vector"
             ]
@@ -10752,6 +10761,9 @@
         "definite integral": {
             "argument count": 4,
             "latex": "\\int",
+            "latex macros": [
+                "\\integralDefinite[4]{ \\int_{#1}^{#2} #3 #4}"
+            ],
             "scope": [
                 "real",
                 "vector",
@@ -10762,6 +10774,10 @@
         "division": {
             "argument count": 2,
             "latex": "/",
+            "latex macros": [
+                "\\divisionOneLine[2]{ #1 / #2}",
+                "\\divisionFrac[2]{ \\frac{#1}{#2}"
+            ],
             "scope": [
                 "real",
                 "vector",
@@ -10772,6 +10788,9 @@
         "dot product": {
             "argument count": 2,
             "latex": "\\dot",
+            "latex macros": [
+                "\\dotproduct[2]{ #1 \\dot #2}"
+            ],
             "scope": [
                 "vector"
             ]
@@ -10779,6 +10798,9 @@
         "element-wise addition": {
             "argument count": 2,
             "latex": "+",
+            "latex macros": [
+                "\\elementwiseAddition[2]{ #1 + #2}"
+            ],
             "scope": [
                 "vector",
                 "matrix"
@@ -10787,6 +10809,9 @@
         "equals": {
             "argument count": 2,
             "latex": "=",
+            "latex macros": [
+                "\\equals[2]{ #1 = #2}"
+            ],
             "scope": [
                 "real",
                 "vector",
@@ -10797,6 +10822,9 @@
         "function": {
             "argument count": 1,
             "latex": "f",
+            "latex macros": [
+                "\\function[1]{ f #1}"
+            ],
             "scope": [
                 "list"
             ]
@@ -10804,6 +10832,9 @@
         "indefinite intergral": {
             "argument count": 2,
             "latex": "\\int",
+            "latex macros": [
+                "\\integralIndefinite[2]{ \\int #1 #2}"
+            ],
             "scope": [
                 "real",
                 "vector",
@@ -10814,6 +10845,9 @@
         "multiplication": {
             "argument count": 2,
             "latex": "*",
+            "latex macros": [
+                "\\multiplication[2]{ #1 #2}"
+            ],
             "scope": [
                 "real",
                 "vector",
@@ -10824,6 +10858,9 @@
         "nabla": {
             "argument count": 1,
             "latex": "\\nabla",
+            "latex macros": [
+                "\\nabla[1]{ \\nabla #1}"
+            ],
             "scope": [
                 "vector"
             ]
@@ -10831,6 +10868,9 @@
         "sine": {
             "argument count": 1,
             "latex": "\\sin",
+            "latex macros": [
+                "\\sine[1]{ \\sin #1}"
+            ],
             "scope": [
                 "real"
             ]
@@ -10838,6 +10878,9 @@
         "spatial vector differential": {
             "argument count": 2,
             "latex": "\\vec{\\nabla}",
+            "latex macros": [
+                "\\spatialVectorDifferential[1]{ \\vec{\\nabla} #1}"
+            ],
             "scope": [
                 "real"
             ]
@@ -10845,6 +10888,9 @@
         "subtraction": {
             "argument count": 2,
             "latex": "-",
+            "latex macros": [
+                "\\subtraction[2]{ #1 - #2}"
+            ],
             "scope": [
                 "real",
                 "vector",
@@ -10855,6 +10901,9 @@
         "summation": {
             "argument count": 4,
             "latex": "\\sum",
+            "latex macros": [
+                "\\summation[4]{ \\sum_{#1}^{#2} #3}"
+            ],
             "scope": [
                 "real",
                 "vector",
