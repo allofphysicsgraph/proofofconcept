@@ -14,14 +14,18 @@ docker build -t flask_ub .
 # run container in detached mode
 docker run -d -p 5000:5000 flask_ub
 
+# enter a running container
+docker ps
+docker exec -it 92348292 /bin/bash
+
 # run container interactively
-docker run -it flask-ub /bin/bash
+docker run -it --rm flask-ub /bin/bash
 # Since I have a defined entrypoint, I use
-docker run -it --entrypoint /bin/bash flask_ub
+docker run -it --rm --entrypoint /bin/bash flask_ub
 # with a mount
-docker run -it --mount type=bind,source="$(pwd)",target=/another  --entrypoint /bin/bash flask_ub
+docker run -it --rm --mount type=bind,source="$(pwd)",target=/another  --entrypoint /bin/bash flask_ub
 # with ports exposed
-docker run -it --publish 5000:5000 --mount type=bind,source="$(pwd)",target=/another  --entrypoint /bin/bash flask_ub
+docker run -it --rm --publish 5000:5000 --mount type=bind,source="$(pwd)",target=/another  --entrypoint /bin/bash flask_ub
 
 
 # list all containers
@@ -29,10 +33,6 @@ docker ps -a
 
 
 docker stop [YOUR CONTAINER NUMBER HERE]
-
-
-To use Docker Compose,
-docker-compose up
 
 
 https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
