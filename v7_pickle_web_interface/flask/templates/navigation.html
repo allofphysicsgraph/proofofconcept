@@ -2,28 +2,29 @@
 {% block content %}
 
 
-<!-- https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin -->
-<script>
-function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
-</script>
+<style>
+   table.navtable { 
+      background: url("{{ url_for('static', filename='jargon_for_navigation.png') }}");
+      background-repeat: no-repeat;
+   } 
+</style>
 
 <P>From the Physics Derivation Graph navigation, you can
-  <UL>
-    <LI>
-      <a href="{{ url_for('show_all_derivations') }}?referrer=navigation">show all derivations</a>
-    </LI>
-    <LI>
-      <a href="{{ url_for('start_new_derivation') }}?referrer=navigation">start a new derivation</a>
-      {% if current_user.is_anonymous %}
-        -- requires being <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
-      {% endif %}
-    </LI>
+
+<table width=900 class="navtable" border="0">
+  <tr>
+    <td width=160>&nbsp;</td>
+    <td colspan=2>
+      <UL>
+        <LI>
+          <a href="{{ url_for('show_all_derivations') }}?referrer=navigation">show all derivations</a>
+        </LI>
+        <LI>
+          <a href="{{ url_for('start_new_derivation') }}?referrer=navigation">start a new derivation</a>
+           {% if current_user.is_anonymous %}
+             -- requires being <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
+           {% endif %}
+        </LI>
     {% if number_of_derivations > 0 %}
     <LI>
       <a href="{{ url_for('select_from_existing_derivations') }}?referrer=navigation">view one of the existing {{ number_of_derivations }} derivations</a>;
@@ -33,13 +34,43 @@ function onSignIn(googleUser) {
       {% endif %}
     </LI>
     {% endif %}
-    <LI>
+      </UL>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td width=50>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>
+      <UL>
+        <LI>
       <a href="{{ url_for('list_all_inference_rules') }}?referrer=navigation">list all {{ number_of_infrules }} inference rules</a>;
       also edit inference rules
       {% if current_user.is_anonymous %}
         if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
       {% endif %}
-    </LI>
+        </LI>
+      </UL>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan=2>
+     <UL>
     {% if number_of_expressions > 0 %}
       <LI>
         <a href="{{ url_for('list_all_expressions') }}?referrer=navigation">list all {{ number_of_expressions }} expressions</a>;
@@ -47,16 +78,34 @@ function onSignIn(googleUser) {
       {% if current_user.is_anonymous %}
         if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
       {% endif %}
-      </LI>
-    {% endif %}
+     </LI>
+      {% endif %}
+    </UL>
+</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan=2>
+      <UL>
     <LI>
       <a href="{{ url_for('list_all_symbols') }}?referrer=navigation">list all {{ number_of_symbols }} symbols</a>
     </LI>
     <LI>
       <a href="{{ url_for('list_all_operators') }}?referrer=navigation">list all {{ number_of_operators }} operators</a>
     </LI>
-  </UL>
-</P>
+      </UL>
+    </td>
+  </tr>
+</table>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
 
 <P>
 Download the current database file as
