@@ -128,13 +128,6 @@ login_manager.init_app(app)
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 csrf.init_app(app)
 
-# https://realpython.com/flask-google-login/
-try:
-    init_db_command()
-except sqlite3.OperationalError:
-    # Assume it's already been created
-    logger.debug("init_db_command failed")
-    pass
 
 # https://realpython.com/flask-google-login/
 # OAuth 2 client setup
@@ -3122,5 +3115,13 @@ if __name__ == "__main__":
     #        session_id = "0"
     # this is only applicable for flask (and not gunicorn)
     app.run(debug=True, host="0.0.0.0")
+
+    # https://realpython.com/flask-google-login/
+    try:
+        init_db_command()
+    except sqlite3.OperationalError:
+        # Assume it's already been created
+        logger.debug("init_db_command failed")
+        pass
 
 # EOF
