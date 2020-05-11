@@ -30,6 +30,7 @@ class User(UserMixin):
             ).fetchone()
         except sqlite3.OperationalError as err:
             logger.error(err)
+            return None
 #            init_db()
 #            db = get_db()
 #            user = db.execute(
