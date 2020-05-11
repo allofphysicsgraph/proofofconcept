@@ -122,6 +122,10 @@ app.config[
 ] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
 app.config["DEBUG"] = True
 
+# https://stackoverflow.com/a/24226084/1164295
+app.config['GOOGLE_LOGIN_REDIRECT_SCHEME'] = "https"
+
+
 # https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager.user_loader
 login_manager.init_app(app)
 
