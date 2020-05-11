@@ -137,14 +137,6 @@ csrf.init_app(app)
 # OAuth 2 client setup
 client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
-# https://realpython.com/flask-google-login/
-try:
-    init_db_command()
-except sqlite3.OperationalError:
-    # Assume it's already been created
-    logger.debug("init_db_command failed")
-    pass
-
 # import pdg_api # PDG API
 
 # https://runnable.com/docker/python/docker-compose-with-flask-apps
