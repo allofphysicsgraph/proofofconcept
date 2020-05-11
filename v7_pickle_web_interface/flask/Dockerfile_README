@@ -1,10 +1,10 @@
 # QUICK START:
-docker build -t flask_ub .; docker run -it --rm -v`pwd`/data.json:/home/appuser/app/data.json -v`pwd`/logs/:/home/appuser/app/logs/ --publish 5000:5000 flask_ub
+docker build -t flask_ub .; docker run -it --rm -v`pwd`/data.json:/home/appuser/app/data.json -v`pwd`/logs/:/home/appuser/app/logs/ --env-file .env --publish 5000:5000 flask_ub
 
 # MANUAL start
-docker build -t flask_ub .; docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json -v`pwd`/logs/:/home/appuser/app/logs/ --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
+docker build -t flask_ub .; docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json -v`pwd`/logs/:/home/appuser/app/logs/ --env-file .env --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
 
-
+# where ".env" contains the variable defintions for GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET 
 
 
 
