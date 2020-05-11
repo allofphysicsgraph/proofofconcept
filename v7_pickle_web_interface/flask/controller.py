@@ -704,6 +704,7 @@ def callback():
 
     # Doesn't exist? Add it to the database.
     if not User.get(unique_id):
+        logger.debug(users_name + " does not appear in database; creating it")
         User.create(unique_id, users_name, users_email, picture)
 
     logger.debug("created user in database")
