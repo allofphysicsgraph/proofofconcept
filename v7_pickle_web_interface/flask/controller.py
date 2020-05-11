@@ -655,7 +655,6 @@ def callback():
     # Get authorization code Google sent back to you
     code = request.args.get("code")
 
-
     # Find out what URL to hit to get tokens that allow you to ask for
     # things on behalf of a user
     google_provider_cfg = get_google_provider_cfg()
