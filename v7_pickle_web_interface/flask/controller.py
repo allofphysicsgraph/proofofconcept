@@ -633,6 +633,10 @@ def login():
     https://realpython.com/flask-google-login/
     """
     logger.info("[trace]")
+
+    if "db" not in g:
+        init_db_command()
+
     # Find out what URL to hit for Google login
     google_provider_cfg = get_google_provider_cfg()
     authorization_endpoint = google_provider_cfg["authorization_endpoint"]

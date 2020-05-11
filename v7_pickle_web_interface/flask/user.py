@@ -54,5 +54,5 @@ class User(UserMixin):
             (id_, name, email, profile_pic),
         )
         db.commit()
-
+        return
 # EOF
