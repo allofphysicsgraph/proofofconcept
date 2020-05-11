@@ -4,6 +4,7 @@
 
 from flask_login import UserMixin
 from sql_db import get_db
+from sql_db import init_db
 import logging
 logger = logging.getLogger(__name__)
 
@@ -22,9 +23,17 @@ class User(UserMixin):
         logger.debug(str(user_id))
         db = get_db()
         logger.debug("got db, now going to access table user")
-        user = db.execute(
+        try:
+            user = db.execute(
             "SELECT * FROM user WHERE id = ?", (user_id,)
-        ).fetchone()
+            ).fetchone()
+        except sqlite3.OperationalError as err:
+            logger.error(err)
+            init_db()
+            db = get_db()
+            user = db.execute(
+            "SELECT * FROM user WHERE id = ?", (user_id,)
+            ).fetchone()
         if not user:
             return None
 
