@@ -7,6 +7,8 @@ from flask_login import UserMixin
 from sql_db import get_db
 
 class User(UserMixin):
+    print("in user.py/class User")
+
     def __init__(self, id_, name, email, profile_pic):
         self.id = id_
         self.name = name
@@ -15,6 +17,8 @@ class User(UserMixin):
 
     @staticmethod
     def get(user_id):
+        print("in user.py/class User/get")
+        print(user_id)
         db = get_db()
         user = db.execute(
             "SELECT * FROM user WHERE id = ?", (user_id,)

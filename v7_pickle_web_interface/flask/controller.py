@@ -620,6 +620,7 @@ def is_safe_url(target):
     """
     https://github.com/fengsp/flask-snippets/blob/master/security/redirect_back.py
     """
+    logger.info("[trace]")
     ref_url = urlparse(request.host_url)
     test_url = urlparse(urljoin(request.host_url, target))
     return test_url.scheme in ("http", "https") and ref_url.netloc == test_url.netloc
@@ -630,6 +631,7 @@ def login():
     """
     https://realpython.com/flask-google-login/
     """
+    logger.info("[trace]")
     # Find out what URL to hit for Google login
     google_provider_cfg = get_google_provider_cfg()
     authorization_endpoint = google_provider_cfg["authorization_endpoint"]
@@ -649,6 +651,7 @@ def callback():
     """
     https://realpython.com/flask-google-login/
     """
+    logger.info("[trace]")
     # Get authorization code Google sent back to you
     code = request.args.get("code")
 
@@ -692,6 +695,8 @@ def callback():
     else:
         return "User email not available or not verified by Google.", 400
 
+    logger.debug(users_name)
+    logger.debug(users_email)
     # Create a user in your db with the information provided
     # by Google
     user = User(id_=unique_id, name=users_name, email=users_email, profile_pic=picture)
@@ -700,12 +705,12 @@ def callback():
     if not User.get(unique_id):
         User.create(unique_id, users_name, users_email, picture)
 
+    logger.debug("created user in database")
     # Begin user session by logging the user in
     login_user(user)
 
     # Send user back to homepage
-    return redirect(url_for("index"))
-
+    return redirect(url_for("navigation", referrer="login"))
 
 @app.route("/login_OLD", methods=["GET", "POST"])
 def login_OLD():
