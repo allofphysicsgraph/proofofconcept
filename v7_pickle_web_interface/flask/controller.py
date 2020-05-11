@@ -635,7 +635,10 @@ def login():
     logger.info("[trace]")
 
     if "db" not in g:
+        logger.debug("db not in g")
         init_db_command()
+    else:
+        logger.debug("db is in g")
 
     # Find out what URL to hit for Google login
     google_provider_cfg = get_google_provider_cfg()
