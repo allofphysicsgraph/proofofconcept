@@ -24,11 +24,12 @@
        <td align="right">
 <!-- https://github.com/allofphysicsgraph/proofofconcept/issues/110 -->
 {% if not current_user.is_anonymous %}
-   Logged in as {{ current_user.username }} |
+   Logged in as {{ current_user.name }} |
+<!--
     <a href="{{ url_for('logout') }}">Log out locally</a>
-
+-->
 <!-- https://developers.google.com/identity/sign-in/web/sign-in#before_you_begin -->
-<a href="#" onclick="signOut();">Sign out of Google</a>
+<a href="{{ url_for('logout') }}" onclick="signOut();">Sign out</a>
 <script>
   function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
