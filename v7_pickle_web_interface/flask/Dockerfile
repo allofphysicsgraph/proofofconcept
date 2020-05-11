@@ -74,7 +74,8 @@ COPY common_lib.py \
      sql_db.py \
      user.py \
      validate_inference_rules_sympy.py \
-     wsgi.py \
+     cert.pem \
+     key.pem \
      /home/appuser/app/
 
 USER root
