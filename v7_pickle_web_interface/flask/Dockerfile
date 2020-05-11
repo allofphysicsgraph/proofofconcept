@@ -70,6 +70,9 @@ COPY common_lib.py \
      json_schema.py \
      Makefile \
      pdg_api.py \
+     schema.sql \
+     sql_db.py \
+     user.py \
      validate_inference_rules_sympy.py \
      wsgi.py \
      /home/appuser/app/
