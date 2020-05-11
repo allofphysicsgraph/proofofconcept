@@ -586,7 +586,7 @@ def get_google_provider_cfg():
     """
     https://realpython.com/flask-google-login/
     """
-    logger.debug("[trace]")
+    logger.info("[trace]")
     url_json = requests.get(GOOGLE_DISCOVERY_URL).json()
     logger.debug(url_json)
     return url_json
@@ -598,6 +598,7 @@ def unauthorized():
     https://flask-login.readthedocs.io/en/latest/
     >>>
     """
+    logger.info("[trace]")
     return redirect(url_for("login", referrer="unauthorized"))
 
 
@@ -608,6 +609,7 @@ def load_user(user_id):
     also https://realpython.com/using-flask-login-for-user-management-with-flask/
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
     """
+    logger.info("[trace]")
     logger.debug(user_id)
     # return USERS.get(int(user_id))
 
@@ -707,6 +709,9 @@ def callback():
     logger.debug("created user in database")
     # Begin user session by logging the user in
     login_user(user)
+
+    logger.debug(str(current_user))
+    flash("logged in")
 
     # Send user back to homepage
     return redirect(url_for("navigation", referrer="login"))
