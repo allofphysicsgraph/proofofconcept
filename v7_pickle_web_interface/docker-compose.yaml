@@ -8,6 +8,9 @@ services:
       context: ./flask
       dockerfile: Dockerfile.gunicorn
     restart: always
+    environment:
+     - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+     - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
 # https://docs.gunicorn.org/en/stable/settings.html
 # https://pythonspeed.com/articles/gunicorn-in-docker/
     command: >
@@ -42,6 +45,7 @@ services:
 #      - 1337:80
     volumes:
     - ${PWD}/flask/logs/:/logs/
+    - ${PWD}/certs/:/certs/
     depends_on:
       - flask
 
