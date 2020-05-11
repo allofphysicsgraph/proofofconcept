@@ -16,6 +16,7 @@ services:
     command: >
       gunicorn
       --bind 0.0.0.0:5000
+      --forwarded-allow-ips="*"
       --log-level debug
       wsgi:app
       --capture-output 
