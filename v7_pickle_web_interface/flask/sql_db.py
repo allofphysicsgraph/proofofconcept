@@ -34,8 +34,12 @@ def init_db():
     db = get_db()
 
     with current_app.open_resource("schema.sql") as f:
-        db.executescript(f.read().decode("utf8"))
-    print("ran schema.sql")
+        try:
+            db.executescript(f.read().decode("utf8"))
+        except Exception as err:
+            logger.error(str(err))
+
+    logger.debug("ran schema.sql")
 
 @click.command("init-db")
 @with_appcontext
@@ -43,7 +47,7 @@ def init_db_command():
     """Clear the existing data and create new tables."""
     logger.info("[trace]")
     init_db()
-    click.echo("Initialized the database.")
+#    click.echo("Initialized the database.")
 
 def init_app(app):
     logger.info("[trace]")
