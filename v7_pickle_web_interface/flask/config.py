@@ -8,7 +8,8 @@ logger = logging.getLogger(__name__)
 
 
 class Config(object):
-    SECRET_KEY = os.environ.get("SECRET_KEY") or "you-will-never-guess"
+    SECRET_KEY = os.environ.get("SECRET_KEY") or os.urandom(24)
 
+# use of os.urandom is from https://realpython.com/flask-google-login/
 
 # EOF

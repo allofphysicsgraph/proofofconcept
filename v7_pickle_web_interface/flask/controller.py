@@ -77,6 +77,20 @@ from config import (
 )  # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 from urllib.parse import urlparse, urljoin
 
+# in support of Google Sign-in
+# from https://realpython.com/flask-google-login/
+from sql_db import init_db_command
+from user import User
+from oauthlib.oauth2 import WebApplicationClient
+import requests
+
+# https://realpython.com/flask-google-login/
+GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
+GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
+GOOGLE_DISCOVERY_URL = (
+    "https://accounts.google.com/.well-known/openid-configuration"
+)
+
 import common_lib as clib  # PDG common library
 import json_schema  # PDG
 import compute  # PDG
@@ -112,6 +126,19 @@ login_manager.init_app(app)
 
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 csrf.init_app(app)
+
+# https://realpython.com/flask-google-login/
+try:
+    init_db_command()
+except sqlite3.OperationalError:
+    # Assume it's already been created
+    logger.debug('init_db_command failed')
+    pass
+
+# https://realpython.com/flask-google-login/
+# OAuth 2 client setup
+client = WebApplicationClient(GOOGLE_CLIENT_ID) 
+
 
 # import pdg_api # PDG API
 
@@ -227,7 +254,7 @@ class RegistrationForm(FlaskForm):
 
 
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
-class User(UserMixin):
+#class User(UserMixin):
     """
     inherits from UserMixin which is defined here
     https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html#UserMixin
@@ -239,15 +266,15 @@ class User(UserMixin):
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
     """
 
-    logger.info("[trace]")
+#    logger.info("[trace]")
 
-    def __init__(self, name, id, active=True):
-        self.name = name
-        self.id = id
-        self.active = active
+#    def __init__(self, name, id, active=True):
+#        self.name = name
+#        self.id = id
+#        self.active = active
 
-    def is_active(self):
-        return self.active
+#    def is_active(self):
+#        return self.active
 
     #    def __init__(self, user_name, pass_word):
     #        self.username = user_name
@@ -255,20 +282,20 @@ class User(UserMixin):
 
     #    def is_authenticated(self):
     #        return self.authenticated
-    def __repr__(self):
-        return "<User {}>".format(self.username)
+#    def __repr__(self):
+#        return "<User {}>".format(self.username)
 
 
 # the following is a hack not meant for publication
 # https://gist.github.com/bkdinoop/6698956
 # which is linked from
 # https://stackoverflow.com/a/12081788/1164295
-USERS = {
-    1: User(u"bp", 1),
-    2: User(u"mg", 2),
-    3: User(u"tl", 3, False),
-}
-USER_NAMES = dict((u.name, u) for u in USERS.values())
+#USERS = {
+#    1: User(u"bp", 1),
+#    2: User(u"mg", 2),
+#    3: User(u"tl", 3, False),
+#}
+#USER_NAMES = dict((u.name, u) for u in USERS.values())
 
 
 class EquationInputForm(FlaskForm):
@@ -557,6 +584,14 @@ def after_request(response):
     logger.debug("response = " + str(response))
     return response
 
+def get_google_provider_cfg():
+    """
+    https://realpython.com/flask-google-login/
+    """
+    logger.debug('[trace]')
+    url_json = requests.get(GOOGLE_DISCOVERY_URL).json()
+    logger.debug(url_json)
+    return url_json
 
 @login_manager.unauthorized_handler
 def unauthorized():
@@ -575,7 +610,10 @@ def load_user(user_id):
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
     """
     logger.debug(user_id)
-    return USERS.get(int(user_id))  # User.get_id(user_id)
+    #return USERS.get(int(user_id))
+
+    # https://realpython.com/flask-google-login/
+    return User.get(user_id)
 
 
 def is_safe_url(target):
@@ -586,9 +624,93 @@ def is_safe_url(target):
     test_url = urlparse(urljoin(request.host_url, target))
     return test_url.scheme in ("http", "https") and ref_url.netloc == test_url.netloc
 
-
-@app.route("/login", methods=["GET", "POST"])
+@app.route("/login")
 def login():
+    """
+    https://realpython.com/flask-google-login/
+    """
+    # Find out what URL to hit for Google login
+    google_provider_cfg = get_google_provider_cfg()
+    authorization_endpoint = google_provider_cfg["authorization_endpoint"]
+
+    # Use library to construct the request for Google login and provide
+    # scopes that let you retrieve user's profile from Google
+    request_uri = client.prepare_request_uri(
+        authorization_endpoint,
+        redirect_uri=request.base_url + "/callback",
+        scope=["openid", "email", "profile"],
+    )
+    return redirect(request_uri)
+
+@app.route("/login/callback")
+def callback():
+    """
+    https://realpython.com/flask-google-login/
+    """
+    # Get authorization code Google sent back to you
+    code = request.args.get("code")
+
+# Find out what URL to hit to get tokens that allow you to ask for
+# things on behalf of a user
+google_provider_cfg = get_google_provider_cfg()
+token_endpoint = google_provider_cfg["token_endpoint"]
+
+# Prepare and send a request to get tokens
+token_url, headers, body = client.prepare_token_request(
+    token_endpoint,
+    authorization_response=request.url,
+    redirect_url=request.base_url,
+    code=code
+)
+token_response = requests.post(
+    token_url,
+    headers=headers,
+    data=body,
+    auth=(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET),
+)
+
+# Parse the tokens
+client.parse_request_body_response(json.dumps(token_response.json()))
+
+# Now that you have tokens (yay) let's find and hit the URL
+# from Google that gives you the user's profile information,
+# including their Google profile image and email
+userinfo_endpoint = google_provider_cfg["userinfo_endpoint"]
+uri, headers, body = client.add_token(userinfo_endpoint)
+userinfo_response = requests.get(uri, headers=headers, data=body)
+
+# You want to make sure their email is verified.
+# The user authenticated with Google, authorized your
+# app, and now you've verified their email through Google!
+if userinfo_response.json().get("email_verified"):
+    unique_id = userinfo_response.json()["sub"]
+    users_email = userinfo_response.json()["email"]
+    picture = userinfo_response.json()["picture"]
+    users_name = userinfo_response.json()["given_name"]
+else:
+    return "User email not available or not verified by Google.", 400
+
+# Create a user in your db with the information provided
+# by Google
+user = User(
+    id_=unique_id, name=users_name, email=users_email, profile_pic=picture
+)
+
+# Doesn't exist? Add it to the database.
+if not User.get(unique_id):
+    User.create(unique_id, users_name, users_email, picture)
+
+# Begin user session by logging the user in
+login_user(user)
+
+# Send user back to homepage
+return redirect(url_for("index"))
+
+
+
+
+@app.route("/login_OLD", methods=["GET", "POST"])
+def login_OLD():
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/110
 
