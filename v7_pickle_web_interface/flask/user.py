@@ -21,7 +21,7 @@ class User(UserMixin):
     @staticmethod
     def get(user_id):
         logger.debug("in user.py/class User/get")
-        logger.debug(str(user_id))
+        #logger.debug(str(user_id)) # this is a numeric ID
         db = get_db()
         logger.debug("got db, now going to access table user")
         try:
