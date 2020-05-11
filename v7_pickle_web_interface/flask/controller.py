@@ -87,9 +87,7 @@ import requests
 # https://realpython.com/flask-google-login/
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
 GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
-GOOGLE_DISCOVERY_URL = (
-    "https://accounts.google.com/.well-known/openid-configuration"
-)
+GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configuration"
 
 import common_lib as clib  # PDG common library
 import json_schema  # PDG
@@ -132,12 +130,12 @@ try:
     init_db_command()
 except sqlite3.OperationalError:
     # Assume it's already been created
-    logger.debug('init_db_command failed')
+    logger.debug("init_db_command failed")
     pass
 
 # https://realpython.com/flask-google-login/
 # OAuth 2 client setup
-client = WebApplicationClient(GOOGLE_CLIENT_ID) 
+client = WebApplicationClient(GOOGLE_CLIENT_ID)
 
 
 # import pdg_api # PDG API
@@ -252,9 +250,8 @@ class RegistrationForm(FlaskForm):
     )
     confirm = PasswordField("Repeat Password")
 
-
-# https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
-#class User(UserMixin):
+    # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
+    # class User(UserMixin):
     """
     inherits from UserMixin which is defined here
     https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html#UserMixin
@@ -266,6 +263,7 @@ class RegistrationForm(FlaskForm):
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
     """
 
+
 #    logger.info("[trace]")
 
 #    def __init__(self, name, id, active=True):
@@ -276,12 +274,12 @@ class RegistrationForm(FlaskForm):
 #    def is_active(self):
 #        return self.active
 
-    #    def __init__(self, user_name, pass_word):
-    #        self.username = user_name
-    #        self.password = pass_word
+#    def __init__(self, user_name, pass_word):
+#        self.username = user_name
+#        self.password = pass_word
 
-    #    def is_authenticated(self):
-    #        return self.authenticated
+#    def is_authenticated(self):
+#        return self.authenticated
 #    def __repr__(self):
 #        return "<User {}>".format(self.username)
 
@@ -290,12 +288,12 @@ class RegistrationForm(FlaskForm):
 # https://gist.github.com/bkdinoop/6698956
 # which is linked from
 # https://stackoverflow.com/a/12081788/1164295
-#USERS = {
+# USERS = {
 #    1: User(u"bp", 1),
 #    2: User(u"mg", 2),
 #    3: User(u"tl", 3, False),
-#}
-#USER_NAMES = dict((u.name, u) for u in USERS.values())
+# }
+# USER_NAMES = dict((u.name, u) for u in USERS.values())
 
 
 class EquationInputForm(FlaskForm):
@@ -584,14 +582,16 @@ def after_request(response):
     logger.debug("response = " + str(response))
     return response
 
+
 def get_google_provider_cfg():
     """
     https://realpython.com/flask-google-login/
     """
-    logger.debug('[trace]')
+    logger.debug("[trace]")
     url_json = requests.get(GOOGLE_DISCOVERY_URL).json()
     logger.debug(url_json)
     return url_json
+
 
 @login_manager.unauthorized_handler
 def unauthorized():
@@ -610,7 +610,7 @@ def load_user(user_id):
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
     """
     logger.debug(user_id)
-    #return USERS.get(int(user_id))
+    # return USERS.get(int(user_id))
 
     # https://realpython.com/flask-google-login/
     return User.get(user_id)
@@ -623,6 +623,7 @@ def is_safe_url(target):
     ref_url = urlparse(request.host_url)
     test_url = urlparse(urljoin(request.host_url, target))
     return test_url.scheme in ("http", "https") and ref_url.netloc == test_url.netloc
+
 
 @app.route("/login")
 def login():
@@ -642,6 +643,7 @@ def login():
     )
     return redirect(request_uri)
 
+
 @app.route("/login/callback")
 def callback():
     """
@@ -649,6 +651,7 @@ def callback():
     """
     # Get authorization code Google sent back to you
     code = request.args.get("code")
+
 
 # Find out what URL to hit to get tokens that allow you to ask for
 # things on behalf of a user
@@ -660,7 +663,7 @@ token_url, headers, body = client.prepare_token_request(
     token_endpoint,
     authorization_response=request.url,
     redirect_url=request.base_url,
-    code=code
+    code=code,
 )
 token_response = requests.post(
     token_url,
@@ -692,9 +695,7 @@ else:
 
 # Create a user in your db with the information provided
 # by Google
-user = User(
-    id_=unique_id, name=users_name, email=users_email, profile_pic=picture
-)
+user = User(id_=unique_id, name=users_name, email=users_email, profile_pic=picture)
 
 # Doesn't exist? Add it to the database.
 if not User.get(unique_id):
@@ -705,8 +706,6 @@ login_user(user)
 
 # Send user back to homepage
 return redirect(url_for("index"))
-
-
 
 
 @app.route("/login_OLD", methods=["GET", "POST"])
