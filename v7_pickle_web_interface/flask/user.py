@@ -5,6 +5,7 @@
 from flask_login import UserMixin
 from sql_db import get_db
 from sql_db import init_db
+import sqlite3
 import logging
 logger = logging.getLogger(__name__)
 
