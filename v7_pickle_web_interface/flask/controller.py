@@ -123,7 +123,7 @@ app.config[
 app.config["DEBUG"] = True
 
 # https://stackoverflow.com/a/24226084/1164295
-app.config['GOOGLE_LOGIN_REDIRECT_SCHEME'] = "https"
+app.config["GOOGLE_LOGIN_REDIRECT_SCHEME"] = "https"
 
 
 # https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager.user_loader
