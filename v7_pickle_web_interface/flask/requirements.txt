@@ -68,4 +68,6 @@ google-auth-httplib2
 # google-auth-oauthlib==0.4.1
 google-auth-oauthlib
 
-
+# only necessary for localhost
+# from https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https
+pyopenssl
