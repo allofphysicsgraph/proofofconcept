@@ -713,8 +713,8 @@ def callback():
     if not User.get(unique_id):
         logger.debug(users_name + " does not appear in database; creating it")
         User.create(unique_id, users_name, users_email, picture)
+        logger.debug("created user in database")
 
-    logger.debug("created user in database")
     # Begin user session by logging the user in
     login_user(user)
 
@@ -3137,7 +3137,12 @@ if __name__ == "__main__":
     #        logger.error(str(err))
     #        session_id = "0"
     # this is only applicable for flask (and not gunicorn)
-    app.run(debug=True, host="0.0.0.0")
-
+    # No SSL
+    # app.run(debug=True, host="0.0.0.0")
+    # from https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https
+    # app.run(debug=True, host="0.0.0.0", ssl_context='adhoc')
+    # after running the command
+    # openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
+    app.run(debug=True, host="0.0.0.0", ssl_context=("cert.pem", "key.pem"))
 
 # EOF
