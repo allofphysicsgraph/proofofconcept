@@ -3,11 +3,12 @@
 # from https://realpython.com/flask-google-login/
 
 from flask_login import UserMixin
-
 from sql_db import get_db
+import logging
+logger = logging.getLogger(__name__)
 
 class User(UserMixin):
-    print("in user.py/class User")
+    logger.debug("in user.py/class User")
 
     def __init__(self, id_, name, email, profile_pic):
         self.id = id_
@@ -17,9 +18,10 @@ class User(UserMixin):
 
     @staticmethod
     def get(user_id):
-        print("in user.py/class User/get")
-        print(user_id)
+        logger.debug("in user.py/class User/get")
+        logger.debug(str(user_id))
         db = get_db()
+        logger.debug("got db, now going to access table user")
         user = db.execute(
             "SELECT * FROM user WHERE id = ?", (user_id,)
         ).fetchone()
@@ -33,6 +35,7 @@ class User(UserMixin):
 
     @staticmethod
     def create(id_, name, email, profile_pic):
+        logger.debug("in user.py/class User/create")
         db = get_db()
         db.execute(
             "INSERT INTO user (id, name, email, profile_pic) "

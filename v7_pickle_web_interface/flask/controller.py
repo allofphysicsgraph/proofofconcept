@@ -712,6 +712,7 @@ def callback():
     # Send user back to homepage
     return redirect(url_for("navigation", referrer="login"))
 
+
 @app.route("/login_OLD", methods=["GET", "POST"])
 def login_OLD():
     """
