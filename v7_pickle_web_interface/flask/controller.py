@@ -711,6 +711,7 @@ def callback():
     login_user(user)
 
     logger.debug(str(current_user))
+    logger.debug(str(current_user.name))
     flash("logged in")
 
     # Send user back to homepage
