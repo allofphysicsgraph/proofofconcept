@@ -82,7 +82,7 @@ from urllib.parse import urlparse, urljoin
 
 # in support of Google Sign-in
 # from https://realpython.com/flask-google-login/
-from sql_db import init_db_command
+from sql_db import init_db
 from user import User
 from oauthlib.oauth2 import WebApplicationClient
 import requests
@@ -636,7 +636,7 @@ def login():
 
     if "db" not in g:
         logger.debug("db not in g")
-        init_db_command()
+        init_db()
     else:
         logger.debug("db is in g")
 
@@ -3139,12 +3139,5 @@ if __name__ == "__main__":
     # this is only applicable for flask (and not gunicorn)
     app.run(debug=True, host="0.0.0.0")
 
-    # https://realpython.com/flask-google-login/
-    try:
-        init_db_command()
-    except sqlite3.OperationalError:
-        # Assume it's already been created
-        logger.debug("init_db_command failed")
-        pass
 
 # EOF
