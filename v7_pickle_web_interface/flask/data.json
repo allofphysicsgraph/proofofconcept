@@ -3374,15 +3374,14 @@
                     "creation date": "2020-04-20"
                 },
                 "5590554": {
-                    "inf rule": "substitute multiple variables into expr 1",
+                    "inf rule": "substitute three variables into expr",
                     "inputs": [
-                        "8844119"
-                    ],
-                    "feeds": [
                         "9398614",
                         "7874068",
-                        "7552472"
+                        "7552472",
+                        "8844119"
                     ],
+                    "feeds": [],
                     "outputs": [
                         "5642407"
                     ],
@@ -3392,15 +3391,14 @@
                     "creation date": "2020-04-20"
                 },
                 "8346419": {
-                    "inf rule": "substitute multiple variables into expr 1",
+                    "inf rule": "substitute three variables into expr",
                     "inputs": [
-                        "8844119"
-                    ],
-                    "feeds": [
                         "8946473",
                         "6566357",
-                        "7978426"
+                        "7978426",
+                        "8844119"
                     ],
+                    "feeds": [],
                     "outputs": [
                         "1298003"
                     ],
@@ -3437,14 +3435,13 @@
                     "creation date": "2020-04-20"
                 },
                 "4803359": {
-                    "inf rule": "substitute multiple variables into expr 1",
+                    "inf rule": "substitute two variables into expr",
                     "inputs": [
+                        "7874068",
+                        "3735003",
                         "6559987"
                     ],
-                    "feeds": [
-                        "7874068",
-                        "3735003"
-                    ],
+                    "feeds": [],
                     "outputs": [
                         "6632540"
                     ],
@@ -3454,14 +3451,13 @@
                     "creation date": "2020-04-20"
                 },
                 "7113502": {
-                    "inf rule": "substitute multiple variables into expr 1",
+                    "inf rule": "substitute two variables into expr",
                     "inputs": [
+                        "6566357",
+                        "1988214",
                         "6559987"
                     ],
-                    "feeds": [
-                        "6566357",
-                        "1988214"
-                    ],
+                    "feeds": [],
                     "outputs": [
                         "4208138"
                     ],
@@ -3514,14 +3510,13 @@
                     "creation date": "2020-04-20"
                 },
                 "7835026": {
-                    "inf rule": "substitute multiple variables into expr 1",
+                    "inf rule": "substitute two variables into expr",
                     "inputs": [
+                        "4758524",
+                        "3257704",
                         "2776565"
                     ],
-                    "feeds": [
-                        "4758524",
-                        "3257704"
-                    ],
+                    "feeds": [],
                     "outputs": [
                         "8696678"
                     ],
@@ -3639,14 +3634,13 @@
                     "creation date": "2020-04-20"
                 },
                 "6719788": {
-                    "inf rule": "substitute multiple variables into expr 1",
+                    "inf rule": "substitute two variables into expr",
                     "inputs": [
+                        "7552472",
+                        "7519917",
                         "8497204"
                     ],
-                    "feeds": [
-                        "7552472",
-                        "7519917"
-                    ],
+                    "feeds": [],
                     "outputs": [
                         "3988671"
                     ],
@@ -3656,14 +3650,13 @@
                     "creation date": "2020-04-20"
                 },
                 "5969230": {
-                    "inf rule": "substitute multiple variables into expr 1",
+                    "inf rule": "substitute two variables into expr ",
                     "inputs": [
+                        "7978426",
+                        "7633243",
                         "8497204"
                     ],
-                    "feeds": [
-                        "7978426",
-                        "7633243"
-                    ],
+                    "feeds": [],
                     "outputs": [
                         "9081932"
                     ],
@@ -4027,13 +4020,13 @@
                     "creation date": "2020-04-23"
                 },
                 "5372769": {
-                    "inf rule": "substitute multiple variables into expr 1",
+                    "inf rule": "substitute two variables into expr",
                     "inputs": [
+                        "1539856",
+                        "9873426",
                         "9932375"
                     ],
                     "feeds": [
-                        "1539856",
-                        "9873426"
                     ],
                     "outputs": [
                         "4176694"
@@ -4345,13 +4338,13 @@
                     "creation date": "2020-05-07"
                 },
                 "9488257": {
-                    "inf rule": "substitute multiple variables into expr 1",
+                    "inf rule": "substitute two variables into expr",
                     "inputs": [
+                        "3915320",
+                        "3383852",
                         "7959026"
                     ],
                     "feeds": [
-                        "3915320",
-                        "3383852"
                     ],
                     "outputs": [
                         "5753220"
@@ -4362,14 +4355,14 @@
                     "creation date": "2020-05-07"
                 },
                 "6456434": {
-                    "inf rule": "substitute multiple variables into expr 1",
+                    "inf rule": "substitute three variables into expr",
                     "inputs": [
+                        "3915320",
+                        "6364366",
+                        "4443760",
                         "7360652"
                     ],
                     "feeds": [
-                        "3915320",
-                        "6364366",
-                        "4443760"
                     ],
                     "outputs": [
                         "5320197"
@@ -4754,15 +4747,15 @@
                     "creation date": "2020-05-08"
                 },
                 "8057586": {
-                    "inf rule": "substitute LHS of multiple expressions into expr 1",
+                    "inf rule": "substitute LHS of four expressions into expr",
                     "inputs": [
-                        "5649086"
-                    ],
-                    "feeds": [
                         "7666907",
                         "6316097",
                         "1693888",
-                        "5427510"
+                        "5427510",
+                        "5649086"
+                    ],
+                    "feeds": [
                     ],
                     "outputs": [
                         "4326342"
@@ -10674,15 +10667,6 @@
             "author": "Ben",
             "creation date": "2020-04-23"
         },
-        "substitute LHS of multiple expressions into expr 1": {
-            "number of feeds": 1,
-            "number of inputs": 1,
-            "number of outputs": 1,
-            "latex": "Substitute LHS of equations into Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}",
-            "notes": "",
-            "author": "Ben",
-            "creation date": "2020-05-08"
-        },
         "expr 1 is equivalent to expr 2 under the condition": {
             "number of feeds": 0,
             "number of inputs": 2,
@@ -10701,14 +10685,95 @@
             "author": "Ben",
             "creation date": "2020-05-09"
         },
-        "substitute multiple variables into expr 1": {
+        "substitute LHS of two exprs into expr": {
             "number of feeds": 0,
-            "number of inputs": 1,
+            "number of inputs": 3,
             "number of outputs": 1,
-            "latex": "Substitute multiple variables into Eq.~ref{eq:#1}; yields Eq.~ref{eq:#2}.",
-            "notes": "arbitrary number of feeds",
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} into Eq.~\\ref{eq:#3}; yields Eq.~ref{eq:#4}.",
+            "notes": "",
             "author": "Ben",
-            "creation date": "2020-05-09"
+            "creation date": "2020-05-12"
+        },
+        "substitute LHS of three exprs into expr": {
+            "number of feeds": 0,
+            "number of inputs": 4,
+            "number of outputs": 1,
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} into Eq.~\\ref{eq:#4}; yields Eq.~ref{eq:#5}.",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-12"
+        },
+        "substitute LHS of four exprs into expr": {
+            "number of feeds": 0,
+            "number of inputs": 5,
+            "number of outputs": 1,
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} into Eq.~\\ref{eq:#5}; yields Eq.~ref{eq:#6}.",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-12"
+        },
+        "substitute LHS of five exprs into expr": {
+            "number of feeds": 0,
+            "number of inputs": 6,
+            "number of outputs": 1,
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} and LHS of Eq.~\\ref{eq:#5} into Eq.~\\ref{eq:#6}; yields Eq.~ref{eq:#7}.",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-12"
+        },
+        "substitute LHS of six exprs into expr": {
+            "number of feeds": 0,
+            "number of inputs": 7,
+            "number of outputs": 1,
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} and LHS of Eq.~\\ref{eq:#5} and LHS of Eq.~\\ref{eq:#6} into Eq.~\\ref{eq:#7}; yields Eq.~ref{eq:#8}.",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-12"
+        },
+        "substitute two variables into expr": {
+            "number of feeds": 0,
+            "number of inputs": 3,
+            "number of outputs": 1,
+            "latex": "Substitute change of variable Eq.~ref{eq:#1} and Eq.~ref{eq:#2} into Eq.~ref{eq:#3}; yields Eq.~ref{eq:#4}.",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-12"
+        },
+        "substitute three variables into expr": {
+            "number of feeds": 0,
+            "number of inputs": 4,
+            "number of outputs": 1,
+            "latex": "Substitute change of variable Eq.~ref{eq:#1} and Eq.~ref{eq:#2} and Eq.~ref{eq:#3} into Eq.~ref{eq:#4}; yields Eq.~ref{eq:#5}.",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-12"
+        },
+        "substitute four variables into expr": {
+            "number of feeds": 0,
+            "number of inputs": 5,
+            "number of outputs": 1,
+            "latex": "Substitute change of variable Eq.~ref{eq:#1} and Eq.~ref{eq:#2} and Eq.~ref{eq:#3} and Eq.~ref{eq:#4} into Eq.~ref{eq:#5}; yields Eq.~ref{eq:#6}.",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-12"
+        },
+        "substitute five variables into expr": {
+            "number of feeds": 0,
+            "number of inputs": 6,
+            "number of outputs": 1,
+            "latex": "Substitute change of variable Eq.~ref{eq:#1} and Eq.~ref{eq:#2} and Eq.~ref{eq:#3} and Eq.~ref{eq:#4} and Eq.~ref{eq:#5} into Eq.~ref{eq:#6}; yields Eq.~ref{eq:#7}.",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-12"
+        },
+        "substitute six variables into expr": {
+            "number of feeds": 0,
+            "number of inputs": 7,
+            "number of outputs": 1,
+            "latex": "Substitute change of variable Eq.~ref{eq:#1} and Eq.~ref{eq:#2} and Eq.~ref{eq:#3} and Eq.~ref{eq:#4} and Eq.~ref{eq:#5} and Eq.~ref{eq:#6} into Eq.~ref{eq:#7}; yields Eq.~ref{eq:#8}.",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-12"
         }
     },
     "measures": {

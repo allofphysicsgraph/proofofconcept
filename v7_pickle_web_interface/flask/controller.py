@@ -579,9 +579,9 @@ def set_secure_headers(response):
     https://github.com/allofphysicsgraph/proofofconcept/issues/157
     https://secure.readthedocs.io/en/latest/frameworks.html#flask
     """
-    #logger.info("[trace]")
+    # logger.info("[trace]")
     secure_headers.flask(response)
-    #logger.debug(str(response))
+    # logger.debug(str(response))
     return response
 
 
@@ -617,6 +617,8 @@ def before_request():
     """
     Note: this function need to be before almost all other functions
 
+    tutorial: https://pythonise.com/series/learning-flask/python-before-after-request
+
     https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask
     actually, https://gist.github.com/lost-theory/4521102
     >>> before_request():
@@ -624,7 +626,7 @@ def before_request():
     g.start = time.time()
     g.request_start_time = time.time()
     elapsed_time = lambda: "%.5f seconds" % (time.time() - g.request_start_time)
-    #logger.debug("created elapsed_time function")
+    # logger.debug("created elapsed_time function")
     g.request_time = elapsed_time
     return
 
@@ -642,7 +644,7 @@ def after_request(response):
         diff = time.time() - g.start
     except AttributeError as err:
         flash("after_request:" + str(err))
-        #logger.error(str(err))
+        # logger.error(str(err))
         diff = 0
     if (
         (response.response)
@@ -654,7 +656,7 @@ def after_request(response):
                 b"__EXECUTION_TIME__", bytes(str(diff), "utf-8")
             )
         )
-    #logger.debug("response = " + str(response))
+    # logger.debug("response = " + str(response))
     return response
 
 

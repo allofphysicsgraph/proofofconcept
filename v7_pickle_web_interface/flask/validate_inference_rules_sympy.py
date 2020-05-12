@@ -221,12 +221,28 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         return differentiate_with_respect_to(latex_dict)
     elif step_dict["inf rule"] == "apply function to both sides of expression":
         return apply_function_to_both_sides_of_expression(latex_dict)
-    elif step_dict["inf rule"] == "substitute LHS of multiple expressions into expr 1":
-        return substitute_LHS_of_multiple_expressions_into_expr(latex_dict)
+    elif step_dict["inf rule"] == "substitute LHS of two expressions into expr":
+        return substitute_LHS_of_two_expressions_into_expr(latex_dict)
+    elif step_dict["inf rule"] == "substitute LHS of three expressions into expr":
+        return substitute_LHS_of_three_expressions_into_expr(latex_dict)
+    elif step_dict["inf rule"] == "substitute LHS of four expressions into expr":
+        return substitute_LHS_of_four_expressions_into_expr(latex_dict)
+    elif step_dict["inf rule"] == "substitute LHS of five expressions into expr":
+        return substitute_LHS_of_five_expressions_into_expr(latex_dict)
+    elif step_dict["inf rule"] == "substitute LHS of six expressions into expr":
+        return substitute_LHS_of_six_expressions_into_expr(latex_dict)
     elif step_dict["inf rule"] == "expr 1 is equivalent to expr 2 under the condition":
         return expr_is_equivalent_to_expr_under_the_condition(latex_dict)
-    elif step_dict["inf rule"] == "substitute multiple variables into expr 1":
-        return substitute_multiple_variables_in_expr(latex_dict)
+    elif step_dict["inf rule"] == "substitute two variables into expr":
+        return substitute_two_variables_in_expr(latex_dict)
+    elif step_dict["inf rule"] == "substitute three variables into expr":
+        return substitute_three_variables_in_expr(latex_dict)
+    elif step_dict["inf rule"] == "substitute four variables into expr":
+        return substitute_four_variables_in_expr(latex_dict)
+    elif step_dict["inf rule"] == "substitute five variables into expr":
+        return substitute_five_variables_in_expr(latex_dict)
+    elif step_dict["inf rule"] == "substitute six variables into expr":
+        return substitute_six_variables_in_expr(latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        return (latex_dict)
     elif (
@@ -1274,16 +1290,55 @@ def apply_function_to_both_sides_of_expression(latex_dict):
     return "no check performed"
 
 
-def substitute_LHS_of_multiple_expressions_into_expr(latex_dict):
+def substitute_LHS_of_two_expressions_into_expr(latex_dict):
     """
     >>> latex_dict = {}
     >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
     >>> latex_dict['feed'] = ['']
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
-    >>> substitute_LHS_of_multiple_expressions_into_expr(latex_dict)
+    >>> substitute_LHS_of_two_expressions_into_expr(latex_dict)
     """
     return "no check performed"
 
+def substitute_LHS_of_three_expressions_into_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_LHS_of_three_expressions_into_expr(latex_dict)
+    """
+    return "no check performed"
+
+def substitute_LHS_of_four_expressions_into_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_LHS_of_four_expressions_into_expr(latex_dict)
+    """
+    return "no check performed"
+
+def substitute_LHS_of_five_expressions_into_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_LHS_of_five_expressions_into_expr(latex_dict)
+    """
+    return "no check performed"
+
+def substitute_LHS_of_six_expressions_into_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_LHS_of_six_expressions_into_expr(latex_dict)
+    """
+    return "no check performed"
 
 def expr_is_equivalent_to_expr_under_the_condition(latex_dict):
     """
@@ -1296,16 +1351,55 @@ def expr_is_equivalent_to_expr_under_the_condition(latex_dict):
     return "no check performed"
 
 
-def substitute_multiple_variables_in_expr(latex_dict):
+def substitute_two_variables_in_expr(latex_dict):
     """
     >>> latex_dict = {}
     >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
     >>> latex_dict['feed'] = ['']
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
-    >>> substitute_multiple_variables_in_expr(latex_dict)
+    >>> substitute_two_variables_in_expr(latex_dict)
     """
     return "no check performed"
 
+def substitute_three_variables_in_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_three_variables_in_expr(latex_dict)
+    """
+    return "no check performed"
+
+def substitute_four_variables_in_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_four_variables_in_expr(latex_dict)
+    """
+    return "no check performed"
+
+def substitute_five_variables_in_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_five_variables_in_expr(latex_dict)
+    """
+    return "no check performed"
+
+def substitute_six_variables_in_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> substitute_six_variables_in_expr(latex_dict)
+    """
+    return "no check performed"
 
 def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
     """
