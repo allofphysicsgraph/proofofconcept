@@ -15,7 +15,7 @@ def get_db():
     logger.info("[trace]")
     if "db" not in g:
         g.db = sqlite3.connect(
-            "sqlite_db", detect_types=sqlite3.PARSE_DECLTYPES
+            "users_sqlite.db", detect_types=sqlite3.PARSE_DECLTYPES
         )
         g.db.row_factory = sqlite3.Row
 

@@ -37,6 +37,7 @@ services:
     volumes:
 #     - .:/scratch
      - ${PWD}/flask/logs:/home/appuser/app/logs/
+     - ${PWD}/flask/users_sqlite.db:/home/appuser/app/users_sqlite.db
      - ${PWD}/flask/data.json:/home/appuser/app/data.json
      - /var/log/auth.log:/home/appuser/app/logs/auth.log
   nginx:

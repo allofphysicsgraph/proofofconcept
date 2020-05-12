@@ -868,31 +868,31 @@ def tokensignin():
     return redirect(url_for("navigation", referrer="tokensignin"))
 
 
-# @app.route("/user/<user_name>/", methods=["GET", "POST"])
-# def user(user_name):
-#    """
-#    # TODO -- this is just a stub
-#    https://github.com/allofphysicsgraph/proofofconcept/issues/126
-#    >>>
-#    """
-#    # TODO
-#    sign_up_date = "2020-04-12"
-#    # TODO
-#    last_previous_contribution_date = "2020-04-10"
-#    # TODO
-#    list_of_derivs = ["fun deriv", "another deriv"]
-#    # TODO
-#    list_of_exprs = ["424252", "525252"]
-#
-#    return render_template(
-#        "user.html",
-#        user_name=user_name,
-#        sign_up_date=sign_up_date,
-#        last_previous_contribution_date=last_previous_contribution_date,
-#        list_of_derivs=list_of_derivs,
-#        list_of_exprs=list_of_exprs,
-#        title="user",
-#    )
+@app.route("/profile/<user_name>/", methods=["GET", "POST"])
+def profile(user_name):
+    """
+    # TODO -- this is just a stub
+    https://github.com/allofphysicsgraph/proofofconcept/issues/126
+    >>>
+    """
+    # TODO
+    sign_up_date = "2020-04-12"
+    # TODO
+    last_previous_contribution_date = "2020-04-10"
+    # TODO
+    list_of_derivs = ["fun deriv", "another deriv"]
+    # TODO
+    list_of_exprs = ["424252", "525252"]
+
+    return render_template(
+        "user.html",
+        user_name=user_name,
+        sign_up_date=sign_up_date,
+        last_previous_contribution_date=last_previous_contribution_date,
+        list_of_derivs=list_of_derivs,
+        list_of_exprs=list_of_exprs,
+        title="PDG profile for "+user_name,
+    )
 
 
 @app.route("/api/v1/resources/derivations/all", methods=["GET"])
@@ -1156,6 +1156,8 @@ def index():
 @app.route("/monitoring", methods=["GET", "POST"])
 def monitoring():
     """
+    This route is not intended to be linked to
+
     >>> monitoring()
     """
     logger.info("[trace]")
@@ -1195,7 +1197,8 @@ def monitoring():
 def static_dir():
     """
     "static_dir" is a directory listing
-    >>> ()
+    This route is not intended to be linked to
+    >>> static_dir()
     """
     logger.info("[trace]")
     # https://stackoverflow.com/a/3207973/1164295
@@ -1342,14 +1345,26 @@ def navigation():
     #            session_id = "0"
     #        logger.debug("now the session id = %s", session_id)
 
-    [
+    try:
+        [
         json_file,
         all_df,
         df_pkl_file,
         sql_file,
         rdf_file,
         neo4j_file,
-    ] = compute.create_files_of_db_content(path_to_db)
+        ] = compute.create_files_of_db_content(path_to_db)
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        json_file=""
+        all_df=""
+        df_pkl_file=""
+        sql_file=""
+        rdf_file=""
+        neo4j_file=""
+
+    shutil.copy('users_sqlite.db', "/home/appuser/app/static/users.sqldb" )
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
