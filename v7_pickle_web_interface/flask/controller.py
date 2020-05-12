@@ -891,7 +891,7 @@ def profile(user_name):
         last_previous_contribution_date=last_previous_contribution_date,
         list_of_derivs=list_of_derivs,
         list_of_exprs=list_of_exprs,
-        title="PDG profile for "+user_name,
+        title="PDG profile for " + user_name,
     )
 
 
@@ -1347,24 +1347,24 @@ def navigation():
 
     try:
         [
-        json_file,
-        all_df,
-        df_pkl_file,
-        sql_file,
-        rdf_file,
-        neo4j_file,
+            json_file,
+            all_df,
+            df_pkl_file,
+            sql_file,
+            rdf_file,
+            neo4j_file,
         ] = compute.create_files_of_db_content(path_to_db)
     except Exception as err:
         flash(str(err))
         logger.error(str(err))
-        json_file=""
-        all_df=""
-        df_pkl_file=""
-        sql_file=""
-        rdf_file=""
-        neo4j_file=""
+        json_file = ""
+        all_df = ""
+        df_pkl_file = ""
+        sql_file = ""
+        rdf_file = ""
+        neo4j_file = ""
 
-    shutil.copy('users_sqlite.db', "/home/appuser/app/static/users.sqldb" )
+    shutil.copy("users_sqlite.db", "/home/appuser/app/static/users.sqldb")
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
