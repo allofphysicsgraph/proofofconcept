@@ -36,14 +36,13 @@ from logging.handlers import RotatingFileHandler
 
 
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
-from flask import Flask, redirect, render_template, request, url_for, flash, jsonify
+from flask import Flask, redirect, render_template, request, url_for, flash, jsonify, response
 
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 from flask_wtf import FlaskForm, CSRFProtect, Form  # type: ignore
 
-## https://pythonhosted.org/Flask-Bootstrap/basic-usage.html
-# from flask_bootstrap import Bootstrap
+from secure import SecureHeaders
 
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
@@ -508,6 +507,14 @@ class NameOfDerivationInputForm(FlaskForm):
     )
     notes = StringField("notes")
 
+@app.after_request
+def set_secure_headers(response):
+    """
+    https://github.com/allofphysicsgraph/proofofconcept/issues/157
+    https://secure.readthedocs.io/en/latest/frameworks.html#flask
+    """
+    secure_headers.flask(response)
+    return response
 
 # goal is to prevent cached responses;
 # see https://stackoverflow.com/questions/47376744/how-to-prevent-cached-response-flask-server-using-chrome
