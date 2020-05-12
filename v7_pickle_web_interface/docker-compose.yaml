@@ -11,6 +11,7 @@ services:
     environment:
      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+     - SECRET_KEY=${SECRET_KEY}
 # https://docs.gunicorn.org/en/stable/settings.html
 # https://pythonspeed.com/articles/gunicorn-in-docker/
     command: >
