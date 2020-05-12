@@ -36,7 +36,16 @@ from logging.handlers import RotatingFileHandler
 
 
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
-from flask import Flask, redirect, render_template, request, url_for, flash, jsonify, response
+from flask import (
+    Flask,
+    redirect,
+    render_template,
+    request,
+    url_for,
+    flash,
+    jsonify,
+    Response,
+)
 
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
@@ -107,6 +116,9 @@ login_manager = LoginManager()
 
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 csrf = CSRFProtect()
+
+# https://secure.readthedocs.io/en/latest/frameworks.html#flask
+secure_headers = SecureHeaders()
 
 
 app = Flask(__name__, static_folder="static")
@@ -425,6 +437,59 @@ class LatexIO(FlaskForm):
         ],
         default="latex",
     )  # , validators=[validators.InputRequired()])
+
+    input4 = StringField("input LaTeX 4", validators=[validators.Length(max=1000)])
+    input4_name = StringField("input name 4", validators=[validators.Length(max=1000)])
+    input4_note = StringField("input note 4", validators=[validators.Length(max=1000)])
+    input4_radio = RadioField(
+        "Label",
+        choices=[
+            ("latex", "use Latex"),
+            ("local", "use local ID"),
+            ("global", "use global ID"),
+        ],
+        default="latex",
+    )  # , validators=[validators.InputRequired()])
+
+    input5 = StringField("input LaTeX 5", validators=[validators.Length(max=1000)])
+    input5_name = StringField("input name 5", validators=[validators.Length(max=1000)])
+    input5_note = StringField("input note 5", validators=[validators.Length(max=1000)])
+    input5_radio = RadioField(
+        "Label",
+        choices=[
+            ("latex", "use Latex"),
+            ("local", "use local ID"),
+            ("global", "use global ID"),
+        ],
+        default="latex",
+    )  # , validators=[validators.InputRequired()])
+
+    input6 = StringField("input LaTeX 6", validators=[validators.Length(max=1000)])
+    input6_name = StringField("input name 6", validators=[validators.Length(max=1000)])
+    input6_note = StringField("input note 6", validators=[validators.Length(max=1000)])
+    input6_radio = RadioField(
+        "Label",
+        choices=[
+            ("latex", "use Latex"),
+            ("local", "use local ID"),
+            ("global", "use global ID"),
+        ],
+        default="latex",
+    )  # , validators=[validators.InputRequired()])
+
+    input7 = StringField("input LaTeX 7", validators=[validators.Length(max=1000)])
+    input7_name = StringField("input name 7", validators=[validators.Length(max=1000)])
+    input7_note = StringField("input note 7", validators=[validators.Length(max=1000)])
+    input7_radio = RadioField(
+        "Label",
+        choices=[
+            ("latex", "use Latex"),
+            ("local", "use local ID"),
+            ("global", "use global ID"),
+        ],
+        default="latex",
+    )  # , validators=[validators.InputRequired()])
+
     output1 = StringField("output LaTeX 1", validators=[validators.Length(max=1000)])
     output1_name = StringField(
         "output name 1", validators=[validators.Length(max=1000)]
@@ -507,14 +572,18 @@ class NameOfDerivationInputForm(FlaskForm):
     )
     notes = StringField("notes")
 
+
 @app.after_request
 def set_secure_headers(response):
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/157
     https://secure.readthedocs.io/en/latest/frameworks.html#flask
     """
+    #logger.info("[trace]")
     secure_headers.flask(response)
+    #logger.debug(str(response))
     return response
+
 
 # goal is to prevent cached responses;
 # see https://stackoverflow.com/questions/47376744/how-to-prevent-cached-response-flask-server-using-chrome
@@ -555,7 +624,7 @@ def before_request():
     g.start = time.time()
     g.request_start_time = time.time()
     elapsed_time = lambda: "%.5f seconds" % (time.time() - g.request_start_time)
-    logger.debug("created elapsed_time function")
+    #logger.debug("created elapsed_time function")
     g.request_time = elapsed_time
     return
 
@@ -573,7 +642,7 @@ def after_request(response):
         diff = time.time() - g.start
     except AttributeError as err:
         flash("after_request:" + str(err))
-        logger.error(str(err))
+        #logger.error(str(err))
         diff = 0
     if (
         (response.response)
@@ -585,7 +654,7 @@ def after_request(response):
                 b"__EXECUTION_TIME__", bytes(str(diff), "utf-8")
             )
         )
-    logger.debug("response = " + str(response))
+    #logger.debug("response = " + str(response))
     return response
 
 

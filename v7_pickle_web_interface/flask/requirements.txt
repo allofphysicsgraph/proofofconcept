@@ -19,6 +19,9 @@ wheel
 # gunicorn==20.0.4
 gunicorn
 
+# https://github.com/allofphysicsgraph/proofofconcept/issues/157
+secure
+
 # convert internal data structure to dataframe; 
 # also used for monitoring page when parsing logs
 # pandas==1.0.3
