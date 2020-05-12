@@ -573,16 +573,16 @@ class NameOfDerivationInputForm(FlaskForm):
     notes = StringField("notes")
 
 
-@app.after_request
-def set_secure_headers(response):
-    """
-    https://github.com/allofphysicsgraph/proofofconcept/issues/157
-    https://secure.readthedocs.io/en/latest/frameworks.html#flask
-    """
-    # logger.info("[trace]")
-    secure_headers.flask(response)
-    # logger.debug(str(response))
-    return response
+#@app.after_request
+#def set_secure_headers(response):
+#    """
+#    https://github.com/allofphysicsgraph/proofofconcept/issues/157
+#    https://secure.readthedocs.io/en/latest/frameworks.html#flask
+#    """
+#    # logger.info("[trace]")
+#    secure_headers.flask(response)
+#    # logger.debug(str(response))
+#    return response
 
 
 # goal is to prevent cached responses;
@@ -2747,6 +2747,7 @@ def review_derivation(deriv_id: str):
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
+                pdf_filename="error.tex"
             return redirect(
                 url_for("static", filename=pdf_filename, referrer="review_derivation")
             )
@@ -2756,6 +2757,7 @@ def review_derivation(deriv_id: str):
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
+                tex_filename="error.tex"
             return redirect(
                 url_for("static", filename=tex_filename, referrer="review_derivation")
             )

@@ -1300,6 +1300,7 @@ def substitute_LHS_of_two_expressions_into_expr(latex_dict):
     """
     return "no check performed"
 
+
 def substitute_LHS_of_three_expressions_into_expr(latex_dict):
     """
     >>> latex_dict = {}
@@ -1309,6 +1310,7 @@ def substitute_LHS_of_three_expressions_into_expr(latex_dict):
     >>> substitute_LHS_of_three_expressions_into_expr(latex_dict)
     """
     return "no check performed"
+
 
 def substitute_LHS_of_four_expressions_into_expr(latex_dict):
     """
@@ -1320,6 +1322,7 @@ def substitute_LHS_of_four_expressions_into_expr(latex_dict):
     """
     return "no check performed"
 
+
 def substitute_LHS_of_five_expressions_into_expr(latex_dict):
     """
     >>> latex_dict = {}
@@ -1330,6 +1333,7 @@ def substitute_LHS_of_five_expressions_into_expr(latex_dict):
     """
     return "no check performed"
 
+
 def substitute_LHS_of_six_expressions_into_expr(latex_dict):
     """
     >>> latex_dict = {}
@@ -1339,6 +1343,7 @@ def substitute_LHS_of_six_expressions_into_expr(latex_dict):
     >>> substitute_LHS_of_six_expressions_into_expr(latex_dict)
     """
     return "no check performed"
+
 
 def expr_is_equivalent_to_expr_under_the_condition(latex_dict):
     """
@@ -1361,6 +1366,7 @@ def substitute_two_variables_in_expr(latex_dict):
     """
     return "no check performed"
 
+
 def substitute_three_variables_in_expr(latex_dict):
     """
     >>> latex_dict = {}
@@ -1370,6 +1376,7 @@ def substitute_three_variables_in_expr(latex_dict):
     >>> substitute_three_variables_in_expr(latex_dict)
     """
     return "no check performed"
+
 
 def substitute_four_variables_in_expr(latex_dict):
     """
@@ -1381,6 +1388,7 @@ def substitute_four_variables_in_expr(latex_dict):
     """
     return "no check performed"
 
+
 def substitute_five_variables_in_expr(latex_dict):
     """
     >>> latex_dict = {}
@@ -1391,6 +1399,7 @@ def substitute_five_variables_in_expr(latex_dict):
     """
     return "no check performed"
 
+
 def substitute_six_variables_in_expr(latex_dict):
     """
     >>> latex_dict = {}
@@ -1400,6 +1409,7 @@ def substitute_six_variables_in_expr(latex_dict):
     >>> substitute_six_variables_in_expr(latex_dict)
     """
     return "no check performed"
+
 
 def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
     """

@@ -4026,8 +4026,7 @@
                         "9873426",
                         "9932375"
                     ],
-                    "feeds": [
-                    ],
+                    "feeds": [],
                     "outputs": [
                         "4176694"
                     ],
@@ -4344,8 +4343,7 @@
                         "3383852",
                         "7959026"
                     ],
-                    "feeds": [
-                    ],
+                    "feeds": [],
                     "outputs": [
                         "5753220"
                     ],
@@ -4362,8 +4360,7 @@
                         "4443760",
                         "7360652"
                     ],
-                    "feeds": [
-                    ],
+                    "feeds": [],
                     "outputs": [
                         "5320197"
                     ],
@@ -4747,7 +4744,7 @@
                     "creation date": "2020-05-08"
                 },
                 "8057586": {
-                    "inf rule": "substitute LHS of four expressions into expr",
+                    "inf rule": "substitute LHS of four exprs into expr",
                     "inputs": [
                         "7666907",
                         "6316097",
@@ -4755,8 +4752,7 @@
                         "5427510",
                         "5649086"
                     ],
-                    "feeds": [
-                    ],
+                    "feeds": [],
                     "outputs": [
                         "4326342"
                     ],
