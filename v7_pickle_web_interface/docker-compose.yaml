@@ -21,6 +21,7 @@ services:
       wsgi:app
       --capture-output 
       --log-file=logs/gunicorn_logs.log
+      --access-logformat='{"ip":"%({X-Forwarded-For}i)s", "reqtime":"%(L)s", "uname":"%(u)s", "date":"%(t)s", "statline":"%(r)s", "stat":"%(s)s", "resplen":"%(b)s", "ref":"%(f)s", "ua":"%(a)s"}'
       --access-logfile=logs/gunicorn_access.log
       --error-logfile=logs/gunicorn_error.log
       --worker-tmp-dir /dev/shm
