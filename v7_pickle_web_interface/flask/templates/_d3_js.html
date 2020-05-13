@@ -10,17 +10,17 @@
 <!-- I would like to add node enhancement on mouse-over
       http://bl.ocks.org/eesur/be2abfb3155a38be4de4 -->
 <script>
-var width = 600;
-var height = 400;
+var width = 1000;
+var height = 500;
 var border = 1;
-var bordercolor='black';
-var color = d3.scaleOrdinal(d3.schemeCategory10);
+var bordercolor="black";
+var color = d3.scaleOrdinal(d3.schemeCategory10); // coloring of nodes
 
 d3.json("{{ url_for('static', filename=json_for_d3js) }}").then(function(graph) {
 
 var label = {
-    'nodes': [],
-    'links': []
+    "nodes": [],
+    "links": []
 };
 
 graph.nodes.forEach(function(d, i) {
@@ -65,6 +65,20 @@ var svg = d3.select("#viz").attr("width", width).attr("height", height);
 //  .attr("border",border)
 //  .classed("svg-content", true);
 
+
+// http://bl.ocks.org/rkirsling/5001347
+// define arrow markers for graph links
+svg.append("svg:defs").append("svg:marker")
+    .attr("id", "end-arrow")
+    .attr("viewBox", "0 -5 5 10") // min-x, min-y, width, height; https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox
+    .attr("refX", 8) // x coordinate of an element's reference point; https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/refX
+    .attr("markerWidth", 20) // width of the viewport; https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/markerWidth
+    .attr("markerHeight", 20)
+    .attr("orient", "auto")
+    .append("svg:path")
+    .attr("d", "M0,-3L6,0L0,3") // draw line starting at 0,-5; connect to 8,0, connect to 0,5
+    .attr("fill", "black");
+
 // http://bl.ocks.org/AndrewStaroscik/5222370
            	var borderPath = svg.append("rect")
        			.attr("x", 0)
@@ -89,14 +103,15 @@ var link = container.append("g").attr("class", "links")
     .enter()
     .append("line")
     .attr("stroke", "#aaa")
-    .attr("stroke-width", "1px");
+    .attr("stroke-width", "2px")
+    .attr("marker-end","url(#end-arrow)");
 
 var node = container.append("g").attr("class", "nodes")
     .selectAll("g")
     .data(graph.nodes)
     .enter()
     .append("circle")
-    .attr("r", 5)
+    .attr("r", 10)
     .attr("fill", function(d) { return color(d.group); })
 
 node.on("mouseover", focus).on("mouseout", unfocus);
