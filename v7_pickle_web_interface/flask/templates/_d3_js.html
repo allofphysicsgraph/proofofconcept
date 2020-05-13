@@ -10,8 +10,10 @@
 <!-- I would like to add node enhancement on mouse-over
       http://bl.ocks.org/eesur/be2abfb3155a38be4de4 -->
 <script>
-var width = 1000;
-var height = 500;
+// the following does not automatically resize as the window changes size
+var width = window.innerWidth*0.9;
+var height = window.innerHeight*0.8;
+
 var border = 1;
 var bordercolor="black";
 var color = d3.scaleOrdinal(d3.schemeCategory10); // coloring of nodes
