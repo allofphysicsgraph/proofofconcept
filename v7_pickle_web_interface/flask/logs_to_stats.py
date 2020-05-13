@@ -9,7 +9,8 @@ import pandas # type: ignore
 import re # https://docs.python.org/3/library/re.html
 import time
 import matplotlib.pyplot as plt # type: ignore
-from geoip import geolite2 # https://pythonhosted.org/python-geoip/
+# https://pythonhosted.org/python-geoip/
+from geoip import geolite2 # type: ignore
 import os
 import logging
 

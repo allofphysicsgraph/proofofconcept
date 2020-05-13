@@ -21,8 +21,8 @@ import datetime
 
 # image dimensions in pixels
 import cv2  # type: ignore
-import sympy
-from sympy.parsing.latex import parse_latex
+import sympy  # type: ignore
+from sympy.parsing.latex import parse_latex  # type: ignore
 from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
 import subprocess  # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
@@ -468,7 +468,7 @@ def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
         logger.debug(neato_stderr)
 
     shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
-    return
+    return output_filename
 
 
 def create_AST_png_per_expression_in_step(
@@ -2933,9 +2933,9 @@ def add_symbol_to_expr(expr_global_id: str, symbol_id: str, path_to_db: str) -> 
             dat["expressions"][expr_global_id]["AST"].append(symbol_id)
             clib.write_db(path_to_db, dat)
         else:
-            return Exception(symbol_id + " is not in symbols")
+            raise Exception(symbol_id + " is not in symbols")
     else:
-        return Exception(expr_global_id + " is not in expressions list")
+        raise Exception(expr_global_id + " is not in expressions list")
     return
 
 

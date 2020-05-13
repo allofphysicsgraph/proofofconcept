@@ -2,7 +2,7 @@
 
 # from https://realpython.com/flask-google-login/
 
-from flask_login import UserMixin
+from flask_login import UserMixin # type: ignore
 from sql_db import get_db
 from sql_db import init_db
 import sqlite3

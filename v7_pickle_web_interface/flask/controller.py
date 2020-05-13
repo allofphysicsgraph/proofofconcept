@@ -51,7 +51,7 @@ from flask import (
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 from flask_wtf import FlaskForm, CSRFProtect, Form  # type: ignore
 
-from secure import SecureHeaders
+from secure import SecureHeaders  # type: ignore
 
 # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
@@ -78,8 +78,8 @@ from wtforms import StringField, validators, FieldList, FormField, IntegerField,
 # sign in with Google
 # https://developers.google.com/identity/sign-in/web/backend-auth
 # https://github.com/allofphysicsgraph/proofofconcept/issues/119
-from google.oauth2 import id_token
-from google.auth.transport import requests
+from google.oauth2 import id_token  # type: ignore
+from google.auth.transport import requests  # type: ignore
 
 # https://json-schema.org/
 from jsonschema import validate  # type: ignore
@@ -92,8 +92,9 @@ from urllib.parse import urlparse, urljoin
 # from https://realpython.com/flask-google-login/
 from sql_db import init_db
 from user import User
-from oauthlib.oauth2 import WebApplicationClient
-import requests
+from oauthlib.oauth2 import WebApplicationClient  # type: ignore
+
+# import requests
 
 # https://realpython.com/flask-google-login/
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
@@ -213,7 +214,7 @@ if True:
 
     # http://matplotlib.1069221.n5.nabble.com/How-to-turn-off-matplotlib-DEBUG-msgs-td48822.html
     # https://github.com/matplotlib/matplotlib/issues/14523
-    logging.getLogger('matplotlib').setLevel(logging.WARNING)
+    logging.getLogger("matplotlib").setLevel(logging.WARNING)
 
 
 #    logger.addHandler(handler)
@@ -809,74 +810,74 @@ def callback():
     return redirect(url_for("navigation", referrer="login"))
 
 
-@app.route("/login_OLD", methods=["GET", "POST"])
-def login_OLD():
-    """
-    https://github.com/allofphysicsgraph/proofofconcept/issues/110
-
-    from https://flask-login.readthedocs.io/en/latest/
-    and https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
-
-    Here we use a class of some kind to represent and validate our
-    client-side form data. For example, WTForms is a library that will
-    handle this for us, and we use a custom LoginForm to validate.
-    """
-    form = LoginForm()
-
-    logger.debug(str(request.form))
-
-    # request.referrer = "http://localhost:5000/login"
-
-    if form.validate_on_submit():
-        # Login and validate the user.
-        # user should be an instance of your `User` class
-
-        # the following is what the person entered into the form
-        logger.debug("username= %s", form.username.data)
-        # user = User()
-        # if user is None:  # or not user.check_password(form.password.data):
-        username = form.username.data
-
-        # logger.debug('next =' + str(request.args.get("next")))
-
-        # https://stackoverflow.com/a/28593313/1164295
-        # logger.debug(request.headers.get("Referer")) = "http://localhost:5000/login"
-
-        # https://gist.github.com/bkdinoop/6698956
-        if username in USER_NAMES:
-            remember = request.form.get("remember", "no") == "yes"
-            if login_user(USER_NAMES[username], remember=remember):
-                flash("logged in")
-                current_user.username = username
-                return redirect(url_for("navigation", referrer="login"))
-            else:
-                flash("Invalid password; sleeping for 3 seconds")
-                time.sleep(3)
-                logger.debug("invalid password")
-                return redirect(url_for("login", referrer="login"))
-        else:
-            flash("invalid username; sleeping for 3 seconds")
-            time.sleep(3)
-            logger.debug("invalid username")
-            return redirect(url_for("create_new_account", referrer="login"))
-        # https://flask-login.readthedocs.io/en/latest/#flask_login.login_user
-        # login_user(user, remember=form.remember_me.data)
-        # logger.debug("user logged in")
-        # flash("Logged in successfully.")
-
-        # next = request.args.get("next")
-        # is_safe_url should check if the url is safe for redirects.
-        # See http://flask.pocoo.org/snippets/62/ for an example.
-        # if not is_safe_url(next):
-        #    return abort(400)
-
-        logger.error("Should not reach this condition")
-
-        return redirect(url_for("index", referrer="login"))
-
-    # intentionally delay the responsiveness of the login page to limit brute force attacks
-    time.sleep(2)
-    return render_template("login.html", webform=form, title="Login")
+# @app.route("/login_OLD", methods=["GET", "POST"])
+# def login_OLD():
+#    """
+#    https://github.com/allofphysicsgraph/proofofconcept/issues/110
+#
+#    from https://flask-login.readthedocs.io/en/latest/
+#    and https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins
+#
+#    Here we use a class of some kind to represent and validate our
+#    client-side form data. For example, WTForms is a library that will
+#    handle this for us, and we use a custom LoginForm to validate.
+#    """
+#    form = LoginForm()
+#
+#    logger.debug(str(request.form))
+#
+#    # request.referrer = "http://localhost:5000/login"
+#
+#    if form.validate_on_submit():
+#        # Login and validate the user.
+#        # user should be an instance of your `User` class
+#
+#        # the following is what the person entered into the form
+#        logger.debug("username= %s", form.username.data)
+#        # user = User()
+#        # if user is None:  # or not user.check_password(form.password.data):
+#        username = form.username.data
+#
+#        # logger.debug('next =' + str(request.args.get("next")))
+#
+#        # https://stackoverflow.com/a/28593313/1164295
+#        # logger.debug(request.headers.get("Referer")) = "http://localhost:5000/login"
+#
+#        # https://gist.github.com/bkdinoop/6698956
+#        if username in USER_NAMES:
+#            remember = request.form.get("remember", "no") == "yes"
+#            if login_user(USER_NAMES[username], remember=remember):
+#                flash("logged in")
+#                current_user.username = username
+#                return redirect(url_for("navigation", referrer="login"))
+#            else:
+#                flash("Invalid password; sleeping for 3 seconds")
+#                time.sleep(3)
+#                logger.debug("invalid password")
+#                return redirect(url_for("login", referrer="login"))
+#        else:
+#            flash("invalid username; sleeping for 3 seconds")
+#            time.sleep(3)
+#            logger.debug("invalid username")
+#            return redirect(url_for("create_new_account", referrer="login"))
+#        # https://flask-login.readthedocs.io/en/latest/#flask_login.login_user
+#        # login_user(user, remember=form.remember_me.data)
+#        # logger.debug("user logged in")
+#        # flash("Logged in successfully.")
+#
+#        # next = request.args.get("next")
+#        # is_safe_url should check if the url is safe for redirects.
+#        # See http://flask.pocoo.org/snippets/62/ for an example.
+#        # if not is_safe_url(next):
+#        #    return abort(400)
+#
+#        logger.error("Should not reach this condition")
+#
+#        return redirect(url_for("index", referrer="login"))
+#
+#    # intentionally delay the responsiveness of the login page to limit brute force attacks
+#    time.sleep(2)
+#    return render_template("login.html", webform=form, title="Login")
 
 
 @app.route("/logout", methods=["GET", "POST"])
@@ -917,42 +918,42 @@ def create_new_account():
     )
 
 
-@app.route("/tokensignin", methods=["GET", "POST"])
-def tokensignin():
-    """
-    https://developers.google.com/identity/sign-in/web/backend-auth
-    """
+# @app.route("/tokensignin", methods=["GET", "POST"])
+# def tokensignin():
+#    """
+#    https://developers.google.com/identity/sign-in/web/backend-auth
+#    """
+#
+#    try:
+#        # Specify the CLIENT_ID of the app that accesses the backend:
+#        idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
+#
+#        # Or, if multiple clients access the backend server:
+#        # idinfo = id_token.verify_oauth2_token(token, requests.Request())
+#        # if idinfo['aud'] not in [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]:
+#        #     raise ValueError('Could not verify audience.')
+#
+#        if idinfo["iss"] not in ["accounts.google.com", "https://accounts.google.com"]:
+#            raise ValueError("Wrong issuer.")
+#
+#        # If auth request is from a G Suite domain:
+#        # if idinfo['hd'] != GSUITE_DOMAIN_NAME:
+#        #     raise ValueError('Wrong hosted domain.')
+#
+#        # ID token is valid. Get the user's Google Account ID from the decoded token.
+#        userid = idinfo["sub"]
+#        logger.debug(userid)
+#        flash(userid)
+#    except ValueError:
+#        # Invalid token
+#        logger.debug("invalid token according to Google")
+#        flash("invalid token according to Google")
+#        pass
+#    return redirect(url_for("navigation", referrer="tokensignin"))
 
-    try:
-        # Specify the CLIENT_ID of the app that accesses the backend:
-        idinfo = id_token.verify_oauth2_token(token, requests.Request(), CLIENT_ID)
 
-        # Or, if multiple clients access the backend server:
-        # idinfo = id_token.verify_oauth2_token(token, requests.Request())
-        # if idinfo['aud'] not in [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]:
-        #     raise ValueError('Could not verify audience.')
-
-        if idinfo["iss"] not in ["accounts.google.com", "https://accounts.google.com"]:
-            raise ValueError("Wrong issuer.")
-
-        # If auth request is from a G Suite domain:
-        # if idinfo['hd'] != GSUITE_DOMAIN_NAME:
-        #     raise ValueError('Wrong hosted domain.')
-
-        # ID token is valid. Get the user's Google Account ID from the decoded token.
-        userid = idinfo["sub"]
-        logger.debug(userid)
-        flash(userid)
-    except ValueError:
-        # Invalid token
-        logger.debug("invalid token according to Google")
-        flash("invalid token according to Google")
-        pass
-    return redirect(url_for("navigation", referrer="tokensignin"))
-
-
-@app.route("/profile/<user_name>/", methods=["GET", "POST"])
-def profile(user_name):
+@app.route("/profile/", methods=["GET", "POST"])
+def profile():
     """
     # TODO -- this is just a stub
     https://github.com/allofphysicsgraph/proofofconcept/issues/126
@@ -969,12 +970,12 @@ def profile(user_name):
 
     return render_template(
         "user.html",
-        user_name=user_name,
+        # user_name=user_name,
         sign_up_date=sign_up_date,
         last_previous_contribution_date=last_previous_contribution_date,
         list_of_derivs=list_of_derivs,
         list_of_exprs=list_of_exprs,
-        title="PDG profile for " + user_name,
+        # title="PDG profile for " + user_name,
     )
 
 
@@ -2058,8 +2059,11 @@ def select_derivation_step_to_edit(deriv_id: str):
             try:
                 compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
                 return redirect(
-                    url_for("review_derivation", deriv_id=deriv_id),
-                    referrer="select_derivation_step_to_edit",
+                    url_for(
+                        "review_derivation",
+                        deriv_id=deriv_id,
+                        referrer="select_derivation_step_to_edit",
+                    ),
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -2486,8 +2490,9 @@ def step_review(deriv_id: str, step_id: str):
             try:
                 compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
                 return redirect(
-                    url_for("review_derivation", deriv_id=deriv_id),
-                    referrer="modify_step",
+                    url_for(
+                        "review_derivation", deriv_id=deriv_id, referrer="modify_step"
+                    ),
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -2961,8 +2966,11 @@ def modify_step(deriv_id: str, step_id: str):
                 try:
                     compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
                     return redirect(
-                        url_for("review_derivation", deriv_id=deriv_id),
-                        referrer="modify_step",
+                        url_for(
+                            "review_derivation",
+                            deriv_id=deriv_id,
+                            referrer="modify_step",
+                        ),
                     )
                 except Exception as err:
                     logger.error(str(err))
