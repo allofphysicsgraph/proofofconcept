@@ -211,6 +211,11 @@ if True:
 
     logger = logging.getLogger(__name__)
 
+    # http://matplotlib.1069221.n5.nabble.com/How-to-turn-off-matplotlib-DEBUG-msgs-td48822.html
+    # https://github.com/matplotlib/matplotlib/issues/14523
+    logging.getLogger('matplotlib').setLevel(logging.WARNING)
+
+
 #    logger.addHandler(handler)
 
 # https://stackoverflow.com/questions/41087790/how-to-override-gunicorns-logging-config-to-use-a-custom-formatter

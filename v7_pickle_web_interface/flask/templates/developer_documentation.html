@@ -296,11 +296,26 @@ cat developer_documentation.html |\
       <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v5_property_graph">property graph</a>: 
       a very limited exploration.
       No significant code base.
+      Schema: <BR>
+      <img src="{{ url_for('static', filename='property_graph_schema.png') }}">
     </LI> 
     <LI>
       <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v6_sqlite">sqlite</a>:
       a very limited exploration.
       No significant code base. 
+      Schema: <!-- see https://physicsderivationgraph.blogspot.com/2020/04/schema-for-tables.html --> 
+      <UL>
+        <LI><i>Table</i>: derivations; <i>columns</i>: derivation_ID, name
+        <LI><i>Table</i>: expressions; <i>columns</i>: expr_global_ID, latex, creation date, author, AST_as_string, note, name
+        <LI><i>Table</i>: inference_rules; <i>columns</i>: name, creation date, author, latex, number of inputs, number of feeds, number of outputs,
+        <LI><i>Table</i>: symbols; <i>columns</i>: symbol_id, creation date, author, latex, scope, value, references
+        <LI><i>Table</i>: operators; <i>columns</i>: latex, creation date, author, scope, macro, references
+        <LI><i>Table</i>: step; <i>columns</i>: step_id, creation date, author, inference_rule, derivation_ID, linear_index
+        <LI><i>Table</i>: step_inputs; <i>columns</i>: expr_local_ID, index
+        <LI><i>Table</i>: step_feeds; <i>columns</i>: expr_local_ID, index
+        <LI><i>Table</i>: step_outputs; <i>columns</i>: expr_local_ID, index
+        <LI><i>Table</i>: local_to_global; <i>columns</i>: expr_local_ID, expr_global_ID
+      </UL> 
     </LI> 
     <LI>
       <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface">web interface</a>:
