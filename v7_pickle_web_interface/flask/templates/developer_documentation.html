@@ -75,10 +75,19 @@ cat developer_documentation.html |\
   To see what this means in terms of the "period and frequency" example on <a href="{{ url_for('index', referrer="developer_documentation") }}">the homepage</a>, here is a view of the indices supporting that visualization for a single step:
 </P>
 <img src="{{ url_for('static', filename='frequency_and_period_exploded_steps.png') }}">
+<BR>
+<center>
+  Two steps with all numeric IDs shown.
+</center>
+
 <P>
   Manipulating these indices underlies all other tasks in the Physics Derivation Graph. 
   Access to these indices is performed through a single data structure.
 </P>
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
+
 <H2 name="data structure">Data structure used in the PDG</H2>
 <P>
   The Physics Derivation Graph is currently stored in a single JSON file. <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/data.json">The JSON file</a> is read into Python as a dictionary. 
@@ -87,14 +96,22 @@ cat developer_documentation.html |\
   JSON is convenient because it is plain text and the ease of detailed validation available using schemas.
   The many alternatives to JSON (e.g., SQLite, Redis, Python Pickle, CSV, GraphML) offer trade-offs, a few of which <a href="#historical evolution">have been explored</a>.
 
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
+
 <H2 name="latex for expressions">\(\rm\LaTeX\) representation of expressions</H2>
 <P>
   There are multiple choices of how to represent a mathematical expression. 
   The choices feature trade-offs between conciseness, ability to express the range of notations necessary for Physics, symantic meaning, and ability to use the expression in a computer algebra system (CAS).
-  See the <a href="#comparison:syntax">comparison of synatx</a> below.
+  See the <a href="#comparison:syntax">comparison of syntax</a> below.
   \(\rm\LaTeX\) was selected primarily because of the common use in Physics, display of complex math, conciseness, and expressiveness. 
   The use of \(\rm\LaTeX\) means other tasks like parsing symbols and resolving ambiguity are harder.
 </p>
+
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
 
 <H2 name="software">Software used in the Physics Derivation Graph</H2>
 <H3 name="python">Python</H3>
@@ -158,6 +175,10 @@ cat developer_documentation.html |\
 -->
 </P>
 
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
+
 <H2 name="running the code">Running the Physics Derivation Graph code</H2>
 
 <H3 name="run flask container">Run Flask container</H3>
@@ -192,6 +213,10 @@ cat developer_documentation.html |\
   gunicorn --bind :5000 wsgi:app --log-level=debug --access-logfile logs/gunicorn_access.log --error-logfile logs/gunicorn_error.log
   </pre>
 </P>
+
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
 
 <H2 name="frequency period from first principles">Derivation to Graph from First Principles</H2>
 
@@ -272,7 +297,14 @@ cat developer_documentation.html |\
   In addition to the inference rules and expressions, each \(\rm\LaTeX\) expression actually represents an Abstract Syntax Tree (AST) composed of symbols. 
 </P>
 <img src="{{ url_for('static', filename='single_step_with_AST_per_expression_and_symbols.png') }}">
+<BR>
+<center>
+All of the jargon used and the relation between jargon used in the Physics Derivation Graph.
+</center>
 
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
 
 <H2 name="historical evolution">Historical design evolution</H2>
 <P>
@@ -298,6 +330,11 @@ cat developer_documentation.html |\
       No significant code base.
       Schema: <BR>
       <img src="{{ url_for('static', filename='property_graph_schema.png') }}">
+      <BR>
+      <center>
+        Schema for property graph representation.
+      </center>
+
     </LI> 
     <LI>
       <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v6_sqlite">sqlite</a>:
@@ -413,6 +450,10 @@ http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
 </graph>
 </graphml>
 </textarea>
+
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
 
 <H2 name="comparison:syntax">Comparison of Syntax Options</H2>
 
@@ -553,7 +594,7 @@ Case 4c: L&uuml;ders projection
 </table>
 
 <P>
-  MathML is comprised of empty elements (symbols, e.g., <code>&lt;plus/&gt;<code>), token elements (both ASCII and entities), and annotation elements. 
+  MathML is comprised of empty elements (symbols, e.g., <code>&lt;plus/&gt;</code>), token elements (both ASCII and entities), and annotation elements. 
   The token elements in Presentation MathML include mi=identifiers, mn=numbers, mo=operators. 
   The token elements in Content MathML include ci=identifiers and cn=numbers.
 </P>
@@ -605,6 +646,10 @@ A CAS typically produces output syntax such as Latex or MathML in a single forma
 \end{equation}
 All of these are equivalent.
 </p>
+
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
 
 <H2 name="comparison:computer algebra systems">Comparison of Computer Algebra Systems</H2>
 
@@ -699,6 +744,10 @@ func = subtractXfromBothSides [func, b/(2 a)]
 <H3 name="HOLLight">HOL Light theorem prover</H3>
 
 <a href="https://www.cl.cam.ac.uk/~jrh13/hol-light/tutorial.pdf">HOL Light tutorial</a>
+
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
 
 <H2 name="not in scope">Outside of Current Scope</H2>
 
