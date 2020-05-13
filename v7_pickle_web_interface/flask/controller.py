@@ -1442,12 +1442,6 @@ def navigation():
         rdf_file = ""
         neo4j_file = ""
 
-    try:
-        shutil.copy("users_sqlite.db", "/home/appuser/app/static/users.sqldb")
-    except Exception as err:
-        flash(str(err))
-        logger.error(str(err))
-
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
         # ImmutableMultiDict([('file', <FileStorage: 'prospector_output.json' ('application/json')>)])
