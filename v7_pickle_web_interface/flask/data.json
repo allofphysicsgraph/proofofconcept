@@ -1910,10 +1910,8 @@
                 "1293948": {
                     "author": "Ben",
                     "creation date": "2020-04-14",
-                    "feeds": [
-                        "9594995"
-                    ],
-                    "inf rule": "raise both sides to power",
+                    "feeds": [],
+                    "inf rule": "square root both sides",
                     "inputs": [
                         "1029384"
                     ],
@@ -2559,10 +2557,8 @@
                 "7487443": {
                     "author": "Ben",
                     "creation date": "2020-04-14",
-                    "feeds": [
-                        "2367209"
-                    ],
-                    "inf rule": "raise both sides to power",
+                    "feeds": [],
+                    "inf rule": "square root both sides",
                     "inputs": [
                         "2985412"
                     ],
@@ -4947,13 +4943,11 @@
                     "creation date": "2020-05-09"
                 },
                 "5211114": {
-                    "inf rule": "raise both sides to power",
+                    "inf rule": "square root both sides",
                     "inputs": [
                         "7595841"
                     ],
-                    "feeds": [
-                        "7445594"
-                    ],
+                    "feeds": [],
                     "outputs": [
                         "3040283",
                         "6010461"
@@ -5088,6 +5082,338 @@
                         "4622149"
                     ],
                     "linear index": 8,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "5815479": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "4622149"
+                    ],
+                    "feeds": [
+                        "7874342"
+                    ],
+                    "outputs": [
+                        "1476448"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "6932861": {
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8873965",
+                        "1476448"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3069767"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "9357941": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "3069767"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6881977"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "2848379": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "6881977"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5385244"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "5355580": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "5385244"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "2743537": {
+                    "inf rule": "raise both sides to power",
+                    "inputs": [
+                        "8873965"
+                    ],
+                    "feeds": [
+                        "3267212"
+                    ],
+                    "outputs": [
+                        "4385757"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "8205479": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "4385757"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9796063"
+                    ],
+                    "linear index": 15,
+                    "notes": "factored 2a out of two terms",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "5379322": {
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "9796063",
+                        "5385244"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7702534"
+                    ],
+                    "linear index": 16,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "6053987": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "7702534"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 17,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "7962856": {
+                    "inf rule": "subtract X from both sides",
+                    "inputs": [
+                        "8873965"
+                    ],
+                    "feeds": [
+                        "4852828"
+                    ],
+                    "outputs": [
+                        "4127918"
+                    ],
+                    "linear index": 18,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "1044455": {
+                    "inf rule": "swap LHS with RHS",
+                    "inputs": [
+                        "4127918"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5666935"
+                    ],
+                    "linear index": 19,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "2812689": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "5666935"
+                    ],
+                    "feeds": [
+                        "5979850"
+                    ],
+                    "outputs": [
+                        "8222540"
+                    ],
+                    "linear index": 20,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "3636217": {
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8222540",
+                        "1476448"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9270356"
+                    ],
+                    "linear index": 21,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "7602827": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "9270356"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7103968"
+                    ],
+                    "linear index": 22,
+                    "notes": "difference of squares",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "7095007": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "7103968"
+                    ],
+                    "feeds": [
+                        "1522729"
+                    ],
+                    "outputs": [
+                        "6814979"
+                    ],
+                    "linear index": 23,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "5369106": {
+                    "inf rule": "add X to both sides",
+                    "inputs": [
+                        "6814979"
+                    ],
+                    "feeds": [
+                        "2590216"
+                    ],
+                    "outputs": [
+                        "7086842"
+                    ],
+                    "linear index": 24,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "8096380": {
+                    "inf rule": "swap LHS with RHS",
+                    "inputs": [
+                        "7086842"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7702534"
+                    ],
+                    "linear index": 25,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "8839945": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "1476448"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 26,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "7275831": {
+                    "inf rule": "subtract X from both sides",
+                    "inputs": [
+                        "8873965"
+                    ],
+                    "feeds": [
+                        "9050104"
+                    ],
+                    "outputs": [
+                        "8007427"
+                    ],
+                    "linear index": 27,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "6224974": {
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8007427",
+                        "5385244"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5577530"
+                    ],
+                    "linear index": 28,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "6814904": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "5577530"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8442394"
+                    ],
+                    "linear index": 29,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "1643757": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "8442394"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3917794"
+                    ],
+                    "linear index": 30,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "3304384": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "3917794"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 31,
                     "notes": "",
                     "author": "Ben",
                     "creation date": "2020-05-14"
@@ -5545,7 +5871,6 @@
         "8842089": "7513513483",
         "5253559": "8571466509",
         "7595841": "7906112355",
-        "7445594": "3060139639",
         "3040283": "1528310784",
         "6010461": "8360117126",
         "7864125": "3366703541",
@@ -5556,7 +5881,31 @@
         "8873965": "3462972452",
         "8658331": "3411994811",
         "5013638": "6175547907",
-        "4622149": "9897284307"
+        "4622149": "9897284307",
+        "7874342": "8865085668",
+        "1476448": "8706092970",
+        "3069767": "7011114072",
+        "6881977": "1265150401",
+        "5385244": "9658195023",
+        "3267212": "5799753649",
+        "4385757": "7215099603",
+        "9796063": "5144263777",
+        "7702534": "7939765107",
+        "4852828": "6729698807",
+        "4127918": "9759901995",
+        "5979850": "2242144313",
+        "8222540": "1967582749",
+        "9270356": "5733721198",
+        "7103968": "5611024898",
+        "1522729": "5542390646",
+        "6814979": "8269198922",
+        "2590216": "9070454719",
+        "7086842": "4948763856",
+        "9050104": "9645178657",
+        "8007427": "6457044853",
+        "5577530": "1259826355",
+        "8442394": "4580545876",
+        "3917794": "6421241247"
     },
     "expressions": {
         "0000040490": {
@@ -10197,7 +10546,13 @@
         },
         "3462972452": {
             "latex": "v = v_0 + a t",
-            "AST": [],
+            "AST": [
+                "9140",
+                "NONE",
+                "1357",
+                "NONE",
+                "NONE"
+            ],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -10236,8 +10591,275 @@
             "AST": [
                 "1357",
                 "NONE",
+                "NONE",
+                "1943",
+                "NONE",
+                "NONE",
+                "1467",
                 "NONE"
             ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "8865085668": {
+            "latex": "t",
+            "AST": [
+                "1467",
+                "NONE"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "8706092970": {
+            "latex": "d = \\left(\\frac{v + v_0}{2}\\right)t",
+            "AST": [
+                "1943",
+                "NONE",
+                "NONE",
+                "1467",
+                "NONE",
+                "NONE",
+                "1357",
+                "NONE",
+                "NONE",
+                "NONE"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "7011114072": {
+            "latex": "d = \\frac{(v_0 + a t) + v_0}{2} t",
+            "AST": [
+                "9140",
+                "NONE",
+                "NONE",
+                "1467",
+                "NONE",
+                "1943",
+                "NONE",
+                "NONE"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "1265150401": {
+            "latex": "d = \\frac{2 v_0 + a t}{2} t",
+            "AST": [
+                "1467",
+                "NONE",
+                "1943",
+                "NONE",
+                "NONE",
+                "9140"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "9658195023": {
+            "latex": "d = v_0 t + \\frac{1}{2} a t^2",
+            "AST": [
+                "9140",
+                "1467",
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "5799753649": {
+            "latex": "2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "7215099603": {
+            "latex": "v^2 = v_0^2 + 2 a t v_0 + a^2 t^2",
+            "AST": [
+                "1467",
+                "9140",
+                "1357"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "5144263777": {
+            "latex": "v^2 = v_0^2 + 2 a \\left( v_0 t +\\frac{1}{2} a t^2 \\right)",
+            "AST": [
+                "1467",
+                "9140",
+                "1357"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "7939765107": {
+            "latex": "v^2 = v_0^2 + 2 a d",
+            "AST": [
+                "1357",
+                "9140",
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "6729698807": {
+            "latex": "v_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "9759901995": {
+            "latex": "v - v_0 = a t",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "2242144313": {
+            "latex": "a",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "1967582749": {
+            "latex": "t = \\frac{v - v_0}{a}",
+            "AST": [
+                "9140"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "5733721198": {
+            "latex": "d = \\frac{1}{2} (v + v_0) \\left( \\frac{v - v_0}{a} \\right)",
+            "AST": [
+                "9140"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "5611024898": {
+            "latex": "d = \\frac{1}{2 a} (v^2 - v_0^2)",
+            "AST": [
+                "1357",
+                "9140",
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "5542390646": {
+            "latex": "2 a",
+            "AST": [
+                "9140"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "8269198922": {
+            "latex": "2 a d = v^2 - v_0^2",
+            "AST": [
+                "1357",
+                "9140",
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "9070454719": {
+            "latex": "v_0^2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "4948763856": {
+            "latex": "2 a d + v_0^2 = v^2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "9645178657": {
+            "latex": "a t",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "6457044853": {
+            "latex": "v - a t = v_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "1259826355": {
+            "latex": "d = (v - a t) t + \\frac{1}{2} a t^2",
+            "AST": [
+                "1357",
+                "1467",
+                "9140",
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "4580545876": {
+            "latex": "d = v t - a t^2 + \\frac{1}{2} a t^2",
+            "AST": [
+                "1357",
+                "1467",
+                "9140",
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "6421241247": {
+            "latex": "d = v t - \\frac{1}{2} a t^2",
+            "AST": [],
             "name": "",
             "notes": "",
             "author": "Ben",
@@ -10680,11 +11302,11 @@
         "raise both sides to power": {
             "author": "Ben",
             "creation date": "2020-04-14",
-            "latex": "Raise both sides of Eq.~\\ref{eq:#2} to $#1$; yields Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4}.",
+            "latex": "Raise both sides of Eq.~\\ref{eq:#2} to $#1$; yields Eq.~\\ref{eq:#3}.",
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 2
+            "number of outputs": 1
         },
         "replace curl with LeviCevita summation contravariant": {
             "author": "Ben",
@@ -11009,6 +11631,15 @@
             "notes": "",
             "author": "Ben",
             "creation date": "2020-05-12"
+        },
+        "square root both sides": {
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 2,
+            "latex": "Take the square root of both sides of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3}.",
+            "notes": "related to raise both sides to power",
+            "author": "Ben",
+            "creation date": "2020-05-14"
         }
     },
     "measures": {
