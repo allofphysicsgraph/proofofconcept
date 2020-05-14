@@ -661,9 +661,9 @@ function enable_output3_radio3(enabled){
 {% endif %}
 
 <!--
-{ % if inf_rule == 'substitute LHS of multiple expressions into expr 1' or inf_rule == 'substitute multiple variables into expr 1' %} <!-- variable feed count -->
+{ % if inf_rule == 'substitute LHS of multiple expressions into expr 1' or inf_rule == 'substitute multiple variables into expr 1' %} <!- - variable feed count - ->
 
-<!-- https://jsfiddle.net/t656N/1/
+<!- - https://jsfiddle.net/t656N/1/
     which is from
     https://stackoverflow.com/a/14853880/1164295
     in support of
@@ -693,7 +693,7 @@ Number of feeds:
         }
 </script>
 
-{% else %} <!-- static feed count -->
+{ % else % } <!- - static feed count -->
 
 {% if inf_rule_dict['number of feeds']|int() > 0|int() %}
 <P>{{ webform.static_feed1.label }}: {{ webform.static_feed1(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
