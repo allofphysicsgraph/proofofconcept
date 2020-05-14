@@ -72,6 +72,8 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     """
     logger.info("[trace]")
 
+    #    return "no check performed for improved latency"
+
     dat = clib.read_db(path_to_db)
 
     step_dict = dat["derivations"][deriv_id]["steps"][step_id]

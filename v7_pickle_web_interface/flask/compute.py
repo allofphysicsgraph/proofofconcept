@@ -2468,10 +2468,10 @@ def create_derivation_png(deriv_id: str, path_to_db: str) -> str:
     #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
     if not os.path.exists("/home/appuser/app/static/" + output_filename):
         process = subprocess.run(
-        ["neato", "-Tpng", dot_filename, "-o" + output_filename],
-        stdout=PIPE,
-        stderr=PIPE,
-        timeout=proc_timeout,
+            ["neato", "-Tpng", dot_filename, "-o" + output_filename],
+            stdout=PIPE,
+            stderr=PIPE,
+            timeout=proc_timeout,
         )
 
         neato_stdout = process.stdout.decode("utf-8")
@@ -2531,10 +2531,10 @@ def create_step_graphviz_png(deriv_id: str, step_id: str, path_to_db: str) -> st
     #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
     if not os.path.exists("/home/appuser/app/static/" + output_filename):
         process = subprocess.run(
-        ["neato", "-Tpng", dot_filename, "-o" + output_filename],
-        stdout=PIPE,
-        stderr=PIPE,
-        timeout=proc_timeout,
+            ["neato", "-Tpng", dot_filename, "-o" + output_filename],
+            stdout=PIPE,
+            stderr=PIPE,
+            timeout=proc_timeout,
         )
         neato_stdout = process.stdout.decode("utf-8")
         if len(neato_stdout) > 0:

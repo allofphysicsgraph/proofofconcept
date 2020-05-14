@@ -10,17 +10,29 @@
 <!-- I would like to add node enhancement on mouse-over
       http://bl.ocks.org/eesur/be2abfb3155a38be4de4 -->
 <script>
-// the following does not automatically resize as the window changes size
-// see https://bl.ocks.org/rudedogg187/8c86bae1f1eb0ac4008c5f7ff5f172a6
-// and https://bl.ocks.org/curran/3a68b0c81991e2e94b19
-var width = window.innerWidth*0.9;
-var height = window.innerHeight*0.8;
 
 var border = 1;
 var bordercolor="black";
 var color = d3.scaleOrdinal(d3.schemeCategory10); // coloring of nodes
 
 d3.json("{{ url_for('static', filename=json_for_d3js) }}").then(function(graph) {
+
+var node_count = graph["nodes"].length;
+
+  // the following does not automatically resize as the window changes size
+  // see https://bl.ocks.org/rudedogg187/8c86bae1f1eb0ac4008c5f7ff5f172a6
+  // and https://bl.ocks.org/curran/3a68b0c81991e2e94b19
+  if (node_count <= 10) {
+    // https://github.com/allofphysicsgraph/proofofconcept/issues/163
+    console.log("inside if")
+    var width = 600;
+    var height = 350;
+  } else {
+    console.log("inside else")
+    var width = window.innerWidth*0.9;
+    var height = window.innerHeight*0.8;
+  }
+
 
 var label = {
     "nodes": [],
