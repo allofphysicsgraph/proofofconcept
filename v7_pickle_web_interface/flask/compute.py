@@ -16,8 +16,12 @@ from functools import wraps
 import errno
 import signal
 import os
-import shutil  # move and copy files
+# move and copy files
+import shutil  
+# when content was created, use current timestamp
 import datetime
+# hash email addresses, file contents
+import hashlib
 
 # image dimensions in pixels
 import cv2  # type: ignore
@@ -622,6 +626,25 @@ def list_global_id_not_in_derivation(deriv_id: str, path_to_db: str) -> list:
     list_of_global_id_not_in_derivation.sort()
     return list_of_global_id_not_in_derivation
 
+def md5_of_file(fname):
+    """
+    get md5 hash of file content
+
+    https://docs.python.org/3/library/hashlib.html
+    https://www.geeksforgeeks.org/md5-hash-python/
+    >>> md5_file()
+    d41d8cd98f00b204e9800998ecf8427e
+    """
+    with open(fname, 'rb') as fil:
+        file_content = fil.read()
+    return hashlib.md5(file_content).hexdigest()
+
+def md5_of_string(str_to_hash):
+    """
+    convert string to bytes, then get md5 hash
+    >>> md5_of_string
+    """
+    return hashlib.md5( str_to_hash.encode('utf-8') ).hexdigest()
 
 def create_files_of_db_content(path_to_db):
     """
