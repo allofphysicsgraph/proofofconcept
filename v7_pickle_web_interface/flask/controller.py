@@ -78,8 +78,8 @@ from wtforms import StringField, validators, FieldList, FormField, IntegerField,
 # sign in with Google
 # https://developers.google.com/identity/sign-in/web/backend-auth
 # https://github.com/allofphysicsgraph/proofofconcept/issues/119
-from google.oauth2 import id_token  # type: ignore
-from google.auth.transport import requests  # type: ignore
+#from google.oauth2 import id_token  # type: ignore
+#from google.auth.transport import requests  # type: ignore
 
 # https://json-schema.org/
 from jsonschema import validate  # type: ignore
@@ -94,7 +94,7 @@ from sql_db import init_db
 from user import User
 from oauthlib.oauth2 import WebApplicationClient  # type: ignore
 
-# import requests
+import requests
 
 # https://realpython.com/flask-google-login/
 GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)

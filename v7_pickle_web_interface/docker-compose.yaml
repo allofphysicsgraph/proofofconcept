@@ -36,7 +36,7 @@ services:
 #    ports:
 #     - "5000:5000"
     volumes:
-#     - .:/scratch
+     - ${PWD}/:/scratch
      - ${PWD}/flask/logs:/home/appuser/app/logs/
      - ${PWD}/flask/users_sqlite.db:/home/appuser/app/users_sqlite.db
      - ${PWD}/flask/data.json:/home/appuser/app/data.json
