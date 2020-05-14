@@ -245,6 +245,8 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         return substitute_six_variables_in_expr(latex_dict)
     elif step_dict["inf rule"] == "LHS of expr 1 equals LHS of expr 2":
         return LHS_of_expr_equals_LHS_of_expr(latex_dict)
+    elif step_dict["inf rule"] == "square root both sides":
+        return square_root_both_sides(latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        return (latex_dict)
     elif (
@@ -1420,6 +1422,17 @@ def LHS_of_expr_equals_LHS_of_expr(latex_dict):
     >>> latex_dict['feed'] = ['']
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> LHS_of_expr_equals_LHS_of_expr(latex_dict)
+    """
+    return "no check performed"
+
+
+def square_root_both_sides(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> square_root_both_sides(latex_dict)
     """
     return "no check performed"
 
