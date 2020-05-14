@@ -25,15 +25,17 @@
              -- requires being <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
            {% endif %}
         </LI>
-    {% if number_of_derivations > 0 %}
+<!--
+    { % if number_of_derivations > 0 %}
     <LI>
       <a href="{{ url_for('select_from_existing_derivations') }}?referrer=navigation">view one of the existing {{ number_of_derivations }} derivations</a>;
       also edit an existing derivation
-      {% if current_user.is_anonymous %}
+      { % if current_user.is_anonymous %}
         if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
-      {% endif %}
+      { % endif %}
     </LI>
-    {% endif %}
+    { % endif %}
+-->
       </UL>
     </td>
   </tr>
