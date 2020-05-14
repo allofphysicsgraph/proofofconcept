@@ -2422,7 +2422,11 @@ def create_derivation_png(deriv_id: str, path_to_db: str) -> str:
     with open(dot_filename, "w") as fil:
         fil.write("digraph physicsDerivation { \n")
         fil.write("overlap = false;\n")
-        fil.write('label="derivation: ' + dat["derivations"][deriv_id]["name"] + '\nhttps://derivationmap.net";\n')
+        fil.write(
+            'label="derivation: '
+            + dat["derivations"][deriv_id]["name"]
+            + '\nhttps://derivationmap.net";\n'
+        )
         fil.write("fontsize=12;\n")
 
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():

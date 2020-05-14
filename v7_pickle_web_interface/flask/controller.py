@@ -2461,10 +2461,15 @@ def step_review(deriv_id: str, step_id: str):
                         selected_string = selected_string.replace("symbol radio ", "")
                         new_symbol_id = selected_string.split(" ")[0]
                         sympy_symbol = selected_string.split(" ")[1]
-                        compute.update_symbol_in_step(
-                            sympy_symbol, new_symbol_id, deriv_id, step_id, path_to_db,
-                        )
-                        flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
+                        if new_symbol_id != "NONE":
+                            compute.update_symbol_in_step(
+                                sympy_symbol,
+                                new_symbol_id,
+                                deriv_id,
+                                step_id,
+                                path_to_db,
+                            )
+                            flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
                     elif request.form[this_key].startswith("existing symbol for "):
                         for find_key in request.form.keys():
                             if find_key == request.form[this_key]:
@@ -2472,19 +2477,20 @@ def step_review(deriv_id: str, step_id: str):
                                 sympy_symbol = find_key.replace(
                                     "existing symbol for ", ""
                                 )
-                                compute.update_symbol_in_step(
-                                    sympy_symbol,
-                                    new_symbol_id,
-                                    deriv_id,
-                                    step_id,
-                                    path_to_db,
-                                )
-                                flash(
-                                    "updated "
-                                    + sympy_symbol
-                                    + " as ID "
-                                    + new_symbol_id
-                                )
+                                if new_symbol_id != "NONE":
+                                    compute.update_symbol_in_step(
+                                        sympy_symbol,
+                                        new_symbol_id,
+                                        deriv_id,
+                                        step_id,
+                                        path_to_db,
+                                    )
+                                    flash(
+                                        "updated "
+                                        + sympy_symbol
+                                        + " as ID "
+                                        + new_symbol_id
+                                    )
                     else:
                         flash(
                             "unrecognized button text: "
@@ -2499,10 +2505,15 @@ def step_review(deriv_id: str, step_id: str):
                 ):  # sympy didn't find a match, user manually selected entry
                     new_symbol_id = request.form[this_key]
                     sympy_symbol = this_key.replace("existing symbol for ", "")
-                    compute.update_symbol_in_step(
-                        sympy_symbol, new_symbol_id, deriv_id, step_id, path_to_db,
-                    )
-                    flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
+                    if new_symbol_id != "NONE":
+                        compute.update_symbol_in_step(
+                            sympy_symbol, new_symbol_id, deriv_id, step_id, path_to_db,
+                        )
+                        flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
+                elif this_key == "csrf_token":
+                    continue  # go to next iteration of loop
+                elif this_key == "submit_button":
+                    continue  # go to next iteration of loop
                 else:
                     flash("unrecognized button text: " + str(this_key))
                     logger.error("unrecognized button text: " + str(this_key))
@@ -2843,15 +2854,15 @@ def review_derivation(deriv_id: str):
         pdf_filename=pdf_filename,
         dat=dat,
         deriv_id=deriv_id,
-        name_of_derivation=dat["derivations"][deriv_id]["name"],
+        # name_of_derivation=dat["derivations"][deriv_id]["name"],
         name_of_graphviz_png=derivation_png,
         json_for_d3js=d3js_json_filename,
-        step_dict=dat["derivations"][deriv_id]["steps"],
+        # step_dict=dat["derivations"][deriv_id]["steps"],
         derivation_validity_dict=derivation_validity_dict,
-        expressions_dict=dat["expressions"],
+        # expressions_dict=dat["expressions"],
         expression_popularity_dict=expression_popularity_dict,
-        expr_local_to_global=dat["expr local to global"],
-        title="review derivation",
+        # expr_local_to_global=dat["expr local to global"],
+        title="review derivation: " + dat["derivations"][deriv_id]["name"],
     )
 
 
