@@ -7,15 +7,23 @@
 <P>derivation name: {{ dat["derivations"][deriv_id]["name"] }}
 
 <P>
-<form method="post" action=""> 
-<!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
-    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  <fieldset>
+    <legend>
+      Step actions
+    </legend>
+    <form method="post" action=""> 
+      <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
+      <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
-   <input type="submit" name="submit_button" value='accept this step; add another step'>
-   <input type="submit" name="submit_button" value='accept this step; review derivation'>
-   <input type="submit" name="submit_button" value='modify this step'>
-</form>
+      <input type="submit" name="submit_button" value='accept this step; add another step'>
+      <input type="submit" name="submit_button" value='accept this step; review derivation'>
+      <input type="submit" name="submit_button" value='modify this step'>
+    </form>
+    <BR>
+    Optional symbol management is below the graphviz image.
+  </fieldset>
+</P>
 
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
@@ -102,6 +110,15 @@
                  new symbol entry
               </a> is probably needed since no match is available. <BR>
               Or you can manually assign an existing symbol:
+
+                  <select name="existing symbol for {{ sympy_symbol }}" class="selectpicker form-control">
+                      <option value="NONE">&nbsp;</option>
+                    {% for sid, symbol_dict in dat['symbols']|dictsort %}
+                      <option value="{{ sid }}">{{ sid }}, {{ dat['symbols'][sid]['latex'] }}</option>
+                    {% endfor %}
+                  </select>
+
+
           {% else %}
             <P>candidates for {{ sympy_symbol }}:
             <table border="1">

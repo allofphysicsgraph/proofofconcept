@@ -1412,6 +1412,7 @@ def substitute_six_variables_in_expr(latex_dict):
     """
     return "no check performed"
 
+
 def LHS_of_expr_equals_LHS_of_expr(latex_dict):
     """
     >>> latex_dict = {}
