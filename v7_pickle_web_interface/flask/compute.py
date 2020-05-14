@@ -445,7 +445,7 @@ def list_symbols_used_in_step_from_sympy(
 
 def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
     """
-    >>> 
+    >>> create_AST_png_for_latex('a = b','filename')
     """
     logger.info("[trace]")
 
@@ -461,20 +461,21 @@ def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
         fil.write(graphviz_of_AST_for_expr)
 
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
-    process = subprocess.run(
-        ["dot", "-Tpng", dot_filename, "-o" + output_filename],
-        stdout=PIPE,
-        stderr=PIPE,
-        timeout=proc_timeout,
-    )
-    neato_stdout = process.stdout.decode("utf-8")
-    if len(neato_stdout) > 0:
-        logger.debug(neato_stdout)
-    neato_stderr = process.stderr.decode("utf-8")
-    if len(neato_stderr) > 0:
-        logger.debug(neato_stderr)
+    if not os.path.exists("/home/appuser/app/static/" + output_filename):
+        process = subprocess.run(
+            ["dot", "-Tpng", dot_filename, "-o" + output_filename],
+            stdout=PIPE,
+            stderr=PIPE,
+            timeout=proc_timeout,
+        )
+        neato_stdout = process.stdout.decode("utf-8")
+        if len(neato_stdout) > 0:
+            logger.debug(neato_stdout)
+        neato_stderr = process.stderr.decode("utf-8")
+        if len(neato_stderr) > 0:
+            logger.debug(neato_stderr)
 
-    shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+        shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
     return output_filename
 
 
@@ -2465,21 +2466,22 @@ def create_derivation_png(deriv_id: str, path_to_db: str) -> str:
     output_filename = deriv_id + ".png"
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
     #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
-    process = subprocess.run(
+    if not os.path.exists("/home/appuser/app/static/" + output_filename):
+        process = subprocess.run(
         ["neato", "-Tpng", dot_filename, "-o" + output_filename],
         stdout=PIPE,
         stderr=PIPE,
         timeout=proc_timeout,
-    )
+        )
 
-    neato_stdout = process.stdout.decode("utf-8")
-    if len(neato_stdout) > 0:
-        logger.debug(neato_stdout)
-    neato_stderr = process.stderr.decode("utf-8")
-    if len(neato_stderr) > 0:
-        logger.debug(neato_stderr)
+        neato_stdout = process.stdout.decode("utf-8")
+        if len(neato_stdout) > 0:
+            logger.debug(neato_stdout)
+        neato_stderr = process.stderr.decode("utf-8")
+        if len(neato_stderr) > 0:
+            logger.debug(neato_stderr)
 
-    shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+        shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
     # return True, "no invalid latex", output_filename
     return output_filename
 
@@ -2527,20 +2529,21 @@ def create_step_graphviz_png(deriv_id: str, step_id: str, path_to_db: str) -> st
 
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
     #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
-    process = subprocess.run(
+    if not os.path.exists("/home/appuser/app/static/" + output_filename):
+        process = subprocess.run(
         ["neato", "-Tpng", dot_filename, "-o" + output_filename],
         stdout=PIPE,
         stderr=PIPE,
         timeout=proc_timeout,
-    )
-    neato_stdout = process.stdout.decode("utf-8")
-    if len(neato_stdout) > 0:
-        logger.debug(neato_stdout)
-    neato_stderr = process.stderr.decode("utf-8")
-    if len(neato_stderr) > 0:
-        logger.debug(neato_stderr)
+        )
+        neato_stdout = process.stdout.decode("utf-8")
+        if len(neato_stdout) > 0:
+            logger.debug(neato_stdout)
+        neato_stderr = process.stderr.decode("utf-8")
+        if len(neato_stderr) > 0:
+            logger.debug(neato_stderr)
 
-    shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+        shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
     # return True, "no invalid latex", output_filename
     return output_filename
 
@@ -2672,20 +2675,21 @@ def generate_graphviz_of_step_with_numeric_IDs(
 
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
     #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
-    process = subprocess.run(
-        ["neato", "-Tpng", dot_filename, "-o" + output_filename],
-        stdout=PIPE,
-        stderr=PIPE,
-        timeout=proc_timeout,
-    )
-    neato_stdout = process.stdout.decode("utf-8")
-    if len(neato_stdout) > 0:
-        logger.debug(neato_stdout)
-    neato_stderr = process.stderr.decode("utf-8")
-    if len(neato_stderr) > 0:
-        logger.debug(neato_stderr)
+    if not os.path.exists("/home/appuser/app/static/" + output_filename):
+        process = subprocess.run(
+            ["neato", "-Tpng", dot_filename, "-o" + output_filename],
+            stdout=PIPE,
+            stderr=PIPE,
+            timeout=proc_timeout,
+        )
+        neato_stdout = process.stdout.decode("utf-8")
+        if len(neato_stdout) > 0:
+            logger.debug(neato_stdout)
+        neato_stderr = process.stderr.decode("utf-8")
+        if len(neato_stderr) > 0:
+            logger.debug(neato_stderr)
 
-    shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
+        shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
     # return True, "no invalid latex", output_filename
     return output_filename
 
