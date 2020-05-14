@@ -1669,39 +1669,39 @@ def remove_file_debris(
 # create files on filesystem
 
 
-def generate_all_expr_and_infrule_pngs(
-    overwrite_existing: bool, path_to_db: str
-) -> None:
-    """
-    >>> generate_all_expr_and_infrule_pngs()
-    """
-    logger.info("[trace]")
-
-    dat = clib.read_db(path_to_db)
-    destination_folder = "/home/appuser/app/static/"
-
-    for expr_global_id, expr_dict in dat["expressions"].items():
-        png_name = expr_global_id
-        if overwrite_existing:
-            if os.path.isfile(destination_folder + png_name):
-                os.remove(destination_folder + png_name + ".png")
-        else:  # do not overwrite existing PNG
-            if not os.path.isfile(destination_folder + png_name + ".png"):
-                logger.debug("PNG does not exist, creating %s", png_name)
-                create_png_from_latex(
-                    dat["expressions"][expr_global_id]["latex"], png_name
-                )
-
-    for infrule_name, infrule_dict in dat["inference rules"].items():
-        png_name = "".join(filter(str.isalnum, infrule_name))
-        if overwrite_existing:
-            if os.path.isfile(destination_folder + png_name):
-                os.remove(destination_folder + png_name + ".png")
-        else:  # do not overwrite existing PNG
-            if not os.path.isfile(destination_folder + png_name + ".png"):
-                logger.debug("PNG does not exist, creating %s", png_name)
-                create_png_from_latex(infrule_name, png_name)
-    return
+#def generate_all_expr_and_infrule_pngs(
+#    overwrite_existing: bool, path_to_db: str
+#) -> None:
+#    """
+#    >>> generate_all_expr_and_infrule_pngs()
+#    """
+#    logger.info("[trace]")
+#
+#    dat = clib.read_db(path_to_db)
+#    destination_folder = "/home/appuser/app/static/"
+#
+#    for expr_global_id, expr_dict in dat["expressions"].items():
+#        png_name = expr_global_id
+#        if overwrite_existing:
+#            if os.path.isfile(destination_folder + png_name):
+#                os.remove(destination_folder + png_name + ".png")
+#        else:  # do not overwrite existing PNG
+#            if not os.path.isfile(destination_folder + png_name + ".png"):
+#                logger.debug("PNG does not exist, creating %s", png_name)
+#                create_png_from_latex(
+#                    dat["expressions"][expr_global_id]["latex"], png_name
+#                )
+#
+#    for infrule_name, infrule_dict in dat["inference rules"].items():
+#        png_name = "".join(filter(str.isalnum, infrule_name))
+#        if overwrite_existing:
+#            if os.path.isfile(destination_folder + png_name):
+#                os.remove(destination_folder + png_name + ".png")
+#        else:  # do not overwrite existing PNG
+#            if not os.path.isfile(destination_folder + png_name + ".png"):
+#                logger.debug("PNG does not exist, creating %s", png_name)
+#                create_png_from_latex(infrule_name, png_name)
+#    return
 
 
 def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
@@ -1871,6 +1871,8 @@ def generate_graphviz_map_of_derivations(path_to_db: str) -> str:
 
     >>> generate_map_of_derivations()
     """
+
+    """
     logger.info("[trace]")
     derivation_popularity_dict = popularity_of_derivations(path_to_db)
     # logger.debug("derivation_popularity_dict = %s", str(derivation_popularity_dict))
@@ -1963,7 +1965,8 @@ def generate_graphviz_map_of_derivations(path_to_db: str) -> str:
 
     shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
     return output_filename
-
+    """
+    return "not in use"
 
 def write_step_to_graphviz_file(
     deriv_id: str, step_id: str, fil: TextIO, path_to_db: str
