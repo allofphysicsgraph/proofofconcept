@@ -3,9 +3,6 @@
 
 {% block content %}
 
-<P>name of derivation: {{ dat["derivations"][deriv_id]["name"] }}</P>
-<P>inference rule: {{ inf_rule }}: <BR>
-{{ inf_rule_dict['latex'] }}
 </P>
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
@@ -301,8 +298,11 @@ function enable_output3_radio3(enabled){
 
 <fieldset>
 <legend>
-<H2>Provide inputs and feeds and outputs for step</H2>
+<H2>Provide inputs and feeds and outputs for {{ inf_rule }}</H2>
 </legend>
+
+<P>name of derivation: {{ dat["derivations"][deriv_id]["name"] }}</P>
+<h3>{{ inf_rule_dict['latex'] }}</H3>
 
 <form method="post" action="">
   <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
