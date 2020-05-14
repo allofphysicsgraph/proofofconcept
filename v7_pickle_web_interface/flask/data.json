@@ -4976,6 +4976,123 @@
                     "creation date": "2020-05-09"
                 }
             }
+        },
+        "332170": {
+            "name": "equations of motion with constant acceleration - SUVAT",
+            "author": "Ben",
+            "notes": "https://en.wikipedia.org/wiki/Equations_of_motion",
+            "creation date": "2020-05-14",
+            "steps": {
+                "2416859": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7864125"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "7173255": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "7864125"
+                    ],
+                    "feeds": [
+                        "1647066"
+                    ],
+                    "outputs": [
+                        "5666935"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "2562830": {
+                    "inf rule": "add X to both sides",
+                    "inputs": [
+                        "5666935"
+                    ],
+                    "feeds": [
+                        "1515971"
+                    ],
+                    "outputs": [
+                        "3386860"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "7991401": {
+                    "inf rule": "swap LHS with RHS",
+                    "inputs": [
+                        "3386860"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8873965"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "2591191": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "8873965"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "9823399": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "8658331"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "9381314": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5013638"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                },
+                "6829719": {
+                    "inf rule": "LHS of expr 1 equals LHS of expr 2",
+                    "inputs": [
+                        "8658331",
+                        "5013638"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4622149"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "Ben",
+                    "creation date": "2020-05-14"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -5430,7 +5547,16 @@
         "7595841": "7906112355",
         "7445594": "3060139639",
         "3040283": "1528310784",
-        "6010461": "8360117126"
+        "6010461": "8360117126",
+        "7864125": "3366703541",
+        "1647066": "7083390553",
+        "5666935": "4748157455",
+        "1515971": "6417359412",
+        "3386860": "4798787814",
+        "8873965": "3462972452",
+        "8658331": "3411994811",
+        "5013638": "6175547907",
+        "4622149": "9897284307"
     },
     "expressions": {
         "0000040490": {
@@ -10003,6 +10129,119 @@
             "notes": "not a physically valid result in this context",
             "author": "Ben",
             "creation date": "2020-05-09"
+        },
+        "3366703541": {
+            "latex": "a = \\frac{v - v_0}{t}",
+            "AST": [
+                "9140",
+                "1467",
+                "1357"
+            ],
+            "name": "",
+            "notes": "acceleration is the average change in speed over a duration",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "7083390553": {
+            "latex": "t",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "4748157455": {
+            "latex": "a t = v - v_0",
+            "AST": [
+                "9140",
+                "NONE",
+                "NONE",
+                "1467",
+                "NONE",
+                "1357",
+                "NONE",
+                "5153"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "6417359412": {
+            "latex": "v_0",
+            "AST": [
+                "NONE",
+                "5153"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "4798787814": {
+            "latex": "a t + v_0 = v",
+            "AST": [
+                "9140",
+                "NONE",
+                "NONE",
+                "1467",
+                "NONE",
+                "1357",
+                "NONE",
+                "5153"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "3462972452": {
+            "latex": "v = v_0 + a t",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "3411994811": {
+            "latex": "v_{\\rm ave} = \\frac{d}{t}",
+            "AST": [
+                "1943",
+                "NONE",
+                "NONE",
+                "1467",
+                "NONE",
+                "NONE"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "6175547907": {
+            "latex": "v_{\\rm ave} = \\frac{v + v_0}{2}",
+            "AST": [
+                "1357",
+                "NONE",
+                "NONE",
+                "NONE"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
+        },
+        "9897284307": {
+            "latex": "\\frac{d}{t} = \\frac{v + v_0}{2}",
+            "AST": [
+                "1357",
+                "NONE",
+                "NONE"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "Ben",
+            "creation date": "2020-05-14"
         }
     },
     "inference rules": {
@@ -11761,6 +12000,20 @@
             ],
             "author": "Ben",
             "creation date": "2020-05-08"
+        },
+        "5153": {
+            "category": "variable",
+            "latex": "v_0",
+            "name": "initial velocity",
+            "measure": "length/time",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                ""
+            ],
+            "author": "Ben",
+            "creation date": "2020-05-14"
         }
     },
     "units": {
