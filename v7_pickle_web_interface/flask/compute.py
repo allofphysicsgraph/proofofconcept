@@ -1859,7 +1859,7 @@ def generate_graphviz_map_of_derivations(path_to_db: str) -> str:
         fil.write(
             "pack = true;\n"
         )  # https://www.graphviz.org/doc/info/attrs.html#d:pack
-        fil.write('label="all derivations";\n')
+        fil.write('label="all derivations\nhttps://derivationmap.net";\n')
         fil.write("fontsize=12;\n")
 
         for deriv_id, deriv_dict in derivation_popularity_dict.items():
@@ -2422,7 +2422,7 @@ def create_derivation_png(deriv_id: str, path_to_db: str) -> str:
     with open(dot_filename, "w") as fil:
         fil.write("digraph physicsDerivation { \n")
         fil.write("overlap = false;\n")
-        fil.write('label="derivation: ' + dat["derivations"][deriv_id]["name"] + '";\n')
+        fil.write('label="derivation: ' + dat["derivations"][deriv_id]["name"] + '\nhttps://derivationmap.net";\n')
         fil.write("fontsize=12;\n")
 
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
@@ -2478,7 +2478,7 @@ def create_step_graphviz_png(deriv_id: str, step_id: str, path_to_db: str) -> st
             + step_id
             + " in "
             + dat["derivations"][deriv_id]["name"]
-            + '";\n'
+            + '\nhttps://derivationmap.net";\n'
         )
         fil.write("fontsize=12;\n")
 
@@ -2545,7 +2545,7 @@ def generate_graphviz_of_step_with_numeric_IDs(
             + step_id
             + " in "
             + dat["derivations"][deriv_id]["name"]
-            + '";\n'
+            + '\nhttps://derivationmap.net";\n'
         )
         fil.write("fontsize=12;\n")
 
