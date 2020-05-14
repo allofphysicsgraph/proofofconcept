@@ -78,8 +78,8 @@ from wtforms import StringField, validators, FieldList, FormField, IntegerField,
 # sign in with Google
 # https://developers.google.com/identity/sign-in/web/backend-auth
 # https://github.com/allofphysicsgraph/proofofconcept/issues/119
-#from google.oauth2 import id_token  # type: ignore
-#from google.auth.transport import requests  # type: ignore
+# from google.oauth2 import id_token  # type: ignore
+# from google.auth.transport import requests  # type: ignore
 
 # https://json-schema.org/
 from jsonschema import validate  # type: ignore
@@ -2429,6 +2429,7 @@ def step_review(deriv_id: str, step_id: str):
 
     if request.method == "POST":
         logger.debug("reslt = %s", str(request.form))
+
         if request.form["submit_button"] == "accept this step; add another step":
             return redirect(
                 url_for(
@@ -2451,6 +2452,8 @@ def step_review(deriv_id: str, step_id: str):
                 )
             )
         elif request.form["submit_button"] == "update symbols":
+            # ('existing symbol for v_{0}', '5153'), ('submit_button', 'update symbols')])
+
             for this_key in request.form.keys():
                 if this_key.startswith("symbol_radio_"):
                     if request.form[this_key].startswith("symbol radio "):
@@ -2483,8 +2486,26 @@ def step_review(deriv_id: str, step_id: str):
                                     + new_symbol_id
                                 )
                     else:
-                        flash("unrecognized button text")
-                        logger.error("unrecognized button text")
+                        flash(
+                            "unrecognized button text: "
+                            + str(request.form["submit_button"])
+                        )
+                        logger.error(
+                            "unrecognized button text"
+                            + str(request.form["submit_button"])
+                        )
+                elif this_key.startswith(
+                    "existing symbol for"
+                ):  # sympy didn't find a match, user manually selected entry
+                    new_symbol_id = request.form[this_key]
+                    sympy_symbol = this_key.replace("existing symbol for ", "")
+                    compute.update_symbol_in_step(
+                        sympy_symbol, new_symbol_id, deriv_id, step_id, path_to_db,
+                    )
+                    flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
+                else:
+                    flash("unrecognized button text: " + str(this_key))
+                    logger.error("unrecognized button text: " + str(this_key))
             return redirect(url_for("step_review", deriv_id=deriv_id, step_id=step_id))
         elif request.form["submit_button"] == "delete step":
             try:
