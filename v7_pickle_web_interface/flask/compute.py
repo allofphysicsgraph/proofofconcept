@@ -2782,7 +2782,10 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 
 
 def modify_latex_in_step(
-    expr_local_id_of_latex_to_modify: str, revised_latex: str, path_to_db: str
+    expr_local_id_of_latex_to_modify: str,
+    revised_latex: str,
+    user_email: str,
+    path_to_db: str,
 ) -> None:
     """
     >>> modify_latex_in_step('959242', 'a = b', 'pdg.db')
@@ -2795,7 +2798,7 @@ def modify_latex_in_step(
     entry = {}
     entry["latex"] = revised_latex
     entry["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
-    entry["author"] = "Ben"
+    entry["author"] = md5_of_string(str(user_email).lower())
     entry["notes"] = dat["expressions"][
         dat["expr local to global"][expr_local_id_of_latex_to_modify]
     ]["notes"]
@@ -2855,6 +2858,7 @@ def add_symbol(
     value: str,
     units: str,
     scope: str,
+    user_email: str,
     path_to_db: str,
 ) -> None:
     """
@@ -2873,7 +2877,7 @@ def add_symbol(
     if category == "constant" and len(value) > 0:
         symbol_dict["value"] = value
         symbol_dict["units"] = units
-    symbol_dict["author"] = "Ben"
+    symbol_dict["author"] = md5_of_string(str(user_email).lower())
     symbol_dict["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
     symbol_id = create_symbol_id(path_to_db)
     logger.debug("new symbol ID:" + symbol_id)
@@ -2885,7 +2889,9 @@ def add_symbol(
     return
 
 
-def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
+def add_inf_rule(
+    inf_rule_dict_from_form: dict, user_email: str, path_to_db: str
+) -> str:
     """
     >>> request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
     >>> add_inf_rule(request.form.to_dict(), 'pdg.db')
@@ -2910,7 +2916,7 @@ def add_inf_rule(inf_rule_dict_from_form: dict, path_to_db: str) -> str:
         return "number of outputs does not seem to be an integer"
     arg_dict["latex"] = inf_rule_dict_from_form["latex"]
     arg_dict["notes"] = inf_rule_dict_from_form["notes"]
-    arg_dict["author"] = "Ben"
+    arg_dict["author"] = md5_of_string(str(user_email).lower())
     arg_dict["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
 
     logger.debug("add_inf_rule; arg_dict = %s", arg_dict)
@@ -3279,7 +3285,7 @@ def create_step(
     latex_for_step_dict: dict,
     inf_rule: str,
     deriv_id: str,
-    user_name: str,
+    user_email: str,
     path_to_db: str,
 ) -> str:
     """
@@ -3312,7 +3318,7 @@ def create_step(
         "outputs": [],
         "linear index": -1,
         "notes": latex_for_step_dict["step_note"],
-        "author": user_name,
+        "author": md5_of_string(str(user_email).lower()),
         "creation date": datetime.datetime.now().strftime("%Y-%m-%d"),
     }  # type: STEP_DICT
     # if we observe 'linear index'==-1 outside this function, it indicates a problem
@@ -3329,7 +3335,7 @@ def create_step(
                 "AST": [],
                 "name": "",
                 "notes": "",
-                "author": "Ben",
+                "author": md5_of_string(str(user_email).lower()),
                 "creation date": datetime.datetime.now().strftime("%Y-%m-%d"),
             }
             expr_local_id = create_expr_local_id(path_to_db)
@@ -3361,7 +3367,7 @@ def create_step(
                             "notes": latex_for_step_dict[
                                 connection_type + expr_index + "_note"
                             ],
-                            "author": "Ben",
+                            "author": md5_of_string(str(user_email).lower()),
                             "creation date": datetime.datetime.now().strftime(
                                 "%Y-%m-%d"
                             ),

@@ -243,45 +243,45 @@ if __name__ != "__main__":
 
 # https://wtforms.readthedocs.io/en/stable/crash_course.html
 # https://stackoverflow.com/questions/46092054/flask-login-documentation-loginform
-class LoginForm(FlaskForm):
-    logger.info("[trace]")
-    username = StringField("Username", validators=[validators.DataRequired()])
-    password = PasswordField("Password", validators=[validators.DataRequired()])
-    submit = SubmitField("sign in")
-    # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
-    remember_me = BooleanField("remember me")
+# class LoginForm(FlaskForm):
+#    logger.info("[trace]")
+#    username = StringField("Username", validators=[validators.DataRequired()])
+#    password = PasswordField("Password", validators=[validators.DataRequired()])
+#    submit = SubmitField("sign in")
+#    # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
+#    remember_me = BooleanField("remember me")
 
 
 # https://pythonprogramming.net/flask-user-registration-form-tutorial/
-class RegistrationForm(FlaskForm):
-    logger.info("[trace]")
-    username = StringField("Username", [validators.Length(min=3, max=20)])
-    email = StringField("Email Address", [validators.Length(min=4, max=50)])
-    password = PasswordField(
-        "New Password",
-        [
-            validators.Required(),
-            validators.EqualTo("confirm", message="Passwords must match"),
-        ],
-    )
-    confirm = PasswordField("Repeat Password")
-
-    # https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
-    # class User(UserMixin):
-    """
-    inherits from UserMixin which is defined here
-    https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html#UserMixin
-    in order to support required features; see
-    https://flask-login.readthedocs.io/en/latest/#your-user-class
-
-    https://realpython.com/using-flask-login-for-user-management-with-flask/
-    and
-    https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
-    """
-
-
+# class RegistrationForm(FlaskForm):
 #    logger.info("[trace]")
+#    username = StringField("Username", [validators.Length(min=3, max=20)])
+#    email = StringField("Email Address", [validators.Length(min=4, max=50)])
+#    password = PasswordField(
+#        "New Password",
+#        [
+#            validators.Required(),
+#            validators.EqualTo("confirm", message="Passwords must match"),
+#        ],
+#    )
+#    confirm = PasswordField("Repeat Password")
 
+# https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html
+# class User(UserMixin):
+#    """
+#    inherits from UserMixin which is defined here
+#    https://flask-login.readthedocs.io/en/latest/_modules/flask_login/mixins.html#UserMixin
+#    in order to support required features; see
+#    https://flask-login.readthedocs.io/en/latest/#your-user-class
+#
+#    https://realpython.com/using-flask-login-for-user-management-with-flask/
+#    and
+#    https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iv-database
+#    """
+#
+#
+#    logger.info("[trace]")
+#
 #    def __init__(self, name, id, active=True):
 #        self.name = name
 #        self.id = id
@@ -804,6 +804,7 @@ def callback():
 
     logger.debug(str(current_user))
     logger.debug(str(current_user.name))
+    logger.debug(str(current_user.email))
     flash("logged in")
 
     # Send user back to homepage
@@ -1684,6 +1685,7 @@ def list_all_symbols():
                 value,
                 units,
                 scope,
+                current_user.email,
                 path_to_db,
             )
         else:
@@ -1759,6 +1761,7 @@ def list_all_expressions():
                 compute.modify_latex_in_step(
                     request.form["edit_expr_latex"],
                     request.form["revised_text"],
+                    current_user.email,
                     path_to_db,
                 )
             except Exception as err:
@@ -1892,7 +1895,7 @@ def list_all_inference_rules():
             # request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
             try:
                 status_message = compute.add_inf_rule(
-                    request.form.to_dict(), path_to_db
+                    request.form.to_dict(), current_user.email, path_to_db
                 )
             except Exception as err:
                 flash(str(err))
@@ -2287,11 +2290,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
 
         try:
             step_id = compute.create_step(
-                latex_for_step_dict,
-                inf_rule,
-                deriv_id,
-                current_user.username,
-                path_to_db,
+                latex_for_step_dict, inf_rule, deriv_id, current_user.email, path_to_db,
             )
         except Exception as err:
             flash(str(err))
@@ -2974,6 +2973,7 @@ def modify_step(deriv_id: str, step_id: str):
                     compute.modify_latex_in_step(
                         request.form["expr_local_id_of_latex_to_modify"],
                         request.form["revised_text"],
+                        current_user.email,
                         path_to_db,
                     )
                 except Exception as err:
