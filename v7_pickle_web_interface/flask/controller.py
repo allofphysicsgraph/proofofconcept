@@ -702,7 +702,7 @@ def load_user(user_id):
     return User.get(user_id)
 
 
-#def is_safe_url(target):
+# def is_safe_url(target):
 #    """
 #    https://github.com/fengsp/flask-snippets/blob/master/security/redirect_back.py
 #    """
@@ -804,7 +804,7 @@ def callback():
     # Begin user session by logging the user in
     login_user(user)
 
-    #logger.debug(str(current_user))
+    # logger.debug(str(current_user))
     logger.debug(str(current_user.name))
     logger.debug(str(current_user.email))
     flash("logged in")
@@ -897,8 +897,8 @@ def logout():
     return redirect(url_for("index", referrer="logout"))
 
 
-#@app.route("/create_new_account", methods=["GET", "POST"])
-#def create_new_account():
+# @app.route("/create_new_account", methods=["GET", "POST"])
+# def create_new_account():
 #    """
 #    >>>
 #    """

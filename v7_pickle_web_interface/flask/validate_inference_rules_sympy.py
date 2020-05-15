@@ -64,6 +64,7 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
     logger.info("[trace end " + trace_id + "]")
     return
 
+
 def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     """
     There are 4 possible return strings from this function:

@@ -157,7 +157,7 @@ def validate_json_file(filename: str) -> None:
     return
 
 
-#def create_session_id() -> str:
+# def create_session_id() -> str:
 #    """
 #    >>> create_session_id
 #    """
@@ -1762,19 +1762,19 @@ def remove_file_debris(
     logger.info("[trace end " + trace_id + "]")
     return
 
+    # *******************************************
+    # create files on filesystem
 
-# *******************************************
-# create files on filesystem
-
-
-# def generate_all_expr_and_infrule_pngs(
-#    overwrite_existing: bool, path_to_db: str
-# ) -> None:
-#    """
-#    >>> generate_all_expr_and_infrule_pngs()
-#    """
-#    trace_id = str(random.randint(1000000, 9999999))
+    # def generate_all_expr_and_infrule_pngs(
+    #    overwrite_existing: bool, path_to_db: str
+    # ) -> None:
+    #    """
+    #    >>> generate_all_expr_and_infrule_pngs()
+    #    """
+    #    trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
+
+
 #
 #    dat = clib.read_db(path_to_db)
 #    destination_folder = "/home/appuser/app/static/"
@@ -3694,36 +3694,36 @@ def create_step(
     logger.info("[trace end " + trace_id + "]")
     return inf_rule_local_ID
 
-
-# the following was moved into controller.py so that when a single step fails the notice is provided to the user
-# def determine_derivation_validity(deriv_id: str, path_to_db: str) -> dict:
-#    """
-#    >>> determine_derivation_validity()
-#    """
-#    trace_id = str(random.randint(1000000, 9999999))
+    # the following was moved into controller.py so that when a single step fails the notice is provided to the user
+    # def determine_derivation_validity(deriv_id: str, path_to_db: str) -> dict:
+    #    """
+    #    >>> determine_derivation_validity()
+    #    """
+    #    trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
-#    dat = clib.read_db(path_to_db)
-#    step_validity_dict = {}
-#
-#    if deriv_id not in dat["derivations"].keys():
-#        logger.error("dat does not contain " + deriv_id)
-#        raise Exception("dat does not contain " + deriv_id)
-#
-#    for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
-#        step_validity_dict[step_id] = vir.validate_step(
-#            deriv_id, step_id, path_to_db
-#        )
-#    return step_validity_dict
+    #    dat = clib.read_db(path_to_db)
+    #    step_validity_dict = {}
+    #
+    #    if deriv_id not in dat["derivations"].keys():
+    #        logger.error("dat does not contain " + deriv_id)
+    #        raise Exception("dat does not contain " + deriv_id)
+    #
+    #    for step_id, step_dict in dat["derivations"][deriv_id]['steps'].items():
+    #        step_validity_dict[step_id] = vir.validate_step(
+    #            deriv_id, step_id, path_to_db
+    #        )
+    #    return step_validity_dict
 
-
-# def determine_step_validity(
-#    step_id: str, deriv_id: str, path_to_db: str
-# ) -> str:
-#    """
-#    >>> determine_step_validity()
-#    """
-#    trace_id = str(random.randint(1000000, 9999999))
+    # def determine_step_validity(
+    #    step_id: str, deriv_id: str, path_to_db: str
+    # ) -> str:
+    #    """
+    #    >>> determine_step_validity()
+    #    """
+    #    trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
+
+
 #    dat = clib.read_db(path_to_db)
 #    step_validity_dict = {}
 #
