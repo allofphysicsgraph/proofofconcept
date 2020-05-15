@@ -12,6 +12,7 @@ import json_schema  # a PDG file
 from jsonschema import validate  # type: ignore
 import logging
 import os
+import random
 
 # import redis
 
@@ -35,18 +36,23 @@ def create_sql_connection(db_file):
     If SQL is slow, investigate use of WAL
     https://www.sqlite.org/wal.html
     https://charlesleifer.com/blog/going-fast-with-sqlite-and-python/
-    >>> 
+    >>>
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
     if os.path.exists(db_file):
         try:
-            return sqlite3.connect(db_file)
+            my_db = sqlite3.connect(db_file)
+            logger.info("[trace end " + trace_id + "]")
+            return my_db
         except sqlite3.Error:
             logger.error(str(sqlite3.Error))
             raise Exception(str(sqlite3.Error))
     else:
         logger.info(db_file + " does not seem to exist; creating it")
+        logger.info("[trace end " + trace_id + "]")
         return sqlite3.connect(db_file)
+    logger.info("[trace end " + trace_id + "]")
     return None
 
 
@@ -54,7 +60,8 @@ def read_db(path_to_db: str) -> dict:
     """
     >>> read_db('data.json')
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
 
     # OLD implementation:
     #    with open(path_to_db, 'rb') as fil:
@@ -94,6 +101,7 @@ def read_db(path_to_db: str) -> dict:
         logger.error(str(err))
         raise Exception("validation of database failed; " + str(err))
 
+    logger.info("[trace end " + trace_id + "]")
     return dat
 
 
@@ -103,7 +111,8 @@ def write_db(path_to_db: str, dat: dict) -> None:
     >>> write_db('data.json', dat)
     [trace] compute: write_db
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
 
     # OLD implementation:
     #    with open(path_to_db, 'wb') as fil:
@@ -144,14 +153,16 @@ def write_db(path_to_db: str, dat: dict) -> None:
     conn.commit()
     conn.close()
 
+    logger.info("[trace end " + trace_id + "]")
     return
 
 
 def json_to_sql(path_to_json: str, path_to_sql: str) -> None:
     """
-    >>> 
+    >>>
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
 
     if not os.path.exists(path_to_json):
         logger.error("file " + path_to_json + " does not exist")
@@ -161,6 +172,7 @@ def json_to_sql(path_to_json: str, path_to_sql: str) -> None:
         dat = json.load(json_file)
 
     write_db(path_to_sql, dat)
+    logger.info("[trace end " + trace_id + "]")
     return
 
 
