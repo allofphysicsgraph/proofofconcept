@@ -92,6 +92,7 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         "declare guess solution",
         "declare assumption",
     ]:
+        logger.info("[trace end " + trace_id + "]")
         return "no validation is available for declarations"
 
     if step_dict["inf rule"] in [
@@ -99,6 +100,7 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         "normalization condition",
         "boundary condition",
     ]:
+        logger.info("[trace end " + trace_id + "]")
         return "no validation is available for assumptions"
 
     latex_dict = {}

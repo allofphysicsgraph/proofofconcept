@@ -56,6 +56,18 @@ def create_sql_connection(db_file):
     return None
 
 
+def validate_content(dat: dict) -> None:
+    """
+    >>> validate_content()
+    """
+    try:
+        validate(instance=dat, schema=json_schema.schema)
+    except Exception as err:
+        logger.error(str(err))
+        raise Exception("validation of database failed; " + str(err))
+    return
+
+
 def read_db(path_to_db: str) -> dict:
     """
     >>> read_db('data.json')
@@ -94,12 +106,6 @@ def read_db(path_to_db: str) -> dict:
     for row in cur.execute("SELECT * FROM data"):
         dat = json.loads(row[0])
     conn.close()
-
-    try:
-        validate(instance=dat, schema=json_schema.schema)
-    except Exception as err:
-        logger.error(str(err))
-        raise Exception("validation of database failed; " + str(err))
 
     logger.info("[trace end " + trace_id + "]")
     return dat
@@ -170,6 +176,9 @@ def json_to_sql(path_to_json: str, path_to_sql: str) -> None:
 
     with open(path_to_json) as json_file:
         dat = json.load(json_file)
+
+    # this is the first look at the dat; need to make sure the schema is valid
+    validate_content(dat)
 
     write_db(path_to_sql, dat)
     logger.info("[trace end " + trace_id + "]")

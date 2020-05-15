@@ -200,8 +200,9 @@ if True:
         # the logger will handle only INFO, WARNING, ERROR, and CRITICAL messages
         # and will ignore DEBUG messages
         level=logging.DEBUG,
-        format="%(asctime)s|%(filename)-13s|%(levelname)-5s|%(lineno)-4d|%(funcName)-20s|%(message)s",
-        datefmt="%m/%d/%Y %I:%M:%S %p",
+        format="%(asctime)s|%(filename)-13s|%(levelname)-5s|%(lineno)-4d|%(funcName)-20s|%(message)s"  # ,
+        # https://stackoverflow.com/questions/6290739/python-logging-use-milliseconds-in-time-format/7517430#7517430
+        # datefmt="%m/%d/%Y %I:%M:%S %f %p", # https://strftime.org/
     )
 
     #    logger = logging.getLogger(__name__)
@@ -745,7 +746,7 @@ def callback():
     https://realpython.com/flask-google-login/
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
+    logger.info("[trace page start " + trace_id + "]")
     # Get authorization code Google sent back to you
     code = request.args.get("code")
 
@@ -810,7 +811,7 @@ def callback():
     flash("logged in")
 
     # Send user back to homepage
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return redirect(url_for("navigation", referrer="login"))
 
 
@@ -1226,7 +1227,7 @@ def index():
     >>> index()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
+    logger.info("[trace page start " + trace_id + "]")
 
     try:
         d3js_json_filename = compute.create_d3js_json("884319", path_to_db)
@@ -1236,7 +1237,7 @@ def index():
         d3js_json_filename = ""
     dat = clib.read_db(path_to_db)
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template("index.html", json_for_d3js=d3js_json_filename)
 
 
@@ -1248,7 +1249,7 @@ def monitoring():
     >>> monitoring()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
+    logger.info("[trace page start " + trace_id + "]")
     number_of_lines_to_tail = 100
     list_of_pics = compute.generate_auth_summary()
     logger.debug(str(list_of_pics))
@@ -1269,7 +1270,7 @@ def monitoring():
         number_of_lines_to_tail,
     )
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "monitoring.html",
         list_of_pics=list_of_pics,
@@ -1290,11 +1291,11 @@ def static_dir():
     >>> static_dir()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
+    logger.info("[trace page start " + trace_id + "]")
     # https://stackoverflow.com/a/3207973/1164295
     (_, _, filenames) = next(os.walk("static"))
     filenames.sort()
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "static_dir.html", list_of_files=filenames, title="Static directory listing"
     )
@@ -1416,7 +1417,7 @@ def navigation():
     file upload: see https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
+    logger.info("[trace page start " + trace_id + "]")
 
     # this takes too long; removed on 20200408
     #    try:
@@ -1464,7 +1465,7 @@ def navigation():
         if "file" not in request.files:
             logger.debug("file not in request files")
             flash("No file part")
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(request.url)
         file_obj = request.files["file"]
 
@@ -1474,7 +1475,7 @@ def navigation():
         if file_obj.filename == "":
             logger.debug("no selected file")
             flash("No selected file")
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(request.url)
         try:
             allowed_bool = compute.allowed_file(file_obj.filename)
@@ -1503,12 +1504,12 @@ def navigation():
                 flash("uploaded file does not match PDG schema")
             else:  # file exists, has .json extension, is JSON, and complies with schema
                 shutil.copy(path_to_uploaded_file, "/home/appuser/app/" + path_to_db)
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(url_for("index", filename=filename, referrer="navigation"))
 
     logger.debug("reading from json")
     dat = clib.read_db(path_to_db)
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "navigation.html",
         number_of_derivations=len(dat["derivations"].keys()),
@@ -1529,7 +1530,7 @@ def navigation():
 @login_required  # https://flask-login.readthedocs.io/en/latest/
 def start_new_derivation():
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "] " + current_user.email)
+    logger.info("[trace page start " + trace_id + "] " + current_user.email)
 
     web_form = NameOfDerivationInputForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -1542,7 +1543,7 @@ def start_new_derivation():
         deriv_id = compute.initialize_derivation(
             name_of_derivation, str(current_user.username), notes, path_to_db
         )
-        logger.info("[trace end " + trace_id + "]")
+        logger.info("[trace page end " + trace_id + "]")
         return redirect(
             url_for(
                 "new_step_select_inf_rule",
@@ -1550,7 +1551,7 @@ def start_new_derivation():
                 referrer="start_new_derivation",
             )
         )
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "start_new_derivation.html", form=web_form, title="start new derivation"
     )
@@ -1562,7 +1563,7 @@ def show_all_derivations():
     >>> show_all_derivations()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
+    logger.info("[trace page start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
 
     if request.method == "POST":
@@ -1584,7 +1585,7 @@ def show_all_derivations():
         logger.error(str(err))
         derivations_popularity_dict = {}
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "show_all_derivations.html",
         # map_of_derivations=map_of_derivations,
@@ -1631,7 +1632,7 @@ def list_all_operators():
         path_to_db
     )
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "list_all_operators.html",
         operators_dict=dat["operators"],
@@ -1720,7 +1721,7 @@ def list_all_symbols():
         path_to_db
     )
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "list_all_symbols.html",
         # symbols_dict=dat["symbols"],
@@ -1766,7 +1767,7 @@ def list_all_expressions():
                 status_message = "error"
             flash(str(status_message))
             logger.debug("list_all_expressions; status = %s", status_message)
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("list_all_expressions", referrer="list_all_expressions")
             )
@@ -1793,7 +1794,7 @@ def list_all_expressions():
                 status_message = "error"
             flash(str(status_message))
             logger.debug("list_all_expressions; status = %s", status_message)
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("list_all_expressions", referrer="list_all_expressions")
             )
@@ -1810,7 +1811,7 @@ def list_all_expressions():
                 status_message = "error"
             flash(str(status_message))
             logger.debug("list_all_expressions; status = %s", status_message)
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("list_all_expressions", referrer="list_all_expressions")
             )
@@ -1827,7 +1828,7 @@ def list_all_expressions():
                 status_message = "error"
             flash(str(status_message))
             logger.debug("list_all_expressions; status = %s", status_message)
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("list_all_expressions", referrer="list_all_expressions")
             )
@@ -1841,7 +1842,7 @@ def list_all_expressions():
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("list_all_expressions", referrer="list_all_expressions")
             )
@@ -1874,7 +1875,7 @@ def list_all_expressions():
         flash(str(err))
         expr_dict_with_symbol_list = {}
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "list_all_expressions.html",
         dat=dat,
@@ -1922,7 +1923,7 @@ def list_all_inference_rules():
                 status_message = "error"
             flash(str(status_message))
             # https://stackoverflow.com/a/31945712/1164295
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("list_all_inference_rules", referrer="list_all_inference_rules")
             )
@@ -1940,7 +1941,7 @@ def list_all_inference_rules():
             logger.debug(
                 "list_all_inference_rules; status = %s", status_message,
             )
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("list_all_inference_rules", referrer="list_all_inference_rules")
             )
@@ -1960,7 +1961,7 @@ def list_all_inference_rules():
             logger.debug(
                 "list_all_inference_rules; status = %s", status_message,
             )
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("list_all_inference_rules", referrer="list_all_inference_rules")
             )
@@ -1980,7 +1981,7 @@ def list_all_inference_rules():
             logger.debug(
                 "list_all_inference_rules; status = %s", status_message,
             )
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("list_all_inference_rules", referrer="list_all_inference_rules")
             )
@@ -2005,7 +2006,7 @@ def list_all_inference_rules():
     sorted_list_infrules = list(dat["inference rules"].keys())
     sorted_list_infrules.sort()
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "list_all_inference_rules.html",
         dat=dat,
@@ -2041,7 +2042,7 @@ def select_derivation_to_edit():
         flash(str(err))
         derivations_list = []
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "select_derivation_to_edit.html",
         derivations_list=derivations_list,
@@ -2069,7 +2070,7 @@ def select_derivation_step_to_edit(deriv_id: str):
             step_id = compute.linear_index_to_step_id(
                 deriv_id, step_linear_index, path_to_db
             )
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "modify_step",
@@ -2087,7 +2088,7 @@ def select_derivation_step_to_edit(deriv_id: str):
             )
             try:
                 compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
-                logger.info("[trace end " + trace_id + "]")
+                logger.info("[trace page end " + trace_id + "]")
                 return redirect(
                     url_for(
                         "review_derivation",
@@ -2123,7 +2124,7 @@ def select_derivation_step_to_edit(deriv_id: str):
         deriv_id, path_to_db
     )
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "select_derivation_step_to_edit.html",
         deriv_id=deriv_id,
@@ -2147,7 +2148,7 @@ def select_from_existing_derivations():
     >>> select_from_existing_derivations()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
+    logger.info("[trace page start " + trace_id + "]")
     try:
         list_of_deriv = compute.get_sorted_list_of_derivations(path_to_db)
     except Exception as err:
@@ -2166,7 +2167,7 @@ def select_from_existing_derivations():
         if "derivation_selected" in request.form.keys():
             deriv_id = request.form["derivation_selected"]
         else:  # no derivations exist
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("index", referrer="select_from_existing_derivations")
             )
@@ -2178,10 +2179,10 @@ def select_from_existing_derivations():
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                logger.info("[trace end " + trace_id + "]")
+                logger.info("[trace page end " + trace_id + "]")
                 return redirect(url_for("select_from_existing_derivations"))
 
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "static",
@@ -2197,10 +2198,10 @@ def select_from_existing_derivations():
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                logger.info("[trace end " + trace_id + "]")
+                logger.info("[trace page end " + trace_id + "]")
                 return redirect(url_for("select_from_existing_derivations"))
 
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "static",
@@ -2211,7 +2212,7 @@ def select_from_existing_derivations():
 
         elif request.form["submit_button"] == "display_graphviz":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'display_graphviz')])
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "review_derivation",
@@ -2224,7 +2225,7 @@ def select_from_existing_derivations():
 
     dat = clib.read_db(path_to_db)
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "select_from_existing_derivations.html",
         dat=dat,
@@ -2242,7 +2243,7 @@ def new_step_select_inf_rule(deriv_id: str):
     >>> new_step_select_inf_rule()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]" + current_user.email)
+    logger.info("[trace page start " + trace_id + "]" + current_user.email)
 
     try:
         list_of_inf_rules = compute.get_sorted_list_of_inf_rules(path_to_db)
@@ -2259,7 +2260,7 @@ def new_step_select_inf_rule(deriv_id: str):
         logger.debug(
             "selected_inf_rule = %s", selected_inf_rule,
         )
-        logger.info("[trace end " + trace_id + "]")
+        logger.info("[trace page end " + trace_id + "]")
         return redirect(
             url_for(
                 "provide_expr_for_inf_rule",
@@ -2271,7 +2272,7 @@ def new_step_select_inf_rule(deriv_id: str):
 
     dat = clib.read_db(path_to_db)
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "new_step_select_inf_rule.html",
         title=dat["derivations"][deriv_id]["name"],
@@ -2292,7 +2293,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
     >>> provide_expr_for_inf_rule()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "] " + current_user.email)
+    logger.info("[trace page start " + trace_id + "] " + current_user.email)
 
     # num_feeds, num_inputs, num_outputs = compute.input_output_count_for_infrule(inf_rule, path_to_db)
     # logger.debug('provide_expr_for_inf_rule;',num_feeds,'feeds,',num_inputs,'inputs, and',num_outputs,'outputs')
@@ -2338,7 +2339,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
             logger.warning(str(err))
             step_validity_msg = "error in validation"
 
-        logger.info("[trace end " + trace_id + "]")
+        logger.info("[trace page end " + trace_id + "]")
         return redirect(
             url_for(
                 "step_review",
@@ -2409,7 +2410,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         flash(str(err))
         expr_dict_with_symbol_list = {}
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "provide_expr_for_inf_rule.html",
         deriv_id=deriv_id,
@@ -2437,7 +2438,7 @@ def step_review(deriv_id: str, step_id: str):
     >>> step_review
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]" + current_user.email)
+    logger.info("[trace page start " + trace_id + "]" + current_user.email)
 
     webform = NewSymbolForm()
 
@@ -2457,7 +2458,7 @@ def step_review(deriv_id: str, step_id: str):
         logger.debug("reslt = %s", str(request.form))
 
         if request.form["submit_button"] == "accept this step; add another step":
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "new_step_select_inf_rule",
@@ -2466,12 +2467,12 @@ def step_review(deriv_id: str, step_id: str):
                 )
             )
         if request.form["submit_button"] == "accept this step; review derivation":
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("review_derivation", deriv_id=deriv_id, referrer="step_review")
             )
         elif request.form["submit_button"] == "modify this step":
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "modify_step",
@@ -2546,12 +2547,12 @@ def step_review(deriv_id: str, step_id: str):
                 else:
                     flash("unrecognized button text: " + str(this_key))
                     logger.error("unrecognized button text: " + str(this_key))
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(url_for("step_review", deriv_id=deriv_id, step_id=step_id))
         elif request.form["submit_button"] == "delete step":
             try:
                 compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
-                logger.info("[trace end " + trace_id + "]")
+                logger.info("[trace page end " + trace_id + "]")
                 return redirect(
                     url_for(
                         "review_derivation", deriv_id=deriv_id, referrer="modify_step"
@@ -2684,7 +2685,7 @@ def step_review(deriv_id: str, step_id: str):
         flash(str(err))
         expr_dict_with_symbol_list = {}
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "step_review.html",
         webform=webform,
@@ -2712,7 +2713,7 @@ def rename_derivation(deriv_id: str):
     >>> rename_derivation()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]" + current_user.email)
+    logger.info("[trace page start " + trace_id + "]" + current_user.email)
 
     dat = clib.read_db(path_to_db)
 
@@ -2725,7 +2726,7 @@ def rename_derivation(deriv_id: str):
                     deriv_id, request.form["revised_text"], path_to_db
                 )
                 flash(status_msg)
-                logger.info("[trace end " + trace_id + "]")
+                logger.info("[trace page end " + trace_id + "]")
                 return redirect(
                     url_for(
                         "review_derivation",
@@ -2738,7 +2739,7 @@ def rename_derivation(deriv_id: str):
                     deriv_id, request.form["revised_text"], path_to_db
                 )
                 flash(status_msg)
-                logger.info("[trace end " + trace_id + "]")
+                logger.info("[trace page end " + trace_id + "]")
                 return redirect(
                     url_for(
                         "review_derivation",
@@ -2753,7 +2754,7 @@ def rename_derivation(deriv_id: str):
             logger.error(str(request.form))
             flash("unrecognized option: " + str(request.form))
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "rename_derivation.html",
         deriv_id=deriv_id,
@@ -2772,14 +2773,14 @@ def review_derivation(deriv_id: str):
     >>> review_derivation()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
+    logger.info("[trace page start " + trace_id + "]")
     pdf_filename = "NONE"
     # caveat: the review_derivation HTML relies on the filename to be "NONE" if there is no PDF
     # TODO: there should be a default PDF in case the generation step fails
 
     if request.method == "POST":
         if request.form["submit_button"] == "add another step":
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "new_step_select_inf_rule",
@@ -2788,7 +2789,7 @@ def review_derivation(deriv_id: str):
                 )
             )
         elif request.form["submit_button"] == "rename derivation":
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "rename_derivation", deriv_id=deriv_id, referrer="review_derivation"
@@ -2796,7 +2797,7 @@ def review_derivation(deriv_id: str):
                 + "#rename derivation"
             )
         elif request.form["submit_button"] == "edit existing step":
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "select_derivation_step_to_edit",
@@ -2805,7 +2806,7 @@ def review_derivation(deriv_id: str):
                 )
             )
         elif request.form["submit_button"] == "edit derivation note":
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "rename_derivation", deriv_id=deriv_id, referrer="review_derivation"
@@ -2813,7 +2814,7 @@ def review_derivation(deriv_id: str):
                 + "#edit derivation note"
             )
         elif request.form["submit_button"] == "return to main menu":
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(url_for("index", referrer="review_derivation"))
         elif request.form["submit_button"] == "generate pdf":
             try:
@@ -2822,7 +2823,7 @@ def review_derivation(deriv_id: str):
                 logger.error(str(err))
                 flash(str(err))
                 pdf_filename = "error.tex"
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("static", filename=pdf_filename, referrer="review_derivation")
             )
@@ -2833,12 +2834,12 @@ def review_derivation(deriv_id: str):
                 logger.error(str(err))
                 flash(str(err))
                 tex_filename = "error.tex"
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for("static", filename=tex_filename, referrer="review_derivation")
             )
         elif request.form["submit_button"] == "delete derivation":
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "confirm_delete_derivation",
@@ -2890,7 +2891,7 @@ def review_derivation(deriv_id: str):
         flash(str(err))
         expression_popularity_dict = {}
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "review_derivation.html",
         pdf_filename=pdf_filename,
@@ -2917,7 +2918,7 @@ def modify_step(deriv_id: str, step_id: str):
     >>> modify_step('fun deriv', '958242')
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]" + current_user.email)
+    logger.info("[trace page start " + trace_id + "]" + current_user.email)
 
     if request.method == "POST":
         logger.debug(request.form)
@@ -2927,7 +2928,7 @@ def modify_step(deriv_id: str, step_id: str):
         if "submit_button" in request.form.keys():
             if request.form["submit_button"] == "change inference rule":
                 compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
-                logger.info("[trace end " + trace_id + "]")
+                logger.info("[trace page end " + trace_id + "]")
                 return redirect(
                     url_for(
                         "new_step_select_inf_rule",
@@ -2984,7 +2985,7 @@ def modify_step(deriv_id: str, step_id: str):
                         else:
                             flash("unrecognized button text")
                             logger.error("unrecognized button text")
-                logger.info("[trace end " + trace_id + "]")
+                logger.info("[trace page end " + trace_id + "]")
                 return redirect(
                     url_for(
                         "modify_step",
@@ -2997,7 +2998,7 @@ def modify_step(deriv_id: str, step_id: str):
             # https://github.com/allofphysicsgraph/proofofconcept/issues/108
             elif request.form["submit_button"] == "view step with numeric IDs":
                 # ImmutableMultiDict([('submit_button', 'view step with numeric IDs')])
-                logger.info("[trace end " + trace_id + "]")
+                logger.info("[trace page end " + trace_id + "]")
                 return redirect(
                     url_for(
                         "step_with_numeric_ids",
@@ -3029,7 +3030,7 @@ def modify_step(deriv_id: str, step_id: str):
                     flash(str(err))
                     logger.error(str(err))
                     step_validity_msg = ""
-                logger.info("[trace end " + trace_id + "]")
+                logger.info("[trace page end " + trace_id + "]")
                 return redirect(
                     url_for(
                         "step_review",
@@ -3041,8 +3042,8 @@ def modify_step(deriv_id: str, step_id: str):
             elif request.form["submit_button"] == "delete step":
                 try:
                     compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
-                    logger.info("[trace end " + trace_id + "]")
-                    logger.info("[trace end " + trace_id + "]")
+                    logger.info("[trace page end " + trace_id + "]")
+                    logger.info("[trace page end " + trace_id + "]")
                     return redirect(
                         url_for(
                             "review_derivation",
@@ -3188,7 +3189,7 @@ def modify_step(deriv_id: str, step_id: str):
         logger.error(str(err))
         symbol_popularity_dict = {}
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "modify_step.html",
         deriv_id=deriv_id,
@@ -3218,7 +3219,7 @@ def step_with_numeric_ids(deriv_id: str, step_id: str):
     >>> step_with_numeric_ids()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
+    logger.info("[trace page start " + trace_id + "]")
     try:
         name_of_graphviz_file = compute.generate_graphviz_of_step_with_numeric_IDs(
             deriv_id, step_id, path_to_db
@@ -3230,7 +3231,7 @@ def step_with_numeric_ids(deriv_id: str, step_id: str):
 
     dat = clib.read_db(path_to_db)
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "step_with_numeric_ids.html",
         deriv_id=deriv_id,
@@ -3251,7 +3252,7 @@ def confirm_delete_derivation(deriv_id):
     >>> confirm_delete_derivation()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]" + current_user.email)
+    logger.info("[trace page start " + trace_id + "]" + current_user.email)
 
     dat = clib.read_db(path_to_db)
     name_of_derivation = dat["derivations"][deriv_id]["name"]
@@ -3274,11 +3275,11 @@ def confirm_delete_derivation(deriv_id):
                 logger.error(str(err))
                 msg = "no deletion occurred due to issue in database"
             flash(str(msg))
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(url_for("navigation", referrer="confirm_delete_derivation"))
         else:
             flash("submitted form did not comply; no deletion occurred")
-            logger.info("[trace end " + trace_id + "]")
+            logger.info("[trace page end " + trace_id + "]")
             return redirect(
                 url_for(
                     "review_derivation",
@@ -3287,7 +3288,7 @@ def confirm_delete_derivation(deriv_id):
                 )
             )
 
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "confirm_delete_derivation.html",
         dat=dat,
@@ -3304,11 +3305,11 @@ def create_new_inf_rule():
     >>> create_new_inf_rule()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]" + current_user.email)
+    logger.info("[trace page start " + trace_id + "]" + current_user.email)
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
-    logger.info("[trace end " + trace_id + "]")
+    logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "create_new_inf_rule.html", title="create new inference rule"
     )

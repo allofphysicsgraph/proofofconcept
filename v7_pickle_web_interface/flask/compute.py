@@ -130,6 +130,9 @@ def allowed_file(filename):
 
 def validate_json_file(filename: str) -> None:
     """
+    1) validate the file is JSON
+    2) validate the JSON file adheres to the schema
+    
     >>> validate_json_file('filename.json')
     """
     trace_id = str(random.randint(1000000, 9999999))
