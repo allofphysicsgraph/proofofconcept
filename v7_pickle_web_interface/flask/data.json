@@ -4972,7 +4972,7 @@
             }
         },
         "332170": {
-            "name": "equations of motion with constant acceleration - SUVAT",
+            "name": "equations of motion in 1D with constant acceleration - SUVAT (algebra)",
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "https://en.wikipedia.org/wiki/Equations_of_motion",
             "creation date": "2020-05-14",
@@ -5908,6 +5908,1008 @@
                     "creation date": "2020-05-17"
                 }
             }
+        },
+        "187793": {
+            "name": "equations of motion in 2D (calculus)",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "creation date": "2020-05-17",
+            "steps": {
+                "9736733": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6758737"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "7320561": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "6758737",
+                        "4862823"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4755350"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "6387363": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "5359560",
+                        "4755350"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4904941"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "3356600": {
+                    "inf rule": "separate two vector components",
+                    "inputs": [
+                        "4904941"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5765841",
+                        "2080932"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "4576718": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2060958"
+                    ],
+                    "linear index": 7,
+                    "notes": "define the orientation of the coordinate system with respect to the gravitational acceleration such that x axis is perpendicular to gravity",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "4691130": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "1439312"
+                    ],
+                    "linear index": 8,
+                    "notes": "define the orientation of the coordinate system with respect to the gravitational acceleration such that y axis is parallel to gravity",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "6602846": {
+                    "inf rule": "assume N dimensions",
+                    "inputs": [],
+                    "feeds": [
+                        "8167187"
+                    ],
+                    "outputs": [
+                        "4862823"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "1298567": {
+                    "inf rule": "assume N dimensions",
+                    "inputs": [],
+                    "feeds": [
+                        "7516260"
+                    ],
+                    "outputs": [
+                        "5359560"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "2304792": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "2060958",
+                        "5765841"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8742281"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "2904437": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "1439312",
+                        "2080932"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3939933"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "3500836": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "3939933"
+                    ],
+                    "feeds": [
+                        "8813112"
+                    ],
+                    "outputs": [
+                        "4777195"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "3673220": {
+                    "inf rule": "indefinite integration",
+                    "inputs": [
+                        "4777195"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3366698"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "4553137": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "3366698"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1321587"
+                    ],
+                    "linear index": 15,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "2139033": {
+                    "inf rule": "add X to both sides",
+                    "inputs": [
+                        "1321587"
+                    ],
+                    "feeds": [
+                        "8163462"
+                    ],
+                    "outputs": [
+                        "2682139"
+                    ],
+                    "linear index": 16,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "1136226": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3936380"
+                    ],
+                    "linear index": 17,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "6781797": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "3936380",
+                        "2682139"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5010170"
+                    ],
+                    "linear index": 18,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "9095941": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "5010170"
+                    ],
+                    "feeds": [
+                        "8727369"
+                    ],
+                    "outputs": [
+                        "5577963"
+                    ],
+                    "linear index": 19,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "7412638": {
+                    "inf rule": "indefinite integration",
+                    "inputs": [
+                        "5577963"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8020644"
+                    ],
+                    "linear index": 20,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "8200501": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "8020644"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8638087"
+                    ],
+                    "linear index": 21,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "4389482": {
+                    "inf rule": "add X to both sides",
+                    "inputs": [
+                        "8638087"
+                    ],
+                    "feeds": [
+                        "1650323"
+                    ],
+                    "outputs": [
+                        "7541692"
+                    ],
+                    "linear index": 22,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "1138623": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "8742281"
+                    ],
+                    "feeds": [
+                        "6139485"
+                    ],
+                    "outputs": [
+                        "5239397"
+                    ],
+                    "linear index": 23,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "6514260": {
+                    "inf rule": "indefinite integration",
+                    "inputs": [
+                        "5239397"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3137944"
+                    ],
+                    "linear index": 24,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "7192805": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "3137944"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9737190"
+                    ],
+                    "linear index": 25,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "9911907": {
+                    "inf rule": "add X to both sides",
+                    "inputs": [
+                        "9737190"
+                    ],
+                    "feeds": [
+                        "7247144"
+                    ],
+                    "outputs": [
+                        "8435615"
+                    ],
+                    "linear index": 26,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "6801838": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4895553"
+                    ],
+                    "linear index": 27,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "1117397": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8435615",
+                        "4895553"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5123314"
+                    ],
+                    "linear index": 28,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "1662112": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "5123314"
+                    ],
+                    "feeds": [
+                        "5587641"
+                    ],
+                    "outputs": [
+                        "8062944"
+                    ],
+                    "linear index": 29,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "2739184": {
+                    "inf rule": "indefinite integration",
+                    "inputs": [
+                        "8062944"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2732393"
+                    ],
+                    "linear index": 30,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "8369238": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "2732393"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2740672"
+                    ],
+                    "linear index": 31,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "5993111": {
+                    "inf rule": "add X to both sides",
+                    "inputs": [
+                        "2740672"
+                    ],
+                    "feeds": [
+                        "7526914"
+                    ],
+                    "outputs": [
+                        "6277762"
+                    ],
+                    "linear index": 32,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "2851041": {
+                    "inf rule": "swap LHS with RHS",
+                    "inputs": [
+                        "6277762"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3011802"
+                    ],
+                    "linear index": 33,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "8974812": {
+                    "inf rule": "assume N dimensions",
+                    "inputs": [],
+                    "feeds": [
+                        "8345214"
+                    ],
+                    "outputs": [
+                        "1381925"
+                    ],
+                    "linear index": 34,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "7852750": {
+                    "inf rule": "separate vector into two trigonometric ratios",
+                    "inputs": [
+                        "1381925"
+                    ],
+                    "feeds": [
+                        "4315501"
+                    ],
+                    "outputs": [
+                        "5523081",
+                        "2378061"
+                    ],
+                    "linear index": 35,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "5219345": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "5523081"
+                    ],
+                    "feeds": [
+                        "2788936"
+                    ],
+                    "outputs": [
+                        "6010171"
+                    ],
+                    "linear index": 36,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "3504214": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "6010171",
+                        "3011802"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6795282"
+                    ],
+                    "linear index": 37,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "6601736": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "6795282"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 38,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "2766390": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "2378061"
+                    ],
+                    "feeds": [
+                        "9035634"
+                    ],
+                    "outputs": [
+                        "3041148"
+                    ],
+                    "linear index": 39,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "4385306": {
+                    "inf rule": "swap LHS with RHS",
+                    "inputs": [
+                        "7541692"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1910429"
+                    ],
+                    "linear index": 40,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "8183035": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "3041148",
+                        "1910429"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9780510"
+                    ],
+                    "linear index": 41,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "6571218": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "9780510"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 42,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                }
+            }
+        },
+        "918264": {
+            "name": "projectile path in 2D is parabolic",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "Using the 2D equations of motion, show that projectile path is second order polynomial of the form y = a x^2 + b x + c",
+            "creation date": "2020-05-17",
+            "steps": {
+                "4439032": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4718749"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "2879756": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "4718749"
+                    ],
+                    "feeds": [
+                        "4648848"
+                    ],
+                    "outputs": [
+                        "8858248"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "6487343": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5756391"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "1975942": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8858248",
+                        "5756391"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9683207"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "3092929": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "9683207"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 5,
+                    "notes": "expression is a second order polynomial; projecticle motion is parabolic",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                }
+            }
+        },
+        "201726": {
+            "name": "angle of maximum distance for projectile motion",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "creation date": "2020-05-17",
+            "steps": {
+                "8794366": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "1292901"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "5937834": {
+                    "inf rule": "substitute two variables into expr",
+                    "inputs": [
+                        "2028521",
+                        "9370914",
+                        "1292901"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8592617"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "7068872": {
+                    "inf rule": "boundary condition with two expressions",
+                    "inputs": [
+                        "7946350"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4911015"
+                    ],
+                    "linear index": 3,
+                    "notes": "y(t_f) = y_f = 0",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "2888455": {
+                    "inf rule": "LHS of expr 1 equals LHS of expr 2",
+                    "inputs": [
+                        "8592617",
+                        "4911015"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7336772"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "9561765": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2601896"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "6398792": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "7336772",
+                        "2601896"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7465542"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "2825295": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "7465542"
+                    ],
+                    "feeds": [
+                        "1548440"
+                    ],
+                    "outputs": [
+                        "5115586"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "9270409": {
+                    "inf rule": "add X to both sides",
+                    "inputs": [
+                        "5115586"
+                    ],
+                    "feeds": [
+                        "7072262"
+                    ],
+                    "outputs": [
+                        "3904454"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "8131060": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "3904454"
+                    ],
+                    "feeds": [
+                        "4824772"
+                    ],
+                    "outputs": [
+                        "8982886"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "3645843": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2022953"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "5860845": {
+                    "inf rule": "substitute two variables into expr",
+                    "inputs": [
+                        "5327191",
+                        "2411880",
+                        "2022953"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2293278"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "4274767": {
+                    "inf rule": "boundary condition with two expressions",
+                    "inputs": [
+                        "1654988"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5891715"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "5424962": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "5891715",
+                        "2293278"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6742208"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "5447490": {
+                    "inf rule": "subtract X from both sides",
+                    "inputs": [
+                        "6742208"
+                    ],
+                    "feeds": [
+                        "5195494"
+                    ],
+                    "outputs": [
+                        "6756414"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "8352636": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8982886",
+                        "6756414"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4362314"
+                    ],
+                    "linear index": 15,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "3635128": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6199255"
+                    ],
+                    "linear index": 16,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "9760197": {
+                    "inf rule": "substitute X for Y",
+                    "inputs": [
+                        "6199255"
+                    ],
+                    "feeds": [
+                        "7109663",
+                        "8655530"
+                    ],
+                    "outputs": [
+                        "7596368"
+                    ],
+                    "linear index": 17,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "6672580": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "7596368",
+                        "4362314"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5129639"
+                    ],
+                    "linear index": 18,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "9804800": {
+                    "inf rule": "maximum of expr",
+                    "inputs": [
+                        "5129639"
+                    ],
+                    "feeds": [
+                        "4113753"
+                    ],
+                    "outputs": [
+                        "2728170"
+                    ],
+                    "linear index": 19,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "9551659": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "2728170",
+                        "5129639"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9834994"
+                    ],
+                    "linear index": 20,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "3846508": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "9834994"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6972103"
+                    ],
+                    "linear index": 21,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "2933842": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "6972103"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 22,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                },
+                "7996351": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "2728170"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 23,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-17"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -6444,7 +7446,101 @@
         "6686671": "8750500372",
         "7668898": "7543102525",
         "9894001": "8267133829",
-        "1528585": "7968822469"
+        "1528585": "7968822469",
+        "6758737": "3169580383",
+        "4862823": "8602512487",
+        "4755350": "4158986868",
+        "5359560": "5349866551",
+        "4904941": "7729413831",
+        "5765841": "1819663717",
+        "2080932": "8228733125",
+        "2060958": "9707028061",
+        "1439312": "2741489181",
+        "8167187": "3270039798",
+        "7516260": "8880467139",
+        "8742281": "8750379055",
+        "3939933": "1977955751",
+        "8813112": "6672141531",
+        "4777195": "1702349646",
+        "3366698": "8584698994",
+        "1321587": "9973952056",
+        "8163462": "4167526462",
+        "2682139": "6572039835",
+        "3936380": "7252338326",
+        "5010170": "6204539227",
+        "8727369": "1614343171",
+        "5577963": "8145337879",
+        "8020644": "8808860551",
+        "8638087": "2858549874",
+        "1650323": "6098638221",
+        "7541692": "2461349007",
+        "6139485": "8717193282",
+        "5239397": "1166310428",
+        "3137944": "2366691988",
+        "9737190": "1676472948",
+        "7247144": "1439089569",
+        "8435615": "6134836751",
+        "4895553": "8460820419",
+        "5123314": "7455581657",
+        "5587641": "8607458157",
+        "8062944": "1963253044",
+        "2732393": "3676159007",
+        "2740672": "9882526611",
+        "7526914": "3182907803",
+        "6277762": "8486706976",
+        "3011802": "1306360899",
+        "8345214": "7049769409",
+        "1381925": "9341391925",
+        "4315501": "6410818363",
+        "5523081": "7391837535",
+        "2378061": "7376526845",
+        "2788936": "5868731041",
+        "6010171": "6083821265",
+        "6795282": "5438722682",
+        "9035634": "5620558729",
+        "3041148": "8949329361",
+        "1910429": "1405465835",
+        "9780510": "9862900242",
+        "4718749": "9882526611",
+        "4648848": "6050070428",
+        "8858248": "3274926090",
+        "5756391": "1405465835",
+        "9683207": "7354529102",
+        "1292901": "9862900242",
+        "2028521": "8406170337",
+        "9370914": "2403773761",
+        "8592617": "5379546684",
+        "7946350": "5373931751",
+        "4911015": "9112191201",
+        "7336772": "8198310977",
+        "2601896": "1650441634",
+        "7465542": "1087417579",
+        "1548440": "4829590294",
+        "5115586": "2086924031",
+        "7072262": "6974054946",
+        "3904454": "1191796961",
+        "4824772": "2510804451",
+        "8982886": "4778077984",
+        "2022953": "5438722682",
+        "5327191": "3273630811",
+        "2411880": "6732786762",
+        "2293278": "3485125659",
+        "1654988": "4370074654",
+        "5891715": "2378095808",
+        "6742208": "4268085801",
+        "5195494": "8072682558",
+        "6756414": "7233558441",
+        "4362314": "2297105551",
+        "6199255": "2405307372",
+        "7109663": "7587034465",
+        "8655530": "7214442790",
+        "7596368": "2519058903",
+        "5129639": "8922441655",
+        "9707149": "1168205298",
+        "4113753": "5667870149",
+        "2728170": "1541916015",
+        "9834994": "3607070319",
+        "6972103": "5353282496"
     },
     "expressions": {
         "0000040490": {
@@ -11905,6 +13001,807 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17"
+        },
+        "3169580383": {
+            "latex": "\\vec{a} = \\frac{d\\vec{v}}{dt}",
+            "AST": [
+                "2911",
+                "9140",
+                "1467"
+            ],
+            "name": "",
+            "notes": "acceleration is the change in speed over a duration",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8602512487": {
+            "latex": "\\vec{a} = a_x \\hat{x} + a_y \\hat{y}",
+            "AST": [
+                "9140",
+                "2911",
+                "2911",
+                "5647"
+            ],
+            "name": "",
+            "notes": "decompose acceleration into two components",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "4158986868": {
+            "latex": "a_x \\hat{x} + a_y \\hat{y} = \\frac{d\\vec{v}}{dt}",
+            "AST": [
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5349866551": {
+            "latex": "\\vec{v} = v_x \\hat{x} + v_y \\hat{y}",
+            "AST": [
+                "2911",
+                "2911",
+                "5647",
+                "2911"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7729413831": {
+            "latex": "a_x \\hat{x} + a_y \\hat{y} = \\frac{d}{dt} \\left(v_x \\hat{x} + v_y \\hat{y} \\right)",
+            "AST": [
+                "1467",
+                "5647",
+                "2911"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1819663717": {
+            "latex": "a_x = \\frac{d}{dt} v_x",
+            "AST": [
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8228733125": {
+            "latex": "a_y = \\frac{d}{dt} v_y",
+            "AST": [
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "9707028061": {
+            "latex": "a_x = 0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2741489181": {
+            "latex": "a_y = -g",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "3270039798": {
+            "latex": "2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8880467139": {
+            "latex": "2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8750379055": {
+            "latex": "0 = \\frac{d}{dt} v_x",
+            "AST": [
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1977955751": {
+            "latex": "-g = \\frac{d}{dt} v_y",
+            "AST": [
+                "1467",
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6672141531": {
+            "latex": "dt",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1702349646": {
+            "latex": "-g dt = d v_y",
+            "AST": [
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8584698994": {
+            "latex": "-g \\int dt = \\int d v_y",
+            "AST": [
+                "2911",
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "9973952056": {
+            "latex": "-g t = v_y - v_{0, y}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "4167526462": {
+            "latex": "v_{0, y}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6572039835": {
+            "latex": "-g t + v_{0, y} = v_y",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7252338326": {
+            "latex": "v_y = \\frac{dy}{dt}",
+            "AST": [
+                "1467",
+                "5647"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6204539227": {
+            "latex": "-g t + v_{0, y} = \\frac{dy}{dt}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1614343171": {
+            "latex": "dt",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8145337879": {
+            "latex": "-g t dt + v_{0, y} dt = dy",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8808860551": {
+            "latex": "-g \\int t dt + v_{0, y} \\int dt = \\int dy",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2858549874": {
+            "latex": "- \\frac{1}{2} g t^2 + v_{0, y} t = y - y_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6098638221": {
+            "latex": "y_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2461349007": {
+            "latex": "- \\frac{1}{2} g t^2 + v_{0, y} t + y_0 = y",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8717193282": {
+            "latex": "dt",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1166310428": {
+            "latex": "0 dt = d v_x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2366691988": {
+            "latex": "\\int 0 dt = \\int d v_x",
+            "AST": [
+                "1467",
+                "2911"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1676472948": {
+            "latex": "0 = v_x - v_{0, x}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1439089569": {
+            "latex": "v_{0, x}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6134836751": {
+            "latex": "v_{0, x} = v_x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8460820419": {
+            "latex": "v_x = \\frac{dx}{dt}",
+            "AST": [
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7455581657": {
+            "latex": "v_{0, x} = \\frac{dx}{dt}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8607458157": {
+            "latex": "dt",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1963253044": {
+            "latex": "v_{0, x} dt = dx",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "3676159007": {
+            "latex": "v_{0, x} \\int dt = \\int dx",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "9882526611": {
+            "latex": "v_{0, x} t = x - x_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "3182907803": {
+            "latex": "x_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8486706976": {
+            "latex": "v_{0, x} t + x_0 = x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1306360899": {
+            "latex": "x = v_{0, x} t + x_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7049769409": {
+            "latex": "2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "9341391925": {
+            "latex": "\\vec{v}_0 = v_{0, x} \\hat{x} + v_{0, y} \\hat{y}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6410818363": {
+            "latex": "\\theta",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7391837535": {
+            "latex": "\\cos(\\theta) = \\frac{v_{0, x}}{v_0}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7376526845": {
+            "latex": "\\sin(\\theta) = \\frac{v_{0, y}}{v_0}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5868731041": {
+            "latex": "v_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6083821265": {
+            "latex": "v_0 \\cos(\\theta) = v_{0, x}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5438722682": {
+            "latex": "x = v_0 t \\cos(\\theta) + x_0",
+            "AST": [
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5620558729": {
+            "latex": "v_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8949329361": {
+            "latex": "v_0 \\sin(\\theta) = v_{0, y}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1405465835": {
+            "latex": "y = - \\frac{1}{2} g t^2 + v_{0, y} t + y_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "9862900242": {
+            "latex": "y = - \\frac{1}{2} g t^2 + v_0 t \\sin(\\theta) + y_0",
+            "AST": [
+                "1467",
+                "5647",
+                "1649",
+                "1575"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6050070428": {
+            "latex": "v_{0, x}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "3274926090": {
+            "latex": "t = \\frac{x - x_0}{v_{0, x}}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7354529102": {
+            "latex": "y = - \\frac{1}{2} g \\left( \\frac{x - x_0}{v_{0, x}} \\right)^2 + v_{0, y} \\frac{x - x_0}{v_{0, x}} + y_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8406170337": {
+            "latex": "y \\to y_f",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2403773761": {
+            "latex": "t \\to t_f",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5379546684": {
+            "latex": "y_f = - \\frac{1}{2} g t_f^2 + v_0 t_f \\sin(\\theta) + y_0",
+            "AST": [
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5373931751": {
+            "latex": "t = t_f",
+            "AST": [
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "9112191201": {
+            "latex": "y_f = 0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8198310977": {
+            "latex": "0 = - \\frac{1}{2} g t_f^2 + v_0 t_f \\sin(\\theta) + y_0",
+            "AST": [
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1650441634": {
+            "latex": "y_0 = 0",
+            "AST": [],
+            "name": "",
+            "notes": "define coordinate system such that initial height is at origin",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1087417579": {
+            "latex": "0 = - \\frac{1}{2} g t_f^2 + v_0 t_f \\sin(\\theta)",
+            "AST": [
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "4829590294": {
+            "latex": "t_f",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2086924031": {
+            "latex": "0 = - \\frac{1}{2} g t_f + v_0 \\sin(\\theta)",
+            "AST": [
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6974054946": {
+            "latex": "\\frac{1}{2} g t_f",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1191796961": {
+            "latex": "\\frac{1}{2} g t_f = v_0 \\sin(\\theta)",
+            "AST": [
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2510804451": {
+            "latex": "2/g",
+            "AST": [
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "4778077984": {
+            "latex": "t_f = \\frac{2 v_0 \\sin(\\theta)}{g}",
+            "AST": [
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "3273630811": {
+            "latex": "x \\to x_f",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6732786762": {
+            "latex": "t \\to t_f",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "3485125659": {
+            "latex": "x_f = v_0 t_f \\cos(\\theta) + x_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "4370074654": {
+            "latex": "t = t_f",
+            "AST": [
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2378095808": {
+            "latex": "x_f = x_0 + d",
+            "AST": [
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "4268085801": {
+            "latex": "x_0 + d = v_0 t_f \\cos(\\theta) + x_0",
+            "AST": [
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8072682558": {
+            "latex": "x_0",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7233558441": {
+            "latex": "d = v_0 t_f \\cos(\\theta)",
+            "AST": [
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2297105551": {
+            "latex": "d = v_0 \\frac{2 v_0 \\sin(\\theta)}{g} \\cos(\\theta)",
+            "AST": [
+                "1943",
+                "1649",
+                "1575"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7587034465": {
+            "latex": "\\theta",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7214442790": {
+            "latex": "x",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2519058903": {
+            "latex": "\\sin(2 \\theta) = 2 \\sin(\\theta) \\cos(\\theta)",
+            "AST": [
+                "1575"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8922441655": {
+            "latex": "d = \\frac{v_0^2}{g} \\sin(2 \\theta)",
+            "AST": [
+                "1943",
+                "1649",
+                "1575"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1168205298": {
+            "latex": "f = \\sin(2 \\theta)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5667870149": {
+            "latex": "\\theta",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1541916015": {
+            "latex": "\\theta = \\frac{\\pi}{4}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "3607070319": {
+            "latex": "d = \\frac{v_0^2}{g} \\sin\\left(2 \\frac{\\pi}{4}\\right)",
+            "AST": [
+                "1943",
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5353282496": {
+            "latex": "d = \\frac{v_0^2}{g}",
+            "AST": [
+                "1943",
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
         }
     },
     "inference rules": {
@@ -11992,7 +13889,7 @@
         "assume N dimensions": {
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "Assume $#1$ dimensions in Eq.~\\ref{eq:#2}.",
+            "latex": "Assume $#1$ dimensions; decompose vector to be Eq.~\\ref{eq:#2}.",
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 0,
@@ -12687,6 +14584,51 @@
             "number of inputs": 2,
             "number of outputs": 1,
             "latex": "Divide Eq.~\\ref{eq:#1} by Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "separate two vector components": {
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 2,
+            "latex": "Separate two vector components in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3}",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "separate three vector components": {
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 3,
+            "latex": "Separate three vector components in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4}.",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "separate vector into two trigonometric ratios": {
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 2,
+            "latex": "Separate vector in Eq.~\\ref{eq:#2} into components related by angle $#1$; yields Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4}.",
+            "notes": "geometry argument in 2D",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "boundary condition with two expressions": {
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1,
+            "latex": "Boundary condition: Eq.~\\ref{eq:#2} when Eq.~\\ref{eq#1}.",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "maximum of expr": {
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1,
+            "latex": "The maximum of Eq.~\\ref{eq:#2} with respect to $#1$ is Eq.~\\ref{eq:#3}",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17"
@@ -13804,6 +15746,160 @@
             ],
             "references": [
                 "https://en.wikipedia.org/wiki/Intensity_(physics)"
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "1649": {
+            "category": "variable",
+            "latex": "g",
+            "name": "acceleration due to gravity",
+            "measure": "length/(time^2)",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Gravity"
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "2958": {
+            "category": "variable",
+            "latex": "v_{0, x}",
+            "name": "initial velocity along x axis",
+            "measure": "length/time",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Velocity"
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "9431": {
+            "category": "variable",
+            "latex": "v_{0, y}",
+            "name": "initial velocity along y axis",
+            "measure": "length/time",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Velocity"
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "6091": {
+            "category": "variable",
+            "latex": "\\vec{v}_0",
+            "name": "initial velocity",
+            "measure": "length/time",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                "https://en.wikipedia.org/wiki/Velocity"
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "4711": {
+            "category": "variable",
+            "latex": "dt",
+            "name": "differential time",
+            "measure": "time",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                ""
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5674": {
+            "category": "variable",
+            "latex": "d v_y",
+            "name": "differential velocity along y axis",
+            "measure": "length/time",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                ""
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5005": {
+            "category": "variable",
+            "latex": "d v_x",
+            "name": "differential velocity along x axis",
+            "measure": "length/time",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                ""
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "5842": {
+            "category": "variable",
+            "latex": "dy",
+            "name": "differential displacement along y axis",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                ""
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "7092": {
+            "category": "variable",
+            "latex": "y_f",
+            "name": "final position on y axis",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                ""
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "8860": {
+            "category": "variable",
+            "latex": "t_f",
+            "name": "final time",
+            "measure": "time",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                ""
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-17"
+        },
+        "3652": {
+            "category": "variable",
+            "latex": "x_f",
+            "name": "final position on x axis",
+            "measure": "length",
+            "scope": [
+                "real"
+            ],
+            "references": [
+                ""
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17"
