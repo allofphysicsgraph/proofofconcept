@@ -1093,8 +1093,8 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
     """
     >>> generate_expr_dict_with_symbol_list()
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
 
     expr_dict_with_symbol_list = dat["expressions"]
@@ -1111,7 +1111,7 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
         expr_dict_with_symbol_list[expr_global_id]["list of symbols"] = list_of_tuples
 
     # logger.debug(str(expr_dict_with_symbol_list))
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return expr_dict_with_symbol_list
 
 
@@ -1126,7 +1126,7 @@ def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
         if len(list_of_deriv_used_in) == 0:
             list_of_symbols_not_in_use.append(symbol)
     list_of_symbols_not_in_use.sort()
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return list_of_symbols_not_in_use
 
 
@@ -1140,7 +1140,7 @@ def get_sorted_list_of_operators_not_in_use(path_to_db: str) -> list:
         if len(list_of_deriv_used_in) == 0:
             list_of_operators_not_in_use.append(operator)
     list_of_operators_not_in_use.sort()
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return list_of_operators_not_in_use
 
 
@@ -1150,12 +1150,12 @@ def get_sorted_list_of_expr(path_to_db: str) -> list:
 
     >>> get_sorted_list_of_expr('data.pkl')
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
     list_expr = list(dat["expressions"].keys())
     list_expr.sort()
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return list_expr
 
 
@@ -1165,8 +1165,8 @@ def get_sorted_list_of_expr_not_in_use(path_to_db: str) -> list:
 
     >>> get_sorted_list_of_expr('data.pkl')
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
 
     expr_popularity_dict = popularity_of_expressions(path_to_db)
     list_of_expr_not_in_use = []
@@ -1174,7 +1174,7 @@ def get_sorted_list_of_expr_not_in_use(path_to_db: str) -> list:
         if len(list_of_deriv_used_in) == 0:
             list_of_expr_not_in_use.append(expr_global_id)
     list_of_expr_not_in_use.sort()
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return list_of_expr_not_in_use
 
 
@@ -1182,8 +1182,8 @@ def get_sorted_list_of_inf_rules_not_in_use(path_to_db: str) -> list:
     """
     >>> get_sorted_list_of_inf_rules('data.pkl')
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
     infrule_popularity_dict = popularity_of_infrules(path_to_db)
     list_of_infrules_not_in_use = []
@@ -1192,7 +1192,7 @@ def get_sorted_list_of_inf_rules_not_in_use(path_to_db: str) -> list:
             list_of_infrules_not_in_use.append(infrule)
     # list_of_infrules_not_in_use = [x.lower() for x in list_of_infrules_not_in_use]
     list_of_infrules_not_in_use.sort()
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return list_of_infrules_not_in_use
 
 
@@ -1200,13 +1200,13 @@ def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     """
     >>> get_sorted_list_of_inf_rules('data.pkl')
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
     list_infrule = list(dat["inference rules"].keys())
     # list_infrule = [x.lower() for x in list_infrule]
     list_infrule.sort()
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return list_infrule
 
 
@@ -1214,8 +1214,8 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
     """
     >>> get_list_of_derivations('pdg.db')
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
     list_of_tups = []
     for deriv_id in dat["derivations"].keys():
@@ -1226,7 +1226,7 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
     for this_tup in sorted(list_of_tups, key=lambda x: x[1]):
         list_deriv.append(this_tup[0])
 
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return list_deriv
 
 
@@ -1234,8 +1234,8 @@ def create_symbol_id(path_to_db: str) -> str:
     """
     >>> create_symbol_id()
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
     symbol_ids_in_use = list(dat["symbols"].keys())
     found_valid_id = False
@@ -1249,7 +1249,7 @@ def create_symbol_id(path_to_db: str) -> str:
         if loop_count > 100000:
             logger.error("too many; this seems unlikely")
             raise Exception("this seems unlikely")
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return proposed_symbol_id
 
 
@@ -1257,8 +1257,8 @@ def create_deriv_id(path_to_db: str) -> str:
     """
     >>> create_deriv_id()
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
     deriv_ids_in_use = list(dat["derivations"].keys())
 
@@ -1273,7 +1273,7 @@ def create_deriv_id(path_to_db: str) -> str:
         if loop_count > 10000000:
             logger.error("too many; this seems unlikely")
             raise Exception("this seems unlikely")
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return proposed_deriv_id
 
 
@@ -1283,8 +1283,8 @@ def create_expr_global_id(path_to_db: str) -> str:
 
     >>> create_expr_id(False, 'pdg.db')
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
 
     global_expr_ids_in_use = list(dat["expressions"].keys())
@@ -1302,7 +1302,7 @@ def create_expr_global_id(path_to_db: str) -> str:
         if loop_count > 10000000000:
             logger.error("too many; this seems unlikely")
             raise Exception("this seems unlikely")
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return proposed_global_expr_id
 
 
@@ -1313,8 +1313,8 @@ def create_step_id(path_to_db: str) -> str:
     search DB to find whether proposed local ID already exists
     >>> create_step_id(False, 'pdg.db')
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
 
     step_ids_in_use = []
@@ -1332,7 +1332,7 @@ def create_step_id(path_to_db: str) -> str:
         if loop_count > 10000000000:
             logger.error("too many reached; this seems unlikely")
             raise Exception("this seems unlikely")
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return proposed_step_id
 
 
@@ -1341,8 +1341,8 @@ def create_expr_local_id(path_to_db: str) -> str:
     search DB to find whether proposed local ID already exists
     >>> create_expr_local_id(False, 'pdg.db')
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
 
     local_ids_in_use = list(dat["expr local to global"].keys())
@@ -1357,7 +1357,7 @@ def create_expr_local_id(path_to_db: str) -> str:
         if loop_count > 10000000000:
             logger.error("unlikely")
             raise Exception("this seems unlikely")
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return proposed_local_id
 
 
@@ -2270,15 +2270,15 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                     )
                     for expr_local_id in step_dict["feeds"]:
                         lat_file.write("{" + expr_local_id + "}")
-#                        expr_global_id = dat["expr local to global"][expr_local_id]
-#                        lat_file.write(
-#                            "{" + dat["expressions"][expr_global_id]["latex"] + "}"
-#                        )
+                    #                        expr_global_id = dat["expr local to global"][expr_local_id]
+                    #                        lat_file.write(
+                    #                            "{" + dat["expressions"][expr_global_id]["latex"] + "}"
+                    #                        )
                     for expr_local_id in step_dict["inputs"]:
-                        #expr_global_id = dat["expr local to global"][expr_local_id]
+                        # expr_global_id = dat["expr local to global"][expr_local_id]
                         lat_file.write("{" + expr_local_id + "}")
                     for expr_local_id in step_dict["outputs"]:
-                        #expr_global_id = dat["expr local to global"][expr_local_id]
+                        # expr_global_id = dat["expr local to global"][expr_local_id]
                         lat_file.write("{" + expr_local_id + "}")
                     lat_file.write("\n")
                     # write output expressions
@@ -2311,7 +2311,9 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
 
     remove_file_debris([path_to_pdf], [pdf_filename], ["log", "pdf"])
 
-    tex_filename_with_extension = generate_tex_for_derivation(deriv_id, user_email, path_to_db)
+    tex_filename_with_extension = generate_tex_for_derivation(
+        deriv_id, user_email, path_to_db
+    )
 
     # first of two latex runs
     process = subprocess.run(
@@ -3465,7 +3467,7 @@ def initialize_derivation(
     }
     clib.write_db(path_to_db, dat)
 
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return deriv_id
 
 

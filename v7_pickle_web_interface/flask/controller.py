@@ -1541,7 +1541,7 @@ def start_new_derivation():
             "start_new_derivation: name of derivation = %s", name_of_derivation,
         )
         deriv_id = compute.initialize_derivation(
-            name_of_derivation, str(current_user.username), notes, path_to_db
+            name_of_derivation, str(current_user.email), notes, path_to_db
         )
         logger.info("[trace page end " + trace_id + "]")
         return redirect(
@@ -1673,10 +1673,12 @@ def list_all_symbols():
                 value = ""
             else:
                 value = request.form["symbol_value"]
+
             if "symbol_units" not in request.form.keys():
                 units = ""
             else:
                 units = request.form["symbol_units"]
+
             if "symbol_scope_complex" not in request.form.keys():
                 scope = ["real"]
             elif (
@@ -1691,6 +1693,11 @@ def list_all_symbols():
                 and request.form["symbol_scope_complex"] == "y"
             ):
                 scope = ["real", "complex"]
+            elif (
+                "symbol_scope_complex" in request.form.keys()
+                and request.form["symbol_scope_complex"] == "y"
+            ):
+                scope = ["complex"]
             compute.add_symbol(
                 request.form["symbol_category"],
                 request.form["symbol_latex"],
@@ -2184,7 +2191,9 @@ def select_from_existing_derivations():
         if request.form["submit_button"] == "generate_pdf":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_pdf')])
             try:
-                pdf_filename = compute.generate_pdf_for_derivation(deriv_id, path_to_db)
+                pdf_filename = compute.generate_pdf_for_derivation(
+                    deriv_id, current_user.email, path_to_db
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -2203,7 +2212,9 @@ def select_from_existing_derivations():
         if request.form["submit_button"] == "generate_tex":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_tex')])
             try:
-                tex_filename = compute.generate_tex_for_derivation(deriv_id, path_to_db)
+                tex_filename = compute.generate_tex_for_derivation(
+                    deriv_id, current_user.email, path_to_db
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -2827,7 +2838,9 @@ def review_derivation(deriv_id: str):
             return redirect(url_for("index", referrer="review_derivation"))
         elif request.form["submit_button"] == "generate pdf":
             try:
-                pdf_filename = compute.generate_pdf_for_derivation(deriv_id, path_to_db)
+                pdf_filename = compute.generate_pdf_for_derivation(
+                    deriv_id, current_user.email, path_to_db
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -2838,7 +2851,9 @@ def review_derivation(deriv_id: str):
             )
         elif request.form["submit_button"] == "generate tex":
             try:
-                tex_filename = compute.generate_tex_for_derivation(deriv_id, path_to_db)
+                tex_filename = compute.generate_tex_for_derivation(
+                    deriv_id, current_user.email, path_to_db
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
