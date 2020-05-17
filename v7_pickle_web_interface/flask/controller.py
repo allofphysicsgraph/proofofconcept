@@ -1659,6 +1659,9 @@ def list_all_symbols():
         logger.debug("request.form = %s", request.form)
         if "delete_symbol" in request.form.keys():
             compute.delete_symbol(request.form["delete_symbol"], path_to_db)
+        elif "symbol ID to delete" in request.form.keys():
+            # request.form =  ('submit_button', 'delete symbol'), ('symbol ID to delete', '7753')
+            compute.delete_symbol(request.form["symbol ID to delete"], path_to_db)
         elif "edit_symbol_latex" in request.form.keys():
             # request.form = ImmutableMultiDict([('edit_symbol_latex', '1245'), ('revised_text', 'asfgasg')])
             compute.edit_symbol_latex(
