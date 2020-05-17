@@ -715,7 +715,7 @@ Number of feeds:
 -->
 
 {% if inf_rule_dict['number of feeds']|int() > 1|int() %}
-<P>{{ webform.static_feed2.label }}: {{ webform.static_feed2(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small>
+<P>{{ webform.static_feed2.label }}: {{ webform.static_feed2(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
    <input type="checkbox" id="display_feed2_latex" checked="" onchange="convert('static_feed2','display_feed2_latex', 'preview_feed2_latex','output_feed2_latex')">
    <small><label for="display_feed2_latex">Display style</label></small>
 
@@ -727,7 +727,7 @@ Number of feeds:
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 2|int() %}
-<P>{{ webform.static_feed3.label }}: {{ webform.static_feed3(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small></td>
+<P>{{ webform.static_feed3.label }}: {{ webform.static_feed3(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
    <input type="checkbox" id="display_feed3_latex" checked="" onchange="convert('static_feed3','display_feed3_latex', 'preview_feed3_latex','output_feed3_latex')">
    <small><label for="display_feed3_latex">Display style</label></small>
 
