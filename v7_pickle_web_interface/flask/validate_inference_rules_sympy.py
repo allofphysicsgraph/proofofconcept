@@ -322,6 +322,9 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     elif step_dict["inf rule"] == "square root both sides":
         logger.info("[trace end " + trace_id + "]")
         return square_root_both_sides(latex_dict)
+    elif step_dict["inf rule"] == "divide expr 1 by expr 2":
+        logger.info("[trace end " + trace_id + "]")
+        return divide_expr_by_expr(latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        return (latex_dict)
     elif (
@@ -1570,6 +1573,17 @@ def square_root_both_sides(latex_dict):
     >>> latex_dict['feed'] = ['']
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> square_root_both_sides(latex_dict)
+    """
+    return "no check performed"
+
+
+def divide_expr_by_expr(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> divide_expr_by_expr(latex_dict)
     """
     return "no check performed"
 
