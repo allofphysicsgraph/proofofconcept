@@ -325,6 +325,22 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     elif step_dict["inf rule"] == "divide expr 1 by expr 2":
         logger.info("[trace end " + trace_id + "]")
         return divide_expr_by_expr(latex_dict)
+    elif step_dict["inf rule"] == "separate two vector components":
+        logger.info("[trace end " + trace_id + "]")
+        return separate_two_vector_components(latex_dict)
+    elif step_dict["inf rule"] == "separate three vector components":
+        logger.info("[trace end " + trace_id + "]")
+        return separate_three_vector_components(latex_dict)
+    elif step_dict["inf rule"] == "separate vector into two trigonometric ratios":
+        return separate_vector_into_two_trigonometric_ratios(latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        return (latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        return (latex_dict)
     elif (
@@ -1584,6 +1600,39 @@ def divide_expr_by_expr(latex_dict):
     >>> latex_dict['feed'] = ['']
     >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
     >>> divide_expr_by_expr(latex_dict)
+    """
+    return "no check performed"
+
+
+def separate_two_vector_components(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> separate_two_vector_components(latex_dict)
+    """
+    return "no check performed"
+
+
+def separate_three_vector_components(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> separate_three_vector_components(latex_dict)
+    """
+    return "no check performed"
+
+
+def separate_vector_into_two_trigonometric_ratios(latex_dict):
+    """
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['feed'] = ['']
+    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> separate_vector_into_two_trigonometric_ratios(latex_dict)
     """
     return "no check performed"
 
