@@ -1370,7 +1370,7 @@ def user_documentation():
 
     >>> user_documentation()
     """
-    logger.info("[trace] user_documentation")
+    logger.info("[trace]")
     return render_template("user_documentation.html", title="User Documentation")
 
 
@@ -1601,7 +1601,8 @@ def list_all_operators():
     """
     >>>
     """
-    logger.info("[trace] list_all_operators")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]")
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
@@ -1651,7 +1652,8 @@ def list_all_symbols():
 
     >>> list_all_symbols()
     """
-    logger.info("[trace] list_all_symbols")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]")
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
@@ -1743,7 +1745,9 @@ def list_all_expressions():
 
     >>> list_all_expressions()
     """
-    logger.info("[trace] list_all_expressions")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]")
+
     dat = clib.read_db(path_to_db)
     try:
         expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
@@ -1898,7 +1902,9 @@ def list_all_inference_rules():
 
     >>> list_all_inference_rules()
     """
-    logger.info("[trace] list_all_inference_rules")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]")
+
     logger.debug(str(request.form))
     dat = clib.read_db(path_to_db)
     try:
@@ -2028,7 +2034,9 @@ def select_derivation_to_edit():
 
     >>> select_derivation_to_edit()
     """
-    logger.info("[trace] select_derivation_to_edit")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]")
+
     if request.method == "POST":
         logger.debug(
             "request.form = %s", request.form,
@@ -2058,7 +2066,8 @@ def select_derivation_step_to_edit(deriv_id: str):
 
     >>> select_derivation_step_to_edit('fun deriv')
     """
-    logger.info("[trace] select_derivation_step_to_edit")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]")
 
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)

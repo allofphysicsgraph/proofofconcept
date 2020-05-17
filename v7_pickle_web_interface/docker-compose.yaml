@@ -16,6 +16,7 @@ services:
 # https://pythonspeed.com/articles/gunicorn-in-docker/
     command: >
       gunicorn
+      --reload
       --bind 0.0.0.0:5000
       --forwarded-allow-ips="*"
       --log-level debug
