@@ -1,7 +1,10 @@
 {% extends "_base.html" %}
 {% block content %}
 
-<P>start new derivation
+<fieldset>
+  <legend>
+    Start new derivation
+  </legend>
 
 <form method="post" action="">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
@@ -20,6 +23,11 @@ https://stackoverflow.com/questions/4930747/how-to-specify-rows-and-columns-of-a
 <small>(optional) max length = 300 characters</small><BR>
   <input type="submit" value="begin">
 </form>
+</fieldset>
+
+<P>
+  Recommendation: <a href="{{ url_for('list_all_symbols') }}#add symbol">create all the variables</a> before entering expressions
+</P>
 
 {% endblock %}
 
