@@ -129,6 +129,24 @@ function latex_filter() {
 <P>
 <fieldset>
 <legend>
+  <a id="delete symbol from AST">
+    <h2>Remove symbol from the AST for an expression</h2>
+  </a>
+</legend>
+  {% if current_user.is_anonymous %}
+  This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_expressions">signed in</a>
+  {% else %}
+<form method="post" action="">
+I don't know what the form for this looks like yet
+</form>
+  {% endif %}
+</fieldset>
+</P>
+
+
+<P>
+<fieldset>
+<legend>
   <a id="edit expr latex">
     <h2>Edit the latex for an expression</h2>
   </a>
