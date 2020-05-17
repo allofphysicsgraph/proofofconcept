@@ -144,7 +144,6 @@ function enable_category_radio2(enabled){
   {{ new_symbol_form.csrf_token }}
     <div class="form-group">
       <div class="input-group">
-
         Category:
   <table>
   {% for subfield in new_symbol_form.symbol_category %}
@@ -163,8 +162,6 @@ function enable_category_radio2(enabled){
     </tr>
   {% endfor %}
   </table>
-
-
         {{ new_symbol_form.symbol_latex.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_latex(id="symbol_latex") }}<BR>
 
    <input type="checkbox" id="display_symbol_latex" checked="" onchange="convert('symbol_latex','display_symbol_latex', 'preview_symbol_latex','output_symbol_latex')">
@@ -195,5 +192,40 @@ function enable_category_radio2(enabled){
 </fieldset>
 </P>
 
+<!-- 
+The following is commented out because it is inferior to the option of "delete symbol" per row in the table
+
+The commented out form is left in place to remind the developer to NOT create or enable this form 
+<P>
+  <fieldset>
+    <legend>
+      <h2>
+        <a id="delete symbol">
+          Delete a symbol
+        </a>
+      </h2>
+    </legend>
+    {% if current_user.is_anonymous %}
+    This action requires you to be <a href="{{ url_for('login') }}?referrer=list_all_symbols">signed in</a>
+    {% else %}
+    <form method="post" action="">
+      <!- - https://flask-wtf.readthedocs.io/en/v0.12/csrf.html - ->
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon">Select from</span>
+          <select name="delete_symbol" class="selectpicker form-control">
+            {% for sid, symbol_dict in dat['symbols']|dictsort %}
+            <option value="{{ sid }}">{{ sid }}, {{ symbol_dict['latex'] }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-default">Update</button>
+      </div>
+    </form>
+    {% endif %}
+  </fieldset>
+</p>
+-->
 
 {% endblock %}
