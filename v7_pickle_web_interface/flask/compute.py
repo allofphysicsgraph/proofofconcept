@@ -1443,6 +1443,9 @@ def flatten_dict(d: dict, sep: str = "_") -> dict:
 
     >>> flatten_dict({},'_')
     """
+    logger.info("[trace]")
+    # note: logging of start/stop is not enabled for this function because I don't plan on altering the code in this function
+
     obj = collections.OrderedDict()
 
     def recurse(t, parent_key=""):
@@ -1456,7 +1459,6 @@ def flatten_dict(d: dict, sep: str = "_") -> dict:
             obj[parent_key] = t
 
     recurse(d)
-    logger.info("[trace end " + trace_id + "]")
     return dict(obj)
 
 
