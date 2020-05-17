@@ -271,12 +271,17 @@ def guess_missing_PDG_AST_ids(
     for sympy_symbol_without_id in list_of_symbols_in_step_lacking_id:
         list_of_candidate_ids = []
         for PDG_symbol_id in list_of_PDG_symbol_ids_in_step:
-            if sympy_symbol_without_id in dat["symbols"][PDG_symbol_id]["latex"]:
+            if sympy_symbol_without_id == dat["symbols"][PDG_symbol_id]["latex"]:
                 list_of_candidate_ids.append(PDG_symbol_id)
         symbol_candidate_dict[sympy_symbol_without_id] = list_of_candidate_ids
-        if len(list_of_candidate_ids) == 0:  # no matches in step, look elsewhere
+        if len(list_of_candidate_ids) == 0:  # no matches in step, look in derivation
+            for PDG_symbol_id in list_symbols_used_in_derivation_from_PDG_AST(deriv_id, path_to_db):
+                if sympy_symbol_without_id == dat["symbols"][PDG_symbol_id]["latex"]:
+                    list_of_candidate_ids.append(PDG_symbol_id)
+            symbol_candidate_dict[sympy_symbol_without_id] = list_of_candidate_ids
+        if len(list_of_candidate_ids) == 0:  # no matches in derivation, look in all symbols
             for symbol_id, symbol_dict in dat["symbols"].items():
-                if sympy_symbol_without_id in dat["symbols"][symbol_id]["latex"]:
+                if sympy_symbol_without_id == dat["symbols"][symbol_id]["latex"]:
                     list_of_candidate_ids.append(symbol_id)
             symbol_candidate_dict[sympy_symbol_without_id] = list_of_candidate_ids
 
@@ -422,11 +427,11 @@ def list_symbols_used_in_step_from_PDG_AST(
         for connection_type in ["inputs", "feeds", "outputs"]:
             for local_id in step_dict[connection_type]:
                 expr_global_id = dat["expr local to global"][local_id]
-                logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
+#                logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
                 symbols_per_expr = list_symbols_used_in_expr_from_PDG_AST(
                     dat["expressions"][expr_global_id]["AST"], path_to_db
                 )
-                logger.debug(str(symbols_per_expr))
+#                logger.debug(str(symbols_per_expr))
                 for symbol_id in symbols_per_expr:
                     list_of_symbol_ids.append(symbol_id)
     else:  # step_id not in steps
@@ -435,6 +440,31 @@ def list_symbols_used_in_step_from_PDG_AST(
     logger.info("[trace end " + trace_id + "]")
     return list_of_symbol_ids
 
+def list_symbols_used_in_derivation_from_PDG_AST(deriv_id: str, path_to_db: str) -> list:
+    """
+    >>> 
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+    dat = clib.read_db(path_to_db)
+    list_of_symbol_ids = []
+
+    if deriv_id in dat["derivations"].keys():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+            for connection_type in ["inputs", "feeds", "outputs"]:
+                for local_id in step_dict[connection_type]:
+                    expr_global_id = dat["expr local to global"][local_id]
+                    symbols_per_expr = list_symbols_used_in_expr_from_PDG_AST(
+                        dat["expressions"][expr_global_id]["AST"], path_to_db
+                    )
+                    for symbol_id in symbols_per_expr:
+                        list_of_symbol_ids.append(symbol_id)
+    else:
+        raise Exception("why are you looking for " + deriv_id + " when it does not exist?")
+    list_of_symbol_ids = list(set(list_of_symbol_ids))
+    logger.info("[trace end " + trace_id + "]")
+
+    return list_of_symbol_ids
 
 def list_symbols_used_in_step_from_sympy(
     deriv_id: str, step_id: str, path_to_db: str
@@ -2600,7 +2630,10 @@ def create_derivation_png(deriv_id: str, path_to_db: str) -> str:
     output_filename = deriv_id + ".png"
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
     #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
-    if not os.path.exists("/home/appuser/app/static/" + output_filename):
+
+    # force redraw when updating step
+    # a better way would be to check the md5 hash of the .dot file
+    if True:#not os.path.exists("/home/appuser/app/static/" + output_filename):
         process = subprocess.run(
             ["neato", "-Tpng", dot_filename, "-o" + output_filename],
             stdout=PIPE,
