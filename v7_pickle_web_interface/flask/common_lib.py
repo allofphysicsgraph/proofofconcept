@@ -133,7 +133,7 @@ def write_db(path_to_db: str, dat: dict) -> None:
     #    rd = redis.Redis(connection_pool=redis_pool)
     #    rd.set(name=path_to_db, value=json.dumps(dat))
 
-#    logger.info(sqlite3.version)
+    #    logger.info(sqlite3.version)
 
     conn = create_sql_connection(path_to_db)
     if conn is not None:
