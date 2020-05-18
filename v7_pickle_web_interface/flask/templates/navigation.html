@@ -17,7 +17,7 @@
     <td colspan=2>
       <UL>
         <LI>
-          <a href="{{ url_for('show_all_derivations') }}?referrer=navigation">show all derivations</a>
+          <a href="{{ url_for('show_all_derivations') }}?referrer=navigation">show all {{ dat['derivations']|length }} derivations</a>
         </LI>
         <LI>
           <a href="{{ url_for('start_new_derivation') }}?referrer=navigation">start a new derivation</a>
@@ -26,9 +26,9 @@
            {% endif %}
         </LI>
 <!--
-    { % if number_of_derivations > 0 %}
+    { % if dat['derivations']|length > 0 %}
     <LI>
-      <a href="{{ url_for('select_from_existing_derivations') }}?referrer=navigation">view one of the existing {{ number_of_derivations }} derivations</a>;
+      <a href="{{ url_for('select_from_existing_derivations') }}?referrer=navigation">view one of the existing {{ dat['derivations']|length }} derivations</a>;
       also edit an existing derivation
       { % if current_user.is_anonymous %}
         if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
@@ -60,7 +60,7 @@
     <td>
       <UL>
         <LI>
-      <a href="{{ url_for('list_all_inference_rules') }}?referrer=navigation">list all {{ number_of_infrules }} inference rules</a>;
+      <a href="{{ url_for('list_all_inference_rules') }}?referrer=navigation">list all {{ dat["inference rules"]|length }} inference rules</a>;
       also edit inference rules
       {% if current_user.is_anonymous %}
         if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
@@ -78,9 +78,9 @@
     <td>&nbsp;</td>
     <td colspan=2>
      <UL>
-    {% if number_of_expressions > 0 %}
+    {% if dat['expressions']|length > 0 %}
       <LI>
-        <a href="{{ url_for('list_all_expressions') }}?referrer=navigation">list all {{ number_of_expressions }} expressions</a>;
+        <a href="{{ url_for('list_all_expressions') }}?referrer=navigation">list all {{ dat['expressions']|length }} expressions</a>;
         also edit expressions
       {% if current_user.is_anonymous %}
         if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
@@ -105,10 +105,10 @@
     <td colspan=2>
       <UL>
     <LI>
-      <a href="{{ url_for('list_all_symbols') }}?referrer=navigation">list all {{ number_of_symbols }} symbols</a>
+      <a href="{{ url_for('list_all_symbols') }}?referrer=navigation">list all {{ dat['symbols']|length }} symbols</a>
     </LI>
     <LI>
-      <a href="{{ url_for('list_all_operators') }}?referrer=navigation">list all {{ number_of_operators }} operators</a>
+      <a href="{{ url_for('list_all_operators') }}?referrer=navigation">list all {{ dat['operators']|length }} operators</a>
     </LI>
       </UL>
     </td>

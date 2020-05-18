@@ -1512,11 +1512,12 @@ def navigation():
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "navigation.html",
-        number_of_derivations=len(dat["derivations"].keys()),
-        number_of_infrules=len(dat["inference rules"].keys()),
-        number_of_expressions=len(dat["expressions"].keys()),
-        number_of_symbols=len(dat["symbols"].keys()),
-        number_of_operators=len(dat["operators"].keys()),
+        dat=dat,
+        #number_of_derivations=len(dat["derivations"].keys()),
+        #number_of_infrules=len(dat["inference rules"].keys()),
+        #number_of_expressions=len(dat["expressions"].keys()),
+        #number_of_symbols=len(dat["symbols"].keys()),
+        #number_of_operators=len(dat["operators"].keys()),
         database_json=json_file,
         database_df_pkl=df_pkl_file,
         database_sql=sql_file,
