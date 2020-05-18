@@ -9,17 +9,77 @@ import random
 
 logger = logging.getLogger(__name__)
 
-# most of the validation functions are from
+# many of the validation functions are from
 # https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v2_XML/databases/inference_rules_database.xml
 
 # https://pymotw.com/3/doctest/
-# how to use doctest:
+# how to use doctest for the entire file:
 # python -m doctest -v validate_inference_rules_sympy.py
+
+# testing per function on the command line:
+# import doctest
+# from validate_inference_rules_sympy import *
+# doctest.run_docstring_examples(split_expr_into_lhs_rhs, globals(), verbose=True)
 
 # I wasn't able to get the following to work:
 # from doctest import testmod
 # from validate_inference_rules_sympy import *
 # testmod(name ='split_expr_into_lhs_rhs', verbose = True)
+
+def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
+    """
+    >>> latex_from_expr_local_id('1029', 'no path')
+    'a = b'
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+    dat = clib.read_db(path_to_db)
+    logger.debug("latex_from_expr_local_id; expr_local_id = %s", expr_local_id)
+    global_id = dat["expr local to global"][expr_local_id]
+    latex_expr = dat["expressions"][global_id]["latex"]
+    logger.debug("latex_from_expr_local_id; latex_expr = %s", latex_expr)
+    logger.info("[trace end " + trace_id + "]")
+    return latex_expr
+
+
+def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
+    """
+    Sympy provides experimental support for converting latex to AST
+
+    https://github.com/allofphysicsgraph/proofofconcept/issues/44
+
+    >>> create_sympy_expr_tree_from_latex(r"\frac {1 + \sqrt {\a}} {\b}")
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+
+    sympy_expr = parse_latex(latex_expr_str)
+    logger.debug("create_sympy_expr_tree_from_latex; Sympy expression = %s", sympy_expr)
+
+    latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
+    logger.debug(
+        "create_sympy_expr_tree_from_latex; latex as Sympy expr tree = %s",
+        latex_as_sympy_expr_tree,
+    )
+    logger.info("[trace end " + trace_id + "]")
+    return latex_as_sympy_expr_tree
+
+
+def get_symbols_from_latex(latex_expr_str: str) -> list:
+    """
+    Sometimes Sympy works as desired (for simple algebraic synatx)
+    >>> parse_latex(r'a + k = b + k').free_symbols
+    {b, a, k}
+
+    Sometimes the Sympy output does not reflect user intent
+    #>>> parse_latex(r'\nabla \vec{x} = f(y)').free_symbols
+    {x, nabla, y, vec}
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+    my_sym = list(parse_latex(latex_expr_str).free_symbols)
+    logger.info("[trace end " + trace_id + "]")
+    return my_sym
 
 
 def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
@@ -62,18 +122,18 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
             "ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message)
         )
     logger.info("[trace end " + trace_id + "]")
-    return
+    return "failed", "failed"
 
 
 def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     """
-    There are 4 possible return strings from this function:
-    * "no validation is available..."
+    The possible return strings from this function include:
+    * "no validation is available..." (e.g., for declarations)
+    * "no check performed" (the check is not implemented yet)
     * "step is valid"
     * "step is not valid"
 
-    # following depends on 'add X to both sides'
-    >>> validate_step('quadratic equation derivation', '2500423', 'data.json')
+    >>> validate_step('4924823', '2500423', 'data.json')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -364,14 +424,19 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
 
 def add_X_to_both_sides(latex_dict):
     """
-        # https://docs.sympy.org/latest/gotchas.html#double-equals-signs
-        # https://stackoverflow.com/questions/37112738/sympy-comparing-expressions
+    https://docs.sympy.org/latest/gotchas.html#double-equals-signs
+    https://stackoverflow.com/questions/37112738/sympy-comparing-expressions
+
+    Given  a = b
+    add c to both sides
+    get a + c = b + c
 
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>>
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a'), 'RHS': parse_latex('b')}]
+    >>> latex_dict['feed'] = [parse_latex('c')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('a + c'), 'RHS': parse_latex('b + c')}]
+    >>> add_X_to_both_sides(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -400,13 +465,22 @@ def add_X_to_both_sides(latex_dict):
 
 def subtract_X_from_both_sides(latex_dict):
     """
-        # https://docs.sympy.org/latest/tutorial/manipulation.html
+    https://docs.sympy.org/latest/tutorial/manipulation.html
+
+    Rather than have "add X to both sides" and "subtract X from both sides"
+    as separate inference rules, we could write "subtract X from both sides"
+    to use "add X to both sides"
+
+    Given a = b
+    subtract c
+    get a - c = b - c
 
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>>
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a'), 'RHS': parse_latex('b')}]
+    >>> latex_dict['feed'] = [parse_latex('c')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('a - c'), 'RHS': parse_latex('b - c')}]
+    >>> subtract_X_from_both_sides(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -444,10 +518,11 @@ def multiply_both_sides_by(latex_dict):
     to get '(a + b)*d = c*d'
 
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': 'a + b', 'RHS': 'c'}]
-    >>> latex_dict['output'] = [{'LHS': '(a + b)*d', 'RHS': 'c*d'}]
-    >>> latex_dict['feed'] = ['d']
-    >>>
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a + b'), 'RHS': parse_latex('c')}]
+    >>> latex_dict['feed'] = [parse_latex('d')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('(a + b)*d'), 'RHS': parse_latex('c*d')}]
+    >>> multiply_both_sides_by(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -486,10 +561,11 @@ def divide_both_sides_by(latex_dict):
     to get '(a + b)/d = c/d'
 
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': 'a + b', 'RHS': 'c'}]
-    >>> latex_dict['output'] = [{'LHS': '(a + b)/d', 'RHS': 'c/d'}]
-    >>> latex_dict['feed'] = ['d']
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a + b'), 'RHS': parse_latex('c')}]
+    >>> latex_dict['feed'] = [parse_latex('d')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('(a + b)/d'), 'RHS': parse_latex('c/d')}]
     >>> divide_both_sides_by(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -523,10 +599,11 @@ def substitute_X_for_Y(latex_dict):
     to get 'a + d = c'
 
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': 'a + b', 'RHS': 'c'}]
-    >>> latex_dict['feed'] = ['b', 'd']
-    >>> latex_dict['output'] = [{'LHS': 'a + d', 'RHS': 'c'}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a + b'), 'RHS': parse_latex('c')}]
+    >>> latex_dict['feed'] = [parse_latex('b'), parse_latex('d')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('a + d'), 'RHS': parse_latex('c')}]
     >>> substitute_X_for_Y(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -556,11 +633,17 @@ def substitute_X_for_Y(latex_dict):
 def multiply_LHS_by_unity(latex_dict):
     """
     see also multRHSbyUnity
+
+    Given a = b
+    mult LHS by (c/c)
+    get (a*c)/c = b
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a'), 'RHS': parse_latex('b')}]
+    >>> latex_dict['feed'] = [parse_latex('c/c')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('(a c)/c'), 'RHS': parse_latex('b')}]
     >>> multiply_LHS_by_unity(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -591,11 +674,17 @@ def multiply_LHS_by_unity(latex_dict):
 def multiply_RHS_by_unity(latex_dict):
     """
     see also multLHSbyUnity
+
+    Given a = b
+    mult by (c/c)
+    get a = (b*c)/c
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a'), 'RHS': parse_latex('b')}]
+    >>> latex_dict['feed'] = [parse_latex('c/c')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('a'), 'RHS': parse_latex('(b c)/c')}]
     >>> multiply_RHS_by_unity(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -629,10 +718,11 @@ def add_zero_to_LHS(latex_dict):
     ((feed==0) and (out_lhs0 == (in_lhs0+zero)) and (out_rhs0 == in_rhs0))
 
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> add_zero_to_LHS(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -663,11 +753,14 @@ def add_zero_to_LHS(latex_dict):
 def add_zero_to_RHS(latex_dict):
     """
     ((feed==0) and (out_rhs0 == (in_rhs0+zero)) and (out_lhs0 == in_lhs0))
+
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> add_zero_to_RHS(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -698,11 +791,14 @@ def add_zero_to_RHS(latex_dict):
 def take_curl_of_both_sides(latex_dict):
     """
     ((out_lhs0 == (\nabla \times in_lhs0)) and (out_rhs0 == \nabla \times in_rhs0))
+
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> take_curl_of_both_sides(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -711,11 +807,14 @@ def take_curl_of_both_sides(latex_dict):
 def apply_divergence(latex_dict):
     """
     Curl: $\vec{\nabla} \cdot$
+
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> apply_divergence(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
 
@@ -725,11 +824,17 @@ def apply_divergence(latex_dict):
 def indefinite_integral_over(latex_dict):
     """
     ((out_lhs0 == (\int in_lhs0 feed0)) and (out_rhs0 == \int in_rhs0 feed0))
+
+    Given a = b
+    over dt
+    get \inf a dt = \inf b dt
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> indefinite_integral_over(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -738,11 +843,13 @@ def indefinite_integral_over(latex_dict):
 def indefinite_integration(latex_dict):
     """
     ((out_lhs0 == (\int in_lhs0 )) and (out_rhs0 == \int in_rhs0 ))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> indefinite_integration(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -751,11 +858,13 @@ def indefinite_integration(latex_dict):
 def indefinite_integrate_LHS_over(latex_dict):
     """
     ((out_lhs0 == (\int in_lhs0 feed0)) and (out_rhs0 == in_rhs0))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> indefinite_integrate_LHS_over(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -764,11 +873,13 @@ def indefinite_integrate_LHS_over(latex_dict):
 def indefinite_integrate_RHS_over(latex_dict):
     """
     ((out_lhs0 == in_lhs0) and (out_rhs0 == \int in_rhs0 feed0))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> indefinite_integrate_RHS_over(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -777,11 +888,13 @@ def indefinite_integrate_RHS_over(latex_dict):
 def integrate_over_from_to(latex_dict):
     """
     ((out_lhs0 == (\int_{feed1}^{feed2} in_lhs0 feed0)) and (out_rhs0 == \int_{feed1}^{feed2} in_rhs0 feed0))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> integrate_over_from_to(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -790,11 +903,13 @@ def integrate_over_from_to(latex_dict):
 def partially_differentiate_with_respect_to(latex_dict):
     """
     \frac{\partial}{\partial #1}
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> partially_differentiate_with_respect_to(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -803,11 +918,13 @@ def partially_differentiate_with_respect_to(latex_dict):
 def X_cross_both_sides_by(latex_dict):
     """
     arg x LHS = arg x RHS
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> X_cross_both_sides_by(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -816,11 +933,13 @@ def X_cross_both_sides_by(latex_dict):
 def both_sides_cross_X(latex_dict):
     """
     LHS x arg = RHS x arg
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> both_sides_cross_X(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -829,11 +948,13 @@ def both_sides_cross_X(latex_dict):
 def X_dot_both_sides(latex_dict):
     """
     arg \cdot LHS = arg \cdot RHS
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> X_dot_both_sides(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -842,11 +963,13 @@ def X_dot_both_sides(latex_dict):
 def both_sides_dot_X(latex_dict):
     """
     LHS \cdot arg = RHS \cdot arg
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> both_sides_dot_X(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -855,11 +978,13 @@ def both_sides_dot_X(latex_dict):
 def make_expr_power(latex_dict):
     """
     ((out_lhs0 == (feed0)**(in_lhs0)) and (out_rhs0 == (feed0)**(in_rhs0)))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> make_expr_power(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -889,11 +1014,13 @@ def make_expr_power(latex_dict):
 def select_real_parts(latex_dict):
     """
     sympy.re(2+3*sympy.I)==2
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> select_real_parts(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -902,11 +1029,13 @@ def select_real_parts(latex_dict):
 def select_imag_parts(latex_dict):
     """
     sympy.im(2+3*sympy.I)==3
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> select_imag_parts(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -920,9 +1049,10 @@ def swap_LHS_with_RHS(latex_dict):
     get   'c = a + b'
 
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': 'a + b', 'RHS': 'c'}]
-    >>> latex_dict['output'] = [{'LHS': 'c', 'RHS': 'a + b'}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a + b'), 'RHS': parse_latex('c')}]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('c'), 'RHS': parse_latex('a + b')}]
     >>> swap_LHS_with_RHS(latex_dict)
+    'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -947,10 +1077,11 @@ def sum_exponents_LHS(latex_dict):
     """
     see also sum_exponents_RHS
     (in_rhs0 == out_rhs0)
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -965,10 +1096,11 @@ def sum_exponents_RHS(latex_dict):
     """
     see also sum_exponents_LHS
     (in_lhs0 == out_lhs0)
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -984,10 +1116,11 @@ def add_expr_1_to_expr_2(latex_dict):
     assumes result form LHS(X)+LHS(Y)=RHS(X)+RHS(Y)
 
     (((in_lhs0+in_lhs1)==out_lhs0) and ((in_rhs0+in_rhs1)==out_rhs0))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1017,11 +1150,14 @@ def add_expr_1_to_expr_2(latex_dict):
 
 def substitute_RHS_of_expr_1_into_expr_2(latex_dict):
     """
+    Given a = b
+    and c = b*d
+    get c = a*d
 
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a'), 'RHS': parse_latex('b')},
+                               {'LHS': parse_latex('c'), 'RHS': parse_latex('b d')}]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('c'), 'RHS': parse_latex('a d')}]
     >>>
     """
     logger.info("[trace]")
@@ -1030,11 +1166,14 @@ def substitute_RHS_of_expr_1_into_expr_2(latex_dict):
 
 def substitute_LHS_of_expr_1_into_expr_2(latex_dict):
     """
+    Given a = b
+    and c = a*d
+    get c = b*d
 
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a'), 'RHS': parse_latex('b')},
+                               {'LHS': parse_latex('c'), 'RHS': parse_latex('a d')}]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('c'), 'RHS': parse_latex('b d')}]
     >>>
     """
     logger.info("[trace]")
@@ -1044,10 +1183,11 @@ def substitute_LHS_of_expr_1_into_expr_2(latex_dict):
 def mult_expr_1_by_expr_2(latex_dict):
     """
     ((in_lhs0*in_lhs1 == out_lhs0) and (in_rhs0*in_rhs1 == out_rhs0))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1078,10 +1218,11 @@ def mult_expr_1_by_expr_2(latex_dict):
 def LHS_of_expr_1_eq_LHS_of_expr_2(latex_dict):
     """
     ((in_lhs0 == in_lhs1) and (out_lhs0 == in_rhs0) and (out_rhs0 == in_rhs1))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1110,10 +1251,11 @@ def LHS_of_expr_1_eq_LHS_of_expr_2(latex_dict):
 def RHS_of_expr_1_eq_RHS_of_expr_2(latex_dict):
     """
     ((in_rhs0 == in_rhs1) and (out_lhs0 == in_lhs0) and (out_rhs0 == in_lhs1))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1142,10 +1284,11 @@ def RHS_of_expr_1_eq_RHS_of_expr_2(latex_dict):
 def raise_both_sides_to_power(latex_dict):
     """
     ((out_lhs0 == (in_lhs0)**(feed0)) and (out_rhs0 == (in_rhs0)**(feed0)))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1172,10 +1315,11 @@ def raise_both_sides_to_power(latex_dict):
 def claim_expr_1_equals_expr_2(latex_dict):
     """
     ((in_lhs0 == in_lhs1) and (in_rhs0 == in_rhs1))
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1201,10 +1345,11 @@ def claim_expr_1_equals_expr_2(latex_dict):
 def claim_LHS_equals_RHS(latex_dict):
     """
     (in_lhs0 == in_rhs0)
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1222,9 +1367,9 @@ def expand_integrand(latex_dict):
     """
 
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     logger.info("[trace]")
@@ -1237,10 +1382,11 @@ def function_is_even(latex_dict):
     sympy.cos(x)==sympy.cos(-x)
 
     sympy.cos(x) - sympy.cos(-x) == 0
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     logger.info("[trace]")
@@ -1253,10 +1399,11 @@ def function_is_odd(latex_dict):
     sympy.sin(-x) == -sympy.sin(x)
 
     sympy.sin(-x) - -sympy.sin(x) == 0
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     logger.info("[trace]")
@@ -1269,10 +1416,11 @@ def conjugate_function_X(latex_dict):
     sympy.conjugate(sympy.I)==-sympy.I
 
     replace f with f^*; replace $i$ with $-i$
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     logger.info("[trace]")
@@ -1285,10 +1433,11 @@ def conjugate_both_sides(latex_dict):
     sympy.conjugate(sympy.I)==-sympy.I
 
     Apply ^*; replace $i$ with $-i$
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     logger.info("[trace]")
@@ -1298,10 +1447,11 @@ def conjugate_both_sides(latex_dict):
 def conjugate_transpose_both_sides(latex_dict):
     """
     Apply ^+; replace $i$ with $-i$ and transpose matrices
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     logger.info("[trace]")
@@ -1312,10 +1462,11 @@ def distribute_conjugate_transpose_to_factors(latex_dict):
     """
     Apply ^+; replace $i$ with $-i$ and transpose matrices, rotate bra-ket.
     this is a combination of "distribute conjugate" and then "distribute transpose"
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>>
     """
     logger.info("[trace]")
@@ -1325,11 +1476,13 @@ def distribute_conjugate_transpose_to_factors(latex_dict):
 def distribute_conjugate_to_factors(latex_dict):
     """
     Apply ^*; replace $i$ with $-i$
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> distribute_conjugate_to_factors(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -1338,11 +1491,13 @@ def distribute_conjugate_to_factors(latex_dict):
 def expand_magnitude_to_conjugate(latex_dict):
     """
     replace |f|^2 with ff^*
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> expand_magnitude_to_conjugate(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -1350,11 +1505,14 @@ def expand_magnitude_to_conjugate(latex_dict):
 
 def replace_scalar_with_vector(latex_dict):
     """
+    Given F = m*a
+    Get \vec{F} = m*\vec{a}
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> replace_scalar_with_vector(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -1363,10 +1521,11 @@ def replace_scalar_with_vector(latex_dict):
 def simplify(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> simplify(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -1375,10 +1534,11 @@ def simplify(latex_dict):
 def substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict)
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
@@ -1386,311 +1546,349 @@ def substitute_list_of_new_variables_X_for_list_of_old_variables_Y(latex_dict):
 
 def subtract_expr_1_from_expr_2(latex_dict):
     """
+    Instead of creating the inf rule for subtraction,
+    write this inf rule in terms of add_expr_1_to_expr_2
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> subtract_expr_1_from_expr_2(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def factor_out_x(latex_dict):
     """
+    Given a*x + b*x = c*x + d*x
+    factor out x
+    Get x*(a + b) = (c + d)*x
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('x')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> factor_out_x(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def factor_out_x_from_lhs(latex_dict):
     """
+    Given a*x + b*x = c
+    factor out x
+    get x*(a + b) = c
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('x')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> factor_out_x_from_lhs(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def factor_out_x_from_rhs(latex_dict):
     """
+    Given a = b*x + c*x
+    factor out x
+    get a = (b + c)*x
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('x')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> factor_out_x_from_rhs(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def differentiate_with_respect_to(latex_dict):
     """
+    Given a = b,
+    wrt t
+    get \frac{d}{dt}a = \frac{d}{dt}b
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('t')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> differentiate_with_respect_to(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def apply_function_to_both_sides_of_expression(latex_dict):
     """
+    given a = b
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> apply_function_to_both_sides_of_expression(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def substitute_LHS_of_two_expressions_into_expr(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_LHS_of_two_expressions_into_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def substitute_LHS_of_three_expressions_into_expr(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_LHS_of_three_expressions_into_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def substitute_LHS_of_four_expressions_into_expr(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_LHS_of_four_expressions_into_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def substitute_LHS_of_five_expressions_into_expr(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_LHS_of_five_expressions_into_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def substitute_LHS_of_six_expressions_into_expr(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_LHS_of_six_expressions_into_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def expr_is_equivalent_to_expr_under_the_condition(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> expr_is_equivalent_to_expr_under_the_condition(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def substitute_two_variables_in_expr(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_two_variables_in_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def substitute_three_variables_in_expr(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_three_variables_in_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def substitute_four_variables_in_expr(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_four_variables_in_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def substitute_five_variables_in_expr(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_five_variables_in_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def substitute_six_variables_in_expr(latex_dict):
     """
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> substitute_six_variables_in_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def LHS_of_expr_equals_LHS_of_expr(latex_dict):
     """
+    Given a = b
+    and a = d
+    get b = d
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a'), 'RHS': parse_latex('b')},
+                               {'LHS': parse_latex('a'), 'RHS': parse_latex('d')}]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('b'), 'RHS': parse_latex('d')}]
     >>> LHS_of_expr_equals_LHS_of_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def square_root_both_sides(latex_dict):
     """
+    Given a = b
+    sqrt both side
+    get sqrt(a) = sqrt(b)
+    and sqrt(a) = - sqrt(b)
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a'), 'RHS': parse_latex('b')}]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('\sqrt{a}'), 'RHS': parse_latex('\sqrt{b}')},
+                                {'LHS': parse_latex('\sqrt{a}'), 'RHS': parse_latex('-\sqrt{b}')}]
     >>> square_root_both_sides(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
+
     return "no check performed"
 
 
 def divide_expr_by_expr(latex_dict):
     """
+    Given a = b
+    and c = d
+    get a/c = b/d
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex('a'), 'RHS': parse_latex('b')},
+                               {'LHS': parse_latex('c'), 'RHS': parse_latex('d')}]
+    >>> latex_dict['output'] = [{'LHS': parse_latex('a/c'), 'RHS': parse_latex('b/d')}]
     >>> divide_expr_by_expr(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
+
     return "no check performed"
 
 
 def separate_two_vector_components(latex_dict):
     """
+    Given a_x \hat{x} + a_y \hat{y} = v_x \hat{x} + v_y \hat{y}
+    get a_x = v_x
+    and a_y = v_y
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> separate_two_vector_components(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def separate_three_vector_components(latex_dict):
     """
+    Given a_x \hat{x} + a_y \hat{y} + a_z \hat{z} = v_x \hat{x} + v_y \hat{y} + v_z \hat{z}
+    get a_x = v_x
+    and a_y = v_y
+    and a_z = v_z
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> separate_three_vector_components(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
 def separate_vector_into_two_trigonometric_ratios(latex_dict):
     """
+    Given \vec{v} =
+
     >>> latex_dict = {}
-    >>> latex_dict['input'] = [{'LHS': '', 'RHS': ''}]
-    >>> latex_dict['feed'] = ['']
-    >>> latex_dict['output'] = [{'LHS': '', 'RHS': ''}]
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> separate_vector_into_two_trigonometric_ratios(latex_dict)
+    'step is valid'
     """
+    logger.info('[trace]')
     return "no check performed"
 
 
-def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
-    """
-    >>> latex_from_expr_local_id('1029')
-    'a = b'
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
-    dat = clib.read_db(path_to_db)
-    logger.debug("latex_from_expr_local_id; expr_local_id = %s", expr_local_id)
-    global_id = dat["expr local to global"][expr_local_id]
-    latex_expr = dat["expressions"][global_id]["latex"]
-    logger.debug("latex_from_expr_local_id; latex_expr = %s", latex_expr)
-    logger.info("[trace end " + trace_id + "]")
-    return latex_expr
-
-
-def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
-    """
-    Sympy provides experimental support for converting latex to AST
-
-    https://github.com/allofphysicsgraph/proofofconcept/issues/44
-
-    #>>> create_sympy_expr_tree_from_latex(r"\frac {1 + \sqrt {\a}} {\b}")
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
-
-    sympy_expr = parse_latex(latex_expr_str)
-    logger.debug("create_sympy_expr_tree_from_latex; Sympy expression = %s", sympy_expr)
-
-    latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
-    logger.debug(
-        "create_sympy_expr_tree_from_latex; latex as Sympy expr tree = %s",
-        latex_as_sympy_expr_tree,
-    )
-    logger.info("[trace end " + trace_id + "]")
-    return latex_as_sympy_expr_tree
-
-
-def get_symbols_from_latex(latex_expr_str: str) -> list:
-    """
-    Sometimes Sympy works as desired (for simple algebraic synatx)
-    >>> parse_latex(r'a + k = b + k').free_symbols
-    {b, a, k}
-
-    Sometimes the Sympy output does not reflect user intent
-    #>>> parse_latex(r'\nabla \vec{x} = f(y)').free_symbols
-    {x, nabla, y, vec}
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
-    my_sym = list(parse_latex(latex_expr_str).free_symbols)
-    logger.info("[trace end " + trace_id + "]")
-    return my_sym
 
 
 # EOF
