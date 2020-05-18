@@ -26,6 +26,7 @@ logger = logging.getLogger(__name__)
 # from validate_inference_rules_sympy import *
 # testmod(name ='split_expr_into_lhs_rhs', verbose = True)
 
+
 def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
     """
     >>> latex_from_expr_local_id('1029', 'no path')
@@ -159,6 +160,7 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         "assume N dimensions",
         "normalization condition",
         "boundary condition",
+        "boundary condition for expr",
     ]:
         logger.info("[trace end " + trace_id + "]")
         return "no validation is available for assumptions"
@@ -393,8 +395,8 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         return separate_three_vector_components(latex_dict)
     elif step_dict["inf rule"] == "separate vector into two trigonometric ratios":
         return separate_vector_into_two_trigonometric_ratios(latex_dict)
-    #    elif step_dict["inf rule"] == "":
-    #        return (latex_dict)
+    elif step_dict["inf rule"] == "maximum of expr":
+        return maximum_of_expr(latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        return (latex_dict)
     #    elif step_dict["inf rule"] == "":
@@ -1556,7 +1558,7 @@ def subtract_expr_1_from_expr_2(latex_dict):
     >>> subtract_expr_1_from_expr_2(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1573,7 +1575,7 @@ def factor_out_x(latex_dict):
     >>> factor_out_x(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1590,7 +1592,7 @@ def factor_out_x_from_lhs(latex_dict):
     >>> factor_out_x_from_lhs(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1607,7 +1609,7 @@ def factor_out_x_from_rhs(latex_dict):
     >>> factor_out_x_from_rhs(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1624,7 +1626,7 @@ def differentiate_with_respect_to(latex_dict):
     >>> differentiate_with_respect_to(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1639,7 +1641,7 @@ def apply_function_to_both_sides_of_expression(latex_dict):
     >>> apply_function_to_both_sides_of_expression(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1652,7 +1654,7 @@ def substitute_LHS_of_two_expressions_into_expr(latex_dict):
     >>> substitute_LHS_of_two_expressions_into_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1665,7 +1667,7 @@ def substitute_LHS_of_three_expressions_into_expr(latex_dict):
     >>> substitute_LHS_of_three_expressions_into_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1678,7 +1680,7 @@ def substitute_LHS_of_four_expressions_into_expr(latex_dict):
     >>> substitute_LHS_of_four_expressions_into_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1691,7 +1693,7 @@ def substitute_LHS_of_five_expressions_into_expr(latex_dict):
     >>> substitute_LHS_of_five_expressions_into_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1704,7 +1706,7 @@ def substitute_LHS_of_six_expressions_into_expr(latex_dict):
     >>> substitute_LHS_of_six_expressions_into_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1717,7 +1719,7 @@ def expr_is_equivalent_to_expr_under_the_condition(latex_dict):
     >>> expr_is_equivalent_to_expr_under_the_condition(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1730,7 +1732,7 @@ def substitute_two_variables_in_expr(latex_dict):
     >>> substitute_two_variables_in_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1743,7 +1745,7 @@ def substitute_three_variables_in_expr(latex_dict):
     >>> substitute_three_variables_in_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1756,7 +1758,7 @@ def substitute_four_variables_in_expr(latex_dict):
     >>> substitute_four_variables_in_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1769,7 +1771,7 @@ def substitute_five_variables_in_expr(latex_dict):
     >>> substitute_five_variables_in_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1782,7 +1784,7 @@ def substitute_six_variables_in_expr(latex_dict):
     >>> substitute_six_variables_in_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1799,7 +1801,7 @@ def LHS_of_expr_equals_LHS_of_expr(latex_dict):
     >>> LHS_of_expr_equals_LHS_of_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1817,7 +1819,7 @@ def square_root_both_sides(latex_dict):
     >>> square_root_both_sides(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
 
     return "no check performed"
 
@@ -1835,7 +1837,7 @@ def divide_expr_by_expr(latex_dict):
     >>> divide_expr_by_expr(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
 
     return "no check performed"
 
@@ -1852,7 +1854,7 @@ def separate_two_vector_components(latex_dict):
     >>> separate_two_vector_components(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1870,7 +1872,7 @@ def separate_three_vector_components(latex_dict):
     >>> separate_three_vector_components(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
@@ -1885,10 +1887,22 @@ def separate_vector_into_two_trigonometric_ratios(latex_dict):
     >>> separate_vector_into_two_trigonometric_ratios(latex_dict)
     'step is valid'
     """
-    logger.info('[trace]')
+    logger.info("[trace]")
     return "no check performed"
 
 
+def maximum_of_expr(latex_dict):
+    """ 
+
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> maximum_of_expr(latex_dict)
+    'step is valid'
+    """
+    logger.info("[trace]")
+    return "no check performed"
 
 
 # EOF
