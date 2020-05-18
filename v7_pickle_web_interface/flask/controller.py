@@ -1788,7 +1788,7 @@ def list_all_expressions():
             )
         elif "edit_expr_latex" in request.form.keys():
             try:
-                compute.modify_latex_in_step(
+                compute.modify_latex_in_expressions(
                     request.form["edit_expr_latex"],
                     request.form["revised_text"],
                     current_user.email,
