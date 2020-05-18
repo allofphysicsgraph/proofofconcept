@@ -2528,9 +2528,15 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
     list_of_nodes = []
     for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
         png_name = "".join(filter(str.isalnum, step_dict["inf rule"]))
+        # logger.debug("PNG name = " + png_name)
+
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
             create_png_from_latex(step_dict["inf rule"], png_name)
+            # logger.debug("created PNG " + png_name)
+
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
+        # logger.debug("type for cv2 image is " + str(type(image)))
+
         # construct the node JSON content
         list_of_nodes.append(
             '    {"id": "'
@@ -2555,9 +2561,15 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
     list_of_expr = list_expr_in_derivation(deriv_id, path_to_db)
     for global_expr_id in list_of_expr:
         png_name = global_expr_id
+        # logger.debug("PNG name = " + png_name)
+
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
             create_png_from_latex(dat["expressions"][global_expr_id]["latex"], png_name)
+            # logger.debug("created PNG " + png_name)
+
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
+        # logger.debug("type for cv2 image is " + str(type(image)))
+
         # construct the node JSON content
         list_of_nodes.append(
             '    {"id": "'
@@ -2622,7 +2634,7 @@ def create_derivation_png(deriv_id: str, path_to_db: str) -> str:
 
     dat = clib.read_db(path_to_db)
 
-    dot_filename = "/home/appuser/app/static/graphviz.dot"
+    dot_filename = "/home/appuser/app/static/derivation_" + deriv_id + ".dot"
     with open(dot_filename, "w") as fil:
         fil.write("digraph physicsDerivation { \n")
         fil.write("overlap = false;\n")
@@ -2637,13 +2649,17 @@ def create_derivation_png(deriv_id: str, path_to_db: str) -> str:
             write_step_to_graphviz_file(deriv_id, step_id, fil, path_to_db)
 
         fil.write("}\n")
-    output_filename = deriv_id + ".png"
+
+    # name the PNG file referencing the hash of the .dot so we can detect changes
+    output_filename = (
+        "derivation_" + deriv_id + "_" + md5_of_file(dot_filename) + ".png"
+    )
     # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
     #    process = Popen(['neato','-Tpng','graphviz.dot','>','/home/appuser/app/static/graphviz.png'], stdout=PIPE, stderr=PIPE)
 
     # force redraw when updating step
     # a better way would be to check the md5 hash of the .dot file
-    if True:  # not os.path.exists("/home/appuser/app/static/" + output_filename):
+    if not os.path.exists("/home/appuser/app/static/" + output_filename):
         process = subprocess.run(
             ["neato", "-Tpng", dot_filename, "-o" + output_filename],
             stdout=PIPE,
@@ -2901,58 +2917,66 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     logger.debug("latex = " + str(input_latex_str))
     create_tex_file_for_expr(tmp_file, input_latex_str)
 
+    tex_filename_with_hash = png_name + "_" + md5_of_file(tmp_file + ".tex") + ".tex"
+
+    # shutil.move(tmp_file + ".tex", tex_filename_with_hash)
+
     # logger.debug('create_png_from_latex: running latex against file')
 
     # logger.debug(str(os.listdir()))
 
-    process = subprocess.run(
-        ["latex", "-halt-on-error", tmp_file + ".tex"],
-        stdout=PIPE,
-        stderr=PIPE,
-        timeout=proc_timeout,
-    )
-    # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
-    latex_stdout = process.stdout.decode("utf-8")
-    latex_stderr = process.stderr.decode("utf-8")
+    # only make PNG if .tex did not exist
+    if not os.path.exists("/home/appuser/app/static/" + tex_filename_with_hash):
+        shutil.copy(tmp_file + ".tex", destination_folder + tex_filename_with_hash)
 
-    #    logger.debug(str(os.listdir()))
-
-    logger.debug("latex std out:" + str(latex_stdout))
-    logger.debug("latex std err:" + str(latex_stderr))
-
-    if "Text line contains an invalid character" in latex_stdout:
-        logging.error("tex input contains invalid charcter")
-        shutil.copy(destination_folder + "error.png", destination_folder + png_name)
-        raise Exception("no png generated due to invalid character in tex input.")
-    #    remove_file_debris(["./"], [tmp_file], ["png"])
-
-    process = subprocess.run(
-        ["dvipng", tmp_file + ".dvi", "-T", "tight", "-o", tmp_file + ".png"],
-        stdout=PIPE,
-        stderr=PIPE,
-        timeout=proc_timeout,
-    )
-    # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
-    png_stdout = process.stdout.decode("utf-8")
-    png_stderr = process.stderr.decode("utf-8")
-
-    if len(png_stdout) > 0:
-        if "This is dvipng" not in png_stdout:
-            logger.debug("png std out %s", png_stdout)
-    if len(png_stderr) > 0:
-        logger.debug("png std err %s", png_stderr)
-
-    # logger.debug(str(os.listdir()))
-
-    if "No such file or directory" in png_stderr:
-        logging.error("PNG creation failed for %s", png_name)
-        shutil.copy(destination_folder + "error.png", destination_folder + png_name)
-        # return False, "no PNG created. Check usepackage in latex"
-        raise Exception(
-            "no PNG created for " + png_name + ". Check 'usepackage' in latex"
+        process = subprocess.run(
+            ["latex", "-halt-on-error", tmp_file + ".tex"],
+            stdout=PIPE,
+            stderr=PIPE,
+            timeout=proc_timeout,
         )
+        # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
+        latex_stdout = process.stdout.decode("utf-8")
+        latex_stderr = process.stderr.decode("utf-8")
 
-    shutil.move(tmp_file + ".png", destination_folder + png_name + ".png")
+        #    logger.debug(str(os.listdir()))
+
+        logger.debug("latex std out:" + str(latex_stdout))
+        logger.debug("latex std err:" + str(latex_stderr))
+
+        if "Text line contains an invalid character" in latex_stdout:
+            logging.error("tex input contains invalid charcter")
+            shutil.copy(destination_folder + "error.png", destination_folder + png_name)
+            raise Exception("no png generated due to invalid character in tex input.")
+        #    remove_file_debris(["./"], [tmp_file], ["png"])
+
+        process = subprocess.run(
+            ["dvipng", tmp_file + ".dvi", "-T", "tight", "-o", tmp_file + ".png"],
+            stdout=PIPE,
+            stderr=PIPE,
+            timeout=proc_timeout,
+        )
+        # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
+        png_stdout = process.stdout.decode("utf-8")
+        png_stderr = process.stderr.decode("utf-8")
+
+        if len(png_stdout) > 0:
+            if "This is dvipng" not in png_stdout:
+                logger.debug("png std out %s", png_stdout)
+        if len(png_stderr) > 0:
+            logger.debug("png std err %s", png_stderr)
+
+        # logger.debug(str(os.listdir()))
+
+        if "No such file or directory" in png_stderr:
+            logging.error("PNG creation failed for %s", png_name)
+            shutil.copy(destination_folder + "error.png", destination_folder + png_name)
+            # return False, "no PNG created. Check usepackage in latex"
+            raise Exception(
+                "no PNG created for " + png_name + ". Check 'usepackage' in latex"
+            )
+
+        shutil.move(tmp_file + ".png", destination_folder + png_name + ".png")
 
     logger.debug(destination_folder + png_name + ".png")
 
@@ -2969,6 +2993,29 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 # data structure transformations
 
 
+def modify_latex_in_expressions(
+    global_id_of_latex_to_modify: str,
+    revised_latex: str,
+    user_email: str,
+    path_to_db: str,
+) -> None:
+    """
+    re-use existing global ID
+
+    >>> modify_latex_in_expressions()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+    dat = clib.read_db(path_to_db)
+
+    dat["expressions"][global_id_of_latex_to_modify]["latex"] = revised_latex
+    dat["expressions"][global_id_of_latex_to_modify]["AST"] = []
+
+    clib.write_db(path_to_db, dat)
+    logger.info("[trace end " + trace_id + "]")
+    return
+
+
 def modify_latex_in_step(
     expr_local_id_of_latex_to_modify: str,
     revised_latex: str,
@@ -2976,6 +3023,10 @@ def modify_latex_in_step(
     path_to_db: str,
 ) -> None:
     """
+    keep the local ID
+    create a new global ID
+    associate local ID and (new) global ID
+
     >>> modify_latex_in_step('959242', 'a = b', 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
