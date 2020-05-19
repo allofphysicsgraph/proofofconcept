@@ -107,10 +107,10 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
             return parse_latex(latex_as_list[0]), parse_latex(latex_as_list[1])
         else:
             raise Exception(
-                "no = and there is to but the list length is unexpected: " + latex
+                "no = and there is to but the list length is unexpected: " + latex_expr
             )
-    elif "=" not in latex:
-        raise Exception("= not present in " + latex)
+    elif "=" not in latex_expr:
+        raise Exception("= not present in " + latex_expr)
     else:
         try:
             sympy_expr = parse_latex(latex_expr)
@@ -126,7 +126,7 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
             return sympy_expr.lhs, sympy_expr.rhs
         except AttributeError as error_message:
             logger.error(
-               "ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message)
+                "ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message)
             )
             raise Exception(
                 "ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message)
@@ -408,8 +408,8 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         return separate_vector_into_two_trigonometric_ratios(latex_dict)
     elif step_dict["inf rule"] == "maximum of expr":
         return maximum_of_expr(latex_dict)
-    #    elif step_dict["inf rule"] == "":
-    #        return (latex_dict)
+    elif step_dict["inf rule"] == "evaluate definite integral":
+        return evaluate_definite_integral(latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        return (latex_dict)
     #    elif step_dict["inf rule"] == "":
@@ -1910,6 +1910,20 @@ def maximum_of_expr(latex_dict):
     >>> latex_dict['feed'] = [parse_latex('')]
     >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> maximum_of_expr(latex_dict)
+    'step is valid'
+    """
+    logger.info("[trace]")
+    return "no check performed"
+
+
+def evaluate_definite_integral(latex_dict):
+    """ 
+
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> evaluate_definite_integral(latex_dict)
     'step is valid'
     """
     logger.info("[trace]")
