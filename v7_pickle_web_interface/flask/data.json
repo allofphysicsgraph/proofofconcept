@@ -2040,7 +2040,7 @@
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-04-14",
                     "feeds": [],
-                    "inf rule": "expandIntegrand",
+                    "inf rule": "expand integrand",
                     "inputs": [
                         "0495054"
                     ],
@@ -2054,7 +2054,7 @@
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-04-14",
                     "feeds": [],
-                    "inf rule": "normalizationCondition",
+                    "inf rule": "normalization condition",
                     "inputs": [],
                     "linear index": 13,
                     "notes": "",
