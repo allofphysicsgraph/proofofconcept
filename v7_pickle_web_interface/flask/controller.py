@@ -2210,8 +2210,7 @@ def select_from_existing_derivations():
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                logger.info("[trace page end " + trace_id + "]")
-                return redirect(url_for("select_from_existing_derivations"))
+                pdf_filename="error.pdf"
 
             logger.info("[trace page end " + trace_id + "]")
             return redirect(
