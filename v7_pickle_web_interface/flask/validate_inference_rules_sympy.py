@@ -100,42 +100,37 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
 
     logger.debug("split_expr_into_lhs_rhs; latex_expr = %s", latex_expr)
 
-    if ("=" not in latex) and ("\\to" in latex):
-        latex_as_list = latex.split("\\to")
+    if ("=" not in latex_expr) and ("\\to" in latex_expr):
+        latex_as_list = latex_expr.split("\\to")
         if len(latex_as_list) == 2:
-            latex_dict[connection_type[:-1]][indx] = {
-                "LHS": parse_latex(latex_as_list[0]),
-                "RHS": parse_latex(latex_as_list[1]),
-            }
+            logger.info("[trace end " + trace_id + "]")
+            return parse_latex(latex_as_list[0]), parse_latex(latex_as_list[1])
         else:
             raise Exception(
                 "no = and there is to but the list length is unexpected: " + latex
             )
     elif "=" not in latex:
         raise Exception("= not present in " + latex)
+    else:
+        try:
+            sympy_expr = parse_latex(latex_expr)
+        except sympy.SympifyError as err:
+            logger.error(err)
 
-    try:
-        sympy_expr = parse_latex(latex_expr)
-    except sympy.SympifyError as err:
-        logger.error(err)
+        logger.debug("split_expr_into_lhs_rhs; Sympy expression = %s", sympy_expr)
 
-    logger.debug("split_expr_into_lhs_rhs; Sympy expression = %s", sympy_expr)
+        logger.debug(str(sympy.srepr(sympy_expr)))
 
-    logger.debug(str(sympy.srepr(sympy_expr)))
-
-    # latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
-    # logger.debug('latex as Sympy expr tree = %s',latex_as_sympy_expr_tree)
-
-    try:
-        logger.info("[trace end " + trace_id + "]")
-        return sympy_expr.lhs, sympy_expr.rhs
-    except AttributeError as error_message:
-        logger.error(
-            "ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message)
-        )
-        raise Exception(
-            "ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message)
-        )
+        try:
+            logger.info("[trace end " + trace_id + "]")
+            return sympy_expr.lhs, sympy_expr.rhs
+        except AttributeError as error_message:
+            logger.error(
+               "ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message)
+            )
+            raise Exception(
+                "ERROR in Sympy parsing of " + latex_expr + " :" + str(error_message)
+            )
     logger.info("[trace end " + trace_id + "]")
     return "failed", "failed"
 
