@@ -747,17 +747,32 @@ def create_files_of_db_content(path_to_db):
         )  # , sort_keys=True)
     shutil.copy(json_file_name, "/home/appuser/app/static/")
 
-    all_df = convert_json_to_dataframes(path_to_db)
+    try:
+        all_df = convert_json_to_dataframes(path_to_db)
+    except Exception as err:
+        logger.error("creating df failed: " + str(err))
 
-    df_pkl_file = convert_df_to_pkl(all_df)
+    try:
+        df_pkl_file = convert_df_to_pkl(all_df)
+    except Exception as err:
+        logger.error("creating pickle failed: " + str(err))
 
-    sql_file = convert_dataframes_to_sql(all_df)
+    try:
+        sql_file = convert_dataframes_to_sql(all_df)
+    except Exception as err:
+        logger.error("creating SQL failed: " + str(err))
     shutil.copy(sql_file, "/home/appuser/app/static/")
 
-    rdf_file = convert_data_to_rdf(path_to_db)
+    try:
+        rdf_file = convert_data_to_rdf(path_to_db)
+    except Exception as err:
+        logger.error("creating RDF failed: " + str(err))
     shutil.copy(rdf_file, "/home/appuser/app/static/")
 
-    neo4j_file = convert_data_to_cypher(path_to_db)
+    try:
+        neo4j_file = convert_data_to_cypher(path_to_db)
+    except Exception as err:
+        logger.error("creating Cypher failed: " + str(err))
     shutil.copy(neo4j_file, "/home/appuser/app/static/")
 
     logger.info("[trace end " + trace_id + "]")
@@ -886,7 +901,15 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
         for this_ref in unit_dict["references"]:
             this_unit = {}
             this_unit["unit"] = unit_name
-            this_unit["measure"] = unit_dict["measure"]
+            if "dimensions" in unit_dict.keys():
+                this_unit["dimension: length"] = unit_dict["dimensions"]["length"]
+                this_unit["dimension: time"] = unit_dict["dimensions"]["time"]
+                this_unit["dimension: mass"] = unit_dict["dimensions"]["mass"]
+                this_unit["dimension: temperature"] = unit_dict["dimensions"]["temperature"]
+                this_unit["dimension: electric charge"] = unit_dict["dimensions"]["electric charge"]
+                this_unit["dimension: amount of substance"] = unit_dict["dimensions"]["amount of substance"]
+                this_unit["dimension: luminous intensity"] = unit_dict["dimensions"]["luminous intensity"]
+
             this_unit["reference"] = this_ref
             units_list_of_dicts.append(this_unit)
     all_dfs["units"] = pandas.DataFrame(units_list_of_dicts)
