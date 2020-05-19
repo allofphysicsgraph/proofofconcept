@@ -1499,29 +1499,41 @@ def navigation():
             flash("No selected file")
             logger.info("[trace page end " + trace_id + "]")
             return redirect(request.url)
-        try:
-            allowed_bool = compute.allowed_file(file_obj.filename)
-        except Exception as err:
-            logger.error(str(err))
-            flash(str(err))
-            allowed_bool = False
+        if "upload_database" in request.form.keys():
+            try:
+                allowed_bool = compute.allowed_file(file_obj.filename, ".json")
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                allowed_bool = False
+        elif "upload_bibliography" in request.form.keys():
+            try:
+                allowed_bool = compute.allowed_file(file_obj.filename, ".bib")
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                allowed_bool = False
+        else:
+            raise Exception("unrecognized button")
+
         if file_obj and allowed_bool:
             filename = secure_filename(file_obj.filename)
             logger.debug("filename = %s", filename)
             path_to_uploaded_file = os.path.join(app.config["UPLOAD_FOLDER"], filename)
             file_obj.save(path_to_uploaded_file)
 
-            # TODO: just because a file is JSON and passes the schema does not make it valid for the PDG
+            # just because a file is JSON and passes the schema does not make it valid for the PDG
             # for example, the inference rule names need to be consistent (in "derivations" and "inference rules")
             # also, the expr_local_id need to have a corresponding entry in local-to-global
             # also, every expr_global_id in local-to-global must have a corresponding entry in "inference rules"
             valid_json_bool = True
-            try:
-                compute.validate_json_file(path_to_uploaded_file)
-            except Exception as err:
-                logger.error(str(err))
-                flash(str(err))
-                valid_json_bool = False
+            if "upload_database" in request.form.keys():
+                try:
+                    compute.validate_json_file(path_to_uploaded_file)
+                except Exception as err:
+                    logger.error(str(err))
+                    flash(str(err))
+                    valid_json_bool = False
             if not valid_json_bool:
                 flash("uploaded file does not match PDG schema")
             else:  # file exists, has .json extension, is JSON, and complies with schema

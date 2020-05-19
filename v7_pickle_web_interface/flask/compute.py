@@ -113,7 +113,7 @@ def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
 # check input files
 
 
-def allowed_file(filename):
+def allowed_file(filename: str, extension: str):
     """
     validate that the file name ends with the desired extention
 
@@ -125,14 +125,14 @@ def allowed_file(filename):
     """
     logger.info("[trace]")
 
-    return "." in filename and filename.rsplit(".", 1)[1].lower() in {"json"}
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in {extension}
 
 
 def validate_json_file(filename: str) -> None:
     """
     1) validate the file is JSON
     2) validate the JSON file adheres to the schema
-    
+
     >>> validate_json_file('filename.json')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -449,7 +449,7 @@ def list_symbols_used_in_derivation_from_PDG_AST(
     deriv_id: str, path_to_db: str
 ) -> list:
     """
-    >>> 
+    >>>
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2361,12 +2361,15 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                         )
                         lat_file.write("\\label{eq:" + expr_local_id + "}\n")
                         lat_file.write("\\end{equation}\n")
+
+        lat_file.write("\\bibliographystyle{plain}\n")
+        lat_file.write("\\bibliography{pdg.bib}\n")
         lat_file.write("\\end{document}\n")
         lat_file.write("% EOF\n")
 
     shutil.copy(tex_filename + ".tex", path_to_tex + tex_filename + ".tex")
     logger.info("[trace end " + trace_id + "]")
-    return tex_filename + ".tex"
+    return tex_filename  # pass back filename without extension because bibtex can't handle .tex
 
 
 def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str) -> str:
@@ -2382,13 +2385,18 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
 
     remove_file_debris([path_to_pdf], [pdf_filename], ["log", "pdf"])
 
-    tex_filename_with_extension = generate_tex_for_derivation(
+    tex_filename_without_extension = generate_tex_for_derivation(
         deriv_id, user_email, path_to_db
     )
 
-    # first of two latex runs
+    # copy the current pdg.bib from static to local for use with bibtex when compiling tex to PDF
+    shutil.copy("/home/appuser/app/static/pdg.bib", "pdg.bib")
+
+    # TODO: it would be good to check whether \cite appears in the .tex content
+
+    # first of the latex runs
     process = subprocess.run(
-        ["latex", "-halt-on-error", tex_filename_with_extension],
+        ["latex", "-halt-on-error", tex_filename_without_extension + ".tex"],
         stdout=PIPE,
         stderr=PIPE,
         timeout=proc_timeout,
@@ -2407,9 +2415,35 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
         logger.error("no PDF generated - reason unknown")
         raise Exception("no PDF generated - reason unknown")
 
+    # first of two bibtex runs
+    process = subprocess.run(
+        ["bibtex", tex_filename_without_extension],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
+    # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
+    bibtex_stdout = process.stdout.decode("utf-8")
+    bibtex_stderr = process.stderr.decode("utf-8")
+    logger.debug("bibtex std out: %s", bibtex_stdout)
+    logger.debug("bibtex std err: %s", bibtex_stderr)
+
+    # second of two bibtex runs
+    process = subprocess.run(
+        ["bibtex", tex_filename_without_extension],
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
+    # https://stackoverflow.com/questions/41171791/how-to-suppress-or-capture-the-output-of-subprocess-run
+    bibtex_stdout = process.stdout.decode("utf-8")
+    bibtex_stderr = process.stderr.decode("utf-8")
+    logger.debug("bibtex std out: %s", bibtex_stdout)
+    logger.debug("bibtex std err: %s", bibtex_stderr)
+
     # run latex a second time to enable references to work
     process = subprocess.run(
-        ["latex", "-halt-on-error", tex_filename_with_extension],
+        ["latex", "-halt-on-error", tex_filename_without_extension + ".tex"],
         stdout=PIPE,
         stderr=PIPE,
         timeout=proc_timeout,

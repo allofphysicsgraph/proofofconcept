@@ -125,26 +125,69 @@
 <P>&nbsp;</P>
 
 <P>
-Download the current database file as
-<a href="{{ url_for('static', filename=database_json) }}?referrer=navigation" download="{{ database_json }}">JSON</a> or
-<a href="{{ url_for('static', filename=database_sql) }}?referrer=navigation" download="{{ database_sql }}">SQLite3</a> or
-<a href="{{ url_for('static', filename=database_df_pkl) }}?referrer=navigation" download="{{ database_df_pkl }}">Pickle of dataframes</a> or
-<a href="{{ url_for('static', filename=database_rdf) }}?referrer=navigation" download="{{ database_rdf }}">OWL RDF</a> or
-<a href="{{ url_for('static', filename=database_neo4j) }}?referrer=navigation" download="{{ database_neo4j }}">Neo4j Cypher</a>
+  <fieldset>
+    <legend>
+      <H3>
+        <a name="download upload database">
+          Download/Upload database
+        </a>
+      </H3>
+    </legend>
+    <P>
+    Download the current database file as
+    <a href="{{ url_for('static', filename=database_json) }}?referrer=navigation" download="{{ database_json }}">JSON</a> or
+    <a href="{{ url_for('static', filename=database_sql) }}?referrer=navigation" download="{{ database_sql }}">SQLite3</a> or
+    <a href="{{ url_for('static', filename=database_df_pkl) }}?referrer=navigation" download="{{ database_df_pkl }}">Pickle of dataframes</a> or
+    <a href="{{ url_for('static', filename=database_rdf) }}?referrer=navigation" download="{{ database_rdf }}">OWL RDF</a> or
+    <a href="{{ url_for('static', filename=database_neo4j) }}?referrer=navigation" download="{{ database_neo4j }}">Neo4j Cypher</a>.
+    </P>
+
+    <P>
+    {% if current_user.is_anonymous %}
+      Upload database file if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
+    {% else %}
+      <!-- https://www.google.com/search?q=flask+upload+file -->
+      Upload database file (JSON only):
+      <!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
+      <form method="post" enctype="multipart/form-data" id="upload_form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <input type="file" name="file">
+        <input type="submit" name="upload_database" value="Upload database">
+      </form>
+    {% endif %}
+    </P>
+  </fieldset>
 </P>
 
+<P>
+  <fieldset>
+    <legend>
+      <H3>
+        <a name="download upload bibliography">
+          Download/Upload bibliography
+        </a>
+      </H3>
+    </legend>
+    <P>
+    Download the <a href="{{ url_for('static', filename='pdg.bib') }}">current bibliography file</a>.
+    </P>
 
-      {% if current_user.is_anonymous %}
-        Upload database file if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
-      {% else %}
-<!-- https://www.google.com/search?q=flask+upload+file -->
-Upload database file (JSON only):
-<!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
-<form method="post" enctype="multipart/form-data" id="upload_form">
-  <input type="file" name="file">
-  <input type="submit" name="upload_button" value="Upload">
-</form>
-</p>
-{% endif %}
+    <P>
+    {% if current_user.is_anonymous %}
+      Upload the bibliography file if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
+    {% else %}
+      <!-- https://www.google.com/search?q=flask+upload+file -->
+      Upload the bibliography file (Bibtex only):
+      <!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
+      <form method="post" enctype="multipart/form-data" id="upload_form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <input type="file" name="file">
+        <input type="submit" name="upload_bibliography" value="Upload bibliography">
+      </form>
+    {% endif %}
+    </P>
+  </fieldset>
+</P>
+
 
 {% endblock %}
