@@ -100,6 +100,20 @@ def split_expr_into_lhs_rhs(latex_expr: str) -> Tuple[str, str]:
 
     logger.debug("split_expr_into_lhs_rhs; latex_expr = %s", latex_expr)
 
+    if ("=" not in latex) and ("\\to" in latex):
+        latex_as_list = latex.split("\\to")
+        if len(latex_as_list) == 2:
+            latex_dict[connection_type[:-1]][indx] = {
+                "LHS": parse_latex(latex_as_list[0]),
+                "RHS": parse_latex(latex_as_list[1]),
+            }
+        else:
+            raise Exception(
+                "no = and there is to but the list length is unexpected: " + latex
+            )
+    elif "=" not in latex:
+        raise Exception("= not present in " + latex)
+
     try:
         sympy_expr = parse_latex(latex_expr)
     except sympy.SympifyError as err:
@@ -183,10 +197,12 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         feed_latex_str = dat["expressions"][dat["expr local to global"][expr_local_id]][
             "latex"
         ]
-        try:
-            latex_dict["feed"][indx] = sympy.sympify(feed_latex_str)
-        except Exception as err:
-            logger.error(err)
+        if "=" in feed_latex_str:
+            raise Exception("why is there an = in this feed? " + feed_latex_str)
+        # try:
+        latex_dict["feed"][indx] = sympy.sympify(feed_latex_str)
+        # except Exception as err:
+        #    logger.error(err)
         indx += 1
 
     if step_dict["inf rule"] == "add X to both sides":
