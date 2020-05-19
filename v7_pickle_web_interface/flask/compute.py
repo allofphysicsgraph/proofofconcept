@@ -2562,7 +2562,7 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
         # logger.debug("PNG name = " + png_name)
 
         if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
-            create_png_from_latex(step_dict["inf rule"], png_name)
+            create_png_from_latex("\\text{" + step_dict["inf rule"] + "}", png_name)
             # logger.debug("created PNG " + png_name)
 
         image = cv2.imread("/home/appuser/app/static/" + png_name + ".png")
