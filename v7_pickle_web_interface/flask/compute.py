@@ -3098,11 +3098,18 @@ def add_symbol(
     category: str,
     latex: str,
     name: str,
-    dimension: str,
+    scope: str,
     reference: str,
+    domain: str,
+    dim_length: str,
+    dim_time: str,
+    dim_mass: str,
+    dim_temperature: str,
+    dim_electric_charge: str,
+    dim_amount_of_substance: str,
+    dim_luminous_intensity: str,
     value: str,
     units: str,
-    scope: str,
     user_email: str,
     path_to_db: str,
 ) -> None:
@@ -3117,9 +3124,18 @@ def add_symbol(
     symbol_dict["category"] = category
     symbol_dict["latex"] = latex
     symbol_dict["name"] = name
-    symbol_dict["measure"] = dimension
     symbol_dict["scope"] = scope
     symbol_dict["references"] = [reference]
+    symbol_dict["domain"] = domain
+    symbol_dict["dimensions"] = {
+        "length": int(dim_length),
+        "time": int(dim_time),
+        "mass": int(dim_mass),
+        "temperature": int(dim_temperature),
+        "electric charge": int(dim_electric_charge),
+        "amount of substance": int(dim_amount_of_substance),
+        "luminous intensity": int(dim_luminous_intensity),
+    }
     if category == "constant" and len(value) > 0:
         symbol_dict["value"] = value
         symbol_dict["units"] = units

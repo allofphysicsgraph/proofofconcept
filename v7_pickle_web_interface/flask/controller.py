@@ -326,18 +326,40 @@ class EquationInputForm(FlaskForm):
 class NewSymbolForm(FlaskForm):
     logger.info("[trace]")
     symbol_category = RadioField(
-        "Label",
+        "category",
         choices=[("variable", "variable"), ("constant", "constant"),],
         default="variable",
     )
-    symbol_scope_real = BooleanField(
-        label="Real", description="check this", default="checked"
+
+    # https://en.wikipedia.org/wiki/List_of_types_of_numbers
+    # symbol_scope_real = BooleanField(
+    #    label="Real", description="check this", default="checked"
+    # )
+    symbol_scope = RadioField(
+        "scope",
+        choices=[("real", "real"), ("complex", "complex"), ("integer", "integer")],
+        default="real",
+        validators=[validators.InputRequired()],
     )
-    symbol_scope_complex = BooleanField(label="Complex", description="check this")
+
+    #    symbol_scope_complex = BooleanField(label="Complex", description="check this")
+    #    symbol_scope_integer = BooleanField(label="Integer", description="check this")
+
+    # domain = input; range = output
+    symbol_radio_domain = RadioField(
+        "domain",
+        choices=[
+            ("any", "any"),
+            ("positive", "positive"),
+            ("negative", "negative"),
+            ("nonnegative", "non-negative"),
+        ],
+        default="any",
+        validators=[validators.InputRequired()],
+    )
 
     symbol_latex = StringField("latex", validators=[validators.InputRequired()])
     symbol_name = StringField("name", validators=[validators.InputRequired()])
-    symbol_measure = StringField("dimensions", validators=[validators.InputRequired()])
     symbol_reference = StringField("reference")
     symbol_value = StringField("value")
     symbol_units = StringField("units")
@@ -1671,8 +1693,7 @@ def list_all_symbols():
                 path_to_db,
             )
         elif "symbol_latex" in request.form.keys():
-            # request.form = ImmutableMultiDict([('symbol_category', 'constant'), ('symbol_latex', 'asdf'), ('symbol_name', 'asdfafasdf'), ('symbol_reference', ''), ('symbol_value', ''), ('symbol_units', ''), ('symbol_scope_real', 'y'), ('symbol_scope_complex', 'y') ('submit_button', 'Submit')])
-
+            # ('symbol_category', 'variable'), ('symbol_latex', 'n'), ('symbol_name', 'index'), ('symbol_scope', 'integer'), ('symbol_reference', ''), ('dimension_length', '0'), ('dimension_time', '0'), ('dimension_mass', '0'), ('dimension_temperature', '0'), ('dimension_electric_charge', '0'), ('dimension_amount_of_substance', '0'), ('dimension_luminous_intensity', '0'), ('symbol_radio_domain', 'any'), ('submit_button', 'Submit')
             if "symbol_value" not in request.form.keys():
                 value = ""
             else:
@@ -1683,34 +1704,22 @@ def list_all_symbols():
             else:
                 units = request.form["symbol_units"]
 
-            if "symbol_scope_complex" not in request.form.keys():
-                scope = ["real"]
-            elif (
-                "symbol_scope_real" in request.form.keys()
-                and request.form["symbol_scope_real"] == "n"
-            ):
-                scope = ["complex"]
-            elif (
-                "symbol_scope_real" in request.form.keys()
-                and "symbol_scope_complex" in request.form.keys()
-                and request.form["symbol_scope_real"] == "y"
-                and request.form["symbol_scope_complex"] == "y"
-            ):
-                scope = ["real", "complex"]
-            elif (
-                "symbol_scope_complex" in request.form.keys()
-                and request.form["symbol_scope_complex"] == "y"
-            ):
-                scope = ["complex"]
             compute.add_symbol(
                 request.form["symbol_category"],
                 request.form["symbol_latex"],
                 request.form["symbol_name"],
-                request.form["symbol_measure"],
+                request.form["symbol_scope"],
                 request.form["symbol_reference"],
+                request.form["symbol_radio_domain"],
+                request.form["dimension_length"],
+                request.form["dimension_time"],
+                request.form["dimension_mass"],
+                request.form["dimension_temperature"],
+                request.form["dimension_electric_charge"],
+                request.form["dimension_amount_of_substance"],
+                request.form["dimension_luminous_intensity"],
                 value,
                 units,
-                scope,
                 current_user.email,
                 path_to_db,
             )
