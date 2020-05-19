@@ -99,10 +99,11 @@ schema = {
                                                        {"type": "object",
                                                         "additionalProperties": False,
                                                         "properties": {
-                                                            'measure': {'type': 'string'},
+                                                            'measure': {'type': 'string'}, # this should be removed
+                                                            'dimensions': {'type': 'object'},
                                                             'references': {'type': 'array'}
                                                                       },
-                                                        'required': ['measure','references']
+                                                        'required': ['references'] # dimension should be required
                                                        }
                                                   }
                             },

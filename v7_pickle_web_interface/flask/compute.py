@@ -905,10 +905,18 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
                 this_unit["dimension: length"] = unit_dict["dimensions"]["length"]
                 this_unit["dimension: time"] = unit_dict["dimensions"]["time"]
                 this_unit["dimension: mass"] = unit_dict["dimensions"]["mass"]
-                this_unit["dimension: temperature"] = unit_dict["dimensions"]["temperature"]
-                this_unit["dimension: electric charge"] = unit_dict["dimensions"]["electric charge"]
-                this_unit["dimension: amount of substance"] = unit_dict["dimensions"]["amount of substance"]
-                this_unit["dimension: luminous intensity"] = unit_dict["dimensions"]["luminous intensity"]
+                this_unit["dimension: temperature"] = unit_dict["dimensions"][
+                    "temperature"
+                ]
+                this_unit["dimension: electric charge"] = unit_dict["dimensions"][
+                    "electric charge"
+                ]
+                this_unit["dimension: amount of substance"] = unit_dict["dimensions"][
+                    "amount of substance"
+                ]
+                this_unit["dimension: luminous intensity"] = unit_dict["dimensions"][
+                    "luminous intensity"
+                ]
 
             this_unit["reference"] = this_ref
             units_list_of_dicts.append(this_unit)
