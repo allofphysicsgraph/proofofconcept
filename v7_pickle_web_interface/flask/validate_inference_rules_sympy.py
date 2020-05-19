@@ -1929,6 +1929,7 @@ def evaluate_definite_integral(latex_dict):
     logger.info("[trace]")
     return "no check performed"
 
+
 def expr_is_true_under_condition_expr(latex_dict):
     """ 
 
@@ -1941,5 +1942,6 @@ def expr_is_true_under_condition_expr(latex_dict):
     """
     logger.info("[trace]")
     return "no check performed"
+
 
 # EOF
