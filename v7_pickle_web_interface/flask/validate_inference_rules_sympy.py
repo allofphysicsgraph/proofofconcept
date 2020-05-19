@@ -410,8 +410,8 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         return maximum_of_expr(latex_dict)
     elif step_dict["inf rule"] == "evaluate definite integral":
         return evaluate_definite_integral(latex_dict)
-    #    elif step_dict["inf rule"] == "":
-    #        return (latex_dict)
+    elif step_dict["inf rule"] == "expr 1 is true under condition expr 2":
+        return expr_is_true_under_condition_expr(latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        return (latex_dict)
     #    elif step_dict["inf rule"] == "":
@@ -1929,5 +1929,17 @@ def evaluate_definite_integral(latex_dict):
     logger.info("[trace]")
     return "no check performed"
 
+def expr_is_true_under_condition_expr(latex_dict):
+    """ 
+
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> expr_is_true_under_condition_expr(latex_dict)
+    'step is valid'
+    """
+    logger.info("[trace]")
+    return "no check performed"
 
 # EOF
