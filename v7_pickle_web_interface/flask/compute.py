@@ -2085,7 +2085,7 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
                     + '", "group": 1, "img": "/static/'
                     + expr_global_id
                     + '.png", '
-                    + '"url": "https://derivationmap.net/list_all_expressions/?referrer=d3js#'
+                    + '"url": "https://derivationmap.net/list_all_expressions?referrer=d3js#'
                     + expr_global_id
                     + '", "width": '
                     + str(image.shape[1])
@@ -2744,7 +2744,7 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
             + '"img": "/static/'
             + png_name
             + '.png", '
-            + '"url": "https://derivationmap.net/list_all_expressions/?referrer=d3js#'
+            + '"url": "https://derivationmap.net/list_all_expressions?referrer=d3js#'
             + global_expr_id
             + '", "width": '
             + str(image.shape[1])
