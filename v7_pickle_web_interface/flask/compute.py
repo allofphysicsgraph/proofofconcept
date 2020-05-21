@@ -756,6 +756,7 @@ def create_files_of_db_content(path_to_db):
         df_pkl_file = convert_df_to_pkl(all_df)
     except Exception as err:
         logger.error("creating pickle failed: " + str(err))
+    shutil.copy(df_pkl_file, "/home/appuser/app/static/")
 
     try:
         sql_file = convert_dataframes_to_sql(all_df)
@@ -781,7 +782,6 @@ def create_files_of_db_content(path_to_db):
 
 def convert_json_to_dataframes(path_to_db: str) -> dict:
     """
-    this conversion is lossless
 
     >>> convert_json_to_dataframes('pdg.db')
     """
@@ -791,17 +791,34 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
 
     all_dfs = {}
 
+    # TABLE: derivations
+    derivations_list_of_dicts = []
+    for deriv_id in dat["derivations"].keys():
+        this_deriv = {}
+        this_deriv["deriv ID"] = deriv_id
+        this_deriv["name"] = dat["derivations"][deriv_id]["name"]
+        this_deriv["notes"] = dat["derivations"][deriv_id]["notes"]
+        this_deriv["creation date"] = dat["derivations"][deriv_id]["creation date"]
+        this_deriv["author"] = dat["derivations"][deriv_id]["author"]
+        derivations_list_of_dicts.append(this_deriv)
+    all_dfs["derivations"] = pandas.DataFrame(derivations_list_of_dicts)
+
+    # TABLE: expressions
     expressions_list_of_dicts = []
     for expression_id, expression_dict in dat["expressions"].items():
         this_expr = {}
-        this_expr["expression id"] = expression_id
-        this_expr["expression latex"] = expression_dict["latex"]
+        this_expr["expression ID"] = expression_id
+        this_expr["latex"] = expression_dict["latex"]
+        this_expr["notes"] = expression_dict["notes"]
+        this_expr["creation date"] = expression_dict["creation date"]
+        this_expr["author"] = expression_dict["author"]
         this_expr["AST"] = "None"
         if "AST" in expression_dict.keys():
             this_expr["AST"] = expression_dict["AST"]
         expressions_list_of_dicts.append(this_expr)
     all_dfs["expressions"] = pandas.DataFrame(expressions_list_of_dicts)
 
+    # TABLE: inference rules
     infrules_list_of_dicts = []
     for infrule_name, infrule_dict in dat["inference rules"].items():
         this_infrule = {}
@@ -810,39 +827,53 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
         this_infrule["number of inputs"] = infrule_dict["number of inputs"]
         this_infrule["number of outputs"] = infrule_dict["number of outputs"]
         this_infrule["latex"] = infrule_dict["latex"]
+        this_infrule["notes"] = infrule_dict["notes"]
+        this_infrule["creation date"] = infrule_dict["creation date"]
+        this_infrule["author"] = infrule_dict["author"]
         infrules_list_of_dicts.append(this_infrule)
     all_dfs["infrules"] = pandas.DataFrame(infrules_list_of_dicts)
 
-    derivations_list_of_dicts = []
+    # TABLE: steps
+    steps_list_of_dicts = []
+    inputs_list_of_dicts = []
+    feeds_list_of_dicts = []
+    outputs_list_of_dicts = []
     for deriv_id in dat["derivations"].keys():
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
-            for connection_type in ["inputs", "feeds", "outputs"]:
-                for expr_local_id in step_dict[connection_type]:
-                    this_derivation_step_expr = {}
-                    this_derivation_step_expr["derivation name"] = dat["derivations"][
-                        deriv_id
-                    ]["name"]
-                    this_derivation_step_expr["step id"] = step_id
-                    this_derivation_step_expr["inference rule"] = step_dict["inf rule"]
-                    this_derivation_step_expr["linear index"] = step_dict[
-                        "linear index"
-                    ]
-                    this_derivation_step_expr["connection type"] = connection_type
-                    this_derivation_step_expr["expression local id"] = expr_local_id
-                    derivations_list_of_dicts.append(this_derivation_step_expr)
-    all_dfs["derivations"] = pandas.DataFrame(derivations_list_of_dicts)
+            steps_list_of_dicts.append(
+                {
+                    "step ID": step_id,
+                    "inference rule": step_dict["inf rule"],
+                    "linear index": step_dict["linear index"],
+                }
+            )
+            for expr_local_id in step_dict["inputs"]:
+                inputs_list_of_dicts.append(
+                    {"step ID": step_id, "expr local ID": expr_local_id}
+                )
+            for expr_local_id in step_dict["feeds"]:
+                feeds_list_of_dicts.append(
+                    {"step ID": step_id, "expr local ID": expr_local_id}
+                )
+            for expr_local_id in step_dict["outputs"]:
+                outputs_list_of_dicts.append(
+                    {"step ID": step_id, "expr local ID": expr_local_id}
+                )
+    all_dfs["steps"] = pandas.DataFrame(steps_list_of_dicts)
+    all_dfs["step inputs"] = pandas.DataFrame(inputs_list_of_dicts)
+    all_dfs["step feeds"] = pandas.DataFrame(feeds_list_of_dicts)
+    all_dfs["step outputs"] = pandas.DataFrame(outputs_list_of_dicts)
 
     local_to_global_list_of_dicts = []
     for local_id, global_id in dat["expr local to global"].items():
-        this_lookup = {}
-        this_lookup["expr local id"] = local_id
-        this_lookup["expr global id"] = global_id
-        local_to_global_list_of_dicts.append(this_lookup)
+        local_to_global_list_of_dicts.append(
+            {"expr local id": local_id, "expr global id": global_id}
+        )
     all_dfs["expr local global"] = pandas.DataFrame(local_to_global_list_of_dicts)
 
     symbols_list_of_dicts = []
     for symbol_id, symbol_dict in dat["symbols"].items():
-        if "values" in symbol_dict.keys():
+        if "values" in symbol_dict.keys():  # the symbol is a constant
             for value_dict in symbol_dict["values"]:
                 this_symb = {}
                 this_symb["symbol id"] = symbol_id
@@ -857,12 +888,14 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
                     )  # TODO: an entry in a table should not be a list (tidy data)
                 if "name" in symbol_dict.keys():
                     this_symb["name"] = symbol_dict["name"]
-                if "measure" in symbol_dict.keys():
-                    this_symb["measure"] = symbol_dict["measure"]
+                if "dimensions" in symbol_dict.keys():
+                    this_symb["dimensions"] = str(
+                        symbol_dict["dimensions"]
+                    )  # TODO: this is actually a dict
                 this_symb["value"] = value_dict["value"]
                 this_symb["units"] = value_dict["units"]
                 symbols_list_of_dicts.append(this_symb)
-        else:  # no 'values' in symbol_dict.keys()
+        else:  # no 'values' in symbol_dict.keys(); the symbols is a variable
             this_symb = {}
             this_symb["symbol id"] = symbol_id
             this_symb["latex"] = symbol_dict["latex"]
@@ -877,8 +910,10 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
                 )  # TODO: an entry in a table should not be a list (tidy data)
             if "name" in symbol_dict.keys():
                 this_symb["name"] = symbol_dict["name"]
-            if "measure" in symbol_dict.keys():
-                this_symb["measure"] = symbol_dict["measure"]
+            if "dimensions" in symbol_dict.keys():
+                this_symb["dimensions"] = str(
+                    symbol_dict["dimensions"]
+                )  # TODO: this is actually a dict
             symbols_list_of_dicts.append(this_symb)
     all_dfs["symbols"] = pandas.DataFrame(symbols_list_of_dicts)
 
