@@ -1082,9 +1082,9 @@ def convert_data_to_cypher(path_to_db: str) -> str:
 
     for expression_id, expression_dict in dat["expressions"].items():
         cypher_str += "CREATE (id" + expression_id + ":expression {\n"
-        if len(expression_dict["name"])>0:
+        if len(expression_dict["name"]) > 0:
             cypher_str += "  name: '" + expression_dict["name"] + "',\n"
-        if len(expression_dict["notes"])>0:
+        if len(expression_dict["notes"]) > 0:
             cypher_str += "  notes: '" + expression_dict["notes"] + "',\n"
         cypher_str += "  creation_date: '" + expression_dict["creation date"] + "',\n"
         cypher_str += "  author: '" + expression_dict["author"] + "',\n"
@@ -1116,9 +1116,13 @@ def convert_data_to_cypher(path_to_db: str) -> str:
 
     for deriv_id in dat["derivations"].keys():
         cypher_str += "CREATE (" + deriv_id + ":derivation {\n"
-        if len(dat["derivations"][deriv_id]["name"])>0:
-            cypher_str += "  name: '" + "".join(filter(str.isalnum, dat["derivations"][deriv_id]["name"])) + "',\n"
-        if len(dat["derivations"][deriv_id]["notes"])>0:
+        if len(dat["derivations"][deriv_id]["name"]) > 0:
+            cypher_str += (
+                "  name: '"
+                + "".join(filter(str.isalnum, dat["derivations"][deriv_id]["name"]))
+                + "',\n"
+            )
+        if len(dat["derivations"][deriv_id]["notes"]) > 0:
             cypher_str += "  notes: '" + dat["derivations"][deriv_id]["notes"] + "',\n"
         cypher_str += (
             "  creation_date: '"
@@ -2017,7 +2021,9 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
                 + this_deriv
                 + "_name"
                 + '.png", '
-                + '"url": "https://derivationmap.net/review_derivation/' + deriv_id + '/?referrer=d3js", '
+                + '"url": "https://derivationmap.net/review_derivation/'
+                + deriv_id
+                + '/?referrer=d3js", '
                 + '"width": '
                 + str(image.shape[1])
                 + ", "
