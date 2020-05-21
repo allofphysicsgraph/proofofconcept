@@ -1059,7 +1059,6 @@ def convert_data_to_rdf(path_to_db: str) -> str:
 
 def convert_data_to_cypher(path_to_db: str) -> str:
     """
-    this conversion is lossy
 
     https://hub.docker.com/_/neo4j
 
@@ -1083,6 +1082,11 @@ def convert_data_to_cypher(path_to_db: str) -> str:
 
     for expression_id, expression_dict in dat["expressions"].items():
         cypher_str += "CREATE (id" + expression_id + ":expression {\n"
+        cypher_str += "  name: '" + expression_dict["name"] + ",\n"
+        cypher_str += "  notes: '" + expression_dict["notes"] + ",\n"
+        cypher_str += "  creation date: '" + expression_dict["creation date"] + ",\n"
+        cypher_str += "  author: '" + expression_dict["author"] + ",\n"
+        # TODO: not clear how to include AST and references to symbols
         cypher_str += (
             "       latex: '"
             + expression_dict["latex"].replace("\\", "\\\\").replace("'", "\\'")
@@ -1102,41 +1106,85 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         cypher_str += (
             "       num_outputs: " + str(infrule_dict["number of outputs"]) + ",\n"
         )
-        cypher_str += "       latex: '" + infrule_dict["latex"] + "'})\n"
-    for deriv_id in dat["derivations"].keys():
+        cypher_str += "       author: " + str(infrule_dict["author"]) + ",\n"
         cypher_str += (
-            "// derivation: " + dat["derivations"][deriv_id]["name"] + "\n"
-        )  # https://neo4j.com/docs/cypher-manual/current/syntax/comments/
+            "       creation date: " + str(infrule_dict["creation date"]) + ",\n"
+        )
+        cypher_str += "       latex: '" + infrule_dict["latex"] + "'})\n"
+
+    for deriv_id in dat["derivations"].keys():
+        cypher_str += "CREATE (id" + deriv_id + ":derivation {\n"
+        cypher_str += "  name: '" + dat["derivations"][deriv_id]["name"] + "',\n"
+        cypher_str += "  notes: '" + dat["derivations"][deriv_id]["notes"] + "',\n"
+        cypher_str += (
+            "  creation date: '"
+            + dat["derivations"][deriv_id]["creation date"]
+            + "',\n"
+        )
+        cypher_str += "  author: '" + dat["derivations"][deriv_id]["author"] + "'}\n"
+
+        # https://neo4j.com/docs/cypher-manual/current/syntax/comments/
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             cypher_str += "CREATE (id" + step_id + ":step {\n"
+            cypher_str += "  creation date: '" + step_dict["creation date"] + "',\n"
+            cypher_str += "  author: '" + step_dict["author"] + "'}\n"
+            # step to deriv via linear index
             cypher_str += (
-                "       infrule: '"
+                "CREATE (id"
+                + step_id
+                + ")<-[:linear_index {linear_index: '"
+                + str(step_dict["linear index"])
+                + "}']-(id"
+                + deriv_id
+                + ")\n"
+            )
+            # step to infrule
+            cypher_str += (
+                "CREATE (id"
+                + step_id
+                + ")<-[:infrule]-(id"
                 + "".join(filter(str.isalnum, step_dict["inf rule"]))
-                + "',\n"
+                + ")\n"
             )
-            cypher_str += (
-                "       linear_index: " + str(step_dict["linear index"]) + "})\n"
-            )
+
+            # within each step, link to expr
             for expr_local_id in step_dict["inputs"]:
                 cypher_str += (
-                    "CREATE (id" + step_id + ")<-[:expr]-(id" + expr_local_id + ")\n"
+                    "CREATE (id"
+                    + step_id
+                    + ")<-[:expr { local_id: '"
+                    + expr_local_id
+                    + "'}]-(id"
+                    + dat["expr local to global"][expr_local_id]
+                    + ")\n"
                 )
             for expr_local_id in step_dict["feeds"]:
                 cypher_str += (
-                    "CREATE (id" + step_id + ")<-[:expr]-(id" + expr_local_id + ")\n"
+                    "CREATE (id"
+                    + step_id
+                    + ")<-[:expr { local_id: '"
+                    + expr_local_id
+                    + "'}]-(id"
+                    + dat["expr local to global"][expr_local_id]
+                    + ")\n"
                 )
             for expr_local_id in step_dict["outputs"]:
                 cypher_str += (
-                    "CREATE (id" + step_id + ")-[:expr]->(id" + expr_local_id + ")\n"
+                    "CREATE (id"
+                    + step_id
+                    + ")-[:expr { local_id: '"
+                    + expr_local_id
+                    + "'}]->(id"
+                    + dat["expr local to global"][expr_local_id]
+                    + ")\n"
                 )
-    for local_id, global_id in dat["expr local to global"].items():
-        cypher_str += (
-            "CREATE (id" + local_id + ")-[:local_is_global]->(id" + global_id + ")\n"
-        )
+
     # for symbol_id, symbol_dict in dat['symbols'].items():
     #    cypher_str += "CREATE ()"
+
     # for operator_name, operator_dict in dat['operators'].items():
     #    cypher_str += "CREATE ()"
+
     cypher_file = "neo4j.txt"
     with open(cypher_file, "w") as fil:
         fil.write(cypher_str)
@@ -2616,6 +2664,9 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
             + '"img": "/static/'
             + png_name
             + '.png", '
+            + '"url": "https://derivationmap.net/list_all_inference_rules?referrer=d3js#'
+            + png_name
+            + '", '
             + '"width": '
             + str(image.shape[1])
             + ", "
