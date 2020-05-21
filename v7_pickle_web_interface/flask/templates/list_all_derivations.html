@@ -7,13 +7,16 @@
 
 <P>
 <!--
-  <a href="{ { url_for('static', filename=map_of_derivations) }}?referrer=show_all_derivations">
+  <a href="{ { url_for('static', filename=map_of_derivations, referrer='list_all_derivations') }}">
     <img src="{ { url_for('static', filename=map_of_derivations) }}">
   </a>
 -->
   <center>
     <svg id='viz'></svg>
   </center>
+<BR>
+Hold the mouse over a node to highlight that node and its neighbors. You can zoom in/out. You can pan the image. You can move nodes by clicking and dragging.
+
 </P>
 
 <P>

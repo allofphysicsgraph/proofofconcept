@@ -17,12 +17,12 @@
     <td colspan=2>
       <UL>
         <LI>
-          <a href="{{ url_for('show_all_derivations') }}?referrer=navigation">show all {{ dat['derivations']|length }} derivations</a>
+          <a href="{{ url_for('list_all_derivations', referrer='navigation') }}">show all {{ dat['derivations']|length }} derivations</a>
         </LI>
         <LI>
-          <a href="{{ url_for('start_new_derivation') }}?referrer=navigation">start a new derivation</a>
+          <a href="{{ url_for('start_new_derivation', referrer='navigation') }}">start a new derivation</a>
            {% if current_user.is_anonymous %}
-             -- requires being <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
+             -- requires being <a href="{{ url_for('login', referrer='navigation') }}">signed in</a>
            {% endif %}
         </LI>
 <!--

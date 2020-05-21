@@ -1592,10 +1592,10 @@ def start_new_derivation():
     )
 
 
-@app.route("/show_all_derivations", methods=["GET", "POST"])
-def show_all_derivations():
+@app.route("/list_all_derivations", methods=["GET", "POST"])
+def list_all_derivations():
     """
-    >>> show_all_derivations()
+    >>> list_all_derivations()
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace page start " + trace_id + "]")
@@ -1622,7 +1622,7 @@ def show_all_derivations():
 
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
-        "show_all_derivations.html",
+        "list_all_derivations.html",
         # map_of_derivations=map_of_derivations,
         json_for_d3js=json_all_derivations,
         derivations_popularity_dict=derivations_popularity_dict,
