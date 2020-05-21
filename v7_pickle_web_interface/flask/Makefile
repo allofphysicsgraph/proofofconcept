@@ -42,14 +42,26 @@ endif
 docker:
 	docker build -t flask_ub .
 	docker run -it --rm -v`pwd`/data.json:/home/appuser/app/data.json \
--v`pwd`/logs/:/home/appuser/app/logs/ \
--v`pwd`/users_sqlite.db:/home/appuser/app/users_sqlite.db \
---env-file .env --publish 5000:5000 flask_ub
+           -v`pwd`/logs/:/home/appuser/app/logs/ \
+           -v`pwd`/users_sqlite.db:/home/appuser/app/users_sqlite.db \
+           --env-file .env --publish 5000:5000 flask_ub
 
 dockerlive:
 	docker build -t flask_ub .
-	docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json -v`pwd`/logs/:/home/appuser/app/logs/ -v`pwd`/users_sqlite.db:/home/appuser/app/users_sqlite.db --env-file .env --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
+	docker run -it --rm -v`pwd`:/scratch \
+           -v`pwd`/data.json:/home/appuser/app/data.json \
+           -v`pwd`/logs/:/home/appuser/app/logs/ \
+           -v`pwd`/users_sqlite.db:/home/appuser/app/users_sqlite.db \
+           --env-file .env --entrypoint='' \
+           --publish 5000:5000 flask_ub /bin/bash
 
+neo4j:
+	docker run --publish=7474:7474 --publish=7687:7687 --publish=7473:7473 \
+           --volume=$$HOME/neo4j/data:/data \
+           --volume=$$HOME/neo4j/logs:/logs \
+           --volume=$$HOME/neo4j/conf:/conf \
+           --volume=$$HOME/neo4j/tmp:/tmp \
+           --env NEO4J_AUTH=none neo4j:4.0
 
 flask:
 	python3 controller.py
