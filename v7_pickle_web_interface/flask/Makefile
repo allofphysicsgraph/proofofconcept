@@ -34,6 +34,18 @@ else
 	@echo 'FILE_NAME is undefined'
 endif
 
+docker:
+	docker build -t flask_ub .
+	docker run -it --rm -v`pwd`/data.json:/home/appuser/app/data.json \
+-v`pwd`/logs/:/home/appuser/app/logs/ \
+-v`pwd`/users_sqlite.db:/home/appuser/app/users_sqlite.db \
+--env-file .env --publish 5000:5000 flask_ub
+
+dockerlive:
+	docker build -t flask_ub .
+	docker run -it --rm -v`pwd`:/scratch -v`pwd`/data.json:/home/appuser/app/data.json -v`pwd`/logs/:/home/appuser/app/logs/ -v`pwd`/users_sqlite.db:/home/appuser/app/users_sqlite.db --env-file .env --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
+
+
 flask:
 	python3 controller.py
 
