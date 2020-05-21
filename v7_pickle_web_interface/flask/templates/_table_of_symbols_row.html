@@ -14,16 +14,32 @@
 \({{ dat["symbols"][symbol_id]['latex'] }}\)</td>
     <!-- scope -->
     <td>{{ dat["symbols"][symbol_id]['scope'] }}</td>
-    <!-- measure -->
+    <!-- dimensions -->
     <td>
-    {% if 'measure' in dat["symbols"][symbol_id] %}
-      {{ dat["symbols"][symbol_id]['measure'] }}
-    {% else %}
-      {% if current_user.is_anonymous %}
-        &nbsp;
+    {% if 'dimensions' in dat["symbols"][symbol_id] %}
+      {% if dat["symbols"][symbol_id]['dimensions']['length'] == 0 and 
+            dat["symbols"][symbol_id]['dimensions']['time'] == 0 and 
+            dat["symbols"][symbol_id]['dimensions']['mass'] == 0 and        
+            dat["symbols"][symbol_id]['dimensions']['temperature'] == 0 and        
+            dat["symbols"][symbol_id]['dimensions']['electric charge'] == 0 and        
+            dat["symbols"][symbol_id]['dimensions']['amount of substance'] == 0 and        
+            dat["symbols"][symbol_id]['dimensions']['luminous intensity'] == 0 %}
+        dimensionless
       {% else %}
-
-        {% if hide_symbol_forms is not defined %}
+        {% for dim, val in dat["symbols"][symbol_id]['dimensions'].items() %}
+          <UL>
+            {% if val != 0 %}
+              <LI>{{dim}}: {{val}}</LI>
+            {% endif %}
+          </UL>
+        {% endfor %}
+      {% endif %}
+    {% else %}
+      <!--
+      { % if current_user.is_anonymous %}
+        &nbsp;
+      { % else %}
+        { % if hide_symbol_forms is not defined %}
         <form method="post" action="">
           {{ dimensional_webform.csrf_token }}
           <div class="form-group">
@@ -33,8 +49,10 @@
           <button type="submit" class="btn btn-default">Update</button>
           </div>
         </form>
-        {% endif %}
-      {% endif %}
+        { % endif %}
+      { % endif %}
+        -->
+
     {% endif %}
     </td>
     <!-- name -->
@@ -45,8 +63,10 @@
     </td>
     <!-- value -->
     <td>
-    {% if 'value' in dat["symbols"][symbol_id] %}
-      {{ dat["symbols"][symbol_id]['value'] }}
+    {% if 'values' in dat["symbols"][symbol_id] %}
+      {% for entry in dat["symbols"][symbol_id]['values'] %}
+        {{ entry['value'] }} &nbsp; {{ entry['units'] }}<BR>
+      {% endfor %}
     {% endif %}
     </td>
     <!-- used in derivations -->

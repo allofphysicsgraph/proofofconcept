@@ -44,7 +44,9 @@ An inference rule is the atomic step of logic that relates two mathematical expr
   <a name="proofs">
 <i>What is the role of proofs in the Physics Derivation Graph?</i>
 </a><BR>
-The Physics Derivation Graph does not prove anything; it merely documents the mathematical manipulations applied in Physics.
+  The Physics Derivation Graph does not prove anything; it merely documents the mathematical manipulations applied in Physics. 
+  In this project a derivation is used to denote relations between statements that relate objective measurements of reality.
+  For more on this issue, see <a href="https://math.stackexchange.com/a/2637338">this answer</a>.
 </P>
 
 <P>
@@ -75,10 +77,7 @@ Each expression index is a <a href="https://en.wikipedia.org/wiki/G%C3%B6del_num
 </p>
 
 <P>
-  The Physics Derivation Graph does not include textual explanations about why algebraic manipulations are being carried out.</p>
-
-<P>
-  The Physics Derivation Graph is similar to a <a href="https://en.wikipedia.org/wiki/Schaum%27s_Outlines">Schuam's outline</a>, except it covers all known Physics and documents the relations between various governing expressions.
+  The Physics Derivation Graph is similar to a <a href="https://en.wikipedia.org/wiki/Schaum%27s_Outlines">Schuam's outline</a>, except it is intended to cover all known Physics and documents the relations between various governing expressions.
 </P>
 
 <p>
@@ -88,7 +87,7 @@ Each expression index is a <a href="https://en.wikipedia.org/wiki/G%C3%B6del_num
 <H3>Objectives</H3>
 
 <P>
-  Observation: Derivations used in Physics are mathematical expressions linked by a finite set of inference rules.
+  Derivations used in Physics are mathematical expressions linked by a finite set of inference rules.
 
 <P>
   The purpose of this project is to test the claim that a finite static graph exists which relates all expressions of mathematical physics.
@@ -203,9 +202,11 @@ Anything from <a href="https://en.wikipedia.org/wiki/Classical_mechanics">Classi
   <a name="prove Physics">
 <i>Can the Physics Derivation Graph be used to prove Physics?</i>
 </a><BR>
-No. "Proof" is not a well-defined term in Physics. <BR>
-From a Stack Exchange <a href="http://physics.stackexchange.com/questions/82493/how-important-is-mathematical-proof-in-physics">answer</a>,<BR>
-Mathematical proofs relate to exactly how a MODEL will behave. They don't have much to do with how the real world behaves. If the mathematics is carried out correctly, then one has "proven" how the model will behave.<BR>
+    No. "Proof" is not a well-defined term in Physics. <BR>
+    From a Stack Exchange <a href="http://physics.stackexchange.com/questions/82493/how-important-is-mathematical-proof-in-physics">answer</a>,
+<blockquote>
+Mathematical proofs relate to exactly how a MODEL will behave. They don't have much to do with how the real world behaves. If the mathematics is carried out correctly, then one has "proven" how the model will behave.
+</blockquote>
 
 The reason for experimentation, is to find out if the completely fictional MODEL that somebody simply made up, behaves in any way the same, as observations suggest the real world behaves. If it doesn't, that is not an indication of a mathematical error, it simply means the fictional model is not a good description of the real world, and must be changed.
 </P>
@@ -219,30 +220,6 @@ The physics derivation graph can handle proving mathematical identities, ie Eule
 The difference between a derivation and proving an identity is that when proving an identity, only one side of the equation is manipulated. For a derivation, both sides of the expression are involved.
 </P>
 
-<P>
-  <a name="alternative:RDF">
-<I>Could the Physics Derivation Graph be written in <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>?</I>
-</a><BR>
-The PDG is oriented towards visualization. <BR>
-point 1: SPARQL is the query language for RDF. I don't see much use for querying the graph.<BR>
-point 2: Using RDF doesn't help with using a computer algebra system for validation of the step.<BR>
-
-Each step in a derivation could be put in the subject–predicate–object triple form. For example, suppose I have the step
-<Pre>
-Input 1: y=mx+b
-inference rule: multiply both sides by
-feed: 2
-output 2: 2*y = 2*m*x + 2*b
-</Pre>
-Putting this in RDF,
-<pre>
-step 1 | has input | y=mx+b
-step 1 | has inference rule | multiply both sides by
-step 1 | has feed | 2
-step 1 | has output | 2*y = 2*m*x + 2*b
-</pre>
-While it's easy to convert, I don't see any advantage of using RDF.
-</P>
 
 <P>
   <a name="comparison">

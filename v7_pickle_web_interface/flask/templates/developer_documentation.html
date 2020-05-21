@@ -45,6 +45,7 @@ cat developer_documentation.html |\
     <OL>
       <LI><a href="#networkx">Networkx</a></LI>
       <LI><a href="#graphml">GraphML</a></LI>
+      <LI><a href="#rdf">RDF/OWL</a></LI>
     </OL>
   </OL>
   <LI><a href="#comparison:syntax">Comparison of Syntax Options</a></LI>
@@ -458,6 +459,35 @@ http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
 </graph>
 </graphml>
 </textarea>
+
+
+<H4 name="rdf">RDF/OWL</H4>
+
+<P>
+  The Physics Derivation Graph can be expressed in <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>. 
+
+<P>
+  Each step in a derivation could be put in the subject–predicate–object triple form. For example, suppose the step is
+<Pre>
+Input 1: y=mx+b
+inference rule: multiply both sides by
+feed: 2
+output 2: 2*y = 2*m*x + 2*b
+</Pre>
+Putting this in RDF,
+<pre>
+step 1 | has input | y=mx+b
+step 1 | has inference rule | multiply both sides by
+step 1 | has feed | 2
+step 1 | has output | 2*y = 2*m*x + 2*b
+</pre>
+  While it's easy to convert, I am unaware of the advantages of using RDF.
+  The PDG is oriented towards visualization. 
+  SPARQL is the query language for RDF. I don't see much use for querying the graph.
+  Using RDF doesn't help with using a computer algebra system for validation of the step.
+</P>
+
+
 
 <P>&nbsp;</P>
 <HR>
