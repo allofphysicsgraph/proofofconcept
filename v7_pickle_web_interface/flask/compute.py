@@ -1082,10 +1082,12 @@ def convert_data_to_cypher(path_to_db: str) -> str:
 
     for expression_id, expression_dict in dat["expressions"].items():
         cypher_str += "CREATE (id" + expression_id + ":expression {\n"
-        cypher_str += "  name: '" + expression_dict["name"] + ",\n"
-        cypher_str += "  notes: '" + expression_dict["notes"] + ",\n"
-        cypher_str += "  creation date: '" + expression_dict["creation date"] + ",\n"
-        cypher_str += "  author: '" + expression_dict["author"] + ",\n"
+        if len(expression_dict["name"])>0:
+            cypher_str += "  name: '" + expression_dict["name"] + "',\n"
+        if len(expression_dict["notes"])>0:
+            cypher_str += "  notes: '" + expression_dict["notes"] + "',\n"
+        cypher_str += "  creation_date: '" + expression_dict["creation date"] + "',\n"
+        cypher_str += "  author: '" + expression_dict["author"] + "',\n"
         # TODO: not clear how to include AST and references to symbols
         cypher_str += (
             "       latex: '"
@@ -1108,16 +1110,18 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         )
         cypher_str += "       author: " + str(infrule_dict["author"]) + ",\n"
         cypher_str += (
-            "       creation date: " + str(infrule_dict["creation date"]) + ",\n"
+            "       creation_date: " + str(infrule_dict["creation date"]) + ",\n"
         )
         cypher_str += "       latex: '" + infrule_dict["latex"] + "'})\n"
 
     for deriv_id in dat["derivations"].keys():
-        cypher_str += "CREATE (id" + deriv_id + ":derivation {\n"
-        cypher_str += "  name: '" + dat["derivations"][deriv_id]["name"] + "',\n"
-        cypher_str += "  notes: '" + dat["derivations"][deriv_id]["notes"] + "',\n"
+        cypher_str += "CREATE (" + deriv_id + ":derivation {\n"
+        if len(dat["derivations"][deriv_id]["name"])>0:
+            cypher_str += "  name: '" + "".join(filter(str.isalnum, dat["derivations"][deriv_id]["name"])) + "',\n"
+        if len(dat["derivations"][deriv_id]["notes"])>0:
+            cypher_str += "  notes: '" + dat["derivations"][deriv_id]["notes"] + "',\n"
         cypher_str += (
-            "  creation date: '"
+            "  creation_date: '"
             + dat["derivations"][deriv_id]["creation date"]
             + "',\n"
         )
@@ -1126,7 +1130,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         # https://neo4j.com/docs/cypher-manual/current/syntax/comments/
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             cypher_str += "CREATE (id" + step_id + ":step {\n"
-            cypher_str += "  creation date: '" + step_dict["creation date"] + "',\n"
+            cypher_str += "  creation_date: '" + step_dict["creation date"] + "',\n"
             cypher_str += "  author: '" + step_dict["author"] + "'}\n"
             # step to deriv via linear index
             cypher_str += (
@@ -1142,7 +1146,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
             cypher_str += (
                 "CREATE (id"
                 + step_id
-                + ")<-[:infrule]-(id"
+                + ")<-[:infrule]-("
                 + "".join(filter(str.isalnum, step_dict["inf rule"]))
                 + ")\n"
             )
@@ -2013,6 +2017,7 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
                 + this_deriv
                 + "_name"
                 + '.png", '
+                + '"url": "https://derivationmap.net/review_derivation/' + deriv_id + '/?referrer=d3js", '
                 + '"width": '
                 + str(image.shape[1])
                 + ", "
@@ -2665,7 +2670,7 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
             + png_name
             + '.png", '
             + '"url": "https://derivationmap.net/list_all_inference_rules?referrer=d3js#'
-            + png_name
+            + step_dict["inf rule"]
             + '", '
             + '"width": '
             + str(image.shape[1])
