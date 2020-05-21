@@ -4,9 +4,14 @@
 .PHONY: help clean webserver typehints flake8 pylint doctest mccabe
 
 help:
-	@echo "  == Targets =="
 	@echo "make help"
 	@echo "      this message"
+	@echo "==== Targets outside container ===="
+	@echo "make docker"
+	@echo "      build and run docker"
+	@echo "make dockerlive"
+	@echo "      build and run docker /bin/bash"
+	@echo "==== Targets inside container ===="
 	@echo "make flask"
 	@echo "      start webserver"
 	@echo "make gunicorn"
