@@ -4,8 +4,8 @@
 <script src='https://d3js.org/d3.v5.min.js'></script>
 -->
 
-<!-- code below is based on  https://bl.ocks.org/mapio/53fed7d84cd1812d6a6639ed7aa83868 
-     and is better than https://bl.ocks.org/mbostock/950642 
+<!-- code below is based on  https://bl.ocks.org/mapio/53fed7d84cd1812d6a6639ed7aa83868
+     and is better than https://bl.ocks.org/mbostock/950642
      because mapio's implementation features zoom and node coloring -->
 <!-- I would like to add node enhancement on mouse-over
       http://bl.ocks.org/eesur/be2abfb3155a38be4de4 -->
@@ -122,16 +122,49 @@ var link = container.append("g").attr("class", "links")
     .attr("stroke-width", "2px")
     .attr("marker-end","url(#end-arrow)");
 
+
 var node = container.append("g").attr("class", "nodes")
-    .selectAll("g")
-    .data(graph.nodes)
-    .enter()
+            .selectAll("g")
+            .data(graph.nodes)
+            .enter() // https://www.d3indepth.com/enterexit/
+            // to hyperlink the node circle, uncomment the next three lines
+        //  .append("a")
+        //  .attr('href', function(d) { return d.url })
+        //  .attr('target', '_blank')
+            .append("circle")
+            .attr("r", 10)
+            .attr("fill", function(d) { return color(d.group); });
+
+
+
+// written by https://www.freelancer.com/u/Wawa27 for $20 on Freelancer
+var labelNode = container.append("g").attr("class", "labelNodes")
+    .selectAll("text")
+    .data(label.nodes)
+    .enter() // https://www.d3indepth.com/enterexit/
+    // the following three lines hyperlink the image
     .append("a")
-    .attr('href', function(d) { return d.url })
+    .attr('href', function(d, i) { return d.node.url })
     .attr('target', '_blank')
-    .append("circle")
-    .attr("r", 10)
-    .attr("fill", function(d) { return color(d.group); })
+    .append("image")
+    // alternative option, unverified: https://stackoverflow.com/questions/39908583/d3-js-labeling-nodes-with-image-in-force-layout
+    // BHP does not know why the i%2 is needed; without it the graph gets two images per node
+    // see "label.links.push" above which uses this even/odd identifier
+    // switching between i%2==1 and i%2==0 produces different image locations (?)
+    .attr("xlink:href", function(d, i) { return i % 2 == 1 ? "" : d.node.img; } )
+    .attr("x", 4)
+    .attr("y", 0)
+    // the following alter the image size
+    .attr("width", function(d, i) { return d.node.width/2; })
+    .attr("height", function(d, i) { return d.node.height/2; });
+//    .append("text")
+//    .text(function(d, i) { return i % 2 == 0 ? "" : d.node.id; })
+//    .style("fill", "#555")
+//    .style("font-family", "Arial")
+//    .style("font-size", 12)
+//    .style("pointer-events", "none");
+
+
 
 node.on("mouseover", focus).on("mouseout", unfocus);
 
@@ -141,27 +174,6 @@ node.call(
         .on("drag", dragged)
         .on("end", dragended)
 );
-
-var labelNode = container.append("g").attr("class", "labelNodes")
-    .selectAll("text")
-    .data(label.nodes)
-    .enter()
-    .append("image")
-    // alternative option, unverified: https://stackoverflow.com/questions/39908583/d3-js-labeling-nodes-with-image-in-force-layout
-    // I have no idea why the i%2 is needed; without it I get two images per node
-    // switching between i%2==1 and i%2==0 produces different image locations (?)
-    .attr("xlink:href", function(d, i) { return i % 2 == 1 ? "" : d.node.img; } )
-    .attr("x", 0)
-    .attr("y", 0)
-    // the following alter the image size
-    .attr("width", function(d, i) { return d.node.width/2; })
-    .attr("height", function(d, i) { return d.node.height/2; })
-//    .append("text")
-//    .text(function(d, i) { return i % 2 == 0 ? "" : d.node.id; })
-//    .style("fill", "#555")
-//    .style("font-family", "Arial")
-//    .style("font-size", 12)
-    .style("pointer-events", "none"); // to prevent mouseover/drag capture
 
 node.on("mouseover", focus).on("mouseout", unfocus);
 
@@ -250,6 +262,3 @@ function dragended(d) {
 
 }); // d3.json
 </script>
-
-
-
