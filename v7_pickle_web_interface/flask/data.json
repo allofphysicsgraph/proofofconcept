@@ -2220,8 +2220,7 @@
                     "feeds": [],
                     "inf rule": "declare final expr",
                     "inputs": [
-                        "8474765",
-                        "8474766"
+                        "8474765"
                     ],
                     "linear index": 35,
                     "notes": "",
@@ -3972,7 +3971,7 @@
         "522862": {
             "name": "optics: Law of refraction to Brewster's angle",
             "author": "4a0987466473c589d2c328d12856760e",
-            "notes": "from Halliday, Resnick, and Walker \"Fundamental Physics\", 6th edition (2001); see figure 34-27 on page 824",
+            "notes": "\\cite{2001_HRW}; see figure 34-27 on page 824",
             "creation date": "2020-04-23",
             "steps": {
                 "7919446": {
@@ -4288,7 +4287,7 @@
         "387954": {
             "name": "speed of Earth around Sun",
             "author": "4a0987466473c589d2c328d12856760e",
-            "notes": "from Tipler and Llewellyn, third edition, page 9",
+            "notes": "from \\cite{1999_Tipler_Llewellyn}, page 9",
             "creation date": "2020-05-06",
             "steps": {
                 "9784411": {
@@ -4529,7 +4528,7 @@
         "551770": {
             "name": "Lorentz transformation",
             "author": "4a0987466473c589d2c328d12856760e",
-            "notes": "source: Tipler and Llewellyn, \"Modern Physics\", third edition, page 21; see also https://en.wikipedia.org/wiki/Lorentz_transformation",
+            "notes": "source: \\cite{1999_Tipler_Llewellyn}, page 21; see also https://en.wikipedia.org/wiki/Lorentz_transformation",
             "creation date": "2020-05-08",
             "steps": {
                 "1337934": {
@@ -4540,7 +4539,7 @@
                         "5427510"
                     ],
                     "linear index": 1,
-                    "notes": "equation 1-13 on page 21 in Tipler and Llewellyn \"Modern Physics\" third edition",
+                    "notes": "equation 1-13 on page 21 in \\cite{1999_Tipler_Llewellyn}",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-08"
                 },
@@ -4552,7 +4551,7 @@
                         "2283140"
                     ],
                     "linear index": 2,
-                    "notes": "equation 1-14 on page 21 in Tipler and Llewellyn \"Modern Physics\" third edition",
+                    "notes": "equation 1-14 on page 21 in \\cite{1999_Tipler_Llewellyn}",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-08"
                 },
@@ -8082,7 +8081,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": " 1 = \\int_0^W a \\sin(\\frac{n \\pi}{W} x) \\psi(x)^* dx",
+            "latex": " 1 = \\int_0^W a \\sin\\left(\\frac{n \\pi}{W} x\\right) \\psi(x)^* dx",
             "name": "",
             "notes": ""
         },
@@ -11107,7 +11106,7 @@
                 "4928"
             ],
             "name": "",
-            "notes": "based on figure 34-27 on page 824 in 2001_HRW",
+            "notes": "based on figure 34-27 on page 824 in \\cite{2001_HRW}",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-23"
         },
@@ -11137,7 +11136,7 @@
                 "2941"
             ],
             "name": "Law of Refraction",
-            "notes": "eq 34-44 on page 819 in 2001_HRW",
+            "notes": "eq 34-44 on page 819 in \\cite{2001_HRW}",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-23"
         },
@@ -14528,7 +14527,7 @@
             "number of feeds": 0,
             "number of inputs": 3,
             "number of outputs": 1,
-            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} into Eq.~\\ref{eq:#3}; yields Eq.~ref{eq:#4}.",
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} into Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
@@ -14537,7 +14536,7 @@
             "number of feeds": 0,
             "number of inputs": 4,
             "number of outputs": 1,
-            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} into Eq.~\\ref{eq:#4}; yields Eq.~ref{eq:#5}.",
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} into Eq.~\\ref{eq:#4}; yields Eq.~\\ref{eq:#5}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
@@ -14546,7 +14545,7 @@
             "number of feeds": 0,
             "number of inputs": 5,
             "number of outputs": 1,
-            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} into Eq.~\\ref{eq:#5}; yields Eq.~ref{eq:#6}.",
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} into Eq.~\\ref{eq:#5}; yields Eq.~\\ref{eq:#6}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
@@ -14555,7 +14554,7 @@
             "number of feeds": 0,
             "number of inputs": 6,
             "number of outputs": 1,
-            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} and LHS of Eq.~\\ref{eq:#5} into Eq.~\\ref{eq:#6}; yields Eq.~ref{eq:#7}.",
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} and LHS of Eq.~\\ref{eq:#5} into Eq.~\\ref{eq:#6}; yields Eq.~\\ref{eq:#7}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
@@ -14564,7 +14563,7 @@
             "number of feeds": 0,
             "number of inputs": 7,
             "number of outputs": 1,
-            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} and LHS of Eq.~\\ref{eq:#5} and LHS of Eq.~\\ref{eq:#6} into Eq.~\\ref{eq:#7}; yields Eq.~ref{eq:#8}.",
+            "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} and LHS of Eq.~\\ref{eq:#5} and LHS of Eq.~\\ref{eq:#6} into Eq.~\\ref{eq:#7}; yields Eq.~\\ref{eq:#8}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
@@ -14573,7 +14572,7 @@
             "number of feeds": 0,
             "number of inputs": 3,
             "number of outputs": 1,
-            "latex": "Substitute change of variable Eq.~ref{eq:#1} and Eq.~ref{eq:#2} into Eq.~ref{eq:#3}; yields Eq.~ref{eq:#4}.",
+            "latex": "Substitute change of variable Eq.~\\ref{eq:#1} and Eq.~\\ref{eq:#2} into Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
@@ -14582,7 +14581,7 @@
             "number of feeds": 0,
             "number of inputs": 4,
             "number of outputs": 1,
-            "latex": "Substitute change of variable Eq.~ref{eq:#1} and Eq.~ref{eq:#2} and Eq.~ref{eq:#3} into Eq.~ref{eq:#4}; yields Eq.~ref{eq:#5}.",
+            "latex": "Substitute change of variable Eq.~\\ref{eq:#1} and Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3} into Eq.~\\ref{eq:#4}; yields Eq.~\\ref{eq:#5}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
@@ -14591,7 +14590,7 @@
             "number of feeds": 0,
             "number of inputs": 5,
             "number of outputs": 1,
-            "latex": "Substitute change of variable Eq.~ref{eq:#1} and Eq.~ref{eq:#2} and Eq.~ref{eq:#3} and Eq.~ref{eq:#4} into Eq.~ref{eq:#5}; yields Eq.~ref{eq:#6}.",
+            "latex": "Substitute change of variable Eq.~\\ref{eq:#1} and Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4} into Eq.~\\ref{eq:#5}; yields Eq.~\\ref{eq:#6}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
@@ -14600,7 +14599,7 @@
             "number of feeds": 0,
             "number of inputs": 6,
             "number of outputs": 1,
-            "latex": "Substitute change of variable Eq.~ref{eq:#1} and Eq.~ref{eq:#2} and Eq.~ref{eq:#3} and Eq.~ref{eq:#4} and Eq.~ref{eq:#5} into Eq.~ref{eq:#6}; yields Eq.~ref{eq:#7}.",
+            "latex": "Substitute change of variable Eq.~\\ref{eq:#1} and Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4} and Eq.~\\ref{eq:#5} into Eq.~\\ref{eq:#6}; yields Eq.~\\ref{eq:#7}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
@@ -14609,7 +14608,7 @@
             "number of feeds": 0,
             "number of inputs": 7,
             "number of outputs": 1,
-            "latex": "Substitute change of variable Eq.~ref{eq:#1} and Eq.~ref{eq:#2} and Eq.~ref{eq:#3} and Eq.~ref{eq:#4} and Eq.~ref{eq:#5} and Eq.~ref{eq:#6} into Eq.~ref{eq:#7}; yields Eq.~ref{eq:#8}.",
+            "latex": "Substitute change of variable Eq.~\\ref{eq:#1} and Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4} and Eq.~\\ref{eq:#5} and Eq.~\\ref{eq:#6} into Eq.~\\ref{eq:#7}; yields Eq.~\\ref{eq:#8}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
