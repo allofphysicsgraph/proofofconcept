@@ -2058,8 +2058,7 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
                 + '.png", '
                 + '"url": "https://derivationmap.net/review_derivation/'
                 + deriv_id
-                + '/?referrer=d3js", '
-                + '"width": '
+                + '/?referrer=d3js", "width": '
                 + str(image.shape[1])
                 + ", "
                 + '"height": '
@@ -2088,8 +2087,7 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
                     + '.png", '
                     + '"url": "https://derivationmap.net/list_all_expressions/?referrer=d3js#'
                     + expr_global_id
-                    + '"'
-                    + '"width": '
+                    + '", "width": '
                     + str(image.shape[1])
                     + ", "
                     + '"height": '
@@ -2715,8 +2713,7 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
             + '.png", '
             + '"url": "https://derivationmap.net/list_all_inference_rules?referrer=d3js#'
             + step_dict["inf rule"]
-            + '", '
-            + '"width": '
+            + '", "width": '
             + str(image.shape[1])
             + ", "
             + '"height": '
@@ -2749,8 +2746,7 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
             + '.png", '
             + '"url": "https://derivationmap.net/list_all_expressions/?referrer=d3js#'
             + global_expr_id
-            + '"'
-            + '"width": '
+            + '", "width": '
             + str(image.shape[1])
             + ", "
             + '"height": '
