@@ -147,11 +147,11 @@
       Upload database file if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
     {% else %}
       <!-- https://www.google.com/search?q=flask+upload+file -->
-      Upload database file (JSON only):
+      Upload database file (.json only):
       <!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
       <form method="post" enctype="multipart/form-data" id="upload_form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-        <input type="file" name="file">
+        <input type="file" name="file" accept=".json,application/JSON">
         <input type="submit" name="upload_database" value="Upload database">
       </form>
     {% endif %}
@@ -177,11 +177,11 @@
       Upload the bibliography file if you are <a href="{{ url_for('login') }}?referrer=navigation">signed in</a>
     {% else %}
       <!-- https://www.google.com/search?q=flask+upload+file -->
-      Upload the bibliography file (Bibtex only):
+      Upload the bibliography file (Bibtex .bib only):
       <!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
       <form method="post" enctype="multipart/form-data" id="upload_form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-        <input type="file" name="file">
+        <input type="file" name="file" accept=".bib">
         <input type="submit" name="upload_bibliography" value="Upload bibliography">
       </form>
     {% endif %}
