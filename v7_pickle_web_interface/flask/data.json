@@ -7606,7 +7606,9 @@
             "notes": ""
         },
         "0001921933": {
-            "AST": ["4621"],
+            "AST": [
+                "4621"
+            ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "2 i",
@@ -7794,7 +7796,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "2x",
+            "latex": "2 x",
             "name": "",
             "notes": ""
         },
@@ -7990,7 +7992,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\cos(2x)",
+            "latex": "\\cos(2 x)",
             "name": "",
             "notes": ""
         },
@@ -8097,7 +8099,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{a^2} = \\frac{1}{2}W - \\frac{1}{2}\\left. \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)\\right|_0^W",
+            "latex": "\\frac{1}{a^2} = \\frac{1}{2}W - \\frac{1}{2}\\left. \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right) \\right|_0^W",
             "name": "",
             "notes": ""
         },
@@ -8246,7 +8248,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\cos(2x) = 1-2(\\sin(x))^2",
+            "latex": "\\cos(2 x) = 1 - 2 (\\sin(x))^2",
             "name": "",
             "notes": ""
         },
@@ -8275,7 +8277,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\times \\frac{\\partial \\vec{H}}{\\partial t} = \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}",
+            "latex": "\\vec{ \\nabla} \\times \\frac{\\partial \\vec{H}}{\\partial t} = \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}",
             "name": "",
             "notes": ""
         },
@@ -8285,7 +8287,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\times \\vec{H} = \\epsilon_0 \\frac{\\partial }{\\partial t}\\vec{E}",
+            "latex": "\\vec{ \\nabla} \\times \\vec{H} = \\epsilon_0 \\frac{\\partial }{\\partial t}\\vec{E}",
             "name": "",
             "notes": ""
         },
@@ -8301,7 +8303,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\times \\vec{\\nabla} \\times \\vec{E} =  - \\nabla^2 \\vec{E}",
+            "latex": "\\vec{ \\nabla} \\times \\vec{ \\nabla} \\times \\vec{E} =  - \\nabla^2 \\vec{E}",
             "name": "",
             "notes": ""
         },
@@ -8320,7 +8322,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\vec{\\nabla}\\psi(\\vec{r},t)\\right)",
+            "latex": "\\nabla^2 \\psi \\left( \\vec{r},t) \\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\vec{ \\nabla} \\psi( \\vec{r},t) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8344,7 +8346,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t) = - \\omega^2 \\mu_0 \\epsilon_0 E(\\vec{r})\\exp(i \\omega t)",
+            "latex": "\\nabla^2 E( \\vec{r})\\exp(i \\omega t) = - \\omega^2 \\mu_0 \\epsilon_0 E( \\vec{r})\\exp(i \\omega t)",
             "name": "",
             "notes": ""
         },
@@ -8379,7 +8381,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t) = \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E(\\vec{r})\\exp(i \\omega t)",
+            "latex": "\\nabla^2 E( \\vec{r})\\exp(i \\omega t) = \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E( \\vec{r})\\exp(i \\omega t)",
             "name": "",
             "notes": ""
         },
@@ -8390,7 +8392,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\sin(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right)",
+            "latex": "\\sin(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8435,7 +8437,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "{\\cal H} \\psi\\left(\\vec{r},t)\\right) = i \\hbar \\frac{\\partial}{\\partial t}\\psi(\\vec{r},t)",
+            "latex": "{\\cal H} \\psi \\left( \\vec{r},t) \\right) = i \\hbar \\frac{\\partial}{\\partial t} \\psi( \\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -8470,7 +8472,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\left(\\langle\\psi| \\hat{A} |\\psi\\rangle \\right)^+ = \\left(\\langle a \\rangle\\right)^+",
+            "latex": "\\left(\\langle\\psi| \\hat{A} |\\psi \\rangle \\right)^+ = \\left(\\langle a \\rangle\\right)^+",
             "name": "",
             "notes": ""
         },
@@ -8481,7 +8483,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{-p^2}{\\hbar} \\psi(\\vec{r},t)",
+            "latex": "\\nabla^2 \\psi \\left( \\vec{r},t) \\right) = \\frac{-p^2}{\\hbar} \\psi( \\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -8507,7 +8509,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\times \\frac{\\partial}{\\partial t}\\vec{H} = \\epsilon_0 \\frac{\\partial^2 }{\\partial t^2}\\vec{E}",
+            "latex": "\\vec{ \\nabla} \\times \\frac{\\partial}{\\partial t}\\vec{H} = \\epsilon_0 \\frac{\\partial^2 }{\\partial t^2}\\vec{E}",
             "name": "",
             "notes": ""
         },
@@ -8517,7 +8519,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\frac{i}{\\hbar} \\vec{p}\\psi(\\vec{r},t)\\right)",
+            "latex": "\\nabla^2 \\psi \\left( \\vec{r},t) \\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\frac{i}{\\hbar} \\vec{p} \\psi( \\vec{r},t) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8633,7 +8635,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r}) = - \\frac{\\omega^2}{c^2} E(\\vec{r})",
+            "latex": "\\nabla^2 E( \\vec{r}) = - \\frac{\\omega^2}{c^2} E( \\vec{r})",
             "name": "",
             "notes": ""
         },
@@ -8652,7 +8654,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x)\\right) = \\cos(x)",
+            "latex": "\\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x) \\right) = \\cos(x)",
             "name": "",
             "notes": ""
         },
@@ -8689,7 +8691,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\times \\vec{\\nabla} \\times \\vec{E} = -\\mu_0 \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}",
+            "latex": "\\vec{ \\nabla} \\times \\vec{ \\nabla} \\times \\vec{E} = -\\mu_0 \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}",
             "name": "",
             "notes": ""
         },
@@ -8700,7 +8702,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}E \\psi(\\vec{r},t)",
+            "latex": "\\frac{\\partial}{\\partial t} \\psi( \\vec{r},t) = \\frac{-i}{\\hbar}E \\psi( \\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -8712,7 +8714,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\psi_0 \\vec{\\nabla}\\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
+            "latex": "\\vec{ \\nabla} \\psi( \\vec{r},t) = \\psi_0 \\vec{ \\nabla}\\exp\\left(\\frac{i}{\\hbar}\\left( \\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8724,7 +8726,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\vec{k}\\cdot\\vec{r} - \\omega t \\right) \\right)",
+            "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left( \\vec{k}\\cdot\\vec{r} - \\omega t \\right) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8737,7 +8739,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\omega t \\right) \\right)",
+            "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\omega t \\right) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8748,7 +8750,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
+            "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8759,7 +8761,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\psi(\\vec{r},t) = \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
+            "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left( \\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8771,7 +8773,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\psi_0 \\frac{\\partial}{\\partial t}\\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
+            "latex": "\\frac{\\partial}{\\partial t} \\psi( \\vec{r},t) = \\psi_0 \\frac{\\partial}{\\partial t}\\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8783,7 +8785,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}E \\psi_0 \\exp\\left(i\\left(\\frac{\\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
+            "latex": "\\frac{\\partial}{\\partial t} \\psi( \\vec{r},t) = \\frac{-i}{\\hbar}E \\psi_0 \\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8847,7 +8849,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "i \\hbar \\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{p^2}{2 m} \\psi(\\vec{r},t)",
+            "latex": "i \\hbar \\frac{\\partial}{\\partial t} \\psi( \\vec{r},t) = \\frac{p^2}{2 m} \\psi( \\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -8859,7 +8861,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{\\partial}{\\partial t}\\psi(\\vec{r},t) = \\frac{-i}{\\hbar}\\frac{p^2}{2 m} \\psi(\\vec{r},t)",
+            "latex": "\\frac{\\partial}{\\partial t} \\psi( \\vec{r},t) = \\frac{-i}{\\hbar}\\frac{p^2}{2 m} \\psi( \\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -8870,7 +8872,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla}\\cdot \\left(\\vec{\\nabla}\\psi(\\vec{r},t)\\right) = \\frac{i}{\\hbar} \\vec{\\nabla}\\cdot\\left( \\vec{p} \\psi(\\vec{r},t)\\right)",
+            "latex": "\\vec{ \\nabla}\\cdot \\left( \\vec{ \\nabla} \\psi( \\vec{r},t) \\right) = \\frac{i}{\\hbar} \\vec{ \\nabla}\\cdot\\left( \\vec{p} \\psi( \\vec{r},t) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8891,7 +8893,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\cos(x) = \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x)\\right)",
+            "latex": "\\cos(x) = \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x) \\right)",
             "name": "",
             "notes": ""
         },
@@ -8932,7 +8934,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\cos(2x)+(\\sin(x))^2 = 1-(\\sin(x))^2",
+            "latex": "\\cos(2 x)+(\\sin(x))^2 = 1 - (\\sin(x))^2",
             "name": "",
             "notes": ""
         },
@@ -8954,7 +8956,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{1}{2 i}\\left(\\exp(i x)-\\exp(-i x)\\right) = \\sin(x)",
+            "latex": "\\frac{1}{2 i}\\left(\\exp(i x)-\\exp(-i x) \\right) = \\sin(x)",
             "name": "",
             "notes": ""
         },
@@ -9058,7 +9060,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left(\\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
+            "latex": "\\vec{ \\nabla} \\psi( \\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left( \\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
             "name": "",
             "notes": ""
         },
@@ -9066,7 +9068,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\langle \\psi| \\hat{A} |\\psi\\rangle = \\langle a \\rangle^*",
+            "latex": "\\langle \\psi| \\hat{A} |\\psi \\rangle = \\langle a \\rangle^*",
             "name": "",
             "notes": ""
         },
@@ -9084,7 +9086,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\cos(2x)+i\\sin(2x) = (\\cos(x)+i \\sin(x))(\\cos(x)+i \\sin(x))",
+            "latex": "\\cos(2 x)+i \\sin(2 x) = (\\cos(x)+i \\sin(x))(\\cos(x)+i \\sin(x))",
             "name": "",
             "notes": ""
         },
@@ -9116,7 +9118,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t) = i \\omega \\mu_0 \\epsilon_0 \\frac{\\partial}{\\partial t} E(\\vec{r})\\exp(i \\omega t)",
+            "latex": "\\nabla^2 E( \\vec{r})\\exp(i \\omega t) = i \\omega \\mu_0 \\epsilon_0 \\frac{\\partial}{\\partial t} E( \\vec{r})\\exp(i \\omega t)",
             "name": "",
             "notes": ""
         },
@@ -9163,7 +9165,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 \\psi\\left(\\vec{r},t)\\right) = \\frac{p^2}{2m} \\psi(\\vec{r},t)",
+            "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 \\psi \\left( \\vec{r},t) \\right) = \\frac{p^2}{2m} \\psi( \\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -9186,7 +9188,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "x^2 + 2x(b/(2 a)) + (b/(2 a))^2 = (x+(b/(2 a)))^2",
+            "latex": "x^2 + 2 x (b/(2 a)) + (b/(2 a))^2 = (x + (b/(2 a)))^2",
             "name": "",
             "notes": ""
         },
@@ -9270,7 +9272,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla}\\psi(\\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi(\\vec{r},t)",
+            "latex": "\\vec{ \\nabla} \\psi( \\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi( \\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -9278,7 +9280,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{p}_{electron}\\cdot\\vec{p}_{electron} = (\\vec{p}_{1}\\cdot\\vec{p}_{1})+(\\vec{p}_{2}\\cdot\\vec{p}_{2})-2(\\vec{p}_{1}\\cdot\\vec{p}_{2})",
+            "latex": "\\vec{p}_{electron}\\cdot\\vec{p}_{electron} = ( \\vec{p}_{1}\\cdot\\vec{p}_{1})+( \\vec{p}_{2}\\cdot\\vec{p}_{2})-2( \\vec{p}_{1}\\cdot\\vec{p}_{2})",
             "name": "",
             "notes": ""
         },
@@ -9286,7 +9288,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\cdot \\vec{E} = 0",
+            "latex": "\\vec{ \\nabla} \\cdot \\vec{E} = 0",
             "name": "",
             "notes": ""
         },
@@ -9306,7 +9308,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\cos(2x)+2(\\sin(x))^2 = 1",
+            "latex": "\\cos(2 x) + 2 (\\sin(x))^2 = 1",
             "name": "",
             "notes": ""
         },
@@ -9317,7 +9319,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\left(\\sin\\left(\\frac{n \\pi}{W}x\\right)\\right)^2 = \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}",
+            "latex": "\\left(\\sin\\left(\\frac{n \\pi}{W}x\\right) \\right)^2 = \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2}",
             "name": "",
             "notes": ""
         },
@@ -9325,7 +9327,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\times \\vec{\\nabla} \\times \\vec{E} = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
+            "latex": "\\vec{ \\nabla} \\times \\vec{ \\nabla} \\times \\vec{E} = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
             "name": "",
             "notes": ""
         },
@@ -9335,7 +9337,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\epsilon^{i,j,k} \\hat{x}_i \\nabla_j ( \\vec{\\nabla} \\times \\vec{E} )_k = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
+            "latex": "\\epsilon^{i,j,k} \\hat{x}_i \\nabla_j ( \\vec{ \\nabla} \\times \\vec{E} )_k = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
             "name": "",
             "notes": ""
         },
@@ -9346,7 +9348,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\epsilon^{i,j,k} \\epsilon_{n,j,k} \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
+            "latex": "\\epsilon^{i,j,k} \\epsilon_{n,j,k} \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
             "name": "",
             "notes": ""
         },
@@ -9365,7 +9367,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\left( \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} - \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h} \\right) \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
+            "latex": "\\left( \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} - \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h} \\right) \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
             "name": "",
             "notes": ""
         },
@@ -9376,7 +9378,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\left( \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} \\hat{x}_i \\nabla_j \\nabla^m E^n\\right)-\\left( \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h} \\hat{x}_i \\nabla_j \\nabla^m E^n \\right)  = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
+            "latex": "\\left( \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} \\hat{x}_i \\nabla_j \\nabla^m E^n\\right)-\\left( \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h} \\hat{x}_i \\nabla_j \\nabla^m E^n \\right)  = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
             "name": "",
             "notes": ""
         },
@@ -9384,7 +9386,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\hat{x}_m \\nabla_n \\nabla^m E^n - \\hat{x}_n \\nabla_m \\nabla^m E^n = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
+            "latex": "\\hat{x}_m \\nabla_n \\nabla^m E^n - \\hat{x}_n \\nabla_m \\nabla^m E^n = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
             "name": "",
             "notes": ""
         },
@@ -9392,7 +9394,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E} = \\vec{\\nabla}(\\vec{\\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
+            "latex": "\\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E} = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
             "name": "",
             "notes": ""
         },
@@ -9432,7 +9434,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\langle x^2 -2x\\langle x \\rangle+\\langle x \\rangle^2 \\rangle = \\langle x^2 \\rangle-\\langle x \\rangle^2",
+            "latex": "\\langle x^2 - 2 x \\langle x \\rangle + \\langle x \\rangle^2 \\rangle = \\langle x^2 \\rangle-\\langle x \\rangle^2",
             "name": "",
             "notes": ""
         },
@@ -9518,7 +9520,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{E} = E(\\vec{r},t)",
+            "latex": "\\vec{E} = E( \\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -9538,7 +9540,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{d^2}{dx^2} \\left(a \\sin(k x) + b \\cos(k x)\\right) = -k^2 \\left(a \\sin(kx) + b \\cos(kx)\\right)",
+            "latex": "\\frac{d^2}{dx^2} \\left(a \\sin(k x) + b \\cos(k x) \\right) = -k^2 \\left(a \\sin(kx) + b \\cos(kx) \\right)",
             "name": "",
             "notes": ""
         },
@@ -9575,7 +9577,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "x^2 + 2xh + h^2 = (x+h)^2",
+            "latex": "x^2 + 2 x h + h^2 = (x + h)^2",
             "name": "",
             "notes": ""
         },
@@ -9600,7 +9602,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "1 = \\int_0^W a^2 \\left(\\sin\\left(\\frac{n \\pi}{W} x\\right)\\right)^2 dx",
+            "latex": "1 = \\int_0^W a^2 \\left(\\sin\\left(\\frac{n \\pi}{W} x\\right) \\right)^2 dx",
             "name": "",
             "notes": ""
         },
@@ -9626,7 +9628,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\times \\vec{\\nabla} \\times \\vec{E} = -\\mu_0\\vec{\\nabla} \\times \\frac{\\partial \\vec{H}}{\\partial t}",
+            "latex": "\\vec{ \\nabla} \\times \\vec{ \\nabla} \\times \\vec{E} = -\\mu_0\\vec{ \\nabla} \\times \\frac{\\partial \\vec{H}}{\\partial t}",
             "name": "",
             "notes": ""
         },
@@ -9674,7 +9676,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r},t) = \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E(\\vec{r},t)",
+            "latex": "\\nabla^2 E( \\vec{r},t) = \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E( \\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -9700,7 +9702,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "(\\cos(x))^2 = \\cos(2x)+(\\sin(x))^2",
+            "latex": "(\\cos(x))^2 = \\cos(2 x) + (\\sin(x))^2",
             "name": "",
             "notes": ""
         },
@@ -9719,7 +9721,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\cos(2x) = (\\cos(x))^2 - (\\sin(x))^2",
+            "latex": "\\cos(2 x) = (\\cos(x))^2 - (\\sin(x))^2",
             "name": "",
             "notes": ""
         },
@@ -9727,7 +9729,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\cos(2x)+(\\sin(x))^2 = (\\cos(x))^2",
+            "latex": "\\cos(2 x) + (\\sin(x))^2 = (\\cos(x))^2",
             "name": "",
             "notes": ""
         },
@@ -9761,7 +9763,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\cos(2x)+i\\sin(2x) = (\\cos(x))^2+2i\\cos(x)\\sin(x)-(\\sin(x))^2",
+            "latex": "\\cos(2 x) + i\\sin(2 x) = (\\cos(x))^2 + 2 i \\cos(x) \\sin(x) - (\\sin(x))^2",
             "name": "",
             "notes": ""
         },
@@ -9774,7 +9776,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\nabla^2 E(\\vec{r})\\exp(i \\omega t) = - \\frac{\\omega^2}{c^2} E(\\vec{r})\\exp(i \\omega t)",
+            "latex": "\\nabla^2 E( \\vec{r})\\exp(i \\omega t) = - \\frac{\\omega^2}{c^2} E( \\vec{r})\\exp(i \\omega t)",
             "name": "",
             "notes": ""
         },
@@ -9827,7 +9829,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "E(\\vec{r},t) = E(\\vec{r})\\exp(i \\omega t)",
+            "latex": "E( \\vec{r},t) = E( \\vec{r})\\exp(i \\omega t)",
             "name": "",
             "notes": ""
         },
@@ -9898,7 +9900,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "2(\\sin(x))^2 = 1-\\cos(2x)",
+            "latex": "2 (\\sin(x))^2 = 1 - \\cos(2 x)",
             "name": "",
             "notes": ""
         },
@@ -9917,7 +9919,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 \\psi\\left(\\vec{r},t)\\right) = i \\hbar \\frac{\\partial}{\\partial t}\\psi(\\vec{r},t)",
+            "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 \\psi \\left( \\vec{r},t) \\right) = i \\hbar \\frac{\\partial}{\\partial t} \\psi( \\vec{r},t)",
             "name": "",
             "notes": ""
         },
@@ -9925,7 +9927,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "(\\sin(x))^2 = \\frac{1-\\cos(2x)}{2}",
+            "latex": "(\\sin(x))^2 = \\frac{1 - \\cos(2 x)}{2}",
             "name": "",
             "notes": ""
         },
@@ -9935,7 +9937,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\times \\vec{E} = -\\mu_0\\frac{\\partial \\vec{H}}{\\partial t}",
+            "latex": "\\vec{ \\nabla} \\times \\vec{E} = -\\mu_0\\frac{\\partial \\vec{H}}{\\partial t}",
             "name": "",
             "notes": ""
         },
@@ -9945,7 +9947,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\frac{\\vec{p}}{\\hbar} = \\vec{k}",
+            "latex": "\\frac{ \\vec{p}}{\\hbar} = \\vec{k}",
             "name": "",
             "notes": ""
         },
@@ -10011,7 +10013,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{E} = -\\vec{\\nabla} \\Psi",
+            "latex": "\\vec{E} = -\\vec{ \\nabla} \\Psi",
             "name": "",
             "notes": ""
         },
@@ -10029,7 +10031,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{F} = -\\vec{\\nabla} V",
+            "latex": "\\vec{F} = -\\vec{ \\nabla} V",
             "name": "",
             "notes": ""
         },
@@ -10147,7 +10149,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "{\\cal H} |\\psi\\rangle = E |\\psi\\rangle",
+            "latex": "{\\cal H} |\\psi \\rangle = E |\\psi \\rangle",
             "name": "",
             "notes": ""
         },
@@ -10165,7 +10167,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\langle \\psi| \\hat{A} |\\psi\\rangle = \\int_{-\\infty}^{\\infty} \\psi^* A \\psi dx",
+            "latex": "\\langle \\psi| \\hat{A} |\\psi \\rangle = \\int_{-\\infty}^{\\infty} \\psi^* A \\psi dx",
             "name": "",
             "notes": ""
         },
@@ -10173,7 +10175,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\langle \\psi| \\hat{A} |\\psi\\rangle = \\langle a \\rangle",
+            "latex": "\\langle \\psi| \\hat{A} |\\psi \\rangle = \\langle a \\rangle",
             "name": "",
             "notes": ""
         },
@@ -10203,7 +10205,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\times \\vec{B} = \\mu_0 \\vec{J} + \\mu_0 \\epsilon_0 \\frac{\\partial E}{\\partial t}",
+            "latex": "\\vec{ \\nabla} \\times \\vec{B} = \\mu_0 \\vec{J} + \\mu_0 \\epsilon_0 \\frac{\\partial E}{\\partial t}",
             "name": "",
             "notes": ""
         },
@@ -10213,7 +10215,7 @@
             ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}",
+            "latex": "\\vec{ \\nabla} \\times \\vec{E} = -\\frac{\\partial \\vec{B}}{\\partial t}",
             "name": "",
             "notes": ""
         },
@@ -10221,7 +10223,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\cdot \\vec{B} = 0",
+            "latex": "\\vec{ \\nabla} \\cdot \\vec{B} = 0",
             "name": "",
             "notes": ""
         },
@@ -10229,7 +10231,7 @@
             "AST": [],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "\\vec{\\nabla} \\cdot \\vec{E} = \\rho/\\epsilon_0",
+            "latex": "\\vec{ \\nabla} \\cdot \\vec{E} = \\rho/\\epsilon_0",
             "name": "",
             "notes": ""
         },
@@ -10388,7 +10390,7 @@
             "creation date": "2020-04-19"
         },
         "8483686863": {
-            "latex": "\\sin(2 x) = \\frac{1}{2i}\\left(\\exp(i 2 x)-\\exp(-i 2 x)\\right)",
+            "latex": "\\sin(2 x) = \\frac{1}{2i}\\left(\\exp(i 2 x)-\\exp(-i 2 x) \\right)",
             "AST": [
                 "2718",
                 "4621"
@@ -10399,7 +10401,7 @@
             "creation date": "2020-04-19"
         },
         "3470587782": {
-            "latex": "\\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right) \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x)\\right)",
+            "latex": "\\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x) \\right) \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x) \\right)",
             "AST": [
                 "2718",
                 "4621"
@@ -10418,7 +10420,7 @@
             "creation date": "2020-04-19"
         },
         "9894826550": {
-            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x)\\right) \\left(\\exp(i x)+\\exp(-i x)\\right)",
+            "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x) \\right) \\left(\\exp(i x)+\\exp(-i x) \\right)",
             "AST": [
                 "2718",
                 "4621"
@@ -14893,9 +14895,9 @@
         },
         "spatial vector differential": {
             "argument count": 2,
-            "latex": "\\vec{\\nabla}",
+            "latex": "\\vec{ \\nabla}",
             "latex macros": [
-                "\\spatialVectorDifferential[1]{ \\vec{\\nabla} #1}"
+                "\\spatialVectorDifferential[1]{ \\vec{ \\nabla} #1}"
             ],
             "scope": [
                 "real"
