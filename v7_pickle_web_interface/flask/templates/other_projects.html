@@ -4,7 +4,79 @@
 
 <H2>Comparison of the Physics Derivation Graph with other projects</H2>
 <P>
-  <a name="comparison:wikipedia">
+
+  <div id="toc_container">
+  <p class="toc_title">Contents</p>
+  <OL class="toc_list">
+    <LI><a href="#NLPphysicsSolver">NLP Physics Solver</a></LI>
+    <LI><a href="#formuladatabase">FormulaDatabase</a></LI>
+    <LI><a href="#wikipedia">Wikipedia</a></LI>
+    <LI><a href="#principia">Principia Mathematica</a></LI>
+    <LI><a href="#equationmap">EquationMap</a></LI>
+    <LI><a href="#symbolab">SymboLab</a></LI>
+    <LI><a href="#hyperphysics">HyperPhysics</a></LI>
+    <LI><a href="#mathematica">Mathematica</a></LI>
+    <LI><a href="#wolframalpha">Wolfram Alpha</a></LI>
+  </OL>
+  </div>
+  
+  The inclusion here is to contrast the scope and intention of the Physics Derivation Graph.
+</P>
+
+
+<H4><a name="NLPphysicsSolver">NLP Physics Solver</a></H4>
+<P>
+  <a href="https://www.cs.utexas.edu/users/novak/cgi/physdemod.cgi">Math / Physics Problem Solver</a> by <a href="https://www.cs.utexas.edu/users/novak/">Gordon Novak</a>
+
+<P><a href="https://www.cs.utexas.edu/users/novak/cgi/physlaws.lsp">source code (Lisp)</a> and <a href="https://www.cs.utexas.edu/users/novak/cgi/equations.lsp">equations</a>
+
+<P><a href="https://yoavartzi.com/pub/kazb-acl.2014.pdf">Related work from 2014</a>
+
+<H4><a name="formuladatabase">FormulaDatabase</a></H4>
+<P>
+  Formula Database (<a href="http://www.formula-database.com/release/">http://www.formula-database.com/release/</a>) is a website described by the authors as a ``math search engine'' which has a built-in equation editor.
+  The search feature is not just matching the \(\rm\LaTeX\) input -- it understands dot product and cross product.
+  They have created a browser-based equation editor, similar to the equation editor in Microsoft Word.
+  The search is of a backend database of content.
+  The backend database of equations and symbols was manually entered by the project authors.
+  A team of people have been working since about 2010 on this project.
+  The data is stored as a high-dimensional graph.
+  This project is not open source but access is currently free.
+  A commercial launch is planned, though no date has been publicized.
+  The objective is to allow students to search through literature.
+  If you are a researcher, you might want to find whether the model already exists in literature.
+  The grand view is that formula-database will serve as a universal reference for equations.
+
+<P>From the "About" page (<a href="https://web.archive.org/web/20130418062440/http://formula-database.com/release/about">https://web.archive.org/web/20130418062440/http://formula-database.com/release/about</a>
+<blockquote>
+Formula Database was founded in 2012 by a group of students and researchers at UW-Madison. The idea originated three years prior, when one of our founders, then an undergraduate, was frustrated at the difficulty in finding the correct formula he needed to solve his engineering homework.
+This challenge has been leveraged into creating an innovative search engine to allow individuals to search for formulas based upon either their contents or mathematical structure. Formula Database lets users input measurable parameters—such as mass, distance, or time—and get equations that provide a relation between these items. Alternatively, using the Equation Editor, users can write a mathematical equation exactly as they would on a whiteboard or paper and discover information about the formula’s use and purpose.
+Currently we are developing the completed product to allow users to enjoy this functionality. We anticipate launching for a beta test at the end of August 2012.
+</blockquote>
+
+<P>
+  Below are a few screenshots from the Internet Archive.
+  <a href="{{ url_for('static', filename='formuladatabase.png') }}?referrer=user_documentation">
+    <img src="{{ url_for('static', filename='formuladatabase.png') }}" width=400>
+  </a>
+  Frontpage of the FormulaDatabase.
+</P>
+<P>
+  <a href="{{ url_for('static', filename='formuladatabase_2.png') }}?referrer=user_documentation">
+    <img src="{{ url_for('static', filename='formuladatabase_2.png') }}" width=400>
+  </a>
+  Categories of data in the FormulaDatabase.
+</P>
+<P>
+  <a href="{{ url_for('static', filename='formuladatabase_3.png') }}?referrer=user_documentation">
+    <img src="{{ url_for('static', filename='formuladatabase_3.png') }}" width=400>
+  </a>
+Objects in the FormulaDatabase.
+</P>
+
+
+<P>
+<H4><a name="wikipedia">Wikipedia</a></H4>
 <i>How is the Physics Derivation Graph different than <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/>?</i>
 </a><BR>
 <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/> is text-based with hyperlinks. <BR>
@@ -12,44 +84,71 @@ In contrast, the Physics Derivation Graph is effectively language-independent.
 </P>
 
 <P>
-  <a name="comparison:principia">
+<H4><a name="principia">Principia Mathematica</a></H4>
 <i>How is the Physics Derivation Graph different than the <a href="https://en.wikipedia.org/wiki/Principia_Mathematica">Principia_Mathematica</a>?</i>
 </a><BR>
-The ambitious effort of Whitehead and Russell to prove the foundations of mathematics is not similar to this project. "Proof" doesn't apply in Physics. This project is about documenting existing knowledge in a format which can be parsed by computers. 
+The ambitious effort of Whitehead and Russell to prove the foundations of mathematics is not similar to this project. "Proof" doesn't apply in Physics. This project is about documenting existing knowledge in a format which can be parsed by computers.
 </P>
 
+
+
+<H4><a name="equationmap">EquationMap</a></H4>
 <P>
-  <a name="comparison:EquationMap">
-<i>How is the Physics Derivation Graph different than <a href="http://equationmap.com/">Equation Map<a/>?</i>
-</a><BR>
-<a href="http://equationmap.com/">Equation Map<a/> is an interface for putting expressions into a graph format. Inference rules and feeds are not included, nor is checking of the graph via a computer algebra system. <a href="http://equationmap.com/">Equation Map<a/> is proprietary, whereas the Physics Derivation Graph is open source.
+  <a href="http://equationmap.com/">Equation Map<a/> was an interface for putting expressions into a graph format. Inference rules and feeds were not included, nor is checking of the graph via a computer algebra system. <a href="http://equationmap.com/">Equation Map<a/> is proprietary, whereas the Physics Derivation Graph is open source.
+
+  The website EquationMap (http://equationmap.com; site not currently available) is an interface for derivations, focused primarily on mathematics.
+  There is no backend database of content; instead content is dynamically generated by the user.
+  Equations are manually entered using \LaTeX syntax and the graph of the derivation can be visualized using the same interface.
+  The content is not open source and access is currently free.
+  This is close to what the GUI for the Physics Derivation Graph is intended to behave like, with the exception that EquationMap doesn't include the concept of atomic inference rules.
+</P>
+<P>
+  <a href="{{ url_for('static', filename='equationmap_site.png') }}?referrer=user_documentation">
+    <img src="{{ url_for('static', filename='equationmap_site.png') }}" width=400>
+  </a>
+  Screenshot of the EquationMap website. The input mechanism is not shown because this screenshot is from the Internet Archive.
+</P>
+<P>
+  <a href="{{ url_for('static', filename='equationmap_site_menu.png') }}?referrer=user_documentation">
+    <img src="{{ url_for('static', filename='equationmap_site_menu.png') }}" width=400>
+  </a>
+  Screenshot of the option to provide .tex files to EquationMap website, and download .tex files.
 </P>
 
+
+<H4><a name="symbolab">SymboLab</a></H4>
 <P>
-  <a name="comparison:symbolab">
-<i>How is the Physics Derivation Graph different than <a href="https://www.symbolab.com/">Symbolab</a>?</i>
-</a><BR>
-<a href="https://www.symbolab.com/">Symbolab</a> is a web interface for solving symbolic expressions. There is no graph. 
+  SymboLab (<a href="https://www.symbolab.com">https://www.symbolab.com</a>)  is a web interface for solving symbolic expressions. There is no graph. There is another backend database of content. This project is not open source but access is currently free.
 </P>
 
+
+
+<H4><a name="hyperphysics">HyperPhysics</a></H4>
 <P>
-  <a name="comparison:hyperphysics">
-<i>How is the Physics Derivation Graph different than <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html">HyperPhysics</a>?</i>
-</a><BR>
-<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html">HyperPhysics</a> is similar to <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/>in that it is text based for edges. <BR>
+  The HyperPhysics website (<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html">http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html</a>) is a static set of linked concept maps for topics in Physics.
+  Concept maps are linked to text, graphs, and equations.
+  The licensing of the content is described as ``not freeware or shareware'' by the author, though the site is free to access.
+  Although hyperlinked concept maps are a departure from the standard textbook presentation of physics, the leaves of this tree are the same content found in textbooks.
+</P>
+
+<P><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html">HyperPhysics</a> is similar to <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/>in that it is text based for edges. <BR>
 <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html">HyperPhysics</a> has what appears to be a graph (hand drawn), but is actually a multi-level tree -- a concept diagram. For example, content in the <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html#mechcon">Classical Mechanics subpage</a> does not link to any other subject. <BR>
 The number of levels can vary. For example, the <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html">main page</a> links to <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html#mechcon">mechanics</a> links to <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/colcon.html">Collisions</a> links to
 <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/mom.html#mom">Momentum</a>.
 </P>
 
 <P>
-  <a name="comparison:mathematica">
-<i>How is the Physics Derivation Graph different than <a href="https://www.wolfram.com/mathematica/">Mathematica</a>?</i>
-</a><BR>
+<H4><a name="mathematica">Mathematica</a></H4>
 <a href="https://www.wolfram.com/mathematica/">Mathematica</a> is a commercial product, whereas the Physics Derivation Graph is open source.<BR>
 <a href="https://www.wolfram.com/mathematica/">Mathematica</a> is a <a href="https://en.wikipedia.org/wiki/Computer_algebra_system">computer algebra system</a>, whereas the Physics Derivation Graph is documentation of known mathematical physics relations.<BR>
-The <a href="https://www.wolframphysics.org/">Wolfram Physics</a> focuses on using Graph generation as a method of developing fundemental Physics concepts. 
+The <a href="https://www.wolframphysics.org/">Wolfram Physics</a> focuses on using Graph generation as a method of developing fundemental Physics concepts.
 </P>
 
+
+
+<H4><a name="wolframalpha">Wolfram Alpha</a></H4>
+<P>
+  Wolfram Alpha (<a href="https://www.wolframalpha.com">https://www.wolframalpha.com</a>) has a backend database of content which is not open source; access is a mix of free and paid.
+</P>
 
 {% endblock %}
