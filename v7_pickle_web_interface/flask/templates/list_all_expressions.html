@@ -2,7 +2,18 @@
 {% block content %}
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_table.asp -->
-latex: <input type="text" id="latex_input" onkeyup="latex_filter()" placeholder="Search latex">
+Dynamic search of latex as plain text: <input type="text" id="latex_input" onkeyup="latex_filter()" placeholder="Search latex (plain text)" size="50">
+
+<form method="post" action="">
+Static search of latex using regex:  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+<!--  <div class="form-group">
+    <div class="input-group"> -->
+    <input type="text" id="regex_latex" name="regex latex" placeholder="Search latex using regex" size="50">
+<!--    </div> -->
+    <button type="submit" class="btn btn-default">Search</button>
+<!--  </div> -->
+</form>
+
 
 <script>
 function latex_filter() {
@@ -48,11 +59,13 @@ function latex_filter() {
   <div class="form-group">
     <div class="input-group">
         <span class="input-group-addon">Select from</span>
-            <select name="delete expr" class="selectpicker form-control">
-              {% for expr_global_id in list_of_expr_not_appearing_in_any_derivations %}
-              <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
-              {% endfor %}
-            </select>
+          <select name="delete expr" class="selectpicker form-control">
+            {% for expr_global_id in list_of_expr_not_appearing_in_any_derivations %}
+              {% if expr_global_id in dat['expressions'].keys() %} <!-- conditional since dat returned for regex may not have the ID -->
+                <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
     </div>
     <button type="submit" class="btn btn-default">Delete</button>
   </div>
@@ -79,7 +92,9 @@ function latex_filter() {
         <span class="input-group-addon">Select from</span>
             <select name="edit_expr_name" class="selectpicker form-control">
               {% for expr_global_id in sorted_list_exprs %}
+              {% if expr_global_id in dat['expressions'].keys() %} <!-- conditional since dat returned for regex may not have the ID -->
               <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+              {% endif %}
               {% endfor %}
             </select>
 <P>{{ edit_expr_name_webform.revised_text.label }}: {{ edit_expr_name_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
@@ -108,7 +123,10 @@ function latex_filter() {
         <span class="input-group-addon">Select from</span>
             <select name="add_symbol_to_expr_id" class="selectpicker form-control">
               {% for expr_global_id in sorted_list_exprs %}
+              {% if expr_global_id in dat['expressions'].keys() %} <!-- conditional since dat returned for regex may not have the ID -->
+
               <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+              {% endif %}
               {% endfor %}
             </select>
 
@@ -164,7 +182,10 @@ I don't know what the form for this looks like yet
         <span class="input-group-addon">Select from</span>
             <select name="edit_expr_latex" class="selectpicker form-control">
               {% for expr_global_id in sorted_list_exprs %}
+              {% if expr_global_id in dat['expressions'].keys() %} <!-- conditional since dat returned for regex may not have the ID -->
+
               <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+              {% endif %}
               {% endfor %}
             </select>
 <P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300, id="input_latex") }} <small>max length = 300 characters</small>
@@ -202,7 +223,10 @@ I don't know what the form for this looks like yet
         <span class="input-group-addon">Select from</span>
             <select name="edit_expr_note" class="selectpicker form-control">
               {% for expr_global_id in sorted_list_exprs %}
+              {% if expr_global_id in dat['expressions'].keys() %} <!-- conditional since dat returned for regex may not have the ID -->
+
               <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'] }}</option>
+              {% endif %}
               {% endfor %}
             </select>
 <P>{{ edit_expr_note_webform.revised_text.label }}: {{ edit_expr_note_webform.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>

@@ -10,6 +10,8 @@
     <th>used in derivation</th>
   </tr>
 {% for expr_id, expr_use_list in expression_popularity_dict.items() %}
+{% if expr_id in dat['expressions'].keys() %}
+
   <tr>
     <td><a name="{{ expr_id }}">{{ expr_id}}</a></td>
     <td>
@@ -64,6 +66,7 @@
       {% endif %}
     </td>
   </tr>
+{% endif %}
 {% endfor %}
   <caption>
     <a name="table of expressions">

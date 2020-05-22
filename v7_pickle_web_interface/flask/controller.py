@@ -25,6 +25,7 @@ import json
 import shutil
 import time
 import random
+import copy
 
 # https://docs.python.org/3/library/sqlite3.html
 import sqlite3
@@ -1781,6 +1782,7 @@ def list_all_expressions():
     logger.info("[trace page start " + trace_id + "]")
 
     dat = clib.read_db(path_to_db)
+    # modified_dat = "not set"
     try:
         expression_popularity_dict = compute.popularity_of_expressions(path_to_db)
     except Exception as err:
@@ -1789,24 +1791,18 @@ def list_all_expressions():
         expression_popularity_dict = {}
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
-        if "edit expr latex" in request.form.keys():
-            # request.form = ImmutableMultiDict([('edit_expr_latex', '4928923942'), ('revised_text', 'asdfingasinsf')])
+        if "regex latex" in request.form.keys():
             try:
-                status_message = compute.edit_expr_latex(
-                    request.form["edit expr latex"],
-                    request.form["revised_text"],
-                    path_to_db,
+                dat["expressions"] = compute.search_expression_latex(
+                    request.form["regex latex"], path_to_db
                 )
             except Exception as err:
-                logger.error(str(err))
                 flash(str(err))
-                status_message = "error"
-            flash(str(status_message))
-            logger.debug("list_all_expressions; status = %s", status_message)
-            logger.info("[trace page end " + trace_id + "]")
-            return redirect(
-                url_for("list_all_expressions", referrer="list_all_expressions")
-            )
+                logger.error(str(err))
+            # flash('number of expressions after filtering: ' + str(len(dat['expressions'])))
+        #           modified_dat = copy.deepcopy(dat)
+        # flash('number of expressions after filtering, modified: ' + str(len(modified_dat['expressions'])))
+
         elif "edit_expr_latex" in request.form.keys():
             try:
                 compute.modify_latex_in_expressions(
@@ -1893,6 +1889,7 @@ def list_all_expressions():
         logger.error(str(err))
         flash(str(err))
         list_of_expr = []
+
     try:
         list_of_expr_not_appearing_in_any_derivations = compute.get_sorted_list_of_expr_not_in_use(
             path_to_db
@@ -1901,6 +1898,7 @@ def list_all_expressions():
         logger.error(str(err))
         flash(str(err))
         list_of_expr_not_appearing_in_any_derivations = []
+    # flash('number of expr not in any deriv: ' + str(len(list_of_expr_not_appearing_in_any_derivations)))
 
     try:
         expr_dict_with_symbol_list = compute.generate_expr_dict_with_symbol_list(
@@ -1911,11 +1909,15 @@ def list_all_expressions():
         flash(str(err))
         expr_dict_with_symbol_list = {}
 
+    # modified_dat only exists if the route is a POST and came from the regex search
+    #    if modified_dat != "not set":
+    #        dat = modified_dat
+
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "list_all_expressions.html",
         dat=dat,
-        expressions_dict=expr_dict_with_symbol_list,
+        # expressions_dict=expr_dict_with_symbol_list,
         sorted_list_exprs=list_of_expr,
         expr_dict_with_symbol_list=expr_dict_with_symbol_list,
         list_of_expr_not_appearing_in_any_derivations=list_of_expr_not_appearing_in_any_derivations,
