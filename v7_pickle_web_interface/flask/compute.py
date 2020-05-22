@@ -16,6 +16,7 @@ from functools import wraps
 import errno
 import signal
 import os
+import re
 
 # move and copy files
 import shutil
@@ -1904,6 +1905,79 @@ def popularity_of_infrules(path_to_db: str) -> dict:
     return infrule_popularity_dict
 
 
+def search_list_of_strings(
+    pattern: str, list_of_strings_to_search: list, delimiter="\s+"
+) -> list:
+    """
+    contributed by msgoff
+    https://github.com/allofphysicsgraph/dynamic-search/blob/master/search.py
+
+    when multiple terms are present in the pattern,
+    then search "term1 AND term2 AND term3" in the list of strings
+    default is to split each string in the corpus on spaces
+
+    >>> list_of_strings_to_search = ["Normally matches any character except a newline.", "Within square brackets the dot is literal."]
+    >>> search_list_of_strings('(Normally|With) (anyf|char)? square', list_of_strings_to_search)
+    ['Within square brackets the dot is literal. ']
+
+    match one of the two
+    >>> search_list_of_strings('Normally|With', list_of_strings_to_search)
+    ['Normally matches any character except a newline.', 'Within square brackets the dot is literal. ']
+
+    The question mark makes the preceding token in the regular expression optional.
+    https://www.regular-expressions.info/optional.html
+    >>> search_list_of_strings('(anyf|char)?', list_of_strings_to_search)
+    ['Normally matches any character except a newline.', 'Within square brackets the dot is literal. ']
+
+    exact match
+    >>> search_list_of_strings('square', list_of_strings_to_search)
+    ['Within square brackets the dot is literal. ']
+
+    look for a math expression that has both "cos" and "2" present
+    >>> list_of_strings_to_search = ['sin(x) + cos(2x) = f(x)', 'ax^2 + bx + c = 0']
+    >>> search_list_of_strings('cos 2', list_of_strings_to_search)
+    ['sin(x) + cos(2x) = f(x)']
+    """
+    ands = re.split(delimiter, pattern)
+
+    match_list = []
+    for line in list_of_strings_to_search:
+        ignore_line = False
+        for word in ands:
+            if not re.findall(word, line):
+                ignore_line = True
+        if not ignore_line:
+            match_list.append(line)
+    return match_list
+
+
+def search_expression_latex(pattern: str, path_to_db: str, delimiter="\s+") -> dict:
+    """
+    based on search_list_of_strings
+    adapted to dat['expressions'] to find latex and return a modified dat['expressions']
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+
+    dat = clib.read_db(path_to_db)
+
+    ands = re.split(delimiter, pattern)
+
+    match_dict = {}
+    for expr_id, expr_dict in dat["expressions"].items():
+        line = expr_dict["latex"]
+        ignore_line = False
+        for word in ands:
+            if not re.findall(word, line):
+                ignore_line = True
+        if not ignore_line:
+            match_dict[expr_id] = expr_dict
+    logger.debug("number of matches = " + str(len(match_dict)))
+
+    logger.info("[trace end " + trace_id + "]")
+    return match_dict
+
+
 # ********************************************
 # local filesystem
 
@@ -2616,7 +2690,7 @@ def update_linear_index(
 ) -> None:
     """
     # https://github.com/allofphysicsgraph/proofofconcept/issues/116
-    >>> modify_linear_index()
+    >>> update_linear_index()
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3161,29 +3235,6 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 # data structure transformations
 
 
-def modify_latex_in_expressions(
-    global_id_of_latex_to_modify: str,
-    revised_latex: str,
-    user_email: str,
-    path_to_db: str,
-) -> None:
-    """
-    re-use existing global ID
-
-    >>> modify_latex_in_expressions()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
-    dat = clib.read_db(path_to_db)
-
-    dat["expressions"][global_id_of_latex_to_modify]["latex"] = revised_latex
-    dat["expressions"][global_id_of_latex_to_modify]["AST"] = []
-
-    clib.write_db(path_to_db, dat)
-    logger.info("[trace end " + trace_id + "]")
-    return
-
-
 def modify_latex_in_step(
     expr_local_id_of_latex_to_modify: str,
     revised_latex: str,
@@ -3610,8 +3661,15 @@ def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str)
     return status_msg
 
 
-def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
+def modify_latex_in_expressions(
+    global_id_of_latex_to_modify: str,
+    revised_latex: str,
+    user_email: str,
+    path_to_db: str,
+) -> None:
     """
+    re-use existing global ID
+
     http://asciiflow.com/
     suppose there is a step that has the following
 
@@ -3641,20 +3699,21 @@ def edit_expr_latex(expr_id: str, revised_latex: str, path_to_db: str) -> str:
                +---------------+
 
 
-    >>> edit_expr_latex()
+    >>> modify_latex_in_expressions()
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
-    status_msg = ""
-    if expr_id in dat["expressions"].keys():
-        dat["expressions"][expr_id]["latex"] = revised_latex
-        status_msg = expr_id + " updated"
+
+    if global_id_of_latex_to_modify in dat["expressions"].keys():
+        dat["expressions"][global_id_of_latex_to_modify]["latex"] = revised_latex
+        dat["expressions"][global_id_of_latex_to_modify]["AST"] = []
     else:
-        status_msg = expr_id + " not in database"
+        raise Exception(global_id_of_latex_to_modify + " not in db")
+
     clib.write_db(path_to_db, dat)
     logger.info("[trace end " + trace_id + "]")
-    return status_msg
+    return
 
 
 def delete_symbol(symbol_to_delete: str, path_to_db: str) -> str:
