@@ -212,9 +212,9 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     elif step_dict["inf rule"] == "divide both sides by":
         logger.info("[trace end " + trace_id + "]")
         return divide_both_sides_by(latex_dict)
-    elif step_dict["inf rule"] == "substitute X for Y":
+    elif step_dict["inf rule"] == "change variable X to Y":
         logger.info("[trace end " + trace_id + "]")
-        return substitute_X_for_Y(latex_dict)
+        return change_variable_X_to_Y(latex_dict)
     elif step_dict["inf rule"] == "add zero to LHS":
         logger.info("[trace end " + trace_id + "]")
         return add_zero_to_LHS(latex_dict)
@@ -374,19 +374,19 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     elif step_dict["inf rule"] == "expr 1 is equivalent to expr 2 under the condition":
         logger.info("[trace end " + trace_id + "]")
         return expr_is_equivalent_to_expr_under_the_condition(latex_dict)
-    elif step_dict["inf rule"] == "substitute two variables into expr":
+    elif step_dict["inf rule"] == "change two variables in expr":
         logger.info("[trace end " + trace_id + "]")
         return substitute_two_variables_in_expr(latex_dict)
-    elif step_dict["inf rule"] == "substitute three variables into expr":
+    elif step_dict["inf rule"] == "change three variables in expr":
         logger.info("[trace end " + trace_id + "]")
         return substitute_three_variables_in_expr(latex_dict)
-    elif step_dict["inf rule"] == "substitute four variables into expr":
+    elif step_dict["inf rule"] == "change four variables in expr":
         logger.info("[trace end " + trace_id + "]")
         return substitute_four_variables_in_expr(latex_dict)
-    elif step_dict["inf rule"] == "substitute five variables into expr":
+    elif step_dict["inf rule"] == "change five variables in expr":
         logger.info("[trace end " + trace_id + "]")
         return substitute_five_variables_in_expr(latex_dict)
-    elif step_dict["inf rule"] == "substitute six variables into expr":
+    elif step_dict["inf rule"] == "change six variables in expr":
         logger.info("[trace end " + trace_id + "]")
         return substitute_six_variables_in_expr(latex_dict)
     elif step_dict["inf rule"] == "LHS of expr 1 equals LHS of expr 2":
@@ -405,16 +405,37 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         logger.info("[trace end " + trace_id + "]")
         return separate_three_vector_components(latex_dict)
     elif step_dict["inf rule"] == "separate vector into two trigonometric ratios":
+        logger.info("[trace end " + trace_id + "]")
         return separate_vector_into_two_trigonometric_ratios(latex_dict)
     elif step_dict["inf rule"] == "maximum of expr":
+        logger.info("[trace end " + trace_id + "]")
         return maximum_of_expr(latex_dict)
     elif step_dict["inf rule"] == "evaluate definite integral":
+        logger.info("[trace end " + trace_id + "]")
         return evaluate_definite_integral(latex_dict)
     elif step_dict["inf rule"] == "expr 1 is true under condition expr 2":
+        logger.info("[trace end " + trace_id + "]")
         return expr_is_true_under_condition_expr(latex_dict)
     elif step_dict["inf rule"] == "declare variable replacement":
+        logger.info("[trace end " + trace_id + "]")
         return declare_variable_replacement(latex_dict)
+    elif step_dict["inf rule"] == "integrate":
+        logger.info("[trace end " + trace_id + "]")
+        return integrate(latex_dict)
     #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
     #        return (latex_dict)
     elif (
         step_dict["inf rule"]
@@ -605,7 +626,7 @@ def divide_both_sides_by(latex_dict):
         )
 
 
-def substitute_X_for_Y(latex_dict):
+def change_variable_X_to_Y(latex_dict):
     """
     given 'a + b = c',
     subsitute b --> d
@@ -615,7 +636,7 @@ def substitute_X_for_Y(latex_dict):
     >>> latex_dict['input'] = [{'LHS': parse_latex('a + b'), 'RHS': parse_latex('c')}]
     >>> latex_dict['feed'] = [parse_latex('b'), parse_latex('d')]
     >>> latex_dict['output'] = [{'LHS': parse_latex('a + d'), 'RHS': parse_latex('c')}]
-    >>> substitute_X_for_Y(latex_dict)
+    >>> change_variable_X_to_Y(latex_dict)
     'step is valid'
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1952,6 +1973,20 @@ def declare_variable_replacement(latex_dict):
     >>> latex_dict['feed'] = [parse_latex('')]
     >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> declare_variable_replacement(latex_dict)
+    'step is valid'
+    """
+    logger.info("[trace]")
+    return "no check performed"
+
+
+def integrate(latex_dict):
+    """ 
+
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> integrate(latex_dict)
     'step is valid'
     """
     logger.info("[trace]")
