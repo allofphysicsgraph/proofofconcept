@@ -269,7 +269,7 @@
                         "4089571",
                         "4582412"
                     ],
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "8888888"
                     ],
@@ -549,7 +549,7 @@
                         "2393922",
                         "3949052"
                     ],
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "8888888"
                     ],
@@ -1897,7 +1897,7 @@
                         "9484724",
                         "4934845"
                     ],
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "1231131"
                     ],
@@ -1958,7 +1958,7 @@
                         "2929944",
                         "4948585"
                     ],
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "0021030"
                     ],
@@ -2010,10 +2010,10 @@
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-04-14",
                     "feeds": [],
-                    "inf rule": "evaluate definite integral",
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
                     "inputs": [
-                        "0203020",
-                        "9339495"
+                        "9339495",
+                        "0203020"
                     ],
                     "linear index": 28,
                     "notes": "",
@@ -2084,7 +2084,7 @@
                         "9485858",
                         "4831494"
                     ],
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "3992939"
                     ],
@@ -2256,7 +2256,7 @@
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-04-14",
                     "feeds": [],
-                    "inf rule": "evaluate definite integral",
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
                     "inputs": [
                         "4948377",
                         "8584733"
@@ -2604,7 +2604,7 @@
                         "4858592",
                         "0999900"
                     ],
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "9091270"
                     ],
@@ -3141,7 +3141,7 @@
                     "creation date": "2020-04-19"
                 },
                 "6240603": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "6060683"
                     ],
@@ -3276,7 +3276,7 @@
                     "creation date": "2020-04-19"
                 },
                 "5103914": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "1580045"
                     ],
@@ -3369,14 +3369,15 @@
                     "creation date": "2020-04-20"
                 },
                 "5590554": {
-                    "inf rule": "substitute three variables into expr",
+                    "inf rule": "change three variables in expr",
                     "inputs": [
-                        "9398614",
-                        "7874068",
-                        "7552472",
                         "8844119"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "9398614",
+                        "7874068",
+                        "7552472"
+                    ],
                     "outputs": [
                         "5642407"
                     ],
@@ -3386,14 +3387,15 @@
                     "creation date": "2020-04-20"
                 },
                 "8346419": {
-                    "inf rule": "substitute three variables into expr",
+                    "inf rule": "change three variables in expr",
                     "inputs": [
-                        "8946473",
-                        "6566357",
-                        "7978426",
                         "8844119"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "8946473",
+                        "6566357",
+                        "7978426"
+                    ],
                     "outputs": [
                         "1298003"
                     ],
@@ -3430,13 +3432,14 @@
                     "creation date": "2020-04-20"
                 },
                 "4803359": {
-                    "inf rule": "substitute two variables into expr",
+                    "inf rule": "change two variables in expr",
                     "inputs": [
-                        "7874068",
-                        "3735003",
                         "6559987"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "7874068",
+                        "3735003"
+                    ],
                     "outputs": [
                         "6632540"
                     ],
@@ -3446,13 +3449,14 @@
                     "creation date": "2020-04-20"
                 },
                 "7113502": {
-                    "inf rule": "substitute two variables into expr",
+                    "inf rule": "change two variables in expr",
                     "inputs": [
-                        "6566357",
-                        "1988214",
                         "6559987"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "6566357",
+                        "1988214"
+                    ],
                     "outputs": [
                         "4208138"
                     ],
@@ -3505,13 +3509,14 @@
                     "creation date": "2020-04-20"
                 },
                 "7835026": {
-                    "inf rule": "substitute two variables into expr",
+                    "inf rule": "change two variables in expr",
                     "inputs": [
-                        "4758524",
-                        "3257704",
                         "2776565"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "4758524",
+                        "3257704"
+                    ],
                     "outputs": [
                         "8696678"
                     ],
@@ -3629,13 +3634,14 @@
                     "creation date": "2020-04-20"
                 },
                 "6719788": {
-                    "inf rule": "substitute two variables into expr",
+                    "inf rule": "change two variables in expr",
                     "inputs": [
-                        "7552472",
-                        "7519917",
                         "8497204"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "7552472",
+                        "7519917"
+                    ],
                     "outputs": [
                         "3988671"
                     ],
@@ -3645,13 +3651,14 @@
                     "creation date": "2020-04-20"
                 },
                 "5969230": {
-                    "inf rule": "substitute two variables into expr ",
+                    "inf rule": "change two variables in expr ",
                     "inputs": [
-                        "7978426",
-                        "7633243",
                         "8497204"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "7978426",
+                        "7633243"
+                    ],
                     "outputs": [
                         "9081932"
                     ],
@@ -4015,13 +4022,14 @@
                     "creation date": "2020-04-23"
                 },
                 "5372769": {
-                    "inf rule": "substitute two variables into expr",
+                    "inf rule": "change two variables in expr",
                     "inputs": [
-                        "1539856",
-                        "9873426",
                         "9932375"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "1539856",
+                        "9873426"
+                    ],
                     "outputs": [
                         "4176694"
                     ],
@@ -4058,7 +4066,7 @@
                     "creation date": "2020-04-23"
                 },
                 "9056504": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "3940135"
                     ],
@@ -4134,7 +4142,7 @@
                     "creation date": "2020-04-23"
                 },
                 "6119314": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "2621708"
                     ],
@@ -4303,7 +4311,7 @@
                     "creation date": "2020-05-06"
                 },
                 "5700345": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "1131405"
                     ],
@@ -4332,13 +4340,14 @@
                     "creation date": "2020-05-07"
                 },
                 "9488257": {
-                    "inf rule": "substitute two variables into expr",
+                    "inf rule": "change two variables in expr",
                     "inputs": [
-                        "3915320",
-                        "3383852",
                         "7959026"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "3915320",
+                        "3383852"
+                    ],
                     "outputs": [
                         "5753220"
                     ],
@@ -4348,14 +4357,15 @@
                     "creation date": "2020-05-07"
                 },
                 "6456434": {
-                    "inf rule": "substitute three variables into expr",
+                    "inf rule": "change three variables in expr",
                     "inputs": [
-                        "3915320",
-                        "6364366",
-                        "4443760",
                         "7360652"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "3915320",
+                        "6364366",
+                        "4443760"
+                    ],
                     "outputs": [
                         "5320197"
                     ],
@@ -4739,7 +4749,7 @@
                     "creation date": "2020-05-08"
                 },
                 "8057586": {
-                    "inf rule": "substitute LHS of four exprs into expr",
+                    "inf rule": "substitute LHS of four expressions into expr",
                     "inputs": [
                         "7666907",
                         "6316097",
@@ -5493,7 +5503,7 @@
                     "creation date": "2020-05-17"
                 },
                 "4450503": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "4362190"
                     ],
@@ -5553,7 +5563,7 @@
                     "creation date": "2020-05-17"
                 },
                 "3822400": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "4362190"
                     ],
@@ -5570,7 +5580,7 @@
                     "creation date": "2020-05-17"
                 },
                 "5037316": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "4362190"
                     ],
@@ -5617,13 +5627,14 @@
                     "creation date": "2020-05-17"
                 },
                 "6988426": {
-                    "inf rule": "substitute two variables into expr",
+                    "inf rule": "change two variables in expr",
                     "inputs": [
-                        "4809503",
-                        "8712395",
                         "5513927"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "4809503",
+                        "8712395"
+                    ],
                     "outputs": [
                         "7875296"
                     ],
@@ -5633,7 +5644,7 @@
                     "creation date": "2020-05-17"
                 },
                 "2270901": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "4809503"
                     ],
@@ -5678,7 +5689,7 @@
                     "creation date": "2020-05-17"
                 },
                 "1791333": {
-                    "inf rule": "substitute LHS of four exprs into expr",
+                    "inf rule": "substitute LHS of four expressions into expr",
                     "inputs": [
                         "7875296",
                         "1174231",
@@ -5708,7 +5719,7 @@
                     "creation date": "2020-05-17"
                 },
                 "4285950": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "7002927"
                     ],
@@ -6588,13 +6599,14 @@
                     "creation date": "2020-05-17"
                 },
                 "5937834": {
-                    "inf rule": "substitute two variables into expr",
+                    "inf rule": "change two variables in expr",
                     "inputs": [
-                        "2028521",
-                        "9370914",
                         "1292901"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "2028521",
+                        "9370914"
+                    ],
                     "outputs": [
                         "8592617"
                     ],
@@ -6720,13 +6732,14 @@
                     "creation date": "2020-05-17"
                 },
                 "5860845": {
-                    "inf rule": "substitute two variables into expr",
+                    "inf rule": "change two variables in expr",
                     "inputs": [
-                        "5327191",
-                        "2411880",
                         "2022953"
                     ],
-                    "feeds": [],
+                    "feeds": [
+                        "5327191",
+                        "2411880"
+                    ],
                     "outputs": [
                         "2293278"
                     ],
@@ -6808,7 +6821,7 @@
                     "creation date": "2020-05-17"
                 },
                 "9760197": {
-                    "inf rule": "substitute X for Y",
+                    "inf rule": "change variable X to Y",
                     "inputs": [
                         "6199255"
                     ],
@@ -6907,6 +6920,472 @@
                     "notes": "",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-17"
+                }
+            }
+        },
+        "920011": {
+            "name": "work and force and energy",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "creation date": "2020-05-24",
+            "steps": {
+                "6093238": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2237799"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "2756830": {
+                    "inf rule": "integrate",
+                    "inputs": [
+                        "2237799"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2565189"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "5622476": {
+                    "inf rule": "evaluate definite integral",
+                    "inputs": [
+                        "2565189"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7362045"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "6287856": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "7362045",
+                        "3086821"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6167182"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "6311864": {
+                    "inf rule": "change three variables in expr",
+                    "inputs": [
+                        "4741344"
+                    ],
+                    "feeds": [
+                        "5597968",
+                        "2007644",
+                        "5398681"
+                    ],
+                    "outputs": [
+                        "5997798"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "8305798": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "5997798",
+                        "6167182"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6760874"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "3538142": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "6760874"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4236963"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "1136729": {
+                    "inf rule": "substitute LHS of two expressions into expr",
+                    "inputs": [
+                        "8207477",
+                        "8883350",
+                        "4236963"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4943050"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "4403236": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "4943050"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                }
+            }
+        },
+        "129143": {
+            "name": "escape velocity",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "creation date": "2020-05-24",
+            "steps": {
+                "6881790": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3279838"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "4650277": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "3279838",
+                        "2123766"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3686928"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "6008233": {
+                    "inf rule": "integrate",
+                    "inputs": [
+                        "3686928"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4803506"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "3324084": {
+                    "inf rule": "evaluate definite integral",
+                    "inputs": [
+                        "4803506"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1089445"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "8039319": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "1089445"
+                    ],
+                    "feeds": [
+                        "9544390",
+                        "3268428"
+                    ],
+                    "outputs": [
+                        "2341415"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "9534004": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "2341415"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2190752"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "4165232": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "2190752"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2238158"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "1179540": {
+                    "inf rule": "substitute LHS of two expressions into expr",
+                    "inputs": [
+                        "6310702",
+                        "5160388",
+                        "6330719"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4840471"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "1518987": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7682341"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "6988834": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9324316"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "7320847": {
+                    "inf rule": "substitute LHS of two expressions into expr",
+                    "inputs": [
+                        "7682341",
+                        "9324316",
+                        "4840471"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8369684"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "9709070": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "8369684"
+                    ],
+                    "feeds": [
+                        "7262448",
+                        "6756248"
+                    ],
+                    "outputs": [
+                        "9967559"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "1868693": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6773616"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "6200985": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "2238158",
+                        "6773616"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9437784"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "8498604": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "3778087"
+                    ],
+                    "feeds": [
+                        "6306015",
+                        "4487753"
+                    ],
+                    "outputs": [
+                        "5106827"
+                    ],
+                    "linear index": 15,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "8184884": {
+                    "inf rule": "substitute LHS of two expressions into expr",
+                    "inputs": [
+                        "5106827",
+                        "9437784",
+                        "9967559"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3493665"
+                    ],
+                    "linear index": 16,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "8921345": {
+                    "inf rule": "add X to both sides",
+                    "inputs": [
+                        "3493665"
+                    ],
+                    "feeds": [
+                        "7445550"
+                    ],
+                    "outputs": [
+                        "6523887"
+                    ],
+                    "linear index": 17,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "5854765": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "6523887"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7567097"
+                    ],
+                    "linear index": 18,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "3270895": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "7567097"
+                    ],
+                    "feeds": [
+                        "6213797"
+                    ],
+                    "outputs": [
+                        "3358651"
+                    ],
+                    "linear index": 19,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "1078239": {
+                    "inf rule": "swap LHS with RHS",
+                    "inputs": [
+                        "3358651"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3908344"
+                    ],
+                    "linear index": 20,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "4505146": {
+                    "inf rule": "square root both sides",
+                    "inputs": [
+                        "3908344"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6389964",
+                        "8779043"
+                    ],
+                    "linear index": 21,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
+                },
+                "4334762": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "6389964"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 22,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-24"
                 }
             }
         }
@@ -7531,7 +8010,58 @@
         "4113753": "5667870149",
         "2728170": "1541916015",
         "9834994": "3607070319",
-        "6972103": "5353282496"
+        "6972103": "5353282496",
+        "2237799": "1590774089",
+        "2565189": "5542528160",
+        "7362045": "3512166162",
+        "3279838": "6935745841",
+        "2123766": "1590774089",
+        "3686928": "8604483515",
+        "4803506": "4447113478",
+        "1089445": "5732331610",
+        "3086821": "5345738321",
+        "6167182": "8953094349",
+        "4741344": "5611024898",
+        "5597968": "9623791270",
+        "2007644": "3652511721",
+        "5398681": "5398681502",
+        "5997798": "3253234559",
+        "6760874": "9413699705",
+        "4236963": "4811121942",
+        "8207477": "7676652285",
+        "8883350": "4928007622",
+        "4943050": "3360172339",
+        "9544390": "1413137236",
+        "3268428": "2764966428",
+        "2341415": "6131764194",
+        "2190752": "5978756813",
+        "2238158": "7749253510",
+        "7283949": "8558338742",
+        "6310702": "4303372136",
+        "5160388": "7875206161",
+        "6330719": "8558338742",
+        "4840471": "8960645192",
+        "7682341": "2267521164",
+        "9324316": "1840080113",
+        "8369684": "9749777192",
+        "7262448": "5591692598",
+        "6756248": "6158970683",
+        "9967559": "2503972039",
+        "6773616": "7573835180",
+        "9437784": "3846041519",
+        "6306015": "5021965469",
+        "4487753": "6681646197",
+        "3778087": "8357234146",
+        "5106827": "6870322215",
+        "3493665": "2042298788",
+        "7445550": "5050429607",
+        "6523887": "9703482302",
+        "7567097": "1143343287",
+        "6213797": "5775658332",
+        "3358651": "2977457786",
+        "3908344": "9412953728",
+        "6389964": "1330874553",
+        "8779043": "2750380042"
     },
     "expressions": {
         "0000040490": {
@@ -11025,8 +11555,8 @@
         "8558338742": {
             "latex": "E_2 = E_1",
             "AST": [],
-            "name": "",
-            "notes": "",
+            "name": "conservation of energy",
+            "notes": "https://en.wikipedia.org/wiki/Conservation_of_energy",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-20"
         },
@@ -11774,6 +12304,14 @@
             "creation date": "2020-05-09"
         },
         "5398681503": {
+            "latex": "v \\to v_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-09"
+        },
+        "5398681502": {
             "latex": "v \\to v_1",
             "AST": [],
             "name": "",
@@ -13897,6 +14435,391 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17"
+        },
+        "1590774089": {
+            "latex": "dW = F dx",
+            "AST": [
+                "9199",
+                "4202",
+                "9398"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "5542528160": {
+            "latex": "\\int dW = F \\int_0^x dx",
+            "AST": [
+                "4202"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "3512166162": {
+            "latex": "W = F x",
+            "AST": [
+                "4202",
+                "6789",
+                "4037"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "6935745841": {
+            "latex": "F = G \\frac{m_1 m_2}{x^2}",
+            "AST": [
+                "4202"
+            ],
+            "name": "Newton's law of universal gravitation",
+            "notes": "https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation#Modern_form",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "8604483515": {
+            "latex": "dW = G \\frac{m_1 m_2}{x^2} dx",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "4447113478": {
+            "latex": " \\int dW = G m_1 m_2 \\int_{ r_{\\rm Earth} }^{\\infty} \\frac{1}{x^2} dx ",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "5732331610": {
+            "latex": " W = G m_1 m_2 \\left( \\frac{1}{x} \\bigg\\rvert_{ r_{\\rm Earth} }^{\\infty} \\right) ",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "8953094349": {
+            "latex": "W = m a x",
+            "AST": [
+                "6789",
+                "4037",
+                "9140",
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "9623791270": {
+            "latex": "d \\to x",
+            "AST": [
+                "4037"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "3652511721": {
+            "latex": "v \\to v_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "3253234559": {
+            "latex": "x = \\frac{v_2^2 - v_1^2}{2 a}",
+            "AST": [
+                "4037",
+                "9140"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "9413699705": {
+            "latex": "W = m a \\frac{v_2^2 - v_1^2}{2 a}",
+            "AST": [
+                "9140",
+                "5156",
+                "6789"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "4811121942": {
+            "latex": "W = \\frac{1}{2} m v_2^2 - \\frac{1}{2} m v_1^2",
+            "AST": [
+                "6789"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "3360172339": {
+            "latex": "W = KE_2 - KE_1",
+            "AST": [
+                "6789"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "1413137236": {
+            "latex": "m_1 \\to m_{\\rm Earth}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "2764966428": {
+            "latex": "m_2 \\to m",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "6131764194": {
+            "latex": "W = G m_{\\rm Earth} m \\left( \\frac{1}{x^2} \\bigg\\rvert_{ r_{\\rm Earth} }^{\\infty} \\right)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "5978756813": {
+            "latex": "W = G m_{\\rm Earth} m \\left( 0 - \\frac{-1}{ r_{\\rm Earth}} \\right)",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "7749253510": {
+            "latex": "W = G \\frac{m_{\\rm Earth} m }{ r_{\\rm Earth}}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "8960645192": {
+            "latex": "KE_2 + PE_2 = KE_1 + PE_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "2267521164": {
+            "latex": "PE_2 = 0",
+            "AST": [],
+            "name": "",
+            "notes": "object goes to $\\infty$ away from gravitational source",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "1840080113": {
+            "latex": "KE_2 = 0",
+            "AST": [],
+            "name": "",
+            "notes": "object is not moving at $x=\\infty$",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "9749777192": {
+            "latex": "0 = KE_1 + PE_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "5591692598": {
+            "latex": "KE_1 \\to KE_{\\rm escape}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "6158970683": {
+            "latex": "PE_1 \\to PE_{\\rm Earth surface}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "9949897348": {
+            "latex": "0 = KE_{\\rm escape} + PE_{\\rm Earth surface}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "7573835180": {
+            "latex": "PE_{\\rm Earth\\ surface} = -W",
+            "AST": [],
+            "name": "",
+            "notes": "the potential energy at the surface of the Earth is equal to the work needed to get it from the center of the Earth to the surface",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "3846041519": {
+            "latex": "PE_{\\rm Earth\\ surface} = -G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "5021965469": {
+            "latex": "KE \\to KE_{\\rm escape}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "6681646197": {
+            "latex": "v \\to v_{\\rm escape}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "6629385362": {
+            "latex": "KE_{",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "6870322215": {
+            "latex": "KE_{\\rm escape} = \\frac{1}{2} m v_{\\rm escape}^2",
+            "creation date": "2020-05-24",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "2042298788": {
+            "latex": "0 = -G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}} + \\frac{1}{2} m v_{\\rm escape}^2",
+            "AST": [
+                "6277",
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "2503972039": {
+            "latex": "0 = KE_{\\rm escape} + PE_{\\rm Earth\\ surface}",
+            "creation date": "2020-05-24",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "5050429607": {
+            "latex": "G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}}",
+            "AST": [
+                "6277",
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "9703482302": {
+            "latex": "G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}} = \\frac{1}{2} m v_{\\rm escape}^2",
+            "AST": [
+                "6277",
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "1143343287": {
+            "latex": "G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}} = \\frac{1}{2} v_{\\rm escape}^2",
+            "AST": [
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "5775658332": {
+            "latex": "2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "2977457786": {
+            "latex": "2 G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}} = v_{\\rm escape}^2",
+            "AST": [
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "9412953728": {
+            "latex": "v_{\\rm escape}^2 = 2 G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}}",
+            "AST": [
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "1330874553": {
+            "latex": "v_{\\rm escape} = \\sqrt{2 G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}}}",
+            "AST": [
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "2750380042": {
+            "latex": "v_{\\rm escape} = -\\sqrt{2 G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}}}",
+            "AST": [
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
         }
     },
     "inference rules": {
@@ -14146,10 +15069,10 @@
         "evaluate definite integral": {
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "Integrate Eq.~\\ref{eq:#1} using identity Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
+            "latex": "Evaluate definite integral Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
             "notes": "",
             "number of feeds": 0,
-            "number of inputs": 2,
+            "number of inputs": 1,
             "number of outputs": 1
         },
         "expand LHS": {
@@ -14404,10 +15327,10 @@
             "number of inputs": 1,
             "number of outputs": 1
         },
-        "substitute X for Y": {
+        "change variable X to Y": {
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "Substitute $#1$ for $#2$ in Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
+            "latex": "Change variable $#1$ to $#2$ in Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
             "notes": "",
             "number of feeds": 2,
             "number of inputs": 1,
@@ -14575,7 +15498,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-09"
         },
-        "substitute LHS of two exprs into expr": {
+        "substitute LHS of two expressions into expr": {
             "number of feeds": 0,
             "number of inputs": 3,
             "number of outputs": 1,
@@ -14584,7 +15507,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
-        "substitute LHS of three exprs into expr": {
+        "substitute LHS of three expressions into expr": {
             "number of feeds": 0,
             "number of inputs": 4,
             "number of outputs": 1,
@@ -14593,7 +15516,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
-        "substitute LHS of four exprs into expr": {
+        "substitute LHS of four expressions into expr": {
             "number of feeds": 0,
             "number of inputs": 5,
             "number of outputs": 1,
@@ -14602,7 +15525,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
-        "substitute LHS of five exprs into expr": {
+        "substitute LHS of five expressions into expr": {
             "number of feeds": 0,
             "number of inputs": 6,
             "number of outputs": 1,
@@ -14611,7 +15534,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
-        "substitute LHS of six exprs into expr": {
+        "substitute LHS of six expressions into expr": {
             "number of feeds": 0,
             "number of inputs": 7,
             "number of outputs": 1,
@@ -14620,47 +15543,47 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
-        "substitute two variables into expr": {
-            "number of feeds": 0,
-            "number of inputs": 3,
+        "change two variables in expr": {
+            "number of feeds": 2,
+            "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Substitute change of variable Eq.~\\ref{eq:#1} and Eq.~\\ref{eq:#2} into Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
+            "latex": "Change of variable $#1$ and $#2$ in Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
-        "substitute three variables into expr": {
-            "number of feeds": 0,
-            "number of inputs": 4,
+        "change three variables in expr": {
+            "number of feeds": 3,
+            "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Substitute change of variable Eq.~\\ref{eq:#1} and Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3} into Eq.~\\ref{eq:#4}; yields Eq.~\\ref{eq:#5}.",
+            "latex": "Change of variable $#1$ and $#2$ and $#3$ in Eq.~\\ref{eq:#4}; yields Eq.~\\ref{eq:#5}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
-        "substitute four variables into expr": {
-            "number of feeds": 0,
-            "number of inputs": 5,
+        "change four variables in expr": {
+            "number of feeds": 4,
+            "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Substitute change of variable Eq.~\\ref{eq:#1} and Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4} into Eq.~\\ref{eq:#5}; yields Eq.~\\ref{eq:#6}.",
+            "latex": "Change of variable $#1$ and $#2$ and $#3$ and $#4$ in Eq.~\\ref{eq:#5}; yields Eq.~\\ref{eq:#6}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
-        "substitute five variables into expr": {
-            "number of feeds": 0,
-            "number of inputs": 6,
+        "change five variables in expr": {
+            "number of feeds": 5,
+            "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Substitute change of variable Eq.~\\ref{eq:#1} and Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4} and Eq.~\\ref{eq:#5} into Eq.~\\ref{eq:#6}; yields Eq.~\\ref{eq:#7}.",
+            "latex": "Change of variable $#1$ and $#2$ and $#3$ and $#4$ and $#5$ in Eq.~\\ref{eq:#6}; yields Eq.~\\ref{eq:#7}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
-        "substitute six variables into expr": {
-            "number of feeds": 0,
-            "number of inputs": 7,
+        "change six variables in expr": {
+            "number of feeds": 6,
+            "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Substitute change of variable Eq.~\\ref{eq:#1} and Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4} and Eq.~\\ref{eq:#5} and Eq.~\\ref{eq:#6} into Eq.~\\ref{eq:#7}; yields Eq.~\\ref{eq:#8}.",
+            "latex": "Change of variable $#1$ and $#2$ and $#3$ and $#4$ and $#5$ and $#6$ in Eq.~\\ref{eq:#7}; yields Eq.~\\ref{eq:#8}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
@@ -14727,6 +15650,15 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17"
+        },
+        "integrate": {
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1,
+            "latex": "Integrate Eq.~ref{eq:#1}; yields Eq.~ref{eq:#2}.",
+            "notes": "not clear how to specify limits for an arbitrary number of integrals",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
         }
     },
     "measures": {
@@ -16371,6 +17303,138 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-19"
+        },
+        "6789": {
+            "category": "variable",
+            "latex": "W",
+            "name": "work",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Work_(physics)"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "9398": {
+            "category": "variable",
+            "latex": "dW",
+            "name": "differential work",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "5458": {
+            "category": "constant",
+            "latex": "m_{\\rm Earth}",
+            "name": "mass of Earth",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Earth"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 2,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "value": "5.97237*10^24",
+            "units": "kg",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "6277": {
+            "category": "constant",
+            "latex": "G",
+            "name": "gravitational constant",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Gravitational_constant"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 3,
+                "time": -2,
+                "mass": -1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "value": "6.67430*10^{\u221211}",
+            "units": "m^3*kg^{\u20131}*s^{\u20132}",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "3236": {
+            "category": "constant",
+            "latex": "r_{\\rm Earth}",
+            "name": "radius of Earth",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Earth_radius"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "value": "6.3781*10^6",
+            "units": "m",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "8656": {
+            "category": "variable",
+            "latex": "v_{\\rm escape}",
+            "name": "escape velocity",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Escape_velocity"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
         }
     },
     "units": {
