@@ -2341,6 +2341,7 @@ def write_step_to_graphviz_file(
     #            latex_and_ast_dict["latex"],
     #        )
 
+    # inference rule
     png_name = "".join(filter(str.isalnum, step_dict["inf rule"]))
     if not os.path.isfile("/home/appuser/app/static/" + png_name + ".png"):
         create_png_from_latex("\\text{" + step_dict["inf rule"] + "}", png_name)
@@ -2352,6 +2353,7 @@ def write_step_to_graphviz_file(
         + '",labelloc=b];\n'
     )
 
+    # input expression
     for expr_local_id in step_dict["inputs"]:
         expr_global_id = dat["expr local to global"][expr_local_id]
         png_name = expr_global_id
@@ -2366,6 +2368,7 @@ def write_step_to_graphviz_file(
             + '",labelloc=b];\n'
         )
 
+    # output expressions
     for expr_local_id in step_dict["outputs"]:
         expr_global_id = dat["expr local to global"][expr_local_id]
         png_name = expr_global_id
@@ -2380,6 +2383,7 @@ def write_step_to_graphviz_file(
             + '",labelloc=b];\n'
         )
 
+    # feed expressions
     for expr_local_id in step_dict["feeds"]:
         expr_global_id = dat["expr local to global"][expr_local_id]
         png_name = expr_global_id

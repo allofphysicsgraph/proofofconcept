@@ -1830,7 +1830,7 @@ def list_all_expressions():
             return redirect(
                 url_for("list_all_expressions", referrer="list_all_expressions")
             )
-        elif "edit expr name" in request.form.keys():
+        elif "edit_expr_name" in request.form.keys():
             try:
                 status_msg = compute.edit_expr_name(
                     request.form["edit expr name"],
