@@ -136,7 +136,10 @@ The Physics Derivation Graph is designed to show one instance of each expression
 
 <H2 id="expressions">Expressions</H2>
 <P>
-  Expressions are mathematical statements.
+  Expressions are mathematical statements composed of symbols.
+  Each expression has three components: a left-hand side (LHS), a primary operator, and a right-hand side (RHS).
+  The primary operator is usually equality \(=\) or an inequality. 
+  Each expression appears only once in the Physics Derivation Graph.
 </P>
 
 <P>
@@ -173,6 +176,16 @@ Inference rules for the Physics Derivation Graph are intended to meet a threshol
 Inference rules are useful for catching simple mistakes by CAS validation. Common mistakes include not carrying the negative symbol through a derivation or unintentionally dropping a term. The inference rules are atomic (simplest step possible) and first order -- they only relate nearest-neighbor expressions.
 </P>
 
+<H2><a name="feeds">Feeds</a></H2>
+
+<P>
+  The <a href="#inference rules">inference rules</a> take <a href="#expressions">expressions</a> as input and produce expressions as output. 
+  A second type of input for inference rules is the "feed."
+  A feed is distinct from an expression. 
+  A feed may appear more than once in the Physics Derivation Graph. 
+  A feed does not have a primary oerator like equality or inequality.
+</P>
+
 <H2 id="topic scope">Physics Topics</H2>
 This requires breadth of coverage across all the domains of physics (\ie, classical mechanics, quantum mechanics, relativity, thermodynamics, statistical mechanics, etc). As a consequence, much of mathematics covered up to undergraduate level is likely to be required.
 
@@ -183,20 +196,46 @@ This requires breadth of coverage across all the domains of physics (\ie, classi
 The Physics Derivation Graph is expected to be useful to multiple audiences and users. Viewers of the content could include students in math and physics, and analysis of the content could help shape curriculum. Contributors to the Physics Derivation Graph would be scientists who add new developments based on their work.
 </P>
 
-<H4 id="use case:students">Students in Math and Physics</H4>
+<H4 id="use case:students">Education in Math and Physics</H4>
 <P>
-Currently students in Math and Physics are taught content using lectures, textbooks, and homework.
-The method of presentation varies, but the overarching story is often historically driven.
-Algebra is old, calculus is newer, and topology is recent.
-Classical mechanics is old, thermodynamics is newer, and quantum mechanics is recent.
-When teaching, these subjects are taught by building on previous content -- calculus leverages algebra, thermodynamics leverages classical mechanics.
+  Currently students in Math and Physics are taught content using lectures, textbooks, and homework.
+  The method of presentation varies, but the overarching story is often historically driven.
+  Algebra is old, calculus is newer, and topology is recent.
+  Classical mechanics is old, thermodynamics is newer, and quantum mechanics is recent.
+  When teaching, these subjects are taught by building on previous content -- calculus leverages algebra, thermodynamics leverages classical mechanics.
 </P>
 
-<H4 id="use case:scientific articles">Scientific Articles</H4>
 <P>
-  Peer-reviewed journal articles are one of the current methods of demonstrating value in the scientific community. Conciseness is a feature of this writing style, and the mathematics presented is correspondingly sparse -- just sufficient to covey the author's intention. This results in a burden on the reader of the article, either to take the author's claims on faith, or to rederive the mathematical expressions. A reader's derivation is complicated by implicit assumptions made by the author and unintentional mistakes in calculation.
+  Stakeholders:
+  <UL>
+    <LI>Educators</LI>
+    <LI>Students</LI>
+  </UL>
+</P>
 
-With journals allowing supplemental materials for articles, calculations could be included. However, it is not clear what the appropriate level of detail is in supplied calculations. The intention is to be able to reproduce the work, but validation via computer
+<H4 id="use case:scientific articles">Documenting Scientific Progress in Articles</H4>
+<P>
+  Peer-reviewed journal articles are one of the current methods of demonstrating value in the scientific community. 
+  Conciseness is a feature of this writing style, and the mathematics presented is correspondingly sparse -- just sufficient to covey the author's intention. 
+  This results in a burden on the reader of the article, either to take the author's claims on faith, or to rederive the mathematical expressions.
+  A reader's derivation is complicated by implicit assumptions made by the author and unintentional mistakes in calculation.
+</P>
+
+<P>
+  With journals allowing supplemental materials for articles, calculations could be included. 
+  However, it is not clear what the appropriate level of detail is in supplied calculations. 
+  The intention is to be able to reproduce the work, but validation via computer.
+</P>
+
+<P>
+  Stakeholders:
+  <UL>
+    <LI>Authors. <i>Incentive</i>: validate content to identify mistakes.</LI>
+    <LI>Peer reviewers. <i>Incentive</i>: confidence that the material is mathematically correct.</LI>
+    <LI>Editors. <i>Incentive</i>: filter out incorrect papers early in the process.</LI>
+    <LI>Readers. <i>Incentive</i>: ability to reproduce and extend results.</LI>
+    <LI>Publishers. <i>Incentive</i>: construct a corpus of results that builds on prior work.</LI>
+  </UL>
 </P>
 
 <H4 id="use case:education curriculum design">Education Curriculum Design</H4>
