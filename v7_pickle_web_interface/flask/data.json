@@ -11884,7 +11884,7 @@
             "creation date": "2020-05-07"
         },
         "2113447367": {
-            "latex": "C_{\\rm{Earth\\ orbit}}, r_{\\rm{Earth\\ orbit}}",
+            "latex": "C_{\\rm Earth\\ orbit}, r_{\\rm Earth\\ orbit}",
             "creation date": "2020-05-07",
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
@@ -11894,7 +11894,7 @@
             ]
         },
         "6348260313": {
-            "latex": "C_{\\rm{Earth\\ orbit}} = 2 \\pi r_{\\rm{Earth\\ orbit}}",
+            "latex": "C_{\\rm Earth\\ orbit} = 2 \\pi r_{\\rm Earth\\ orbit}",
             "creation date": "2020-05-07",
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
@@ -11914,7 +11914,7 @@
             "creation date": "2020-05-07"
         },
         "6406487188": {
-            "latex": "C_{\\rm{Earth\\ orbit}}, v_{\\rm{Earth\\ orbit}}, t_{\\rm{Earth\\ orbit}}",
+            "latex": "C_{\\rm Earth\\ orbit}, v_{\\rm Earth\\ orbit}, t_{\\rm Earth\\ orbit}",
             "creation date": "2020-05-07",
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
@@ -11922,7 +11922,7 @@
             "AST": []
         },
         "3046191961": {
-            "latex": "v_{\\rm{Earth\\ orbit}} = \\frac{C_{\\rm{Earth\\ orbit}}}{t_{\\rm{Earth\\ orbit}}}",
+            "latex": "v_{\\rm Earth\\ orbit} = \\frac{C_{\\rm Earth\\ orbit}}{t_{\\rm Earth\\ orbit}}",
             "creation date": "2020-05-07",
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
@@ -11930,7 +11930,7 @@
             "AST": []
         },
         "3080027960": {
-            "latex": "v_{\\rm{Earth\\ orbit}} = \\frac{2 \\pi r_{\\rm{Earth\\ orbit}}}{t_{\\rm{Earth\\ orbit}}}",
+            "latex": "v_{\\rm Earth\\ orbit} = \\frac{2 \\pi r_{\\rm Earth\\ orbit}}{t_{\\rm Earth\\ orbit}}",
             "AST": [
                 "6081"
             ],
@@ -11940,7 +11940,7 @@
             "creation date": "2020-05-07"
         },
         "7175416299": {
-            "latex": "t_{\\rm{Earth\\ orbit}} = 1 {\\rm{year}}",
+            "latex": "t_{\\rm Earth\\ orbit} = 1 {\\rm year}",
             "creation date": "2020-05-07",
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
@@ -11956,7 +11956,7 @@
             "creation date": "2020-05-07"
         },
         "8721295221": {
-            "latex": "t_{\\rm{Earth\\ orbit}} = 3.16 10^7 {\\rm{seconds}}",
+            "latex": "t_{\\rm Earth\\ orbit} = 3.16 10^7 {\\rm seconds}",
             "creation date": "2020-05-07",
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
@@ -11964,7 +11964,7 @@
             "AST": []
         },
         "4593428198": {
-            "latex": "v_{\\rm{Earth\\ orbit}} = \\frac{2 \\pi r_{\\rm{Earth\\ orbit}}}{3.16\\ 10^7 {\\rm seconds}}",
+            "latex": "v_{\\rm Earth\\ orbit} = \\frac{2 \\pi r_{\\rm Earth\\ orbit}}{3.16\\ 10^7 {\\rm seconds}}",
             "AST": [
                 "6081"
             ],
@@ -11974,7 +11974,7 @@
             "creation date": "2020-05-07"
         },
         "3472836147": {
-            "latex": "r_{\\rm{Earth\\ orbit}} = 1.496\\ 10^8 {\\rm km}",
+            "latex": "r_{\\rm Earth\\ orbit} = 1.496\\ 10^8 {\\rm km}",
             "AST": [
                 "6081"
             ],
@@ -11984,7 +11984,7 @@
             "creation date": "2020-05-07"
         },
         "6998364753": {
-            "latex": "v_{\\rm{Earth\\ orbit}} = \\frac{2 \\pi \\left( 1.496\\ 10^8 {\\rm km} \\right)}{3.16\\ 10^7 {\\rm seconds}}",
+            "latex": "v_{\\rm Earth\\ orbit} = \\frac{2 \\pi \\left( 1.496\\ 10^8 {\\rm km} \\right)}{3.16\\ 10^7 {\\rm seconds}}",
             "AST": [],
             "name": "",
             "notes": "",
@@ -11992,7 +11992,7 @@
             "creation date": "2020-05-07"
         },
         "4180845508": {
-            "latex": "v_{\\rm{Earth\\ orbit}} = 29.8 \\frac{{\\rm km}}{{\\rm sec}}",
+            "latex": "v_{\\rm Earth\\ orbit} = 29.8 \\frac{{\\rm km}}{{\\rm sec}}",
             "AST": [],
             "name": "",
             "notes": "",
@@ -12192,7 +12192,7 @@
             "creation date": "2020-05-09"
         },
         "4057686137": {
-            "latex": "C \\to C_{\\rm{Earth\\ orbit}}",
+            "latex": "C \\to C_{\\rm Earth\\ orbit}",
             "AST": [
                 "3034"
             ],
@@ -12202,7 +12202,7 @@
             "creation date": "2020-05-09"
         },
         "2346150725": {
-            "latex": "r \\to r_{\\rm{Earth\\ orbit}}",
+            "latex": "r \\to r_{\\rm Earth\\ orbit}",
             "AST": [
                 "2530"
             ],
@@ -12212,7 +12212,7 @@
             "creation date": "2020-05-09"
         },
         "9753878784": {
-            "latex": "v \\to v_{\\rm{Earth\\ orbit}}",
+            "latex": "v \\to v_{\\rm Earth\\ orbit}",
             "AST": [],
             "name": "",
             "notes": "",
@@ -12220,7 +12220,7 @@
             "creation date": "2020-05-09"
         },
         "8135396036": {
-            "latex": "t \\to t_{\\rm{Earth\\ orbit}}",
+            "latex": "t \\to t_{\\rm Earth\\ orbit}",
             "AST": [
                 "1467"
             ],
@@ -16690,7 +16690,7 @@
         },
         "6081": {
             "category": "constant",
-            "latex": "r_{\\rm{Earth\\ orbit}}",
+            "latex": "r_{\\rm Earth\\ orbit}",
             "name": "radius of Earth's orbit",
             "dimensions": {
                 "length": 1,
