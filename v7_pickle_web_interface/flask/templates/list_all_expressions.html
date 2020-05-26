@@ -2,10 +2,10 @@
 {% block content %}
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_table.asp -->
-Dynamic search of latex as plain text: <input type="text" id="latex_input" onkeyup="latex_filter()" placeholder="Search latex (plain text)" size="50">
+Case-insensitive dynamic search of latex as plain text: <input type="text" id="latex_input" onkeyup="latex_filter()" placeholder="Search latex (plain text)" size="50">
 
 <form method="post" action="">
-Static search of latex using regex:  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+Case-sensitive static search of latex using regex:  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 <!--  <div class="form-group">
     <div class="input-group"> -->
     <input type="text" id="regex_latex" name="regex latex" placeholder="Search latex using regex" size="50">
