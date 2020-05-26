@@ -7386,6 +7386,729 @@
                     "notes": "",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-24"
+                },
+                "4437085": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "6389964"
+                    ],
+                    "feeds": [
+                        "3537009",
+                        "9092600"
+                    ],
+                    "outputs": [
+                        "1619188"
+                    ],
+                    "linear index": 23,
+                    "notes": "replaced Earth-specific variables",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                }
+            }
+        },
+        "142831": {
+            "name": "Schwarzschild radius for non-rotating black hole",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "creation date": "2020-05-26",
+            "steps": {
+                "4980032": {
+                    "inf rule": "raise both sides to power",
+                    "inputs": [
+                        "1044984"
+                    ],
+                    "feeds": [
+                        "7891922"
+                    ],
+                    "outputs": [
+                        "2478510"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "2544795": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "2478510"
+                    ],
+                    "feeds": [
+                        "8050243",
+                        "8988316"
+                    ],
+                    "outputs": [
+                        "5459812"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "8627172": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "5459812"
+                    ],
+                    "feeds": [
+                        "3067885"
+                    ],
+                    "outputs": [
+                        "9932666"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "2775447": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "9932666"
+                    ],
+                    "feeds": [
+                        "8824597"
+                    ],
+                    "outputs": [
+                        "9994959"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                }
+            }
+        },
+        "909006": {
+            "name": "total electrical resistance for circuit with two resistors in series",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "creation date": "2020-05-26",
+            "steps": {
+                "3650891": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3843961"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "1423642": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "3843961"
+                    ],
+                    "feeds": [
+                        "4224430",
+                        "3841737"
+                    ],
+                    "outputs": [
+                        "8012785"
+                    ],
+                    "linear index": 2,
+                    "notes": "I is the same across both resistors",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "2221674": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "3843961"
+                    ],
+                    "feeds": [
+                        "6580231",
+                        "4845850"
+                    ],
+                    "outputs": [
+                        "6379878"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "7233885": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "1124189"
+                    ],
+                    "linear index": 4,
+                    "notes": "voltage is measured across both resistors",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "6550809": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4107950"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "2247327": {
+                    "inf rule": "substitute LHS of three expressions into expr",
+                    "inputs": [
+                        "4107950",
+                        "8012785",
+                        "6379878"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4870091"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "1300532": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "4870091"
+                    ],
+                    "feeds": [
+                        "7266552"
+                    ],
+                    "outputs": [
+                        "5454988"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "6614719": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "5454988"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                }
+            }
+        },
+        "681943": {
+            "name": "total electrical resistance for circuit with two resistors in parallel",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "creation date": "2020-05-26",
+            "steps": {
+                "1391174": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "8922008"
+                    ],
+                    "feeds": [
+                        "4152602",
+                        "3693601"
+                    ],
+                    "outputs": [
+                        "8148802"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "8121398": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "8922008"
+                    ],
+                    "feeds": [
+                        "7586662",
+                        "9962307"
+                    ],
+                    "outputs": [
+                        "6313158"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "8616052": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "6313158"
+                    ],
+                    "feeds": [
+                        "6815205"
+                    ],
+                    "outputs": [
+                        "4037937"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "6114977": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "8148802"
+                    ],
+                    "feeds": [
+                        "7969677"
+                    ],
+                    "outputs": [
+                        "5168370"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "3724854": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3843569"
+                    ],
+                    "linear index": 5,
+                    "notes": "current flows through both resistors",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "7576732": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "8922008"
+                    ],
+                    "feeds": [
+                        "1987304",
+                        "5679513"
+                    ],
+                    "outputs": [
+                        "8002723"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "4777295": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "8002723"
+                    ],
+                    "feeds": [
+                        "4577073"
+                    ],
+                    "outputs": [
+                        "1708642"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "5878391": {
+                    "inf rule": "substitute LHS of three expressions into expr",
+                    "inputs": [
+                        "1708642",
+                        "5168370",
+                        "4037937"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6759349"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "5478696": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "6759349"
+                    ],
+                    "feeds": [
+                        "3308740"
+                    ],
+                    "outputs": [
+                        "8713399"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "1468462": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "8713399"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                }
+            }
+        },
+        "282755": {
+            "name": "radius for satellite in geostationary orbit",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "creation date": "2020-05-26",
+            "steps": {
+                "4586003": {
+                    "inf rule": "change four variables in expr",
+                    "inputs": [
+                        "2820438"
+                    ],
+                    "feeds": [
+                        "2150270",
+                        "1853847",
+                        "1832423",
+                        "1832424"
+                    ],
+                    "outputs": [
+                        "1917654"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "9698967": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "8242154"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "1306821": {
+                    "inf rule": "change four variables in expr",
+                    "inputs": [
+                        "8242154"
+                    ],
+                    "feeds": [
+                        "2995236",
+                        "2460941",
+                        "7008990"
+                    ],
+                    "outputs": [
+                        "6845877"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "9847336": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2154616"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "8659528": {
+                    "inf rule": "substitute LHS of two expressions into expr",
+                    "inputs": [
+                        "1917654",
+                        "6845877",
+                        "2154616"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4948724"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "9835541": {
+                    "inf rule": "change variable X to Y",
+                    "inputs": [
+                        "1115424"
+                    ],
+                    "feeds": [
+                        "1893411",
+                        "8115404"
+                    ],
+                    "outputs": [
+                        "5369477"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "4469272": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "5369477",
+                        "5114041"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8090893"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "6127864": {
+                    "inf rule": "change variable X to Y",
+                    "inputs": [
+                        "8090893"
+                    ],
+                    "feeds": [
+                        "4544527",
+                        "5607083"
+                    ],
+                    "outputs": [
+                        "2392562"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "7853333": {
+                    "inf rule": "raise both sides to power",
+                    "inputs": [
+                        "2392562"
+                    ],
+                    "feeds": [
+                        "7248942"
+                    ],
+                    "outputs": [
+                        "6390693"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "2499406": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "4948724"
+                    ],
+                    "feeds": [
+                        "2502147"
+                    ],
+                    "outputs": [
+                        "2009493"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "8603083": {
+                    "inf rule": "LHS of expr 1 equals LHS of expr 2",
+                    "inputs": [
+                        "2009493",
+                        "6390693"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2871066"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "1608311": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "2871066"
+                    ],
+                    "feeds": [
+                        "9152268"
+                    ],
+                    "outputs": [
+                        "7188516"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "8796814": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "7188516"
+                    ],
+                    "feeds": [
+                        "3314982"
+                    ],
+                    "outputs": [
+                        "6238570"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "1834675": {
+                    "inf rule": "raise both sides to power",
+                    "inputs": [
+                        "6238570"
+                    ],
+                    "feeds": [
+                        "1393618"
+                    ],
+                    "outputs": [
+                        "7139326"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "8643391": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9978909"
+                    ],
+                    "linear index": 15,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "3688405": {
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "7139326"
+                    ],
+                    "feeds": [
+                        "4499742",
+                        "6714950"
+                    ],
+                    "outputs": [
+                        "4507350"
+                    ],
+                    "linear index": 16,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                }
+            }
+        },
+        "527822": {
+            "name": "mass of the Earth",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "creation date": "2020-05-26",
+            "steps": {
+                "2667299": {
+                    "inf rule": "change variable X to Y",
+                    "inputs": [
+                        "3843242"
+                    ],
+                    "feeds": [
+                        "9132281",
+                        "4041665"
+                    ],
+                    "outputs": [
+                        "6779814"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "3237021": {
+                    "inf rule": "change three variables in expr",
+                    "inputs": [
+                        "2737346"
+                    ],
+                    "feeds": [
+                        "9478532",
+                        "8914722",
+                        "1333038"
+                    ],
+                    "outputs": [
+                        "6771172"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "6715984": {
+                    "inf rule": "LHS of expr 1 equals LHS of expr 2",
+                    "inputs": [
+                        "6771172",
+                        "6779814"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7388891"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "1400184": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "7388891"
+                    ],
+                    "feeds": [
+                        "2061733"
+                    ],
+                    "outputs": [
+                        "9159337"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
+                },
+                "9601593": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "9159337"
+                    ],
+                    "feeds": [
+                        "8784765"
+                    ],
+                    "outputs": [
+                        "9133599"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-26"
                 }
             }
         }
@@ -8061,7 +8784,103 @@
         "3358651": "2977457786",
         "3908344": "9412953728",
         "6389964": "1330874553",
-        "8779043": "2750380042"
+        "8779043": "2750380042",
+        "3537009": "2674546234",
+        "9092600": "2396787389",
+        "1619188": "5404822208",
+        "7891922": "3663007361",
+        "1044984": "5404822208",
+        "2478510": "8946383937",
+        "8050243": "8362338572",
+        "8988316": "2660368546",
+        "5459812": "4275004561",
+        "3067885": "7194432406",
+        "9932666": "2883079365",
+        "8824597": "7263534144",
+        "9994959": "6800170830",
+        "3843961": "4087145886",
+        "4224430": "2698469612",
+        "3841737": "7774819339",
+        "8012785": "7675171493",
+        "6580231": "7497687256",
+        "4845850": "5890617067",
+        "6379878": "6061695358",
+        "1124189": "9063568209",
+        "4107950": "4939880586",
+        "4870091": "2715678478",
+        "7266552": "7844317489",
+        "5454988": "7217021879",
+        "4152602": "2867848403",
+        "3693601": "7191277455",
+        "8922008": "4087145886",
+        "8148802": "4128500715",
+        "7586662": "5585739998",
+        "9962307": "1377431959",
+        "6313158": "9243879541",
+        "6815205": "3031116098",
+        "4037937": "7002609475",
+        "7969677": "5181421075",
+        "5168370": "2051901211",
+        "3843569": "6753224061",
+        "1987304": "9053099840",
+        "5679513": "1100332145",
+        "8002723": "2271186630",
+        "4577073": "6546594355",
+        "1708642": "2809345867",
+        "6759349": "4866160902",
+        "3308740": "3433441359",
+        "8713399": "1457415749",
+        "2150270": "3398368564",
+        "1853847": "9794128647",
+        "1832423": "3088463019",
+        "1832424": "4830480629",
+        "2820438": "6935745841",
+        "1917654": "5563580265",
+        "8242154": "9226945488",
+        "2995236": "5089196493",
+        "2460941": "3342155559",
+        "7008990": "7912578203",
+        "6845877": "4627284246",
+        "2154616": "3176662571",
+        "4948724": "4072200527",
+        "1893411": "1823570358",
+        "8115404": "3236313290",
+        "1115424": "6785303857",
+        "5369477": "9262596735",
+        "5114041": "5426308937",
+        "8090893": "4245712581",
+        "4544527": "3722461713",
+        "5607083": "9346215480",
+        "2392562": "3614055652",
+        "7248942": "2754264786",
+        "6390693": "8059639673",
+        "2502147": "5359471792",
+        "2009493": "1994296484",
+        "2871066": "3906710072",
+        "9152268": "6238632840",
+        "7188516": "7010294143",
+        "3314982": "7556442438",
+        "6238570": "4858693811",
+        "1393618": "4319544433",
+        "7139326": "2617541067",
+        "9978909": "3920616792",
+        "4499742": "3846345263",
+        "6714950": "5770088141",
+        "4507350": "1559688463",
+        "9132281": "9881106100",
+        "4041665": "5781435087",
+        "3843242": "5345738321",
+        "6779814": "2484824786",
+        "9478532": "3921072591",
+        "8914722": "4651061153",
+        "1333038": "3353418803",
+        "2737346": "6935745841",
+        "6771172": "8661803554",
+        "7388891": "9407192813",
+        "2061733": "3246378279",
+        "9159337": "2308660627",
+        "8784765": "2685587762",
+        "9133599": "9440616166"
     },
     "expressions": {
         "0000040490": {
@@ -14473,7 +15292,9 @@
         "6935745841": {
             "latex": "F = G \\frac{m_1 m_2}{x^2}",
             "AST": [
-                "4202"
+                "4202",
+                "6277",
+                "4037"
             ],
             "name": "Newton's law of universal gravitation",
             "notes": "https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation#Modern_form",
@@ -14820,6 +15641,874 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24"
+        },
+        "2674546234": {
+            "latex": "m_{\\rm Earth} \\to m",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2396787389": {
+            "latex": "r_{\\rm Earth} \\to r",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "5404822208": {
+            "latex": "v_{\\rm escape} = \\sqrt{2 G \\frac{m}{r}}",
+            "AST": [
+                "5156",
+                "2530",
+                "6277"
+            ],
+            "name": "escape velocity",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3663007361": {
+            "latex": "2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "8946383937": {
+            "latex": "v_{\\rm escape}^2 = 2 G \\frac{m}{r}",
+            "AST": [
+                "6277",
+                "5156",
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "8362338572": {
+            "latex": "v_{\\rm escape} \\to c",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2660368546": {
+            "latex": "r \\to r_{\\rm Schwarzschild}",
+            "AST": [
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4275004561": {
+            "latex": "c^2 = 2 G \\frac{m}{r_{\\rm Schwarzschild}}",
+            "AST": [
+                "5156",
+                "6277",
+                "4567"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7194432406": {
+            "latex": "r_{\\rm Schwarzschild}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2883079365": {
+            "latex": "r_{\\rm Schwarzschild} c^2 = 2 G m",
+            "AST": [
+                "6277",
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7263534144": {
+            "latex": "c^2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "6800170830": {
+            "latex": "r_{\\rm Schwarzschild} = \\frac{2 G m}{c^2}",
+            "AST": [
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4087145886": {
+            "latex": "V = I R",
+            "AST": [
+                "6599",
+                "6458",
+                "4501"
+            ],
+            "name": "Ohm's law",
+            "notes": "https://en.wikipedia.org/wiki/Ohm%27s_law",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2698469612": {
+            "latex": "V \\to V_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7774819339": {
+            "latex": "R \\to R_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7675171493": {
+            "latex": "V_1 = I R_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7497687256": {
+            "latex": "V \\to V_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "5890617067": {
+            "latex": "R \\to R_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "6061695358": {
+            "latex": "V_2 = I R_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9063568209": {
+            "latex": "V_{\\rm total} = V_1 + V_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4939880586": {
+            "latex": "V_{\\rm total} = I R_{\\rm total}",
+            "AST": [
+                "4501"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2715678478": {
+            "latex": "I R_{\\rm total} = I R_1 + I R_2",
+            "AST": [
+                "4501"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7844317489": {
+            "latex": "I",
+            "AST": [
+                "4501"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7217021879": {
+            "latex": "R_{\\rm total} = R_1 + R_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2867848403": {
+            "latex": "I \\to I_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7191277455": {
+            "latex": "R \\to R_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4128500715": {
+            "latex": "V = I_1 R_1",
+            "AST": [
+                "6599"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "5585739998": {
+            "latex": "I \\to I_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "1377431959": {
+            "latex": "R \\to R_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9243879541": {
+            "latex": "V = I_2 R_2",
+            "AST": [
+                "6599"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3031116098": {
+            "latex": "R_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7002609475": {
+            "latex": "\\frac{V}{R_2} = I_2",
+            "AST": [
+                "6599"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "5181421075": {
+            "latex": "R_1",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2051901211": {
+            "latex": "\\frac{V}{R_1} = I_1",
+            "AST": [
+                "6599"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "6753224061": {
+            "latex": "I_{\\rm total} = I_1 + I_2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9053099840": {
+            "latex": "I \\to I_{\\rm total}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "1100332145": {
+            "latex": "R \\to R_{\\rm total}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2271186630": {
+            "latex": "V = I_{\\rm total} R_{\\rm total}",
+            "AST": [
+                "6599"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "6546594355": {
+            "latex": "R_{\\rm total}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9111453485": {
+            "latex": "\\frac{V}{R_{\\rm total}} = I",
+            "AST": [
+                "4501",
+                "6599"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2809345867": {
+            "latex": "\\frac{V}{R_{\\rm total}} = I_{\\rm total}",
+            "creation date": "2020-05-26",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "4866160902": {
+            "latex": "\\frac{V}{R_{\\rm total}} = \\frac{V}{R_1} + \\frac{V}{R_2}",
+            "AST": [
+                "6599"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3433441359": {
+            "latex": "V",
+            "AST": [
+                "6599"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "1457415749": {
+            "latex": "\\frac{1}{R_{\\rm total}} = \\frac{1}{R_1} + \\frac{1}{R_2}",
+            "AST": [],
+            "name": "total resistance for two resistors in parallel",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3398368564": {
+            "latex": "F \\to F_{\\rm gravity}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9794128647": {
+            "latex": "m_1 \\to m_{\\rm Earth}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3088463019": {
+            "latex": "m_2 \\to m_{\\rm satellite}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3088463020": {
+            "latex": "x \\to r_{\\rm satellite}",
+            "AST": [
+                "4037"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4544744142": {
+            "latex": "F_{\\rm gravity} = G \\frac{m_{\\rm Earth} m_{\\rm satellite}}{x^2}",
+            "AST": [
+                "6277",
+                "4037"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9226945488": {
+            "latex": "F = \\frac{m v^2}{r}",
+            "AST": [
+                "5156",
+                "4202",
+                "1357",
+                "2530"
+            ],
+            "name": "Centripetal force",
+            "notes": "https://en.wikipedia.org/wiki/Centripetal_force",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "5089196493": {
+            "latex": "F \\to F_{\\rm centripetal}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3342155559": {
+            "latex": "m \\to m_{\\rm satellite}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7912578203": {
+            "latex": "v \\to v_{\\rm satellite}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4627284246": {
+            "latex": "F_{\\rm centripetal} = \\frac{m_{\\rm satellite} v_{\\rm satellite}^2}{r}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4830480629": {
+            "latex": "x \\to r",
+            "creation date": "2020-05-26",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "name": "",
+            "AST": []
+        },
+        "5563580265": {
+            "latex": "F_{\\rm gravity} = G \\frac{m_{\\rm Earth} m_{\\rm satellite}}{r^2}",
+            "creation date": "2020-05-26",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "name": "",
+            "AST": [
+                "2530",
+                "6277"
+            ]
+        },
+        "3176662571": {
+            "latex": "F_{\\rm centripetal} = F_{\\rm gravity}",
+            "AST": [],
+            "name": "",
+            "notes": "applicable to any satellite orbit",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4072200527": {
+            "latex": "\\frac{m_{\\rm satellite} v_{\\rm satellite}^2}{r} = G \\frac{m_{\\rm Earth} m_{\\rm satellite}}{r^2}",
+            "AST": [
+                "6277",
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "1823570358": {
+            "latex": "C",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3236313290": {
+            "latex": "d",
+            "AST": [
+                "1943"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9262596735": {
+            "latex": "d = 2 \\pi r",
+            "AST": [
+                "1943",
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4245712581": {
+            "latex": "v = \\frac{2 \\pi r}{t}",
+            "AST": [
+                "2530",
+                "1467",
+                "1357"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3722461713": {
+            "latex": "t",
+            "AST": [
+                "1467"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9346215480": {
+            "latex": "T_{\\rm orbit}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3614055652": {
+            "latex": "v = \\frac{2 \\pi r}{T_{\\rm orbit}}",
+            "AST": [
+                "1357",
+                "2530",
+                "3141"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2754264786": {
+            "latex": "2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "8059639673": {
+            "latex": "v^2 = \\frac{4 \\pi^2 r^2}{T_{\\rm orbit}^2}",
+            "AST": [
+                "2530",
+                "3141",
+                "1357"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "5359471792": {
+            "latex": "\\frac{m_{\\rm satellite}}{r}",
+            "AST": [
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "1994296484": {
+            "latex": "v_{\\rm satellite}^2 = G \\frac{m_{\\rm Earth}}{r}",
+            "AST": [
+                "2530",
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3906710072": {
+            "latex": "G \\frac{m_{\\rm Earth}}{r} = \\frac{4 \\pi^2 r^2}{T_{\\rm orbit}^2}",
+            "AST": [
+                "6277",
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "6238632840": {
+            "latex": "r T_{\\rm orbit}^2",
+            "AST": [
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7010294143": {
+            "latex": "T_{\\rm orbit}^2 G m_{\\rm Earth} = 4 \\pi^2 r^3",
+            "AST": [
+                "2530",
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "7556442438": {
+            "latex": "4 \\pi^2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4858693811": {
+            "latex": "\\frac{T_{\\rm orbit}^2 G m_{\\rm Earth}}{4 \\pi^2} = r^3",
+            "AST": [
+                "6277",
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4319544433": {
+            "latex": "1/3",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2617541067": {
+            "latex": "\\left(\\frac{T_{\\rm orbit}^2 G m_{\\rm Earth}}{4 \\pi^2}\\right)^{1/3} = r",
+            "AST": [
+                "2530"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2644067283": {
+            "latex": "T_{\\rm orbit} = 24 hours",
+            "AST": [
+                "4221",
+                "2530"
+            ],
+            "name": "",
+            "notes": "this applies for geostationary orbits",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3920616792": {
+            "latex": "T_{\\rm geostationary orbit} = 24\\ {\\rm hours}",
+            "creation date": "2020-05-26",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "this applies for geostationary orbits",
+            "name": "",
+            "AST": []
+        },
+        "3846345263": {
+            "latex": "T_{\\rm orbit} \\to T_{\\rm geostationary\\ orbit}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "5770088141": {
+            "latex": "r \\to r_{\\rm geostationary\\ orbit}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "1559688463": {
+            "latex": "\\left(\\frac{T_{\\rm geostationary\\ orbit}^2 G m_{\\rm Earth}}{4 \\pi^2}\\right)^{1/3} = r_{\\rm geostationary\\ orbit}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9881106100": {
+            "latex": "a",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "5781435087": {
+            "latex": "g",
+            "AST": [
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2484824786": {
+            "latex": "F = m g",
+            "AST": [
+                "1649",
+                "4202"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3921072591": {
+            "latex": "m_1 \\to m_{\\rm Earth}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4651061153": {
+            "latex": "m_2 \\to m",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3353418803": {
+            "latex": "x \\to r_{\\rm Earth}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "8661803554": {
+            "latex": "F = G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}^2}",
+            "AST": [
+                "5156",
+                "6277",
+                "4202"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9407192813": {
+            "latex": "G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}^2} = m g",
+            "AST": [
+                "6277",
+                "1649",
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3246378279": {
+            "latex": "m",
+            "AST": [
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2308660627": {
+            "latex": "G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}^2} = g",
+            "AST": [
+                "1649",
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "2685587762": {
+            "latex": "\\frac{r_{\\rm Earth}^2}{G}",
+            "AST": [
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9440616166": {
+            "latex": "m_{\\rm Earth} = \\frac{g r_{\\rm Earth}^2}{G}",
+            "AST": [
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
         }
     },
     "inference rules": {
@@ -17435,6 +19124,279 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24"
+        },
+        "4518": {
+            "category": "variable",
+            "latex": "r_{\\rm Schwarzschild}",
+            "name": "Schwarzschild radius; event horizon",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Schwarzschild_radius"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "6599": {
+            "category": "variable",
+            "latex": "V",
+            "name": "voltage",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Voltage"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": -1,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "8257": {
+            "category": "variable",
+            "latex": "V_1",
+            "name": "voltage",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Voltage"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "8721": {
+            "category": "variable",
+            "latex": "V_2",
+            "name": "voltage",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Voltage"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4501": {
+            "category": "variable",
+            "latex": "I",
+            "name": "electric current",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electric_current"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3978": {
+            "category": "variable",
+            "latex": "I_1",
+            "name": "electric current",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electric_current"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4856": {
+            "category": "variable",
+            "latex": "I_2",
+            "name": "electric current",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electric_current"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "6458": {
+            "category": "variable",
+            "latex": "R",
+            "name": "electrical resistance",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "8697": {
+            "category": "variable",
+            "latex": "R_1",
+            "name": "electrical resistance",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "3461": {
+            "category": "variable",
+            "latex": "R_2",
+            "name": "electrical resistance",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "1908": {
+            "category": "variable",
+            "latex": "R_{\\rm total}",
+            "name": "electrical resistance",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electrical_resistance_and_conductance"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "9647": {
+            "category": "variable",
+            "latex": "I_{\\rm total}",
+            "name": "electric current",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electric_current"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
+        },
+        "4691": {
+            "category": "variable",
+            "latex": "V_{\\rm total}",
+            "name": "voltage",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Voltage"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-26"
         }
     },
     "units": {
