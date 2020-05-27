@@ -16,8 +16,30 @@
   </center>
 <BR>
 Hold the mouse over a node to highlight that node and its neighbors. You can zoom in/out. You can pan the image. You can move nodes by clicking and dragging.
-
 </P>
+
+
+<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range -->
+<!--
+<label for="freezer">freeze nodes</label>
+<input type="range" min="0" max="10" value="10" id="freezer" 
+	step="2" list="volsettings"  oninput="outputUpdate(value)" >
+<output for="freezer" id="volume">10</output>
+<datalist id="volsettings">
+	<option>0</option>
+	<option>2</option>
+	<option>4</option>
+	<option>6</option>
+	<option>8</option>
+	<option>10</option>
+</datalist>
+
+<script>
+function outputUpdate(vol) {
+	document.querySelector('#volume').value = vol;
+}
+</script>
+-->
 
 <P>
 {% include '_table_of_derivations.html' %}
