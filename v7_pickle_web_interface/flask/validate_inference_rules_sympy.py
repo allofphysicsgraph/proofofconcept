@@ -37,10 +37,10 @@ def latex_from_expr_local_id(expr_local_id: str, path_to_db: str) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
-    logger.debug("latex_from_expr_local_id; expr_local_id = %s", expr_local_id)
+    logger.debug("expr_local_id = %s", expr_local_id)
     global_id = dat["expr local to global"][expr_local_id]
     latex_expr = dat["expressions"][global_id]["latex"]
-    logger.debug("latex_from_expr_local_id; latex_expr = %s", latex_expr)
+    logger.debug("latex_expr = %s", latex_expr)
     logger.info("[trace end " + trace_id + "]")
     return latex_expr
 
@@ -56,6 +56,8 @@ def remove_latex_presention_markings(latex_expr_str: str) -> str:
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
+
+    logger.debug("latex to be cleaned: " + latex_expr_str)
 
     if "\\," in latex_expr_str:
         logger.debug("found space \\,")
@@ -81,12 +83,19 @@ def remove_latex_presention_markings(latex_expr_str: str) -> str:
     if "\\qquad" in latex_expr_str:
         logger.debug("found space \\qquad")
         latex_expr_str = latex_expr_str.replace("\\qquad", " ")
-    # TODO
-    #    match_list = re.findall('_\{\\rm [a-zA-Z\\ ]+\}', latex_expr_str)
-    #    for this_match in match_list:
-    #        logger.debug(this_match)
-    #        revised_subscript = this_match.replace('_{\rm ','_').replace('}','').replace(' ','')
-    #        latex_expr_str = latex_expr_str.replace(this_match, revised_subscript)
+
+    # given 
+    # r_{\rm Earth}
+    # transform to 
+    # \rEarth
+    match_list = re.findall('\\s*[a-zA-Z]+_\{\\\\rm [a-zA-Z\\ ]+\}', latex_expr_str)
+    for this_match in match_list:
+        logger.debug(this_match)
+        revised_subscript = this_match.replace('_{\\rm ','').replace('}','').replace(' ','')
+        latex_expr_str = latex_expr_str.replace(this_match, '\\' + revised_subscript)
+
+    logger.debug("latex after cleaning: " + latex_expr_str)
+
     return latex_expr_str
 
 
@@ -101,10 +110,9 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-    logger.debug("before cleaning: " + latex_expr_str)
     latex_expr_str = remove_latex_presention_markings(latex_expr_str)
-    logger.debug("after cleaning: " + latex_expr_str)
 
+    logger.debug(latex_expr_str)
     sympy_expr = parse_latex(latex_expr_str)
     logger.debug("create_sympy_expr_tree_from_latex; Sympy expression = %s", sympy_expr)
 
@@ -130,10 +138,9 @@ def get_symbols_from_latex(latex_expr_str: str) -> list:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-    logger.debug("before cleaning: " + latex_expr_str)
     latex_expr_str = remove_latex_presention_markings(latex_expr_str)
-    logger.debug("after cleaning: " + latex_expr_str)
 
+    logger.debug(latex_expr_str)
     my_sym = list(parse_latex(latex_expr_str).free_symbols)
     logger.info("[trace end " + trace_id + "]")
     return my_sym
@@ -154,17 +161,18 @@ def split_expr_into_lhs_rhs(latex_expr_str: str) -> Tuple[str, str]:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-    logger.debug("before cleaning: " + latex_expr_str)
     latex_expr_str = remove_latex_presention_markings(latex_expr_str)
-    logger.debug("after cleaning: " + latex_expr_str)
 
     logger.debug("split_expr_into_lhs_rhs; latex_expr = %s", latex_expr_str)
 
     if ("=" not in latex_expr_str) and ("\\to" in latex_expr_str):
+        logger.debug('found to: ' + latex_expr_str)
         latex_as_list = latex_expr_str.split("\\to")
         if len(latex_as_list) == 2:
+            lhs = parse_latex(remove_latex_presention_markings(latex_as_list[0]))
+            rhs = parse_latex(remove_latex_presention_markings(latex_as_list[1]))
             logger.info("[trace end " + trace_id + "]")
-            return parse_latex(latex_as_list[0]), parse_latex(latex_as_list[1])
+            return lhs, rhs 
         else:
             raise Exception(
                 "no = and there is \\to but the list length is unexpected: "
@@ -174,17 +182,22 @@ def split_expr_into_lhs_rhs(latex_expr_str: str) -> Tuple[str, str]:
         raise Exception("= not present in " + latex_expr_str)
     else:
         try:
+            logger.debug(latex_expr_str)
             sympy_expr = parse_latex(latex_expr_str)
         except sympy.SympifyError as err:
-            logger.error(err)
+            logger.error(str(err))
 
-        logger.debug("split_expr_into_lhs_rhs; Sympy expression = %s", sympy_expr)
+        logger.debug("Sympy expression = %s", str(sympy_expr))
 
         logger.debug(str(sympy.srepr(sympy_expr)))
 
         try:
+            lhs = sympy_expr.lhs
+            logger.debug('lhs = ' + str(lhs))
+            rhs = sympy_expr.rhs
+            logger.debug('rhs = ' + str(rhs))
             logger.info("[trace end " + trace_id + "]")
-            return sympy_expr.lhs, sympy_expr.rhs
+            return lhs, rhs
         except AttributeError as error_message:
             logger.error(
                 "ERROR in Sympy parsing of "
@@ -261,10 +274,17 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         ]
         if "=" in feed_latex_str:
             raise Exception("why is there an = in this feed? " + feed_latex_str)
-        # try:
-        latex_dict["feed"][indx] = sympy.sympify(feed_latex_str)
-        # except Exception as err:
-        #    logger.error(err)
+        if "\\to" in feed_latex_str:
+            latex_dict["feed"][indx] = []
+            for entry in feed_latex_str.split("\\to"):
+                cleaned_entry = remove_latex_presention_markings(entry)
+                logger.debug(cleaned_entry)
+                latex_dict["feed"][indx].append(sympy.sympify(cleaned_entry))
+        else:
+            logger.debug(feed_latex_str)
+            cleaned_feed = remove_latex_presention_markings(feed_latex_str)
+            logger.debug(cleaned_feed)
+            latex_dict["feed"][indx] = sympy.sympify(cleaned_feed)
         indx += 1
 
     if step_dict["inf rule"] == "add X to both sides":
