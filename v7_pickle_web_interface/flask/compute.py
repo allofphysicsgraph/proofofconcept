@@ -181,6 +181,31 @@ def validate_json_file(filename: str) -> None:
 #    dat = clib.read_db(path_to_db)
 #    validate(instance=dat,schema=json_schema.schema)
 #    return
+
+
+def hash_of_step(deriv_id, step_id, path_to_db) -> str:
+    """
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+    dat = clib.read_db(path_to_db)
+
+    step_str = ""
+    if deriv_id in dat["derivations"].keys():
+        if step_id in dat["derivations"][deriv_id]["steps"].keys():
+            step_dict = dat["derivations"][deriv_id]["steps"][step_id]
+            step_str += step_dict["inf rule"]
+            for connection_type in ["inputs", "outputs", "feeds"]:
+                for expr_local_id in step_dict[connection_type]:
+                    expr_global_id = dat["expr local to global"][expr_local_id]
+                    step_str += dat["expressions"][expr_global_id]["latex"]
+    hash_of_step_str = md5_of_string(step_str)
+
+    logger.info("[trace end " + trace_id + "]")
+
+    return hash_of_step_str
+
+
 def update_symbol_in_step(
     sympy_symbol: str, symbol_id: str, deriv_id: str, step_id: str, path_to_db: str
 ) -> None:

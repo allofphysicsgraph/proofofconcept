@@ -84,15 +84,17 @@ def remove_latex_presention_markings(latex_expr_str: str) -> str:
         logger.debug("found space \\qquad")
         latex_expr_str = latex_expr_str.replace("\\qquad", " ")
 
-    # given 
+    # given
     # r_{\rm Earth}
-    # transform to 
+    # transform to
     # \rEarth
-    match_list = re.findall('\\s*[a-zA-Z]+_\{\\\\rm [a-zA-Z\\ ]+\}', latex_expr_str)
+    match_list = re.findall("\\s*[a-zA-Z]+_\{\\\\rm [a-zA-Z\\ ]+\}", latex_expr_str)
     for this_match in match_list:
         logger.debug(this_match)
-        revised_subscript = this_match.replace('_{\\rm ','').replace('}','').replace(' ','')
-        latex_expr_str = latex_expr_str.replace(this_match, '\\' + revised_subscript)
+        revised_subscript = (
+            this_match.replace("_{\\rm ", "").replace("}", "").replace(" ", "")
+        )
+        latex_expr_str = latex_expr_str.replace(this_match, "\\" + revised_subscript)
 
     logger.debug("latex after cleaning: " + latex_expr_str)
 
@@ -166,13 +168,13 @@ def split_expr_into_lhs_rhs(latex_expr_str: str) -> Tuple[str, str]:
     logger.debug("split_expr_into_lhs_rhs; latex_expr = %s", latex_expr_str)
 
     if ("=" not in latex_expr_str) and ("\\to" in latex_expr_str):
-        logger.debug('found to: ' + latex_expr_str)
+        logger.debug("found to: " + latex_expr_str)
         latex_as_list = latex_expr_str.split("\\to")
         if len(latex_as_list) == 2:
             lhs = parse_latex(remove_latex_presention_markings(latex_as_list[0]))
             rhs = parse_latex(remove_latex_presention_markings(latex_as_list[1]))
             logger.info("[trace end " + trace_id + "]")
-            return lhs, rhs 
+            return lhs, rhs
         else:
             raise Exception(
                 "no = and there is \\to but the list length is unexpected: "
@@ -193,9 +195,9 @@ def split_expr_into_lhs_rhs(latex_expr_str: str) -> Tuple[str, str]:
 
         try:
             lhs = sympy_expr.lhs
-            logger.debug('lhs = ' + str(lhs))
+            logger.debug("lhs = " + str(lhs))
             rhs = sympy_expr.rhs
-            logger.debug('rhs = ' + str(rhs))
+            logger.debug("rhs = " + str(rhs))
             logger.info("[trace end " + trace_id + "]")
             return lhs, rhs
         except AttributeError as error_message:

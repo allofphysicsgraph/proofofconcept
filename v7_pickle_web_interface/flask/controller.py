@@ -2923,6 +2923,13 @@ def review_derivation(deriv_id: str):
         derivation_validity_dict = {}
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
+                step_hash = compute.hash_of_step(deriv_id, step_id, path_to_db)
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+            # if step_hash in database:
+            # else:
+            try:
                 derivation_validity_dict[step_id] = vir.validate_step(
                     deriv_id, step_id, path_to_db
                 )
