@@ -10,6 +10,8 @@
     <th>Output<BR>local ID</th>
     <th>Output latex</th>
     <th>step validity</th>
+    <th>dimension check</th>
+    <th>unit check</th>
     <th>notes</th>
   </tr>
 {% for step_id, this_dict in dat["derivations"][deriv_id]['steps'].items() %}
@@ -85,12 +87,17 @@
           <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
           {{ dat["expr local to global"][local_id] }}</a>: <BR>
           \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
-       </LI> 
+       </LI>
      {% endfor %}
       </OL>
     </td>
-    <!-- from sympy -->
+    <!-- step validation from sympy -->
     <td>{{ derivation_validity_dict[step_id] }}</td>
+    <!-- dimension check -->
+    <td>{{ derivation_dimensions_dict[step_id] }}</td>
+    <!-- unit check -->
+    <td>{{ derivation_units_dict[step_id] }}</td>
+    <!-- step notes -->
     <td>{{ this_dict['notes'] }}</td>
   </tr>
 {% endfor %}
@@ -102,4 +109,3 @@
 <P>Clicking on the step index will take you to the page where you can edit that step.</P>
 
 </table>
-
