@@ -198,10 +198,10 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     elif step_dict["inf rule"] == "mult expr 1 by expr 2":
         logger.info("[trace end " + trace_id + "]")
         return mult_expr_1_by_expr_2(latex_dict)
-    elif step_dict["inf rule"] == "LHS of expr 1 eq LHS of expr 2":
+    elif step_dict["inf rule"] == "LHS of expr 1 equals LHS of expr 2":
         logger.info("[trace end " + trace_id + "]")
         return LHS_of_expr_1_eq_LHS_of_expr_2(latex_dict)
-    elif step_dict["inf rule"] == "RHS of expr 1 eq RHS of expr 2":
+    elif step_dict["inf rule"] == "RHS of expr 1 equals RHS of expr 2":
         logger.info("[trace end " + trace_id + "]")
         return RHS_of_expr_1_eq_RHS_of_expr_2(latex_dict)
     elif step_dict["inf rule"] == "raise both sides to power":
@@ -336,9 +336,9 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     elif step_dict["inf rule"] == "expand RHS":
         logger.info("[trace end " + trace_id + "]")
         return expand_RHS(latex_dic)
-    #    elif step_dict["inf rule"] == "":
-    #        logger.info("[trace end " + trace_id + "]")
-    #        return (latex_dict)
+    elif step_dict["inf rule"] == "multiply expr 1 by expr 2":
+        logger.info("[trace end " + trace_id + "]")
+        return multiply_expr_by_expr(latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        logger.info("[trace end " + trace_id + "]")
     #        return (latex_dict)
@@ -1870,6 +1870,20 @@ def expand_RHS(latex_dict: dict) -> str:
     """
     logger.info("[trace]")
     return "no check performed"
+
+def multiply_expr_by_expr(latex_dict: dict) -> str:
+    """
+
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> multiply_expr_by_expr(latex_dict)
+    'step is valid'
+    """
+    logger.info("[trace]")
+    return "no check performed"
+
 
 
 # EOF
