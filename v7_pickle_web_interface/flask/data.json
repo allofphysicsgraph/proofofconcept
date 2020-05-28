@@ -343,7 +343,7 @@
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-04-14",
                     "feeds": [],
-                    "inf rule": "select realparts",
+                    "inf rule": "select real parts",
                     "inputs": [
                         "2222222"
                     ],
@@ -3990,6 +3990,7 @@
                     ],
                     "linear index": 1,
                     "notes": "",
+                    "image": "brewsters_angle.png",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-04-23"
                 },
@@ -6400,6 +6401,7 @@
                     ],
                     "linear index": 35,
                     "notes": "",
+                    "image": "vector_v_components_vx_vy_theta.png",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-17"
                 },
@@ -7539,6 +7541,7 @@
                         "1124189"
                     ],
                     "linear index": 4,
+                    "image": "circuit_two_resistors_in_series.png",
                     "notes": "voltage is measured across both resistors",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-26"
@@ -7560,7 +7563,8 @@
                     "inputs": [
                         "4107950",
                         "8012785",
-                        "6379878"
+                        "6379878",
+                        "1124189"
                     ],
                     "feeds": [],
                     "outputs": [
@@ -7681,6 +7685,7 @@
                         "3843569"
                     ],
                     "linear index": 5,
+                    "image": "circuit_two_resistors_in_parallel.png",
                     "notes": "current flows through both resistors",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-26"
@@ -7723,7 +7728,8 @@
                     "inputs": [
                         "1708642",
                         "5168370",
-                        "4037937"
+                        "4037937",
+                        "3843569"
                     ],
                     "feeds": [],
                     "outputs": [
@@ -16908,7 +16914,7 @@
             "number of inputs": 1,
             "number of outputs": 1
         },
-        "multiply RHS by Unity": {
+        "multiply RHS by unity": {
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "Multiply RHS of Eq.~\\ref{eq:#2} by 1, which in this case is $#1$; yields Eq.~\\ref{eq:#3}",
@@ -17348,6 +17354,15 @@
             "notes": "not clear how to specify limits for an arbitrary number of integrals",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24"
+        },
+        "replace constant with value": {
+            "number of feeds": 3,
+            "number of inputs": 1,
+            "number of outputs": 1,
+            "latex": "Replace constant $#1$ with value $#2$ and units $#3$ in Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-28"
         }
     },
     "measures": {
@@ -17676,7 +17691,7 @@
             "values": [
                 {
                     "units": "meter^2 kilogram second^-2 Kelvin^-1",
-                    "value": "1.38064852*10^{-23}"
+                    "value": "1.38064852 10^{-23}"
                 }
             ]
         },
@@ -17989,6 +18004,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "name": "force",
+            "dimensions": {
+                "length": 1,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "references": [
                 "https://en.wikipedia.org/wiki/Force"
             ],
@@ -18002,6 +18026,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "name": "frequency",
+            "dimensions": {
+                "length": 0,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "references": [
                 "https://en.wikipedia.org/wiki/Frequency"
             ],
@@ -18193,6 +18226,15 @@
             "creation date": "2020-04-26",
             "latex": "N_A",
             "name": "Avagadro's constant",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": -1,
+                "luminous intensity": 0
+            },
             "references": [
                 "https://en.wikipedia.org/wiki/Avogadro_constant"
             ],
@@ -19177,11 +19219,11 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": -1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19198,11 +19240,11 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": -1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19220,10 +19262,10 @@
             "domain": "any",
             "dimensions": {
                 "length": 0,
-                "time": 0,
+                "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": 1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19241,10 +19283,10 @@
             "domain": "any",
             "dimensions": {
                 "length": 0,
-                "time": 0,
+                "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": 1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19262,10 +19304,10 @@
             "domain": "any",
             "dimensions": {
                 "length": 0,
-                "time": 0,
+                "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": 1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19282,11 +19324,11 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -1,
+                "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": -2,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19303,11 +19345,11 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -1,
+                "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": -2,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19324,11 +19366,11 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -1,
+                "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": -2,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19345,11 +19387,11 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -1,
+                "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": -2,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19367,10 +19409,10 @@
             "domain": "any",
             "dimensions": {
                 "length": 0,
-                "time": 0,
+                "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": 1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19387,11 +19429,11 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "electric charge": -1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
