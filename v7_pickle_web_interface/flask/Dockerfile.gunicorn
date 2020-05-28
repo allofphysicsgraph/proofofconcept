@@ -66,6 +66,7 @@ COPY common_lib.py \
      compute.py \
      config.py \
      controller.py \
+     latex_to_sympy.py \
      logs_to_stats.py \
      json_schema.py \
      Makefile \
@@ -73,6 +74,7 @@ COPY common_lib.py \
      schema.sql \
      sql_db.py \
      user.py \
+     validate_dimensions_sympy.py \
      validate_inference_rules_sympy.py \
      wsgi.py \
      /home/appuser/app/
