@@ -108,6 +108,8 @@ black:
 	black controller.py
 	black convert_v3_csv_infrules_to_dict.py
 	black validate_inference_rules_sympy.py
+	black validate_dimensions_sympy.py
+	black latex_to_sympy.py
 	black wsgi.py
 
 pylint:
