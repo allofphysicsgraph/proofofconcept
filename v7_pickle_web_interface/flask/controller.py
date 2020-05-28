@@ -107,6 +107,7 @@ import common_lib as clib  # PDG common library
 import json_schema  # PDG
 import compute  # PDG
 import validate_inference_rules_sympy as vir  # PDG
+import validate_dimensions_sympy as vdim  # PDG
 
 # global proc_timeout
 proc_timeout = 30
@@ -2146,9 +2147,6 @@ def select_derivation_step_to_edit(deriv_id: str):
     dat = clib.read_db(path_to_db)
 
     if deriv_id in dat["derivations"].keys():
-        # step_dict = dat["derivations"][deriv_id]['steps']
-
-        # previously
         derivation_validity_dict = {}
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
@@ -2634,12 +2632,7 @@ def step_review(deriv_id: str, step_id: str):
                 logger.error(str(err))
                 flash(str(err))
                 derivation_validity_dict[this_step_id] = "failed"
-        # try:
-        #    step_dict = dat["derivations"][deriv_id]["steps"]
-        # except Exception as err:
-        #    logger.error(str(err))
-        #    flash(str(err))
-        #    step_dict = {}
+
     else:
         logger.debug(deriv_id + "does not exist in derivations")
         derivation_validity_dict = {}
@@ -2921,6 +2914,8 @@ def review_derivation(deriv_id: str):
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
         derivation_validity_dict = {}
+        derivation_dimensions_dict = {}
+        derivation_units_dict = {}
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
                 step_hash = compute.hash_of_step(deriv_id, step_id, path_to_db)
@@ -2937,6 +2932,30 @@ def review_derivation(deriv_id: str):
                 logger.error(str(err))
                 flash(str(err))
                 derivation_validity_dict[step_id] = "failed"
+            # check dimensions
+            if derivation_validity_dict[step_id] == "valid":
+                derivation_dimensions_dict[step_id] = {}
+                derivation_units_dict[step_id] = {}
+                for expr_local_id in step_dict["inputs"]:
+                    expr_global_id = dat["expr local to global"][expr_local_id]
+                    try:
+                        derivation_dimensions_dict[step_id][
+                            expr_global_id
+                        ] = vdim.validate_dimensions(expr_global_id, path_to_db)
+                    except Exception as err:
+                        logger.error(str(err))
+                        flash(str(err))
+                        logger.debug(step_id + ", " + expr_global_id)
+                        logger.debug(derivation_validity_dict[step_id][expr_global_id])
+                        derivation_validity_dict[step_id][expr_global_id] = "failed"
+
+                    if derivation_dimensions_dict[step_id][expr_global_id] == "valid":
+                        derivation_units_dict[step_id][expr_global_id] = "nuthin'"
+                    else:  # dimensions not valid, so units are not checked
+                        derivation_units_dict[step_id][expr_global_id] = "N/A"
+            else:  # step was not valid, so dimensions and units are not checked
+                derivation_dimensions_dict[step_id] = "N/A"
+                derivation_units_dict[step_id] = "N/A"
     else:
         flash(deriv_id + " is not in database")
         logger.error(deriv_id + " is not in database")
@@ -2959,6 +2978,8 @@ def review_derivation(deriv_id: str):
         json_for_d3js=d3js_json_filename,
         # step_dict=dat["derivations"][deriv_id]["steps"],
         derivation_validity_dict=derivation_validity_dict,
+        derivation_dimensions_dict=derivation_dimensions_dict,
+        derivation_units_dict=derivation_units_dict,
         # expressions_dict=dat["expressions"],
         expression_popularity_dict=expression_popularity_dict,
         # expr_local_to_global=dat["expr local to global"],
@@ -3246,6 +3267,10 @@ def modify_step(deriv_id: str, step_id: str):
         logger.error(str(err))
         symbol_popularity_dict = {}
 
+    # TODO
+    derivation_dimensions_dict = {}
+    derivation_units_dict = {}
+
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "modify_step.html",
@@ -3260,6 +3285,8 @@ def modify_step(deriv_id: str, step_id: str):
         list_of_symbols_from_PDG_AST=list_of_symbols_from_PDG_AST,
         list_of_expression_AST_dicts=list_of_expression_AST_dicts,
         derivation_validity_dict=derivation_validity_dict,
+        derivation_dimensions_dict=derivation_dimensions_dict,
+        derivation_units_dict=derivation_units_dict,
         list_of_new_linear_indices=list_of_new_linear_indices,
         edit_expr_latex_webform=RevisedTextForm(request.form),
         edit_step_note_webform=RevisedTextForm(request.form),
