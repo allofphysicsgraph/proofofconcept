@@ -59,7 +59,8 @@ schema = {
                                             "patternProperties":
                                              {"^\d{7}$": # step ID
                                                  {"type": "object",
-                                                      "additionalProperties": False,
+# some steps have images, others do not
+#                                                      "additionalProperties": False,
                                                       "properties": {
                                                                    'inf rule' : { "type": "string"},
                                                                    'inputs':  {"type": "array",
