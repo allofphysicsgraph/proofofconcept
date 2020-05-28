@@ -1871,6 +1871,7 @@ def expand_RHS(latex_dict: dict) -> str:
     logger.info("[trace]")
     return "no check performed"
 
+
 def multiply_expr_by_expr(latex_dict: dict) -> str:
     """
 
@@ -1883,7 +1884,6 @@ def multiply_expr_by_expr(latex_dict: dict) -> str:
     """
     logger.info("[trace]")
     return "no check performed"
-
 
 
 # EOF
