@@ -2460,6 +2460,7 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
         lat_file.write(
             "\\usepackage[dvipdfmx,colorlinks=true,pdfkeywords={physics derivation graph}]{hyperref}\n"
         )
+        lat_file.write("\\usepackage{graphicx} % for including PNG files\n")
         # lat_file.write("\\newcommand{\\when}[1]{{\\rm \\ when\\ }#1}\n")
         # lat_file.write("\\newcommand{\\bra}[1]{\\langle #1 |}\n")
         # lat_file.write("\\newcommand{\\ket}[1]{| #1\\rangle}\n")
@@ -2523,6 +2524,15 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
         for linear_indx in list_of_linear_index:
             for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
                 if step_dict["linear index"] == linear_indx:
+                    if "image" in step_dict.keys():
+                        lat_file.write("\\begin{figure}\n")
+                        shutil.copy(
+                            "static/diagrams/" + step_dict["image"], step_dict["image"]
+                        )
+                        lat_file.write(
+                            "\\includegraphics{" + step_dict["image"] + "}\n"
+                        )
+                        lat_file.write("\\end{figure}\n")
                     # using the newcommand, populate the expression IDs
                     if step_dict["inf rule"] not in dat["inference rules"].keys():
                         logger.error(
