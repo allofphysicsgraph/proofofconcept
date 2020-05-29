@@ -8124,10 +8124,22 @@
                     "outputs": [
                         "3843242"
                     ],
-                    "linear index": 6,
+                    "linear index": 0.5,
                     "notes": "",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-28"
+                },
+                "8079031": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2737346"
+                    ],
+                    "linear index": 1.5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-29"
                 }
             }
         }
@@ -19517,6 +19529,29 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-26"
+        },
+        "7557": {
+            "category": "constant",
+            "latex": "g_{\\rm Earth}",
+            "name": "average acceleration due to gravity on Earth",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Gravity_of_Earth"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": -2,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "value": "9.80665",
+            "units": "m/s^2",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
         }
     },
     "units": {
