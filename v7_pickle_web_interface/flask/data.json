@@ -3652,7 +3652,7 @@
                     "creation date": "2020-04-20"
                 },
                 "5969230": {
-                    "inf rule": "change two variables in expr ",
+                    "inf rule": "change two variables in expr",
                     "inputs": [
                         "8497204"
                     ],
@@ -3829,150 +3829,6 @@
                     "notes": "",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-04-20"
-                },
-                "5468317": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "8946473"
-                    ],
-                    "linear index": 35,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "4114319": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "9398614"
-                    ],
-                    "linear index": 36,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "9873532": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "6566357"
-                    ],
-                    "linear index": 37,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "9666127": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "7978426"
-                    ],
-                    "linear index": 38,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "3508995": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "7874068"
-                    ],
-                    "linear index": 39,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "3136363": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "7552472"
-                    ],
-                    "linear index": 40,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "9630166": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "1988214"
-                    ],
-                    "linear index": 41,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "5932115": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "3735003"
-                    ],
-                    "linear index": 42,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "6879719": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "7633243"
-                    ],
-                    "linear index": 43,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "2362912": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "7519917"
-                    ],
-                    "linear index": 44,
-                    "notes": "",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "4514045": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "3257704"
-                    ],
-                    "linear index": 45,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "1884029": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "4758524"
-                    ],
-                    "linear index": 46,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
                 }
             }
         },
@@ -4203,30 +4059,6 @@
                     "notes": "",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-04-23"
-                },
-                "2797732": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "9873426"
-                    ],
-                    "linear index": 16,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
-                },
-                "3353717": {
-                    "inf rule": "declare variable replacement",
-                    "inputs": [],
-                    "feeds": [],
-                    "outputs": [
-                        "1539856"
-                    ],
-                    "linear index": 17,
-                    "notes": "change of variable",
-                    "author": "4a0987466473c589d2c328d12856760e",
-                    "creation date": "2020-05-09"
                 }
             }
         },
@@ -8074,7 +7906,7 @@
                     "inf rule": "LHS of expr 1 equals LHS of expr 2",
                     "inputs": [
                         "6771172",
-                        "6779814"
+                        "6086107"
                     ],
                     "feeds": [],
                     "outputs": [
@@ -8137,6 +7969,91 @@
                         "2737346"
                     ],
                     "linear index": 1.5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-29"
+                },
+                "9676005": {
+                    "inf rule": "change variable X to Y",
+                    "inputs": [
+                        "6779814"
+                    ],
+                    "feeds": [
+                        "4510044",
+                        "8916427"
+                    ],
+                    "outputs": [
+                        "6086107"
+                    ],
+                    "linear index": 1.25,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-29"
+                },
+                "1220683": {
+                    "inf rule": "replace constant with value",
+                    "inputs": [
+                        "9133599"
+                    ],
+                    "feeds": [
+                        "1042264",
+                        "3982459",
+                        "7373814"
+                    ],
+                    "outputs": [
+                        "2593741"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-29"
+                },
+                "5760226": {
+                    "inf rule": "replace constant with value",
+                    "inputs": [
+                        "2593741"
+                    ],
+                    "feeds": [
+                        "2156099",
+                        "5000579",
+                        "1522932"
+                    ],
+                    "outputs": [
+                        "1218257"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-29"
+                },
+                "1874718": {
+                    "inf rule": "replace constant with value",
+                    "inputs": [
+                        "1218257"
+                    ],
+                    "feeds": [
+                        "4110249",
+                        "3566114",
+                        "8415948"
+                    ],
+                    "outputs": [
+                        "9815516"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-05-29"
+                },
+                "3858247": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "9815516"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1635641"
+                    ],
+                    "linear index": 9,
                     "notes": "",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-29"
@@ -8911,7 +8828,23 @@
         "2061733": "3246378279",
         "9159337": "2308660627",
         "8784765": "2685587762",
-        "9133599": "9440616166"
+        "9133599": "9440616166",
+        "4510044": "9355039511",
+        "8916427": "2232825726",
+        "6086107": "4800170179",
+        "1042264": "2091584724",
+        "3982459": "9590696981",
+        "7373814": "7816982139",
+        "2593741": "7846240076",
+        "2156099": "7326066466",
+        "5000579": "9956609318",
+        "1522932": "2957211007",
+        "1218257": "7112613117",
+        "4110249": "7935917166",
+        "3566114": "3723096423",
+        "8415948": "7560908617",
+        "9815516": "1132941271",
+        "1635641": "3364286646"
     },
     "expressions": {
         "0000040490": {
@@ -12411,7 +12344,7 @@
             "creation date": "2020-04-20"
         },
         "8945218208": {
-            "latex": "\\theta_{Brewster} + \\theta_{refracted} = 90^{\\circ}",
+            "latex": "\\theta_{\\rm Brewster} + \\theta_{\\rm refracted} = 90^{\\circ}",
             "AST": [
                 "4928"
             ],
@@ -12421,7 +12354,7 @@
             "creation date": "2020-04-23"
         },
         "9025853427": {
-            "latex": "\\theta_{Brewster}",
+            "latex": "\\theta_{\\rm Brewster}",
             "AST": [
                 "4928"
             ],
@@ -12431,7 +12364,7 @@
             "creation date": "2020-04-23"
         },
         "1310571337": {
-            "latex": "\\theta_{refracted} = 90^{\\circ} - \\theta_{Brewster}",
+            "latex": "\\theta_{\\rm refracted} = 90^{\\circ} - \\theta_{\\rm Brewster}",
             "AST": [
                 "4928"
             ],
@@ -12451,7 +12384,7 @@
             "creation date": "2020-04-23"
         },
         "1779497048": {
-            "latex": "\\theta_{Brewster}, \\theta_{refraction}",
+            "latex": "\\theta_{\\rm Brewster}, \\theta_{\\rm refracted}",
             "AST": [
                 "4928"
             ],
@@ -12469,7 +12402,7 @@
             "creation date": "2020-04-23"
         },
         "2575937347": {
-            "latex": "n_1 \\sin( \\theta_{Brewster} ) = n_2 \\sin( \\theta_{refraction} )",
+            "latex": "n_1 \\sin( \\theta_{\\rm Brewster} ) = n_2 \\sin( \\theta_{\\rm refracted} )",
             "AST": [
                 "4928",
                 "2941"
@@ -12480,7 +12413,7 @@
             "creation date": "2020-04-23"
         },
         "7696214507": {
-            "latex": "n_1 \\sin( \\theta_{Brewster} ) = n_2 \\sin( 90^{\\circ} - \\theta_{Brewster} )",
+            "latex": "n_1 \\sin( \\theta_{\\rm Brewster} ) = n_2 \\sin( 90^{\\circ} - \\theta_{\\rm Brewster} )",
             "AST": [
                 "4928",
                 "2941"
@@ -12499,7 +12432,7 @@
             "creation date": "2020-04-23"
         },
         "7375348852": {
-            "latex": "\\theta_{Brewster}",
+            "latex": "\\theta_{\\rm Brewster}",
             "AST": [
                 "4928"
             ],
@@ -12517,7 +12450,7 @@
             "creation date": "2020-04-23"
         },
         "6831637424": {
-            "latex": "\\sin( 90^{\\circ} - \\theta_{Brewster} ) = \\cos( \\theta_{Brewster} )",
+            "latex": "\\sin( 90^{\\circ} - \\theta_{\\rm Brewster} ) = \\cos( \\theta_{\\rm Brewster} )",
             "AST": [
                 "4928"
             ],
@@ -12527,7 +12460,7 @@
             "creation date": "2020-04-23"
         },
         "3061811650": {
-            "latex": "n_1 \\sin( \\theta_{Brewster} ) = n_2 \\cos( \\theta_{Brewster} )",
+            "latex": "n_1 \\sin( \\theta_{\\rm Brewster} ) = n_2 \\cos( \\theta_{\\rm Brewster} )",
             "AST": [
                 "4928",
                 "2941"
@@ -12548,7 +12481,7 @@
             "creation date": "2020-04-23"
         },
         "9756089533": {
-            "latex": " \\sin( \\theta_{Brewster} ) = \\frac{n_2}{n_1} \\cos( \\theta_{Brewster} )",
+            "latex": " \\sin( \\theta_{\\rm Brewster} ) = \\frac{n_2}{n_1} \\cos( \\theta_{\\rm Brewster} )",
             "AST": [
                 "4928",
                 "2941"
@@ -12559,7 +12492,7 @@
             "creation date": "2020-04-23"
         },
         "5632428182": {
-            "latex": "\\cos( \\theta_{Brewster} )",
+            "latex": "\\cos( \\theta_{\\rm Brewster} )",
             "AST": [
                 "4928"
             ],
@@ -12569,7 +12502,7 @@
             "creation date": "2020-04-23"
         },
         "2768857871": {
-            "latex": "\\frac{\\sin( \\theta_{Brewster} )}{\\cos( \\theta_{Brewster} )} = \\frac{n_2}{n_1} ",
+            "latex": "\\frac{\\sin( \\theta_{\\rm Brewster} )}{\\cos( \\theta_{\\rm Brewster} )} = \\frac{n_2}{n_1} ",
             "AST": [
                 "4928",
                 "2941"
@@ -12588,7 +12521,7 @@
             "creation date": "2020-04-23"
         },
         "7321695558": {
-            "latex": "\\theta_{Brewster}",
+            "latex": "\\theta_{\\rm Brewster}",
             "AST": [
                 "4928"
             ],
@@ -12606,7 +12539,7 @@
             "creation date": "2020-04-23"
         },
         "4501377629": {
-            "latex": "\\tan( \\theta_{Brewster} ) = \\frac{ \\sin( \\theta_{Brewster} )}{\\cos( \\theta_{Brewster} )}",
+            "latex": "\\tan( \\theta_{\\rm Brewster} ) = \\frac{ \\sin( \\theta_{\\rm Brewster} )}{\\cos( \\theta_{\\rm Brewster} )}",
             "AST": [
                 "4928"
             ],
@@ -12616,7 +12549,7 @@
             "creation date": "2020-04-23"
         },
         "3417126140": {
-            "latex": "\\tan( \\theta_{Brewster} ) = \\frac{ n_2 }{ n_1 }",
+            "latex": "\\tan( \\theta_{\\rm Brewster} ) = \\frac{ n_2 }{ n_1 }",
             "AST": [
                 "4928",
                 "2941"
@@ -12643,7 +12576,7 @@
             "creation date": "2020-04-23"
         },
         "8495187962": {
-            "latex": "\\theta_{Brewster} = \\arctan{ \\left( \\frac{ n_1 }{ n_2 } \\right) }",
+            "latex": "\\theta_{\\rm Brewster} = \\arctan{ \\left( \\frac{ n_1 }{ n_2 } \\right) }",
             "creation date": "2020-04-23",
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
@@ -13080,7 +13013,7 @@
             "creation date": "2020-05-09"
         },
         "2773628333": {
-            "latex": "\\theta_1 \\to \\theta_{Brewster}",
+            "latex": "\\theta_1 \\to \\theta_{\\rm Brewster}",
             "AST": [],
             "name": "",
             "notes": "",
@@ -16547,10 +16480,10 @@
             "creation date": "2020-05-26"
         },
         "9407192813": {
-            "latex": "G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}^2} = m g",
+            "latex": "G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}^2} = m g_{\\rm Earth}",
             "AST": [
                 "6277",
-                "1649",
+                "7557",
                 "5156",
                 "5458",
                 "3236"
@@ -16571,9 +16504,9 @@
             "creation date": "2020-05-26"
         },
         "2308660627": {
-            "latex": "G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}^2} = g",
+            "latex": "G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}^2} = g_{\\rm Earth}",
             "AST": [
-                "1649",
+                "7557",
                 "6277",
                 "5458",
                 "3236"
@@ -16595,16 +16528,171 @@
             "creation date": "2020-05-26"
         },
         "9440616166": {
-            "latex": "m_{\\rm Earth} = \\frac{g r_{\\rm Earth}^2}{G}",
+            "latex": "m_{\\rm Earth} = \\frac{g_{\\rm Earth} r_{\\rm Earth}^2}{G}",
             "AST": [
                 "6277",
                 "5458",
+                "7557",
                 "3236"
             ],
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-26"
+        },
+        "9355039511": {
+            "latex": "g",
+            "AST": [
+                "1649"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "2232825726": {
+            "latex": "g_{\\rm Earth}",
+            "AST": [
+                "7557"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "4800170179": {
+            "latex": "F = m g_{\\rm Earth}",
+            "AST": [
+                "7557"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "2091584724": {
+            "latex": "g_{\\rm Earth}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "9590696981": {
+            "latex": "9.80665",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "7816982139": {
+            "latex": "m/s^2",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "7846240076": {
+            "latex": "m_{\\rm Earth} = \\frac{(9.80665 m/s^2) r_{\\rm Earth}^2}{G}",
+            "AST": [
+                "5156",
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "7326066466": {
+            "latex": "G",
+            "AST": [
+                "6277"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "9956609318": {
+            "latex": "6.67430*10^{-11}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "2957211007": {
+            "latex": "m^3 kg^{-1} s^{-2}",
+            "AST": [
+                "1649",
+                "5321",
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "7112613117": {
+            "latex": "m_{\\rm Earth} = \\frac{(9.80665 m/s^2) r_{\\rm Earth}^2}{6.67430*10^{-11}m^3 kg^{-1} s^{-2}}",
+            "AST": [
+                "1649",
+                "5321",
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "7935917166": {
+            "latex": "r_{\\rm Earth}",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "3723096423": {
+            "latex": "6.3781*10^6",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "7560908617": {
+            "latex": "m",
+            "AST": [],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "1132941271": {
+            "latex": "m_{\\rm Earth} = \\frac{(9.80665 m/s^2) (6.3781*10^6 m)^2}{6.67430*10^{-11}m^3 kg^{-1} s^{-2}}",
+            "AST": [
+                "1649",
+                "5321",
+                "5156"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
+        },
+        "3364286646": {
+            "latex": "m_{\\rm Earth} = 5.972*10^{24} kg",
+            "AST": [
+                "1649",
+                "5321"
+            ],
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-29"
         }
     },
     "inference rules": {
@@ -17274,15 +17362,6 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-08"
         },
-        "declare variable replacement": {
-            "number of feeds": 0,
-            "number of inputs": 0,
-            "number of outputs": 1,
-            "latex": "replace variable according to Eq.~\\ref{eq:#1}.",
-            "notes": "indicate change using \"OLD \\to NEW\"",
-            "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-09"
-        },
         "substitute LHS of two expressions into expr": {
             "number of feeds": 0,
             "number of inputs": 3,
@@ -17449,7 +17528,7 @@
             "number of feeds": 3,
             "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Replace constant $#1$ with value $#2$ and units $#3$ in Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}",
+            "latex": "Replace constant $#1$ with value $#2$ and units $#3$ in Eq.~\\ref{eq:#4}; yields Eq.~\\ref{eq:#5}",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-28"
@@ -17757,7 +17836,7 @@
             "category": "variable",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
-            "latex": "\\theta_{Brewster}",
+            "latex": "\\theta_{\\rm Brewster}",
             "name": "Brewster's angle",
             "references": [
                 "https://en.wikipedia.org/wiki/Brewster%27s_angle"
@@ -18528,8 +18607,12 @@
             "references": [
                 "https://en.wikipedia.org/wiki/Earth%27s_orbit"
             ],
-            "value": "1.496*10^8",
-            "units": "km",
+            "values": [
+                {
+                    "units": "km",
+                    "value": "1.496*10^8"
+                }
+            ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-07"
         },
@@ -19185,8 +19268,12 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
-            "value": "5.97237*10^24",
-            "units": "kg",
+            "values": [
+                {
+                    "units": "kg",
+                    "value": "5.97237*10^24"
+                }
+            ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24"
         },
@@ -19208,8 +19295,12 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
-            "value": "6.67430*10^{\u221211}",
-            "units": "m^3*kg^{\u20131}*s^{\u20132}",
+            "values": [
+                {
+                    "units": "m^3 * kg^-1 * s^-2",
+                    "value": "6.67430*10^{-11}"
+                }
+            ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24"
         },
@@ -19231,8 +19322,12 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
-            "value": "6.3781*10^6",
-            "units": "m",
+            "values": [
+                {
+                    "units": "m",
+                    "value": "6.3781*10^{6}"
+                }
+            ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24"
         },
@@ -19548,8 +19643,12 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
-            "value": "9.80665",
-            "units": "m/s^2",
+            "values": [
+                {
+                    "units": "m * s^-2",
+                    "value": "9.80665"
+                }
+            ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-29"
         }
