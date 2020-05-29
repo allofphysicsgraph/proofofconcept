@@ -2215,9 +2215,14 @@ def select_from_existing_derivations():
 
         if request.form["submit_button"] == "generate_pdf":
             # request.form = ImmutableMultiDict([('derivation_selected', 'another deriv'), ('submit_button', 'generate_pdf')])
+
+            if current_user.is_anonymous:
+                email = "none"
+            else:
+                email = current_user.email
             try:
                 pdf_filename = compute.generate_pdf_for_derivation(
-                    deriv_id, current_user.email, path_to_db
+                    deriv_id, email, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -2454,6 +2459,10 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         flash(str(err))
         expr_dict_with_symbol_list = {}
 
+    # TODO
+    derivation_dimensions_dict = {}
+    derivation_units_dict = {}
+
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "provide_expr_for_inf_rule.html",
@@ -2466,6 +2475,8 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         expr_dict_with_symbol_list=expr_dict_with_symbol_list,
         inf_rule=inf_rule,
         derivation_validity_dict=derivation_validity_dict,
+        derivation_dimensions_dict=derivation_dimensions_dict,
+        derivation_units_dict=derivation_units_dict,
         webform=webform,
         title="provide expr for inference rule",
     )
@@ -2724,6 +2735,10 @@ def step_review(deriv_id: str, step_id: str):
         flash(str(err))
         expr_dict_with_symbol_list = {}
 
+    # TODO
+    derivation_dimensions_dict = {}
+    derivation_units_dict = {}
+
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "step_review.html",
@@ -2739,6 +2754,8 @@ def step_review(deriv_id: str, step_id: str):
         list_of_symbols_from_sympy=list_of_symbols_from_sympy,
         list_of_symbols_from_PDG_AST=list_of_symbols_from_PDG_AST,
         derivation_validity_dict=derivation_validity_dict,
+        derivation_dimensions_dict=derivation_dimensions_dict,
+        derivation_units_dict=derivation_units_dict,
         title="step review",
     )
 
@@ -2856,9 +2873,13 @@ def review_derivation(deriv_id: str):
             logger.info("[trace page end " + trace_id + "]")
             return redirect(url_for("index", referrer="review_derivation"))
         elif request.form["submit_button"] == "generate pdf":
+            if current_user.is_anonymous:
+                email = "none"
+            else:
+                email = current_user.email
             try:
                 pdf_filename = compute.generate_pdf_for_derivation(
-                    deriv_id, current_user.email, path_to_db
+                    deriv_id, email, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
@@ -2920,8 +2941,8 @@ def review_derivation(deriv_id: str):
             try:
                 step_hash = compute.hash_of_step(deriv_id, step_id, path_to_db)
             except Exception as err:
-                logger.error(str(err))
-                flash(str(err))
+                logger.error(step_id + str(err))
+                flash(step_id + str(err))
             # if step_hash in database:
             # else:
             try:
@@ -2929,22 +2950,22 @@ def review_derivation(deriv_id: str):
                     deriv_id, step_id, path_to_db
                 )
             except Exception as err:
-                logger.error(str(err))
-                flash(str(err))
+                logger.error(step_id + str(err))
+                flash(step_id + str(err))
                 derivation_validity_dict[step_id] = "failed"
             # check dimensions
             if derivation_validity_dict[step_id] == "valid":
                 derivation_dimensions_dict[step_id] = {}
                 derivation_units_dict[step_id] = {}
-                for expr_local_id in step_dict["inputs"]:
+                for expr_local_id in step_dict["inputs"] + step_dict["outputs"]:
                     expr_global_id = dat["expr local to global"][expr_local_id]
                     try:
                         derivation_dimensions_dict[step_id][
                             expr_global_id
                         ] = vdim.validate_dimensions(expr_global_id, path_to_db)
                     except Exception as err:
-                        logger.error(str(err))
-                        flash(str(err))
+                        logger.error(step_id + str(err))
+                        flash(step_id + str(err))
                         logger.debug(step_id + ", " + expr_global_id)
                         logger.debug(derivation_validity_dict[step_id][expr_global_id])
                         derivation_validity_dict[step_id][expr_global_id] = "failed"
