@@ -2728,16 +2728,19 @@ def update_linear_index(
     deriv_id: str, step_id: str, valu: str, path_to_db: str
 ) -> None:
     """
-    # https://github.com/allofphysicsgraph/proofofconcept/issues/116
+    for step_id in deriv_id, overwrite the exising linear index with a new value "valu"
+
+    https://github.com/allofphysicsgraph/proofofconcept/issues/116
+
     >>> update_linear_index()
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
     if "." not in valu:
-        valu = str(int(valu))
+        valu = int(valu)
     else:
-        valu = str(float(valu))
+        valu = float(valu)
     if deriv_id in dat["derivations"].keys():
         if step_id in dat["derivations"][deriv_id]["steps"].keys():
             dat["derivations"][deriv_id]["steps"][step_id]["linear index"] = valu
