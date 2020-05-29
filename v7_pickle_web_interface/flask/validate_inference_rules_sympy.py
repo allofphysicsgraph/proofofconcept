@@ -335,7 +335,7 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
         return expand_LHS(latex_dict)
     elif step_dict["inf rule"] == "expand RHS":
         logger.info("[trace end " + trace_id + "]")
-        return expand_RHS(latex_dic)
+        return expand_RHS(latex_dict)
     elif step_dict["inf rule"] == "multiply expr 1 by expr 2":
         logger.info("[trace end " + trace_id + "]")
         return multiply_expr_by_expr(latex_dict)
