@@ -9560,7 +9560,7 @@
             "notes": ""
         },
         "1858578388": {
-            "AST": "pdg1467 and 2718 and 4621 and 2321",
+            "AST": "pdg1467 and exp and 4621 and 2321",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E( \\vec{r})\\exp(i \\omega t) = - \\omega^2 \\mu_0 \\epsilon_0 E( \\vec{r})\\exp(i \\omega t)",
@@ -9584,7 +9584,7 @@
             "notes": ""
         },
         "2029293929": {
-            "AST": "pdg1467 and 2718 and 4621 and 2321",
+            "AST": "pdg1467 and exp and 4621 and 2321",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E( \\vec{r})\\exp(i \\omega t) = \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E( \\vec{r})\\exp(i \\omega t)",
@@ -9592,7 +9592,7 @@
             "notes": ""
         },
         "2103023049": {
-            "AST": "Equality(sin(Symbol('x')), Mul(Pow(Mul(Integer(2), Symbol('pdg4621')), Integer(-1)), Function('left')(Add(Mul(Integer(-1), Symbol('right'), Function('pdg2718')(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), Function('exp')(Mul(Symbol('pdg4621'), Symbol('x')))))))",
+            "AST": "Equality(sin(Symbol('x')), Mul(Pow(Mul(Integer(2), Symbol('pdg4621')), Integer(-1)), Function('left')(Add(Mul(Integer(-1), Symbol('right'), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), exp(Mul(Symbol('pdg4621'), Symbol('x')))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\sin(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x) \\right)",
@@ -9608,7 +9608,7 @@
             "notes": ""
         },
         "2123139121": {
-            "AST": "Equality(Mul(Integer(-1), Function('pdg2718')(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), Add(Mul(Symbol('pdg4621'), sin(Symbol('x'))), Mul(Integer(-1), cos(Symbol('x')))))",
+            "AST": "Equality(Mul(Integer(-1), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), Add(Mul(Symbol('pdg4621'), sin(Symbol('x'))), Mul(Integer(-1), cos(Symbol('x')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "-\\exp(-i x) = -\\cos(x)+i \\sin(x)",
@@ -9640,7 +9640,7 @@
             "notes": ""
         },
         "2394853829": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "Equality(exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x')))), Add(Mul(Symbol('pdg4621'), sin(Mul(Integer(-1), Symbol('x')))), cos(Mul(Integer(-1), Symbol('x')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(-x)+i \\sin(-x)",
@@ -9720,7 +9720,7 @@
             "notes": ""
         },
         "3121234211": {
-            "AST": "pdg3141",
+            "AST": "Equality(Mul(Symbol('pdg5321'), Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1))), Symbol('pdg1115'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{k}{2\\pi} = \\lambda",
@@ -9736,7 +9736,7 @@
             "notes": ""
         },
         "3121513111": {
-            "AST": "pdg3141",
+            "AST": "Equality(Symbol('p'), Mul(Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1)), Mul(Symbol('h'), Symbol('pdg5321'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "k = \\frac{2 \\pi}{\\lambda}",
@@ -9744,7 +9744,7 @@
             "notes": ""
         },
         "3131111133": {
-            "AST": "pdg9491 and pdg4201",
+            "AST": "Equality(Symbol('pdg9491'), Pow(Symbol('pdg4201'), Integer(-1)))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "T = 1 / f",
@@ -9752,7 +9752,7 @@
             "notes": ""
         },
         "3131211131": {
-            "AST": "pdg3141 and pdg2321 and pdg4201",
+            "AST": "Equality(Symbol('pdg2321'), Mul(Integer(2), Mul(Symbol('pdg4201'), Symbol('pdg3141'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\omega = 2 \\pi f",
@@ -9760,7 +9760,7 @@
             "notes": ""
         },
         "3132131132": {
-            "AST": "pdg3141 and pdg2321 and pdg9491",
+            "AST": "Equality(Symbol('pdg2321'), Mul(Pow(Symbol('pdg9491'), Integer(-1)), Mul(Integer(2), Symbol('pdg3141'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\omega = \\frac{2\\pi}{T}",
@@ -9768,7 +9768,7 @@
             "notes": ""
         },
         "3147472131": {
-            "AST": "pdg3141 and pdg2321 and pdg4201",
+            "AST": "Equality(Mul(Symbol('pdg2321'), Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1))), Symbol('pdg4201'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\omega}{2 \\pi} = f",
@@ -9800,7 +9800,7 @@
             "notes": ""
         },
         "3829492824": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "Equality(Mul(Pow(Integer(2), Integer(-1)), Add(exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x')))), exp(Mul(Symbol('pdg4621'), Symbol('x'))))), cos(Symbol('x')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x) \\right) = \\cos(x)",
@@ -9816,7 +9816,7 @@
             "notes": ""
         },
         "3942849294": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "Equality(Add(Mul(Integer(-1), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), exp(Mul(Symbol('pdg4621'), Symbol('x')))), Mul(Integer(2), Mul(Symbol('pdg4621'), sin(Symbol('x')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x)-\\exp(-i x) = 2 i \\sin(x)",
@@ -9848,7 +9848,7 @@
             "notes": ""
         },
         "3948572230": {
-            "AST": "pdg1054 and pdg1467 and pdg2718",
+            "AST": "pdg1054 and pdg1467 and exp",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\psi( \\vec{r},t) = \\psi_0 \\vec{ \\nabla}\\exp\\left(\\frac{i}{\\hbar}\\left( \\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
@@ -9856,7 +9856,7 @@
             "notes": ""
         },
         "3948574224": {
-            "AST": "pdg1467 and pdg2718 and pdg2321",
+            "AST": "pdg1467 and exp and pdg2321",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left( \\vec{k}\\cdot\\vec{r} - \\omega t \\right) \\right)",
@@ -9864,7 +9864,7 @@
             "notes": ""
         },
         "3948574226": {
-            "AST": "pdg1054 and pdg1467 and pdg2718 and pdg2321",
+            "AST": "pdg1054 and pdg1467 and exp and pdg2321",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\omega t \\right) \\right)",
@@ -9872,7 +9872,7 @@
             "notes": ""
         },
         "3948574228": {
-            "AST": "pdg1054 and pdg2718",
+            "AST": "pdg1054 and exp",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
@@ -9880,7 +9880,7 @@
             "notes": ""
         },
         "3948574230": {
-            "AST": "pdg1054 and pdg2718",
+            "AST": "pdg1054 and exp",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left( \\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
@@ -9888,7 +9888,7 @@
             "notes": ""
         },
         "3948574233": {
-            "AST": "pdg1054 and pdg1467 and pdg2718",
+            "AST": "pdg1054 and pdg1467 and exp",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\partial}{\\partial t} \\psi( \\vec{r},t) = \\psi_0 \\frac{\\partial}{\\partial t}\\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
@@ -9896,7 +9896,7 @@
             "notes": ""
         },
         "3948574235": {
-            "AST": "pdg1054 and pdg1467 and pdg2718",
+            "AST": "pdg1054 and pdg1467 and exp",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\partial}{\\partial t} \\psi( \\vec{r},t) = \\frac{-i}{\\hbar}E \\psi_0 \\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
@@ -9912,7 +9912,7 @@
             "notes": ""
         },
         "4147472132": {
-            "AST": "pdg3141 and pdg2321",
+            "AST": "Equality(Symbol('E'), Mul(Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1)), Mul(Symbol('h'), Symbol('pdg2321'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E = \\frac{h \\omega}{2 \\pi}",
@@ -9920,7 +9920,7 @@
             "notes": ""
         },
         "4298359835": {
-            "AST": "pdg4931 and pdg5156 and pdg1357",
+            "AST": "Equality(Symbol('pdg4931'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('pdg1357'), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E = \\frac{1}{2}m v^2",
@@ -9928,7 +9928,7 @@
             "notes": ""
         },
         "4298359845": {
-            "AST": "pdg4931 and pdg5156 and pdg1357",
+            "AST": "Equality(Symbol('pdg4931'), Mul(Pow(Mul(Integer(2), Symbol('pdg5156')), Integer(-1)), Mul(Pow(Symbol('pdg5156'), Integer(2)), Pow(Symbol('pdg1357'), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E = \\frac{1}{2m}m^2 v^2",
@@ -9936,7 +9936,7 @@
             "notes": ""
         },
         "4298359851": {
-            "AST": "",
+            "AST": "Equality(Symbol('pdg4931'), Mul(Pow(Symbol('p'), Integer(2)), Pow(Mul(Integer(2), Symbol('pdg5156')), Integer(-1))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E = \\frac{p^2}{2m}",
@@ -9968,7 +9968,7 @@
             "notes": ""
         },
         "4585828572": {
-            "AST": "pdg4567",
+            "AST": "Equality(Mul(Symbol('epsilon_{0}'), Symbol('mu_{0}')), Pow(Pow(Symbol('pdg4567'), Integer(2)), Integer(-1)))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\epsilon_0 \\mu_0 = \\frac{1}{c^2}",
@@ -9976,7 +9976,7 @@
             "notes": ""
         },
         "4585932229": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "Equality(cos(Symbol('x')), Mul(Pow(Integer(2), Integer(-1)), Function('left')(Add(Mul(Symbol('right'), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), exp(Mul(Symbol('pdg4621'), Symbol('x')))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\cos(x) = \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x) \\right)",
@@ -9984,7 +9984,7 @@
             "notes": ""
         },
         "4598294821": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "Equality(exp(Mul(Integer(2), Mul(Symbol('pdg4621'), Symbol('x')))), Add(Add(Mul(Integer(2), Mul(Symbol('pdg4621'), Mul(sin(Symbol('x')), cos(Symbol('x'))))), Pow(cos(Symbol('x')), Integer(2))), Mul(Integer(-1), Pow(sin(Symbol('x')), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(2 i x) = (\\cos(x))^2+2i\\cos(x)\\sin(x)-(\\sin(x))^2",
@@ -9992,7 +9992,7 @@
             "notes": ""
         },
         "4638429483": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "Equality(exp(Mul(Integer(2), Mul(Symbol('pdg4621'), Symbol('x')))), Mul(Add(Mul(Symbol('pdg4621'), sin(Symbol('x'))), cos(Symbol('x'))), Add(Mul(Symbol('pdg4621'), sin(Symbol('x'))), cos(Symbol('x')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(2 i x) = (\\cos(x)+ i \\sin(x))(\\cos(x)+ i \\sin(x))",
@@ -10000,7 +10000,7 @@
             "notes": ""
         },
         "4742644828": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "Equality(Add(exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x')))), exp(Mul(Symbol('pdg4621'), Symbol('x')))), Mul(Integer(2), cos(Symbol('x'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x)+\\exp(-i x) = 2 \\cos(x)",
@@ -10008,7 +10008,7 @@
             "notes": ""
         },
         "4827492911": {
-            "AST": "",
+            "AST": "Equality(Add(Pow(sin(Symbol('x')), Integer(2)), cos(Mul(Integer(2), Symbol('x')))), Add(Integer(1), Mul(Integer(-1), Pow(sin(Symbol('x')), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\cos(2 x)+(\\sin(x))^2 = 1 - (\\sin(x))^2",
@@ -10016,7 +10016,7 @@
             "notes": ""
         },
         "4838429483": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "Equality(exp(Mul(Integer(2), Mul(Symbol('pdg4621'), Symbol('x')))), Add(Mul(Symbol('pdg4621'), sin(Mul(Integer(2), Symbol('x')))), cos(Mul(Integer(2), Symbol('x')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(2 i x) = \\cos(2 x)+i \\sin(2 x)",
@@ -10024,7 +10024,7 @@
             "notes": ""
         },
         "4843995999": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "Equality(Mul(Pow(Mul(Integer(2), Symbol('pdg4621')), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), exp(Mul(Symbol('pdg4621'), Symbol('x'))))), sin(Symbol('x')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{2 i}\\left(\\exp(i x)-\\exp(-i x) \\right) = \\sin(x)",
@@ -10040,7 +10040,7 @@
             "notes": ""
         },
         "4857475848": {
-            "AST": "pdg2523",
+            "AST": "Equality(Pow(Pow(Symbol('a'), Integer(2)), Integer(-1)), Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg2523')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{a^2} = \\frac{W}{2}",
@@ -10048,7 +10048,7 @@
             "notes": ""
         },
         "4858429483": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "Equality(Mul(exp(Mul(Symbol('pdg4621'), Symbol('x'))), exp(Mul(Symbol('pdg4621'), Symbol('x')))), Mul(Add(Mul(Symbol('pdg4621'), sin(Symbol('x'))), cos(Symbol('x'))), Add(Mul(Symbol('pdg4621'), sin(Symbol('x'))), cos(Symbol('x')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x)\\exp(i x) = (\\cos(x)+ i \\sin(x))(\\cos(x)+ i \\sin(x))",
@@ -10080,7 +10080,7 @@
             "notes": ""
         },
         "4938429482": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "exp and pdg4621",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(x)+i \\sin(-x)",
@@ -10088,7 +10088,7 @@
             "notes": ""
         },
         "4938429483": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "exp and pdg4621",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x) = \\cos(x)+i \\sin(x)",
@@ -10096,7 +10096,7 @@
             "notes": ""
         },
         "4938429484": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "exp and pdg4621",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(x)-i \\sin(x)",
@@ -10104,7 +10104,7 @@
             "notes": ""
         },
         "4943571230": {
-            "AST": "pdg1054 and pdg1467 and pdg2718",
+            "AST": "pdg1054 and pdg1467 and exp",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\psi( \\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left( \\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
@@ -10136,7 +10136,7 @@
             "notes": ""
         },
         "4978429483": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "exp and pdg4621",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(-i x) = \\cos(-x)+i \\sin(-x)",
@@ -10152,7 +10152,7 @@
             "notes": ""
         },
         "4985825552": {
-            "AST": "pdg1467 and pdg2718 and pdg4621 and pdg2321",
+            "AST": "pdg1467 and exp and pdg4621 and pdg2321",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E( \\vec{r})\\exp(i \\omega t) = i \\omega \\mu_0 \\epsilon_0 \\frac{\\partial}{\\partial t} E( \\vec{r})\\exp(i \\omega t)",
@@ -10648,7 +10648,7 @@
             "notes": ""
         },
         "9482923849": {
-            "AST": "pdg2718 and pdg4621",
+            "AST": "exp and pdg4621",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\exp(i x) = y",
@@ -10704,7 +10704,7 @@
             "notes": ""
         },
         "9485384858": {
-            "AST": "pdg2718 and pdg4621 and pdg2321 and pdg4567",
+            "AST": "exp and pdg4621 and pdg2321 and pdg4567",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E( \\vec{r})\\exp(i \\omega t) = - \\frac{\\omega^2}{c^2} E( \\vec{r})\\exp(i \\omega t)",
@@ -10744,7 +10744,7 @@
             "notes": ""
         },
         "9499428242": {
-            "AST": "pdg1467 and pdg2718 and pdg4621 and pdg2321",
+            "AST": "pdg1467 and exp and pdg4621 and pdg2321",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E( \\vec{r},t) = E( \\vec{r})\\exp(i \\omega t)",
@@ -10872,7 +10872,7 @@
             "notes": ""
         },
         "9999999951": {
-            "AST": "pdg3141 and pdg2718 and pdg4621",
+            "AST": "pdg3141 and exp and pdg4621",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle x | k \\rangle = \\frac{\\exp(i k x)}{\\sqrt{2\\pi}}",
@@ -11257,7 +11257,7 @@
         },
         "8483686863": {
             "latex": "\\sin(2 x) = \\frac{1}{2i}\\left(\\exp(i 2 x)-\\exp(-i 2 x) \\right)",
-            "AST": "pdg2718 and pdg4621",
+            "AST": "exp and pdg4621",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11265,7 +11265,7 @@
         },
         "3470587782": {
             "latex": "\\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x) \\right) \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x) \\right)",
-            "AST": "pdg2718 and pdg4621",
+            "AST": "exp and pdg4621",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11281,7 +11281,7 @@
         },
         "9894826550": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x) \\right) \\left(\\exp(i x)+\\exp(-i x) \\right)",
-            "AST": "pdg2718 and pdg4621",
+            "AST": "exp and pdg4621",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11289,7 +11289,7 @@
         },
         "4257214632": {
             "latex": "\\frac{1}{2 i} \\left( \\exp(i 2 x) - 1 + 1 - \\exp(-i 2 x) \\right)",
-            "AST": "pdg2718 and pdg4621",
+            "AST": "exp and pdg4621",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11301,7 +11301,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
             "name": "",
-            "AST": "pdg2718 and pdg4621"
+            "AST": "exp and pdg4621"
         },
         "9180861128": {
             "latex": "2 \\sin(x) \\cos(x) = \\frac{1}{2 i} \\left( \\exp(i 2 x) - \\exp(-i 2 x) \\right)",
@@ -11309,7 +11309,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
             "name": "",
-            "AST": "pdg2718 and pdg4621"
+            "AST": "exp and pdg4621"
         },
         "2405307372": {
             "latex": "\\sin(2 x) = 2 \\sin(x) \\cos(x)",
@@ -11337,7 +11337,7 @@
         },
         "8332931442": {
             "latex": "\\exp(i \\pi) = \\cos(\\pi)+i \\sin(\\pi)",
-            "AST": "pdg3141 and pdg2718 and pdg4621",
+            "AST": "pdg3141 and exp and pdg4621",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11345,7 +11345,7 @@
         },
         "6885625907": {
             "latex": "\\exp(i \\pi) = -1 + i 0",
-            "AST": "pdg3141 and pdg2718 and pdg4621",
+            "AST": "pdg3141 and exp and pdg4621",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11353,7 +11353,7 @@
         },
         "3331824625": {
             "latex": "\\exp(i \\pi) = -1",
-            "AST": "pdg3141 and pdg2718 and pdg4621",
+            "AST": "pdg3141 and exp and pdg4621",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11369,7 +11369,7 @@
         },
         "2501591100": {
             "latex": "\\exp(i \\pi) + 1 = 0",
-            "AST": "pdg3141 and pdg2718 and pdg4621",
+            "AST": "pdg3141 and exp and pdg4621",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",

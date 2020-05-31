@@ -35,9 +35,9 @@ def remove_latex_presention_markings(latex_expr_str: str) -> str:
     logger.debug("latex to be cleaned: " + latex_expr_str)
 
     if "\\left(" in latex_expr_str:
-        latex_expr_str = latex_expr_str.replace("\\left(","(")
+        latex_expr_str = latex_expr_str.replace("\\left(", "(")
     if "\\right)" in latex_expr_str:
-        latex_expr_str = latex_expr_str.replace("\\right)",")")
+        latex_expr_str = latex_expr_str.replace("\\right)", ")")
     if "\\," in latex_expr_str:
         logger.debug("found space \\,")
         latex_expr_str = latex_expr_str.replace("\\,", " ")  # thinspace

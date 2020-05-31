@@ -1300,6 +1300,7 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
             ast_str = ast_str.replace("Rational", "sympy.Rational")
             ast_str = ast_str.replace("Abs", "sympy.Abs")
             ast_str = ast_str.replace("Float", "sympy.Float")
+            ast_str = ast_str.replace("exp", "sympy.exp")
             ast_str = ast_str.replace("cos", "sympy.cos")
             ast_str = ast_str.replace("sin", "sympy.sin")
             ast_str = ast_str.replace("Equality", "sympy.Equality")
@@ -1317,6 +1318,10 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
                 for x in list(expr.free_symbols)
                 if str(x).startswith("pdg")
             ]
+            if (
+                "exp" in expr_dict["AST"]
+            ):  # exp is handled as a Sympy function but is actually a symbol (specifically, a constant)
+                list_of_symbols.append("2718")
             logger.debug(str(list_of_symbols))
         # TODO this is temporary!
         else:
