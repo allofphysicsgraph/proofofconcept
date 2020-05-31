@@ -388,8 +388,6 @@ def rank_candidate_pdg_symbols_for_sympy_symbol(
     return list_of_candidate_symbol_ids
 
 
-
-
 def list_symbols_used_in_expr_from_PDG_AST(ast_as_list: list, path_to_db: str) -> list:
     """
     >>> list_symbols_used_in_expr_from_PDG_AST()
@@ -498,7 +496,9 @@ def list_symbols_used_in_step_from_sympy(
                 expr_global_id = dat["expr local to global"][local_id]
                 expr_latex = dat["expressions"][expr_global_id]["latex"]
                 # logger.debug(expr_latex)
-                symbols_per_expr = latex_to_sympy.list_symbols_used_in_expr_from_sympy(expr_latex)
+                symbols_per_expr = latex_to_sympy.list_symbols_used_in_expr_from_sympy(
+                    expr_latex
+                )
                 for symb in symbols_per_expr:
                     list_of_symbols.append(str(symb))
     else:  # step_id not available
@@ -507,8 +507,6 @@ def list_symbols_used_in_step_from_sympy(
     list_of_symbols = list(set(list_of_symbols))
     logger.info("[trace end " + trace_id + "]")
     return list_of_symbols
-
-
 
 
 def create_AST_png_per_expression_in_step(
@@ -533,7 +531,9 @@ def create_AST_png_per_expression_in_step(
             output_filename = expr_global_id + "_ast.png"
             latex_to_sympy.create_AST_png_for_latex(expr_latex, output_filename)
 
-            symbols_from_sympy = latex_to_sympy.list_symbols_used_in_expr_from_sympy(expr_latex)
+            symbols_from_sympy = latex_to_sympy.list_symbols_used_in_expr_from_sympy(
+                expr_latex
+            )
             symbols_from_PDG_AST = list_symbols_used_in_expr_from_PDG_AST(
                 dat["expressions"][expr_global_id]["AST"], path_to_db
             )
@@ -1216,8 +1216,6 @@ def flatten_list(list_of_lists: list):
                 yield y
         else:
             yield x
-
-
 
 
 def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:

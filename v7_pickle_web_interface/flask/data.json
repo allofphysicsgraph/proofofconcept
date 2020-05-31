@@ -14619,6 +14619,24 @@
         }
     },
     "inference rules": {
+        "apply operator to bra": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-31",
+            "latex": "Apply operator in Eq.~\\ref{eq:#1} to bra; yields Eq.~\\ref{eq:#2}.",
+            "notes": "",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
+        "apply operator to ket": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-31",
+            "latex": "Apply operator in Eq.~\\ref{eq:#1} to ket; yields Eq.~\\ref{eq:#2}.",
+            "notes": "",
+            "number of feeds": 0,
+            "number of inputs": 1,
+            "number of outputs": 1
+        },
         "X cross both sides by": {
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
@@ -17666,6 +17684,27 @@
             "scope": "real",
             "references": [
                 "https://en.wikipedia.org/wiki/Operator_(physics)"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-31"
+        },
+        "3410": {
+            "category": "variable",
+            "latex": "h",
+            "name": "none",
+            "scope": "real",
+            "references": [
+                ""
             ],
             "domain": "any",
             "dimensions": {

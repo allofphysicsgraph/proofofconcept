@@ -6,6 +6,7 @@ from typing import Tuple  # , TextIO
 import logging
 import random
 import re
+
 # https://docs.sympy.org/latest/modules/physics/quantum/dagger.html
 from sympy.physics.quantum.dagger import Dagger
 from sympy.physics.quantum.state import Ket, Bra
@@ -22,6 +23,7 @@ logger = logging.getLogger(__name__)
 # import doctest
 # from validate_inference_rules_sympy import *
 # doctest.run_docstring_examples(split_expr_into_lhs_rhs, globals(), verbose=True)
+
 
 def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
     """
@@ -153,7 +155,6 @@ def get_symbols_from_AST_str(ast_str: str) -> list:
             ]
             # logger.debug(str(list_of_symbols))
     return list_of_symbols
-
 
 
 def remove_latex_presention_markings(latex_expr_str: str) -> str:
