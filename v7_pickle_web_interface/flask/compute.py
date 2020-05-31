@@ -1288,7 +1288,32 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
 
     expr_dict_with_symbol_list = dat["expressions"]
     for expr_global_id, expr_dict in dat["expressions"].items():
-        list_of_symbols = list(flatten_list(expr_dict["AST"]))
+        logger.debug('expr_global_id = ' + expr_global_id)
+        list_of_symbols = []
+        if len(expr_dict["AST"])>0 and ' and pdg' not in expr_dict["AST"] and not expr_dict['AST'].startswith('pdg'):
+            ast_str = expr_dict["AST"]
+            ast_str = ast_str.replace("Function", "sympy.Function")
+            ast_str = ast_str.replace("Rational", "sympy.Rational")
+            ast_str = ast_str.replace("Abs", "sympy.Abs")
+            ast_str = ast_str.replace("Float", "sympy.Float")
+            ast_str = ast_str.replace("cos", "sympy.cos")
+            ast_str = ast_str.replace("sin", "sympy.sin")
+            ast_str = ast_str.replace("Equality", "sympy.Equality")
+            ast_str = ast_str.replace("Integer", "sympy.Integer")
+            ast_str = ast_str.replace("Add", "sympy.Add")
+            ast_str = ast_str.replace("Symbol", "sympy.Symbol")
+            ast_str = ast_str.replace("Mul", "sympy.Mul")
+            ast_str = ast_str.replace("Pow", "sympy.Pow")
+            ast_str = ast_str.replace("Integral", "sympy.Integral")
+            ast_str = ast_str.replace("Tuple", "sympy.Tuple")
+            expr = eval(ast_str)
+            logger.debug('expr is ' + str(expr))
+            list_of_symbols = [str(x).replace('pdg','') for x in list(expr.free_symbols) if str(x).startswith('pdg')]
+            logger.debug(str(list_of_symbols))
+        #TODO this is temporary!
+        else:
+            list_of_symbols = [str(x).replace('pdg','') for x in expr_dict["AST"].split(' and ')]
+            logger.debug(str(list_of_symbols))
 
         list_of_tuples = []
         for this_symbol in list_of_symbols:

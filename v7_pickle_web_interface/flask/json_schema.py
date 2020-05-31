@@ -114,7 +114,7 @@ schema = {
                                                       {"type": "object", # expression ID
                                                        #"additionalProperties": False,
                                                        "properties": {
-                                                         'AST': {'type': 'array'},
+                                                         'AST': {'type': 'string'},
                                                          'notes': {'type': 'string'},
                                                          'name': {'type': 'string'},
                                                          'author': {'type': 'string'},
