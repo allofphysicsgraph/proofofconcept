@@ -27,6 +27,9 @@ logger = logging.getLogger(__name__)
 
 def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
     """
+    for input, assume the latex string has had presentation-related syntax removed
+
+    return the name of the image PNG file
     >>> create_AST_png_for_latex('a = b','filename')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -63,13 +66,14 @@ def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
     return output_filename
 
 
-def list_symbols_used_in_expr_from_sympy(expr_latex: str) -> list:
+def list_symbols_used_in_latex_from_sympy(expr_latex: str) -> list:
     """
     input: latex expression as string
+    for input, assume the latex string has had presentation-related syntax removed
 
     returns list of symbols detected by Sympy; each element is a string
 
-    >>> list_symbols_used_in_expr_from_sympy('a = b')
+    >>> list_symbols_used_in_latex_from_sympy('a = b')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -89,7 +93,7 @@ def list_symbols_used_in_expr_from_sympy(expr_latex: str) -> list:
     return list(set(list_of_symbols))
 
 
-def get_sympy_expr_from_AST_str(ast_str: str) -> str:
+def get_sympy_expr_from_AST_str(ast_str: str):
     """
     returns a sympy expression as a string intended for evaluation
 
@@ -100,6 +104,8 @@ def get_sympy_expr_from_AST_str(ast_str: str) -> str:
     "sympy.Mul(sympy.Symbol('pdg1939'), sympy.Pow(sympy.Mul(sympy.Integer(2), sympy.Symbol('pdg9139')), sympy.Integer(-1)))"
 
     """
+    logger.info("[trace]")
+
     ast_str = ast_str.replace("Function", "sympy.Function")
     ast_str = ast_str.replace("Rational", "sympy.Rational")
     ast_str = ast_str.replace("Abs", "sympy.Abs")
@@ -116,27 +122,27 @@ def get_sympy_expr_from_AST_str(ast_str: str) -> str:
     ast_str = ast_str.replace("Integral", "sympy.Integral")
     ast_str = ast_str.replace("Tuple", "sympy.Tuple")
 
-    return ast_str
+    try:
+        return eval(ast_str)
+    except Exception as err:
+        raise Exception('unable to eval AST for "' + ast_str + '"')
+    return sympy.Symbol("nothing")
 
 
-def get_symbols_from_AST_str(ast_str: str) -> list:
+def get_symbol_IDs_from_AST_str(ast_str: str) -> list:
     """
-    >>> get_symbols_from_AST_str("Pow(Symbol('pdg9139'), Integer(2))")
+    >>> get_symbol_IDs_from_AST_str("Pow(Symbol('pdg9139'), Integer(2))")
     ['9139']
 
-    >>> get_symbols_from_AST_str("Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))")
+    >>> get_symbol_IDs_from_AST_str("Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))")
     ['1939', '9139']
     """
+    logger.info("[trace]")
     list_of_symbols = []
     if True:
-        if (
-            len(ast_str) > 0
-            and " and pdg" not in ast_str
-            and not ast_str.startswith("pdg")
-        ):
+        if len(ast_str) > 0 and not ast_str.startswith("pdg"):
             # logger.debug(ast_str)
-            ast_str = get_sympy_expr_from_AST_str(ast_str)
-            expr = eval(ast_str)
+            expr = get_sympy_expr_from_AST_str(ast_str)
             # logger.debug("expr is " + str(expr))
             list_of_symbols = [
                 str(x).replace("pdg", "")
@@ -151,9 +157,11 @@ def get_symbols_from_AST_str(ast_str: str) -> list:
         # TODO this is temporary!
         else:
             list_of_symbols = [
-                str(x).replace("pdg", "") for x in ast_str.split(" and ")
+                str(x).replace("pdg", "")
+                for x in ast_str.split(" and ")
+                if str(x).startswith("pdg")
             ]
-            # logger.debug(str(list_of_symbols))
+    logger.debug(str(list_of_symbols))
     return list_of_symbols
 
 
