@@ -77,33 +77,41 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     for connection_type in ["inputs", "outputs"]:
         indx = 0
         for expr_local_id in step_dict[connection_type]:
-            latex = dat["expressions"][dat["expr local to global"][expr_local_id]][
-                "latex"
+            ast_str = dat["expressions"][dat["expr local to global"][expr_local_id]][
+                "AST"
             ]
-            LHS, RHS = latex_to_sympy.split_expr_into_lhs_rhs(latex)
+            ast_str = latex_to_sympy.get_sympy_expr_from_AST_str(ast_str)
+            expr = eval(ast_str)
+            # LHS, RHS = latex_to_sympy.split_expr_into_lhs_rhs(latex)
+            LHS = expr.lhs
+            RHS = expr.rhs
             latex_dict[connection_type[:-1]][indx] = {"LHS": LHS, "RHS": RHS}
             indx += 1
     indx = 0
     for expr_local_id in step_dict["feeds"]:
-        feed_latex_str = dat["expressions"][dat["expr local to global"][expr_local_id]][
-            "latex"
-        ]
-        if "=" in feed_latex_str:
-            raise Exception("why is there an = in this feed? " + feed_latex_str)
-        if "\\to" in feed_latex_str:
-            latex_dict["feed"][indx] = []
-            for entry in feed_latex_str.split("\\to"):
-                cleaned_entry = latex_to_sympy.remove_latex_presention_markings(entry)
-                logger.debug(cleaned_entry)
-                latex_dict["feed"][indx].append(sympy.sympify(cleaned_entry))
-        else:
-            logger.debug(feed_latex_str)
-            cleaned_feed = latex_to_sympy.remove_latex_presention_markings(
-                feed_latex_str
-            )
-            logger.debug(cleaned_feed)
-            latex_dict["feed"][indx] = sympy.sympify(cleaned_feed)
+        ast_str = dat["expressions"][dat["expr local to global"][expr_local_id]]["AST"]
+        # if "=" in feed_latex_str:
+        #    raise Exception("why is there an = in this feed? " + feed_latex_str)
+        # if "\\to" in feed_latex_str:
+        #    latex_dict["feed"][indx] = []
+        #    for entry in feed_latex_str.split("\\to"):
+        #        cleaned_entry = latex_to_sympy.remove_latex_presention_markings(entry)
+        #        logger.debug(cleaned_entry)
+        #        latex_dict["feed"][indx].append(sympy.sympify(cleaned_entry))
+        # else:
+        #    logger.debug(feed_latex_str)
+        #    cleaned_feed = latex_to_sympy.remove_latex_presention_markings(
+        #        feed_latex_str
+        #    )
+        #    logger.debug(cleaned_feed)
+        #    latex_dict["feed"][indx] = sympy.sympify(cleaned_feed)
+        ast_str = latex_to_sympy.get_sympy_expr_from_AST_str(ast_str)
+        latex_dict["feed"][indx] = eval(ast_str)
         indx += 1
+
+    logger.debug("step_id = " + step_id)
+    logger.debug(str(latex_dict))
+    logger.debug(step_dict["inf rule"])
 
     if step_dict["inf rule"] == "add X to both sides":
         logger.info("[trace end " + trace_id + "]")
@@ -339,6 +347,36 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     elif step_dict["inf rule"] == "multiply expr 1 by expr 2":
         logger.info("[trace end " + trace_id + "]")
         return multiply_expr_by_expr(latex_dict)
+    elif step_dict["inf rule"] == "apply operator to bra":
+        logger.info("[trace end " + trace_id + "]")
+        return apply_operator_to_bra(latex_dict)
+    elif step_dict["inf rule"] == "apply operator to ket":
+        logger.info("[trace end " + trace_id + "]")
+        return apply_operator_to_ket(latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
+    #    elif step_dict["inf rule"] == "":
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return (latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        logger.info("[trace end " + trace_id + "]")
     #        return (latex_dict)
@@ -1881,6 +1919,42 @@ def multiply_expr_by_expr(latex_dict: dict) -> str:
     >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> multiply_expr_by_expr(latex_dict)
     'step is valid'
+    """
+    logger.info("[trace]")
+    return "no check performed"
+
+
+def apply_operator_to_bra(latex_dict: dict) -> str:
+    """
+    given 
+    x = \\langle\\psi_{\\alpha}| \\hat{A} |\\psi_{\\beta}\\rangle
+    return
+    x = \\langle\\psi_{\\alpha}| a_{\\alpha} |\psi_{\\beta} \\rangle
+
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> apply_operator_to_bra(latex_dict)
+    'step is valid'
+    """
+    logger.info("[trace]")
+    return "no check performed"
+
+
+def apply_operator_to_ket(latex_dict: dict) -> str:
+    """
+    given 
+    x = \\langle\\psi_{\\alpha}| \\hat{A} |\\psi_{\\beta}\\rangle
+    return
+    x = \\langle\\psi_{\\alpha}| a_{\\beta} |\psi_{\\beta} \\rangle
+
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> apply_operator_to_ket(latex_dict)
+    'step is valid'   
     """
     logger.info("[trace]")
     return "no check performed"

@@ -36,34 +36,38 @@ def validate_dimensions(expr_global_id: str, path_to_db: str) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
+    return "not checked"
+
     # logger.debug('expr_global_id = ' + expr_global_id)
 
     dat = clib.read_db(path_to_db)
 
     if expr_global_id in dat["expressions"].keys():
-        latex_expr_str = dat["expressions"][expr_global_id]["latex"]
+        ast_str = dat["expressions"][expr_global_id]["AST"]
     else:
         raise Exception(expr_global_id + " is not in dat expressions")
 
-    LHS, RHS = latex_to_sympy.split_expr_into_lhs_rhs(latex_expr_str)
+    ast_str = latex_to_sympy.get_sympy_expr_from_AST_str(ast_str)
+    expr = eval(ast_str)
+    LHS = expr.lhs
+    RHS = expr.rhs
 
     logger.debug("LHS = " + str(LHS))
     logger.debug("RHS = " + str(RHS))
 
-    list_of_symbols = latex_to_sympy.get_symbols_from_latex(latex_expr_str)
+    list_of_symbols = latex_to_sympy.get_symbols_from_latex(
+        dat["expressions"][expr_global_id]["AST"]
+    )
     logger.debug("list of symbols = " + str(list_of_symbols))
 
     # for each symbol, what is the dimension according to PDG?
     logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
 
     list_of_pairs = []
-    for sympy_symb in list_of_symbols:
+    for sympy_symb_ID in list_of_symbols:
         for pdg_symb_id in dat["expressions"][expr_global_id]["AST"]:
-            if str(sympy_symb) == dat["symbols"][pdg_symb_id]["latex"]:
-                list_of_pairs.append((str(sympy_symb), pdg_symb_id))
-                logger.debug(
-                    "sympy symbol " + str(sympy_symb) + " is PDG symbol " + pdg_symb_id
-                )
+            if sympy_symb_ID == pdg_symb_id:
+                list_of_pairs.append(sympy_symb_ID)
                 sym_dim = ""
                 for dim, power in dat["symbols"][pdg_symb_id]["dimensions"].items():
                     #                    logger.debug(dim + " to the " + str(power))
