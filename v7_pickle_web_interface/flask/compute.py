@@ -30,6 +30,12 @@ import hashlib
 # image dimensions in pixels
 import cv2  # type: ignore
 import sympy  # type: ignore
+
+# https://docs.sympy.org/latest/modules/physics/quantum/dagger.html
+from sympy.physics.quantum.dagger import Dagger
+from sympy.physics.quantum.state import Ket, Bra
+from sympy.physics.quantum.operator import Operator
+
 from sympy.parsing.latex import parse_latex  # type: ignore
 from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
 import subprocess  # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
@@ -1278,6 +1284,74 @@ def flatten_list(list_of_lists: list):
             yield x
 
 
+def get_sympy_expr_from_AST_str(ast_str: str) -> str:
+    """
+    returns a sympy expression as a string intended for evaluation
+
+    >>> get_sympy_expr_from_AST_str("Pow(Symbol('pdg9139'), Integer(2))")
+    "sympy.Pow(sympy.Symbol('pdg9139'), sympy.Integer(2))"
+
+    >>> get_sympy_expr_from_AST_str("Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))")
+    "sympy.Mul(sympy.Symbol('pdg1939'), sympy.Pow(sympy.Mul(sympy.Integer(2), sympy.Symbol('pdg9139')), sympy.Integer(-1)))"
+
+    """
+    ast_str = ast_str.replace("Function", "sympy.Function")
+    ast_str = ast_str.replace("Rational", "sympy.Rational")
+    ast_str = ast_str.replace("Abs", "sympy.Abs")
+    ast_str = ast_str.replace("Float", "sympy.Float")
+    ast_str = ast_str.replace("exp", "sympy.exp")
+    ast_str = ast_str.replace("cos", "sympy.cos")
+    ast_str = ast_str.replace("sin", "sympy.sin")
+    ast_str = ast_str.replace("Equality", "sympy.Equality")
+    ast_str = ast_str.replace("Integer", "sympy.Integer")
+    ast_str = ast_str.replace("Add", "sympy.Add")
+    ast_str = ast_str.replace("Symbol", "sympy.Symbol")
+    ast_str = ast_str.replace("Mul", "sympy.Mul")
+    ast_str = ast_str.replace("Pow", "sympy.Pow")
+    ast_str = ast_str.replace("Integral", "sympy.Integral")
+    ast_str = ast_str.replace("Tuple", "sympy.Tuple")
+
+    return ast_str
+
+
+def get_symbols_from_AST_str(ast_str: str) -> list:
+    """
+    >>> get_symbols_from_AST_str("Pow(Symbol('pdg9139'), Integer(2))")
+    ['9139']
+
+    >>> get_symbols_from_AST_str("Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))")
+    ['1939', '9139']
+    """
+    list_of_symbols = []
+    if True:
+        if (
+            len(ast_str) > 0
+            and " and pdg" not in ast_str
+            and not ast_str.startswith("pdg")
+        ):
+            # logger.debug(ast_str)
+            ast_str = get_sympy_expr_from_AST_str(ast_str)
+            expr = eval(ast_str)
+            # logger.debug("expr is " + str(expr))
+            list_of_symbols = [
+                str(x).replace("pdg", "")
+                for x in list(expr.free_symbols)
+                if str(x).startswith("pdg")
+            ]
+            if (
+                "exp" in ast_str
+            ):  # exp is handled as a Sympy function but is actually a symbol (specifically, a constant)
+                list_of_symbols.append("2718")
+            # logger.debug(str(list_of_symbols))
+        # TODO this is temporary!
+        else:
+            list_of_symbols = [
+                str(x).replace("pdg", "") for x in ast_str.split(" and ")
+            ]
+            # logger.debug(str(list_of_symbols))
+    return list_of_symbols
+
+
 def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
     """
     >>> generate_expr_dict_with_symbol_list()
@@ -1288,47 +1362,8 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
 
     expr_dict_with_symbol_list = dat["expressions"]
     for expr_global_id, expr_dict in dat["expressions"].items():
-        logger.debug("expr_global_id = " + expr_global_id)
-        list_of_symbols = []
-        if (
-            len(expr_dict["AST"]) > 0
-            and " and pdg" not in expr_dict["AST"]
-            and not expr_dict["AST"].startswith("pdg")
-        ):
-            ast_str = expr_dict["AST"]
-            ast_str = ast_str.replace("Function", "sympy.Function")
-            ast_str = ast_str.replace("Rational", "sympy.Rational")
-            ast_str = ast_str.replace("Abs", "sympy.Abs")
-            ast_str = ast_str.replace("Float", "sympy.Float")
-            ast_str = ast_str.replace("exp", "sympy.exp")
-            ast_str = ast_str.replace("cos", "sympy.cos")
-            ast_str = ast_str.replace("sin", "sympy.sin")
-            ast_str = ast_str.replace("Equality", "sympy.Equality")
-            ast_str = ast_str.replace("Integer", "sympy.Integer")
-            ast_str = ast_str.replace("Add", "sympy.Add")
-            ast_str = ast_str.replace("Symbol", "sympy.Symbol")
-            ast_str = ast_str.replace("Mul", "sympy.Mul")
-            ast_str = ast_str.replace("Pow", "sympy.Pow")
-            ast_str = ast_str.replace("Integral", "sympy.Integral")
-            ast_str = ast_str.replace("Tuple", "sympy.Tuple")
-            expr = eval(ast_str)
-            logger.debug("expr is " + str(expr))
-            list_of_symbols = [
-                str(x).replace("pdg", "")
-                for x in list(expr.free_symbols)
-                if str(x).startswith("pdg")
-            ]
-            if (
-                "exp" in expr_dict["AST"]
-            ):  # exp is handled as a Sympy function but is actually a symbol (specifically, a constant)
-                list_of_symbols.append("2718")
-            logger.debug(str(list_of_symbols))
-        # TODO this is temporary!
-        else:
-            list_of_symbols = [
-                str(x).replace("pdg", "") for x in expr_dict["AST"].split(" and ")
-            ]
-            logger.debug(str(list_of_symbols))
+        # logger.debug("expr_global_id = " + expr_global_id)
+        list_of_symbols = get_symbols_from_AST_str(expr_dict["AST"])
 
         list_of_tuples = []
         for this_symbol in list_of_symbols:
@@ -1346,7 +1381,7 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
 
 def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
     """
-    >>>
+    >>> get_sorted_list_of_symbols_not_in_use()
     """
     # not logging here
     symbol_popularity_dict = popularity_of_symbols_in_expressions(path_to_db)
@@ -1361,8 +1396,9 @@ def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
 
 def get_sorted_list_of_operators_not_in_use(path_to_db: str) -> list:
     """
-    >>>
+    >>> get_sorted_list_of_operators_not_in_use()
     """
+    # not logging here
     operator_popularity_dict = popularity_of_operators(path_to_db)
     list_of_operators_not_in_use = []
     for operator, list_of_deriv_used_in in operator_popularity_dict.items():
@@ -1860,9 +1896,10 @@ def popularity_of_symbols_in_expressions(path_to_db: str) -> dict:
         list_of_uses = []
         for expr_global_id, expr_dict in dat["expressions"].items():
             if "AST" in expr_dict.keys():
-                flt_dict = flatten_dict(expr_dict["AST"])
-                list_of_symbols_for_this_expr = list(flt_dict.values())
-            else:
+                list_of_symbols_for_this_expr = get_symbols_from_AST_str(
+                    expr_dict["AST"]
+                )
+            else:  # no AST in expr_dict
                 list_of_symbols_for_this_expr = []
             if symbol_id in list_of_symbols_for_this_expr:
                 list_of_uses.append(expr_global_id)
