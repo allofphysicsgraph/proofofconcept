@@ -23,15 +23,17 @@
       {{ dat["expressions"][expr_id]['latex'] }}
     </td>
     <td>
-      <UL>
-      {% for symbol_tup in expr_dict_with_symbol_list[expr_id]["list of symbols"] %}
-        <LI>
-          <a href="{{ url_for('list_all_symbols') }}?referrer=_table_of_expressions#{{ symbol_tup[0] }}">
-            {{ symbol_tup[1] }}
-          </a>
-        </LI>
-      {% endfor %}
-      </UL>
+      {% if expr_id in expr_dict_with_symbol_list.keys() %}
+        <UL>
+        {% for symbol_tup in expr_dict_with_symbol_list[expr_id]["list of symbols"] %}
+          <LI>
+            <a href="{{ url_for('list_all_symbols') }}?referrer=_table_of_expressions#{{ symbol_tup[0] }}">
+              {{ symbol_tup[1] }}
+            </a>
+          </LI>
+        {% endfor %}
+       </UL>
+      {% endif %}
     </td>
     <td>{{ dat["expressions"][expr_id]['name'] }}</td>
     <td>
