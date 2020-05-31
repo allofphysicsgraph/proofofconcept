@@ -1288,9 +1288,13 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
 
     expr_dict_with_symbol_list = dat["expressions"]
     for expr_global_id, expr_dict in dat["expressions"].items():
-        logger.debug('expr_global_id = ' + expr_global_id)
+        logger.debug("expr_global_id = " + expr_global_id)
         list_of_symbols = []
-        if len(expr_dict["AST"])>0 and ' and pdg' not in expr_dict["AST"] and not expr_dict['AST'].startswith('pdg'):
+        if (
+            len(expr_dict["AST"]) > 0
+            and " and pdg" not in expr_dict["AST"]
+            and not expr_dict["AST"].startswith("pdg")
+        ):
             ast_str = expr_dict["AST"]
             ast_str = ast_str.replace("Function", "sympy.Function")
             ast_str = ast_str.replace("Rational", "sympy.Rational")
@@ -1307,12 +1311,18 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
             ast_str = ast_str.replace("Integral", "sympy.Integral")
             ast_str = ast_str.replace("Tuple", "sympy.Tuple")
             expr = eval(ast_str)
-            logger.debug('expr is ' + str(expr))
-            list_of_symbols = [str(x).replace('pdg','') for x in list(expr.free_symbols) if str(x).startswith('pdg')]
+            logger.debug("expr is " + str(expr))
+            list_of_symbols = [
+                str(x).replace("pdg", "")
+                for x in list(expr.free_symbols)
+                if str(x).startswith("pdg")
+            ]
             logger.debug(str(list_of_symbols))
-        #TODO this is temporary!
+        # TODO this is temporary!
         else:
-            list_of_symbols = [str(x).replace('pdg','') for x in expr_dict["AST"].split(' and ')]
+            list_of_symbols = [
+                str(x).replace("pdg", "") for x in expr_dict["AST"].split(" and ")
+            ]
             logger.debug(str(list_of_symbols))
 
         list_of_tuples = []
