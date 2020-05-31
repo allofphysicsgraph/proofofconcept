@@ -2941,8 +2941,8 @@ def review_derivation(deriv_id: str):
             try:
                 step_hash = compute.hash_of_step(deriv_id, step_id, path_to_db)
             except Exception as err:
-                logger.error(step_id + str(err))
-                flash(step_id + str(err))
+                logger.error(step_id + ": " + str(err))
+                flash("in step " + step_id + ": " + str(err))
             # if step_hash in database:
             # else:
             try:
@@ -2950,8 +2950,8 @@ def review_derivation(deriv_id: str):
                     deriv_id, step_id, path_to_db
                 )
             except Exception as err:
-                logger.error(step_id + str(err))
-                flash(step_id + str(err))
+                logger.error(step_id + ": " + str(err))
+                flash("in step " + step_id + ": " + str(err))
                 derivation_validity_dict[step_id] = "failed"
             # check dimensions
             if derivation_validity_dict[step_id] == "valid":
@@ -2964,8 +2964,8 @@ def review_derivation(deriv_id: str):
                             expr_global_id
                         ] = vdim.validate_dimensions(expr_global_id, path_to_db)
                     except Exception as err:
-                        logger.error(step_id + str(err))
-                        flash(step_id + str(err))
+                        logger.error(step_id + ": " + str(err))
+                        flash("in step " + step_id + ": " + str(err))
                         logger.debug(step_id + ", " + expr_global_id)
                         logger.debug(derivation_validity_dict[step_id][expr_global_id])
                         derivation_validity_dict[step_id][expr_global_id] = "failed"
