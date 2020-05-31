@@ -43,6 +43,7 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
+    logger.debug("step ID = " + step_id)
 
     #    return "no check performed for improved latency"
 
@@ -77,37 +78,44 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     for connection_type in ["inputs", "outputs"]:
         indx = 0
         for expr_local_id in step_dict[connection_type]:
-            ast_str = dat["expressions"][dat["expr local to global"][expr_local_id]][
-                "AST"
-            ]
-            ast_str = latex_to_sympy.get_sympy_expr_from_AST_str(ast_str)
-            expr = eval(ast_str)
-            # LHS, RHS = latex_to_sympy.split_expr_into_lhs_rhs(latex)
-            LHS = expr.lhs
-            RHS = expr.rhs
-            latex_dict[connection_type[:-1]][indx] = {"LHS": LHS, "RHS": RHS}
-            indx += 1
+            expr_global_id = dat["expr local to global"][expr_local_id]
+            ast_str = dat["expressions"][expr_global_id]["AST"]
+            logger.debug(
+                step_id + " " + expr_local_id + " " + expr_global_id + " is " + ast_str
+            )
+            if len(ast_str) > 0:
+                expr = latex_to_sympy.get_sympy_expr_from_AST_str(ast_str)
+                LHS = expr.lhs
+                RHS = expr.rhs
+                latex_dict[connection_type[:-1]][indx] = {"LHS": LHS, "RHS": RHS}
+                indx += 1
+            else:
+                raise Exception(
+                    "missing AST for expr "
+                    + expr_global_id
+                    + ", aka "
+                    + expr_local_id
+                    + " in step "
+                    + step_id
+                )
     indx = 0
     for expr_local_id in step_dict["feeds"]:
-        ast_str = dat["expressions"][dat["expr local to global"][expr_local_id]]["AST"]
-        # if "=" in feed_latex_str:
-        #    raise Exception("why is there an = in this feed? " + feed_latex_str)
-        # if "\\to" in feed_latex_str:
-        #    latex_dict["feed"][indx] = []
-        #    for entry in feed_latex_str.split("\\to"):
-        #        cleaned_entry = latex_to_sympy.remove_latex_presention_markings(entry)
-        #        logger.debug(cleaned_entry)
-        #        latex_dict["feed"][indx].append(sympy.sympify(cleaned_entry))
-        # else:
-        #    logger.debug(feed_latex_str)
-        #    cleaned_feed = latex_to_sympy.remove_latex_presention_markings(
-        #        feed_latex_str
-        #    )
-        #    logger.debug(cleaned_feed)
-        #    latex_dict["feed"][indx] = sympy.sympify(cleaned_feed)
-        ast_str = latex_to_sympy.get_sympy_expr_from_AST_str(ast_str)
-        latex_dict["feed"][indx] = eval(ast_str)
-        indx += 1
+        expr_global_id = dat["expr local to global"][expr_local_id]
+        ast_str = dat["expressions"][expr_global_id]["AST"]
+        if len(ast_str) > 0:
+            latex_dict["feed"][indx] = latex_to_sympy.get_sympy_expr_from_AST_str(
+                ast_str
+            )
+            indx += 1
+        else:
+            raise Exception(
+                "missing AST for expr "
+                + expr_global_id
+                + ", aka "
+                + expr_local_id
+                + " in step "
+                + step_id
+            )
 
     logger.debug("step_id = " + step_id)
     logger.debug(str(latex_dict))
