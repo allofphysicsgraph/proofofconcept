@@ -221,7 +221,7 @@ def update_symbol_in_step(
 
     for expr_global_id in list_expr_in_step(deriv_id, step_id, path_to_db):
         expr_latex = dat["expressions"][expr_global_id]["latex"]
-        symbols_in_expr = list_symbols_used_in_expr_from_sympy(expr_latex)
+        symbols_in_expr = list_symbols_used_in_latex_from_sympy(expr_latex)
         if sympy_symbol in symbols_in_expr:
             dat["expressions"][expr_global_id]["AST"].append(symbol_id)
 
@@ -342,7 +342,7 @@ def fill_in_missing_PDG_AST_ids(
             )
             for expr_global_id in list_expr_in_step(deriv_id, step_id, path_to_db):
                 expr_latex = dat["expressions"][expr_global_id]["latex"]
-                symbols_in_expr = list_symbols_used_in_expr_from_sympy(expr_latex)
+                symbols_in_expr = list_symbols_used_in_latex_from_sympy(expr_latex)
                 if sympy_symbol_without_id in symbols_in_expr:
                     dat["expressions"][expr_global_id]["AST"].append(
                         list_of_candidate_ids[0]
@@ -1229,15 +1229,17 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
     expr_dict_with_symbol_list = dat["expressions"]
     for expr_global_id, expr_dict in dat["expressions"].items():
         # logger.debug("expr_global_id = " + expr_global_id)
-        list_of_symbols = latex_to_sympy.get_symbols_from_AST_str(expr_dict["AST"])
+        list_of_symbol_IDs = latex_to_sympy.get_symbol_IDs_from_AST_str(
+            expr_dict["AST"]
+        )
 
         list_of_tuples = []
-        for this_symbol in list_of_symbols:
+        for symbol_ID in list_of_symbol_IDs:
             try:
-                symbol_latex = dat["symbols"][this_symbol]["latex"]
+                symbol_latex = dat["symbols"][symbol_ID]["latex"]
             except:
                 symbol_latex = ""
-            list_of_tuples.append((this_symbol, symbol_latex))
+            list_of_tuples.append((symbol_ID, symbol_latex))
         expr_dict_with_symbol_list[expr_global_id]["list of symbols"] = list_of_tuples
 
     # logger.debug(str(expr_dict_with_symbol_list))
@@ -1762,12 +1764,13 @@ def popularity_of_symbols_in_expressions(path_to_db: str) -> dict:
         list_of_uses = []
         for expr_global_id, expr_dict in dat["expressions"].items():
             if "AST" in expr_dict.keys():
-                list_of_symbols_for_this_expr = latex_to_sympy.get_symbols_from_AST_str(
+                list_of_symbol_IDs_for_this_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
                     expr_dict["AST"]
                 )
             else:  # no AST in expr_dict
-                list_of_symbols_for_this_expr = []
-            if symbol_id in list_of_symbols_for_this_expr:
+                raise Exception("no AST in " + expr_global_id)
+                list_of_symbol_IDs_for_this_expr = []
+            if symbol_id in list_of_symbol_IDs_for_this_expr:
                 list_of_uses.append(expr_global_id)
         symbol_popularity_dict[symbol_id] = list_of_uses
 

@@ -38,22 +38,22 @@ def create_sql_connection(db_file):
     https://charlesleifer.com/blog/going-fast-with-sqlite-and-python/
     >>>
     """
-#    trace_id = str(random.randint(1000000, 9999999))
-#    logger.info("[trace start " + trace_id + "]")
+    #    trace_id = str(random.randint(1000000, 9999999))
+    #    logger.info("[trace start " + trace_id + "]")
     logger.info("[trace]")
     if os.path.exists(db_file):
         try:
             my_db = sqlite3.connect(db_file)
-            #logger.info("[trace end " + trace_id + "]")
+            # logger.info("[trace end " + trace_id + "]")
             return my_db
         except sqlite3.Error:
             logger.error(str(sqlite3.Error))
             raise Exception(str(sqlite3.Error))
     else:
         logger.info(db_file + " does not seem to exist; creating it")
-        #logger.info("[trace end " + trace_id + "]")
+        # logger.info("[trace end " + trace_id + "]")
         return sqlite3.connect(db_file)
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return None
 
 
@@ -73,8 +73,8 @@ def read_db(path_to_db: str) -> dict:
     """
     >>> read_db('data.json')
     """
-    #trace_id = str(random.randint(1000000, 9999999))
-    #logger.info("[trace start " + trace_id + "]")
+    # trace_id = str(random.randint(1000000, 9999999))
+    # logger.info("[trace start " + trace_id + "]")
     logger.info("[trace]")
 
     # OLD implementation:
@@ -109,7 +109,7 @@ def read_db(path_to_db: str) -> dict:
         dat = json.loads(row[0])
     conn.close()
 
-    #logger.info("[trace end " + trace_id + "]")
+    # logger.info("[trace end " + trace_id + "]")
     return dat
 
 
