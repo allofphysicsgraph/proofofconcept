@@ -30,13 +30,6 @@ import hashlib
 # image dimensions in pixels
 import cv2  # type: ignore
 import sympy  # type: ignore
-
-# https://docs.sympy.org/latest/modules/physics/quantum/dagger.html
-from sympy.physics.quantum.dagger import Dagger
-from sympy.physics.quantum.state import Ket, Bra
-from sympy.physics.quantum.operator import Operator
-
-from sympy.parsing.latex import parse_latex  # type: ignore
 from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
 import subprocess  # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 import random
@@ -49,6 +42,7 @@ import json_schema  # a PDG file
 import validate_inference_rules_sympy as vir  # a PDG file
 import common_lib as clib  # a PDG file
 import logs_to_stats
+import latex_to_sympy
 from typing import Tuple, TextIO, List  # mypy
 from typing_extensions import (
     TypedDict,
@@ -394,30 +388,6 @@ def rank_candidate_pdg_symbols_for_sympy_symbol(
     return list_of_candidate_symbol_ids
 
 
-def list_symbols_used_in_expr_from_sympy(expr_latex: str) -> list:
-    """
-    input: latex expression as string
-
-    returns list of symbols detected by Sympy; each element is a string
-
-    >>> list_symbols_used_in_expr_from_sympy('a = b')
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
-    list_of_symbols = []
-    try:
-        symp_lat = parse_latex(expr_latex)
-    except sympy.SympifyError as err:
-        logger.error(err)
-        raise Exception("Sympy unable to parse latex (1): " + expr_latex)
-    except sympy.parsing.latex.errors.LaTeXParsingError as err:
-        logger.error(err)
-        raise Exception("Sympy unable to parse latex (2): " + expr_latex)
-
-    for symb in symp_lat.atoms(sympy.Symbol):
-        list_of_symbols.append(str(symb))
-    logger.info("[trace end " + trace_id + "]")
-    return list(set(list_of_symbols))
 
 
 def list_symbols_used_in_expr_from_PDG_AST(ast_as_list: list, path_to_db: str) -> list:
@@ -528,7 +498,7 @@ def list_symbols_used_in_step_from_sympy(
                 expr_global_id = dat["expr local to global"][local_id]
                 expr_latex = dat["expressions"][expr_global_id]["latex"]
                 # logger.debug(expr_latex)
-                symbols_per_expr = list_symbols_used_in_expr_from_sympy(expr_latex)
+                symbols_per_expr = latex_to_sympy.list_symbols_used_in_expr_from_sympy(expr_latex)
                 for symb in symbols_per_expr:
                     list_of_symbols.append(str(symb))
     else:  # step_id not available
@@ -539,42 +509,6 @@ def list_symbols_used_in_step_from_sympy(
     return list_of_symbols
 
 
-def create_AST_png_for_latex(expr_latex: str, output_filename: str) -> str:
-    """
-    >>> create_AST_png_for_latex('a = b','filename')
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
-
-    try:
-        symp_lat = parse_latex(expr_latex)
-    except sympy.SympifyError as err:
-        logger.error(err)
-        raise Exception("Sympy unable to parse latex: " + expr_latex)
-        sympy_lat = ""
-    graphviz_of_AST_for_expr = sympy.printing.dot.dotprint(symp_lat)
-    dot_filename = "tmp.dot"
-    with open(dot_filename, "w") as fil:
-        fil.write(graphviz_of_AST_for_expr)
-
-    # neato -Tpng graphviz.dot > /home/appuser/app/static/graphviz.png
-    if not os.path.exists("/home/appuser/app/static/" + output_filename):
-        process = subprocess.run(
-            ["dot", "-Tpng", dot_filename, "-o" + output_filename],
-            stdout=PIPE,
-            stderr=PIPE,
-            timeout=proc_timeout,
-        )
-        neato_stdout = process.stdout.decode("utf-8")
-        if len(neato_stdout) > 0:
-            logger.debug(neato_stdout)
-        neato_stderr = process.stderr.decode("utf-8")
-        if len(neato_stderr) > 0:
-            logger.debug(neato_stderr)
-
-        shutil.move(output_filename, "/home/appuser/app/static/" + output_filename)
-    logger.info("[trace end " + trace_id + "]")
-    return output_filename
 
 
 def create_AST_png_per_expression_in_step(
@@ -597,9 +531,9 @@ def create_AST_png_per_expression_in_step(
             expr_latex = dat["expressions"][expr_global_id]["latex"]
             # logger.debug('latex = ' + expr_latex)
             output_filename = expr_global_id + "_ast.png"
-            create_AST_png_for_latex(expr_latex, output_filename)
+            latex_to_sympy.create_AST_png_for_latex(expr_latex, output_filename)
 
-            symbols_from_sympy = list_symbols_used_in_expr_from_sympy(expr_latex)
+            symbols_from_sympy = latex_to_sympy.list_symbols_used_in_expr_from_sympy(expr_latex)
             symbols_from_PDG_AST = list_symbols_used_in_expr_from_PDG_AST(
                 dat["expressions"][expr_global_id]["AST"], path_to_db
             )
@@ -1284,72 +1218,6 @@ def flatten_list(list_of_lists: list):
             yield x
 
 
-def get_sympy_expr_from_AST_str(ast_str: str) -> str:
-    """
-    returns a sympy expression as a string intended for evaluation
-
-    >>> get_sympy_expr_from_AST_str("Pow(Symbol('pdg9139'), Integer(2))")
-    "sympy.Pow(sympy.Symbol('pdg9139'), sympy.Integer(2))"
-
-    >>> get_sympy_expr_from_AST_str("Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))")
-    "sympy.Mul(sympy.Symbol('pdg1939'), sympy.Pow(sympy.Mul(sympy.Integer(2), sympy.Symbol('pdg9139')), sympy.Integer(-1)))"
-
-    """
-    ast_str = ast_str.replace("Function", "sympy.Function")
-    ast_str = ast_str.replace("Rational", "sympy.Rational")
-    ast_str = ast_str.replace("Abs", "sympy.Abs")
-    ast_str = ast_str.replace("Float", "sympy.Float")
-    ast_str = ast_str.replace("exp", "sympy.exp")
-    ast_str = ast_str.replace("cos", "sympy.cos")
-    ast_str = ast_str.replace("sin", "sympy.sin")
-    ast_str = ast_str.replace("Equality", "sympy.Equality")
-    ast_str = ast_str.replace("Integer", "sympy.Integer")
-    ast_str = ast_str.replace("Add", "sympy.Add")
-    ast_str = ast_str.replace("Symbol", "sympy.Symbol")
-    ast_str = ast_str.replace("Mul", "sympy.Mul")
-    ast_str = ast_str.replace("Pow", "sympy.Pow")
-    ast_str = ast_str.replace("Integral", "sympy.Integral")
-    ast_str = ast_str.replace("Tuple", "sympy.Tuple")
-
-    return ast_str
-
-
-def get_symbols_from_AST_str(ast_str: str) -> list:
-    """
-    >>> get_symbols_from_AST_str("Pow(Symbol('pdg9139'), Integer(2))")
-    ['9139']
-
-    >>> get_symbols_from_AST_str("Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))")
-    ['1939', '9139']
-    """
-    list_of_symbols = []
-    if True:
-        if (
-            len(ast_str) > 0
-            and " and pdg" not in ast_str
-            and not ast_str.startswith("pdg")
-        ):
-            # logger.debug(ast_str)
-            ast_str = get_sympy_expr_from_AST_str(ast_str)
-            expr = eval(ast_str)
-            # logger.debug("expr is " + str(expr))
-            list_of_symbols = [
-                str(x).replace("pdg", "")
-                for x in list(expr.free_symbols)
-                if str(x).startswith("pdg")
-            ]
-            if (
-                "exp" in ast_str
-            ):  # exp is handled as a Sympy function but is actually a symbol (specifically, a constant)
-                list_of_symbols.append("2718")
-            # logger.debug(str(list_of_symbols))
-        # TODO this is temporary!
-        else:
-            list_of_symbols = [
-                str(x).replace("pdg", "") for x in ast_str.split(" and ")
-            ]
-            # logger.debug(str(list_of_symbols))
-    return list_of_symbols
 
 
 def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
@@ -1363,7 +1231,7 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
     expr_dict_with_symbol_list = dat["expressions"]
     for expr_global_id, expr_dict in dat["expressions"].items():
         # logger.debug("expr_global_id = " + expr_global_id)
-        list_of_symbols = get_symbols_from_AST_str(expr_dict["AST"])
+        list_of_symbols = latex_to_sympy.get_symbols_from_AST_str(expr_dict["AST"])
 
         list_of_tuples = []
         for this_symbol in list_of_symbols:
@@ -1896,7 +1764,7 @@ def popularity_of_symbols_in_expressions(path_to_db: str) -> dict:
         list_of_uses = []
         for expr_global_id, expr_dict in dat["expressions"].items():
             if "AST" in expr_dict.keys():
-                list_of_symbols_for_this_expr = get_symbols_from_AST_str(
+                list_of_symbols_for_this_expr = latex_to_sympy.get_symbols_from_AST_str(
                     expr_dict["AST"]
                 )
             else:  # no AST in expr_dict
