@@ -8914,7 +8914,7 @@
             "notes": ""
         },
         "0002393922": {
-            "AST": "",
+            "AST": "Symbol('x')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x",
@@ -8922,7 +8922,7 @@
             "notes": ""
         },
         "0002424922": {
-            "AST": "",
+            "AST": "Symbol('a')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "a",
@@ -8954,7 +8954,7 @@
             "notes": ""
         },
         "0002919191": {
-            "AST": "",
+            "AST": "sin(Mul(Integer(-1), Symbol('x')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\sin(-x)",
@@ -8986,7 +8986,7 @@
             "notes": ""
         },
         "0003413423": {
-            "AST": "",
+            "AST": "cos(Mul(Integer(-1), Symbol('x')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\cos(-x)",
@@ -8994,7 +8994,7 @@
             "notes": ""
         },
         "0003747849": {
-            "AST": "",
+            "AST": "Integer(-1)",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "-1",
@@ -9002,7 +9002,7 @@
             "notes": ""
         },
         "0003838111": {
-            "AST": "",
+            "AST": "Integer(2)",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "2",
@@ -9010,7 +9010,7 @@
             "notes": ""
         },
         "0003919391": {
-            "AST": "",
+            "AST": "Symbol('x')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x",
@@ -9018,7 +9018,7 @@
             "notes": ""
         },
         "0003949052": {
-            "AST": "",
+            "AST": "Mul(Integer(-1), Symbol('x'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "-x",
@@ -9034,7 +9034,7 @@
             "notes": ""
         },
         "0003954314": {
-            "AST": "",
+            "AST": "Symbol('dx')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "dx",
@@ -9042,7 +9042,7 @@
             "notes": ""
         },
         "0003981813": {
-            "AST": "",
+            "AST": "Mul(Integer(-1), sin(Symbol('x')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "-\\sin(x)",
@@ -9050,7 +9050,7 @@
             "notes": ""
         },
         "0004089571": {
-            "AST": "",
+            "AST": "Mul(Integer(2), Symbol('x'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "2 x",
@@ -9058,7 +9058,7 @@
             "notes": ""
         },
         "0004264724": {
-            "AST": "",
+            "AST": "Symbol('y')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "y",
@@ -9066,7 +9066,7 @@
             "notes": ""
         },
         "0004307451": {
-            "AST": "",
+            "AST": "Pow(Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('a')), Integer(-1))), Integer(2))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "(b/(2 a))^2",
@@ -9074,7 +9074,7 @@
             "notes": ""
         },
         "0004582412": {
-            "AST": "",
+            "AST": "Symbol('x')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x",
@@ -9082,7 +9082,7 @@
             "notes": ""
         },
         "0004829194": {
-            "AST": "",
+            "AST": "Integer(2)",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "2",
@@ -9090,7 +9090,7 @@
             "notes": ""
         },
         "0004831494": {
-            "AST": "",
+            "AST": "Symbol('a')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "a",
@@ -9098,7 +9098,7 @@
             "notes": ""
         },
         "0004849392": {
-            "AST": "",
+            "AST": "Symbol('x')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x",
@@ -9106,7 +9106,7 @@
             "notes": ""
         },
         "0004858592": {
-            "AST": "",
+            "AST": "Symbol('h')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "h",
@@ -9114,7 +9114,7 @@
             "notes": ""
         },
         "0004934845": {
-            "AST": "",
+            "AST": "Symbol('x')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x",
@@ -9122,7 +9122,7 @@
             "notes": ""
         },
         "0004948585": {
-            "AST": "",
+            "AST": "Symbol('a')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "a",
@@ -9138,7 +9138,7 @@
             "notes": ""
         },
         "0005626421": {
-            "AST": "",
+            "AST": "Symbol('t')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "t",
@@ -9146,7 +9146,7 @@
             "notes": ""
         },
         "0005749291": {
-            "AST": "",
+            "AST": "Symbol('f')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "f",
@@ -9170,7 +9170,7 @@
             "notes": ""
         },
         "0006544644": {
-            "AST": "",
+            "AST": "Symbol('t')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "t",
@@ -9178,7 +9178,7 @@
             "notes": ""
         },
         "0006563727": {
-            "AST": "",
+            "AST": "Symbol('x')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x",
@@ -9194,7 +9194,7 @@
             "notes": ""
         },
         "0006656532": {
-            "AST": "",
+            "AST": "Symbol('e')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "e",
@@ -9210,7 +9210,7 @@
             "notes": ""
         },
         "0007563791": {
-            "AST": "",
+            "AST": "Symbol('i')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "i",
@@ -9218,7 +9218,7 @@
             "notes": ""
         },
         "0007636749": {
-            "AST": "",
+            "AST": "Symbol('x')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x",
@@ -9298,7 +9298,7 @@
             "notes": ""
         },
         "0009877781": {
-            "AST": "",
+            "AST": "Symbol('y')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "y",
@@ -9386,7 +9386,7 @@
             "notes": ""
         },
         "1020394902": {
-            "AST": "",
+            "AST": "Equality(Symbol('E'), Mul(Symbol('f'), Symbol('h')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E = h f",
