@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sympy  # type: ignore
+from sympy import tan, atan, sin, asin, cos, acos
 from sympy.parsing.latex import parse_latex  # type: ignore
 from typing import Tuple  # , TextIO
 import logging
@@ -104,13 +105,15 @@ def get_sympy_expr_from_AST_str(ast_str: str):
     "sympy.Mul(sympy.Symbol('pdg1939'), sympy.Pow(sympy.Mul(sympy.Integer(2), sympy.Symbol('pdg9139')), sympy.Integer(-1)))"
 
     """
-    logger.info("[trace]")
+    # logging turned off because this function gets called a lot!
+    # logger.info("[trace]")
 
     ast_str = ast_str.replace("Function", "sympy.Function")
     ast_str = ast_str.replace("Rational", "sympy.Rational")
     ast_str = ast_str.replace("Abs", "sympy.Abs")
     ast_str = ast_str.replace("Float", "sympy.Float")
     ast_str = ast_str.replace("exp", "sympy.exp")
+    ast_str = ast_str.replace("log", "sympy.log")
     ast_str = ast_str.replace("cos", "sympy.cos")
     ast_str = ast_str.replace("sin", "sympy.sin")
     ast_str = ast_str.replace("Equality", "sympy.Equality")
@@ -137,7 +140,24 @@ def get_symbol_IDs_from_AST_str(ast_str: str) -> list:
     >>> get_symbol_IDs_from_AST_str("Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))")
     ['1939', '9139']
     """
-    logger.info("[trace]")
+    # logging turned off because this function gets called a lot!
+    # logger.info("[trace]")
+    list_of_symbols = re.findall("pdg\d\d\d\d", ast_str)
+    list_of_symbols = list(set(list_of_symbols))
+
+    return list_of_symbols
+
+
+def get_symbol_IDs_from_AST_str_OLDNOTINUSE(ast_str: str) -> list:
+    """
+    >>> get_symbol_IDs_from_AST_str("Pow(Symbol('pdg9139'), Integer(2))")
+    ['9139']
+
+    >>> get_symbol_IDs_from_AST_str("Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))")
+    ['1939', '9139']
+    """
+    # logging turned off because this function gets called a lot!
+    # logger.info("[trace]")
     list_of_symbols = []
     if True:
         if len(ast_str) > 0 and not ast_str.startswith("pdg"):
@@ -161,7 +181,7 @@ def get_symbol_IDs_from_AST_str(ast_str: str) -> list:
                 for x in ast_str.split(" and ")
                 if str(x).startswith("pdg")
             ]
-    logger.debug(str(list_of_symbols))
+    # logger.debug(str(list_of_symbols))
     return list_of_symbols
 
 
