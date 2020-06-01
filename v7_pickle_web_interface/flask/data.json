@@ -9162,7 +9162,7 @@
             "notes": ""
         },
         "0006466214": {
-            "AST": "",
+            "AST": "Pow(sin(Symbol('x')), Integer(2))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "(\\sin(x))^2",
@@ -9186,7 +9186,7 @@
             "notes": ""
         },
         "0006644853": {
-            "AST": "",
+            "AST": "Mul(Pow(Symbol('a'), Integer(-1)), Symbol('c'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "c/a",
@@ -9202,7 +9202,7 @@
             "notes": ""
         },
         "0007471778": {
-            "AST": "",
+            "AST": "Mul(Integer(2), Pow(sin(Symbol('x')), Integer(2)))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "2(\\sin(x))^2",
@@ -9226,7 +9226,7 @@
             "notes": ""
         },
         "0007894942": {
-            "AST": "",
+            "AST": "Pow(sin(Symbol('x')), Integer(2))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "(\\sin(x))^2",
@@ -9242,7 +9242,7 @@
             "notes": ""
         },
         "0008842811": {
-            "AST": "",
+            "AST": "cos(Mul(Integer(2), Symbol('x')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\cos(2 x)",
@@ -9290,7 +9290,7 @@
             "notes": ""
         },
         "0009587738": {
-            "AST": "",
+            "AST": "Symbol('psi')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi",
@@ -9378,7 +9378,7 @@
             "notes": ""
         },
         "1020394900": {
-            "AST": "",
+            "AST": "Equality(Symbol('p'), Mul(Symbol('h'), Pow(Symbol('lambda'), Integer(-1))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "p = h/\\lambda",
@@ -9442,7 +9442,7 @@
             "notes": ""
         },
         "1248277773": {
-            "AST": "",
+            "AST": "Equality(cos(Mul(Integer(2), Symbol('x'))), Add(Integer(1), Mul(Integer(-1), Integer(2), Pow(sin(Symbol('x')), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\cos(2 x) = 1 - 2 (\\sin(x))^2",
@@ -9450,7 +9450,7 @@
             "notes": ""
         },
         "1293913110": {
-            "AST": "",
+            "AST": "Equality(Integer(0), Symbol('b'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "0 = b",
@@ -9730,7 +9730,7 @@
             "notes": ""
         },
         "3285732911": {
-            "AST": "",
+            "AST": "Equality(Pow(cos(Symbol('x')), Integer(2)), Add(Integer(1), Mul(Integer(-1), Pow(sin(Symbol('x')), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "(\\cos(x))^2 = 1-(\\sin(x))^2",
@@ -10074,7 +10074,7 @@
             "notes": ""
         },
         "5832984291": {
-            "AST": "",
+            "AST": "Equality(Add(Pow(sin(Symbol('x')), Integer(2)), Pow(cos(Symbol('x')), Integer(2))), Integer(1))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "(\\sin(x))^2 + (\\cos(x))^2 = 1",
@@ -10114,7 +10114,7 @@
             "notes": ""
         },
         "5928292841": {
-            "AST": "",
+            "AST": "Equality(Add(Pow(Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('a')), Integer(-1))), Integer(2)), Add(Pow(Symbol('x'), Integer(2)), Mul(Symbol('x'), Mul(Pow(Symbol('a'), Integer(-1)), Symbol('b'))))), Add(Pow(Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('a')), Integer(-1))), Integer(2)), Mul(Pow(Symbol('a'), Integer(-1)), Mul(Integer(-1), Symbol('c')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x^2 + (b/a)x + (b/(2 a))^2 = -c/a + (b/(2 a))^2",
@@ -10194,7 +10194,7 @@
             "notes": ""
         },
         "7572664728": {
-            "AST": "",
+            "AST": "Equality(Add(Mul(Integer(2), Pow(sin(Symbol('x')), Integer(2))), cos(Mul(Integer(2), Symbol('x')))), Integer(1))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\cos(2 x) + 2 (\\sin(x))^2 = 1",
@@ -10538,7 +10538,7 @@
             "notes": ""
         },
         "9482438243": {
-            "AST": "",
+            "AST": "Equality(Pow(cos(Symbol('x')), Integer(2)), Add(Pow(sin(Symbol('x')), Integer(2)), cos(Mul(Integer(2), Symbol('x')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "(\\cos(x))^2 = \\cos(2 x) + (\\sin(x))^2",
@@ -10915,7 +10915,7 @@
         },
         "4961662865": {
             "latex": "x",
-            "AST": "",
+            "AST": "Symbol('x')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -10923,7 +10923,7 @@
         },
         "9110536742": {
             "latex": "2 x",
-            "AST": "",
+            "AST": "Mul(Integer(2), Symbol('x'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11131,7 +11131,7 @@
         },
         "4648451961": {
             "latex": "v_2^2 - v_1^2 = (v_2 + v_1)(v_2 - v_1)",
-            "AST": "",
+            "AST": "Equality(Add(Mul(Integer(-1), Pow(Symbol('v_{1}'), Integer(2))), Pow(Symbol('v_{2}'), Integer(2))), Mul(Add(Mul(Integer(-1), Symbol('v_{1}')), Symbol('v_{2}')), Add(Symbol('v_{1}'), Symbol('v_{2}'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11155,7 +11155,7 @@
         },
         "2857430695": {
             "latex": "a = \\frac{v_2 - v_1}{t}",
-            "AST": "",
+            "AST": "Equality(Symbol('a'), Mul(Pow(Symbol('t'), Integer(-1)), Add(Mul(Integer(-1), Symbol('v_{1}')), Symbol('v_{2}'))))",
             "name": "acceleration",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11227,7 +11227,7 @@
         },
         "2016063530": {
             "latex": "t",
-            "AST": "",
+            "AST": "Symbol('t')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11259,7 +11259,7 @@
         },
         "2081689540": {
             "latex": "t",
-            "AST": "",
+            "AST": "Symbol('t')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11299,7 +11299,7 @@
         },
         "5778176146": {
             "latex": "t",
-            "AST": "",
+            "AST": "Symbol('t')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11307,7 +11307,7 @@
         },
         "3806977900": {
             "latex": "E_2 - E_1 = 0",
-            "AST": "",
+            "AST": "Equality(Add(Mul(Integer(-1), Symbol('E_{1}')), Symbol('E_{2}')), Integer(0))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11315,7 +11315,7 @@
         },
         "5960438249": {
             "latex": "E_1",
-            "AST": "",
+            "AST": "Symbol('E_{1}')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11323,7 +11323,7 @@
         },
         "8558338742": {
             "latex": "E_2 = E_1",
-            "AST": "",
+            "AST": "Equality(Symbol('E_{2}'), Symbol('E_{1}'))",
             "name": "conservation of energy",
             "notes": "https://en.wikipedia.org/wiki/Conservation_of_energy",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11395,7 +11395,7 @@
         },
         "1512581563": {
             "latex": "x",
-            "AST": "",
+            "AST": "Symbol('x')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11451,7 +11451,7 @@
         },
         "4968680693": {
             "latex": "\\tan( x ) = \\frac{ \\sin( x )}{\\cos( x )}",
-            "AST": "",
+            "AST": "Equality(tan(Symbol('x')), Mul(sin(Symbol('x')), Pow(cos(Symbol('x')), Integer(-1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11467,7 +11467,7 @@
         },
         "9906920183": {
             "latex": "x",
-            "AST": "",
+            "AST": "Symbol('x')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11491,7 +11491,7 @@
         },
         "5453995431": {
             "latex": "\\arctan{ x }",
-            "AST": "",
+            "AST": "atan(Symbol('x'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11499,7 +11499,7 @@
         },
         "6023986360": {
             "latex": "x",
-            "AST": "",
+            "AST": "Symbol('x')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11539,7 +11539,7 @@
         },
         "7476820482": {
             "latex": "C",
-            "AST": "",
+            "AST": "Symbol('C')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11547,7 +11547,7 @@
         },
         "1277713901": {
             "latex": "d",
-            "AST": "",
+            "AST": "Symbol('d')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11691,7 +11691,7 @@
         },
         "7337056406": {
             "latex": "\\gamma^2 x",
-            "AST": "",
+            "AST": "Mul(Pow(Symbol('gamma'), Integer(2)), Symbol('x'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11707,7 +11707,7 @@
         },
         "3495403335": {
             "latex": "x",
-            "AST": "",
+            "AST": "Symbol('x')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11723,7 +11723,7 @@
         },
         "8014566709": {
             "latex": "\\gamma^2 v t",
-            "AST": "",
+            "AST": "Mul(Pow(Symbol('gamma'), Integer(2)), Mul(Symbol('t'), Symbol('v')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11739,7 +11739,7 @@
         },
         "2226340358": {
             "latex": "\\gamma v",
-            "AST": "",
+            "AST": "Mul(Symbol('gamma'), Symbol('v'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12003,7 +12003,7 @@
         },
         "5284610349": {
             "latex": "\\gamma^2",
-            "AST": "",
+            "AST": "Pow(Symbol('gamma'), Integer(2))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12051,7 +12051,7 @@
         },
         "6408214498": {
             "latex": "c^2",
-            "AST": "",
+            "AST": "Pow(Symbol('c'), Integer(2))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12139,7 +12139,7 @@
         },
         "7083390553": {
             "latex": "t",
-            "AST": "",
+            "AST": "Symbol('t')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12243,7 +12243,7 @@
         },
         "5799753649": {
             "latex": "2",
-            "AST": "",
+            "AST": "Integer(2)",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12291,7 +12291,7 @@
         },
         "2242144313": {
             "latex": "a",
-            "AST": "",
+            "AST": "Symbol('a')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12355,7 +12355,7 @@
         },
         "9645178657": {
             "latex": "a t",
-            "AST": "",
+            "AST": "Mul(Symbol('a'), Symbol('t'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12387,7 +12387,7 @@
         },
         "6421241247": {
             "latex": "d = v t - \\frac{1}{2} a t^2",
-            "AST": "",
+            "AST": "Equality(Symbol('d'), Add(Mul(Integer(-1), Rational(1, 2), Symbol('a'), Pow(Symbol('t'), Integer(2))), Mul(Symbol('t'), Symbol('v'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12435,7 +12435,7 @@
         },
         "4437214608": {
             "latex": "Z",
-            "AST": "",
+            "AST": "Symbol('Z')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12483,7 +12483,7 @@
         },
         "9761485403": {
             "latex": "Z",
-            "AST": "",
+            "AST": "Symbol('Z')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12515,7 +12515,7 @@
         },
         "1511199318": {
             "latex": "Z",
-            "AST": "",
+            "AST": "Symbol('Z')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12571,7 +12571,7 @@
         },
         "2064205392": {
             "latex": "A",
-            "AST": "",
+            "AST": "Symbol('A')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12579,7 +12579,7 @@
         },
         "1894894315": {
             "latex": "Z",
-            "AST": "",
+            "AST": "Symbol('Z')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12627,7 +12627,7 @@
         },
         "4935235303": {
             "latex": "x",
-            "AST": "",
+            "AST": "Symbol('x')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12651,7 +12651,7 @@
         },
         "3967985562": {
             "latex": "2",
-            "AST": "",
+            "AST": "Integer(2)",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12811,7 +12811,7 @@
         },
         "9707028061": {
             "latex": "a_x = 0",
-            "AST": "",
+            "AST": "Equality(Symbol('a_{x}'), Integer(0))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12819,7 +12819,7 @@
         },
         "2741489181": {
             "latex": "a_y = -g",
-            "AST": "",
+            "AST": "Equality(Symbol('a_{y}'), Mul(Integer(-1), Symbol('g')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12827,7 +12827,7 @@
         },
         "3270039798": {
             "latex": "2",
-            "AST": "",
+            "AST": "Integer(2)",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12835,7 +12835,7 @@
         },
         "8880467139": {
             "latex": "2",
-            "AST": "",
+            "AST": "Integer(2)",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12859,7 +12859,7 @@
         },
         "6672141531": {
             "latex": "dt",
-            "AST": "",
+            "AST": "Symbol('dt')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12923,7 +12923,7 @@
         },
         "1614343171": {
             "latex": "dt",
-            "AST": "",
+            "AST": "Symbol('dt')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13035,7 +13035,7 @@
         },
         "8607458157": {
             "latex": "dt",
-            "AST": "",
+            "AST": "Symbol('dt')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13091,7 +13091,7 @@
         },
         "7049769409": {
             "latex": "2",
-            "AST": "",
+            "AST": "Integer(2)",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13395,7 +13395,7 @@
         },
         "7587034465": {
             "latex": "\\theta",
-            "AST": "",
+            "AST": "Symbol('theta')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13403,7 +13403,7 @@
         },
         "7214442790": {
             "latex": "x",
-            "AST": "",
+            "AST": "Symbol('x')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13739,7 +13739,7 @@
         },
         "5775658332": {
             "latex": "2",
-            "AST": "",
+            "AST": "Integer(2)",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14219,7 +14219,7 @@
         },
         "1823570358": {
             "latex": "C",
-            "AST": "",
+            "AST": "Symbol('C')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14275,7 +14275,7 @@
         },
         "2754264786": {
             "latex": "2",
-            "AST": "",
+            "AST": "Integer(2)",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14331,7 +14331,7 @@
         },
         "7556442438": {
             "latex": "4 \\pi^2",
-            "AST": "",
+            "AST": "Mul(Integer(4), Pow(Symbol('pi'), Integer(2)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14347,7 +14347,7 @@
         },
         "4319544433": {
             "latex": "1/3",
-            "AST": "",
+            "AST": "Pow(Integer(3), Integer(-1))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14523,7 +14523,7 @@
         },
         "9590696981": {
             "latex": "9.80665",
-            "AST": "",
+            "AST": "Float('9.8066499999999994', precision=53)",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14555,7 +14555,7 @@
         },
         "9956609318": {
             "latex": "6.67430*10^{-11}",
-            "AST": "",
+            "AST": "Mul(Float('6.6742999999999997', precision=53), Pow(Integer(10), Mul(Integer(-1), Integer(11))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14587,7 +14587,7 @@
         },
         "3723096423": {
             "latex": "6.3781*10^6",
-            "AST": "",
+            "AST": "Mul(Float('6.3780999999999999', precision=53), Pow(Integer(10), Integer(6)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14595,7 +14595,7 @@
         },
         "7560908617": {
             "latex": "m",
-            "AST": "",
+            "AST": "Symbol('m')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
