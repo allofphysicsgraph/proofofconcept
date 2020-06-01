@@ -9306,7 +9306,7 @@
             "notes": ""
         },
         "0203024440": {
-            "AST": "Equality(Integer(1), Integral(Mul(Symbol('pdg9139'), sin(Mul(Mul(Symbol('psi'), Symbol('pdg4037')), Function('left')(Mul(Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141'))), Mul(Symbol('right'), Symbol('pdg4037'))))))), Tuple(Symbol('pdg9199'), Integer(0), Symbol('pdg2523'))))",
+            "AST": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "1 = \\int_0^W a \\sin\\left(\\frac{n \\pi}{W} x\\right) \\psi(x)^* dx",
@@ -9419,7 +9419,7 @@
             "notes": ""
         },
         "1202310110": {
-            "AST": "Equality(Pow(Pow(Symbol('a'), Integer(2)), Integer(-1)), Integral(Add(Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg9199')), Mul(Integer(-1), Rational(1, 2), Integral(cos(Function('left')(Mul(Integer(2), Mul(Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141'))), Mul(Symbol('right'), Symbol('x')))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))",
+            "AST": "Equality(Pow(Pow(Symbol('a'), Integer(2)), Integer(-1)), Integral(Add(Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg9199')), Mul(Integer(-1), Rational(1, 2), Integral(cos(Mul(Integer(2), Mul(Symbol('pdg4037'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))), Tuple(Symbol('pdg4037'), Integer(0), Symbol('pdg2523'))))), Tuple(Symbol('pdg4037'), Integer(0), Symbol('pdg2523'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{a^2} = \\int_0^W \\frac{1}{2} dx - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right) dx",
@@ -9427,7 +9427,7 @@
             "notes": ""
         },
         "1202312210": {
-            "AST": "Equality(Pow(Pow(Symbol('a'), Integer(2)), Integer(-1)), Add(Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg2523')), Mul(Integer(-1), Rational(1, 2), Integral(cos(Function('left')(Mul(Integer(2), Mul(Mul(Pow(Symbol('W'), Integer(-1)), Mul(Symbol('1592'), Symbol('pdg3141'))), Mul(Symbol('right'), Symbol('x')))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))))",
+            "AST": "Equality(Pow(Pow(Symbol('a'), Integer(2)), Integer(-1)), Add(Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg2523')), Mul(Integer(-1), Rational(1, 2), Integral(cos(Mul(Integer(2), Mul(Symbol('pdg4037'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))), Tuple(Symbol('pdg4037'), Integer(0), Symbol('pdg2523'))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{a^2} = \\frac{1}{2}W - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right) dx",
@@ -9560,7 +9560,7 @@
             "notes": ""
         },
         "2103023049": {
-            "AST": "Equality(sin(Symbol('x')), Mul(Pow(Mul(Integer(2), Symbol('pdg4621')), Integer(-1)), Function('left')(Add(Mul(Integer(-1), Symbol('right'), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), exp(Mul(Symbol('pdg4621'), Symbol('x')))))))",
+            "AST": "Equality(sin(Symbol('x')), Mul(Pow(Mul(Integer(2), Symbol('pdg4621')), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), exp(Mul(Symbol('pdg4621'), Symbol('x'))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\sin(x) = \\frac{1}{2i}\\left(\\exp(i x)-\\exp(-i x) \\right)",
@@ -9692,7 +9692,7 @@
             "notes": ""
         },
         "3121234212": {
-            "AST": "Equality(Symbol('p'), Mul(Pow(Mul(Integer(2), Symbol('pi')), Integer(-1)), Mul(Symbol('h'), Symbol('k'))))",
+            "AST": "Equality(Symbol('p'), Mul(Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1)), Mul(Symbol('h'), Symbol('k'))))",
             "temp symbol list": "pdg3141",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
@@ -9936,7 +9936,7 @@
             "notes": ""
         },
         "4585932229": {
-            "AST": "Equality(cos(Symbol('x')), Mul(Pow(Integer(2), Integer(-1)), Function('left')(Add(Mul(Symbol('right'), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), exp(Mul(Symbol('pdg4621'), Symbol('x')))))))",
+            "AST": "Equality(cos(Symbol('x')), Mul(Pow(Integer(2), Integer(-1)), Add(Mul(exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('x'))))), exp(Mul(Symbol('pdg4621'), Symbol('x'))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\cos(x) = \\frac{1}{2}\\left(\\exp(i x)+\\exp(-i x) \\right)",
@@ -10137,7 +10137,7 @@
             "notes": ""
         },
         "5928285821": {
-            "AST": "Equality(Add(Pow(Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('a')), Integer(-1))), Integer(2)), Add(Pow(Symbol('x'), Integer(2)), Mul(Integer(2), Function('x')(Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('a')), Integer(-1))))))), Pow(Add(Symbol('x'), Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('a')), Integer(-1)))), Integer(2)))",
+            "AST": "Equality(Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Add(Pow(Symbol('x'), Integer(2)), Mul(Integer(2), Function('x')(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))))))), Pow(Add(Symbol('x'), Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))), Integer(2)))",
             "temp symbol list": "pdg4231 and pdg9139 and pdg1939 and pdg1464",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
@@ -10224,8 +10224,7 @@
             "notes": ""
         },
         "7564894985": {
-            "AST": "",
-            "temp symbol list": "pdg3141 and pdg2523 and pdg9199",
+            "AST": "Equality(Integral(cos(Mul(Symbol('pdg4037'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))), Tuple(Symbol('pdg4037'))), Mul(Mul(Symbol('pdg2523'), Pow(Mul(Integer(2), Mul(Symbol('pdg1592'), Symbol('pdg3141'))), Integer(-1))), sin(Mul(Symbol('pdg4037'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg1592'), Symbol('pdg3141'))))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\int \\cos\\left(\\frac{2n\\pi}{W} x\\right) dx = \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right)",
@@ -10233,7 +10232,7 @@
             "notes": ""
         },
         "7572664728": {
-            "AST": "Equality(Add(Mul(Integer(2), Pow(sin(Symbol('x')), Integer(2))), cos(Mul(Integer(2), Symbol('x')))), Integer(1))",
+            "AST": "Equality(Add(Mul(Integer(2), Pow(sin(Symbol('pdg4037')), Integer(2))), cos(Mul(Integer(2), Symbol('pdg4037')))), Integer(1))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\cos(2 x) + 2 (\\sin(x))^2 = 1",
@@ -10241,7 +10240,7 @@
             "notes": ""
         },
         "7575738420": {
-            "AST": "",
+            "AST": "Equality(Pow(sin(Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('n'), Symbol('pdg3141'))))), Integer(2)), Mul(Pow(Integer(2), Integer(-1)), Add(Integer(1), Mul(Integer(-1), cos(Mul(Integer(2), Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('n'), Symbol('pdg3141'))))))))))",
             "temp symbol list": "pdg3141 and pdg2523",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
@@ -10817,7 +10816,7 @@
             "notes": ""
         },
         "9999999960": {
-            "AST": "Equality(Symbol('hbar'), Mul(Symbol('h'), Pow(Mul(Integer(2), Symbol('pi')), Integer(-1))))",
+            "AST": "Equality(Symbol('hbar'), Mul(Symbol('h'), Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1))))",
             "temp symbol list": "pdg1054 and pdg3141",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
@@ -11254,7 +11253,7 @@
         },
         "5345738321": {
             "latex": "F = m a",
-            "AST": "Equality(Symbol('F'), Mul(Symbol('a'), Symbol('m')))",
+            "AST": "Equality(Symbol('pdg4202'), Mul(Symbol('a'), Symbol('pdg5156')))",
             "temp symbol list": "pdg5156 and pdg9140 and pdg4202",
             "name": "Newton's second law of motion",
             "notes": "https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Newton's_second_law",
@@ -11369,7 +11368,7 @@
         },
         "1772416655": {
             "latex": "\\frac{E_2 - E_1}{t} = v F - F v",
-            "AST": "Equality(Mul(Pow(Symbol('t'), Integer(-1)), Add(Mul(Integer(-1), Symbol('E_{1}')), Symbol('E_{2}'))), Add(Mul(Integer(-1), Symbol('F'), Symbol('v')), Mul(Symbol('F'), Symbol('v'))))",
+            "AST": "Equality(Mul(Pow(Symbol('t'), Integer(-1)), Add(Mul(Integer(-1), Symbol('E_{1}')), Symbol('E_{2}'))), Add(Mul(Integer(-1), Symbol('pdg4202'), Symbol('v')), Mul(Symbol('pdg4202'), Symbol('v'))))",
             "temp symbol list": "pdg1467 and pdg1357 and pdg4202",
             "name": "",
             "notes": "",
@@ -11446,8 +11445,7 @@
         },
         "6450985774": {
             "latex": "n_1 \\sin( \\theta_1 ) = n_2 \\sin( \\theta_2 )",
-            "AST": "Equality(Mul(Symbol('n_{1}'), sin(Symbol('theta_{1}'))), Mul(Symbol('n_{2}'), sin(Symbol('theta_{2}'))))",
-            "temp symbol list": "pdg2941",
+            "AST": "Equality(Mul(Symbol('pdg2941'), sin(Symbol('theta_{1}'))), Mul(Symbol('n_{2}'), sin(Symbol('theta_{2}'))))",
             "name": "Law of Refraction",
             "notes": "eq 34-44 on page 819 in \\cite{2001_HRW}",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11455,7 +11453,7 @@
         },
         "2575937347": {
             "latex": "n_1 \\sin( \\theta_{\\rm Brewster} ) = n_2 \\sin( \\theta_{\\rm refracted} )",
-            "AST": "",
+            "AST": "Equality(Mul(Symbol('n_{1}'), sin(Symbol('theta_{b}'))), Mul(Symbol('n_{2}'), sin(Symbol('theta_{r}'))))",
             "temp symbol list": "pdg4928 and pdg2941",
             "name": "",
             "notes": "",
@@ -11516,15 +11514,14 @@
         },
         "7857757625": {
             "latex": "n_1",
-            "AST": "Symbol('n_{1}')",
-            "temp symbol list": "pdg2941",
+            "AST": "Symbol('pdg2941')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-23"
         },
         "9756089533": {
-            "latex": " \\sin( \\theta_{\\rm Brewster} ) = \\frac{n_2}{n_1} \\cos( \\theta_{\\rm Brewster} )",
+            "latex": "\\sin( \\theta_{\\rm Brewster} ) = \\frac{n_2}{n_1} \\cos( \\theta_{\\rm Brewster} )",
             "AST": "",
             "temp symbol list": "pdg4928 and pdg2941",
             "name": "",
@@ -11670,7 +11667,7 @@
         },
         "6785303857": {
             "latex": "C = 2 \\pi r",
-            "AST": "Equality(Symbol('C'), Mul(Integer(2), Mul(Symbol('pi'), Symbol('r'))))",
+            "AST": "Equality(Symbol('C'), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('r'))))",
             "temp symbol list": "pdg3141 and pdg3034 and pdg2530",
             "name": "",
             "notes": "",
@@ -13714,7 +13711,7 @@
         },
         "1541916015": {
             "latex": "\\theta = \\frac{\\pi}{4}",
-            "AST": "Equality(Symbol('theta'), Mul(Pow(Integer(4), Integer(-1)), Symbol('pi')))",
+            "AST": "Equality(Symbol('theta'), Mul(Pow(Integer(4), Integer(-1)), Symbol('pdg3141')))",
             "temp symbol list": "pdg3141 and pdg1575",
             "name": "",
             "notes": "",
@@ -13741,7 +13738,7 @@
         },
         "1590774089": {
             "latex": "dW = F dx",
-            "AST": "Equality(Symbol('dW'), Mul(Symbol('F'), Symbol('dx')))",
+            "AST": "Equality(Symbol('dW'), Mul(Symbol('pdg4202'), Symbol('dx')))",
             "temp symbol list": "pdg9199 and pdg4202 and pdg9398",
             "name": "",
             "notes": "",
@@ -13750,7 +13747,7 @@
         },
         "5542528160": {
             "latex": "\\int dW = F \\int_0^x dx",
-            "AST": "Equality(Integral(Integer(1), Tuple(Symbol('W'))), Mul(Symbol('F'), Integral(Integer(1), Tuple(Symbol('x'), Integer(0), Symbol('x')))))",
+            "AST": "Equality(Integral(Integer(1), Tuple(Symbol('pdg6789'))), Mul(Symbol('pdg4202'), Integral(Integer(1), Tuple(Symbol('x'), Integer(0), Symbol('x')))))",
             "temp symbol list": "pdg4202",
             "name": "",
             "notes": "",
@@ -13759,7 +13756,7 @@
         },
         "3512166162": {
             "latex": "W = F x",
-            "AST": "Equality(Symbol('W'), Mul(Symbol('F'), Symbol('x')))",
+            "AST": "Equality(Symbol('pdg6789'), Mul(Symbol('pdg4202'), Symbol('x')))",
             "temp symbol list": "pdg4202 and pdg6789 and pdg4037",
             "name": "",
             "notes": "",
@@ -13768,8 +13765,7 @@
         },
         "6935745841": {
             "latex": "F = G \\frac{m_1 m_2}{x^2}",
-            "AST": "Equality(Symbol('F'), Mul(Symbol('G'), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('x'), Integer(2)), Integer(-1)))))",
-            "temp symbol list": "pdg4202 and pdg6277 and pdg4037",
+            "AST": "Equality(Symbol('pdg4202'), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1)))))",
             "name": "Newton's law of universal gravitation",
             "notes": "https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation#Modern_form",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13777,14 +13773,14 @@
         },
         "8604483515": {
             "latex": "dW = G \\frac{m_1 m_2}{x^2} dx",
-            "AST": "Equality(Symbol('dW'), Mul(Symbol('G'), Mul(Symbol('dx'), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('x'), Integer(2)), Integer(-1))))))",
+            "AST": "Equality(Symbol('dW'), Mul(Symbol('pdg6277'), Mul(Symbol('dx'), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24"
         },
         "4447113478": {
-            "latex": " \\int dW = G m_1 m_2 \\int_{ r_{\\rm Earth} }^{\\infty} \\frac{1}{x^2} dx ",
+            "latex": "\\int dW = G m_1 m_2 \\int_{ r_{\\rm Earth} }^{\\infty} \\frac{1}{x^2} dx ",
             "AST": "",
             "name": "",
             "notes": "",
@@ -13792,7 +13788,7 @@
             "creation date": "2020-05-24"
         },
         "5732331610": {
-            "latex": " W = G m_1 m_2 \\left( \\frac{1}{x} \\bigg\\rvert_{ r_{\\rm Earth} }^{\\infty} \\right) ",
+            "latex": "W = G m_1 m_2 \\left( \\frac{1}{x} \\bigg\\rvert_{ r_{\\rm Earth} }^{\\infty} \\right) ",
             "AST": "",
             "name": "",
             "notes": "",
@@ -13801,7 +13797,7 @@
         },
         "8953094349": {
             "latex": "W = m a x",
-            "AST": "Equality(Symbol('W'), Mul(Symbol('m'), Mul(Symbol('a'), Symbol('x'))))",
+            "AST": "Equality(Symbol('pdg6789'), Mul(Symbol('pdg5156'), Mul(Symbol('a'), Symbol('x'))))",
             "temp symbol list": "pdg6789 and pdg4037 and pdg9140 and pdg5156",
             "name": "",
             "notes": "",
@@ -13836,7 +13832,7 @@
         },
         "9413699705": {
             "latex": "W = m a \\frac{v_2^2 - v_1^2}{2 a}",
-            "AST": "Equality(Symbol('W'), Mul(Symbol('m'), Mul(Symbol('a'), Mul(Pow(Mul(Integer(2), Symbol('a')), Integer(-1)), Add(Mul(Integer(-1), Pow(Symbol('v_{1}'), Integer(2))), Pow(Symbol('v_{2}'), Integer(2)))))))",
+            "AST": "Equality(Symbol('pdg6789'), Mul(Symbol('pdg5156'), Mul(Symbol('a'), Mul(Pow(Mul(Integer(2), Symbol('a')), Integer(-1)), Add(Mul(Integer(-1), Pow(Symbol('v_{1}'), Integer(2))), Pow(Symbol('v_{2}'), Integer(2)))))))",
             "temp symbol list": "pdg9140 and pdg5156 and pdg6789",
             "name": "",
             "notes": "",
@@ -13845,7 +13841,7 @@
         },
         "4811121942": {
             "latex": "W = \\frac{1}{2} m v_2^2 - \\frac{1}{2} m v_1^2",
-            "AST": "Equality(Symbol('W'), Add(Mul(Integer(-1), Rational(1, 2), Symbol('m'), Pow(Symbol('v_{1}'), Integer(2))), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m'), Pow(Symbol('v_{2}'), Integer(2))))))",
+            "AST": "Equality(Symbol('pdg6789'), Add(Mul(Integer(-1), Rational(1, 2), Symbol('pdg5156'), Pow(Symbol('v_{1}'), Integer(2))), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('v_{2}'), Integer(2))))))",
             "temp symbol list": "pdg6789",
             "name": "",
             "notes": "",
@@ -14460,7 +14456,7 @@
         },
         "9226945488": {
             "latex": "F = \\frac{m v^2}{r}",
-            "AST": "Equality(Symbol('F'), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Symbol('m'), Pow(Symbol('v'), Integer(2)))))",
+            "AST": "Equality(Symbol('pdg4202'), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('v'), Integer(2)))))",
             "temp symbol list": "pdg5156 and pdg4202 and pdg1357 and pdg2530",
             "name": "Centripetal force",
             "notes": "https://en.wikipedia.org/wiki/Centripetal_force",
@@ -14552,7 +14548,7 @@
         },
         "9262596735": {
             "latex": "d = 2 \\pi r",
-            "AST": "Equality(Symbol('d'), Mul(Integer(2), Mul(Symbol('pi'), Symbol('r'))))",
+            "AST": "Equality(Symbol('d'), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('r'))))",
             "temp symbol list": "pdg1943 and pdg2530",
             "name": "",
             "notes": "",
@@ -14561,7 +14557,7 @@
         },
         "4245712581": {
             "latex": "v = \\frac{2 \\pi r}{t}",
-            "AST": "Equality(Symbol('v'), Mul(Pow(Symbol('t'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pi'), Symbol('r')))))",
+            "AST": "Equality(Symbol('v'), Mul(Pow(Symbol('t'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('r')))))",
             "temp symbol list": "pdg2530 and pdg1467 and pdg1357",
             "name": "",
             "notes": "",
@@ -14658,7 +14654,7 @@
         },
         "7556442438": {
             "latex": "4 \\pi^2",
-            "AST": "Mul(Integer(4), Pow(Symbol('pi'), Integer(2)))",
+            "AST": "Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14743,7 +14739,7 @@
         },
         "2484824786": {
             "latex": "F = m g",
-            "AST": "Equality(Symbol('F'), Mul(Symbol('g'), Symbol('m')))",
+            "AST": "Equality(Symbol('pdg4202'), Mul(Symbol('g'), Symbol('pdg5156')))",
             "temp symbol list": "pdg1649 and pdg4202 and pdg5156",
             "name": "",
             "notes": "",
@@ -14891,7 +14887,7 @@
         },
         "7326066466": {
             "latex": "G",
-            "AST": "Symbol('G')",
+            "AST": "Symbol('pdg6277')",
             "temp symbol list": "pdg6277",
             "name": "",
             "notes": "",
@@ -18066,6 +18062,237 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-31"
+        },
+        "1955": {
+            "category": "variable",
+            "latex": "KE_1",
+            "name": "kinetic energy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Kinetic_energy"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
+        },
+        "1352": {
+            "category": "variable",
+            "latex": "KE_2",
+            "name": "kinetic energy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Kinetic_energy"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
+        },
+        "4093": {
+            "category": "variable",
+            "latex": "PE_1",
+            "name": "kinetic energy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Potential_energy"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
+        },
+        "8849": {
+            "category": "variable",
+            "latex": "PE_2",
+            "name": "potential energy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Potential_energy"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
+        },
+        "3509": {
+            "category": "variable",
+            "latex": "\\theta_1",
+            "name": "angle",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Angle"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
+        },
+        "7545": {
+            "category": "variable",
+            "latex": "\\theta_2",
+            "name": "angle",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Angle"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
+        },
+        "1958": {
+            "category": "variable",
+            "latex": "n_2",
+            "name": " index of refraction for material 2",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Refractive_index"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
+        },
+        "5022": {
+            "category": "variable",
+            "latex": "m_1",
+            "name": "mass",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Mass"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
+        },
+        "4851": {
+            "category": "variable",
+            "latex": "m_2",
+            "name": "mass",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Mass"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
+        },
+        "3569": {
+            "category": "variable",
+            "latex": "m_{\\rm satellite}",
+            "name": "mass of satellite",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Mass"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
+        },
+        "4082": {
+            "category": "variable",
+            "latex": "v_{\\rm satellite}",
+            "name": "velocity of satellite",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Velocity"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-01"
         }
     },
     "units": {
