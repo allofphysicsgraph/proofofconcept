@@ -18134,6 +18134,132 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-01"
+        },
+        "4413": {
+            "category": "variable",
+            "latex": "h",
+            "name": "Planck's constant",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Planck_constant"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 2,
+                "time": -1,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "2243": {
+            "category": "variable",
+            "latex": "\\theta_{\\rm refracted}",
+            "name": "refracted angle",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "3852": {
+            "category": "variable",
+            "latex": "x_1",
+            "name": "position 1",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "5467": {
+            "category": "variable",
+            "latex": "x_2",
+            "name": "position 2",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "5579": {
+            "category": "variable",
+            "latex": "E_1",
+            "name": "energy 1",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "4550": {
+            "category": "variable",
+            "latex": "E_2",
+            "name": "energy 2",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
         }
     },
     "units": {
