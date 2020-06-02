@@ -388,31 +388,6 @@ def rank_candidate_pdg_symbols_for_sympy_symbol(
     return list_of_candidate_symbol_ids
 
 
-def list_symbols_used_in_expr_from_PDG_AST(ast_as_list: list, path_to_db: str) -> list:
-    """
-    >>> list_symbols_used_in_expr_from_PDG_AST()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
-    dat = clib.read_db(path_to_db)
-
-    list_of_symbol_ids = []
-    # logger.debug(str(ast_as_list))
-    list_of_symbols_and_operators = list(flatten_list(ast_as_list))
-    # logger.debug(str(list_of_symbols_and_operators))
-
-    for this_symbol_id in list_of_symbols_and_operators:
-        try:
-            symbol_latex = dat["symbols"][this_symbol_id]["latex"]
-        except:
-            symbol_latex = ""
-        if len(symbol_latex) > 0:
-            list_of_symbol_ids.append(this_symbol_id)
-    # logger.debug(str(list_of_symbol_ids))
-    logger.info("[trace end " + trace_id + "]")
-    return list(set(list_of_symbol_ids))
-
-
 def list_symbols_used_in_step_from_PDG_AST(
     deriv_id: str, step_id: str, path_to_db: str
 ) -> list:
@@ -432,8 +407,8 @@ def list_symbols_used_in_step_from_PDG_AST(
             for local_id in step_dict[connection_type]:
                 expr_global_id = dat["expr local to global"][local_id]
                 #                logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
-                symbols_per_expr = list_symbols_used_in_expr_from_PDG_AST(
-                    dat["expressions"][expr_global_id]["AST"], path_to_db
+                symbols_per_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
+                    dat["expressions"][expr_global_id]["AST"]
                 )
                 #                logger.debug(str(symbols_per_expr))
                 for symbol_id in symbols_per_expr:
@@ -449,7 +424,8 @@ def list_symbols_used_in_derivation_from_PDG_AST(
     deriv_id: str, path_to_db: str
 ) -> list:
     """
-    >>>
+    >>> list_symbols_used_in_derivation_from_PDG_AST()
+
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -461,8 +437,8 @@ def list_symbols_used_in_derivation_from_PDG_AST(
             for connection_type in ["inputs", "feeds", "outputs"]:
                 for local_id in step_dict[connection_type]:
                     expr_global_id = dat["expr local to global"][local_id]
-                    symbols_per_expr = list_symbols_used_in_expr_from_PDG_AST(
-                        dat["expressions"][expr_global_id]["AST"], path_to_db
+                    symbols_per_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
+                        dat["expressions"][expr_global_id]["AST"]
                     )
                     for symbol_id in symbols_per_expr:
                         list_of_symbol_ids.append(symbol_id)
@@ -534,8 +510,8 @@ def create_AST_png_per_expression_in_step(
             symbols_from_sympy = latex_to_sympy.list_symbols_used_in_expr_from_sympy(
                 expr_latex
             )
-            symbols_from_PDG_AST = list_symbols_used_in_expr_from_PDG_AST(
-                dat["expressions"][expr_global_id]["AST"], path_to_db
+            symbols_from_PDG_AST = latex_to_sympy.get_symbol_IDs_from_AST_str(
+                dat["expressions"][expr_global_id]["AST"]
             )
 
             list_of_sympy_symbols_lacking_PDG_id = find_symbols_in_step_that_lack_id(
