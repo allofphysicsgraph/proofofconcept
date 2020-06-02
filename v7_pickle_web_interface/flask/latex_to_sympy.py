@@ -144,6 +144,7 @@ def get_symbol_IDs_from_AST_str(ast_str: str) -> list:
     # logger.info("[trace]")
     list_of_symbols = re.findall("pdg\d\d\d\d", ast_str)
     list_of_symbols = list(set(list_of_symbols))
+    list_of_symbols = [x.replace("pdg", "") for x in list_of_symbols]
 
     return list_of_symbols
 
