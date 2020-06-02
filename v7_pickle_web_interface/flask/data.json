@@ -1,4 +1,4 @@
-'pdg8251''pdg1592'{
+{
     "derivations": {
         "000001": {
             "name": "Euler equation proof",
@@ -9210,7 +9210,7 @@
             "notes": ""
         },
         "0007563791": {
-            "AST": "Symbol('i')",
+            "AST": "Symbol('pdg4621')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "i",
@@ -9298,7 +9298,7 @@
             "notes": ""
         },
         "0009877781": {
-            "AST": "Symbol('y')",
+            "AST": "Symbol('pdg1452')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "y",
@@ -9378,7 +9378,7 @@
             "notes": ""
         },
         "1020394900": {
-            "AST": "Equality(Symbol('pdg1134'), Mul(Symbol('h'), Pow(Symbol('pdg1115'), Integer(-1))))",
+            "AST": "Equality(Symbol('pdg1134'), Mul(Symbol('pdg4413'), Pow(Symbol('pdg1115'), Integer(-1))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "p = h/\\lambda",
@@ -9386,7 +9386,7 @@
             "notes": ""
         },
         "1020394902": {
-            "AST": "Equality(Symbol('E'), Mul(Symbol('f'), Symbol('h')))",
+            "AST": "Equality(Symbol('pdg4931'), Mul(Symbol('pdg4201'), Symbol('pdg4413')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E = h f",
@@ -9538,7 +9538,7 @@
             "notes": ""
         },
         "1934748140": {
-            "AST": "Equality(Integral(Pow(Abs(Function('psi')(Symbol('x'))), Integer(2)), Tuple(Symbol('pdg9199'))), Integer(1))",
+            "AST": "Equality(Integral(Pow(Abs(Mul(Symbol('psi'),Symbol('x'))), Integer(2)), Tuple(Symbol('pdg9199'))), Integer(1))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\int |\\psi(x)|^2 dx = 1",
@@ -9682,7 +9682,7 @@
             "notes": ""
         },
         "3121234212": {
-            "AST": "Equality(Symbol('pdg1134'), Mul(Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1)), Mul(Symbol('h'), Symbol('k'))))",
+            "AST": "Equality(Symbol('pdg1134'), Mul(Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1)), Mul(Symbol('pdg4413'), Symbol('pdg5321'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "p = \\frac{h k}{2\\pi}",
@@ -9690,7 +9690,7 @@
             "notes": ""
         },
         "3121513111": {
-            "AST": "Equality(Symbol('k'), Mul(Pow(Symbol('pdg1115'), Integer(-1)), Mul(Integer(2), Symbol('pdg3141'))))",
+            "AST": "Equality(Symbol('pdg5321'), Mul(Pow(Symbol('pdg1115'), Integer(-1)), Mul(Integer(2), Symbol('pdg3141'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "k = \\frac{2 \\pi}{\\lambda}",
@@ -9850,7 +9850,7 @@
             "notes": ""
         },
         "4147472132": {
-            "AST": "Equality(Symbol('E'), Mul(Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1)), Mul(Symbol('h'), Symbol('pdg2321'))))",
+            "AST": "Equality(Symbol('pdg4931'), Mul(Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1)), Mul(Symbol('pdg4413'), Symbol('pdg2321'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E = \\frac{h \\omega}{2 \\pi}",
@@ -10106,7 +10106,7 @@
             "notes": ""
         },
         "5928285821": {
-            "AST": "Equality(Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Add(Pow(Symbol('pdg1464'), Integer(2)), Mul(Integer(2), Function('pdg1464')(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))))))), Pow(Add(Symbol('pdg1464'), Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))), Integer(2)))",
+            "AST": "Equality(Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Add(Pow(Symbol('pdg1464'), Integer(2)), Mul(Integer(2), Mul(Symbol('pdg1464'),Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))))))), Pow(Add(Symbol('pdg1464'), Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))), Integer(2)))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x^2 + 2 x (b/(2 a)) + (b/(2 a))^2 = (x + (b/(2 a)))^2",
@@ -10114,7 +10114,7 @@
             "notes": ""
         },
         "5928292841": {
-            "AST": "Equality(Add(Pow(Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Add(Pow(Symbol('pdg1464'), Integer(2)), Mul(Symbol('pdg1464'), Mul(Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg1939'))))), Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Mul(Pow(Symbol('pdg9139'), Integer(-1)), Mul(Integer(-1), Symbol('pdg4231')))))",
+            "AST": "Equality(Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Add(Pow(Symbol('pdg1464'), Integer(2)), Mul(Symbol('pdg1464'), Mul(Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg1939'))))), Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Mul(Pow(Symbol('pdg9139'), Integer(-1)), Mul(Integer(-1), Symbol('pdg4231')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x^2 + (b/a)x + (b/(2 a))^2 = -c/a + (b/(2 a))^2",
@@ -10122,7 +10122,7 @@
             "notes": ""
         },
         "5938459282": {
-            "AST": "Equality(Add(Pow(Symbol('pdg1464'), Integer(2)), Mul(Symbol('pdg1464'), Mul(Pow(Symbol('pdg9139'), Integer(-1)), Symbol('b')))), Mul(Pow(Symbol('pdg9139'), Integer(-1)), Mul(Integer(-1), Symbol('pdg4231'))))",
+            "AST": "Equality(Add(Pow(Symbol('pdg1464'), Integer(2)), Mul(Symbol('pdg1464'), Mul(Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg1939')))), Mul(Pow(Symbol('pdg9139'), Integer(-1)), Mul(Integer(-1), Symbol('pdg4231'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x^2 + (b/a)x = -c/a",
@@ -10138,7 +10138,7 @@
             "notes": ""
         },
         "5959282914": {
-            "AST": "Equality(Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Add(Pow(Symbol('pdg1464'), Integer(2)), Function('pdg1464')(Mul(Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg1939'))))), Pow(Add(Symbol('pdg1464'), Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))), Integer(2)))",
+            "AST": "Equality(Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Add(Pow(Symbol('pdg1464'), Integer(2)), Mul(Symbol('pdg1464'),Mul(Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg1939'))))), Pow(Add(Symbol('pdg1464'), Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))), Integer(2)))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x^2 + x(b/a) + (b/(2 a))^2 = (x+(b/(2 a)))^2",
@@ -10146,7 +10146,7 @@
             "notes": ""
         },
         "5982958248": {
-            "AST": "Equality(Symbol('pdg1464'), Add(Mul(Integer(-1), Mul(Rational(1, 2), Pow(Symbol('pdg9139'), Integer(-1))), Symbol('b')), Mul(Integer(-1), Pow(Add(Pow(Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Mul(Integer(-1), Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg4231'))), Rational(1, 2)))))",
+            "AST": "Equality(Symbol('pdg1464'), Add(Mul(Integer(-1), Mul(Rational(1, 2), Pow(Symbol('pdg9139'), Integer(-1))), Symbol('pdg1939')), Mul(Integer(-1), Pow(Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Mul(Integer(-1), Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg4231'))), Rational(1, 2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x = -\\sqrt{(b/(2 a))^2 - (c/a)}-(b/(2 a))",
@@ -10410,7 +10410,7 @@
             "notes": ""
         },
         "8576785890": {
-            "AST": "Equality(Integer(1), Integral(Mul(Pow(Symbol('a'), Integer(2)), Mul(Pow(Integer(2), Integer(-1)), Add(Integer(1), Mul(Integer(-1), cos(Function('left')(Mul(Integer(2), Mul(Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141'))), Mul(Symbol('right'), Symbol('pdg4037')))))))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))",
+            "AST": "Equality(Integer(1), Integral(Mul(Pow(Symbol('a'), Integer(2)), Mul(Pow(Integer(2), Integer(-1)), Add(Integer(1), Mul(Integer(-1), cos(Mul(Integer(2), Mul(Symbol('x'), Mul(Pow(Symbol('W'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pi')))))))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "1 = \\int_0^W a^2 \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2} dx",
@@ -10434,7 +10434,7 @@
             "notes": ""
         },
         "8582954722": {
-            "AST": "Equality(Add(Pow(Symbol('h'), Integer(2)), Add(Mul(Integer(2), Mul(Symbol('h'), Symbol('pdg1464'))), Pow(Symbol('pdg1464'), Integer(2)))), Pow(Add(Symbol('h'), Symbol('pdg1464')), Integer(2)))",
+            "AST": "Equality(Add(Pow(Symbol('pdg3410'), Integer(2)), Add(Mul(Integer(2), Mul(Symbol('pdg3410'), Symbol('pdg1464'))), Pow(Symbol('pdg1464'), Integer(2)))), Pow(Add(Symbol('pdg3410'), Symbol('pdg1464')), Integer(2)))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x^2 + 2 x h + h^2 = (x + h)^2",
@@ -10586,7 +10586,7 @@
             "notes": ""
         },
         "9483928192": {
-            "AST": "Equality(Add(Mul(Symbol('i'), sin(Mul(Integer(2), Symbol('pdg1464')))), cos(Mul(Integer(2), Symbol('pdg1464')))), Add(Add(Mul(Integer(2), Mul(Symbol('i'), Mul(sin(Symbol('pdg1464')), cos(Symbol('pdg1464'))))), Pow(cos(Symbol('pdg1464')), Integer(2))), Mul(Integer(-1), Pow(sin(Symbol('pdg1464')), Integer(2)))))",
+            "AST": "Equality(Add(Mul(Symbol('pdg4621'), sin(Mul(Integer(2), Symbol('pdg1464')))), cos(Mul(Integer(2), Symbol('pdg1464')))), Add(Add(Mul(Integer(2), Mul(Symbol('pdg4621'), Mul(sin(Symbol('pdg1464')), cos(Symbol('pdg1464'))))), Pow(cos(Symbol('pdg1464')), Integer(2))), Mul(Integer(-1), Pow(sin(Symbol('pdg1464')), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\cos(2 x) + i\\sin(2 x) = (\\cos(x))^2 + 2 i \\cos(x) \\sin(x) - (\\sin(x))^2",
@@ -10642,7 +10642,7 @@
             "notes": ""
         },
         "9582958293": {
-            "AST": "Equality(Symbol('pdg1464'), Add(Mul(Integer(-1), Mul(Rational(1, 2), Pow(Symbol('pdg9139'), Integer(-1))), Symbol('b')), Pow(Add(Pow(Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Mul(Integer(-1), Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg4231'))), Rational(1, 2))))",
+            "AST": "Equality(Symbol('pdg1464'), Add(Mul(Integer(-1), Mul(Rational(1, 2), Pow(Symbol('pdg9139'), Integer(-1))), Symbol('pdg1939')), Pow(Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Mul(Integer(-1), Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg4231'))), Rational(1, 2))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x =  \\sqrt{(b/(2 a))^2 - (c/a)}-(b/(2 a))",
@@ -10650,7 +10650,7 @@
             "notes": ""
         },
         "9582958294": {
-            "AST": "Equality(Add(Symbol('pdg1464'), Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))), Pow(Add(Pow(Mul(Symbol('b'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Mul(Integer(-1), Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg4231'))), Rational(1, 2)))",
+            "AST": "Equality(Add(Symbol('pdg1464'), Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)))), Pow(Add(Pow(Mul(Symbol('pdg1939'), Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1))), Integer(2)), Mul(Integer(-1), Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg4231'))), Rational(1, 2)))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x+(b/(2 a)) =  \\sqrt{(b/(2 a))^2 - (c/a)}",
@@ -10754,7 +10754,7 @@
             "notes": ""
         },
         "9999999960": {
-            "AST": "Equality(Symbol('pdg1054'), Mul(Symbol('h'), Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1))))",
+            "AST": "Equality(Symbol('pdg1054'), Mul(Symbol('pdg4413'), Pow(Mul(Integer(2), Symbol('pdg3141')), Integer(-1))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\hbar = h/(2 \\pi)",
@@ -10778,7 +10778,7 @@
             "notes": ""
         },
         "9999999965": {
-            "AST": "Equality(Symbol('4931'), Mul(Symbol('pdg1054'), Symbol('pdg2321')))",
+            "AST": "Equality(Symbol('pdg4931'), Mul(Symbol('pdg1054'), Symbol('pdg2321')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E = \\omega \\hbar",
@@ -10786,7 +10786,7 @@
             "notes": ""
         },
         "9999999968": {
-            "AST": "Equality(Symbol('pdg1464'), Mul(Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)), Add(Mul(Integer(-1), Symbol('b')), Mul(Integer(-1), Pow(Add(Mul(Integer(-1), Integer(4), Symbol('pdg9139'), Symbol('pdg4231')), Pow(Symbol('b'), Integer(2))), Rational(1, 2))))))",
+            "AST": "Equality(Symbol('pdg1464'), Mul(Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1939')), Mul(Integer(-1), Pow(Add(Mul(Integer(-1), Integer(4), Symbol('pdg9139'), Symbol('pdg4231')), Pow(Symbol('pdg1939'), Integer(2))), Rational(1, 2))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x = \\frac{-b-\\sqrt{b^2-4ac}}{2 a}",
@@ -10794,7 +10794,7 @@
             "notes": ""
         },
         "9999999969": {
-            "AST": "Equality(Symbol('pdg1464'), Mul(Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)), Add(Mul(Integer(-1), Symbol('b')), Pow(Add(Mul(Integer(-1), Integer(4), Symbol('pdg9139'), Symbol('pdg4231')), Pow(Symbol('b'), Integer(2))), Rational(1, 2)))))",
+            "AST": "Equality(Symbol('pdg1464'), Mul(Pow(Mul(Integer(2), Symbol('pdg9139')), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1939')), Pow(Add(Mul(Integer(-1), Integer(4), Symbol('pdg9139'), Symbol('pdg4231')), Pow(Symbol('pdg1939'), Integer(2))), Rational(1, 2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x = \\frac{-b+\\sqrt{b^2-4ac}}{2 a}",
@@ -10931,7 +10931,7 @@
         },
         "8483686863": {
             "latex": "\\sin(2 x) = \\frac{1}{2i}\\left(\\exp(i 2 x)-\\exp(-i 2 x) \\right)",
-            "AST": "Equality(sin(Mul(Integer(2), Symbol('pdg1464'))), Mul(Pow(Mul(Integer(2), Symbol('pdg4621')), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Mul(Integer(2), Symbol('pdg1464')))))), Function('exp')(Mul(Symbol('pdg4621'), Mul(Integer(2), Symbol('pdg1464')))))))",
+            "AST": "Equality(sin(Mul(Integer(2), Symbol('pdg1464'))), Mul(Pow(Mul(Integer(2), Symbol('pdg4621')), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Mul(Integer(2), Symbol('pdg1464')))))), exp(Mul(Symbol('pdg4621'), Mul(Integer(2), Symbol('pdg1464')))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11083,7 +11083,7 @@
         },
         "7676652285": {
             "latex": "KE_2 = \\frac{1}{2} m v_2^2",
-            "AST": "Equality(Symbol('pdg1352'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('v_{2}'), Integer(2)))))",
+            "AST": "Equality(Symbol('pdg1352'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('pdg4770'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11091,7 +11091,7 @@
         },
         "4928007622": {
             "latex": "KE_1 = \\frac{1}{2} m v_1^2",
-            "AST": "Equality(Symbol('pdg1955'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('v_{1}'), Integer(2)))))",
+            "AST": "Equality(Symbol('pdg1955'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('pdg2473'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11099,7 +11099,7 @@
         },
         "5733146966": {
             "latex": "KE_2 - KE_1 = \\frac{1}{2} m \\left(v_2^2 - v_1^2\\right)",
-            "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352')), Mul(Pow(Integer(2), Integer(-1)), Function('pdg5156')(Add(Mul(Integer(-1), Pow(Symbol('v_{1}'), Integer(2))), Pow(Symbol('v_{2}'), Integer(2))))))",
+            "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352')), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'),Add(Mul(Integer(-1), Pow(Symbol('pdg2473'), Integer(2))), Pow(Symbol('pdg4770'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11115,7 +11115,7 @@
         },
         "4270680309": {
             "latex": "\\frac{KE_2 - KE_1}{t} = \\frac{1}{2} m \\frac{\\left( v_2^2 - v_1^2 \\right)}{t}",
-            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352'))), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Pow(Symbol('v_{1}'), Integer(2))), Pow(Symbol('v_{2}'), Integer(2)))))))",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352'))), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Pow(Symbol('pdg2473'), Integer(2))), Pow(Symbol('pdg4770'), Integer(2)))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11131,7 +11131,7 @@
         },
         "4648451961": {
             "latex": "v_2^2 - v_1^2 = (v_2 + v_1)(v_2 - v_1)",
-            "AST": "Equality(Add(Mul(Integer(-1), Pow(Symbol('v_{1}'), Integer(2))), Pow(Symbol('v_{2}'), Integer(2))), Mul(Add(Mul(Integer(-1), Symbol('v_{1}')), Symbol('v_{2}')), Add(Symbol('v_{1}'), Symbol('v_{2}'))))",
+            "AST": "Equality(Add(Mul(Integer(-1), Pow(Symbol('pdg2473'), Integer(2))), Pow(Symbol('pdg4770'), Integer(2))), Mul(Add(Mul(Integer(-1), Symbol('pdg2473')), Symbol('pdg4770')), Add(Symbol('pdg2473'), Symbol('pdg4770'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11139,7 +11139,7 @@
         },
         "9356924046": {
             "latex": "\\frac{KE_2 - KE_1}{t} = m \\frac{v_2 + v_1}{2} \\frac{ v_2 - v_1 }{t}",
-            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352'))), Mul(Symbol('pdg5156'), Mul(Mul(Pow(Integer(2), Integer(-1)), Add(Symbol('v_{1}'), Symbol('v_{2}'))), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('v_{1}')), Symbol('v_{2}'))))))",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352'))), Mul(Symbol('pdg5156'), Mul(Mul(Pow(Integer(2), Integer(-1)), Add(Symbol('pdg2473'), Symbol('pdg4770'))), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg2473')), Symbol('pdg4770'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11147,7 +11147,7 @@
         },
         "9397152918": {
             "latex": "v = \\frac{v_1 + v_2}{2}",
-            "AST": "Equality(Symbol('pdg1357'), Mul(Pow(Integer(2), Integer(-1)), Add(Symbol('v_{1}'), Symbol('v_{2}'))))",
+            "AST": "Equality(Symbol('pdg1357'), Mul(Pow(Integer(2), Integer(-1)), Add(Symbol('pdg2473'), Symbol('pdg4770'))))",
             "name": "average velocity",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11155,7 +11155,7 @@
         },
         "2857430695": {
             "latex": "a = \\frac{v_2 - v_1}{t}",
-            "AST": "Equality(Symbol('pdg9140'), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('v_{1}')), Symbol('v_{2}'))))",
+            "AST": "Equality(Symbol('pdg9140'), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg2473')), Symbol('pdg4770'))))",
             "name": "acceleration",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11163,7 +11163,7 @@
         },
         "7735737409": {
             "latex": "\\frac{KE_2 - KE_1}{t} = m v \\frac{ v_2 - v_1 }{t}",
-            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352'))), Mul(Symbol('pdg5156'), Mul(Symbol('v'), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('v_{1}')), Symbol('v_{2}'))))))",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352'))), Mul(Symbol('pdg5156'), Mul(Symbol('v'), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg2473')), Symbol('pdg4770'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11219,7 +11219,7 @@
         },
         "7734996511": {
             "latex": "PE_2 - PE_1 = -F ( x_2 - x_1 )",
-            "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg4093')), Symbol('pdg8849')), Mul(Integer(-1), Function('pdg4202')(Add(Mul(Integer(-1), Symbol('x_{1}')), Symbol('x_{2}')))))",
+            "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg4093')), Symbol('pdg8849')), Mul(Integer(-1), Mul(Symbol('pdg4202'),Add(Mul(Integer(-1), Symbol('x_{1}')), Symbol('x_{2}'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11235,7 +11235,7 @@
         },
         "7267155233": {
             "latex": "\\frac{PE_2 - PE_1}{t} = -F \\left( \\frac{x_2 - x_1}{t} \\right)",
-            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg4903')), Symbol('pdg8849'))), Mul(Integer(-1), Function('pdg4202')(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('x_{1}')), Symbol('x_{2}'))))))",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg4903')), Symbol('pdg8849'))), Mul(Integer(-1), Mul(Symbol('pdg4202'),Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('x_{1}')), Symbol('x_{2}'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11267,7 +11267,7 @@
         },
         "2770069250": {
             "latex": "\\frac{E_2 - E_1}{t} = \\frac{(KE_2 - KE_1)}{t} + \\frac{(PE_2 - PE_1)}{t}",
-            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('E_{1}')), Symbol('E_{2}'))), Add(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('1352'))), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg4093')), Symbol('pdg8849')))))",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg5579')), Symbol('pdg4550'))), Add(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352'))), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg4093')), Symbol('pdg8849')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11275,7 +11275,7 @@
         },
         "3591237106": {
             "latex": "\\frac{E_2 - E_1}{t} = \\frac{(KE_2 - KE_1)}{t} - F v",
-            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('E_{1}')), Symbol('E_{2}'))), Add(Mul(Integer(-1), Symbol('pdg4202'), Symbol('pdg1357')), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352')))))",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pg5579')), Symbol('pdg4550'))), Add(Mul(Integer(-1), Symbol('pdg4202'), Symbol('pdg1357')), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11283,7 +11283,7 @@
         },
         "1772416655": {
             "latex": "\\frac{E_2 - E_1}{t} = v F - F v",
-            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('E_{1}')), Symbol('E_{2}'))), Add(Mul(Integer(-1), Symbol('pdg4202'), Symbol('pdg1357')), Mul(Symbol('pdg4202'), Symbol('pdg1357'))))",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg5579')), Symbol('pdg4550'))), Add(Mul(Integer(-1), Symbol('pdg4202'), Symbol('pdg1357')), Mul(Symbol('pdg4202'), Symbol('pdg1357'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11291,7 +11291,7 @@
         },
         "1809909100": {
             "latex": "\\frac{E_2 - E_1}{t} = 0",
-            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('E_{1}')), Symbol('E_{2}'))), Integer(0))",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg5579')), Symbol('pdg4550'))), Integer(0))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11307,7 +11307,7 @@
         },
         "3806977900": {
             "latex": "E_2 - E_1 = 0",
-            "AST": "Equality(Add(Mul(Integer(-1), Symbol('E_{1}')), Symbol('E_{2}')), Integer(0))",
+            "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg5579')), Symbol('pdg4550')), Integer(0))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11315,7 +11315,7 @@
         },
         "5960438249": {
             "latex": "E_1",
-            "AST": "Symbol('E_{1}')",
+            "AST": "Symbol('pdg5579')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11323,7 +11323,7 @@
         },
         "8558338742": {
             "latex": "E_2 = E_1",
-            "AST": "Equality(Symbol('E_{2}'), Symbol('E_{1}'))",
+            "AST": "Equality(Symbol('pdg4550'), Symbol('pdg5579'))",
             "name": "conservation of energy",
             "notes": "https://en.wikipedia.org/wiki/Conservation_of_energy",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11575,7 +11575,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
             "name": "",
-            "AST": "Equality(Symbol('C_{E}'), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('pdg6081'))))"
+            "AST": "Equality(Symbol('pdg1534'), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('pdg6081'))))"
         },
         "3046191961": {
             "latex": "v_{\\rm Earth\\ orbit} = \\frac{C_{\\rm Earth\\ orbit}}{t_{\\rm Earth\\ orbit}}",
@@ -11651,7 +11651,7 @@
         },
         "4662369843": {
             "latex": "x' = \\gamma (x - v t)",
-            "AST": "Equality(Symbol('pdg5456'), Function('pdg1790')(Add(Mul(Integer(-1), Symbol('pdg1467'), Symbol('v')), Symbol('x'))))",
+            "AST": "Equality(Symbol('pdg5456'), Mul(Symbol('pdg1790'),Add(Mul(Integer(-1), Symbol('pdg1467'), Symbol('v')), Symbol('x'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11963,7 +11963,7 @@
         },
         "1935543849": {
             "latex": "\\gamma^2 x^2 - \\gamma^2 2 x v t + \\gamma^2 v^2 t^2 + y^2 + z^2 = c^2 \\gamma^2 \\left(\\frac{1-\\gamma^2}{\\gamma^2}\\right)\\frac{x^2}{\\gamma^2} + c^2 \\gamma^2 2 t \\left(\\frac{1-\\gamma^2}{\\gamma^2}\\right)\\frac{x}{\\gamma} + c^2 \\gamma^2 t^2",
-            "AST": "Equality(Add(Pow(Symbol('z'), Integer(2)), Add(Pow(Symbol('y'), Integer(2)), Add(Mul(Pow(Symbol('pdg1790'), Integer(2)), Mul(Pow(Symbol('pdg1467'), Integer(2)), Pow(Symbol('v'), Integer(2)))), Add(Mul(Integer(-1), Integer(2), Pow(Symbol('pdg1790'), Integer(2)), Symbol('pdg1467'), Symbol('v'), Symbol('x')), Mul(Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('x'), Integer(2))))))), Add(Mul(Pow(Symbol('pdg4567'), Integer(2)), Mul(Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('pdg1467'), Integer(2)))), Add(Mul(Pow(Symbol('pdg4567'), Integer(2)), Mul(Pow(Symbol('pdg1790'), Integer(2)), Mul(Integer(2), Mul(Mul(Pow(Symbol('pdg1790'), Integer(-1)), Symbol('x')), Function('pdg1467')(Mul(Add(Integer(1), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)))), Pow(Pow(Symbol('pdg1790'), Integer(2)), Integer(-1)))))))), Mul(Pow(Symbol('pdg4567'), Integer(2)), Mul(Pow(Symbol('pdg1790'), Integer(2)), Mul(Mul(Pow(Symbol('x'), Integer(2)), Pow(Pow(Symbol('pdg1790'), Integer(2)), Integer(-1))), Mul(Add(Integer(1), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)))), Pow(Pow(Symbol('pdg1790'), Integer(2)), Integer(-1)))))))))",
+            "AST": "Equality(Add(Pow(Symbol('z'), Integer(2)), Add(Pow(Symbol('y'), Integer(2)), Add(Mul(Pow(Symbol('pdg1790'), Integer(2)), Mul(Pow(Symbol('pdg1467'), Integer(2)), Pow(Symbol('v'), Integer(2)))), Add(Mul(Integer(-1), Integer(2), Pow(Symbol('pdg1790'), Integer(2)), Symbol('pdg1467'), Symbol('v'), Symbol('x')), Mul(Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('x'), Integer(2))))))), Add(Mul(Pow(Symbol('pdg4567'), Integer(2)), Mul(Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('pdg1467'), Integer(2)))), Add(Mul(Pow(Symbol('pdg4567'), Integer(2)), Mul(Pow(Symbol('pdg1790'), Integer(2)), Mul(Integer(2), Mul(Mul(Pow(Symbol('pdg1790'), Integer(-1)), Symbol('x')), Mul(Symbol('pdg1467'),Mul(Add(Integer(1), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)))), Pow(Pow(Symbol('pdg1790'), Integer(2)), Integer(-1)))))))), Mul(Pow(Symbol('pdg4567'), Integer(2)), Mul(Pow(Symbol('pdg1790'), Integer(2)), Mul(Mul(Pow(Symbol('x'), Integer(2)), Pow(Pow(Symbol('pdg1790'), Integer(2)), Integer(-1))), Mul(Add(Integer(1), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)))), Pow(Pow(Symbol('pdg1790'), Integer(2)), Integer(-1)))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11971,7 +11971,7 @@
         },
         "1586866563": {
             "latex": "\\left( \\gamma^2 - c^2 \\gamma^2 \\left( \\frac{1-\\gamma^2}{\\gamma^2} \\right)^2 \\frac{1}{v^2} \\right) x^2 + y^2 + z^2 + \\left( -\\gamma^2 2 x v t - c^2 \\gamma^2 2 t \\left( \\frac{1-\\gamma^2}{\\gamma^2} \\right) \\frac{x}{v} \\right) = t^2 \\left( c^2 \\gamma^2 - \\gamma^2 v^2 \\right)",
-            "AST": "Equality(Add(Add(Pow(Symbol('z'), Integer(2)), Add(Mul(Pow(Symbol('x'), Integer(2)), Add(Mul(Integer(-1), Pow(Symbol('pdg4567'), Integer(2)), Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('v'), Integer(-2)), Mul(Pow(Symbol('pdg1790'), Integer(-4)), Pow(Add(Integer(1), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)))), Integer(2)))), Pow(Symbol('pdg1790'), Integer(2)))), Pow(Symbol('y'), Integer(2)))), Add(Mul(Integer(-1), Integer(2), Pow(Symbol('pdg4567'), Integer(2)), Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('v'), Integer(-1)), Symbol('x'), Function('pdg1467')(Mul(Add(Integer(1), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)))), Pow(Pow(Symbol('pdg1790'), Integer(2)), Integer(-1))))), Mul(Integer(-1), Mul(Pow(Symbol('pdg1790'), Integer(2)), Mul(Integer(2), Mul(Symbol('x'), Mul(Symbol('pdg1467'), Symbol('v')))))))), Mul(Pow(Symbol('pdg1467'), Integer(2)), Add(Mul(Pow(Symbol('pdg4567'), Integer(2)), Pow(Symbol('pdg1790'), Integer(2))), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('v'), Integer(2))))))",
+            "AST": "Equality(Add(Add(Pow(Symbol('z'), Integer(2)), Add(Mul(Pow(Symbol('x'), Integer(2)), Add(Mul(Integer(-1), Pow(Symbol('pdg4567'), Integer(2)), Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('v'), Integer(-2)), Mul(Pow(Symbol('pdg1790'), Integer(-4)), Pow(Add(Integer(1), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)))), Integer(2)))), Pow(Symbol('pdg1790'), Integer(2)))), Pow(Symbol('y'), Integer(2)))), Add(Mul(Integer(-1), Integer(2), Pow(Symbol('pdg4567'), Integer(2)), Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('v'), Integer(-1)), Symbol('x'), Mul(Symbol('pdg1467'),Mul(Add(Integer(1), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)))), Pow(Pow(Symbol('pdg1790'), Integer(2)), Integer(-1))))), Mul(Integer(-1), Mul(Pow(Symbol('pdg1790'), Integer(2)), Mul(Integer(2), Mul(Symbol('x'), Mul(Symbol('pdg1467'), Symbol('v')))))))), Mul(Pow(Symbol('pdg1467'), Integer(2)), Add(Mul(Pow(Symbol('pdg4567'), Integer(2)), Pow(Symbol('pdg1790'), Integer(2))), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('v'), Integer(2))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12131,7 +12131,7 @@
         },
         "3366703541": {
             "latex": "a = \\frac{v - v_0}{t}",
-            "AST": "Equality(Symbol('pdg9140'), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Symbol('pdg1357'), Mul(Integer(-1), Symbol('v_{0}')))))",
+            "AST": "Equality(Symbol('pdg9140'), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Symbol('pdg1357'), Mul(Integer(-1), Symbol('pdg5153')))))",
             "name": "",
             "notes": "acceleration is the average change in speed over a duration",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12147,7 +12147,7 @@
         },
         "4748157455": {
             "latex": "a t = v - v_0",
-            "AST": "Equality(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Add(Symbol('pdg1357'), Mul(Integer(-1), Symbol('v_{0}'))))",
+            "AST": "Equality(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Add(Symbol('pdg1357'), Mul(Integer(-1), Symbol('pdg5153'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12163,7 +12163,7 @@
         },
         "4798787814": {
             "latex": "a t + v_0 = v",
-            "AST": "Equality(Add(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Symbol('v_{0}')), Symbol('pdg1357'))",
+            "AST": "Equality(Add(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Symbol('pdg5153')), Symbol('pdg1357'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12171,25 +12171,23 @@
         },
         "3462972452": {
             "latex": "v = v_0 + a t",
-            "AST": "Equality(Symbol('pdg1357'), Add(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Symbol('v_{0}')))",
+            "AST": "Equality(Symbol('pdg1357'), Add(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Symbol('pdg5153')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-14"
         },
         "3411994811": {
-            "latex": "v_{\\rm ave} = \\frac{d}{t}",
-            "AST": "Equality(Symbol('v_{rm*(a*(e*v))}'), Mul(Symbol('pdg1943'), Pow(Symbol('pdg1467'), Integer(-1))))",
-            "temp symbol list": "pdg1943 and pdg1467",
+            "latex": "v_{\\rm average} = \\frac{d}{t}",
+            "AST": "Equality(Symbol('pdg6709'), Mul(Symbol('pdg1943'), Pow(Symbol('pdg1467'), Integer(-1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-14"
         },
         "6175547907": {
-            "latex": "v_{\\rm ave} = \\frac{v + v_0}{2}",
-            "AST": "Equality(Symbol('v_{rm*(a*(e*v))}'), Mul(Pow(Integer(2), Integer(-1)), Add(Symbol('v'), Symbol('v_{0}'))))",
-            "temp symbol list": "pdg1357",
+            "latex": "v_{\\rm average} = \\frac{v + v_0}{2}",
+            "AST": "Equality(Symbol('pdg6709'), Mul(Pow(Integer(2), Integer(-1)), Add(Symbol('pdg1357'), Symbol('pdg5153'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12197,7 +12195,7 @@
         },
         "9897284307": {
             "latex": "\\frac{d}{t} = \\frac{v + v_0}{2}",
-            "AST": "Equality(Mul(Symbol('pdg1943'), Pow(Symbol('pdg1467'), Integer(-1))), Mul(Pow(Integer(2), Integer(-1)), Add(Symbol('pdg1357'), Symbol('v_{0}'))))",
+            "AST": "Equality(Mul(Symbol('pdg1943'), Pow(Symbol('pdg1467'), Integer(-1))), Mul(Pow(Integer(2), Integer(-1)), Add(Symbol('pdg1357'), Symbol('pdg5153'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12221,7 +12219,7 @@
         },
         "7011114072": {
             "latex": "d = \\frac{(v_0 + a t) + v_0}{2} t",
-            "AST": "Equality(Symbol('pdg1943'), Mul(Symbol('pdg1467'), Mul(Pow(Integer(2), Integer(-1)), Add(Symbol('v_{0}'), Add(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Symbol('v_{0}'))))))",
+            "AST": "Equality(Symbol('pdg1943'), Mul(Symbol('pdg1467'), Mul(Pow(Integer(2), Integer(-1)), Add(Symbol('pdg5153'), Add(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Symbol('pdg5153'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12229,7 +12227,7 @@
         },
         "1265150401": {
             "latex": "d = \\frac{2 v_0 + a t}{2} t",
-            "AST": "Equality(Symbol('pdg1943'), Mul(Symbol('pdg1467'), Mul(Pow(Integer(2), Integer(-1)), Add(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Mul(Integer(2), Symbol('v_{0}'))))))",
+            "AST": "Equality(Symbol('pdg1943'), Mul(Symbol('pdg1467'), Mul(Pow(Integer(2), Integer(-1)), Add(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Mul(Integer(2), Symbol('pdg5153'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12237,7 +12235,7 @@
         },
         "9658195023": {
             "latex": "d = v_0 t + \\frac{1}{2} a t^2",
-            "AST": "Equality(Symbol('pdg1943'), Add(Mul(Symbol('pdg1467'), Symbol('v_{0}')), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg9140'), Pow(Symbol('pdg1467'), Integer(2))))))",
+            "AST": "Equality(Symbol('pdg1943'), Add(Mul(Symbol('pdg1467'), Symbol('pdg5153')), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg9140'), Pow(Symbol('pdg1467'), Integer(2))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12253,7 +12251,7 @@
         },
         "7215099603": {
             "latex": "v^2 = v_0^2 + 2 a t v_0 + a^2 t^2",
-            "AST": "Equality(Pow(Symbol('pdg1357'), Integer(2)), Add(Mul(Pow(Symbol('pdg9140'), Integer(2)), Pow(Symbol('pdg1467'), Integer(2))), Add(Mul(Integer(2), Mul(Symbol('pdg9140'), Mul(Symbol('pdg1467'), Symbol('v_{0}')))), Pow(Symbol('v_{0}'), Integer(2)))))",
+            "AST": "Equality(Pow(Symbol('pdg1357'), Integer(2)), Add(Mul(Pow(Symbol('pdg9140'), Integer(2)), Pow(Symbol('pdg1467'), Integer(2))), Add(Mul(Integer(2), Mul(Symbol('pdg9140'), Mul(Symbol('pdg1467'), Symbol('pdg5153')))), Pow(Symbol('pdg5153'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12269,7 +12267,7 @@
         },
         "7939765107": {
             "latex": "v^2 = v_0^2 + 2 a d",
-            "AST": "Equality(Pow(Symbol('pdg1357'), Integer(2)), Add(Mul(Integer(2), Mul(Symbol('pdg9140'), Symbol('pdg1943'))), Pow(Symbol('v_{0}'), Integer(2))))",
+            "AST": "Equality(Pow(Symbol('pdg1357'), Integer(2)), Add(Mul(Integer(2), Mul(Symbol('pdg9140'), Symbol('pdg1943'))), Pow(Symbol('pdg5153'), Integer(2))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12285,7 +12283,7 @@
         },
         "9759901995": {
             "latex": "v - v_0 = a t",
-            "AST": "Equality(Add(Symbol('pdg1357'), Mul(Integer(-1), Symbol('v_{0}'))), Mul(Symbol('pdg9140'), Symbol('pdg1467')))",
+            "AST": "Equality(Add(Symbol('pdg1357'), Mul(Integer(-1), Symbol('pdg5153'))), Mul(Symbol('pdg9140'), Symbol('pdg1467')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12301,7 +12299,7 @@
         },
         "1967582749": {
             "latex": "t = \\frac{v - v_0}{a}",
-            "AST": "Equality(Symbol('pdg1467'), Mul(Pow(Symbol('pdg9140'), Integer(-1)), Add(Symbol('pdg1357'), Mul(Integer(-1), Symbol('v_{0}')))))",
+            "AST": "Equality(Symbol('pdg1467'), Mul(Pow(Symbol('pdg9140'), Integer(-1)), Add(Symbol('pdg1357'), Mul(Integer(-1), Symbol('pdg5153')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12309,7 +12307,7 @@
         },
         "5733721198": {
             "latex": "d = \\frac{1}{2} (v + v_0) \\left( \\frac{v - v_0}{a} \\right)",
-            "AST": "Equality(Symbol('pdg1943'), Mul(Pow(Integer(2), Integer(-1)), Mul(Mul(Pow(Symbol('a'), Integer(-1)), Add(Symbol('v'), Mul(Integer(-1), Symbol('v_{0}')))), Add(Symbol('v'), Symbol('v_{0}')))))",
+            "AST": "Equality(Symbol('pdg1943'), Mul(Pow(Integer(2), Integer(-1)), Mul(Mul(Pow(Symbol('pdg9140'), Integer(-1)), Add(Symbol('v'), Mul(Integer(-1), Symbol('pdg5153')))), Add(Symbol('v'), Symbol('pdg5153')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12317,7 +12315,7 @@
         },
         "5611024898": {
             "latex": "d = \\frac{1}{2 a} (v^2 - v_0^2)",
-            "AST": "Equality(Symbol('pdg1943'), Mul(Pow(Mul(Integer(2), Symbol('pdg9140')), Integer(-1)), Add(Pow(Symbol('pdg1357'), Integer(2)), Mul(Integer(-1), Pow(Symbol('v_{0}'), Integer(2))))))",
+            "AST": "Equality(Symbol('pdg1943'), Mul(Pow(Mul(Integer(2), Symbol('pdg9140')), Integer(-1)), Add(Pow(Symbol('pdg1357'), Integer(2)), Mul(Integer(-1), Pow(Symbol('pdg5153'), Integer(2))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12333,7 +12331,7 @@
         },
         "8269198922": {
             "latex": "2 a d = v^2 - v_0^2",
-            "AST": "Equality(Mul(Integer(2), Mul(Symbol('pdg9140'), Symbol('pdg1943'))), Add(Pow(Symbol('pdg1357'), Integer(2)), Mul(Integer(-1), Pow(Symbol('v_{0}'), Integer(2)))))",
+            "AST": "Equality(Mul(Integer(2), Mul(Symbol('pdg9140'), Symbol('pdg1943'))), Add(Pow(Symbol('pdg1357'), Integer(2)), Mul(Integer(-1), Pow(Symbol('pdg5153'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12349,7 +12347,7 @@
         },
         "4948763856": {
             "latex": "2 a d + v_0^2 = v^2",
-            "AST": "Equality(Add(Mul(Integer(2), Mul(Symbol('pdg9140'), Symbol('pdg1943'))), Pow(Symbol('v_{0}'), Integer(2))), Pow(Symbol('pdg1357'), Integer(2)))",
+            "AST": "Equality(Add(Mul(Integer(2), Mul(Symbol('pdg9140'), Symbol('pdg1943'))), Pow(Symbol('pdg5153'), Integer(2))), Pow(Symbol('pdg1357'), Integer(2)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12365,7 +12363,7 @@
         },
         "6457044853": {
             "latex": "v - a t = v_0",
-            "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg9140'), Symbol('pdg1467')), Symbol('pdg1357')), Symbol('v_{0}'))",
+            "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg9140'), Symbol('pdg1467')), Symbol('pdg1357')), Symbol('pdg5153'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12565,7 +12563,7 @@
         },
         "4192519596": {
             "latex": "B = |B| \\exp(i \\phi)",
-            "AST": "Equality(Symbol('pdg4698'), Mul(Function('exp')(Mul(Symbol('i'), Symbol('pdg8586'))), Abs(Symbol('pdg4698'))))",
+            "AST": "Equality(Symbol('pdg4698'), Mul(exp(Mul(Symbol('pdg4621'), Symbol('pdg8586'))), Abs(Symbol('pdg4698'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12589,7 +12587,7 @@
         },
         "1357848476": {
             "latex": "A = |A| \\exp(i \\theta)",
-            "AST": "Equality(Symbol('pdg4453'), Mul(Function('exp')(Mul(Symbol('i'), Symbol('pdg1575'))), Abs(Symbol('pdg4453'))))",
+            "AST": "Equality(Symbol('pdg4453'), Mul(exp(Mul(Symbol('pdg4621'), Symbol('pdg1575'))), Abs(Symbol('pdg4453'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12613,7 +12611,7 @@
         },
         "7621705408": {
             "latex": "I = |A|^2 + |B|^2 + |A| |B| \\exp(-i \\theta) \\exp(i \\phi) + |A| |B| \\exp(i \\theta) \\exp(-i \\phi)",
-            "AST": "Equality(Symbol('pdg7882'), Add(Mul(Mul(Function('exp')(Mul(Integer(-1), Mul(Symbol('i'), Symbol('pdg8586')))), Function('exp')(Mul(Symbol('i'), Symbol('pdg1575')))), Abs(Mul(Symbol('pdg4453'), Mul(Symbol('pdg4698'), Abs(Add(Mul(Mul(Function('exp')(Mul(Symbol('i'), Symbol('pdg8586'))), Function('exp')(Mul(Integer(-1), Mul(Symbol('i'), Symbol('pdg1575'))))), Abs(Symbol('pdg4698'))), Abs(Symbol('pdg4453')))))))), Add(Pow(Abs(Symbol('pdg4453')), Integer(2)), Pow(Abs(Symbol('pdg4698')), Integer(2)))))",
+            "AST": "Equality(Symbol('pdg7882'), Add(Mul(Mul(exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('pdg8586')))), exp(Mul(Symbol('pdg4621'), Symbol('pdg1575')))), Abs(Mul(Symbol('pdg4453'), Mul(Symbol('pdg4698'), Abs(Add(Mul(Mul(exp(Mul(Symbol('pdg4621'), Symbol('pdg8586'))), exp(Mul(Integer(-1), Mul(Symbol('pdg4621'), Symbol('pdg1575'))))), Abs(Symbol('pdg4698'))), Abs(Symbol('pdg4453')))))))), Add(Pow(Abs(Symbol('pdg4453')), Integer(2)), Pow(Abs(Symbol('pdg4698')), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12621,7 +12619,7 @@
         },
         "3085575328": {
             "latex": "I = |A|^2 + |B|^2 + |A| |B| \\exp(i (\\theta - \\phi)) + |A| |B| \\exp(-i (\\theta - \\phi))",
-            "AST": "Equality(Symbol('pdg7882'), Add(Add(Pow(Abs(Symbol('pdg4453')), Integer(2)), Pow(Abs(Symbol('pdg4698')), Integer(2))), Mul(Function('exp')(Mul(Integer(-1), Function('i')(Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575'))))), Abs(Mul(Symbol('pdg4453'), Mul(Symbol('pdg4698'), Abs(Add(Mul(Function('exp')(Function('i')(Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575')))), Abs(Symbol('pdg4698'))), Abs(Symbol('pdg4453'))))))))))",
+            "AST": "Equality(Symbol('pdg7882'), Add(Add(Pow(Abs(Symbol('pdg4453')), Integer(2)), Pow(Abs(Symbol('pdg4698')), Integer(2))), Mul(exp(Mul(Integer(-1), Mul(Symbol('pdg4621'),Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575'))))), Abs(Mul(Symbol('pdg4453'), Mul(Symbol('pdg4698'), Abs(Add(Mul(exp(Mul(Symbol('4621'),Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575')))), Abs(Symbol('pdg4698'))), Abs(Symbol('pdg4453'))))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12645,7 +12643,7 @@
         },
         "3660957533": {
             "latex": "\\cos(x) = \\frac{1}{2} \\left( \\exp(i (\\theta - \\phi)) + \\exp(-i (\\theta - \\phi)) \\right)",
-            "AST": "Equality(cos(Symbol('x')), Mul(Pow(Integer(2), Integer(-1)), Add(Function('exp')(Mul(Integer(-1), Function('i')(Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575'))))), exp(Mul(Symbol('4621'),(Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575'))))))))",
+            "AST": "Equality(cos(Symbol('x')), Mul(Pow(Integer(2), Integer(-1)), Add(exp(Mul(Integer(-1), Mul(Symbol('pdg4621'),Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575'))))), exp(Mul(Symbol('pdg4621'),(Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575'))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12661,7 +12659,7 @@
         },
         "2700934933": {
             "latex": "2 \\cos(x) = \\left( \\exp(i (\\theta - \\phi)) + \\exp(-i (\\theta - \\phi)) \\right)",
-            "AST": "Equality(Mul(Integer(2), cos(Symbol('x'))), Add(exp(Mul(Integer(-1), Symbol('i'),(Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575'))))), exp(Mul(Symbol('i'),(Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575')))))))",
+            "AST": "Equality(Mul(Integer(2), cos(Symbol('x'))), Add(exp(Mul(Integer(-1), Symbol('pdg4621'),(Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575'))))), exp(Mul(Symbol('pdg4621'),(Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575')))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12765,7 +12763,7 @@
         },
         "8602512487": {
             "latex": "\\vec{a} = a_x \\hat{x} + a_y \\hat{y}",
-            "AST": "pdg9140 and pdg2911 and pdg2911 and pdg5647",
+            "AST": "Equality(Symbol('v_{a}'), Add(Mul(Symbol('pdg7159'), Symbol('pdg8339')), Mul(Symbol('pdg7055'), Symbol('pdg1700'))))",
             "name": "",
             "notes": "decompose acceleration into two components",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12861,7 +12859,7 @@
         },
         "6672141531": {
             "latex": "dt",
-            "AST": "Symbol('dt')",
+            "AST": "Symbol('pdg4711')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12885,7 +12883,7 @@
         },
         "9973952056": {
             "latex": "-g t = v_y - v_{0, y}",
-            "AST": "Equality(Mul(Integer(-1), Mul(Symbol('pdg1649'), Symbol('pdg1467'))), Add(Mul(Integer(-1), Symbol('v_{0}')), Symbol('pdg9431')))",
+            "AST": "Equality(Mul(Integer(-1), Mul(Symbol('pdg1649'), Symbol('pdg1467'))), Add(Mul(Integer(-1), Symbol('pdg5153')), Symbol('pdg9431')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12925,7 +12923,7 @@
         },
         "1614343171": {
             "latex": "dt",
-            "AST": "Symbol('dt')",
+            "AST": "Symbol('pdg4711')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12933,7 +12931,7 @@
         },
         "8145337879": {
             "latex": "-g t dt + v_{0, y} dt = dy",
-            "AST": "Equality(Add(Mul(Symbol('dt'), Symbol('pdg9431')), Mul(Integer(-1), Mul(Symbol('pdg1649'), Mul(Symbol('dt'), Symbol('pdg1467'))))), Symbol('dy'))",
+            "AST": "Equality(Add(Mul(Symbol('pdg4711'), Symbol('pdg9431')), Mul(Integer(-1), Mul(Symbol('pdg1649'), Mul(Symbol('pdg4711'), Symbol('pdg1467'))))), Symbol('pdg5842'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12949,7 +12947,7 @@
         },
         "2858549874": {
             "latex": "- \\frac{1}{2} g t^2 + v_{0, y} t = y - y_0",
-            "AST": "Equality(Add(Mul(Symbol('pdg1467'), Symbol('pdg9431')), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg1467'), Integer(2)))))), Add(Symbol('y'), Mul(Integer(-1), Symbol('y_{0}'))))",
+            "AST": "Equality(Add(Mul(Symbol('pdg1467'), Symbol('pdg9431')), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg1467'), Integer(2)))))), Add(Symbol('y'), Mul(Integer(-1), Symbol('pdg1469'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12965,7 +12963,7 @@
         },
         "2461349007": {
             "latex": "- \\frac{1}{2} g t^2 + v_{0, y} t + y_0 = y",
-            "AST": "Equality(Add(Symbol('y_{0}'), Add(Mul(Symbol('pdg1467'), Symbol('pdg9431')), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg1467'), Integer(2))))))), Symbol('y'))",
+            "AST": "Equality(Add(Symbol('pdg1469'), Add(Mul(Symbol('pdg1467'), Symbol('pdg9431')), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg1467'), Integer(2))))))), Symbol('y'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12997,8 +12995,7 @@
         },
         "1676472948": {
             "latex": "0 = v_x - v_{0, x}",
-            "AST": "",
-            "temp symbol list": "pdg2958",
+            "AST": "Equality(Integer(0), Add(Mul(Integer(-1), Symbol('pdg2958')), Symbol('v_{x}')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13038,7 +13035,7 @@
         },
         "8607458157": {
             "latex": "dt",
-            "AST": "Symbol('dt')",
+            "AST": "Symbol('pdg4711')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13046,7 +13043,7 @@
         },
         "1963253044": {
             "latex": "v_{0, x} dt = dx",
-            "AST": "Equality(Mul(Symbol('dt'), Symbol('pdg2958')), Symbol('dx'))",
+            "AST": "Equality(Mul(Symbol('pdg4711'), Symbol('pdg2958')), Symbol('pdg9199'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13110,7 +13107,7 @@
         },
         "6410818363": {
             "latex": "\\theta",
-            "AST": "Symbol('1575')",
+            "AST": "Symbol('pdg1575')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13150,7 +13147,7 @@
         },
         "5438722682": {
             "latex": "x = v_0 t \\cos(\\theta) + x_0",
-            "AST": "Equality(Symbol('pdg4037'), Add(Mul(Symbol('v_{0}'), Mul(Symbol('pdg1467'), cos(Symbol('pdg1575')))), Symbol('x_{0}')))",
+            "AST": "Equality(Symbol('pdg4037'), Add(Mul(Symbol('pdg5153'), Mul(Symbol('pdg1467'), cos(Symbol('pdg1575')))), Symbol('pdg1572')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13166,8 +13163,7 @@
         },
         "8949329361": {
             "latex": "v_0 \\sin(\\theta) = v_{0, y}",
-            "AST": "",
-            "temp symbol list": "pdg5153 and pdg9431",
+            "AST": "Equality(Mul(Symbol('pdg5153'), sin(Symbol('theta'))), Symbol('pdg9431'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13175,8 +13171,7 @@
         },
         "1405465835": {
             "latex": "y = - \\frac{1}{2} g t^2 + v_{0, y} t + y_0",
-            "AST": "",
-            "temp symbol list": "pdg1469 and pdg9431",
+            "AST": "Equality(Symbol('pdg5647'), Add(Symbol('pdg1469'), Add(Mul(Symbol('pdg1467'), Symbol('v_{y}')), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg1467'), Integer(2))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13184,8 +13179,7 @@
         },
         "9862900242": {
             "latex": "y = - \\frac{1}{2} g t^2 + v_0 t \\sin(\\theta) + y_0",
-            "AST": "Equality(Symbol('y'), Add(Symbol('y_{0}'), Add(Mul(Symbol('v_{0}'), Mul(Symbol('pdg1467'), sin(Symbol('pdg1575')))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg1467'), Integer(2))))))))",
-            "temp symbol list": "pdg1467 and pdg5647 and pdg1469 and pdg1649 and pdg1575 and pdg5153",
+            "AST": "Equality(Symbol('pdg5647'), Add(Symbol('pdg1469'), Add(Mul(Symbol('pdg5153'), Mul(Symbol('pdg1467'), sin(Symbol('pdg1575')))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg1467'), Integer(2))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13201,8 +13195,7 @@
         },
         "3274926090": {
             "latex": "t = \\frac{x - x_0}{v_{0, x}}",
-            "AST": "",
-            "temp symbol list": "pdg1572 and pdg2958",
+            "AST": "Equality(Symbol('pdg1467'), Mul(Pow(Symbol('pdg2958'), Integer(-1)), Add(Symbol('pdg4037'), Mul(Integer(-1), Symbol('pdg1572')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13210,8 +13203,7 @@
         },
         "7354529102": {
             "latex": "y = - \\frac{1}{2} g \\left( \\frac{x - x_0}{v_{0, x}} \\right)^2 + v_{0, y} \\frac{x - x_0}{v_{0, x}} + y_0",
-            "AST": "",
-            "temp symbol list": "pdg1469 and pdg1572 and pdg2958 and pdg9431",
+            "AST": "Equality(Symbol('pdg5647'), Add(Symbol('pdg1469'), Add(Mul(Symbol('pdg9431'), Mul(Pow(Symbol('pdg2958'), Integer(-1)), Add(Symbol('pdg4037'), Mul(Integer(-1), Symbol('pdg1572'))))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Pow(Mul(Symbol('pdg1649'),Mul(Pow(Symbol('pdg2958'), Integer(-1)), Add(Symbol('pdg4037'), Mul(Integer(-1), Symbol('pdg1572'))))), Integer(2)))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13235,8 +13227,7 @@
         },
         "5379546684": {
             "latex": "y_f = - \\frac{1}{2} g t_f^2 + v_0 t_f \\sin(\\theta) + y_0",
-            "AST": "Equality(Symbol('y_{f}'), Add(Symbol('y_{0}'), Add(Mul(Symbol('v_{0}'), Mul(Symbol('t_{f}'), sin(Symbol('pdg1575')))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('t_{f}'), Integer(2))))))))",
-            "temp symbol list": "pdg1649 and pdg1469 and pdg5153 and pdg2467 and pdg7092",
+            "AST": "Equality(Symbol('pdg7092'), Add(Symbol('pdg1469'), Add(Mul(Symbol('pdg5153'), Mul(Symbol('pdg2467'), sin(Symbol('pdg1575')))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg2467'), Integer(2))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13244,8 +13235,7 @@
         },
         "5373931751": {
             "latex": "t = t_f",
-            "AST": "Equality(Symbol('pdg1467'), Symbol('t_{f}'))",
-            "temp symbol list": "pdg1467 and pdg2467",
+            "AST": "Equality(Symbol('pdg1467'), Symbol('pdg2467'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13253,8 +13243,7 @@
         },
         "9112191201": {
             "latex": "y_f = 0",
-            "AST": "Equality(Symbol('y_{f}'), Integer(0))",
-            "temp symbol list": "pdg7092",
+            "AST": "Equality(Symbol('pdg7092'), Integer(0))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13262,8 +13251,7 @@
         },
         "8198310977": {
             "latex": "0 = - \\frac{1}{2} g t_f^2 + v_0 t_f \\sin(\\theta) + y_0",
-            "AST": "Equality(Integer(0), Add(Symbol('y_{0}'), Add(Mul(Symbol('v_{0}'), Mul(Symbol('t_{f}'), sin(Symbol('pdg1575')))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('t_{f}'), Integer(2))))))))",
-            "temp symbol list": "pdg1649 and pdg1469 and pdg5153 and pdg2467",
+            "AST": "Equality(Integer(0), Add(Symbol('pdg1469'), Add(Mul(Symbol('pdg5153'), Mul(Symbol('pdg2467'), sin(Symbol('pdg1575')))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg2467'), Integer(2))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13271,8 +13259,7 @@
         },
         "1650441634": {
             "latex": "y_0 = 0",
-            "AST": "Equality(Symbol('y_{0}'), Integer(0))",
-            "temp symbol list": "pdg1469",
+            "AST": "Equality(Symbol('pdg1469'), Integer(0))",
             "name": "",
             "notes": "define coordinate system such that initial height is at origin",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13280,8 +13267,7 @@
         },
         "1087417579": {
             "latex": "0 = - \\frac{1}{2} g t_f^2 + v_0 t_f \\sin(\\theta)",
-            "AST": "Equality(Integer(0), Add(Mul(Symbol('v_{0}'), Mul(Symbol('t_{f}'), sin(Symbol('pdg1575')))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('t_{f}'), Integer(2)))))))",
-            "temp symbol list": "pdg1649 and pdg5153 and pdg2467",
+            "AST": "Equality(Integer(0), Add(Mul(Symbol('pdg5153'), Mul(Symbol('pdg2467'), sin(Symbol('pdg1575')))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg2467'), Integer(2)))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13297,8 +13283,7 @@
         },
         "2086924031": {
             "latex": "0 = - \\frac{1}{2} g t_f + v_0 \\sin(\\theta)",
-            "AST": "Equality(Integer(0), Add(Mul(Symbol('v_{0}'), sin(Symbol('pdg1575'))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Symbol('t_{f}'))))))",
-            "temp symbol list": "pdg1649 and pdg5153 and pdg2467",
+            "AST": "Equality(Integer(0), Add(Mul(Symbol('pdg5153'), sin(Symbol('pdg1575'))), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Symbol('pdg2467'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13306,8 +13291,7 @@
         },
         "6974054946": {
             "latex": "\\frac{1}{2} g t_f",
-            "AST": "Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Symbol('t_{f}')))",
-            "temp symbol list": "pdg2467",
+            "AST": "Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Symbol('pdg2467')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13315,8 +13299,7 @@
         },
         "1191796961": {
             "latex": "\\frac{1}{2} g t_f = v_0 \\sin(\\theta)",
-            "AST": "Equality(Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Symbol('t_{f}'))), Mul(Symbol('v_{0}'), sin(Symbol('pdg1575'))))",
-            "temp symbol list": "pdg1649 and pdg5153 and pdg2467",
+            "AST": "Equality(Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Symbol('pdg2467'))), Mul(Symbol('pdg5153'), sin(Symbol('pdg1575'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13325,7 +13308,6 @@
         "2510804451": {
             "latex": "2/g",
             "AST": "Mul(Integer(2), Pow(Symbol('pdg1649'), Integer(-1)))",
-            "temp symbol list": "pdg1649",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13333,8 +13315,7 @@
         },
         "4778077984": {
             "latex": "t_f = \\frac{2 v_0 \\sin(\\theta)}{g}",
-            "AST": "Equality(Symbol('t_{f}'), Mul(Pow(Symbol('pdg1649'), Integer(-1)), Mul(Integer(2), Mul(Symbol('v_{0}'), sin(Symbol('pdg1575'))))))",
-            "temp symbol list": "pdg1649 and pdg5153 and pdg2467",
+            "AST": "Equality(Symbol('pdg2467'), Mul(Pow(Symbol('pdg1649'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg5153'), sin(Symbol('pdg1575'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13358,8 +13339,7 @@
         },
         "3485125659": {
             "latex": "x_f = v_0 t_f \\cos(\\theta) + x_0",
-            "AST": "Equality(Symbol('x_{f}'), Add(Mul(Symbol('v_{0}'), Mul(Symbol('t_{f}'), cos(Symbol('pdg1575')))), Symbol('x_{0}')))",
-            "temp symbol list": "pdg1572 and pdg5153 and pdg2467 and pdg3652",
+            "AST": "Equality(Symbol('pdg3652'), Add(Mul(Symbol('pdg5153'), Mul(Symbol('pdg2467'), cos(Symbol('pdg1575')))), Symbol('pdg1572')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13367,8 +13347,7 @@
         },
         "4370074654": {
             "latex": "t = t_f",
-            "AST": "Equality(Symbol('pdg1467'), Symbol('t_{f}'))",
-            "temp symbol list": "pdg1467 and pdg2467",
+            "AST": "Equality(Symbol('pdg1467'), Symbol('pdg2467'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13376,8 +13355,7 @@
         },
         "2378095808": {
             "latex": "x_f = x_0 + d",
-            "AST": "Equality(Symbol('x_{f}'), Add(Symbol('pdg1943'), Symbol('x_{0}')))",
-            "temp symbol list": "pdg1943 and pdg1572 and pdg3652",
+            "AST": "Equality(Symbol('pdg3652'), Add(Symbol('pdg1943'), Symbol('pdg1572')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13385,8 +13363,7 @@
         },
         "4268085801": {
             "latex": "x_0 + d = v_0 t_f \\cos(\\theta) + x_0",
-            "AST": "Equality(Add(Symbol('pdg1943'), Symbol('x_{0}')), Add(Mul(Symbol('v_{0}'), Mul(Symbol('t_{f}'), cos(Symbol('pdg1575')))), Symbol('x_{0}')))",
-            "temp symbol list": "pdg1943 and pdg1572 and pdg5153 and pdg2467",
+            "AST": "Equality(Add(Symbol('pdg1943'), Symbol('pdg1572')), Add(Mul(Symbol('pdg5153'), Mul(Symbol('pdg2467'), cos(Symbol('pdg1575')))), Symbol('pdg1572')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13402,8 +13379,7 @@
         },
         "7233558441": {
             "latex": "d = v_0 t_f \\cos(\\theta)",
-            "AST": "Equality(Symbol('pdg1943'), Mul(Symbol('v_{0}'), Mul(Symbol('t_{f}'), cos(Symbol('pdg1575')))))",
-            "temp symbol list": "pdg1943 and pdg5153 and pdg2467",
+            "AST": "Equality(Symbol('pdg1943'), Mul(Symbol('pdg5153'), Mul(Symbol('pdg2467'), cos(Symbol('pdg1575')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13411,8 +13387,7 @@
         },
         "2297105551": {
             "latex": "d = v_0 \\frac{2 v_0 \\sin(\\theta)}{g} \\cos(\\theta)",
-            "AST": "Equality(Symbol('pdg1943'), Mul(Symbol('v_{0}'), Mul(Mul(Pow(Symbol('pdg1649'), Integer(-1)), Mul(Integer(2), Mul(Symbol('v_{0}'), sin(Symbol('pdg1575'))))), cos(Symbol('pdg1575')))))",
-            "temp symbol list": "pdg1943 and pdg1649 and pdg1575 and pdg5153",
+            "AST": "Equality(Symbol('pdg1943'), Mul(Symbol('pdg5153'), Mul(Mul(Pow(Symbol('pdg1649'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg5153'), sin(Symbol('pdg1575'))))), cos(Symbol('pdg1575')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13437,7 +13412,6 @@
         "2519058903": {
             "latex": "\\sin(2 \\theta) = 2 \\sin(\\theta) \\cos(\\theta)",
             "AST": "Equality(sin(Mul(Integer(2), Symbol('pdg1575'))), Mul(Integer(2), Mul(sin(Symbol('pdg1575')), cos(Symbol('pdg1575')))))",
-            "temp symbol list": "pdg1575",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13445,8 +13419,7 @@
         },
         "8922441655": {
             "latex": "d = \\frac{v_0^2}{g} \\sin(2 \\theta)",
-            "AST": "Equality(Symbol('pdg1943'), Mul(Mul(Pow(Symbol('pdg1649'), Integer(-1)), Pow(Symbol('v_{0}'), Integer(2))), sin(Mul(Integer(2), Symbol('pdg1575')))))",
-            "temp symbol list": "pdg1943 and pdg1649 and pdg1575 and pdg5153",
+            "AST": "Equality(Symbol('pdg1943'), Mul(Mul(Pow(Symbol('pdg1649'), Integer(-1)), Pow(Symbol('pdg5153'), Integer(2))), sin(Mul(Integer(2), Symbol('pdg1575')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13470,8 +13443,7 @@
         },
         "3607070319": {
             "latex": "d = \\frac{v_0^2}{g} \\sin\\left(2 \\frac{\\pi}{4}\\right)",
-            "AST": "",
-            "temp symbol list": "pdg1943 and pdg1649 and pdg3141 and pdg5153",
+            "AST": "Equality(Symbol('pdg1943'), Mul(Mul(Pow(Symbol('pdg1649'), Integer(-1)), Pow(Symbol('pdg5153'), Integer(2))), sin(Mul(Integer(2), Mul(Pow(Integer(4), Integer(-1)), Symbol('pi'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13479,8 +13451,7 @@
         },
         "5353282496": {
             "latex": "d = \\frac{v_0^2}{g}",
-            "AST": "Equality(Symbol('pdg1943'), Mul(Pow(Symbol('pdg1649'), Integer(-1)), Pow(Symbol('v_{0}'), Integer(2))))",
-            "temp symbol list": "pdg1943 and pdg1649",
+            "AST": "Equality(Symbol('pdg1943'), Mul(Pow(Symbol('pdg1649'), Integer(-1)), Pow(Symbol('pdg5153'), Integer(2))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13488,8 +13459,7 @@
         },
         "1590774089": {
             "latex": "dW = F dx",
-            "AST": "Equality(Symbol('dW'), Mul(Symbol('pdg4202'), Symbol('dx')))",
-            "temp symbol list": "pdg9199 and pdg4202 and pdg9398",
+            "AST": "Equality(Symbol('pdg9398'), Mul(Symbol('pdg4202'), Symbol('pdg9199')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13498,7 +13468,6 @@
         "5542528160": {
             "latex": "\\int dW = F \\int_0^x dx",
             "AST": "Equality(Integral(Integer(1), Tuple(Symbol('pdg6789'))), Mul(Symbol('pdg4202'), Integral(Integer(1), Tuple(Symbol('pdg4037'), Integer(0), Symbol('pdg4037')))))",
-            "temp symbol list": "pdg4202",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13507,7 +13476,6 @@
         "3512166162": {
             "latex": "W = F x",
             "AST": "Equality(Symbol('pdg6789'), Mul(Symbol('pdg4202'), Symbol('pdg4037')))",
-            "temp symbol list": "pdg4202 and pdg6789 and pdg4037",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13523,7 +13491,7 @@
         },
         "8604483515": {
             "latex": "dW = G \\frac{m_1 m_2}{x^2} dx",
-            "AST": "Equality(Symbol('dW'), Mul(Symbol('pdg6277'), Mul(Symbol('dx'), Mul(Mul(Symbol('pdg5022'), Symbol('pdg4851')), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))))))",
+            "AST": "Equality(Symbol('pdg9398'), Mul(Symbol('pdg6277'), Mul(Symbol('pdg9199'), Mul(Mul(Symbol('pdg5022'), Symbol('pdg4851')), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13571,8 +13539,7 @@
         },
         "3253234559": {
             "latex": "x = \\frac{v_2^2 - v_1^2}{2 a}",
-            "AST": "Equality(Symbol('pdg4037'), Mul(Pow(Mul(Integer(2), Symbol('pdg9140')), Integer(-1)), Add(Mul(Integer(-1), Pow(Symbol('v_{1}'), Integer(2))), Pow(Symbol('v_{2}'), Integer(2)))))",
-            "temp symbol list": "pdg4037 and pdg9140",
+            "AST": "Equality(Symbol('pdg4037'), Mul(Pow(Mul(Integer(2), Symbol('pdg9140')), Integer(-1)), Add(Mul(Integer(-1), Pow(Symbol('pdg2473'), Integer(2))), Pow(Symbol('pdg4770'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13580,8 +13547,7 @@
         },
         "9413699705": {
             "latex": "W = m a \\frac{v_2^2 - v_1^2}{2 a}",
-            "AST": "Equality(Symbol('pdg6789'), Mul(Symbol('pdg5156'), Mul(Symbol('pdg9140'), Mul(Pow(Mul(Integer(2), Symbol('pdg9140')), Integer(-1)), Add(Mul(Integer(-1), Pow(Symbol('v_{1}'), Integer(2))), Pow(Symbol('v_{2}'), Integer(2)))))))",
-            "temp symbol list": "pdg9140 and pdg5156 and pdg6789",
+            "AST": "Equality(Symbol('pdg6789'), Mul(Symbol('pdg5156'), Mul(Symbol('pdg9140'), Mul(Pow(Mul(Integer(2), Symbol('pdg9140')), Integer(-1)), Add(Mul(Integer(-1), Pow(Symbol('pdg2473'), Integer(2))), Pow(Symbol('pdg4770'), Integer(2)))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13589,8 +13555,7 @@
         },
         "4811121942": {
             "latex": "W = \\frac{1}{2} m v_2^2 - \\frac{1}{2} m v_1^2",
-            "AST": "Equality(Symbol('pdg6789'), Add(Mul(Integer(-1), Rational(1, 2), Symbol('pdg5156'), Pow(Symbol('v_{1}'), Integer(2))), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('v_{2}'), Integer(2))))))",
-            "temp symbol list": "pdg6789",
+            "AST": "Equality(Symbol('pdg6789'), Add(Mul(Integer(-1), Rational(1, 2), Symbol('pdg5156'), Pow(Symbol('pdg2473'), Integer(2))), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('pdg4770'), Integer(2))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13598,8 +13563,7 @@
         },
         "3360172339": {
             "latex": "W = KE_2 - KE_1",
-            "AST": "",
-            "temp symbol list": "pdg6789",
+            "AST": "Equality(Symbol('pdg6789'), Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13608,7 +13572,6 @@
         "1413137236": {
             "latex": "m_1 \\to m_{\\rm Earth}",
             "AST": "",
-            "temp symbol list": "pdg5458",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13624,8 +13587,7 @@
         },
         "6131764194": {
             "latex": "W = G m_{\\rm Earth} m \\left( \\frac{1}{x^2} \\bigg\\rvert_{ r_{\\rm Earth} }^{\\infty} \\right)",
-            "AST": "",
-            "temp symbol list": "pdg5458 and pdg5156 and pdg3236",
+            "AST": "pdg5458 and pdg5156 and pdg3236",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13633,8 +13595,7 @@
         },
         "5978756813": {
             "latex": "W = G m_{\\rm Earth} m \\left( 0 - \\frac{-1}{ r_{\\rm Earth}} \\right)",
-            "AST": "",
-            "temp symbol list": "pdg5458 and pdg5156 and pdg3236",
+            "AST": "Equality(Symbol('pdg6789'), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5458'), Mul(Symbol('pdg5156'),Pow(Symbol('pdg3236'), Integer(-1))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13642,8 +13603,7 @@
         },
         "7749253510": {
             "latex": "W = G \\frac{m_{\\rm Earth} m }{ r_{\\rm Earth}}",
-            "AST": "",
-            "temp symbol list": "pdg5458 and pdg3236",
+            "AST": "Equality(Symbol('pdg6789'), Mul(Symbol('pdg6277'), Mul(Pow(Symbol('pdg3236'), Integer(-1)), Mul(Symbol('pdg5156'), Symbol('pdg5458')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13651,7 +13611,7 @@
         },
         "8960645192": {
             "latex": "KE_2 + PE_2 = KE_1 + PE_1",
-            "AST": "",
+            "AST": "Equality(Add(Symbol('pdg1552'), Symbol('pdg8849')), Add(Symbol('pdg1955'), Symbol('pdg4093')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13659,7 +13619,7 @@
         },
         "2267521164": {
             "latex": "PE_2 = 0",
-            "AST": "",
+            "AST": "Equality(Symbol('pdg8849'), Integer(0))",
             "name": "",
             "notes": "object goes to $\\infty$ away from gravitational source",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13667,7 +13627,7 @@
         },
         "1840080113": {
             "latex": "KE_2 = 0",
-            "AST": "",
+            "AST": "Equality(Symbol('pdg1552'), Integer(0))",
             "name": "",
             "notes": "object is not moving at $x=\\infty$",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13675,7 +13635,7 @@
         },
         "9749777192": {
             "latex": "0 = KE_1 + PE_1",
-            "AST": "",
+            "AST": "Equality(Integer(0), Add(Symbol('pdg1955'), Symbol('pdg4093')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13690,7 +13650,7 @@
             "creation date": "2020-05-24"
         },
         "6158970683": {
-            "latex": "PE_1 \\to PE_{\\rm Earth surface}",
+            "latex": "PE_1 \\to PE_{\\rm Earth\\ surface}",
             "AST": "",
             "name": "",
             "notes": "",
@@ -13699,7 +13659,7 @@
         },
         "7573835180": {
             "latex": "PE_{\\rm Earth\\ surface} = -W",
-            "AST": "",
+            "AST": "Equality(Symbol('pdg6431'), Mul(Integer(-1), Symbol('W')))",
             "name": "",
             "notes": "the potential energy at the surface of the Earth is equal to the work needed to get it from the center of the Earth to the surface",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13707,8 +13667,7 @@
         },
         "3846041519": {
             "latex": "PE_{\\rm Earth\\ surface} = -G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}}",
-            "AST": "",
-            "temp symbol list": "pdg5458 and pdg3236 and pdg5156",
+            "AST": "Equality(Symbol('pdg6431'), Mul(Integer(-1), Mul(Symbol('pdg6277'), Mul(Pow(Symbol('pdg3236'), Integer(-1)), Mul(Symbol('pdg5156'), Symbol('pdg5458'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13740,8 +13699,7 @@
         },
         "2042298788": {
             "latex": "0 = -G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}} + \\frac{1}{2} m v_{\\rm escape}^2",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg5156 and pdg5458 and pdg3236 and pdg5156",
+            "AST": "Equality(Integer(0), Add(Mul(Integer(-1), Mul(Symbol('pdg6277'), Mul(Pow(Symbol('pdg3236'), Integer(-1)), Mul(Symbol('pdg5156'), Symbol('pdg5458'))))), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('pdg8656'), Integer(2))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13753,12 +13711,11 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
             "name": "",
-            "AST": ""
+            "AST": "Equality(Integer(0), Add(Symbol('pdg5332'), Symbol('pdg6431')))"
         },
         "5050429607": {
             "latex": "G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}}",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg5156 and pdg5458 and pdg3236",
+            "AST": "Mul(Symbol('pdg6277'), Mul(Pow(Symbol('pdg3236'), Integer(-1)), Mul(Symbol('pdg5156'), Symbol('pdg5458'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13766,8 +13723,7 @@
         },
         "9703482302": {
             "latex": "G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}} = \\frac{1}{2} m v_{\\rm escape}^2",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg5156 and pdg5458 and pdg3236",
+            "AST": "Equality(Mul(Symbol('pdg6277'), Mul(Pow(Symbol('pdg3236'), Integer(-1)), Mul(Symbol('pdg5156'), Symbol('pdg5458')))), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5156'), Pow(Symbol('pdg8656'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13775,8 +13731,7 @@
         },
         "1143343287": {
             "latex": "G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}} = \\frac{1}{2} v_{\\rm escape}^2",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg5458 and pdg3236",
+            "AST": "Equality(Mul(Symbol('pdg6277'), Mul(Symbol('pdg5458'), Pow(Symbol('pdg3236'), Integer(-1)))), Mul(Pow(Integer(2), Integer(-1)), Pow(Symbol('pdg8656'), Integer(2))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13792,8 +13747,7 @@
         },
         "2977457786": {
             "latex": "2 G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}} = v_{\\rm escape}^2",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg5458 and pdg3236",
+            "AST": "Equality(Mul(Integer(2), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5458'), Pow(Symbol('pdg3236'), Integer(-1))))), Pow(Symbol('pdg8656'), Integer(2)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13801,8 +13755,7 @@
         },
         "9412953728": {
             "latex": "v_{\\rm escape}^2 = 2 G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}}",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg5458 and pdg3236",
+            "AST": "Equality(Pow(Symbol('pdg8656'), Integer(2)), Mul(Integer(2), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5458'), Pow(Symbol('pdg3236'), Integer(-1))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13810,7 +13763,7 @@
         },
         "1330874553": {
             "latex": "v_{\\rm escape} = \\sqrt{2 G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}}}",
-            "AST": "Equality(Symbol('pdg8656'), Mul(Pow(Integer(2), Rational(1, 2)), Pow(Mul(Symbol('6277'), Symbol('pdg5458'), Pow(Symbol('pdg3236'), Integer(-1))), Rational(1, 2))))",
+            "AST": "Equality(Symbol('pdg8656'), Mul(Pow(Integer(2), Rational(1, 2)), Pow(Mul(Symbol('pdg6277'), Symbol('pdg5458'), Pow(Symbol('pdg3236'), Integer(-1))), Rational(1, 2))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14034,7 +13987,7 @@
         },
         "4128500715": {
             "latex": "V = I_1 R_1",
-            "AST": "Equality(Symbol('pdg6599'), Mul(Symbol('I_{1}'), Symbol('pdg8697')))",
+            "AST": "Equality(Symbol('pdg6599'), Mul(Symbol('pdg3978'), Symbol('pdg8697')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14122,8 +14075,7 @@
         },
         "2271186630": {
             "latex": "V = I_{\\rm total} R_{\\rm total}",
-            "AST": "",
-            "temp symbol list": "pdg6599",
+            "AST": "Equality(Symbol('pdg6599'), Mul(Symbol('pdg9647'), Symbol('pdg1908')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14131,7 +14083,7 @@
         },
         "6546594355": {
             "latex": "R_{\\rm total}",
-            "AST": "",
+            "AST": "Symbol('pdg1908')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14143,12 +14095,11 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
             "name": "",
-            "AST": ""
+            "AST": "Equality(Mul(Pow(Symbol('pdg1908'), Integer(-1)), Symbol('pdg6599')), Symbol('pdg9647'))"
         },
         "4866160902": {
             "latex": "\\frac{V}{R_{\\rm total}} = \\frac{V}{R_1} + \\frac{V}{R_2}",
-            "AST": "",
-            "temp symbol list": "pdg6599",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1908'), Integer(-1)), Symbol('pdg6599')), Add(Mul(Pow(Symbol('pdg3461'), Integer(-1)), Symbol('pdg6599')), Mul(Pow(Symbol('pdg8697'), Integer(-1)), Symbol('pdg6599'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14164,7 +14115,7 @@
         },
         "1457415749": {
             "latex": "\\frac{1}{R_{\\rm total}} = \\frac{1}{R_1} + \\frac{1}{R_2}",
-            "AST": "",
+            "AST": "Equality(Pow(Symbol('pdg1908'), Integer(-1)), Add(Pow(Symbol('pdg3461'), Integer(-1)), Pow(Symbol('pdg8697'), Integer(-1))))",
             "name": "total resistance for two resistors in parallel",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14228,7 +14179,7 @@
         },
         "4627284246": {
             "latex": "F_{\\rm centripetal} = \\frac{m_{\\rm satellite} v_{\\rm satellite}^2}{r}",
-            "AST": "Equality(Symbol('F_{c}'), Mul(Pow(Symbol('pdg2530'), Integer(-1)), Mul(Symbol('m_{s}'), Pow(Symbol('pdg4082'), Integer(2)))))",
+            "AST": "Equality(Symbol('pdg1687'), Mul(Pow(Symbol('pdg2530'), Integer(-1)), Mul(Symbol('pdg3569'), Pow(Symbol('pdg4082'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14248,12 +14199,11 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
             "name": "",
-            "AST": "",
-            "temp symbol list": "pdg2530 and pdg6277 and pdg5458"
+            "AST": "Equality(Symbol('pdg2867'), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('pdg5458'), Symbol('pdg3569')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))"
         },
         "3176662571": {
             "latex": "F_{\\rm centripetal} = F_{\\rm gravity}",
-            "AST": "",
+            "AST": "Equality(Symbol('pdg2867'), Symbol('pdg1687'))",
             "name": "",
             "notes": "applicable to any satellite orbit",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14261,8 +14211,7 @@
         },
         "4072200527": {
             "latex": "\\frac{m_{\\rm satellite} v_{\\rm satellite}^2}{r} = G \\frac{m_{\\rm Earth} m_{\\rm satellite}}{r^2}",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg2530 and pdg5458",
+            "AST": "Equality(Mul(Pow(Symbol('pdg2530'), Integer(-1)), Mul(Symbol('pdg3569'), Pow(Symbol('pdg4082'), Integer(2)))), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('pdg5458'), Symbol('pdg3569')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14318,8 +14267,7 @@
         },
         "3614055652": {
             "latex": "v = \\frac{2 \\pi r}{T_{\\rm orbit}}",
-            "AST": "",
-            "temp symbol list": "pdg1357 and pdg2530 and pdg3141",
+            "AST": "Equality(Symbol('v'), Mul(Pow(Symbol('pdg8763'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('pdg2530')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14335,8 +14283,7 @@
         },
         "8059639673": {
             "latex": "v^2 = \\frac{4 \\pi^2 r^2}{T_{\\rm orbit}^2}",
-            "AST": "",
-            "temp symbol list": "pdg2530 and pdg3141 and pdg1357",
+            "AST": "Equality(Pow(Symbol('v'), Integer(2)), Mul(Mul(Integer(4), Mul(Pow(Symbol('pdg3141'), Integer(2)), Pow(Symbol('pdg2530'), Integer(2)))), Pow(Pow(Symbol('pdg8763'), Integer(2)), Integer(-1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14344,8 +14291,7 @@
         },
         "5359471792": {
             "latex": "\\frac{m_{\\rm satellite}}{r}",
-            "AST": "",
-            "temp symbol list": "pdg2530",
+            "AST": "Mul(Symbol('pdg3569'), Pow(Symbol('pdg2530'), Integer(-1)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14353,8 +14299,7 @@
         },
         "1994296484": {
             "latex": "v_{\\rm satellite}^2 = G \\frac{m_{\\rm Earth}}{r}",
-            "AST": "",
-            "temp symbol list": "pdg2530 and pdg6277 and pdg5458",
+            "AST": "Equality(Pow(Symbol('pdg4082'), Integer(2)), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5458'), Pow(Symbol('pdg2530'), Integer(-1)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14362,8 +14307,7 @@
         },
         "3906710072": {
             "latex": "G \\frac{m_{\\rm Earth}}{r} = \\frac{4 \\pi^2 r^2}{T_{\\rm orbit}^2}",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg2530 and pdg5458",
+            "AST": "Equality(Mul(Symbol('pdg6277'), Mul(Symbol('pdg5458'), Pow(Symbol('pdg2530'), Integer(-1)))), Mul(Mul(Integer(4), Mul(Pow(Symbol('pdg3141'), Integer(2)), Pow(Symbol('pdg2530'), Integer(2)))), Pow(Pow(Symbol('pdg8763'), Integer(2)), Integer(-1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14371,8 +14315,7 @@
         },
         "6238632840": {
             "latex": "r T_{\\rm orbit}^2",
-            "AST": "",
-            "temp symbol list": "pdg2530",
+            "AST": "Mul(Pow(Symbol('pdg8763'), Integer(2)), Symbol('pdg2530'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14380,8 +14323,7 @@
         },
         "7010294143": {
             "latex": "T_{\\rm orbit}^2 G m_{\\rm Earth} = 4 \\pi^2 r^3",
-            "AST": "",
-            "temp symbol list": "pdg2530 and pdg6277 and pdg5458",
+            "AST": "Equality(Mul(Pow(Symbol('pdg8763'), Integer(2)), Mul(Symbol('pdg6277'), Symbol('pdg5458'))), Mul(Integer(4), Mul(Pow(Symbol('pdg3141'), Integer(2)), Pow(Symbol('pdg2530'), Integer(3)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14397,8 +14339,7 @@
         },
         "4858693811": {
             "latex": "\\frac{T_{\\rm orbit}^2 G m_{\\rm Earth}}{4 \\pi^2} = r^3",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg2530 and pdg5458",
+            "AST": "Equality(Mul(Pow(Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2))), Integer(-1)), Mul(Pow(Symbol('pdg8763'), Integer(2)), Mul(Symbol('pdg6277'), Symbol('pdg5458')))), Pow(Symbol('pdg2530'), Integer(3)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14414,8 +14355,7 @@
         },
         "2617541067": {
             "latex": "\\left(\\frac{T_{\\rm orbit}^2 G m_{\\rm Earth}}{4 \\pi^2}\\right)^{1/3} = r",
-            "AST": "",
-            "temp symbol list": "pdg2530 and pdg5458",
+            "AST": "Equality(Pow(Mul(Pow(Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2))), Integer(-1)), Mul(Pow(Symbol('pdg8763'), Integer(2)), Mul(Symbol('pdg6277'), Symbol('pdg5458')))), Pow(Integer(3), Integer(-1))), Symbol('pdg2530'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14447,8 +14387,7 @@
         },
         "1559688463": {
             "latex": "\\left(\\frac{T_{\\rm geostationary\\ orbit}^2 G m_{\\rm Earth}}{4 \\pi^2}\\right)^{1/3} = r_{\\rm geostationary\\ orbit}",
-            "AST": "",
-            "temp symbol list": "pdg5458",
+            "AST": "Equality(Pow(Mul(Pow(Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2))), Integer(-1)), Mul(Pow(Symbol('pdg5595'), Integer(2)), Mul(Symbol('pdg6277'), Symbol('pdg5458')))), Pow(Integer(3), Integer(-1))), Symbol('r_{g}'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14473,7 +14412,6 @@
         "2484824786": {
             "latex": "F = m g",
             "AST": "Equality(Symbol('pdg4202'), Mul(Symbol('pdg1649'), Symbol('pdg5156')))",
-            "temp symbol list": "pdg1649 and pdg4202 and pdg5156",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14505,8 +14443,7 @@
         },
         "8661803554": {
             "latex": "F = G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}^2}",
-            "AST": "",
-            "temp symbol list": "pdg5156 and pdg6277 and pdg4202 and pdg5458 and pdg3236",
+            "AST": "Equality(Symbol('pdg4202'), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('pdg5156'), Symbol('pdg5458')), Pow(Pow(Symbol('pdg3236'), Integer(2)), Integer(-1)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14514,8 +14451,7 @@
         },
         "9407192813": {
             "latex": "G \\frac{m_{\\rm Earth} m}{r_{\\rm Earth}^2} = m g_{\\rm Earth}",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg7557 and pdg5156 and pdg5458 and pdg3236",
+            "AST": "Equality(Mul(Symbol('pdg6277'), Mul(Mul(Symbol('pdg5156'), Symbol('pdg5458')), Pow(Pow(Symbol('pdg3236'), Integer(2)), Integer(-1)))), Mul(Symbol('pdg7557'), Symbol('pdg5156')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14531,8 +14467,7 @@
         },
         "2308660627": {
             "latex": "G \\frac{m_{\\rm Earth}}{r_{\\rm Earth}^2} = g_{\\rm Earth}",
-            "AST": "",
-            "temp symbol list": "pdg7557 and pdg6277 and pdg5458 and pdg3236",
+            "AST": "Equality(Mul(Symbol('pdg6277'), Mul(Symbol('pdg5458'), Pow(Pow(Symbol('pdg3236'), Integer(2)), Integer(-1)))), Symbol('pdg7557'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14540,8 +14475,7 @@
         },
         "2685587762": {
             "latex": "\\frac{r_{\\rm Earth}^2}{G}",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg3236",
+            "AST": "Mul(Pow(Symbol('pdg6277'), Integer(-1)), Pow(Symbol('pdg3236'), Integer(2)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14549,8 +14483,7 @@
         },
         "9440616166": {
             "latex": "m_{\\rm Earth} = \\frac{g_{\\rm Earth} r_{\\rm Earth}^2}{G}",
-            "AST": "",
-            "temp symbol list": "pdg6277 and pdg5458 and pdg7557 and pdg3236",
+            "AST": "Equality(Symbol('pdg5458'), Mul(Pow(Symbol('pdg6277'), Integer(-1)), Mul(Symbol('pdg7557'), Pow(Symbol('pdg3236'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14566,8 +14499,7 @@
         },
         "2232825726": {
             "latex": "g_{\\rm Earth}",
-            "AST": "",
-            "temp symbol list": "pdg7557",
+            "AST": "Symbol('pdg7557')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14575,8 +14507,7 @@
         },
         "4800170179": {
             "latex": "F = m g_{\\rm Earth}",
-            "AST": "",
-            "temp symbol list": "pdg7557",
+            "AST": "Equality(Symbol('pdg4202'), Mul(Symbol('pdg7557'), Symbol('pdg5156')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14584,7 +14515,7 @@
         },
         "2091584724": {
             "latex": "g_{\\rm Earth}",
-            "AST": "",
+            "AST": "Symbol('pdg7557')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14608,8 +14539,7 @@
         },
         "7846240076": {
             "latex": "m_{\\rm Earth} = \\frac{(9.80665 m/s^2) r_{\\rm Earth}^2}{G}",
-            "AST": "",
-            "temp symbol list": "pdg5156 and pdg6277",
+            "AST": "pdg5156 and pdg6277",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18132,6 +18062,426 @@
             "scope": "real",
             "references": [
                 ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "2473": {
+            "category": "variable",
+            "latex": "v_1",
+            "name": "velocity 1",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Velocity"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "4770": {
+            "category": "variable",
+            "latex": "v_2",
+            "name": "velocity 2",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Velocity"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "6709": {
+            "category": "variable",
+            "latex": "v_{\\rm average}",
+            "name": "velocity average",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Velocity"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "8762": {
+            "category": "variable",
+            "latex": "T_{\\rm orbit}",
+            "name": "orbital period",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Orbital_period"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "5595": {
+            "category": "variable",
+            "latex": "T_{\\rm geostationary\\ orbit}",
+            "name": "geostationary orbital period",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Orbital_period"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "1534": {
+            "category": "variable",
+            "latex": "C_{\\rm Earth\\ orbit}",
+            "name": "circumfrence of Earth's orbit",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Earth%27s_orbit"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "1687": {
+            "category": "variable",
+            "latex": "F_{\\rm centripetal}",
+            "name": "centripetal force",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Centripetal_force"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "2867": {
+            "category": "variable",
+            "latex": "F_{\\rm gravity}",
+            "name": "force due to gravity",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Gravity"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "9107": {
+            "category": "variable",
+            "latex": "v_y",
+            "name": "velocity along y axis",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "6722": {
+            "category": "variable",
+            "latex": "du",
+            "name": "differential of u",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "6694": {
+            "category": "variable",
+            "latex": "dv",
+            "name": "differential of v",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "5332": {
+            "category": "variable",
+            "latex": "KE_{\\rm escape}",
+            "name": "kinetic energy of escape velocity",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "6431": {
+            "category": "variable",
+            "latex": "PE_{\\rm Earth\\ surface}",
+            "name": "potential energy at the Earth's surface",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "7159": {
+            "category": "variable",
+            "latex": "a_x",
+            "name": "acceleration along x axis",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Acceleration"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -2,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "7055": {
+            "category": "variable",
+            "latex": "a_y",
+            "name": "acceleration along y axis",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Acceleration"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -2,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "1302": {
+            "category": "variable",
+            "latex": "\\vec{p}_{\\rm before}",
+            "name": "momentum before collision",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Momentum"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "5493": {
+            "category": "variable",
+            "latex": "\\vec{p}_{\\rm after}",
+            "name": "momentum after collision",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Momentum"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "6029": {
+            "category": "variable",
+            "latex": "\\vec{p}_1",
+            "name": "momentum 1",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Momentum"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "2097": {
+            "category": "variable",
+            "latex": "\\vec{p}_2",
+            "name": "momentum 2",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Momentum"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-02"
+        },
+        "4299": {
+            "category": "variable",
+            "latex": "\\vec{p}_{\\rm electron}",
+            "name": "momentum of electron",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Momentum"
             ],
             "domain": "any",
             "dimensions": {
