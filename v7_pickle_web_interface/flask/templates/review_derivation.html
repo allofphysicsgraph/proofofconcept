@@ -57,6 +57,31 @@ results in no visualization and no error message in javascript console
 {% include '_table_of_derivation_steps.html' %}
 </P>
 
+<!-- instead of
+<P>
+{ % include '_table_of_symbols.html' %}
+</P>
+--> 
+<h2>Symbols for this derivation</h2>
+            <table border="1" class="sortable">
+              <tr>
+                <th>symbol ID</th>
+                <th>category</th>
+                <th>latex</th>
+                <th>scope</th>
+                <th>dimension</th>
+                <th>name</th>
+                <th>value</th>
+                <th>Used in derivations</th>
+                <th>references</th>
+              </tr>
+  {% for symbol_id in list_of_symbols_for_this_derivation %}
+              <tr>
+                  {% set hide_symbol_forms = "true" %}
+                  {% include '_table_of_symbols_row.html' %}
+                </tr>
+  {% endfor %}
+   </table>
 
 {% include '_d3_js.html' %}
 
