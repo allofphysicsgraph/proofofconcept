@@ -2988,22 +2988,39 @@ def review_derivation(deriv_id: str):
         flash(str(err))
         expression_popularity_dict = {}
 
+    try:
+        list_of_symbols_for_this_derivation = compute.list_symbols_used_in_derivation_from_PDG_AST(
+            deriv_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_symbols_for_this_derivation = []
+
+    dat = clib.read_db(path_to_db)
+    try:
+        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
+            path_to_db
+        )
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        symbol_popularity_dict = {}
+
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "review_derivation.html",
         pdf_filename=pdf_filename,
         dat=dat,
         deriv_id=deriv_id,
-        # name_of_derivation=dat["derivations"][deriv_id]["name"],
+        list_of_symbols_for_this_derivation=list_of_symbols_for_this_derivation,
+        symbol_popularity_dict=symbol_popularity_dict,
         name_of_graphviz_png=derivation_png,
         json_for_d3js=d3js_json_filename,
-        # step_dict=dat["derivations"][deriv_id]["steps"],
         derivation_validity_dict=derivation_validity_dict,
         derivation_dimensions_dict=derivation_dimensions_dict,
         derivation_units_dict=derivation_units_dict,
-        # expressions_dict=dat["expressions"],
         expression_popularity_dict=expression_popularity_dict,
-        # expr_local_to_global=dat["expr local to global"],
         title="review derivation: " + dat["derivations"][deriv_id]["name"],
     )
 
