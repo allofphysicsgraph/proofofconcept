@@ -2519,7 +2519,7 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     dat = clib.read_db(path_to_db)
 
     # to isolate the build process, create a temporary folder
-    tmp_latex_folder = "tmp_latex_folder_"+ str(random.randint(1000000, 9999999))
+    tmp_latex_folder = "tmp_latex_folder_" + str(random.randint(1000000, 9999999))
     tmp_latex_folder_full_path = os.getcwd() + "/" + tmp_latex_folder + "/"
     os.mkdir(tmp_latex_folder_full_path)
 
@@ -2528,7 +2528,7 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     pdf_filename = deriv_id
 
     # no longer necessary since the temporary build folder is empty
-    #remove_file_debris([path_to_pdf], [pdf_filename], ["log", "pdf"])
+    # remove_file_debris([path_to_pdf], [pdf_filename], ["log", "pdf"])
 
     tex_filename_without_extension = generate_tex_for_derivation(
         deriv_id, user_email, path_to_db
@@ -2536,7 +2536,9 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     shutil.move(tex_filename_without_extension + ".tex", tmp_latex_folder_full_path)
 
     # copy the current pdg.bib from static to local for use with bibtex when compiling tex to PDF
-    shutil.copy("/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path + "pdg.bib")
+    shutil.copy(
+        "/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path + "pdg.bib"
+    )
 
     # TODO: it would be good to check whether \cite appears in the .tex content
 
@@ -2615,7 +2617,10 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     logger.debug("dvipdf std out: %s", dvipdf_stdout)
     logger.debug("dvipdf std err: %s", dvipdf_stderr)
 
-    shutil.move(tmp_latex_folder_full_path + pdf_filename + ".pdf", path_to_pdf + pdf_filename + ".pdf")
+    shutil.move(
+        tmp_latex_folder_full_path + pdf_filename + ".pdf",
+        path_to_pdf + pdf_filename + ".pdf",
+    )
     shutil.rmtree(tmp_latex_folder_full_path)
     # return True, pdf_filename + ".pdf"
     logger.info("[trace end " + trace_id + "]")
@@ -3134,14 +3139,14 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     # TODO: I'd like to have the latex build process take place in an isolated directory
     # instead of the /home/appuser/app/ location used now
 
-    tmp_latex_folder = "tmp_latex_folder_"+ str(random.randint(1000000, 9999999))
+    tmp_latex_folder = "tmp_latex_folder_" + str(random.randint(1000000, 9999999))
     tmp_latex_folder_full_path = os.getcwd() + "/" + tmp_latex_folder + "/"
     original_dir = os.getcwd()
     os.mkdir(tmp_latex_folder_full_path)
     os.chdir(tmp_latex_folder_full_path)
 
     tmp_file = "lat"
-    #remove_file_debris(["./tmp"], [tmp_file], ["tex", "dvi", "aux", "log"])
+    # remove_file_debris(["./tmp"], [tmp_file], ["tex", "dvi", "aux", "log"])
 
     # logger.debug('create_png_from_latex: finished debris removal, starting create tex file')
 

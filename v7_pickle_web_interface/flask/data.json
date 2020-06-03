@@ -15349,46 +15349,46 @@
             "creation date": "2020-05-12"
         },
         "change two variables in expr": {
-            "number of feeds": 2,
+            "number of feeds": 4,
             "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Change of variable $#1$ and $#2$ in Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
+            "latex": "Change variable $#1$ to $#2$ and $#3$ to $#4$ in Eq.~\\ref{eq:#5}; yields Eq.~\\ref{eq:#6}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
         "change three variables in expr": {
-            "number of feeds": 3,
+            "number of feeds": 6,
             "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Change of variable $#1$ and $#2$ and $#3$ in Eq.~\\ref{eq:#4}; yields Eq.~\\ref{eq:#5}.",
+            "latex": "Change of variable $#1$ to $#2$ and $#3$ to $#4$ and $#5$ to $#6$ in Eq.~\\ref{eq:#7}; yields Eq.~\\ref{eq:#8}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
         "change four variables in expr": {
-            "number of feeds": 4,
+            "number of feeds": 8,
             "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Change of variable $#1$ and $#2$ and $#3$ and $#4$ in Eq.~\\ref{eq:#5}; yields Eq.~\\ref{eq:#6}.",
+            "latex": "Change of variable $#1$ to $#2$ and $#3$ to $#4$ and $#5$ to $#6$ and $#7$ to $#8$ in Eq.~\\ref{eq:#9}; yields Eq.~\\ref{eq:#10}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
         "change five variables in expr": {
-            "number of feeds": 5,
+            "number of feeds": 10,
             "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Change of variable $#1$ and $#2$ and $#3$ and $#4$ and $#5$ in Eq.~\\ref{eq:#6}; yields Eq.~\\ref{eq:#7}.",
+            "latex": "Change of variable $#1$ to $#2$ and $#3$ to $#4$ and $#5$ to $#6$ and $#7$ to $#8$ and $#9$ to $#10$ in Eq.~\\ref{eq:#11}; yields Eq.~\\ref{eq:#12}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
         },
         "change six variables in expr": {
-            "number of feeds": 6,
+            "number of feeds": 12,
             "number of inputs": 1,
             "number of outputs": 1,
-            "latex": "Change of variable $#1$ and $#2$ and $#3$ and $#4$ and $#5$ and $#6$ in Eq.~\\ref{eq:#7}; yields Eq.~\\ref{eq:#8}.",
+            "latex": "Change of variable $#1$ to $#2$ and $#3$ to $#4$ and $#5$ to $#6$ and $#7$ to $#8$ and $#9$ to $#10$ and $#11$ to $#12$ in Eq.~\\ref{eq:#13}; yields Eq.~\\ref{eq:#14}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-12"
