@@ -2518,23 +2518,32 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
 
+    # to isolate the build process, create a temporary folder
+    tmp_latex_folder = "tmp_latex_folder_"+ str(random.randint(1000000, 9999999))
+    tmp_latex_folder_full_path = os.getcwd() + "/" + tmp_latex_folder + "/"
+    os.mkdir(tmp_latex_folder_full_path)
+
+    # destination for the PDF once file is built
     path_to_pdf = "/home/appuser/app/static/"  # must end with /
     pdf_filename = deriv_id
 
-    remove_file_debris([path_to_pdf], [pdf_filename], ["log", "pdf"])
+    # no longer necessary since the temporary build folder is empty
+    #remove_file_debris([path_to_pdf], [pdf_filename], ["log", "pdf"])
 
     tex_filename_without_extension = generate_tex_for_derivation(
         deriv_id, user_email, path_to_db
     )
+    shutil.move(tex_filename_without_extension + ".tex", tmp_latex_folder_full_path)
 
     # copy the current pdg.bib from static to local for use with bibtex when compiling tex to PDF
-    shutil.copy("/home/appuser/app/static/pdg.bib", "pdg.bib")
+    shutil.copy("/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path + "pdg.bib")
 
     # TODO: it would be good to check whether \cite appears in the .tex content
 
     # first of the latex runs
     process = subprocess.run(
         ["latex", "-halt-on-error", tex_filename_without_extension + ".tex"],
+        cwd=tmp_latex_folder_full_path,
         stdout=PIPE,
         stderr=PIPE,
         timeout=proc_timeout,
@@ -2556,6 +2565,7 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     # first of two bibtex runs
     process = subprocess.run(
         ["bibtex", tex_filename_without_extension],
+        cwd=tmp_latex_folder_full_path,
         stdout=PIPE,
         stderr=PIPE,
         timeout=proc_timeout,
@@ -2569,6 +2579,7 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     # second of two bibtex runs
     process = subprocess.run(
         ["bibtex", tex_filename_without_extension],
+        cwd=tmp_latex_folder_full_path,
         stdout=PIPE,
         stderr=PIPE,
         timeout=proc_timeout,
@@ -2582,6 +2593,7 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     # run latex a second time to enable references to work
     process = subprocess.run(
         ["latex", "-halt-on-error", tex_filename_without_extension + ".tex"],
+        cwd=tmp_latex_folder_full_path,
         stdout=PIPE,
         stderr=PIPE,
         timeout=proc_timeout,
@@ -2591,6 +2603,7 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     # TODO: how does dvipdfmx know the name of the .tex input? In the process below only the output filename is specified (!)
     process = subprocess.run(
         ["dvipdfmx", pdf_filename + ".dvi"],
+        cwd=tmp_latex_folder_full_path,
         stdout=PIPE,
         stderr=PIPE,
         timeout=proc_timeout,
@@ -2602,8 +2615,8 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     logger.debug("dvipdf std out: %s", dvipdf_stdout)
     logger.debug("dvipdf std err: %s", dvipdf_stderr)
 
-    shutil.move(pdf_filename + ".pdf", path_to_pdf + pdf_filename + ".pdf")
-
+    shutil.move(tmp_latex_folder_full_path + pdf_filename + ".pdf", path_to_pdf + pdf_filename + ".pdf")
+    shutil.rmtree(tmp_latex_folder_full_path)
     # return True, pdf_filename + ".pdf"
     logger.info("[trace end " + trace_id + "]")
     return pdf_filename + ".pdf"
@@ -3120,8 +3133,15 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 
     # TODO: I'd like to have the latex build process take place in an isolated directory
     # instead of the /home/appuser/app/ location used now
+
+    tmp_latex_folder = "tmp_latex_folder_"+ str(random.randint(1000000, 9999999))
+    tmp_latex_folder_full_path = os.getcwd() + "/" + tmp_latex_folder + "/"
+    original_dir = os.getcwd()
+    os.mkdir(tmp_latex_folder_full_path)
+    os.chdir(tmp_latex_folder_full_path)
+
     tmp_file = "lat"
-    remove_file_debris(["./tmp"], [tmp_file], ["tex", "dvi", "aux", "log"])
+    #remove_file_debris(["./tmp"], [tmp_file], ["tex", "dvi", "aux", "log"])
 
     # logger.debug('create_png_from_latex: finished debris removal, starting create tex file')
 
@@ -3190,6 +3210,9 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
         shutil.move(tmp_file + ".png", destination_folder + png_name + ".png")
 
     logger.debug(destination_folder + png_name + ".png")
+
+    os.chdir(original_dir)
+    shutil.rmtree(tmp_latex_folder_full_path)
 
     #    if os.path.isfile(destination_folder + png_name):
     # os.remove('/home/appuser/app/static/'+name_of_png)

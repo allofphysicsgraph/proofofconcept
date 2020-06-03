@@ -16265,7 +16265,8 @@
             "category": "variable",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
-            "latex": "c",            "dimensions": {
+            "latex": "c",
+            "dimensions": {
                 "length": 0,
                 "time": 0,
                 "mass": 0,
