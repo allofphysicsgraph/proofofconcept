@@ -2706,21 +2706,22 @@ def edges_in_derivation(deriv_id: str, path_to_db: str) -> list:
 def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
     """
     Produce a JSON file that contains something like
-{
-  "nodes": [
-    {"id": "Myriel", "group": 1, "img": "/static/test.png", "width": 138, "height": 39, "linear index": 1},
-    {"id": "Napoleon", "group": 1, "img": "/static/test.png", "width": 138, "height": 39, "linear index": 2}
-  ],
-  "links": [
-    {"source": "Napoleon", "target": "Myriel", "value": 1},
-    {"source": "Mlle.Baptistine", "target": "Myriel", "value": 8}
-  ]
-}
+    {
+      "nodes": [
+        {"id": "Myriel", "group": 1, "img": "/static/test.png", "width": 138, "height": 39, "linear index": 1},
+        {"id": "Napoleon", "group": 1, "img": "/static/test.png", "width": 138, "height": 39, "linear index": 2}
+      ],
+      "links": [
+        {"source": "Napoleon", "target": "Myriel", "value": 1},
+        {"source": "Mlle.Baptistine", "target": "Myriel", "value": 8}
+      ]
+    }
 
     for inspiration based on the last time I implemented this, see
     v3_CSV/bin/create_json_per_derivation_from_connectionsDB.py
 
     >>> create_d3js_json('my deriv', 'pdg.db')
+
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
