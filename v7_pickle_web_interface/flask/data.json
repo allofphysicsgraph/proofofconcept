@@ -9498,7 +9498,7 @@
             "notes": ""
         },
         "1638282134": {
-            "AST": "",
+            "AST": "Equality(Symbol('pdg1302'), Symbol('pdg5493'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{p}_{\\rm before} = \\vec{p}_{\\rm after}",
@@ -9842,7 +9842,7 @@
             "notes": ""
         },
         "3951205425": {
-            "AST": "",
+            "AST": "Equality(Symbol('pdg5493'), Symbol('pdg6029'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{p}_{\\rm after} = \\vec{p}_{1}",
@@ -10058,7 +10058,7 @@
             "notes": ""
         },
         "5530148480": {
-            "AST": "",
+            "AST": "Equality(Add(Symbol('pdg6029'), Mul(Integer(-1), Symbol('pdg2097'))), Symbol('pdg4299'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{p}_{1}-\\vec{p}_{2} = \\vec{p}_{electron}",
@@ -10274,7 +10274,7 @@
             "notes": ""
         },
         "7917051060": {
-            "AST": "",
+            "AST": "Equality(Symbol('pdg4299'), Add(Symbol('pdg6029'), Mul(Integer(-1), Symbol('pdg2097'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{p}_{electron} = \\vec{p}_{1}-\\vec{p}_{2}",
@@ -10282,7 +10282,7 @@
             "notes": ""
         },
         "8139187332": {
-            "AST": "",
+            "AST": "Equality(Symbol('pdg6029'), Add(Symbol('pdg2097'), Symbol('pdg4299')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{p}_{1} = \\vec{p}_{2}+\\vec{p}_{electron}",
@@ -10290,7 +10290,7 @@
             "notes": ""
         },
         "8257621077": {
-            "AST": "",
+            "AST": "Equality(Symbol('pdg1302'), Symbol('pdg6029'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{p}_{\\rm before} = \\vec{p}_{1}",
@@ -10298,7 +10298,7 @@
             "notes": ""
         },
         "8311458118": {
-            "AST": "",
+            "AST": "Equality(Symbol('pdg5493'), Add(Symbol('pdg2097'), Symbol('pdg4299')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{p}_{\\rm after} = \\vec{p}_{2}+\\vec{p}_{electron}",
@@ -11051,7 +11051,7 @@
         },
         "7875206161": {
             "latex": "E_2 = KE_2 + PE_2",
-            "AST": "",
+            "AST": "Equality(Symbol('pdg4550'), Add(Symbol('pdg1352'), Symbol('pdg8849')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11059,7 +11059,7 @@
         },
         "4303372136": {
             "latex": "E_1 = KE_1 + PE_1",
-            "AST": "",
+            "AST": "Equality(Symbol('pdg5579'), Add(Symbol('pdg1955'), Symbol('pdg4093')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11067,7 +11067,7 @@
         },
         "5514556106": {
             "latex": "E_2 - E_1 = (KE_2 - KE_1) + (PE_2 - PE_1)",
-            "AST": "",
+            "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg5579')), Symbol('pdg4550')), Add(Add(Mul(Integer(-1), Symbol('pdg1955')), Symbol('pdg1352')), Add(Mul(Integer(-1), Symbol('pdg4093')), Symbol('pdg8849'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11583,7 +11583,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
             "name": "",
-            "AST": ""
+            "AST": "Equality(Symbol('v_{E}'), Mul(Symbol('C_{E}'), Pow(Symbol('t_{E}'), Integer(-1))))"
         },
         "3080027960": {
             "latex": "v_{\\rm Earth\\ orbit} = \\frac{2 \\pi r_{\\rm Earth\\ orbit}}{t_{\\rm Earth\\ orbit}}",
@@ -11683,7 +11683,7 @@
         },
         "7741202861": {
             "latex": "x = \\gamma^2 x - \\gamma^2 v t + \\gamma v t'",
-            "AST": "",
+            "AST": "Equality(Symbol('x'), Add(Mul(Symbol('gamma'), Mul(Symbol('t_{p}'), Symbol('v'))), Add(Mul(Integer(-1), Pow(Symbol('gamma'), Integer(2)), Symbol('t'), Symbol('v')), Mul(Pow(Symbol('gamma'), Integer(2)), Symbol('x')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13498,15 +13498,15 @@
             "creation date": "2020-05-24"
         },
         "4447113478": {
-            "latex": "\\int dW = G m_1 m_2 \\int_{ r_{\\rm Earth} }^{\\infty} \\frac{1}{x^2} dx ",
-            "AST": "",
+            "latex": "\\int dW = G m_1 m_2 \\int_{ r_{\\rm Earth} }^{\\infty} \\frac{1}{x^2} dx",
+            "AST": "Equality(Integral(Integer(1), Tuple(Symbol('W'))), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Mul(Symbol('m_{2}'), Integral(Pow(Pow(Symbol('x'), Integer(2)), Integer(-1)), Tuple(Symbol('x'), Symbol('r_{E}'), Symbol('infty')))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24"
         },
         "5732331610": {
-            "latex": "W = G m_1 m_2 \\left( \\frac{1}{x} \\bigg\\rvert_{ r_{\\rm Earth} }^{\\infty} \\right) ",
+            "latex": "W = G m_1 m_2 \\left( \\frac{1}{x} \\bigg\\rvert_{ r_{\\rm Earth} }^{\\infty} \\right)",
             "AST": "",
             "name": "",
             "notes": "",
@@ -15717,6 +15717,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "latex": "KE",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "references": [
                 "https://en.wikipedia.org/wiki/Kinetic_energy"
             ],
@@ -15730,6 +15739,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "latex": "PE",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "references": [
                 "https://en.wikipedia.org/wiki/Potential_energy"
             ],
@@ -15744,6 +15762,15 @@
             "creation date": "2020-04-26",
             "latex": "E",
             "name": "energy",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "references": [
                 "https://en.wikipedia.org/wiki/Energy"
             ],
@@ -15810,6 +15837,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "latex": "\\hbar",
+            "dimensions": {
+                "length": 2,
+                "time": -1,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "name": "Reduced Planck's constant",
             "references": [
                 "https://en.wikipedia.org/wiki/Planck_constant#Value"
@@ -15852,6 +15888,15 @@
             "creation date": "2020-04-26",
             "latex": "\\alpha",
             "name": "fine-structure constant",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "references": [
                 "https://en.wikipedia.org/wiki/Fine-structure_constant"
             ],
@@ -15869,6 +15914,15 @@
             "category": "variable",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "latex": "y",
             "scope": [
                 "real"
@@ -15879,6 +15933,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "latex": "x",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "scope": [
                 "real"
             ]
@@ -15986,6 +16049,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "latex": "d",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "scope": [
                 "real"
             ]
@@ -16158,6 +16230,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "latex": "f",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "scope": [
                 "real"
             ]
@@ -16167,6 +16248,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "latex": "u",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "scope": [
                 "real"
             ]
@@ -16175,7 +16265,15 @@
             "category": "variable",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
-            "latex": "c",
+            "latex": "c",            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "scope": [
                 "real"
             ]
@@ -16185,6 +16283,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "latex": "g",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "scope": [
                 "real"
             ]
@@ -16194,6 +16301,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "latex": "n",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "scope": [
                 "real"
             ]
@@ -16488,7 +16604,7 @@
         "3034": {
             "category": "variable",
             "latex": "C",
-            "name": "circumfrence",
+            "name": "circumference",
             "dimensions": {
                 "length": 1,
                 "time": 0,
@@ -17729,9 +17845,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -17750,9 +17866,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -17771,9 +17887,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -17792,9 +17908,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -18044,9 +18160,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -18065,9 +18181,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -18184,7 +18300,7 @@
         "1534": {
             "category": "variable",
             "latex": "C_{\\rm Earth\\ orbit}",
-            "name": "circumfrence of Earth's orbit",
+            "name": "circumference of Earth's orbit",
             "scope": "real",
             "references": [
                 "https://en.wikipedia.org/wiki/Earth%27s_orbit"
@@ -18317,9 +18433,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -18338,9 +18454,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 2,
+                "time": -2,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -18401,9 +18517,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 1,
+                "time": -1,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -18422,9 +18538,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 1,
+                "time": -1,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -18443,9 +18559,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 1,
+                "time": -1,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -18464,9 +18580,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 1,
+                "time": -1,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
@@ -18485,9 +18601,9 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
-                "mass": 0,
+                "length": 1,
+                "time": -1,
+                "mass": 1,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
