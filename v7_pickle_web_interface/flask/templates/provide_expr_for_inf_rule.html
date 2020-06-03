@@ -302,7 +302,7 @@ function enable_output3_radio3(enabled){
   </legend>
 
   <P>
-    name of derivation: 
+    name of derivation:
     <a href="{{ url_for('review_derivation', deriv_id=deriv_id, referrer='provide_expr_for_inf_rule' ) }}">{{ dat["derivations"][deriv_id]["name"] }}</a>
   </P>
 
@@ -440,7 +440,7 @@ function enable_output3_radio3(enabled){
     {% if loop.index0 == 0 %}
       <td>{{ subfield(onclick='enable_input3_radio1(true)') }}</td>
       <td>{{ subfield.label }}</td>
-      <td>{{ webform.input3.label }}: {{ webform.input3(size=50, maxlength=300, id="input3_latex", onchange="onChangeFunction();") }} 
+      <td>{{ webform.input3.label }}: {{ webform.input3(size=50, maxlength=300, id="input3_latex", onchange="onChangeFunction();") }}
         <BR>
         <small><B>Required</B>; max length = 300 characters</small><BR>
         <input type="checkbox" id="display_input3_latex" checked="" onchange="convert('input3_latex','display_input3_latex', 'preview_input3_latex','output_input3_latex')">
@@ -494,7 +494,7 @@ function enable_output3_radio3(enabled){
     {% if loop.index0 == 0 %}
       <td>{{ subfield(onclick='enable_input4_radio1(true)') }}</td>
       <td>{{ subfield.label }}</td>
-      <td>{{ webform.input4.label }}: {{ webform.input4(size=50, maxlength=300, id="input4_latex", onchange="onChangeFunction();") }} 
+      <td>{{ webform.input4.label }}: {{ webform.input4(size=50, maxlength=300, id="input4_latex", onchange="onChangeFunction();") }}
         <BR>
         <small><B>Required</B>; max length = 300 characters</small><BR>
         <input type="checkbox" id="display_input4_latex" checked="" onchange="convert('input4_latex','display_input4_latex', 'preview_input4_latex','output_input4_latex')">
@@ -548,7 +548,7 @@ function enable_output3_radio3(enabled){
     {% if loop.index0 == 0 %}
       <td>{{ subfield(onclick='enable_input5_radio1(true)') }}</td>
       <td>{{ subfield.label }}</td>
-      <td>{{ webform.input5.label }}: {{ webform.input5(size=50, maxlength=300, id="input5_latex", onchange="onChangeFunction();") }} 
+      <td>{{ webform.input5.label }}: {{ webform.input5(size=50, maxlength=300, id="input5_latex", onchange="onChangeFunction();") }}
         <BR>
         <small><B>Required</B>; max length = 300 characters</small><BR>
         <input type="checkbox" id="display_input5_latex" checked="" onchange="convert('input5_latex','display_input5_latex', 'preview_input5_latex','output_input5_latex')">
@@ -602,7 +602,7 @@ function enable_output3_radio3(enabled){
     {% if loop.index0 == 0 %}
       <td>{{ subfield(onclick='enable_input6_radio1(true)') }}</td>
       <td>{{ subfield.label }}</td>
-      <td>{{ webform.input6.label }}: {{ webform.input6(size=50, maxlength=300, id="input6_latex", onchange="onChangeFunction();") }} 
+      <td>{{ webform.input6.label }}: {{ webform.input6(size=50, maxlength=300, id="input6_latex", onchange="onChangeFunction();") }}
         <BR>
         <small><B>Required</B>; max length = 300 characters</small><BR>
         <input type="checkbox" id="display_input6_latex" checked="" onchange="convert('input6_latex','display_input6_latex', 'preview_input6_latex','output_input6_latex')">
@@ -656,7 +656,7 @@ function enable_output3_radio3(enabled){
     {% if loop.index0 == 0 %}
       <td>{{ subfield(onclick='enable_input7_radio1(true)') }}</td>
       <td>{{ subfield.label }}</td>
-      <td>{{ webform.input7.label }}: {{ webform.input7(size=50, maxlength=300, id="input7_latex", onchange="onChangeFunction();") }} 
+      <td>{{ webform.input7.label }}: {{ webform.input7(size=50, maxlength=300, id="input7_latex", onchange="onChangeFunction();") }}
         <BR>
         <small><B>Required</B>; max length = 300 characters</small><BR>
         <input type="checkbox" id="display_input7_latex" checked="" onchange="convert('input7_latex','display_input7_latex', 'preview_input7_latex','output_input7_latex')">
@@ -742,44 +742,123 @@ Number of feeds:
 { % else % } <!- - static feed count -->
 
 {% if inf_rule_dict['number of feeds']|int() > 0|int() %}
-<P>{{ webform.static_feed1.label }}: {{ webform.static_feed1(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
-   <input type="checkbox" id="display_feed1_latex" checked="" onchange="convert('static_feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
-   <small><label for="display_feed1_latex">Display style</label></small>
-
-   <input type="button" value="optional preview of TeX before submitting form" id="preview_feed1_latex" onclick="convert('static_feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
-
-   <br clear="all">
-   <div id="output_feed1_latex"></div>
-
-</P>
-<!--
-{ % endif % }
--->
+  <P>{{ webform.static_feed1.label }}: {{ webform.static_feed1(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed1_latex" checked="" onchange="convert('static_feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
+    <small><label for="display_feed1_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed1_latex" onclick="convert('static_feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
+    <br clear="all">
+    <div id="output_feed1_latex"></div>
+  </P>
+{% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 1|int() %}
-<P>{{ webform.static_feed2.label }}: {{ webform.static_feed2(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
-   <input type="checkbox" id="display_feed2_latex" checked="" onchange="convert('static_feed2','display_feed2_latex', 'preview_feed2_latex','output_feed2_latex')">
-   <small><label for="display_feed2_latex">Display style</label></small>
-
-   <input type="button" value="optional preview of TeX before submitting form" id="preview_feed2_latex" onclick="convert('static_feed2','display_feed2_latex', 'preview_feed2_latex','output_feed2_latex')">
-
-   <br clear="all">
-   <div id="output_feed2_latex"></div>
-</P>
+  <P>{{ webform.static_feed2.label }}: {{ webform.static_feed2(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed2_latex" checked="" onchange="convert('static_feed2','display_feed2_latex', 'preview_feed2_latex','output_feed2_latex')">
+    <small><label for="display_feed2_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed2_latex" onclick="convert('static_feed2','display_feed2_latex', 'preview_feed2_latex','output_feed2_latex')">
+    <br clear="all">
+    <div id="output_feed2_latex"></div>
+  </P>
 {% endif %}
 
 {% if inf_rule_dict['number of feeds']|int() > 2|int() %}
-<P>{{ webform.static_feed3.label }}: {{ webform.static_feed3(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
-   <input type="checkbox" id="display_feed3_latex" checked="" onchange="convert('static_feed3','display_feed3_latex', 'preview_feed3_latex','output_feed3_latex')">
-   <small><label for="display_feed3_latex">Display style</label></small>
-
-   <input type="button" value="optional preview of TeX before submitting form" id="preview_feed3_latex" onclick="convert('static_feed3','display_feed3_latex', 'preview_feed3_latex','output_feed3_latex')">
-
-   <br clear="all">
-   <div id="output_feed3_latex"></div>
-</P>
+  <P>{{ webform.static_feed3.label }}: {{ webform.static_feed3(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed3_latex" checked="" onchange="convert('static_feed3','display_feed3_latex', 'preview_feed3_latex','output_feed3_latex')">
+    <small><label for="display_feed3_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed3_latex" onclick="convert('static_feed3','display_feed3_latex', 'preview_feed3_latex','output_feed3_latex')">
+    <br clear="all">
+    <div id="output_feed3_latex"></div>
+  </P>
 {% endif %}
-
+{% if inf_rule_dict['number of feeds']|int() > 3|int() %}
+  <P>{{ webform.static_feed4.label }}: {{ webform.static_feed4(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed4_latex" checked="" onchange="convert('static_feed4','display_feed4_latex', 'preview_feed4_latex','output_feed4_latex')">
+    <small><label for="display_feed4_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed4_latex" onclick="convert('static_feed4','display_feed4_latex', 'preview_feed4_latex','output_feed4_latex')">
+    <br clear="all">
+    <div id="output_feed4_latex"></div>
+  </P>
+{% endif %}
+{% if inf_rule_dict['number of feeds']|int() > 4|int() %}
+  <P>{{ webform.static_feed5.label }}: {{ webform.static_feed5(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed5_latex" checked="" onchange="convert('static_feed5','display_feed5_latex', 'preview_feed5_latex','output_feed5_latex')">
+    <small><label for="display_feed5_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed5_latex" onclick="convert('static_feed5','display_feed5_latex', 'preview_feed5_latex','output_feed5_latex')">
+    <br clear="all">
+    <div id="output_feed5_latex"></div>
+  </P>
+{% endif %}
+{% if inf_rule_dict['number of feeds']|int() > 5|int() %}
+  <P>{{ webform.static_feed6.label }}: {{ webform.static_feed6(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed6_latex" checked="" onchange="convert('static_feed6','display_feed6_latex', 'preview_feed6_latex','output_feed6_latex')">
+    <small><label for="display_feed6_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed6_latex" onclick="convert('static_feed6','display_feed6_latex', 'preview_feed6_latex','output_feed6_latex')">
+    <br clear="all">
+    <div id="output_feed6_latex"></div>
+  </P>
+{% endif %}
+{% if inf_rule_dict['number of feeds']|int() > 6|int() %}
+  <P>{{ webform.static_feed7.label }}: {{ webform.static_feed7(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed7_latex" checked="" onchange="convert('static_feed7','display_feed7_latex', 'preview_feed7_latex','output_feed7_latex')">
+    <small><label for="display_feed7_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed7_latex" onclick="convert('static_feed7','display_feed7_latex', 'preview_feed7_latex','output_feed7_latex')">
+    <br clear="all">
+    <div id="output_feed7_latex"></div>
+  </P>
+{% endif %}
+{% if inf_rule_dict['number of feeds']|int() > 7|int() %}
+  <P>{{ webform.static_feed8.label }}: {{ webform.static_feed8(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed8_latex" checked="" onchange="convert('static_feed8','display_feed8_latex', 'preview_feed8_latex','output_feed8_latex')">
+    <small><label for="display_feed8_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed8_latex" onclick="convert('static_feed8','display_feed8_latex', 'preview_feed8_latex','output_feed8_latex')">
+    <br clear="all">
+    <div id="output_feed8_latex"></div>
+  </P>
+{% endif %}
+{% if inf_rule_dict['number of feeds']|int() > 8|int() %}
+  <P>{{ webform.static_feed9.label }}: {{ webform.static_feed9(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed9_latex" checked="" onchange="convert('static_feed9','display_feed9_latex', 'preview_feed9_latex','output_feed9_latex')">
+    <small><label for="display_feed9_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed9_latex" onclick="convert('static_feed9','display_feed9_latex', 'preview_feed9_latex','output_feed9_latex')">
+    <br clear="all">
+    <div id="output_feed9_latex"></div>
+  </P>
+{% endif %}
+{% if inf_rule_dict['number of feeds']|int() > 9|int() %}
+  <P>{{ webform.static_feed10.label }}: {{ webform.static_feed10(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed10_latex" checked="" onchange="convert('static_feed10','display_feed10_latex', 'preview_feed10_latex','output_feed10_latex')">
+    <small><label for="display_feed10_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed10_latex" onclick="convert('static_feed10','display_feed10_latex', 'preview_feed10_latex','output_feed10_latex')">
+    <br clear="all">
+    <div id="output_feed10_latex"></div>
+  </P>
+{% endif %}
+{% if inf_rule_dict['number of feeds']|int() > 10|int() %}
+  <P>{{ webform.static_feed11.label }}: {{ webform.static_feed11(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed11_latex" checked="" onchange="convert('static_feed11','display_feed11_latex', 'preview_feed11_latex','output_feed11_latex')">
+    <small><label for="display_feed11_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed11_latex" onclick="convert('static_feed11','display_feed11_latex', 'preview_feed11_latex','output_feed11_latex')">
+    <br clear="all">
+    <div id="output_feed11_latex"></div>
+  </P>
+{% endif %}
+{% if inf_rule_dict['number of feeds']|int() > 11|int() %}
+  <P>{{ webform.static_feed12.label }}: {{ webform.static_feed12(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed12_latex" checked="" onchange="convert('static_feed12','display_feed12_latex', 'preview_feed12_latex','output_feed12_latex')">
+    <small><label for="display_feed12_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed12_latex" onclick="convert('static_feed12','display_feed12_latex', 'preview_feed12_latex','output_feed12_latex')">
+    <br clear="all">
+    <div id="output_feed12_latex"></div>
+  </P>
+{% endif %}
+{% if inf_rule_dict['number of feeds']|int() > 12|int() %}
+  <P>{{ webform.static_feed13.label }}: {{ webform.static_feed13(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+    <input type="checkbox" id="display_feed13_latex" checked="" onchange="convert('static_feed13','display_feed13_latex', 'preview_feed13_latex','output_feed13_latex')">
+    <small><label for="display_feed13_latex">Display style</label></small>
+    <input type="button" value="optional preview of TeX before submitting form" id="preview_feed13_latex" onclick="convert('static_feed13','display_feed13_latex', 'preview_feed13_latex','output_feed13_latex')">
+    <br clear="all">
+    <div id="output_feed13_latex"></div>
+  </P>
 {% endif %}
 
 {% if inf_rule_dict['number of outputs']|int() > 0|int() %}
