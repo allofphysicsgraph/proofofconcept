@@ -112,7 +112,7 @@ schema = {
                              "additionalProperties": False,
                              "patternProperties": {"^\d{10}$":
                                                       {"type": "object", # expression ID
-                                                       #"additionalProperties": False,
+                                                       "additionalProperties": False,
                                                        "properties": {
                                                          'AST': {'type': 'string'},
                                                          'notes': {'type': 'string'},
