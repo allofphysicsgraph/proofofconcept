@@ -12,9 +12,9 @@ import latex_to_sympy
 # https://docs.sympy.org/latest/modules/physics/units/examples.html
 # import sympy.physics.units.systems
 # import sympy.physics.units.systems.si
-from sympy.physics.units import mass, length, time # type: ignore
-from sympy.physics.units.systems.si import dimsys_SI # type: ignore
-import sympy.physics.units # type: ignore
+from sympy.physics.units import mass, length, time  # type: ignore
+from sympy.physics.units.systems.si import dimsys_SI  # type: ignore
+import sympy.physics.units  # type: ignore
 
 
 logger = logging.getLogger(__name__)

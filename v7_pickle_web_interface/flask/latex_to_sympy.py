@@ -16,9 +16,9 @@ from subprocess import PIPE  # https://docs.python.org/3/library/subprocess.html
 import subprocess  # https://stackoverflow.com/questions/39187886/what-is-the-difference-between-subprocess-popen-and-subprocess-run/39187984
 
 # https://docs.sympy.org/latest/modules/physics/quantum/dagger.html
-from sympy.physics.quantum.dagger import Dagger # type: ignore
-from sympy.physics.quantum.state import Ket, Bra # type: ignore
-from sympy.physics.quantum.operator import Operator # type: ignore
+from sympy.physics.quantum.dagger import Dagger  # type: ignore
+from sympy.physics.quantum.state import Ket, Bra  # type: ignore
+from sympy.physics.quantum.operator import Operator  # type: ignore
 
 logger = logging.getLogger(__name__)
 
@@ -151,11 +151,11 @@ def get_symbol_IDs_from_AST_str(ast_str: str) -> list:
     """
     # logging turned off because this function gets called a lot!
     # logger.info("[trace]")
-    logger.debug("ast str = " + ast_str)
+    #logger.debug("ast str = " + ast_str)
     list_of_symbols = re.findall("pdg\d\d\d\d", ast_str)
     list_of_symbols = list(set(list_of_symbols))
     list_of_symbols = [x.replace("pdg", "") for x in list_of_symbols]
-    logger.debug("list of symbols = " + str(list_of_symbols))
+    #logger.debug("list of symbols = " + str(list_of_symbols))
     return list_of_symbols
 
 
@@ -271,11 +271,11 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
 
     logger.debug(latex_expr_str)
     sympy_expr = parse_latex(latex_expr_str)
-    logger.debug("create_sympy_expr_tree_from_latex; Sympy expression = %s", sympy_expr)
+    logger.debug("Sympy expression = %s", sympy_expr)
 
     latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
     logger.debug(
-        "create_sympy_expr_tree_from_latex; latex as Sympy expr tree = %s",
+        "latex as Sympy expr tree = %s",
         latex_as_sympy_expr_tree,
     )
     logger.info("[trace end " + trace_id + "]")

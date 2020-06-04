@@ -1555,11 +1555,11 @@ def substitute_LHS_of_two_expressions_into_expr(latex_dict: dict) -> str:
     'step is valid'
     """
     logger.info("[trace]")
-    logger.debug(str(latex_dict["input"][0]['LHS']))
-    logger.debug(str(latex_dict["input"][0]['RHS']))
+    logger.debug(str(latex_dict["input"][0]["LHS"]))
+    logger.debug(str(latex_dict["input"][0]["RHS"]))
     logger.debug(str(latex_dict["feed"][0]))
-    logger.debug(str(latex_dict["output"][0]['LHS']))
-    logger.debug(str(latex_dict["output"][0]['RHS']))
+    logger.debug(str(latex_dict["output"][0]["LHS"]))
+    logger.debug(str(latex_dict["output"][0]["RHS"]))
     return "no check performed"
 
 
