@@ -221,7 +221,7 @@ def update_symbol_in_step(
 
     for expr_global_id in list_expr_in_step(deriv_id, step_id, path_to_db):
         expr_latex = dat["expressions"][expr_global_id]["latex"]
-        symbols_in_expr = list_symbols_used_in_latex_from_sympy(expr_latex)
+        symbols_in_expr = latex_to_sympy.list_symbols_used_in_latex_from_sympy(expr_latex)
         if sympy_symbol in symbols_in_expr:
             dat["expressions"][expr_global_id]["AST"].append(symbol_id)
 
@@ -242,6 +242,8 @@ def find_symbols_in_step_that_lack_id(
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
+    logger.debug("step ID = " + step_id)
+
     dat = clib.read_db(path_to_db)
     list_of_sympy_symbols_lacking_PDG_id = []
 
@@ -342,7 +344,7 @@ def fill_in_missing_PDG_AST_ids(
             )
             for expr_global_id in list_expr_in_step(deriv_id, step_id, path_to_db):
                 expr_latex = dat["expressions"][expr_global_id]["latex"]
-                symbols_in_expr = list_symbols_used_in_latex_from_sympy(expr_latex)
+                symbols_in_expr = latex_to_sympy.list_symbols_used_in_latex_from_sympy(expr_latex)
                 if sympy_symbol_without_id in symbols_in_expr:
                     dat["expressions"][expr_global_id]["AST"].append(
                         list_of_candidate_ids[0]
@@ -401,21 +403,24 @@ def list_symbols_used_in_step_from_PDG_AST(
     dat = clib.read_db(path_to_db)
     list_of_symbol_ids = []
 
-    if step_id in dat["derivations"][deriv_id]["steps"].keys():
-        step_dict = dat["derivations"][deriv_id]["steps"][step_id]
-        for connection_type in ["inputs", "feeds", "outputs"]:
-            for local_id in step_dict[connection_type]:
-                expr_global_id = dat["expr local to global"][local_id]
-                #                logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
-                symbols_per_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
-                    dat["expressions"][expr_global_id]["AST"]
-                )
-                #                logger.debug(str(symbols_per_expr))
-                for symbol_id in symbols_per_expr:
-                    list_of_symbol_ids.append(symbol_id)
-    else:  # step_id not in steps
-        list_of_symbol_ids = []
-    list_of_symbol_ids = list(set(list_of_symbol_ids))
+    if deriv_id in dat["derivations"].keys():
+        if step_id in dat["derivations"][deriv_id]["steps"].keys():
+            step_dict = dat["derivations"][deriv_id]["steps"][step_id]
+            for connection_type in ["inputs", "feeds", "outputs"]:
+                for local_id in step_dict[connection_type]:
+                    expr_global_id = dat["expr local to global"][local_id]
+                    #                logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
+                    symbols_per_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
+                        dat["expressions"][expr_global_id]["AST"]
+                    )
+                    #                logger.debug(str(symbols_per_expr))
+                    for symbol_id in symbols_per_expr:
+                        list_of_symbol_ids.append(symbol_id)
+        else:  # step_id not in steps
+            list_of_symbol_ids = []
+        list_of_symbol_ids = list(set(list_of_symbol_ids))
+    else:
+        raise Exception(deriv_id + " not in dat")
     logger.info("[trace end " + trace_id + "]")
     return list_of_symbol_ids
 
@@ -472,7 +477,7 @@ def list_symbols_used_in_step_from_sympy(
                 expr_global_id = dat["expr local to global"][local_id]
                 expr_latex = dat["expressions"][expr_global_id]["latex"]
                 # logger.debug(expr_latex)
-                symbols_per_expr = latex_to_sympy.list_symbols_used_in_expr_from_sympy(
+                symbols_per_expr = latex_to_sympy.list_symbols_used_in_latex_from_sympy(
                     expr_latex
                 )
                 for symb in symbols_per_expr:
@@ -507,7 +512,7 @@ def create_AST_png_per_expression_in_step(
             output_filename = expr_global_id + "_ast.png"
             latex_to_sympy.create_AST_png_for_latex(expr_latex, output_filename)
 
-            symbols_from_sympy = latex_to_sympy.list_symbols_used_in_expr_from_sympy(
+            symbols_from_sympy = latex_to_sympy.list_symbols_used_in_latex_from_sympy(
                 expr_latex
             )
             symbols_from_PDG_AST = latex_to_sympy.get_symbol_IDs_from_AST_str(
@@ -549,6 +554,8 @@ def linear_index_to_step_id(
                 return step_id
     else:
         raise Exception(deriv_id + "not in dat")
+
+    logger.info("[trace end " + trace_id + "]")
     raise Exception(step_linear_index + "not found in derivation " + deriv_id)
     logger.info("[trace end " + trace_id + "]")
     return "ERROR"
@@ -607,7 +614,7 @@ def list_local_id_for_derivation(deriv_id: str, path_to_db: str) -> list:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
-    list_of_local_id: List[str] = []
+    list_of_local_id = []
     if deriv_id not in dat["derivations"].keys():
         list_of_local_id = []
     else:
@@ -630,7 +637,7 @@ def list_global_id_not_in_derivation(deriv_id: str, path_to_db: str) -> list:
     logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
     # I could have called list_local_id_for_derivation but I wrote this function first
-    global_ids_in_derivation: List[str] = []
+    global_ids_in_derivation = []
     if deriv_id not in dat["derivations"].keys():
         global_ids_in_derivation = []
     else:  # derivation exists in dat
@@ -754,7 +761,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
         this_expr["notes"] = expression_dict["notes"]
         this_expr["creation date"] = expression_dict["creation date"]
         this_expr["author"] = expression_dict["author"]
-        this_expr["AST"] = "None"
+        this_expr["AST"] = expression_dict["AST"]
         if "AST" in expression_dict.keys():
             this_expr["AST"] = expression_dict["AST"]
         expressions_list_of_dicts.append(this_expr)
@@ -1597,47 +1604,47 @@ def extract_operators_from_expression_dict(expr_id: str, path_to_db: str) -> lis
     return list(set(list_of_operators))
 
 
-def extract_symbols_from_expression_dict(expr_id: str, path_to_db: str) -> list:
-    """
-    >>> extract_symbols_from_expression_dict('pdg.db')
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
-    dat = clib.read_db(path_to_db)
-    logger.debug("expr_id = %s", expr_id)
-    expr_dict = dat["expressions"]
-    if "AST" in expr_dict[expr_id].keys():
-        flt_dict = flatten_dict(expr_dict[expr_id]["AST"])
-        logger.info("[trace end " + trace_id + "]")
-        return list(flt_dict.values())
-    else:
-        logger.info("[trace end " + trace_id + "]")
-        return []
-    # logger.debug('flt_dict=',flt_dict)
+# def extract_symbols_from_expression_dict(expr_id: str, path_to_db: str) -> list:
+#    """
+#    >>> extract_symbols_from_expression_dict('pdg.db')
+#    """
+#    trace_id = str(random.randint(1000000, 9999999))
+#    logger.info("[trace start " + trace_id + "]")
+#    dat = clib.read_db(path_to_db)
+#    logger.debug("expr_id = %s", expr_id)
+#    expr_dict = dat["expressions"]
+#    if "AST" in expr_dict[expr_id].keys():
+#        flt_dict = flatten_dict(expr_dict[expr_id]["AST"])
+#        logger.info("[trace end " + trace_id + "]")
+#        return list(flt_dict.values())
+#    else:
+#        logger.info("[trace end " + trace_id + "]")
+#        return []
+# logger.debug('flt_dict=',flt_dict)
 
 
-def extract_expressions_from_derivation_dict(deriv_id: str, path_to_db: str) -> list:
-    """
-    >>>
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
-    dat = clib.read_db(path_to_db)
-    flt_dict = flatten_dict(dat["derivations"][deriv_id])
-    logger.debug("flat dict = %s", flt_dict)
-    list_of_expr_ids = []
-    for flattened_key, val in flt_dict.items():
-        if (
-            ("_inputs_" in flattened_key)
-            or ("_outputs_" in flattened_key)
-            or ("_feeds_" in flattened_key)
-        ):
-            list_of_expr_ids.append(val)
-    logger.debug(
-        "list_of_expr_ids= %s", list_of_expr_ids,
-    )
-    logger.info("[trace end " + trace_id + "]")
-    return list_of_expr_ids
+# def extract_expressions_from_derivation_dict(deriv_id: str, path_to_db: str) -> list:
+#    """
+#    >>>
+#    """
+#    trace_id = str(random.randint(1000000, 9999999))
+#    logger.info("[trace start " + trace_id + "]")
+#    dat = clib.read_db(path_to_db)
+#    flt_dict = flatten_dict(dat["derivations"][deriv_id])
+#    logger.debug("flat dict = %s", flt_dict)
+#    list_of_expr_ids = []
+#    for flattened_key, val in flt_dict.items():
+#        if (
+#            ("_inputs_" in flattened_key)
+#            or ("_outputs_" in flattened_key)
+#            or ("_feeds_" in flattened_key)
+#        ):
+#            list_of_expr_ids.append(val)
+#    logger.debug(
+#        "list_of_expr_ids= %s", list_of_expr_ids,
+#    )
+#    logger.info("[trace end " + trace_id + "]")
+#    return list_of_expr_ids
 
 
 def popularity_of_derivations(path_to_db: str) -> dict:
@@ -1739,6 +1746,7 @@ def popularity_of_symbols_in_expressions(path_to_db: str) -> dict:
     for symbol_id, symbol_dict in dat["symbols"].items():
         list_of_uses = []
         for expr_global_id, expr_dict in dat["expressions"].items():
+            logger.debug("ast = " + expr_dict["AST"])
             if "AST" in expr_dict.keys():
                 list_of_symbol_IDs_for_this_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
                     expr_dict["AST"]
@@ -3261,7 +3269,7 @@ def modify_latex_in_step(
     entry["name"] = dat["expressions"][
         dat["expr local to global"][expr_local_id_of_latex_to_modify]
     ]["name"]
-    entry["AST"] = []
+    entry["AST"] = ""
 
     dat["expressions"][expr_global_id] = entry
     dat["expr local to global"][expr_local_id_of_latex_to_modify] = expr_global_id
@@ -3353,7 +3361,7 @@ def add_symbol(
         "luminous intensity": int(dim_luminous_intensity),
     }
     if category == "constant" and len(value) > 0:
-        symbol_dict["values"] = [{"value": value, "units": unit}]
+        symbol_dict["values"] = [{"value": value, "units": units}]
     symbol_dict["author"] = md5_of_string(str(user_email).lower())
     symbol_dict["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
     symbol_id = create_symbol_id(path_to_db)
@@ -3399,7 +3407,7 @@ def add_inf_rule(
     arg_dict["latex"] = inf_rule_dict_from_form["latex"]
     arg_dict["notes"] = inf_rule_dict_from_form["notes"]
     arg_dict["author"] = md5_of_string(str(user_email).lower())
-    arg_dict["creation date"] = datetime.datetime.now().strftime("%Y-%m-%d")
+    arg_dict["creation date"] = str(datetime.datetime.now().strftime("%Y-%m-%d"))
 
     logger.debug("add_inf_rule; arg_dict = %s", arg_dict)
 
@@ -3703,7 +3711,7 @@ def modify_latex_in_expressions(
 
     if global_id_of_latex_to_modify in dat["expressions"].keys():
         dat["expressions"][global_id_of_latex_to_modify]["latex"] = revised_latex
-        dat["expressions"][global_id_of_latex_to_modify]["AST"] = []
+        dat["expressions"][global_id_of_latex_to_modify]["AST"] = ""
     else:
         raise Exception(global_id_of_latex_to_modify + " not in db")
 

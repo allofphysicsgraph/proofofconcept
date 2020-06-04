@@ -388,14 +388,6 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     #    elif step_dict["inf rule"] == "":
     #        logger.info("[trace end " + trace_id + "]")
     #        return (latex_dict)
-    elif (
-        step_dict["inf rule"]
-        == "substitute list of new variables X for list of old variables Y"
-    ):
-        logger.info("[trace end " + trace_id + "]")
-        return substitute_list_of_new_variables_X_for_list_of_old_variables_Y(
-            latex_dict
-        )
     elif step_dict["inf rule"] == "subtract expr 1 from expr 2":
         logger.info("[trace end " + trace_id + "]")
         return subtract_expr_1_from_expr_2(latex_dict)
@@ -1563,11 +1555,11 @@ def substitute_LHS_of_two_expressions_into_expr(latex_dict: dict) -> str:
     'step is valid'
     """
     logger.info("[trace]")
-    logger.debug(str(latex_dict["input"][0][LHS]))
-    logger.debug(str(latex_dict["input"][0][LHS]))
+    logger.debug(str(latex_dict["input"][0]['LHS']))
+    logger.debug(str(latex_dict["input"][0]['RHS']))
     logger.debug(str(latex_dict["feed"][0]))
-    logger.debug(str(latex_dict["output"][0][LHS]))
-    logger.debug(str(latex_dict["output"][0][LHS]))
+    logger.debug(str(latex_dict["output"][0]['LHS']))
+    logger.debug(str(latex_dict["output"][0]['RHS']))
     return "no check performed"
 
 
