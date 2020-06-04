@@ -70,6 +70,7 @@ def validate_dimensions(expr_global_id: str, path_to_db: str) -> str:
         logger.debug("total dim for pdg" + str(symb_ID) + " = " + sym_dim[:-1])
         if len(sym_dim) == 0:
             logger.debug(str(symb_ID) + " is dimensionless")
+            exec("pdg" + str(symb_ID) + " = mass/mass")
         else:
             exec("pdg" + str(symb_ID) + " = " + sym_dim[:-1])
 
@@ -78,31 +79,36 @@ def validate_dimensions(expr_global_id: str, path_to_db: str) -> str:
     # in that scenario, we do not evaluate the Sympy expression --
     # just leave it as a Sympy number that does not have dimension
     # If the following code were not present, then the dimensional check fails
-    logger.debug("new idea: " + str(LHS))
-    logger.debug("new idea: " + str(RHS))
+    #    logger.debug("new idea: " + str(LHS))
+    #    logger.debug("new idea: " + str(RHS))
 
-    if type(eval(str(LHS))) != type(1):
-        evaluated_LHS = eval(str(LHS))
-    else:
-        evaluated_LHS = eval("sympy.Integer(0)")
-    if type(eval(str(RHS))) != type(1):
-        evaluated_RHS = eval(str(RHS))
-    else:
-        evaluated_RHS = eval("sympy.Integer(0)")
+    #    if type(eval(str(LHS))) != type(1):
+    #        evaluated_LHS = eval(str(LHS))
+    #    else:
+    #        evaluated_LHS = eval("sympy.Integer(0)")
+    #    if type(eval(str(RHS))) != type(1):
+    #        evaluated_RHS = eval(str(RHS))
+    #    else:
+    #        evaluated_RHS = eval("sympy.Integer(0)")
 
-    logger.debug(str(evaluated_LHS) + " | " + str(evaluated_RHS))
+    #    logger.debug(str(evaluated_LHS) + " | " + str(evaluated_RHS))
+
+    logger.debug("LHS dim = " + str(eval(str(LHS))))
+    logger.debug("RHS dim = " + str(eval(str(RHS))))
 
     try:
-        determine_consistency = dimsys_SI.equivalent_dims(evaluated_LHS, evaluated_RHS)
+        determine_consistency = dimsys_SI.equivalent_dims(
+            eval(str(LHS)), eval(str(RHS))
+        )
     except Exception as err:
-        return "error with " + expr_global_id
+        return "error for dim with " + expr_global_id
 
     if determine_consistency:
         return "dimensions are consistent"
     else:
         return "inconsistent dimensions"
 
-    return "not checked"
+    return "dim not checked"
 
 
 # EOF

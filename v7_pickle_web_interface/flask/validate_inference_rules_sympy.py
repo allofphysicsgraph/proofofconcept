@@ -564,6 +564,9 @@ def change_variable_X_to_Y(latex_dict: dict) -> str:
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
+    #    logger.debug('input: ' + str(latex_dict['input']))
+    #    logger.debug('feed: ' + str(latex_dict['feed']))
+    #    logger.debug('output: ' + str(latex_dict['output']))
     d1 = sympy.simplify(
         latex_dict["input"][0]["LHS"].subs(latex_dict["feed"][0], latex_dict["feed"][1])
         - latex_dict["output"][0]["LHS"]
@@ -1642,12 +1645,36 @@ def change_two_variables_in_expr(latex_dict: dict) -> str:
     >>> change_two_variables_in_expr(latex_dict)
     'step is valid'
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+
     logger.debug(str(latex_dict["input"][0]["LHS"]))
     logger.debug(str(latex_dict["input"][0]["RHS"]))
     logger.debug(str(latex_dict["feed"][0]))
     logger.debug(str(latex_dict["output"][0]["LHS"]))
     logger.debug(str(latex_dict["output"][0]["RHS"]))
+
+    logger.debug("input: " + str(latex_dict["input"]))
+    logger.debug("feed: " + str(latex_dict["feed"]))
+    logger.debug("output: " + str(latex_dict["output"]))
+    d1 = sympy.simplify(
+        latex_dict["input"][0]["LHS"]
+        .subs(latex_dict["feed"][0], latex_dict["feed"][1])
+        .subs(latex_dict["feed"][2], latex_dict["feed"][3])
+        - latex_dict["output"][0]["LHS"]
+    )
+    d2 = sympy.simplify(
+        latex_dict["input"][0]["RHS"]
+        .subs(latex_dict["feed"][0], latex_dict["feed"][1])
+        .subs(latex_dict["feed"][2], latex_dict["feed"][3])
+        - latex_dict["output"][0]["RHS"]
+    )
+    if (d1 == 0) and (d2 == 0):
+        logger.info("[trace end " + trace_id + "]")
+        return "valid"
+    else:
+        logger.info("[trace end " + trace_id + "]")
+        return "LHS diff is " + str(d1) + "\n" + "RHS diff is " + str(d2)
     return "no check performed"
 
 
@@ -1660,7 +1687,32 @@ def change_three_variables_in_expr(latex_dict: dict) -> str:
     >>> change_three_variables_in_expr(latex_dict)
     'step is valid'
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+
+    logger.debug("input: " + str(latex_dict["input"]))
+    logger.debug("feed: " + str(latex_dict["feed"]))
+    logger.debug("output: " + str(latex_dict["output"]))
+    d1 = sympy.simplify(
+        latex_dict["input"][0]["LHS"]
+        .subs(latex_dict["feed"][0], latex_dict["feed"][1])
+        .subs(latex_dict["feed"][2], latex_dict["feed"][3])
+        .subs(latex_dict["feed"][4], latex_dict["feed"][5])
+        - latex_dict["output"][0]["LHS"]
+    )
+    d2 = sympy.simplify(
+        latex_dict["input"][0]["RHS"]
+        .subs(latex_dict["feed"][0], latex_dict["feed"][1])
+        .subs(latex_dict["feed"][2], latex_dict["feed"][3])
+        .subs(latex_dict["feed"][4], latex_dict["feed"][5])
+        - latex_dict["output"][0]["RHS"]
+    )
+    if (d1 == 0) and (d2 == 0):
+        logger.info("[trace end " + trace_id + "]")
+        return "valid"
+    else:
+        logger.info("[trace end " + trace_id + "]")
+        return "LHS diff is " + str(d1) + "\n" + "RHS diff is " + str(d2)
     return "no check performed"
 
 
@@ -1673,7 +1725,34 @@ def change_four_variables_in_expr(latex_dict: dict) -> str:
     >>> change_four_variables_in_expr(latex_dict)
     'step is valid'
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+
+    logger.debug("input: " + str(latex_dict["input"]))
+    logger.debug("feed: " + str(latex_dict["feed"]))
+    logger.debug("output: " + str(latex_dict["output"]))
+    d1 = sympy.simplify(
+        latex_dict["input"][0]["LHS"]
+        .subs(latex_dict["feed"][0], latex_dict["feed"][1])
+        .subs(latex_dict["feed"][2], latex_dict["feed"][3])
+        .subs(latex_dict["feed"][4], latex_dict["feed"][5])
+        .subs(latex_dict["feed"][6], latex_dict["feed"][7])
+        - latex_dict["output"][0]["LHS"]
+    )
+    d2 = sympy.simplify(
+        latex_dict["input"][0]["RHS"]
+        .subs(latex_dict["feed"][0], latex_dict["feed"][1])
+        .subs(latex_dict["feed"][2], latex_dict["feed"][3])
+        .subs(latex_dict["feed"][4], latex_dict["feed"][5])
+        .subs(latex_dict["feed"][6], latex_dict["feed"][7])
+        - latex_dict["output"][0]["RHS"]
+    )
+    if (d1 == 0) and (d2 == 0):
+        logger.info("[trace end " + trace_id + "]")
+        return "valid"
+    else:
+        logger.info("[trace end " + trace_id + "]")
+        return "LHS diff is " + str(d1) + "\n" + "RHS diff is " + str(d2)
     return "no check performed"
 
 
@@ -1686,7 +1765,36 @@ def change_five_variables_in_expr(latex_dict: dict) -> str:
     >>> change_five_variables_in_expr(latex_dict)
     'step is valid'
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+
+    logger.debug("input: " + str(latex_dict["input"]))
+    logger.debug("feed: " + str(latex_dict["feed"]))
+    logger.debug("output: " + str(latex_dict["output"]))
+    d1 = sympy.simplify(
+        latex_dict["input"][0]["LHS"]
+        .subs(latex_dict["feed"][0], latex_dict["feed"][1])
+        .subs(latex_dict["feed"][2], latex_dict["feed"][3])
+        .subs(latex_dict["feed"][4], latex_dict["feed"][5])
+        .subs(latex_dict["feed"][6], latex_dict["feed"][7])
+        .subs(latex_dict["feed"][8], latex_dict["feed"][9])
+        - latex_dict["output"][0]["LHS"]
+    )
+    d2 = sympy.simplify(
+        latex_dict["input"][0]["RHS"]
+        .subs(latex_dict["feed"][0], latex_dict["feed"][1])
+        .subs(latex_dict["feed"][2], latex_dict["feed"][3])
+        .subs(latex_dict["feed"][4], latex_dict["feed"][5])
+        .subs(latex_dict["feed"][6], latex_dict["feed"][7])
+        .subs(latex_dict["feed"][8], latex_dict["feed"][9])
+        - latex_dict["output"][0]["RHS"]
+    )
+    if (d1 == 0) and (d2 == 0):
+        logger.info("[trace end " + trace_id + "]")
+        return "valid"
+    else:
+        logger.info("[trace end " + trace_id + "]")
+        return "LHS diff is " + str(d1) + "\n" + "RHS diff is " + str(d2)
     return "no check performed"
 
 
@@ -1699,7 +1807,38 @@ def change_six_variables_in_expr(latex_dict: dict) -> str:
     >>> change_six_variables_in_expr(latex_dict)
     'step is valid'
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+
+    logger.debug("input: " + str(latex_dict["input"]))
+    logger.debug("feed: " + str(latex_dict["feed"]))
+    logger.debug("output: " + str(latex_dict["output"]))
+    d1 = sympy.simplify(
+        latex_dict["input"][0]["LHS"]
+        .subs(latex_dict["feed"][0], latex_dict["feed"][1])
+        .subs(latex_dict["feed"][2], latex_dict["feed"][3])
+        .subs(latex_dict["feed"][4], latex_dict["feed"][5])
+        .subs(latex_dict["feed"][6], latex_dict["feed"][7])
+        .subs(latex_dict["feed"][8], latex_dict["feed"][9])
+        .subs(latex_dict["feed"][10], latex_dict["feed"][11])
+        - latex_dict["output"][0]["LHS"]
+    )
+    d2 = sympy.simplify(
+        latex_dict["input"][0]["RHS"]
+        .subs(latex_dict["feed"][0], latex_dict["feed"][1])
+        .subs(latex_dict["feed"][2], latex_dict["feed"][3])
+        .subs(latex_dict["feed"][4], latex_dict["feed"][5])
+        .subs(latex_dict["feed"][6], latex_dict["feed"][7])
+        .subs(latex_dict["feed"][8], latex_dict["feed"][9])
+        .subs(latex_dict["feed"][10], latex_dict["feed"][11])
+        - latex_dict["output"][0]["RHS"]
+    )
+    if (d1 == 0) and (d2 == 0):
+        logger.info("[trace end " + trace_id + "]")
+        return "valid"
+    else:
+        logger.info("[trace end " + trace_id + "]")
+        return "LHS diff is " + str(d1) + "\n" + "RHS diff is " + str(d2)
     return "no check performed"
 
 
@@ -1934,7 +2073,7 @@ def multiply_expr_by_expr(latex_dict: dict) -> str:
 
 def apply_operator_to_bra(latex_dict: dict) -> str:
     """
-    given 
+    given
     x = \\langle\\psi_{\\alpha}| \\hat{A} |\\psi_{\\beta}\\rangle
     return
     x = \\langle\\psi_{\\alpha}| a_{\\alpha} |\psi_{\\beta} \\rangle
@@ -1952,7 +2091,7 @@ def apply_operator_to_bra(latex_dict: dict) -> str:
 
 def apply_operator_to_ket(latex_dict: dict) -> str:
     """
-    given 
+    given
     x = \\langle\\psi_{\\alpha}| \\hat{A} |\\psi_{\\beta}\\rangle
     return
     x = \\langle\\psi_{\\alpha}| a_{\\beta} |\psi_{\\beta} \\rangle
@@ -1962,7 +2101,7 @@ def apply_operator_to_ket(latex_dict: dict) -> str:
     >>> latex_dict['feed'] = [parse_latex('')]
     >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> apply_operator_to_ket(latex_dict)
-    'step is valid'   
+    'step is valid'
     """
     logger.info("[trace]")
     return "no check performed"
