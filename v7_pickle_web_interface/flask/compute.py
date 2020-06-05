@@ -219,11 +219,30 @@ def update_symbol_in_step(
     logger.info("[trace start " + trace_id + "]")
     dat = clib.read_db(path_to_db)
 
+    logger.debug("sympy_symbol = " + sympy_symbol)
+    logger.debug("symbol_id = " + symbol_id)
     for expr_global_id in list_expr_in_step(deriv_id, step_id, path_to_db):
         expr_latex = dat["expressions"][expr_global_id]["latex"]
-        symbols_in_expr = latex_to_sympy.list_symbols_used_in_latex_from_sympy(expr_latex)
+        logger.debug("expr_latex = " + expr_latex)
+        symbols_in_expr = latex_to_sympy.list_symbols_used_in_latex_from_sympy(
+            expr_latex
+        )
         if sympy_symbol in symbols_in_expr:
-            dat["expressions"][expr_global_id]["AST"].append(symbol_id)
+            logger.debug('sympy_symbol = ' + sympy_symbol)
+            if "'" + sympy_symbol + "'" in dat["expressions"][expr_global_id]["AST"]:
+                dat["expressions"][expr_global_id]["AST"] = dat["expressions"][expr_global_id]["AST"].replace(
+                    "'" + sympy_symbol + "'", "'pdg" + symbol_id + "'"
+                )
+                logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
+            elif dat["expressions"][expr_global_id]["AST"] == "":
+                dat["expressions"][expr_global_id]["AST"] = (
+                    "Symbol('" + sympy_symbol + "')"
+                )
+            else:
+                logger.debug(
+                    "not sure what to do with "
+                    + dat["expressions"][expr_global_id]["AST"]
+                )
 
     clib.write_db(path_to_db, dat)
     logger.info("[trace end " + trace_id + "]")
@@ -344,7 +363,9 @@ def fill_in_missing_PDG_AST_ids(
             )
             for expr_global_id in list_expr_in_step(deriv_id, step_id, path_to_db):
                 expr_latex = dat["expressions"][expr_global_id]["latex"]
-                symbols_in_expr = latex_to_sympy.list_symbols_used_in_latex_from_sympy(expr_latex)
+                symbols_in_expr = latex_to_sympy.list_symbols_used_in_latex_from_sympy(
+                    expr_latex
+                )
                 if sympy_symbol_without_id in symbols_in_expr:
                     dat["expressions"][expr_global_id]["AST"].append(
                         list_of_candidate_ids[0]
@@ -409,7 +430,7 @@ def list_symbols_used_in_step_from_PDG_AST(
             for connection_type in ["inputs", "feeds", "outputs"]:
                 for local_id in step_dict[connection_type]:
                     expr_global_id = dat["expr local to global"][local_id]
-                    #                logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
+                    # logger.debug(expr_global_id + ' has AST ' + dat["expressions"][expr_global_id]["AST"])
                     symbols_per_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
                         dat["expressions"][expr_global_id]["AST"]
                     )
@@ -420,7 +441,9 @@ def list_symbols_used_in_step_from_PDG_AST(
             list_of_symbol_ids = []
         list_of_symbol_ids = list(set(list_of_symbol_ids))
     else:
-        raise Exception(deriv_id + " not in dat")
+        # raise Exception(deriv_id + " not in dat")
+        # new derivation has no steps
+        list_of_symbol_ids = []
     logger.info("[trace end " + trace_id + "]")
     return list_of_symbol_ids
 
@@ -442,6 +465,7 @@ def list_symbols_used_in_derivation_from_PDG_AST(
             for connection_type in ["inputs", "feeds", "outputs"]:
                 for local_id in step_dict[connection_type]:
                     expr_global_id = dat["expr local to global"][local_id]
+                    # logger.debug('expr_global_id ' + expr_global_id + ' has AST ' + dat["expressions"][expr_global_id]["AST"])
                     symbols_per_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
                         dat["expressions"][expr_global_id]["AST"]
                     )
@@ -515,6 +539,8 @@ def create_AST_png_per_expression_in_step(
             symbols_from_sympy = latex_to_sympy.list_symbols_used_in_latex_from_sympy(
                 expr_latex
             )
+
+            # logger.debug('expr_global_id ' + expr_global_id + ' has AST ' + dat["expressions"][expr_global_id]["AST"])
             symbols_from_PDG_AST = latex_to_sympy.get_symbol_IDs_from_AST_str(
                 dat["expressions"][expr_global_id]["AST"]
             )
@@ -1211,7 +1237,7 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
 
     expr_dict_with_symbol_list = dat["expressions"]
     for expr_global_id, expr_dict in dat["expressions"].items():
-        # logger.debug("expr_global_id = " + expr_global_id)
+        # logger.debug("expr_global_id = " + expr_global_id + ' has AST ' + expr_dict["AST"])
         list_of_symbol_IDs = latex_to_sympy.get_symbol_IDs_from_AST_str(
             expr_dict["AST"]
         )
@@ -1746,8 +1772,9 @@ def popularity_of_symbols_in_expressions(path_to_db: str) -> dict:
     for symbol_id, symbol_dict in dat["symbols"].items():
         list_of_uses = []
         for expr_global_id, expr_dict in dat["expressions"].items():
-            logger.debug("ast = " + expr_dict["AST"])
             if "AST" in expr_dict.keys():
+                # logger.debug("ast = " + expr_dict["AST"])
+
                 list_of_symbol_IDs_for_this_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
                     expr_dict["AST"]
                 )
@@ -3864,7 +3891,9 @@ def create_step(
             expr_global_id = create_expr_global_id(path_to_db)
             dat["expressions"][expr_global_id] = {
                 "latex": latex_for_step_dict[key],
-                "AST": [],
+                "AST": latex_to_sympy.create_sympy_expr_tree_from_latex(
+                    latex_for_step_dict[key]
+                ),
                 "name": "",
                 "notes": "",
                 "author": md5_of_string(str(user_email).lower()),
@@ -3892,7 +3921,9 @@ def create_step(
                             raise Exception("empty Latex is not accepted")
                         dat["expressions"][expr_global_id] = {
                             "latex": latex_for_step_dict[connection_type + expr_index],
-                            "AST": [],
+                            "AST": latex_to_sympy.create_sympy_expr_tree_from_latex(
+                                latex_for_step_dict[connection_type + expr_index]
+                            ),
                             "name": latex_for_step_dict[
                                 connection_type + expr_index + "_name"
                             ],
