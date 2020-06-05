@@ -228,11 +228,11 @@ def update_symbol_in_step(
             expr_latex
         )
         if sympy_symbol in symbols_in_expr:
-            logger.debug('sympy_symbol = ' + sympy_symbol)
+            logger.debug("sympy_symbol = " + sympy_symbol)
             if "'" + sympy_symbol + "'" in dat["expressions"][expr_global_id]["AST"]:
-                dat["expressions"][expr_global_id]["AST"] = dat["expressions"][expr_global_id]["AST"].replace(
-                    "'" + sympy_symbol + "'", "'pdg" + symbol_id + "'"
-                )
+                dat["expressions"][expr_global_id]["AST"] = dat["expressions"][
+                    expr_global_id
+                ]["AST"].replace("'" + sympy_symbol + "'", "'pdg" + symbol_id + "'")
                 logger.debug(str(dat["expressions"][expr_global_id]["AST"]))
             elif dat["expressions"][expr_global_id]["AST"] == "":
                 dat["expressions"][expr_global_id]["AST"] = (

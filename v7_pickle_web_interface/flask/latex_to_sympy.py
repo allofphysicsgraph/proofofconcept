@@ -151,11 +151,11 @@ def get_symbol_IDs_from_AST_str(ast_str: str) -> list:
     """
     # logging turned off because this function gets called a lot!
     # logger.info("[trace]")
-    #logger.debug("ast str = " + ast_str)
+    # logger.debug("ast str = " + ast_str)
     list_of_symbols = re.findall("pdg\d\d\d\d", ast_str)
     list_of_symbols = list(set(list_of_symbols))
     list_of_symbols = [x.replace("pdg", "") for x in list_of_symbols]
-    #logger.debug("list of symbols = " + str(list_of_symbols))
+    # logger.debug("list of symbols = " + str(list_of_symbols))
     return list_of_symbols
 
 
@@ -275,8 +275,7 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
 
     latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
     logger.debug(
-        "latex as Sympy expr tree = %s",
-        latex_as_sympy_expr_tree,
+        "latex as Sympy expr tree = %s", latex_as_sympy_expr_tree,
     )
     logger.info("[trace end " + trace_id + "]")
     return latex_as_sympy_expr_tree

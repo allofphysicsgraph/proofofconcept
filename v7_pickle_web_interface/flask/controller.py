@@ -2675,6 +2675,11 @@ def step_review(deriv_id: str, step_id: str):
         logger.error(str(err))
         list_of_symbols_in_step_that_lack_id = []
 
+    logger.debug(
+        "list_of_symbols_in_step_that_lack_id = "
+        + str(list_of_symbols_in_step_that_lack_id)
+    )
+
     symbol_candidate_dict = compute.guess_missing_PDG_AST_ids(
         list_of_symbols_in_step_that_lack_id, deriv_id, step_id, path_to_db
     )
