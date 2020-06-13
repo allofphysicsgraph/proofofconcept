@@ -1,3 +1,10 @@
+#!/usr/bin/env python3
+
+
+# Physics Derivation Graph
+# Ben Payne, 2020
+# https://creativecommons.org/licenses/by/4.0/
+# Attribution 4.0 International (CC BY 4.0)
 
 # the order of installation matters for these two :(
 #get_ipython().system('pip install python-geoip-geolite2')

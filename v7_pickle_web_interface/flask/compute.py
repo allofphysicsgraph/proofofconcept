@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+
+# Physics Derivation Graph
+# Ben Payne, 2020
+# https://creativecommons.org/licenses/by/4.0/
+# Attribution 4.0 International (CC BY 4.0)
+
+# origin:
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask003.html
 
 # convention: every function and class includes a [trace] print

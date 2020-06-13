@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+# Physics Derivation Graph
+# Ben Payne, 2020
+# https://creativecommons.org/licenses/by/4.0/
+# Attribution 4.0 International (CC BY 4.0)
+
+
 # convention: every function and class includes a [trace] print
 # reason: to help the developer understand functional dependencies and which state the program is in,
 # a "trace" is printed to the terminal at the start of each function

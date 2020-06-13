@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+# Physics Derivation Graph
+# Ben Payne, 2020
+# https://creativecommons.org/licenses/by/4.0/
+# Attribution 4.0 International (CC BY 4.0)
+
+
 # for a tutorial on how to create a schmea, see
 # https://json-schema.org/understanding-json-schema/about.html#about
 # https://json-schema.org/understanding-json-schema/reference/object.html#pattern-properties
