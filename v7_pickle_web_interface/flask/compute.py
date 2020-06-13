@@ -2120,7 +2120,7 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
                 + ", "
                 + '"height": '
                 + str(image.shape[0])
-                + ', "linear index": 0},\n'
+                + ', "linear index": -1},\n'
             )
 
         for deriv_id, deriv_dict in derivation_popularity_dict.items():
@@ -2149,7 +2149,7 @@ def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
                     + ", "
                     + '"height": '
                     + str(image.shape[0])
-                    + ', "linear index": 0},\n'
+                    + ', "linear index": -1},\n'
                 )
 
                 list_of_edges.append(
@@ -2848,7 +2848,7 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
             + '"height": '
             + str(image.shape[0])
             + ", "
-            + '"linear index": 0},\n'
+            + '"linear index": -1},\n'
         )
 
     list_of_nodes = list(set(list_of_nodes))

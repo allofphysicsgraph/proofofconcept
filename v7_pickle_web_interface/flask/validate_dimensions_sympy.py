@@ -93,9 +93,9 @@ def validate_dimensions(expr_global_id: str, path_to_db: str) -> str:
 
     #    logger.debug(str(evaluated_LHS) + " | " + str(evaluated_RHS))
 
-# the following fail because evaluating raw Sympy is not supported
-#    logger.debug("LHS dim = " + str(eval(str(LHS))))
-#    logger.debug("RHS dim = " + str(eval(str(RHS))))
+    # the following fail because evaluating raw Sympy is not supported
+    #    logger.debug("LHS dim = " + str(eval(str(LHS))))
+    #    logger.debug("RHS dim = " + str(eval(str(RHS))))
 
     try:
         determine_consistency = dimsys_SI.equivalent_dims(

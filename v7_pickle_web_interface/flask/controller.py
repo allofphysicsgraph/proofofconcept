@@ -2683,6 +2683,8 @@ def step_review(deriv_id: str, step_id: str):
     symbol_candidate_dict = compute.guess_missing_PDG_AST_ids(
         list_of_symbols_in_step_that_lack_id, deriv_id, step_id, path_to_db
     )
+    logger.debug("symbol_candidate_dict = " + str(symbol_candidate_dict))
+
     compute.fill_in_missing_PDG_AST_ids(
         symbol_candidate_dict, deriv_id, step_id, path_to_db
     )
