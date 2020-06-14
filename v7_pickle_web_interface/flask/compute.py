@@ -542,10 +542,13 @@ def create_AST_png_per_expression_in_step(
             expr_latex = dat["expressions"][expr_global_id]["latex"]
             # logger.debug('latex = ' + expr_latex)
             output_filename = expr_global_id + "_ast.png"
-            latex_to_sympy.create_AST_png_for_latex(expr_latex, output_filename)
+
+            cleaned_expr_latex = latex_to_sympy.remove_latex_presention_markings(expr_latex)
+
+            latex_to_sympy.create_AST_png_for_latex(cleaned_expr_latex, output_filename)
 
             symbols_from_sympy = latex_to_sympy.list_symbols_used_in_latex_from_sympy(
-                expr_latex
+                cleaned_expr_latex
             )
 
             # logger.debug('expr_global_id ' + expr_global_id + ' has AST ' + dat["expressions"][expr_global_id]["AST"])
