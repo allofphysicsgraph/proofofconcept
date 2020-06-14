@@ -2,7 +2,11 @@
 {% block content %}
 
 
-<P>review derivation: {{ dat["derivations"][deriv_id]["name"] }}
+<center>
+  <H2>review derivation: {{ dat["derivations"][deriv_id]["name"] }}
+  </H2>
+</center>
+<P>This page contains three views of the steps in the derivation: d3js, graphviz PNG, and a table.</P>
 <P>
   <center>
     <svg id='viz'></svg>
@@ -19,7 +23,9 @@ results in no visualization and no error message in javascript console
 <svg id='viz'></svg>
 </div>
 -->
-<P>{{ dat['derivations'][deriv_id]['notes'] }}</P>
+
+<P>Notes for this derivation:<BR>
+{{ dat['derivations'][deriv_id]['notes'] }}</P>
 
 <fieldset>
 <legend>Options</legend>
