@@ -374,8 +374,9 @@ def fill_in_missing_PDG_AST_ids(
                     expr_latex
                 )
                 if sympy_symbol_without_id in symbols_in_expr:
-                    dat["expressions"][expr_global_id]["AST"].replace("'"+sympy_symbol_without_id+"'",
-                        "'pdg"+list_of_candidate_ids[0]+"'"
+                    dat["expressions"][expr_global_id]["AST"].replace(
+                        "'" + sympy_symbol_without_id + "'",
+                        "'pdg" + list_of_candidate_ids[0] + "'",
                     )
         else:
             logger.debug(
