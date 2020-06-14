@@ -18,7 +18,7 @@ import latex_to_sympy
 # https://docs.sympy.org/latest/modules/physics/units/examples.html
 # import sympy.physics.units.systems
 # import sympy.physics.units.systems.si
-from sympy.physics.units import mass, length, time  # type: ignore
+from sympy.physics.units import mass, length, time, temperature, luminous_intensity, amount_of_substance, charge  # type: ignore
 from sympy.physics.units.systems.si import dimsys_SI  # type: ignore
 import sympy.physics.units  # type: ignore
 
@@ -78,7 +78,9 @@ def validate_dimensions(expr_global_id: str, path_to_db: str) -> str:
             logger.debug(str(symb_ID) + " is dimensionless")
             exec("pdg" + str(symb_ID) + " = mass/mass")
         else:
-            exec("pdg" + str(symb_ID) + " = " + sym_dim[:-1])
+            exec("pdg" + str(symb_ID) + " = " + sym_dim[:-1].replace(" ", "_"))
+            # note that the "dimensions" used in PDG are same as waht is referenced in Sympy physics.units except for replacing ' ' with '_'
+            # https://github.com/sympy/sympy/blob/master/sympy/physics/units/systems/si.py
 
     # the following if/else deals with the special case where
     # one of the sides is an integer (e.g., 0 or 1 or something else)
