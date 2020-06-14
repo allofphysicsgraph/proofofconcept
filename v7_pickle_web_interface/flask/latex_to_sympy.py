@@ -262,7 +262,7 @@ def remove_latex_presention_markings(latex_expr_str: str) -> str:
     return latex_expr_str
 
 
-def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
+def create_sympy_expr_tree_from_latex(latex_expr_str: str):
     """
     Sympy provides experimental support for converting latex to AST
 
@@ -276,13 +276,19 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str) -> list:
     latex_expr_str = remove_latex_presention_markings(latex_expr_str)
 
     logger.debug(latex_expr_str)
-    sympy_expr = parse_latex(latex_expr_str)
-    logger.debug("Sympy expression = %s", sympy_expr)
+    try:
+        sympy_expr = parse_latex(latex_expr_str)
+    except Exception as err:
+        logger.error(str(err))
+        return parse_latex("error")
+
+    logger.debug("Sympy expression = %s", str(sympy_expr))
 
     latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
     logger.debug(
-        "latex as Sympy expr tree = %s", latex_as_sympy_expr_tree,
+        "latex as Sympy expr tree = %s", str(latex_as_sympy_expr_tree),
     )
+
     logger.info("[trace end " + trace_id + "]")
     return latex_as_sympy_expr_tree
 
