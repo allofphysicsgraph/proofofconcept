@@ -30,13 +30,14 @@ class User(UserMixin):
         #logger.debug(str(user_id)) # this is a numeric ID
         db = get_db()
         logger.debug("got db, now going to access table user")
-#        try:
-        user = db.execute(
+        try:
+            user = db.execute(
            "SELECT * FROM user WHERE id = ?", (user_id,)
             ).fetchone()
-#       except sqlite3.OperationalError as err:
-#            logger.error(err)
-#            return None
+        except sqlite3.OperationalError as err:
+            logger.error(str(err))
+            logger.debug(str(user_id))
+            return None
 #            init_db()
 #            db = get_db()
 #            user = db.execute(
