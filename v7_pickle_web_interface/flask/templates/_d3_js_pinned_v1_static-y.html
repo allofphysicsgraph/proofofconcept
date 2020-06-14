@@ -165,7 +165,7 @@ var labelLayout = d3.forceSimulation(label.nodes)
     .force("link", d3.forceLink(label.links).distance(0).strength(2));
 
 var graphLayout = d3.forceSimulation(graph.nodes)
-    .force("charge", d3.forceManyBody().strength(-3000)) // strength of clustering; -1000 is very tight; -6000 is loose
+    .force("charge", d3.forceManyBody().strength(-3000))
     .force("center", d3.forceCenter(width / 2.5, height / 2)) // skew left since images are on the right of the node center
     .force("x", d3.forceX(width / 2).strength(1)) // increasing strength makes the oval tall and skinny
     .force("y", d3.forceY(height / 2).strength(1))
@@ -250,8 +250,14 @@ var node = container.append("g").attr("class", "nodes")
             .attr("r", 10)
             .attr("fill", function(d) { return color(d.group); });
 
+node.on("mouseover", focus).on("mouseout", unfocus);
 
-
+node.call(
+    d3.drag()
+        .on("start", dragstarted)
+        .on("drag", dragged)
+        .on("end", dragended)
+);
 // written by https://www.freelancer.com/u/Wawa27 for $20 on Freelancer
 var labelNode = container.append("g").attr("class", "labelNodes")
     .selectAll("text")
@@ -280,7 +286,65 @@ var labelNode = container.append("g").attr("class", "labelNodes")
 //    .style("pointer-events", "none");
 
 
+// get nodes, images and links for top and bottom linear indices
+var minLinear = Infinity, maxLinear = 0;
 
+graph.nodes.forEach(function(d) {
+    if (d['linear index'] > 0) {
+        if (d['linear index'] < minLinear) {
+            minLinear = d['linear index'];
+        }
+        
+        if (d['linear index'] > maxLinear) {
+            maxLinear = d['linear index'];
+        }
+    }
+});
+
+var topNode = d3.selectAll('.nodes circle')
+    .filter(function(d) {
+        return d['linear index'] > 0 && d['linear index'] == minLinear;
+    });
+
+var bottNode = d3.selectAll('.nodes circle')
+    .filter(function(d) {
+        return d['linear index'] > 0 && d['linear index'] == maxLinear;
+    });
+
+var topId = topNode.data()[0].id;
+var bottId = bottNode.data()[0].id;
+
+var topLabel = d3.selectAll('.labelNodes image')
+    .filter(function(d) {
+        return d.node.id == topId;
+    });
+
+var bottLabel = d3.selectAll('.labelNodes image')
+    .filter(function(d) {
+        return d.node.id == bottId;
+    });
+
+var topSourceLink = d3.selectAll('.links line')
+    .filter(function(d) {
+        return d.source.id == topId;
+    });
+
+var topTargetLink = d3.selectAll('.links line')
+    .filter(function(d) {
+        return d.target.id == topId;
+    });
+
+var bottSourceLink = d3.selectAll('.links line')
+    .filter(function(d) {
+        return d.source.id == bottId;
+    });
+
+var bottTargetLink = d3.selectAll('.links line')
+    .filter(function(d) {
+        return d.target.id == bottId;
+    });
+
+var minY = Infinity, maxY = -Infinity;
 node.on("mouseover", focus).on("mouseout", unfocus);
 
 node.call(
@@ -293,10 +357,38 @@ node.call(
 node.on("mouseover", focus).on("mouseout", unfocus);
 
 function ticked() {
+    minY = Infinity;
+    maxY = -Infinity;
 
     node.call(updateNode);
     link.call(updateLink);
 
+    // repositioning top and bottom nodes and links: start
+    topNode.fixed = true;
+    topNode.attr('transform', function(d) {
+        return 'translate(' + fixna(d.x) + ',' + (minY - 30) + ')'
+    });
+    bottNode.fixed = true;
+    bottNode.attr('transform', function(d) {
+        return 'translate(' + fixna(d.x) + ',' + (maxY + 30) + ')'
+    });
+
+    topSourceLink.attr("y1", function (d) { 
+        return (minY - 30); 
+    });
+
+    topTargetLink.attr("y2", function (d) { 
+        return (minY - 30); 
+    });
+
+    bottSourceLink.attr("y1", function (d) { 
+        return (maxY + 30); 
+    });
+
+    bottTargetLink.attr("y2", function (d) { 
+        return (maxY + 30); 
+    });
+    // repositioning top and bottom nodes and links: end
     labelLayout.alphaTarget(0.3).restart();
     labelNode.each(function(d, i) {
         if(i % 2 == 0) {
@@ -318,6 +410,26 @@ function ticked() {
     });
     labelNode.call(updateNode);
 
+    // repositioning top and bottom labels: start
+    topLabel.each(function(d) {
+        d.fixed = true;
+
+        if (this.getAttribute('transform')) {
+            var tx = +this.getAttribute('transform').split(/[(),]/)[1];
+            var ty = +this.getAttribute('transform').split(/[(),]/)[2];
+            this.setAttribute("transform", "translate(" + tx + "," + (ty - d.node.y + minY - 10) + ")");
+        }
+    });
+    bottLabel.each(function(d) {
+        d.fixed = true;
+
+        if (this.getAttribute('transform')) {
+            var tx = +this.getAttribute('transform').split(/[(),]/)[1];
+            var ty = +this.getAttribute('transform').split(/[(),]/)[2];
+            this.setAttribute("transform", "translate(" + tx + "," + (ty - d.node.y + maxY + 16) + ")");
+        }
+    });
+    // repositioning top and bottom labels: start
 }
 
 function fixna(x) {
@@ -353,6 +465,14 @@ function updateLink(link) {
 
 function updateNode(node) {
     node.attr("transform", function(d) {
+        if (fixna(d.y) < minY) {
+            minY = fixna(d.y);
+        }
+
+        if (fixna(d.y) > maxY) {
+            maxY = fixna(d.y);
+        }
+
         return "translate(" + fixna(d.x) + "," + fixna(d.y) + ")";
     });
 }
