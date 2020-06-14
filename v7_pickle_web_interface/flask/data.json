@@ -8243,6 +8243,268 @@
                     "creation date": "2020-06-14"
                 }
             }
+        },
+        "375160": {
+            "name": "coefficient of isothermal compressibility using the equation of state for an ideal gas",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "https://notendur.hi.is/hj/EE2/HD1lausn.pdf",
+            "creation date": "2020-06-14",
+            "steps": {
+                "3831533": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4239912"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "9872032": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4454896"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "3862516": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "4454896"
+                    ],
+                    "feeds": [
+                        "6719179"
+                    ],
+                    "outputs": [
+                        "5840241"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "9225696": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "5840241",
+                        "4239912"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5196207"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "6914144": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "5196207"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3915956"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "1873674": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "3915956"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6275836"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "5391858": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "4454896",
+                        "6275836"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1003658"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "8648371": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "1003658"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2206759"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "1059017": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "2206759"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                }
+            }
+        },
+        "146432": {
+            "name": "coefficient of thermal expansion using the equation of state for an ideal gas",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "https://notendur.hi.is/hj/EE2/HD1lausn.pdf",
+            "creation date": "2020-06-14",
+            "steps": {
+                "3744460": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5888046"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "3037920": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5927974"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "8295331": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "5927974",
+                        "5888046"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7236464"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "5311790": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "7236464"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4600503"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "2439511": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5130250"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "5713113": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "5130250"
+                    ],
+                    "feeds": [
+                        "4656601"
+                    ],
+                    "outputs": [
+                        "8283443"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "3078632": {
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8283443",
+                        "4600503"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7845152"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "1997333": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "7845152"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2491768"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "6216231": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "2491768"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -9089,7 +9351,25 @@
         "7939101": "6397683463",
         "1136968": "2257410739",
         "1189259": "7826132469",
-        "9670239": "9781951738"
+        "9670239": "9781951738",
+        "4239912": "9781951738",
+        "4454896": "8435841627",
+        "6719179": "6296166842",
+        "5840241": "3497828859",
+        "5196207": "8368984890",
+        "3915956": "1190768176",
+        "6275836": "3605073197",
+        "1003658": "9847143017",
+        "2206759": "9718685793",
+        "5888046": "3464107376",
+        "5927974": "3497828859",
+        "7236464": "1311403394",
+        "4600503": "5962145508",
+        "5130250": "8435841627",
+        "4656601": "7924842770",
+        "8283443": "2613006036",
+        "7845152": "6925244346",
+        "2491768": "2472653783"
     },
     "expressions": {
         "2344320475": {
@@ -10677,7 +10957,7 @@
             "notes": ""
         },
         "4585828572": {
-            "AST": "Equality(Mul(Symbol('epsilon_{0}'), Symbol('mu_{0}')), Pow(Pow(Symbol('pdg4567'), Integer(2)), Integer(-1)))",
+            "AST": "Equality(Mul(Symbol('pdg7940'), Symbol('pdg6197')), Pow(Pow(Symbol('pdg4567'), Integer(2)), Integer(-1)))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\epsilon_0 \\mu_0 = \\frac{1}{c^2}",
@@ -11181,7 +11461,7 @@
             "notes": ""
         },
         "8576785890": {
-            "AST": "Equality(Integer(1), Integral(Mul(Pow(Symbol('a'), Integer(2)), Mul(Pow(Integer(2), Integer(-1)), Add(Integer(1), Mul(Integer(-1), cos(Mul(Integer(2), Mul(Symbol('x'), Mul(Pow(Symbol('W'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))",
+            "AST": "Equality(Integer(1), Integral(Mul(Pow(Symbol('a'), Integer(2)), Mul(Pow(Integer(2), Integer(-1)), Add(Integer(1), Mul(Integer(-1), cos(Mul(Integer(2), Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "1 = \\int_0^W a^2 \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2} dx",
@@ -11974,7 +12254,7 @@
         },
         "2431507955": {
             "latex": "PE_2 = -F x_2",
-            "AST": "Equality(Symbol('pdg8849'), Mul(Integer(-1), Mul(Symbol('pdg4202'), Symbol('x_2'))))",
+            "AST": "Equality(Symbol('pdg8849'), Mul(Integer(-1), Mul(Symbol('pdg4202'), Symbol('pdg5467'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11982,7 +12262,7 @@
         },
         "4669290568": {
             "latex": "PE_1 = -F x_1",
-            "AST": "Equality(Symbol('pdg4093'), Mul(Integer(-1), Mul(Symbol('pdg4202'), Symbol('x_1'))))",
+            "AST": "Equality(Symbol('pdg4093'), Mul(Integer(-1), Mul(Symbol('pdg4202'), Symbol('pdg3852'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11990,7 +12270,7 @@
         },
         "7734996511": {
             "latex": "PE_2 - PE_1 = -F ( x_2 - x_1 )",
-            "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg4093')), Symbol('pdg8849')), Mul(Integer(-1), Mul(Symbol('pdg4202'),Add(Mul(Integer(-1), Symbol('x_{1}')), Symbol('x_{2}'))))",
+            "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg4093')), Symbol('pdg8849')), Mul(Integer(-1), Mul(Symbol('pdg4202'),Add(Mul(Integer(-1), Symbol('pdg3852')), Symbol('pdg5467'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12006,7 +12286,7 @@
         },
         "7267155233": {
             "latex": "\\frac{PE_2 - PE_1}{t} = -F \\left( \\frac{x_2 - x_1}{t} \\right)",
-            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg4903')), Symbol('pdg8849'))), Mul(Integer(-1), Mul(Symbol('pdg4202'),Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('x_{1}')), Symbol('x_{2}'))))))",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg4903')), Symbol('pdg8849'))), Mul(Integer(-1), Mul(Symbol('pdg4202'),Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg3852')), Symbol('pdg5467'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12014,7 +12294,7 @@
         },
         "9337785146": {
             "latex": "v = \\frac{x_2 - x_1}{t}",
-            "AST": "Equality(Symbol('pdg1357'), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('x_{1}')), Symbol('x_{2}'))))",
+            "AST": "Equality(Symbol('pdg1357'), Mul(Pow(Symbol('pdg1467'), Integer(-1)), Add(Mul(Integer(-1), Symbol('pdg3852')), Symbol('pdg5467'))))",
             "name": "average velocity",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12134,7 +12414,7 @@
         },
         "2575937347": {
             "latex": "n_1 \\sin( \\theta_{\\rm Brewster} ) = n_2 \\sin( \\theta_{\\rm refracted} )",
-            "AST": "Equality(Mul(Symbol('pdg2941'), sin(Symbol('pdg4928'))), Mul(Symbol('pdg1958'), sin(Symbol('theta_{r}'))))",
+            "AST": "Equality(Mul(Symbol('pdg2941'), sin(Symbol('pdg4928'))), Mul(Symbol('pdg1958'), sin(Symbol('pdg2243'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12454,7 +12734,7 @@
         },
         "7741202861": {
             "latex": "x = \\gamma^2 x - \\gamma^2 v t + \\gamma v t'",
-            "AST": "Equality(Symbol('pdg4037'), Add(Mul(Symbol('pdg1790'), Mul(Symbol('pdg4989'), Symbol('pdg1357'))), Add(Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)), Symbol('t'), Symbol('pdg1357')), Mul(Pow(Symbol('pdg1790'), Integer(2)), Symbol('pdg4037')))))",
+            "AST": "Equality(Symbol('pdg4037'), Add(Mul(Symbol('pdg1790'), Mul(Symbol('pdg4989'), Symbol('pdg1357'))), Add(Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)), Symbol('pdg1467'), Symbol('pdg1357')), Mul(Pow(Symbol('pdg1790'), Integer(2)), Symbol('pdg4037')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13206,7 +13486,7 @@
         },
         "4437214608": {
             "latex": "Z",
-            "AST": "Symbol('Z')",
+            "AST": "Symbol('pdg3192')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13254,7 +13534,7 @@
         },
         "9761485403": {
             "latex": "Z",
-            "AST": "Symbol('Z')",
+            "AST": "Symbol('pdg3192')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13286,7 +13566,7 @@
         },
         "1511199318": {
             "latex": "Z",
-            "AST": "Symbol('Z')",
+            "AST": "Symbol('pdg3192')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13350,7 +13630,7 @@
         },
         "1894894315": {
             "latex": "Z",
-            "AST": "Symbol('Z')",
+            "AST": "Symbol('pdg3192')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13582,7 +13862,7 @@
         },
         "9707028061": {
             "latex": "a_x = 0",
-            "AST": "Equality(Symbol('a_{x}'), Integer(0))",
+            "AST": "Equality(Symbol('pdg7159'), Integer(0))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13590,7 +13870,7 @@
         },
         "2741489181": {
             "latex": "a_y = -g",
-            "AST": "Equality(Symbol('a_{y}'), Mul(Integer(-1), Symbol('pdg1649')))",
+            "AST": "Equality(Symbol('pdg7055'), Mul(Integer(-1), Symbol('pdg1649')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13670,7 +13950,7 @@
         },
         "6572039835": {
             "latex": "-g t + v_{0, y} = v_y",
-            "AST": "Equality(Add(Mul(Integer(-1), Mul(Symbol('pdg1649'), Symbol('pdg1467'))), Symbol('pdg9431')), Symbol('v_{y}'))",
+            "AST": "Equality(Add(Mul(Integer(-1), Mul(Symbol('pdg1649'), Symbol('pdg1467'))), Symbol('pdg9431')), Symbol('pdg9107'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13934,7 +14214,7 @@
         },
         "8949329361": {
             "latex": "v_0 \\sin(\\theta) = v_{0, y}",
-            "AST": "Equality(Mul(Symbol('pdg5153'), sin(Symbol('theta'))), Symbol('pdg9431'))",
+            "AST": "Equality(Mul(Symbol('pdg5153'), sin(Symbol('pdg1575'))), Symbol('pdg9431'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14270,7 +14550,7 @@
         },
         "4447113478": {
             "latex": "\\int dW = G m_1 m_2 \\int_{ r_{\\rm Earth} }^{\\infty} \\frac{1}{x^2} dx",
-            "AST": "Equality(Integral(Integer(1), Tuple(Symbol('W'))), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Mul(Symbol('m_{2}'), Integral(Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1)), Tuple(Symbol('pdg4037'), Symbol('r_{E}'), Symbol('infty')))))))",
+            "AST": "Equality(Integral(Integer(1), Tuple(Symbol('pdg6789'))), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5022'), Mul(Symbol('pdg4851'), Integral(Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1)), Tuple(Symbol('pdg4037'), Symbol('r_{E}'), Symbol('infty')))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14430,7 +14710,7 @@
         },
         "7573835180": {
             "latex": "PE_{\\rm Earth\\ surface} = -W",
-            "AST": "Equality(Symbol('pdg6431'), Mul(Integer(-1), Symbol('W')))",
+            "AST": "Equality(Symbol('pdg6431'), Mul(Integer(-1), Symbol('pdg6789')))",
             "name": "",
             "notes": "the potential energy at the surface of the Earth is equal to the work needed to get it from the center of the Earth to the surface",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15497,6 +15777,118 @@
             "AST": "Equality(Symbol('pdg4645'), Mul(Mul(Integer(-1), Pow(Symbol('pdg7586'), Integer(-1))), Derivative(Symbol('pdg7586'), Tuple(Symbol('pdg8134'), Integer(1)))))",
             "name": "",
             "notes": "definition of isothermal compressibility",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "8435841627": {
+            "latex": "P V = n R T",
+            "AST": "Equality(Mul(Symbol('pdg8134'), Symbol('pdg7586')), Mul(Symbol('pdg2834'), Mul(Symbol('pdg8179'), Symbol('pdg7343'))))",
+            "name": "",
+            "notes": "https://en.wikipedia.org/wiki/Ideal_gas_law",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "6296166842": {
+            "latex": "P",
+            "AST": "Symbol('pdg8134')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3497828859": {
+            "latex": "V = \\frac{n R T}{P}",
+            "AST": "Equality(Symbol('pdg7586'), Mul(Pow(Symbol('pdg8134'), Integer(-1)), Mul(Symbol('pdg2834'), Mul(Symbol('pdg8179'), Symbol('pdg7343')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "8368984890": {
+            "latex": "\\kappa_T = \\frac{-1}{V} \\left( \\frac{ \\partial }{\\partial P}\\left(\\frac{nRT}{P}\\right) \\right)_T",
+            "AST": "Equality(Symbol('pdg4645'), Mul(Mul(Integer(-1), Pow(Symbol('pdg7586'), Integer(-1))), Derivative(Mul(Pow(Symbol('pdg8134'), Integer(-1)), Mul(Symbol('pdg2834'), Mul(Symbol('pdg8179'), Symbol('pdg7343')))), Tuple(Symbol('pdg8134'), Integer(1)))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "1190768176": {
+            "latex": "\\kappa_T = \\frac{-nRT}{V} \\left( \\frac{ \\partial }{\\partial P}\\left(\\frac{1}{P}\\right) \\right)_T",
+            "AST": "Equality(Symbol('pdg4645'), Mul(Mul(Pow(Symbol('pdg7586'), Integer(-1)), Mul(Integer(-1), Mul(Symbol('pdg2834'), Mul(Symbol('pdg8179'), Symbol('pdg7343'))))), Derivative(Pow(Symbol('pdg8134'), Integer(-1)), Tuple(Symbol('pdg8134'), Integer(1)))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3605073197": {
+            "latex": "\\kappa_T = \\frac{-nRT}{V} \\left( \\frac{-1}{P^2}\\right)",
+            "AST": "Equality(Symbol('pdg4645'), Mul(Mul(Pow(Symbol('pdg7586'), Integer(-1)), Mul(Integer(-1), Mul(Symbol('pdg2834'), Mul(Symbol('pdg8179'), Symbol('pdg7343'))))), Mul(Integer(-1), Pow(Pow(Symbol('pdg8134'), Integer(2)), Integer(-1)))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9847143017": {
+            "latex": "\\kappa_T = \\frac{-PV}{V} \\left( \\frac{-1}{P^2}\\right)",
+            "AST": "Equality(Symbol('pdg4645'), Mul(Mul(Pow(Symbol('pdg7586'), Integer(-1)), Mul(Integer(-1), Mul(Symbol('pdg8134'), Symbol('pdg7586')))), Mul(Integer(-1), Pow(Pow(Symbol('pdg8134'), Integer(2)), Integer(-1)))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9718685793": {
+            "latex": "\\kappa_T = \\frac{1}{P}",
+            "AST": "Equality(Symbol('pdg4645'), Pow(Symbol('pdg8134'), Integer(-1)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "1311403394": {
+            "latex": "\\alpha = \\frac{1}{V} \\frac{nR}{P} \\left( \\frac{\\partial T}{\\partial T} \\right)_P",
+            "AST": "Equality(Symbol('pdg4686'), Mul(Pow(Symbol('pdg7586'), Integer(-1)), Mul(Mul(Pow(Symbol('pdg8134'), Integer(-1)), Mul(Symbol('pdg8179'), Symbol('pdg2834'))), Derivative(Symbol('pdg7343'), Tuple(Symbol('pdg7343'), Integer(1))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5962145508": {
+            "latex": "\\alpha = \\frac{nR}{VP}",
+            "AST": "Equality(Symbol('pdg4686'), Mul(Pow(Mul(Symbol('pdg8134'), Symbol('pdg7586')), Integer(-1)), Mul(Symbol('pdg8179'), Symbol('pdg2834'))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "7924842770": {
+            "latex": "T",
+            "AST": "Symbol('pdg7343')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2613006036": {
+            "latex": "\\frac{PV}{T} = nR",
+            "AST": "Equality(Mul(Pow(Symbol('pdg7343'), Integer(-1)), Mul(Symbol('pdg8134'), Symbol('pdg7586'))), Mul(Symbol('pdg8179'), Symbol('pdg2834')))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "6925244346": {
+            "latex": "\\alpha = \\frac{PV}{T} \\frac{1}{VP}",
+            "AST": "Equality(Symbol('pdg4686'), Mul(Pow(Symbol('pdg7343'), Integer(-1)), Mul(Symbol('pdg8134'), Symbol('pdg7586'))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2472653783": {
+            "latex": "\\alpha = \\frac{1}{T}",
+            "AST": "Equality(Symbol('pdg4686'), Pow(Symbol('pdg7343'), Integer(-1)))",
+            "name": "",
+            "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14"
         }
@@ -19880,6 +20272,108 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2834": {
+            "category": "variable",
+            "latex": "n",
+            "name": "amount of substance",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Amount_of_substance"
+            ],
+            "domain": "nonnegative",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "8179": {
+            "category": "constant",
+            "latex": "R",
+            "name": "ideal gas constant",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Gas_constant"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": -1,
+                "electric charge": 0,
+                "amount of substance": -1,
+                "luminous intensity": 0
+            },
+            "values": [
+                {
+                    "value": "8.31446261815324",
+                    "units": "J\u22c5K^{\u22121} mol^{\u22121}"
+                }
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "7940": {
+            "category": "constant",
+            "latex": "\\epsilon_0",
+            "name": "vacuum permittivity, permittivity of free space or electric constant or the distributed capacitance of the vacuum",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Vacuum_permittivity"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": -3,
+                "time": 2,
+                "mass": -1,
+                "temperature": 0,
+                "electric charge": 2,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "values": [
+                {
+                    "value": "8.8541878128E-{12}",
+                    "units": "F/m"
+                }
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "6197": {
+            "category": "constant",
+            "latex": "\\mu_0",
+            "name": "vacuum permeability, permeability of free space, permeability of vacuum, or magnetic constant",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Vacuum_permeability"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": 0,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": -2,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "values": [
+                {
+                    "value": "1.25663706212E^{-6}",
+                    "units": "N/A^2"
+                }
+            ],
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14"
         }
