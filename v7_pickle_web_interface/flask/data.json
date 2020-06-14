@@ -8505,6 +8505,294 @@
                     "creation date": "2020-06-14"
                 }
             }
+        },
+        "608598": {
+            "name": "upper limit on velocity in condensed matter",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "https://arxiv.org/pdf/2004.04818.pdf",
+            "creation date": "2020-06-14",
+            "steps": {
+                "7232268": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "1719451"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "6342896": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2178289"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "9182821": {
+                    "inf rule": "drop non-dominant term",
+                    "inputs": [
+                        "1719451"
+                    ],
+                    "feeds": [
+                        "9255270"
+                    ],
+                    "outputs": [
+                        "9155336"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "7117931": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "2178289",
+                        "9155336"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5077893"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "6394441": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2438445"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "6240791": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "2438445"
+                    ],
+                    "feeds": [
+                        "7822040"
+                    ],
+                    "outputs": [
+                        "7834577"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "3423374": {
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "7834577",
+                        "5077893"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5020923"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "9057006": {
+                    "inf rule": "drop non-dominant term",
+                    "inputs": [
+                        "5020923"
+                    ],
+                    "feeds": [
+                        "7076437"
+                    ],
+                    "outputs": [
+                        "4534919"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "2951905": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5961293"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "5093643": {
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6901924"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "1346919": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9431422"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "1452028": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "9431422"
+                    ],
+                    "feeds": [
+                        "8320432"
+                    ],
+                    "outputs": [
+                        "6181437"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "5023393": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "6901924",
+                        "5961293"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "3642765"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "7588540": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "3642765",
+                        "4534919"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2063484"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "5522705": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "2063484"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4586348"
+                    ],
+                    "linear index": 15,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "9573616": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "6181437",
+                        "4586348"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5883117"
+                    ],
+                    "linear index": 16,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "8867459": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6979804"
+                    ],
+                    "linear index": 17,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "4186156": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "6979804",
+                        "5883117"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8323044"
+                    ],
+                    "linear index": 18,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "3709291": {
+                    "inf rule": "maximum of expr",
+                    "inputs": [
+                        "8323044"
+                    ],
+                    "feeds": [
+                        "1809997"
+                    ],
+                    "outputs": [
+                        "9568206"
+                    ],
+                    "linear index": 19,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "4663270": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "9568206"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 20,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -9369,7 +9657,31 @@
         "4656601": "7924842770",
         "8283443": "2613006036",
         "7845152": "6925244346",
-        "2491768": "2472653783"
+        "2491768": "2472653783",
+        "1719451": "4560648264",
+        "2178289": "9376481176",
+        "9255270": "9674924517",
+        "9155336": "6504442697",
+        "5077893": "8090924099",
+        "2438445": "8908736791",
+        "7822040": "2397692197",
+        "7834577": "8688588981",
+        "5020923": "7837519722",
+        "7076437": "3685779219",
+        "4534919": "9854442418",
+        "5961293": "1556389363",
+        "6901924": "4107032818",
+        "9431422": "8106885760",
+        "8320432": "8857931498",
+        "6181437": "5838268428",
+        "3642765": "3291685884",
+        "2063484": "3935058307",
+        "4586348": "9640720571",
+        "5883117": "5789289057",
+        "6979804": "5646314683",
+        "8323044": "2897612567",
+        "1809997": "6259833695",
+        "9568206": "7701249282"
     },
     "expressions": {
         "2344320475": {
@@ -10197,7 +10509,7 @@
             "notes": ""
         },
         "0005749291": {
-            "AST": "Symbol('f')",
+            "AST": "Symbol('pdg6235')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "f",
@@ -11757,7 +12069,7 @@
             "notes": ""
         },
         "9919999981": {
-            "AST": "Equality(Symbol('rho'), Integer(0))",
+            "AST": "Equality(Symbol('pdg3935'), Integer(0))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\rho = 0",
@@ -15891,6 +16203,198 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14"
+        },
+        "4560648264": {
+            "latex": "v = \\sqrt{ \\frac{K + (4/3) G}{\\rho} }",
+            "AST": "Equality(Symbol('pdg2077'), Pow(Mul(Pow(Symbol('pdg3935'), Integer(-1)), Add(Mul(Mul(Integer(4), Pow(Integer(3), Integer(-1))), Symbol('pdg3033')), Symbol('pdg1466'))), Rational(1, 2)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9376481176": {
+            "latex": "K = f \\frac{E}{a^3}",
+            "AST": "Equality(Symbol('K'), Mul(Symbol('pdg6235'), Mul(Symbol('pdg2241'), Pow(Pow(Symbol('pdg5854'), Integer(3)), Integer(-1)))))",
+            "name": "",
+            "notes": "proportionality coefficient fvaries in the range 1-4 for a majority of elemental solids",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9674924517": {
+            "latex": "K >> G",
+            "AST": "pdg1466 and pdg3033",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "6504442697": {
+            "latex": "v = \\sqrt{ \\frac{K}{\\rho} }",
+            "AST": "Equality(Symbol('pdg2077'), Pow(Mul(Symbol('K'), Pow(Symbol('pdg3935'), Integer(-1))), Rational(1, 2)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "8090924099": {
+            "latex": "v = \\sqrt{ \\left( f\\frac{E}{a^3} \\right) \\frac{1}{\\rho} }",
+            "AST": "Equality(Symbol('pdg2077'), Pow(Mul(Symbol('pdg2241'), Pow(Symbol('pdg5854'), Integer(-3)), Symbol('pdg6235'), Pow(Symbol('pdg3935'), Integer(-1))), Rational(1, 2)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "8908736791": {
+            "latex": "\\rho = \\frac{m}{a^3}",
+            "AST": "Equality(Symbol('pdg3935'), Mul(Symbol('pdg9863'), Pow(Pow(Symbol('pdg5854'), Integer(3)), Integer(-1))))",
+            "name": "",
+            "notes": "geometry",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2397692197": {
+            "latex": "a^3",
+            "AST": "Pow(Symbol('pdg5854'), Integer(3))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "8688588981": {
+            "latex": "a^3 \\rho = m",
+            "AST": "Equality(Mul(Pow(Symbol('pdg5854'), Integer(3)), Symbol('pdg3935')), Symbol('pdg9863'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "7837519722": {
+            "latex": "v = \\sqrt{f} \\sqrt{\\frac{E}{m}}",
+            "AST": "Equality(Symbol('pdg2077'), Mul(Pow(Symbol('pdg6235'), Rational(1, 2)), Pow(Mul(Symbol('pdg2241'), Pow(Symbol('pdg9863'), Integer(-1))), Rational(1, 2))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3685779219": {
+            "latex": "\\sqrt{f} \\approx 2",
+            "AST": "Mul(Pow(Symbol('pdg6235'), Rational(1, 2)), Mul(Integer(2), Symbol('approx')))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9854442418": {
+            "latex": "v = \\sqrt{\\frac{E}{m}}",
+            "AST": "Equality(Symbol('pdg2077'), Pow(Mul(Symbol('pdg2241'), Pow(Symbol('pdg9863'), Integer(-1))), Rational(1, 2)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "1556389363": {
+            "latex": "E_{\\rm Rydberg} = \\frac{ m_e e^4 }{ 32 \\pi^2 \\epsilon_0^2 \\hbar^2}",
+            "AST": "Equality(Symbol('pdg9838'), Mul(Pow(Mul(Integer(32), Mul(Pow(Symbol('pdg3141'), Integer(2)), Mul(Pow(Symbol('pdg7940'), Integer(2)), Pow(Symbol('pdg1054'), Integer(2))))), Integer(-1)), Mul(Pow(Symbol('pdg1999'), Integer(4)), Symbol('pdg2515'))))",
+            "name": "",
+            "notes": " the bonding energy in condensed phases is given by the Rydberg energy on the order of several e",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "4107032818": {
+            "latex": "E_{\\rm Rydberg} = E",
+            "AST": "Equality(Symbol('pdg9838'), Symbol('pdg2241'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "8106885760": {
+            "latex": "\\alpha = \\frac{1}{4 \\pi \\epsilon_0} \\frac{e^2}{\\hbar c}",
+            "AST": "Equality(Symbol('pdg1370'), Mul(Pow(Mul(Integer(4), Mul(Symbol('pdg7940'), Symbol('pdg3141'))), Integer(-1)), Mul(Pow(Symbol('pdg1999'), Integer(2)), Pow(Mul(Symbol('pdg4567'), Symbol('pdg1054')), Integer(-1)))))",
+            "name": "",
+            "notes": "fine structure constant definition",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "8857931498": {
+            "latex": "c",
+            "AST": "Symbol('pdg4567')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5838268428": {
+            "latex": "\\alpha c = \\frac{1}{4 \\pi \\epsilon_0} \\frac{e^2}{\\hbar}",
+            "AST": "Equality(Mul(Symbol('pdg1370'), Symbol('pdg4567')), Mul(Pow(Mul(Integer(4), Mul(Symbol('pdg7940'), Symbol('pdg3141'))), Integer(-1)), Mul(Pow(Symbol('pdg1999'), Integer(2)), Pow(Symbol('pdg1054'), Integer(-1)))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3291685884": {
+            "latex": "E = \\frac{ m_e e^4 }{ 32 \\pi^2 \\epsilon_0^2 \\hbar^2}",
+            "AST": "Equality(Symbol('pdg2241'), Mul(Pow(Mul(Integer(32), Mul(Pow(Symbol('pdg3141'), Integer(2)), Mul(Pow(Symbol('pdg7940'), Integer(2)), Pow(Symbol('pdg1054'), Integer(2))))), Integer(-1)), Mul(Pow(Symbol('pdg1999'), Integer(4)), Symbol('pdg2515'))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3935058307": {
+            "latex": "v = \\sqrt{ \\frac{m_e}{m} \\frac{e^4}{32 \\pi^2 \\epsilon_0^2 \\hbar^2} }",
+            "AST": "Equality(Symbol('pdg2077'), Pow(Mul(Pow(Symbol('pdg1999'), Integer(4)), Pow(Symbol('pdg9863'), Integer(-1)), Symbol('pdg2515'), Mul(Rational(1, 32), Pow(Symbol('pdg7940'), Integer(-2)), Pow(Symbol('pdg1054'), Integer(-2)), Pow(Symbol('pdg3141'), Integer(-2)))), Rational(1, 2)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9640720571": {
+            "latex": "v = \\frac{e^2}{4 \\pi \\epsilon_0 \\hbar} \\sqrt{\\frac{m_e}{2 m}}",
+            "AST": "Equality(Symbol('pdg2077'), Mul(Mul(Pow(Symbol('pdg1999'), Integer(2)), Pow(Mul(Integer(4), Mul(Symbol('pdg3141'), Mul(Symbol('pdg7940'), Symbol('pdg1054')))), Integer(-1))), Pow(Mul(Pow( Mul(Symbol('pdg9863'), Integer(2)), Integer(-1)), Symbol('pdg2515')), Rational(1, 2))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5789289057": {
+            "latex": "v = \\alpha c \\sqrt{ \\frac{m_e}{2 m} }",
+            "AST": "Equality(Symbol('pdg2077'), Mul(Symbol('pdg1370'), Mul(Symbol('pdg4567'), Pow(Mul(Pow(Mul(Integer(2), Symbol('pdg9863')), Integer(-1)), Symbol('pdg2515')), Rational(1, 2)))))",
+            "name": "",
+            "notes": "equation 4 in the PDF",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5646314683": {
+            "latex": "m = A m_p",
+            "AST": "Equality(Symbol('pdg9863'), Mul(Symbol('pdg3285'), Symbol('pdg5916')))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2897612567": {
+            "latex": "v = \\alpha c \\sqrt{ \\frac{m_e}{A m_p} }",
+            "AST": "Equality(Symbol('pdg2077'), Mul(Symbol('pdg1370'), Mul(Symbol('pdg4567'), Pow(Mul(Symbol('pdg2515'), Mul(Pow(Symbol('pdg3285'), Integer(-1)), Pow(Symbol('pdg5916'), Integer(-1)))), Rational(1, 2)))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "6259833695": {
+            "latex": "A",
+            "AST": "Symbol('pdg3285')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "7701249282": {
+            "latex": "v_u = \\alpha c \\sqrt{ \\frac{m_e}{m_p} }",
+            "AST": "Equality(Symbol('pdg4635'), Mul(Symbol('pdg1370'), Mul(Symbol('pdg4567'), Pow(Mul(Symbol('pdg2515'), Pow(Symbol('pdg5916'), Integer(-1))), Rational(1, 2)))))",
+            "name": "",
+            "notes": "when A = 1",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
         }
     },
     "inference rules": {
@@ -16748,6 +17252,15 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-28"
+        },
+        "drop non-dominant term": {
+            "number of feeds": 1,
+            "number of inputs": 1,
+            "number of outputs": 1,
+            "latex": "Based on the assumption $#1$, drop non-dominant term in Eq.~\\ref{#2}; yeilds Eq.~\\ref{#3}",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
         }
     },
     "measures": {
@@ -20374,6 +20887,366 @@
                     "units": "N/A^2"
                 }
             ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9189": {
+            "category": "variable",
+            "latex": "\\omega_{\\rm Debye}",
+            "name": "Debye frequency",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Debye_model#Debye_frequency"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2851": {
+            "category": "variable",
+            "latex": "k_{\\rm Debye}",
+            "name": "Debye wavevector",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Debye_model"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2875": {
+            "category": "constant",
+            "latex": "r_{\\rm Bohr}",
+            "name": "Bohr radius",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Debye_model"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "values": [
+                {
+                    "value": "5.29E^{-11}",
+                    "units": "m"
+                }
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5916": {
+            "category": "constant",
+            "latex": "m_p",
+            "name": "mass of proton",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Proton"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "values": [
+                {
+                    "value": "1.67262192369E^{-27}",
+                    "units": "kg"
+                }
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2515": {
+            "category": "constant",
+            "latex": "m_e",
+            "name": "mass of electron",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electron"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "values": [
+                {
+                    "value": "9.1093837015E^{-31}",
+                    "units": "kg"
+                }
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9838": {
+            "category": "variable",
+            "latex": "E_{\\rm Rydberg}",
+            "name": "Rydberg energy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Rydberg_constant"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9863": {
+            "category": "variable",
+            "latex": "m",
+            "name": "mass of atom or molecule",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Mass"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5854": {
+            "category": "variable",
+            "latex": "a",
+            "name": "atomic separation",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2241": {
+            "category": "variable",
+            "latex": "E",
+            "name": "bonding energy",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3033": {
+            "category": "variable",
+            "latex": "G",
+            "name": "shear modulus",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Shear_modulus"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": -1,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "1466": {
+            "category": "variable",
+            "latex": "K",
+            "name": "bulk modulus",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Bulk_modulus"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": -1,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2077": {
+            "category": "variable",
+            "latex": "v",
+            "name": "longitudinal speed of sound in condensed matter",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Speed_of_sound"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3935": {
+            "category": "variable",
+            "latex": "\\rho",
+            "name": "density",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Density"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": -3,
+                "time": 0,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "4635": {
+            "category": "constant",
+            "latex": "v_u",
+            "name": "upper limit on velocity in condensed matter",
+            "scope": "real",
+            "references": [
+                "https://arxiv.org/pdf/2004.04818.pdf"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "values": [
+                {
+                    "value": "36100",
+                    "units": "m/s"
+                }
+            ],
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "6235": {
+            "category": "variable",
+            "latex": "f",
+            "name": "proportionality constant",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3285": {
+            "category": "variable",
+            "latex": "A",
+            "name": "atomic mass",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Atomic_mass"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14"
         }
