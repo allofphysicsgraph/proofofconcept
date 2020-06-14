@@ -438,7 +438,11 @@ def list_symbols_used_in_step_from_PDG_AST(
             for connection_type in ["inputs", "feeds", "outputs"]:
                 for local_id in step_dict[connection_type]:
                     expr_global_id = dat["expr local to global"][local_id]
-                    # logger.debug(expr_global_id + ' has AST ' + dat["expressions"][expr_global_id]["AST"])
+                    logger.debug(
+                        expr_global_id
+                        + " has AST "
+                        + dat["expressions"][expr_global_id]["AST"]
+                    )
                     symbols_per_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
                         dat["expressions"][expr_global_id]["AST"]
                     )

@@ -1,10 +1,13 @@
 {% extends "_base.html" %}
 {% block content %}
 
-
-<H2>step review</H2>
-
-<P>derivation name: {{ dat["derivations"][deriv_id]["name"] }}
+<center>
+  <H2>step review for derivation 
+    <a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}?referrer=step_review">
+      {{ dat["derivations"][deriv_id]["name"] }}
+    </a>
+  </H2>
+</center>
 
 <P>
   <fieldset>
