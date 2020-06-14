@@ -8092,6 +8092,30 @@
                     "notes": "",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-06-14"
+                },
+                "7164757": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2445123"
+                    ],
+                    "linear index": 2,
+                    "notes": "hold volume constant in first term; hold temperature constant in second term",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "8168352": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "8155541"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
                 }
             }
         }
@@ -8927,7 +8951,9 @@
         "8415948": "7560908617",
         "9815516": "1132941271",
         "1635641": "3364286646",
-        "7368252": "1815398659"
+        "7368252": "1815398659",
+        "2445123": "9941599459",
+        "8155541": "3547519267"
     },
     "expressions": {
         "2344320475": {
@@ -15233,6 +15259,22 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14"
+        },
+        "9941599459": {
+            "latex": "dU = \\left(\\frac{\\partial U}{\\partial T}\\right)_V dT + \\left(\\frac{\\partial U}{\\partial V}\\right)_T dV",
+            "AST": "Equality(Symbol('dU'), Derivative(Symbol('pdg5786'), Tuple(Symbol('T'), Integer(1))))",
+            "name": "",
+            "notes": "based on U(p, T, V) = U(T, V)",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3547519267": {
+            "latex": "S = k_{\\rm Boltzmann} \\ln \\Omega",
+            "AST": "Equality(Symbol('pdg1394'), Mul(Symbol('pdg1157'), log(Symbol('pdg3434'), E)))",
+            "name": "",
+            "notes": "assumes equally probable microstates",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
         }
     },
     "inference rules": {
@@ -16434,11 +16476,20 @@
             "category": "constant",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
-            "latex": "k_{Boltzman}",
-            "name": "Boltzman constant",
+            "latex": "k_{Boltzmann}",
+            "name": "Boltzmann constant",
             "references": [
                 "https://en.wikipedia.org/wiki/Boltzmann_constant"
             ],
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": -1,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "scope": [
                 "real"
             ],
@@ -19411,6 +19462,153 @@
                 "length": 2,
                 "time": -2,
                 "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "8134": {
+            "category": "variable",
+            "latex": "p",
+            "name": "pressure",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Pressure"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": -1,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "7586": {
+            "category": "variable",
+            "latex": "V",
+            "name": "volume",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Volume_(thermodynamics)"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 3,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9843": {
+            "category": "variable",
+            "latex": "\\mu_{JT}",
+            "name": "Joule-Thomson coefficient",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Joule%E2%80%93Thomson_effect#The_Joule%E2%80%93Thomson_(Kelvin)_coefficient"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": 2,
+                "mass": -1,
+                "temperature": 1,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "4686": {
+            "category": "variable",
+            "latex": "\\alpha",
+            "name": "expansion coefficient",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Thermal_expansion"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": -1,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "4610": {
+            "category": "variable",
+            "latex": "\\mu_T",
+            "name": "isothermal Joule-Thomson coefficient",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Joule%E2%80%93Thomson_effect"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "1394": {
+            "category": "variable",
+            "latex": "S",
+            "name": "entropy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Entropy"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": -1,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3434": {
+            "category": "variable",
+            "latex": "\\Omega",
+            "name": "number of microscopic configurations (known as microstates) that are consistent with the macroscopic quantities that characterize the system",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)"
+            ],
+            "domain": "nonnegative",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
                 "temperature": 0,
                 "electric charge": 0,
                 "amount of substance": 0,
