@@ -45,6 +45,13 @@ function outputUpdate(vol) {
 {% include '_table_of_derivations.html' %}
 </P>
 
+<P>
+          <a href="{{ url_for('start_new_derivation', referrer='navigation') }}">start a new derivation</a>
+           {% if current_user.is_anonymous %}
+             -- requires being <a href="{{ url_for('login', referrer='navigation') }}">signed in</a>
+           {% endif %}
+</P>
+
 {% include '_d3_js.html' %}
 
 {% endblock %}
