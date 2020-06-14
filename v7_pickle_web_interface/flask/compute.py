@@ -543,7 +543,9 @@ def create_AST_png_per_expression_in_step(
             # logger.debug('latex = ' + expr_latex)
             output_filename = expr_global_id + "_ast.png"
 
-            cleaned_expr_latex = latex_to_sympy.remove_latex_presention_markings(expr_latex)
+            cleaned_expr_latex = latex_to_sympy.remove_latex_presention_markings(
+                expr_latex
+            )
 
             latex_to_sympy.create_AST_png_for_latex(cleaned_expr_latex, output_filename)
 

@@ -8116,6 +8116,131 @@
                     "notes": "",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-06-14"
+                },
+                "9131071": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4576755"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "6666476": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7384950"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "2711162": {
+                    "inf rule": "substitute LHS of two expressions into expr",
+                    "inputs": [
+                        "4576755",
+                        "7384950",
+                        "2445123"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5358683"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "5592617": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "5358683"
+                    ],
+                    "feeds": [
+                        "9803021"
+                    ],
+                    "outputs": [
+                        "3830663"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "4779130": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2714175"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "1993589": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "2714175"
+                    ],
+                    "feeds": [
+                        "5246571"
+                    ],
+                    "outputs": [
+                        "7939101"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "7017521": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "7939101",
+                        "3830663"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1136968"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "6605632": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "1136968"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1189259"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                },
+                "9782579": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9670239"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
                 }
             }
         }
@@ -8953,7 +9078,18 @@
         "1635641": "3364286646",
         "7368252": "1815398659",
         "2445123": "9941599459",
-        "8155541": "3547519267"
+        "8155541": "3547519267",
+        "4576755": "1085150613",
+        "7384950": "5634116660",
+        "5358683": "5002539602",
+        "9803021": "8854422847",
+        "3830663": "6055078815",
+        "2714175": "3464107376",
+        "5246571": "5074423401",
+        "7939101": "6397683463",
+        "1136968": "2257410739",
+        "1189259": "7826132469",
+        "9670239": "9781951738"
     },
     "expressions": {
         "2344320475": {
@@ -11045,7 +11181,7 @@
             "notes": ""
         },
         "8576785890": {
-            "AST": "Equality(Integer(1), Integral(Mul(Pow(Symbol('a'), Integer(2)), Mul(Pow(Integer(2), Integer(-1)), Add(Integer(1), Mul(Integer(-1), cos(Mul(Integer(2), Mul(Symbol('x'), Mul(Pow(Symbol('W'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pi')))))))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))",
+            "AST": "Equality(Integer(1), Integral(Mul(Pow(Symbol('a'), Integer(2)), Mul(Pow(Integer(2), Integer(-1)), Add(Integer(1), Mul(Integer(-1), cos(Mul(Integer(2), Mul(Symbol('x'), Mul(Pow(Symbol('W'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "1 = \\int_0^W a^2 \\frac{1-\\cos\\left(2\\frac{n \\pi}{W}x\\right)}{2} dx",
@@ -14078,7 +14214,7 @@
         },
         "3607070319": {
             "latex": "d = \\frac{v_0^2}{g} \\sin\\left(2 \\frac{\\pi}{4}\\right)",
-            "AST": "Equality(Symbol('pdg1943'), Mul(Mul(Pow(Symbol('pdg1649'), Integer(-1)), Pow(Symbol('pdg5153'), Integer(2))), sin(Mul(Integer(2), Mul(Pow(Integer(4), Integer(-1)), Symbol('pi'))))))",
+            "AST": "Equality(Symbol('pdg1943'), Mul(Mul(Pow(Symbol('pdg1649'), Integer(-1)), Pow(Symbol('pdg5153'), Integer(2))), sin(Mul(Integer(2), Mul(Pow(Integer(4), Integer(-1)), Symbol('pdg3141'))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15254,7 +15390,7 @@
         },
         "1815398659": {
             "latex": "U = Q + W",
-            "AST": "Equality(Symbol('pdg5786'), Add(Symbol('pdg9432'), Symbol('1088')))",
+            "AST": "Equality(Symbol('pdg5786'), Add(Symbol('pdg9432'), Symbol('pdg1088')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15262,7 +15398,7 @@
         },
         "9941599459": {
             "latex": "dU = \\left(\\frac{\\partial U}{\\partial T}\\right)_V dT + \\left(\\frac{\\partial U}{\\partial V}\\right)_T dV",
-            "AST": "Equality(Symbol('dU'), Derivative(Symbol('pdg5786'), Tuple(Symbol('T'), Integer(1))))",
+            "AST": "Equality(Symbol('dU'), Derivative(Symbol('pdg5786'), Tuple(Symbol('pdg7343'), Integer(1))))",
             "name": "",
             "notes": "based on U(p, T, V) = U(T, V)",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15273,6 +15409,94 @@
             "AST": "Equality(Symbol('pdg1394'), Mul(Symbol('pdg1157'), log(Symbol('pdg3434'), E)))",
             "name": "",
             "notes": "assumes equally probable microstates",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "1085150613": {
+            "latex": "C_V = \\left(\\frac{\\partial U}{\\partial T}\\right)_V",
+            "AST": "Equality(Symbol('pdg6682'), Derivative(Symbol('pdg5786'), Tuple(Symbol('pdg7343'), Integer(1))))",
+            "name": "",
+            "notes": "definition of heat capacity at constant volume",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5634116660": {
+            "latex": "\\pi_T = \\left(\\frac{\\partial U}{\\partial V}\\right)_T",
+            "AST": "Equality(Symbol('pdg5480'), Derivative(Symbol('pdg5786'), Tuple(Symbol('pdg7586'), Integer(1))))",
+            "name": "",
+            "notes": "definition of internal pressure at constant temperature",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5002539602": {
+            "latex": "dU = C_V dT + \\pi_T dV",
+            "AST": "Equality(Symbol('dU'), Add(Mul(Symbol('pdg6682'), Symbol('dT')), Mul(Symbol('dV'), Symbol('pdg5480'))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "8854422847": {
+            "latex": "dT",
+            "AST": "Symbol('pdg7343')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "6055078815": {
+            "latex": "\\left(\\frac{\\partial U}{\\partial T}\\right)_p = C_V \\left(\\frac{\\partial T}{\\partial T}\\right)_p + \\pi_T \\left( \\frac{\\partial V}{\\partial T} \\right)_p",
+            "AST": "Derivative(Symbol('pdg5786'), Tuple(Symbol('pdg7343'), Integer(1)))",
+            "name": "",
+            "notes": "constant pressure",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "3464107376": {
+            "latex": "\\alpha = \\frac{1}{V} \\left( \\frac{\\partial V}{\\partial T} \\right)_p",
+            "AST": "Equality(Symbol('pdg4686'), Mul(Pow(Symbol('pdg7586'), Integer(-1)), Derivative(Symbol('pdg7586'), Tuple(Symbol('pdg7343'), Integer(1)))))",
+            "name": "",
+            "notes": "definition of expansion coefficient",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5074423401": {
+            "latex": "V",
+            "AST": "Symbol('pdg7586')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "6397683463": {
+            "latex": "V \\alpha = \\left( \\frac{\\partial V}{\\partial T} \\right)_p",
+            "AST": "Equality(Mul(Symbol('pdg7586'), Symbol('pdg4686')), Derivative(Symbol('pdg7586'), Tuple(Symbol('pdg7343'), Integer(1))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "2257410739": {
+            "latex": "\\left(\\frac{\\partial U}{\\partial T}\\right)_p = C_V \\left(\\frac{\\partial T}{\\partial T}\\right)_p + \\pi_T V \\alpha",
+            "AST": "Derivative(Symbol('pdg5786'), Tuple(Symbol('pdg7343'), Integer(1)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "7826132469": {
+            "latex": "\\left(\\frac{\\partial U}{\\partial T}\\right)_p = C_V + \\pi_T V \\alpha",
+            "AST": "Derivative(Symbol('pdg5786'), Tuple(Symbol('pdg7343'), Integer(1)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9781951738": {
+            "latex": "\\kappa_T = \\frac{-1}{V} \\left( \\frac{ \\partial V}{\\partial P} \\right)_T",
+            "AST": "Equality(Symbol('pdg4645'), Mul(Mul(Integer(-1), Pow(Symbol('pdg7586'), Integer(-1))), Derivative(Symbol('pdg7586'), Tuple(Symbol('pdg8134'), Integer(1)))))",
+            "name": "",
+            "notes": "definition of isothermal compressibility",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14"
         }
@@ -19472,7 +19696,7 @@
         },
         "8134": {
             "category": "variable",
-            "latex": "p",
+            "latex": "P",
             "name": "pressure",
             "scope": "real",
             "references": [
@@ -19605,6 +19829,48 @@
                 "https://en.wikipedia.org/wiki/Microstate_(statistical_mechanics)"
             ],
             "domain": "nonnegative",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "7343": {
+            "category": "variable",
+            "latex": "T",
+            "name": "temperature",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Temperature"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 1,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "4645": {
+            "category": "variable",
+            "latex": "\\kappa_T",
+            "name": "coefficient of isothermal compressibility",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
             "dimensions": {
                 "length": 0,
                 "time": 0,
