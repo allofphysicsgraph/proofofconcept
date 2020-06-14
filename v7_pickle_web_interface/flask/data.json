@@ -8074,6 +8074,26 @@
                     "creation date": "2020-05-29"
                 }
             }
+        },
+        "513999": {
+            "name": "first law of thermodynamics",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "https://www.youtube.com/watch?v=QTiqF-HtkS0 and https://www.youtube.com/watch?v=3Yls-t3B49U",
+            "creation date": "2020-06-14",
+            "steps": {
+                "4965571": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7368252"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-06-14"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -8906,7 +8926,8 @@
         "3566114": "3723096423",
         "8415948": "7560908617",
         "9815516": "1132941271",
-        "1635641": "3364286646"
+        "1635641": "3364286646",
+        "7368252": "1815398659"
     },
     "expressions": {
         "2344320475": {
@@ -15204,6 +15225,14 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-29"
+        },
+        "1815398659": {
+            "latex": "U = Q + W",
+            "AST": "Equality(Symbol('pdg5786'), Add(Symbol('pdg9432'), Symbol('1088')))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
         }
     },
     "inference rules": {
@@ -17875,6 +17904,48 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24"
         },
+        "1088": {
+            "category": "variable",
+            "latex": "W",
+            "name": "work done to a system",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Work_(thermodynamics)"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
+        "6910": {
+            "category": "variable",
+            "latex": "W",
+            "name": "work done by a system",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Work_(thermodynamics)"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-05-24"
+        },
         "9398": {
             "category": "variable",
             "latex": "dW",
@@ -19242,6 +19313,111 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-04"
+        },
+        "8039": {
+            "category": "variable",
+            "latex": "H",
+            "name": "enthalpy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Enthalpy"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5786": {
+            "category": "variable",
+            "latex": "U",
+            "name": "internal energy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Internal_energy"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "5480": {
+            "category": "variable",
+            "latex": "\\pi_T",
+            "name": "internal pressure at constant temperature",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Internal_pressure"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "6682": {
+            "category": "variable",
+            "latex": "C_V",
+            "name": "heat capacity at constant volume",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Heat_capacity"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": -1,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
+        },
+        "9432": {
+            "category": "variable",
+            "latex": "Q",
+            "name": "heat flow",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Heat"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-14"
         }
     },
     "units": {
