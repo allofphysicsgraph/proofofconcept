@@ -17491,7 +17491,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17510,7 +17510,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17532,7 +17532,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17555,7 +17555,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17579,7 +17579,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17615,7 +17615,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": -1,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17639,7 +17639,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17667,7 +17667,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17690,7 +17690,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17716,7 +17716,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17735,7 +17735,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17753,7 +17753,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17775,7 +17775,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17794,7 +17794,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17813,7 +17813,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17832,7 +17832,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17851,7 +17851,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17868,7 +17868,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17897,7 +17897,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 1,
+                "charge": 1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17925,7 +17925,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17945,7 +17945,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17964,7 +17964,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -17988,7 +17988,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18010,7 +18010,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18032,7 +18032,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18050,7 +18050,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18068,7 +18068,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18086,7 +18086,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18104,7 +18104,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18122,7 +18122,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18150,7 +18150,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18169,7 +18169,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18195,7 +18195,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18217,7 +18217,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18235,7 +18235,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18255,7 +18255,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": -1,
                 "luminous intensity": 0
             },
@@ -18282,7 +18282,7 @@
                 "time": -2,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18301,7 +18301,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18328,7 +18328,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18346,7 +18346,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18364,7 +18364,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18385,7 +18385,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18408,7 +18408,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18430,7 +18430,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18452,7 +18452,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18480,7 +18480,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18502,7 +18502,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18524,7 +18524,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18546,7 +18546,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18568,7 +18568,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18590,7 +18590,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18612,7 +18612,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18634,7 +18634,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18653,7 +18653,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18675,7 +18675,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18697,7 +18697,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18719,7 +18719,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18741,7 +18741,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18763,7 +18763,7 @@
                 "time": -3,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18785,7 +18785,7 @@
                 "time": -3,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18807,7 +18807,7 @@
                 "time": -3,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18829,7 +18829,7 @@
                 "time": -2,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18851,7 +18851,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18873,7 +18873,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18895,7 +18895,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18917,7 +18917,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18939,7 +18939,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18958,7 +18958,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -18977,7 +18977,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19003,7 +19003,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19019,7 +19019,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19038,7 +19038,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19056,7 +19056,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19077,7 +19077,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19098,7 +19098,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19119,7 +19119,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19140,7 +19140,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19161,7 +19161,7 @@
                 "time": 0,
                 "mass": 2,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19188,7 +19188,7 @@
                 "time": -2,
                 "mass": -1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19215,7 +19215,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19242,7 +19242,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19263,7 +19263,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19284,7 +19284,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": -1,
+                "charge": -1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19305,7 +19305,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": -1,
+                "charge": -1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19326,7 +19326,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": -1,
+                "charge": -1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19347,7 +19347,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 1,
+                "charge": 1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19368,7 +19368,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 1,
+                "charge": 1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19389,7 +19389,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 1,
+                "charge": 1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19410,7 +19410,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": -2,
+                "charge": -2,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19431,7 +19431,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": -2,
+                "charge": -2,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19452,7 +19452,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": -2,
+                "charge": -2,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19473,7 +19473,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": -2,
+                "charge": -2,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19494,7 +19494,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 1,
+                "charge": 1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19515,7 +19515,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": -1,
+                "charge": -1,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19536,7 +19536,7 @@
                 "time": -2,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19563,7 +19563,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19584,7 +19584,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19605,7 +19605,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19626,7 +19626,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19647,7 +19647,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19668,7 +19668,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19689,7 +19689,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19710,7 +19710,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19731,7 +19731,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19752,7 +19752,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19773,7 +19773,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19794,7 +19794,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19815,7 +19815,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19836,7 +19836,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19857,7 +19857,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19878,7 +19878,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19899,7 +19899,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19920,7 +19920,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19941,7 +19941,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19962,7 +19962,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -19983,7 +19983,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20004,7 +20004,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20025,7 +20025,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20046,7 +20046,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20067,7 +20067,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20088,7 +20088,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20109,7 +20109,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20130,7 +20130,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20151,7 +20151,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20172,7 +20172,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20193,7 +20193,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20214,7 +20214,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20235,7 +20235,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20256,7 +20256,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20277,7 +20277,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20298,7 +20298,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20319,7 +20319,7 @@
                 "time": -2,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20340,7 +20340,7 @@
                 "time": -2,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20361,7 +20361,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20382,7 +20382,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20403,7 +20403,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20424,7 +20424,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20445,7 +20445,7 @@
                 "time": -1,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20466,7 +20466,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20487,7 +20487,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20508,7 +20508,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20529,7 +20529,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20550,7 +20550,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20571,7 +20571,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": -1,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20592,7 +20592,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20613,7 +20613,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20634,7 +20634,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20655,7 +20655,7 @@
                 "time": 2,
                 "mass": -1,
                 "temperature": 1,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20676,7 +20676,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": -1,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20697,7 +20697,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20718,7 +20718,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": -1,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20739,7 +20739,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20760,7 +20760,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 1,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20781,7 +20781,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20802,7 +20802,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20823,7 +20823,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": -1,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": -1,
                 "luminous intensity": 0
             },
@@ -20850,7 +20850,7 @@
                 "time": 2,
                 "mass": -1,
                 "temperature": 0,
-                "electric charge": 2,
+                "charge": 2,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20877,7 +20877,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": -2,
+                "charge": -2,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20904,7 +20904,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20925,7 +20925,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20946,7 +20946,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -20973,7 +20973,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21000,7 +21000,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21027,7 +21027,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21048,7 +21048,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21069,7 +21069,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21090,7 +21090,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21111,7 +21111,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21132,7 +21132,7 @@
                 "time": -2,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21153,7 +21153,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21174,7 +21174,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21195,7 +21195,7 @@
                 "time": -1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21222,7 +21222,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21243,7 +21243,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21270,7 +21270,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 1,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21290,7 +21290,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21304,7 +21304,7 @@
                 "time": 0,
                 "mass": 1,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21318,7 +21318,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21332,7 +21332,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21352,7 +21352,7 @@
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21366,7 +21366,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
@@ -21380,7 +21380,7 @@
                 "time": 1,
                 "mass": 0,
                 "temperature": 0,
-                "electric charge": 0,
+                "charge": 0,
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
