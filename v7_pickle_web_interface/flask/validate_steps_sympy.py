@@ -370,9 +370,9 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     elif step_dict["inf rule"] == "drop non-dominant term":
         logger.info("[trace end " + trace_id + "]")
         return drop_nondominant_term(latex_dict)
-    #    elif step_dict["inf rule"] == "":
-    #        logger.info("[trace end " + trace_id + "]")
-    #        return (latex_dict)
+    elif step_dict["inf rule"] == "apply gradient to scalar function":
+        logger.info("[trace end " + trace_id + "]")
+        return apply_gradient_to_scalar_function(latex_dict)
     #    elif step_dict["inf rule"] == "":
     #        logger.info("[trace end " + trace_id + "]")
     #        return (latex_dict)
@@ -2117,6 +2117,24 @@ def drop_nondominant_term(latex_dict: dict) -> str:
     >>> latex_dict['feed'] = [parse_latex('')]
     >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
     >>> drop_nondominant_term(latex_dict)
+    'step is valid'
+    """
+    logger.info("[trace]")
+    return "no check performed"
+
+
+def apply_gradient_to_scalar_function(latex_dict: dict) -> str:
+    """ 
+    given
+    x = \\langle\\psi_{\\alpha}| \\hat{A} |\\psi_{\\beta}\\rangle
+    return
+    x = \\langle\\psi_{\\alpha}| a_{\\beta} |\psi_{\\beta} \\rangle
+
+    >>> latex_dict = {}
+    >>> latex_dict['input'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> latex_dict['feed'] = [parse_latex('')]
+    >>> latex_dict['output'] = [{'LHS': parse_latex(''), 'RHS': parse_latex('')}]
+    >>> apply_gradient_to_scalar_function(latex_dict)
     'step is valid'
     """
     logger.info("[trace]")
