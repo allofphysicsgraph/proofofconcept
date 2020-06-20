@@ -21,6 +21,8 @@ import latex_to_sympy
 from sympy.physics.units import mass, length, time, temperature, luminous_intensity, amount_of_substance, charge  # type: ignore
 from sympy.physics.units.systems.si import dimsys_SI  # type: ignore
 import sympy.physics.units  # type: ignore
+from sympy.vector import cross, dot  # type: ignore
+from sympy.vector.deloperator import Del  # type: ignore
 
 
 logger = logging.getLogger(__name__)
