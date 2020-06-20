@@ -8,6 +8,8 @@
 
 import sympy  # type: ignore
 from sympy import tan, atan, sin, asin, cos, acos
+from sympy.vector import cross, dot
+from sympy.vector.deloperator import Del
 from sympy.parsing.latex import parse_latex  # type: ignore
 from typing import Tuple  # , TextIO
 import logging
