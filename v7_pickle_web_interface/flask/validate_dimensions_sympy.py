@@ -68,8 +68,10 @@ def validate_dimensions(expr_global_id: str, path_to_db: str) -> str:
     list_of_pairs = []
     for symb_ID in list_of_symbol_IDs:
         sym_dim = ""
+        if "dimensions" not in dat["symbols"][symb_ID]:
+            raise Exception("dimensions missing for " + symb_ID)
         for dim, power in dat["symbols"][symb_ID]["dimensions"].items():
-            #                    logger.debug(dim + " to the " + str(power))
+            logger.debug(dim + " to the " + str(power))
             if power != 0:
                 # logger.debug(dim + "**" + str(power))
                 sym_dim += "(" + dim + "**" + str(power) + ")*"
