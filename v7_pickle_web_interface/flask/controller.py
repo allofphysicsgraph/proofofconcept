@@ -112,7 +112,7 @@ GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid-configura
 import common_lib as clib  # PDG common library
 import json_schema  # PDG
 import compute  # PDG
-import validate_inference_rules_sympy as vir  # PDG
+import validate_steps_sympy as vir  # PDG
 import validate_dimensions_sympy as vdim  # PDG
 
 # global proc_timeout

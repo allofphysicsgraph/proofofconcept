@@ -81,7 +81,7 @@ COPY common_lib.py \
      sql_db.py \
      user.py \
      validate_dimensions_sympy.py \
-     validate_inference_rules_sympy.py \
+     validate_steps_sympy.py \
      cert.pem \
      key.pem \
      /home/appuser/app/
