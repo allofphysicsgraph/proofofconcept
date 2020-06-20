@@ -744,7 +744,7 @@ def create_files_of_db_content(path_to_db):
     except Exception as err:
         logger.error("creating df failed: " + str(err))
     else:
-        all_df = {} 
+        all_df = {}
 
     try:
         df_pkl_file = convert_df_to_pkl(all_df)
@@ -789,7 +789,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
 
     all_dfs = {}
 
-    logger.debug('starting TABLE: derivations')
+    logger.debug("starting TABLE: derivations")
     derivations_list_of_dicts = []
     for deriv_id in dat["derivations"].keys():
         this_deriv = {}
@@ -801,7 +801,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
         derivations_list_of_dicts.append(this_deriv)
     all_dfs["derivations"] = pandas.DataFrame(derivations_list_of_dicts)
 
-    logger.debug('starting TABLE: expressions')
+    logger.debug("starting TABLE: expressions")
     expressions_list_of_dicts = []
     for expression_id, expression_dict in dat["expressions"].items():
         this_expr = {}
@@ -816,7 +816,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
         expressions_list_of_dicts.append(this_expr)
     all_dfs["expressions"] = pandas.DataFrame(expressions_list_of_dicts)
 
-    logger.debug('starting TABLE: inference rules')
+    logger.debug("starting TABLE: inference rules")
     infrules_list_of_dicts = []
     for infrule_name, infrule_dict in dat["inference rules"].items():
         this_infrule = {}
@@ -831,7 +831,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
         infrules_list_of_dicts.append(this_infrule)
     all_dfs["infrules"] = pandas.DataFrame(infrules_list_of_dicts)
 
-    logger.debug('starting TABLE: steps')
+    logger.debug("starting TABLE: steps")
     steps_list_of_dicts = []
     inputs_list_of_dicts = []
     feeds_list_of_dicts = []
@@ -861,9 +861,9 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
     all_dfs["step inputs"] = pandas.DataFrame(inputs_list_of_dicts)
     all_dfs["step feeds"] = pandas.DataFrame(feeds_list_of_dicts)
     all_dfs["step outputs"] = pandas.DataFrame(outputs_list_of_dicts)
-    logger.debug('finished steps')
+    logger.debug("finished steps")
 
-    logger.debug('starting local_to_global')
+    logger.debug("starting local_to_global")
     local_to_global_list_of_dicts = []
     for local_id, global_id in dat["expr local to global"].items():
         local_to_global_list_of_dicts.append(
@@ -871,7 +871,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
         )
     all_dfs["expr local global"] = pandas.DataFrame(local_to_global_list_of_dicts)
 
-    logger.debug('starting symbols')
+    logger.debug("starting symbols")
     symbols_list_of_dicts = []
     for symbol_id, symbol_dict in dat["symbols"].items():
         if "values" in symbol_dict.keys():  # the symbol is a constant
@@ -919,7 +919,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
             symbols_list_of_dicts.append(this_symb)
     all_dfs["symbols"] = pandas.DataFrame(symbols_list_of_dicts)
 
-    logger.debug('starting measures')
+    logger.debug("starting measures")
     measures_list_of_dicts = []
     for measure_name, measure_dict in dat["measures"].items():
         if "references" in measure_dict.keys():
@@ -934,7 +934,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
             measures_list_of_dicts.append(this_measure)
     all_dfs["measures"] = pandas.DataFrame(measures_list_of_dicts)
 
-    logger.debug('starting units')
+    logger.debug("starting units")
     units_list_of_dicts = []
     for unit_name, unit_dict in dat["units"].items():
         for this_ref in unit_dict["references"]:
@@ -961,7 +961,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
             units_list_of_dicts.append(this_unit)
     all_dfs["units"] = pandas.DataFrame(units_list_of_dicts)
 
-    logger.debug('starting operators')
+    logger.debug("starting operators")
     operators_list_of_dicts = []
     for operator_name, operator_dict in dat["operators"].items():
         for this_scope in operator_dict["scope"]:
@@ -973,7 +973,7 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
             operators_list_of_dicts.append(this_op)
     all_dfs["operators"] = pandas.DataFrame(operators_list_of_dicts)
 
-    logger.debug('finished creation of dataframe')
+    logger.debug("finished creation of dataframe")
     logger.info("[trace end " + trace_id + "]")
     return all_dfs
 

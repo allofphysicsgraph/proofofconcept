@@ -126,6 +126,7 @@ def get_sympy_expr_from_AST_str(ast_str: str):
     # logger.info("[trace]")
 
     ast_str = ast_str.replace("Function", "sympy.Function")
+    ast_str = ast_str.replace("Derivative", "sympy.Derivative")
     ast_str = ast_str.replace("Rational", "sympy.Rational")
     ast_str = ast_str.replace("Abs", "sympy.Abs")
     ast_str = ast_str.replace("Float", "sympy.Float")
