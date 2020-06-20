@@ -11157,7 +11157,7 @@
             "notes": ""
         },
         "3948571256": {
-            "AST": "pdg1054 and pdg1467",
+            "AST": "Equality(Derivative(Function('psi')(Symbol('pdg9472'), Symbol('pdg1467')), Tuple(Symbol('pdg1467'), Integer(1))), Mul(Mul(Symbol('E'), Function('psi')(Symbol('pdg9472'), Symbol('pdg1467'))), Mul(Pow(Symbol('pdg1054'), Integer(-1)), Mul(Integer(-1), Symbol('pdg4621')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\partial}{\\partial t} \\psi( \\vec{r},t) = \\frac{-i}{\\hbar}E \\psi( \\vec{r},t)",
@@ -11165,7 +11165,7 @@
             "notes": ""
         },
         "3948574224": {
-            "AST": "pdg1467 and pdg2321",
+            "AST": "Equality(Function('psi')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('psi_{0}'), Function('pdg2718')(Function('pdg4621')(Add(dot(Symbol('pdg5321'), Symbol('pdg9472')), Mul(Integer(-1), Symbol('pdg2321'), Symbol('pdg1467')))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left( \\vec{k}\\cdot\\vec{r} - \\omega t \\right) \\right)",
@@ -11173,7 +11173,7 @@
             "notes": ""
         },
         "3948574226": {
-            "AST": "pdg1054 and pdg1467 and pdg2321",
+            "AST": "Equality(Function('psi')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('psi_{0}'), Function('pdg2718')(Function('pdg4621')(Add(Mul(Integer(-1), Symbol('pdg2321'), Symbol('pdg1467')), Mul(Pow(Symbol('pdg1054'), Integer(-1)), Mul(Symbol('p'), Symbol('pdg9472'))))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\omega t \\right) \\right)",
@@ -11181,7 +11181,7 @@
             "notes": ""
         },
         "3948574228": {
-            "AST": "pdg1054",
+            "AST": "Equality(Function('psi')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('psi_{0}'), Function('pdg2718')(Function('pdg4621')(Add(Mul(Integer(-1), Symbol('E'), Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg1467')), Mul(Pow(Symbol('pdg1054'), Integer(-1)), Mul(Symbol('p'), Symbol('pdg9472'))))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
@@ -11189,7 +11189,7 @@
             "notes": ""
         },
         "3948574230": {
-            "AST": "pdg1054",
+            "AST": "Equality(Function('psi')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('psi_{0}'), Function('pdg2718')(Mul(Mul(Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg4621')), Add(Mul(Integer(-1), Symbol('E'), Symbol('pdg1467')), Mul(Symbol('p'), Symbol('pdg9472')))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left( \\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
@@ -11197,7 +11197,7 @@
             "notes": ""
         },
         "3948574233": {
-            "AST": "pdg1054 and pdg1467",
+            "AST": "Equality(Derivative(Function('psi')(Symbol('pdg9472'), Symbol('pdg1467')), Tuple(Symbol('pdg1467'), Integer(1))), Mul(Symbol('psi_{0}'), Derivative(Function('pdg2718')(Function('pdg4621')(Add(Mul(Integer(-1), Symbol('E'), Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg1467')), Mul(Pow(Symbol('pdg1054'), Integer(-1)), Mul(Symbol('p'), Symbol('pdg9472')))))), Tuple(Symbol('pdg1467'), Integer(1)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\partial}{\\partial t} \\psi( \\vec{r},t) = \\psi_0 \\frac{\\partial}{\\partial t}\\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
@@ -11541,7 +11541,7 @@
             "notes": ""
         },
         "7466829492": {
-            "AST": "",
+            "AST": "Equality(dot(Symbol('E'), Del), Integer(0))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\cdot \\vec{E} = 0",
@@ -11573,7 +11573,7 @@
             "notes": ""
         },
         "7575859295": {
-            "AST": "",
+            "AST": "Equality(cross(Symbol('E'), cross(Del, Del)), Function('nabla')(Add(Mul(Integer(-1), Symbol('E'), Pow(Del, Integer(2))), dot(Symbol('E'), Del))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\times \\vec{ \\nabla} \\times \\vec{E} = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -11741,7 +11741,7 @@
             "notes": ""
         },
         "8572657110": {
-            "AST": "pdg9199",
+            "AST": "Equality(Integer(1), Integral(Pow(Abs(Function('psi')(Symbol('x'))), Integer(2)), Tuple(Symbol('x'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "1 = \\int |\\psi(x)|^2 dx",
@@ -11861,7 +11861,7 @@
             "notes": ""
         },
         "9393939991": {
-            "AST": "pdg3141 and pdg1592 and pdg2523",
+            "AST": "Equality(Function('psi')(Symbol('x')), Mul(Integer(-1), Mul(Mul(Pow(Integer(2), Rational(1, 2)), Pow(Pow(Symbol('pdg2523'), Integer(-1)), Rational(1, 2))), sin(Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141'))))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi(x) = -\\sqrt{\\frac{2}{W}} \\sin\\left(\\frac{n \\pi}{W} x\\right)",
@@ -11869,7 +11869,7 @@
             "notes": ""
         },
         "9393939992": {
-            "AST": "pdg3141 and pdg1592 and pdg2523",
+            "AST": "Equality(Function('psi')(Symbol('x')), Mul(Mul(Pow(Integer(2), Rational(1, 2)), Pow(Pow(Symbol('pdg2523'), Integer(-1)), Rational(1, 2))), sin(Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi(x) = \\sqrt{\\frac{2}{W}} \\sin\\left(\\frac{n \\pi}{W} x\\right)",
@@ -11877,7 +11877,7 @@
             "notes": ""
         },
         "9394939493": {
-            "AST": "",
+            "AST": "Equality(Mul(Pow(Del, Integer(2)), Function('E')(Symbol('pdg9472'), Symbol('pdg1467'))), Mul(Symbol('mu_{0}'), Mul(Symbol('epsilon_{0}'), Mul(Mul(Pow(Symbol('partial'), Integer(2)), Pow(Mul(Symbol('partial'), Pow(Symbol('pdg1467'), Integer(2))), Integer(-1))), Function('E')(Symbol('pdg9472'), Symbol('pdg1467'))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E( \\vec{r},t) = \\mu_0 \\epsilon_0 \\frac{\\partial^2}{\\partial t^2} E( \\vec{r},t)",
@@ -11885,7 +11885,7 @@
             "notes": ""
         },
         "9429829482": {
-            "AST": "",
+            "AST": "Equality(Derivative(Symbol('y'), Tuple(Symbol('x'), Integer(1))), Add(Mul(Symbol('pdg4621'), cos(Symbol('x'))), Mul(Integer(-1), sin(Symbol('x')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{d}{dx} y = -\\sin(x) + i\\cos(x)",
@@ -11933,7 +11933,7 @@
             "notes": ""
         },
         "9482943948": {
-            "AST": "pdg4621",
+            "AST": "Equality(log(Symbol('y'), Integer(10)), Mul(Symbol('dx'), Symbol('pdg4621')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\log(y) = i dx",
@@ -11941,7 +11941,7 @@
             "notes": ""
         },
         "9482984922": {
-            "AST": "",
+            "AST": "Equality(Derivative(Symbol('y'), Tuple(Symbol('x'), Integer(1))), Mul(Symbol('pdg4621'), Add(Mul(Symbol('pdg4621'), sin(Symbol('x'))), cos(Symbol('x')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{d}{dx} y = (i\\sin(x) + \\cos(x)) i",
@@ -11957,7 +11957,7 @@
             "notes": ""
         },
         "9485384858": {
-            "AST": "pdg4621 and pdg2321 and pdg4567",
+            "AST": "Equality(Mul(Pow(Del, Integer(2)), Mul(Function('E')(Symbol('pdg9472')), Function('pdg2718')(Mul(Symbol('pdg4621'), Mul(Symbol('pdg2321'), Symbol('pdg1467')))))), Mul(Integer(-1), Mul(Mul(Pow(Symbol('pdg2321'), Integer(2)), Pow(Pow(Symbol('pdg4567'), Integer(2)), Integer(-1))), Mul(Function('E')(Symbol('pdg9472')), Function('pdg2718')(Mul(Symbol('pdg4621'), Mul(Symbol('pdg2321'), Symbol('pdg1467'))))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 E( \\vec{r})\\exp(i \\omega t) = - \\frac{\\omega^2}{c^2} E( \\vec{r})\\exp(i \\omega t)",
@@ -11997,7 +11997,7 @@
             "notes": ""
         },
         "9499428242": {
-            "AST": "pdg1467 and pdg4621 and pdg2321",
+            "AST": "Equality(Function('E')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Function('E')(Symbol('pdg9472')), Function('pdg2718')(Mul(Symbol('pdg4621'), Mul(Symbol('pdg2321'), Symbol('pdg1467'))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E( \\vec{r},t) = E( \\vec{r})\\exp(i \\omega t)",
@@ -12037,7 +12037,7 @@
             "notes": ""
         },
         "9848292229": {
-            "AST": "pdg4621",
+            "AST": "Equality(Symbol('dy'), Mul(Symbol('y'), Mul(Symbol('dx'), Symbol('pdg4621'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "dy = y i dx",
@@ -12045,7 +12045,7 @@
             "notes": ""
         },
         "9848294829": {
-            "AST": "pdg4621",
+            "AST": "Equality(Derivative(Symbol('y'), Tuple(Symbol('x'), Integer(1))), Mul(Symbol('pdg4621'), Symbol('y')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{d}{dx} y = y i",
@@ -12077,7 +12077,7 @@
             "notes": ""
         },
         "9958485859": {
-            "AST": "pdg1054 and pdg4621",
+            "AST": "Mul(Mul(Mul(Integer(-1), Pow(Symbol('pdg1054'), Integer(2))), Pow(Mul(Integer(2), Symbol('m')), Integer(-1))), Mul(Pow(Del, Integer(2)), Function('psi')(Symbol('pdg9472'), Symbol('pdg1467'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 \\psi \\left( \\vec{r},t) \\right) = i \\hbar \\frac{\\partial}{\\partial t} \\psi( \\vec{r},t)",
@@ -12093,7 +12093,7 @@
             "notes": ""
         },
         "9991999979": {
-            "AST": "pdg1467",
+            "AST": "Equality(cross(Symbol('E'), Del), Mul(Integer(-1), Mul(Symbol('mu_{0}'), Derivative(Symbol('H'), Tuple(Symbol('pdg1467'), Integer(1))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\times \\vec{E} = -\\mu_0\\frac{\\partial \\vec{H}}{\\partial t}",
@@ -12101,7 +12101,7 @@
             "notes": ""
         },
         "9999998870": {
-            "AST": "pdg1054",
+            "AST": "Equality(Mul(Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg2046')), Symbol('pdg7394'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{ \\vec{p}}{\\hbar} = \\vec{k}",
@@ -14206,7 +14206,7 @@
         },
         "8750379055": {
             "latex": "0 = \\frac{d}{dt} v_x",
-            "AST": "pdg1467",
+            "AST": "Equality(Integer(0), Derivative(Symbol('v_{x}'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14214,7 +14214,7 @@
         },
         "1977955751": {
             "latex": "-g = \\frac{d}{dt} v_y",
-            "AST": "pdg1467 and pdg1649",
+            "AST": "Equality(Mul(Integer(-1), Symbol('pdg1649')), Derivative(Symbol('v_{y}'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14230,7 +14230,7 @@
         },
         "1702349646": {
             "latex": "-g dt = d v_y",
-            "AST": "pdg1649 and pdg5674",
+            "AST": "Equality(Mul(Integer(-1), Mul(Symbol('dt'), Symbol('pdg1649'))), Symbol('pdg5674'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14238,7 +14238,7 @@
         },
         "8584698994": {
             "latex": "-g \\int dt = \\int d v_y",
-            "AST": "pdg2911 and pdg1467 and pdg5674",
+            "AST": "Equality(Mul(Integer(-1), Mul(Symbol('dt'), Symbol('g'))), Symbol('pdg5674'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14270,7 +14270,7 @@
         },
         "7252338326": {
             "latex": "v_y = \\frac{dy}{dt}",
-            "AST": "pdg1467 and pdg5647 and pdg5842",
+            "AST": "Equality(Symbol('v_{y}'), Derivative(Symbol('y'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -21309,6 +21309,27 @@
             "domain": "any",
             "dimensions": {
                 "length": -1,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-20"
+        },
+        "9472": {
+            "category": "variable",
+            "latex": "\\vec{r}",
+            "name": "radius vector",
+            "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
                 "time": 0,
                 "mass": 0,
                 "temperature": 0,
