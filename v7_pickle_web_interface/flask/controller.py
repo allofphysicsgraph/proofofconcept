@@ -2153,7 +2153,9 @@ def select_derivation_step_to_edit(deriv_id: str):
     dat = clib.read_db(path_to_db)
 
     if deriv_id in dat["derivations"].keys():
-        derivation_step_validity_dict = {}  # keys are step_id, value is a string of either "failed" or "valid"
+        derivation_step_validity_dict = (
+            {}
+        )  # keys are step_id, value is a string of either "failed" or "valid"
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
                 derivation_step_validity_dict[step_id] = vir.validate_step(
@@ -2409,7 +2411,9 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         step_dict = dat["derivations"][deriv_id]["steps"]
         # previously there was a separate function in compute.py
         # in that design, any failure of a step caused the entire derivation check to fail
-        derivation_step_validity_dict = {} # keys are step_id, value is a string of either "failed" or "valid"
+        derivation_step_validity_dict = (
+            {}
+        )  # keys are step_id, value is a string of either "failed" or "valid"
         for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
                 derivation_step_validity_dict[step_id] = vir.validate_step(
@@ -2973,7 +2977,8 @@ def review_derivation(deriv_id: str):
                 for expr_local_id in step_dict["inputs"] + step_dict["outputs"]:
                     expr_global_id = dat["expr local to global"][expr_local_id]
                     try:
-                        derivation_dimensions_validity_dict[expr_global_id
+                        derivation_dimensions_validity_dict[
+                            expr_global_id
                         ] = vdim.validate_dimensions(expr_global_id, path_to_db)
                     except Exception as err:
                         logger.error(step_id + ": " + str(err))

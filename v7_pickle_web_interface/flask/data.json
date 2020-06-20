@@ -17473,6 +17473,15 @@
             "references": [
                 "https://en.wikipedia.org/wiki/Angular_frequency"
             ],
+            "dimensions": {
+                "length": 0,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "name": "angular frequency",
             "scope": [
                 "real"
@@ -17594,6 +17603,15 @@
             "creation date": "2020-04-26",
             "latex": "\\theta_{\\rm Brewster}",
             "name": "Brewster's angle",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "references": [
                 "https://en.wikipedia.org/wiki/Brewster%27s_angle"
             ],
@@ -18314,6 +18332,15 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-26",
             "latex": "b",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
             "scope": [
                 "real"
             ]
@@ -21249,6 +21276,48 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14"
+        },
+        "2046": {
+            "category": "variable",
+            "latex": "\\vec{p}",
+            "name": "momentum",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Momentum"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-20"
+        },
+        "7394": {
+            "category": "variable",
+            "latex": "\\vec{k}",
+            "name": "wavenumber",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Wavenumber"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": -1,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-06-20"
         }
     },
     "units": {
