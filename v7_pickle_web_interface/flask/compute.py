@@ -947,8 +947,8 @@ def convert_json_to_dataframes(path_to_db: str) -> dict:
                 this_unit["dimension: temperature"] = unit_dict["dimensions"][
                     "temperature"
                 ]
-                this_unit["dimension: electric charge"] = unit_dict["dimensions"][
-                    "electric charge"
+                this_unit["dimension: charge"] = unit_dict["dimensions"][
+                    "charge"
                 ]
                 this_unit["dimension: amount of substance"] = unit_dict["dimensions"][
                     "amount of substance"
