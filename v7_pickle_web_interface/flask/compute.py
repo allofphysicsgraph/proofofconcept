@@ -748,25 +748,29 @@ def create_files_of_db_content(path_to_db):
         df_pkl_file = convert_df_to_pkl(all_df)
     except Exception as err:
         logger.error("creating pickle failed: " + str(err))
-    shutil.copy(df_pkl_file, "/home/appuser/app/static/")
+    else: # https://stackoverflow.com/a/2792574 
+        shutil.copy(df_pkl_file, "/home/appuser/app/static/")
 
     try:
         sql_file = convert_dataframes_to_sql(all_df)
     except Exception as err:
         logger.error("creating SQL failed: " + str(err))
-    shutil.copy(sql_file, "/home/appuser/app/static/")
+    else: # https://stackoverflow.com/a/2792574
+        shutil.copy(sql_file, "/home/appuser/app/static/")
 
     try:
         rdf_file = convert_data_to_rdf(path_to_db)
     except Exception as err:
         logger.error("creating RDF failed: " + str(err))
-    shutil.copy(rdf_file, "/home/appuser/app/static/")
+    else: # https://stackoverflow.com/a/2792574
+        shutil.copy(rdf_file, "/home/appuser/app/static/")
 
     try:
         neo4j_file = convert_data_to_cypher(path_to_db)
     except Exception as err:
         logger.error("creating Cypher failed: " + str(err))
-    shutil.copy(neo4j_file, "/home/appuser/app/static/")
+    else: # https://stackoverflow.com/a/2792574
+        shutil.copy(neo4j_file, "/home/appuser/app/static/")
 
     logger.info("[trace end " + trace_id + "]")
     return [json_file_name, all_df, df_pkl_file, sql_file, rdf_file, neo4j_file]
