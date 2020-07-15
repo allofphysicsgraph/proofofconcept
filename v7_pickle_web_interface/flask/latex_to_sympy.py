@@ -131,7 +131,9 @@ def get_sympy_expr_from_AST_str(ast_str: str):
     ast_str = ast_str.replace("Abs", "sympy.Abs")
     ast_str = ast_str.replace("Float", "sympy.Float")
     ast_str = ast_str.replace("exp", "sympy.exp")
-    ast_str = ast_str.replace("log", "sympy.log")
+    ast_str = ast_str.replace(
+        "log", "sympy.log"
+    )  # natural log -- https://docs.sympy.org/latest/tutorial/simplification.html#exponentials-and-logarithms
     ast_str = ast_str.replace("cos", "sympy.cos")
     ast_str = ast_str.replace("sin", "sympy.sin")
     ast_str = ast_str.replace("Equality", "sympy.Equality")
