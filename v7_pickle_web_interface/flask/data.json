@@ -11573,7 +11573,7 @@
             "notes": ""
         },
         "7575859295": {
-            "AST": "Equality(cross(Symbol('E'), cross(Del, Del)), Function('nabla')(Add(Mul(Integer(-1), Symbol('E'), Pow(Del, Integer(2))), dot(Symbol('E'), Del))))",
+            "AST": "Equality(cross(Symbol('E'), cross(Del, Del)), Function('nabla')(Add(Mul(Integer(-1), Symbol('E'), Mul(Del, Del)), dot(Symbol('E'), Del))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\times \\vec{ \\nabla} \\times \\vec{E} = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
