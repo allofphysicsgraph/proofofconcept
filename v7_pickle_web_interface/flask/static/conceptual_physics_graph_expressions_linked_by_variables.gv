@@ -1,0 +1,35 @@
+digraph G {
+    // https://dreampuf.github.io/GraphvizOnline
+    rankdir=LR;
+    
+  subgraph cluster_1 {
+    "variable x";
+    "variable y";
+    "variable z";
+    label = "variables and constants";
+    color=blue
+  }
+
+  subgraph cluster_2 {
+    "expression_1aA";
+    "expression_1aB";
+    "expression_2aA";
+    label = "expressions";
+    color=red
+  }
+
+
+  "Physics" -> "topic_1";
+  "topic_1" -> "subtopic_1a";
+  "subtopic_1a" -> "expression_1aA";
+  "expression_1aA" -> "variable x"
+  "expression_1aA" -> "variable y"
+  "subtopic_1a" -> "expression_1aB";
+  "expression_1aB" -> "variable z";
+  "expression_1aB" -> "variable y";
+  
+  "Physics" -> "topic_2";
+  "topic_2" -> "subtopic_2a";
+  "subtopic_2a" -> "expression_2aA";
+  "expression_2aA" -> "variable x";
+}

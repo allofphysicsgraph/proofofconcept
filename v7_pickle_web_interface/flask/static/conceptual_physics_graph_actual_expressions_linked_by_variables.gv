@@ -1,0 +1,108 @@
+digraph G {
+    // https://dreampuf.github.io/GraphvizOnline
+    rankdir=LR;
+    
+  subgraph cluster_1 {
+    "t: time";
+    "E: energy";
+    "p: momentum";
+    "F: force";
+    "m: mass";
+    "\\gamma: lorentz factor";
+    "v: velocity";
+    "B: magnetic field";
+    "E: electric field";
+    "h: Planck constant";
+    "a: acceleration";
+    "i: sqrt of -1";
+    "f: frequency";
+    "S: entropy";
+    "k_B: Boltzman constant";
+    "\\Omega: configurations";
+    
+    label = "variables and constants";
+    color=blue
+  }
+    
+  subgraph cluster_2 {
+    "F = m (dv/dt) = m a";
+    "p = \\gamma m v"
+    "\\nabla \\cross E = -(\\del B)/(del t)";
+    "i (h/(2 \\pi)) (d/dt)\\Psi = H \\Psi";
+    "E = h f";
+    "\\lambda_{deBroglie} = h/p";
+    "S = k_B ln \\Omega"
+    
+    label = "expressions";
+    color=red
+  }
+    
+    
+  "domains of Physics" -> "classical mechanics (slow, big)";
+  "domains of Physics" -> "non-relativistic quantum mechanics";
+  "domains of Physics" -> "relativity";
+  "domains of Physics" -> "quantum field theory";
+  
+  "classical mechanics (slow, big)" -> "Newton's laws of motion";
+  "Newton's laws of motion" -> "F = m (dv/dt) = m a";
+  "F = m (dv/dt) = m a" -> "m: mass";
+  "F = m (dv/dt) = m a" -> "p: momentum";
+  "F = m (dv/dt) = m a" -> "t: time";
+  "F = m (dv/dt) = m a" -> "F: force";
+  "F = m (dv/dt) = m a" -> "a: acceleration";
+  "F = m (dv/dt) = m a" -> "v: velocity";
+  
+  "relativity" -> "special relativity";
+  "relativity" -> "general relativity";
+
+  "special relativity" -> "p = \\gamma m v";
+  "p = \\gamma m v" -> "p: momentum";
+  "p = \\gamma m v" -> "v: velocity";
+  "p = \\gamma m v" -> "\\gamma: lorentz factor";
+  "p = \\gamma m v" -> "m: mass";
+  
+  "classical mechanics (slow, big)" -> "fluid dynamics";
+  "fluid dynamics" -> "Navier-Stokes equation";
+  
+  "classical mechanics (slow, big)" -> "electrodynamics";
+  "electrodynamics" -> "Maxwell's equations";
+  "Maxwell's equations" -> "\\nabla \\cross E = -(\\del B)/(del t)";
+  "\\nabla \\cross E = -(\\del B)/(del t)" -> "t: time";
+  "\\nabla \\cross E = -(\\del B)/(del t)" -> "E: electric field";
+  "\\nabla \\cross E = -(\\del B)/(del t)" -> "B: magnetic field";
+  
+  
+  "classical mechanics (slow, big)" -> "kinematics"
+  "kinematics" -> "non-relativistic particles"
+  
+  "non-relativistic particles" -> "plasma physics"
+  "electrodynamics" -> "plasma physics"
+  "plasma physics" -> "magnetohydrodynamics"
+  "fluid dynamics" -> "plasma physics";
+  
+  "statistical mechanics" -> "S = k_B ln \\Omega";
+  "S = k_B ln \\Omega" -> "S: entropy";
+  "S = k_B ln \\Omega" -> "k_B: Boltzman constant";
+  "S = k_B ln \\Omega" -> "\\Omega: configurations";
+
+  
+  "non-relativistic particles" -> "statistical mechanics"
+  "non-relativistic particles" -> "thermodynamics"
+  "thermodynamics" -> "entropy"
+  "non-relativistic particles" -> "non-relativistic quantum mechanics"
+  "non-relativistic quantum mechanics" -> "deBroglie wavelength"
+  "deBroglie wavelength" -> "\\lambda_{deBroglie} = h/p"
+  "\\lambda_{deBroglie} = h/p" -> "h: Planck constant"
+  "\\lambda_{deBroglie} = h/p" -> "p: momentum"
+  
+  "non-relativistic quantum mechanics" -> "Schrödinger equation"
+  "Schrödinger equation" -> "i (h/(2 \\pi)) (d/dt)\\Psi = H \\Psi"
+  "i (h/(2 \\pi)) (d/dt)\\Psi = H \\Psi" -> "i: sqrt of -1"
+  "i (h/(2 \\pi)) (d/dt)\\Psi = H \\Psi" -> "h: Planck constant"
+  "i (h/(2 \\pi)) (d/dt)\\Psi = H \\Psi" -> "t: time"
+  
+  "Planck–Einstein relation" -> "E = h f"
+  "E = h f" -> "E: energy"
+  "E = h f" -> "h: Planck constant"
+  "E = h f" -> "f: frequency"
+}

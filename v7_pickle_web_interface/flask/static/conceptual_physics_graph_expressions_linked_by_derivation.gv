@@ -1,0 +1,22 @@
+digraph G {
+  // https://dreampuf.github.io/GraphvizOnline
+  rankdir=LR;
+    
+  subgraph cluster_2 {
+    "expression_1aB";
+    "expression_2aA";
+  {rank=same; "expression_1aB" -> "expression_2aA" [label="derivation"];}
+    "expression_1aA";
+    label = "expressions";
+    color=red
+  }
+
+  "Physics" -> "topic_1";
+  "topic_1" -> "subtopic_1a";
+  "subtopic_1a" -> "expression_1aA";
+  "subtopic_1a" -> "expression_1aB";
+
+  "Physics" -> "topic_2";
+  "topic_2" -> "subtopic_2a";
+  "subtopic_2a" -> "expression_2aA";
+}

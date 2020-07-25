@@ -3,12 +3,14 @@
 
 <H2>About the Physics Derivation Graph</H2>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="status of project ">
     <i>What is the status of the project?</i>
   </a><BR>
 As of June 2020, a single developer is actively contributing to the project in his spare time. A few collaborators also contribute.</P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="login">
     <i>Why is a login required for some links and actions?</i>
@@ -17,6 +19,7 @@ As of June 2020, a single developer is actively contributing to the project in h
   The ability to change the graph content requires a user to be signed in to prevent defacement and to track who contributed what in case a rollback is needed.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="how to contribute">
 <i>How to contribute to the Physics Derivation Graph?</i>
@@ -31,6 +34,7 @@ As of June 2020, a single developer is actively contributing to the project in h
     Feel free to create a fork.</LI>
 </UL>
 
+<HR> <!-- ************************************************** -->
 <P>
 <a name="contact">
 <i>How to contact the project owner?</i>
@@ -38,6 +42,7 @@ As of June 2020, a single developer is actively contributing to the project in h
 Email is the best method: ben.is.located AT gmail.com
 </P>
 
+<HR> <!-- ************************************************** -->
 <!-- <H3>Scope and Definitions</H3> -->
   <a name="define inference rule">
 <P><i>What is an inference rule?</i>
@@ -45,6 +50,7 @@ Email is the best method: ben.is.located AT gmail.com
 An inference rule is the atomic step of logic that relates two mathematical expressions. See the full explanation <a href="{{ url_for('user_documentation') }}?referrer=faq#inference rules">in the documentation</a>.
 <P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="semantics">
     <I>What previous discussions of sementics in Physics exist?</I>
@@ -55,18 +61,21 @@ An inference rule is the atomic step of logic that relates two mathematical expr
   The implementation uses Sympy as a Computer Algebra System and extensive numeric indices for symbols, expressions, and steps.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="grammar">
     <I>What previous discussions of the grammar of Physics exists?</I>
   </a><BR>
   <a href="https://aapt.scitation.org/doi/10.1119/1.2342981">The grammar of physics</a> by P. R. Subramanian, B. Gnanapragasam, and G. Janhavi was published in The Physics Teacher 28, 174 (1990); https://doi.org/10.1119/1.2342981. The focus seems to be on dimensional analysis.
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="synatx">
     <I>What previous discussion of the syntax of Physics exists?</I>
   </a><BR>
   "syntax specifies exactly what should be allowed with regard to the formation of character strings." (<a href="https://philphys.hypotheses.org/category/syntax">source</a>)
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="proofs">
 <i>What is the role of proofs in the Physics Derivation Graph?</i>
@@ -76,6 +85,7 @@ An inference rule is the atomic step of logic that relates two mathematical expr
   For more on this issue, see <a href="https://math.stackexchange.com/a/2637338">this answer</a>.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="axioms">
 <I>Could the Physics Derivation Graph reduce Physics to axioms?</i>
@@ -83,13 +93,14 @@ An inference rule is the atomic step of logic that relates two mathematical expr
   Relating the inference rules used in the Physics Derivation Graph to <a href="https://en.wikipedia.org/wiki/Zermelo%E2%80%93Fraenkel_set_theory">set theory</a> or logical rules (e.g., <a href="https://en.wikipedia.org/wiki/Modus_ponens">modus ponens</a> and axioms may be possible, but that is not in the current scope for the project.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="validity of content">
 <I>Does use of the Physics Derivation Graph and verification of steps in a derivation mean that the content is valid?</I><BR>
 No. Simply carrying out mathematical manipulations of expressions does not necessarily lead to physically valid outcomes.
 
-<P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="indices">
 <I>What's the purpose of the many numerical indices associated with the expressions and inference rules?</I>
@@ -98,7 +109,7 @@ Each expression index is a <a href="https://en.wikipedia.org/wiki/G%C3%B6del_num
 This is a way of uniquely identifying each component in the graph.
 Separate from that, a unique identifier is also need for inference rules to distinguish the use in different steps.
 
-
+<HR> <!-- ************************************************** -->
 <P>
   <a name="research">
     <I>Is the Physics Derivation Graph research?</I>
@@ -108,6 +119,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
   This project documents the relations between derivations used to describe physical experiments.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="algorithms">
     <I>Are there novel algorithms used in the Physics Derivation Graph?</I>
@@ -116,7 +128,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
   The Physics Derivation Graph is about documenting existing knowledge.
 </P>
 
-
+<HR> <!-- ************************************************** -->
 <P>
   <a name="pictures">
     <I>How does the Physics Derivation Graph handle non-algebraic arguments?</I>
@@ -128,6 +140,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
   The Physics Derivation Graph is similar to a <a href="https://en.wikipedia.org/wiki/Schaum%27s_Outlines">Schuam's outline</a>, except it is intended to cover all known Physics and documents the relations between various governing expressions.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="symbols">
     <I>Does the Physics Derivation Graph require that all users agree on the same notation?</I>
@@ -135,6 +148,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
       No. A Latex symbol used in a derivation can be used anywhere else in the Physics Derivation Graph because numeric IDs are used to track the concept.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="derivations">
     <I>Are derivations in the Physics Derivation Graph representations?</I>
@@ -142,6 +156,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
       No. A step can be replaced by equivalent sequences of inference rules.
       Various permutations of equivalent steps may be more or less efficient (in terms of number of steps), and more or less abstract conceptually.
 
+<HR> <!-- ************************************************** -->
 <p>
   <a name="automation">
     <I>What is the role of automation in the Physics Derivation Graph?</I>
@@ -150,6 +165,24 @@ Separate from that, a unique identifier is also need for inference rules to dist
   There is some automation used in detecting symbols in a step or derivation.
 </P>
 
+<HR> <!-- ************************************************** -->
+<P>
+  <a name="trivial graph">
+    <I>Don't Physics expressions share variables since they refer to the same reality?</I>
+  </A><BR>
+  Yes, a graph could be constructed that relies merely on variables that are common to expressions rather than derivations betweend expressions.
+  Conceptually, the view would be <BR>
+    <center>
+      <img src="{{ url_for('static', filename='conceptual_physics_graph_expressions_linked_by_variables.svg')}}">
+    </center>
+  More specifically, the Physics Graph would look like<BR>
+    <center>
+      <img src="{{ url_for('static', filename='conceptual_physics_graph_actual_expressions_linked_by_variables.svg')}}">
+    </center>
+  This graph would be easy to construct -- merely include all expressions from Physics and appropriately link variable defintions for each expression.
+  This graph would be interesting but not provide as much insight as a derivation-based graph.
+
+<HR> <!-- ************************************************** -->
 <P>
   <a name="objectives">
 <i>What are the objectives for the Physics Derivation Graph?</i>
@@ -162,10 +195,14 @@ Separate from that, a unique identifier is also need for inference rules to dist
   The purpose of this project is to test the claim that a finite static graph exists which relates all expressions of mathematical physics.
   In this graph, nodes are expressions and edges are inference rules.
 
+  Expressions are typically placed in a topic within Physics. Conceptually, this would look like <BR>
+    <center>
+  <img src="{{ url_for('static', filename='conceptual_physics_graph_expressions_linked_by_derivation.svg')}}">
+    </center>
 <P>
   A second claim to be tested is that a finite number of unique inference rules are needed to express the relations between expressions.
 
-
+<HR> <!-- ************************************************** -->
 <P>
   <a name="who is audience">
 <i>Who is the audience for the Physics Derivation Graph?</i>
@@ -175,6 +212,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
 <a href="{{ url_for('user_documentation')}}?referrer=faq#audience:researchers">researchers</a>.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="learn Physics">
 <I>Is the Physics Derivation Graph a good way to learn Physics?</I>
@@ -183,7 +221,7 @@ No. For tips on how to learn Physics, see this comment:
 <a href="https://news.ycombinator.com/item?id=22691009">https://news.ycombinator.com/item?id=22691009</a>
 </P>
 
-
+<HR> <!-- ************************************************** -->
 <P>
   <a name="crackpot difference">
 <i>How could the Physics Derivation Graph be differentiated from the work of a crackpot?</i>
@@ -192,6 +230,7 @@ The goal (documenting all known Physics) sounds crackpot-ish. The approach doesn
 The purpose of the Physics Derivation Graph is to document known knowledge. No new knowledge is expected.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="crackpot identification">
 <i>How could the Physics Derivation Graph be used to identify the work of a crackpot?</i>
@@ -200,7 +239,7 @@ The purpose of the Physics Derivation Graph is to document known knowledge. No n
 </P>
 
 
-
+<HR> <!-- ************************************************** -->
 <P>
   <a name="output">
 <i>What is the output of the Physics Derivation Graph?</i>
@@ -208,6 +247,7 @@ The purpose of the Physics Derivation Graph is to document known knowledge. No n
 The output is typically a graph visualization or a PDF of the same content in a linear text format.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="visualization">
 <i>How can the Physics Derivation Graph be visualized?</i>
@@ -215,6 +255,7 @@ The output is typically a graph visualization or a PDF of the same content in a 
 The graph output can be visualized in a web browser, a static GraphViz output, and other formats.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="validation">
 <i>How can the Physics Derivation Graph be checked?</i>
@@ -223,6 +264,7 @@ The graph output can be visualized in a web browser, a static GraphViz output, a
   Specifically, SymPy is used to validate applications of inference rule.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="database">
 <i>How is the content of the Physics Derivation Graph stored?</i>
@@ -230,6 +272,7 @@ The graph output can be visualized in a web browser, a static GraphViz output, a
 The expressions, symbols, and connections are stored Latex in a JSON file.
 This decision was based on a <a href="{{ url_for('developer_documentation')}}?referrer=faq#historical evolution">comparative analysis of other options</a>, including MathML and Mathematica.</P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="supported subfields of Physics">
 <i>What subfields of Physics is this project capable of including?</i>
@@ -237,6 +280,7 @@ This decision was based on a <a href="{{ url_for('developer_documentation')}}?re
 Anything from <a href="https://en.wikipedia.org/wiki/Classical_mechanics">Classical mechanics</a> to <a href="https://en.wikipedia.org/wiki/Topological_quantum_field_theory">Topological quantum field theory</a> should be capable of being included.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="not good at">
 <i>What is the Physics Derivation Graph not good at?</i>
@@ -247,7 +291,7 @@ Anything from <a href="https://en.wikipedia.org/wiki/Classical_mechanics">Classi
   </UL>
 </P>
 
-
+<HR> <!-- ************************************************** -->
 <P>
   <a name="prove Physics">
 <i>Can the Physics Derivation Graph be used to prove Physics?</i>
@@ -261,6 +305,7 @@ Mathematical proofs relate to exactly how a MODEL will behave. They don't have m
 The reason for experimentation, is to find out if the completely fictional MODEL that somebody simply made up, behaves in any way the same, as observations suggest the real world behaves. If it doesn't, that is not an indication of a mathematical error, it simply means the fictional model is not a good description of the real world, and must be changed.
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="use in other fields">
 <i>Does this approach apply to other fields?</i>
@@ -270,13 +315,14 @@ The physics derivation graph can handle proving mathematical identities, ie Eule
 The difference between a derivation and proving an identity is that when proving an identity, only one side of the equation is manipulated. For a derivation, both sides of the expression are involved.
 </P>
 
-
+<HR> <!-- ************************************************** -->
 <P>
   <a name="comparison">
   <I>How does the Physics Derivation Graph compare with other projects?</I><BR>
   See the <a href="{{ url_for('other_projects') }}?referrer=faq">list of other projects</a>
 </P>
 
+<HR> <!-- ************************************************** -->
 <P>
   <a name="collaboration">
   <I>How could my project leverage the Physics Derivation Graph?</I><BR>
