@@ -17,6 +17,10 @@ As of June 2020, a single developer is actively contributing to the project in h
   </a><BR>
   Static content is displayed for and accessible to anyone.
   The ability to change the graph content requires a user to be signed in to prevent defacement and to track who contributed what in case a rollback is needed.
+  <P>
+    <center>
+      <img src="{{ url_for('static', filename='google-login-2.png')}}" width="200">
+    </center>
 </P>
 
 <HR> <!-- ************************************************** -->
@@ -66,7 +70,8 @@ An inference rule is the atomic step of logic that relates two mathematical expr
   <a name="grammar">
     <I>What previous discussions of the grammar of Physics exists?</I>
   </a><BR>
-  <a href="https://aapt.scitation.org/doi/10.1119/1.2342981">The grammar of physics</a> by P. R. Subramanian, B. Gnanapragasam, and G. Janhavi was published in The Physics Teacher 28, 174 (1990); https://doi.org/10.1119/1.2342981. The focus seems to be on dimensional analysis.
+  <a href="https://aapt.scitation.org/doi/10.1119/1.2342981">The grammar of physics</a> by P. R. Subramanian, B. Gnanapragasam, and G. Janhavi <BR>
+     published in The Physics Teacher 28, 174 (1990); https://doi.org/10.1119/1.2342981. The focus seems to be on dimensional analysis.
 
 <HR> <!-- ************************************************** -->
 <P>
@@ -108,7 +113,10 @@ No. Simply carrying out mathematical manipulations of expressions does not neces
 Each expression index is a <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>.
 This is a way of uniquely identifying each component in the graph.
 Separate from that, a unique identifier is also need for inference rules to distinguish the use in different steps.
-
+<P>
+  <center>
+    <img src="{{ url_for('static', filename='frequency_and_period_exploded_steps.png')}}">
+  </center>
 <HR> <!-- ************************************************** -->
 <P>
   <a name="research">
@@ -210,6 +218,12 @@ Separate from that, a unique identifier is also need for inference rules to dist
 <a href="{{ url_for('user_documentation')}}?referrer=faq#audience:students">Students</a>,
 <a href="{{ url_for('user_documentation')}}?referrer=faq#audience:teachers">teachers</a>,
 <a href="{{ url_for('user_documentation')}}?referrer=faq#audience:researchers">researchers</a>.
+<P>
+<center>
+  <img src="{{ url_for('static', filename='teacher_and_students.jpg') }}">
+  <!-- source: https://www.bls.gov/ooh/education-training-and-library/high-school-teachers.htm#tab-2 -->
+</center>
+
 </P>
 
 <HR> <!-- ************************************************** -->
@@ -217,15 +231,35 @@ Separate from that, a unique identifier is also need for inference rules to dist
   <a name="learn Physics">
 <I>Is the Physics Derivation Graph a good way to learn Physics?</I>
 </a><BR>
-No. For tips on how to learn Physics, see this comment:
-<a href="https://news.ycombinator.com/item?id=22691009">https://news.ycombinator.com/item?id=22691009</a>
+No. For tips on how to learn Physics,<BR>
+  <I>(begin quote)</I>
+  <blockquote>
+    <UL>
+      <LI> Reading =/= understanding in math and physics. You understand a topic only if you can solve the problems.</LI>
+      <LI> Work through the solved problems you encounter in textbooks carefully.</LI>
+      <LI> Most people around me have never read any physics textbook cover to cover. E.g. reading Halliday, Resnick & Walker completely might take you years! Not all topics are equally important. Focus on the important parts.</LI>
+      <LI> You need guidance on what is important and what is not. Online courses, college material (especially problem sets!), teaching webpages could be a helpful guide. MIT OCW is an excellent resource, once you are ready for it.</LI>
+      <LI> Finding someone to talk to is really useful. You will likely have questions. Cultivating some relationship that allows you to ask questions is invaluable.</LI>
+      <LI> College courses in math and physics have a very definitive order. It is really difficult to skip any step along the way. E.g. to understand special relativity, you must first understand classical physics and electrodynamics.</LI>
+      <LI> Be prepared that the timescales in physics are long. Often, what turns people off is that they do not get things quickly (e.g. in 15-30 minutes). If you find yourself thinking hours about seemingly simple problems, do not despair! That is normal in physics.</LI>
+      <LI> You have to 'soak in' physics. It takes time. Initially, you might feel like you do not make a lot of progress, but the more you know, the quicker it will get. Give yourself time and be patient and persistent.</LI>
+      <LI> Often, just writing things down helps a lot with making things stick. It is a way of developing 'muscle memory'. So try and take notes while reading. Copying out solved problems from textbooks is also a good technique.</LI>
+      <LI> Counterintuitive: If you get completely stuck, move on! Learning often happens in non-linear ways. If you hit an insurmountable roadblock, just keep going. When you return in a few days/weeks, things will almost certainly be clearer.</LI>
+    </UL>
+  </blockquote>
+  <I>(end quote)</I><BR>
+source: <a href="https://news.ycombinator.com/item?id=22691009">https://news.ycombinator.com/item?id=22691009</a>
 </P>
 
 <HR> <!-- ************************************************** -->
 <P>
   <a name="crackpot difference">
 <i>How could the Physics Derivation Graph be differentiated from the work of a crackpot?</i>
-</a><BR>
+</a>
+<P><center>
+  <img src="{{ url_for('static', filename='crackpot.jpg')}}">
+  </center>
+<BR>
 The goal (documenting all known Physics) sounds crackpot-ish. The approach doesn't disallow crackpot statements -- checking derivation steps using a <a href="https://en.wikipedia.org/wiki/Computer_algebra_system">computer algebra system</a> doens't prevent physically nonsensical conclusions.<BR>
 The purpose of the Physics Derivation Graph is to document known knowledge. No new knowledge is expected.
 </P>
@@ -261,7 +295,10 @@ The graph output can be visualized in a web browser, a static GraphViz output, a
 <i>How can the Physics Derivation Graph be checked?</i>
 </a><BR>
   A <a href="https://en.wikipedia.org/wiki/Computer_algebra_system">computer algebra system</a> can be used to verify that each inference rule has been applied correctly to input and output expressions.
-  Specifically, SymPy is used to validate applications of inference rule.
+  Specifically, SymPy is used to validate applications of inference rule.<BR>
+    <center>
+    <img src="{{ url_for('static', filename='sympy.svg')}}"  width="200">
+    </center>
 </P>
 
 <HR> <!-- ************************************************** -->
