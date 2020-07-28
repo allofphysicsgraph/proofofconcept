@@ -3271,7 +3271,7 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 
         # logger.debug(str(os.listdir()))
 
-        if ("No such file or directory" in png_stderr):
+        if "No such file or directory" in png_stderr:
             logging.error("PNG creation failed for %s", png_name)
             shutil.copy(destination_folder + "error.png", destination_folder + png_name)
             # return False, "no PNG created. Check usepackage in latex"
@@ -3279,11 +3279,10 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
                 "no PNG created for " + png_name + ". Check 'usepackage' in latex"
             )
 
-        if (not (os.path.isfile(tmp_file + ".png")):
+        if not (os.path.isfile(tmp_file + ".png")):
             logging.error("PNG creation failed for %s", png_name)
-            
-        shutil.move(tmp_file + ".png", destination_folder + png_name + ".png")
 
+        shutil.move(tmp_file + ".png", destination_folder + png_name + ".png")
 
     logger.debug(destination_folder + png_name + ".png")
 
