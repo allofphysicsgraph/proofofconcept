@@ -149,14 +149,16 @@ The Physics Derivation Graph is designed to show one instance of each expression
 <h2 id="inference rules">Inference Rules</H2>
 <P>
   Inference rules operate on expressions to produce new expressions.
-  In the <a href="#example">example</a>, the inference rule between \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first expression by a scalar value to yield the second expression."
+  In the <a href="#example">example</a>, the inference rule between expressions \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first expression by a scalar value to yield the second expression."
 </P>
 
 <P>
   Inference rules are necessary to perform derivations in physics, but have received little attention as they are typically left to the field of logic.
+  Inference rules are not axioms.
   An inference rule in the context of the Physics Derivation Graph is a subcategory of logical connectives.
   Inference rules in the Physics Derivation Graph include both rules of inference and rules of replacement.
   (The difference between the two is explained as "Whereas a rule of inference is always applied to a whole logical expression, a rule of replacement may be applied to only a particular segment." [<a href="https://en.wikipedia.org/wiki/Rule_of_inference">source</a>].)
+  Inference rules are mechanical manipulations applied to the Abstract Syntax Trees of expressions. 
 
 <P>
   One result of an education in mathematics is building a library of inference rules, though that is not the common description in the field of math education.
@@ -167,13 +169,19 @@ The Physics Derivation Graph is designed to show one instance of each expression
 
 
 <P>
-Inference rules for the Physics Derivation Graph are intended to meet a threshold -- can the computer algebra system validate that the claim is true?
+  Inference rules for the Physics Derivation Graph are intended to meet a threshold -- can the computer algebra system validate that the claim is true?
 </P>
 
-<P>The <a href="{{ url_for('list_all_inference_rules') }}?referrer=user_documentation">list of inference rules used in the Physics Derivation Graph</a> is intended to short enough to fit in a person's memory while also being sufficiently narrow to be tested by Sympy.
+<P>
+  The <a href="{{ url_for('list_all_inference_rules') }}?referrer=user_documentation">list of inference rules used in the Physics Derivation Graph</a> is intended to short enough to fit in a person's memory while also being sufficiently narrow to be tested by Sympy.
+</P>
 
 <P>
-Inference rules are useful for catching simple mistakes by CAS validation. Common mistakes include not carrying the negative symbol through a derivation or unintentionally dropping a term. The inference rules are atomic (simplest step possible) and first order -- they only relate nearest-neighbor expressions.
+  Inference rules are useful for catching simple mistakes by CAS validation. Common mistakes include not carrying the negative symbol through a derivation or unintentionally dropping a term. The inference rules are atomic (simplest step possible) and first order -- they only relate nearest-neighbor expressions.
+</P>
+
+<P>
+  Reference to inference rules is made in <a href="https://www.researchgate.net/publication/259195233_Physics_and_Proof_Theory">Physics and Proof Theory</a> by Paleo (2010); doi 10.1016/j.amc.2011.06.058
 </P>
 
 <H2><a name="feeds">Feeds</a></H2>

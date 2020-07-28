@@ -22,7 +22,7 @@
 
 <P>
   <i>Objective for this project:</i> Write down all known mathematical physics in a way that can be both read by humans and checked by a computer algebra system.<BR>
-  To support that, the Physics Derivation Graph is software infrastructure for the systemization of mathematical physics. By semantically enriching mathematical expressions, connections between topics is observable.
+  To support that, the Physics Derivation Graph provides a schema and software infrastructure for the systemization of documenting mathematical physics. By semantically enriching mathematical expressions, connections between topics is observable.
 <BR>
   For the impatient, see the Physics Derivation Graph <a href="{{ url_for('navigation') }}?referrer=index">navigation</a>.
 </P>
@@ -41,7 +41,7 @@
 </P>
 
 <P>
-  In this example, there are three expressions.
+  In this example, there are three expressions: \(T=1/f\), \(T\ f=1\), and \(f=1/T\).
   Each expression is defined by a left-hand side, a relation operator (here "="), and a right-hand side.
   Two instances of the <a href="https://en.wikipedia.org/wiki/Equivalence_relation#Definition">Equivalence relation</a> relate the three expressions.
   These relations between expressions are called <a href="{{ url_for('user_documentation') }}?referrer=index#inference rules">inference rules</a>.
@@ -50,7 +50,7 @@
 </P>
 
 <P>
-  The central database for documenting relations in derivations of Physics is <a href="{{ url_for('developer_documentation') }}?referrer=index#data structure">a JSON file</a>.
+  The database for documenting relations in derivations of Physics is <a href="{{ url_for('developer_documentation') }}?referrer=index#data structure">a JSON file</a>.
   This can be transformed into other formats; see the <a href="{{ url_for('navigation') }}?referrer=index">PDG navigation</a> page.
 </P>
 
@@ -65,6 +65,10 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ef8ho41vjWI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </center>
 
+<H3>Historical context</h3>
+  <P>
+    The <a href="https://plato.stanford.edu/entries/principia-mathematica/">Principia Mathematica</a> (1910) is the most well-known modern effort to formalize mathematics. The outcomes, including <a href="https://plato.stanford.edu/entries/goedel-incompleteness/">Godel's Incompleteness Theorems</a>, were beneficial to mathematics. More recently, the <a href="https://en.wikipedia.org/wiki/QED_manifesto">QED manifesto</a> (1994) proposed leveraging computers to capture rigor underlying mathematics. Beneficial results included the Mizar and Metamath databases. Methods of consistent open source representation for mathematics (MathML, OpenMath) between various Computer Algebra Systems (e.g., Mathematica, Maple, SymPy, Axiom, <a href="https://en.wikipedia.org/wiki/List_of_computer_algebra_systems">others</a>) has been a struggle. 
+
 <H3>Jargon specific to this project</h3>
 
 <P>
@@ -73,18 +77,18 @@
   An inference rule relates one or more "expressions."
   An inference rule may require one or more "feed" values.
   An expression is, by default, composed of (LHS, relation operator, RHS).
-  Expression operators include both equations (the relation operator is equality) and inequalities (the relation operator is an inequality).
+  Expressions include both equations (the relation operator is equality) and inequalities (the relation operator is an inequality).
 </P>
 
 <P>"Inference rules", "expressions", and "feeds" are words specific to the Physics Derivation Graph.
-  Represented graphically,
+  Represented graphically, their relation is
 
 <img src="{{ url_for('static', filename='single_step.png') }}">
 
 <P>Read this directed graph as, "The inference rule acts on the input expression and, combined with the feed, produces the output expression." Inference rules can be considered as functions; the above picture would be
 
 <pre>
-def inference_rule(input_expression, feed): 
+def inference_rule(input_expression, feed):
     return output_expression
 </pre>
 

@@ -1,14 +1,14 @@
 {% extends "_base.html" %}
 {% block content %}
 
-<H2>About the Physics Derivation Graph</H2>
+<H2>Frequently Asked Questions (FAQ) About the Physics Derivation Graph</H2>
 
 <HR> <!-- ************************************************** -->
 <P>
   <a name="status of project ">
     <i>What is the status of the project?</i>
   </a><BR>
-As of June 2020, a single developer is actively contributing to the project in his spare time. A few collaborators also contribute.</P>
+As of July 2020, a single developer is actively contributing to the project in his spare time. A few collaborators also contribute.</P>
 
 <HR> <!-- ************************************************** -->
 <P>
@@ -56,6 +56,15 @@ An inference rule is the atomic step of logic that relates two mathematical expr
 
 <HR> <!-- ************************************************** -->
 <P>
+  <a name="knowledge management">
+    <I>Is the Physics Derivation Graph just knowledge management?</I>
+  </a><BR>
+  Yes. With some rigor to verify edges in the graph.
+
+  <P>There seems to have been <a href="https://en.wikipedia.org/wiki/Mathematical_knowledge_management">Mathematical Knowledge Management</a> from 2001 to 2011.
+
+<HR> <!-- ************************************************** -->
+<P>
   <a name="semantics">
     <I>What previous discussions of sementics in Physics exist?</I>
   </a><BR>
@@ -65,6 +74,18 @@ An inference rule is the atomic step of logic that relates two mathematical expr
   The implementation uses Sympy as a Computer Algebra System and extensive numeric indices for symbols, expressions, and steps.
 </P>
 
+
+<HR> <!-- ************************************************** -->
+<P>
+  <a name="grandiose">
+    <I>Why would the Physics Derivation Graph succeed where other projects have stagnated?</I>
+  </a><BR>
+  This question is motivated by the essay <a href="https://people.eecs.berkeley.edu/~fateman/papers/openmathcrit.pdf">"A Critique of OpenMath and Thoughts on Encoding Mathematics"</a> (2001) since the Physics Derivation Graph is similar to <a href="ftp://ftp.mcs.anl.gov/pub/qed/manifesto">the QED manifesto</a>.
+
+  <P>Rather than struggle to fit everything into a formal rigorous basis, the implementation for the Physics Derivation Graph uses Latex to encode math. Some expressions are represented using SymPy, with the hope that the Latex and SymPy refer to the same concepts.
+
+  <P>By focusing on specific and practical demonstrations, the Physics Derivation Graph will provide value to teachers, students, and researchers.
+
 <HR> <!-- ************************************************** -->
 <P>
   <a name="grammar">
@@ -73,6 +94,24 @@ An inference rule is the atomic step of logic that relates two mathematical expr
   <a href="https://aapt.scitation.org/doi/10.1119/1.2342981">The grammar of physics</a> by P. R. Subramanian, B. Gnanapragasam, and G. Janhavi <BR>
      published in The Physics Teacher 28, 174 (1990); https://doi.org/10.1119/1.2342981. The focus seems to be on dimensional analysis.
 
+<HR> <!-- ************************************************** -->
+<P>
+  <a name="domains">
+    <I>What domains does the Physics Derivation Graph cover?</I>
+  </a><BR>
+    <UL>
+      <LI>classical mechanics of a finite number of particles, as
+    used in celestial mechanics.
+      <LI>Relativity
+      <LI>quantum mechanics of a finite number of particles, as
+    used in atomic physics.
+      <LI>quantum electrodynamics, a quantum field theory.
+      <LI>Yang-Mills theory, the basis of the Standard Model.
+      <LI>String/M theory, a candidate fundamental theory which
+    unifies Yang-Mills and quantum gravity
+    </UL>
+    <a href="https://www.icms.org.uk/downloads/bigproof/Douglas.pdf">source</a>: "Physics and Formal Methods" by Douglas (2019)
+</P>
 <HR> <!-- ************************************************** -->
 <P>
   <a name="synatx">
@@ -319,12 +358,26 @@ Anything from <a href="https://en.wikipedia.org/wiki/Classical_mechanics">Classi
 
 <HR> <!-- ************************************************** -->
 <P>
+  <a name="barriers">
+<i>What are the entry barriers to using the Physics Derivation Graph?</i>
+</a><BR>
+  <UL>
+    <LI>You have to be sighted or have a capability of reading the screen</LI>
+    <LI>You are expected to know Latex
+    <LI>A computer and web browser are required
+  </UL>
+</P>
+
+
+<HR> <!-- ************************************************** -->
+<P>
   <a name="not good at">
 <i>What is the Physics Derivation Graph not good at?</i>
 </a><BR>
   <UL>
     <LI>Geometric arguments, e.g. optics</LI>
     <LI>Spatial reasoning, e.g. electrodynamics</LI>
+    <LI>Exam problems and homework problems. These typically start as verbal descriptions of a physical scenario with quantitative aspects and terminate in numerical calculations and dimensional analysis.</LI>
   </UL>
 </P>
 

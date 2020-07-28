@@ -40,12 +40,20 @@
 </script>
 
 {% else %}
-    <a href="{{ url_for('login') }}">Sign in</a> 
+    <a href="{{ url_for('login') }}">Sign in</a>
 {% endif %}
        </td>
       </tr>
    </table>
     </div>
+
+
+        <hr>
+        {% block content %}
+
+        {% endblock %}
+
+{% include '_footer.html' %}
 
 <!-- https://flask.palletsprojects.com/en/1.1.x/patterns/flashing/ -->
 {% with messages = get_flashed_messages() %}
@@ -63,12 +71,6 @@
   {% endif %}
 {% endwith %}
 
-        <hr>
-        {% block content %}
-
-        {% endblock %}
-
-{% include '_footer.html' %}
 
     </body>
 </html>

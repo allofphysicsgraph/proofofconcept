@@ -2,13 +2,12 @@
 {% block content %}
 
 
-<H2>Comparison of the Physics Derivation Graph with other projects</H2>
+<H1>Comparison of the Physics Derivation Graph with other Physics projects</H1>
 <P>
 
   <div id="toc_container">
   <p class="toc_title">Contents</p>
   <OL class="toc_list">
-    <LI><a href="#metamath">MetaMath</a></LI>
     <LI><a href="#NLPphysicsSolver">NLP Physics Solver</a></LI>
     <LI><a href="#formuladatabase">FormulaDatabase</a></LI>
     <LI><a href="#wikipedia">Wikipedia</a></LI>
@@ -17,25 +16,23 @@
     <LI><a href="#symbolab">SymboLab</a></LI>
     <LI><a href="#hyperphysics">HyperPhysics</a></LI>
     <LI><a href="#mathematica">Mathematica</a></LI>
+    <LI><a href="#wolfram physics">Wolfram Physics</a></LI>
     <LI><a href="#wolframalpha">Wolfram Alpha</a></LI>
   </OL>
   </div>
-  
-  The inclusion here is to contrast the scope and intention of the Physics Derivation Graph.
+
+  The purpose of these references is to contrast the scope and intention of the Physics Derivation Graph.
 </P>
-
-<H4><a name="metamath">MetaMath</a></H4>
-<P>
-  <a href="http://us.metamath.org/">MetaMath</a>
-
 
 <H4><a name="NLPphysicsSolver">NLP Physics Solver</a></H4>
 <P>
-  <a href="https://www.cs.utexas.edu/users/novak/cgi/physdemod.cgi">Math / Physics Problem Solver</a> by <a href="https://www.cs.utexas.edu/users/novak/">Gordon Novak</a>
+  The <a href="https://www.cs.utexas.edu/users/novak/cgi/physdemod.cgi">Math / Physics Problem Solver</a> by <a href="https://www.cs.utexas.edu/users/novak/">Gordon Novak</a> "solves simple math and physics problems stated in English."
 
-<P><a href="https://www.cs.utexas.edu/users/novak/cgi/physlaws.lsp">source code (Lisp)</a> and <a href="https://www.cs.utexas.edu/users/novak/cgi/equations.lsp">equations</a>
+<P>
+  The <a href="https://www.cs.utexas.edu/users/novak/cgi/physlaws.lsp">source code (Lisp)</a> and <a href="https://www.cs.utexas.edu/users/novak/cgi/equations.lsp">equations</a> are available.
 
-<P><a href="https://yoavartzi.com/pub/kazb-acl.2014.pdf">Related work from 2014</a>
+<P>
+  See <a href="https://yoavartzi.com/pub/kazb-acl.2014.pdf">"Learning to Automatically Solve Algebra Word Problems" (2014)</a>
 
 <H4><a name="formuladatabase">FormulaDatabase</a></H4>
 <P>
@@ -81,11 +78,11 @@ Objects in the FormulaDatabase.
 
 
 <P>
-<H4><a name="wikipedia">Wikipedia</a></H4>
-<i>How is the Physics Derivation Graph different than <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/>?</i>
-</a><BR>
-<a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/> is text-based with hyperlinks. <BR>
-In contrast, the Physics Derivation Graph is effectively language-independent.
+  <H4><a name="wikipedia">Wikipedia</a></H4>
+    <i>How is the Physics Derivation Graph different than <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/>?</i>
+  </a><BR>
+  <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/> is text-based with hyperlinks. <BR>
+  In contrast, the Physics Derivation Graph is effectively language-independent.
 </P>
 
 <P>
@@ -143,17 +140,88 @@ The number of levels can vary. For example, the <a href="http://hyperphysics.phy
 </P>
 
 <P>
-<H4><a name="mathematica">Mathematica</a></H4>
-<a href="https://www.wolfram.com/mathematica/">Mathematica</a> is a commercial product, whereas the Physics Derivation Graph is open source.<BR>
-<a href="https://www.wolfram.com/mathematica/">Mathematica</a> is a <a href="https://en.wikipedia.org/wiki/Computer_algebra_system">computer algebra system</a>, whereas the Physics Derivation Graph is documentation of known mathematical physics relations.<BR>
+  <H4><a name="mathematica">Wolfram Mathematica</a></H4>
+  <a href="https://www.wolfram.com/mathematica/">Mathematica</a> is a commercial product, whereas the Physics Derivation Graph is open source.<BR>
+  <a href="https://www.wolfram.com/mathematica/">Mathematica</a> is a <a href="https://en.wikipedia.org/wiki/Computer_algebra_system">computer algebra system</a>, whereas the Physics Derivation Graph is documentation of known mathematical physics relations.<BR>
+
+
+<P>
+  <H4><a name="wolfram physics">Wolfram Physics</a></H4>
 The <a href="https://www.wolframphysics.org/">Wolfram Physics</a> focuses on using Graph generation as a method of developing fundemental Physics concepts.
 </P>
-
 
 
 <H4><a name="wolframalpha">Wolfram Alpha</a></H4>
 <P>
   Wolfram Alpha (<a href="https://www.wolframalpha.com">https://www.wolframalpha.com</a>) has a backend database of content which is not open source; access is a mix of free and paid.
 </P>
+
+
+
+<H1>Math-oriented projects</H1>
+
+Much influence after 1994 is likely based on the QEC manifesto, so that is useful to read.
+
+<div id="toc_container">
+<p class="toc_title">Contents</p>
+<OL class="toc_list">
+  <LI><a href="#metamath">MetaMath</a></LI>
+  <LI><a href="#mathlingua">mathLingua</a></LI>
+</OL>
+
+<UL>
+  <LI>
+</UL>
+
+OpenMath
+https://en.wikipedia.org/wiki/OpenMath
+https://github.com/OpenMath
+https://www.openmath.org/
+
+
+
+MathML
+Presentation MathML (layout only) and Content MathML (semantics)
+https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics
+
+
+
+LatexML converts to Presentation MathML, not Content MathML
+https://dlmf.nist.gov/LaTeXML/
+https://github.com/brucemiller/LaTeXML
+
+
+
+"Both MathML and OpenMath address mathematical formulas in isolation, whereas OMDoc allows to express the structure of mathematical documents, for example the relation between definitions, theorems and proofs." (source: <a href="https://pdfs.semanticscholar.org/a91a/f3fa64e1296de470206f375a29ddc1c7b54d.pdf">"Extracting Mathematical Semantics from LATEX Documents"</a>)
+https://en.wikipedia.org/wiki/OMDoc
+http://www.omdoc.org/
+
+Formal Mathematical Language
+https://www.mat.univie.ac.at/~neum/FMathL.html
+
+
+"The QED Manifesto after Two Decades -- Version 2.0" by Weiss (2016)<BR>
+  <a href="https://pdfs.semanticscholar.org/6139/579ab589c62397ef4ba6728da42f519c9b8c.pdf">source</a><BR>
+  Describes "Mathropolis" and a "mathematical content markup language"
+A non-CAS based metalanguage is attempted in "The QED Manifesto after Two Decades -- Version 2.0"
+The paper discusses Mathropolis, which is intended to optimize for readability over formality.
+The paper describes a "mathematical content markup language" and provides an example.
+
+
+"Semantic Enrichment of Mathematics via tooltips"
+Moore, 2015
+https://tug.org/tug2015/preprints/moore-mathsem-cicm2015-v7.pdf
+"mathsem" source code not found online
+
+
+
+
+<H4><a name="metamath">MetaMath</a></H4>
+<P>
+  <a href="http://us.metamath.org/">MetaMath</a>
+
+<H4><a name="mathlingua">MathLingua</a></H4>
+<P>
+  http://www.mathlingua.org/
 
 {% endblock %}
