@@ -10158,7 +10158,7 @@
         },
         "7053449926": {
             "latex": "r_{\\rm geostationary\\ orbit}",
-            "AST": "",
+            "AST": "Symbol('pdg7110')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10493,7 +10493,7 @@
             "notes": ""
         },
         "0005395034": {
-            "AST": "",
+            "AST": "Symbol('pdg2427')*Bra('pdg4679')*Ket('pdg2090')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "a_{\\alpha} \\langle \\psi_{\\alpha} | \\psi_{\\beta} \\rangle",
@@ -10613,7 +10613,7 @@
             "notes": ""
         },
         "0009458842": {
-            "AST": "",
+            "AST": "Function('pdg9489')(Symbol('x'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi(x)",
@@ -10669,7 +10669,7 @@
             "notes": ""
         },
         "0203024440": {
-            "AST": "pdg2523 and pdg1592",
+            "AST": "Equality(Integer(1), Integral(Mul(Symbol('a'), Mul(conjugate(Function('pdg9489')(Symbol('x'))), sin(Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141'))))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "1 = \\int_0^W a \\sin\\left(\\frac{n \\pi}{W} x\\right) \\psi(x)^* dx",
@@ -10709,7 +10709,7 @@
             "notes": ""
         },
         "1010393913": {
-            "AST": "",
+            "AST": "Equality(Bra('pdg4065')*Dagger(Operator('pdg5598'))*Ket('pdg9329'),conjugate(E(Symbol('a'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle \\psi| \\hat{A}^+ |\\psi \\rangle = \\langle a \\rangle^*",
@@ -10717,7 +10717,7 @@
             "notes": ""
         },
         "1010393944": {
-            "AST": "",
+            "AST": "Equality(Symbol('x'),(Bra('pdg4679')*Symbol('pdg7752')*Ket('pdg2090')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x = \\langle\\psi_{\\alpha}| a_{\\beta} |\\psi_{\\beta} \\rangle",
@@ -10797,7 +10797,7 @@
             "notes": ""
         },
         "1203938249": {
-            "AST": "",
+            "AST": "Equality(Symbol('pdg7752')*Bra('pdg4679')*Ket('pdg2090'),Symbol('pdg7752')*Bra('pdg4679')*Ket('pdg2090'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "a_{\\beta} \\langle \\psi_{\\alpha} | \\psi_{\\beta} \\rangle = a_{\\alpha} \\langle \\psi_{\\alpha} | \\psi_{\\beta} \\rangle",
@@ -10837,7 +10837,7 @@
             "notes": ""
         },
         "1314864131": {
-            "AST": "pdg1467",
+            "AST": "Equality(cross(Del, Symbol('H')),Mul(Symbol('pdg7940'),Derivative(Symbol('E'), Tuple(Symbol('pdg1467'), Integer(1)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\times \\vec{H} = \\epsilon_0 \\frac{\\partial }{\\partial t}\\vec{E}",
@@ -10845,7 +10845,7 @@
             "notes": ""
         },
         "1395858355": {
-            "AST": "",
+            "AST": "Equality(Symbol('x'), Bra('pdg4679')*Symbol('pdg2427')*Ket('pdg2090'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x = \\langle \\psi_{\\alpha}| a_{\\alpha} |\\psi_{\\beta}\\rangle",
@@ -10853,7 +10853,7 @@
             "notes": ""
         },
         "1636453295": {
-            "AST": "",
+            "AST": "Equality(cross(Del,cross(Del,Symbol('E'))),Mul(Integer(-1), Mul(Symbol('E'), Pow(Del, Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\times \\vec{ \\nabla} \\times \\vec{E} =  - \\nabla^2 \\vec{E}",
@@ -10901,7 +10901,7 @@
             "notes": ""
         },
         "1934748140": {
-            "AST": "Equality(Integral(Pow(Abs(Mul(Symbol('psi'),Symbol('x'))), Integer(2)), Tuple(Symbol('pdg9199'))), Integer(1))",
+            "AST": "Equality(Integral(Pow(Abs(Function('psi')(Symbol('x'))), Integer(2)), Tuple(Symbol('pdg9199'))), Integer(1))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\int |\\psi(x)|^2 dx = 1",
@@ -10957,7 +10957,7 @@
             "notes": ""
         },
         "2394240499": {
-            "AST": "",
+            "AST": "Equality(Symbol('x'),Symbol('pdg7752')*Bra('pdg4679')*Ket('pdg2090'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x = a_{\\beta} \\langle \\psi_{\\alpha} | \\psi_{\\beta} \\rangle",
@@ -10973,7 +10973,7 @@
             "notes": ""
         },
         "2394935831": {
-            "AST": "",
+            "AST": "Equality(Add(Symbol('pdg7752'), Mul(Integer(-1), Symbol('pdg2427')))*Bra('pdg4679')*Ket('pdg2090'),Integer(0))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "( a_{\\beta} - a_{\\alpha} ) \\langle \\psi_{\\alpha} | \\psi_{\\beta} \\rangle = 0",
@@ -12021,7 +12021,7 @@
             "notes": ""
         },
         "9585727710": {
-            "AST": "",
+            "AST": "Equality(Function('pdg9489')(Equality(Symbol('x'),Integer(0))),Integer(0))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi(x=0) = 0",
@@ -12029,7 +12029,7 @@
             "notes": ""
         },
         "9596004948": {
-            "AST": "",
+            "AST": "Equality(Symbol('x'),Bra('pdg4679')*Symbol('pdg5598')*Ket('pdg2090'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x = \\langle\\psi_{\\alpha}| \\hat{A} |\\psi_{\\beta}\\rangle",
@@ -21536,6 +21536,27 @@
             "scope": "real",
             "references": [
                 "https://en.wikipedia.org/wiki/Kronecker_delta"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
+        },
+        "9489": {
+            "category": "variable",
+            "latex": "\\psi",
+            "name": "none",
+            "scope": "complex",
+            "references": [
+                ""
             ],
             "domain": "any",
             "dimensions": {
