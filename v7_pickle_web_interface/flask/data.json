@@ -9878,7 +9878,7 @@
         },
         "8120663858": {
             "latex": "y_f",
-            "AST": "pdg7092",
+            "AST": "Symbol('pdg7092')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9886,7 +9886,7 @@
         },
         "4162188238": {
             "latex": "t_f",
-            "AST": "pdg2467 and pdg1467",
+            "AST": "Symbol('pdg2467')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9894,7 +9894,7 @@
         },
         "5194141542": {
             "latex": "x_f",
-            "AST": "pdg3652",
+            "AST": "Symbol('pdg3652')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9902,7 +9902,7 @@
         },
         "6463266449": {
             "latex": "t_f",
-            "AST": "pdg2467 and pdg1467",
+            "AST": "Symbol('pdg2467')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9910,7 +9910,7 @@
         },
         "8111389082": {
             "latex": "x",
-            "AST": "pdg4037",
+            "AST": "Symbol('pdg4037')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9918,7 +9918,7 @@
         },
         "6701855578": {
             "latex": "v_2",
-            "AST": "",
+            "AST": "Symbol('pdg4770')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9926,7 +9926,7 @@
         },
         "3183197515": {
             "latex": "v_1",
-            "AST": "",
+            "AST": "Symbol('pdg2473')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9934,7 +9934,7 @@
         },
         "9072369552": {
             "latex": "m_{\\rm Earth}",
-            "AST": "",
+            "AST": "pdg5458",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9942,7 +9942,7 @@
         },
         "7140470627": {
             "latex": "m",
-            "AST": "",
+            "AST": "Symbol('pdg5156')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9950,7 +9950,7 @@
         },
         "8416464049": {
             "latex": "KE_{\\rm escape}",
-            "AST": "",
+            "AST": "Symbol('pdg5332')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9958,7 +9958,7 @@
         },
         "8871333437": {
             "latex": "PE_{\\rm Earth\\ surface}",
-            "AST": "",
+            "AST": "Symbol('pdg6431')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9966,7 +9966,7 @@
         },
         "9370882921": {
             "latex": "KE_{\\rm escape}",
-            "AST": "",
+            "AST": "Symbol('pdg5332')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9974,7 +9974,7 @@
         },
         "6498985149": {
             "latex": "v_{\\rm escape}",
-            "AST": "",
+            "AST": "Symbol('pdg8656')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9982,7 +9982,7 @@
         },
         "2135482543": {
             "latex": "m",
-            "AST": "pdg5458 and pdg5156",
+            "AST": "Symbol('pdg5156')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -9990,7 +9990,7 @@
         },
         "8020058613": {
             "latex": "r",
-            "AST": "pdg3236",
+            "AST": "Symbol('pdg3236')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10006,7 +10006,7 @@
         },
         "9933742680": {
             "latex": "r_{\\rm Schwarzschild}",
-            "AST": "pdg2530",
+            "AST": "Symbol('pdg2530')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10014,7 +10014,7 @@
         },
         "9830343096": {
             "latex": "V_1",
-            "AST": "",
+            "AST": "Symbol('pdg8257')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10022,7 +10022,7 @@
         },
         "9174439158": {
             "latex": "R_1",
-            "AST": "",
+            "AST": "Symbol('pdg8697')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10030,7 +10030,7 @@
         },
         "1608399874": {
             "latex": "V_2",
-            "AST": "",
+            "AST": "Symbol('pdg8721')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10038,7 +10038,7 @@
         },
         "1484794622": {
             "latex": "R_2",
-            "AST": "",
+            "AST": "Symbol('pdg3461')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10046,7 +10046,7 @@
         },
         "1323602089": {
             "latex": "I_1",
-            "AST": "",
+            "AST": "Symbol('pdg3978')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10054,7 +10054,7 @@
         },
         "5258419993": {
             "latex": "R_1",
-            "AST": "",
+            "AST": "Symbol('pdg8697')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10062,7 +10062,7 @@
         },
         "5463275819": {
             "latex": "I_2",
-            "AST": "",
+            "AST": "Symbol('pdg4856')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10070,7 +10070,7 @@
         },
         "9746066299": {
             "latex": "R_2",
-            "AST": "",
+            "AST": "Symbol('pdg3461')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10078,7 +10078,7 @@
         },
         "7798615279": {
             "latex": "I_{\\rm total}",
-            "AST": "",
+            "AST": "Symbol('pdg9647')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10086,7 +10086,7 @@
         },
         "7410124465": {
             "latex": "R_{\\rm total}",
-            "AST": "",
+            "AST": "Symbol('pdg1908')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10094,7 +10094,7 @@
         },
         "3594626260": {
             "latex": "F_{\\rm gravity}",
-            "AST": "",
+            "AST": "Symbol('pdg2867')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10102,7 +10102,7 @@
         },
         "4153613253": {
             "latex": "m_{\\rm Earth}",
-            "AST": "pdg5458",
+            "AST": "Symbol('pdg5458')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10110,7 +10110,7 @@
         },
         "3486213448": {
             "latex": "m_{\\rm satellite}",
-            "AST": "",
+            "AST": "Symbol('pdg3569')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10118,7 +10118,7 @@
         },
         "7819443873": {
             "latex": "r",
-            "AST": "",
+            "AST": "Symbol('pdg2530')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10126,7 +10126,7 @@
         },
         "1333474099": {
             "latex": "F_{\\rm centripetal}",
-            "AST": "",
+            "AST": "Symbol('pdg1687')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10134,7 +10134,7 @@
         },
         "2114570475": {
             "latex": "m_{\\rm satellite}",
-            "AST": "",
+            "AST": "Symbol('pdg3569')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10142,7 +10142,7 @@
         },
         "9789485295": {
             "latex": "v_{\\rm satellite}",
-            "AST": "",
+            "AST": "Symbol('pdg4082')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10150,7 +10150,7 @@
         },
         "5208737840": {
             "latex": "T_{\\rm geostationary\\ orbit}",
-            "AST": "",
+            "AST": "Symbol('pdg5595')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10166,7 +10166,7 @@
         },
         "1193980495": {
             "latex": "m_{\\rm Earth}",
-            "AST": "pdg5458",
+            "AST": "Symbol('pdg5458')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10174,7 +10174,7 @@
         },
         "9903988330": {
             "latex": "m",
-            "AST": "",
+            "AST": "Symbol('pdg5156')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10182,7 +10182,7 @@
         },
         "6535639720": {
             "latex": "r_{\\rm Earth}",
-            "AST": "",
+            "AST": "Symbol('pdg3236')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10261,7 +10261,7 @@
             "notes": ""
         },
         "0002338514": {
-            "AST": "",
+            "AST": "Symbol('pdg2097')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{p}_{2}",
@@ -10669,7 +10669,7 @@
             "notes": ""
         },
         "0203024440": {
-            "AST": "",
+            "AST": "pdg2523 and pdg1592",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "1 = \\int_0^W a \\sin\\left(\\frac{n \\pi}{W} x\\right) \\psi(x)^* dx",
@@ -10773,7 +10773,7 @@
             "notes": ""
         },
         "1158485859": {
-            "AST": "",
+            "AST": "pdg1054",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 = {\\cal H}",
@@ -11533,7 +11533,7 @@
             "notes": ""
         },
         "6742123016": {
-            "AST": "",
+            "AST": "pdg4299",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{p}_{electron}\\cdot\\vec{p}_{electron} = ( \\vec{p}_{1}\\cdot\\vec{p}_{1})+( \\vec{p}_{2}\\cdot\\vec{p}_{2})-2( \\vec{p}_{1}\\cdot\\vec{p}_{2})",
@@ -21339,6 +21339,216 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-20"
+        },
+        "7110": {
+            "category": "variable",
+            "latex": "r_{\\rm geostationary\\ orbit}",
+            "name": "geostationary orbital radius",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Geostationary_orbit"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 1,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
+        },
+        "4679": {
+            "category": "variable",
+            "latex": "\\langle \\psi_{\\alpha} |",
+            "name": "bra",
+            "scope": "complex",
+            "references": [
+                "https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
+        },
+        "2090": {
+            "category": "variable",
+            "latex": "| \\psi_{\\beta} \\rangle",
+            "name": "ket",
+            "scope": "complex",
+            "references": [
+                "https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
+        },
+        "2427": {
+            "category": "variable",
+            "latex": "a_{\\alpha}",
+            "name": "none",
+            "scope": "complex",
+            "references": [
+                "https://en.wikipedia.org/wiki/Quantum_mechanics"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
+        },
+        "7752": {
+            "category": "variable",
+            "latex": "a_{\\beta}",
+            "name": "none",
+            "scope": "complex",
+            "references": [
+                "https://en.wikipedia.org/wiki/Quantum_mechanics"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
+        },
+        "4065": {
+            "category": "variable",
+            "latex": "\\langle \\psi|",
+            "name": "bra",
+            "scope": "complex",
+            "references": [
+                "https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
+        },
+        "9329": {
+            "category": "variable",
+            "latex": "|\\psi \\rangle",
+            "name": "ket",
+            "scope": "complex",
+            "references": [
+                "https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
+        },
+        "6799": {
+            "category": "variable",
+            "latex": "{\\cal H}",
+            "name": "operator",
+            "scope": "complex",
+            "references": [
+                "https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics)"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
+        },
+        "3474": {
+            "category": "variable",
+            "latex": "\\epsilon",
+            "name": "Levi-Civita",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Levi-Civita_symbol"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
+        },
+        "9669": {
+            "category": "variable",
+            "latex": "\\delta",
+            "name": "Kronecker delta",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Kronecker_delta"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-07-29"
         }
     },
     "units": {
