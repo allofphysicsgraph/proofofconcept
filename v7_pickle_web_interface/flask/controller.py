@@ -2907,6 +2907,10 @@ def review_derivation(deriv_id: str):
                 url_for("static", filename=pdf_filename, referrer="review_derivation")
             )
         elif request.form["submit_button"] == "generate tex":
+            if current_user.is_anonymous:
+                email = "none"
+            else:
+                email = current_user.email
             try:
                 tex_filename = compute.generate_tex_for_derivation(
                     deriv_id, current_user.email, path_to_db
