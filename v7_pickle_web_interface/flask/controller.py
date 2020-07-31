@@ -2919,9 +2919,10 @@ def review_derivation(deriv_id: str):
                 logger.error(str(err))
                 flash(str(err))
                 tex_filename = "error.tex"
+            logger.info(str("name of .tex file is " + tex_filename))
             logger.info("[trace page end " + trace_id + "]")
             return redirect(
-                url_for("static", filename=tex_filename, referrer="review_derivation")
+                url_for("static", filename=tex_filename+".tex", referrer="review_derivation")
             )
         elif request.form["submit_button"] == "delete derivation":
             logger.info("[trace page end " + trace_id + "]")
