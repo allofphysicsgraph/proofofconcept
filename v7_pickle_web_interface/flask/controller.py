@@ -2913,7 +2913,7 @@ def review_derivation(deriv_id: str):
                 email = current_user.email
             try:
                 tex_filename = compute.generate_tex_for_derivation(
-                    deriv_id, current_user.email, path_to_db
+                    deriv_id, email, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
