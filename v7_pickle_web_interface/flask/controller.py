@@ -1331,6 +1331,14 @@ def static_dir():
     )
 
 
+@app.route("/layers", methods=["GET", "POST"])
+def layers():
+    """
+    exploration of layering formalizatio
+    """
+    return render_template("layers.html")
+
+
 # @app.route("/templates_dir", methods=["GET", "POST"])
 # def templates_dir():
 #    """
@@ -2922,7 +2930,11 @@ def review_derivation(deriv_id: str):
             logger.info(str("name of .tex file is " + tex_filename))
             logger.info("[trace page end " + trace_id + "]")
             return redirect(
-                url_for("static", filename=tex_filename+".tex", referrer="review_derivation")
+                url_for(
+                    "static",
+                    filename=tex_filename + ".tex",
+                    referrer="review_derivation",
+                )
             )
         elif request.form["submit_button"] == "delete derivation":
             logger.info("[trace page end " + trace_id + "]")
