@@ -13,22 +13,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-MS7JL5');</script>
 <!-- End Google Tag Manager -->
 
-<P><B><font color="red">Not working on my Mac as of 20150729</font></B></P>
 
 <P>Contents of physics_derivation.py</P>
 <FONT FACE="Courier New">
 import networkx as nx<BR>
-G=nx.digraph()<BR>
-G.add_edge([8332941,8482459])<BR>
-G.add_edge([8482459,6822583])<BR>
-G.add_edge([5749291,6822583])<BR>
-G.add_edge([6822583,8341200])<BR>
-G.add_edge([8341200,9483715])<BR>
-G.add_edge([8837284,9483715])<BR>
-G.add_edge([9483715,9380032])<BR>
-G.add_edge([9380032,8345721])<BR>
-nx.plot()<BR>
-plt.show()
+G=nx.DiGraph()<BR>
+G.add_edge(*[8332941,8482459])<BR>
+G.add_edge(*[8482459,6822583])<BR>
+G.add_edge(*[5749291,6822583])<BR>
+G.add_edge(*[6822583,8341200])<BR>
+G.add_edge(*[8341200,9483715])<BR>
+G.add_edge(*[8837284,9483715])<BR>
+G.add_edge(*[9483715,9380032])<BR>
+G.add_edge(*[9380032,8345721])<BR>
+nx.draw(G)<BR>
 </FONT>
 <P>Command:<BR>
 python physics_derivation.py</P>
