@@ -1,0 +1,32 @@
+<!-- unlike all other pages, this page does not inherit from _base.html
+     That's because the "sign in" and "navigation" links are not shown at the top of the page -->
+<!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
+<html>
+  <head>
+    <title>Physics Derivation Graph: {{ title }}</title>
+
+    {% include '_js_head.html' %}
+
+    <!-- https://stackoverflow.com/a/15027568/1164295 -->
+    <style type="text/css">
+      fieldset.inline {
+        display: inline;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <center>
+      <H2>Physics Derivation Graph</H2>
+    </center>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/5F1XcTjpJs4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <P>
+      source: <a href="https://www.youtube.com/watch?v=5F1XcTjpJs4">"Derivation of Gravitational Potential Energy" by Rhett Allain</a>
+
+    {% include '_footer.html' %}
+
+    </body>
+</html>

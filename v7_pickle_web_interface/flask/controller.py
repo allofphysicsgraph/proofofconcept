@@ -1331,12 +1331,33 @@ def static_dir():
     )
 
 
-@app.route("/layers", methods=["GET", "POST"])
-def layers():
+@app.route("/layers/<which_layer>", methods=["GET", "POST"])
+def layers(which_layer):
     """
     exploration of layering formalizatio
     """
-    return render_template("layers.html")
+    if which_layer == "overview":
+        return render_template("layers_overview.html")
+    elif which_layer == "0":
+        return render_template("layers_lecture_video.html")
+    elif which_layer == "1":
+        return render_template("layers_handwritten_notes.html")
+    elif which_layer == "2":
+        return render_template("layers_document_without_decorations.html")
+    elif which_layer == "3":
+        return render_template("layers_section_document_structure.html")
+    elif which_layer == "4":
+        return render_template("layers_words_named_entity_recognition.html")
+    elif which_layer == "5": 
+        return render_template("layers_concepts_to_variables.html")
+    elif which_layer == "6":
+        return render_template("layers_derivation_graph.html")
+    elif which_layer == "7":
+        return render_template("layers_proof_of_inference_rule.html")
+    else:
+        logger.debug("unrecognized argument: " + which_layer)
+        return render_template("layers_overview.html")
+    return render_template("layers_overview.html")
 
 
 # @app.route("/templates_dir", methods=["GET", "POST"])
