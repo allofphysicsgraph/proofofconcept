@@ -17,25 +17,23 @@
   </head>
   <body>
 
-    <center>
-      <H2>Physics Derivation Graph</H2>
-    </center>
+  <center>
+    <H2>Physics Derivation Graph: layers demo</H2>
+  </center>
 
-    <P>
-      source: <a href="https://www.youtube.com/watch?v=5F1XcTjpJs4">"Derivation of Gravitational Potential Energy" by Rhett Allain</a>
-
-<UL>
-layers overview
-<OL>
-<LI><a href="{{url_for('layers', which_layer="0")}}">lecture video</a>: verbal overview with whiteboard</LI>
-<LI><a href="{{url_for('layers', which_layer="1")}}">hand-written notes</a>: contemporaneous with the lecture delivery</LI>
-<LI><a href="{{url_for('layers', which_layer="2")}}">document without decorations</a>: after the lecture, convert hand-written notes to Latex</LI>
-<LI><a href="{{url_for('layers', which_layer="3")}}">section document structure</a>: OMdoc, PhysML</LI>
-<LI><a href="{{url_for('layers', which_layer="4")}}">word analysis using named entity recognition</a>: keywords in Physics</LI>
-<LI><a href="{{url_for('layers', which_layer="5")}}">concepts to variables</a>: relation between keywords snd symbols</LI>
-<LI><a href="{{url_for('layers', which_layer="6")}}">derivation graph</a>: all the implied steps documented and verified using a Computer Algebra System</LI>
-<LI><a href="{{url_for('layers', which_layer="7")}}">proof of inference rule</a>: proofs that the inference rules are valid in a selected logical basis</LI>
-</OL>
+  <P>
+    The intent of this exercise is to illustrate the role of the Physics Derivation Graph in a scientific workflow, whether for an educational or research setting.
+    Mathematical proofs and semantic enrichment both play a role in formalization of science. There is a third aspect addressed by the Physics Derivation Graph. 
+    <OL>
+      <LI><a href="{{url_for('layers', which_layer="0")}}">lecture video</a>: verbal overview with whiteboard</LI>
+      <LI><a href="{{url_for('layers', which_layer="1")}}">hand-written notes</a>: contemporaneous with the lecture delivery</LI>
+      <LI><a href="{{url_for('layers', which_layer="2")}}">document without decorations</a>: after the lecture, convert hand-written notes to Latex</LI>
+      <LI><a href="{{url_for('layers', which_layer="3")}}">section document structure</a>: OMdoc, PhysML</LI>
+      <LI><a href="{{url_for('layers', which_layer="4")}}">word analysis using named entity recognition</a>: keywords in Physics</LI>
+      <LI><a href="{{url_for('layers', which_layer="5")}}">concepts to variables</a>: relation between keywords snd symbols</LI>
+      <LI><a href="{{url_for('layers', which_layer="6")}}">derivation graph</a>: all the implied steps documented and verified using a Computer Algebra System</LI>
+      <LI><a href="{{url_for('layers', which_layer="7")}}">proof of inference rule</a>: proofs that the inference rules are valid in a selected logical basis</LI>
+    </OL>
 
     {% include '_footer.html' %}
 

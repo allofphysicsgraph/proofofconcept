@@ -18,8 +18,34 @@
   <body>
 
     <center>
-      <H2>Physics Derivation Graph</H2>
+      <H2>Physics Derivation Graph: layers demo</H2>
     </center>
+
+    <P>
+      <center>
+
+        <table border="1">
+          <tr>
+            <td><I><B>Explanation</B></I>: relation between keywords snd symbols
+            </td>
+            <td>
+              Navigation:
+              <OL>
+                <LI><a href="{{url_for('layers', which_layer="0")}}">lecture video</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="1")}}">hand-written notes</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="2")}}">document without decorations</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="3")}}">section document structure</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="4")}}">word analysis using named entity recognition</a></LI>
+                <LI><B>concepts to variables</B></LI>
+                <LI><a href="{{url_for('layers', which_layer="6")}}">derivation graph</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="7")}}">proof of inference rule</a></LI>
+              </OL>
+              Back to <a href="{{url_for('layers', which_layer="overview")}}">layers overview</a><BR>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </P>
 
     <P>
       source: <a href="https://www.youtube.com/watch?v=5F1XcTjpJs4">"Derivation of Gravitational Potential Energy" by Rhett Allain</a>

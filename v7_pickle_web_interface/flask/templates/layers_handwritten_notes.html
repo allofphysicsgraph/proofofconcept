@@ -18,8 +18,32 @@
   <body>
 
     <center>
-      <H2>Physics Derivation Graph</H2>
+      <H2>Physics Derivation Graph: layers demo</H2>
     </center>
+    <P>
+      <center>
+        <table border="1">
+          <tr>
+            <td><I><B>Explanation</B></I>: contemporaneous with the lecture delivery
+            </td>
+            <td>
+              Navigation:
+              <OL>
+                <LI><a href="{{url_for('layers', which_layer="0")}}">lecture video</a></LI>
+                <LI><B>hand-written notes</B></LI>
+                <LI><a href="{{url_for('layers', which_layer="2")}}">document without decorations</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="3")}}">section document structure</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="4")}}">word analysis using named entity recognition</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="5")}}">concepts to variables</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="6")}}">derivation graph</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="7")}}">proof of inference rule</a></LI>
+              </OL>
+              Back to <a href="{{url_for('layers', which_layer="overview")}}">layers overview</a><BR>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </P>
 
     <center>
     <img src="{{ url_for('static', filename='') }}">

@@ -18,90 +18,52 @@
   <body>
 
     <center>
-      <H2>Physics Derivation Graph</H2>
+      <H2>Physics Derivation Graph: layers demo</H2>
     </center>
-
     <P>
-      source: <a href="https://www.youtube.com/watch?v=5F1XcTjpJs4">"Derivation of Gravitational Potential Energy" by Rhett Allain</a>
-
-    <P>
-      <fieldset>
-	<legend>scenario description</legend>
-	Suppose an <fieldset class="inline">
-		     <legend>tangible entity</legend>object
-	           </fieldset>
-		   <fieldset class="inline">
-	             <legend>initial condition</legend>starts an
-		       <fieldset class="inline">
-			 <legend>location</legend>infinite distance
-		       </fieldset> from a <fieldset class="inline"><legend>tangible entity</legend>moon</fieldset> and is dropped, falling towards the moon
-		   </fieldset> due to gravitational acceleration.
-      </fieldset>
-      <fieldset>
-        <legend>question</legend>
-      What is the speed of the object when it is distance \(r\) from the moon?
-      </fieldset>
-
-    <fieldset>
-      <legend>figure of scenario</legend>
       <center>
-        <img src="{{ url_for('static', filename='diagrams/mass_falling_from_infinity.png') }}">
-        Figure 1: small mass falling towards a moon from initial position at infinity.
+        <table border="1">
+          <tr>
+            <td><I><B>Explanation</B></I>: Here the focus is on a single inference rule and verifying the inference rule with respect to a logical basis like
+              <a href="https://en.wikipedia.org/wiki/Zermelo%E2%80%93Fraenkel_set_theory">Zermelo–Fraenkel set theory</a> in a formal proof assistent like
+              <a href="https://en.wikipedia.org/wiki/Coq">Coq</a> or <a href="https://en.wikipedia.org/wiki/Lean_(proof_assistant)">Lean</a>.
+
+              <P>This validation per inference rule would need to be applied to each inference rule used in the derivation.
+            </td>
+            <td>
+              Navigation:
+              <OL>
+                <LI><a href="{{url_for('layers', which_layer="0")}}">lecture video</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="1")}}">hand-written notes</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="2")}}">document without decorations</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="3")}}">section document structure</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="4")}}">word analysis using named entity recognition</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="5")}}">concepts to variables</a></LI>
+                <LI><a href="{{url_for('layers', which_layer="6")}}">derivation graph</a></LI>
+                <LI><B>proof of inference rule</B></LI>
+              </OL>
+              Back to <a href="{{url_for('layers', which_layer="overview")}}">layers overview</a><BR>
+            </td>
+          </tr>
+        </table>
       </center>
-    </fieldset>
+    </P>
+
     <P>
-      <fieldset>
-        <legend>initial condition</legend>
-    The initial condition is
-    \begin{equation}
-        v(x=\infty) =0
-        \label{eq:initial_velocity}
-    \end{equation}
+      The expression
+      \begin{equation}
+          \frac{1}{2} m_1 v^2 = \frac{G m_1 m_2}{r}
+          \label{eq:initial}
+      \end{equation}
+      reduces to
+      \begin{equation}
+       v^2 = \frac{2Gm_2}{r}
+      \end{equation}
+      when both sides of Eq.~\ref{eq:initial} are multiplied by $$2/m_2$$
 
-
-    The force acting on the object is
-    \begin{equation}
-        \vec{F} = \frac{-G m_1 m_2}{x^2} \hat{x}
-        \label{eq:gravitational force}
-    \end{equation}
-      </fieldset>
-    The work is calculated using W = \(\delta E\) since the force changes. To find the cumulative work done on the object, integrate over all positions between \(\infty\) and \(r\)
-    \begin{equation}
-        W = \int_{\infty}^r \vec{F}\cdot d\vec{r}
-        \label{eq:work as function of force}
-    \end{equation}
-
-    Substituting the gravitational force into Eq. \ref{eq:work as function of force},
-    \begin{equation}
-        W = \int_{\infty}^r \frac{-G m_1 m_2}{x^2} dx
-    \end{equation}
-    Factor out the constants,
-    \begin{equation}
-        W = -G m_1 m_2\int_{\infty}^r \frac{1}{x^2} dx
-    \end{equation}
-    which leads to
-    <!--
-    \begin{equation}
-        W = -G m_1 m_2 \left(\left.\frac{-1}{r}\right|^r_{\infty}\right)
-    \end{equation}
-    -->
-    \begin{equation}
-        W = \frac{G m_1 m_2}{r}
-    \end{equation}
-    Another definition of work is that it is the change in energy for a system: \(W = \Delta E \)
-    Because the initial velocity was zero, the work here is
-    \begin{equation}
-        W = \Delta KE
-    \end{equation}
-    Thus we can combine the two definitions of work to get
-    \begin{equation}
-        W = \frac{1}{2} m_1 v^2 = \frac{G m_1 m_2}{r}
-    \end{equation}
-    The \(m_1\) cancels, leaving
-    \begin{equation}
-     v(r) = \sqrt{\frac{2Gm_2}{r}}
-    \end{equation}
-
+    <P>
+      (Insert proof of "multiply both sides by" here)
+    </P>
 
 
     {% include '_footer.html' %}

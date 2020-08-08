@@ -1331,10 +1331,14 @@ def static_dir():
     )
 
 
+@app.route("/layers", methods=["GET", "POST"])
+def layers_without_arg():
+    return render_template("layers_overview.html")
+
 @app.route("/layers/<which_layer>", methods=["GET", "POST"])
 def layers(which_layer):
     """
-    exploration of layering formalizatio
+    exploration of layering formalization
     """
     if which_layer == "overview":
         return render_template("layers_overview.html")
@@ -1348,7 +1352,7 @@ def layers(which_layer):
         return render_template("layers_section_document_structure.html")
     elif which_layer == "4":
         return render_template("layers_words_named_entity_recognition.html")
-    elif which_layer == "5": 
+    elif which_layer == "5":
         return render_template("layers_concepts_to_variables.html")
     elif which_layer == "6":
         return render_template("layers_derivation_graph.html")
