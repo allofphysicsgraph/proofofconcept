@@ -22,30 +22,36 @@
   </center>
 
   <P>
-    The intent of this exercise is to illustrate the role of the Physics Derivation Graph in a scientific workflow, whether for an educational or research setting.
-    Mathematical proofs and semantic enrichment both play a role in formalization of science. There is a third aspect addressed by the Physics Derivation Graph.
+    The intent of this set of pages is to illustrate the role of the Physics Derivation Graph in a scientific workflow, whether for an educational or research setting.
+    Mathematical proofs (item 9) and semantic enrichment (items 4 and 5) both play a role in formalization of science. There is a third aspect addressed by the Physics Derivation Graph (specifically items 7 and 8 in the list).
 
-    <P>
-      The examples provided may have flaws and inconsistencies. Hopefully there is sufficient illustration to convey intent.
     <P>
       The examples provided are visual rather than implementations of specific methods.
     <OL>
       <LI><a href="{{url_for('roadmap', which_layer="lecture")}}">lecture video</a>: verbal overview with whiteboard</LI>
       <LI><a href="{{url_for('roadmap', which_layer="handwritten")}}">hand-written notes</a>: contemporaneous with the lecture delivery</LI>
       <LI><a href="{{url_for('roadmap', which_layer="latex")}}">Latex document</a>: after the lecture, convert hand-written notes to Latex</LI>
-      <LI>Content tags
+      <LI>Content tags (as described by the Wikipedia entry for <a href="https://en.wikipedia.org/wiki/OMDoc#Coverage">OMdoc</a>)
         <UL>
           <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
           <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">word analysis using named entity recognition</a></LI>
           <LI><a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expression semantics</a></LI>
         </UL>
       </LI>
-      <LI><a href="{{url_for('roadmap', which_layer="tag_all")}}">tags for sections and words and expressions</a></LI>
+      <LI><a href="{{url_for('roadmap', which_layer="tag_all")}}">tags for sections and words and expressions</a>: combine all content tagging into a single document</LI>
       <LI><a href="{{url_for('roadmap', which_layer="variables")}}">concepts to variables</a>: relation between keywords snd symbols</LI>
       <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a>: all the implied steps documented</LI>
       <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a>: use a Computer Algebra System to check each step in a derivation</LI>
       <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a>: proofs that the inference rules are valid in a selected logical basis</LI>
     </OL>
+    <P>
+      The examples provided may have flaws and inconsistencies. Hopefully there is sufficient illustration to convey intent.
+    <P>
+      The Physics Derivation Graph does not depend on semantic tags. The PDG could be done after creating the Latex document.
+    <P>
+      There is a gap between sementically tagged and the Physics Derivation Graph. The relation is not clear.
+    <P>
+      The graph structure of a derivation does not fit into the hierarchical RDF data structure.
 
   <P>
     &nbsp;

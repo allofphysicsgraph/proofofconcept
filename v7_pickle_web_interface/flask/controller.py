@@ -1330,9 +1330,12 @@ def static_dir():
         "static_dir.html", list_of_files=filenames, title="Static directory listing"
     )
 
+
 @app.route("/roadmap", methods=["GET", "POST"])
 def layers_without_arg():
-    return render_template("layers_overview.html", title="Roadmap for Formal Science Content")
+    return render_template(
+        "layers_overview.html", title="Roadmap for Formal Science Content"
+    )
 
 
 @app.route("/roadmap/<which_layer>", methods=["GET", "POST"])
@@ -1340,7 +1343,7 @@ def roadmap(which_layer):
     """
     exploration of layering formalization
     """
-    page_title="Roadmap for Formal Science Content"
+    page_title = "Roadmap for Formal Science Content"
     if which_layer == "overview":
         return render_template("layers_overview.html", title=page_title)
     elif which_layer == "lecture":
@@ -1348,11 +1351,17 @@ def roadmap(which_layer):
     elif which_layer == "handwritten":
         return render_template("layers_handwritten_notes.html", title=page_title)
     elif which_layer == "latex":
-        return render_template("layers_document_without_decorations.html", title=page_title)
+        return render_template(
+            "layers_document_without_decorations.html", title=page_title
+        )
     elif which_layer == "tag_sections":
-        return render_template("layers_section_document_structure.html", title=page_title)
+        return render_template(
+            "layers_section_document_structure.html", title=page_title
+        )
     elif which_layer == "tag_words":
-        return render_template("layers_words_named_entity_recognition.html", title=page_title)
+        return render_template(
+            "layers_words_named_entity_recognition.html", title=page_title
+        )
     elif which_layer == "tag_expressions":
         return render_template("layers_contentML.html", title=page_title)
     elif which_layer == "tag_all":
