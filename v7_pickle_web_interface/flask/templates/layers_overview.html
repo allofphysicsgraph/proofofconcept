@@ -18,23 +18,45 @@
   <body>
 
   <center>
-    <H2>Physics Derivation Graph: layers demo</H2>
+    <H2>{{ title }}</H2>
   </center>
 
   <P>
     The intent of this exercise is to illustrate the role of the Physics Derivation Graph in a scientific workflow, whether for an educational or research setting.
-    Mathematical proofs and semantic enrichment both play a role in formalization of science. There is a third aspect addressed by the Physics Derivation Graph. 
+    Mathematical proofs and semantic enrichment both play a role in formalization of science. There is a third aspect addressed by the Physics Derivation Graph.
+
+    <P>
+      The examples provided may have flaws and inconsistencies. Hopefully there is sufficient illustration to convey intent.
+    <P>
+      The examples provided are visual rather than implementations of specific methods.
     <OL>
-      <LI><a href="{{url_for('layers', which_layer="0")}}">lecture video</a>: verbal overview with whiteboard</LI>
-      <LI><a href="{{url_for('layers', which_layer="1")}}">hand-written notes</a>: contemporaneous with the lecture delivery</LI>
-      <LI><a href="{{url_for('layers', which_layer="2")}}">document without decorations</a>: after the lecture, convert hand-written notes to Latex</LI>
-      <LI><a href="{{url_for('layers', which_layer="3")}}">section document structure</a>: OMdoc, PhysML</LI>
-      <LI><a href="{{url_for('layers', which_layer="4")}}">word analysis using named entity recognition</a>: keywords in Physics</LI>
-      <LI><a href="{{url_for('layers', which_layer="5")}}">concepts to variables</a>: relation between keywords snd symbols</LI>
-      <LI><a href="{{url_for('layers', which_layer="6")}}">derivation graph</a>: all the implied steps documented and verified using a Computer Algebra System</LI>
-      <LI><a href="{{url_for('layers', which_layer="7")}}">proof of inference rule</a>: proofs that the inference rules are valid in a selected logical basis</LI>
+      <LI><a href="{{url_for('roadmap', which_layer="lecture")}}">lecture video</a>: verbal overview with whiteboard</LI>
+      <LI><a href="{{url_for('roadmap', which_layer="handwritten")}}">hand-written notes</a>: contemporaneous with the lecture delivery</LI>
+      <LI><a href="{{url_for('roadmap', which_layer="latex")}}">Latex document</a>: after the lecture, convert hand-written notes to Latex</LI>
+      <LI>Content tags
+        <UL>
+          <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
+          <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">word analysis using named entity recognition</a></LI>
+          <LI><a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expression semantics</a></LI>
+        </UL>
+      </LI>
+      <LI><a href="{{url_for('roadmap', which_layer="tag_all")}}">tags for sections and words and expressions</a></LI>
+      <LI><a href="{{url_for('roadmap', which_layer="variables")}}">concepts to variables</a>: relation between keywords snd symbols</LI>
+      <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a>: all the implied steps documented</LI>
+      <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a>: use a Computer Algebra System to check each step in a derivation</LI>
+      <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a>: proofs that the inference rules are valid in a selected logical basis</LI>
     </OL>
 
+  <P>
+    &nbsp;
+  </P>
+  <P>
+    <I>References</I>
+    <OL>
+      <LI> <a href="http://cl-informatik.uibk.ac.at/cek/cicm-wip-tentative/DP3.pdf">"Understanding Scientific Documents with Synthetic Analysis on Mathematical Expressions and Natural Language"</a>
+    by  Takuto Asakura (2019) at <a href="https://cicm-conference.org/2019/cicm.php">CICM 2019</a>
+    </OL>
+  </P>
     {% include '_footer.html' %}
 
     </body>

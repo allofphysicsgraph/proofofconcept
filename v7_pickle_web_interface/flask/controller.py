@@ -1330,38 +1330,45 @@ def static_dir():
         "static_dir.html", list_of_files=filenames, title="Static directory listing"
     )
 
-
-@app.route("/layers", methods=["GET", "POST"])
+@app.route("/roadmap", methods=["GET", "POST"])
 def layers_without_arg():
-    return render_template("layers_overview.html")
+    return render_template("layers_overview.html", title="Roadmap for Formal Science Content")
 
-@app.route("/layers/<which_layer>", methods=["GET", "POST"])
-def layers(which_layer):
+
+@app.route("/roadmap/<which_layer>", methods=["GET", "POST"])
+def roadmap(which_layer):
     """
     exploration of layering formalization
     """
+    page_title="Roadmap for Formal Science Content"
     if which_layer == "overview":
-        return render_template("layers_overview.html")
-    elif which_layer == "0":
-        return render_template("layers_lecture_video.html")
-    elif which_layer == "1":
-        return render_template("layers_handwritten_notes.html")
-    elif which_layer == "2":
-        return render_template("layers_document_without_decorations.html")
-    elif which_layer == "3":
-        return render_template("layers_section_document_structure.html")
-    elif which_layer == "4":
-        return render_template("layers_words_named_entity_recognition.html")
-    elif which_layer == "5":
-        return render_template("layers_concepts_to_variables.html")
-    elif which_layer == "6":
-        return render_template("layers_derivation_graph.html")
-    elif which_layer == "7":
-        return render_template("layers_proof_of_inference_rule.html")
+        return render_template("layers_overview.html", title=page_title)
+    elif which_layer == "lecture":
+        return render_template("layers_lecture_video.html", title=page_title)
+    elif which_layer == "handwritten":
+        return render_template("layers_handwritten_notes.html", title=page_title)
+    elif which_layer == "latex":
+        return render_template("layers_document_without_decorations.html", title=page_title)
+    elif which_layer == "tag_sections":
+        return render_template("layers_section_document_structure.html", title=page_title)
+    elif which_layer == "tag_words":
+        return render_template("layers_words_named_entity_recognition.html", title=page_title)
+    elif which_layer == "tag_expressions":
+        return render_template("layers_contentML.html", title=page_title)
+    elif which_layer == "tag_all":
+        return render_template("layers_sections_words_contentML.html", title=page_title)
+    elif which_layer == "variables":
+        return render_template("layers_concepts_to_variables.html", title=page_title)
+    elif which_layer == "pdg":
+        return render_template("layers_derivation_graph.html", title=page_title)
+    elif which_layer == "CAS_validation":
+        return render_template("layers_validate_steps.html", title=page_title)
+    elif which_layer == "proof":
+        return render_template("layers_proof_of_inference_rule.html", title=page_title)
     else:
         logger.debug("unrecognized argument: " + which_layer)
-        return render_template("layers_overview.html")
-    return render_template("layers_overview.html")
+        return render_template("layers_overview.html", title=page_title)
+    return render_template("layers_overview.html", title=page_title)
 
 
 # @app.route("/templates_dir", methods=["GET", "POST"])

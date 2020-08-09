@@ -18,27 +18,36 @@
   <body>
 
     <center>
-      <H2>Physics Derivation Graph: layers demo</H2>
+      <H2>{{ title }}</H2>
     </center>
     <P>
       <center>
         <table border="1">
           <tr>
-            <td><I><B>Explanation</B></I>: contemporaneous with the lecture delivery
+            <td><I><B>Explanation</B></I>: manually written down contemporaneous with the lecture delivery.
+              The notes might not capture everything that was said depending on speed of delivery and bandwidth for transcription.
+              <I>Who does the work</I>: student or researcher
+              <I>Motive for doing this work</I>: to facilitate recall of the discussion.
             </td>
             <td>
               Navigation:
               <OL>
-                <LI><a href="{{url_for('layers', which_layer="0")}}">lecture video</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="lecture")}}">lecture video</a></LI>
                 <LI><B>hand-written notes</B></LI>
-                <LI><a href="{{url_for('layers', which_layer="2")}}">document without decorations</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="3")}}">section document structure</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="4")}}">word analysis using named entity recognition</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="5")}}">concepts to variables</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="6")}}">derivation graph</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="7")}}">proof of inference rule</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="latex")}}">Latex document</a></LI>
+                <LI>Content tags
+                  <UL>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">word analysis using named entity recognition</a></LI>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expression semantics</a></LI>
+                  </UL>
+                </LI>
+                <LI><a href="{{url_for('roadmap', which_layer="tag_all")}}">tags for sections and words and expressions</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="variables")}}">concepts to variables</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
-              Back to <a href="{{url_for('layers', which_layer="overview")}}">layers overview</a><BR>
+              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR>
             </td>
           </tr>
         </table>
@@ -46,7 +55,7 @@
     </P>
 
     <center>
-    <img src="{{ url_for('static', filename='') }}">
+    <img src="{{ url_for('static', filename='handwritten_notes_for_falling_object_from_infinity.jpg') }}">
     <center>
     <P>
       source: <a href="https://www.youtube.com/watch?v=5F1XcTjpJs4">"Derivation of Gravitational Potential Energy" by Rhett Allain</a>

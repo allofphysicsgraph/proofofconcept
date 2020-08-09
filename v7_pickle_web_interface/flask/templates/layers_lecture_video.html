@@ -18,7 +18,7 @@
   <body>
 
     <center>
-      <H2>Physics Derivation Graph: layers demo</H2>
+      <H2>{{ title }}</H2>
     </center>
 
     <P>
@@ -34,15 +34,22 @@
               Navigation:
               <OL>
                 <LI><B>lecture video</B></LI>
-                <LI><a href="{{url_for('layers', which_layer="1")}}">hand-written notes</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="2")}}">document without decorations</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="3")}}">section document structure</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="4")}}">word analysis using named entity recognition</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="5")}}">concepts to variables</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="6")}}">derivation graph</a></LI>
-                <LI><a href="{{url_for('layers', which_layer="7")}}">proof of inference rule</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="handwritten")}}">hand-written notes</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="latex")}}">Latex document</a></LI>
+                <LI>Content tags
+                  <UL>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">word analysis using named entity recognition</a></LI>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expression semantics</a></LI>
+                  </UL>
+                </LI>
+                <LI><a href="{{url_for('roadmap', which_layer="tag_all")}}">tags for sections and words and expressions</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="variables")}}">concepts to variables</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
-              Back to <a href="{{url_for('layers', which_layer="overview")}}">layers overview</a><BR>
+              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR>
             </td>
           </tr>
         </table>

@@ -1,0 +1,448 @@
+<!-- unlike all other pages, this page does not inherit from _base.html
+     That's because the "sign in" and "navigation" links are not shown at the top of the page -->
+<!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
+<html>
+  <head>
+    <title>Physics Derivation Graph: {{ title }}</title>
+
+    {% include '_js_head.html' %}
+
+    <!-- https://stackoverflow.com/a/15027568/1164295 -->
+    <style type="text/css">
+      fieldset.inline {
+        display: inline;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <center>
+      <H2>{{ title }}</H2>
+    </center>
+    <P>
+      <center>
+        <table border="1">
+          <tr>
+            <td><I><B>Explanation</B></I>: Content MathML using the command <pre><a href="https://dlmf.nist.gov/LaTeXML/">latexmlmath</a> --cmml=- "v=0"</pre>
+              Not all of the nuances from each expression have been correctly translated in Content MathML. Some manual cleanup is required.
+              <P>Because this page uses MathJax, the Presentation MathML is available for each expression by right-clicking on any rendered expression and selecting "Show Math As" and then "MathML code".
+                <P>
+              MathJax has <a href="http://docs.mathjax.org/en/latest/input/mathml.html#content-mathml">an extension for generation of Content MathML</a> but it is not available for v3 of MathJax as of August 2020.
+              <P><I>Who does this work</I>: human using LatexML
+              <P><I>Motive for doing this work</I>: preparation for use with Computer Algebra System
+            </td>
+            <td>
+              Navigation:
+              <OL>
+                <LI><a href="{{url_for('roadmap', which_layer="lecture")}}">lecture video</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="handwritten")}}">hand-written notes</a></LI>
+                <LI><B>Latex document</B></LI>
+                <LI>Content tags
+                  <UL>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">word analysis using named entity recognition</a></LI>
+                    <LI><B>expression semantics</B></LI>
+                  </UL>
+                </LI>
+                <LI><a href="{{url_for('roadmap', which_layer="tag_all")}}">tags for sections and words and expressions</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="variables")}}">concepts to variables</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
+              </OL>
+              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR>
+            </td>
+          </tr>
+        </table>
+      </center>
+    </P>
+
+    <P>
+      source: <a href="https://www.youtube.com/watch?v=5F1XcTjpJs4">"Derivation of Gravitational Potential Energy" by Rhett Allain</a>
+
+    <P>
+	    Suppose an object starts an infinite distance  from a moon and is dropped, falling towards the moon
+		   due to gravitational acceleration.
+      What is the speed of the object when it is distance \(r\) from the moon?
+      <center>
+        <img src="{{ url_for('static', filename='diagrams/mass_falling_from_infinity.png') }}">
+        Figure 1: small mass falling towards a moon from initial position at infinity.
+      </center>
+    <P>
+    The initial condition is
+    <fieldset>
+      <legend>expression as Content MathML</legend>
+      \begin{equation}
+          v(x=\infty) =0
+          \label{eq:initial_velocity}
+      \end{equation}
+      <!-- HTML generated using hilite.me -->
+      <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">    <span style="color: #557799">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+          <span style="color: #007700">&lt;math</span> <span style="color: #0000CC">xmlns=</span><span style="background-color: #fff0f0">&quot;http://www.w3.org/1998/Math/MathML&quot;</span> <span style="color: #0000CC">alttext=</span><span style="background-color: #fff0f0">&quot;v=0&quot;</span> <span style="color: #0000CC">display=</span><span style="background-color: #fff0f0">&quot;block&quot;</span><span style="color: #007700">&gt;</span>
+            <span style="color: #007700">&lt;apply&gt;</span>
+              <span style="color: #007700">&lt;eq/&gt;</span>
+              <span style="color: #007700">&lt;ci&gt;</span>v<span style="color: #007700">&lt;/ci&gt;</span>
+              <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>0<span style="color: #007700">&lt;/cn&gt;</span>
+            <span style="color: #007700">&lt;/apply&gt;</span>
+          <span style="color: #007700">&lt;/math&gt;</span>
+      </pre></div>
+    </fieldset>
+
+    The force acting on the object is
+    <fieldset>
+      <legend>expression as Content MathML</legend>
+    \begin{equation}
+        \vec{F} = \frac{-G m_1 m_2}{x^2} \hat{x}
+        \label{eq:gravitational force}
+    \end{equation}
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">    <span style="color: #557799">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+    <span style="color: #007700">&lt;math</span> <span style="color: #0000CC">xmlns=</span><span style="background-color: #fff0f0">&quot;http://www.w3.org/1998/Math/MathML&quot;</span> <span style="color: #0000CC">alttext=</span><span style="background-color: #fff0f0">&quot;\vec{F}=\frac{-Gm_{1}m_{2}}{x^{2}}\hat{x}&quot;</span> <span style="color: #0000CC">display=</span><span style="background-color: #fff0f0">&quot;block&quot;</span><span style="color: #007700">&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;eq/&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>→<span style="color: #007700">&lt;/ci&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>𝐹<span style="color: #007700">&lt;/ci&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;times/&gt;</span>
+          <span style="color: #007700">&lt;apply&gt;</span>
+            <span style="color: #007700">&lt;divide/&gt;</span>
+            <span style="color: #007700">&lt;apply&gt;</span>
+              <span style="color: #007700">&lt;minus/&gt;</span>
+              <span style="color: #007700">&lt;apply&gt;</span>
+                <span style="color: #007700">&lt;times/&gt;</span>
+                <span style="color: #007700">&lt;ci&gt;</span>𝐺<span style="color: #007700">&lt;/ci&gt;</span>
+                <span style="color: #007700">&lt;apply&gt;</span>
+                  <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+                  <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+                  <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>1<span style="color: #007700">&lt;/cn&gt;</span>
+                <span style="color: #007700">&lt;/apply&gt;</span>
+                <span style="color: #007700">&lt;apply&gt;</span>
+                  <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+                  <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+                  <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+                <span style="color: #007700">&lt;/apply&gt;</span>
+              <span style="color: #007700">&lt;/apply&gt;</span>
+            <span style="color: #007700">&lt;/apply&gt;</span>
+            <span style="color: #007700">&lt;apply&gt;</span>
+              <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>superscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+              <span style="color: #007700">&lt;ci&gt;</span>𝑥<span style="color: #007700">&lt;/ci&gt;</span>
+              <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+            <span style="color: #007700">&lt;/apply&gt;</span>
+          <span style="color: #007700">&lt;/apply&gt;</span>
+          <span style="color: #007700">&lt;apply&gt;</span>
+            <span style="color: #007700">&lt;ci&gt;</span>^<span style="color: #007700">&lt;/ci&gt;</span>
+            <span style="color: #007700">&lt;ci&gt;</span>𝑥<span style="color: #007700">&lt;/ci&gt;</span>
+          <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+    <span style="color: #007700">&lt;/math&gt;</span>
+    </pre></div>
+        </fieldset>
+    The work is calculated using W = \(\delta E\) since the force changes. To find the cumulative work done on the object, integrate over all positions between \(\infty\) and \(r\)
+    <fieldset>
+      <legend>expression as Content MathML</legend>
+    \begin{equation}
+        W = \int_{\infty}^r \vec{F}\cdot d\vec{r}
+        \label{eq:work as function of force}
+    \end{equation}
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span style="color: #007700">&lt;math</span> <span style="color: #0000CC">xmlns=</span><span style="background-color: #fff0f0">&quot;http://www.w3.org/1998/Math/MathML&quot;</span> <span style="color: #0000CC">alttext=</span><span style="background-color: #fff0f0">&quot;W=\int_{\infty}^{r}\vec{F}\cdot d\vec{r}&quot;</span> <span style="color: #0000CC">display=</span><span style="background-color: #fff0f0">&quot;block&quot;</span><span style="color: #007700">&gt;</span>
+  <span style="color: #007700">&lt;apply&gt;</span>
+    <span style="color: #007700">&lt;eq/&gt;</span>
+    <span style="color: #007700">&lt;ci&gt;</span>𝑊<span style="color: #007700">&lt;/ci&gt;</span>
+    <span style="color: #007700">&lt;apply&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>superscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+          <span style="color: #007700">&lt;int/&gt;</span>
+          <span style="color: #007700">&lt;infinity/&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;ci&gt;</span>𝑟<span style="color: #007700">&lt;/ci&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;ci&gt;</span>⋅<span style="color: #007700">&lt;/ci&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>→<span style="color: #007700">&lt;/ci&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>𝐹<span style="color: #007700">&lt;/ci&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;latexml&quot;</span><span style="color: #007700">&gt;</span>differential-d<span style="color: #007700">&lt;/csymbol&gt;</span>
+          <span style="color: #007700">&lt;apply&gt;</span>
+            <span style="color: #007700">&lt;ci&gt;</span>→<span style="color: #007700">&lt;/ci&gt;</span>
+            <span style="color: #007700">&lt;ci&gt;</span>𝑟<span style="color: #007700">&lt;/ci&gt;</span>
+          <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+    <span style="color: #007700">&lt;/apply&gt;</span>
+  <span style="color: #007700">&lt;/apply&gt;</span>
+<span style="color: #007700">&lt;/math&gt;</span>
+</pre></div>
+
+    </fieldset>
+    Substituting the gravitational force into Eq. \ref{eq:work as function of force},
+    <fieldset>
+      <legend>expression as Content MathML</legend>
+    \begin{equation}
+        W = \int_{\infty}^r \frac{-G m_1 m_2}{x^2} dx
+    \end{equation}
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span style="color: #007700">&lt;math</span> <span style="color: #0000CC">xmlns=</span><span style="background-color: #fff0f0">&quot;http://www.w3.org/1998/Math/MathML&quot;</span> <span style="color: #0000CC">alttext=</span><span style="background-color: #fff0f0">&quot;W=\int_{\infty}^{r}\frac{-Gm_{1}m_{2}}{x^{2}}dx&quot;</span> <span style="color: #0000CC">display=</span><span style="background-color: #fff0f0">&quot;block&quot;</span><span style="color: #007700">&gt;</span>
+  <span style="color: #007700">&lt;apply&gt;</span>
+    <span style="color: #007700">&lt;eq/&gt;</span>
+    <span style="color: #007700">&lt;ci&gt;</span>𝑊<span style="color: #007700">&lt;/ci&gt;</span>
+    <span style="color: #007700">&lt;apply&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>superscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+          <span style="color: #007700">&lt;int/&gt;</span>
+          <span style="color: #007700">&lt;infinity/&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;ci&gt;</span>𝑟<span style="color: #007700">&lt;/ci&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;times/&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;divide/&gt;</span>
+          <span style="color: #007700">&lt;apply&gt;</span>
+            <span style="color: #007700">&lt;minus/&gt;</span>
+            <span style="color: #007700">&lt;apply&gt;</span>
+              <span style="color: #007700">&lt;times/&gt;</span>
+              <span style="color: #007700">&lt;ci&gt;</span>𝐺<span style="color: #007700">&lt;/ci&gt;</span>
+              <span style="color: #007700">&lt;apply&gt;</span>
+                <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+                <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+                <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>1<span style="color: #007700">&lt;/cn&gt;</span>
+              <span style="color: #007700">&lt;/apply&gt;</span>
+              <span style="color: #007700">&lt;apply&gt;</span>
+                <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+                <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+                <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+              <span style="color: #007700">&lt;/apply&gt;</span>
+            <span style="color: #007700">&lt;/apply&gt;</span>
+          <span style="color: #007700">&lt;/apply&gt;</span>
+          <span style="color: #007700">&lt;apply&gt;</span>
+            <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>superscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+            <span style="color: #007700">&lt;ci&gt;</span>𝑥<span style="color: #007700">&lt;/ci&gt;</span>
+            <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+          <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;latexml&quot;</span><span style="color: #007700">&gt;</span>differential-d<span style="color: #007700">&lt;/csymbol&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>𝑥<span style="color: #007700">&lt;/ci&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+    <span style="color: #007700">&lt;/apply&gt;</span>
+  <span style="color: #007700">&lt;/apply&gt;</span>
+<span style="color: #007700">&lt;/math&gt;</span>
+</pre></div>
+    </fieldset>
+    Factor out the constants,
+    <fieldset>
+      <legend>expression as Content MathML</legend>
+    \begin{equation}
+        W = -G m_1 m_2\int_{\infty}^r \frac{1}{x^2} dx
+    \end{equation}
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+    <span style="color: #007700">&lt;math</span> <span style="color: #0000CC">xmlns=</span><span style="background-color: #fff0f0">&quot;http://www.w3.org/1998/Math/MathML&quot;</span> <span style="color: #0000CC">alttext=</span><span style="background-color: #fff0f0">&quot;W=-Gm_{1}m_{2}\int_{\infty}^{r}\frac{1}{x^{2}}dx&quot;</span> <span style="color: #0000CC">display=</span><span style="background-color: #fff0f0">&quot;block&quot;</span><span style="color: #007700">&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;eq/&gt;</span>
+        <span style="color: #007700">&lt;ci&gt;</span>𝑊<span style="color: #007700">&lt;/ci&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;minus/&gt;</span>
+          <span style="color: #007700">&lt;apply&gt;</span>
+            <span style="color: #007700">&lt;times/&gt;</span>
+            <span style="color: #007700">&lt;ci&gt;</span>𝐺<span style="color: #007700">&lt;/ci&gt;</span>
+            <span style="color: #007700">&lt;apply&gt;</span>
+              <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+              <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+              <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>1<span style="color: #007700">&lt;/cn&gt;</span>
+            <span style="color: #007700">&lt;/apply&gt;</span>
+            <span style="color: #007700">&lt;apply&gt;</span>
+              <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+              <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+              <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+            <span style="color: #007700">&lt;/apply&gt;</span>
+            <span style="color: #007700">&lt;apply&gt;</span>
+              <span style="color: #007700">&lt;apply&gt;</span>
+                <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>superscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+                <span style="color: #007700">&lt;apply&gt;</span>
+                  <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+                  <span style="color: #007700">&lt;int/&gt;</span>
+                  <span style="color: #007700">&lt;infinity/&gt;</span>
+                <span style="color: #007700">&lt;/apply&gt;</span>
+                <span style="color: #007700">&lt;ci&gt;</span>𝑟<span style="color: #007700">&lt;/ci&gt;</span>
+              <span style="color: #007700">&lt;/apply&gt;</span>
+              <span style="color: #007700">&lt;apply&gt;</span>
+                <span style="color: #007700">&lt;times/&gt;</span>
+                <span style="color: #007700">&lt;apply&gt;</span>
+                  <span style="color: #007700">&lt;divide/&gt;</span>
+                  <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>1<span style="color: #007700">&lt;/cn&gt;</span>
+                  <span style="color: #007700">&lt;apply&gt;</span>
+                    <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>superscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+                    <span style="color: #007700">&lt;ci&gt;</span>𝑥<span style="color: #007700">&lt;/ci&gt;</span>
+                    <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+                  <span style="color: #007700">&lt;/apply&gt;</span>
+                <span style="color: #007700">&lt;/apply&gt;</span>
+                <span style="color: #007700">&lt;apply&gt;</span>
+                  <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;latexml&quot;</span><span style="color: #007700">&gt;</span>differential-d<span style="color: #007700">&lt;/csymbol&gt;</span>
+                  <span style="color: #007700">&lt;ci&gt;</span>𝑥<span style="color: #007700">&lt;/ci&gt;</span>
+                <span style="color: #007700">&lt;/apply&gt;</span>
+              <span style="color: #007700">&lt;/apply&gt;</span>
+            <span style="color: #007700">&lt;/apply&gt;</span>
+          <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+    <span style="color: #007700">&lt;/math&gt;</span>
+    </pre></div>
+    </fieldset>
+    which leads to
+    <fieldset>
+      <legend>expression as Content MathML</legend>
+    \begin{equation}
+        W = \frac{G m_1 m_2}{r}
+    \end{equation}
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span style="color: #007700">&lt;math</span> <span style="color: #0000CC">xmlns=</span><span style="background-color: #fff0f0">&quot;http://www.w3.org/1998/Math/MathML&quot;</span> <span style="color: #0000CC">alttext=</span><span style="background-color: #fff0f0">&quot;W=\frac{Gm_{1}m_{2}}{r}&quot;</span> <span style="color: #0000CC">display=</span><span style="background-color: #fff0f0">&quot;block&quot;</span><span style="color: #007700">&gt;</span>
+  <span style="color: #007700">&lt;apply&gt;</span>
+    <span style="color: #007700">&lt;eq/&gt;</span>
+    <span style="color: #007700">&lt;ci&gt;</span>𝑊<span style="color: #007700">&lt;/ci&gt;</span>
+    <span style="color: #007700">&lt;apply&gt;</span>
+      <span style="color: #007700">&lt;divide/&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;times/&gt;</span>
+        <span style="color: #007700">&lt;ci&gt;</span>𝐺<span style="color: #007700">&lt;/ci&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+          <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>1<span style="color: #007700">&lt;/cn&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+          <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+      <span style="color: #007700">&lt;ci&gt;</span>𝑟<span style="color: #007700">&lt;/ci&gt;</span>
+    <span style="color: #007700">&lt;/apply&gt;</span>
+  <span style="color: #007700">&lt;/apply&gt;</span>
+<span style="color: #007700">&lt;/math&gt;</span>
+</pre></div>
+    </fieldset>
+    Another definition of work is that it is the change in energy for a system: \(W = \Delta E \)
+    Because the initial velocity was zero, the work here is
+    <fieldset>
+      <legend>expression as Content MathML</legend>
+    \begin{equation}
+        W = \Delta KE
+    \end{equation}
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+    <span style="color: #007700">&lt;math</span> <span style="color: #0000CC">xmlns=</span><span style="background-color: #fff0f0">&quot;http://www.w3.org/1998/Math/MathML&quot;</span> <span style="color: #0000CC">alttext=</span><span style="background-color: #fff0f0">&quot;W=\Delta KE&quot;</span> <span style="color: #0000CC">display=</span><span style="background-color: #fff0f0">&quot;block&quot;</span><span style="color: #007700">&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;eq/&gt;</span>
+        <span style="color: #007700">&lt;ci&gt;</span>𝑊<span style="color: #007700">&lt;/ci&gt;</span>
+        <span style="color: #007700">&lt;ci&gt;</span>ΔKE<span style="color: #007700">&lt;/ci&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+    <span style="color: #007700">&lt;/math&gt;</span>
+    </pre></div>
+    </fieldset>
+    Thus we can combine the two definitions of work to get
+    <fieldset>
+      <legend>expression as Content MathML</legend>
+    \begin{equation}
+        W = \frac{1}{2} m_1 v^2 = \frac{G m_1 m_2}{r}
+    \end{equation}
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span style="color: #007700">&lt;math</span> <span style="color: #0000CC">xmlns=</span><span style="background-color: #fff0f0">&quot;http://www.w3.org/1998/Math/MathML&quot;</span> <span style="color: #0000CC">alttext=</span><span style="background-color: #fff0f0">&quot;W=\frac{1}{2}m_{1}v^{2}=\frac{Gm_{1}m_{2}}{r}&quot;</span> <span style="color: #0000CC">display=</span><span style="background-color: #fff0f0">&quot;block&quot;</span><span style="color: #007700">&gt;</span>
+  <span style="color: #007700">&lt;apply&gt;</span>
+    <span style="color: #007700">&lt;and/&gt;</span>
+    <span style="color: #007700">&lt;apply&gt;</span>
+      <span style="color: #007700">&lt;eq/&gt;</span>
+      <span style="color: #007700">&lt;ci&gt;</span>𝑊<span style="color: #007700">&lt;/ci&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;times/&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;divide/&gt;</span>
+          <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>1<span style="color: #007700">&lt;/cn&gt;</span>
+          <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+          <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>1<span style="color: #007700">&lt;/cn&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>superscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>𝑣<span style="color: #007700">&lt;/ci&gt;</span>
+          <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+    <span style="color: #007700">&lt;/apply&gt;</span>
+    <span style="color: #007700">&lt;apply&gt;</span>
+      <span style="color: #007700">&lt;eq/&gt;</span>
+      <span style="color: #007700">&lt;share</span> <span style="color: #0000CC">href=</span><span style="background-color: #fff0f0">&quot;#Ex1.m1.sh1&quot;</span><span style="color: #007700">/&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;divide/&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;times/&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>𝐺<span style="color: #007700">&lt;/ci&gt;</span>
+          <span style="color: #007700">&lt;apply&gt;</span>
+            <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+            <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+            <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>1<span style="color: #007700">&lt;/cn&gt;</span>
+          <span style="color: #007700">&lt;/apply&gt;</span>
+          <span style="color: #007700">&lt;apply&gt;</span>
+            <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+            <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+            <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+          <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;ci&gt;</span>𝑟<span style="color: #007700">&lt;/ci&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+    <span style="color: #007700">&lt;/apply&gt;</span>
+  <span style="color: #007700">&lt;/apply&gt;</span>
+<span style="color: #007700">&lt;/math&gt;</span>
+</pre></div>
+
+    </fieldset>
+    The \(m_1\) cancels, leaving
+    <fieldset>
+      <legend>expression as Content MathML</legend>
+    \begin{equation}
+     v(r) = \sqrt{\frac{2Gm_2}{r}}
+    \end{equation}
+    <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #557799">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span style="color: #007700">&lt;math</span> <span style="color: #0000CC">xmlns=</span><span style="background-color: #fff0f0">&quot;http://www.w3.org/1998/Math/MathML&quot;</span> <span style="color: #0000CC">alttext=</span><span style="background-color: #fff0f0">&quot;v=\sqrt{\frac{2Gm_{2}}{r}}&quot;</span> <span style="color: #0000CC">display=</span><span style="background-color: #fff0f0">&quot;block&quot;</span><span style="color: #007700">&gt;</span>
+  <span style="color: #007700">&lt;apply&gt;</span>
+    <span style="color: #007700">&lt;eq/&gt;</span>
+    <span style="color: #007700">&lt;ci&gt;</span>𝑣<span style="color: #007700">&lt;/ci&gt;</span>
+    <span style="color: #007700">&lt;apply&gt;</span>
+      <span style="color: #007700">&lt;root/&gt;</span>
+      <span style="color: #007700">&lt;apply&gt;</span>
+        <span style="color: #007700">&lt;divide/&gt;</span>
+        <span style="color: #007700">&lt;apply&gt;</span>
+          <span style="color: #007700">&lt;times/&gt;</span>
+          <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+          <span style="color: #007700">&lt;ci&gt;</span>𝐺<span style="color: #007700">&lt;/ci&gt;</span>
+          <span style="color: #007700">&lt;apply&gt;</span>
+            <span style="color: #007700">&lt;csymbol</span> <span style="color: #0000CC">cd=</span><span style="background-color: #fff0f0">&quot;ambiguous&quot;</span><span style="color: #007700">&gt;</span>subscript<span style="color: #007700">&lt;/csymbol&gt;</span>
+            <span style="color: #007700">&lt;ci&gt;</span>𝑚<span style="color: #007700">&lt;/ci&gt;</span>
+            <span style="color: #007700">&lt;cn</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;integer&quot;</span><span style="color: #007700">&gt;</span>2<span style="color: #007700">&lt;/cn&gt;</span>
+          <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;/apply&gt;</span>
+        <span style="color: #007700">&lt;ci&gt;</span>𝑟<span style="color: #007700">&lt;/ci&gt;</span>
+      <span style="color: #007700">&lt;/apply&gt;</span>
+    <span style="color: #007700">&lt;/apply&gt;</span>
+  <span style="color: #007700">&lt;/apply&gt;</span>
+<span style="color: #007700">&lt;/math&gt;</span>
+</pre></div>
+    </fieldset>
+
+
+    {% include '_footer.html' %}
+
+    </body>
+</html>
