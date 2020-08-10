@@ -32,16 +32,16 @@
               <P><I>Who does this work</I>: human using LatexML
               <P><I>Motive for doing this work</I>: preparation for use with Computer Algebra System. Caveat: no CAS currently consumes Content MathML as input.
             </td>
-            <td>
+            <td width="300">
               Navigation:
               <OL>
                 <LI><a href="{{url_for('roadmap', which_layer="lecture")}}">lecture video</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="handwritten")}}">hand-written notes</a></LI>
-                <LI><B>Latex document</B></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="latex")}}">Latex document</a></LI>
                 <LI>Content tags
                   <UL>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
-                    <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">word analysis using named entity recognition</a></LI>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">tagging words</a></LI>
                     <LI><B>expression semantics</B></LI>
                   </UL>
                 </LI>
@@ -140,7 +140,7 @@
     <span style="color: #007700">&lt;/math&gt;</span>
     </pre></div>
         </fieldset>
-    The work is calculated using W = \(\delta E\) since the force changes. To find the cumulative work done on the object, integrate over all positions between \(\infty\) and \(r\)
+    The work is calculated using W = \(\Delta E\) since the force changes. To find the cumulative work done on the object, integrate over all positions between \(\infty\) and \(r\)
     <fieldset>
       <legend>expression as Content MathML</legend>
     \begin{equation}

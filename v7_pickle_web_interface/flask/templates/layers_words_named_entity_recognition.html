@@ -26,12 +26,12 @@
           <tr>
             <td valign="top"><P>&nbsp;</P><P><I><B>Explanation</B></I>: Identify relevant words and Physics-specific keywords in each sentence.
               Optionally, link these keywords to <a href="http://sciencewise.info/">ScienceWise</a> database or Wikipedia entry.
-              (Here the keywords are visually indicated using labeled boxes.)
+              <BR>Here the keywords are visually indicated using labeled boxes.
                 <P><I>Who does this work</I>: human content creator.<BR>
-                  A machine learning algorithm using natural language processing techniques could potentially do this work.
+                  A machine learning algorithm using natural language processing techniques (<a href="https://en.wikipedia.org/wiki/Named-entity_recognition">Named Entity Recognition</a> tailored to a given domain) could potentially do this work.
                 <P><I>Motive for doing this work</I>: linking words as concepts to provide clear definition of terms.
             </td>
-            <td>
+            <td width="300">
               Navigation:
               <OL>
                 <LI><a href="{{url_for('roadmap', which_layer="lecture")}}">lecture video</a></LI>
@@ -40,7 +40,7 @@
                 <LI>Content tags
                   <UL>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
-                    <LI><B>word analysis using named entity recognition</B></LI>
+                    <LI><B>tagging words</B></LI>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expression semantics</a></LI>
                   </UL>
                 </LI>
@@ -175,7 +175,7 @@
       <legend>measure</legend>
     work
     </fieldset>
-    is calculated using W = \(\delta E\) since the
+    is calculated using W = \(\Delta E\) since the
     <fieldset class="inline">
       <legend>measure</legend>
       force

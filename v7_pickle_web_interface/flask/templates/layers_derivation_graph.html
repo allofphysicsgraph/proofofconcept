@@ -31,7 +31,7 @@
               <P><I>Who does the work</I>: manual entry using a webform.
               <P><I>Motivation for the work</I>: clearer connectivity of derivation steps. Enables <a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a>.
             </td>
-            <td>
+            <td width="300">
               Navigation:
               <OL>
                 <LI><a href="{{url_for('roadmap', which_layer="lecture")}}">lecture video</a></LI>
@@ -40,7 +40,7 @@
                 <LI>Content tags
                   <UL>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
-                    <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">word analysis using named entity recognition</a></LI>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">tagging words</a></LI>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expression semantics</a></LI>
                   </UL>
                 </LI>
@@ -86,8 +86,6 @@
       </center>
     </fieldset>
     <P>
-      <fieldset>
-        <legend>initial condition</legend>
     The initial condition is
     \begin{equation}
         v(x=\infty) =0
@@ -100,8 +98,7 @@
         \vec{F} = \frac{-G m_1 m_2}{x^2} \hat{x}
         \label{eq:gravitational force}
     \end{equation}
-      </fieldset>
-    The work is calculated using W = \(\delta E\) since the force changes. To find the cumulative work done on the object, integrate over all positions between \(\infty\) and \(r\)
+    The work is calculated using W = \(\Delta E\) since the force changes. To find the cumulative work done on the object, integrate over all positions between \(\infty\) and \(r\)
     \begin{equation}
         W = \int_{\infty}^r \vec{F}\cdot d\vec{r}
         \label{eq:work as function of force}

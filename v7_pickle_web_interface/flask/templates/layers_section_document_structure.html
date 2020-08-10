@@ -25,11 +25,12 @@
         <table border="1" width="80%">
           <tr>
             <td valign="top"><P>&nbsp;</P><P><I><B>Explanation</B></I>: Separate sections using semantic markup like <a href="https://en.wikipedia.org/wiki/OMDoc">OMdoc</a> and <a href="https://github.com/OMdoc/OMDoc/wiki/PhysML
-">PhysML</a>. (This page shows a visual version using boxes rather than the specific implementation.)
+">PhysML</a>.
+<BR>This page shows a visual version using boxes rather than the specific implementation.
               <P><I>Who does this work</I>: human content creator
               <P><I>Motive for doing this work</I>: ease of navigation.
             </td>
-            <td>
+            <td width="300">
               Navigation:
               <OL>
                 <LI><a href="{{url_for('roadmap', which_layer="lecture")}}">lecture video</a></LI>
@@ -38,7 +39,7 @@
                 <LI>Content tags
                   <UL>
                     <LI><B>section document structure</B></LI>
-                    <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">word analysis using named entity recognition</a></LI>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">tagging words</a></LI>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expression semantics</a></LI>
                   </UL>
                 </LI>
@@ -94,7 +95,7 @@
       </fieldset>
     <fieldset>
       <legend>step</legend>
-    The work is calculated using W = \(\delta E\) since the force changes. To find the cumulative work done on the object, integrate over all positions between \(\infty\) and \(r\)
+    The work is calculated using W = \(\Delta E\) since the force changes. To find the cumulative work done on the object, integrate over all positions between \(\infty\) and \(r\)
     \begin{equation}
         W = \int_{\infty}^r \vec{F}\cdot d\vec{r}
         \label{eq:work as function of force}
