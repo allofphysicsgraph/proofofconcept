@@ -8793,6 +8793,98 @@
                     "creation date": "2020-06-14"
                 }
             }
+        },
+        "150507": {
+            "name": "velocity at distance r of object dropped from infinity",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "https://www.youtube.com/watch?v=5F1XcTjpJs4 - Derivation of Gravitational Potential Energy by Rhett Allain",
+            "creation date": "2020-08-10",
+            "steps": {}
+        },
+        "374317": {
+            "name": "velocity at distance r of object dropped from infinity",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "https://www.youtube.com/watch?v=5F1XcTjpJs4 - Derivation of Gravitational Potential Energy by Rhett Allain",
+            "creation date": "2020-08-10",
+            "steps": {
+                "9935422": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "8462685"
+                    ],
+                    "linear index": 1,
+                    "notes": "starting velocity at infinity is zero",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-10"
+                },
+                "1302085": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3470082"
+                    ],
+                    "linear index": 2,
+                    "notes": "https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation#Modern_form",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-10"
+                },
+                "3660209": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9835406"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-10"
+                },
+                "7936249": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "6798426"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-10"
+                },
+                "1153771": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "3470082",
+                        "6798426"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7300369"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-10"
+                },
+                "3633525": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "7300369"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9707318"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-10"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -9681,7 +9773,13 @@
         "6979804": "5646314683",
         "8323044": "2897612567",
         "1809997": "6259833695",
-        "9568206": "7701249282"
+        "9568206": "7701249282",
+        "8462685": "3214170322",
+        "3470082": "5902985919",
+        "9835406": "9652231502",
+        "6798426": "7882872592",
+        "7300369": "3566149658",
+        "9707318": "8405272745"
     },
     "expressions": {
         "2344320475": {
@@ -16395,6 +16493,54 @@
             "notes": "when A = 1",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14"
+        },
+        "3214170322": {
+            "latex": "v(r=\\infty) = 0",
+            "AST": "Symbol('pdg1357')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-10"
+        },
+        "5902985919": {
+            "latex": "\\vec{F} = G \\frac{m_1 m_2}{x^2} \\hat{x}",
+            "AST": "Equality(Mul(Symbol('F'), Symbol('vec')), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('hat'), Symbol('pdg4037')), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))))))",
+            "name": "Newton's law of universal gravitation",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-10"
+        },
+        "9652231502": {
+            "latex": "W = \\Delta E",
+            "AST": "Equality(Symbol('pdg6789'), Mul(Symbol('Delta'), Symbol('E')))",
+            "name": "Work is change in energy",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-10"
+        },
+        "7882872592": {
+            "latex": "W = \\int_{\\infty}^r \\vec{F}\\cdot d\\vec{r}",
+            "AST": "Equality(Symbol('pdg6789'), Integral(Mul(Symbol('F'), Symbol('pdg2530'), Symbol('vec')), Tuple(Symbol('vec'), oo, Symbol('pdg2530'))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-10"
+        },
+        "3566149658": {
+            "latex": "W = \\int_{\\infty}^r \\frac{-G m_1 m_2}{x^2} dx",
+            "AST": "Equality(Symbol('W'), Integral(Mul(Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))), Pow(Pow(Symbol('x'), Integer(2)), Integer(-1))), Tuple(Symbol('x'), oo, Symbol('r'))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-10"
+        },
+        "8405272745": {
+            "latex": "W = -G m_1 m_2\\int_{\\infty}^r \\frac{1}{x^2} dx",
+            "AST": "Equality(Symbol('W'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Mul(Symbol('m_{2}'), Integral(Pow(Pow(Symbol('x'), Integer(2)), Integer(-1)), Tuple(Symbol('x'), oo, Symbol('r'))))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-10"
         }
     },
     "inference rules": {

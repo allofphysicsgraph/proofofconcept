@@ -1368,6 +1368,8 @@ def roadmap(which_layer):
         return render_template("layers_sections_words_contentML.html", title=page_title)
     elif which_layer == "variables":
         return render_template("layers_concepts_to_variables.html", title=page_title)
+    elif which_layer == "all_steps":
+        return render_template("layers_all_steps.html", title=page_title)
     elif which_layer == "pdg":
         return render_template("layers_derivation_graph.html", title=page_title)
     elif which_layer == "CAS_validation":

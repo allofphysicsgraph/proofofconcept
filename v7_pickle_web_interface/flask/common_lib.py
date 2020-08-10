@@ -111,9 +111,14 @@ def read_db(path_to_db: str) -> dict:
     else:
         raise Exception("no connection to sql database")
 
+    loaded_dat = False
     for row in cur.execute("SELECT * FROM data"):
         dat = json.loads(row[0])
+        loaded_dat = True
     conn.close()
+
+    if not loaded_dat:
+        raise Exception("dat not loaded from SQL DB")
 
     # logger.info("[trace end " + trace_id + "]")
     return dat
