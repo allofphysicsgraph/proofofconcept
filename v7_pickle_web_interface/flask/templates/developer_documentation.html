@@ -38,6 +38,7 @@ cat developer_documentation.html |\
     <LI><a href="#run flask container">Run Flask container</a></LI>
     <LI><a href="#run gunicorn container">Run gunicorn container</a></LI>
   </OL>
+  <LI><a href="#how to navigate the codebase">How to Navigate the codebase</a></LI>
   <LI><a href="#frequency period from first principles">Derivation to Graph from First Principles</a></LI>
   <LI><a href="#historical evolution">Historical design evolution</a></LI>
   <OL>
@@ -226,7 +227,32 @@ cat developer_documentation.html |\
 <HR>
 <P>&nbsp;</P>
 
-<H2><a name="frequency period from first principles">Derivation to Graph from First Principles</a></H2>
+<H2><a name="how to navigate the codebase">How to navigate the codebase</a></H2>
+
+Much of the current codebase is focused on managing the numeric IDs
+associated with every facet of the database. This workload is due to not using a property graph representation (e.g., Neo4j). If I used
+Neo4j, I wouldn't need to track all the IDs and I could instead just work with the data.
+I've decided to stick with JSON and managing numeric IDs since I won't
+want to use proprietary software. (Neo4j community edition is open
+source, but I'm wary of the ties to a commercial product.)
+
+<P>
+After checking out the github repo, I navigate to
+<code>proofofconcept/v7_pickle_web_interface/flask</code> and then run
+<code>make dockerlive</code> and then open Firefox to <code>https://localhost:5000</code>.<BR>
+  <I>What happened when that docker container ran and the webpage was opened?</i>
+
+    <P>
+      The entry point for the program is <code>controller.py</code>. That file primarily depends on <code>compute.py</code>
+
+      <P>
+        The website derivationmap.net is run using docker-compose; see <code>proofofconcept/v7_pickle_web_interface</code>
+
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
+
+<H2><a name="frequency period from first principles">Derivation of Graph from First Principles</a></H2>
 
 <!-- this content is derived from
      https://allofphysicsgraph.github.io/proofofconcept/site/how_to_build_the_physics_derivation.html

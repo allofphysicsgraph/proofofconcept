@@ -23,6 +23,19 @@ As of August 2020, a single developer is actively contributing to the project in
 
 <HR> <!-- ************************************************** -->
 <P>
+  <a name="add content">
+    <i>How do I add a new derivation? a new inference rule? a new expression? a new symbol?</i>
+  </a><BR>
+All of these actions require being signed in using your Google account.
+Local account and authenticating with other services (e.g. Github, Gitlab, Facebook) are not currently supported.
+(If you want to advocate or request addition of a authentication site, submit <a href="https://github.com/allofphysicsgraph/proofofconcept/issues/new?assignees=&labels=&template=feature_request.md&title=">a feature request</a>.)
+
+<P>
+  Once you are signed in, go to the <a href="https://derivationmap.net/navigation?referrer=faq">navigation page</a>. There is a link to "<a href="https://derivationmap.net/start_new_derivation/?referrer=faq">starting a new derivation</a>".
+  For inference rules, expressions, and symbols first go to the review page and then scroll to the bottom.
+
+<HR> <!-- ************************************************** -->
+<P>
   <a name="login">
     <i>Why is a login required for some links and actions?</i>
   </a><BR>
@@ -33,6 +46,22 @@ As of August 2020, a single developer is actively contributing to the project in
       <img src="{{ url_for('static', filename='google-login-2.png')}}" width="200">
     </center>
 </P>
+
+<HR> <!-- ************************************************** -->
+<P>
+  <a name="database from site to repo">
+<i>How does data entered into the site get to the Physics Derivation Graph github repo?</i>
+</a><BR>
+  Content entered through the web interface is dumped into a JSON file
+  on the DigitalOcean virtual private server.
+  The project owner manually uploads code from that server to the github
+  repo for it to become part of the "official" source code.
+  Alternatively, a person could enter their derivation, download the
+  JSON file, and submit a pull request to the repo.
+
+<P>
+  That process is not streamlined because submissions need to be manually reviewed prior to adding them.
+  A user should not be able to add profanity or spam to the database.
 
 <HR> <!-- ************************************************** -->
 <P>
@@ -106,6 +135,9 @@ Each of these use cases involve significant amounts of tedious data entry and le
     Feel free to create a fork.</LI>
 </UL>
 
+
+
+
 <HR> <!-- ************************************************** -->
 <P>
 <a name="contact">
@@ -113,8 +145,15 @@ Each of these use cases involve significant amounts of tedious data entry and le
 </a><BR>
 Email is the best method: ben.is.located AT gmail.com
 <P>
-  Also, there is a <a href="https://gitter.im/allofphysicsgraph/Lobby">gitter channel</a> available.
+  Also, there is a <a href="https://gitter.im/allofphysicsgraph/Lobby">gitter channel</a> available for developers.
 </P>
+<P>
+  The <a href="https://groups.google.com/g/physics-derivation-graph">PDG Google Group</a> is for
+  community announcements,
+      updates,
+      summaries of status,
+     documenting strategic decisions, and
+     questions from users.
 
 <HR> <!-- ************************************************** -->
 <!-- <H3>Scope and Definitions</H3> -->
@@ -123,6 +162,27 @@ Email is the best method: ben.is.located AT gmail.com
 </a><BR>
 An inference rule is the atomic step of logic that relates two mathematical expressions. See the full explanation <a href="{{ url_for('user_documentation') }}?referrer=faq#inference rules">in the documentation</a>.
 <P>
+
+<HR> <!-- ************************************************** -->
+  <a name="generate output from inference rule">
+<P><I>Why does the user provide the input expressions, inference rule, and outputs? Why not generate the output from the inputs + inference rule?</I>
+  </a><BR>
+    In principle this is feasible in the Physics Derivation Graph. 
+    With the user providing the input expressions and inference rules (plus any needed arguments), the outputs are deterministic.
+    For example, starting with the expression
+    \begin{equation}
+a = b
+\end{equation}
+the user instructs the software to apply the inference rule "multiply both sides by x" where \(x=2\).
+Then the software produces the output
+\begin{equation}
+2 a = 2 b
+\end{equation}
+The constraint is that the Computer Algebra System used in the PDG (SymPy) is not capable of handling all inference rules or all expressions.
+Currently in the Physics Derivation Graph the user provides Latex, which gets converted (with help from the user) to SymPy.
+SymPy may eventually have the capability of deterministically applying inference rules.
+That would require investment in the Latex parser and Physics libraries.
+
 
 <HR> <!-- ************************************************** -->
 <P>
@@ -380,16 +440,32 @@ Separate from that, a unique identifier is also need for inference rules to dist
 <HR> <!-- ************************************************** -->
 <P>
   <a name="who is audience">
-<i>Who is the audience for the Physics Derivation Graph?</i>
-</a><BR>
-<a href="{{ url_for('user_documentation')}}?referrer=faq#audience:students">Students</a>,
-<a href="{{ url_for('user_documentation')}}?referrer=faq#audience:teachers">teachers</a>,
-<a href="{{ url_for('user_documentation')}}?referrer=faq#audience:researchers">researchers</a>.
+  <i>Who is the audience for the Physics Derivation Graph?</i>
+  </a><BR>
+  <a href="{{ url_for('user_documentation')}}?referrer=faq#audience:students">Students</a>,
+  <a href="{{ url_for('user_documentation')}}?referrer=faq#audience:teachers">teachers</a>,
+  <a href="{{ url_for('user_documentation')}}?referrer=faq#audience:researchers">researchers</a>.
+  <P>
+  <center>
+    <img src="{{ url_for('static', filename='teacher_and_students.jpg') }}">
+    <!-- source: https://www.bls.gov/ooh/education-training-and-library/high-school-teachers.htm#tab-2 -->
+  </center>
+
+</P>
+
+<HR> <!-- ************************************************** -->
 <P>
-<center>
-  <img src="{{ url_for('static', filename='teacher_and_students.jpg') }}">
-  <!-- source: https://www.bls.gov/ooh/education-training-and-library/high-school-teachers.htm#tab-2 -->
-</center>
+  <a name="learn Physics">
+<I>Is there an alternative to the web interface for adding content?</I>
+</a><BR>
+
+  There previously was a command-line prompt written in Python that facilitated content entry.
+<P>
+  Investment in a command-line input tool was stopped and focus was shifted to an
+web-based input. Rendering the Latex and creating a graph of the
+content are not well-suited to the command line. I ended up always
+needing to open a PDF or a PNG or a webpage, so I decided to use the
+webpage for both input and review.
 
 </P>
 
@@ -398,7 +474,13 @@ Separate from that, a unique identifier is also need for inference rules to dist
   <a name="learn Physics">
 <I>Is the Physics Derivation Graph a good way to learn Physics?</I>
 </a><BR>
-No. For tips on how to learn Physics,<BR>
+No.  The project is not intended to facilitate education -- it is not a
+replacement of textbooks which contain written explanations and pictures.
+There is not a plan or expectation that teachers would use the Physics Derivation Graph to convey
+knowledge to their students.
+
+<P>
+For tips on how to learn Physics,<BR>
   <I>(begin quote)</I>
   <blockquote>
     <UL>
