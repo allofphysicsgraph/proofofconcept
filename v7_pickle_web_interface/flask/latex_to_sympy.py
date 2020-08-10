@@ -221,6 +221,14 @@ def remove_latex_presention_markings(latex_expr_str: str) -> str:
 
     logger.debug("latex to be cleaned: " + latex_expr_str)
 
+    if "\\left." in latex_expr_str:
+        latex_expr_str = latex_expr_str.replace("\\left.", "")
+    if "\\right." in latex_expr_str:
+        latex_expr_str = latex_expr_str.replace("\\right.", "")
+    if "\\left|" in latex_expr_str:
+        latex_expr_str = latex_expr_str.replace("\\left|", "|")
+    if "\\right|" in latex_expr_str:
+        latex_expr_str = latex_expr_str.replace("\\right|", "|")
     if "\\left(" in latex_expr_str:
         latex_expr_str = latex_expr_str.replace("\\left(", "(")
     if "\\right)" in latex_expr_str:
@@ -285,7 +293,7 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str):
         sympy_expr = parse_latex(latex_expr_str)
     except Exception as err:
         logger.error(str(err))
-        return parse_latex("error")
+        sympy_expr = parse_latex("latex error")
 
     logger.debug("Sympy expression = %s", str(sympy_expr))
 
