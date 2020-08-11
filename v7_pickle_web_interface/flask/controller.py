@@ -1334,7 +1334,7 @@ def static_dir():
 @app.route("/roadmap", methods=["GET", "POST"])
 def layers_without_arg():
     return render_template(
-        "layers_overview.html", title="Roadmap for Formal Science Content"
+        "layers_overview.html", title="Roadmap for Formal Mathematical Physics Content"
     )
 
 
@@ -1343,7 +1343,7 @@ def roadmap(which_layer):
     """
     exploration of layering formalization
     """
-    page_title = "Roadmap for Formal Science Content"
+    page_title = "Roadmap for Formal Mathematical Physics Content"
     if which_layer == "overview":
         return render_template("layers_overview.html", title=page_title)
     elif which_layer == "lecture":
@@ -1374,6 +1374,12 @@ def roadmap(which_layer):
         return render_template("layers_derivation_graph.html", title=page_title)
     elif which_layer == "CAS_validation":
         return render_template("layers_validate_steps.html", title=page_title)
+    elif which_layer == "numeric_id":
+        return render_template(
+            "layers_replace_variables_with_numeric_id.html", title=page_title
+        )
+    elif which_layer == "dimensional_validation":
+        return render_template("layers_dimensional_validation.html", title=page_title)
     elif which_layer == "proof":
         return render_template("layers_proof_of_inference_rule.html", title=page_title)
     else:

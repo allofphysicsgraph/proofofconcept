@@ -8876,6 +8876,48 @@
                     "notes": "",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-08-10"
+                },
+                "3433370": {
+                    "inf rule": "evaluate definite integral",
+                    "inputs": [
+                        "9707318"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5818573"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "1962578": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "5818573"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2429271"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "3576436": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "2429271"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4947999"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
                 }
             }
         }
@@ -9772,7 +9814,10 @@
         "9835406": "9652231502",
         "6798426": "7882872592",
         "7300369": "3566149658",
-        "9707318": "8405272745"
+        "9707318": "8405272745",
+        "5818573": "5596822289",
+        "2429271": "2061086175",
+        "4947999": "4393670960"
     },
     "expressions": {
         "2344320475": {
@@ -16534,6 +16579,30 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-10"
+        },
+        "5596822289": {
+            "latex": "W = -G m_1 m_2 \\left(\\left.\\frac{-1}{x}\\right|^r_{\\infty}\\right)",
+            "AST": "Equality(Symbol('W'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "2061086175": {
+            "latex": "W = -G m_1 m_2 \\left(\\frac{-1}{r} - \\frac{-1}{\\infty}\\right)",
+            "AST": "Equality(Symbol('W'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Function('m_{2}')(Mul(Integer(-1), Pow(Symbol('r'), Integer(-1))))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "4393670960": {
+            "latex": "W = \\frac{G m_1 m_2}{r}",
+            "AST": "Equality(Symbol('W'), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
         }
     },
     "inference rules": {

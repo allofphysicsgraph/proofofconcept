@@ -37,12 +37,13 @@ logger = logging.getLogger(__name__)
 #    redis_pool = redis.ConnectionPool(host='db', port=6379, db=0)
 
 
-def create_sql_connection(db_file):
+def create_sql_connection(db_file: str):
     """
     If SQL is slow, investigate use of WAL
     https://www.sqlite.org/wal.html
     https://charlesleifer.com/blog/going-fast-with-sqlite-and-python/
-    >>>
+
+    >>> create_sql_connection("physics_derivation_graph.sqlite3")
     """
     #    trace_id = str(random.randint(1000000, 9999999))
     #    logger.info("[trace start " + trace_id + "]")
@@ -55,7 +56,7 @@ def create_sql_connection(db_file):
         except sqlite3.Error:
             logger.error(str(sqlite3.Error))
             raise Exception(str(sqlite3.Error))
-    else:
+    else:  # file does not exist
         logger.info(db_file + " does not seem to exist; creating it")
         # logger.info("[trace end " + trace_id + "]")
         return sqlite3.connect(db_file)
@@ -65,7 +66,8 @@ def create_sql_connection(db_file):
 
 def validate_content(dat: dict) -> None:
     """
-    >>> validate_content()
+    >>> dat = {}
+    >>> validate_content(dat)
     """
     try:
         validate(instance=dat, schema=json_schema.schema)
@@ -77,7 +79,7 @@ def validate_content(dat: dict) -> None:
 
 def read_db(path_to_db: str) -> dict:
     """
-    >>> read_db('data.json')
+    >>> read_db('physics_derivation_graph.sqlite3')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -127,7 +129,7 @@ def read_db(path_to_db: str) -> dict:
 def write_db(path_to_db: str, dat: dict) -> None:
     """
     >>> dat = {}
-    >>> write_db('data.json', dat)
+    >>> write_db('physics_derivation_graph.sqlite3', dat)
     [trace] compute: write_db
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -178,7 +180,10 @@ def write_db(path_to_db: str, dat: dict) -> None:
 
 def json_to_sql(path_to_json: str, path_to_sql: str) -> None:
     """
-    >>>
+    When the website is initialized, the first step is to load the content
+    from JSON into the SQL database
+
+    >>> json_to_sql("data.json", "physics_derivation_graph.sqlite3")
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")

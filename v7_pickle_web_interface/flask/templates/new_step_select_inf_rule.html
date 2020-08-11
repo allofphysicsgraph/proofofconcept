@@ -2,7 +2,10 @@
 {% block content %}
 
 
-<P>Select an inference rule to create a new step for {{ dat["derivations"][deriv_id]["name"] }}
+<P>Select an inference rule to create a new step for 
+  <a href="{{url_for("review_derivation",
+                        deriv_id=deriv_id,
+                        referrer="select_derivation_step_to_edit")}}">{{ dat["derivations"][deriv_id]["name"] }}</a>
 
 <!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
 
