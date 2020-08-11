@@ -16845,7 +16845,7 @@
         },
         "7882872592": {
             "latex": "W_{\\rm to\\ system} = \\int_{\\infty}^r \\vec{F}\\cdot d\\vec{r}",
-            "AST": "Equality(Symbol('W'), Integral(Mul(Symbol('F'), Symbol('pdg2530'), Symbol('vec')), Tuple(Symbol('vec'), oo, Symbol('pdg2530'))))",
+            "AST": "Equality(Symbol('pdg9372'), Integral(Mul(Symbol('F'), Symbol('pdg2530'), Symbol('vec')), Tuple(Symbol('vec'), oo, Symbol('pdg2530'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16853,7 +16853,7 @@
         },
         "3566149658": {
             "latex": "W_{\\rm to\\ system} = \\int_{\\infty}^r \\frac{-G m_1 m_2}{x^2} dx",
-            "AST": "Equality(Symbol('W'), Integral(Mul(Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))), Pow(Pow(Symbol('x'), Integer(2)), Integer(-1))), Tuple(Symbol('x'), oo, Symbol('r'))))",
+            "AST": "Equality(Symbol('pdg9372'), Integral(Mul(Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))), Pow(Pow(Symbol('x'), Integer(2)), Integer(-1))), Tuple(Symbol('x'), oo, Symbol('r'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16861,7 +16861,7 @@
         },
         "8405272745": {
             "latex": "W_{\\rm to\\ system} = -G m_1 m_2\\int_{\\infty}^r \\frac{1}{x^2} dx",
-            "AST": "Equality(Symbol('W'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Mul(Symbol('m_{2}'), Integral(Pow(Pow(Symbol('x'), Integer(2)), Integer(-1)), Tuple(Symbol('x'), oo, Symbol('r'))))))))",
+            "AST": "Equality(Symbol('pdg9372'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Mul(Symbol('m_{2}'), Integral(Pow(Pow(Symbol('x'), Integer(2)), Integer(-1)), Tuple(Symbol('x'), oo, Symbol('r'))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16869,7 +16869,7 @@
         },
         "5596822289": {
             "latex": "W_{\\rm to\\ system} = -G m_1 m_2 \\left(\\left.\\frac{-1}{x}\\right|^r_{\\infty}\\right)",
-            "AST": "Equality(Symbol('W'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
+            "AST": "Equality(Symbol('pdg9372'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16877,7 +16877,7 @@
         },
         "2061086175": {
             "latex": "W_{\\rm to\\ system} = -G m_1 m_2 \\left(\\frac{-1}{r} - \\frac{-1}{\\infty}\\right)",
-            "AST": "Equality(Symbol('W'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Function('m_{2}')(Mul(Integer(-1), Pow(Symbol('r'), Integer(-1))))))))",
+            "AST": "Equality(Symbol('pdg9372'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Function('m_{2}')(Mul(Integer(-1), Pow(Symbol('r'), Integer(-1))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16885,7 +16885,7 @@
         },
         "4393670960": {
             "latex": "W_{\\rm to\\ system} = \\frac{G m_1 m_2}{r}",
-            "AST": "Equality(Symbol('W'), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
+            "AST": "Equality(Symbol('pdg9372'), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16897,11 +16897,11 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
             "name": "Work is change in energy",
-            "AST": ""
+            "AST": "Equality(Symbol('pdg6191'), Symbol('5734'))"
         },
         "8049905441": {
             "latex": "\\Delta KE = KE_{\\rm final} - KE_{\\rm initial}",
-            "AST": "Equality(Mul(Symbol('Delta'), Mul(Symbol('E'), Symbol('K'))), Add(Symbol('KEfinal'), Mul(Integer(-1), Symbol('KEinitial'))))",
+            "AST": "Equality(Symbol('pdg5734'), Add(Symbol('pdg5340'), Mul(Integer(-1), Symbol('pdg4121'))))",
             "name": "change in kinetic energy",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16909,7 +16909,7 @@
         },
         "5779256336": {
             "latex": "W_{\\rm by\\ system} = KE_{\\rm final} - KE_{\\rm initial}",
-            "AST": "Equality(Symbol('Wbysystem'), Add(Symbol('KEfinal'), Mul(Integer(-1), Symbol('KEinitial'))))",
+            "AST": "Equality(Symbol('pdg6191'), Add(Symbol('pdg5340'), Mul(Integer(-1), Symbol('pdg4121'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16917,7 +16917,7 @@
         },
         "3731774096": {
             "latex": "KE",
-            "AST": "Mul(Symbol('E'), Symbol('K'))",
+            "AST": "Symbol('pdg4929')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16925,7 +16925,7 @@
         },
         "3350802342": {
             "latex": "KE_{\\rm initial}",
-            "AST": "Symbol('KEinitial')",
+            "AST": "Symbol('pdg4121')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16933,7 +16933,7 @@
         },
         "5904227750": {
             "latex": "m",
-            "AST": "Symbol('m')",
+            "AST": "Symbol('pdg5156')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16941,7 +16941,7 @@
         },
         "6281834543": {
             "latex": "m_1",
-            "AST": "Symbol('m_{1}')",
+            "AST": "Symbol('pdg5022')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16949,7 +16949,7 @@
         },
         "8066819515": {
             "latex": "v",
-            "AST": "Symbol('v')",
+            "AST": "Symbol('pdg1357')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -19866,27 +19866,6 @@
             "category": "variable",
             "latex": "W",
             "name": "work done to a system",
-            "scope": "real",
-            "references": [
-                "https://en.wikipedia.org/wiki/Work_(thermodynamics)"
-            ],
-            "domain": "any",
-            "dimensions": {
-                "length": 2,
-                "time": -2,
-                "mass": 1,
-                "temperature": 0,
-                "charge": 0,
-                "amount of substance": 0,
-                "luminous intensity": 0
-            },
-            "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-24"
-        },
-        "6910": {
-            "category": "variable",
-            "latex": "W",
-            "name": "work done by a system",
             "scope": "real",
             "references": [
                 "https://en.wikipedia.org/wiki/Work_(thermodynamics)"
