@@ -20,17 +20,15 @@
     <center>
       <H2>{{ title }}</H2>
     </center>
+
     <P>
       <center>
         <table border="1" width="80%">
           <tr>
-            <td valign="top"><P>&nbsp;</P><P><I><B>Explanation</B></I>: Here the focus is on a single inference rule and verifying the inference rule with respect to a logical basis like
-              <a href="https://en.wikipedia.org/wiki/Zermelo%E2%80%93Fraenkel_set_theory">Zermelo–Fraenkel set theory</a> in a formal proof assistent like
-              <a href="https://en.wikipedia.org/wiki/Coq">Coq</a> or <a href="https://en.wikipedia.org/wiki/Lean_(proof_assistant)">Lean</a>.
-
-              <P>This validation per inference rule would need to be applied to each inference rule used in the derivation.
-                <P><I>Who does this work</I>: human content creator
-                <P><I>Motive for doing this work</I>:
+            <td valign="top"><P>&nbsp;</P>
+              <P><I><B>Explanation</B></I>: replace use Latex math symbols with globally unique numeric identifiers
+              <P><I>Who does this work</I>: human
+              <P><I>Motive for doing this work</I>: consistent identification of variables.
             </td>
             <td width="300">
               Navigation:
@@ -50,9 +48,9 @@
                 <LI><a href="{{url_for('roadmap', which_layer="all_steps")}}">all steps</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a></LI>
-                <LI><a href="{{url_for('roadmap', which_layer="numeric_id")}}">replace symbols with numeric ID</a></LI>
+                <LI><B>replace symbols with numeric ID</B></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="dimensional_validation")}}">validation of dimension</a></LI>
-                <LI><B>proof of inference rule</B></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
               Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR>
             </td>
@@ -60,22 +58,9 @@
         </table>
       </center>
     </P>
+    <p>
 
     <P>
-      The expression
-      \begin{equation}
-          \frac{1}{2} m_1 v^2 = \frac{G m_1 m_2}{r}
-          \label{eq:initial}
-      \end{equation}
-      reduces to
-      \begin{equation}
-       v^2 = \frac{2Gm_2}{r}
-      \end{equation}
-      when both sides of Eq.~\ref{eq:initial} are multiplied by $$2/m_2$$
-
-    <P>
-      (Insert proof of "multiply both sides by" here)
-    </P>
 
 
     {% include '_footer.html' %}
