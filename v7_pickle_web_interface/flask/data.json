@@ -16829,23 +16829,15 @@
         },
         "5902985919": {
             "latex": "\\vec{F} = G \\frac{m_1 m_2}{x^2} \\hat{x}",
-            "AST": "Equality(Symbol('F'), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('hat'), Symbol('pdg4037')), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))))))",
+            "AST": "Equality(Symbol('pdg4202'), Mul(Symbol('pdg6277'), Mul(Symbol('pdg4037'), Mul(Mul(Symbol('pdg5022'), Symbol('pdg4851')), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))))))",
             "name": "Newton's law of universal gravitation",
-            "notes": "",
-            "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-08-10"
-        },
-        "9652231502": {
-            "latex": "W = \\Delta E",
-            "AST": "Equality(Symbol('pdg6789'), Mul(Symbol('Delta'), Symbol('E')))",
-            "name": "Work is change in energy",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-10"
         },
         "7882872592": {
             "latex": "W_{\\rm to\\ system} = \\int_{\\infty}^r \\vec{F}\\cdot d\\vec{r}",
-            "AST": "Equality(Symbol('pdg9372'), Integral(Mul(Symbol('F'), Symbol('pdg2530'), Symbol('vec')), Tuple(Symbol('vec'), oo, Symbol('pdg2530'))))",
+            "AST": "Equality(Symbol('pdg9372'), Integral(Dot(Symbol('pdg6777'), Symbol('pdg2530')), Tuple(oo, Symbol('pdg2530'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16853,7 +16845,7 @@
         },
         "3566149658": {
             "latex": "W_{\\rm to\\ system} = \\int_{\\infty}^r \\frac{-G m_1 m_2}{x^2} dx",
-            "AST": "Equality(Symbol('pdg9372'), Integral(Mul(Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))), Pow(Pow(Symbol('x'), Integer(2)), Integer(-1))), Tuple(Symbol('x'), oo, Symbol('r'))))",
+            "AST": "Equality(Symbol('pdg9372'), Integral(Mul(Mul(Integer(-1), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5022'), Symbol('pdg4851')))), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))), Tuple(Symbol('pdg4037'), oo, Symbol('pdg2530'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16861,7 +16853,7 @@
         },
         "8405272745": {
             "latex": "W_{\\rm to\\ system} = -G m_1 m_2\\int_{\\infty}^r \\frac{1}{x^2} dx",
-            "AST": "Equality(Symbol('pdg9372'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Mul(Symbol('m_{2}'), Integral(Pow(Pow(Symbol('x'), Integer(2)), Integer(-1)), Tuple(Symbol('x'), oo, Symbol('r'))))))))",
+            "AST": "Equality(Symbol('pdg9372'), Mul(Integer(-1), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5022'), Mul(Symbol('pdg4851'), Integral(Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1)), Tuple(Symbol('pdg4037'), oo, Symbol('pdg2530'))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16869,7 +16861,7 @@
         },
         "5596822289": {
             "latex": "W_{\\rm to\\ system} = -G m_1 m_2 \\left(\\left.\\frac{-1}{x}\\right|^r_{\\infty}\\right)",
-            "AST": "Equality(Symbol('pdg9372'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
+            "AST": "Equality(Symbol('pdg9372'), Mul(Integer(-1), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5022'), Symbol('pdg4851')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16877,7 +16869,7 @@
         },
         "2061086175": {
             "latex": "W_{\\rm to\\ system} = -G m_1 m_2 \\left(\\frac{-1}{r} - \\frac{-1}{\\infty}\\right)",
-            "AST": "Equality(Symbol('pdg9372'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Function('m_{2}')(Mul(Integer(-1), Pow(Symbol('r'), Integer(-1))))))))",
+            "AST": "Equality(Symbol('pdg9372'), Mul(Integer(-1), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5022'), Function('pdg4851')(Mul(Integer(-1), Pow(Symbol('pdg2530'), Integer(-1))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16885,7 +16877,7 @@
         },
         "4393670960": {
             "latex": "W_{\\rm to\\ system} = \\frac{G m_1 m_2}{r}",
-            "AST": "Equality(Symbol('pdg9372'), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
+            "AST": "Equality(Symbol('pdg9372'), Mul(Pow(Symbol('pdg2530'), Integer(-1)), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5022'), Symbol('pdg4851')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16957,7 +16949,7 @@
         },
         "3274176452": {
             "latex": "v_{\\rm initial}",
-            "AST": "Symbol('vinitial')",
+            "AST": "Symbol('pdg1934')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16965,7 +16957,7 @@
         },
         "6091977310": {
             "latex": "KE_{\\rm initial} = \\frac{1}{2} m_1 v_{\\rm initial}^2",
-            "AST": "Equality(Symbol('KEinitial'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m_{1}'), Pow(Symbol('vinitial'), Integer(2)))))",
+            "AST": "Equality(Symbol('pdg4121'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5022'), Pow(Symbol('pdg1934'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16973,7 +16965,7 @@
         },
         "4587046017": {
             "latex": "KE",
-            "AST": "Mul(Symbol('E'), Symbol('K'))",
+            "AST": "Symbol('pdg4929'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16981,7 +16973,7 @@
         },
         "3939572542": {
             "latex": "KE_{\\rm final}",
-            "AST": "Symbol('KEfinal')",
+            "AST": "Symbol('pdg5340')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16989,7 +16981,7 @@
         },
         "9350720370": {
             "latex": "m",
-            "AST": "Symbol('m')",
+            "AST": "Symbol('pdg5156')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16997,7 +16989,7 @@
         },
         "3166466250": {
             "latex": "m_1",
-            "AST": "Symbol('m_{1}')",
+            "AST": "Symbol('pdg5022')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17005,7 +16997,7 @@
         },
         "6038673136": {
             "latex": "v",
-            "AST": "Symbol('v')",
+            "AST": "Symbol('pdg1357')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17013,7 +17005,7 @@
         },
         "1616666229": {
             "latex": "v_{\\rm final}",
-            "AST": "Symbol('vfinal')",
+            "AST": "Symbol('pdg8909')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17021,7 +17013,7 @@
         },
         "8552710882": {
             "latex": "KE_{\\rm final} = \\frac{1}{2} m_1 v_{\\rm final}^2",
-            "AST": "Equality(Symbol('KEfinal'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m_{1}'), Pow(Symbol('vfinal'), Integer(2)))))",
+            "AST": "Equality(Symbol('pdg5340'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5022'), Pow(Symbol('pdg8909'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17029,7 +17021,7 @@
         },
         "2924222857": {
             "latex": "v_{\\rm initial} = v(r=\\infty)",
-            "AST": "Equality(Symbol('vinitial'), Symbol('v'))",
+            "AST": "Equality(Symbol('pdg1934'), Symbol('pdg1357'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17037,7 +17029,7 @@
         },
         "2998709778": {
             "latex": "v_{\\rm initial} = 0",
-            "AST": "Equality(Symbol('vinitial'), Integer(0))",
+            "AST": "Equality(Symbol('pdg1934'), Integer(0))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17045,7 +17037,7 @@
         },
         "9510328252": {
             "latex": "KE_{\\rm initial} = 0",
-            "AST": "Equality(Symbol('KEinitial'), Integer(0))",
+            "AST": "Equality(Symbol('pdg4121'), Integer(0))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17053,7 +17045,7 @@
         },
         "5850144586": {
             "latex": "W_{\\rm by\\ system} = KE_{\\rm final}",
-            "AST": "Equality(Symbol('Wbysystem'), Symbol('KEfinal'))",
+            "AST": "Equality(Symbol('pdg6191'), Symbol('pdg5340'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17061,7 +17053,7 @@
         },
         "9081138616": {
             "latex": "W_{\\rm by\\ system} = \\frac{1}{2} m_1 v_{\\rm final}^2",
-            "AST": "Equality(Symbol('Wbysystem'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m_{1}'), Pow(Symbol('vfinal'), Integer(2)))))",
+            "AST": "Equality(Symbol('pdg6191'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5022'), Pow(Symbol('pdg8909'), Integer(2)))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17069,7 +17061,7 @@
         },
         "2907404069": {
             "latex": "W_{\\rm by\\ system} = W_{\\rm to\\ system}",
-            "AST": "Equality(Symbol('Wbysystem'), Symbol('Wtosystem'))",
+            "AST": "Equality(Symbol('pdg6191'), Symbol('pdg9372'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17077,7 +17069,7 @@
         },
         "4947831649": {
             "latex": "\\frac{1}{2} m_1 v_{\\rm final}^2 = W_{\\rm to\\ system}",
-            "AST": "Equality(Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m_{1}'), Pow(Symbol('vfinal'), Integer(2)))), Symbol('Wtosystem'))",
+            "AST": "Equality(Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5022'), Pow(Symbol('pdg8909'), Integer(2)))), Symbol('pdg9372'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17085,7 +17077,7 @@
         },
         "6892595652": {
             "latex": "\\frac{1}{2} m_1 v_{\\rm final}^2 = \\frac{G m_1 m_2}{r}",
-            "AST": "Equality(Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m_{1}'), Pow(Symbol('vfinal'), Integer(2)))), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
+            "AST": "Equality(Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5022'), Pow(Symbol('pdg8909'), Integer(2)))), Mul(Pow(Symbol('pdg2530'), Integer(-1)), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5022'), Symbol('pdg4851')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17093,7 +17085,7 @@
         },
         "7410526982": {
             "latex": "2/m_1",
-            "AST": "Mul(Integer(2), Pow(Symbol('m_{1}'), Integer(-1)))",
+            "AST": "Mul(Integer(2), Pow(Symbol('pdg5022'), Integer(-1)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17101,7 +17093,7 @@
         },
         "7112646057": {
             "latex": "v_{\\rm final}^2 = \\frac{2 G m_2}{r}",
-            "AST": "Equality(Pow(Symbol('vfinal'), Integer(2)), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Integer(2), Mul(Symbol('G'), Symbol('m_{2}')))))",
+            "AST": "Equality(Pow(Symbol('pdg8909'), Integer(2)), Mul(Pow(Symbol('pdg2530'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg6277'), Symbol('pdg4851')))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17109,7 +17101,7 @@
         },
         "5846639423": {
             "latex": "v_{\\rm final} = \\sqrt{\\frac{2 G m_2}{r}}",
-            "AST": "Equality(Symbol('vfinal'), Pow(Mul(Integer(2), Symbol('G'), Symbol('m_{2}'), Pow(Symbol('r'), Integer(-1))), Rational(1, 2)))",
+            "AST": "Equality(Symbol('pdg8909'), Pow(Mul(Integer(2), Symbol('pdg6277'), Symbol('pdg4851'), Pow(Symbol('pdg2530'), Integer(-1))), Rational(1, 2)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17117,7 +17109,7 @@
         },
         "5693047217": {
             "latex": "v_{\\rm final} = -\\sqrt{\\frac{2 G m_2}{r}}",
-            "AST": "Equality(Symbol('vfinal'), Mul(Integer(-1), Pow(Mul(Integer(2), Symbol('G'), Symbol('m_{2}'), Pow(Symbol('r'), Integer(-1))), Rational(1, 2))))",
+            "AST": "Equality(Symbol('pdg8909'), Mul(Integer(-1), Pow(Mul(Integer(2), Symbol('pdg6277'), Symbol('pdg4851'), Pow(Symbol('pdg2530'), Integer(-1))), Rational(1, 2))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17125,7 +17117,7 @@
         },
         "6599829782": {
             "latex": "v_{\\rm final}",
-            "AST": "Symbol('vfinal')",
+            "AST": "Symbol('pdg8909')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17133,7 +17125,7 @@
         },
         "3531380618": {
             "latex": "v(r)",
-            "AST": "Function('v')(Symbol('r'))",
+            "AST": "Function('pdg1357')(Symbol('pdg2530'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17141,7 +17133,7 @@
         },
         "2005061870": {
             "latex": "v(r) = \\sqrt{\\frac{2 G m_2}{r}}",
-            "AST": "Equality(Function('v')(Symbol('r')), Pow(Mul(Integer(2), Symbol('G'), Symbol('m_{2}'), Pow(Symbol('r'), Integer(-1))), Rational(1, 2)))",
+            "AST": "Equality(Function('pdg1357')(Symbol('pdg2530')), Pow(Mul(Integer(2), Symbol('pdg6277'), Symbol('pdg4851'), Pow(Symbol('pdg2530'), Integer(-1))), Rational(1, 2)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
