@@ -3,11 +3,11 @@
   <tr>
     <th>Index</th>
     <th>Inference Rule</th>
-    <th>Input<BR>local ID</th>
+    <!--<th>Input<BR>local ID</th> -->
     <th>Input latex</th>
 <!--    <th>Feed<BR>local ID</th> -->
     <th>Feeds latex</th>
-    <th>Output<BR>local ID</th>
+    <!-- <th>Output<BR>local ID</th> -->
     <th>Output latex</th>
     <th>step validity</th>
     <th>dimension check</th>
@@ -26,21 +26,23 @@
     </td>
     <td><a href="{{ url_for('list_all_inference_rules') }}?referrer=_table_of_derivation_steps#{{ this_dict['inf rule'] }}">{{ this_dict['inf rule'] }}</a></td>
     <!-- input local ID -->
+    <!--
     <td>
       <OL>
         {% for local_id in this_dict['inputs'] %}
-          <LI> <!--<a href="{ { url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{ { dat["expr local to global"][local_id] }}"> -->
+          <LI> <!- -<a href="{ { url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{ { dat["expr local to global"][local_id] }}"> - ->
           {{ local_id }}</a></LI>
         {% endfor %}
       </OL>
     </td>
+    -->
     <!-- input latex -->
     <td>
       <OL>
         {% for local_id in this_dict['inputs'] %}
         <LI>
           <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
-          {{ dat["expr local to global"][local_id] }}</a>: <BR>
+          {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
           \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
         </LI>
         {% endfor %}
@@ -70,22 +72,24 @@
       </OL>
     </td>
     <!-- output local ID -->
+    <!-- 
     <td>
       <OL>
         {% for local_id in this_dict['outputs'] %}
-        <LI><!-- <a href="{ { url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{ { dat["expr local to global"][local_id] }}"> -->
+        <LI><!- - <a href="{ { url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{ { dat["expr local to global"][local_id] }}"> - ->
           {{ local_id }}</a>
         </LI>
         {% endfor %}
       </OL>
     </td>
+    -->
     <!-- output latex -->
     <td>
       <OL>
         {% for local_id in this_dict['outputs'] %}
         <LI>
           <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
-          {{ dat["expr local to global"][local_id] }}</a>: <BR>
+          {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
           \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
         </LI>
         {% endfor %}
