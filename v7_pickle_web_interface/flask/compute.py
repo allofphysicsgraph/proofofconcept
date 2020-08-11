@@ -2468,19 +2468,54 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                 + infrule_dict["number of outputs"]
             )
             # https://en.wikibooks.org/wiki/LaTeX/Macros#New_commands
-            lat_file.write(
-                "\\newcommand\\"
-                + "".join(
-                    filter(str.isalpha, infrule_name)
-                )  # digits cannot be used to name macros
-                + "["
-                + str(  # https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
-                    number_of_args
+            if number_of_args < 10:
+                lat_file.write(
+                    "\\newcommand\\"
+                    + "".join(
+                        filter(str.isalpha, infrule_name)
+                    )  # digits cannot be used to name macros
+                    + "["
+                    + str(  # https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
+                        number_of_args  # macros are limited to 9 inputs;
+                    )
+                    + "]{"
+                    + infrule_dict["latex"]
+                    + "}\n"
                 )
-                + "]{"
-                + infrule_dict["latex"]
-                + "}\n"
-            )
+            else:  # 10 or more args; see https://www.texfaq.org/FAQ-moren9
+                lat_file.write(
+                    "\\newcommand\\"
+                    + "".join(filter(str.isalpha, infrule_name))
+                    + "[9]{"
+                    + "\\def\\ArgOne{{#1}}\n\\def\\ArgTwo{{#2}}\n\\def\\ArgThree{{#3}}\n\\def\\ArgFour{{#4}}\n\\def\\ArgFive{{#5}}\n"
+                    + "\\def\\ArgSix{{#6}}\n\\def\\ArgSeven{{#7}}\n\\def\\ArgEight{{#8}}\n\\def\\ArgNine{{#9}}\n\\"
+                    + "".join(filter(str.isalpha, infrule_name))
+                    + "Relay\n"
+                    + "}\n"
+                )
+                lat_file.write(
+                    "\\newcommand\\"
+                    + "".join(filter(str.isalpha, infrule_name))
+                    + "Relay["
+                    + str(number_of_args - 9)
+                    + "]{"
+                    + infrule_dict["latex"]
+                    .replace("#1", "ArgOne")
+                    .replace("#2", "ArgTwo")
+                    .replace("#3", "ArgThree")
+                    .replace("#4", "ArgFour")
+                    .replace("#5", "ArgFive")
+                    .replace("#6", "ArgSix")
+                    .replace("#7", "ArgSeven")
+                    .replace("#8", "ArgEight")
+                    .replace("#9", "ArgNine")
+                    .replace("#10", "#1")
+                    .replace("#11", "#2")
+                    .replace("#12", "#3")
+                    .replace("#13", "#4")
+                    .replace("#14", "#5")
+                    + "}\n"
+                )
 
         # extract the list of linear index from the derivation
         list_of_linear_index = []
@@ -2505,7 +2540,7 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
         )
         if "notes" in dat["derivations"][deriv_id].keys():
             if len(dat["derivations"][deriv_id]["notes"]) > 0:
-                lat_file.write(dat["derivations"][deriv_id]["notes"])
+                lat_file.write(dat["derivations"][deriv_id]["notes"] + "\n")
         else:
             logger.warn("notes field should be present in derivation " + deriv_id)
         lat_file.write("\\end{abstract}\n")
@@ -2552,7 +2587,9 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                         lat_file.write("{" + expr_local_id + "}")
                     lat_file.write("\n")
                     if len(step_dict["notes"]) > 0:
-                        lat_file.write(step_dict["notes"])
+                        lat_file.write(
+                            step_dict["notes"] + "\n"
+                        )  # TODO: if the note contains a $ or %, shenanigans arise
                     # write output expressions
                     for expr_local_id in step_dict["outputs"]:
                         expr_global_id = dat["expr local to global"][expr_local_id]
