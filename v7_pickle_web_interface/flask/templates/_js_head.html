@@ -9,8 +9,27 @@
 
 
 
+<!-- from https://www.the-art-of-web.com/javascript/doublesubmit/ -->
+<script type="text/javascript">
 
+  function checkForm(form) // Submit button clicked
+  {
+    //
+    // check form input values
+    //
 
+    form.submit_button.disabled = true;
+    form.submit_button.value = "Please wait...";
+    return true;
+  }
+
+  function resetForm(form) // Reset button clicked
+  {
+    form.submit_button.disabled = false;
+    form.submit_button.value = "Submit";
+  }
+
+</script>
 
 
 

@@ -308,7 +308,7 @@ function enable_output3_radio3(enabled){
 
   <h3>{{ inf_rule_dict['latex'] }}</H3>
 
-<form method="post" action="">
+<form method="post" action="" onsubmit="return checkForm(this);">
   <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
   {{ webform.csrf_token }}
   <div class="form-group">
