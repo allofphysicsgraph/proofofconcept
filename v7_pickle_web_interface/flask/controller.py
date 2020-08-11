@@ -439,6 +439,47 @@ class LatexIO(FlaskForm):
         "feed LaTeX 3",
         validators=[validators.InputRequired(), validators.Length(max=1000)],
     )
+    static_feed4 = StringField(
+        "feed LaTeX 4",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    static_feed5 = StringField(
+        "feed LaTeX 5",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    static_feed6 = StringField(
+        "feed LaTeX 6",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    static_feed7 = StringField(
+        "feed LaTeX 7",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    static_feed8 = StringField(
+        "feed LaTeX 8",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    static_feed9 = StringField(
+        "feed LaTeX 9",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    static_feed10 = StringField(
+        "feed LaTeX 10",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    static_feed11 = StringField(
+        "feed LaTeX 11",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    static_feed12 = StringField(
+        "feed LaTeX ",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    static_feed13 = StringField(
+        "feed LaTeX 13",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+
     input1 = StringField("input LaTeX 1", validators=[validators.Length(max=1000)])
     input1_name = StringField("input name 1", validators=[validators.Length(max=1000)])
     input1_note = StringField("input note 1", validators=[validators.Length(max=1000)])
