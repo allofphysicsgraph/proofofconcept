@@ -37,7 +37,7 @@
                 <LI><a href="{{url_for('roadmap', which_layer="latex")}}">Latex document</a></LI>
                 <LI>Content tags
                   <UL>
-                    <LI><B>section document structure</B></LI>
+                    <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">tagging words</a></LI>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expression semantics</a></LI>
                   </UL>
@@ -46,8 +46,8 @@
                 <LI><a href="{{url_for('roadmap', which_layer="variables")}}">concepts to variables</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="all_steps")}}">all steps</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a></LI>
-                <LI><B>validation of steps</B></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="numeric_id")}}">replace symbols with numeric ID</a></LI>
+                <LI><B>validation of steps</B></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="dimensional_validation")}}">validation of dimension</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
@@ -59,7 +59,7 @@
     </P>
 
     <P>
-      source: <a href="https://www.youtube.com/watch?v=5F1XcTjpJs4">"Derivation of Gravitational Potential Energy" by Rhett Allain</a>
+      The following is from the <a href="https://derivationmap.net/review_derivation/374317/?referrer=layers_derivation_graph">Physics Derivation Graph</a>
 
 
     <P>
@@ -67,6 +67,22 @@
     <img src="{{ url_for('static', filename='validated_steps.png') }}">
      </center>
     </P>
+
+    <pre>
+    "latex": "W_{\\rm to\\ system} = \\frac{G m_1 m_2}{r}",
+    "AST": "Equality(Symbol('Wtosystem'), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Symbol('G'), Mul(Symbol('m1'), Symbol('m2')))))",
+    </pre>
+
+    <pre>
+    "latex": "\\Delta KE = KE_{\\rm final} - KE_{\\rm initial}",
+    "AST": "Equality(Symbol('DeltaKE'), Add(Symbol('KEfinal'), Mul(Integer(-1), Symbol('KEinitial'))))",
+</pre>
+
+    <pre>
+    "latex": "KE_{\\rm initial} = \\frac{1}{2} m_1 v_{\\rm initial}^2",
+    "AST": "Equality(Symbol('KEinitial'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m1'), Pow(Symbol('vinitial'), Integer(2)))))",
+</pre>
+
 
     {% include '_footer.html' %}
 

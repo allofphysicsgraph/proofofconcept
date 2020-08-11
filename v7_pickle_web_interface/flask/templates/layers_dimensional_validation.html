@@ -47,8 +47,8 @@
                 <LI><a href="{{url_for('roadmap', which_layer="variables")}}">concepts to variables</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="all_steps")}}">all steps</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a></LI>
-                <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="numeric_id")}}">replace symbols with numeric ID</a></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a></LI>
                 <LI><B>validation of dimension</B></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
@@ -59,7 +59,10 @@
       </center>
     </P>
     <p>
-
+      From <a href="https://derivationmap.net/review_derivation/332170/">this derivation</a><BR>
+      <center>
+      <img src="{{ url_for('static', filename='dimensional_consistency.png')}}">
+      </center>
     <P>
 
 

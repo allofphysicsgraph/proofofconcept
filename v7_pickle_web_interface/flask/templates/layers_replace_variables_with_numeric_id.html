@@ -47,8 +47,8 @@
                 <LI><a href="{{url_for('roadmap', which_layer="variables")}}">concepts to variables</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="all_steps")}}">all steps</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a></LI>
-                <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a></LI>
                 <LI><B>replace symbols with numeric ID</B></LI>
+                <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="dimensional_validation")}}">validation of dimension</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
@@ -59,7 +59,21 @@
       </center>
     </P>
     <p>
+      Examples of replacing
+      <pre>
+      "latex": "W_{\\rm to\\ system} = \\frac{G m_1 m_2}{r}",
+      "AST": "Equality(Symbol('pdg9372'), Mul(Pow(Symbol('pdg2530'), Integer(-1)), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5022'), Symbol('pdg4851')))))",
+      </pre>
 
+      <pre>
+      "latex": "\\Delta KE = KE_{\\rm final} - KE_{\\rm initial}",
+      "AST": "Equality(Symbol('pdg5734'), Add(Symbol('pdg5340'), Mul(Integer(-1), Symbol('pdg4121'))))",
+</pre>
+
+      <pre>
+      "latex": "KE_{\\rm initial} = \\frac{1}{2} m_1 v_{\\rm initial}^2",
+      "AST": "Equality(Symbol('pdg4121'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg5022'), Pow(Symbol('pdg1934'), Integer(2)))))",
+</pre>
     <P>
 
 
