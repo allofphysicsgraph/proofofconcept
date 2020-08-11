@@ -8918,6 +8918,261 @@
                     "notes": "",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-08-11"
+                },
+                "4513518": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9781919"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "2603561": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5104592"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "1322174": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "9781919",
+                        "9835406"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8118190"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "5188363": {
+                    "inf rule": "change three variables in expr",
+                    "inputs": [
+                        "5104592"
+                    ],
+                    "feeds": [
+                        "8771215",
+                        "2089366",
+                        "1530135",
+                        "4230607",
+                        "5239069",
+                        "2668466"
+                    ],
+                    "outputs": [
+                        "9031887"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "7925705": {
+                    "inf rule": "change three variables in expr",
+                    "inputs": [
+                        "5104592"
+                    ],
+                    "feeds": [
+                        "5647474",
+                        "1175033",
+                        "4353144",
+                        "1515675",
+                        "3538025",
+                        "1983598"
+                    ],
+                    "outputs": [
+                        "1397156"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "1875894": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "1712972"
+                    ],
+                    "linear index": 15,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "3641174": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8462685",
+                        "1712972"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6923850"
+                    ],
+                    "linear index": 16,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "7795985": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "6923850",
+                        "9031887"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7110498"
+                    ],
+                    "linear index": 17,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "3724598": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "7110498",
+                        "8118190"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2751634"
+                    ],
+                    "linear index": 18,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "9878340": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "1397156",
+                        "2751634"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6536576"
+                    ],
+                    "linear index": 19,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "5679035": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2619766"
+                    ],
+                    "linear index": 20,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "5454987": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "6536576",
+                        "2619766"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "8655239"
+                    ],
+                    "linear index": 21,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "6228957": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "4947999",
+                        "8655239"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2942416"
+                    ],
+                    "linear index": 22,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "9887933": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "2942416"
+                    ],
+                    "feeds": [
+                        "3542696"
+                    ],
+                    "outputs": [
+                        "4594601"
+                    ],
+                    "linear index": 23,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "8435512": {
+                    "inf rule": "square root both sides",
+                    "inputs": [
+                        "4594601"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7112224",
+                        "1366396"
+                    ],
+                    "linear index": 24,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "3577090": {
+                    "inf rule": "change variable X to Y",
+                    "inputs": [
+                        "7112224"
+                    ],
+                    "feeds": [
+                        "1383337",
+                        "6547572"
+                    ],
+                    "outputs": [
+                        "3435796"
+                    ],
+                    "linear index": 25,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
+                },
+                "2893958": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "3435796"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 26,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-11"
                 }
             }
         }
@@ -9811,13 +10066,45 @@
         "9568206": "7701249282",
         "8462685": "3214170322",
         "3470082": "5902985919",
-        "9835406": "9652231502",
+        "9835406": "1114820451",
         "6798426": "7882872592",
         "7300369": "3566149658",
         "9707318": "8405272745",
         "5818573": "5596822289",
         "2429271": "2061086175",
-        "4947999": "4393670960"
+        "4947999": "4393670960",
+        "9781919": "8049905441",
+        "5104592": "8357234146",
+        "8118190": "5779256336",
+        "8771215": "3731774096",
+        "2089366": "3350802342",
+        "1530135": "5904227750",
+        "4230607": "6281834543",
+        "5239069": "8066819515",
+        "2668466": "3274176452",
+        "9031887": "6091977310",
+        "5647474": "4587046017",
+        "1175033": "3939572542",
+        "4353144": "9350720370",
+        "1515675": "3166466250",
+        "3538025": "6038673136",
+        "1983598": "1616666229",
+        "1397156": "8552710882",
+        "1712972": "2924222857",
+        "6923850": "2998709778",
+        "7110498": "9510328252",
+        "2751634": "5850144586",
+        "6536576": "9081138616",
+        "2619766": "2907404069",
+        "8655239": "4947831649",
+        "2942416": "6892595652",
+        "3542696": "7410526982",
+        "4594601": "7112646057",
+        "7112224": "5846639423",
+        "1366396": "5693047217",
+        "1383337": "6599829782",
+        "6547572": "3531380618",
+        "3435796": "2005061870"
     },
     "expressions": {
         "2344320475": {
@@ -16542,7 +16829,7 @@
         },
         "5902985919": {
             "latex": "\\vec{F} = G \\frac{m_1 m_2}{x^2} \\hat{x}",
-            "AST": "Equality(Mul(Symbol('F'), Symbol('vec')), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('hat'), Symbol('pdg4037')), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))))))",
+            "AST": "Equality(Symbol('F'), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('hat'), Symbol('pdg4037')), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))))))",
             "name": "Newton's law of universal gravitation",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16557,15 +16844,15 @@
             "creation date": "2020-08-10"
         },
         "7882872592": {
-            "latex": "W = \\int_{\\infty}^r \\vec{F}\\cdot d\\vec{r}",
-            "AST": "Equality(Symbol('pdg6789'), Integral(Mul(Symbol('F'), Symbol('pdg2530'), Symbol('vec')), Tuple(Symbol('vec'), oo, Symbol('pdg2530'))))",
+            "latex": "W_{\\rm to\\ system} = \\int_{\\infty}^r \\vec{F}\\cdot d\\vec{r}",
+            "AST": "Equality(Symbol('W'), Integral(Mul(Symbol('F'), Symbol('pdg2530'), Symbol('vec')), Tuple(Symbol('vec'), oo, Symbol('pdg2530'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-10"
         },
         "3566149658": {
-            "latex": "W = \\int_{\\infty}^r \\frac{-G m_1 m_2}{x^2} dx",
+            "latex": "W_{\\rm to\\ system} = \\int_{\\infty}^r \\frac{-G m_1 m_2}{x^2} dx",
             "AST": "Equality(Symbol('W'), Integral(Mul(Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))), Pow(Pow(Symbol('x'), Integer(2)), Integer(-1))), Tuple(Symbol('x'), oo, Symbol('r'))))",
             "name": "",
             "notes": "",
@@ -16573,7 +16860,7 @@
             "creation date": "2020-08-10"
         },
         "8405272745": {
-            "latex": "W = -G m_1 m_2\\int_{\\infty}^r \\frac{1}{x^2} dx",
+            "latex": "W_{\\rm to\\ system} = -G m_1 m_2\\int_{\\infty}^r \\frac{1}{x^2} dx",
             "AST": "Equality(Symbol('W'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Mul(Symbol('m_{2}'), Integral(Pow(Pow(Symbol('x'), Integer(2)), Integer(-1)), Tuple(Symbol('x'), oo, Symbol('r'))))))))",
             "name": "",
             "notes": "",
@@ -16581,7 +16868,7 @@
             "creation date": "2020-08-10"
         },
         "5596822289": {
-            "latex": "W = -G m_1 m_2 \\left(\\left.\\frac{-1}{x}\\right|^r_{\\infty}\\right)",
+            "latex": "W_{\\rm to\\ system} = -G m_1 m_2 \\left(\\left.\\frac{-1}{x}\\right|^r_{\\infty}\\right)",
             "AST": "Equality(Symbol('W'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
             "name": "",
             "notes": "",
@@ -16589,7 +16876,7 @@
             "creation date": "2020-08-11"
         },
         "2061086175": {
-            "latex": "W = -G m_1 m_2 \\left(\\frac{-1}{r} - \\frac{-1}{\\infty}\\right)",
+            "latex": "W_{\\rm to\\ system} = -G m_1 m_2 \\left(\\frac{-1}{r} - \\frac{-1}{\\infty}\\right)",
             "AST": "Equality(Symbol('W'), Mul(Integer(-1), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Function('m_{2}')(Mul(Integer(-1), Pow(Symbol('r'), Integer(-1))))))))",
             "name": "",
             "notes": "",
@@ -16597,8 +16884,264 @@
             "creation date": "2020-08-11"
         },
         "4393670960": {
-            "latex": "W = \\frac{G m_1 m_2}{r}",
+            "latex": "W_{\\rm to\\ system} = \\frac{G m_1 m_2}{r}",
             "AST": "Equality(Symbol('W'), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "1114820451": {
+            "latex": "W_{\\rm by\\ system} = \\Delta KE",
+            "creation date": "2020-08-11",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "name": "Work is change in energy",
+            "AST": ""
+        },
+        "8049905441": {
+            "latex": "\\Delta KE = KE_{\\rm final} - KE_{\\rm initial}",
+            "AST": "Equality(Mul(Symbol('Delta'), Mul(Symbol('E'), Symbol('K'))), Add(Symbol('KEfinal'), Mul(Integer(-1), Symbol('KEinitial'))))",
+            "name": "change in kinetic energy",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "5779256336": {
+            "latex": "W_{\\rm by\\ system} = KE_{\\rm final} - KE_{\\rm initial}",
+            "AST": "Equality(Symbol('Wbysystem'), Add(Symbol('KEfinal'), Mul(Integer(-1), Symbol('KEinitial'))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "3731774096": {
+            "latex": "KE",
+            "AST": "Mul(Symbol('E'), Symbol('K'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "3350802342": {
+            "latex": "KE_{\\rm initial}",
+            "AST": "Symbol('KEinitial')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "5904227750": {
+            "latex": "m",
+            "AST": "Symbol('m')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "6281834543": {
+            "latex": "m_1",
+            "AST": "Symbol('m_{1}')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "8066819515": {
+            "latex": "v",
+            "AST": "Symbol('v')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "3274176452": {
+            "latex": "v_{\\rm initial}",
+            "AST": "Symbol('vinitial')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "6091977310": {
+            "latex": "KE_{\\rm initial} = \\frac{1}{2} m_1 v_{\\rm initial}^2",
+            "AST": "Equality(Symbol('KEinitial'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m_{1}'), Pow(Symbol('vinitial'), Integer(2)))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "4587046017": {
+            "latex": "KE",
+            "AST": "Mul(Symbol('E'), Symbol('K'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "3939572542": {
+            "latex": "KE_{\\rm final}",
+            "AST": "Symbol('KEfinal')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "9350720370": {
+            "latex": "m",
+            "AST": "Symbol('m')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "3166466250": {
+            "latex": "m_1",
+            "AST": "Symbol('m_{1}')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "6038673136": {
+            "latex": "v",
+            "AST": "Symbol('v')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "1616666229": {
+            "latex": "v_{\\rm final}",
+            "AST": "Symbol('vfinal')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "8552710882": {
+            "latex": "KE_{\\rm final} = \\frac{1}{2} m_1 v_{\\rm final}^2",
+            "AST": "Equality(Symbol('KEfinal'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m_{1}'), Pow(Symbol('vfinal'), Integer(2)))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "2924222857": {
+            "latex": "v_{\\rm initial} = v(r=\\infty)",
+            "AST": "Equality(Symbol('vinitial'), Symbol('v'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "2998709778": {
+            "latex": "v_{\\rm initial} = 0",
+            "AST": "Equality(Symbol('vinitial'), Integer(0))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "9510328252": {
+            "latex": "KE_{\\rm initial} = 0",
+            "AST": "Equality(Symbol('KEinitial'), Integer(0))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "5850144586": {
+            "latex": "W_{\\rm by\\ system} = KE_{\\rm final}",
+            "AST": "Equality(Symbol('Wbysystem'), Symbol('KEfinal'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "9081138616": {
+            "latex": "W_{\\rm by\\ system} = \\frac{1}{2} m_1 v_{\\rm final}^2",
+            "AST": "Equality(Symbol('Wbysystem'), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m_{1}'), Pow(Symbol('vfinal'), Integer(2)))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "2907404069": {
+            "latex": "W_{\\rm by\\ system} = W_{\\rm to\\ system}",
+            "AST": "Equality(Symbol('Wbysystem'), Symbol('Wtosystem'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "4947831649": {
+            "latex": "\\frac{1}{2} m_1 v_{\\rm final}^2 = W_{\\rm to\\ system}",
+            "AST": "Equality(Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m_{1}'), Pow(Symbol('vfinal'), Integer(2)))), Symbol('Wtosystem'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "6892595652": {
+            "latex": "\\frac{1}{2} m_1 v_{\\rm final}^2 = \\frac{G m_1 m_2}{r}",
+            "AST": "Equality(Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('m_{1}'), Pow(Symbol('vfinal'), Integer(2)))), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Symbol('G'), Mul(Symbol('m_{1}'), Symbol('m_{2}')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "7410526982": {
+            "latex": "2/m_1",
+            "AST": "Mul(Integer(2), Pow(Symbol('m_{1}'), Integer(-1)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "7112646057": {
+            "latex": "v_{\\rm final}^2 = \\frac{2 G m_2}{r}",
+            "AST": "Equality(Pow(Symbol('vfinal'), Integer(2)), Mul(Pow(Symbol('r'), Integer(-1)), Mul(Integer(2), Mul(Symbol('G'), Symbol('m_{2}')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "5846639423": {
+            "latex": "v_{\\rm final} = \\sqrt{\\frac{2 G m_2}{r}}",
+            "AST": "Equality(Symbol('vfinal'), Pow(Mul(Integer(2), Symbol('G'), Symbol('m_{2}'), Pow(Symbol('r'), Integer(-1))), Rational(1, 2)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "5693047217": {
+            "latex": "v_{\\rm final} = -\\sqrt{\\frac{2 G m_2}{r}}",
+            "AST": "Equality(Symbol('vfinal'), Mul(Integer(-1), Pow(Mul(Integer(2), Symbol('G'), Symbol('m_{2}'), Pow(Symbol('r'), Integer(-1))), Rational(1, 2))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "6599829782": {
+            "latex": "v_{\\rm final}",
+            "AST": "Symbol('vfinal')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "3531380618": {
+            "latex": "v(r)",
+            "AST": "Function('v')(Symbol('r'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "2005061870": {
+            "latex": "v(r) = \\sqrt{\\frac{2 G m_2}{r}}",
+            "AST": "Equality(Function('v')(Symbol('r')), Pow(Mul(Integer(2), Symbol('G'), Symbol('m_{2}'), Pow(Symbol('r'), Integer(-1))), Rational(1, 2)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -21778,6 +22321,174 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-07-29"
+        },
+        "5340": {
+            "category": "variable",
+            "latex": "KE_{\\rm final}",
+            "name": "final kinetic energy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Kinetic_energy"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "4121": {
+            "category": "variable",
+            "latex": "KE_{\\rm initial}",
+            "name": "initial kinetic energy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Kinetic_energy"
+            ],
+            "domain": "positive",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "1934": {
+            "category": "variable",
+            "latex": "v_{\\rm initial}",
+            "name": "initial velocity",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Velocity"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "8909": {
+            "category": "variable",
+            "latex": "v_{\\rm final}",
+            "name": "final velocity",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Velocity"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -1,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "5734": {
+            "category": "variable",
+            "latex": "\\Delta KE",
+            "name": "change in kinetic energy",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Kinetic_energy"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "6777": {
+            "category": "variable",
+            "latex": "\\vec{F}",
+            "name": "force",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Force"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "6191": {
+            "category": "variable",
+            "latex": "W_{\\rm by\\ system}",
+            "name": "work done by system",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Work_(physics)"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
+        },
+        "9372": {
+            "category": "variable",
+            "latex": "W_{\\rm to\\ system}",
+            "name": "work done to system",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Work_(physics)"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 2,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-11"
         }
     },
     "units": {
