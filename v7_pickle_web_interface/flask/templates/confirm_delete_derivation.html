@@ -6,7 +6,7 @@
 
 <P>derivation name: {{ dat["derivations"][deriv_id]["name"] }}
 
-<form method="post" action="">
+<form method="post" action="" onsubmit="return checkForm(this);">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 Whoops, I didn't mean to go to this page: <input type="submit" name="submit_button" value="return to main menu">
