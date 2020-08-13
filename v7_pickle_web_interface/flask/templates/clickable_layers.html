@@ -20,13 +20,28 @@
       //on whether a checkbox has been ticked or not.
       function show_section(section_CheckBox){
           console.log("got into section function")
+
+          // https://stackoverflow.com/a/59406548/1164295
+          var list = document.getElementsByClassName("section");
+
           if(section_CheckBox.checked){ //If the checkbox has been checked
               console.log("checked")
-              document.getElementById("section").hidden = false;
+              // https://stackoverflow.com/a/36384100/1164295
+              for(var i = 0; i < list.length; i++)
+              {
+                list[i].hidden = false;
+              }
+              //document.getElementById("section").hidden = false;
               //document.getElementById("text").hidden = true;
           } else { // not checked
               console.log("not checked")
-              document.getElementById("section").hidden = true;
+
+              // https://stackoverflow.com/a/36384100/1164295
+              for(var i = 0; i < list.length; i++)
+              {
+                list[i].hidden = true;
+              }
+              //document.getElementById("section").hidden = true;
               //document.getElementById("text").hidden = false;
           }
           console.log("end of section function")
@@ -34,13 +49,27 @@
 
       function show_concept_symbol(concept_symbol_CheckBox){
           console.log("got into concept/symbol function")
+
+          // https://stackoverflow.com/a/59406548/1164295
+          var list = document.getElementsByClassName("concept_symbol");
+
           if(concept_symbol_CheckBox.checked){ //If the checkbox has been checked
               console.log("checked")
-              document.getElementById("concept_symbol").hidden = false;
+              // https://stackoverflow.com/a/36384100/1164295
+              for(var i = 0; i < list.length; i++)
+              {
+                list[i].hidden = false;
+              }
+//              document.getElementById("concept_symbol").hidden = false;
               //document.getElementById("text").hidden = true;
           } else { // not checked
               console.log("not checked")
-              document.getElementById("concept_symbol").hidden = true;
+              // https://stackoverflow.com/a/36384100/1164295
+              for(var i = 0; i < list.length; i++)
+              {
+                list[i].hidden = true;
+              }
+//              document.getElementById("concept_symbol").hidden = true;
               //document.getElementById("text").hidden = false;
           }
           console.log("end of concept/symbol function")
@@ -58,36 +87,36 @@
       <form method="post">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <label for="check_section">section:</label>
-        <input type="checkbox" id="check_section" value="1" onclick="show_section(this)" />
+        <input type="checkbox" id="check_section" value="0" onclick="show_section(this)" />
       </form>
       <form method="post">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <label for="check_concept_symbol">concept/symbol:</label>
-        <input type="checkbox" id="check_concept_symbol" value="1" onclick="show_concept_symbol(this)" />
+        <input type="checkbox" id="check_concept_symbol" value="0" onclick="show_concept_symbol(this)" />
       </form>
 
       <table border=1>
         <tr>
           <td>
-            <fieldset style="border:2px solid blue" id="section">
+            <fieldset style="border:2px solid blue" class="section">
            	  <legend>intent</legend>
               A review of the relation between
-              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
                 <legend>measure: \(T\)</legend>
                 period
               </fieldset>
               ,
-              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
                 <legend>symbol: period</legend>
                 \(T\)
               </fieldset>
               , and
-              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
                 <legend>measure: \(f\)</legend>
                 linear frequency
               </fieldset>
               ,
-              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
                 <legend>symbol: linear frequency</legend>
                 \(f\)
               </fieldset>
@@ -114,15 +143,15 @@
         </tr>
         <tr>
           <td>
-                <fieldset style="border:2px solid red" id="added_step">
+                <fieldset style="border:2px solid red" class="added_step">
                   <legend>added step</legend>
               To express frequency as a function of
-              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
                 <legend>measure: \(T\)</legend>
                 period
               </fieldset>
               , multiply both sides of the equation by
-              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
                 <legend>symbol: linear frequency</legend>
                 \(f\)
               </fieldset>
@@ -136,7 +165,7 @@
         </tr>
         <tr>
           <td>
-            <fieldset style="border:2px solid red">
+            <fieldset style="border:2px solid red" class="added_step">
               <legend>added step</legend>
             \begin{equation}
             T\ f=1.
@@ -154,7 +183,7 @@
             <fieldset class="section" style="border:2px solid blue">
               <legend>intent</legend>
               Finally, divide both sides of the second equation by
-              <fieldset class="inline" style="border:2px solid orange" id="concept_symbol">
+              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
                 <legend>symbol: period</legend>
                 \(T\)
               </fieldset>
