@@ -1,0 +1,194 @@
+<!-- unlike all other pages, this page does not inherit from _base.html
+     That's because the "sign in" and "navigation" links are not shown at the top of the page -->
+<!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
+<html>
+  <head>
+    <title>Physics Derivation Graph: {{ title }}</title>
+
+    {% include '_js_head.html' %}
+
+    <!-- https://stackoverflow.com/a/15027568/1164295 -->
+    <!--
+    <style type="text/css">
+      fieldset.inline {
+        display: inline;
+      }
+    </style>
+    -->
+    <script>
+      // enables or disables a submit button depending
+      //on whether a checkbox has been ticked or not.
+      function show_section(section_CheckBox){
+          console.log("got into section function")
+          if(section_CheckBox.checked){ //If the checkbox has been checked
+              console.log("checked")
+              document.getElementById("section").hidden = false;
+              //document.getElementById("text").hidden = true;
+          } else { // not checked
+              console.log("not checked")
+              document.getElementById("section").hidden = true;
+              //document.getElementById("text").hidden = false;
+          }
+          console.log("end of section function")
+      }
+
+      function show_concept_symbol(concept_symbol_CheckBox){
+          console.log("got into concept/symbol function")
+          if(concept_symbol_CheckBox.checked){ //If the checkbox has been checked
+              console.log("checked")
+              document.getElementById("concept_symbol").hidden = false;
+              //document.getElementById("text").hidden = true;
+          } else { // not checked
+              console.log("not checked")
+              document.getElementById("concept_symbol").hidden = true;
+              //document.getElementById("text").hidden = false;
+          }
+          console.log("end of concept/symbol function")
+      }
+    </script>
+
+  </head>
+  <body>
+
+    <center>
+      <H2>{{ title }}</H2>
+    </center>
+    <P>
+
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <label for="check_section">section:</label>
+        <input type="checkbox" id="check_section" value="1" onclick="show_section(this)" />
+      </form>
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <label for="check_concept_symbol">concept/symbol:</label>
+        <input type="checkbox" id="check_concept_symbol" value="1" onclick="show_concept_symbol(this)" />
+      </form>
+
+      <table border=1>
+        <tr>
+          <td>
+            <fieldset style="border:2px solid blue" id="section">
+           	  <legend>intent</legend>
+              A review of the relation between
+              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+                <legend>measure: \(T\)</legend>
+                period
+              </fieldset>
+              ,
+              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+                <legend>symbol: period</legend>
+                \(T\)
+              </fieldset>
+              , and
+              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+                <legend>measure: \(f\)</legend>
+                linear frequency
+              </fieldset>
+              ,
+              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+                <legend>symbol: linear frequency</legend>
+                \(f\)
+              </fieldset>
+              .
+            </fieldset>
+            <P>
+            The mathematical equation of the relation is
+          </td>
+          <td>
+            declare initial expression
+          </td>
+        </tr>
+        <tr>
+          <td>
+            \begin{equation}
+            T=1/f.
+            \end{equation}
+          </td>
+          <td>
+            \begin{equation*}
+            T=1/f
+            \end{equation*}
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <fieldset style="border:2px solid red" id="added_step">
+                  <legend>added step</legend>
+              To express frequency as a function of
+              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+                <legend>measure: \(T\)</legend>
+                period
+              </fieldset>
+              , multiply both sides of the equation by
+              <fieldset class="inline concept_symbol" style="border:2px solid orange">
+                <legend>symbol: linear frequency</legend>
+                \(f\)
+              </fieldset>
+              to get a new equation,
+            </fieldset>
+          </td>
+          <td>
+            multiply both sides by arg1<BR>
+            arg1 = \(f\)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <fieldset style="border:2px solid red">
+              <legend>added step</legend>
+            \begin{equation}
+            T\ f=1.
+            \end{equation}
+            </fieldset>
+          </td>
+          <td>
+            \begin{equation*}
+            T\ f=1
+            \end{equation*}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <fieldset class="section" style="border:2px solid blue">
+              <legend>intent</legend>
+              Finally, divide both sides of the second equation by
+              <fieldset class="inline" style="border:2px solid orange" id="concept_symbol">
+                <legend>symbol: period</legend>
+                \(T\)
+              </fieldset>
+               to yield the third equation,
+            </fieldset>
+          </td>
+          <td>
+            Divide both sides by arg1<BR>
+            arg1 = \(T\)
+          </td>
+        </tr>
+        <tr>
+          <td>
+            \begin{equation}
+            f=1/T.
+            \end{equation}
+          </td>
+          <td>
+            \begin{equation*}
+            f=1/T
+            \end{equation*}
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <td>
+            declare final expression
+          </td>
+        </tr>
+      </table>
+
+
+    {% include '_footer.html' %}
+
+    </body>
+</html>

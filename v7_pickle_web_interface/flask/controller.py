@@ -1371,6 +1371,11 @@ def static_dir():
         "static_dir.html", list_of_files=filenames, title="Static directory listing"
     )
 
+@app.route("/clickable_layers", methods=["GET", "POST"])
+def clickable_layers():
+    return render_template(
+        "clickable_layers.html", title="options")
+
 
 @app.route("/roadmap", methods=["GET", "POST"])
 def layers_without_arg():
