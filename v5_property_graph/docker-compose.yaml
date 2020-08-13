@@ -1,0 +1,29 @@
+# https://docs.docker.com/compose/compose-file/
+
+version: "3.6"
+
+services:
+  webserver:
+    build:
+      context: ./webserver
+      dockerfile: Dockerfile
+    restart: always
+# using "ports" makes flask/gunicorn accessible without going through nginx
+    expose:
+      - 5000
+    ports:
+     - "5000:5000"
+    volumes:
+     - ${PWD}/:/scratch
+  neo4j:
+    image: neo4j:4.1.1
+    network_mode: "bridge"
+    hostname: neo4j
+    container_name: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    volumes:
+      - $HOME/neo4j/data:/data
+    environment:
+      - "NEO4J_AUTH=none"
