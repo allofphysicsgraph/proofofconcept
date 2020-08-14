@@ -3031,6 +3031,9 @@ def review_derivation(deriv_id: str):
                     referrer="review_derivation",
                 )
             )
+        elif request.form["submit_button"] == "generate html":
+            logger.info("[trace page end " + trace_id + "]")
+            return redirect(url_for("html_view", deriv_id=deriv_id))
         elif request.form["submit_button"] == "delete derivation":
             logger.info("[trace page end " + trace_id + "]")
             return redirect(
@@ -3149,6 +3152,24 @@ def review_derivation(deriv_id: str):
         expression_popularity_dict=expression_popularity_dict,
         title="review derivation: " + dat["derivations"][deriv_id]["name"],
     )
+
+
+@app.route("/html_view/<deriv_id>", methods=["GET", "POST"])
+def html_view(deriv_id: str):
+    """
+    html_view('387954')
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]")
+
+    try:
+        html_str = compute.generate_html_for_derivation(deriv_id, path_to_db)
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        html_str = "ERROR"
+    logger.info("[trace page end " + trace_id + "]")
+    return render_template("html_view.html", html_str=html_str)
 
 
 @app.route("/modify_step/<deriv_id>/<step_id>/", methods=["GET", "POST"])

@@ -34,19 +34,24 @@ results in no visualization and no error message in javascript console
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
 <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
+<i>Alternate views of this derivation</i>: <input type="submit" name="submit_button" value="generate tex">
+<input type="submit" name="submit_button" value="generate pdf">
+<input type="submit" name="submit_button" value="generate html">
+<BR>
+<i>Edit this content</I>:
 <input type="submit" name="submit_button" value='add another step'>
 <!-- Instead of a a button, the user should click on a step index
 <input type="submit" name="submit_button" value="edit existing step">
 -->
-<input type="submit" name="submit_button" value="generate tex">
-<input type="submit" name="submit_button" value="generate pdf">
 <input type="submit" name="submit_button" value="rename derivation">
 <input type="submit" name="submit_button" value="edit derivation note">
-<input type="submit" name="submit_button" value="return to main menu">
 &nbsp; &nbsp;
 <input type="submit" style="background-color:lightcoral" name="submit_button" value="delete derivation">
+
 </form>
 <P>To edit a step, click on the number in the "Index" column in the table below</P>
+<P>
+  <input type="submit" name="submit_button" value="return to main menu">
 </fieldset>
 
 {% if (pdf_filename != "NONE") %}
@@ -67,7 +72,7 @@ results in no visualization and no error message in javascript console
 <P>
 { % include '_table_of_symbols.html' %}
 </P>
---> 
+-->
 <h2>Symbols for this derivation</h2>
 See also <a href="{{ url_for('list_all_symbols') }}?referrer=navigation">all {{ dat['symbols']|length }} symbols</a><BR>
             <table border="1" class="sortable">
@@ -93,4 +98,3 @@ See also <a href="{{ url_for('list_all_symbols') }}?referrer=navigation">all {{ 
 {% include '_d3_js.html' %}
 
 {% endblock %}
-
