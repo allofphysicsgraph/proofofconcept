@@ -17,12 +17,12 @@
     <!-- dimensions -->
     <td>
     {% if 'dimensions' in dat["symbols"][symbol_id] %}
-      {% if dat["symbols"][symbol_id]['dimensions']['length'] == 0 and 
-            dat["symbols"][symbol_id]['dimensions']['time'] == 0 and 
-            dat["symbols"][symbol_id]['dimensions']['mass'] == 0 and        
-            dat["symbols"][symbol_id]['dimensions']['temperature'] == 0 and        
-            dat["symbols"][symbol_id]['dimensions']['electric charge'] == 0 and        
-            dat["symbols"][symbol_id]['dimensions']['amount of substance'] == 0 and        
+      {% if dat["symbols"][symbol_id]['dimensions']['length'] == 0 and
+            dat["symbols"][symbol_id]['dimensions']['time'] == 0 and
+            dat["symbols"][symbol_id]['dimensions']['mass'] == 0 and
+            dat["symbols"][symbol_id]['dimensions']['temperature'] == 0 and
+            dat["symbols"][symbol_id]['dimensions']['electric charge'] == 0 and
+            dat["symbols"][symbol_id]['dimensions']['amount of substance'] == 0 and
             dat["symbols"][symbol_id]['dimensions']['luminous intensity'] == 0 %}
         dimensionless
       {% else %}
@@ -92,4 +92,7 @@
         {% endfor %}
         </UL>
     {% endif %}
+    </td>
+    <td> <!-- symbol use count -->
+      {{ symbol_popularity_dict_in_expr[symbol_id]|length }}
     </td>

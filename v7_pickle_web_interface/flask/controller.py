@@ -1851,9 +1851,18 @@ def list_all_symbols():
             flash("unrecognized option")
 
     dat = clib.read_db(path_to_db)
+
+    try:
+        symbol_popularity_dict_in_expr = compute.popularity_of_symbols_in_expressions(
+            path_to_db
+        )
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        symbol_popularity_dict_in_expr = {}
     try:
         symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
-            path_to_db
+            symbol_popularity_dict_in_expr, path_to_db
         )
     except Exception as err:
         flash(str(err))
@@ -1877,6 +1886,7 @@ def list_all_symbols():
         sorted_list_symbols_not_in_use=sorted_list_symbols_not_in_use,
         edit_latex_webform=RevisedTextForm(request.form),
         symbol_popularity_dict=symbol_popularity_dict,
+        symbol_popularity_dict_in_expr=symbol_popularity_dict_in_expr,
         title="list all symbols",
     )
 
@@ -2051,6 +2061,14 @@ def list_all_inference_rules():
 
     logger.debug(str(request.form))
     dat = clib.read_db(path_to_db)
+
+    try:
+        infrule_count_dict = compute.count_of_infrules(path_to_db)
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        infrule_count_dict = {}
+
     try:
         infrule_popularity_dict = compute.popularity_of_infrules(path_to_db)
     except Exception as err:
@@ -2167,6 +2185,7 @@ def list_all_inference_rules():
         rename_infrule_webform=RevisedTextForm(request.form),
         edit_infrule_latex_webform=RevisedTextForm(request.form),
         infrule_popularity_dict=infrule_popularity_dict,
+        infrule_count_dict=infrule_count_dict,
         title="list all inference rules",
     )
 
@@ -2770,8 +2789,16 @@ def step_review(deriv_id: str, step_id: str):
         expression_popularity_dict = {}
 
     try:
-        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
+        symbol_popularity_dict_in_expr = compute.popularity_of_symbols_in_expressions(
             path_to_db
+        )
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        symbol_popularity_dict_in_expr = {}
+    try:
+        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
+            symbol_popularity_dict_in_expr, path_to_db
         )
     except Exception as err:
         flash(str(err))
@@ -2868,6 +2895,7 @@ def step_review(deriv_id: str, step_id: str):
         dat=dat,
         list_of_expression_AST_dicts=list_of_expression_AST_dicts,
         symbol_popularity_dict=symbol_popularity_dict,
+        symbol_popularity_dict_in_expr=symbol_popularity_dict_in_expr,
         dict_of_ranked_list=dict_of_ranked_list,
         expression_popularity_dict=expression_popularity_dict,
         expr_dict_with_symbol_list=expr_dict_with_symbol_list,
@@ -3128,8 +3156,16 @@ def review_derivation(deriv_id: str):
 
     dat = clib.read_db(path_to_db)
     try:
-        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
+        symbol_popularity_dict_in_expr = compute.popularity_of_symbols_in_expressions(
             path_to_db
+        )
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        symbol_popularity_dict_in_expr = {}
+    try:
+        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
+            symbol_popularity_dict_in_expr, path_to_db
         )
     except Exception as err:
         flash(str(err))
@@ -3144,6 +3180,7 @@ def review_derivation(deriv_id: str):
         deriv_id=deriv_id,
         list_of_symbols_for_this_derivation=list_of_symbols_for_this_derivation,
         symbol_popularity_dict=symbol_popularity_dict,
+        symbol_popularity_dict_in_expr=symbol_popularity_dict_in_expr,
         name_of_graphviz_png=derivation_png,
         json_for_d3js=d3js_json_filename,
         derivation_step_validity_dict=derivation_step_validity_dict,
@@ -3444,8 +3481,16 @@ def modify_step(deriv_id: str, step_id: str):
 
     dat = clib.read_db(path_to_db)
     try:
-        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
+        symbol_popularity_dict_in_expr = compute.popularity_of_symbols_in_expressions(
             path_to_db
+        )
+    except Exception as err:
+        flash(str(err))
+        logger.error(str(err))
+        symbol_popularity_dict_in_expr = {}
+    try:
+        symbol_popularity_dict = compute.popularity_of_symbols_in_derivations(
+            symbol_popularity_dict_in_expr, path_to_db
         )
     except Exception as err:
         flash(str(err))
@@ -3464,6 +3509,7 @@ def modify_step(deriv_id: str, step_id: str):
         name_of_graphviz_png=step_graphviz_png,
         dat=dat,
         symbol_popularity_dict=symbol_popularity_dict,
+        symbol_popularity_dict_in_expr=symbol_popularity_dict_in_expr,
         dict_of_ranked_list=dict_of_ranked_list,
         dimensional_webform=RevisedTextForm(request.form),
         list_of_symbols_from_sympy=list_of_symbols_from_sympy,

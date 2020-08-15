@@ -1789,7 +1789,10 @@ def popularity_of_operators(path_to_db: str) -> dict:
 
 def popularity_of_symbols_in_expressions(path_to_db: str) -> dict:
     """
+    symbol_popularity_dict = {symbol_id: [expr_global_id, expr_global_id]}
+
     >>> popularity_of_symbols_in_expressions('pdg.db')
+
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -1817,9 +1820,13 @@ def popularity_of_symbols_in_expressions(path_to_db: str) -> dict:
     return symbol_popularity_dict
 
 
-def popularity_of_symbols_in_derivations(path_to_db: str) -> dict:
+def popularity_of_symbols_in_derivations(
+    symbol_popularity_dict_in_expr, path_to_db: str
+) -> dict:
     """
-    >>> popularity_of_symbols_in_derivations('pdg.db')
+
+    >>> symbol_popularity_dict_in_expr = {symbolID: [expr_id, expr_id]}
+    >>> popularity_of_symbols_in_derivations(symbol_popularity_dict_in_expr 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -1890,8 +1897,34 @@ def popularity_of_expressions(path_to_db: str) -> dict:
     return expression_popularity_dict
 
 
+def count_of_infrules(path_to_db: str) -> dict:
+    """
+    How many times is each inference rule used in the Physics Derivation Graph?
+
+    >>> count_of_infrules('pdg.db')
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+    dat = clib.read_db(path_to_db)
+    infrule_count_dict = {}
+    for infrule_name, infrule_dict in dat["inference rules"].items():
+        infrule_count_dict[infrule_name] = 0
+        for deriv_id in dat["derivations"].keys():
+            for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+                if step_dict["inf rule"] == infrule_name:
+                    infrule_count_dict[infrule_name] += 1
+
+    return infrule_count_dict
+
+
 def popularity_of_infrules(path_to_db: str) -> dict:
     """
+    For each inference rule, which derivations use that inference rule?
+
+    output:
+    infrule_popularity_dict = {infrule_name: [derivation_using_infrule, derivation_using_infrule],
+                               infrule_name: [derivation_using_infrule, derivation_using_infrule]}
+
     >>> popularity_of_infrules('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
