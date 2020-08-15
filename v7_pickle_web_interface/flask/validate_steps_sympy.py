@@ -573,11 +573,11 @@ def change_variable_X_to_Y(latex_dict: dict) -> str:
     d1 = sympy.simplify(
         latex_dict["input"][0]["LHS"].subs(latex_dict["feed"][0], latex_dict["feed"][1])
         - latex_dict["output"][0]["LHS"]
-    )
+    )  # subs(old, new)
     d2 = sympy.simplify(
         latex_dict["input"][0]["RHS"].subs(latex_dict["feed"][0], latex_dict["feed"][1])
         - latex_dict["output"][0]["RHS"]
-    )
+    )  # subs(old, new)
     if (d1 == 0) and (d2 == 0):
         logger.info("[trace end " + trace_id + "]")
         return "valid"
@@ -1139,13 +1139,17 @@ def substitute_RHS_of_expr_1_into_expr_2(latex_dict: dict) -> str:
     logger.info("[trace start " + trace_id + "]")
 
     d1 = sympy.simplify(
-        latex_dict["input"][1]["LHS"].subs(latex_dict["input"][0]["LHS"])
+        latex_dict["input"][1]["LHS"].subs(
+            latex_dict["input"][0]["RHS"], latex_dict["input"][0]["LHS"]
+        )
         - latex_dict["output"][0]["LHS"]
-    )
+    )  # subs(old,new)
     d2 = sympy.simplify(
-        latex_dict["input"][1]["RHS"].subs(latex_dict["input"][0]["LHS"])
+        latex_dict["input"][1]["RHS"].subs(
+            latex_dict["input"][0]["RHS"], latex_dict["input"][0]["LHS"]
+        )
         - latex_dict["output"][0]["RHS"]
-    )
+    )  # subs(old,new)
 
     if (d1 == 0) and (d2 == 0):
         logger.info("[trace end " + trace_id + "]")
@@ -1173,13 +1177,17 @@ def substitute_LHS_of_expr_1_into_expr_2(latex_dict: dict) -> str:
     logger.info("[trace start " + trace_id + "]")
 
     d1 = sympy.simplify(
-        latex_dict["input"][1]["LHS"].subs(latex_dict["input"][0]["RHS"])
+        latex_dict["input"][1]["LHS"].subs(
+            latex_dict["input"][0]["LHS"], latex_dict["input"][0]["RHS"]
+        )
         - latex_dict["output"][0]["LHS"]
-    )
+    )  # subs(old,new)
     d2 = sympy.simplify(
-        latex_dict["input"][1]["RHS"].subs(latex_dict["input"][0]["RHS"])
+        latex_dict["input"][1]["RHS"].subs(
+            latex_dict["input"][0]["LHS"], latex_dict["input"][0]["RHS"]
+        )
         - latex_dict["output"][0]["RHS"]
-    )
+    )  # subs(old,new)
 
     if (d1 == 0) and (d2 == 0):
         logger.info("[trace end " + trace_id + "]")
