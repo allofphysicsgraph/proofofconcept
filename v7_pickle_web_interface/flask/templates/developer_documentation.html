@@ -121,7 +121,7 @@ cat developer_documentation.html |\
 </P>
 <H3><a name="python">Python</a></H3>
 <P>
-  Python as a "glue" language is leveraged to connect existing tools like \(\rm\LaTeX\), Flask, logging, manipulation of data.
+  Python as a "glue" language is leveraged to connect existing tools like \(\rm\LaTeX\), <a href="https://flask.palletsprojects.com/">Flask</a>, logging, manipulation of data.
   Also, Python is the language the project owner is most comfortable with.
   And it is free and open source.
 </P>
@@ -135,7 +135,7 @@ cat developer_documentation.html |\
   The <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">model-view-controller</a> (MVC) is a way to separate presentation from the backend computation and data transformation.
 </P>
 <P>
-  Note on using MVC with Flask and WTForms: For webpages with forms, the form submission should return to controller.py rather than linking to next page.
+  Note on using MVC with Flask and <a href="https://wtforms.readthedocs.io/">WTForms</a>: For webpages with forms, the form submission should return to controller.py rather than linking to next page.
 </p>
 
 <H3><a name="containerization">Docker</a></H3>
@@ -146,13 +146,19 @@ cat developer_documentation.html |\
 
 <P>
   Alpine was investigated as a candidate OS but was found to be insufficient.
-  Ubuntu provides necessary packages
+  Ubuntu provides necessary packages.
 </P>
 
 <H3><a name="web stack">Flask - Gunicorn - Nginx</a></H3>
 <P>
-  To provide a web interface, Flask is used. Flask is not intended for production use, so Gunicorn serves as ??. Nginx provides ??
+  To provide a web interface, <a href="https://flask.palletsprojects.com/">Flask</a> is used. 
+  HTML (with Javascript) pages are rendered using Jinja2.
+  Mathematical expressions rely on MathJax Javascript.
+  <a href="https://flask.palletsprojects.com/">Flask</a> is not intended for production use in serving Python applications, so <a href="https://gunicorn.org/">Gunicorn</a> is the Web Server Gateway Interface. 
+  <a href="https://www.nginx.com/">Nginx</a> provides an HTTP proxy server. 
 </p>
+<P>
+  Why this complexity is relevant is addressed in <a href="https://serverfault.com/a/331263">this StackOverflow answer</a>.
 
 <H3><a name="software:latex">Latex</a></H3>
 
@@ -229,24 +235,31 @@ cat developer_documentation.html |\
 
 <H2><a name="how to navigate the codebase">How to navigate the codebase</a></H2>
 
-Much of the current codebase is focused on managing the numeric IDs
-associated with every facet of the database. This workload is due to not using a property graph representation (e.g., Neo4j). If I used
-Neo4j, I wouldn't need to track all the IDs and I could instead just work with the data.
-I've decided to stick with JSON and managing numeric IDs since I won't
-want to use proprietary software. (Neo4j community edition is open
-source, but I'm wary of the ties to a commercial product.)
+<P>
+  Much of the current codebase is focused on managing the numeric IDs
+  associated with every facet of the database. 
+  This workload is due to not using a property graph representation (e.g., Neo4j). 
+  If I used Neo4j, I wouldn't need to track all the IDs and I could instead just work with the data.
+  I've decided to stick with JSON and managing numeric IDs since I won't
+  want to use proprietary software. (Neo4j community edition is open
+  source, but I'm wary of the ties to a commercial product.)
 
 <P>
-After checking out the github repo, I navigate to
-<code>proofofconcept/v7_pickle_web_interface/flask</code> and then run
-<code>make dockerlive</code> and then open Firefox to <code>https://localhost:5000</code>.<BR>
-  <I>What happened when that docker container ran and the webpage was opened?</i>
+  After checking out the github repo, I navigate to
+  <code>proofofconcept/v7_pickle_web_interface/flask</code> and then run
+  <code>make dockerlive</code> and then open Firefox to <code>https://localhost:5000</code>.<BR>
+  The purpose of this section is to address the question,  <I>What happened when that docker container ran and the webpage was opened?</i><BR>
+  Understanding the answer relies on knowing Python, <a href="https://flask.palletsprojects.com/">Flask</a>, and the Model-View-Controller paradigm. 
 
-    <P>
-      The entry point for the program is <code>controller.py</code>. That file primarily depends on <code>compute.py</code>
+<P>
+  The entry point for the program is <code>controller.py</code>. 
+  That file primarily depends on <code>compute.py</code>. 
+  The purpose of <code>compute.py</code> is to manage the Python dictionary of nested dictionaries in the variable <code>dat</code> that is read from the JSON file.
+  All the additions, edits, and transformations to <code>dat</code> are performed in <code>compute.py</code> and then provided to <code>controller.py</code> for use in dynamically generating the HTML+Javascript pages using Jinja2.
 
-      <P>
-        The website derivationmap.net is run using docker-compose; see <code>proofofconcept/v7_pickle_web_interface</code>
+
+<P>
+  The website <a href="http://derivationmap.net">derivationmap.net</a> is run using docker-compose; see <code>proofofconcept/v7_pickle_web_interface</code>
 
 <P>&nbsp;</P>
 <HR>
@@ -392,7 +405,7 @@ All of the jargon used and the relation between jargon used in the Physics Deriv
     <LI>
       <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface">web interface</a>:
       the current implementation.
-      Uses Python, Flask, Docker.
+      Uses Python, <a href="https://flask.palletsprojects.com/">Flask</a>, Docker.
       Data is stored in a JSON file.
       Limited support for checking inference rules using Sympy.
       Storage formats evolved:
