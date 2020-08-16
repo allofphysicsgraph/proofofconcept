@@ -1334,7 +1334,9 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         )
     for infrule_name, infrule_dict in dat["inference rules"].items():
         # https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string
-        cypher_str += "CREATE (" + "".join(filter(str.isalnum, infrule_name)) + ":infrule {\n"
+        cypher_str += (
+            "CREATE (" + "".join(filter(str.isalnum, infrule_name)) + ":infrule {\n"
+        )
         cypher_str += (
             "       num_inputs: " + str(infrule_dict["number of inputs"]) + ",\n"
         )
@@ -2452,6 +2454,7 @@ def remove_file_debris(
     #    logger.debug('done')
     logger.info("[trace end " + trace_id + "]")
     return
+
 
 # *******************************************
 # create files on filesystem

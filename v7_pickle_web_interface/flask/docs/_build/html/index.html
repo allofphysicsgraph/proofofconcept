@@ -1,0 +1,2258 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Welcome to Physics Derivation Graph’s documentation! &#8212; Physics Derivation Graph 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-physics-derivation-graph-s-documentation">
+<h1>Welcome to Physics Derivation Graph’s documentation!<a class="headerlink" href="#welcome-to-physics-derivation-graph-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-controller"></span><dl class="class">
+<dt id="controller.EquationInputForm">
+<em class="property">class </em><code class="descclassname">controller.</code><code class="descname">EquationInputForm</code><span class="sig-paren">(</span><em>formdata=&lt;object object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#EquationInputForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.EquationInputForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<dl class="attribute">
+<dt id="controller.EquationInputForm.latex">
+<code class="descname">latex</code><em class="property"> = &lt;UnboundField(StringField, ('LaTeX',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.EquationInputForm.latex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="controller.InferenceRuleForm">
+<em class="property">class </em><code class="descclassname">controller.</code><code class="descname">InferenceRuleForm</code><span class="sig-paren">(</span><em>formdata=&lt;object object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#InferenceRuleForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.InferenceRuleForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<dl class="attribute">
+<dt id="controller.InferenceRuleForm.inf_rule_name">
+<code class="descname">inf_rule_name</code><em class="property"> = &lt;UnboundField(StringField, ('inf rule name',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.InferenceRuleForm.inf_rule_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.InferenceRuleForm.latex">
+<code class="descname">latex</code><em class="property"> = &lt;UnboundField(StringField, ('LaTeX',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;]})&gt;</em><a class="headerlink" href="#controller.InferenceRuleForm.latex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.InferenceRuleForm.notes">
+<code class="descname">notes</code><em class="property"> = &lt;UnboundField(StringField, ('notes',), {})&gt;</em><a class="headerlink" href="#controller.InferenceRuleForm.notes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.InferenceRuleForm.num_feeds">
+<code class="descname">num_feeds</code><em class="property"> = &lt;UnboundField(IntegerField, ('number of feeds',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.NumberRange object&gt;]})&gt;</em><a class="headerlink" href="#controller.InferenceRuleForm.num_feeds" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.InferenceRuleForm.num_inputs">
+<code class="descname">num_inputs</code><em class="property"> = &lt;UnboundField(IntegerField, ('number of inputs',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.NumberRange object&gt;]})&gt;</em><a class="headerlink" href="#controller.InferenceRuleForm.num_inputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.InferenceRuleForm.num_outputs">
+<code class="descname">num_outputs</code><em class="property"> = &lt;UnboundField(IntegerField, ('number of outputs',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.NumberRange object&gt;]})&gt;</em><a class="headerlink" href="#controller.InferenceRuleForm.num_outputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="controller.LatexIO">
+<em class="property">class </em><code class="descclassname">controller.</code><code class="descname">LatexIO</code><span class="sig-paren">(</span><em>formdata=&lt;object object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#LatexIO"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.LatexIO" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<dl class="attribute">
+<dt id="controller.LatexIO.input1">
+<code class="descname">input1</code><em class="property"> = &lt;UnboundField(StringField, ('input LaTeX 1',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input1_name">
+<code class="descname">input1_name</code><em class="property"> = &lt;UnboundField(StringField, ('input name 1',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input1_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input1_note">
+<code class="descname">input1_note</code><em class="property"> = &lt;UnboundField(StringField, ('input note 1',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input1_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input1_radio">
+<code class="descname">input1_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('latex', 'use Latex'), ('local', 'use local ID'), ('global', 'use global ID')], 'default': 'latex'})&gt;</em><a class="headerlink" href="#controller.LatexIO.input1_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input2">
+<code class="descname">input2</code><em class="property"> = &lt;UnboundField(StringField, ('input LaTeX 2',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input2_name">
+<code class="descname">input2_name</code><em class="property"> = &lt;UnboundField(StringField, ('input name 2',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input2_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input2_note">
+<code class="descname">input2_note</code><em class="property"> = &lt;UnboundField(StringField, ('input note 2',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input2_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input2_radio">
+<code class="descname">input2_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('latex', 'use Latex'), ('local', 'use local ID'), ('global', 'use global ID')], 'default': 'latex'})&gt;</em><a class="headerlink" href="#controller.LatexIO.input2_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input3">
+<code class="descname">input3</code><em class="property"> = &lt;UnboundField(StringField, ('input LaTeX 3',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input3_name">
+<code class="descname">input3_name</code><em class="property"> = &lt;UnboundField(StringField, ('input name 3',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input3_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input3_note">
+<code class="descname">input3_note</code><em class="property"> = &lt;UnboundField(StringField, ('input note 3',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input3_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input3_radio">
+<code class="descname">input3_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('latex', 'use Latex'), ('local', 'use local ID'), ('global', 'use global ID')], 'default': 'latex'})&gt;</em><a class="headerlink" href="#controller.LatexIO.input3_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input4">
+<code class="descname">input4</code><em class="property"> = &lt;UnboundField(StringField, ('input LaTeX 4',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input4_name">
+<code class="descname">input4_name</code><em class="property"> = &lt;UnboundField(StringField, ('input name 4',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input4_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input4_note">
+<code class="descname">input4_note</code><em class="property"> = &lt;UnboundField(StringField, ('input note 4',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input4_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input4_radio">
+<code class="descname">input4_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('latex', 'use Latex'), ('local', 'use local ID'), ('global', 'use global ID')], 'default': 'latex'})&gt;</em><a class="headerlink" href="#controller.LatexIO.input4_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input5">
+<code class="descname">input5</code><em class="property"> = &lt;UnboundField(StringField, ('input LaTeX 5',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input5_name">
+<code class="descname">input5_name</code><em class="property"> = &lt;UnboundField(StringField, ('input name 5',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input5_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input5_note">
+<code class="descname">input5_note</code><em class="property"> = &lt;UnboundField(StringField, ('input note 5',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input5_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input5_radio">
+<code class="descname">input5_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('latex', 'use Latex'), ('local', 'use local ID'), ('global', 'use global ID')], 'default': 'latex'})&gt;</em><a class="headerlink" href="#controller.LatexIO.input5_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input6">
+<code class="descname">input6</code><em class="property"> = &lt;UnboundField(StringField, ('input LaTeX 6',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input6_name">
+<code class="descname">input6_name</code><em class="property"> = &lt;UnboundField(StringField, ('input name 6',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input6_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input6_note">
+<code class="descname">input6_note</code><em class="property"> = &lt;UnboundField(StringField, ('input note 6',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input6_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input6_radio">
+<code class="descname">input6_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('latex', 'use Latex'), ('local', 'use local ID'), ('global', 'use global ID')], 'default': 'latex'})&gt;</em><a class="headerlink" href="#controller.LatexIO.input6_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input7">
+<code class="descname">input7</code><em class="property"> = &lt;UnboundField(StringField, ('input LaTeX 7',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input7_name">
+<code class="descname">input7_name</code><em class="property"> = &lt;UnboundField(StringField, ('input name 7',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input7_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input7_note">
+<code class="descname">input7_note</code><em class="property"> = &lt;UnboundField(StringField, ('input note 7',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.input7_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.input7_radio">
+<code class="descname">input7_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('latex', 'use Latex'), ('local', 'use local ID'), ('global', 'use global ID')], 'default': 'latex'})&gt;</em><a class="headerlink" href="#controller.LatexIO.input7_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output1">
+<code class="descname">output1</code><em class="property"> = &lt;UnboundField(StringField, ('output LaTeX 1',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.output1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output1_name">
+<code class="descname">output1_name</code><em class="property"> = &lt;UnboundField(StringField, ('output name 1',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.output1_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output1_note">
+<code class="descname">output1_note</code><em class="property"> = &lt;UnboundField(StringField, ('output note 1',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.output1_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output1_radio">
+<code class="descname">output1_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('latex', 'use Latex'), ('local', 'use local ID'), ('global', 'use global ID')], 'default': 'latex'})&gt;</em><a class="headerlink" href="#controller.LatexIO.output1_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output2">
+<code class="descname">output2</code><em class="property"> = &lt;UnboundField(StringField, ('output LaTeX 2',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.output2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output2_name">
+<code class="descname">output2_name</code><em class="property"> = &lt;UnboundField(StringField, ('output name 2',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.output2_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output2_note">
+<code class="descname">output2_note</code><em class="property"> = &lt;UnboundField(StringField, ('output note 2',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.output2_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output2_radio">
+<code class="descname">output2_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('latex', 'use Latex'), ('local', 'use local ID'), ('global', 'use global ID')], 'default': 'latex'})&gt;</em><a class="headerlink" href="#controller.LatexIO.output2_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output3">
+<code class="descname">output3</code><em class="property"> = &lt;UnboundField(StringField, ('output LaTeX 3',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.output3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output3_name">
+<code class="descname">output3_name</code><em class="property"> = &lt;UnboundField(StringField, ('output name 3',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.output3_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output3_note">
+<code class="descname">output3_note</code><em class="property"> = &lt;UnboundField(StringField, ('output note 3',), {'validators': [&lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.output3_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.output3_radio">
+<code class="descname">output3_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('latex', 'use Latex'), ('local', 'use local ID'), ('global', 'use global ID')], 'default': 'latex'})&gt;</em><a class="headerlink" href="#controller.LatexIO.output3_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed1">
+<code class="descname">static_feed1</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 1',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed10">
+<code class="descname">static_feed10</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 10',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed11">
+<code class="descname">static_feed11</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 11',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed12">
+<code class="descname">static_feed12</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX ',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed13">
+<code class="descname">static_feed13</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 13',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed13" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed2">
+<code class="descname">static_feed2</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 2',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed3">
+<code class="descname">static_feed3</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 3',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed4">
+<code class="descname">static_feed4</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 4',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed5">
+<code class="descname">static_feed5</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 5',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed6">
+<code class="descname">static_feed6</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 6',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed7">
+<code class="descname">static_feed7</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 7',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed8">
+<code class="descname">static_feed8</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 8',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.static_feed9">
+<code class="descname">static_feed9</code><em class="property"> = &lt;UnboundField(StringField, ('feed LaTeX 9',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.LatexIO.static_feed9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.LatexIO.step_note">
+<code class="descname">step_note</code><em class="property"> = &lt;UnboundField(StringField, ('step note',), {})&gt;</em><a class="headerlink" href="#controller.LatexIO.step_note" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="controller.NameOfDerivationInputForm">
+<em class="property">class </em><code class="descclassname">controller.</code><code class="descname">NameOfDerivationInputForm</code><span class="sig-paren">(</span><em>formdata=&lt;object object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#NameOfDerivationInputForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.NameOfDerivationInputForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<dl class="attribute">
+<dt id="controller.NameOfDerivationInputForm.name_of_derivation">
+<code class="descname">name_of_derivation</code><em class="property"> = &lt;UnboundField(StringField, ('name of derivation',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.NameOfDerivationInputForm.name_of_derivation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.NameOfDerivationInputForm.notes">
+<code class="descname">notes</code><em class="property"> = &lt;UnboundField(StringField, ('notes',), {})&gt;</em><a class="headerlink" href="#controller.NameOfDerivationInputForm.notes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="controller.NewSymbolForm">
+<em class="property">class </em><code class="descclassname">controller.</code><code class="descname">NewSymbolForm</code><span class="sig-paren">(</span><em>formdata=&lt;object object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#NewSymbolForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.NewSymbolForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<dl class="attribute">
+<dt id="controller.NewSymbolForm.symbol_category">
+<code class="descname">symbol_category</code><em class="property"> = &lt;UnboundField(RadioField, ('category',), {'choices': [('variable', 'variable'), ('constant', 'constant')], 'default': 'variable'})&gt;</em><a class="headerlink" href="#controller.NewSymbolForm.symbol_category" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.NewSymbolForm.symbol_latex">
+<code class="descname">symbol_latex</code><em class="property"> = &lt;UnboundField(StringField, ('latex',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;]})&gt;</em><a class="headerlink" href="#controller.NewSymbolForm.symbol_latex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.NewSymbolForm.symbol_name">
+<code class="descname">symbol_name</code><em class="property"> = &lt;UnboundField(StringField, ('name',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;]})&gt;</em><a class="headerlink" href="#controller.NewSymbolForm.symbol_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.NewSymbolForm.symbol_radio_domain">
+<code class="descname">symbol_radio_domain</code><em class="property"> = &lt;UnboundField(RadioField, ('domain',), {'choices': [('any', 'any'), ('positive', 'positive'), ('negative', 'negative'), ('nonnegative', 'non-negative')], 'default': 'any', 'validators': [&lt;wtforms.validators.InputRequired object&gt;]})&gt;</em><a class="headerlink" href="#controller.NewSymbolForm.symbol_radio_domain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.NewSymbolForm.symbol_reference">
+<code class="descname">symbol_reference</code><em class="property"> = &lt;UnboundField(StringField, ('reference',), {})&gt;</em><a class="headerlink" href="#controller.NewSymbolForm.symbol_reference" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.NewSymbolForm.symbol_scope">
+<code class="descname">symbol_scope</code><em class="property"> = &lt;UnboundField(RadioField, ('scope',), {'choices': [('real', 'real'), ('complex', 'complex'), ('integer', 'integer')], 'default': 'real', 'validators': [&lt;wtforms.validators.InputRequired object&gt;]})&gt;</em><a class="headerlink" href="#controller.NewSymbolForm.symbol_scope" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.NewSymbolForm.symbol_units">
+<code class="descname">symbol_units</code><em class="property"> = &lt;UnboundField(StringField, ('units',), {})&gt;</em><a class="headerlink" href="#controller.NewSymbolForm.symbol_units" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="controller.NewSymbolForm.symbol_value">
+<code class="descname">symbol_value</code><em class="property"> = &lt;UnboundField(StringField, ('value',), {})&gt;</em><a class="headerlink" href="#controller.NewSymbolForm.symbol_value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="controller.RevisedTextForm">
+<em class="property">class </em><code class="descclassname">controller.</code><code class="descname">RevisedTextForm</code><span class="sig-paren">(</span><em>formdata=&lt;object object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#RevisedTextForm"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.RevisedTextForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<dl class="attribute">
+<dt id="controller.RevisedTextForm.revised_text">
+<code class="descname">revised_text</code><em class="property"> = &lt;UnboundField(StringField, ('revised text',), {'validators': [&lt;wtforms.validators.InputRequired object&gt;, &lt;wtforms.validators.Length object&gt;]})&gt;</em><a class="headerlink" href="#controller.RevisedTextForm.revised_text" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="controller.SymbolEntry">
+<em class="property">class </em><code class="descclassname">controller.</code><code class="descname">SymbolEntry</code><span class="sig-paren">(</span><em>formdata=&lt;object object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#SymbolEntry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.SymbolEntry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<dl class="attribute">
+<dt id="controller.SymbolEntry.symbol_radio">
+<code class="descname">symbol_radio</code><em class="property"> = &lt;UnboundField(RadioField, ('Label',), {'choices': [('opt 1', 'opt 1'), ('opt 2', 'opt 2'), ('opt 3', 'opt 3'), ('opt 4', 'opt 4'), ('opt 5', 'opt 5'), ('opt 6', 'opt 6'), ('opt 7', 'opt 7'), ('opt 8', 'opt 8'), ('opt 9', 'opt 9'), ('opt 10', 'opt 10'), ('opt 11', 'opt 11'), ('use_existing', 'use existing'), ('create_new', 'create new')], 'default': 'already_exists'})&gt;</em><a class="headerlink" href="#controller.SymbolEntry.symbol_radio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.after_request">
+<code class="descclassname">controller.</code><code class="descname">after_request</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#after_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.after_request" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask">https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask</a></p>
+<p>I don’t know how to access this measure</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">after_request</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_all_derivations">
+<code class="descclassname">controller.</code><code class="descname">api_all_derivations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_all_derivations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_all_derivations" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the entire “derivations” dict
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_all_expressions">
+<code class="descclassname">controller.</code><code class="descname">api_all_expressions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_all_expressions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_all_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>return the entire “expressions” dict
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_all_infrules">
+<code class="descclassname">controller.</code><code class="descname">api_all_infrules</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_all_infrules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_all_infrules" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/infrules/all
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_all_local_to_global">
+<code class="descclassname">controller.</code><code class="descname">api_all_local_to_global</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_all_local_to_global"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_all_local_to_global" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/local_to_global/all
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_all_operators">
+<code class="descclassname">controller.</code><code class="descname">api_all_operators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_all_operators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_all_operators" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/operators/all
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_all_symbols">
+<code class="descclassname">controller.</code><code class="descname">api_all_symbols</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_all_symbols"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_all_symbols" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/symbols/all
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_infrules_by_name">
+<code class="descclassname">controller.</code><code class="descname">api_infrules_by_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_infrules_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_infrules_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/infrules?name=add%20zero%20to%20LHS
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_list_derivations">
+<code class="descclassname">controller.</code><code class="descname">api_list_derivations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_list_derivations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_list_derivations" title="Permalink to this definition">¶</a></dt>
+<dd><p>list derivation names
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_list_expressions">
+<code class="descclassname">controller.</code><code class="descname">api_list_expressions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_list_expressions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_list_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>list the expression global IDs
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_list_infrules">
+<code class="descclassname">controller.</code><code class="descname">api_list_infrules</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_list_infrules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_list_infrules" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/infrules/list
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_list_local">
+<code class="descclassname">controller.</code><code class="descname">api_list_local</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_list_local"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_list_local" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/local_to_global/list
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_list_operators">
+<code class="descclassname">controller.</code><code class="descname">api_list_operators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_list_operators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_list_operators" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/operators/list
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_list_symbols">
+<code class="descclassname">controller.</code><code class="descname">api_list_symbols</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_list_symbols"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_list_symbols" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/symbols/list
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_local_to_global">
+<code class="descclassname">controller.</code><code class="descname">api_local_to_global</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_local_to_global"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_local_to_global" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/local_to_global?local_id=8837284
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_operators_by_name">
+<code class="descclassname">controller.</code><code class="descname">api_operators_by_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_operators_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_operators_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/operators?operator_id=equals
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_read_derivation_by_name">
+<code class="descclassname">controller.</code><code class="descname">api_read_derivation_by_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_read_derivation_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_read_derivation_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a single derivation</p>
+<p>/api/v1/resources/derivations?name=curl%20curl%20identity</p>
+<p><a class="reference external" href="https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask">https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask</a>
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_read_expression_by_id">
+<code class="descclassname">controller.</code><code class="descname">api_read_expression_by_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_read_expression_by_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_read_expression_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>return a single expression</p>
+<p>/api/v1/resources/expressions?global_id=9999999953</p>
+<p><a class="reference external" href="https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask">https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask</a>
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.api_symbols_by_name">
+<code class="descclassname">controller.</code><code class="descname">api_symbols_by_name</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#api_symbols_by_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.api_symbols_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>/api/v1/resources/symbols?symbol_id=1223
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.before_request">
+<code class="descclassname">controller.</code><code class="descname">before_request</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#before_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.before_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Note: this function need to be before almost all other functions</p>
+<p>tutorial: <a class="reference external" href="https://pythonise.com/series/learning-flask/python-before-after-request">https://pythonise.com/series/learning-flask/python-before-after-request</a></p>
+<p><a class="reference external" href="https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask">https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask</a>
+actually, <a class="reference external" href="https://gist.github.com/lost-theory/4521102">https://gist.github.com/lost-theory/4521102</a>
+&gt;&gt;&gt; before_request():</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.callback">
+<code class="descclassname">controller.</code><code class="descname">callback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#callback"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.callback" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://realpython.com/flask-google-login/">https://realpython.com/flask-google-login/</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.clickable_layers">
+<code class="descclassname">controller.</code><code class="descname">clickable_layers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#clickable_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.clickable_layers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="controller.confirm_delete_derivation">
+<code class="descclassname">controller.</code><code class="descname">confirm_delete_derivation</code><span class="sig-paren">(</span><em>deriv_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#confirm_delete_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.confirm_delete_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>User has selected to delete the derivation they were reviewing.
+Need to confirm before actually deleting.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">confirm_delete_derivation</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.create_new_inf_rule">
+<code class="descclassname">controller.</code><code class="descname">create_new_inf_rule</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#create_new_inf_rule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.create_new_inf_rule" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_new_inf_rule</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.developer_documentation">
+<code class="descclassname">controller.</code><code class="descname">developer_documentation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#developer_documentation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.developer_documentation" title="Permalink to this definition">¶</a></dt>
+<dd><p>a static page aimed at people interested in contributed code changes</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">developer_documentation</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.faq">
+<code class="descclassname">controller.</code><code class="descname">faq</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#faq"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.faq" title="Permalink to this definition">¶</a></dt>
+<dd><p>“frequently asked questions” is a static page</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">faq</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.get_google_provider_cfg">
+<code class="descclassname">controller.</code><code class="descname">get_google_provider_cfg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#get_google_provider_cfg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.get_google_provider_cfg" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://realpython.com/flask-google-login/">https://realpython.com/flask-google-login/</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.html_view">
+<code class="descclassname">controller.</code><code class="descname">html_view</code><span class="sig-paren">(</span><em>'387954'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#html_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.html_view" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="controller.index">
+<code class="descclassname">controller.</code><code class="descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>the index is a static page intended to be the landing page for new users
+&gt;&gt;&gt; index()</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="controller.infRuleInputsAndOutputs">
+<em class="property">class </em><code class="descclassname">controller.</code><code class="descname">infRuleInputsAndOutputs</code><span class="sig-paren">(</span><em>formdata=&lt;object object&gt;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#infRuleInputsAndOutputs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.infRuleInputsAndOutputs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">flask_wtf.form.FlaskForm</span></code></p>
+<dl class="attribute">
+<dt id="controller.infRuleInputsAndOutputs.inputs_and_outputs">
+<code class="descname">inputs_and_outputs</code><em class="property"> = &lt;UnboundField(FieldList, (&lt;UnboundField(FormField, (&lt;class 'controller.EquationInputForm'&gt;, 'late_x'), {})&gt;,), {'min_entries': 1})&gt;</em><a class="headerlink" href="#controller.infRuleInputsAndOutputs.inputs_and_outputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.layers_without_arg">
+<code class="descclassname">controller.</code><code class="descname">layers_without_arg</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#layers_without_arg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.layers_without_arg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="controller.list_all_derivations">
+<code class="descclassname">controller.</code><code class="descname">list_all_derivations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#list_all_derivations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.list_all_derivations" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_all_derivations</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.list_all_expressions">
+<code class="descclassname">controller.</code><code class="descname">list_all_expressions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#list_all_expressions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.list_all_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>list all expressions</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_all_expressions</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.list_all_inference_rules">
+<code class="descclassname">controller.</code><code class="descname">list_all_inference_rules</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#list_all_inference_rules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.list_all_inference_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>list all inference rules</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_all_inference_rules</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.list_all_operators">
+<code class="descclassname">controller.</code><code class="descname">list_all_operators</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#list_all_operators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.list_all_operators" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-default"><div class="highlight"><pre><span></span><span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.list_all_symbols">
+<code class="descclassname">controller.</code><code class="descname">list_all_symbols</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#list_all_symbols"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.list_all_symbols" title="Permalink to this definition">¶</a></dt>
+<dd><p>list all symbols</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_all_symbols</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.load_user">
+<code class="descclassname">controller.</code><code class="descname">load_user</code><span class="sig-paren">(</span><em>user_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#load_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.load_user" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://flask-login.readthedocs.io/en/latest/">https://flask-login.readthedocs.io/en/latest/</a>
+also <a class="reference external" href="https://realpython.com/using-flask-login-for-user-management-with-flask/">https://realpython.com/using-flask-login-for-user-management-with-flask/</a>
+<a class="reference external" href="https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins">https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-v-user-logins</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.login">
+<code class="descclassname">controller.</code><code class="descname">login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.login" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://realpython.com/flask-google-login/">https://realpython.com/flask-google-login/</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.logout">
+<code class="descclassname">controller.</code><code class="descname">logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#logout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://flask-login.readthedocs.io/en/latest/#login-example">https://flask-login.readthedocs.io/en/latest/#login-example</a>
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.modify_step">
+<code class="descclassname">controller.</code><code class="descname">modify_step</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#modify_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.modify_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>User wants to change some aspect of a step</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">modify_step</span><span class="p">(</span><span class="s1">&#39;fun deriv&#39;</span><span class="p">,</span> <span class="s1">&#39;958242&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.monitoring">
+<code class="descclassname">controller.</code><code class="descname">monitoring</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#monitoring"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.monitoring" title="Permalink to this definition">¶</a></dt>
+<dd><p>This route is not intended to be linked to</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">monitoring</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.navigation">
+<code class="descclassname">controller.</code><code class="descname">navigation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#navigation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.navigation" title="Permalink to this definition">¶</a></dt>
+<dd><p>navigation.html contains hyperlinks to pages like:
+* start new derivation
+* edit existing derivation
+* edit inference rule
+* view existing derivations</p>
+<p>file upload: see <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/">https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.new_step_select_inf_rule">
+<code class="descclassname">controller.</code><code class="descname">new_step_select_inf_rule</code><span class="sig-paren">(</span><em>deriv_id: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#new_step_select_inf_rule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.new_step_select_inf_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>What inference rule should be used for this step?</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">new_step_select_inf_rule</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.other_projects">
+<code class="descclassname">controller.</code><code class="descname">other_projects</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#other_projects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.other_projects" title="Permalink to this definition">¶</a></dt>
+<dd><p>“other projects” is a static page</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">other_projects</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.profile">
+<code class="descclassname">controller.</code><code class="descname">profile</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#profile"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.profile" title="Permalink to this definition">¶</a></dt>
+<dd><p># TODO – this is just a stub
+<a class="reference external" href="https://github.com/allofphysicsgraph/proofofconcept/issues/126">https://github.com/allofphysicsgraph/proofofconcept/issues/126</a>
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.provide_expr_for_inf_rule">
+<code class="descclassname">controller.</code><code class="descname">provide_expr_for_inf_rule</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>inf_rule: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#provide_expr_for_inf_rule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.provide_expr_for_inf_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms">https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms</a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">provide_expr_for_inf_rule</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.rename_derivation">
+<code class="descclassname">controller.</code><code class="descname">rename_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#rename_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.rename_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the name of the derivation</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rename_derivation</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.review_derivation">
+<code class="descclassname">controller.</code><code class="descname">review_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#review_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.review_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>What step does the derivation contain?</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">review_derivation</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.roadmap">
+<code class="descclassname">controller.</code><code class="descname">roadmap</code><span class="sig-paren">(</span><em>which_layer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#roadmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.roadmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>exploration of layering formalization</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.select_derivation_step_to_edit">
+<code class="descclassname">controller.</code><code class="descname">select_derivation_step_to_edit</code><span class="sig-paren">(</span><em>deriv_id: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#select_derivation_step_to_edit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.select_derivation_step_to_edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which step in a derivation should be edited?</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">select_derivation_step_to_edit</span><span class="p">(</span><span class="s1">&#39;fun deriv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.select_derivation_to_edit">
+<code class="descclassname">controller.</code><code class="descname">select_derivation_to_edit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#select_derivation_to_edit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.select_derivation_to_edit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which derivation should be edited?</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">select_derivation_to_edit</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.select_from_existing_derivations">
+<code class="descclassname">controller.</code><code class="descname">select_from_existing_derivations</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#select_from_existing_derivations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.select_from_existing_derivations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which derivation does the user want to review?
+Alternatively, the user can generate a PDF</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">select_from_existing_derivations</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.set_secure_headers">
+<code class="descclassname">controller.</code><code class="descname">set_secure_headers</code><span class="sig-paren">(</span><em>response</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#set_secure_headers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.set_secure_headers" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://github.com/allofphysicsgraph/proofofconcept/issues/157">https://github.com/allofphysicsgraph/proofofconcept/issues/157</a>
+<a class="reference external" href="https://secure.readthedocs.io/en/latest/frameworks.html#flask">https://secure.readthedocs.io/en/latest/frameworks.html#flask</a></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.start_new_derivation">
+<code class="descclassname">controller.</code><code class="descname">start_new_derivation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#start_new_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.start_new_derivation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="controller.static_dir">
+<code class="descclassname">controller.</code><code class="descname">static_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#static_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.static_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>“static_dir” is a directory listing
+This route is not intended to be linked to
+&gt;&gt;&gt; static_dir()</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.step_review">
+<code class="descclassname">controller.</code><code class="descname">step_review</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#step_review"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.step_review" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://teamtreehouse.com/community/getting-data-from-wtforms-formfield">https://teamtreehouse.com/community/getting-data-from-wtforms-formfield</a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">step_review</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.step_with_numeric_ids">
+<code class="descclassname">controller.</code><code class="descname">step_with_numeric_ids</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#step_with_numeric_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.step_with_numeric_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://github.com/allofphysicsgraph/proofofconcept/issues/108">https://github.com/allofphysicsgraph/proofofconcept/issues/108</a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">step_with_numeric_ids</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.unauthorized">
+<code class="descclassname">controller.</code><code class="descname">unauthorized</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#unauthorized"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.unauthorized" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://flask-login.readthedocs.io/en/latest/">https://flask-login.readthedocs.io/en/latest/</a>
+&gt;&gt;&gt;</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="controller.user_documentation">
+<code class="descclassname">controller.</code><code class="descname">user_documentation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/controller.html#user_documentation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#controller.user_documentation" title="Permalink to this definition">¶</a></dt>
+<dd><p>a static page with documentation aimed at users (not developers)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">user_documentation</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<span class="target" id="module-compute"></span><dl class="class">
+<dt id="compute.STEP_DICT">
+<em class="property">class </em><code class="descclassname">compute.</code><code class="descname">STEP_DICT</code><a class="headerlink" href="#compute.STEP_DICT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dict</span></code></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.add_inf_rule">
+<code class="descclassname">compute.</code><code class="descname">add_inf_rule</code><span class="sig-paren">(</span><em>inf_rule_dict_from_form: dict</em>, <em>user_email: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#add_inf_rule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.add_inf_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">request</span><span class="o">.</span><span class="n">form</span> <span class="o">=</span> <span class="n">ImmutableMultiDict</span><span class="p">([(</span><span class="s1">&#39;inf_rule_name&#39;</span><span class="p">,</span> <span class="s1">&#39;testola&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;num_inputs&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;num_feeds&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;num_outputs&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;latex&#39;</span><span class="p">,</span> <span class="s1">&#39;adsfmiangasd&#39;</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_inf_rule</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">form</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(),</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.add_symbol">
+<code class="descclassname">compute.</code><code class="descname">add_symbol</code><span class="sig-paren">(</span><em>category: str</em>, <em>latex: str</em>, <em>name: str</em>, <em>scope: str</em>, <em>reference: str</em>, <em>domain: str</em>, <em>dim_length: str</em>, <em>dim_time: str</em>, <em>dim_mass: str</em>, <em>dim_temperature: str</em>, <em>dim_electric_charge: str</em>, <em>dim_amount_of_substance: str</em>, <em>dim_luminous_intensity: str</em>, <em>value: str</em>, <em>units: str</em>, <em>user_email: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#add_symbol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.add_symbol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">add_symbol</span><span class="p">(</span><span class="s1">&#39;myemail@address.com&#39;</span><span class="p">,</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.add_symbol_to_expr">
+<code class="descclassname">compute.</code><code class="descname">add_symbol_to_expr</code><span class="sig-paren">(</span><em>expr_global_id: str</em>, <em>symbol_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#add_symbol_to_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.add_symbol_to_expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">add_symbol_to_expr</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.allowed_file">
+<code class="descclassname">compute.</code><code class="descname">allowed_file</code><span class="sig-paren">(</span><em>filename: str</em>, <em>extension: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/compute.html#allowed_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.allowed_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>validate that the file name ends with the desired extention</p>
+<p>from <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/">https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">allowed_file</span><span class="p">(</span><span class="s1">&#39;a_file&#39;</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">allowed_file</span><span class="p">(</span><span class="s1">&#39;a_file.json&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.convert_data_to_cypher">
+<code class="descclassname">compute.</code><code class="descname">convert_data_to_cypher</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#convert_data_to_cypher"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.convert_data_to_cypher" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://hub.docker.com/_/neo4j">https://hub.docker.com/_/neo4j</a></p>
+<p>$ docker run –publish=7474:7474 –publish=7687:7687 –publish=7473:7473                  –volume=$HOME/neo4j/<a class="reference external" href="data:/data">data:/data</a>                  –volume=$HOME/neo4j/logs:/logs                  –volume=$HOME/neo4j/conf:/conf                  –volume=$HOME/neo4j/tmp:/tmp                  –env NEO4J_AUTH=none neo4j:4.0</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<p><a class="reference external" href="https://neo4j.com/docs/cypher-manual/current/clauses/create/#create-create-single-node">https://neo4j.com/docs/cypher-manual/current/clauses/create/#create-create-single-node</a></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">convert_data_to_cypher</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.convert_data_to_rdf">
+<code class="descclassname">compute.</code><code class="descname">convert_data_to_rdf</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#convert_data_to_rdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.convert_data_to_rdf" title="Permalink to this definition">¶</a></dt>
+<dd><p>this conversion is lossy</p>
+<p><a class="reference external" href="https://github.com/allofphysicsgraph/proofofconcept/issues/14">https://github.com/allofphysicsgraph/proofofconcept/issues/14</a></p>
+<p><a class="reference external" href="https://www.w3.org/RDF/">https://www.w3.org/RDF/</a>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Web_Ontology_Language">https://en.wikipedia.org/wiki/Web_Ontology_Language</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">convert_data_to_rdf</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.convert_dataframes_to_sql">
+<code class="descclassname">compute.</code><code class="descname">convert_dataframes_to_sql</code><span class="sig-paren">(</span><em>all_dfs</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#convert_dataframes_to_sql"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.convert_dataframes_to_sql" title="Permalink to this definition">¶</a></dt>
+<dd><p>this conversion is lossless</p>
+<p><a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">convert_dataframes_to_sql</span><span class="p">(</span><span class="n">all_dfs</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.convert_df_to_pkl">
+<code class="descclassname">compute.</code><code class="descname">convert_df_to_pkl</code><span class="sig-paren">(</span><em>all_df</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#convert_df_to_pkl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.convert_df_to_pkl" title="Permalink to this definition">¶</a></dt>
+<dd><p>this conversion is lossless</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">convert_df_to_pkl</span><span class="p">(</span><span class="n">all_df</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.convert_json_to_dataframes">
+<code class="descclassname">compute.</code><code class="descname">convert_json_to_dataframes</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#convert_json_to_dataframes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.convert_json_to_dataframes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">convert_json_to_dataframes</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.count_of_infrules">
+<code class="descclassname">compute.</code><code class="descname">count_of_infrules</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#count_of_infrules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.count_of_infrules" title="Permalink to this definition">¶</a></dt>
+<dd><p>How many times is each inference rule used in the Physics Derivation Graph?</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">count_of_infrules</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_AST_png_per_expression_in_step">
+<code class="descclassname">compute.</code><code class="descname">create_AST_png_per_expression_in_step</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#create_AST_png_per_expression_in_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_AST_png_per_expression_in_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>for each expression in a step, create the AST PNG from Sympy</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_AST_png_per_expression_in_step</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_d3js_json">
+<code class="descclassname">compute.</code><code class="descname">create_d3js_json</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#create_d3js_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_d3js_json" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produce a JSON file that contains something like
+{</p>
+<blockquote>
+<div><dl class="docutils">
+<dt>“nodes”: [</dt>
+<dd>{“id”: “Myriel”, “group”: 1, “img”: “/static/test.png”, “width”: 138, “height”: 39, “linear index”: 1},
+{“id”: “Napoleon”, “group”: 1, “img”: “/static/test.png”, “width”: 138, “height”: 39, “linear index”: 2}</dd>
+</dl>
+<p>],
+“links”: [</p>
+<blockquote>
+<div>{“source”: “Napoleon”, “target”: “Myriel”, “value”: 1},
+{“source”: “Mlle.Baptistine”, “target”: “Myriel”, “value”: 8}</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>}</p>
+<p>for inspiration based on the last time I implemented this, see
+v3_CSV/bin/create_json_per_derivation_from_connectionsDB.py</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_d3js_json</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_deriv_id">
+<code class="descclassname">compute.</code><code class="descname">create_deriv_id</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#create_deriv_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_deriv_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_deriv_id</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_derivation_png">
+<code class="descclassname">compute.</code><code class="descname">create_derivation_png</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#create_derivation_png"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_derivation_png" title="Permalink to this definition">¶</a></dt>
+<dd><p>for a clear description of the graphviz language, see
+<a class="reference external" href="https://www.graphviz.org/doc/info/lang.html">https://www.graphviz.org/doc/info/lang.html</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_derivation_png</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_expr_global_id">
+<code class="descclassname">compute.</code><code class="descname">create_expr_global_id</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#create_expr_global_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_expr_global_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>search DB to find whether proposed expr ID already exists</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_expr_id</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_expr_local_id">
+<code class="descclassname">compute.</code><code class="descname">create_expr_local_id</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#create_expr_local_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_expr_local_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>search DB to find whether proposed local ID already exists</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_expr_local_id</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_files_of_db_content">
+<code class="descclassname">compute.</code><code class="descname">create_files_of_db_content</code><span class="sig-paren">(</span><em>path_to_db</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/compute.html#create_files_of_db_content"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_files_of_db_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_files_of_db_content</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_png_from_latex">
+<code class="descclassname">compute.</code><code class="descname">create_png_from_latex</code><span class="sig-paren">(</span><em>input_latex_str: str</em>, <em>png_name: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#create_png_from_latex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_png_from_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>latex -halt-on-error file.tex
+dvipng file.dvi -T tight -o file.png</p>
+<p>this function relies on latex  being available on the command line
+this function relies on dvipng being available on the command line
+this function assumes generated PNG should be placed in /home/appuser/app/static/</p>
+<p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_png_from_latex</span><span class="p">(</span><span class="s1">&#39;a \dot b </span><span class="se">\n</span><span class="s1">abla&#39;</span><span class="p">,</span> <span class="s1">&#39;a_filename&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_step">
+<code class="descclassname">compute.</code><code class="descname">create_step</code><span class="sig-paren">(</span><em>latex_for_step_dict: dict</em>, <em>inf_rule: str</em>, <em>deriv_id: str</em>, <em>user_email: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#create_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_step" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p><a class="reference external" href="https://strftime.org/">https://strftime.org/</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">latex_for_step_dict</span> <span class="o">=</span> <span class="n">ImmutableMultiDict</span><span class="p">([(</span><span class="s1">&#39;input1&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;input1_radio&#39;</span><span class="p">,</span> <span class="s1">&#39;global&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;input1_global_id&#39;</span><span class="p">,</span> <span class="s1">&#39;5530148480&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;feed1&#39;</span><span class="p">,</span> <span class="s1">&#39;asgasgag&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;output1&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;output1_radio&#39;</span><span class="p">,</span> <span class="s1">&#39;global&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;output1_global_id&#39;</span><span class="p">,</span> <span class="s1">&#39;9999999951&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;submit_button&#39;</span><span class="p">,</span> <span class="s1">&#39;Submit&#39;</span><span class="p">)])</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p># prior to the radio buttons, this was the style:
+#    &gt;&gt;&gt; latex_for_step_dict = ImmutableMultiDict([(‘output1’, ‘a = b’)])
+#    &gt;&gt;&gt; create_step(latex_for_step_dict, ‘begin derivation’, ‘deriv name’, False, ‘pdg.db’)
+#    9492849</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_step_graphviz_png">
+<code class="descclassname">compute.</code><code class="descname">create_step_graphviz_png</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#create_step_graphviz_png"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_step_graphviz_png" title="Permalink to this definition">¶</a></dt>
+<dd><p>for a clear description of the graphviz language, see
+<a class="reference external" href="https://www.graphviz.org/doc/info/lang.html">https://www.graphviz.org/doc/info/lang.html</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">step_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;inf rule&#39;</span><span class="p">:</span><span class="s1">&#39;add X to both sides&#39;</span><span class="p">,</span>
+<span class="go">                 &#39;inf rule local ID&#39;:&#39;2948592&#39;,</span>
+<span class="go">                 &#39;inputs&#39;:[{&#39;expr local ID&#39;:&#39;9428&#39;, &#39;expr ID&#39;:&#39;4928923942&#39;}],</span>
+<span class="go">                 &#39;feeds&#39;:[{&#39;feed local ID&#39;:&#39;319&#39;, &#39;feed latex&#39;:&#39;k&#39;],</span>
+<span class="go">                 &#39;outputs&#39;:[{&#39;expr local ID&#39;:&#39;3921&#39;, &#39;expr ID&#39;:&#39;9499959299&#39;}]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">create_step_graphviz_png</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_step_id">
+<code class="descclassname">compute.</code><code class="descname">create_step_id</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#create_step_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_step_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>aka step ID</p>
+<p>search DB to find whether proposed local ID already exists</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_step_id</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_symbol_id">
+<code class="descclassname">compute.</code><code class="descname">create_symbol_id</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#create_symbol_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_symbol_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_symbol_id</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.create_tex_file_for_expr">
+<code class="descclassname">compute.</code><code class="descname">create_tex_file_for_expr</code><span class="sig-paren">(</span><em>tmp_file: str</em>, <em>input_latex_str: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#create_tex_file_for_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.create_tex_file_for_expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">create_tex_file_for_expr</span><span class="p">(</span><span class="s1">&#39;filename_without_extension&#39;</span><span class="p">,</span> <span class="s1">&#39;a \dot b </span><span class="se">\n</span><span class="s1">abla&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.delete_derivation">
+<code class="descclassname">compute.</code><code class="descname">delete_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#delete_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.delete_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">delete_derivation</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.delete_expr">
+<code class="descclassname">compute.</code><code class="descname">delete_expr</code><span class="sig-paren">(</span><em>expr_global_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#delete_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.delete_expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">delete_expr</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.delete_inf_rule">
+<code class="descclassname">compute.</code><code class="descname">delete_inf_rule</code><span class="sig-paren">(</span><em>name_of_inf_rule: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#delete_inf_rule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.delete_inf_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">delete_inf_rule</span><span class="p">(</span><span class="s1">&#39;multbothsidesbyx&#39;</span><span class="p">,</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.delete_operator">
+<code class="descclassname">compute.</code><code class="descname">delete_operator</code><span class="sig-paren">(</span><em>operator_to_delete: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#delete_operator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.delete_operator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">delete_operator</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.delete_step_from_derivation">
+<code class="descclassname">compute.</code><code class="descname">delete_step_from_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_to_delete: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#delete_step_from_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.delete_step_from_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">delete_step_from_derivation</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.delete_symbol">
+<code class="descclassname">compute.</code><code class="descname">delete_symbol</code><span class="sig-paren">(</span><em>symbol_to_delete: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#delete_symbol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.delete_symbol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">delete_symbol</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.edges_in_derivation">
+<code class="descclassname">compute.</code><code class="descname">edges_in_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#edges_in_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.edges_in_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edges_in_derivation</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.edit_derivation_note">
+<code class="descclassname">compute.</code><code class="descname">edit_derivation_note</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>new_note: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#edit_derivation_note"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.edit_derivation_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edit_derivation_note</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;my new note&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.edit_expr_name">
+<code class="descclassname">compute.</code><code class="descname">edit_expr_name</code><span class="sig-paren">(</span><em>expr_global_id: str</em>, <em>new_name: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#edit_expr_name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.edit_expr_name" title="Permalink to this definition">¶</a></dt>
+<dd><div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edit_expr_name</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.edit_expr_note">
+<code class="descclassname">compute.</code><code class="descname">edit_expr_note</code><span class="sig-paren">(</span><em>expr_global_id: str</em>, <em>new_note: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#edit_expr_note"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.edit_expr_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edit_expr_note</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.edit_inf_rule_latex">
+<code class="descclassname">compute.</code><code class="descname">edit_inf_rule_latex</code><span class="sig-paren">(</span><em>inf_rule_name: str</em>, <em>revised_latex: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#edit_inf_rule_latex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.edit_inf_rule_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edit_inf_rule_latex</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.edit_operator_latex">
+<code class="descclassname">compute.</code><code class="descname">edit_operator_latex</code><span class="sig-paren">(</span><em>operator: str</em>, <em>revised_latex: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#edit_operator_latex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.edit_operator_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edit_operator_latex</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.edit_step_note">
+<code class="descclassname">compute.</code><code class="descname">edit_step_note</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em>, <em>new_note: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#edit_step_note"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.edit_step_note" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edit_step_note</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="s2">&quot;my new note&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.edit_symbol_latex">
+<code class="descclassname">compute.</code><code class="descname">edit_symbol_latex</code><span class="sig-paren">(</span><em>symbol: str</em>, <em>revised_latex: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#edit_symbol_latex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.edit_symbol_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">edit_symbol_latex</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.extract_operators_from_expression_dict">
+<code class="descclassname">compute.</code><code class="descname">extract_operators_from_expression_dict</code><span class="sig-paren">(</span><em>expr_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#extract_operators_from_expression_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.extract_operators_from_expression_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">extract_operators_from_expression_dict</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.file_tail">
+<code class="descclassname">compute.</code><code class="descname">file_tail</code><span class="sig-paren">(</span><em>full_path_to_file: str</em>, <em>number_of_lines_of_log_tail: int</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#file_tail"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.file_tail" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">file_tail</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.fill_in_missing_PDG_AST_ids">
+<code class="descclassname">compute.</code><code class="descname">fill_in_missing_PDG_AST_ids</code><span class="sig-paren">(</span><em>symbol_candidate_dict</em>, <em>deriv_id</em>, <em>step_id</em>, <em>path_to_db</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#fill_in_missing_PDG_AST_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.fill_in_missing_PDG_AST_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>if a symbol detected by Sympy has only one candidate ID, then update</p>
+<p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fill_in_missing_PDG_AST_ids</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.find_symbols_in_step_that_lack_id">
+<code class="descclassname">compute.</code><code class="descname">find_symbols_in_step_that_lack_id</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#find_symbols_in_step_that_lack_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.find_symbols_in_step_that_lack_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>for a given step
+input: list of symbols detected by Sympy; each element is a string
+returns: list of Sympy symbols that don’t seem to have a corresponding entry in the PDG AST list of symbol IDs</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">find_symbols_in_step_that_lack_id</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.flatten_dict">
+<code class="descclassname">compute.</code><code class="descname">flatten_dict</code><span class="sig-paren">(</span><em>d: dict</em>, <em>sep: str = '_'</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#flatten_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.flatten_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert the AST structure
+‘AST’: {‘equals’: [ {‘nabla’: [‘2911’]},{‘function’: [‘1452’]}]}}
+to
+{‘equals_0_nabla_0’: ‘2911’, ‘equals_1_function_0’: ‘1452’}</p>
+<p>from <a class="reference external" href="https://medium.com/better-programming/how-to-flatten-a-dictionary-with-nested-lists-and-dictionaries-in-python-524fd236365">https://medium.com/better-programming/how-to-flatten-a-dictionary-with-nested-lists-and-dictionaries-in-python-524fd236365</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">flatten_dict</span><span class="p">({},</span><span class="s1">&#39;_&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.flatten_list">
+<code class="descclassname">compute.</code><code class="descname">flatten_list</code><span class="sig-paren">(</span><em>list_of_lists: list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/compute.html#flatten_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.flatten_list" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/a/5286571/1164295">https://stackoverflow.com/a/5286571/1164295</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;aab&#39;</span><span class="p">,</span> <span class="s1">&#39;aimign&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;agian&#39;</span><span class="p">,</span> <span class="s1">&#39;agag&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;gagag&#39;</span><span class="p">,</span> <span class="s1">&#39;gasg&#39;</span><span class="p">]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="n">flatten_list</span><span class="p">(</span><span class="n">l</span><span class="p">))</span>
+<span class="go">[&#39;aab&#39;, &#39;aimign&#39;, &#39;agian&#39;, &#39;agag&#39;, &#39;gagag&#39;, &#39;gasg&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.generate_auth_summary">
+<code class="descclassname">compute.</code><code class="descname">generate_auth_summary</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#generate_auth_summary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.generate_auth_summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">generate_auth_summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.generate_d3js_json_map_of_derivations">
+<code class="descclassname">compute.</code><code class="descname">generate_d3js_json_map_of_derivations</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#generate_d3js_json_map_of_derivations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.generate_d3js_json_map_of_derivations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">generate_d3js_json_map_of_derivations</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.generate_expr_dict_with_symbol_list">
+<code class="descclassname">compute.</code><code class="descname">generate_expr_dict_with_symbol_list</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#generate_expr_dict_with_symbol_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.generate_expr_dict_with_symbol_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">generate_expr_dict_with_symbol_list</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.generate_graphviz_map_of_derivations">
+<code class="descclassname">compute.</code><code class="descname">generate_graphviz_map_of_derivations</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#generate_graphviz_map_of_derivations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.generate_graphviz_map_of_derivations" title="Permalink to this definition">¶</a></dt>
+<dd><p>for a clear description of the graphviz language, see
+<a class="reference external" href="https://www.graphviz.org/doc/info/lang.html">https://www.graphviz.org/doc/info/lang.html</a></p>
+<p>potentially relevant: <a class="reference external" href="https://graphviz.gitlab.io/_pages/Gallery/undirected/fdpclust.html">https://graphviz.gitlab.io/_pages/Gallery/undirected/fdpclust.html</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">generate_map_of_derivations</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.generate_graphviz_of_step_with_numeric_IDs">
+<code class="descclassname">compute.</code><code class="descname">generate_graphviz_of_step_with_numeric_IDs</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#generate_graphviz_of_step_with_numeric_IDs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.generate_graphviz_of_step_with_numeric_IDs" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://github.com/allofphysicsgraph/proofofconcept/issues/108">https://github.com/allofphysicsgraph/proofofconcept/issues/108</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">generate_graphviz_of_step_with_numeric_IDs</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.generate_html_for_derivation">
+<code class="descclassname">compute.</code><code class="descname">generate_html_for_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#generate_html_for_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.generate_html_for_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using pandoc for “tex to (html with mathjax)” might be better?
+<a class="reference external" href="https://stackoverflow.com/questions/37533412/md-with-latex-to-html-with-mathjax-with-pandoc">https://stackoverflow.com/questions/37533412/md-with-latex-to-html-with-mathjax-with-pandoc</a>
+<a class="reference external" href="https://www.homepages.ucl.ac.uk/~ucahmto/elearning/latex/2019/06/10/pandoc.html">https://www.homepages.ucl.ac.uk/~ucahmto/elearning/latex/2019/06/10/pandoc.html</a>
+or tex4ht
+<a class="reference external" href="https://tex.stackexchange.com/questions/68916/convert-latex-to-mathjax-html">https://tex.stackexchange.com/questions/68916/convert-latex-to-mathjax-html</a></p>
+<p>This function assumes MathJax support and leverages the Jinja templates of the PDG
+Because the latex may contain strings with “{{” and “}}”, the html file is separate from the template</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">generate_html_for_derivation</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.generate_pdf_for_derivation">
+<code class="descclassname">compute.</code><code class="descname">generate_pdf_for_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>user_email: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#generate_pdf_for_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.generate_pdf_for_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">generate_pdf_for_derivation</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s1">&#39;myemail@address.com&#39;</span><span class="p">,</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.generate_tex_for_derivation">
+<code class="descclassname">compute.</code><code class="descname">generate_tex_for_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>user_email: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#generate_tex_for_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.generate_tex_for_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>In this iteration of the PDG (v7), I allow for inference rule names
+to have spaces. In previous versions, the inference rule names were
+camel case. When I implemented this function, I learned why the
+inference rule names had been camel case: Latex doesn’t like
+newcommand names to have underscore in them; see <a class="reference external" href="https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore">https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore</a>
+Therefore, I remove all spaces from the inference rule name</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">generate_tex_for_derivation</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s1">&#39;myemail@address.com&#39;</span><span class="p">,</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.get_list_of_sorted_linear_indices">
+<code class="descclassname">compute.</code><code class="descname">get_list_of_sorted_linear_indices</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#get_list_of_sorted_linear_indices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.get_list_of_sorted_linear_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_list_of_sorted_linear_indices</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.get_sorted_list_of_derivations">
+<code class="descclassname">compute.</code><code class="descname">get_sorted_list_of_derivations</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#get_sorted_list_of_derivations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.get_sorted_list_of_derivations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_list_of_derivations</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.get_sorted_list_of_expr">
+<code class="descclassname">compute.</code><code class="descname">get_sorted_list_of_expr</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#get_sorted_list_of_expr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.get_sorted_list_of_expr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<p>return: list of global IDs</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_sorted_list_of_expr</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.get_sorted_list_of_expr_not_in_use">
+<code class="descclassname">compute.</code><code class="descname">get_sorted_list_of_expr_not_in_use</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#get_sorted_list_of_expr_not_in_use"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.get_sorted_list_of_expr_not_in_use" title="Permalink to this definition">¶</a></dt>
+<dd><p>return: list of global IDs</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_sorted_list_of_expr</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.get_sorted_list_of_inf_rules">
+<code class="descclassname">compute.</code><code class="descname">get_sorted_list_of_inf_rules</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#get_sorted_list_of_inf_rules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.get_sorted_list_of_inf_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_sorted_list_of_inf_rules</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.get_sorted_list_of_inf_rules_not_in_use">
+<code class="descclassname">compute.</code><code class="descname">get_sorted_list_of_inf_rules_not_in_use</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#get_sorted_list_of_inf_rules_not_in_use"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.get_sorted_list_of_inf_rules_not_in_use" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_sorted_list_of_inf_rules</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.get_sorted_list_of_operators_not_in_use">
+<code class="descclassname">compute.</code><code class="descname">get_sorted_list_of_operators_not_in_use</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#get_sorted_list_of_operators_not_in_use"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.get_sorted_list_of_operators_not_in_use" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_sorted_list_of_operators_not_in_use</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.get_sorted_list_of_symbols_not_in_use">
+<code class="descclassname">compute.</code><code class="descname">get_sorted_list_of_symbols_not_in_use</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#get_sorted_list_of_symbols_not_in_use"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.get_sorted_list_of_symbols_not_in_use" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_sorted_list_of_symbols_not_in_use</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.guess_missing_PDG_AST_ids">
+<code class="descclassname">compute.</code><code class="descname">guess_missing_PDG_AST_ids</code><span class="sig-paren">(</span><em>list_of_symbols_in_step_lacking_id: list</em>, <em>deriv_id: str</em>, <em>step_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#guess_missing_PDG_AST_ids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.guess_missing_PDG_AST_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>this runs as a second pass after create_AST_png_per_expression_in_step()
+and fills in symbol_id based on what is present in other expressions within this step</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">guess_missing_PDG_AST_ids</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.hash_of_step">
+<code class="descclassname">compute.</code><code class="descname">hash_of_step</code><span class="sig-paren">(</span><em>deriv_id</em>, <em>step_id</em>, <em>path_to_db</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#hash_of_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.hash_of_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.initialize_derivation">
+<code class="descclassname">compute.</code><code class="descname">initialize_derivation</code><span class="sig-paren">(</span><em>name_of_derivation: str</em>, <em>user_email: str</em>, <em>notes: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#initialize_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.initialize_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">initialize_derivation</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.linear_index_to_step_id">
+<code class="descclassname">compute.</code><code class="descname">linear_index_to_step_id</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_linear_index: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#linear_index_to_step_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.linear_index_to_step_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">linear_index_to_step_id</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.list_expr_in_derivation">
+<code class="descclassname">compute.</code><code class="descname">list_expr_in_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#list_expr_in_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.list_expr_in_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a list of global expression IDs for a given derivation</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_expr_in_derivation</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.list_expr_in_step">
+<code class="descclassname">compute.</code><code class="descname">list_expr_in_step</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#list_expr_in_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.list_expr_in_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_expr_in_step</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.list_global_id_not_in_derivation">
+<code class="descclassname">compute.</code><code class="descname">list_global_id_not_in_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#list_global_id_not_in_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.list_global_id_not_in_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_global_id_not_in_derivation</span><span class="p">(</span><span class="s1">&#39;fun deriv&#39;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.list_local_id_for_derivation">
+<code class="descclassname">compute.</code><code class="descname">list_local_id_for_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#list_local_id_for_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.list_local_id_for_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>list the expr_local_id used in a derivation</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_local_id_for_derivation</span><span class="p">(</span><span class="s1">&#39;fun deriv&#39;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.list_new_linear_indices">
+<code class="descclassname">compute.</code><code class="descname">list_new_linear_indices</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#list_new_linear_indices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.list_new_linear_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://github.com/allofphysicsgraph/proofofconcept/issues/116">https://github.com/allofphysicsgraph/proofofconcept/issues/116</a></p>
+<p>Given a list of indices in a derivation, what new linear indices can be inserted?</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">get_linear_indices</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.list_symbols_used_in_derivation_from_PDG_AST">
+<code class="descclassname">compute.</code><code class="descname">list_symbols_used_in_derivation_from_PDG_AST</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#list_symbols_used_in_derivation_from_PDG_AST"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.list_symbols_used_in_derivation_from_PDG_AST" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_symbols_used_in_derivation_from_PDG_AST</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.list_symbols_used_in_step_from_PDG_AST">
+<code class="descclassname">compute.</code><code class="descname">list_symbols_used_in_step_from_PDG_AST</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#list_symbols_used_in_step_from_PDG_AST"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.list_symbols_used_in_step_from_PDG_AST" title="Permalink to this definition">¶</a></dt>
+<dd><p>for all expressions in a step, what variables and constants are present?</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_symbols_used_in_step_from_PDG_AST</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.list_symbols_used_in_step_from_sympy">
+<code class="descclassname">compute.</code><code class="descname">list_symbols_used_in_step_from_sympy</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#list_symbols_used_in_step_from_sympy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.list_symbols_used_in_step_from_sympy" title="Permalink to this definition">¶</a></dt>
+<dd><p>for all expressions in a step, what variables and constants are present?</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_symbols_used_in_step_from_sympy</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.md5_of_file">
+<code class="descclassname">compute.</code><code class="descname">md5_of_file</code><span class="sig-paren">(</span><em>fname</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/compute.html#md5_of_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.md5_of_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>get md5 hash of file content</p>
+<p><a class="reference external" href="https://docs.python.org/3/library/hashlib.html">https://docs.python.org/3/library/hashlib.html</a>
+<a class="reference external" href="https://www.geeksforgeeks.org/md5-hash-python/">https://www.geeksforgeeks.org/md5-hash-python/</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">md5_file</span><span class="p">(</span><span class="s1">&#39;name_of_file&#39;</span><span class="p">)</span>
+<span class="go">d41d8cd98f00b204e9800998ecf8427e</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.md5_of_string">
+<code class="descclassname">compute.</code><code class="descname">md5_of_string</code><span class="sig-paren">(</span><em>str_to_hash</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/compute.html#md5_of_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.md5_of_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert string to bytes, then get md5 hash</p>
+<p>Args:</p>
+<p>Returns:</p>
+<dl class="docutils">
+<dt>Raises:</dt>
+<dd>None</dd>
+</dl>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">md5_of_string</span><span class="p">(</span><span class="s1">&#39;a_string&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.modify_latex_in_expressions">
+<code class="descclassname">compute.</code><code class="descname">modify_latex_in_expressions</code><span class="sig-paren">(</span><em>global_id_of_latex_to_modify: str</em>, <em>revised_latex: str</em>, <em>user_email: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#modify_latex_in_expressions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.modify_latex_in_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>re-use existing global ID</p>
+<p><a class="reference external" href="http://asciiflow.com/">http://asciiflow.com/</a>
+suppose there is a step that has the following</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div><blockquote>
+<div>+——————–+    +————+</div></blockquote>
+<p>+———&gt; | old global expr ID <a href="#id1"><span class="problematic" id="id2">|</span></a>—&gt;+ old latex  |
+|           +——————–+    +————+</p>
+</div></blockquote>
+<table border="1" class="docutils">
+<tbody valign="top">
+</tbody>
+</table>
+</div></blockquote>
+<p>+—–&gt;+ expr local ID |
+|      +—————+</p>
+</div></blockquote>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="63%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td colspan="2">step ID</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><div class="line-block">
+<div class="line">+—————+</div>
+</div>
+<dl class="docutils">
+<dt>+—–&gt;+ inf rule name |</dt>
+<dd><table border="1" class="first last docutils">
+<tbody valign="top">
+</tbody>
+</table>
+</dd>
+</dl>
+</div></blockquote>
+<p>after the change, we have</p>
+<blockquote>
+<div><blockquote>
+<div><table border="1" class="docutils">
+<tbody valign="top">
+</tbody>
+</table>
+</div></blockquote>
+<p>+—–&gt;+ expr local ID |
+|      +——-+——-+</p>
+</div></blockquote>
+<p>+—+—–+        |            +——————–+  +———–+
+| step ID |        +———–&gt;+ new global expr ID |  | new latex |
++—+—–+                     +——————–+  +———–+</p>
+<blockquote>
+<div><div class="line-block">
+<div class="line">+—————+</div>
+</div>
+<dl class="docutils">
+<dt>+—–&gt;+ inf rule name |</dt>
+<dd><table border="1" class="first last docutils">
+<tbody valign="top">
+</tbody>
+</table>
+</dd>
+</dl>
+</div></blockquote>
+<p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">modify_latex_in_expressions</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.modify_latex_in_step">
+<code class="descclassname">compute.</code><code class="descname">modify_latex_in_step</code><span class="sig-paren">(</span><em>expr_local_id_of_latex_to_modify: str</em>, <em>revised_latex: str</em>, <em>user_email: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#modify_latex_in_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.modify_latex_in_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>keep the local ID
+create a new global ID
+associate local ID and (new) global ID</p>
+<p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">modify_latex_in_step</span><span class="p">(</span><span class="s1">&#39;959242&#39;</span><span class="p">,</span> <span class="s1">&#39;a = b&#39;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.popularity_of_derivations">
+<code class="descclassname">compute.</code><code class="descname">popularity_of_derivations</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#popularity_of_derivations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.popularity_of_derivations" title="Permalink to this definition">¶</a></dt>
+<dd><p>output:
+derivations_popularity_dict[‘name of deriv’][‘number of steps’] = 4
+derivations_popularity_dict[‘name of deriv’][‘shares expressions with’] = [‘fun deriv’, ‘another deriv’]</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">popularity_of_derivations</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.popularity_of_expressions">
+<code class="descclassname">compute.</code><code class="descname">popularity_of_expressions</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#popularity_of_expressions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.popularity_of_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">popularity_of_expressions</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.popularity_of_infrules">
+<code class="descclassname">compute.</code><code class="descname">popularity_of_infrules</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#popularity_of_infrules"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.popularity_of_infrules" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each inference rule, which derivations use that inference rule?</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<p>output:
+infrule_popularity_dict = {infrule_name: [derivation_using_infrule, derivation_using_infrule],</p>
+<blockquote>
+<div>infrule_name: [derivation_using_infrule, derivation_using_infrule]}</div></blockquote>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">popularity_of_infrules</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.popularity_of_operators">
+<code class="descclassname">compute.</code><code class="descname">popularity_of_operators</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#popularity_of_operators"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.popularity_of_operators" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">popularity_of_operators</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.popularity_of_symbols_in_derivations">
+<code class="descclassname">compute.</code><code class="descname">popularity_of_symbols_in_derivations</code><span class="sig-paren">(</span><em>symbol_popularity_dict_in_expr</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#popularity_of_symbols_in_derivations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.popularity_of_symbols_in_derivations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">symbol_popularity_dict_in_expr</span> <span class="o">=</span> <span class="p">{</span><span class="n">symbolID</span><span class="p">:</span> <span class="p">[</span><span class="n">expr_id</span><span class="p">,</span> <span class="n">expr_id</span><span class="p">]}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">popularity_of_symbols_in_derivations</span><span class="p">(</span><span class="n">symbol_popularity_dict_in_expr</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.popularity_of_symbols_in_expressions">
+<code class="descclassname">compute.</code><code class="descname">popularity_of_symbols_in_expressions</code><span class="sig-paren">(</span><em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#popularity_of_symbols_in_expressions"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.popularity_of_symbols_in_expressions" title="Permalink to this definition">¶</a></dt>
+<dd><p>symbol_popularity_dict = {symbol_id: [expr_global_id, expr_global_id]}</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">popularity_of_symbols_in_expressions</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.rank_candidate_pdg_symbols_for_sympy_symbol">
+<code class="descclassname">compute.</code><code class="descname">rank_candidate_pdg_symbols_for_sympy_symbol</code><span class="sig-paren">(</span><em>sympy_symbol: str</em>, <em>symbol_IDs_used_in_step_from_PDG_AST: list</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#rank_candidate_pdg_symbols_for_sympy_symbol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.rank_candidate_pdg_symbols_for_sympy_symbol" title="Permalink to this definition">¶</a></dt>
+<dd><p>input: symbol (detected by Sympy) as string
+returns: ranked list of PDG symbol IDs</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rank_candidate_pdg_symbols_for_sympy_symbol</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.remove_file_debris">
+<code class="descclassname">compute.</code><code class="descname">remove_file_debris</code><span class="sig-paren">(</span><em>list_of_paths_to_files: list</em>, <em>list_of_file_names: list</em>, <em>list_of_file_ext: list</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#remove_file_debris"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.remove_file_debris" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">remove_file_debris</span><span class="p">([</span><span class="s1">&#39;/path/to/file/&#39;</span><span class="p">],[</span><span class="s1">&#39;filename_without_extension&#39;</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;ext1&#39;</span><span class="p">,</span> <span class="s1">&#39;ext2&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.rename_derivation">
+<code class="descclassname">compute.</code><code class="descname">rename_derivation</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>new_name: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#rename_derivation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.rename_derivation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rename_derivation</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;new derivation name&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.rename_inf_rule">
+<code class="descclassname">compute.</code><code class="descname">rename_inf_rule</code><span class="sig-paren">(</span><em>old_name_of_inf_rule: str</em>, <em>new_name_of_inf_rule: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/compute.html#rename_inf_rule"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.rename_inf_rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rename_inf_rule</span><span class="p">(</span><span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.search_expression_latex">
+<code class="descclassname">compute.</code><code class="descname">search_expression_latex</code><span class="sig-paren">(</span><em>pattern: str</em>, <em>path_to_db: str</em>, <em>delimiter='\\s+'</em><span class="sig-paren">)</span> &#x2192; dict<a class="reference internal" href="_modules/compute.html#search_expression_latex"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.search_expression_latex" title="Permalink to this definition">¶</a></dt>
+<dd><p>based on search_list_of_strings
+adapted to dat[‘expressions’] to find latex and return a modified dat[‘expressions’]</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:
+&gt;&gt;&gt; search_expression_latex(‘pdg.db’)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.search_list_of_strings">
+<code class="descclassname">compute.</code><code class="descname">search_list_of_strings</code><span class="sig-paren">(</span><em>pattern: str</em>, <em>list_of_strings_to_search: list</em>, <em>delimiter='\\s+'</em><span class="sig-paren">)</span> &#x2192; list<a class="reference internal" href="_modules/compute.html#search_list_of_strings"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.search_list_of_strings" title="Permalink to this definition">¶</a></dt>
+<dd><p>contributed by msgoff
+<a class="reference external" href="https://github.com/allofphysicsgraph/dynamic-search/blob/master/search.py">https://github.com/allofphysicsgraph/dynamic-search/blob/master/search.py</a></p>
+<p>when multiple terms are present in the pattern,
+then search “term1 AND term2 AND term3” in the list of strings
+default is to split each string in the corpus on spaces</p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">list_of_strings_to_search</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Normally matches any character except a newline.&quot;</span><span class="p">,</span> <span class="s2">&quot;Within square brackets the dot is literal.&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">search_list_of_strings</span><span class="p">(</span><span class="s1">&#39;(Normally|With) (anyf|char)? square&#39;</span><span class="p">,</span> <span class="n">list_of_strings_to_search</span><span class="p">)</span>
+<span class="go">[&#39;Within square brackets the dot is literal. &#39;]</span>
+</pre></div>
+</div>
+<p>match one of the two
+&gt;&gt;&gt; search_list_of_strings(‘Normally|With’, list_of_strings_to_search)
+[‘Normally matches any character except a newline.’, ‘Within square brackets the dot is literal. ‘]</p>
+<p>The question mark makes the preceding token in the regular expression optional.
+<a class="reference external" href="https://www.regular-expressions.info/optional.html">https://www.regular-expressions.info/optional.html</a>
+&gt;&gt;&gt; search_list_of_strings(‘(anyf|char)?’, list_of_strings_to_search)
+[‘Normally matches any character except a newline.’, ‘Within square brackets the dot is literal. ‘]</p>
+<p>exact match
+&gt;&gt;&gt; search_list_of_strings(‘square’, list_of_strings_to_search)
+[‘Within square brackets the dot is literal. ‘]</p>
+<p>look for a math expression that has both “cos” and “2” present
+&gt;&gt;&gt; list_of_strings_to_search = [‘sin(x) + cos(2x) = f(x)’, ‘ax^2 + bx + c = 0’]
+&gt;&gt;&gt; search_list_of_strings(‘cos 2’, list_of_strings_to_search)
+[‘sin(x) + cos(2x) = f(x)’]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.send_email">
+<code class="descclassname">compute.</code><code class="descname">send_email</code><span class="sig-paren">(</span><em>list_of_addresses: list</em>, <em>msg_body: str</em>, <em>subject: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#send_email"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.send_email" title="Permalink to this definition">¶</a></dt>
+<dd><p>When something goes wrong, in addition to logging the error
+this function could be used to send an alert to the maintainer</p>
+<p>DigitalOcean doesn’t allow outgoing email on port 25, so this is not in use
+(I could use the SendGrid API)</p>
+<p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">send_email</span><span class="p">([</span><span class="s1">&#39;myemail@address.com&#39;</span><span class="p">],</span><span class="s1">&#39;this is an email&#39;</span><span class="p">,</span><span class="s1">&#39;the subject&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.timeout">
+<code class="descclassname">compute.</code><code class="descname">timeout</code><span class="sig-paren">(</span><em>seconds=10</em>, <em>error_message='Timer expired'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/compute.html#timeout"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference external" href="https://stackoverflow.com/questions/2281850/timeout-function-if-it-takes-too-long-to-finish">https://stackoverflow.com/questions/2281850/timeout-function-if-it-takes-too-long-to-finish</a></p>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">timeout</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.update_linear_index">
+<code class="descclassname">compute.</code><code class="descname">update_linear_index</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em>, <em>valu: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#update_linear_index"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.update_linear_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>for step_id in deriv_id, overwrite the exising linear index with a new value “valu”</p>
+<p><a class="reference external" href="https://github.com/allofphysicsgraph/proofofconcept/issues/116">https://github.com/allofphysicsgraph/proofofconcept/issues/116</a></p>
+<p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">update_linear_index</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="s1">&#39;42&#39;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.update_symbol_in_step">
+<code class="descclassname">compute.</code><code class="descname">update_symbol_in_step</code><span class="sig-paren">(</span><em>sympy_symbol: str</em>, <em>symbol_id: str</em>, <em>deriv_id: str</em>, <em>step_id: str</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#update_symbol_in_step"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.update_symbol_in_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>In a webform a user associated a sympy symbol with a PDG symbol_id.
+This function updates the database to reflect that selection</p>
+<p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">update_symbol_in_step</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.validate_json_file">
+<code class="descclassname">compute.</code><code class="descname">validate_json_file</code><span class="sig-paren">(</span><em>filename: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#validate_json_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.validate_json_file" title="Permalink to this definition">¶</a></dt>
+<dd><ol class="arabic simple">
+<li>validate the file is JSON</li>
+<li>validate the JSON file adheres to the schema</li>
+</ol>
+<p>Args:</p>
+<p>Returns:</p>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">validate_json_file</span><span class="p">(</span><span class="s1">&#39;filename.json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="compute.write_step_to_graphviz_file">
+<code class="descclassname">compute.</code><code class="descname">write_step_to_graphviz_file</code><span class="sig-paren">(</span><em>deriv_id: str</em>, <em>step_id: str</em>, <em>fil: typing.TextIO</em>, <em>path_to_db: str</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/compute.html#write_step_to_graphviz_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#compute.write_step_to_graphviz_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Args:</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None</dd>
+</dl>
+<p>Raises:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fil</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;a_file&#39;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">write_step_to_graphviz_file</span><span class="p">(</span><span class="s2">&quot;000001&quot;</span><span class="p">,</span> <span class="s2">&quot;1029890&quot;</span><span class="p">,</span> <span class="n">fil</span><span class="p">,</span> <span class="s1">&#39;pdg.db&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Ben Payne.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.6.7</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
