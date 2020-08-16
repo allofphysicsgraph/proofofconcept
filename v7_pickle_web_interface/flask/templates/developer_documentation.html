@@ -151,11 +151,11 @@ cat developer_documentation.html |\
 
 <H3><a name="web stack">Flask - Gunicorn - Nginx</a></H3>
 <P>
-  To provide a web interface, <a href="https://flask.palletsprojects.com/">Flask</a> is used. 
+  To provide a web interface, <a href="https://flask.palletsprojects.com/">Flask</a> is used.
   HTML (with Javascript) pages are rendered using Jinja2.
   Mathematical expressions rely on MathJax Javascript.
-  <a href="https://flask.palletsprojects.com/">Flask</a> is not intended for production use in serving Python applications, so <a href="https://gunicorn.org/">Gunicorn</a> is the Web Server Gateway Interface. 
-  <a href="https://www.nginx.com/">Nginx</a> provides an HTTP proxy server. 
+  <a href="https://flask.palletsprojects.com/">Flask</a> is not intended for production use in serving Python applications, so <a href="https://gunicorn.org/">Gunicorn</a> is the Web Server Gateway Interface.
+  <a href="https://www.nginx.com/">Nginx</a> provides an HTTP proxy server.
 </p>
 <P>
   Why this complexity is relevant is addressed in <a href="https://serverfault.com/a/331263">this StackOverflow answer</a>.
@@ -254,8 +254,8 @@ cat developer_documentation.html |\
 
 <P>
   Much of the current codebase is focused on managing the numeric IDs
-  associated with every facet of the database. 
-  This workload is due to not using a property graph representation (e.g., Neo4j). 
+  associated with every facet of the database.
+  This workload is due to not using a property graph representation (e.g., Neo4j).
   If I used Neo4j, I wouldn't need to track all the IDs and I could instead just work with the data.
   I've decided to stick with JSON and managing numeric IDs since I won't
   want to use proprietary software. (Neo4j community edition is open
@@ -266,14 +266,23 @@ cat developer_documentation.html |\
   <code>proofofconcept/v7_pickle_web_interface/flask</code> and then run
   <code>make dockerlive</code> and then open Firefox to <code>https://localhost:5000</code>.<BR>
   The purpose of this section is to address the question,  <I>What happened when that docker container ran and the webpage was opened?</i><BR>
-  Understanding the answer relies on knowing Python, <a href="https://flask.palletsprojects.com/">Flask</a>, and the Model-View-Controller paradigm. 
+  Understanding the answer relies on knowing Python, <a href="https://flask.palletsprojects.com/">Flask</a>, and the Model-View-Controller paradigm.
 
 <P>
-  The entry point for the program is <code>controller.py</code>. 
-  That file primarily depends on <code>compute.py</code>. 
+  The entry point for the program is <code>controller.py</code>.
+  That file primarily depends on <code>compute.py</code>.
   The purpose of <code>compute.py</code> is to manage the Python dictionary of nested dictionaries in the variable <code>dat</code> that is read from the JSON file.
   All the additions, edits, and transformations to <code>dat</code> are performed in <code>compute.py</code> and then provided to <code>controller.py</code> for use in dynamically generating the HTML+Javascript pages using Jinja2.
 
+<P>
+  The starting point of <code>controller.py</code> is at the bottom of the file with the line <code>if __name__ == "__main__"</code>.
+  That is where the Flask app is started. Once the app is running, the web browser requests use the function decorators like <code>@app.route("/",...)</code> to run corresponding functions like <code>def index():</code>.
+  Each of the decorated Python functions in <code>controller.py</code> rely on functions defined in <code>compute.py</code>.
+  All of the calls from <code>controller.py</code> to <code>compute.py</code> are wrapped in <code>try/except</code> clauses so that if the Python fails, the user is not exposed to the failure stack trace.
+  Each of the decorated Python functions in <code>controller.py</code> terminate with either <code>return render_template(...</code> or <code>return redirect(...</code> which results in the user's web browser getting a new page of content.
+
+<P>
+  When errors occur, there's a Flask function <code>flash</code> used to convey the error summary to the user (displayed at the bottom of the webpage).
 
 <P>
   The website <a href="http://derivationmap.net">derivationmap.net</a> is run using docker-compose; see <code>proofofconcept/v7_pickle_web_interface</code>
