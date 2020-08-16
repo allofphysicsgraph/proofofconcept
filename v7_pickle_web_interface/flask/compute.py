@@ -84,7 +84,21 @@ STEP_DICT = TypedDict(
 
 def send_email(list_of_addresses: list, msg_body: str, subject: str) -> None:
     """
-    >>> send_email()
+    When something goes wrong, in addition to logging the error
+    this function could be used to send an alert to the maintainer
+
+    DigitalOcean doesn't allow outgoing email on port 25, so this is not in use
+    (I could use the SendGrid API)
+
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
+
+    >>> send_email(['myemail@address.com'],'this is an email','the subject')
     """
     logger.info("[trace]")
     return
@@ -94,6 +108,13 @@ def send_email(list_of_addresses: list, msg_body: str, subject: str) -> None:
 def timeout(seconds=10, error_message=os.strerror(errno.ETIME)):
     """
     https://stackoverflow.com/questions/2281850/timeout-function-if-it-takes-too-long-to-finish
+
+    Args:
+
+    Returns:
+
+    Raises:
+
     >>> timeout()
     """
 
@@ -126,6 +147,13 @@ def allowed_file(filename: str, extension: str):
     validate that the file name ends with the desired extention
 
     from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+
+    Args:
+
+    Returns:
+
+    Raises:
+
     >>> allowed_file('a_file')
     False
     >>> allowed_file('a_file.json')
@@ -140,6 +168,13 @@ def validate_json_file(filename: str) -> None:
     """
     1) validate the file is JSON
     2) validate the JSON file adheres to the schema
+
+
+    Args:
+
+    Returns:
+
+    Raises:
 
     >>> validate_json_file('filename.json')
     """
@@ -192,6 +227,13 @@ def validate_json_file(filename: str) -> None:
 
 def hash_of_step(deriv_id, step_id, path_to_db) -> str:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -220,7 +262,15 @@ def update_symbol_in_step(
     In a webform a user associated a sympy symbol with a PDG symbol_id.
     This function updates the database to reflect that selection
 
-    >>> update_symbol_in_step()
+
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
+    >>> update_symbol_in_step("000001", "1029890", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -264,7 +314,14 @@ def find_symbols_in_step_that_lack_id(
     input: list of symbols detected by Sympy; each element is a string
     returns: list of Sympy symbols that don't seem to have a corresponding entry in the PDG AST list of symbol IDs
 
-    >>> find_symbols_in_step_that_lack_id()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> find_symbols_in_step_that_lack_id("000001", "1029890", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -303,7 +360,14 @@ def guess_missing_PDG_AST_ids(
     this runs as a second pass after create_AST_png_per_expression_in_step()
     and fills in symbol_id based on what is present in other expressions within this step
 
-    >>> guess_missing_PDG_AST_ids()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> guess_missing_PDG_AST_ids('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -354,7 +418,15 @@ def fill_in_missing_PDG_AST_ids(
     """
     if a symbol detected by Sympy has only one candidate ID, then update
 
-    >>> fill_in_missing_PDG_AST_ids()
+
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
+    >>> fill_in_missing_PDG_AST_ids('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -397,7 +469,14 @@ def rank_candidate_pdg_symbols_for_sympy_symbol(
     input: symbol (detected by Sympy) as string
     returns: ranked list of PDG symbol IDs
 
-    >>> rank_candidate_pdg_symbols_for_sympy_symbol()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> rank_candidate_pdg_symbols_for_sympy_symbol('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -425,7 +504,14 @@ def list_symbols_used_in_step_from_PDG_AST(
     """
     for all expressions in a step, what variables and constants are present?
 
-    >>>
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> list_symbols_used_in_step_from_PDG_AST("000001", "1029890", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -464,7 +550,14 @@ def list_symbols_used_in_derivation_from_PDG_AST(
     deriv_id: str, path_to_db: str
 ) -> list:
     """
-    >>> list_symbols_used_in_derivation_from_PDG_AST()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> list_symbols_used_in_derivation_from_PDG_AST('pdg.db')
 
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -499,7 +592,14 @@ def list_symbols_used_in_step_from_sympy(
     """
     for all expressions in a step, what variables and constants are present?
 
-    >>>
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> list_symbols_used_in_step_from_sympy("000001", "1029890", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -532,7 +632,14 @@ def create_AST_png_per_expression_in_step(
     """
     for each expression in a step, create the AST PNG from Sympy
 
-    >>>
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> create_AST_png_per_expression_in_step("000001", "1029890", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -585,7 +692,14 @@ def linear_index_to_step_id(
     deriv_id: str, step_linear_index: str, path_to_db: str
 ) -> str:
     """
-    >>> linear_index_to_step_id()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> linear_index_to_step_id('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -606,7 +720,14 @@ def linear_index_to_step_id(
 
 def get_list_of_sorted_linear_indices(deriv_id: str, path_to_db: str) -> list:
     """
-    >>>
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> get_list_of_sorted_linear_indices('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -629,7 +750,14 @@ def list_new_linear_indices(deriv_id: str, path_to_db: str) -> list:
 
     Given a list of indices in a derivation, what new linear indices can be inserted?
 
-    >>> get_linear_indices()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> get_linear_indices('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -651,6 +779,13 @@ def list_new_linear_indices(deriv_id: str, path_to_db: str) -> list:
 def list_local_id_for_derivation(deriv_id: str, path_to_db: str) -> list:
     """
     list the expr_local_id used in a derivation
+
+    Args:
+
+    Returns:
+
+    Raises:
+
 
     >>> list_local_id_for_derivation('fun deriv', 'pdg.db')
     """
@@ -674,6 +809,13 @@ def list_local_id_for_derivation(deriv_id: str, path_to_db: str) -> list:
 
 def list_global_id_not_in_derivation(deriv_id: str, path_to_db: str) -> list:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
     >>> list_global_id_not_in_derivation('fun deriv', 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -708,7 +850,14 @@ def md5_of_file(fname):
 
     https://docs.python.org/3/library/hashlib.html
     https://www.geeksforgeeks.org/md5-hash-python/
-    >>> md5_file()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> md5_file('name_of_file')
     d41d8cd98f00b204e9800998ecf8427e
     """
     with open(fname, "rb") as fil:
@@ -719,13 +868,28 @@ def md5_of_file(fname):
 def md5_of_string(str_to_hash):
     """
     convert string to bytes, then get md5 hash
-    >>> md5_of_string
+
+    Args:
+
+    Returns:
+
+    Raises:
+      None
+
+    >>> md5_of_string('a_string')
     """
     return hashlib.md5(str_to_hash.encode("utf-8")).hexdigest()
 
 
 def create_files_of_db_content(path_to_db):
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
     >>> create_files_of_db_content('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -780,6 +944,13 @@ def create_files_of_db_content(path_to_db):
 
 def convert_json_to_dataframes(path_to_db: str) -> dict:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
 
     >>> convert_json_to_dataframes('pdg.db')
     """
@@ -980,6 +1151,13 @@ def convert_df_to_pkl(all_df) -> str:
     """
     this conversion is lossless
 
+    Args:
+
+    Returns:
+
+    Raises:
+
+
     >>> convert_df_to_pkl(all_df)
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -997,7 +1175,14 @@ def convert_dataframes_to_sql(all_dfs) -> str:
 
     https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html
 
-    >>> convert_dataframes_to_sql(all_dfs, 'pdg.db')
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> convert_dataframes_to_sql(all_dfs)
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -1027,6 +1212,13 @@ def convert_data_to_rdf(path_to_db: str) -> str:
 
     https://www.w3.org/RDF/
     https://en.wikipedia.org/wiki/Web_Ontology_Language
+
+    Args:
+
+    Returns:
+
+    Raises:
+
     >>> convert_data_to_rdf('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1108,6 +1300,13 @@ def convert_data_to_cypher(path_to_db: str) -> str:
                  --volume=$HOME/neo4j/tmp:/tmp \
                  --env NEO4J_AUTH=none neo4j:4.0
 
+    Args:
+
+    Returns:
+
+    Raises:
+
+
     https://neo4j.com/docs/cypher-manual/current/clauses/create/#create-create-single-node
 
     >>> convert_data_to_cypher('pdg.db')
@@ -1135,9 +1334,7 @@ def convert_data_to_cypher(path_to_db: str) -> str:
         )
     for infrule_name, infrule_dict in dat["inference rules"].items():
         # https://stackoverflow.com/questions/22520932/python-remove-all-non-alphabet-chars-from-string
-        cypher_str += (
-            "CREATE (" + "".join(filter(str.isalnum, infrule_name)) + ":infrule {\n"
-        )
+        cypher_str += "CREATE (" + "".join(filter(str.isalnum, infrule_name)) + ":infrule {\n"
         cypher_str += (
             "       num_inputs: " + str(infrule_dict["number of inputs"]) + ",\n"
         )
@@ -1243,6 +1440,13 @@ def flatten_list(list_of_lists: list):
     """
     https://stackoverflow.com/a/5286571/1164295
 
+    Args:
+
+    Returns:
+
+    Raises:
+
+
     >>> l = ['aab', 'aimign', ['agian', 'agag', ['gagag', 'gasg']]]
     >>> list(flatten_list(l))
     ['aab', 'aimign', 'agian', 'agag', 'gagag', 'gasg']
@@ -1257,7 +1461,14 @@ def flatten_list(list_of_lists: list):
 
 def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
     """
-    >>> generate_expr_dict_with_symbol_list()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> generate_expr_dict_with_symbol_list('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -1286,7 +1497,14 @@ def generate_expr_dict_with_symbol_list(path_to_db: str) -> dict:
 
 def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
     """
-    >>> get_sorted_list_of_symbols_not_in_use()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> get_sorted_list_of_symbols_not_in_use('pdg.db')
     """
     # not logging here
     symbol_popularity_dict = popularity_of_symbols_in_expressions(path_to_db)
@@ -1301,7 +1519,14 @@ def get_sorted_list_of_symbols_not_in_use(path_to_db: str) -> list:
 
 def get_sorted_list_of_operators_not_in_use(path_to_db: str) -> list:
     """
-    >>> get_sorted_list_of_operators_not_in_use()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> get_sorted_list_of_operators_not_in_use('pdg.db')
     """
     # not logging here
     operator_popularity_dict = popularity_of_operators(path_to_db)
@@ -1316,9 +1541,16 @@ def get_sorted_list_of_operators_not_in_use(path_to_db: str) -> list:
 
 def get_sorted_list_of_expr(path_to_db: str) -> list:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
     return: list of global IDs
 
-    >>> get_sorted_list_of_expr('data.pkl')
+    >>> get_sorted_list_of_expr('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -1333,7 +1565,14 @@ def get_sorted_list_of_expr_not_in_use(path_to_db: str) -> list:
     """
     return: list of global IDs
 
-    >>> get_sorted_list_of_expr('data.pkl')
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> get_sorted_list_of_expr('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -1350,7 +1589,14 @@ def get_sorted_list_of_expr_not_in_use(path_to_db: str) -> list:
 
 def get_sorted_list_of_inf_rules_not_in_use(path_to_db: str) -> list:
     """
-    >>> get_sorted_list_of_inf_rules('data.pkl')
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> get_sorted_list_of_inf_rules('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -1368,7 +1614,14 @@ def get_sorted_list_of_inf_rules_not_in_use(path_to_db: str) -> list:
 
 def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
     """
-    >>> get_sorted_list_of_inf_rules('data.pkl')
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> get_sorted_list_of_inf_rules('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -1382,6 +1635,13 @@ def get_sorted_list_of_inf_rules(path_to_db: str) -> list:
 
 def get_sorted_list_of_derivations(path_to_db: str) -> list:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
     >>> get_list_of_derivations('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
@@ -1402,7 +1662,14 @@ def get_sorted_list_of_derivations(path_to_db: str) -> list:
 
 def create_symbol_id(path_to_db: str) -> str:
     """
-    >>> create_symbol_id()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> create_symbol_id('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -1425,7 +1692,14 @@ def create_symbol_id(path_to_db: str) -> str:
 
 def create_deriv_id(path_to_db: str) -> str:
     """
-    >>> create_deriv_id()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> create_deriv_id('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -1451,7 +1725,14 @@ def create_expr_global_id(path_to_db: str) -> str:
     """
     search DB to find whether proposed expr ID already exists
 
-    >>> create_expr_id(False, 'pdg.db')
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> create_expr_id('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -1481,7 +1762,16 @@ def create_step_id(path_to_db: str) -> str:
     aka step ID
 
     search DB to find whether proposed local ID already exists
-    >>> create_step_id(False, 'pdg.db')
+
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> create_step_id('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -1509,7 +1799,16 @@ def create_step_id(path_to_db: str) -> str:
 def create_expr_local_id(path_to_db: str) -> str:
     """
     search DB to find whether proposed local ID already exists
-    >>> create_expr_local_id(False, 'pdg.db')
+
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> create_expr_local_id('pdg.db')
     """
     # trace_id = str(random.randint(1000000, 9999999))
     # logger.info("[trace start " + trace_id + "]")
@@ -1537,7 +1836,15 @@ def create_expr_local_id(path_to_db: str) -> str:
 
 def file_tail(full_path_to_file: str, number_of_lines_of_log_tail: int) -> list:
     """
-    >>>
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> file_tail()
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -1552,6 +1859,14 @@ def file_tail(full_path_to_file: str, number_of_lines_of_log_tail: int) -> list:
 
 def generate_auth_summary() -> list:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
     >>> generate_auth_summary()
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1612,6 +1927,13 @@ def flatten_dict(d: dict, sep: str = "_") -> dict:
 
     from https://medium.com/better-programming/how-to-flatten-a-dictionary-with-nested-lists-and-dictionaries-in-python-524fd236365
 
+    Args:
+
+    Returns:
+
+    Raises:
+
+
     >>> flatten_dict({},'_')
     """
     # do not include "logger.info()" here because this function is called very often
@@ -1635,7 +1957,15 @@ def flatten_dict(d: dict, sep: str = "_") -> dict:
 
 def extract_operators_from_expression_dict(expr_id: str, path_to_db: str) -> list:
     """
-    >>>
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> extract_operators_from_expression_dict('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -1679,7 +2009,7 @@ def extract_operators_from_expression_dict(expr_id: str, path_to_db: str) -> lis
 
 # def extract_expressions_from_derivation_dict(deriv_id: str, path_to_db: str) -> list:
 #    """
-#    >>>
+#    >>> extract_expressions_from_derivation_dict('pdg.db')
 #    """
 #    trace_id = str(random.randint(1000000, 9999999))
 #    logger.info("[trace start " + trace_id + "]")
@@ -1706,6 +2036,13 @@ def popularity_of_derivations(path_to_db: str) -> dict:
     output:
     derivations_popularity_dict['name of deriv']['number of steps'] = 4
     derivations_popularity_dict['name of deriv']['shares expressions with'] = ['fun deriv', 'another deriv']
+
+    Args:
+
+    Returns:
+
+    Raises:
+
 
     >>> popularity_of_derivations('pdg.db')
     """
@@ -1754,6 +2091,14 @@ def popularity_of_derivations(path_to_db: str) -> dict:
 
 def popularity_of_operators(path_to_db: str) -> dict:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
     >>> popularity_of_operators('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1791,6 +2136,13 @@ def popularity_of_symbols_in_expressions(path_to_db: str) -> dict:
     """
     symbol_popularity_dict = {symbol_id: [expr_global_id, expr_global_id]}
 
+    Args:
+
+    Returns:
+
+    Raises:
+
+
     >>> popularity_of_symbols_in_expressions('pdg.db')
 
     """
@@ -1824,6 +2176,13 @@ def popularity_of_symbols_in_derivations(
     symbol_popularity_dict_in_expr, path_to_db: str
 ) -> dict:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
 
     >>> symbol_popularity_dict_in_expr = {symbolID: [expr_id, expr_id]}
     >>> popularity_of_symbols_in_derivations(symbol_popularity_dict_in_expr 'pdg.db')
@@ -1861,6 +2220,14 @@ def popularity_of_symbols_in_derivations(
 
 def popularity_of_expressions(path_to_db: str) -> dict:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
     >>> popularity_of_expressions('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1901,6 +2268,13 @@ def count_of_infrules(path_to_db: str) -> dict:
     """
     How many times is each inference rule used in the Physics Derivation Graph?
 
+    Args:
+
+    Returns:
+
+    Raises:
+
+
     >>> count_of_infrules('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -1920,6 +2294,13 @@ def count_of_infrules(path_to_db: str) -> dict:
 def popularity_of_infrules(path_to_db: str) -> dict:
     """
     For each inference rule, which derivations use that inference rule?
+
+    Args:
+
+    Returns:
+
+    Raises:
+
 
     output:
     infrule_popularity_dict = {infrule_name: [derivation_using_infrule, derivation_using_infrule],
@@ -1960,6 +2341,15 @@ def search_list_of_strings(
     then search "term1 AND term2 AND term3" in the list of strings
     default is to split each string in the corpus on spaces
 
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+
     >>> list_of_strings_to_search = ["Normally matches any character except a newline.", "Within square brackets the dot is literal."]
     >>> search_list_of_strings('(Normally|With) (anyf|char)? square', list_of_strings_to_search)
     ['Within square brackets the dot is literal. ']
@@ -1999,6 +2389,13 @@ def search_expression_latex(pattern: str, path_to_db: str, delimiter="\s+") -> d
     """
     based on search_list_of_strings
     adapted to dat['expressions'] to find latex and return a modified dat['expressions']
+
+    Args:
+
+    Returns:
+
+    Raises:
+    >>> search_expression_latex('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2030,6 +2427,14 @@ def remove_file_debris(
     list_of_paths_to_files: list, list_of_file_names: list, list_of_file_ext: list
 ) -> None:
     """
+
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
     >>> remove_file_debris(['/path/to/file/'],['filename_without_extension'], ['ext1', 'ext2'])
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -2048,19 +2453,18 @@ def remove_file_debris(
     logger.info("[trace end " + trace_id + "]")
     return
 
-    # *******************************************
-    # create files on filesystem
-
-    # def generate_all_expr_and_infrule_pngs(
-    #    overwrite_existing: bool, path_to_db: str
-    # ) -> None:
-    #    """
-    #    >>> generate_all_expr_and_infrule_pngs()
-    #    """
-    #    trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace start " + trace_id + "]")
+# *******************************************
+# create files on filesystem
 
 
+# def generate_all_expr_and_infrule_pngs(
+#    overwrite_existing: bool, path_to_db: str
+# ) -> None:
+#    """
+#    >>> generate_all_expr_and_infrule_pngs('pdg.db')
+#    """
+#    trace_id = str(random.randint(1000000, 9999999))
+#    logger.info("[trace start " + trace_id + "]")
 #
 #    dat = clib.read_db(path_to_db)
 #    destination_folder = "/home/appuser/app/static/"
@@ -2091,6 +2495,14 @@ def remove_file_debris(
 
 def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
     """
+
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
     >>> create_tex_file_for_expr('filename_without_extension', 'a \dot b \\nabla')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -2132,7 +2544,14 @@ def create_tex_file_for_expr(tmp_file: str, input_latex_str: str) -> None:
 
 def generate_d3js_json_map_of_derivations(path_to_db: str) -> str:
     """
-    >>> generate_d3js_json_map_of_derivations()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> generate_d3js_json_map_of_derivations('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2262,7 +2681,14 @@ def generate_graphviz_map_of_derivations(path_to_db: str) -> str:
 
     potentially relevant: https://graphviz.gitlab.io/_pages/Gallery/undirected/fdpclust.html
 
-    >>> generate_map_of_derivations()
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> generate_map_of_derivations('pdg.db')
     """
 
     """
@@ -2367,8 +2793,16 @@ def write_step_to_graphviz_file(
     deriv_id: str, step_id: str, fil: TextIO, path_to_db: str
 ) -> None:
     """
+
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
     >>> fil = open('a_file','r')
-    >>> write_step_to_graphviz_file("deriv name", "492482", fil, False, 'pdg.db')
+    >>> write_step_to_graphviz_file("000001", "1029890", fil, 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2457,7 +2891,14 @@ def generate_html_for_derivation(deriv_id: str, path_to_db: str) -> str:
     This function assumes MathJax support and leverages the Jinja templates of the PDG
     Because the latex may contain strings with "{{" and "}}", the html file is separate from the template
 
-    >>> generate_html_for_derivation()
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> generate_html_for_derivation("000001", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2573,7 +3014,14 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     newcommand names to have underscore in them; see https://tex.stackexchange.com/questions/306110/new-command-with-an-underscore
     Therefore, I remove all spaces from the inference rule name
 
-    >>> generate_tex_for_derivation()
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> generate_tex_for_derivation("000001", 'myemail@address.com','pdg.db')
     """
 
     trace_id = str(random.randint(1000000, 9999999))
@@ -2763,7 +3211,14 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
 
 def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str) -> str:
     """
-    >>> generate_pdf_for_derivation()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> generate_pdf_for_derivation("000001", 'myemail@address.com','pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2880,7 +3335,14 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
 
 def list_expr_in_step(deriv_id: str, step_id: str, path_to_db: str) -> list:
     """
-    >>> list_expr_in_step()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> list_expr_in_step("000001", "1029890", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2898,7 +3360,14 @@ def list_expr_in_derivation(deriv_id: str, path_to_db: str) -> list:
     """
     returns a list of global expression IDs for a given derivation
 
-    >>> list_expr_in_derivation('my deriv', 'pdg.db')
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> list_expr_in_derivation("000001", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2927,7 +3396,15 @@ def update_linear_index(
 
     https://github.com/allofphysicsgraph/proofofconcept/issues/116
 
-    >>> update_linear_index()
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
+
+    >>> update_linear_index("000001", "1029890", '42', 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2952,7 +3429,14 @@ def update_linear_index(
 
 def edges_in_derivation(deriv_id: str, path_to_db: str) -> list:
     """
-    >>> edges_in_derivation
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> edges_in_derivation("000001", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2989,7 +3473,14 @@ def create_d3js_json(deriv_id: str, path_to_db: str) -> str:
     for inspiration based on the last time I implemented this, see
     v3_CSV/bin/create_json_per_derivation_from_connectionsDB.py
 
-    >>> create_d3js_json('my deriv', 'pdg.db')
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> create_d3js_json("000001", 'pdg.db')
 
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -3107,7 +3598,14 @@ def create_derivation_png(deriv_id: str, path_to_db: str) -> str:
     for a clear description of the graphviz language, see
     https://www.graphviz.org/doc/info/lang.html
 
-    >>> create_derivation_png()
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> create_derivation_png("000001", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3165,12 +3663,19 @@ def create_step_graphviz_png(deriv_id: str, step_id: str, path_to_db: str) -> st
     for a clear description of the graphviz language, see
     https://www.graphviz.org/doc/info/lang.html
 
+    Args:
+
+    Returns:
+
+    Raises:
+
+
     >>> step_dict = {'inf rule':'add X to both sides',
                      'inf rule local ID':'2948592',
                      'inputs':[{'expr local ID':'9428', 'expr ID':'4928923942'}],
                      'feeds':[{'feed local ID':'319', 'feed latex':'k'],
                      'outputs':[{'expr local ID':'3921', 'expr ID':'9499959299'}]}
-    >>> create_step_graphviz_png(step_dict, 'my derivation', False)
+    >>> create_step_graphviz_png("000001", "1029890", 'pdg.db')
 
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -3229,7 +3734,14 @@ def generate_graphviz_of_step_with_numeric_IDs(
 ) -> str:
     """
     https://github.com/allofphysicsgraph/proofofconcept/issues/108
-    >>> generate_graphviz_of_step_with_numeric_IDs()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> generate_graphviz_of_step_with_numeric_IDs("000001", "1029890", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3380,7 +3892,15 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     this function relies on latex  being available on the command line
     this function relies on dvipng being available on the command line
     this function assumes generated PNG should be placed in /home/appuser/app/static/
-    >>> create_png_from_latex('a \dot b \\nabla', False)
+
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
+    >>> create_png_from_latex('a \dot b \\nabla', 'a_filename')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3501,6 +4021,14 @@ def modify_latex_in_step(
     create a new global ID
     associate local ID and (new) global ID
 
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
+
     >>> modify_latex_in_step('959242', 'a = b', 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -3533,7 +4061,15 @@ def delete_step_from_derivation(
     deriv_id: str, step_to_delete: str, path_to_db: str
 ) -> None:
     """
-    >>> delete_step_from_derivation
+
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
+    >>> delete_step_from_derivation("000001", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3552,7 +4088,14 @@ def delete_step_from_derivation(
 
 def delete_derivation(deriv_id: str, path_to_db: str) -> str:
     """
-    >>> delete_derivation('my cool deriv', 'pdg.db')
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> delete_derivation("000001", 'pdg.db')
 
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -3588,7 +4131,15 @@ def add_symbol(
     path_to_db: str,
 ) -> None:
     """
-    >>> add_symbol()
+
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
+    >>> add_symbol('myemail@address.com','pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3629,6 +4180,13 @@ def add_inf_rule(
     inf_rule_dict_from_form: dict, user_email: str, path_to_db: str
 ) -> str:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
     >>> request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
     >>> add_inf_rule(request.form.to_dict(), 'pdg.db')
     """
@@ -3676,6 +4234,13 @@ def add_inf_rule(
 
 def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
     """
+
+    Args:
+
+    Returns:
+
+    Raises:
+
     >>> delete_inf_rule('multbothsidesbyx','pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -3707,7 +4272,15 @@ def delete_inf_rule(name_of_inf_rule: str, path_to_db: str) -> str:
 
 def add_symbol_to_expr(expr_global_id: str, symbol_id: str, path_to_db: str) -> None:
     """
-    >>>
+
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
+    >>> add_symbol_to_expr('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3726,7 +4299,15 @@ def add_symbol_to_expr(expr_global_id: str, symbol_id: str, path_to_db: str) -> 
 
 def edit_expr_note(expr_global_id: str, new_note: str, path_to_db: str) -> str:
     """
-    >>>
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> edit_expr_note('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3745,7 +4326,7 @@ def edit_expr_note(expr_global_id: str, new_note: str, path_to_db: str) -> str:
 
 def edit_expr_name(expr_global_id: str, new_name: str, path_to_db: str) -> str:
     """
-    >>>
+    >>> edit_expr_name('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3764,7 +4345,15 @@ def edit_expr_name(expr_global_id: str, new_name: str, path_to_db: str) -> str:
 
 def edit_step_note(deriv_id: str, step_id: str, new_note: str, path_to_db: str) -> str:
     """
-    >>> edit_step_note()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> edit_step_note("000001", "1029890", "my new note", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3787,7 +4376,15 @@ def edit_step_note(deriv_id: str, step_id: str, new_note: str, path_to_db: str) 
 
 def edit_derivation_note(deriv_id: str, new_note: str, path_to_db: str) -> str:
     """
-    >>> edit_derivation_note()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> edit_derivation_note("000001", "my new note", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3806,7 +4403,15 @@ def edit_derivation_note(deriv_id: str, new_note: str, path_to_db: str) -> str:
 
 def rename_derivation(deriv_id: str, new_name: str, path_to_db: str) -> str:
     """
-    >>> rename_derivation()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> rename_derivation("000001", "new derivation name", 'pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3826,7 +4431,15 @@ def rename_inf_rule(
     old_name_of_inf_rule: str, new_name_of_inf_rule: str, path_to_db: str
 ) -> str:
     """
-    >>> rename_inf_rule()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> rename_inf_rule('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3863,7 +4476,15 @@ def rename_inf_rule(
 
 def edit_operator_latex(operator: str, revised_latex: str, path_to_db: str) -> str:
     """
-    >>> edit_operator_latex()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> edit_operator_latex('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3881,7 +4502,15 @@ def edit_operator_latex(operator: str, revised_latex: str, path_to_db: str) -> s
 
 def edit_symbol_latex(symbol: str, revised_latex: str, path_to_db: str) -> str:
     """
-    >>> edit_symbol_latex()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> edit_symbol_latex('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3899,7 +4528,16 @@ def edit_symbol_latex(symbol: str, revised_latex: str, path_to_db: str) -> str:
 
 def edit_inf_rule_latex(inf_rule_name: str, revised_latex: str, path_to_db: str) -> str:
     """
-    >>> edit_inf_rule_latex()
+
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+
+    >>> edit_inf_rule_latex('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3953,7 +4591,15 @@ def modify_latex_in_expressions(
                +---------------+
 
 
-    >>> modify_latex_in_expressions()
+    Args:
+
+    Returns:
+      None
+
+    Raises:
+
+
+    >>> modify_latex_in_expressions('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3972,7 +4618,14 @@ def modify_latex_in_expressions(
 
 def delete_symbol(symbol_to_delete: str, path_to_db: str) -> str:
     """
-    >>> delete_symbol()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> delete_symbol('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -3995,7 +4648,14 @@ def delete_symbol(symbol_to_delete: str, path_to_db: str) -> str:
 
 def delete_operator(operator_to_delete: str, path_to_db: str) -> str:
     """
-    >>> delete_operator()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> delete_operator('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -4018,7 +4678,14 @@ def delete_operator(operator_to_delete: str, path_to_db: str) -> str:
 
 def delete_expr(expr_global_id: str, path_to_db: str) -> str:
     """
-    >>> delete_expr()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> delete_expr('pdg.db')
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -4044,7 +4711,14 @@ def initialize_derivation(
     name_of_derivation: str, user_email: str, notes: str, path_to_db: str
 ) -> str:
     """
-    >>> initialize_derivation()
+
+    Args:
+
+    Returns:
+
+    Raises:
+
+    >>> initialize_derivation('pdg.db')
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
@@ -4071,6 +4745,13 @@ def create_step(
 ) -> str:
     """
     https://strftime.org/
+
+    Args:
+
+    Returns:
+
+    Raises:
+
 
     >>> latex_for_step_dict = ImmutableMultiDict([('input1', ''), ('input1_radio', 'global'), ('input1_global_id', '5530148480'), ('feed1', 'asgasgag'), ('output1', ''), ('output1_radio', 'global'), ('output1_global_id', '9999999951'), ('submit_button', 'Submit')])
 
@@ -4301,7 +4982,7 @@ def create_step(
     # the following was moved into controller.py so that when a single step fails the notice is provided to the user
     # def determine_derivation_validity(deriv_id: str, path_to_db: str) -> dict:
     #    """
-    #    >>> determine_derivation_validity()
+    #    >>> determine_derivation_validity("000001", 'pdg.db')
     #    """
     #    trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -4322,7 +5003,7 @@ def create_step(
     #    step_id: str, deriv_id: str, path_to_db: str
     # ) -> str:
     #    """
-    #    >>> determine_step_validity()
+    #    >>> determine_step_validity("000001", 'pdg.db')
     #    """
     #    trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
