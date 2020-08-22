@@ -1,12 +1,12 @@
 {% extends "_base.html" %}
 {% block content %}
 
-<H3> File listing of static</H3>
+<H3> File listing of {{ folder_name }}</H3>
 
 <UL>
 {% for file in list_of_files %}
   <LI>
-    <a href="{{ url_for('static', filename=file) }}">
+    <a href="{{ url_for(folder_name, filename=file) }}">
       {{ file }}
     </a>
   </LI>
