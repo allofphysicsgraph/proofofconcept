@@ -1376,11 +1376,11 @@ def static_dir():
 
 
 @app.route("/tmp_dir", methods=["GET", "POST"])
-def static_dir():
+def tmp_dir():
     """
     "tmp_dir" is a directory listing
     This route is not intended to be linked to
-    >>> static_dir()
+    >>> tmp_dir()
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace page start " + trace_id + "]")
