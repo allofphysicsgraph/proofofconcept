@@ -2,6 +2,10 @@
 
 # from https://realpython.com/flask-google-login/
 
+"""
+This module contains a set of SQL read/write functions needed for the Google Login capability
+"""
+
 # http://flask.pocoo.org/docs/1.0/tutorial/database/
 import sqlite3
 

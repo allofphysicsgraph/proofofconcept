@@ -6,6 +6,13 @@
 # https://creativecommons.org/licenses/by/4.0/
 # Attribution 4.0 International (CC BY 4.0)
 
+"""
+The purpose of this file is to transform log files on the webserver (e.g., DigitalOcean or localhost)
+into records that can be used to inform visualizations presented to the user.
+
+Reinventing Prometheus/Graphana for specific log files and specific views. 
+"""
+
 # the order of installation matters for these two :(
 #get_ipython().system('pip install python-geoip-geolite2')
 #get_ipython().system('pip install python-geoip-python3')

@@ -5,6 +5,25 @@
 # https://creativecommons.org/licenses/by/4.0/
 # Attribution 4.0 International (CC BY 4.0)
 
+"""
+This file contains functions that are used by multiple modules, such as opening the database and writing to the database.
+
+These functions are separated from compute.py and controller.py in order to isolate interactions with a database.
+For example, whether the data is stored in JSON or SQL or Redis or Cypher is abstracted in this file so that other modules
+only are aware of the "dat" nested dictionaries.
+
+The data structure used to store the Physics Derivation Graph has gone through many iterations, including CSV, XML, JSON, SQL, Redis, Neo4j.
+The current implementation is JSON stored in SQLite. 
+The reasoning for the use of JSON is 
+* the readability of JSON 
+* JSON is plain text and fits in version control well
+* ability to make manual edits to offline JSON 
+In the case where multiple users are making edits concurrently, JSON is not sufficient -- it lacks locks.
+Therefore, SQL is used to store the JSON in a single cell (as one long string). 
+Concurrency is handled by SQL while I retain the benefits of JSON.
+https://physicsderivationgraph.blogspot.com/2020/04/a-terrible-hack-to-get-json-into.html
+
+"""
 
 # a short-lived experiment in use of redis
 # from redis import Redis

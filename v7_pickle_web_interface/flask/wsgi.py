@@ -6,7 +6,11 @@
 # Attribution 4.0 International (CC BY 4.0)
 
 
-# this file is for gunicorn
+"""
+this file is for gunicorn
+
+If the app uses Flask, the entry point is at the bottom of controller.py
+"""
 
 from controller import app
 from sql_db import init_db_command

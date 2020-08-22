@@ -5,6 +5,32 @@
 # https://creativecommons.org/licenses/by/4.0/
 # Attribution 4.0 International (CC BY 4.0)
 
+"""
+For a given derivation step, use SymPy to validate the consistency of the input and output expressions with the feeds and inference rule.
+
+The reason this scope has been isolated is to facilitate changing the Computer Algebra System (CAS) to something other than SymPy if that becomes relevant.
+For example, two different Computer Algebra Systems could be used with the Physics Derivation Graph (e.g., Sympy and Sage) to either duplicate a given validation or to extend coverage to inference rules one of the CAS cannot address.
+
+In the situation where another CAS like Sage is used, a separate "latex_to_sage.py" module would be created.
+
+
+Historically, the validation functions are from
+https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v2_XML/databases/inference_rules_database.xml
+
+https://pymotw.com/3/doctest/
+how to use doctest for the entire file:
+python -m doctest -v validate_inference_rules_sympy.py
+
+testing per function on the command line:
+import doctest
+from validate_steps_sympy import *
+doctest.run_docstring_examples(split_expr_into_lhs_rhs, globals(), verbose=True)
+
+I wasn't able to get the following to work:
+from doctest import testmod
+from validate_inference_rules_sympy import *
+testmod(name ='split_expr_into_lhs_rhs', verbose = True)
+"""
 
 import sympy  # type: ignore
 
@@ -18,23 +44,6 @@ import re
 import latex_to_sympy
 
 logger = logging.getLogger(__name__)
-
-# many of the validation functions are from
-# https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v2_XML/databases/inference_rules_database.xml
-
-# https://pymotw.com/3/doctest/
-# how to use doctest for the entire file:
-# python -m doctest -v validate_inference_rules_sympy.py
-
-# testing per function on the command line:
-# import doctest
-# from validate_steps_sympy import *
-# doctest.run_docstring_examples(split_expr_into_lhs_rhs, globals(), verbose=True)
-
-# I wasn't able to get the following to work:
-# from doctest import testmod
-# from validate_inference_rules_sympy import *
-# testmod(name ='split_expr_into_lhs_rhs', verbose = True)
 
 
 def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:

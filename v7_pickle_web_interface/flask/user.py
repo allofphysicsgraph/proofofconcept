@@ -5,6 +5,9 @@
 # https://creativecommons.org/licenses/by/4.0/
 # Attribution 4.0 International (CC BY 4.0)
 
+"""
+This module contains a set of SQL read/write functions needed for the Google Login capability
+"""
 
 # from https://realpython.com/flask-google-login/
 

@@ -5,6 +5,14 @@
 # https://creativecommons.org/licenses/by/4.0/
 # Attribution 4.0 International (CC BY 4.0)
 
+"""
+For a given expression written in SymPy with PDG symbols, use SymPy to validate the dimensional consistency of the expression.
+
+The reason this scope has been isolated is to facilitate changing the Computer Algebra System (CAS) to something other than SymPy if that becomes relevant.
+For example, two different Computer Algebra Systems could be used with the Physics Derivation Graph (e.g., Sympy and Sage) to either duplicate a given validation or to extend coverage to inference rules one of the CAS cannot address.
+
+In the situation where another CAS like Sage is used, a separate "latex_to_sage.py" module would be created.
+"""
 
 import sympy  # type: ignore
 from sympy.parsing.latex import parse_latex  # type: ignore
