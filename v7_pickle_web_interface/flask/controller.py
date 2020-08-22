@@ -1368,7 +1368,31 @@ def static_dir():
     filenames.sort()
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
-        "static_dir.html", list_of_files=filenames, title="Static directory listing"
+        "static_dir.html",
+        list_of_files=filenames,
+        folder_name="static",
+        title="directory listing",
+    )
+
+
+@app.route("/tmp_dir", methods=["GET", "POST"])
+def static_dir():
+    """
+    "tmp_dir" is a directory listing
+    This route is not intended to be linked to
+    >>> static_dir()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]")
+    # https://stackoverflow.com/a/3207973/1164295
+    (_, _, filenames) = next(os.walk("tmp"))
+    filenames.sort()
+    logger.info("[trace page end " + trace_id + "]")
+    return render_template(
+        "static_dir.html",
+        list_of_files=filenames,
+        folder_name="tmp",
+        title="directory listing",
     )
 
 
