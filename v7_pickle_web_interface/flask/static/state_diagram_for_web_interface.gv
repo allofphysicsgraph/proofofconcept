@@ -1,0 +1,28 @@
+
+digraph G {
+  # https://dreampuf.github.io/GraphvizOnline/
+  homepage -> navigation;
+  navigation -> start_new_derivation;
+  google_signin [label="Google Sign-in"];
+  google_signin -> navigation;
+  specify_derivation_name_and_notes [label="specify derivation\n - derivation name\n - notes"];
+  start_new_derivation -> google_signin;
+  navigation -> show_all_derivations;
+  show_all_derivations -> start_new_derivation;
+  show_all_derivations -> review_derivation;
+  start_new_derivation -> specify_derivation_name_and_notes;
+  specify_derivation_name_and_notes -> select_inference_rule;
+  review_derivation -> select_inference_rule [label="add another step"];
+  provide_latex [label="provide {in,out,feed} latex\n - step note"];
+  select_inference_rule -> provide_latex;
+  provide_latex -> step_review;
+  step_review -> select_inference_rule [label="accept; add another step"];
+  step_review -> review_derivation [label="accept; review derivation"];
+  step_review -> modify_step [label="modify step"];
+  modify_step -> step_review [label="edit expression latex"];
+  modify_step -> review_derivation [label="delete step"];
+  review_derivation -> derivation_html;
+  review_derivation -> derivation_tex;
+  review_derivation -> derivation_pdf;
+}
+
