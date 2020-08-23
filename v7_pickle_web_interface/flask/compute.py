@@ -824,7 +824,7 @@ def list_local_id_for_derivation(deriv_id: str, path_to_db: str) -> list:
     Raises:
 
 
-    >>> list_local_id_for_derivation('fun deriv', "pdg.db")
+    >>> list_local_id_for_derivation("000001", "pdg.db")
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -855,7 +855,7 @@ def list_global_id_not_in_derivation(deriv_id: str, path_to_db: str) -> list:
         list_of_global_id_not_in_derivation
     Raises:
 
-    >>> list_global_id_not_in_derivation('fun deriv', "pdg.db")
+    >>> list_global_id_not_in_derivation("000001", "pdg.db")
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
@@ -2117,7 +2117,7 @@ def popularity_of_derivations(path_to_db: str) -> dict:
                     a JSON entry that returns a nested dictionary
     Returns:
         derivations_popularity_dict['name of deriv']['number of steps'] = 4
-        derivations_popularity_dict['name of deriv']['shares expressions with'] = ['fun deriv', 'another deriv']
+        derivations_popularity_dict['name of deriv']['shares expressions with'] = ["000001", "000004"]
 
     Raises:
 

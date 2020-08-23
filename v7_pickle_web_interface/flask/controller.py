@@ -2491,9 +2491,13 @@ def new_step_select_inf_rule(deriv_id: str):
 @login_required
 def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
     """
+    This webpage allows the user to specify
+    the Latex input expressions, feeds, and output expressions for
+    the selected inference rule.
+
     https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms
 
-    >>> provide_expr_for_inf_rule()
+    >>> provide_expr_for_inf_rule("486322", "expand LHS")
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace page start " + trace_id + "] " + current_user.email)
@@ -2639,6 +2643,60 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
 
 
 @app.route(
+    "/update_symbols/<deriv_id>/<step_id>", methods=["GET", "POST"],
+)
+@login_required
+def update_symbols(deriv_id: str, step_id: str):
+    """
+    Given a step with one or more Latex expressions,
+    replace the variables-as-text with PDG symbol IDs
+
+    >>> update_symbols("000001", "1029890")
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]" + current_user.email)
+
+    if request.method == "POST":
+        logger.debug("reslt = %s", str(request.form))
+        if request.form["submit_button"] == "accept these symbols; review ASTs":
+            logger.info("[trace page end " + trace_id + "]")
+            return redirect(
+                url_for('latex_to_sympy',
+                deriv_id=deriv_id,
+                step_id=step_id))
+
+    return render_template("update_symbols.html",
+    deriv_id=deriv_id,
+    dat=dat)
+
+@app.route(
+    "/latex_to_sympy/<deriv_id>/<step_id>", methods=["GET", "POST"],
+)
+@login_required
+def latex_to_sympy(deriv_id: str, step_id: str):
+    """
+
+    >>> latex_to_sympy("000001", "1029890")
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]" + current_user.email)
+
+    if request.method == "POST":
+        logger.debug("reslt = %s", str(request.form))
+        if request.form["submit_button"] == "accept these ASTs; review step":
+            logger.info("[trace page end " + trace_id + "]")
+            return redirect(
+                url_for('step_review',
+                deriv_id=deriv_id,
+                step_id=step_id))
+
+
+    return render_template("latex_to_sympy.html",
+    deriv_id=deriv_id,
+    dat=dat)
+
+
+@app.route(
     "/step_review/<deriv_id>/<step_id>/", methods=["GET", "POST"],
 )
 @login_required
@@ -2646,7 +2704,7 @@ def step_review(deriv_id: str, step_id: str):
     """
     https://teamtreehouse.com/community/getting-data-from-wtforms-formfield
 
-    >>> step_review
+    >>> step_review("000001", "1029890")
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace page start " + trace_id + "]" + current_user.email)
