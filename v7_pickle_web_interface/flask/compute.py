@@ -608,6 +608,69 @@ def list_symbols_used_in_derivation_from_PDG_AST(
     return list_of_symbol_ids
 
 
+def generate_expressions_in_step_with_symbols(
+    deriv_id: str, step_id: str, path_to_db: str
+) -> dict:
+    """
+    for a given step, for each expression, list the symbols -- both as string and as PDG ID
+
+    Args:
+        deriv_id: numeric identifier of the derivation
+        step_id: numeric identifier of the step within the derivation
+        path_to_db: filename of the SQL database containing
+                    a JSON entry that returns a nested dictionary
+    Returns:
+        list_of_symbols
+    Raises:
+
+    >>> expressions_in_step_with_symbols = {"inputs":[{"expression latex": "a = b",
+                                                       "expression global ID": "001",
+                                                       "symbols": [{"symbol string": a,
+                                                                    "symbol ID": "pdg01"},
+                                                                    {"symbol string": b,
+                                                                    "symbol ID": "pdg02"}]}],
+                                            "feeds": [{"expression latex": "2",
+                                                       "expression global ID": "002",
+                                                       "symbols": [{"symbol string": "2",
+                                                                    "symbol ID": None}]}],
+                                            "outputs":[{"expression latex": "a + 2 = b",
+                                                        "expression global ID": "003",
+                                                        "symbols": [{"symbol string": a,
+                                                                    "symbol ID": "pdg01"},
+                                                                    {"symbol string": b,
+                                                                    "symbol ID": "pdg02"}]}]}
+    >>> generate_expressions_in_step_with_symbols("000001", "1029890", "pdg.db")
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+    dat = clib.read_db(path_to_db)
+    expressions_in_step_with_symbols = {"inputs": [], "feeds": [], "outputs": []}
+
+    if step_id in dat["derivations"][deriv_id]["steps"].keys():
+        step_dict = dat["derivations"][deriv_id]["steps"][step_id]
+        for connection_type in ["inputs", "feeds", "outputs"]:
+            for local_id in step_dict[connection_type]:
+                expr_global_id = dat["expr local to global"][local_id]
+                expr_latex = dat["expressions"][expr_global_id]["latex"]
+                symbols_per_expr = latex_to_sympy.list_symbols_used_in_latex_from_sympy(
+                    expr_latex
+                )
+                this_expr_dict = {
+                    "expression latex": expr_latex,
+                    "expression global ID": expr_global_id,
+                    "symbols": [],
+                }
+                for symbol_from_sympy in symbols_per_expr:
+                    this_expr_dict["symbols"].append(
+                        {"symbol string": symbol_from_sympy, "symbol ID": "unknown"}
+                    )
+
+                expressions_in_step_with_symbols[connection_type].append(this_expr_dict)
+
+    logger.info("[trace end " + trace_id + "]")
+    return expressions_in_step_with_symbols
+
+
 def list_symbols_used_in_step_from_sympy(
     deriv_id: str, step_id: str, path_to_db: str
 ) -> list:

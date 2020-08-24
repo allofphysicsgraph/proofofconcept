@@ -2549,7 +2549,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         logger.info("[trace page end " + trace_id + "]")
         return redirect(
             url_for(
-                "step_review",
+                "update_symbols",
                 deriv_id=deriv_id,
                 step_id=step_id,
                 referrer="provide_expr_for_inf_rule",
@@ -2661,13 +2661,60 @@ def update_symbols(deriv_id: str, step_id: str):
         if request.form["submit_button"] == "accept these symbols; review ASTs":
             logger.info("[trace page end " + trace_id + "]")
             return redirect(
-                url_for('latex_to_sympy',
-                deriv_id=deriv_id,
-                step_id=step_id))
+                url_for("latex_to_sympy", deriv_id=deriv_id, step_id=step_id)
+            )
+        elif request.form["submit_button"] == "select PDG symbol ID":
+            # reslt = ImmutableMultiDict([('pdg_symbol_id', '9140:a'), ('submit_button', 'select PDG symbol ID')])
+            pdg_symbol_id = request.form["pdg_symbol_id"].split(":")[0]
+            pdg_symbol_str = request.form["pdg_symbol_id"].split(":")[1]
+            try:
+                compute.update_symbols_in_expression(
+                    pdg_symbol_str, pdg_symbol_id, deriv_id, step_id, path_to_db
+                )
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+        elif request.form["submit_button"].startswith("additional_symbol_for"):
+            # reslt = ImmutableMultiDict([('revised_text', 'asdf'), ('submit_button', 'additional_symbol_for6622217158')])
+            expr_global_id = request.form["submit_button"].replace(
+                "additional_symbol_for"
+            )
+            symbol_str_to_add = request.form["revised_text"]
 
-    return render_template("update_symbols.html",
-    deriv_id=deriv_id,
-    dat=dat)
+    try:
+        expressions_in_step_with_symbols = compute.generate_expressions_in_step_with_symbols(
+            deriv_id, step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        expressions_in_step_with_symbols = {"inputs": [], "feeds": [], "outputs": []}
+
+    # TODO - only execute the following if a variable was manually identified by the user
+    #    for index,expr_dict in enumerate(expressions_in_step_with_symbols['inputs']):
+    #        if expr_dict["expression global ID"] == expr_global_id:
+    #            expressions_in_step_with_symbols['inputs'][index]["symbols"].append({"symbol string": symbol_str_to_add,"symbol ID": "unknown"})
+
+    try:
+        list_of_symbols_for_this_derivation = compute.list_symbols_used_in_derivation_from_PDG_AST(
+            deriv_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        list_of_symbols_for_this_derivation = []
+
+    # dat may have changed, so reload
+    dat = clib.read_db(path_to_db)
+    return render_template(
+        "update_symbols.html",
+        deriv_id=deriv_id,
+        dat=dat,
+        list_of_symbols_for_this_derivation=list_of_symbols_for_this_derivation,
+        expressions_in_step_with_symbols=expressions_in_step_with_symbols,
+        additional_symbol=RevisedTextForm(request.form),
+    )
+
 
 @app.route(
     "/latex_to_sympy/<deriv_id>/<step_id>", methods=["GET", "POST"],
@@ -2685,15 +2732,10 @@ def latex_to_sympy(deriv_id: str, step_id: str):
         logger.debug("reslt = %s", str(request.form))
         if request.form["submit_button"] == "accept these ASTs; review step":
             logger.info("[trace page end " + trace_id + "]")
-            return redirect(
-                url_for('step_review',
-                deriv_id=deriv_id,
-                step_id=step_id))
+            return redirect(url_for("step_review", deriv_id=deriv_id, step_id=step_id))
 
-
-    return render_template("latex_to_sympy.html",
-    deriv_id=deriv_id,
-    dat=dat)
+    dat = clib.read_db(path_to_db)
+    return render_template("latex_to_sympy.html", deriv_id=deriv_id, dat=dat)
 
 
 @app.route(
