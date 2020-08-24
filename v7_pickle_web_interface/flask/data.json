@@ -10109,7 +10109,7 @@
     "expressions": {
         "2344320475": {
             "latex": "E_2",
-            "AST": "pdg4550",
+            "AST": "Symbol('pdg4550')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10117,7 +10117,7 @@
         },
         "7939947931": {
             "latex": "KE_2",
-            "AST": "pdg4929",
+            "AST": "Symbol('pdg4929')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10125,7 +10125,7 @@
         },
         "5803210729": {
             "latex": "PE_2",
-            "AST": "pdg4930",
+            "AST": "Symbol('pdg4930')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10133,7 +10133,7 @@
         },
         "4213426349": {
             "latex": "E_1",
-            "AST": "pdg4931",
+            "AST": "Symbol('pdg4931')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10141,7 +10141,7 @@
         },
         "1092872200": {
             "latex": "KE_1",
-            "AST": "pdg4929",
+            "AST": "Symbol('pdg4929')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10149,7 +10149,7 @@
         },
         "8061701434": {
             "latex": "PE_1",
-            "AST": "pdg4930",
+            "AST": "Symbol('pdg4930')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10157,7 +10157,7 @@
         },
         "6838659900": {
             "latex": "KE_2",
-            "AST": "pdg4929",
+            "AST": "Symbol('pdg4929')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10165,7 +10165,7 @@
         },
         "5011888122": {
             "latex": "v_2",
-            "AST": "pdg4770",
+            "AST": "Symbol('pdg4770')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10173,7 +10173,7 @@
         },
         "6964468708": {
             "latex": "KE_1",
-            "AST": "pdg4929",
+            "AST": "Symbol('pdg4929')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10181,7 +10181,7 @@
         },
         "3105350101": {
             "latex": "v_1",
-            "AST": "pdg1452",
+            "AST": "Symbol('pdg1452')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10189,7 +10189,7 @@
         },
         "5239755033": {
             "latex": "v_1",
-            "AST": "pdg1452",
+            "AST": "Symbol('pdg1452')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10197,7 +10197,7 @@
         },
         "4319470443": {
             "latex": "v_2",
-            "AST": "pdg1464",
+            "AST": "Symbol('pdg1464')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10205,7 +10205,7 @@
         },
         "4522137851": {
             "latex": "PE_2",
-            "AST": "pdg4930",
+            "AST": "Symbol('pdg4930')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10213,7 +10213,7 @@
         },
         "4755369593": {
             "latex": "x_2",
-            "AST": "pdg4037",
+            "AST": "Symbol('pdg4037')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10221,7 +10221,7 @@
         },
         "6749533119": {
             "latex": "PE_1",
-            "AST": "pdg4930",
+            "AST": "Symbol('pdg4930')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10229,7 +10229,7 @@
         },
         "1552869972": {
             "latex": "x_1",
-            "AST": "pdg3852",
+            "AST": "Symbol('pdg3852')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10237,7 +10237,7 @@
         },
         "6353701615": {
             "latex": "\\theta_{\\rm refracted}",
-            "AST": "pdg2243",
+            "AST": "Symbol('pdg2243')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10245,7 +10245,7 @@
         },
         "9029795851": {
             "latex": "\\theta_{\\rm Brewster}",
-            "AST": "pdg4928",
+            "AST": "Symbol('pdg4928')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10357,7 +10357,7 @@
         },
         "9072369552": {
             "latex": "m_{\\rm Earth}",
-            "AST": "pdg5458",
+            "AST": "Symbol('pdg5458')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -11196,7 +11196,7 @@
             "notes": ""
         },
         "1158485859": {
-            "AST": "pdg1054",
+            "AST": "Symbol('pdg1054')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 = {\\cal H}",
@@ -11252,7 +11252,7 @@
             "notes": ""
         },
         "1314464131": {
-            "AST": "pdg1467",
+            "AST": "Symbol('pdg1467')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\times \\frac{\\partial \\vec{H}}{\\partial t} = \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}",
@@ -11436,7 +11436,7 @@
             "notes": ""
         },
         "2648958382": {
-            "AST": "pdg1054",
+            "AST": "Symbol('pdg1054')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\nabla^2 \\psi \\left( \\vec{r},t) \\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\frac{i}{\\hbar} \\vec{p} \\psi( \\vec{r},t) \\right)",
@@ -11572,7 +11572,7 @@
             "notes": ""
         },
         "3947269979": {
-            "AST": "pdg1467",
+            "AST": "Symbol('pdg1467')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\times \\vec{ \\nabla} \\times \\vec{E} = -\\mu_0 \\epsilon_0 \\frac{\\partial^2 \\vec{E}}{\\partial t^2}",
@@ -11756,7 +11756,7 @@
             "notes": ""
         },
         "4857472413": {
-            "AST": "pdg9199",
+            "AST": "Symbol('pdg9199')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "1 = \\int \\psi(x)\\psi(x)^* dx",
@@ -11852,7 +11852,7 @@
             "notes": ""
         },
         "5727578862": {
-            "AST": "pdg9199",
+            "AST": "Symbol('pdg9199')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{d^2}{dx^2} \\psi(x) = -k^2 \\psi(x)",
@@ -11956,7 +11956,7 @@
             "notes": ""
         },
         "6742123016": {
-            "AST": "pdg4299",
+            "AST": "Symbol('pdg4299')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{p}_{electron}\\cdot\\vec{p}_{electron} = ( \\vec{p}_{1}\\cdot\\vec{p}_{1})+( \\vec{p}_{2}\\cdot\\vec{p}_{2})-2( \\vec{p}_{1}\\cdot\\vec{p}_{2})",
@@ -12004,7 +12004,7 @@
             "notes": ""
         },
         "7575859300": {
-            "AST": "pdg1552",
+            "AST": "Symbol('pdg1552')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\epsilon^{i,j,k} \\hat{x}_i \\nabla_j ( \\vec{ \\nabla} \\times \\vec{E} )_k = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -12108,7 +12108,7 @@
             "notes": ""
         },
         "8485757728": {
-            "AST": "pdg9199",
+            "AST": "Symbol('pdg9199')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "a \\frac{d^2}{dx^2}\\sin(kx) + b \\frac{d^2}{dx^2}\\cos(k x) = -a k^2 \\sin(kx) + -b k^2 \\cos(kx)",
@@ -12244,7 +12244,7 @@
             "notes": ""
         },
         "9059289981": {
-            "AST": "pdg1464",
+            "AST": "Symbol('pdg1464')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi(x) = a \\sin(k x)",
@@ -12316,7 +12316,7 @@
             "notes": ""
         },
         "9482113948": {
-            "AST": "pdg4621",
+            "AST": "Symbol('pdg4621')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{dy}{y} = i dx",
@@ -12412,7 +12412,7 @@
             "notes": ""
         },
         "9495857278": {
-            "AST": "pdg2523",
+            "AST": "Symbol('pdg2523')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi(x=W) = 0",
@@ -13117,7 +13117,7 @@
         },
         "8945218208": {
             "latex": "\\theta_{\\rm Brewster} + \\theta_{\\rm refracted} = 90^{\\circ}",
-            "AST": "pdg4928",
+            "AST": "Symbol('pdg4928')",
             "name": "",
             "notes": "based on figure 34-27 on page 824 in \\cite{2001_HRW}",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13133,7 +13133,7 @@
         },
         "1310571337": {
             "latex": "\\theta_{\\rm refracted} = 90^{\\circ} - \\theta_{\\rm Brewster}",
-            "AST": "pdg4928",
+            "AST": "Symbol('pdg4928')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13189,7 +13189,7 @@
         },
         "6831637424": {
             "latex": "\\sin( 90^{\\circ} - \\theta_{\\rm Brewster} ) = \\cos( \\theta_{\\rm Brewster} )",
-            "AST": "pdg4928",
+            "AST": "Symbol('pdg4928')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13405,7 +13405,7 @@
         },
         "4593428198": {
             "latex": "v_{\\rm Earth\\ orbit} = \\frac{2 \\pi r_{\\rm Earth\\ orbit}}{3.16\\ 10^7 {\\rm seconds}}",
-            "AST": "pdg6081",
+            "AST": "Symbol('pdg6081')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13413,7 +13413,7 @@
         },
         "3472836147": {
             "latex": "r_{\\rm Earth\\ orbit} = 1.496\\ 10^8 {\\rm km}",
-            "AST": "pdg6081",
+            "AST": "Symbol('pdg6081')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14197,7 +14197,7 @@
         },
         "9191880568": {
             "latex": "Z Z^* = |Z| |Z| \\exp( -i \\theta ) \\exp( i \\theta )",
-            "AST": "pdg3192",
+            "AST": "Symbol('pdg3192')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14205,7 +14205,7 @@
         },
         "3350830826": {
             "latex": "Z Z^* = |Z|^2",
-            "AST": "pdg3192",
+            "AST": "Symbol('pdg3192')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14285,7 +14285,7 @@
         },
         "4075539836": {
             "latex": "A A^* = |A|^2",
-            "AST": "pdg4453",
+            "AST": "Symbol('pdg4453')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14309,7 +14309,7 @@
         },
         "7107090465": {
             "latex": "B B^* = |B|^2",
-            "AST": "pdg4698",
+            "AST": "Symbol('pdg4698')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14381,7 +14381,7 @@
         },
         "6555185548": {
             "latex": "A^* = |A| \\exp(-i \\theta)",
-            "AST": "pdg4453",
+            "AST": "Symbol('pdg4453')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14557,7 +14557,7 @@
         },
         "4158986868": {
             "latex": "a_x \\hat{x} + a_y \\hat{y} = \\frac{d\\vec{v}}{dt}",
-            "AST": "pdg1467",
+            "AST": "Symbol('pdg1467')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14581,7 +14581,7 @@
         },
         "1819663717": {
             "latex": "a_x = \\frac{d}{dt} v_x",
-            "AST": "pdg1467",
+            "AST": "Symbol('pdg1467')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14589,7 +14589,7 @@
         },
         "8228733125": {
             "latex": "a_y = \\frac{d}{dt} v_y",
-            "AST": "pdg1467",
+            "AST": "Symbol('pdg1467')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14997,7 +14997,7 @@
         },
         "8406170337": {
             "latex": "y",
-            "AST": "pdg7092",
+            "AST": "Symbol('pdg7092')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15109,7 +15109,7 @@
         },
         "3273630811": {
             "latex": "x",
-            "AST": "pdg3652",
+            "AST": "Symbol('pdg3652')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15309,7 +15309,7 @@
         },
         "9623791270": {
             "latex": "d",
-            "AST": "pdg4037",
+            "AST": "Symbol('pdg4037')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15573,7 +15573,7 @@
         },
         "2396787389": {
             "latex": "r_{\\rm Earth}",
-            "AST": "pdg3236",
+            "AST": "Symbol('pdg3236')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15613,7 +15613,7 @@
         },
         "2660368546": {
             "latex": "r",
-            "AST": "pdg2530",
+            "AST": "Symbol('pdg2530')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15917,7 +15917,7 @@
         },
         "9794128647": {
             "latex": "m_1",
-            "AST": "pdg5458",
+            "AST": "Symbol('pdg5458')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16205,7 +16205,7 @@
         },
         "3921072591": {
             "latex": "m_1",
-            "AST": "pdg5458",
+            "AST": "Symbol('pdg5458')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
