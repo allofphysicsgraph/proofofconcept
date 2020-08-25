@@ -2,25 +2,221 @@
 {% block content %}
 
 <P>
-  Update Symbols in derivation step
-</P>
-
-<P>
-  derivation name:
+  <center>
+  <H2>
+  Update Symbols in step for derivation
   <a href="{{ url_for('review_derivation', deriv_id=deriv_id)  }}?referrer=update_symbols">
     {{ dat["derivations"][deriv_id]['name'] }}
   </a>
+  </H2>
+  </center>
 </P>
 
 
+
+<H2>Symbols used in this step according to SymPy</h2>
+  <P>From SymPy's parsing of the Latex
+    <UL>
+      {% for symbol_latex in list_of_symbols_from_sympy %}
+        <LI> {{ symbol_latex }} </LI>
+      {% endfor %}
+    </UL>
+  </P>
+
+<h2>Symbols in PDG AST for this step</h2>
+            <table border="1" class="sortable">
+              <tr>
+                <th>symbol ID</th>
+                <th>category</th>
+                <th>latex</th>
+                <th>scope</th>
+                <th>dimension</th>
+                <th>name</th>
+                <th>value</th>
+                <th>Used in derivations</th>
+                <th>references</th>
+              </tr>
+  {% for symbol_id in list_of_symbols_from_PDG_AST %}
+              <tr>
+                  {% set hide_symbol_forms = "true" %}
+                  {% include '_table_of_symbols_row.html' %}
+                </tr>
+  {% endfor %}
+   </table>
+<!--
+    <LI> <a href="{ { url_for('list_all_symbols') }}?referrer=modify_step#{ { symbol_id }}">{ { symbol_id }}</a>:
+     { { dat['symbols'][symbol_id]['latex'] }}
+  { % endfor %}
+</UL>
+-->
+
+<H2>Dimension check</H2>
+<table border="1" class="sortable">
+  <tr>
+    <th>Inference Rule</th>
+    <th>Input latex</th>
+    <th>Feeds latex</th>
+    <th>Output latex</th>
+    <th>step validity</th>
+    <th>dimension check</th>
+    <th>unit check</th>
+    <th>notes</th>
+  </tr>
+  <tr>
+    <td><a href="{{ url_for('list_all_inference_rules') }}?referrer=_table_of_derivation_steps#{{ dat["derivations"][deriv_id]['steps'][step_id]['inf rule'] }}">{{ dat["derivations"][deriv_id]['steps'][step_id]['inf rule'] }}</a></td>
+    <!-- input latex -->
+    <td>
+      <OL>
+        {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['inputs'] %}
+        <LI>
+          <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+          {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+        </LI>
+        {% endfor %}
+      </OL>
+    </td>
+    <!-- feeds latex -->
+    <td>
+      <OL>
+        {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['feeds'] %}
+         <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+          {{ dat["expr local to global"][local_id] }}</a>: <BR>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+         </LI>
+        {% endfor %}
+      </OL>
+    </td>
+    <!-- output latex -->
+    <td>
+      <OL>
+        {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['outputs'] %}
+        <LI>
+          <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+          {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+        </LI>
+        {% endfor %}
+      </OL>
+    </td>
+    <!-- step validation from sympy -->
+    <td>{{ derivation_step_validity_dict[step_id] }}</td>
+    <!-- dimension check -->
+    <td>
+      {% for expr_local_id in dat["derivations"][deriv_id]["steps"][step_id]["inputs"] + dat["derivations"][deriv_id]["steps"][step_id]["outputs"] %}
+        {{ dat["expr local to global"][expr_local_id] }}:
+        {{ derivation_dimensions_validity_dict[ dat["expr local to global"][expr_local_id]  ] }}<BR>
+      {% endfor %}
+    </td>
+    <!-- unit check -->
+    <td>
+      {% for expr_local_id in dat["derivations"][deriv_id]["steps"][step_id]["inputs"] + dat["derivations"][deriv_id]["steps"][step_id]["outputs"] %}
+        {{ dat["expr local to global"][expr_local_id] }}:
+        {{ derivation_units_validity_dict[  dat["expr local to global"][expr_local_id]   ] }}<BR>
+      {% endfor %}
+    </td>
+    <!-- step notes -->
+    <td>{{ dat["derivations"][deriv_id]['steps'][step_id]['notes'] }}</td>
+  </tr>
+</table>
+
+
+{% if dict_of_ranked_list.keys()|length > 0 %}
 <fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
-<legend>choices</legend>
-<form method="post" action="">
-<!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
-<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-<input type="submit" name="submit_button" value='accept these symbols; review ASTs'>
-</form>
+  <legend>
+    <a name="symbol matching">
+      <H2>
+        Symbol matching
+      </H2>
+    </a>
+  </legend>
+  <form method="post" action=""> <!-- onsubmit="return checkForm(this);"> -->
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+    <div class="form-group">
+      <div class="input-group">
+
+        {% for sympy_symbol, list_of_PDG_symbol_IDs in dict_of_ranked_list.items() %}
+          <!-- tracking the outer loop index is necessary for the radio groups -->
+          {% set outer_loop = loop %} <!-- https://stackoverflow.com/questions/1567291/get-loop-index-of-outer-loop -->
+          {% if list_of_PDG_symbol_IDs|length == 0 %}
+            <P>For the symbol {{ sympy_symbol }}, a
+              <a href="{{ url_for('list_all_symbols') }}#add symbol">
+                 new symbol entry
+              </a> is probably needed since no match is available. <BR>
+              Or you can manually assign an existing symbol:
+
+                  <select name="existing symbol for {{ sympy_symbol }}" class="selectpicker form-control">
+                      <option value="NONE">&nbsp;</option>
+                    {% for sid, symbol_dict in dat['symbols']|dictsort %}
+                      <option value="{{ sid }}">{{ sid }}, {{ dat['symbols'][sid]['latex'] }}</option>
+                    {% endfor %}
+                  </select>
+
+
+          {% else %}
+            <H2>candidates for {{ sympy_symbol }}</h2>
+            <table border="1" class="sortable">
+              <tr>
+                <th>select one</th>
+                <th>symbol ID</th>
+                <th>category</th>
+                <th>latex</th>
+                <th>scope</th>
+                <th>dimension</th>
+                <th>name</th>
+                <th>value</th>
+                <th>Used in derivations</th>
+                <th>references</th>
+              </tr>
+              {% for symbol_id in list_of_PDG_symbol_IDs %}
+                <tr>
+                <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio -->
+                  <td>
+                    <input name="symbol_radio_{{ outer_loop.index0 }}" type="radio" value="symbol radio {{ symbol_id }} {{ sympy_symbol }}">
+                  </td>
+                  {% set hide_symbol_forms = "true" %}
+                  {% include '_table_of_symbols_row.html' %}
+                </tr>
+              {% endfor %}
+              <tr>
+                <td><input name="symbol_radio_{{ outer_loop.index0 }}" type="radio" value="existing symbol for {{ sympy_symbol }}"></td>
+                <td colspan="9">select an existing symbol
+                  <select name="existing symbol for {{ sympy_symbol }}" class="selectpicker form-control">
+                      <option value="NONE">&nbsp;</option>
+                    {% for sid, symbol_dict in dat['symbols']|dictsort %}
+                      <option value="{{ sid }}">{{ sid }}, {{ dat['symbols'][sid]['latex'] }}</option>
+                    {% endfor %}
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td> <!-- no radio button for "create new symbol" -->
+                <td colspan="9">
+                  this symbol is not yet registered in the PDG database;
+                  <a href="{{ url_for('list_all_symbols') }}?referrer=update_symbols#add symbol" target="_blank">add symbol to PDG</a>
+                </td>
+              </tr>
+            </table>
+          {% endif %} <!-- list_of_PDG_symbol_IDs|length == 0 -->
+        {% endfor %}
+        <P>
+          <input type="submit" name="submit_button" value="update symbols">
+        </p>
+      </div>
+    </div>
+  </form>
 </fieldset>
+{% else %}
+  <P>There are no unmatched symbols for this step when comparing SymPy and the PDG ASTs.<BR>
+If SymPy's analysis was incorrect or the PDG AST is incomplete, you can update the symbols per expression in the
+<a href="{{ url_for('list_all_expressions', referrer='modify_step') }}">list of all expressions</a>.
+{% endif %}
+
+
+<!--
+<P>&nbsp;</p>
 
 {% for expr_dict in expressions_in_step_with_symbols['inputs'] %}
   <table border="1">
@@ -42,7 +238,7 @@
                   <fieldset>
                     <legend>connect string to PDG symbol ID</legend>
                     <form method="post" action="">
-                    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+                    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html - ->
                       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                         <div class="form-group">
                           <div class="input-group">
@@ -56,7 +252,7 @@
                               {% endfor %}
                             </select>
                           </div>
-                          <!--<button type="submit" class="btn btn-default">Update</button>-->
+                          <!--<button type="submit" class="btn btn-default">Update</button>- ->
                           <input type="submit" name="submit_button" value='select PDG symbol ID'><BR>
                             or this symbol is not yet registered;
                             <a href="{{ url_for('list_all_symbols') }}?referrer=update_symbols#add symbol" target="_blank">add symbol to PDG</a>
@@ -72,7 +268,7 @@
         <fieldset>
           <legend>manually specify symbol undetected in Latex expression</legend>
           <form method="post" action="">
-          <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+          <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html - ->
           {{ additional_symbol.csrf_token }}
           symbol string: {{ additional_symbol.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
           <input type="submit" name="submit_button" value='additional_symbol_for{{expr_dict["expression global ID"]}}'>
@@ -104,7 +300,7 @@
                   <fieldset>
                     <legend>connect string to PDG symbol ID</legend>
                     <form method="post" action="">
-                    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+                    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html - ->
                       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                         <div class="form-group">
                           <div class="input-group">
@@ -118,7 +314,7 @@
                               {% endfor %}
                             </select>
                           </div>
-                          <!--<button type="submit" class="btn btn-default">Update</button>-->
+                          <!--<button type="submit" class="btn btn-default">Update</button>- ->
                         <input type="submit" name="submit_button" value='select PDG symbol ID'><BR>
                           or this symbol is not yet registered;
                           <a href="{{ url_for('list_all_symbols') }}?referrer=update_symbols#add symbol" target="_blank">add symbol to PDG</a>
@@ -134,7 +330,7 @@
         <fieldset>
           <legend>manually specify symbol undetected in Latex expression</legend>
           <form method="post" action="">
-          <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+          <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html - ->
           {{ additional_symbol.csrf_token }}
           symbol string: {{ additional_symbol.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
           <input type="submit" name="submit_button" value='additional_symbol_for{{expr_dict["expression global ID"]}}'>
@@ -166,7 +362,7 @@
                   <fieldset>
                     <legend>connect string to PDG symbol ID</legend>
                     <form method="post" action="">
-                    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+                    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -- >
                       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
                         <div class="form-group">
                           <div class="input-group">
@@ -180,7 +376,7 @@
                               {% endfor %}
                             </select>
                           </div>
-                          <!--<button type="submit" class="btn btn-default">Update</button>-->
+                          <!--<button type="submit" class="btn btn-default">Update</button>- ->
                           <input type="submit" name="submit_button" value='select PDG symbol ID'><BR>
                             or this symbol is not yet registered;
                             <a href="{{ url_for('list_all_symbols') }}?referrer=update_symbols#add symbol" target="_blank">add symbol to PDG</a>
@@ -196,7 +392,7 @@
         <fieldset>
           <legend>manually specify symbol undetected in Latex expression</legend>
           <form method="post" action="">
-          <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+          <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html - ->
           {{ additional_symbol.csrf_token }}
           symbol string: {{ additional_symbol.revised_text(size=50, maxlength=300) }} <small>max length = 300 characters</small>
           <input type="submit" name="submit_button" value='additional_symbol_for{{expr_dict["expression global ID"]}}'>
@@ -206,7 +402,17 @@
     </tr>
   </table>
 {% endfor %}
+-->
 
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+<legend>Review of symbols completed; choose next action</legend>
+<form method="post" action=""> <!-- onsubmit="return checkForm(this);"> -->
+<!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+<input type="submit" name="submit_button" value='accept these symbols; add another step'>
+<input type="submit" name="submit_button" value='accept this step; review derivation'>
+</form>
+</fieldset>
 
 
 <h2>Symbols used in this derivation</h2>

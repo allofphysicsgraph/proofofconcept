@@ -2,7 +2,7 @@
 {% block content %}
 
 <center>
-  <H2>step review for derivation 
+  <H2>Review of ASTs in this step for derivation
     <a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}?referrer=step_review">
       {{ dat["derivations"][deriv_id]["name"] }}
     </a>
@@ -10,33 +10,36 @@
 </center>
 
 <P>
-  <fieldset>
-    <legend>
-      Step actions
-    </legend>
-    <form method="post" action=""> 
-      <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
-      <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
-      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-
-      <input type="submit" name="submit_button" value='accept this step; add another step'>
-      <input type="submit" name="submit_button" value='accept this step; review derivation'>
-      <input type="submit" name="submit_button" value='modify this step'>
-    </form>
-    <BR>
-    Optional symbol management is below the graphviz image.
-  </fieldset>
-</P>
+  <I>Instructions</I>: review the step and review each Abstract Syntax Tree (one per expression). <BR>
+    At the bottom of this page you can progress to the next page.
 
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
 
+  <P>
+    <fieldset>
+      <legend>
+        Fix \(\rm\LaTeX\) if needed
+      </legend>
+      <form method="post" action=""> <!-- onsubmit="return checkForm(this);"> -->
+        <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
+        <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+        <P>
+          If the \(\rm\LaTeX\) is wrong,
+        <input type="submit" name="submit_button" value='modify this step'>
+      </form>
+    </fieldset>
+  </P>
+
+
 <h2>AST for each expression in step</h2>
-  <P>From Sympy's parsing of the Latex
+  <P>From SymPy's parsing of the Latex
     {% for ast_png_and_id in list_of_expression_AST_dicts %}
       <P>
         <a href="{{ url_for('list_all_expressions') }}?referrer=modify_step#{{ ast_png_and_id['expr global id'] }}">{{ ast_png_and_id['expr global id'] }}</a>: \({{ dat['expressions'][ast_png_and_id['expr global id']]['latex'] }}\)<BR>
-        symbols from Sympy: {{ ast_png_and_id['symbols from sympy'] }}<BR>
+        symbols from SymPy: {{ ast_png_and_id['symbols from sympy'] }}<BR>
         symbols from PDG AST:
         {% for symbol_id in ast_png_and_id['symbols from PDG AST'] %}
           (<a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#{{ symbol_id }}">{{ symbol_id }}</a>:
@@ -44,150 +47,120 @@
         {% endfor %}
       <BR>
       {% if ast_png_and_id["sympy symbols without PDG AST ID"]|length > 0 %}
-        Sympy symbols lacking PDG AST ID: {{ ast_png_and_id["sympy symbols without PDG AST ID"] }}<BR>
+        SymPy symbols lacking PDG AST ID: {{ ast_png_and_id["sympy symbols without PDG AST ID"] }}<BR>
       {% else %}
-        all Sympy symbols have corresponding PDG AST IDs<BR>
+        All SymPy symbols have corresponding PDG AST IDs<BR>
       {% endif %}
       <img src="{{ url_for('static', filename=ast_png_and_id['ast png filename']) }}">
+      <P>
+        <fieldset>
+          <legend>manually edit the SymPy expression</legend>
+          <form method="post" action=""> <!-- onsubmit="return checkForm(this);"> -->
+          {{ edit_sympy.csrf_token }}
+            <div class="form-group">
+              <div class="input-group">
+                <P>
+                  Current expression in SymPy:<BR>
+                    <pre>
+                      {{ dat["expressions"][ ast_png_and_id['expr global id'] ]["AST"] }}
+                    </pre>
+                <P>
+                  If the SymPy is incorrect,
+                <P>
+                  {{ edit_sympy.revised_text.label }}: {{ edit_sympy.revised_text(size=50, maxlength=1000) }} <small>max length = 1000 characters</small>
+              </div>
+              <input type="submit" name="submit_button" value="update expression sympy {{ ast_png_and_id['expr global id'] }}">
+              <P>
+                <I>Caveat</I>: altering the SymPy does not change the \(\rm\LaTeX\) expression.<BR>
+                  If the \(\rm\LaTeX\) is wrong, use <input type="submit" name="submit_button" value='modify this step'>
+            </div>
+          </form>
+        </fieldset>
+      <P>
     {% endfor %}
   </p>
 
-<H2>Symbols in use in this step according to Sympy</h2>
-  <P>From Sympy's parsing of the Latex
-    <UL>
-      {% for symbol_latex in list_of_symbols_from_sympy %}
-        <LI> {{ symbol_latex }} </LI>
-      {% endfor %}
-    </UL>
+  <H2>Step validation</H2>
+  If the \(\rm\LaTeX\) is correct and the SymPy ASTs are correct, the step should be valid.
+
+  <P>
+    <table border="1" class="sortable">
+      <tr>
+        <th>Inference Rule</th>
+        <th>Input latex</th>
+        <th>Feeds latex</th>
+        <th>Output latex</th>
+        <th>step validity</th>
+        <th>notes</th>
+      </tr>
+      <tr>
+        <td><a href="{{ url_for('list_all_inference_rules') }}?referrer=_table_of_derivation_steps#{{ dat["derivations"][deriv_id]['steps'][step_id]['inf rule'] }}">{{ dat["derivations"][deriv_id]['steps'][step_id]['inf rule'] }}</a></td>
+        <!-- input latex -->
+        <td>
+          <OL>
+            {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['inputs'] %}
+            <LI>
+              <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+              {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
+              \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+            </LI>
+            {% endfor %}
+          </OL>
+        </td>
+        <!-- feeds latex -->
+        <td>
+          <OL>
+            {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['feeds'] %}
+             <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+              {{ dat["expr local to global"][local_id] }}</a>: <BR>
+              \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+             </LI>
+            {% endfor %}
+          </OL>
+        </td>
+        <!-- output latex -->
+        <td>
+          <OL>
+            {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['outputs'] %}
+            <LI>
+              <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+              {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
+              \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+            </LI>
+            {% endfor %}
+          </OL>
+        </td>
+        <!-- step validation from sympy -->
+        <td>{{ derivation_step_validity_dict[step_id] }}</td>
+        <!-- step notes -->
+        <td>{{ dat["derivations"][deriv_id]['steps'][step_id]['notes'] }}</td>
+      </tr>
+    </table>
   </P>
 
-<h2>Symbols in PDG AST for this step</h2>
-            <table border="1" class="sortable">
-              <tr>
-                <th>symbol ID</th>
-                <th>category</th>
-                <th>latex</th>
-                <th>scope</th>
-                <th>dimension</th>
-                <th>name</th>
-                <th>value</th>
-                <th>Used in derivations</th>
-                <th>references</th>
-              </tr>
-  {% for symbol_id in list_of_symbols_from_PDG_AST %}
-              <tr>
-                  {% set hide_symbol_forms = "true" %}
-                  {% include '_table_of_symbols_row.html' %}
-                </tr>
-  {% endfor %}
-   </table>
+
+  <P>
+    <fieldset>
+      <legend>
+        Review of ASTs completed; go to next page
+      </legend>
+      <form method="post" action=""> <!-- onsubmit="return checkForm(this);"> -->
+        <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
+        <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+
+        <input type="submit" name="submit_button" value='accept these ASTs; review symbols'>
+      </form>
+    </fieldset>
+  </P>
+
+
 <!--
-    <LI> <a href="{ { url_for('list_all_symbols') }}?referrer=modify_step#{ { symbol_id }}">{ { symbol_id }}</a>:
-     { { dat['symbols'][symbol_id]['latex'] }}
-  { % endfor %}
-</UL>
--->
-
-{% if dict_of_ranked_list.keys()|length > 0 %}
-<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
-  <legend>
-    <a name="symbol matching">
-      <H2>
-        Symbol matching
-      </H2>
-    </a>
-  </legend>
-  <form method="post" action="">
-    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-
-    <div class="form-group">
-      <div class="input-group">
-
-        {% for sympy_symbol, list_of_PDG_symbol_IDs in dict_of_ranked_list.items() %}
-          <!-- tracking the outer loop index is necessary for the radio groups -->
-          {% set outer_loop = loop %} <!-- https://stackoverflow.com/questions/1567291/get-loop-index-of-outer-loop -->
-          {% if list_of_PDG_symbol_IDs|length == 0 %}
-            <P>For the symbol {{ sympy_symbol }}, a 
-              <a href="{{ url_for('list_all_symbols') }}#add symbol">
-                 new symbol entry
-              </a> is probably needed since no match is available. <BR>
-              Or you can manually assign an existing symbol:
-
-                  <select name="existing symbol for {{ sympy_symbol }}" class="selectpicker form-control">
-                      <option value="NONE">&nbsp;</option>
-                    {% for sid, symbol_dict in dat['symbols']|dictsort %}
-                      <option value="{{ sid }}">{{ sid }}, {{ dat['symbols'][sid]['latex'] }}</option>
-                    {% endfor %}
-                  </select>
-
-
-          {% else %}
-            <H2>candidates for {{ sympy_symbol }}</h2>
-            <table border="1" class="sortable">
-              <tr>
-                <th>select one</th>
-                <th>symbol ID</th>
-                <th>category</th>
-                <th>latex</th>
-                <th>scope</th>
-                <th>dimension</th>
-                <th>name</th>
-                <th>value</th>
-                <th>Used in derivations</th>
-                <th>references</th>
-              </tr>
-              {% for symbol_id in list_of_PDG_symbol_IDs %}
-                <tr>
-                <!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio -->
-                  <td>
-                    <input name="symbol_radio_{{ outer_loop.index0 }}" type="radio" value="symbol radio {{ symbol_id }} {{ sympy_symbol }}">
-                  </td>
-                  {% set hide_symbol_forms = "true" %}
-                  {% include '_table_of_symbols_row.html' %} 
-                </tr>
-              {% endfor %}
-              <tr>
-                <td><input name="symbol_radio_{{ outer_loop.index0 }}" type="radio" value="existing symbol for {{ sympy_symbol }}"></td>
-                <td colspan="9">select an existing symbol
-                  <select name="existing symbol for {{ sympy_symbol }}" class="selectpicker form-control">
-                      <option value="NONE">&nbsp;</option>
-                    {% for sid, symbol_dict in dat['symbols']|dictsort %}
-                      <option value="{{ sid }}">{{ sid }}, {{ dat['symbols'][sid]['latex'] }}</option>
-                    {% endfor %}
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td> <!-- no radio button for "create new symbol" -->
-                <td colspan="9">
-                  <a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#add symbol">create new symbol</a>
-                </td>
-              </tr>
-            </table>
-          {% endif %} <!-- list_of_PDG_symbol_IDs|length == 0 -->
-        {% endfor %}
-        <P>
-          <input type="submit" name="submit_button" value="update symbols">
-        </p>
-      </div>
-    </div>
-  </form>
-</fieldset>
-{% else %}
-  <P>There are no unmatched symbols for this step when comparing Sympy and the PDG ASTs.<BR>
-If Sympy's analysis was incorrect or the PDG AST is incomplete, you can update the symbols per expression in the 
-<a href="{{ url_for('list_all_expressions', referrer='modify_step') }}">list of all expressions</a>.
-{% endif %}
-
-
-
 <P>
-{% include '_table_of_derivation_steps.html' %}
-<!--
+{ % include '_table_of_derivation_steps.html' %}
+
 <P>
 { % include '_table_of_expressions.html' %}
 -->
 
 {% endblock %}
-

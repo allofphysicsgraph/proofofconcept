@@ -261,12 +261,43 @@ def hash_of_step(deriv_id, step_id, path_to_db) -> str:
 
     return hash_of_step_str
 
+def update_expr_sympy(expr_global_id: str, expr_updated_sympy: str, path_to_db: str) -> None:
+    """
+    replace SymPy AST with revised text specified by user in web interface
+
+    Args:
+        expr_global_id:
+        expr_updated_sympy:
+        path_to_db: filename of the SQL database containing
+                    a JSON entry that returns a nested dictionary
+    Returns:
+        None
+
+    Raises:
+
+    >>> update_expr_sympy("4928924", "Symbol('pdg0203')","pdg.db")
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+    dat = clib.read_db(path_to_db)
+
+    dat["expressions"][expr_global_id]["AST"] = expr_updated_sympy
+
+    if os.path.exists("/home/appuser/app/static/" + expr_global_id + "_ast.png"):
+        os.remove("/home/appuser/app/static/" + expr_global_id + "_ast.png")
+    if os.path.exists("/home/appuser/app/" + expr_global_id + "_ast.png"):
+        os.remove("/home/appuser/app/" + expr_global_id + "_ast.png")
+
+    clib.write_db(path_to_db, dat)
+    logger.info("[trace end " + trace_id + "]")
+    return
+
 
 def update_symbol_in_step(
     sympy_symbol: str, symbol_id: str, deriv_id: str, step_id: str, path_to_db: str
 ) -> None:
     """
-    In a webform a user associated a sympy symbol with a PDG symbol_id.
+    In a webform the user associated a sympy symbol with a PDG symbol_id.
     This function updates the database to reflect that selection
 
 
@@ -282,7 +313,7 @@ def update_symbol_in_step(
 
     Raises:
 
-    >>> update_symbol_in_step("000001", "1029890", "pdg.db")
+    >>> update_symbol_in_step('v_0', 'pdg0231', "000001", "1029890", "pdg.db")
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
