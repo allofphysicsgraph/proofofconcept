@@ -261,7 +261,10 @@ def hash_of_step(deriv_id, step_id, path_to_db) -> str:
 
     return hash_of_step_str
 
-def update_expr_sympy(expr_global_id: str, expr_updated_sympy: str, path_to_db: str) -> None:
+
+def update_expr_sympy(
+    expr_global_id: str, expr_updated_sympy: str, path_to_db: str
+) -> None:
     """
     replace SymPy AST with revised text specified by user in web interface
 

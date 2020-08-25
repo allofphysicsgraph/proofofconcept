@@ -2660,9 +2660,7 @@ def update_symbols(deriv_id: str, step_id: str):
         logger.debug("reslt = %s", str(request.form))
         if request.form["submit_button"] == "accept these symbols; add another step":
             logger.info("[trace page end " + trace_id + "]")
-            return redirect(
-                url_for("new_step_select_inf_rule", deriv_id=deriv_id)
-            )
+            return redirect(url_for("new_step_select_inf_rule", deriv_id=deriv_id))
         elif request.form["submit_button"] == "accept this step; review derivation":
             logger.info("[trace page end " + trace_id + "]")
             return redirect(
@@ -2714,14 +2712,12 @@ def update_symbols(deriv_id: str, step_id: str):
         logger.error(str(err))
         list_of_symbols_in_step_that_lack_id = []
 
-
     dict_of_ranked_list = {}
     for sympy_symbol in list_of_symbols_in_step_that_lack_id:
         ranked_list_of_candidate_symbol_ids = compute.rank_candidate_pdg_symbols_for_sympy_symbol(
             sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
         )
         dict_of_ranked_list[sympy_symbol] = ranked_list_of_candidate_symbol_ids
-
 
     try:
         list_of_symbols_for_this_derivation = compute.list_symbols_used_in_derivation_from_PDG_AST(
@@ -2731,7 +2727,6 @@ def update_symbols(deriv_id: str, step_id: str):
         logger.error(str(err))
         flash(str(err))
         list_of_symbols_for_this_derivation = []
-
 
     try:
         symbol_popularity_dict_in_expr = compute.popularity_of_symbols_in_expressions(
@@ -2810,7 +2805,6 @@ def update_symbols(deriv_id: str, step_id: str):
         expressions_in_step_with_symbols=expressions_in_step_with_symbols,
         additional_symbol=RevisedTextForm(request.form),
     )
-
 
 
 @app.route(
@@ -2941,12 +2935,16 @@ def step_review(deriv_id: str, step_id: str):
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-        elif request.form["submit_button"].startswith('update expression sympy'):
-        # ('revised_text', "Add(Symbol('a'), Integer(2)) ")
-            expr_global_id = request.form["submit_button"].replace('update expression sympy ','')
+        elif request.form["submit_button"].startswith("update expression sympy"):
+            # ('revised_text', "Add(Symbol('a'), Integer(2)) ")
+            expr_global_id = request.form["submit_button"].replace(
+                "update expression sympy ", ""
+            )
             expr_updated_sympy = request.form["revised_text"]
             try:
-                compute.update_expr_sympy(expr_global_id, expr_updated_sympy, path_to_db)
+                compute.update_expr_sympy(
+                    expr_global_id, expr_updated_sympy, path_to_db
+                )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
@@ -3086,8 +3084,8 @@ def step_review(deriv_id: str, step_id: str):
         expr_dict_with_symbol_list = {}
 
     # TODO
-#    derivation_dimensions_validity_dict = {}
-#    derivation_units_validity_dict = {}
+    #    derivation_dimensions_validity_dict = {}
+    #    derivation_units_validity_dict = {}
 
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
@@ -3107,8 +3105,8 @@ def step_review(deriv_id: str, step_id: str):
         list_of_symbols_from_sympy=list_of_symbols_from_sympy,
         list_of_symbols_from_PDG_AST=list_of_symbols_from_PDG_AST,
         derivation_step_validity_dict=derivation_step_validity_dict,
-#        derivation_dimensions_validity_dict=derivation_dimensions_validity_dict,
-#        derivation_units_validity_dict=derivation_units_validity_dict,
+        #        derivation_dimensions_validity_dict=derivation_dimensions_validity_dict,
+        #        derivation_units_validity_dict=derivation_units_validity_dict,
         title="review of ASTs in this step",
     )
 
