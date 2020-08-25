@@ -8,31 +8,35 @@
 
 
 
-
+<!-- to prevent user from clicking on button twice,
+     the following changes the button text and disabled the button -->
+<!-- TODO: when the button is returned in a form to controller.py,
+     I don't know how to get the request.form() content -->
 <!-- from https://www.the-art-of-web.com/javascript/doublesubmit/ -->
 <script type="text/javascript">
-
   function checkForm(form) // Submit button clicked
   {
-    //
     // check form input values
-    //
-
     form.submit_button.disabled = true;
     form.submit_button.value = "Please wait...";
     return true;
   }
-
   function resetForm(form) // Reset button clicked
   {
     form.submit_button.disabled = false;
     form.submit_button.value = "Submit";
   }
-
 </script>
 
 
-
+<!-- highlight buttons and text input in yellow -->
+<style>
+input, textarea, select {
+        background: #f9f909;
+        color: black;
+        cursor: default;
+    }
+</style>
 
 
 
@@ -188,6 +192,7 @@ the following is for mathjax in a separate docker image connected via docker-com
     </style>
 
 
+   <!-- when clicking on an named anchor, highlight the hyperlinked text -->
    <style>
       /* https://css-tricks.com/on-target/ */
       :target {
