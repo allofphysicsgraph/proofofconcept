@@ -5,128 +5,206 @@
   <head>
     <title>Physics Derivation Graph: {{ title }}</title>
 
-    {% include '_js_head.html' %}
+ <!--
+    { % include '_js_head.html' %}
+-->
+<script type="text/x-mathjax-config;executed=true">
+  MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "AMS"} } });
+</script>
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
 
-    <!-- https://stackoverflow.com/a/15027568/1164295 -->
-    <!--
-    <style type="text/css">
-      fieldset.inline {
-        display: inline;
-      }
-    </style>
-    -->
-    <script>
-      // enables or disables a submit button depending
-      //on whether a checkbox has been ticked or not.
-      function show_section(section_CheckBox){
-          console.log("got into section function")
+<script id="MathJax-script" async
+src="{{ url_for('static', filename='mathjax/tex-chtml.js') }}"></script>
 
-          // https://stackoverflow.com/a/59406548/1164295
-          var list = document.getElementsByClassName("section");
+<script>
+  "use strict";
+//  function generate_text(){
+    // https://stackoverflow.com/questions/805107/creating-multiline-strings-in-javascript
+    //var first_line_text = `hello<BR>
+//                           goodbye`;
+  //  document.getElementById('outside_last_line') = first_line_text;
+    //document.getElementById('inside_last_line') = first_line_text;
+  //}
 
-          if(section_CheckBox.checked){ //If the checkbox has been checked
-              console.log("checked")
-              // https://stackoverflow.com/a/36384100/1164295
-              for(var i = 0; i < list.length; i++)
-              {
-                list[i].hidden = false;
-              }
-              //document.getElementById("section").hidden = false;
-              //document.getElementById("text").hidden = true;
-          } else { // not checked
-              console.log("not checked")
-
-              // https://stackoverflow.com/a/36384100/1164295
-              for(var i = 0; i < list.length; i++)
-              {
-                list[i].hidden = true;
-              }
-              //document.getElementById("section").hidden = true;
-              //document.getElementById("text").hidden = false;
+  function show_derivation_graph(derivation_graph_CheckBox){
+      // https://stackoverflow.com/a/59406548/1164295
+      let list = document.getElementsByClassName("derivation_graph");
+      if(derivation_graph_CheckBox.checked){ //If the checkbox has been checked
+           // https://stackoverflow.com/a/11907733/1164295
+           for(var i = 0; i < list.length; i++)
+           {
+             list[i].style.display = 'table-cell';
+           }
+      } else { // not checked
+          for(var i = 0; i < list.length; i++)
+          {
+            list[i].style.display = 'none';
           }
-          console.log("end of section function")
       }
+  }
 
-      function show_concept_symbol(concept_symbol_CheckBox){
-          console.log("got into concept/symbol function")
 
-          // https://stackoverflow.com/a/59406548/1164295
-          var list = document.getElementsByClassName("concept_symbol");
-
-          if(concept_symbol_CheckBox.checked){ //If the checkbox has been checked
-              console.log("checked")
-              // https://stackoverflow.com/a/36384100/1164295
-              for(var i = 0; i < list.length; i++)
-              {
-                list[i].hidden = false;
-              }
-//              document.getElementById("concept_symbol").hidden = false;
-              //document.getElementById("text").hidden = true;
-          } else { // not checked
-              console.log("not checked")
-              // https://stackoverflow.com/a/36384100/1164295
-              for(var i = 0; i < list.length; i++)
-              {
-                list[i].hidden = true;
-              }
-//              document.getElementById("concept_symbol").hidden = true;
-              //document.getElementById("text").hidden = false;
+  function show_all_steps(all_steps_CheckBox){
+      // https://stackoverflow.com/a/59406548/1164295
+      let list = document.getElementsByClassName("added_step");
+      if(all_steps_CheckBox.checked){ //If the checkbox has been checked
+           // https://stackoverflow.com/a/11907733/1164295
+           for(var i = 0; i < list.length; i++)
+           {
+             list[i].style.display = 'table-row';
+           }
+      } else { // not checked
+          for(var i = 0; i < list.length; i++)
+          {
+            list[i].style.display = 'none';
           }
-          console.log("end of concept/symbol function")
       }
-    </script>
+  }
+  function show_section(section_CheckBox){
+      // https://stackoverflow.com/a/59406548/1164295
+      let list = document.getElementsByClassName("section");
+      for(var i = 0; i < list.length; i++)
+      {
+         //console.log(`display is ${ list[i].style.display }.`)
+         if (list[i].style.display === "none")
+         {
+           list[i].style.display = 'inline-block';
+         } else {
+           list[i].style.display = 'none';
+         }
+      }
+  }
+  function show_variables(variables_CheckBox){
+      // https://stackoverflow.com/a/59406548/1164295
+      let list = document.getElementsByClassName("variable");
+           // https://stackoverflow.com/a/11907733/1164295
+      for(var i = 0; i < list.length; i++)
+      {
+         //console.log(`display is ${ list[i].style.display }.`)
+         if (list[i].style.display === "none")
+         {
+           list[i].style.display = 'inline-block';
+         } else {
+           list[i].style.display = 'none';
+         }
+      }
+  }
+</script>
+
 
   </head>
   <body>
-
+    <!--
+  <body onload="generate_text()">
+    -->
     <center>
-      <H2>{{ title }}</H2>
+      <H2>Derivation of relation between \(f\) and \(T\)</H2>
     </center>
     <P>
-
+      <fieldset>
+        <legend>Options for semantic highlighting</legend>
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <label for="check_derivation">show derivation graph:</label>
+        <input type="checkbox" id="check_derivation" onclick="show_derivation_graph(this)" />
+      </form>
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <label for="check_added_step">show implicit steps:</label>
+        <input type="checkbox" id="check_added_step" onclick="show_all_steps(this)" />
+      </form>
       <form method="post">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <label for="check_section">section:</label>
-        <input type="checkbox" id="check_section" value="0" onclick="show_section(this)" />
-      </form>
-      <form method="post">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-        <label for="check_concept_symbol">concept/symbol:</label>
-        <input type="checkbox" id="check_concept_symbol" value="0" onclick="show_concept_symbol(this)" />
+        <input type="checkbox" id="check_section" value="0" checked onclick="show_section(this)" />
       </form>
 
-      <table border=1>
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <label for="check_variables">highlight variables:</label>
+        <input type="checkbox" id="check_variables" value="0" checked onclick="show_variables(this)" />
+      </form>
+    </fieldset>
+
+
+      <table border=0 width="100%">
         <tr>
           <td>
+            <div id="outside_first_line" style="display: none" class="section">
+                            A review of the relation between
+                            <div class="variable" style="display: none">period</div>
+                            <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
+                              <legend>measure: \(T\)</legend>
+                              period
+                            </fieldset>
+                            ,
+                            <div class="variable" style="display: none">\(T\)</div>
+                            <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
+                              <legend>symbol: period</legend>
+                              \(T\)
+                            </fieldset>
+                            , and
+                            <div class="variable" style="display: none">linear frequency</div>
+                            <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
+                              <legend>measure: \(f\)</legend>
+                              linear frequency
+                            </fieldset>
+                            ,
+                            <div class="variable" style="display: none">\(f\)</div>
+                            <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
+                              <legend>symbol: linear frequency</legend>
+                              \(f\)
+                            </fieldset>
+                            .
+            </div>
             <fieldset style="border:2px solid blue" class="section">
            	  <legend>intent</legend>
-              A review of the relation between
-              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
-                <legend>measure: \(T\)</legend>
-                period
-              </fieldset>
-              ,
-              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
-                <legend>symbol: period</legend>
-                \(T\)
-              </fieldset>
-              , and
-              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
-                <legend>measure: \(f\)</legend>
-                linear frequency
-              </fieldset>
-              ,
-              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
-                <legend>symbol: linear frequency</legend>
-                \(f\)
-              </fieldset>
-              .
+              <div id="inside_first_line" class="section">
+                              A review of the relation between
+                              <div class="variable" style="display: none">period</div>
+                              <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
+                                <legend>measure: \(T\)</legend>
+                                period
+                              </fieldset>
+                              ,
+                              <div class="variable" style="display: none">\(T\)</div>
+                              <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
+                                <legend>symbol: period</legend>
+                                \(T\)
+                              </fieldset>
+                              , and
+                              <div class="variable" style="display: none">linear frequency</div>
+                              <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
+                                <legend>measure: \(f\)</legend>
+                                linear frequency
+                              </fieldset>
+                              ,
+                              <div class="variable" style="display: none">\(f\)</div>
+                              <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
+                                <legend>symbol: linear frequency</legend>
+                                \(f\)
+                              </fieldset>
+                              .
+              </div>
+
             </fieldset>
             <P>
             The mathematical equation of the relation is
           </td>
-          <td>
+          <td style="display: none;" class="derivation_graph">
+            <table border="1">
+              <tr>
+                <td>
             declare initial expression
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
         <tr>
@@ -135,64 +213,103 @@
             T=1/f.
             \end{equation}
           </td>
-          <td>
+          <td style="display: none;" class="derivation_graph">
+            <table border="1">
+              <tr>
+                <td>
             \begin{equation*}
             T=1/f
             \end{equation*}
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
-        <tr>
+        <tr style="display: none;" class="added_step">
           <td>
-                <fieldset style="border:2px solid red" class="added_step">
+                <fieldset style="border:2px solid red">
                   <legend>added step</legend>
               To express frequency as a function of
-              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
+              <div class="variable" style="display: none">period</div>
+              <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
                 <legend>measure: \(T\)</legend>
                 period
               </fieldset>
               , multiply both sides of the equation by
-              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
+              <div class="variable" style="display: none">\(f\)</div>
+              <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
                 <legend>symbol: linear frequency</legend>
                 \(f\)
               </fieldset>
               to get a new equation,
             </fieldset>
           </td>
-          <td>
+          <td style="display: none;" class="derivation_graph">
+            <table border="1">
+              <tr>
+                <td>
             multiply both sides by arg1<BR>
             arg1 = \(f\)
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
-        <tr>
+        <tr style="display: none;" class="added_step">
           <td>
-            <fieldset style="border:2px solid red" class="added_step">
+            <fieldset style="border:2px solid red">
               <legend>added step</legend>
             \begin{equation}
             T\ f=1.
             \end{equation}
             </fieldset>
           </td>
-          <td>
+          <td style="display: none;" class="derivation_graph">
+            <table border="1">
+              <tr>
+                <td>
             \begin{equation*}
             T\ f=1
             \end{equation*}
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
         <tr>
           <td>
+<!--            <div class="section" id="outside_last_line"></div> -->
+            <div id="outside_last_line" style="display: none" class="section">
+                            Finally, divide both sides of the second equation by
+                            <div class="variable" style="display: none">\(T\)</div>
+                            <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
+                              <legend>symbol: period</legend>
+                              \(T\)
+                            </fieldset>
+                             to yield the third equation,
+            </div>
             <fieldset class="section" style="border:2px solid blue">
               <legend>intent</legend>
-              Finally, divide both sides of the second equation by
-              <fieldset display="inline" class="concept_symbol" style="border:2px solid orange">
-                <legend>symbol: period</legend>
-                \(T\)
-              </fieldset>
-               to yield the third equation,
+              <div id="inside_last_line">
+                              Finally, divide both sides of the second equation by
+                              <div class="variable" style="display: none">\(T\)</div>
+                              <fieldset  style="border:2px solid orange; display: inline-block" class="variable">
+                                <legend>symbol: period</legend>
+                                \(T\)
+                              </fieldset>
+                               to yield the third equation,
+              </div>
             </fieldset>
           </td>
-          <td>
+          <td style="display: none;" class="derivation_graph">
+            <table border="1">
+              <tr>
+                <td>
             Divide both sides by arg1<BR>
             arg1 = \(T\)
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
         <tr>
@@ -201,17 +318,29 @@
             f=1/T.
             \end{equation}
           </td>
-          <td>
+          <td style="display: none;" class="derivation_graph">
+            <table border="1">
+              <tr>
+                <td>
             \begin{equation*}
             f=1/T
             \end{equation*}
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
         <tr>
           <td>
           </td>
-          <td>
+          <td style="display: none;" class="derivation_graph">
+            <table border="1">
+              <tr>
+                <td>
             declare final expression
+                </td>
+              </tr>
+            </table>
           </td>
         </tr>
       </table>
