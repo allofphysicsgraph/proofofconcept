@@ -1,0 +1,49 @@
+<!-- from https://pygments.org/demo/#try -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">#!/usr/bin/env python3</span>
+
+<span style="color: #408080; font-style: italic"># Physics Derivation Graph</span>
+<span style="color: #408080; font-style: italic"># Ben Payne, 2020</span>
+<span style="color: #408080; font-style: italic"># https://creativecommons.org/licenses/by/4.0/</span>
+<span style="color: #408080; font-style: italic"># Attribution 4.0 International (CC BY 4.0)</span>
+
+<span style="color: #408080; font-style: italic"># https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">flask</span> <span style="color: #008000; font-weight: bold">import</span> (
+    Flask,
+    redirect,
+    render_template,
+    request,
+    url_for
+)
+
+app <span style="color: #666666">=</span> Flask(<span style="color: #19177C">__name__</span>, static_folder<span style="color: #666666">=</span><span style="color: #BA2121">"static"</span>)
+app<span style="color: #666666">.</span>config<span style="color: #666666">.</span>from_object(
+    Config
+)  <span style="color: #408080; font-style: italic"># https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms</span>
+app<span style="color: #666666">.</span>config[<span style="color: #BA2121">"DEBUG"</span>] <span style="color: #666666">=</span> <span style="color: #008000">True</span>
+
+<span style="color: #AA22FF">@app.route</span>(<span style="color: #BA2121">"/index"</span>, methods<span style="color: #666666">=</span>[<span style="color: #BA2121">"GET"</span>, <span style="color: #BA2121">"POST"</span>])
+<span style="color: #AA22FF">@app.route</span>(<span style="color: #BA2121">"/"</span>, methods<span style="color: #666666">=</span>[<span style="color: #BA2121">"GET"</span>, <span style="color: #BA2121">"POST"</span>])
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">index</span>():
+    <span style="color: #BA2121; font-style: italic">"""</span>
+<span style="color: #BA2121; font-style: italic">    the index is a static page intended to be the landing page for new users</span>
+<span style="color: #BA2121; font-style: italic">    &gt;&gt;&gt; index()</span>
+<span style="color: #BA2121; font-style: italic">    """</span>
+    trace_id <span style="color: #666666">=</span> <span style="color: #008000">str</span>(random<span style="color: #666666">.</span>randint(<span style="color: #666666">1000000</span>, <span style="color: #666666">9999999</span>))
+    logger<span style="color: #666666">.</span>info(<span style="color: #BA2121">"[trace page start "</span> <span style="color: #666666">+</span> trace_id <span style="color: #666666">+</span> <span style="color: #BA2121">"]"</span>)
+
+    <span style="color: #008000; font-weight: bold">try</span>:
+        d3js_json_filename <span style="color: #666666">=</span> compute<span style="color: #666666">.</span>create_d3js_json(<span style="color: #BA2121">"884319"</span>, path_to_db)
+    <span style="color: #008000; font-weight: bold">except</span> <span style="color: #D2413A; font-weight: bold">Exception</span> <span style="color: #008000; font-weight: bold">as</span> err:
+        logger<span style="color: #666666">.</span>error(<span style="color: #008000">str</span>(err))
+        flash(<span style="color: #008000">str</span>(err))
+        d3js_json_filename <span style="color: #666666">=</span> <span style="color: #BA2121">""</span>
+    dat <span style="color: #666666">=</span> clib<span style="color: #666666">.</span>read_db(path_to_db)
+
+    logger<span style="color: #666666">.</span>info(<span style="color: #BA2121">"[trace page end "</span> <span style="color: #666666">+</span> trace_id <span style="color: #666666">+</span> <span style="color: #BA2121">"]"</span>)
+    <span style="color: #008000; font-weight: bold">return</span> render_template(<span style="color: #BA2121">"index.html"</span>, json_for_d3js<span style="color: #666666">=</span>d3js_json_filename)
+
+<span style="color: #008000; font-weight: bold">if</span> <span style="color: #19177C">__name__</span> <span style="color: #666666">==</span> <span style="color: #BA2121">"__main__"</span>:
+    <span style="color: #408080; font-style: italic"># app.run(debug=True, host="0.0.0.0")</span>
+
+<span style="color: #408080; font-style: italic"># EOF</span>
+</pre></div>

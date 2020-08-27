@@ -40,6 +40,11 @@ cat developer_documentation.html |\
   </OL>
   <LI><a href="#how to navigate the codebase">How to Navigate the codebase</a></LI>
   <LI><a href="#frequency period from first principles">Derivation to Graph from First Principles</a></LI>
+  <LI><a href="#build pdg code from scratch">Build the Physics Derivation Graph software from scratch</a></LI>
+  <OL>
+    <LI><a name="Docker and Make">Initial infrastructure: Docker and Make</a></LI>
+    <LI><a name="Python and Flask">Initial infrastructure: Python and Flask</a></LI>
+  </OL>
   <LI><a href="#historical evolution">Historical design evolution</a></LI>
   <OL>
     <LI><a href="#other avenues">Other approaches</a></LI>
@@ -382,6 +387,50 @@ State diagram for the web interface.
 <center>
 All of the jargon used and the relation between jargon used in the Physics Derivation Graph.
 </center>
+<P>&nbsp;</P>
+<HR>
+<P>&nbsp;</P>
+
+
+
+<H2><a name="build pdg code from scratch">Build the Physics Derivation Graph software from scratch</a></H2>
+
+This section tackles incremental construction of software used in the Physics Derivation Graph.
+
+<H3><a name="Docker and Make">Initial infrastructure: Docker and Make</a></H3>
+
+Before running any project-specific code, I invest in reproducibility.<BR>
+First, Docker containers make software dependencies explicit.
+<P>
+<a href="{{ 'templates/from_scratch/docker_and_make/Dockerfile' }}">Dockerfile</a>
+<!-- include reads from templates -->
+<pre>
+  {% include 'from_scratch/docker_and_make/Dockerfile.html' %}
+</pre>
+Second, I use a <a href="{{ 'templates/from_scratch/docker_and_make/Makefile' }}">Makefile</a>
+ to ensure the commands required to run Docker are documented.
+<pre>
+  {% include 'from_scratch/docker_and_make/Makefile.html' %}
+</pre>
+
+<H3><a name="Python and Flask">Initial infrastructure: Python and Flask</a></H3>
+
+
+<P>
+<a href="{{ 'templates/from_scratch/python_and_flask/Dockerfile' }}">Dockerfile</a>
+<pre>
+  {% include 'from_scratch/python_and_flask/Dockerfile.html' %}
+</pre>
+
+<a href="{{ 'templates/from_scratch/python_and_flask/controller.py' }}">controller.py</a>
+<pre>
+  {% include 'from_scratch/python_and_flask/controller.py.html' %}
+</pre>
+
+<a href="{{ 'templates/from_scratch/python_and_flask/requirements.txt' }}">requirements.txt</a>
+<pre>
+  {% include 'from_scratch/python_and_flask/requirements.txt' %}
+</pre>
 
 <P>&nbsp;</P>
 <HR>

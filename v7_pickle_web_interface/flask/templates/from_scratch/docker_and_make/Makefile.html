@@ -1,0 +1,25 @@
+<!-- from https://pygments.org/demo/#try -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Creative Commons Attribution 4.0 International License</span>
+<span style="color: #408080; font-style: italic"># https://creativecommons.org/licenses/by/4.0/</span>
+
+<span style="color: #408080; font-style: italic"># </span>
+<span style="color: #0000FF">.PHONY</span><span style="color: #666666">:</span> help clean webserver typehints flake8 pylint doctest mccabe
+
+<span style="color: #0000FF">help</span><span style="color: #666666">:</span>
+	@echo <span style="color: #BA2121">"make help"</span>
+	@echo <span style="color: #BA2121">"      this message"</span>
+	@echo <span style="color: #BA2121">"make docker"</span>
+	@echo <span style="color: #BA2121">"      build and run docker"</span>
+	@echo <span style="color: #BA2121">"make dockerlive"</span>
+	@echo <span style="color: #BA2121">"      build and run docker /bin/bash"</span>
+
+<span style="color: #0000FF">docker</span><span style="color: #666666">:</span>
+	docker build -t flask_ub .
+	docker run -it --rm <span style="color: #BB6622; font-weight: bold">\</span>
+            --publish <span style="color: #666666">5000</span>:5000 flask_ub
+
+<span style="color: #0000FF">dockerlive</span><span style="color: #666666">:</span>
+	docker build -t flask_ub .
+	docker run -it --rm -v<span style="color: #BA2121">`</span><span style="color: #008000">pwd</span><span style="color: #BA2121">`</span>:/scratch <span style="color: #BB6622; font-weight: bold">\</span>
+           --publish <span style="color: #666666">5000</span>:5000 flask_ub /bin/bash
+</pre></div>

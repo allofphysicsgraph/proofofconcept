@@ -153,12 +153,12 @@ The Physics Derivation Graph is designed to show one instance of each expression
 </P>
 
 <P>
-  Inference rules are necessary to perform derivations in physics, but have received little attention as they are typically left to the field of logic.
-  Inference rules are not axioms.
-  An inference rule in the context of the Physics Derivation Graph is a subcategory of logical connectives.
+  Inference rules are necessary to perform derivations in physics, but have received little attention as they are typically left to the field of logic and mathematics.
+  Inference rules are distinct from axioms, in that there is not a fundemental set of inference rules.
+  An inference rule in the context of the Physics Derivation Graph is a subcategory of <a href="https://en.wikipedia.org/wiki/Logical_connective">logical connectives</a>, similar to "and therefore" in language.
   Inference rules in the Physics Derivation Graph include both rules of inference and rules of replacement.
   (The difference between the two is explained as "Whereas a rule of inference is always applied to a whole logical expression, a rule of replacement may be applied to only a particular segment." [<a href="https://en.wikipedia.org/wiki/Rule_of_inference">source</a>].)
-  Inference rules are mechanical manipulations applied to the Abstract Syntax Trees of expressions. 
+  Inference rules are mechanical manipulations applied to the Abstract Syntax Trees of expressions.
 
 <P>
   One result of an education in mathematics is building a library of inference rules, though that is not the common description in the field of math education.
@@ -170,8 +170,16 @@ The Physics Derivation Graph is designed to show one instance of each expression
 
 <P>
   Inference rules for the Physics Derivation Graph are intended to meet a threshold -- can the computer algebra system validate that the claim is true?
+  There is a balance between inference rules that are simple for a CAS to validate versus but onerous in number for a human user versus challenging for a CAS but efficient for humans to apply.
+  Also, there are variations to a given inference rule that can lead to the same outcome; for example "add X to both sides of an expression" is the reverse of "subtract X from both sides of an expression," so really only one of these is necessary (by flipping the sign of the feed value).
+  Thus another route to too many inference rules is the tension between redundancy and ease-of-use.
 </P>
 
+<P>Inference rule have a few interesting properties, like the reversal just described.
+  An inference rule, effectively a directed edge on the graph of expressions, can always be undone.
+  (Addition and subtraction, multiplication and division, powers and roots, matrix multiplication and inversion, trigfunctions and arctrigfunctions  , exponents and logs, integration and differentiation)
+  Some inference rules are self-reversing, like "substitute X for Y in an expression."
+  Lastly, some inference rules have a left/right symmetry: for the inference rule "substitute LHS of expr1 into expr2" there is also the symmetric version "substitute RHS of expr1 into expr2." This comes from the <a href="https://en.wikipedia.org/wiki/Equality_(mathematics)#Basic_properties">symmetric property of equality</a>.
 <P>
   The <a href="{{ url_for('list_all_inference_rules') }}?referrer=user_documentation">list of inference rules used in the Physics Derivation Graph</a> is intended to short enough to fit in a person's memory while also being sufficiently narrow to be tested by Sympy.
 </P>
