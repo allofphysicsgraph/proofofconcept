@@ -2667,24 +2667,94 @@ def update_symbols(deriv_id: str, step_id: str):
                 url_for("review_derivation", deriv_id=deriv_id, referrer="step_review")
             )
 
-        elif request.form["submit_button"] == "select PDG symbol ID":
-            # reslt = ImmutableMultiDict([('pdg_symbol_id', '9140:a'), ('submit_button', 'select PDG symbol ID')])
-            pdg_symbol_id = request.form["pdg_symbol_id"].split(":")[0]
-            pdg_symbol_str = request.form["pdg_symbol_id"].split(":")[1]
-            try:
-                compute.update_symbols_in_expression(
-                    pdg_symbol_str, pdg_symbol_id, deriv_id, step_id, path_to_db
-                )
-            except Exception as err:
-                logger.error(str(err))
-                flash(str(err))
-        elif request.form["submit_button"].startswith("additional_symbol_for"):
-            # reslt = ImmutableMultiDict([('revised_text', 'asdf'), ('submit_button', 'additional_symbol_for6622217158')])
-            expr_global_id = request.form["submit_button"].replace(
-                "additional_symbol_for"
-            )
-            symbol_str_to_add = request.form["revised_text"]
+        #        elif request.form["submit_button"] == "select PDG symbol ID":
+        #            # reslt = ImmutableMultiDict([('pdg_symbol_id', '9140:a'), ('submit_button', 'select PDG symbol ID')])
+        #            pdg_symbol_id = request.form["pdg_symbol_id"].split(":")[0]
+        #            pdg_symbol_str = request.form["pdg_symbol_id"].split(":")[1]
+        #            logger.debug('id='+pdg_symbol_id+'; str='+pdg_symbol_str)
+        #            try:
+        #                compute.update_symbols_in_expression(
+        #                    pdg_symbol_str, pdg_symbol_id, deriv_id, step_id, path_to_db
+        #                )
+        #            except Exception as err:
+        #                logger.error(str(err))
+        #                flash(str(err))
+        #        elif request.form["submit_button"].startswith("additional_symbol_for"):
+        #            # reslt = ImmutableMultiDict([('revised_text', 'asdf'), ('submit_button', 'additional_symbol_for6622217158')])
+        #            expr_global_id = request.form["submit_button"].replace(
+        #                "additional_symbol_for"
+        #            )
+        #            symbol_str_to_add = request.form["revised_text"]
+        elif request.form["submit_button"] == "update symbols":
+            # ('existing symbol for v_{0}', '5153'), ('submit_button', 'update symbols')])
 
+            for this_key in request.form.keys():
+                if this_key.startswith("symbol_radio_"):
+                    if request.form[this_key].startswith("symbol radio "):
+                        selected_string = request.form[this_key]
+                        selected_string = selected_string.replace("symbol radio ", "")
+                        new_symbol_id = selected_string.split(" ")[0]
+                        sympy_symbol = selected_string.split(" ")[1]
+                        if new_symbol_id != "NONE":
+                            compute.update_symbol_in_step(
+                                sympy_symbol,
+                                new_symbol_id,
+                                deriv_id,
+                                step_id,
+                                path_to_db,
+                            )
+                            flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
+                    elif request.form[this_key].startswith("existing symbol for "):
+                        for find_key in request.form.keys():
+                            if find_key == request.form[this_key]:
+                                new_symbol_id = request.form[find_key]
+                                sympy_symbol = find_key.replace(
+                                    "existing symbol for ", ""
+                                )
+                                if new_symbol_id != "NONE":
+                                    compute.update_symbol_in_step(
+                                        sympy_symbol,
+                                        new_symbol_id,
+                                        deriv_id,
+                                        step_id,
+                                        path_to_db,
+                                    )
+                                    flash(
+                                        "updated "
+                                        + sympy_symbol
+                                        + " as ID "
+                                        + new_symbol_id
+                                    )
+                    else:
+                        flash(
+                            "unrecognized button text: "
+                            + str(request.form["submit_button"])
+                        )
+                        logger.error(
+                            "unrecognized button text"
+                            + str(request.form["submit_button"])
+                        )
+                elif this_key.startswith(
+                    "existing symbol for"
+                ):  # sympy didn't find a match, user manually selected entry
+                    new_symbol_id = request.form[this_key]
+                    sympy_symbol = this_key.replace("existing symbol for ", "")
+                    if new_symbol_id != "NONE":
+                        compute.update_symbol_in_step(
+                            sympy_symbol, new_symbol_id, deriv_id, step_id, path_to_db,
+                        )
+                        flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
+                elif this_key == "csrf_token":
+                    continue  # go to next iteration of loop
+                elif this_key == "submit_button":
+                    continue  # go to next iteration of loop
+                else:
+                    flash("unrecognized button text: " + str(this_key))
+                    logger.error("unrecognized button text: " + str(this_key))
+            logger.info("[trace page end " + trace_id + "]")
+            return redirect(
+                url_for("update_symbols", deriv_id=deriv_id, step_id=step_id)
+            )
     try:
         expressions_in_step_with_symbols = compute.generate_expressions_in_step_with_symbols(
             deriv_id, step_id, path_to_db
@@ -2855,74 +2925,7 @@ def step_review(deriv_id: str, step_id: str):
                     referrer="step_review",
                 )
             )
-        elif request.form["submit_button"] == "update symbols":
-            # ('existing symbol for v_{0}', '5153'), ('submit_button', 'update symbols')])
 
-            for this_key in request.form.keys():
-                if this_key.startswith("symbol_radio_"):
-                    if request.form[this_key].startswith("symbol radio "):
-                        selected_string = request.form[this_key]
-                        selected_string = selected_string.replace("symbol radio ", "")
-                        new_symbol_id = selected_string.split(" ")[0]
-                        sympy_symbol = selected_string.split(" ")[1]
-                        if new_symbol_id != "NONE":
-                            compute.update_symbol_in_step(
-                                sympy_symbol,
-                                new_symbol_id,
-                                deriv_id,
-                                step_id,
-                                path_to_db,
-                            )
-                            flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
-                    elif request.form[this_key].startswith("existing symbol for "):
-                        for find_key in request.form.keys():
-                            if find_key == request.form[this_key]:
-                                new_symbol_id = request.form[find_key]
-                                sympy_symbol = find_key.replace(
-                                    "existing symbol for ", ""
-                                )
-                                if new_symbol_id != "NONE":
-                                    compute.update_symbol_in_step(
-                                        sympy_symbol,
-                                        new_symbol_id,
-                                        deriv_id,
-                                        step_id,
-                                        path_to_db,
-                                    )
-                                    flash(
-                                        "updated "
-                                        + sympy_symbol
-                                        + " as ID "
-                                        + new_symbol_id
-                                    )
-                    else:
-                        flash(
-                            "unrecognized button text: "
-                            + str(request.form["submit_button"])
-                        )
-                        logger.error(
-                            "unrecognized button text"
-                            + str(request.form["submit_button"])
-                        )
-                elif this_key.startswith(
-                    "existing symbol for"
-                ):  # sympy didn't find a match, user manually selected entry
-                    new_symbol_id = request.form[this_key]
-                    sympy_symbol = this_key.replace("existing symbol for ", "")
-                    if new_symbol_id != "NONE":
-                        compute.update_symbol_in_step(
-                            sympy_symbol, new_symbol_id, deriv_id, step_id, path_to_db,
-                        )
-                        flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
-                elif this_key == "csrf_token":
-                    continue  # go to next iteration of loop
-                elif this_key == "submit_button":
-                    continue  # go to next iteration of loop
-                else:
-                    flash("unrecognized button text: " + str(this_key))
-                    logger.error("unrecognized button text: " + str(this_key))
-            logger.info("[trace page end " + trace_id + "]")
-            return redirect(url_for("step_review", deriv_id=deriv_id, step_id=step_id))
         elif request.form["submit_button"] == "delete step":
             try:
                 compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
@@ -2976,7 +2979,6 @@ def step_review(deriv_id: str, step_id: str):
                 logger.error(str(err))
                 flash(str(err))
                 derivation_step_validity_dict[this_step_id] = "failed"
-
     else:
         logger.debug(deriv_id + "does not exist in derivations")
         derivation_step_validity_dict = {}
@@ -3083,9 +3085,14 @@ def step_review(deriv_id: str, step_id: str):
         flash(str(err))
         expr_dict_with_symbol_list = {}
 
-    # TODO
-    #    derivation_dimensions_validity_dict = {}
-    #    derivation_units_validity_dict = {}
+    try:
+        latex_generated_by_sympy = compute.generate_latex_from_sympy(
+            deriv_id, step_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        latex_generated_by_sympy = {}
 
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
@@ -3095,6 +3102,7 @@ def step_review(deriv_id: str, step_id: str):
         deriv_id=deriv_id,
         step_id=step_id,
         dat=dat,
+        latex_generated_by_sympy=latex_generated_by_sympy,
         edit_sympy=RevisedTextForm(request.form),
         list_of_expression_AST_dicts=list_of_expression_AST_dicts,
         symbol_popularity_dict=symbol_popularity_dict,

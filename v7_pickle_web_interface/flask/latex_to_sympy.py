@@ -15,7 +15,7 @@ In the situation where another CAS like Sage is used, a separate "latex_to_sage.
 
 import sympy  # type: ignore
 from sympy import tan, atan, sin, asin, cos, acos
-from sympy import * # addresses cosh, sinh, tanh
+from sympy import *  # addresses cosh, sinh, tanh
 from sympy.vector import cross, dot
 from sympy.vector.deloperator import Del
 from sympy.parsing.latex import parse_latex  # type: ignore
