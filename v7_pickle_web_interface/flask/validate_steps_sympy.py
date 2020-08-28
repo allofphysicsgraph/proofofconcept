@@ -2321,7 +2321,8 @@ def multiply_expr_by_expr(latex_dict: dict) -> str:
     >>> multiply_expr_by_expr(latex_dict)
     'valid'
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
 
     d1 = sympy.simplify(
         latex_dict["input"][0]["LHS"] * latex_dict["input"][1]["LHS"]
@@ -2339,6 +2340,7 @@ def multiply_expr_by_expr(latex_dict: dict) -> str:
         logger.info("[trace end " + trace_id + "]")
         return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
+    logger.info("[trace end " + trace_id + "]")
     return "no check performed"
 
 
