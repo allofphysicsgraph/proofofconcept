@@ -4284,6 +4284,9 @@ def modify_latex_in_step(
     create a new global ID
     associate local ID and (new) global ID
 
+    This is different from update_expr_latex() which
+    edits the latex associated with the expr_global_id
+
     Args:
         path_to_db: filename of the SQL database containing
                     a JSON entry that returns a nested dictionary

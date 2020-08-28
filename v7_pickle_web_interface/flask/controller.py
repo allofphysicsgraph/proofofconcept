@@ -2918,6 +2918,7 @@ def update_symbols(deriv_id: str, step_id: str):
         derivation_dimensions_validity_dict=derivation_dimensions_validity_dict,
         derivation_units_validity_dict=derivation_units_validity_dict,
         dict_of_ranked_list=dict_of_ranked_list,
+        latex_generated_by_sympy=latex_generated_by_sympy,
         symbol_popularity_dict=symbol_popularity_dict,
         list_of_symbols_in_step_that_lack_id=list_of_symbols_in_step_that_lack_id,
         symbol_popularity_dict_in_expr=symbol_popularity_dict_in_expr,
@@ -2968,29 +2969,20 @@ def step_review(deriv_id: str, step_id: str):
                     referrer="step_review",
                 )
             )
-        elif request.form["submit_button"] == "modify this step":
-            logger.info("[trace page end " + trace_id + "]")
-            return redirect(
-                url_for(
-                    "modify_step",
-                    deriv_id=deriv_id,
-                    step_id=step_id,
-                    referrer="step_review",
-                )
+        elif request.form["submit_button"].startswith("update expression latex"):
+            # ('revised_text', "Add(Symbol('a'), Integer(2)) ")
+            expr_global_id = request.form["submit_button"].replace(
+                "update expression sympy ", ""
             )
-
-        elif request.form["submit_button"] == "delete step":
+            expr_updated_latex = request.form["revised_text"]
             try:
-                compute.delete_step_from_derivation(deriv_id, step_id, path_to_db)
-                logger.info("[trace page end " + trace_id + "]")
-                return redirect(
-                    url_for(
-                        "review_derivation", deriv_id=deriv_id, referrer="modify_step"
-                    ),
+                compute.update_expr_latex(
+                    expr_global_id, expr_updated_latex, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
+
         elif request.form["submit_button"].startswith("update expression sympy"):
             # ('revised_text', "Add(Symbol('a'), Integer(2)) ")
             expr_global_id = request.form["submit_button"].replace(
@@ -3451,12 +3443,23 @@ def review_derivation(deriv_id: str):
         logger.error(str(err))
         symbol_popularity_dict = {}
 
+    try:
+        latex_generated_by_sympy = compute.generate_latex_from_sympy(
+            deriv_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        latex_generated_by_sympy = {}
+
+
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "review_derivation.html",
         pdf_filename=pdf_filename,
         dat=dat,
         deriv_id=deriv_id,
+        latex_generated_by_sympy=latex_generated_by_sympy,
         list_of_symbols_for_this_derivation=list_of_symbols_for_this_derivation,
         symbol_popularity_dict=symbol_popularity_dict,
         symbol_popularity_dict_in_expr=symbol_popularity_dict_in_expr,
@@ -3587,21 +3590,20 @@ def modify_step(deriv_id: str, step_id: str):
                     )
                 )
 
-            elif (
-                request.form["submit_button"] == "edit input expr latex"
-                or request.form["submit_button"] == "edit feed expr latex"
-                or request.form["submit_button"] == "edit output expr latex"
-            ):
+            elif request.form["submit_button"].startswith("update expression latex"):
+                # ('revised_text', "Add(Symbol('a'), Integer(2)) ")
+                expr_global_id = request.form["submit_button"].replace(
+                    "update expression sympy ", ""
+                )
+                expr_updated_latex = request.form["revised_text"]
                 try:
                     compute.modify_latex_in_step(
-                        request.form["expr_local_id_of_latex_to_modify"],
-                        request.form["revised_text"],
-                        current_user.email,
-                        path_to_db,
+                        expr_local_id, expr_updated_latex, str(current_user.email), path_to_db
                     )
                 except Exception as err:
-                    flash(str(err))
                     logger.error(str(err))
+                    flash(str(err))
+
 
                 try:
                     step_validity_msg = vir.validate_step(deriv_id, step_id, path_to_db)
@@ -3840,9 +3842,9 @@ def step_with_numeric_ids(deriv_id: str, step_id: str):
     return render_template(
         "step_with_numeric_ids.html",
         deriv_id=deriv_id,
+        step_id=step_id,
         dat=dat,
         name_of_graphviz_file=name_of_graphviz_file,
-        step_id=step_id,
         title="step with numeric IDs",
     )
 

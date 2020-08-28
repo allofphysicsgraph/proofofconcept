@@ -16,37 +16,22 @@
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
 
-  <P>
-    <fieldset>
-      <legend>
-        <h3>Fix \(\rm\LaTeX\) if needed</h3>
-      </legend>
-      <form method="post" action=""> <!-- onsubmit="return checkForm(this);"> -->
-        <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
-        <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
-
-        <P>
-          If the \(\rm\LaTeX\) is wrong,
-        <input type="submit" name="submit_button" value='modify this step'>
-      </form>
-    </fieldset>
-  </P>
-
-
 <h2>AST for each expression in step</h2>
     {% for ast_png_and_id in list_of_expression_AST_dicts %}
       <P>
 
-        {% import '_sympy_ast_and_symbols.html' as macro_ast %}
-        {{ macro_ast.sympy_ast_and_symbols(dat, ast_png_and_id) }}
+<h3>expression <a href="{{ url_for('list_all_expressions') }}?referrer=modify_step#{{ ast_png_and_id['expr global id'] }}">{{ ast_png_and_id['expr global id'] }}</a></H3>
 
         {% import '_manually_edit_latex.html' as macro_latex %}
         {{ macro_latex.manually_edit_latex(dat, ast_png_and_id['expr global id'],
                                      edit_expr_latex_webform) }}
 
-        {% import '_manually_edit_sympy.html' as macro %}
-        {{ macro.manually_edit_sympy(dat, ast_png_and_id['expr global id'],
+        {% import '_sympy_ast_and_symbols.html' as macro_ast %}
+        {{ macro_ast.sympy_ast_and_symbols(dat, ast_png_and_id) }}
+
+
+        {% import '_manually_edit_sympy.html' as macro_sympy %}
+        {{ macro_sympy.manually_edit_sympy(dat, ast_png_and_id['expr global id'],
                                edit_expr_sympy_webform, latex_generated_by_sympy) }}
 
       <P>
@@ -76,6 +61,7 @@
               <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
               {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
               \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+                \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
             </LI>
             {% endfor %}
           </OL>

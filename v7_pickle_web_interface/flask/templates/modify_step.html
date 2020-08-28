@@ -23,7 +23,7 @@
     {% for ast_png_and_id in list_of_expression_AST_dicts %}
 
       {% import '_sympy_ast_and_symbols.html' as macro_ast %}
-      {% macro_ast.sympy_ast_and_symbols(dat, ast_png_and_id) %}
+      {{ macro_ast.sympy_ast_and_symbols(dat, ast_png_and_id) }}
 
 
       {% import '_manually_edit_latex.html' as macro_latex %}
@@ -155,12 +155,12 @@ This currently is not implemented.
 <P>
 <fieldset>
 <legend><H3>change inference rule</H3></legend>
+Changing the inference rule deletes the existing step and prompts for a new step creation.
 <form method="post" action="">
 <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 <input type="submit" name="submit_button" value='change inference rule'>
 </form>
-(Changing the inference rule deletes the existing step and prompts for a new step creation.)
 </fieldset>
 
 
@@ -181,18 +181,66 @@ TODO - - not implemented
 {% endif %}
 -->
 
+{% if dat["derivations"][deriv_id]['steps'][step_id]['inputs']|length > 0 %}
+<fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+  <legend>
+    <a name="edit input expr latex">
+      <h3>Edit the \(\rm\LaTeX\)  for an input expression (local to this step)</h3>
+    </a>
+  </legend>
+
+  <UL>
+  {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['inputs'] %}
+    <LI>  {{ dat["expressions"][ dat["expr local to global"][expr_local_id] ]['latex'] }}
+      <P>
+        \({{ dat["expressions"][ dat["expr local to global"][expr_local_id] ]['latex'] }}\)</LI>
+  {% endfor %}
+  </UL>
+
+
+  <form method="post" action="">
+    <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+    {{ edit_expr_latex_webform.csrf_token }}
+<div class="form-group">
+    <div class="input-group">
+        <span class="input-group-addon">Select from</span>
+            <select name="expr_local_id_of_latex_to_modify" class="selectpicker form-control">
+              {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['inputs'] %}
+              <option value="{{ expr_local_id }}">{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</option>
+              {% endfor %}
+            </select>
+<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300, id="input_latex") }} <small>max length = 300 characters</small><BR>
+
+   <input type="checkbox" id="display_input_latex" checked="" onchange="convert('input_latex','display_input_latex', 'preview_input_latex','output_input_latex')">
+   <small><label for="display_input_latex">Display style</label></small>
+
+   <input type="button" value="optional preview of TeX before submitting form" id="preview_input_latex" onclick="convert('input_latex','display_input_latex', 'preview_input_latex','output_input_latex')">
+
+   <br clear="all">
+   <div id="output_input_latex"></div>
+
+    </div>
+<!--    <button type="submit" class="btn btn-default">Update</button> -->
+<input type="submit" name="submit_button" value='edit input expr latex'>
+
+  </div>
+</form>
+</fieldset>
+{% endif %}
 
 {% if dat["derivations"][deriv_id]['steps'][step_id]['feeds']|length > 0 %}
 <fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
 <legend>
 <a name="edit feed expr latex">
-  <h3>Edit the latex for a feed expression</h3>
+  <h3>Edit the latex for a feed expression (local to this step)</h3>
 </a>
 </legend>
 
 <UL>
 {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['feeds'] %}
-  <LI>{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</LI>
+  <LI>{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}
+          <P>
+          \({{ dat["expressions"][ dat["expr local to global"][expr_local_id] ]['latex'] }}\)</LI>
 {% endfor %}
 </UL>
 
@@ -225,14 +273,16 @@ TODO - - not implemented
 <fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
 <legend>
 <a id="edit output expr latex">
-  <h3>Edit the latex for an output expression</h3>
+  <h3>Edit the latex for an output expression (local to this step)</h3>
 </a>
 </legend>
 
 <UL>
 {% for expr_local_id in dat["derivations"][deriv_id]['steps'][step_id]['outputs'] %}
-  <LI>{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</LI>
-{% endfor %}
+  <LI>{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}
+          <P>
+          \({{ dat["expressions"][ dat["expr local to global"][expr_local_id] ]['latex'] }}\)</LI>
+          {% endfor %}
 </UL>
 
 <form method="post" action="">

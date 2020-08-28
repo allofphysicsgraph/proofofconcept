@@ -10,8 +10,8 @@
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
 <P><img src="{{ url_for('static', filename=name_of_graphviz_file) }}">
 
-<P>Return to <a href="{{ url_for('modify_step', name_of_derivation=name_of_derivation, step_id=step_id) }}?referrer=exploded_step">modify step</a> or
-             <a href="{{ url_for('review_derivation', name_of_derivation=name_of_derivation) }}?referrer=exploded_step">review derivation</a> or
+<P>Return to <a href="{{ url_for('modify_step', deriv_id=deriv_id, step_id=step_id) }}?referrer=exploded_step">modify step</a> or
+             <a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}?referrer=exploded_step">review derivation</a> or
              <a href="{{ url_for('navigation') }}?referrer=exploded_step">navigation</a>.
 
 {% endblock %}

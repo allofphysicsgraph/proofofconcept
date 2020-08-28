@@ -3,11 +3,13 @@
       <fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
       <legend>
       <a name="edit input expr latex">
-        <h3>Edit the \(\rm\LaTeX\)  for this expression</h3>
+        <h4>Edit the \(\rm\LaTeX\) for this expression (global change)</h4>
       </a>
       </legend>
 
-          {{ dat["expressions"][ expr_global_id ]['latex'] }}
+<pre>
+{{ dat["expressions"][ expr_global_id ]['latex'] }}
+</pre>
           <P>
         \({{ dat["expressions"][ expr_global_id ]['latex'] }}\)
 
@@ -18,7 +20,7 @@
       <div class="form-group">
           <div class="input-group">
 
-      <P>{{ revised_text_form.revised_text.label }}: {{ revised_text_form.revised_text(size=50, maxlength=300, id="input_latex") }} <small>max length = 300 characters</small><BR>
+      <P>{{ revised_text_form.revised_text.label }}: {{ revised_text_form.revised_text(size=150, maxlength=300, id="input_latex") }} <small>max length = 300 characters</small><BR>
 
          <input type="checkbox" id="display_input_latex" checked="" onchange="convert('input_latex','display_input_latex', 'preview_input_latex','output_input_latex')">
          <small><label for="display_input_latex">Display style</label></small>
@@ -30,7 +32,7 @@
 
           </div>
       <!--    <button type="submit" class="btn btn-default">Update</button> -->
-      <input type="submit" name="submit_button" value='edit input expr latex'>
+      <input type="submit" name="submit_button" value='update expression latex {{ expr_global_id }}'>
 
         </div>
       </form>

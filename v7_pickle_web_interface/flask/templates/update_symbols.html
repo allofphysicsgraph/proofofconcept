@@ -100,6 +100,7 @@
           <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
           {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
           \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
         </LI>
         {% endfor %}
       </OL>

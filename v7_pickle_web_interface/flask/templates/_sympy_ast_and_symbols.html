@@ -1,10 +1,8 @@
 {% macro sympy_ast_and_symbols(dat, ast_png_and_id) %}
 
       <P>
-        Provided by user:<BR>
-        <a href="{{ url_for('list_all_expressions') }}?referrer=modify_step#{{ ast_png_and_id['expr global id'] }}">{{ ast_png_and_id['expr global id'] }}</a>: \({{ dat['expressions'][ast_png_and_id['expr global id']]['latex'] }}\)<BR>
-          <P>From Sympy's parsing of the Latex
-        symbols from Sympy: {{ ast_png_and_id['symbols from sympy'] }}<BR>
+          <P>From Sympy's parsing of the Latex symbols:
+         {{ ast_png_and_id['symbols from sympy'] }}<BR>
         symbols from PDG AST:
         {% for symbol_id in ast_png_and_id['symbols from PDG AST'] %}
           (<a href="{{ url_for('list_all_symbols') }}?referrer=modify_step#{{ symbol_id }}">{{ symbol_id }}</a>:
