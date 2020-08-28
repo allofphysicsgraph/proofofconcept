@@ -2323,8 +2323,14 @@ def multiply_expr_by_expr(latex_dict: dict) -> str:
     """
     logger.info("[trace]")
 
-    d1 = sympy.simplify(latex_dict["input"][0]["LHS"]*latex_dict["input"][1]["LHS"] - latex_dict["output"][0]["LHS"])
-    d2 = sympy.simplify(latex_dict["input"][0]["RHS"]*latex_dict["input"][1]["RHS"] - latex_dict["output"][0]["RHS"])
+    d1 = sympy.simplify(
+        latex_dict["input"][0]["LHS"] * latex_dict["input"][1]["LHS"]
+        - latex_dict["output"][0]["LHS"]
+    )
+    d2 = sympy.simplify(
+        latex_dict["input"][0]["RHS"] * latex_dict["input"][1]["RHS"]
+        - latex_dict["output"][0]["RHS"]
+    )
 
     if (d1 == 0) and (d2 == 0):
         logger.info("[trace end " + trace_id + "]")
@@ -2332,7 +2338,6 @@ def multiply_expr_by_expr(latex_dict: dict) -> str:
     else:
         logger.info("[trace end " + trace_id + "]")
         return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
-
 
     return "no check performed"
 
