@@ -770,15 +770,15 @@ def take_curl_of_both_sides(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -799,15 +799,15 @@ def apply_divergence(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -831,15 +831,15 @@ def indefinite_integral_over(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -859,15 +859,15 @@ def indefinite_integration(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -887,15 +887,15 @@ def indefinite_integrate_LHS_over(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -915,15 +915,15 @@ def indefinite_integrate_RHS_over(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -943,15 +943,15 @@ def integrate_over_from_to(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -971,15 +971,15 @@ def partially_differentiate_with_respect_to(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -999,15 +999,15 @@ def X_cross_both_sides_by(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1027,15 +1027,15 @@ def both_sides_cross_X(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1055,15 +1055,15 @@ def X_dot_both_sides(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1083,15 +1083,15 @@ def both_sides_dot_X(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1547,15 +1547,15 @@ def expand_integrand(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1578,15 +1578,15 @@ def function_is_even(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1609,15 +1609,15 @@ def function_is_odd(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1640,15 +1640,15 @@ def conjugate_function_X(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1671,15 +1671,15 @@ def conjugate_both_sides(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1699,15 +1699,15 @@ def conjugate_transpose_both_sides(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1728,15 +1728,15 @@ def distribute_conjugate_transpose_to_factors(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1756,15 +1756,15 @@ def distribute_conjugate_to_factors(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1784,15 +1784,15 @@ def expand_magnitude_to_conjugate(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1812,15 +1812,15 @@ def replace_scalar_with_vector(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -1870,11 +1870,11 @@ def subtract_expr_1_from_expr_2(latex_dict: dict) -> str:
     logger.info("[trace start " + trace_id + "]")
 
     d1 = sympy.simplify(
-        (latex_dict["input"][0]["LHS"] - latex_dict["input"][1]["LHS"])
+        (latex_dict["input"][1]["LHS"] - latex_dict["input"][0]["LHS"])
         - latex_dict["output"][0]["LHS"]
     )
     d2 = sympy.simplify(
-        (latex_dict["input"][0]["RHS"] - latex_dict["input"][1]["RHS"])
+        (latex_dict["input"][1]["RHS"] - latex_dict["input"][0]["RHS"])
         - latex_dict["output"][0]["RHS"]
     )
 
@@ -1987,15 +1987,15 @@ def differentiate_with_respect_to(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2015,15 +2015,15 @@ def apply_function_to_both_sides_of_expression(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2065,15 +2065,15 @@ def substitute_LHS_of_three_expressions_into_expr(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2091,15 +2091,15 @@ def substitute_LHS_of_four_expressions_into_expr(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2117,15 +2117,15 @@ def substitute_LHS_of_five_expressions_into_expr(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2143,15 +2143,15 @@ def substitute_LHS_of_six_expressions_into_expr(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2169,15 +2169,15 @@ def expr_is_equivalent_to_expr_under_the_condition(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2504,15 +2504,15 @@ def separate_two_vector_components(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2535,15 +2535,15 @@ def separate_three_vector_components(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2563,15 +2563,15 @@ def separate_vector_into_two_trigonometric_ratios(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2590,15 +2590,15 @@ def maximum_of_expr(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2644,15 +2644,15 @@ def expr_is_true_under_condition_expr(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2671,15 +2671,15 @@ def declare_variable_replacement(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2698,15 +2698,15 @@ def integrate(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2725,15 +2725,15 @@ def replace_constant_with_value(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2841,15 +2841,15 @@ def apply_operator_to_bra(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2872,15 +2872,15 @@ def apply_operator_to_ket(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2903,15 +2903,15 @@ def drop_nondominant_term(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
@@ -2934,15 +2934,15 @@ def apply_gradient_to_scalar_function(latex_dict: dict) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
 
-#    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
-#
-#    if (d1 == 0) and (d2 == 0):
-#        logger.info("[trace end " + trace_id + "]")
-#        return "valid"
-#    else:
-#        logger.info("[trace end " + trace_id + "]")
-#        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
+    #    d1 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #    d2 = sympy.simplify(latex_dict["input"][0]["LHS"] - latex_dict["input"][0]["LHS"])
+    #
+    #    if (d1 == 0) and (d2 == 0):
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "valid"
+    #    else:
+    #        logger.info("[trace end " + trace_id + "]")
+    #        return "LHS diff is " + str(d1) + "\nRHS diff is " + str(d2)
 
     logger.info("[trace end " + trace_id + "]")
     return "no check performed"
