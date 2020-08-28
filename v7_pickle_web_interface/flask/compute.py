@@ -782,7 +782,7 @@ def list_symbols_used_in_step_from_sympy(
         list_of_symbols = []
 
     list_of_symbols = list(set(list_of_symbols))
-    logger.debug("list_of_symbols ="+str(list_of_symbols))
+    logger.debug("list_of_symbols =" + str(list_of_symbols))
     logger.info("[trace end " + trace_id + "]")
     return list_of_symbols
 

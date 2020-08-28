@@ -2635,6 +2635,15 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         flash(str(err))
         expr_dict_with_symbol_list = {}
 
+    try:
+        latex_generated_by_sympy = compute.generate_latex_from_sympy(
+            deriv_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        latex_generated_by_sympy = {}
+
     # TODO
     derivation_dimensions_validity_dict = {}
     derivation_units_validity_dict = {}
@@ -2650,6 +2659,7 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         list_of_global_id_not_in_derivation=list_of_global_id_not_in_derivation,
         expr_dict_with_symbol_list=expr_dict_with_symbol_list,
         inf_rule=inf_rule,
+        latex_generated_by_sympy=latex_generated_by_sympy,
         derivation_step_validity_dict=derivation_step_validity_dict,
         derivation_dimensions_validity_dict=derivation_dimensions_validity_dict,
         derivation_units_validity_dict=derivation_units_validity_dict,
@@ -2846,6 +2856,15 @@ def update_symbols(deriv_id: str, step_id: str):
         flash(str(err))
         logger.error(str(err))
         symbol_popularity_dict = {}
+
+    try:
+        latex_generated_by_sympy = compute.generate_latex_from_sympy(
+            deriv_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        latex_generated_by_sympy = {}
 
     # dat may have changed, so reload
     dat = clib.read_db(path_to_db)
@@ -3121,7 +3140,7 @@ def step_review(deriv_id: str, step_id: str):
 
     try:
         latex_generated_by_sympy = compute.generate_latex_from_sympy(
-            deriv_id, step_id, path_to_db
+            deriv_id, path_to_db
         )
     except Exception as err:
         logger.error(str(err))
@@ -3131,13 +3150,13 @@ def step_review(deriv_id: str, step_id: str):
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "step_review.html",
-        webform=NewSymbolForm(request.form),
         name_of_graphviz_png=step_graphviz_png,
         deriv_id=deriv_id,
         step_id=step_id,
         dat=dat,
         latex_generated_by_sympy=latex_generated_by_sympy,
-        edit_sympy=RevisedTextForm(request.form),
+        edit_expr_sympy_webform=RevisedTextForm(request.form),
+        edit_expr_latex_webform=RevisedTextForm(request.form),
         list_of_expression_AST_dicts=list_of_expression_AST_dicts,
         symbol_popularity_dict=symbol_popularity_dict,
         symbol_popularity_dict_in_expr=symbol_popularity_dict_in_expr,
@@ -3757,6 +3776,15 @@ def modify_step(deriv_id: str, step_id: str):
         logger.error(str(err))
         symbol_popularity_dict = {}
 
+    try:
+        latex_generated_by_sympy = compute.generate_latex_from_sympy(
+            deriv_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        latex_generated_by_sympy = {}
+
     # TODO
     derivation_dimensions_validity_dict = {}
     derivation_units_validity_dict = {}
@@ -3768,6 +3796,8 @@ def modify_step(deriv_id: str, step_id: str):
         step_id=step_id,
         name_of_graphviz_png=step_graphviz_png,
         dat=dat,
+        latex_generated_by_sympy=latex_generated_by_sympy,
+        edit_sympy=RevisedTextForm(request.form),
         symbol_popularity_dict=symbol_popularity_dict,
         symbol_popularity_dict_in_expr=symbol_popularity_dict_in_expr,
         dict_of_ranked_list=dict_of_ranked_list,
