@@ -3452,7 +3452,6 @@ def review_derivation(deriv_id: str):
         flash(str(err))
         latex_generated_by_sympy = {}
 
-
     logger.info("[trace page end " + trace_id + "]")
     return render_template(
         "review_derivation.html",
@@ -3598,12 +3597,14 @@ def modify_step(deriv_id: str, step_id: str):
                 expr_updated_latex = request.form["revised_text"]
                 try:
                     compute.modify_latex_in_step(
-                        expr_local_id, expr_updated_latex, str(current_user.email), path_to_db
+                        expr_local_id,
+                        expr_updated_latex,
+                        str(current_user.email),
+                        path_to_db,
                     )
                 except Exception as err:
                     logger.error(str(err))
                     flash(str(err))
-
 
                 try:
                     step_validity_msg = vir.validate_step(deriv_id, step_id, path_to_db)
