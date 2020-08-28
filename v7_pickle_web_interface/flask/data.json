@@ -9175,6 +9175,53 @@
                     "creation date": "2020-08-11"
                 }
             }
+        },
+        "580309": {
+            "name": "hyperbolic trigonometric identities",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "from http://www.physics.miami.edu/~nearing/mathmethods/mathematical_methods-one.pdf",
+            "creation date": "2020-08-27",
+            "steps": {
+                "9226355": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4034217"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-27"
+                },
+                "4360556": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7470533"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-28"
+                },
+                "3969778": {
+                    "inf rule": "multiply expr 1 by expr 2",
+                    "inputs": [
+                        "4034217",
+                        "4034217"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "1417272"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-28"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -10104,7 +10151,10 @@
         "1366396": "5693047217",
         "1383337": "6599829782",
         "6547572": "3531380618",
-        "3435796": "2005061870"
+        "3435796": "2005061870",
+        "4034217": "5876113631",
+        "7470533": "5615355841",
+        "1417272": "3772887042"
     },
     "expressions": {
         "2344320475": {
@@ -17138,6 +17188,30 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-11"
+        },
+        "5876113631": {
+            "latex": "\\cosh x = \\frac{\\exp(x) + \\exp(-x)}{2}",
+            "AST": "Equality(cosh(Symbol('pdg1464')), Mul(Pow(Integer(2), Integer(-1)), Add(exp(Mul(Integer(-1), Symbol('pdg1464'))), exp(Symbol('pdg1464')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-27"
+        },
+        "5615355841": {
+            "latex": "\\sinh x = \\frac{\\exp(x) - \\exp(-x)}{2}",
+            "AST": "Equality(sinh(Symbol('pdg1464')), Mul(Pow(Integer(2), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Symbol('pdg1464')))), exp(Symbol('pdg1464')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-28"
+        },
+        "3772887042": {
+            "latex": "\\cosh^2 x = \\left(\\frac{\\exp(x) + \\exp(-x)}{2}\\right)\\left(\\frac{\\exp(x) + \\exp(-x)}{2}\\right)",
+            "AST": "Equality(Pow(cosh(Symbol('pdg1464')), Integer(2)), Mul(Mul(Pow(Integer(2), Integer(-1)), Add(exp(Mul(Integer(-1), Symbol('pdg1464'))), exp(Symbol('pdg1464')))), Mul(Pow(Integer(2), Integer(-1)), Add(exp(Mul(Integer(-1), Symbol('pdg1464'))), exp(Symbol('pdg1464'))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-28"
         }
     },
     "inference rules": {
