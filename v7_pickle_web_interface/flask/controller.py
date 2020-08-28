@@ -1604,6 +1604,7 @@ def navigation():
             rdf_file,
             neo4j_file,
         ] = compute.create_files_of_db_content(path_to_db)
+        flash("saved to file")
     except Exception as err:
         flash(str(err))
         logger.error(str(err))
@@ -2449,6 +2450,21 @@ def new_step_select_inf_rule(deriv_id: str):
     logger.info("[trace page start " + trace_id + "]" + current_user.email)
 
     try:
+        # the following forces a save to disk
+        [
+            json_file,
+            all_df,
+            df_pkl_file,
+            sql_file,
+            rdf_file,
+            neo4j_file,
+        ] = compute.create_files_of_db_content(path_to_db)
+        flash("saved to file")
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+
+    try:
         list_of_inf_rules = compute.get_sorted_list_of_inf_rules(path_to_db)
     except Exception as err:
         logger.error(str(err))
@@ -2655,6 +2671,21 @@ def update_symbols(deriv_id: str, step_id: str):
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace page start " + trace_id + "]" + current_user.email)
+
+    try:
+        # the following forces a save to disk
+        [
+            json_file,
+            all_df,
+            df_pkl_file,
+            sql_file,
+            rdf_file,
+            neo4j_file,
+        ] = compute.create_files_of_db_content(path_to_db)
+        flash("saved to file")
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
 
     if request.method == "POST":
         logger.debug("reslt = %s", str(request.form))
@@ -2890,17 +2921,20 @@ def step_review(deriv_id: str, step_id: str):
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace page start " + trace_id + "]" + current_user.email)
 
-    # the following forces a save to disk
-    [
-        json_file,
-        all_df,
-        df_pkl_file,
-        sql_file,
-        rdf_file,
-        neo4j_file,
-    ] = compute.create_files_of_db_content(path_to_db)
-
-    flash("saved to file")
+    try:
+        # the following forces a save to disk
+        [
+            json_file,
+            all_df,
+            df_pkl_file,
+            sql_file,
+            rdf_file,
+            neo4j_file,
+        ] = compute.create_files_of_db_content(path_to_db)
+        flash("saved to file")
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
 
     if request.method == "POST":
         logger.debug("reslt = %s", str(request.form))
@@ -3192,6 +3226,21 @@ def review_derivation(deriv_id: str):
     pdf_filename = "NONE"
     # caveat: the review_derivation HTML relies on the filename to be "NONE" if there is no PDF
     # TODO: there should be a default PDF in case the generation step fails
+
+    try:
+        # the following forces a save to disk
+        [
+            json_file,
+            all_df,
+            df_pkl_file,
+            sql_file,
+            rdf_file,
+            neo4j_file,
+        ] = compute.create_files_of_db_content(path_to_db)
+        flash("saved to file")
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
 
     if request.method == "POST":
         if request.form["submit_button"] == "add another step":
