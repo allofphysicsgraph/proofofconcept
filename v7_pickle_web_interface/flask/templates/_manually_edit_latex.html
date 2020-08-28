@@ -1,0 +1,40 @@
+{% macro manually_edit_latex(dat, expr_global_id, revised_text_form ) %}
+
+      <fieldset><!-- https://www.w3.org/WAI/tutorials/forms/grouping/ -->
+      <legend>
+      <a name="edit input expr latex">
+        <h3>Edit the \(\rm\LaTeX\)  for this expression</h3>
+      </a>
+      </legend>
+
+          {{ dat["expressions"][ expr_global_id ]['latex'] }}
+          <P>
+        \({{ dat["expressions"][ expr_global_id ]['latex'] }}\)
+
+
+      <form method="post" action="">
+          <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
+          {{ revised_text_form.csrf_token }}
+      <div class="form-group">
+          <div class="input-group">
+
+      <P>{{ revised_text_form.revised_text.label }}: {{ revised_text_form.revised_text(size=50, maxlength=300, id="input_latex") }} <small>max length = 300 characters</small><BR>
+
+         <input type="checkbox" id="display_input_latex" checked="" onchange="convert('input_latex','display_input_latex', 'preview_input_latex','output_input_latex')">
+         <small><label for="display_input_latex">Display style</label></small>
+
+         <input type="button" value="optional preview of TeX before submitting form" id="preview_input_latex" onclick="convert('input_latex','display_input_latex', 'preview_input_latex','output_input_latex')">
+
+         <br clear="all">
+         <div id="output_input_latex"></div>
+
+          </div>
+      <!--    <button type="submit" class="btn btn-default">Update</button> -->
+      <input type="submit" name="submit_button" value='edit input expr latex'>
+
+        </div>
+      </form>
+      </fieldset>
+
+
+{% endmacro %}
