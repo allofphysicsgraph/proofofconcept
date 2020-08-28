@@ -43,7 +43,8 @@
         <LI>
           <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
           {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
-          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id] ]['latex'] }}\)<BR>
+          \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
         </LI>
         {% endfor %}
       </OL>
@@ -67,12 +68,13 @@
          <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
           {{ dat["expr local to global"][local_id] }}</a>: <BR>
           \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
          </LI>
         {% endfor %}
       </OL>
     </td>
     <!-- output local ID -->
-    <!-- 
+    <!--
     <td>
       <OL>
         {% for local_id in this_dict['outputs'] %}
@@ -91,6 +93,7 @@
           <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
           {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
           \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
         </LI>
         {% endfor %}
       </OL>
@@ -100,14 +103,14 @@
     <!-- dimension check -->
     <td>
       {% for expr_local_id in dat["derivations"][deriv_id]["steps"][step_id]["inputs"] + dat["derivations"][deriv_id]["steps"][step_id]["outputs"] %}
-        {{ dat["expr local to global"][expr_local_id] }}: 
+        {{ dat["expr local to global"][expr_local_id] }}:
         {{ derivation_dimensions_validity_dict[ dat["expr local to global"][expr_local_id]  ] }}<BR>
       {% endfor %}
     </td>
     <!-- unit check -->
     <td>
       {% for expr_local_id in dat["derivations"][deriv_id]["steps"][step_id]["inputs"] + dat["derivations"][deriv_id]["steps"][step_id]["outputs"] %}
-        {{ dat["expr local to global"][expr_local_id] }}: 
+        {{ dat["expr local to global"][expr_local_id] }}:
         {{ derivation_units_validity_dict[  dat["expr local to global"][expr_local_id]   ] }}<BR>
       {% endfor %}
     </td>

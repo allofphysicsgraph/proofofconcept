@@ -13,7 +13,7 @@
 </P>
 
 
-
+{% if list_of_symbols_from_sympy|length>0 %}
 <H2>Symbols used in this step according to SymPy</h2>
   <P>From SymPy's parsing of the Latex
     <UL>
@@ -22,7 +22,9 @@
       {% endfor %}
     </UL>
   </P>
+  {% endif %}
 
+{% if list_of_symbols_from_PDG_AST|length > 0 %}
 <h2>Symbols in PDG AST for this step</h2>
             <table border="1" class="sortable">
               <tr>
@@ -43,6 +45,7 @@
                 </tr>
   {% endfor %}
    </table>
+   {% endif %}
 <!--
     <LI> <a href="{ { url_for('list_all_symbols') }}?referrer=modify_step#{ { symbol_id }}">{ { symbol_id }}</a>:
      { { dat['symbols'][symbol_id]['latex'] }}
@@ -72,6 +75,7 @@
           <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
           {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
           \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
         </LI>
         {% endfor %}
       </OL>
@@ -83,6 +87,7 @@
          <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
           {{ dat["expr local to global"][local_id] }}</a>: <BR>
           \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
          </LI>
         {% endfor %}
       </OL>
@@ -240,6 +245,7 @@ See also <a href="{{ url_for('list_all_symbols') }}?referrer=navigation">all {{ 
                 <th>value</th>
                 <th>Used in derivations</th>
                 <th>references</th>
+                <th>use count</th>
               </tr>
   {% for symbol_id in list_of_symbols_for_this_derivation %}
               <tr>

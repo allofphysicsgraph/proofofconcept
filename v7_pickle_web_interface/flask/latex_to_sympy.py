@@ -104,6 +104,7 @@ def list_symbols_used_in_latex_from_sympy(expr_latex: str) -> list:
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
     list_of_symbols = []
+    logger.debug("expr_latex =" + expr_latex)
     try:
         symp_lat = parse_latex(expr_latex)
     except sympy.SympifyError as err:
@@ -115,8 +116,10 @@ def list_symbols_used_in_latex_from_sympy(expr_latex: str) -> list:
 
     for symb in symp_lat.atoms(sympy.Symbol):
         list_of_symbols.append(str(symb))
+    list_of_symbols = list(set(list_of_symbols))
+    logger.debug("list_of_symbols =" + str(list_of_symbols))
     logger.info("[trace end " + trace_id + "]")
-    return list(set(list_of_symbols))
+    return list_of_symbols
 
 
 def get_sympy_expr_from_AST_str(ast_str: str):

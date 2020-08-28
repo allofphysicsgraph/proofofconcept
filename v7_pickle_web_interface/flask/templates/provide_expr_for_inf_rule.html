@@ -1,5 +1,4 @@
 {% extends "_base.html" %}
-{% from "_form_macros.html" import render_field %}
 
 {% block content %}
 
@@ -1046,8 +1045,9 @@ function enable_output3_radio3(enabled){
 <P><a href="{{ url_for('new_step_select_inf_rule', deriv_id=deriv_id, referrer='provide_expr_for_inf_rule') }}">Go back and select a difference inference rule</a></P>
 
 <P>
+  {% if dat["derivations"][deriv_id]['steps']|length >0 %}
 {% include '_table_of_derivation_steps.html' %}
-
+{% endif %}
 <!--
 <P>
 { % include '_table_of_expressions.html' %}
