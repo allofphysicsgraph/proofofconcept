@@ -1,0 +1,94 @@
+
+<table border="1" class="sortable">
+  <tr>
+    <th>Derivation</th>
+    <th>Inference Rule</th>
+    <!--<th>Input<BR>local ID</th> -->
+    <th>Input latex</th>
+<!--    <th>Feed<BR>local ID</th> -->
+    <th>Feeds latex</th>
+    <!-- <th>Output<BR>local ID</th> -->
+    <th>Output latex</th>
+    <th>step validity</th>
+    <th>dimension check</th>
+    <th>unit check</th>
+    <th>notes</th>
+  </tr>
+  {% for deriv_id in dat["derivations"].keys() %}
+  {% for step_id, this_dict in dat["derivations"][deriv_id]['steps'].items() %}
+  <tr>
+    <td>
+      <a name="{{ step_id }}">
+        <a href="{{ url_for('review_derivation', deriv_id=deriv_id) }}?referrer=_table_of_all_steps">
+          <!-- linear index -->
+          {{dat["derivations"][deriv_id]['name']}}
+        </a>
+      </a>
+    </td>
+    <td><a href="{{ url_for('list_all_inference_rules') }}?referrer=_table_of_derivation_steps#{{ this_dict['inf rule'] }}">{{ this_dict['inf rule'] }}</a></td>
+    <!-- input latex -->
+    <td>
+      <OL>
+        {% for local_id in this_dict['inputs'] %}
+        <LI>
+          <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+          {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id] ]['latex'] }}\)<BR>
+          \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
+        </LI>
+        {% endfor %}
+      </OL>
+    </td>
+    <!-- feeds latex -->
+    <td>
+      <OL>
+        {% for local_id in this_dict['feeds'] %}
+         <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+          {{ dat["expr local to global"][local_id] }}</a>: <BR>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
+         </LI>
+        {% endfor %}
+      </OL>
+    </td>
+    <!-- output latex -->
+    <td>
+      <OL>
+        {% for local_id in this_dict['outputs'] %}
+        <LI>
+          <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
+          {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
+        </LI>
+        {% endfor %}
+      </OL>
+    </td>
+    <!-- step validation from sympy -->
+    <td>{{ derivation_step_validity_dict[step_id] }}</td>
+    <!-- dimension check -->
+    <td>
+      {% for expr_local_id in dat["derivations"][deriv_id]["steps"][step_id]["inputs"] + dat["derivations"][deriv_id]["steps"][step_id]["outputs"] %}
+        {{ dat["expr local to global"][expr_local_id] }}:
+        {{ derivation_dimensions_validity_dict[ dat["expr local to global"][expr_local_id]  ] }}<BR>
+      {% endfor %}
+    </td>
+    <!-- unit check -->
+    <td>
+      {% for expr_local_id in dat["derivations"][deriv_id]["steps"][step_id]["inputs"] + dat["derivations"][deriv_id]["steps"][step_id]["outputs"] %}
+        {{ dat["expr local to global"][expr_local_id] }}:
+        {{ derivation_units_validity_dict[  dat["expr local to global"][expr_local_id]   ] }}<BR>
+      {% endfor %}
+    </td>
+    <!-- step notes -->
+    <td>{{ this_dict['notes'] }}</td>
+  </tr>
+  {% endfor %}
+  {% endfor %}
+  <caption>
+    <a name="table of derivation steps">
+      Physics Derivation Graph: All Steps
+    </a>
+  </caption>
+
+</table>

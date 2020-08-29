@@ -7,33 +7,57 @@
 <div align="center">
     <hr width="50%" align="center">
     <P>
-       <a href="{{ url_for('index', referrer='_footer.html') }}">Physics Derivation Graph homepage</a> | 
+       <a href="{{ url_for('index', referrer='_footer.html') }}">Physics Derivation Graph homepage</a> |
        <a href="{{ url_for('faq', referrer='_footer.html') }}">FAQ</a> |
        <a href="{{ url_for('user_documentation', referrer='_footer.html') }}">documentation for users</a> |
        <a href="{{ url_for('developer_documentation', referrer='_footer.html') }}">documentation for developers</a>
 <!--
     <P><font color="red">Warning: features and data on this site are not persistent or stable.</font></P>
 -->
-    <P><a href="https://physicsderivationgraph.blogspot.com/">blog</a> | 
-       <a href="{{ url_for('index', referrer='_footer.html') }}">website</a> |
-       <a href="https://github.com/allofphysicsgraph/proofofconcept/wiki">wiki</a> | 
-       <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface/">source code</a> |
-       <a href="https://github.com/allofphysicsgraph/proofofconcept/issues">issues</a> | 
-       <a href="https://www.facebook.com/physicsderivationgraph/">FB</a> | 
-       <a href="https://www.youtube.com/channel/UCBSInUAbtBkYDYKNc_iauVQ/">YT</a> | 
-       <a href="https://creativecommons.org/licenses/by/4.0/">License</a> | 
-       <a href="mailto:ben.is.located@gmail.com?subject=Physics Derivation Graph">Contact</a>
+    <P>
+      <a href="https://physicsderivationgraph.blogspot.com/">blog</a> |
+      <a href="{{ url_for('index', referrer='_footer.html') }}">website</a> |
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/wiki">wiki</a> |
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/issues">issues</a> |
+      <a href="https://gitter.im/allofphysicsgraph/Lobby">Gitter</a> |
+    <!--
+      <a href="https://creativecommons.org/licenses/by/4.0/">License</a> |
+    -->
+      <a href="mailto:ben.is.located@gmail.com?subject=Physics Derivation Graph">Contact</a>
+    </P>
+    <P>
+      <table>
+        <tr>
+     <td valign="middle" width="100">
+       <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface/">
+         <img src="{{ url_for('static', filename='GitHub-icon.png')}}" align="left" alt="source code on GitHub">
+       </a>
+     </td>
+     <td valign="middle" width="100">
+       <a href="https://www.facebook.com/physicsderivationgraph/">
+         <img src="{{ url_for('static', filename='facebook_icon.svg')}}" width="40" align="left" alt="Facebook"/>
+       </a>
+     </td>
+     <td valign="middle" width="100">
+       <a href="https://www.youtube.com/channel/UCBSInUAbtBkYDYKNc_iauVQ/">
+         <img src="{{ url_for('static', filename='Youtube_icon.svg')}}" width="40" align="left" alt="YouTube Channel"/>
+       </a>
+     </td>
+     <td valign="middle" width="100">
+       <a href="https://www.reddit.com/r/physicsderivations/">
+         <img src="{{ url_for('static', filename='reddit_icon.png')}}" align="left" alt="Reddit"/>
+       </a>
+     </td>
+     </tr>
+   </table>
     </P>
 
     <P>
       <small>
-        This site and this project are covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
+        Site content, the project software, and data are covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>
       </small>
     </P>
 </div>
-Rendered in {{ g.request_time() }} using <a href="https://flask.palletsprojects.com/">Flask</a> 
+Rendered in {{ g.request_time() }} using <a href="https://flask.palletsprojects.com/">Flask</a>
 
     </footer>
-
-
-

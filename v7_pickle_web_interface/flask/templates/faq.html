@@ -50,8 +50,21 @@ Local account and authenticating with other services (e.g. Github, Gitlab, Faceb
 <HR> <!-- ************************************************** -->
 <P>
   <a name="database from site to repo">
-<i>How does data entered into the site get to the Physics Derivation Graph github repo?</i>
-</a><BR>
+    <i>What are alternative paradigms that yield the same artifacts?</i>
+  </a><BR>
+These descriptions of the project are equivalent:
+<UL>
+  <LI>Computer-assisted derivations</LI>
+  <LI>Formalization of Mathematical Physics</LI>
+  <LI>Structured derivations</LI>
+</UL>
+</P>
+
+<HR> <!-- ************************************************** -->
+<P>
+  <a name="database from site to repo">
+    <i>How does data entered into the site get to the Physics Derivation Graph github repo?</i>
+  </a><BR>
   Content entered through the web interface is dumped into a JSON file
   on the DigitalOcean virtual private server.
   The project owner manually uploads code from that server to the github
@@ -66,8 +79,8 @@ Local account and authenticating with other services (e.g. Github, Gitlab, Faceb
 <HR> <!-- ************************************************** -->
 <P>
   <a name="use cases">
-<i>What are the use cases for the Physics Derivation Graph?</i>
-</a><BR>
+    <i>What are the use cases for the Physics Derivation Graph?</i>
+  </a><BR>
   <table border=1>
   <tr>
     <th>use case</th>
@@ -135,27 +148,28 @@ Yes! Or, even better, a separate platform could serve this purpose.
 <HR> <!-- ************************************************** -->
 <P>
   <a name="how to contribute">
-<i>How to contribute to the Physics Derivation Graph?</i>
-</a><BR>
-<UL>
-  <LI>If you are a physicist, mathematician, or logician of any type, <a href="#contact">feedback</a> would be useful.</LI>
-  <LI>If you are a student, <a href="https://github.com/allofphysicsgraph/proofofconcept/issues/new/choose">let us know what features you would find useful</a>.</LI>
-  <LI>If you have derivations to add, you will need to <a href="{{ url_for('login') }}?referrer=faq">log in.</a> To create an account, <a href="#contact">contact us</a>.</LI>
-  <LI>If you are a researcher in another field (biology, computer science, chemistry, linguistics, etc), do you think this approach applies to your field?</LI>
-  <LI>If you are a programmer and would like to review the code, comments are welcome. See the <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/CONTRIBUTING.md">guide for contributing</a>.
-    Pulls and merges are also possible.
-    Feel free to create a fork.</LI>
-</UL>
-
+    <i>How to contribute to the Physics Derivation Graph?</i>
+  </a><BR>
+  <UL>
+    <LI>If you are a physicist, mathematician, or logician of any type, <a href="#contact">feedback</a> would be useful.</LI>
+    <LI>If you are a student, <a href="https://github.com/allofphysicsgraph/proofofconcept/issues/new/choose">let us know what features you would find useful</a>.</LI>
+    <LI>If you have derivations to add, you will need to <a href="{{ url_for('login') }}?referrer=faq">log in.</a> To create an account, <a href="#contact">contact us</a>.</LI>
+    <LI>If you are a researcher in another field (biology, computer science, chemistry, linguistics, etc), do you think this approach applies to your field?</LI>
+    <LI>If you are a programmer and would like to review the code, comments are welcome. See the <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/CONTRIBUTING.md">guide for contributing</a>.
+      Pulls and merges are also possible.
+      Feel free to create a fork.</LI>
+  </UL>
+</P>
 
 
 
 <HR> <!-- ************************************************** -->
 <P>
-<a name="contact">
-<i>How to contact the project owner?</i>
-</a><BR>
-Email is the best method: ben.is.located AT gmail.com
+  <a name="contact">
+    <i>How to contact the project owner?</i>
+  </a><BR>
+  Email is the best method: ben.is.located AT gmail.com
+</P>
 <P>
   Also, there is a <a href="https://gitter.im/allofphysicsgraph/Lobby">gitter channel</a> available for developers.
 </P>
@@ -170,14 +184,15 @@ Email is the best method: ben.is.located AT gmail.com
 <HR> <!-- ************************************************** -->
 <!-- <H3>Scope and Definitions</H3> -->
   <a name="define inference rule">
-<P><i>What is an inference rule?</i>
-</a><BR>
-An inference rule is the atomic step of logic that relates two mathematical expressions. See the full explanation <a href="{{ url_for('user_documentation') }}?referrer=faq#inference rules">in the documentation</a>.
+  <P><i>What is an inference rule?</i>
+  </a><BR>
+  An inference rule is the atomic step of logic that relates two mathematical expressions. See the full explanation <a href="{{ url_for('user_documentation') }}?referrer=faq#inference rules">in the documentation</a>.
 <P>
 
 <HR> <!-- ************************************************** -->
+<P>
   <a name="generate output from inference rule">
-<P><I>Why does the user provide the input expressions, inference rule, and outputs? Why not generate the output from the inputs + inference rule?</I>
+    <I>Why does the user provide the input expressions, inference rule, and outputs? Why not generate the output from the inputs + inference rule?</I>
   </a><BR>
     In principle this is feasible in the Physics Derivation Graph. 
     With the user providing the input expressions and inference rules (plus any needed arguments), the outputs are deterministic.
@@ -285,8 +300,8 @@ There are also Science Ontologies like <a href="http://sciencewise.info/">scienc
 <HR> <!-- ************************************************** -->
 <P>
   <a name="computational graphs">
-  <I>How is the Physics Derivation Graph related to Computational Graphs in deep learning?</I><BR>
-
+    <I>How is the Physics Derivation Graph related to Computational Graphs in deep learning?</I><BR>
+  </a>
 There is no relation between the inference rules and expressions present in the Physics Derivation Graph and <a href="https://colah.github.io/posts/2015-08-Backprop/">computational graphs used in deep learning</a>.
 
 </P>
@@ -294,14 +309,15 @@ There is no relation between the inference rules and expressions present in the 
 <HR> <!-- ************************************************** -->
 <P>
   <a name="validity of content">
-<I>Does use of the Physics Derivation Graph and verification of steps in a derivation mean that the content is valid?</I><BR>
+  <I>Does use of the Physics Derivation Graph and verification of steps in a derivation mean that the content is valid?</I><BR>
+  </a>
 No. Simply carrying out mathematical manipulations of expressions does not necessarily lead to physically valid outcomes.
 
 <HR> <!-- ************************************************** -->
 <P>
   <a name="lessons learned">
-  <I>What lessons have you learned in implementing the Physics Derivation Graph?</I><BR>
-
+    <I>What lessons have you learned in implementing the Physics Derivation Graph?</I><BR>
+  </a>
 My observations are specific to the nuances of the
 project and my personality.
 <UL>
@@ -332,6 +348,7 @@ still valid.
 <P>
   <a name="from scratch">
   <I>If you were starting from scratch, what would you have wished you had done differently?</I><BR>
+  </a>
 Knowing what the requirements of the data structure up front would
 have reduced the time wasted with insufficient data structures.
 <P>
@@ -347,8 +364,8 @@ semantic tagging and structures.
 <HR> <!-- ************************************************** -->
 <P>
   <a name="indices">
-<I>What's the purpose of the many numerical indices associated with the expressions and inference rules?</I>
-</a><BR>
+    <I>What's the purpose of the many numerical indices associated with the expressions and inference rules?</I>
+  </a><BR>
 Each expression index is a <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>.
 This is a way of uniquely identifying each component in the graph.
 Separate from that, a unique identifier is also need for inference rules to distinguish the use in different steps.
@@ -360,8 +377,8 @@ Separate from that, a unique identifier is also need for inference rules to dist
 <P>
   <a name="research">
     <I>Is the Physics Derivation Graph research?</I>
-    </a>
-    <BR>
+  </a>
+  <BR>
   No new research in math or physics is needed to validate these claims.
   This project documents the relations between derivations used to describe physical experiments.
 </P>
@@ -370,7 +387,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
 <P>
   <a name="algorithms">
     <I>Are there novel algorithms used in the Physics Derivation Graph?</I>
-    </a><BR>
+  </a><BR>
   There are no new algorithms.
   The Physics Derivation Graph is about documenting existing knowledge.
 </P>
@@ -379,7 +396,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
 <P>
   <a name="pictures">
     <I>How does the Physics Derivation Graph handle non-algebraic arguments?</I>
-    </a><BR>
+  </a><BR>
   The Physics Derivation Graph does not include geometric arguments.
 </p>
 
@@ -391,7 +408,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
 <P>
   <a name="symbols">
     <I>Does the Physics Derivation Graph require that all users agree on the same notation?</I>
-    </a><BR>
+  </a><BR>
       No. A Latex symbol used in a derivation can be used anywhere else in the Physics Derivation Graph because numeric IDs are used to track the concept.
 </P>
 
@@ -399,7 +416,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
 <P>
   <a name="derivations">
     <I>Are derivations in the Physics Derivation Graph representations?</I>
-    <a><BR>
+  <a><BR>
       No. A step can be replaced by equivalent sequences of inference rules.
       Various permutations of equivalent steps may be more or less efficient (in terms of number of steps), and more or less abstract conceptually.
 
@@ -407,7 +424,7 @@ Separate from that, a unique identifier is also need for inference rules to dist
 <p>
   <a name="automation">
     <I>What is the role of automation in the Physics Derivation Graph?</I>
-    </a><BR>
+  </a><BR>
   There are no automatic mechanisms for generating new derivations.
   There is some automation used in detecting symbols in a step or derivation.
 </P>
