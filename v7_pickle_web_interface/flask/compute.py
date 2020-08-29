@@ -419,14 +419,14 @@ def find_symbols_in_step_that_lack_id(
             deriv_id, step_id, path_to_db
         )
     except Exception as er:
-        list_of_sympy_symbols_in_step=[]
+        list_of_sympy_symbols_in_step = []
     try:
         list_of_PDG_AST_symbol_ids_in_step = list_symbols_used_in_step_from_PDG_AST(
             deriv_id, step_id, path_to_db
         )
     except Exception as er:
-        list_of_PDG_AST_symbol_ids_in_step=[]
-        
+        list_of_PDG_AST_symbol_ids_in_step = []
+
     for sympy_symbol in list_of_sympy_symbols_in_step:
         sympy_symbol_has_PDG_AST_id = False
         for symbol_id in list_of_PDG_AST_symbol_ids_in_step:

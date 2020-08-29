@@ -3613,7 +3613,6 @@ def modify_step(deriv_id: str, step_id: str):
                     logger.error(str(err))
                     flash(str(err))
 
-
             elif request.form["submit_button"].startswith("update expression latex"):
                 # ('revised_text', "Add(Symbol('a'), Integer(2)) ")
                 expr_global_id = request.form["submit_button"].replace(
