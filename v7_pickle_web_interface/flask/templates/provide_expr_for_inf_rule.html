@@ -360,18 +360,18 @@ function enable_output3_radio3(enabled){
               <td>
                 <span class="input-group-addon">Select from</span>
                   <select name="input1_global_id" class="selectpicker form-control" id="input1_global" onchange="onChangeFunction();" disabled="disabled">
-                    {% for expr_global_id in list_of_global_id_not_in_derivation %}
+                    {% for expr_global_id in list_of_global_id_not_in_derivation -%}
                     <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
-                    {% endfor %}
+                    {%- endfor %}
                   </select>
                   <BR>
                   <a href="{{ url_for('list_all_expressions') }}?referrer=provide_expr_for_inf_rule }}" target="_blank">list of all expressions</a>
               </td>
-            {% else %}
+            {%- else -%}
               <td>
                 Error in radio field
               </td>
-            {% endif %}
+            {%- endif -%}
             </tr>
           {% endfor %}
           </table>

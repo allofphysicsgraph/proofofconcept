@@ -2972,7 +2972,7 @@ def step_review(deriv_id: str, step_id: str):
         elif request.form["submit_button"].startswith("update expression latex"):
             # ('revised_text', "Add(Symbol('a'), Integer(2)) ")
             expr_global_id = request.form["submit_button"].replace(
-                "update expression sympy ", ""
+                "update expression latex ", ""
             )
             expr_updated_latex = request.form["revised_text"]
             try:
@@ -3501,6 +3501,16 @@ def modify_step(deriv_id: str, step_id: str):
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace page start " + trace_id + "]" + current_user.email)
 
+    [
+        json_file,
+        all_df,
+        df_pkl_file,
+        sql_file,
+        rdf_file,
+        neo4j_file,
+    ] = compute.create_files_of_db_content(path_to_db)
+    flash("saved to file")
+
     if request.method == "POST":
         logger.debug(request.form)
         # ImmutableMultiDict([('revised_text', 'a asdfaf'), ('submit_button', 'edit note for step')])
@@ -3589,17 +3599,30 @@ def modify_step(deriv_id: str, step_id: str):
                     )
                 )
 
-            elif request.form["submit_button"].startswith("update expression latex"):
+            elif request.form["submit_button"].startswith("update expression sympy"):
                 # ('revised_text', "Add(Symbol('a'), Integer(2)) ")
                 expr_global_id = request.form["submit_button"].replace(
                     "update expression sympy ", ""
                 )
+                expr_updated_sympy = request.form["revised_text"]
+                try:
+                    compute.update_expr_sympy(
+                        expr_global_id, expr_updated_sympy, path_to_db,
+                    )
+                except Exception as err:
+                    logger.error(str(err))
+                    flash(str(err))
+
+
+            elif request.form["submit_button"].startswith("update expression latex"):
+                # ('revised_text', "Add(Symbol('a'), Integer(2)) ")
+                expr_global_id = request.form["submit_button"].replace(
+                    "update expression latex ", ""
+                )
                 expr_updated_latex = request.form["revised_text"]
                 try:
                     compute.update_expr_latex(
-                        expr_global_id,
-                        expr_updated_latex,
-                        path_to_db,
+                        expr_global_id, expr_updated_latex, path_to_db,
                     )
                 except Exception as err:
                     logger.error(str(err))
@@ -3614,7 +3637,7 @@ def modify_step(deriv_id: str, step_id: str):
                 logger.info("[trace page end " + trace_id + "]")
                 return redirect(
                     url_for(
-                        "step_review",
+                        "modify_step",
                         deriv_id=deriv_id,
                         step_id=step_id,
                         referrer="modify_step",
