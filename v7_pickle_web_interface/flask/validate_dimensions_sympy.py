@@ -61,9 +61,16 @@ def validate_dimensions(expr_global_id: str, path_to_db: str) -> str:
     else:
         raise Exception(expr_global_id + " is not in dat expressions")
 
+    if "Equality(" not in ast_str:
+        return "no LHS/RHS split"
     expr = latex_to_sympy.get_sympy_expr_from_AST_str(ast_str)
-    LHS = expr.lhs
-    RHS = expr.rhs
+    try:
+        LHS = expr.lhs
+        RHS = expr.rhs
+    except Exception as err:
+        logger.error(str(err))
+        logger.error("ast_str=" + ast_str)
+        return "error with getting LaTeX for " + expr_global_id
 
     logger.debug("LHS = " + str(LHS))  # LHS = pdg4201*pdg9491
     logger.debug("RHS = " + str(RHS))  # RHS = 1/pdg9491

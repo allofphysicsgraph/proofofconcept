@@ -58,9 +58,7 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")
-    logger.debug("step ID = " + step_id)
-
-    #    return "no check performed for improved latency"
+    logger.debug("step ID = " + step_id + " and deriv_id = " + deriv_id)
 
     dat = clib.read_db(path_to_db)
 
@@ -98,12 +96,11 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
             logger.debug(
                 step_id + " " + expr_local_id + " " + expr_global_id + " is " + ast_str
             )
+            if "Equality(" not in ast_str:
+                return "Nothing to split"
+
             if len(ast_str) > 0:
                 expr = latex_to_sympy.get_sympy_expr_from_AST_str(ast_str)
-                LHS = expr.lhs
-                RHS = expr.rhs
-                latex_dict[connection_type[:-1]][indx] = {"LHS": LHS, "RHS": RHS}
-                indx += 1
             else:
                 raise Exception(
                     "missing AST for expr "
@@ -113,6 +110,15 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
                     + " in step "
                     + step_id
                 )
+            try:
+                LHS = expr.lhs
+                RHS = expr.rhs
+            except Exception as err:
+                logger.error(str(err))
+                logger.error("cannot split into LHS/RHS")
+
+            latex_dict[connection_type[:-1]][indx] = {"LHS": LHS, "RHS": RHS}
+            indx += 1
     indx = 0
     for expr_local_id in step_dict["feeds"]:
         expr_global_id = dat["expr local to global"][expr_local_id]
@@ -132,9 +138,9 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
                 + step_id
             )
 
-    logger.debug("step_id = " + step_id)
-    logger.debug(str(latex_dict))
-    logger.debug(step_dict["inf rule"])
+    #    logger.debug("step_id = " + step_id)
+    #    logger.debug(str(latex_dict))
+    #    logger.debug(step_dict["inf rule"])
 
     if step_dict["inf rule"] == "add X to both sides":
         logger.info("[trace end " + trace_id + "]")
@@ -2044,12 +2050,16 @@ def substitute_LHS_of_two_expressions_into_expr(latex_dict: dict) -> str:
     >>> substitute_LHS_of_two_expressions_into_expr(latex_dict)
     'valid'
     """
-    logger.info("[trace]")
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+
     logger.debug(str(latex_dict["input"][0]["LHS"]))
     logger.debug(str(latex_dict["input"][0]["RHS"]))
     logger.debug(str(latex_dict["feed"][0]))
     logger.debug(str(latex_dict["output"][0]["LHS"]))
     logger.debug(str(latex_dict["output"][0]["RHS"]))
+
+    logger.info("[trace end " + trace_id + "]")
     return "no check performed"
 
 
