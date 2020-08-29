@@ -1766,6 +1766,7 @@ def list_all_derivations():
         title="Show all derivations",
     )
 
+
 @app.route("/list_all_steps", methods=["GET", "POST"])
 def list_all_steps():
     """
@@ -1833,7 +1834,6 @@ def list_all_steps():
         derivation_units_validity_dict=derivation_units_validity_dict,
         title="list all steps",
     )
-
 
 
 @app.route("/list_all_operators", methods=["GET", "POST"])

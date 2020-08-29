@@ -3,10 +3,10 @@
 
 
 <style>
-   table.navtable { 
+   table.navtable {
       background: url("{{ url_for('static', filename='jargon_for_navigation.png') }}");
       background-repeat: no-repeat;
-   } 
+   }
 </style>
 
 <P>From the Physics Derivation Graph navigation, you can
@@ -46,8 +46,11 @@
   </tr>
   <tr>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td colspan=2>
+      <UL>
+        <LI><a href="{{ url_for('list_all_steps') }}?referrer=navigation">list all steps</a></LI>
+      </UL>
+    </td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -69,11 +72,13 @@
       </UL>
     </td>
   </tr>
+  <!--
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
+  -->
   <tr>
     <td>&nbsp;</td>
     <td colspan=2>
