@@ -1766,11 +1766,80 @@ def list_all_derivations():
         title="Show all derivations",
     )
 
+@app.route("/list_all_steps", methods=["GET", "POST"])
+def list_all_steps():
+    """
+    >>> list_all_steps()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]")
+    if request.method == "POST":
+        logger.debug("request.form = %s", request.form)
+
+    dat = clib.read_db(path_to_db)
+
+    for deriv_id in dat["derivations"].keys():
+        # even though this HTML page focuses on a single step,
+        # the derivation steps table is shown, so we need to vaildate the step
+        derivation_step_validity_dict = {}
+        for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+            try:
+                derivation_step_validity_dict[this_step_id] = vir.validate_step(
+                    deriv_id, this_step_id, path_to_db
+                )
+            except Exception as err:
+                logger.error(str(err))
+                flash(str(err))
+                derivation_step_validity_dict[this_step_id] = "failed"
+
+    derivation_dimensions_validity_dict = {}
+    derivation_units_validity_dict = {}
+    for deriv_id in dat["derivations"].keys():
+        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+
+            for expr_local_id in step_dict["inputs"] + step_dict["outputs"]:
+                expr_global_id = dat["expr local to global"][expr_local_id]
+                try:
+                    derivation_dimensions_validity_dict[
+                        expr_global_id
+                    ] = vdim.validate_dimensions(expr_global_id, path_to_db)
+                except Exception as err:
+                    logger.error(step_id + ": " + str(err))
+                    flash("in step " + step_id + ": " + str(err))
+                    logger.debug(step_id + ", " + expr_global_id)
+                    derivation_dimensions_validity_dict[expr_global_id] = "failed"
+
+                if derivation_dimensions_validity_dict[expr_global_id] == "valid":
+                    derivation_units_validity_dict[expr_global_id] = "nuthin'"
+                else:  # dimensions not valid, so units are not checked
+                    derivation_units_validity_dict[expr_global_id] = "N/A"
+
+    try:
+        latex_generated_by_sympy = compute.generate_latex_from_sympy(
+            deriv_id, path_to_db
+        )
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+        latex_generated_by_sympy = {}
+
+    logger.info("[trace page end " + trace_id + "]")
+    return render_template(
+        "list_all_steps.html",
+        dat=dat,
+        latex_generated_by_sympy=latex_generated_by_sympy,
+        derivation_step_validity_dict=derivation_step_validity_dict,
+        derivation_dimensions_validity_dict=derivation_dimensions_validity_dict,
+        derivation_units_validity_dict=derivation_units_validity_dict,
+        title="list all steps",
+    )
+
+
 
 @app.route("/list_all_operators", methods=["GET", "POST"])
 def list_all_operators():
     """
-    >>>
+    >>> list_all_operators()
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace page start " + trace_id + "]")
@@ -2303,15 +2372,15 @@ def select_derivation_step_to_edit(deriv_id: str):
         derivation_step_validity_dict = (
             {}
         )  # keys are step_id, value is a string of either "failed" or "valid"
-        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+        for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
-                derivation_step_validity_dict[step_id] = vir.validate_step(
+                derivation_step_validity_dict[this_step_id] = vir.validate_step(
                     deriv_id, step_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                derivation_step_validity_dict[step_id] = "failed"
+                derivation_step_validity_dict[this_step_id] = "failed"
     else:
         # step_dict = {}
         derivation_step_validity_dict = {}
@@ -2580,15 +2649,15 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         derivation_step_validity_dict = (
             {}
         )  # keys are step_id, value is a string of either "failed" or "valid"
-        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+        for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
-                derivation_step_validity_dict[step_id] = vir.validate_step(
+                derivation_step_validity_dict[this_step_id] = vir.validate_step(
                     deriv_id, step_id, path_to_db
                 )
             except Exception as err:
                 logger.error(str(err))
                 flash(str(err))
-                derivation_step_validity_dict[step_id] = "failed"
+                derivation_step_validity_dict[this_step_id] = "failed"
     else:
         step_dict = {}
         derivation_step_validity_dict = {}
@@ -2874,7 +2943,7 @@ def update_symbols(deriv_id: str, step_id: str):
         derivation_step_validity_dict = {}
         for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
-                derivation_step_validity_dict[step_id] = vir.validate_step(
+                derivation_step_validity_dict[this_step_id] = vir.validate_step(
                     deriv_id, this_step_id, path_to_db
                 )
             except Exception as err:
@@ -2888,7 +2957,7 @@ def update_symbols(deriv_id: str, step_id: str):
     derivation_dimensions_validity_dict = {}
     derivation_units_validity_dict = {}
     if deriv_id in dat["derivations"].keys():
-        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+        for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
 
             for expr_local_id in step_dict["inputs"] + step_dict["outputs"]:
                 expr_global_id = dat["expr local to global"][expr_local_id]
@@ -2897,9 +2966,9 @@ def update_symbols(deriv_id: str, step_id: str):
                         expr_global_id
                     ] = vdim.validate_dimensions(expr_global_id, path_to_db)
                 except Exception as err:
-                    logger.error(step_id + ": " + str(err))
-                    flash("in step " + step_id + ": " + str(err))
-                    logger.debug(step_id + ", " + expr_global_id)
+                    logger.error(this_step_id + ": " + str(err))
+                    flash("in step " + this_step_id + ": " + str(err))
+                    logger.debug(this_step_id + ", " + expr_global_id)
                     derivation_dimensions_validity_dict[expr_global_id] = "failed"
 
                 if derivation_dimensions_validity_dict[expr_global_id] == "valid":
@@ -3017,7 +3086,7 @@ def step_review(deriv_id: str, step_id: str):
         derivation_step_validity_dict = {}
         for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
-                derivation_step_validity_dict[step_id] = vir.validate_step(
+                derivation_step_validity_dict[this_step_id] = vir.validate_step(
                     deriv_id, this_step_id, path_to_db
                 )
             except Exception as err:
@@ -3368,22 +3437,22 @@ def review_derivation(deriv_id: str):
         derivation_step_validity_dict = {}
         derivation_dimensions_validity_dict = {}
         derivation_units_validity_dict = {}
-        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+        for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
-                step_hash = compute.hash_of_step(deriv_id, step_id, path_to_db)
+                step_hash = compute.hash_of_step(deriv_id, this_step_id, path_to_db)
             except Exception as err:
-                logger.error(step_id + ": " + str(err))
-                flash("in step " + step_id + ": " + str(err))
+                logger.error(this_step_id + ": " + str(err))
+                flash("in step " + this_step_id + ": " + str(err))
             # if step_hash in database:
             # else:
             try:
-                derivation_step_validity_dict[step_id] = vir.validate_step(
-                    deriv_id, step_id, path_to_db
+                derivation_step_validity_dict[this_step_id] = vir.validate_step(
+                    deriv_id, this_step_id, path_to_db
                 )
             except Exception as err:
-                logger.error(step_id + ": " + str(err))
-                flash("in step " + step_id + ": " + str(err))
-                derivation_step_validity_dict[step_id] = "failed"
+                logger.error(this_step_id + ": " + str(err))
+                flash("in step " + this_step_id + ": " + str(err))
+                derivation_step_validity_dict[this_step_id] = "failed"
             # check dimensions
             if True:
                 derivation_dimensions_validity_dict = {}
@@ -3395,9 +3464,9 @@ def review_derivation(deriv_id: str):
                             expr_global_id
                         ] = vdim.validate_dimensions(expr_global_id, path_to_db)
                     except Exception as err:
-                        logger.error(step_id + ": " + str(err))
-                        flash("in step " + step_id + ": " + str(err))
-                        logger.debug(step_id + ", " + expr_global_id)
+                        logger.error(this_step_id + ": " + str(err))
+                        flash("in step " + this_step_id + ": " + str(err))
+                        logger.debug(this_step_id + ", " + expr_global_id)
                         derivation_dimensions_validity_dict[expr_global_id] = "failed"
 
                     if derivation_dimensions_validity_dict[expr_global_id] == "valid":
@@ -3771,7 +3840,7 @@ def modify_step(deriv_id: str, step_id: str):
         derivation_step_validity_dict = {}
         for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
             try:
-                derivation_step_validity_dict[step_id] = vir.validate_step(
+                derivation_step_validity_dict[this_step_id] = vir.validate_step(
                     deriv_id, this_step_id, path_to_db
                 )
             except Exception as err:
