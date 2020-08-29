@@ -3596,10 +3596,9 @@ def modify_step(deriv_id: str, step_id: str):
                 )
                 expr_updated_latex = request.form["revised_text"]
                 try:
-                    compute.modify_latex_in_step(
-                        expr_local_id,
+                    compute.update_expr_latex(
+                        expr_global_id,
                         expr_updated_latex,
-                        str(current_user.email),
                         path_to_db,
                     )
                 except Exception as err:

@@ -4272,6 +4272,35 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 # *********************************************************
 # data structure transformations
 
+def update_expr_latex(expr_global_id: str, expr_updated_latex: str, path_to_db: str) -> None:
+    """
+    update the latex for a global expression ID
+
+    Unlike modify_latex_in_step, this function modifies the global Latex
+
+    Args:
+        sympy_symbol:
+        symbol_id:
+        deriv_id: numeric identifier of the derivation
+        step_id: numeric identifier of the step within the derivation
+        path_to_db: filename of the SQL database containing
+                    a JSON entry that returns a nested dictionary
+    Returns:
+        None
+
+    Raises:
+
+    >>> update_expr_latex("000001", "1029890", "pdg.db")
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace start " + trace_id + "]")
+    dat = clib.read_db(path_to_db)
+
+    dat["expressions"][expr_global_id]['latex'] = expr_updated_latex
+
+    clib.write_db(path_to_db, dat)
+    logger.info("[trace end " + trace_id + "]")
+    return
 
 def modify_latex_in_step(
     expr_local_id_of_latex_to_modify: str,
