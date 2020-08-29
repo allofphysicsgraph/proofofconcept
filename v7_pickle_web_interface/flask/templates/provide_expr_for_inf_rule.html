@@ -1,6 +1,10 @@
 {% extends "_base.html" %}
-
 {% block content %}
+
+<!--
+The complexity of this Jinja template is high.
+I don't see how to refactor the content into Jinja macros
+-->
 
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 <style>
@@ -19,30 +23,32 @@ input, textarea, select {
 </style>
 
 <script>
-function enable_input1_radio1(enabled){
-    document.getElementById('input1_latex').removeAttribute('disabled');
-    document.getElementById('input1_name').removeAttribute('disabled');
-    document.getElementById('input1_note').removeAttribute('disabled');
+  // three radio buttons for input 1
+  function enable_input1_radio1(enabled){
+      document.getElementById('input1_latex').removeAttribute('disabled');
+      document.getElementById('input1_name').removeAttribute('disabled');
+      document.getElementById('input1_note').removeAttribute('disabled');
 
-    document.getElementById('input1_local').setAttribute('disabled','disabled');
-    document.getElementById('input1_global').setAttribute('disabled','disabled');
-}
-function enable_input1_radio2(enabled){
-    document.getElementById('input1_local').removeAttribute('disabled');
+      document.getElementById('input1_local').setAttribute('disabled','disabled');
+      document.getElementById('input1_global').setAttribute('disabled','disabled');
+  }
+  function enable_input1_radio2(enabled){
+      document.getElementById('input1_local').removeAttribute('disabled');
 
-    document.getElementById('input1_latex').setAttribute('disabled','disabled');
-    document.getElementById('input1_name').setAttribute('disabled','disabled');
-    document.getElementById('input1_note').setAttribute('disabled','disabled');
-    document.getElementById('input1_global').setAttribute('disabled','disabled');
-}
-function enable_input1_radio3(enabled){
-    document.getElementById('input1_global').removeAttribute('disabled');
+      document.getElementById('input1_latex').setAttribute('disabled','disabled');
+      document.getElementById('input1_name').setAttribute('disabled','disabled');
+      document.getElementById('input1_note').setAttribute('disabled','disabled');
+      document.getElementById('input1_global').setAttribute('disabled','disabled');
+  }
+  function enable_input1_radio3(enabled){
+      document.getElementById('input1_global').removeAttribute('disabled');
 
-    document.getElementById('input1_latex').setAttribute('disabled','disabled');
-    document.getElementById('input1_name').setAttribute('disabled','disabled');
-    document.getElementById('input1_note').setAttribute('disabled','disabled');
-    document.getElementById('input1_local').setAttribute('disabled','disabled');
-}
+      document.getElementById('input1_latex').setAttribute('disabled','disabled');
+      document.getElementById('input1_name').setAttribute('disabled','disabled');
+      document.getElementById('input1_note').setAttribute('disabled','disabled');
+      document.getElementById('input1_local').setAttribute('disabled','disabled');
+  }
+  // three radio buttons for input 2
 function enable_input2_radio1(enabled){
     document.getElementById('input2_latex').removeAttribute('disabled');
     document.getElementById('input2_name').removeAttribute('disabled');
