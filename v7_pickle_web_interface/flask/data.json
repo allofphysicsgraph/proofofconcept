@@ -10852,7 +10852,7 @@
         },
         "1238593037": {
             "latex": "c",
-            "AST": "",
+            "AST": "Symbol('pdg4567')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -11835,7 +11835,7 @@
             "notes": ""
         },
         "2394935835": {
-            "AST": "",
+            "AST": "Symbol('pdg4065')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\left(\\langle\\psi| \\hat{A} |\\psi \\rangle \\right)^+ = \\left(\\langle a \\rangle\\right)^+",
@@ -11851,7 +11851,7 @@
             "notes": ""
         },
         "2404934990": {
-            "AST": "",
+            "AST": "Symbol('pdg1464')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle x^2\\rangle -2\\langle x \\rangle\\langle x \\rangle+\\langle x \\rangle^2 = \\langle x^2 \\rangle-\\langle x \\rangle^2",
@@ -11859,7 +11859,7 @@
             "notes": ""
         },
         "2494533900": {
-            "AST": "",
+            "AST": "Symbol('pdg1464')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle x^2\\rangle -\\langle x \\rangle^2 = \\langle x^2 \\rangle-\\langle x \\rangle^2",
@@ -11875,7 +11875,7 @@
             "notes": ""
         },
         "2848934890": {
-            "AST": "",
+            "AST": "Symbol('pdg9139')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle a \\rangle^* = \\langle a \\rangle",
@@ -11963,7 +11963,7 @@
             "notes": ""
         },
         "3585845894": {
-            "AST": "",
+            "AST": "Symbol('pdg1464')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle \\left(x-\\langle x \\rangle\\right)^2 \\rangle = \\langle x^2 \\rangle-\\langle x \\rangle^2",
@@ -11979,7 +11979,7 @@
             "notes": ""
         },
         "3924948349": {
-            "AST": "",
+            "AST": "Symbol('pdg7752')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "a_{\\beta} \\langle \\psi_{\\alpha} | \\psi_{\\beta} \\rangle - a_{\\alpha} \\langle \\psi_{\\alpha} | \\psi_{\\beta} \\rangle = 0",
@@ -11995,7 +11995,7 @@
             "notes": ""
         },
         "3943939590": {
-            "AST": "",
+            "AST": "Symbol('pdg2427')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "x = a_{\\alpha} \\langle \\psi_{\\alpha}| \\psi_{\\beta}\\rangle",
@@ -12251,7 +12251,7 @@
             "notes": ""
         },
         "4948934890": {
-            "AST": "",
+            "AST": "Symbol('pdg4065')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle \\psi| \\hat{A} |\\psi \\rangle = \\langle a \\rangle^*",
@@ -12259,7 +12259,7 @@
             "notes": ""
         },
         "4949359835": {
-            "AST": "",
+            "AST": "Symbol('pdg1464')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle x^2\\rangle -2\\langle x^2 \\rangle+\\langle x \\rangle^2 = \\langle x^2 \\rangle-\\langle x \\rangle^2",
@@ -12451,7 +12451,7 @@
             "notes": ""
         },
         "7575859304": {
-            "AST": "",
+            "AST": "Symbol('pdg9669')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\epsilon^{i,j,k} \\epsilon_{n,j,k} = \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} - \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h}",
@@ -12523,7 +12523,7 @@
             "notes": ""
         },
         "8399484849": {
-            "AST": "",
+            "AST": "Symbol('pdg1464')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle x^2 - 2 x \\langle x \\rangle + \\langle x \\rangle^2 \\rangle = \\langle x^2 \\rangle-\\langle x \\rangle^2",
@@ -12531,7 +12531,7 @@
             "notes": ""
         },
         "8484544728": {
-            "AST": "",
+            "AST": "Symbol('pdg4037')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "-a k^2\\sin(k x) + -b k^2\\cos(k x) = -a k^2 \\sin(kx) + -b k^2 \\cos(k x)",
@@ -12555,7 +12555,7 @@
             "notes": ""
         },
         "8489593958": {
-            "AST": "",
+            "AST": "Symbol('pdg4221')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "d(u v) = u dv + v du",
@@ -12563,7 +12563,7 @@
             "notes": ""
         },
         "8489593960": {
-            "AST": "",
+            "AST": "Symbol('pdg4221')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "d(u v) - v du = u dv",
@@ -12571,7 +12571,7 @@
             "notes": ""
         },
         "8489593962": {
-            "AST": "",
+            "AST": "Symbol('pdg4221')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "u dv = d(u v) - v du",
@@ -13019,7 +13019,7 @@
             "notes": ""
         },
         "9999999975": {
-            "AST": "",
+            "AST": "Symbol('pdg4065')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle \\psi| \\hat{A} |\\psi \\rangle = \\langle a \\rangle",
@@ -13852,7 +13852,7 @@
         },
         "6998364753": {
             "latex": "v_{\\rm Earth\\ orbit} = \\frac{2 \\pi \\left( 1.496\\ 10^8 {\\rm km} \\right)}{3.16\\ 10^7 {\\rm seconds}}",
-            "AST": "",
+            "AST": "Symbol('pdg7427')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13860,7 +13860,7 @@
         },
         "4180845508": {
             "latex": "v_{\\rm Earth\\ orbit} = 29.8 \\frac{{\\rm km}}{{\\rm sec}}",
-            "AST": "",
+            "AST": "Symbol('pdg7427')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13892,7 +13892,7 @@
         },
         "2096918413": {
             "latex": "x = \\gamma ( \\gamma x - \\gamma v t + v t' )",
-            "AST": "",
+            "AST": "Symbol('pdg1790')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13932,7 +13932,7 @@
         },
         "9031609275": {
             "latex": "x (1 - \\gamma^2 ) = - \\gamma^2 v t + \\gamma v t'",
-            "AST": "",
+            "AST": "Symbol('pdg1790')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13948,7 +13948,7 @@
         },
         "9409776983": {
             "latex": "x (1 - \\gamma^2 ) + \\gamma^2 v t = \\gamma v t'",
-            "AST": "",
+            "AST": "Symbol('pdg1790')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13964,7 +13964,7 @@
         },
         "8730201316": {
             "latex": "\\frac{\\gamma x (1 - \\gamma^2 )}{\\gamma^2 v} + \\gamma t = t'",
-            "AST": "",
+            "AST": "Symbol('pdg1790')",
             "name": "",
             "notes": "first term was multiplied by \\gamma/\\gamma",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13980,7 +13980,7 @@
         },
         "5148266645": {
             "latex": "t' = \\frac{\\gamma x (1 - \\gamma^2 )}{\\gamma^2 v} + \\gamma t",
-            "AST": "",
+            "AST": "Symbol('pdg1790')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14124,7 +14124,7 @@
         },
         "5398681503": {
             "latex": "v",
-            "AST": "",
+            "AST": "Symbol('pdg1357')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14132,7 +14132,7 @@
         },
         "5398681502": {
             "latex": "v",
-            "AST": "",
+            "AST": "Symbol('pdg1357')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14140,7 +14140,7 @@
         },
         "9305761407": {
             "latex": "v",
-            "AST": "",
+            "AST": "Symbol('pdg1357')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14148,7 +14148,7 @@
         },
         "4218009993": {
             "latex": "x",
-            "AST": "",
+            "AST": "Symbol('pdg4037')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14212,7 +14212,7 @@
         },
         "2076171250": {
             "latex": "-\\gamma^2 2 x v t - c^2 \\gamma^2 2 t \\left( \\frac{1-\\gamma^2}{\\gamma^2} \\right) \\frac{x}{v} = 0",
-            "AST": "",
+            "AST": "Symbol('pdg1790')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14476,7 +14476,7 @@
         },
         "5144263777": {
             "latex": "v^2 = v_0^2 + 2 a \\left( v_0 t +\\frac{1}{2} a t^2 \\right)",
-            "AST": "",
+            "AST": "Symbol('pdg1357')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14620,7 +14620,7 @@
         },
         "1928085940": {
             "latex": "Z^* = |Z| \\exp( -i \\theta )",
-            "AST": "",
+            "AST": "Symbol('pdg3192')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14676,7 +14676,7 @@
         },
         "1020854560": {
             "latex": "I = (A + B)(A + B)^*",
-            "AST": "",
+            "AST": "Symbol('pdg4698')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14764,7 +14764,7 @@
         },
         "1742775076": {
             "latex": "Z",
-            "AST": "",
+            "AST": "Symbol('pdg3192')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14772,7 +14772,7 @@
         },
         "7607271250": {
             "latex": "\\theta",
-            "AST": "",
+            "AST": "Symbol('pdg1575')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14820,7 +14820,7 @@
         },
         "4504256452": {
             "latex": "B^* = |B| \\exp(-i \\phi)",
-            "AST": "",
+            "AST": "Symbol('pdg8586')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15724,7 +15724,7 @@
         },
         "5732331610": {
             "latex": "W = G m_1 m_2 \\left( \\frac{1}{x} \\bigg\\rvert_{ r_{\\rm Earth} }^{\\infty} \\right)",
-            "AST": "",
+            "AST": "Symbol('pdg6277')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15748,7 +15748,7 @@
         },
         "3652511721": {
             "latex": "v",
-            "AST": "",
+            "AST": "Symbol('pdg1357')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15788,7 +15788,7 @@
         },
         "1413137236": {
             "latex": "m_1",
-            "AST": "",
+            "AST": "Symbol('pdg5022')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15796,7 +15796,7 @@
         },
         "2764966428": {
             "latex": "m_2",
-            "AST": "",
+            "AST": "Symbol('pdg4851')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15860,7 +15860,7 @@
         },
         "5591692598": {
             "latex": "KE_1",
-            "AST": "",
+            "AST": "Symbol('pdg1955')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15868,7 +15868,7 @@
         },
         "6158970683": {
             "latex": "PE_1",
-            "AST": "",
+            "AST": "Symbol('pdg4093')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15892,7 +15892,7 @@
         },
         "5021965469": {
             "latex": "KE",
-            "AST": "",
+            "AST": "Symbol('pdg4929')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15900,7 +15900,7 @@
         },
         "6681646197": {
             "latex": "v",
-            "AST": "",
+            "AST": "Symbol('pdg1357')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16036,7 +16036,7 @@
         },
         "8362338572": {
             "latex": "v_{\\rm escape}",
-            "AST": "",
+            "AST": "Symbol('pdg8656')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16100,7 +16100,7 @@
         },
         "2698469612": {
             "latex": "V",
-            "AST": "",
+            "AST": "Symbol('pdg6599')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16108,7 +16108,7 @@
         },
         "7774819339": {
             "latex": "R",
-            "AST": "",
+            "AST": "Symbol('pdg6458')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16124,7 +16124,7 @@
         },
         "7497687256": {
             "latex": "V",
-            "AST": "",
+            "AST": "Symbol('pdg6599')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16132,7 +16132,7 @@
         },
         "5890617067": {
             "latex": "R",
-            "AST": "",
+            "AST": "Symbol('pdg6458')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16188,7 +16188,7 @@
         },
         "2867848403": {
             "latex": "I",
-            "AST": "",
+            "AST": "Symbol('pdg4501')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16196,7 +16196,7 @@
         },
         "7191277455": {
             "latex": "R",
-            "AST": "",
+            "AST": "Symbol('pdg6458')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16212,7 +16212,7 @@
         },
         "5585739998": {
             "latex": "I",
-            "AST": "",
+            "AST": "Symbol('pdg4501')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16220,7 +16220,7 @@
         },
         "1377431959": {
             "latex": "R",
-            "AST": "",
+            "AST": "Symbol('pdg6458')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16276,7 +16276,7 @@
         },
         "9053099840": {
             "latex": "I",
-            "AST": "",
+            "AST": "Symbol('pdg4501')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16284,7 +16284,7 @@
         },
         "1100332145": {
             "latex": "R",
-            "AST": "",
+            "AST": "Symbol('pdg6458')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16340,7 +16340,7 @@
         },
         "3398368564": {
             "latex": "F",
-            "AST": "",
+            "AST": "Symbol('pdg4202')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16356,7 +16356,7 @@
         },
         "3088463019": {
             "latex": "m_2",
-            "AST": "",
+            "AST": "Symbol('pdg4851')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16372,7 +16372,7 @@
         },
         "5089196493": {
             "latex": "F",
-            "AST": "",
+            "AST": "Symbol('pdg4202')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16380,7 +16380,7 @@
         },
         "3342155559": {
             "latex": "m",
-            "AST": "",
+            "AST": "Symbol('pdg5156')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16388,7 +16388,7 @@
         },
         "7912578203": {
             "latex": "v",
-            "AST": "",
+            "AST": "Symbol('pdg1357')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16408,7 +16408,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
             "name": "",
-            "AST": ""
+            "AST": "Symbol('pdg4037')"
         },
         "5563580265": {
             "latex": "F_{\\rm gravity} = G \\frac{m_{\\rm Earth} m_{\\rm satellite}}{r^2}",
@@ -16476,7 +16476,7 @@
         },
         "9346215480": {
             "latex": "T_{\\rm orbit}",
-            "AST": "",
+            "AST": "Symbol('pdg8762')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16584,11 +16584,11 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "this applies for geostationary orbits",
             "name": "",
-            "AST": ""
+            "AST": "Symbol('pdg5595')"
         },
         "3846345263": {
             "latex": "T_{\\rm orbit}",
-            "AST": "",
+            "AST": "Symbol('pdg8762')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16596,7 +16596,7 @@
         },
         "5770088141": {
             "latex": "r",
-            "AST": "",
+            "AST": "Symbol('pdg2530')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16644,7 +16644,7 @@
         },
         "4651061153": {
             "latex": "m_2",
-            "AST": "",
+            "AST": "Symbol('pdg4851')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16652,7 +16652,7 @@
         },
         "3353418803": {
             "latex": "x",
-            "AST": "",
+            "AST": "Symbol('pdg4037')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16748,7 +16748,7 @@
         },
         "7816982139": {
             "latex": "m/s^2",
-            "AST": "",
+            "AST": "Pow(Mul(Pow(second, Integer(-1)),meter), Integer(2))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16780,7 +16780,7 @@
         },
         "2957211007": {
             "latex": "m^3 kg^{-1} s^{-2}",
-            "AST": "",
+            "AST": "Mul(Pow(meter, Integer(3)), Pow(second, Integer(-2)))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16788,7 +16788,7 @@
         },
         "7112613117": {
             "latex": "m_{\\rm Earth} = \\frac{(9.80665 m/s^2) r_{\\rm Earth}^2}{6.67430*10^{-11}m^3 kg^{-1} s^{-2}}",
-            "AST": "",
+            "AST": "Symbol('pdg5458')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16820,7 +16820,7 @@
         },
         "1132941271": {
             "latex": "m_{\\rm Earth} = \\frac{(9.80665 m/s^2) (6.3781*10^6 m)^2}{6.67430*10^{-11}m^3 kg^{-1} s^{-2}}",
-            "AST": "",
+            "AST": "Symbol('pdg5458')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -23131,6 +23131,27 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-11"
+        },
+        "4326": {
+            "category": "variable",
+            "latex": "\\vec{E}",
+            "name": "electric field",
+            "scope": "complex",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electric_field"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
         }
     },
     "units": {
