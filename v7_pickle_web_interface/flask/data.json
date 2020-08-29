@@ -9175,6 +9175,192 @@
                     "creation date": "2020-08-11"
                 }
             }
+        },
+        "713234": {
+            "name": "hyperbolic trigonometric identities",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "http://www.physics.miami.edu/~nearing/mathmethods/mathematical_methods-one.pdf",
+            "creation date": "2020-08-29",
+            "steps": {
+                "9934180": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "4319733"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "2831850": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3145608"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "3919490": {
+                    "inf rule": "multiply expr 1 by expr 2",
+                    "inputs": [
+                        "3145608",
+                        "3145608"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7844176"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "9722132": {
+                    "inf rule": "multiply expr 1 by expr 2",
+                    "inputs": [
+                        "4319733",
+                        "4319733"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "9245668"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "9643987": {
+                    "inf rule": "subtract expr 1 from expr 2",
+                    "inputs": [
+                        "7844176",
+                        "9245668"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4001109"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "8480572": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "4001109"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4009221"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "3877159": {
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "4009221"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "6300507"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "4598639": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "6300507"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "9173195": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "7404421"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "5415197": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "5377003"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "1207155": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3077940"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "2845819": {
+                    "inf rule": "change variable X to Y",
+                    "inputs": [
+                        "3077940"
+                    ],
+                    "feeds": [
+                        "5183800",
+                        "5404156"
+                    ],
+                    "outputs": [
+                        "5823930"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                },
+                "6548315": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "5823930"
+                    ],
+                    "feeds": [
+                        "4670184"
+                    ],
+                    "outputs": [
+                        "4285232"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2020-08-29"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -10104,7 +10290,23 @@
         "1366396": "5693047217",
         "1383337": "6599829782",
         "6547572": "3531380618",
-        "3435796": "2005061870"
+        "3435796": "2005061870",
+        "4319733": "6404535647",
+        "3145608": "1038566242",
+        "7844176": "6031385191",
+        "9245668": "8532702080",
+        "4001109": "8563535636",
+        "4648410": "7735731560",
+        "4009221": "2762326680",
+        "6300507": "9413609246",
+        "7404421": "8747785338",
+        "5377003": "8418527415",
+        "3077940": "2103023049",
+        "5183800": "6976493023",
+        "5404156": "7159989263",
+        "5823930": "4878728014",
+        "4670184": "3041762466",
+        "4285232": "4805233006"
     },
     "expressions": {
         "2344320475": {
@@ -17138,6 +17340,126 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-11"
+        },
+        "6404535647": {
+            "latex": "\\cosh x = \\frac{\\exp(x) + \\exp(-x)}{2}",
+            "AST": "Equality(cosh(Symbol('pdg1464')), Mul(Pow(Integer(2), Integer(-1)), Add(exp(Mul(Integer(-1), Symbol('pdg1464'))), exp(Symbol('pdg1464')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "1038566242": {
+            "latex": "\\sinh x = \\frac{\\exp(x) - \\exp(-x)}{2}",
+            "AST": "Equality(sinh(Symbol('pdg1464')), Mul(Pow(Integer(2), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Symbol('pdg1464')))), exp(Symbol('pdg1464')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "6031385191": {
+            "latex": "\\sinh^2 x = \\left(\\frac{\\exp(x) - \\exp(-x)}{2}\\right)\\left(\\frac{\\exp(x) - \\exp(-x)}{2}\\right)",
+            "AST": "Equality(Pow(sinh(Symbol('pdg1464')), Integer(2)), Mul(Mul(Pow(Integer(2), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Symbol('pdg1464')))), exp(Symbol('pdg1464')))), Mul(Pow(Integer(2), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Symbol('pdg1464')))), exp(Symbol('pdg1464'))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "8532702080": {
+            "latex": "\\cosh^2 x = \\left(\\frac{\\exp(x) + \\exp(-x)}{2}\\right)\\left(\\frac{\\exp(x) + \\exp(-x)}{2}\\right)",
+            "AST": "Equality(Pow(cosh(Symbol('pdg1464')), Integer(2)), Mul(Mul(Pow(Integer(2), Integer(-1)), Add(exp(Mul(Integer(-1), Symbol('pdg1464'))), exp(Symbol('pdg1464')))), Mul(Pow(Integer(2), Integer(-1)), Add(exp(Mul(Integer(-1), Symbol('pdg1464'))), exp(Symbol('pdg1464'))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "8563535636": {
+            "latex": "\\cosh^2 x - \\sinh^2 x = \\left(\\frac{\\exp(x) + \\exp(-x)}{2}\\right)\\left(\\frac{\\exp(x) + \\exp(-x)}{2}\\right) - \\left(\\frac{\\exp(x) - \\exp(-x)}{2}\\right)\\left(\\frac{\\exp(x) - \\exp(-x)}{2}\\right)",
+            "AST": "Equality(Add(Mul(Integer(-1), Pow(sinh(Symbol('pdg1464')), Integer(2))), Pow(cosh(Symbol('pdg1464')), Integer(2))), Add(Mul(Mul(Pow(Integer(2), Integer(-1)), Add(exp(Mul(Integer(-1), Symbol('pdg1464'))), exp(Symbol('pdg1464')))), Mul(Pow(Integer(2), Integer(-1)), Add(exp(Mul(Integer(-1), Symbol('pdg1464'))), exp(Symbol('pdg1464'))))), Mul(Integer(-1), Rational(1, 4), Pow(Add(Mul(Integer(-1), exp(Mul(Integer(-1), Symbol('pdg1464')))), exp(Symbol('pdg1464'))), Integer(2)))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "7735731560": {
+            "latex": "\\cosh^2 x - \\sinh^2 x = \\frac{1}{4}\\left( \\exp(2x)+1+1+\\exp(-2x) - \\left(\\exp(2x)-1-1-\\exp(-2x)\\right) \\right)",
+            "AST": "Equality(Add(Mul(Integer(-1), Pow(sinh(Symbol('pdg1464')), Integer(2))), Pow(cosh(Symbol('pdg1464')), Integer(2))), Mul(Pow(Integer(4), Integer(-1)), Add(Add(Add(Integer(2), Mul(Integer(-1), exp(Mul(Integer(2), Symbol('pdg1464'))))), exp(Mul(Integer(-1), Mul(Integer(2), Symbol('pdg1464'))))), Add(Add(Add(exp(Mul(Integer(2), Symbol('pdg1464'))), Integer(1)), Integer(1)), exp(Mul(Integer(-1), Mul(Integer(2), Symbol('pdg1464'))))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "2762326680": {
+            "latex": "\\cosh^2 x - \\sinh^2 x = \\frac{1}{4}\\left( \\exp(2x)+1+1+\\exp(-2x) - \\left(\\exp(2x)-1-1+\\exp(-2x)\\right) \\right)",
+            "AST": "Equality(Add(Mul(Integer(-1), Pow(sinh(Symbol('pdg1464')), Integer(2))), Pow(cosh(Symbol('pdg1464')), Integer(2))), Mul(Pow(Integer(4), Integer(-1)), Add(Add(Add(Integer(2), Mul(Integer(-1), exp(Mul(Integer(2), Symbol('pdg1464'))))), Mul(Integer(-1), exp(Mul(Integer(-1), Mul(Integer(2), Symbol('pdg1464')))))), Add(Add(Add(exp(Mul(Integer(2), Symbol('pdg1464'))), Integer(1)), Integer(1)), exp(Mul(Integer(-1), Mul(Integer(2), Symbol('pdg1464'))))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "9413609246": {
+            "latex": "\\cosh^2 x - \\sinh^2 x = 1",
+            "AST": "Equality(Add(Mul(Integer(-1), Pow(sinh(Symbol('pdg1464')), Integer(2))), Pow(cosh(Symbol('pdg1464')), Integer(2))), Integer(1))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "8747785338": {
+            "latex": "\\cos(i x) = \\cosh(x)",
+            "AST": "Equality(cos(Mul(Symbol('pdg4621'), Symbol('pdg1464'))), cosh(Symbol('pdg1464')))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "8418527415": {
+            "latex": "\\sin(i x) = \\sinh(x)",
+            "AST": "Equality(sin(Mul(Symbol('pdg4621'), Symbol('pdg1464'))), sinh(Symbol('pdg1464')))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "6976493023": {
+            "latex": "x",
+            "AST": "Symbol('pdg1464')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "7159989263": {
+            "latex": "i x",
+            "AST": "Mul(Symbol('pdg4621'), Symbol('pdg1464'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "4878728014": {
+            "latex": "\\sin(i x) = \\frac{1}{2i}\\left(\\exp(-x) - \\exp(x) \\right)",
+            "AST": "Equality(sin(Mul(Symbol('pdg4621'), Symbol('pdg1464'))), Mul(Pow(Mul(Integer(2), Symbol('pdg4621')), Integer(-1)), Add(exp(Mul(Integer(-1), Symbol('pdg1464'))), Mul(Integer(-1), exp(Symbol('pdg1464'))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "3041762466": {
+            "latex": "i",
+            "AST": "Symbol('pdg4621')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
+        },
+        "4805233006": {
+            "latex": "i \\sin(i x) = \\frac{1}{2}\\left(\\exp(x) - \\exp(-x) \\right)",
+            "AST": "Equality(Mul(Symbol('pdg4621'), sin(Mul(Symbol('pdg4621'), Symbol('pdg1464')))), Mul(Pow(Integer(2), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Symbol('pdg1464')))), exp(Symbol('pdg1464')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-08-29"
         }
     },
     "inference rules": {
