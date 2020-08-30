@@ -102,7 +102,7 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
             if len(ast_str) > 0:
                 expr = latex_to_sympy.get_sympy_expr_from_AST_str(ast_str)
             else:
-                raise Exception(
+                return (
                     "missing AST for expr "
                     + expr_global_id
                     + ", aka "
@@ -116,6 +116,7 @@ def validate_step(deriv_id: str, step_id: str, path_to_db: str) -> str:
             except Exception as err:
                 logger.error(str(err))
                 logger.error("cannot split into LHS/RHS")
+                raise Exception("cannot split into LHS/RHS")
 
             latex_dict[connection_type[:-1]][indx] = {"LHS": LHS, "RHS": RHS}
             indx += 1

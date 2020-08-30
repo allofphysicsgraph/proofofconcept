@@ -159,6 +159,8 @@ def get_sympy_expr_from_AST_str(ast_str: str):
     try:
         return eval(ast_str)
     except Exception as err:
+        logger.error(str(err))
+        logger.error('unable to eval AST for "' + ast_str + '"')
         raise Exception('unable to eval AST for "' + ast_str + '"')
     return sympy.Symbol("nothing")
 
@@ -378,6 +380,7 @@ def split_expr_into_lhs_rhs(latex_expr_str: str) -> Tuple[str, str]:
             sympy_expr = parse_latex(latex_expr_str)
         except sympy.SympifyError as err:
             logger.error(str(err))
+            return "failed symp", "failed symp"
 
         logger.debug("Sympy expression = %s", str(sympy_expr))
 

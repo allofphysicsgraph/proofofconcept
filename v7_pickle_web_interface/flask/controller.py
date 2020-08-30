@@ -1779,7 +1779,6 @@ def list_all_steps():
 
     dat = clib.read_db(path_to_db)
 
-
     derivation_step_validity_dict = {}
     for deriv_id in dat["derivations"].keys():
         # even though this HTML page focuses on a single step,
@@ -1796,25 +1795,25 @@ def list_all_steps():
 
     derivation_dimensions_validity_dict = {}
     derivation_units_validity_dict = {}
-#    for deriv_id in dat["derivations"].keys():
-#        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
-#
-#            for expr_local_id in step_dict["inputs"] + step_dict["outputs"]:
-#                expr_global_id = dat["expr local to global"][expr_local_id]
-#                try:
-#                    derivation_dimensions_validity_dict[
-#                        expr_global_id
-#                    ] = vdim.validate_dimensions(expr_global_id, path_to_db)
-#                except Exception as err:
-#                    logger.error(step_id + ": " + str(err))
-#                    flash("in step " + step_id + ": " + str(err))
-#                    logger.debug(step_id + ", " + expr_global_id)
-#                    derivation_dimensions_validity_dict[expr_global_id] = "failed"
-#
-#                if derivation_dimensions_validity_dict[expr_global_id] == "valid":
-#                    derivation_units_validity_dict[expr_global_id] = "nuthin'"
-#                else:  # dimensions not valid, so units are not checked
-#                    derivation_units_validity_dict[expr_global_id] = "N/A"
+    #    for deriv_id in dat["derivations"].keys():
+    #        for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
+    #
+    #            for expr_local_id in step_dict["inputs"] + step_dict["outputs"]:
+    #                expr_global_id = dat["expr local to global"][expr_local_id]
+    #                try:
+    #                    derivation_dimensions_validity_dict[
+    #                        expr_global_id
+    #                    ] = vdim.validate_dimensions(expr_global_id, path_to_db)
+    #                except Exception as err:
+    #                    logger.error(step_id + ": " + str(err))
+    #                    flash("in step " + step_id + ": " + str(err))
+    #                    logger.debug(step_id + ", " + expr_global_id)
+    #                    derivation_dimensions_validity_dict[expr_global_id] = "failed"
+    #
+    #                if derivation_dimensions_validity_dict[expr_global_id] == "valid":
+    #                    derivation_units_validity_dict[expr_global_id] = "nuthin'"
+    #                else:  # dimensions not valid, so units are not checked
+    #                    derivation_units_validity_dict[expr_global_id] = "N/A"
 
     latex_generated_by_sympy_all = {}
     for deriv_id in dat["derivations"].keys():
@@ -1829,7 +1828,7 @@ def list_all_steps():
         logger.debug(deriv_id + str(len(latex_generated_by_sympy.keys())))
 
         for expr_global_id, latex_str in latex_generated_by_sympy.items():
-            latex_generated_by_sympy_all[expr_global_id]= latex_str
+            latex_generated_by_sympy_all[expr_global_id] = latex_str
         logger.debug(deriv_id + str(len(latex_generated_by_sympy_all.keys())))
 
     logger.info("[trace page end " + trace_id + "]")
