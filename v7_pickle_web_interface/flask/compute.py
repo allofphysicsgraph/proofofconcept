@@ -19,6 +19,7 @@ origin: https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask003.html
 """
 
 # import math
+import asyncio
 import json
 from functools import wraps
 import errno
@@ -2468,7 +2469,6 @@ def popularity_of_expressions(path_to_db: str) -> dict:
                     list_of_all_expr_global_IDs_for_this_deriv.append(
                         dat["expr local to global"][expr_local_id]
                     )
-        # logger.debug(deriv_id + ":" + str(list_of_all_expr_global_IDs_for_this_deriv))
 
         deriv_uses_expr_global_id[deriv_id] = list(
             set(list_of_all_expr_global_IDs_for_this_deriv)
@@ -4189,9 +4189,6 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     os.chdir(tmp_latex_folder_full_path)
 
     tmp_file = "lat"
-    # remove_file_debris(["./tmp"], [tmp_file], ["tex", "dvi", "aux", "log"])
-
-    # logger.debug('create_png_from_latex: finished debris removal, starting create tex file')
 
     logger.debug("latex = " + str(input_latex_str))
     create_tex_file_for_expr(tmp_file, input_latex_str)
@@ -4199,9 +4196,6 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
     tex_filename_with_hash = png_name + "_" + md5_of_file(tmp_file + ".tex") + ".tex"
 
     # shutil.move(tmp_file + ".tex", tex_filename_with_hash)
-
-    # logger.debug('create_png_from_latex: running latex against file')
-
     # logger.debug(str(os.listdir()))
 
     # only make PNG if .tex did not exist
@@ -4268,7 +4262,7 @@ def create_png_from_latex(input_latex_str: str, png_name: str) -> None:
 
     #    if os.path.isfile(destination_folder + png_name):
     # os.remove('/home/appuser/app/static/'+name_of_png)
-    #        logger.debug("[ERROR] create_png_from_latex: png already exists!")
+    #        logger.error("png already exists!")
 
     # return True, "success"
     logger.info("[trace end " + trace_id + "]")
@@ -5194,9 +5188,7 @@ def create_step(
                         expr_global_id = latex_for_step_dict[
                             connection_type + expr_index + "_global_id"
                         ]
-                        # logger.debug('got global id: ' + expr_global_id)
                         expr_local_id = create_expr_local_id(path_to_db)
-                        # logger.debug('local id: ' + expr_local_id)
                         dat["expr local to global"][expr_local_id] = expr_global_id
                         # logger.debug('added to dat' + str(dat["expr local to global"][expr_local_id]))
                         step_key = connection_type + "s"
@@ -5299,7 +5291,6 @@ def create_step(
     # add step_dict to dat, write dat to file
     inf_rule_local_ID = create_step_id(path_to_db)
     if deriv_id not in dat["derivations"].keys():
-        logger.debug("create_step: starting new derivation")
         dat["derivations"][deriv_id]["steps"] = {inf_rule_local_ID: step_dict}
     else:  # derivation exists
         if inf_rule_local_ID in dat["derivations"][deriv_id]["steps"].keys():
