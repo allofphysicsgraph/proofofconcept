@@ -1,4 +1,4 @@
-{
+  {
     "derivations": {
         "000001": {
             "name": "Euler equation proof",
@@ -11307,7 +11307,7 @@
             "notes": ""
         },
         "0004831494": {
-            "AST": "Symbol('a')",
+            "AST": "Symbol('pdg9139')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "a",
@@ -11555,7 +11555,7 @@
             "notes": ""
         },
         "0948572140": {
-            "AST": "Equality(Integral(cos(Mul(Symbol('a'), Symbol('pdg1464'))), Tuple(Symbol('pdg9199'))), Mul(Pow(Symbol('a'), Integer(-1)), sin(Mul(Symbol('a'), Symbol('pdg1464')))))",
+            "AST": "Equality(Integral(cos(Mul(Symbol('pdg9139'), Symbol('pdg1464'))), Tuple(Symbol('pdg9199'))), Mul(Pow(Symbol('pdg9139'), Integer(-1)), sin(Mul(Symbol('pdg9139'), Symbol('pdg1464')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\int \\cos(a x) dx = \\frac{1}{a}\\sin(a x)",
@@ -15340,7 +15340,7 @@
         },
         "2403773761": {
             "latex": "t",
-            "AST": "pdg1467",
+            "AST": "Symbol('pdg1467')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",

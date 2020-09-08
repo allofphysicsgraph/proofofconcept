@@ -13,13 +13,13 @@ For example, whether the data is stored in JSON or SQL or Redis or Cypher is abs
 only are aware of the "dat" nested dictionaries.
 
 The data structure used to store the Physics Derivation Graph has gone through many iterations, including CSV, XML, JSON, SQL, Redis, Neo4j.
-The current implementation is JSON stored in SQLite. 
-The reasoning for the use of JSON is 
-* the readability of JSON 
+The current implementation is JSON stored in SQLite.
+The reasoning for the use of JSON is
+* the readability of JSON
 * JSON is plain text and fits in version control well
-* ability to make manual edits to offline JSON 
+* ability to make manual edits to offline JSON
 In the case where multiple users are making edits concurrently, JSON is not sufficient -- it lacks locks.
-Therefore, SQL is used to store the JSON in a single cell (as one long string). 
+Therefore, SQL is used to store the JSON in a single cell (as one long string).
 Concurrency is handled by SQL while I retain the benefits of JSON.
 https://physicsderivationgraph.blogspot.com/2020/04/a-terrible-hack-to-get-json-into.html
 
@@ -133,6 +133,8 @@ def read_db(path_to_db: str) -> dict:
         raise Exception("no connection to sql database")
 
     loaded_dat = False
+    # the call to load data from row occasionally (rarely) fails
+    # but I don't understand why
     for row in cur.execute("SELECT * FROM data"):
         dat = json.loads(row[0])
         loaded_dat = True
