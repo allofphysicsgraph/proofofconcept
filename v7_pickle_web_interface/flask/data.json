@@ -1,4 +1,4 @@
-  {
+{
     "derivations": {
         "000001": {
             "name": "Euler equation proof",
@@ -11323,7 +11323,7 @@
             "notes": ""
         },
         "0004858592": {
-            "AST": "Symbol('h')",
+            "AST": "Symbol('pdg3410')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "h",
@@ -11555,7 +11555,7 @@
             "notes": ""
         },
         "0948572140": {
-            "AST": "Equality(Integral(cos(Mul(Symbol('pdg9139'), Symbol('pdg1464'))), Tuple(Symbol('pdg9199'))), Mul(Pow(Symbol('pdg9139'), Integer(-1)), sin(Mul(Symbol('pdg9139'), Symbol('pdg1464')))))",
+            "AST": "Equality(Integral(cos(Mul(Symbol('a'), Symbol('pdg1464'))), Tuple(Symbol('pdg9199'))), Mul(Pow(Symbol('a'), Integer(-1)), sin(Mul(Symbol('a'), Symbol('pdg1464')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\int \\cos(a x) dx = \\frac{1}{a}\\sin(a x)",
@@ -14740,7 +14740,7 @@
         },
         "3085575328": {
             "latex": "I = |A|^2 + |B|^2 + |A| |B| \\exp(i (\\theta - \\phi)) + |A| |B| \\exp(-i (\\theta - \\phi))",
-            "AST": "Equality(Symbol('pdg7882'), Add(Add(Pow(Abs(Symbol('pdg4453')), Integer(2)), Pow(Abs(Symbol('pdg4698')), Integer(2))), Mul(exp(Mul(Integer(-1), Mul(Symbol('pdg4621'),Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575'))))), Abs(Mul(Symbol('pdg4453'), Mul(Symbol('pdg4698'), Abs(Add(Mul(exp(Mul(Symbol('4621'),Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575')))), Abs(Symbol('pdg4698'))), Abs(Symbol('pdg4453'))))))))))",
+            "AST": "Equality(Symbol('pdg7882'), Add(Add(Pow(Abs(Symbol('pdg4453')), Integer(2)), Pow(Abs(Symbol('pdg4698')), Integer(2))), Mul(exp(Mul(Integer(-1), Mul(Symbol('pdg4621'),Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575'))))), Abs(Mul(Symbol('pdg4453'), Mul(Symbol('pdg4698'), Abs(Add(Mul(exp(Mul(Symbol('pdg4621'),Add(Mul(Integer(-1), Symbol('pdg8586')), Symbol('pdg1575')))), Abs(Symbol('pdg4698'))), Abs(Symbol('pdg4453'))))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14876,7 +14876,7 @@
         },
         "3169580383": {
             "latex": "\\vec{a} = \\frac{d\\vec{v}}{dt}",
-            "AST": "Equality(Symbol('veca'), Derivative(Symbol('vecv'), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Symbol('pdg2423'), Derivative(Symbol('pdg6373'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "acceleration is the change in speed over a duration",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14884,7 +14884,7 @@
         },
         "8602512487": {
             "latex": "\\vec{a} = a_x \\hat{x} + a_y \\hat{y}",
-            "AST": "Equality(Symbol('veca'), Add(Mul(Symbol('pdg7159'), Symbol('pdg8339')), Mul(Symbol('pdg7055'), Symbol('pdg1700'))))",
+            "AST": "Equality(Symbol('pdg2423'), Add(Mul(Symbol('pdg7159'), Symbol('pdg8339')), Mul(Symbol('pdg7055'), Symbol('pdg1700'))))",
             "name": "",
             "notes": "decompose acceleration into two components",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14900,7 +14900,7 @@
         },
         "5349866551": {
             "latex": "\\vec{v} = v_x \\hat{x} + v_y \\hat{y}",
-            "AST": "Equality(Symbol('vecv'), Add(Mul(Symbol('hatx'), Symbol('v_{x}')), Mul(Symbol('haty'), Symbol(''pdg9107''))))",
+            "AST": "Equality(Symbol('pdg6373'), Add(Mul(Symbol('hatx'), Symbol('pdg5505')), Mul(Symbol('haty'), Symbol(''pdg9107''))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14908,7 +14908,7 @@
         },
         "7729413831": {
             "latex": "a_x \\hat{x} + a_y \\hat{y} = \\frac{d}{dt} \\left(v_x \\hat{x} + v_y \\hat{y} \\right)",
-            "AST": "Equality(Add(Mul(Symbol(''pdg7159''), Symbol('hatx')), Mul(Symbol(''pdg7055''), Symbol('haty'))), Derivative(Add(Mul(Symbol('hatx'), Symbol('v_{x}')), Mul(Symbol('haty'), Symbol(''pdg9107''))), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Add(Mul(Symbol(''pdg7159''), Symbol('hatx')), Mul(Symbol(''pdg7055''), Symbol('haty'))), Derivative(Add(Mul(Symbol('hatx'), Symbol('pdg5505')), Mul(Symbol('haty'), Symbol(''pdg9107''))), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14916,7 +14916,7 @@
         },
         "1819663717": {
             "latex": "a_x = \\frac{d}{dt} v_x",
-            "AST": "Equality(Symbol(''pdg7159''), Derivative(Symbol('v_{x}'), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Symbol(''pdg7159''), Derivative(Symbol('pdg5505'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14964,7 +14964,7 @@
         },
         "8750379055": {
             "latex": "0 = \\frac{d}{dt} v_x",
-            "AST": "Equality(Integer(0), Derivative(Symbol('v_{x}'), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Integer(0), Derivative(Symbol('pdg5505'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15116,7 +15116,7 @@
         },
         "1676472948": {
             "latex": "0 = v_x - v_{0, x}",
-            "AST": "Equality(Integer(0), Add(Mul(Integer(-1), Symbol('pdg2958')), Symbol('v_{x}')))",
+            "AST": "Equality(Integer(0), Add(Mul(Integer(-1), Symbol('pdg2958')), Symbol('pdg5505')))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15132,7 +15132,7 @@
         },
         "6134836751": {
             "latex": "v_{0, x} = v_x",
-            "AST": "Equality(Symbol('pdg2958'), Symbol('v_{x}'))",
+            "AST": "Equality(Symbol('pdg2958'), Symbol('pdg5505'))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15140,7 +15140,7 @@
         },
         "8460820419": {
             "latex": "v_x = \\frac{dx}{dt}",
-            "AST": "Equality(Symbol('v_{x}'), Derivative(Symbol('pdg9199'), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Symbol('pdg5505'), Derivative(Symbol('pdg9199'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17224,7 +17224,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "notes": "",
             "name": "Work is change in energy",
-            "AST": "Equality(Symbol('pdg6191'), Symbol('5734'))"
+            "AST": "Equality(Symbol('pdg6191'), Symbol('pdg5734'))"
         },
         "8049905441": {
             "latex": "\\Delta KE = KE_{\\rm final} - KE_{\\rm initial}",
@@ -23163,7 +23163,7 @@
         },
         "2423": {
             "category": "variable",
-            "latex": "vec{a}",
+            "latex": "\\vec{a}",
             "name": "acceleration",
             "scope": "real",
             "references": [
@@ -23184,7 +23184,7 @@
         },
         "6373": {
             "category": "variable",
-            "latex": "vec{v}",
+            "latex": "\\vec{v}",
             "name": "velocity",
             "scope": "real",
             "references": [
@@ -23192,8 +23192,8 @@
             ],
             "domain": "any",
             "dimensions": {
-                "length": 0,
-                "time": 0,
+                "length": 1,
+                "time": -1,
                 "mass": 0,
                 "temperature": 0,
                 "electric charge": 0,
