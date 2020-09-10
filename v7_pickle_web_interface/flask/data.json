@@ -11883,7 +11883,7 @@
             "notes": ""
         },
         "2944838499": {
-            "AST": "Equality(Function('psi')(Symbol('x')), Mul(Symbol('a'), sin(Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))))",
+            "AST": "Equality(Function('pdg9489')(Symbol('pdg1464')), Mul(Symbol('pdg9139'), sin(Mul(Symbol('pdg4037'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi(x) = a \\sin(\\frac{n \\pi}{W} x)",
@@ -23223,6 +23223,48 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-09-08"
+        },
+        "6238": {
+            "category": "variable",
+            "latex": "E",
+            "name": "electric field",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Electric_field"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-09-10"
+        },
+        "2069": {
+            "category": "variable",
+            "latex": "\\vec{H}",
+            "name": "magnetic field",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Magnetic_field"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-09-10"
         }
     },
     "units": {

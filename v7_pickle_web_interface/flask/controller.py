@@ -1728,7 +1728,9 @@ def start_new_derivation():
     )
 
 
-@app.route("/review_derivation/", methods=["GET", "POST"]) # if no argument is provided, go to list_all_derivations
+@app.route(
+    "/review_derivation/", methods=["GET", "POST"]
+)  # if no argument is provided, go to list_all_derivations
 @app.route("/list_all_derivations", methods=["GET", "POST"])
 def list_all_derivations():
     """
