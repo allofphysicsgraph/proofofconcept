@@ -1905,6 +1905,22 @@ def list_all_symbols():
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace page start " + trace_id + "]")
 
+    try:
+        # the following forces a save to disk
+        [
+            json_file,
+            all_df,
+            df_pkl_file,
+            sql_file,
+            rdf_file,
+            neo4j_file,
+        ] = compute.create_files_of_db_content(path_to_db)
+        flash("saved to file")
+    except Exception as err:
+        logger.error(str(err))
+        flash(str(err))
+
+
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
         if "delete_symbol" in request.form.keys():
