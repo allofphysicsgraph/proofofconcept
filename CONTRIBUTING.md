@@ -11,7 +11,8 @@ To contribute, you can
  * [modify the code](https://github.com/allofphysicsgraph/proofofconcept/fork) and create alternative implementations
  * ask a question that is not posted on [the FAQ](https://allofphysicsgraph.github.io/proofofconcept/site/faq.html)
 
-Development is done in Docker containers. Changes to the code should run in a Docker container. Novel architecture suggestions should run in a container.
+Development is done in Docker containers. Changes to the code should run in a Docker container. Novel architecture suggestions should run in a container.  If you can create a minimal Dockerfile and Makefile that shows what your demo does, then I can reliably recreate the demo.
+
 
 
 Having multiple developers working on independent (but coordinated)
