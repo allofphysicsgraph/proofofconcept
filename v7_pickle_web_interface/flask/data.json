@@ -11339,7 +11339,7 @@
             "notes": ""
         },
         "0004948585": {
-            "AST": "Symbol('a')",
+            "AST": "Symbol('pdg9139')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "a",
@@ -11403,7 +11403,7 @@
             "notes": ""
         },
         "0006644853": {
-            "AST": "Mul(Pow(Symbol('a'), Integer(-1)), Symbol('c'))",
+            "AST": "Mul(Pow(Symbol('pdg9139'), Integer(-1)), Symbol('pdg4231'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "c/a",
@@ -11499,7 +11499,7 @@
             "notes": ""
         },
         "0009492929": {
-            "AST": "Mul(Symbol('du'), Symbol('pdg5177'))",
+            "AST": "Mul(Symbol('pdg4221'), Symbol('pdg5177'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "v du",
@@ -11523,7 +11523,7 @@
             "notes": ""
         },
         "0203024440": {
-            "AST": "Equality(Integer(1), Integral(Mul(Symbol('a'), Mul(conjugate(Function('pdg9489')(Symbol('pdg1464'))), sin(Mul(Symbol('pdg1464'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141'))))))), Tuple(Symbol('pdg1464'), Integer(0), Symbol('pdg2523'))))",
+            "AST": "Equality(Integer(1), Integral(Mul(Symbol('pdg9139'), Mul(conjugate(Function('pdg9489')(Symbol('pdg1464'))), sin(Mul(Symbol('pdg1464'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141'))))))), Tuple(Symbol('pdg1464'), Integer(0), Symbol('pdg2523'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "1 = \\int_0^W a \\sin\\left(\\frac{n \\pi}{W} x\\right) \\psi(x)^* dx",
@@ -11539,7 +11539,7 @@
             "notes": ""
         },
         "0439492440": {
-            "AST": "Equality(Pow(Pow(Symbol('a'), Integer(2)), Integer(-1)), Add(Mul(Integer(-1), Rational(1, 2), Symbol('pdg2523'), Mul(Rational(1, 2), Pow(Symbol('pdg1592'), Integer(-1)), Pow(Symbol('pdg3141'), Integer(-1))), sin(Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg1592'), Symbol('pdg3141'))))))), Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg2523'))))",
+            "AST": "Equality(Pow(Pow(Symbol('pdg9139'), Integer(2)), Integer(-1)), Add(Mul(Integer(-1), Rational(1, 2), Symbol('pdg2523'), Mul(Rational(1, 2), Pow(Symbol('pdg1592'), Integer(-1)), Pow(Symbol('pdg3141'), Integer(-1))), sin(Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg1592'), Symbol('pdg3141'))))))), Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg2523'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{a^2} = \\frac{1}{2}W - \\frac{1}{2}\\left. \\frac{W}{2n\\pi}\\sin\\left(\\frac{2n\\pi}{W} x\\right) \\right|_0^W",
@@ -11555,7 +11555,7 @@
             "notes": ""
         },
         "0948572140": {
-            "AST": "Equality(Integral(cos(Mul(Symbol('a'), Symbol('pdg1464'))), Tuple(Symbol('pdg9199'))), Mul(Pow(Symbol('a'), Integer(-1)), sin(Mul(Symbol('a'), Symbol('pdg1464')))))",
+            "AST": "Equality(Integral(cos(Mul(Symbol('pdg9139'), Symbol('pdg1464'))), Tuple(Symbol('pdg9199'))), Mul(Pow(Symbol('pdg9139'), Integer(-1)), sin(Mul(Symbol('pdg9139'), Symbol('pdg1464')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\int \\cos(a x) dx = \\frac{1}{a}\\sin(a x)",
@@ -11563,7 +11563,7 @@
             "notes": ""
         },
         "1010393913": {
-            "AST": "Equality(Bra('pdg4065')*Dagger(Operator('pdg5598'))*Ket('pdg9329'),conjugate(E(Symbol('a'))))",
+            "AST": "Equality(Bra('pdg4065')*Dagger(Operator('pdg5598'))*Ket('pdg9329'),conjugate(E(Symbol('pdg9139'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\langle \\psi| \\hat{A}^+ |\\psi \\rangle = \\langle a \\rangle^*",
@@ -11587,7 +11587,7 @@
             "notes": ""
         },
         "1020010291": {
-            "AST": "Equality(Integer(0), Mul(Symbol('a'), sin(Mul(Symbol('pdg2523'), Symbol('pdg5321')))))",
+            "AST": "Equality(Integer(0), Mul(Symbol('pdg9139'), sin(Mul(Symbol('pdg2523'), Symbol('pdg5321')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "0 = a \\sin(k W)",
@@ -11635,7 +11635,7 @@
             "notes": ""
         },
         "1202310110": {
-            "AST": "Equality(Pow(Pow(Symbol('a'), Integer(2)), Integer(-1)), Integral(Add(Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg9199')), Mul(Integer(-1), Rational(1, 2), Integral(cos(Mul(Integer(2), Mul(Symbol('pdg4037'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))), Tuple(Symbol('pdg4037'), Integer(0), Symbol('pdg2523'))))), Tuple(Symbol('pdg4037'), Integer(0), Symbol('pdg2523'))))",
+            "AST": "Equality(Pow(Pow(Symbol('pdg9139'), Integer(2)), Integer(-1)), Integral(Add(Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg9199')), Mul(Integer(-1), Rational(1, 2), Integral(cos(Mul(Integer(2), Mul(Symbol('pdg4037'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))), Tuple(Symbol('pdg4037'), Integer(0), Symbol('pdg2523'))))), Tuple(Symbol('pdg4037'), Integer(0), Symbol('pdg2523'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{a^2} = \\int_0^W \\frac{1}{2} dx - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right) dx",
@@ -11643,7 +11643,7 @@
             "notes": ""
         },
         "1202312210": {
-            "AST": "Equality(Pow(Pow(Symbol('a'), Integer(2)), Integer(-1)), Add(Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg2523')), Mul(Integer(-1), Rational(1, 2), Integral(cos(Mul(Integer(2), Mul(Symbol('pdg4037'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))), Tuple(Symbol('pdg4037'), Integer(0), Symbol('pdg2523'))))))",
+            "AST": "Equality(Pow(Pow(Symbol('pdg9139'), Integer(2)), Integer(-1)), Add(Mul(Pow(Integer(2), Integer(-1)), Symbol('pdg2523')), Mul(Integer(-1), Rational(1, 2), Integral(cos(Mul(Integer(2), Mul(Symbol('pdg4037'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141')))))), Tuple(Symbol('pdg4037'), Integer(0), Symbol('pdg2523'))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{1}{a^2} = \\frac{1}{2}W - \\frac{1}{2} \\int_0^W \\cos\\left(2\\frac{n \\pi}{W}x\\right) dx",
@@ -11667,7 +11667,7 @@
             "notes": ""
         },
         "1293913110": {
-            "AST": "Equality(Integer(0), Symbol('b'))",
+            "AST": "Equality(Integer(0), Symbol('pdg1939'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "0 = b",
@@ -11691,7 +11691,7 @@
             "notes": ""
         },
         "1314864131": {
-            "AST": "Equality(cross(Del, Symbol('H')),Mul(Symbol('pdg7940'),Derivative(Symbol('E'), Tuple(Symbol('pdg1467'), Integer(1)))))",
+            "AST": "Equality(cross(Del, Symbol('H')),Mul(Symbol('pdg7940'),Derivative(Symbol('pdg4326'), Tuple(Symbol('pdg1467'), Integer(1)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\times \\vec{H} = \\epsilon_0 \\frac{\\partial }{\\partial t}\\vec{E}",
@@ -11707,7 +11707,7 @@
             "notes": ""
         },
         "1636453295": {
-            "AST": "Equality(cross(Del,cross(Del,Symbol('E'))),Mul(Integer(-1), Mul(Symbol('E'), Pow(Del, Integer(2)))))",
+            "AST": "Equality(cross(Del,cross(Del,Symbol('pdg4326'))),Mul(Integer(-1), Mul(Symbol('pdg4326'), Pow(Del, Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\times \\vec{ \\nabla} \\times \\vec{E} =  - \\nabla^2 \\vec{E}",
@@ -11731,7 +11731,7 @@
             "notes": "https://physicsderivationgraph.blogspot.com/2020/09/representing-laplace-operator-nabla-in.html"
         },
         "1857710291": {
-            "AST": "Equality(Integer(0), Mul(Symbol('a'), sin(Mul(Symbol('pdg1592'), Symbol('pdg3141')))))",
+            "AST": "Equality(Integer(0), Mul(Symbol('pdg9139'), sin(Mul(Symbol('pdg1592'), Symbol('pdg3141')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "0 = a \\sin(n \\pi)",
