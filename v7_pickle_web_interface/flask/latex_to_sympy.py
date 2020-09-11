@@ -20,10 +20,15 @@ from sympy.vector import cross, dot
 from sympy.vector.deloperator import Del
 from sympy.parsing.latex import parse_latex  # type: ignore
 
+# https://docs.sympy.org/latest/modules/functions/special.html
+from sympy.functions.special.tensor_functions import KroneckerDelta
+from sympy import LeviCivita
+
 # https://docs.sympy.org/latest/modules/physics/quantum/dagger.html
 from sympy.physics.quantum.state import Ket, Bra
 from sympy.physics.quantum.dagger import Dagger
 from sympy.physics.quantum.operator import Operator
+
 from typing import Tuple  # , TextIO
 import logging
 import random

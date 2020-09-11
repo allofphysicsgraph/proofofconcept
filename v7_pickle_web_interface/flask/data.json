@@ -12456,7 +12456,7 @@
             "creation date": "2020-04-14",
             "latex": "\\epsilon^{i,j,k} \\epsilon_{n,j,k} = \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} - \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h}",
             "name": "",
-            "notes": ""
+            "notes": "https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors"
         },
         "7575859306": {
             "AST": "Equality(Mul(Mul(Symbol('pdg8349'), Mul(Symbol('nabla_{pdg1552}'), Mul(Pow(Symbol('pdg6238'), Symbol('pdg1592')), Pow(Del, Symbol('pdg7930'))))), Add(Mul(KroneckerDelta(Symbol('pdg8304'),Symbol('pdg1552')), KroneckerDelta(Symbol('pdg7930'),Symbol('pdg9690'))), Mul(Integer(-1), KroneckerDelta(Symbol('pdg8304'),Symbol('pdg9690')), KroneckerDelta(Symbol('pdg7930'),Symbol('h'))))), Del(Add(Mul(Integer(-1), Pow(Del, Integer(2)), Symbol('pdg4326')), Mul(Del, Symbol('pdg4326')))))",
@@ -12464,7 +12464,7 @@
             "creation date": "2020-04-14",
             "latex": "\\left( \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} - \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h} \\right) \\hat{x}_i \\nabla_j \\nabla^m E^n = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
             "name": "",
-            "notes": ""
+            "notes": "https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors"
         },
         "7575859308": {
             "AST": "Mul(KroneckerDelta(Symbol('pdg8304'),Symbol('pdg1552'), Mul(KroneckerDelta(Symbol('pdg7930'),Symbol('pdg9690'), Mul(Symbol('pdg8349'), Mul(Symbol('nabla_{pdg1552}'), Mul(Pow(Symbol('pdg6238'), Symbol('pdg1592')), Pow(Del, Symbol('pdg7930')))))))",
@@ -12472,7 +12472,7 @@
             "creation date": "2020-04-14",
             "latex": "\\left( \\delta^{l}_{\\ \\ j} \\delta^{m}_{\\ \\ k} \\hat{x}_i \\nabla_j \\nabla^m E^n\\right)-\\left( \\delta^{l}_{\\ \\ k} \\delta^{m}_{\\ \\ h} \\hat{x}_i \\nabla_j \\nabla^m E^n \\right)  = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
             "name": "",
-            "notes": ""
+            "notes": "https://en.wikipedia.org/wiki/Covariance_and_contravariance_of_vectors"
         },
         "7575859310": {
             "AST": "Equality(Add(Mul(Integer(-1), Pow(Symbol('pdg6238'), Symbol('pdg1592')), Symbol('pdg1434'), Pow(Symbol('nabla'), Symbol('pdg7930')), Symbol('nabla_{m}')), Mul(Symbol('pdg2380'), Mul(Symbol('nabla_{n}'), Mul(Pow(Symbol('pdg6238'), Symbol('pdg1592')), Pow(Symbol('nabla'), Symbol('pdg7930')))))), Function('nabla')(Add(Mul(Integer(-1), Pow(Symbol('nabla'), Integer(2)), Symbol('pdg4326')), Mul(Del, Symbol('pdg4326')))))",
