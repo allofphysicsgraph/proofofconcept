@@ -11568,7 +11568,7 @@
             "creation date": "2020-04-14",
             "latex": "\\langle \\psi| \\hat{A}^+ |\\psi \\rangle = \\langle a \\rangle^*",
             "name": "",
-            "notes": ""
+            "notes": "https://docs.sympy.org/latest/modules/stats.html"
         },
         "1010393944": {
             "AST": "Equality(Symbol('pdg1464'),(Bra('pdg4679')*Symbol('pdg7752')*Ket('pdg2090')))",
@@ -14900,7 +14900,7 @@
         },
         "5349866551": {
             "latex": "\\vec{v} = v_x \\hat{x} + v_y \\hat{y}",
-            "AST": "Equality(Symbol('pdg6373'), Add(Mul(Symbol('pdg8339'), Symbol('pdg5505')), Mul(Symbol('pdg1700'), Symbol(''pdg9107''))))",
+            "AST": "Equality(Symbol('pdg6373'), Add(Mul(Symbol('pdg8339'), Symbol('pdg5505')), Mul(Symbol('pdg1700'), Symbol('pdg9107'))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14908,7 +14908,7 @@
         },
         "7729413831": {
             "latex": "a_x \\hat{x} + a_y \\hat{y} = \\frac{d}{dt} \\left(v_x \\hat{x} + v_y \\hat{y} \\right)",
-            "AST": "Equality(Add(Mul(Symbol(''pdg7159''), Symbol('pdg8339')), Mul(Symbol(''pdg7055''), Symbol('pdg1700'))), Derivative(Add(Mul(Symbol('pdg8339'), Symbol('pdg5505')), Mul(Symbol('pdg1700'), Symbol(''pdg9107''))), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Add(Mul(Symbol('pdg7159'), Symbol('pdg8339')), Mul(Symbol('pdg7055'), Symbol('pdg1700'))), Derivative(Add(Mul(Symbol('pdg8339'), Symbol('pdg5505')), Mul(Symbol('pdg1700'), Symbol('pdg9107'))), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14916,7 +14916,7 @@
         },
         "1819663717": {
             "latex": "a_x = \\frac{d}{dt} v_x",
-            "AST": "Equality(Symbol(''pdg7159''), Derivative(Symbol('pdg5505'), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Symbol('pdg7159'), Derivative(Symbol('pdg5505'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14924,7 +14924,7 @@
         },
         "8228733125": {
             "latex": "a_y = \\frac{d}{dt} v_y",
-            "AST": "Equality(Symbol(''pdg7055''), Derivative(Symbol(''pdg9107''), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Symbol('pdg7055'), Derivative(Symbol('pdg9107'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14972,7 +14972,7 @@
         },
         "1977955751": {
             "latex": "-g = \\frac{d}{dt} v_y",
-            "AST": "Equality(Mul(Integer(-1), Symbol('pdg1649')), Derivative(Symbol(''pdg9107''), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Mul(Integer(-1), Symbol('pdg1649')), Derivative(Symbol('pdg9107'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15028,7 +15028,7 @@
         },
         "7252338326": {
             "latex": "v_y = \\frac{dy}{dt}",
-            "AST": "Equality(Symbol(''pdg9107''), Derivative(Symbol('pdg5647'), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Symbol('pdg9107'), Derivative(Symbol('pdg5647'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15292,7 +15292,7 @@
         },
         "1405465835": {
             "latex": "y = - \\frac{1}{2} g t^2 + v_{0, y} t + y_0",
-            "AST": "Equality(Symbol('pdg5647'), Add(Symbol('pdg1469'), Add(Mul(Symbol('pdg1467'), Symbol(''pdg9107'')), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg1467'), Integer(2))))))))",
+            "AST": "Equality(Symbol('pdg5647'), Add(Symbol('pdg1469'), Add(Mul(Symbol('pdg1467'), Symbol('pdg9107')), Mul(Integer(-1), Mul(Pow(Integer(2), Integer(-1)), Mul(Symbol('pdg1649'), Pow(Symbol('pdg1467'), Integer(2))))))))",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",

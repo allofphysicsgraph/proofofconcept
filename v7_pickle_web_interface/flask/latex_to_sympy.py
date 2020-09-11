@@ -19,6 +19,7 @@ from sympy import *  # addresses cosh, sinh, tanh
 from sympy.vector import cross, dot
 from sympy.vector.deloperator import Del
 from sympy.parsing.latex import parse_latex  # type: ignore
+
 # https://docs.sympy.org/latest/modules/physics/quantum/dagger.html
 from sympy.physics.quantum.state import Ket, Bra
 from sympy.physics.quantum.dagger import Dagger
