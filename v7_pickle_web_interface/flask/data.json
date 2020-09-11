@@ -17723,7 +17723,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "quantum: Dirac notation"
         },
         "apply operator to ket": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17732,7 +17733,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "quantum: Dirac notation"
         },
         "X cross both sides by": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17741,7 +17743,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "linear algebra"
         },
         "X dot both sides": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17750,7 +17753,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "linear algebra"
         },
         "add X to both sides": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17759,7 +17763,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "add zero to LHS": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17768,7 +17773,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "add zero to RHS": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17777,7 +17783,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "apply divergence": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17786,7 +17793,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "multi-variable calculus"
         },
         "apply gradient to scalar function": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17795,25 +17803,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
-        },
-        "apply operator to Bra": {
-            "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-04-14",
-            "latex": "Apply operator to bra in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
-            "notes": "",
-            "number of feeds": 0,
-            "number of inputs": 1,
-            "number of outputs": 1
-        },
-        "apply operator to Ket": {
-            "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-04-14",
-            "latex": "Apply operator to ket in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2}.",
-            "notes": "",
-            "number of feeds": 0,
-            "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "multi-variable calculus"
         },
         "assume N dimensions": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17822,7 +17813,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 0,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "both sides cross X": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17831,7 +17823,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "linear algebra"
         },
         "both sides dot X": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17840,7 +17833,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "linear algebra"
         },
         "boundary condition for expr": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17849,7 +17843,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "claim LHS equals RHS": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17858,7 +17853,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 0
+            "number of outputs": 0,
+            "assumptions": ""
         },
         "combine like terms": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17867,7 +17863,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "conjugate both sides": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17876,7 +17873,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "complex values"
         },
         "conjugate function X": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17885,7 +17883,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "complex values"
         },
         "conjugate transpose both sides": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17894,7 +17893,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "complex valued linear algebra"
         },
         "declare assumption": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17903,7 +17903,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 0,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "declare final expr": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17912,7 +17913,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 0
+            "number of outputs": 0,
+            "assumptions": ""
         },
         "declare guess solution": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17921,7 +17923,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "declare identity": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17930,7 +17933,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 0,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "declare initial expr": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17939,7 +17943,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 0,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "differentiate with respect to": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17948,7 +17953,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "differential equations"
         },
         "distribute conjugate to factors": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17957,7 +17963,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "complex values"
         },
         "distribute conjugate transpose to factors": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17966,7 +17973,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "complex valued linear algebra"
         },
         "divide both sides by": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17975,7 +17983,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "evaluate definite integral": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17984,7 +17993,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "multi-variable calculus"
         },
         "expand LHS": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17993,7 +18003,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "expand RHS": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18002,7 +18013,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "expand integrand": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18011,7 +18023,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "multi-variable calculus"
         },
         "expand magnitude to conjugate": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18020,7 +18033,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "complex values"
         },
         "factor out X": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18029,7 +18043,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "factor out X from LHS": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18038,7 +18053,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "factor out X from RHS": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18047,7 +18063,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "function is even": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18056,7 +18073,8 @@
             "notes": "",
             "number of feeds": 3,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "function is odd": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18065,7 +18083,8 @@
             "notes": "",
             "number of feeds": 3,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "indefinite integral over": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18074,7 +18093,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "multi-variable calculus"
         },
         "indefinite integrate LHS over": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18083,7 +18103,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "multi-variable calculus"
         },
         "indefinite integration": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18092,7 +18113,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "multi-variable calculus"
         },
         "indefinite integrate RHS over": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18101,7 +18123,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "multi-variable calculus"
         },
         "integrate over from to": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18110,7 +18133,8 @@
             "notes": "",
             "number of feeds": 3,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "multi-variable calculus"
         },
         "make expr power": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18119,7 +18143,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "multiply LHS by unity": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18128,7 +18153,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "multiply RHS by unity": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18137,7 +18163,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "multiply both sides by": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18146,7 +18173,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "normalization condition": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18155,7 +18183,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 0,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "partially differentiate with respect to": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18164,7 +18193,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "differential equations"
         },
         "raise both sides to power": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18173,7 +18203,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "replace curl with LeviCevita summation contravariant": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18182,7 +18213,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "linear algebra"
         },
         "replace scalar with vector": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18191,7 +18223,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "replace summation notation with vector notation": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18200,7 +18233,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "linear algebra"
         },
         "select imaginary parts": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18209,7 +18243,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "complex values"
         },
         "select real parts": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18218,7 +18253,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "complex values"
         },
         "simplify": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18227,7 +18263,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "solve for X": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18236,7 +18273,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "change variable X to Y": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18245,7 +18283,8 @@
             "notes": "",
             "number of feeds": 2,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "subtract X from both sides": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18254,7 +18293,8 @@
             "notes": "",
             "number of feeds": 1,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "sum exponents": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18263,7 +18303,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "sum exponents LHS": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18272,7 +18313,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "sum exponents RHS": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18281,7 +18323,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "swap LHS with RHS": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18290,7 +18333,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "take curl of both sides": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18299,7 +18343,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": "linear algebra"
         },
         "multiply expr 1 by expr 2": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18308,7 +18353,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 2,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "substitute LHS of expr 1 into expr 2": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18317,7 +18363,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 2,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "substitute RHS of expr 1 into expr 2": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18326,7 +18373,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 2,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "LHS of expr 1 equals LHS of expr 2": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18335,7 +18383,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 2,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "RHS of expr 1 equals RHS of expr 2": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18344,7 +18393,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 2,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "subtract expr 1 from expr 2": {
             "number of feeds": 0,
@@ -18353,7 +18403,8 @@
             "latex": "Subtract Eq.~\\ref{eq:#1} from Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#2}.",
             "notes": "complement of \"add expr X to expr Y\"",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-04-20"
+            "creation date": "2020-04-20",
+            "assumptions": ""
         },
         "add expr 1 to expr 2": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18362,7 +18413,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 2,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "expr 1 is true under condition expr 2": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18371,7 +18423,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 2,
-            "number of outputs": 1
+            "number of outputs": 1,
+            "assumptions": ""
         },
         "claim expr 1 equals expr 2": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18380,7 +18433,8 @@
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 2,
-            "number of outputs": 0
+            "number of outputs": 0,
+            "assumptions": ""
         },
         "apply function to both sides of expression": {
             "number of feeds": 2,
@@ -18389,7 +18443,8 @@
             "latex": "Apply function $#1$ with argument $#2$ to Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}",
             "notes": "Example: apply sin(x) to \"a = b + c\"",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-04-23"
+            "creation date": "2020-04-23",
+            "assumptions": ""
         },
         "expr 1 is equivalent to expr 2 under the condition": {
             "number of feeds": 0,
@@ -18398,7 +18453,8 @@
             "latex": "Eq.~\\ref{eq:#1} is equivalent to Eq.~\\ref{eq:#2} under the condition in Eq.~\\ref{eq:#3}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-08"
+            "creation date": "2020-05-08",
+            "assumptions": ""
         },
         "substitute LHS of two expressions into expr": {
             "number of feeds": 0,
@@ -18407,7 +18463,8 @@
             "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} into Eq.~\\ref{eq:#3}; yields Eq.~\\ref{eq:#4}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-12"
+            "creation date": "2020-05-12",
+            "assumptions": ""
         },
         "substitute LHS of three expressions into expr": {
             "number of feeds": 0,
@@ -18416,7 +18473,8 @@
             "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} into Eq.~\\ref{eq:#4}; yields Eq.~\\ref{eq:#5}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-12"
+            "creation date": "2020-05-12",
+            "assumptions": ""
         },
         "substitute LHS of four expressions into expr": {
             "number of feeds": 0,
@@ -18425,7 +18483,8 @@
             "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} into Eq.~\\ref{eq:#5}; yields Eq.~\\ref{eq:#6}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-12"
+            "creation date": "2020-05-12",
+            "assumptions": ""
         },
         "substitute LHS of five expressions into expr": {
             "number of feeds": 0,
@@ -18434,7 +18493,8 @@
             "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} and LHS of Eq.~\\ref{eq:#5} into Eq.~\\ref{eq:#6}; yields Eq.~\\ref{eq:#7}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-12"
+            "creation date": "2020-05-12",
+            "assumptions": ""
         },
         "substitute LHS of six expressions into expr": {
             "number of feeds": 0,
@@ -18443,7 +18503,8 @@
             "latex": "Substitute LHS of Eq.~\\ref{eq:#1} and LHS of Eq.~\\ref{eq:#2} and LHS of Eq.~\\ref{eq:#3} and LHS of Eq.~\\ref{eq:#4} and LHS of Eq.~\\ref{eq:#5} and LHS of Eq.~\\ref{eq:#6} into Eq.~\\ref{eq:#7}; yields Eq.~\\ref{eq:#8}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-12"
+            "creation date": "2020-05-12",
+            "assumptions": ""
         },
         "change two variables in expr": {
             "number of feeds": 4,
@@ -18452,7 +18513,8 @@
             "latex": "Change variable $#1$ to $#2$ and $#3$ to $#4$ in Eq.~\\ref{eq:#5}; yields Eq.~\\ref{eq:#6}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-12"
+            "creation date": "2020-05-12",
+            "assumptions": ""
         },
         "change three variables in expr": {
             "number of feeds": 6,
@@ -18461,7 +18523,8 @@
             "latex": "Change of variable $#1$ to $#2$ and $#3$ to $#4$ and $#5$ to $#6$ in Eq.~\\ref{eq:#7}; yields Eq.~\\ref{eq:#8}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-12"
+            "creation date": "2020-05-12",
+            "assumptions": ""
         },
         "change four variables in expr": {
             "number of feeds": 8,
@@ -18470,7 +18533,8 @@
             "latex": "Change of variable $#1$ to $#2$ and $#3$ to $#4$ and $#5$ to $#6$ and $#7$ to $#8$ in Eq.~\\ref{eq:#9}; yields Eq.~\\ref{eq:#10}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-12"
+            "creation date": "2020-05-12",
+            "assumptions": ""
         },
         "change five variables in expr": {
             "number of feeds": 10,
@@ -18479,7 +18543,8 @@
             "latex": "Change of variable $#1$ to $#2$ and $#3$ to $#4$ and $#5$ to $#6$ and $#7$ to $#8$ and $#9$ to $#10$ in Eq.~\\ref{eq:#11}; yields Eq.~\\ref{eq:#12}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-12"
+            "creation date": "2020-05-12",
+            "assumptions": ""
         },
         "change six variables in expr": {
             "number of feeds": 12,
@@ -18488,7 +18553,8 @@
             "latex": "Change of variable $#1$ to $#2$ and $#3$ to $#4$ and $#5$ to $#6$ and $#7$ to $#8$ and $#9$ to $#10$ and $#11$ to $#12$ in Eq.~\\ref{eq:#13}; yields Eq.~\\ref{eq:#14}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-12"
+            "creation date": "2020-05-12",
+            "assumptions": ""
         },
         "square root both sides": {
             "number of feeds": 0,
@@ -18497,7 +18563,8 @@
             "latex": "Take the square root of both sides of Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3}.",
             "notes": "related to raise both sides to power",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-14"
+            "creation date": "2020-05-14",
+            "assumptions": ""
         },
         "divide expr 1 by expr 2": {
             "number of feeds": 0,
@@ -18506,7 +18573,8 @@
             "latex": "Divide Eq.~\\ref{eq:#1} by Eq.~\\ref{eq:#2}; yields Eq.~\\ref{eq:#3}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-17"
+            "creation date": "2020-05-17",
+            "assumptions": ""
         },
         "separate two vector components": {
             "number of feeds": 0,
@@ -18515,7 +18583,8 @@
             "latex": "Separate two vector components in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3}",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-17"
+            "creation date": "2020-05-17",
+            "assumptions": ""
         },
         "separate three vector components": {
             "number of feeds": 0,
@@ -18524,7 +18593,8 @@
             "latex": "Separate three vector components in Eq.~\\ref{eq:#1}; yields Eq.~\\ref{eq:#2} and Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-17"
+            "creation date": "2020-05-17",
+            "assumptions": ""
         },
         "separate vector into two trigonometric ratios": {
             "number of feeds": 1,
@@ -18533,7 +18603,8 @@
             "latex": "Separate vector in Eq.~\\ref{eq:#2} into components related by angle $#1$; yields Eq.~\\ref{eq:#3} and Eq.~\\ref{eq:#4}.",
             "notes": "geometry argument in 2D",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-17"
+            "creation date": "2020-05-17",
+            "assumptions": ""
         },
         "boundary condition": {
             "number of feeds": 0,
@@ -18542,7 +18613,8 @@
             "latex": "Boundary condition: Eq.~\\ref{eq:#2} when Eq.~\\ref{eq#1}.",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-17"
+            "creation date": "2020-05-17",
+            "assumptions": ""
         },
         "maximum of expr": {
             "number of feeds": 1,
@@ -18551,7 +18623,8 @@
             "latex": "The maximum of Eq.~\\ref{eq:#2} with respect to $#1$ is Eq.~\\ref{eq:#3}",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-17"
+            "creation date": "2020-05-17",
+            "assumptions": ""
         },
         "integrate": {
             "number of feeds": 0,
@@ -18560,7 +18633,8 @@
             "latex": "Integrate Eq.~ref{eq:#1}; yields Eq.~ref{eq:#2}.",
             "notes": "not clear how to specify limits for an arbitrary number of integrals",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-24"
+            "creation date": "2020-05-24",
+            "assumptions": "multi-variable calculus"
         },
         "replace constant with value": {
             "number of feeds": 3,
@@ -18569,7 +18643,8 @@
             "latex": "Replace constant $#1$ with value $#2$ and units $#3$ in Eq.~\\ref{eq:#4}; yields Eq.~\\ref{eq:#5}",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-05-28"
+            "creation date": "2020-05-28",
+            "assumptions": ""
         },
         "drop non-dominant term": {
             "number of feeds": 1,
@@ -18578,7 +18653,8 @@
             "latex": "Based on the assumption $#1$, drop non-dominant term in Eq.~\\ref{#2}; yeilds Eq.~\\ref{#3}",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
-            "creation date": "2020-06-14"
+            "creation date": "2020-06-14",
+            "assumptions": ""
         }
     },
     "measures": {
