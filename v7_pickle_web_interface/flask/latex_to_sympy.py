@@ -20,6 +20,9 @@ from sympy.vector import cross, dot
 from sympy.vector.deloperator import Del
 from sympy.parsing.latex import parse_latex  # type: ignore
 
+# https://docs.sympy.org/latest/modules/physics/units/quantities.html
+from sympy.physics.units import *
+
 # https://docs.sympy.org/latest/modules/functions/special.html
 from sympy.functions.special.tensor_functions import KroneckerDelta
 from sympy import LeviCivita
@@ -145,6 +148,7 @@ def get_sympy_expr_from_AST_str(ast_str: str):
     """
     # logging turned off because this function gets called a lot!
     # logger.info("[trace]")
+    orignal_ast_str = ast_str
 
     ast_str = ast_str.replace("Function", "sympy.Function")
     ast_str = ast_str.replace("Derivative", "sympy.Derivative")
@@ -170,8 +174,8 @@ def get_sympy_expr_from_AST_str(ast_str: str):
         return eval(ast_str)
     except Exception as err:
         logger.error(str(err))
-        logger.error('unable to eval AST for "' + ast_str + '"')
-        raise Exception('unable to eval AST for "' + ast_str + '"')
+        logger.error('unable to eval AST for "' + orignal_ast_str + '" aka "'+ast_str+'"')
+        raise Exception('unable to eval AST for "' + orignal_ast_str + '" aka "'+ast_str+'"')
     return sympy.Symbol("nothing")
 
 
