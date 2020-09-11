@@ -152,7 +152,8 @@ schema = {
                                                               'number of outputs': {'type': 'number'},
                                                               'notes': {'type':'string'},
                                                               'author': {'type':'string'},
-                                                              'creation date': {'type':'string'}
+                                                              'creation date': {'type':'string'},
+                                                              'assumptions': {'type':'string'}
                                                              },
                                                          'required': ['latex',
                                                                       'number of feeds',

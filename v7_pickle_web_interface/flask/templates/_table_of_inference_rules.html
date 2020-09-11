@@ -8,6 +8,7 @@
     <th>Latex</th>
     <th>Used in derivations</th>
     <th>number of uses</th>
+    <th>assumptions</th>
   </tr>
 {% for infrule, infrule_use_list in infrule_popularity_dict.items() %}
   <tr>
@@ -30,6 +31,7 @@
     <td>
       {{ infrule_count_dict[infrule] }}
     </td>
+    <td>{{ infrules_dict[infrule]['assumptions'] }}</td>
   </tr>
 {% endfor %}
   <caption>

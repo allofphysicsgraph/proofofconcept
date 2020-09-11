@@ -174,8 +174,12 @@ def get_sympy_expr_from_AST_str(ast_str: str):
         return eval(ast_str)
     except Exception as err:
         logger.error(str(err))
-        logger.error('unable to eval AST for "' + orignal_ast_str + '" aka "'+ast_str+'"')
-        raise Exception('unable to eval AST for "' + orignal_ast_str + '" aka "'+ast_str+'"')
+        logger.error(
+            'unable to eval AST for "' + orignal_ast_str + '" aka "' + ast_str + '"'
+        )
+        raise Exception(
+            'unable to eval AST for "' + orignal_ast_str + '" aka "' + ast_str + '"'
+        )
     return sympy.Symbol("nothing")
 
 
