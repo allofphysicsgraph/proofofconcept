@@ -1920,7 +1920,6 @@ def list_all_symbols():
         logger.error(str(err))
         flash(str(err))
 
-
     if request.method == "POST":
         logger.debug("request.form = %s", request.form)
         if "delete_symbol" in request.form.keys():
