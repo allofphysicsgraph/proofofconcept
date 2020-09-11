@@ -12019,7 +12019,7 @@
             "notes": ""
         },
         "3948574224": {
-            "AST": "Equality(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('psi_{0}'), Function('pdg2718')(Function('pdg4621')(Add(dot(Symbol('pdg5321'), Symbol('pdg9472')), Mul(Integer(-1), Symbol('pdg2321'), Symbol('pdg1467')))))))",
+            "AST": "Equality(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('pdg8330'), Function('pdg2718')(Function('pdg4621')(Add(dot(Symbol('pdg5321'), Symbol('pdg9472')), Mul(Integer(-1), Symbol('pdg2321'), Symbol('pdg1467')))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left( \\vec{k}\\cdot\\vec{r} - \\omega t \\right) \\right)",
@@ -12027,7 +12027,7 @@
             "notes": ""
         },
         "3948574226": {
-            "AST": "Equality(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('psi_{0}'), Function('pdg2718')(Function('pdg4621')(Add(Mul(Integer(-1), Symbol('pdg2321'), Symbol('pdg1467')), Mul(Pow(Symbol('pdg1054'), Integer(-1)), Mul(Symbol('pdg1134'), Symbol('pdg9472'))))))))",
+            "AST": "Equality(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('pdg8330'), Function('pdg2718')(Function('pdg4621')(Add(Mul(Integer(-1), Symbol('pdg2321'), Symbol('pdg1467')), Mul(Pow(Symbol('pdg1054'), Integer(-1)), Mul(Symbol('pdg1134'), Symbol('pdg9472'))))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\omega t \\right) \\right)",
@@ -12035,7 +12035,7 @@
             "notes": ""
         },
         "3948574228": {
-            "AST": "Equality(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('psi_{0}'), Function('pdg2718')(Function('pdg4621')(Add(Mul(Integer(-1), Symbol('pdg6238'), Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg1467')), Mul(Pow(Symbol('pdg1054'), Integer(-1)), Mul(Symbol('pdg1134'), Symbol('pdg9472'))))))))",
+            "AST": "Equality(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('pdg8330'), Function('pdg2718')(Function('pdg4621')(Add(Mul(Integer(-1), Symbol('pdg6238'), Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg1467')), Mul(Pow(Symbol('pdg1054'), Integer(-1)), Mul(Symbol('pdg1134'), Symbol('pdg9472'))))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
@@ -12043,7 +12043,7 @@
             "notes": ""
         },
         "3948574230": {
-            "AST": "Equality(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('psi_{0}'), Function('pdg2718')(Mul(Mul(Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg4621')), Add(Mul(Integer(-1), Symbol('pdg6238'), Symbol('pdg1467')), Mul(Symbol('pdg1134'), Symbol('pdg9472')))))))",
+            "AST": "Equality(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Symbol('pdg8330'), Function('pdg2718')(Mul(Mul(Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg4621')), Add(Mul(Integer(-1), Symbol('pdg6238'), Symbol('pdg1467')), Mul(Symbol('pdg1134'), Symbol('pdg9472')))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\psi( \\vec{r},t) = \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left( \\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
@@ -12051,7 +12051,7 @@
             "notes": ""
         },
         "3948574233": {
-            "AST": "Equality(Derivative(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467')), Tuple(Symbol('pdg1467'), Integer(1))), Mul(Symbol('psi_{0}'), Derivative(Function('pdg2718')(Function('pdg4621')(Add(Mul(Integer(-1), Symbol('pdg6238'), Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg1467')), Mul(Pow(Symbol('pdg1054'), Integer(-1)), Mul(Symbol('pdg1134'), Symbol('pdg9472')))))), Tuple(Symbol('pdg1467'), Integer(1)))))",
+            "AST": "Equality(Derivative(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467')), Tuple(Symbol('pdg1467'), Integer(1))), Mul(Symbol('pdg8330'), Derivative(Function('pdg2718')(Function('pdg4621')(Add(Mul(Integer(-1), Symbol('pdg6238'), Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg1467')), Mul(Pow(Symbol('pdg1054'), Integer(-1)), Mul(Symbol('pdg1134'), Symbol('pdg9472')))))), Tuple(Symbol('pdg1467'), Integer(1)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{\\partial}{\\partial t} \\psi( \\vec{r},t) = \\psi_0 \\frac{\\partial}{\\partial t}\\exp\\left(i\\left(\\frac{ \\vec{p}\\cdot\\vec{r}}{\\hbar} - \\frac{E t}{\\hbar}  \\right) \\right)",
@@ -12243,7 +12243,7 @@
             "notes": ""
         },
         "4943571230": {
-            "AST": "Equality(Del(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467'))), Mul(Mul(Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg4621')), Mul(Symbol('pdg2046'), Mul(Symbol('psi_{0}'), exp(Mul(Mul(Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg4621')), Add(Mul(Integer(-1), Symbol('pdg6238'), Symbol('pdg1467')), Mul(Symbol('pdg2046'), Symbol('pdg9472')))))))))",
+            "AST": "Equality(Del(Function('pdg9489')(Symbol('pdg9472'), Symbol('pdg1467'))), Mul(Mul(Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg4621')), Mul(Symbol('pdg2046'), Mul(Symbol('pdg8330'), exp(Mul(Mul(Pow(Symbol('pdg1054'), Integer(-1)), Symbol('pdg4621')), Add(Mul(Integer(-1), Symbol('pdg6238'), Symbol('pdg1467')), Mul(Symbol('pdg2046'), Symbol('pdg9472')))))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla} \\psi( \\vec{r},t) = \\frac{i}{\\hbar} \\vec{p} \\psi_0 \\exp\\left(\\frac{i}{\\hbar}\\left( \\vec{p}\\cdot\\vec{r} - E t \\right) \\right)",
@@ -23316,6 +23316,27 @@
             "latex": "\\hat{x}_m",
             "name": "mth unit vector",
             "scope": "real",
+            "references": [
+                ""
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2020-09-11"
+        },
+        "8330": {
+            "category": "variable",
+            "latex": "\\psi_0",
+            "name": "amplitude of wavefunction",
+            "scope": "complex",
             "references": [
                 ""
             ],
