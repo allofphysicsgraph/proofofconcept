@@ -1520,6 +1520,17 @@ def other_projects():
     return render_template("other_projects.html", title="Other projects")
 
 
+@app.route("/literature_review", methods=["GET", "POST"])
+def literature_review():
+    """
+    "literature_review" is a static page
+
+    >>> literature_review()
+    """
+    logger.info("[trace]")
+    return render_template("literature_review.html", title="Literature Review")
+
+
 @app.route("/user_documentation", methods=["GET", "POST"])
 def user_documentation():
     """

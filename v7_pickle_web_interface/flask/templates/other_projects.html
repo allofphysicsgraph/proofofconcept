@@ -4,7 +4,8 @@
 
 <H1>Comparison of the Physics Derivation Graph with other Physics projects</H1>
 <P>
-
+ A survey of software related to the Physics Derivation Graph.
+ For a literature review, see <a href="{{ url_for('literature_review') }}">this page</a>.
   <div id="toc_container">
   <p class="toc_title">Contents</p>
   <OL class="toc_list">
@@ -209,75 +210,67 @@ The number of levels can vary. For example, the <a href="http://hyperphysics.phy
     <B>And the strangeness will all prove to be connected, and make sense</B>.
   </blockquote>
 
-<H1>Math-oriented projects</H1>
 
 
-
-Much influence after 1994 is likely based on the QEC manifesto, so that is useful to read.
-
-<div id="toc_container">
-<p class="toc_title">Contents</p>
-<OL class="toc_list">
-  <LI><a href="#metamath">MetaMath</a></LI>
-  <LI><a href="#mathlingua">mathLingua</a></LI>
-</OL>
-
-<UL>
-  <LI>
-</UL>
-
-<H4><a name=""></a></H4>
+<H4><a name="OpenMath">OpenMath</a></H4>
 <P>
-
-OpenMath
-https://en.wikipedia.org/wiki/OpenMath
-https://github.com/OpenMath
+https://en.wikipedia.org/wiki/OpenMath<BR>
+https://github.com/OpenMath<BR>
 https://www.openmath.org/
 
 
 
-<H4><a name=""></a></H4>
+<H4><a name="MathML">MathML</a></H4>
 <P>
-MathML
-Presentation MathML (layout only) and Content MathML (semantics)
+Presentation MathML (layout only) and Content MathML (semantics)<BR>
 https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics
 
-
-
-<H4><a name=""></a></H4>
+<H4><a name="omdoc">omdoc</a></H4>
 <P>
-LatexML converts to Presentation MathML, not Content MathML
-https://dlmf.nist.gov/LaTeXML/
+https://en.wikipedia.org/wiki/OMDoc<BR>
+http://www.omdoc.org/
+
+Also, https://github.com/OMdoc/OMDoc/wiki/PhysML<BR>
+PhysML is distinct from http://sciencewise.info/ in that ScienceWise
+is about linking specific terms to a common database, whereas PhysML
+is for identifying categories of content.
+
+
+<blockquote>"Both MathML and OpenMath address mathematical formulas in isolation,
+whereas OMDoc allows to express the structure of mathematical documents,
+for example the relation between definitions, theorems and proofs."
+</blockquote>
+(source: <a href="https://pdfs.semanticscholar.org/a91a/f3fa64e1296de470206f375a29ddc1c7b54d.pdf">"Extracting Mathematical Semantics from LATEX Documents"</a>)
+
+
+
+
+<H4><a name="LatexML">LatexML</a></H4>
+<P>
+LatexML converts to Presentation MathML, not Content MathML<BR>
+https://dlmf.nist.gov/LaTeXML/<BR>
 https://github.com/brucemiller/LaTeXML
 
 
-
-"Both MathML and OpenMath address mathematical formulas in isolation, whereas OMDoc allows to express the structure of mathematical documents, for example the relation between definitions, theorems and proofs." (source: <a href="https://pdfs.semanticscholar.org/a91a/f3fa64e1296de470206f375a29ddc1c7b54d.pdf">"Extracting Mathematical Semantics from LATEX Documents"</a>)
-https://en.wikipedia.org/wiki/OMDoc
-http://www.omdoc.org/
-
-<H4><a name=""></a></H4>
 <P>
-Formal Mathematical Language
+LaTeXML 2012 - A Year of LaTeXML<BR>
+D. Ginev and B. R. Miller, 2014<BR>
+https://arxiv.org/abs/1404.6549
+
+<P>
+Strategies for Parallel Markup<BR>
+B. R. Miller, 2015<BR>
+https://arxiv.org/abs/1507.00524
+
+
+
+
+
+<H4><a name="Formal Mathematical Language">Formal Mathematical Language</a></H4>
+<P>
 https://www.mat.univie.ac.at/~neum/FMathL.html
 
 
-<H4><a name=""></a></H4>
-<P>
-"The QED Manifesto after Two Decades -- Version 2.0" by Weiss (2016)<BR>
-  <a href="https://pdfs.semanticscholar.org/6139/579ab589c62397ef4ba6728da42f519c9b8c.pdf">source</a><BR>
-  Describes "Mathropolis" and a "mathematical content markup language"
-A non-CAS based metalanguage is attempted in "The QED Manifesto after Two Decades -- Version 2.0"
-The paper discusses Mathropolis, which is intended to optimize for readability over formality.
-The paper describes a "mathematical content markup language" and provides an example.
-
-
-<H4><a name=""></a></H4>
-<P>
-"Semantic Enrichment of Mathematics via tooltips"
-Moore, 2015
-https://tug.org/tug2015/preprints/moore-mathsem-cicm2015-v7.pdf
-"mathsem" source code not found online
 
 
 <H4><a name="polymath">PolyMath</a></H4>

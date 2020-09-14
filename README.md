@@ -32,6 +32,7 @@ A surprising outcome of this work has been the enumeration of [inference rules u
                -v`pwd`/logs/:/home/appuser/app/logs/ \
                --publish 5000:5000 flask_ub
 
+See [developer documentation](https://derivationmap.net/developer_documentation?referrer=github_README) after reading the [user documentation](https://derivationmap.net/user_documentation)
 
 # a small derivation
 
