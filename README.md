@@ -2,9 +2,14 @@
 This repo is the source code for the website https://derivationmap.net/
 
 The Physics Derivation Graph is a project focused on the following:
-* Claim: a finite static directed graph exists which describes all of mathematical physics. 
+* Claim: a finite static directed graph exists which describes all of mathematical Physics. 
 * Claim: the graph representation is machine parsable
-* Claim: this graph can be checked by a computer algebra system
+* Claim: validity of derivation steps in the graph can be checked by a computer algebra system
+
+Status as of Sept 2020: project author believes claim 1 and 2.
+It is not clear to the project author that current computer algebra systems are capable of validating all of mathematical Physics.
+
+A surprising outcome of this work has been the enumeration of [inference rules used in mathematical Physics](https://derivationmap.net/user_documentation#inference%20rules).
 
 [![Join the chat at https://gitter.im/allofphysicsgraph/autoproof](https://badges.gitter.im/allofphysicsgraph/autoproof.svg)](https://gitter.im/allofphysicsgraph/autoproof?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
