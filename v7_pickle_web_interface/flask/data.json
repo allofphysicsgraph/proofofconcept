@@ -10548,7 +10548,7 @@
         },
         "7939947931": {
             "latex": "KE_2",
-            "AST": "Symbol('pdg4929')",
+            "AST": "Symbol('pdg1352')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10556,7 +10556,7 @@
         },
         "5803210729": {
             "latex": "PE_2",
-            "AST": "Symbol('pdg4930')",
+            "AST": "Symbol('pdg8849')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10564,7 +10564,7 @@
         },
         "4213426349": {
             "latex": "E_1",
-            "AST": "Symbol('pdg4931')",
+            "AST": "Symbol('pdg5579')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10572,7 +10572,7 @@
         },
         "1092872200": {
             "latex": "KE_1",
-            "AST": "Symbol('pdg4929')",
+            "AST": "Symbol('pdg1955')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10580,7 +10580,7 @@
         },
         "8061701434": {
             "latex": "PE_1",
-            "AST": "Symbol('pdg4930')",
+            "AST": "Symbol('pdg4093')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10588,7 +10588,7 @@
         },
         "6838659900": {
             "latex": "KE_2",
-            "AST": "Symbol('pdg4929')",
+            "AST": "Symbol('pdg1352')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10604,7 +10604,7 @@
         },
         "6964468708": {
             "latex": "KE_1",
-            "AST": "Symbol('pdg4929')",
+            "AST": "Symbol('pdg1955')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10612,7 +10612,7 @@
         },
         "3105350101": {
             "latex": "v_1",
-            "AST": "Symbol('pdg1452')",
+            "AST": "Symbol('pdg2473')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10620,7 +10620,7 @@
         },
         "5239755033": {
             "latex": "v_1",
-            "AST": "Symbol('pdg1452')",
+            "AST": "Symbol('pdg2473')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10628,7 +10628,7 @@
         },
         "4319470443": {
             "latex": "v_2",
-            "AST": "Symbol('pdg1464')",
+            "AST": "Symbol('pdg4770')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10636,7 +10636,7 @@
         },
         "4522137851": {
             "latex": "PE_2",
-            "AST": "Symbol('pdg4930')",
+            "AST": "Symbol('pdg8849')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10644,7 +10644,7 @@
         },
         "4755369593": {
             "latex": "x_2",
-            "AST": "Symbol('pdg4037')",
+            "AST": "Symbol('pdg5467')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10652,7 +10652,7 @@
         },
         "6749533119": {
             "latex": "PE_1",
-            "AST": "Symbol('pdg4930')",
+            "AST": "Symbol('pdg4093')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10844,7 +10844,7 @@
         },
         "8020058613": {
             "latex": "r",
-            "AST": "Symbol('pdg3236')",
+            "AST": "Symbol('pdg2530')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
@@ -10860,7 +10860,7 @@
         },
         "9933742680": {
             "latex": "r_{\\rm Schwarzschild}",
-            "AST": "Symbol('pdg2530')",
+            "AST": "Symbol('pdg4518')",
             "name": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
