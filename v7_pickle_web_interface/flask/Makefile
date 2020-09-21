@@ -107,13 +107,14 @@ flake8:
 black:
 	black common_lib.py
 	black compute.py
-	black config.py
+	#black config.py
 	black controller.py
-	black convert_v3_csv_infrules_to_dict.py
+	#black convert_v3_csv_infrules_to_dict.py
 	black validate_steps_sympy.py
 	black validate_dimensions_sympy.py
 	black latex_to_sympy.py
-	black wsgi.py
+	#black wsgi.py
+	black inference_rules.py
 
 pylint:
 	pylint $(FILE_NAME)
