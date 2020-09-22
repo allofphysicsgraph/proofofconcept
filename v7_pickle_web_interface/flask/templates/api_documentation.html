@@ -7,7 +7,7 @@ $ cat controller.py | grep route | sed 's/@app\.route("\///g' | sed 's/", method
 -->
 <P>
   All API endpoints are currently read-only.
-  Enabling PUT to upload new content is a feasible feature awaiting someone to ask for it. 
+  Enabling PUT to upload new content is a feasible feature awaiting someone to ask for it.
 
 <H3>GET https://derivationmap.net/api/v1/resources/derivations/all</H3>
 <P>
@@ -45,11 +45,11 @@ Example: https://derivationmap.net/api/v1/resources/expressions?global_id=696446
 
 <H3>GET https://derivationmap.net/api/v1/resources/infrules/all</H3>
 
-Returns JSON file of all inference rules
+Returns JSON file of all inference rules, including all fields
 
 <H3>GET https://derivationmap.net/api/v1/resources/infrules/list</H3>
 <P>
-  Not working (?)
+  Returns JSON file of all inference rule names
 <!--Returns JSON file listing every inference rule ID-->
 
 <H3>GET https://derivationmap.net/api/v1/resources/infrules</H3>

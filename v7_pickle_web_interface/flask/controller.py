@@ -1168,7 +1168,7 @@ def api_list_infrules():
     """
     logger.info("[trace]")
     dat = clib.read_db(path_to_db)
-    return jsonify(dat["inference rules"].keys())
+    return jsonify(list(dat["inference rules"].keys()))
 
 
 @app.route("/api/v1/resources/infrules", methods=["GET"])
