@@ -17,7 +17,23 @@ services:
      - SECRET_KEY=${SECRET_KEY}
 # https://docs.gunicorn.org/en/stable/settings.html
 # https://pythonspeed.com/articles/gunicorn-in-docker/
-    command: gunicorn -c gunicorn.config.py wsgi:app
+    command: >
+      gunicorn
+      --reload
+      --bind 0.0.0.0:5000
+      --forwarded-allow-ips="*"
+      --log-level debug
+      wsgi:app
+      --capture-output 
+      --log-file=logs/gunicorn_logs.log
+      --access-logformat='{"ip":"%({X-Forwarded-For}i)s", "reqtime":"%(L)s", "uname":"%(u)s", "date":"%(t)s", "statline":"%(r)s", "stat":"%(s)s", "resplen":"%(b)s", "ref":"%(f)s", "ua":"%(a)s"}'
+      --access-logfile=logs/gunicorn_access.log
+      --error-logfile=logs/gunicorn_error.log
+      --worker-tmp-dir /dev/shm
+      --workers=2 
+      --threads=4 
+      --worker-class=gthread 
+#      --enable-stdio-inheritance
 # using "ports" makes flask/gunicorn accessible without going through nginx
     expose:
       - 5000
