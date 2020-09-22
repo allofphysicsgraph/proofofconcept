@@ -1,6 +1,7 @@
 http://derivationmap.net/login
 http://derivationmap.net/logout
 http://derivationmap.net/profile/
+http://derivationmap.net/api_documentation
 http://derivationmap.net/api/v1/resources/derivations/all
 http://derivationmap.net/api/v1/resources/derivations/list
 http://derivationmap.net/api/v1/resources/derivations

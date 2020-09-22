@@ -1059,6 +1059,7 @@ def api_all_derivations():
     return the entire "derivations" dict
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(dat["derivations"])
 
@@ -1069,6 +1070,7 @@ def api_list_derivations():
     list derivation names
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(list(dat["derivations"].keys()))
 
@@ -1083,6 +1085,7 @@ def api_read_derivation_by_name():
     https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     if "name" in request.args:
         name = str(request.args["name"])
@@ -1104,6 +1107,7 @@ def api_all_expressions():
     return the entire "expressions" dict
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(dat["expressions"])
 
@@ -1114,6 +1118,7 @@ def api_list_expressions():
     list the expression global IDs
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(list(dat["expressions"].keys()))
 
@@ -1128,6 +1133,7 @@ def api_read_expression_by_id():
     https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     if "global_id" in request.args:
         global_id = str(request.args["global_id"])
@@ -1149,6 +1155,7 @@ def api_all_infrules():
     /api/v1/resources/infrules/all
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(dat["inference rules"])
 
@@ -1159,6 +1166,7 @@ def api_list_infrules():
     /api/v1/resources/infrules/list
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(dat["inference rules"].keys())
 
@@ -1186,6 +1194,7 @@ def api_all_local_to_global():
     /api/v1/resources/local_to_global/all
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(dat["expr local to global"])
 
@@ -1196,6 +1205,7 @@ def api_list_local():
     /api/v1/resources/local_to_global/list
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(list(dat["expr local to global"].keys()))
 
@@ -1206,6 +1216,7 @@ def api_local_to_global():
     /api/v1/resources/local_to_global?local_id=8837284
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     if "local_id" in request.args:
         local_id = str(request.args["local_id"])
@@ -1223,6 +1234,7 @@ def api_all_symbols():
     /api/v1/resources/symbols/all
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(dat["symbols"])
 
@@ -1233,6 +1245,7 @@ def api_list_symbols():
     /api/v1/resources/symbols/list
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(list(dat["symbols"].keys()))
 
@@ -1243,6 +1256,7 @@ def api_symbols_by_name():
     /api/v1/resources/symbols?symbol_id=1223
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     if "symbol_id" in request.args:
         symbol_id = str(request.args["symbol_id"])
@@ -1260,6 +1274,7 @@ def api_all_operators():
     /api/v1/resources/operators/all
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(dat["symbols"])
 
@@ -1270,6 +1285,7 @@ def api_list_operators():
     /api/v1/resources/operators/list
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     return jsonify(list(dat["operators"].keys()))
 
@@ -1280,6 +1296,7 @@ def api_operators_by_name():
     /api/v1/resources/operators?operator_id=equals
     >>>
     """
+    logger.info("[trace]")
     dat = clib.read_db(path_to_db)
     if "operator_id" in request.args:
         operator_id = str(request.args["operator_id"])
@@ -1289,6 +1306,18 @@ def api_operators_by_name():
         return jsonify(dat["operators"][operator_id])
     else:
         return "Error: operator_id " + operator_id + " not found see symbols/list"
+
+@app.route("/api_documentation", methods=["GET", "POST"])
+def api_documentation():
+    """
+    a static page
+
+    >>> api_documentation()
+    """
+    logger.info("[trace]")
+    return render_template(
+        "api_documentation.html", title="API Documentation"
+    )
 
 
 @app.route("/index", methods=["GET", "POST"])

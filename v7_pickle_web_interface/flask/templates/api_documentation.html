@@ -1,0 +1,115 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<!--
+To get the list of API endpoints, I ran
+$ cat controller.py | grep route | sed 's/@app\.route("\///g' | sed 's/", method.*//g'
+-->
+<P>
+  All API endpoints are currently read-only.
+  Enabling PUT to upload new content is a feasible feature awaiting someone to ask for it. 
+
+<H3>GET https://derivationmap.net/api/v1/resources/derivations/all</H3>
+<P>
+Returns JSON file of all derivations, including steps and expressions and inference rules.
+
+<H3>GET https://derivationmap.net/api/v1/resources/derivations/list</H3>
+<P>
+Returns JSON file listing every derivation ID
+
+<H3>GET https://derivationmap.net/api/v1/resources/derivations</H3>
+<P>
+Parameter: name<BR>
+  numeric ID of derivation
+<P>
+Returns JSON file with one derivation, including steps and expressions and inference rules.
+<P>
+Example: https://derivationmap.net/api/v1/resources/derivations?name=000007
+
+<H3>GET https://derivationmap.net/api/v1/resources/expressions/all</H3>
+
+Returns JSON file of all expressions, including all fields (e.g., AST, author, latex)
+
+<H3>GET https://derivationmap.net/api/v1/resources/expressions/list</H3>
+<P>
+Returns JSON file listing every (global) expression IDs
+
+<H3>GET https://derivationmap.net/api/v1/resources/expressions</H3>
+<P>
+Parameter: global_id<BR>
+  global ID of expression
+<P>
+Returns JSON file with one expression, including all fields
+<P>
+Example: https://derivationmap.net/api/v1/resources/expressions?global_id=6964468708
+
+<H3>GET https://derivationmap.net/api/v1/resources/infrules/all</H3>
+
+Returns JSON file of all inference rules
+
+<H3>GET https://derivationmap.net/api/v1/resources/infrules/list</H3>
+<P>
+  Not working (?)
+<!--Returns JSON file listing every inference rule ID-->
+
+<H3>GET https://derivationmap.net/api/v1/resources/infrules</H3>
+<P>
+Parameter: name<BR>
+  inference rule name
+<P>
+Returns JSON file with one inference rule, including all fields
+<P>
+Example: https://derivationmap.net/api/v1/resources/infrules?name=apply%20operator%20to%20bra
+
+<H3>GET https://derivationmap.net/api/v1/resources/local_to_global/all</H3>
+<P>
+Returns JSON file of all (local expression ID):(global expression ID) pairs
+
+<H3>GET https://derivationmap.net/api/v1/resources/local_to_global/list</H3>
+<P>
+Returns JSON file listing every local expression ID
+
+<H3>GET https://derivationmap.net/api/v1/resources/local_to_global</H3>
+<P>
+Parameter: local_id<BR>
+  local expression ID
+<P>
+Returns string with one global expression ID
+<P>
+Example: https://derivationmap.net/api/v1/resources/local_to_global?local_id=0021030
+
+<H3>GET https://derivationmap.net/api/v1/resources/symbols/all</H3>
+
+Returns JSON file of all symbols
+
+<H3>GET https://derivationmap.net/api/v1/resources/symbols/list</H3>
+<P>
+Returns JSON file listing every symbol ID
+
+<H3>GET https://derivationmap.net/api/v1/resources/symbols</H3>
+<P>
+Parameter: symbol_id<BR>
+  symbol ID
+<P>
+Returns JSON file with all fields for a given symbol
+<P>
+Example: https://derivationmap.net/api/v1/resources/symbols?symbol_id=2321
+
+<H3>GET https://derivationmap.net/api/v1/resources/operators/all</H3>
+
+Returns JSON file of all operators
+
+<H3>GET https://derivationmap.net/api/v1/resources/operators/list</H3>
+<P>
+Returns JSON file listing every operator ID
+
+<H3>GET https://derivationmap.net/api/v1/resources/operators</H3>
+<P>
+Parameter: operator_id<BR>
+  operator ID
+<P>
+Returns JSON file with all fields for a given operator
+<P>
+Example: https://derivationmap.net/api/v1/resources/operators?operator_id=addition
+
+{% endblock %}
