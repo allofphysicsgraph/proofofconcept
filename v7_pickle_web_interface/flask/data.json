@@ -12483,7 +12483,7 @@
             "notes": ""
         },
         "7575859312": {
-            "AST": "",
+            "AST": "Symbol('nabla')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E}) = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})",
@@ -13724,7 +13724,7 @@
         },
         "3219318145": {
             "latex": "\\frac{365 {\\rm days}}{1 {\\rm year}} \\frac{24 {\\rm hours}}{1 {\\rm day}} \\frac{60 {\\rm minutes}}{1 {\\rm hour}} \\frac{60 {\\rm seconds}}{1 {\\rm minute}}",
-            "AST": "",
+            "AST": "Integer(365)",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
