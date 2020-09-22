@@ -1312,8 +1312,9 @@ def index():
     logger.info("[trace page end " + trace_id + "]")
     return render_template("index.html", json_for_d3js=d3js_json_filename)
 
-@app.route('/robots.txt')
-@app.route('/sitemap.txt')
+
+@app.route("/robots.txt")
+@app.route("/sitemap.txt")
 def static_from_root():
     """
     https://stackoverflow.com/a/14625619/1164295
