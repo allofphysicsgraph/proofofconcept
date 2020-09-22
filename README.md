@@ -11,7 +11,7 @@ It is not clear to the project author that current computer algebra systems are 
 
 A surprising outcome of this work has been the enumeration of [inference rules used in mathematical Physics](https://derivationmap.net/user_documentation#inference%20rules).
 
-[![Join the chat at https://gitter.im/allofphysicsgraph/autoproof](https://badges.gitter.im/allofphysicsgraph/autoproof.svg)](https://gitter.im/allofphysicsgraph/autoproof?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/allofphysicsgraph/Lobby](https://badges.gitter.im/allofphysicsgraph/Lobby.svg)](https://gitter.im/allofphysicsgraph/Lobby)
 
 # Licensing
 
