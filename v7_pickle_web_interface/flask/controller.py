@@ -50,6 +50,7 @@ from flask import (
     render_template,
     request,
     url_for,
+    send_from_directory,
     flash,
     jsonify,
     Response,
@@ -1310,6 +1311,14 @@ def index():
 
     logger.info("[trace page end " + trace_id + "]")
     return render_template("index.html", json_for_d3js=d3js_json_filename)
+
+@app.route('/robots.txt')
+@app.route('/sitemap.txt')
+def static_from_root():
+    """
+    https://stackoverflow.com/a/14625619/1164295
+    """
+    return send_from_directory(app.static_folder, request.path[1:])
 
 
 @app.route("/monitoring", methods=["GET", "POST"])
