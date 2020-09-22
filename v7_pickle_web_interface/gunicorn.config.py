@@ -22,29 +22,31 @@ bind='0.0.0.0:5000'
 # Front-end’s IPs from which allowed to handle set secure headers. (comma separate).
 # Set to * to disable checking of Front-end IPs (useful for setups where you don’t know in advance the IP address of Front-end, but you still trust the environment).
 #--forwarded-allow-ips="*"
-forwarded-allow-ips="*"
+forwarded_allow_ips="*"
 
 # The granularity of Error log outputs.
 #--log-level debug
-log-level="debug"
+loglevel="debug"
 
 #--capture-output
-capture-output = False
+capture_output = False
 
 #--log-file=logs/gunicorn_logs.log
-log-file='logs/gunicorn_logs.log'
+errorlog='logs/gunicorn_logs.log'
 
 #--access-logformat='{"ip":"%({X-Forwarded-For}i)s", "reqtime":"%(L)s", "uname":"%(u)s", "date":"%(t)s", "statline":"%(r)s", "stat":"%(s)s", "resplen":"%(b)s", "ref":"%(f)s", "ua":"%(a)s"}'
 access_log_format = '{"ip":"%({X-Forwarded-For}i)s", "reqtime":"%(L)s", "uname":"%(u)s", "date":"%(t)s", "statline":"%(r)s", "stat":"%(s)s", "resplen":"%(b)s", "ref":"%(f)s", "ua":"%(a)s"}'
 
 #--access-logfile=logs/gunicorn_access.log
-access-logfile = "logs/gunicorn_access.log"
+accesslog = "logs/gunicorn_access.log"
 
+# The Error log file to write to.
 #--error-logfile=logs/gunicorn_error.log
-error-logfile="logs/gunicorn_error.log"
+errorlog="logs/gunicorn_error.log"
 
+# A directory to use for the worker heartbeat temporary file.
 #--worker-tmp-dir /dev/shm
-worker-tmp-dir = "/dev/shm"
+worker_tmp_dir = "/dev/shm"
 
 # Worker processes
 #
@@ -60,8 +62,9 @@ workers = 2
 #--threads=4
 threads=4
 
+# The type of workers to use.
 #--worker-class=gthread
-worker-class="gthread"
+worker_class="gthread"
 
 # NOT IN USE:
 #      --enable-stdio-inheritance
