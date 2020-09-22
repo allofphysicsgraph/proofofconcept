@@ -8,7 +8,10 @@
 <P>
   This page provides background context for design decisions associated with the Physics Derivation Graph (PDG).
   Contributions to the project are welcome; see <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/CONTRIBUTING.md">CONTRIBUTING.md</a> on how to get started.
-  The PDG is covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, so if you don't like a choice that was made you are welcome to <a href="https://github.com/allofphysicsgraph/proofofconcept/fork">fork the PDG project</a>.
+  The Physics Derivation Graph is covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, so if you don't like a choice that was made you are welcome to <a href="https://github.com/allofphysicsgraph/proofofconcept/fork">fork the Physics Derivation Graph project</a>.
+
+<P>
+  Looking for the API? See <a href="{{ url_for('api_documentation') }}?referrer=developer_documentation">API documentation</a>.
 
 <div id="toc_container">
 <p class="toc_title">Contents</p>
@@ -74,7 +77,7 @@ cat developer_documentation.html |\
 </div>
 
 
-<H2><a name="indices">Numeric indices are the core enabling concept for the PDG</a></H2>
+<H2><a name="indices">Numeric indices are the core enabling concept for the Physics Derivation Graph</a></H2>
 <P>
   The visualization of a graph with expressions and inference rules as nodes relies on each node having a distinct index.
   Each expression, symbol, and inference rule appears only once in the database.
@@ -95,7 +98,7 @@ cat developer_documentation.html |\
 <HR>
 <P>&nbsp;</P>
 
-<H2><a name="data structure">Data structure used in the PDG</a></H2>
+<H2><a name="data structure">Data structure used in the Physics Derivation Graph</a></H2>
 <P>
   The Physics Derivation Graph is currently stored in a single JSON file. <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/data.json">The JSON file</a> is read into Python as a dictionary.
 </P>
@@ -604,7 +607,7 @@ step 1 | has feed | 2
 step 1 | has output | 2*y = 2*m*x + 2*b
 </pre>
   While it's easy to convert, I am unaware of the advantages of using RDF.
-  The PDG is oriented towards visualization.
+  The Physics Derivation Graph is oriented towards visualization.
   SPARQL is the query language for RDF. I don't see much use for querying the graph.
   Using RDF doesn't help with using a computer algebra system for validation of the step.
 </P>

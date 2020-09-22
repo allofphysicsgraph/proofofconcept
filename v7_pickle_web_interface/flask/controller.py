@@ -1307,6 +1307,7 @@ def api_operators_by_name():
     else:
         return "Error: operator_id " + operator_id + " not found see symbols/list"
 
+
 @app.route("/api_documentation", methods=["GET", "POST"])
 def api_documentation():
     """
@@ -1315,9 +1316,7 @@ def api_documentation():
     >>> api_documentation()
     """
     logger.info("[trace]")
-    return render_template(
-        "api_documentation.html", title="API Documentation"
-    )
+    return render_template("api_documentation.html", title="API Documentation")
 
 
 @app.route("/index", methods=["GET", "POST"])
