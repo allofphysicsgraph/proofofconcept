@@ -149,6 +149,7 @@ app.config["GOOGLE_LOGIN_REDIRECT_SCHEME"] = "https"
 
 # https://flask.palletsprojects.com/en/1.1.x/tutorial/views/
 import pdg_api
+
 app.register_blueprint(pdg_api.bp)
 
 
@@ -1070,7 +1071,6 @@ def profile():
     )
 
 
-
 @app.route("/index", methods=["GET", "POST"])
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -1092,6 +1092,19 @@ def index():
     logger.info("[trace page end " + trace_id + "]")
     return render_template("index.html", json_for_d3js=d3js_json_filename)
 
+
+@app.route("/search", methods=["GET", "POST"])
+def search_redirect_to_google():
+    """
+    rather than search local content, rely on Google's index
+    """
+    logger.info("[trace] search_redirect_to_google")
+    logger.debug(
+        "request.url: " + str(request.url)
+    )  # https://stackoverflow.com/a/46176337/1164295
+    logger.debug("search term is "+str(request.args.get('search')))
+
+    return redirect("https://www.google.com/search?&q=site%3Aderivationmap.net+"+str(request.args.get('search')))
 
 @app.route("/robots.txt")
 @app.route("/sitemap.txt")
