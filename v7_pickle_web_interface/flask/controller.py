@@ -682,14 +682,27 @@ def set_secure_headers(response):
 #    return r
 
 
-# @app.errorhandler(404)
-# def page_not_found(e):
+@app.errorhandler(404)
+def page_not_found(er):
+    """
+   https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+   404 = page not found
+   """
+    logger.info("[trace] page_not_found")
+    logger.debug(er)
+    logger.debug(
+        "request.url: " + str(request.url)
+    )  # https://stackoverflow.com/a/46176337/1164295
+
+    flash("error 404" + str(er))
+    return redirect(url_for("index"))
+
+
+# @app.errorhandler(500)
+# def server_error():
+#    """Internal server error.
+#    TODO: for error=500, send an email to the site administrator
 #    """
-#    https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
-#    """
-#    logger.info("[trace] page_not_found")
-#    logger.debug(e)
-#    return redirect(url_for("index"))
 
 
 @app.before_request
