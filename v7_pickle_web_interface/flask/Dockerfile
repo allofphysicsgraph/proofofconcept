@@ -58,6 +58,9 @@ RUN npm install mathjax@3
 #RUN git clone https://github.com/fontforge/libspiro.git
 #RUN git clone https://github.com/fontforge/libuninameslist.git
 
+# https://stackoverflow.com/a/63457606/1164295
+RUN pip3 install --upgrade pip
+
 RUN pip3 install -r /tmp/requirements.txt
 
 RUN useradd --create-home appuser
