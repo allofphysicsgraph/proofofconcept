@@ -285,3 +285,28 @@ def api_documentation():
     """
     current_app.logger.info("[trace]")
     return render_template("api_documentation.html", title="API Documentation")
+
+
+@bp.route("/v1/derivations_that_contain_expr_global_id", methods=["GET", "POST"])
+def what_derivations_contain_expr_global_id(expr_global_id):
+    """
+    >>> what_derivations_contain_expr_global_id()
+    """
+    current_app.logger.info("[trace]")
+    dat = clib.read_db(path_to_db)
+    list_of_derivations_containing_expr_global_id = []
+    if "expr_global_id" in request.args:
+        expr_global_id = str(request.args["expr_global_id"])
+    else:
+        return "Error: No expr_global_id field provided. Please specify a expr_global_id."
+    if expr_global_id in dat["expressions"].keys():
+        for deriv_id, deriv_dict in dat['derivations'].items():
+            for step_id, step_dict in deriv_dict['steps'].items():
+                for conn in ['feeds', 'inputs', 'outputs']:
+                    for expr_local_id in step_dict[conn]:
+                        if (expr_global_id == dat["expr local to global"][expr_local_id]):
+                            list_of_derivations_containing_expr_global_id.append(deriv_id)
+    else:
+        return "Error: expr_global_id not in expressions."
+
+    return jsonify(list_of_derivations_containing_expr_global_id)
