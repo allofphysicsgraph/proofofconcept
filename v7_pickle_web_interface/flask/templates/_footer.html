@@ -40,6 +40,7 @@
      </td>
      <td>
        <form method="post" action="search">
+         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
       <!-- this "action" is not consisten with the MVC paradigm since control is not
       passed back to controller.py.
       The reason for using action instead of a form class in controller.py
