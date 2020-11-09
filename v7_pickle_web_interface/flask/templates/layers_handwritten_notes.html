@@ -1,7 +1,7 @@
 <!-- unlike all other pages, this page does not inherit from _base.html
      That's because the "sign in" and "navigation" links are not shown at the top of the page -->
 <!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
-<html>
+<HTML lang='en'>
   <head>
     <title>Physics Derivation Graph: {{ title }}</title>
 
@@ -24,18 +24,18 @@
       <center>
         <table border="1" width="80%">
           <tr>
-            <td valign="top"><P>&nbsp;</P><P><I><B>Explanation</B></I>: manually written down contemporaneous with the lecture delivery.
+            <td valign="top"><P>&nbsp;</P><P><em><strong>Explanation</strong></em>: manually written down contemporaneous with the lecture delivery.
               The notes might not capture everything that was said depending on speed of delivery and bandwidth for transcription.
               <P>
-              <I>Who does the work</I>: student or researcher
+              <em>Who does the work</em>: student or researcher
               <P>
-              <I>Motive for doing this work</I>: to facilitate recall of the discussion.
+              <em>Motive for doing this work</em>: to facilitate recall of the discussion.
             </td>
             <td width="300">
               Navigation:
               <OL>
                 <LI><a href="{{url_for('roadmap', which_layer="lecture")}}">lecture video</a></LI>
-                <LI><B>hand-written notes</B></LI>
+                <LI><strong>hand-written notes</strong></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="latex")}}">Latex document</a></LI>
                 <LI>Content tags
                   <UL>
@@ -53,7 +53,7 @@
                 <LI><a href="{{url_for('roadmap', which_layer="dimensional_validation")}}">validation of dimension</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
-              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR>
+              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR/>
             </td>
           </tr>
         </table>

@@ -85,7 +85,7 @@ function symbol_filter() {
             </select>
 <P>{{ edit_latex_webform.revised_text.label }}:
    {{ edit_latex_webform.revised_text(size=50, maxlength=300, id="edit_latex") }}
-   <small>max length = 300 characters</small><BR>
+   <small>max length = 300 characters</small><BR/>
 
    <input type="checkbox" id="display_edit_latex" checked="" onchange="convert('edit_latex','display_edit_latex', 'preview_edit_latex','output_edit_latex')">
    <small><label for="display_edit_latex">Display style</label></small>
@@ -166,7 +166,7 @@ function enable_category_radio2(enabled){
             </tr>
           {% endfor %}
           </table>
-          {{ new_symbol_form.symbol_latex.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_latex(id="symbol_latex") }}<BR>
+          {{ new_symbol_form.symbol_latex.label }}(<small><strong>Required</strong></small>): {{ new_symbol_form.symbol_latex(id="symbol_latex") }}<BR/>
           <input type="checkbox" id="display_symbol_latex" checked="" onchange="convert('symbol_latex','display_symbol_latex', 'preview_symbol_latex','output_symbol_latex')">
           <small><label for="display_symbol_latex">Display style</label></small>
 
@@ -176,11 +176,11 @@ function enable_category_radio2(enabled){
           <div id="output_symbol_latex"></div>
 
 
-          {{ new_symbol_form.symbol_name.label }}(<small><B>Required</B></small>): {{ new_symbol_form.symbol_name }}<BR>
-          {{ new_symbol_form.symbol_scope.label }}: {{ new_symbol_form.symbol_scope }}<BR>
-          {{ new_symbol_form.symbol_reference.label }}(<small><i>optional</i></small>): {{ new_symbol_form.symbol_reference }}<BR>
-          {{ new_symbol_form.symbol_value.label }}(<small><i>optional</i></small>): {{ new_symbol_form.symbol_value(size=50, maxlength=300, id="symbol_value", disabled="disabled", onchange="onChangeFunction();") }}<BR>
-          {{ new_symbol_form.symbol_units.label }}(<small><i>optional</i></small>): {{ new_symbol_form.symbol_units(size=50, maxlength=300, id="symbol_units", disabled="disabled", onchange="onChangeFunction();") }}<BR>
+          {{ new_symbol_form.symbol_name.label }}(<small><strong>Required</strong></small>): {{ new_symbol_form.symbol_name }}<BR/>
+          {{ new_symbol_form.symbol_scope.label }}: {{ new_symbol_form.symbol_scope }}<BR/>
+          {{ new_symbol_form.symbol_reference.label }}(<small><em>optional</em></small>): {{ new_symbol_form.symbol_reference }}<BR/>
+          {{ new_symbol_form.symbol_value.label }}(<small><em>optional</em></small>): {{ new_symbol_form.symbol_value(size=50, maxlength=300, id="symbol_value", disabled="disabled", onchange="onChangeFunction();") }}<BR/>
+          {{ new_symbol_form.symbol_units.label }}(<small><em>optional</em></small>): {{ new_symbol_form.symbol_units(size=50, maxlength=300, id="symbol_units", disabled="disabled", onchange="onChangeFunction();") }}<BR/>
 
           <!-- https://en.wikipedia.org/wiki/International_System_of_Quantities#Base_quantities -->
           <a href="https://www.ldeo.columbia.edu/~martins/hydro/case_studies/units_dimensions.html">dimensions</a>: 
@@ -233,7 +233,7 @@ function enable_category_radio2(enabled){
             {% endfor %}
           </select>
 
-          <BR>
+          <BR/>
           {{ new_symbol_form.symbol_radio_domain.label}}: {{ new_symbol_form.symbol_radio_domain }}
 
 

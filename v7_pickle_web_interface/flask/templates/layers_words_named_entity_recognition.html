@@ -1,7 +1,7 @@
 <!-- unlike all other pages, this page does not inherit from _base.html
      That's because the "sign in" and "navigation" links are not shown at the top of the page -->
 <!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
-<html>
+<HTML lang='en'>
   <head>
     <title>Physics Derivation Graph: {{ title }}</title>
 
@@ -24,12 +24,12 @@
       <center>
         <table border="1" width="80%">
           <tr>
-            <td valign="top"><P>&nbsp;</P><P><I><B>Explanation</B></I>: Identify relevant words and Physics-specific keywords in each sentence.
+            <td valign="top"><P>&nbsp;</P><P><em><strong>Explanation</strong></em>: Identify relevant words and Physics-specific keywords in each sentence.
               Optionally, link these keywords to <a href="http://sciencewise.info/">ScienceWise</a> database or Wikipedia entry.
-              <BR>Here the keywords are visually indicated using labeled boxes.
-                <P><I>Who does this work</I>: human content creator.<BR>
+              <BR/>Here the keywords are visually indicated using labeled boxes.
+                <P><em>Who does this work</em>: human content creator.<BR/>
                   A machine learning algorithm using natural language processing techniques (<a href="https://en.wikipedia.org/wiki/Named-entity_recognition">Named Entity Recognition</a> tailored to a given domain) could potentially do this work.
-                <P><I>Motive for doing this work</I>: linking words as concepts to provide clear definition of terms.
+                <P><em>Motive for doing this work</em>: linking words as concepts to provide clear definition of terms.
             </td>
             <td width="300">
               Navigation:
@@ -40,7 +40,7 @@
                 <LI>Content tags
                   <UL>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
-                    <LI><B>tagging words</B></LI>
+                    <LI><strong>tagging words</strong></LI>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expression semantics</a></LI>
                   </UL>
                 </LI>
@@ -53,7 +53,7 @@
                 <LI><a href="{{url_for('roadmap', which_layer="dimensional_validation")}}">validation of dimension</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
-              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR>
+              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR/>
             </td>
           </tr>
         </table>

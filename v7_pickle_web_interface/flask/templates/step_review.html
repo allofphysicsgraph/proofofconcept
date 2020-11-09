@@ -10,7 +10,7 @@
 </center>
 
 <P>
-  <I>Instructions</I>: review the step and review each Abstract Syntax Tree (one per expression). <BR>
+  <em>Instructions</em>: review the step and review each Abstract Syntax Tree (one per expression). <BR/>
     At the bottom of this page you can progress to the next page.
 
 <!-- https://stackoverflow.com/questions/28207761/where-does-flask-look-for-image-files -->
@@ -59,8 +59,8 @@
             {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['inputs'] %}
             <LI>
               <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
-              {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
-              \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+              {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR/>
+              \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR/>
                 \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
             </LI>
             {% endfor %}
@@ -71,8 +71,8 @@
           <OL>
             {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['feeds'] %}
              <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
-              {{ dat["expr local to global"][local_id] }}</a>: <BR>
-              \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+              {{ dat["expr local to global"][local_id] }}</a>: <BR/>
+              \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR/>
                 \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
              </LI>
             {% endfor %}
@@ -84,8 +84,8 @@
             {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['outputs'] %}
             <LI>
               <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
-              {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
-              \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+              {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR/>
+              \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR/>
                 \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
             </LI>
             {% endfor %}

@@ -6,7 +6,7 @@
           <div class="form-group">
             <div class="input-group">
               <P>
-                Current expression in SymPy:<BR>
+                Current expression in SymPy:<BR/>
 <pre>
 {{ dat["expressions"][ expr_global_id ]["AST"] }}
 </pre>
@@ -23,7 +23,7 @@
             </div>
             <input type="submit" name="submit_button" value="update expression sympy {{ expr_global_id }}">
             <P>
-              <I>Caveat</I>: altering the SymPy does not change the \(\rm\LaTeX\) expression.<BR>
+              <em>Caveat</em>: altering the SymPy does not change the \(\rm\LaTeX\) expression.<BR/>
                 <!--
                   If the \(\rm\LaTeX\) is wrong, use
                   <input type="submit" name="submit_button" value='modify this step'>

@@ -9,8 +9,8 @@
 <form method="post" action="" onsubmit="return checkForm(this);">
     <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
     {{ form.csrf_token }}
-  <P>Specify {{ form.name_of_derivation.label}}: {{ form.name_of_derivation(size=50, maxlength=300) }} <BR>
- <small>max length = 300 characters</small><BR>
+  <P>Specify {{ form.name_of_derivation.label}}: {{ form.name_of_derivation(size=50, maxlength=300) }} <BR/>
+ <small>max length = 300 characters</small><BR/>
 
 <!-- I was unable to make this input area have multiple lines :( 
      I tried
@@ -19,8 +19,8 @@
 { { form.notes(maxlength=300, rows=5, cols=52) }}
 https://stackoverflow.com/questions/4930747/how-to-specify-rows-and-columns-of-a-textarea-tag-using-wtforms
 -->
-  {{form.notes.label }}: {{ form.notes(size=100, maxlength=300) }}<BR>
-<small>(optional) max length = 300 characters</small><BR>
+  {{form.notes.label }}: {{ form.notes(size=100, maxlength=300) }}<BR/>
+<small>(optional) max length = 300 characters</small><BR/>
   <input type="submit" value="begin">
 </form>
 </fieldset>

@@ -73,8 +73,8 @@
         {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['inputs'] %}
         <LI>
           <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
-          {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
-          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR/>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR/>
           \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
         </LI>
         {% endfor %}
@@ -85,8 +85,8 @@
       <OL>
         {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['feeds'] %}
          <LI> <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
-          {{ dat["expr local to global"][local_id] }}</a>: <BR>
-          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          {{ dat["expr local to global"][local_id] }}</a>: <BR/>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR/>
           \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
          </LI>
         {% endfor %}
@@ -98,8 +98,8 @@
         {% for local_id in dat["derivations"][deriv_id]['steps'][step_id]['outputs'] %}
         <LI>
           <a href="{{ url_for('list_all_expressions')}}?referrer=_table_of_derivation_steps#{{ dat["expr local to global"][local_id] }}">
-          {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR>
-          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR>
+          {{ dat["expr local to global"][local_id] }}</a>; locally {{ local_id }}: <BR/>
+          \({{ dat["expressions"][ dat["expr local to global"][local_id]]['latex'] }}\)<BR/>
           \({{ latex_generated_by_sympy[ dat["expr local to global"][local_id] ] }}\)
         </LI>
         {% endfor %}
@@ -111,14 +111,14 @@
     <td>
       {% for expr_local_id in dat["derivations"][deriv_id]["steps"][step_id]["inputs"] + dat["derivations"][deriv_id]["steps"][step_id]["outputs"] %}
         {{ dat["expr local to global"][expr_local_id] }}:
-        {{ derivation_dimensions_validity_dict[ dat["expr local to global"][expr_local_id]  ] }}<BR>
+        {{ derivation_dimensions_validity_dict[ dat["expr local to global"][expr_local_id]  ] }}<BR/>
       {% endfor %}
     </td>
     <!-- unit check -->
     <td>
       {% for expr_local_id in dat["derivations"][deriv_id]["steps"][step_id]["inputs"] + dat["derivations"][deriv_id]["steps"][step_id]["outputs"] %}
         {{ dat["expr local to global"][expr_local_id] }}:
-        {{ derivation_units_validity_dict[  dat["expr local to global"][expr_local_id]   ] }}<BR>
+        {{ derivation_units_validity_dict[  dat["expr local to global"][expr_local_id]   ] }}<BR/>
       {% endfor %}
     </td>
     <!-- step notes -->
@@ -150,7 +150,7 @@
             <P>For the symbol {{ sympy_symbol }}, a
               <a href="{{ url_for('list_all_symbols') }}#add symbol">
                  new symbol entry
-              </a> is probably needed since no match is available. <BR>
+              </a> is probably needed since no match is available. <BR/>
               Or you can manually assign an existing symbol:
 
                   <select name="existing symbol for {{ sympy_symbol }}" class="selectpicker form-control">
@@ -215,7 +215,7 @@
   </form>
 </fieldset>
 {% else %}
-  <P>There are no unmatched symbols for this step when comparing SymPy and the PDG ASTs.<BR>
+  <P>There are no unmatched symbols for this step when comparing SymPy and the PDG ASTs.<BR/>
 If SymPy's analysis was incorrect or the PDG AST is incomplete, you can update the symbols per expression in the
 <a href="{{ url_for('list_all_expressions', referrer='modify_step') }}">list of all expressions</a>.
 {% endif %}
@@ -234,7 +234,7 @@ If SymPy's analysis was incorrect or the PDG AST is incomplete, you can update t
 
 
 <h2>Symbols used in this derivation</h2>
-See also <a href="{{ url_for('list_all_symbols') }}?referrer=navigation">all {{ dat['symbols']|length }} symbols</a><BR>
+See also <a href="{{ url_for('list_all_symbols') }}?referrer=navigation">all {{ dat['symbols']|length }} symbols</a><BR/>
             <table border="1" class="sortable">
               <tr>
                 <th>symbol ID</th>

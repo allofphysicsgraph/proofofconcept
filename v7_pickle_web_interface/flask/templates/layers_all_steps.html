@@ -1,7 +1,7 @@
 <!-- unlike all other pages, this page does not inherit from _base.html
      That's because the "sign in" and "navigation" links are not shown at the top of the page -->
 <!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
-<html>
+<HTML lang='en'>
   <head>
     <title>Physics Derivation Graph: {{ title }}</title>
 
@@ -26,10 +26,10 @@
           <tr>
             <td valign="top">
 			  <P>&nbsp;</P>
-              <P><I><B>Explanation</B></I>: often steps are skipped in conveying a derivation.
+              <P><em><strong>Explanation</strong></em>: often steps are skipped in conveying a derivation.
                 To facilitate formal validation, the implicit steps need to be documented.
-                <P><I>Who does this work</I>: human content creator
-                <P><I>Motive for doing this work</I>: clearer explanation of mathematical steps.
+                <P><em>Who does this work</em>: human content creator
+                <P><em>Motive for doing this work</em>: clearer explanation of mathematical steps.
                   Facilitates student learning and reproducibility in a research context.
             </td>
             <td width="300">
@@ -47,14 +47,14 @@
                 </LI>
                 <LI><a href="{{url_for('roadmap', which_layer="tag_all")}}">tags for sections and words and expressions</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="variables")}}">concepts to variables</a></LI>
-                <LI><B>all steps</B></LI>
+                <LI><strong>all steps</strong></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="numeric_id")}}">replace symbols with numeric ID</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="dimensional_validation")}}">validation of dimension</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
-              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR>
+              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR/>
             </td>
           </tr>
         </table>

@@ -79,7 +79,7 @@
             <P>For the symbol "{{ sympy_symbol }}", a
               <a href="{{ url_for('list_all_symbols') }}#add symbol">
                  new symbol entry
-              </a> is probably needed since no match is available. <BR>
+              </a> is probably needed since no match is available. <BR/>
               Or you can manually assign an existing symbol:
           {% else %}
             <P>candidates for {{ sympy_symbol }}:
@@ -134,7 +134,7 @@
   </form>
 </fieldset>
 {% else %}
-  <P>There are no Sympy symbols that lack PDG AST references. <BR>
+  <P>There are no Sympy symbols that lack PDG AST references. <BR/>
 If Sympy's analysis was incorrect or the PDG AST is incomplete, you can update the symbols per expression in the
 <a href="{{ url_for('list_all_expressions', referrer='modify_step') }}">list of all expressions</a>.
 {% endif %}
@@ -209,7 +209,7 @@ TODO - - not implemented
               <option value="{{ expr_local_id }}">{{ dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex'] }}</option>
               {% endfor %}
             </select>
-<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300, id="input_latex") }} <small>max length = 300 characters</small><BR>
+<P>{{ edit_expr_latex_webform.revised_text.label }}: {{ edit_expr_latex_webform.revised_text(size=50, maxlength=300, id="input_latex") }} <small>max length = 300 characters</small><BR/>
 
    <input type="checkbox" id="display_input_latex" checked="" onchange="convert('input_latex','display_input_latex', 'preview_input_latex','output_input_latex')">
    <small><label for="display_input_latex">Display style</label></small>
@@ -336,9 +336,9 @@ TODO - - not implemented
   <h3>change linear index for step</h3>
  </a>
  </legend>
-Current step index is {{ dat["derivations"][deriv_id]['steps'][step_id]["linear index"] }}.<BR>
+Current step index is {{ dat["derivations"][deriv_id]['steps'][step_id]["linear index"] }}.<BR/>
  Change step index to
-<!-- New linear index must be a rational number greater than zero and must not exist<BR> -->
+<!-- New linear index must be a rational number greater than zero and must not exist<BR/> -->
 <form method="post" action="">
 <!-- https://flask-wtf.readthedocs.io/en/v0.12/csrf.html -->
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />

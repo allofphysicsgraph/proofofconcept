@@ -1,7 +1,7 @@
 <!-- unlike all other pages, this page does not inherit from _base.html
      That's because the "sign in" and "navigation" links are not shown at the top of the page -->
 <!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
-<html>
+<HTML lang='en'>
   <head>
     <title>Physics Derivation Graph: {{ title }}</title>
 
@@ -24,13 +24,13 @@
       <center>
         <table border="1" width="80%">
           <tr>
-            <td valign="top"><P>&nbsp;</P><P><I><B>Explanation</B></I>: Content MathML using the command <pre><a href="https://dlmf.nist.gov/LaTeXML/">latexmlmath</a> --cmml=- "v=0"</pre>
+            <td valign="top"><P>&nbsp;</P><P><em><strong>Explanation</strong></em>: Content MathML using the command <pre><a href="https://dlmf.nist.gov/LaTeXML/">latexmlmath</a> --cmml=- "v=0"</pre>
               Not all of the nuances from each expression have been correctly translated in Content MathML. Some manual cleanup is required.
               <P>Because this page uses MathJax, the Presentation MathML is available for each expression by right-clicking on any rendered expression and selecting "Show Math As" and then "MathML code".
                 <P>
               MathJax has <a href="http://docs.mathjax.org/en/latest/input/mathml.html#content-mathml">an extension for generation of Content MathML</a> but it is not available for v3 of MathJax as of August 2020.
-              <P><I>Who does this work</I>: human using LatexML
-              <P><I>Motive for doing this work</I>: preparation for use with Computer Algebra System. Caveat: no CAS currently consumes Content MathML as input.
+              <P><em>Who does this work</em>: human using LatexML
+              <P><em>Motive for doing this work</em>: preparation for use with Computer Algebra System. Caveat: no CAS currently consumes Content MathML as input.
             </td>
             <td width="300">
               Navigation:
@@ -42,7 +42,7 @@
                   <UL>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_sections")}}">section document structure</a></LI>
                     <LI><a href="{{url_for('roadmap', which_layer="tag_words")}}">tagging words</a></LI>
-                    <LI><B>expression semantics</B></LI>
+                    <LI><strong>expression semantics</strong></LI>
                   </UL>
                 </LI>
                 <LI><a href="{{url_for('roadmap', which_layer="tag_all")}}">tags for sections and words and expressions</a></LI>
@@ -54,7 +54,7 @@
                 <LI><a href="{{url_for('roadmap', which_layer="dimensional_validation")}}">validation of dimension</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
-              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR>
+              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR/>
             </td>
           </tr>
         </table>

@@ -1,7 +1,7 @@
 <!-- unlike all other pages, this page does not inherit from _base.html
      That's because the "sign in" and "navigation" links are not shown at the top of the page -->
 <!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
-<html>
+<HTML lang='en'>
   <head>
     <title>Physics Derivation Graph: {{ title }}</title>
 
@@ -24,12 +24,12 @@
       <center>
         <table border="1" width="80%">
           <tr>
-            <td valign="top"><P>&nbsp;</P><P><I><B>Explanation</B></I>: While the tagging of content in a Latex document (e.g., <a href="{{url_for('roadmap', which_layer="tag_sections")}}">sections</a>, <a href="{{url_for('roadmap', which_layer="tag_words")}}">words</a>, <a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expressions</a>) can be useful for linking and searches,
+            <td valign="top"><P>&nbsp;</P><P><em><strong>Explanation</strong></em>: While the tagging of content in a Latex document (e.g., <a href="{{url_for('roadmap', which_layer="tag_sections")}}">sections</a>, <a href="{{url_for('roadmap', which_layer="tag_words")}}">words</a>, <a href="{{url_for('roadmap', which_layer="tag_expressions")}}">expressions</a>) can be useful for linking and searches,
               there are many implied steps in <a href="">the original Latex document</a> that are undocumented.
               The Physics Derivation Graph is a way to document all the implied steps and
               their associated inference rules.
-              <P><I>Who does the work</I>: manual entry using a webform.
-              <P><I>Motivation for the work</I>: clearer connectivity of derivation steps. Enables <a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a>.
+              <P><em>Who does the work</em>: manual entry using a webform.
+              <P><em>Motivation for the work</em>: clearer connectivity of derivation steps. Enables <a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a>.
             </td>
             <td width="300">
               Navigation:
@@ -47,13 +47,13 @@
                 <LI><a href="{{url_for('roadmap', which_layer="tag_all")}}">tags for sections and words and expressions</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="variables")}}">concepts to variables</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="all_steps")}}">all steps</a></LI>
-                <LI><B>derivation graph</B></LI>
+                <LI><strong>derivation graph</strong></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="numeric_id")}}">replace symbols with numeric ID</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="CAS_validation")}}">validation of steps</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="dimensional_validation")}}">validation of dimension</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
-              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR>
+              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR/>
             </td>
           </tr>
         </table>

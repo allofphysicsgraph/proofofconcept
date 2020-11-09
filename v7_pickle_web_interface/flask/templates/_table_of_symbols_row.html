@@ -10,7 +10,7 @@
     <!-- latex -->
     <td>
 {{ dat["symbols"][symbol_id]['latex']}}
-<BR>
+<BR/>
 \({{ dat["symbols"][symbol_id]['latex'] }}\)</td>
     <!-- scope -->
     <td>{{ dat["symbols"][symbol_id]['scope'] }}</td>
@@ -48,7 +48,7 @@
     <td>
     {% if 'values' in dat["symbols"][symbol_id] %}
       {% for entry in dat["symbols"][symbol_id]['values'] %}
-        {{ entry['value'] }} &nbsp; {{ entry['units'] }}<BR>
+        {{ entry['value'] }} &nbsp; {{ entry['units'] }}<BR/>
       {% endfor %}
     {% endif %}
     </td>

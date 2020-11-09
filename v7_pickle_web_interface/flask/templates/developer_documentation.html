@@ -2,7 +2,7 @@
 {% block content %}
 
 <P>
-  <i>Recommendation</i>: Read the <a href="{{ url_for('user_documentation') }}?referrer=developer_documentation">user documentation</a> and <a href="{{ url_for('faq') }}?referrer=developer_documentation">FAQ</a> first.
+  <em>Recommendation</em>: Read the <a href="{{ url_for('user_documentation') }}?referrer=developer_documentation">user documentation</a> and <a href="{{ url_for('faq') }}?referrer=developer_documentation">FAQ</a> first.
 </P>
 
 <P>
@@ -85,7 +85,7 @@ cat developer_documentation.html |\
   To see what this means in terms of the "period and frequency" example on <a href="{{ url_for('index', referrer="developer_documentation") }}">the homepage</a>, here is a view of the indices supporting that visualization for a single step:
 </P>
 <img src="{{ url_for('static', filename='frequency_and_period_exploded_steps.png') }}">
-<BR>
+<BR/>
 <center>
   Two steps with all numeric IDs shown.
 </center>
@@ -95,7 +95,7 @@ cat developer_documentation.html |\
   Access to these indices is performed through a single data structure.
 </P>
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 <H2><a name="data structure">Data structure used in the Physics Derivation Graph</a></H2>
@@ -107,7 +107,7 @@ cat developer_documentation.html |\
   The many alternatives to JSON (e.g., SQLite, Redis, Python Pickle, CSV, GraphML) offer trade-offs, a few of which <a href="#historical evolution">have been explored</a>.
 
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 <H2><a name="latex for expressions">\(\rm\LaTeX\) representation of expressions</a></H2>
@@ -120,7 +120,7 @@ cat developer_documentation.html |\
 </p>
 
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 <H2><a name="software">Software used in the Physics Derivation Graph</a></H2>
@@ -195,7 +195,7 @@ cat developer_documentation.html |\
 </P>
 
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 <H2><a name="running the code">Running the Physics Derivation Graph code</a></H2>
@@ -255,7 +255,7 @@ cat developer_documentation.html |\
 </P>
 
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 <H2><a name="how to navigate the codebase">How to navigate the codebase</a></H2>
@@ -272,8 +272,8 @@ cat developer_documentation.html |\
 <P>
   After checking out the github repo, I navigate to
   <code>proofofconcept/v7_pickle_web_interface/flask</code> and then run
-  <code>make dockerlive</code> and then open Firefox to <code>https://localhost:5000</code>.<BR>
-  The purpose of this section is to address the question,  <I>What happened when that docker container ran and the webpage was opened?</i><BR>
+  <code>make dockerlive</code> and then open Firefox to <code>https://localhost:5000</code>.<BR/>
+  The purpose of this section is to address the question,  <em>What happened when that docker container ran and the webpage was opened?</em><BR/>
   Understanding the answer relies on knowing Python, <a href="https://flask.palletsprojects.com/">Flask</a>, and the Model-View-Controller paradigm.
 
 <P>
@@ -304,7 +304,7 @@ cat developer_documentation.html |\
 State diagram for the web interface.
 </center>
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 <H2><a name="frequency period from first principles">Derivation of Graph from First Principles</a></H2>
@@ -361,7 +361,7 @@ State diagram for the web interface.
   Multiple readers of the expression can be expected: humans, <a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a>, and Computer Algebra Systems (e.g., <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">Mathematica</a>, <a href="https://en.wikipedia.org/wiki/SymPy">Sympy</a>).
   This leads to the need for a unique identifier which is associated with the expression independent of the representation.
   In <a href="https://en.wikipedia.org/wiki/Logic">Logic</a>, this unique identifier is referred to as the <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>.
-  Similarly, the "feeds" (here <i>f</i> and <i>T</i> need unique identifiers.
+  Similarly, the "feeds" (here <em>f</em> and <em>T</em> need unique identifiers.
 <P>
 
 <P>To summarize the above points,
@@ -386,12 +386,12 @@ State diagram for the web interface.
   In addition to the inference rules and expressions, each \(\rm\LaTeX\) expression actually represents an Abstract Syntax Tree (AST) composed of symbols.
 </P>
 <img src="{{ url_for('static', filename='single_step_with_AST_per_expression_and_symbols.png') }}">
-<BR>
+<BR/>
 <center>
 All of the jargon used and the relation between jargon used in the Physics Derivation Graph.
 </center>
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 
@@ -402,7 +402,7 @@ This section tackles incremental construction of software used in the Physics De
 
 <H3><a name="Docker and Make">Initial infrastructure: Docker and Make</a></H3>
 
-Before running any project-specific code, I invest in reproducibility.<BR>
+Before running any project-specific code, I invest in reproducibility.<BR/>
 First, Docker containers make software dependencies explicit.
 <P>
 <a href="{{ 'templates/from_scratch/docker_and_make/Dockerfile' }}">Dockerfile</a>
@@ -436,7 +436,7 @@ Second, I use a <a href="{{ 'templates/from_scratch/docker_and_make/Makefile' }}
 </pre>
 
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 <H2><a name="historical evolution">Historical design evolution</a></H2>
@@ -462,9 +462,9 @@ Second, I use a <a href="{{ 'templates/from_scratch/docker_and_make/Makefile' }}
       a very limited exploration.
       Written in Cypher/Neo4j but could also use Gremlin/<a href="https://tinkerpop.apache.org/">TinkerPop</a>.
       No significant code base.
-      Schema: <BR>
+      Schema: <BR/>
       <img src="{{ url_for('static', filename='property_graph_schema.png') }}">
-      <BR>
+      <BR/>
       <center>
         Schema for property graph representation.
       </center>
@@ -476,16 +476,16 @@ Second, I use a <a href="{{ 'templates/from_scratch/docker_and_make/Makefile' }}
       No significant code base.
       Schema: <!-- see https://physicsderivationgraph.blogspot.com/2020/04/schema-for-tables.html -->
       <UL>
-        <LI><i>Table</i>: derivations; <i>columns</i>: derivation_ID, name, notes, creation date, author
-        <LI><i>Table</i>: expressions; <i>columns</i>: expr_global_ID, latex, creation date, author, AST_as_string, note, name
-        <LI><i>Table</i>: inference_rules; <i>columns</i>: name, creation date, author, latex, number of inputs, number of feeds, number of outputs,
-        <LI><i>Table</i>: symbols; <i>columns</i>: symbol_id, creation date, author, latex, scope, value, references
-        <LI><i>Table</i>: operators; <i>columns</i>: latex, creation date, author, scope, macro, references
-        <LI><i>Table</i>: step; <i>columns</i>: step_id, creation date, author, inference_rule, derivation_ID, linear_index
-        <LI><i>Table</i>: step_inputs; <i>columns</i>: step_id, expr_local_ID, index
-        <LI><i>Table</i>: step_feeds; <i>columns</i>: step_id, expr_local_ID, index
-        <LI><i>Table</i>: step_outputs; <i>columns</i>: step_id, expr_local_ID, index
-        <LI><i>Table</i>: local_to_global; <i>columns</i>: expr_local_ID, expr_global_ID
+        <LI><em>Table</em>: derivations; <em>columns</em>: derivation_ID, name, notes, creation date, author
+        <LI><em>Table</em>: expressions; <em>columns</em>: expr_global_ID, latex, creation date, author, AST_as_string, note, name
+        <LI><em>Table</em>: inference_rules; <em>columns</em>: name, creation date, author, latex, number of inputs, number of feeds, number of outputs,
+        <LI><em>Table</em>: symbols; <em>columns</em>: symbol_id, creation date, author, latex, scope, value, references
+        <LI><em>Table</em>: operators; <em>columns</em>: latex, creation date, author, scope, macro, references
+        <LI><em>Table</em>: step; <em>columns</em>: step_id, creation date, author, inference_rule, derivation_ID, linear_index
+        <LI><em>Table</em>: step_inputs; <em>columns</em>: step_id, expr_local_ID, index
+        <LI><em>Table</em>: step_feeds; <em>columns</em>: step_id, expr_local_ID, index
+        <LI><em>Table</em>: step_outputs; <em>columns</em>: step_id, expr_local_ID, index
+        <LI><em>Table</em>: local_to_global; <em>columns</em>: expr_local_ID, expr_global_ID
       </UL>
     </LI>
     <LI>
@@ -615,7 +615,7 @@ step 1 | has output | 2*y = 2*m*x + 2*b
 
 
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 <H2><a name="comparison:syntax">Comparison of Syntax Options</a></H2>
@@ -811,7 +811,7 @@ All of these are equivalent.
 </p>
 
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 <H2><a name="comparison:computer algebra systems">Comparison of Computer Algebra Systems</a></H2>
@@ -873,7 +873,7 @@ Output:
 {f,=,1/T}
 </pre>
 
-Quadratic equation derivation<BR>
+Quadratic equation derivation<BR/>
 First, set up the inference rules:
 <pre>
 dividebothsidesby[expr_, x_] := Apart[First[expr]/x] == Apart[Last[expr]/x];
@@ -909,7 +909,7 @@ func = subtractXfromBothSides [func, b/(2 a)]
 <a href="https://www.cl.cam.ac.uk/~jrh13/hol-light/tutorial.pdf">HOL Light tutorial</a>
 
 <P>&nbsp;</P>
-<HR>
+<HR/>
 <P>&nbsp;</P>
 
 <H2><a name="not in scope">Outside of Current Scope</a></H2>

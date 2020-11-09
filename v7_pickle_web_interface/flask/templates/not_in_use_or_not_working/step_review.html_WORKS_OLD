@@ -16,34 +16,34 @@
 <P><img src="{{ url_for('static', filename=name_of_graphviz_png) }}">
 
 {% if eq_and_png['latex_in_one'] is defined %}
-<P>Latex input 1: <BR>{{ eq_and_png['latex_in_one']['equation text'] }} <BR>renders as <BR>
+<P>Latex input 1: <BR/>{{ eq_and_png['latex_in_one']['equation text'] }} <BR/>renders as <BR/>
 <img src="{{ url_for('static', filename=eq_and_png['latex_in_one']['equation picture']) }}">
 {% endif %}
 
 {% if eq_and_png['latex_in_two'] is defined %}
-<P>Latex input 2: <BR>{{ eq_and_png['latex_in_two']['equation text'] }} <BR>renders as <BR>
+<P>Latex input 2: <BR/>{{ eq_and_png['latex_in_two']['equation text'] }} <BR/>renders as <BR/>
 <img src="{{ url_for('static', filename=eq_and_png['latex_in_two']['equation picture']) }}">
 {% endif %}
 
 {% if eq_and_png['latex_in_three'] is defined %}
-<P>Latex input 3: <BR>{{ eq_and_png['latex_in_three']['equation text'] }} <BR> renders as<BR>
+<P>Latex input 3: <BR/>{{ eq_and_png['latex_in_three']['equation text'] }} <BR/> renders as<BR/>
 <img src="{{ url_for('static', filename=eq_and_png['latex_in_three']['equation picture']) }}">
 {% endif %}
 
 <P>inf_rule: {{ inf_rule }}
 
 {% if eq_and_png['latex_out_one'] is defined %}
-<P>Latex output 1: <BR>{{ eq_and_png['latex_out_one']['equation text'] }} <BR>renders as<BR>
+<P>Latex output 1: <BR/>{{ eq_and_png['latex_out_one']['equation text'] }} <BR/>renders as<BR/>
 <img src="{{ url_for('static', filename=eq_and_png['latex_out_one']['equation picture']) }}">
 {% endif %}
 
 {% if eq_and_png['latex_out_two'] is defined %}
-<P>Latex output 2: <BR>{{ eq_and_png['latex_out_two']['equation text'] }} <BR> renders as<BR>
+<P>Latex output 2: <BR/>{{ eq_and_png['latex_out_two']['equation text'] }} <BR/> renders as<BR/>
 <img src="{{ url_for('static', filename=eq_and_png['latex_out_two']['equation picture']) }}">
 {% endif %}
 
 {% if eq_and_png['latex_out_three'] is defined %}
-<P>Latex output 3: <BR>{{ eq_and_png['latex_out_three']['equation text'] }} <BR> renders as<BR>
+<P>Latex output 3: <BR/>{{ eq_and_png['latex_out_three']['equation text'] }} <BR/> renders as<BR/>
 <img src="{{ url_for('static', filename=eq_and_png['latex_out_three']['equation picture']) }}">
 {% endif %}
 

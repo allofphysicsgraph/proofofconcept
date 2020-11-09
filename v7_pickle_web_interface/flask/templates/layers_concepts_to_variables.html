@@ -1,7 +1,7 @@
 <!-- unlike all other pages, this page does not inherit from _base.html
      That's because the "sign in" and "navigation" links are not shown at the top of the page -->
 <!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
-<html>
+<HTML lang='en'>
   <head>
     <title>Physics Derivation Graph: {{ title }}</title>
 
@@ -26,12 +26,12 @@
           <tr>
             <td valign="top">
               <P>&nbsp;</P>
-              <P><I><B>Explanation</B></I>: Establishing the relation between keywords and symbols is distinct from <a href="{{url_for('roadmap', which_layer="tag_words")}}">tagging keywords</a> and identifying symbols.
+              <P><em><strong>Explanation</strong></em>: Establishing the relation between keywords and symbols is distinct from <a href="{{url_for('roadmap', which_layer="tag_words")}}">tagging keywords</a> and identifying symbols.
                 Not all symbols will have a related keyword, as the author may rely on the reader to grasp the relation between symbol \(\infty\) and <a href="https://en.wikipedia.org/wiki/Infinity">infinity</a>.
                 While some symbols like \(\infty\) are relatively standard, most symbols are overloaded. The context for a symbol may be only within a single paper.
                 <P>In this page the relation between "measure" and "symbol" pairs is illustrated visually. (The section, word, and expression tags have been suppressed for readability.) The underlying data structure for these relations could be a bipartite graph.
-              <P><I>Who does this work</I>: human content creator
-              <P><I>Motive for doing this work</I>: enabling machine parsing
+              <P><em>Who does this work</em>: human content creator
+              <P><em>Motive for doing this work</em>: enabling machine parsing
             </td>
             <td width="300">
               Navigation:
@@ -47,7 +47,7 @@
                   </UL>
                 </LI>
                 <LI><a href="{{url_for('roadmap', which_layer="tag_all")}}">tags for sections and words and expressions</a></LI>
-                <LI><B>concepts to variables</B></LI>
+                <LI><strong>concepts to variables</strong></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="all_steps")}}">all steps</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="pdg")}}">derivation graph</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="numeric_id")}}">replace symbols with numeric ID</a></LI>
@@ -55,7 +55,7 @@
                 <LI><a href="{{url_for('roadmap', which_layer="dimensional_validation")}}">validation of dimension</a></LI>
                 <LI><a href="{{url_for('roadmap', which_layer="proof")}}">proof of inference rule</a></LI>
               </OL>
-              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR>
+              Back to <a href="{{url_for('roadmap', which_layer="overview")}}">layers overview</a><BR/>
             </td>
           </tr>
         </table>

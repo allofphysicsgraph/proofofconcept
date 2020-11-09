@@ -10,7 +10,7 @@
 <P>
   <center>
     <svg id='viz'></svg>
-<BR>
+<BR/>
 Hold the mouse over a node to highlight that node and its neighbors. You can zoom in/out. You can pan the image. You can move nodes by clicking and dragging.
   </center>
 </P>
@@ -24,7 +24,7 @@ results in no visualization and no error message in javascript console
 </div>
 -->
 
-<P>Notes for this derivation:<BR>
+<P>Notes for this derivation:<BR/>
 {{ dat['derivations'][deriv_id]['notes'] }}</P>
 
 <fieldset>
@@ -34,11 +34,11 @@ results in no visualization and no error message in javascript console
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
 <!-- https://stackoverflow.com/questions/19794695/flask-python-buttons -->
-<i>Alternate views of this derivation</i>: <input type="submit" name="submit_button" value="generate tex">
+<em>Alternate views of this derivation</em>: <input type="submit" name="submit_button" value="generate tex">
 <input type="submit" name="submit_button" value="generate pdf">
 <input type="submit" name="submit_button" value="generate html">
-<BR>
-<i>Edit this content</I>:
+<BR/>
+<em>Edit this content</em>:
 <input type="submit" name="submit_button" value='add another step'>
 <!-- Instead of a a button, the user should click on a step index
 <input type="submit" name="submit_button" value="edit existing step">
@@ -74,7 +74,7 @@ results in no visualization and no error message in javascript console
 </P>
 -->
 <h2>Symbols for this derivation</h2>
-See also <a href="{{ url_for('list_all_symbols') }}?referrer=navigation">all {{ dat['symbols']|length }} symbols</a><BR>
+See also <a href="{{ url_for('list_all_symbols') }}?referrer=navigation">all {{ dat['symbols']|length }} symbols</a><BR/>
             <table border="1" class="sortable">
               <tr>
                 <th>symbol ID</th>

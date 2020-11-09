@@ -1,22 +1,22 @@
 {% extends "_base.html" %}
 {% block content %}
 
-<p>A simple derivation is the transition from the expression &nbsp;<i>T</i>=<i>1/f</i>&nbsp; to &nbsp;<i>f</i>=<i>1/T</i>&nbsp; -- the same example used on the <a href="../index.html">home page</a>. The purpose of this documentation is to explain how to build a graph<!-- using GraphViz, d3js, and a PDF in Latex-->.</p>
+<p>A simple derivation is the transition from the expression &nbsp;<em>T</em>=<em>1/f</em>&nbsp; to &nbsp;<em>f</em>=<em>1/T</em>&nbsp; -- the same example used on the <a href="../index.html">home page</a>. The purpose of this documentation is to explain how to build a graph<!-- using GraphViz, d3js, and a PDF in Latex-->.</p>
 
-<P>Converting from <i>T</i>=<i>1/f</i>&nbsp; to &nbsp;<i>f</i>=<i>1/T</i> is straight forward: multiply both sides by <i>f</i>, then divide both sides by <i>T</i>. 
+<P>Converting from <em>T</em>=<em>1/f</em>&nbsp; to &nbsp;<em>f</em>=<em>1/T</em> is straight forward: multiply both sides by <em>f</em>, then divide both sides by <em>T</em>. 
 
 
-<P>First we will break the derivation into atomic steps. In words: to express frequency as a function of period, multiply both sides of the expression <i>T=1/f</i> by <i>f</i> to get a new expression, <i>T*f=1</i>. Then divide both sides of the second expression by <i>T</i> to yield the third expression, <i>f=1/T</i>.  There are four steps in this derivation:
+<P>First we will break the derivation into atomic steps. In words: to express frequency as a function of period, multiply both sides of the expression <em>T=1/f</em> by <em>f</em> to get a new expression, <em>T*f=1</em>. Then divide both sides of the second expression by <em>T</em> to yield the third expression, <em>f=1/T</em>.  There are four steps in this derivation:
 <OL>
-<LI>declare initial expression <i>T=1/f</i></LI>
-<LI>multiply both sides of <i>T=1/f</i> by <i>f</i> to get <i>T*f=1</i></LI>
-<LI>divide both sides of <i>T*f=1</i> by <i>T</i> to get <i>f=1/T</i></LI>
-<LI>declare final expression: <i>f=1/T</i></LI>
+<LI>declare initial expression <em>T=1/f</em></LI>
+<LI>multiply both sides of <em>T=1/f</em> by <em>f</em> to get <em>T*f=1</em></LI>
+<LI>divide both sides of <em>T*f=1</em> by <em>T</em> to get <em>f=1/T</em></LI>
+<LI>declare final expression: <em>f=1/T</em></LI>
 </OL>
 
 This simple expansion to atomic steps is not standard practice -- I haven't seen this done anywhere else. This expansion is a burdensome process for derivations. </P>
 
-<P>The next step is to visualize this graph. I usually do this iteration by hand on paper. [Here I'm showing graphviz produced by a later step in the process.]<BR>
+<P>The next step is to visualize this graph. I usually do this iteration by hand on paper. [Here I'm showing graphviz produced by a later step in the process.]<BR/>
 <center>
 <img src="pictures/example_T_f_graphviz_output.png" width="400">
 </center></P>
@@ -44,7 +44,7 @@ In this description, the edge pairs are ordered by source and destination.
 
 <P>At this point we have enough to generate a graph, ie using GraphViz. However, the objective is to support more complex derivations, and also to link multiple derivations. At that scale, the inference rule "multbothsidesby" may appear in multiple steps. We don't want the graph to render multiple uses of the same inference rule as the same node. We do want multiple references to the same expression to be a single node. An index which has a scope limited to the local derivation step is needed. This leads to the notion of a unique numeric index local to each inference rule. The local index for the inference rule is a unique identifier within a derivation step.</P>
 
-<P>Another complication arises regarding the expression. In the above example, I use a human readable expression, i.e. <i>T=1/f</i>. The usefulness of this format depends on what is reading the expression. Multiple readers of the expression can be expected: humans, <a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a>, and Computer Algebra Systems (i.e. <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">Mathematica</a>, <a href="https://en.wikipedia.org/wiki/SymPy">Sympy</a>). This leads to the need for a unique identifier which is associated with the expression  independent of the representation. In <a href="https://en.wikipedia.org/wiki/Logic">Logic</a>, this unique identifier is referred to as the <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>. (Similarly, the "feeds" (here <i>f</i> and <i>T</i> need unique identifiers.)<P>
+<P>Another complication arises regarding the expression. In the above example, I use a human readable expression, i.e. <em>T=1/f</em>. The usefulness of this format depends on what is reading the expression. Multiple readers of the expression can be expected: humans, <a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a>, and Computer Algebra Systems (i.e. <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">Mathematica</a>, <a href="https://en.wikipedia.org/wiki/SymPy">Sympy</a>). This leads to the need for a unique identifier which is associated with the expression  independent of the representation. In <a href="https://en.wikipedia.org/wiki/Logic">Logic</a>, this unique identifier is referred to as the <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>. (Similarly, the "feeds" (here <em>f</em> and <em>T</em> need unique identifiers.)<P>
 
 <P>To summarize the above points,
 <UL>
@@ -54,7 +54,7 @@ In this description, the edge pairs are ordered by source and destination.
 </UL>
 
 
-<P>With the above constraints in mind, the intermediate visual representation is<BR>
+<P>With the above constraints in mind, the intermediate visual representation is<BR/>
 <!--<FONT FACE="Courier New"> -->
 <!--<textarea cols="100" rows="8" style="font-size: 12pt" style="font-family:Courier New">-->
 
@@ -64,10 +64,10 @@ In this description, the edge pairs are ordered by source and destination.
 <img src="pictures/simple_example_expanded_T1f.png" width="900">
 </center>
 
-<P>The expression index is the same across all derivations, whereas the local index is scoped to just the derivation step.<BR>
+<P>The expression index is the same across all derivations, whereas the local index is scoped to just the derivation step.<BR/>
 Similarly, the inference rule index is specific to the derivation step.</p>
 
-<P>The inference rule needs the local index to build the graph.<BR>
+<P>The inference rule needs the local index to build the graph.<BR/>
 The expression needs a local index to build the Latex PDF. </P>
 
 <P>The core of the Physics Derivation Graph is an edge list of local IDs that are specific to each step:
@@ -115,12 +115,12 @@ fontsize=12;
 9103516 -> declareInitialExpression
 </pre>
 
-<P>Command:<BR>
+<P>Command:<BR/>
 <pre>
 neato -Tpng body_of_graph.dot &gt; out.png
 </pre></P>
 
-<P>Output:<BR>
+<P>Output:<BR/>
 <center>
 <img src="pictures/example_T_f_intermediate_output.png" width="500">
 </center>

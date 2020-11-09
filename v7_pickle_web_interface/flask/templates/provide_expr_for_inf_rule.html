@@ -329,18 +329,18 @@ function enable_output3_radio3(enabled){
                   <!-- https://github.com/allofphysicsgraph/proofofconcept/issues/130 -->
                   <!-- <div class="reveal-if-active"> -->
                 {{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300, id="input1_latex", onchange="onChangeFunction();") }}
-                <BR>
-                <small><B>Required</B>; max length = 300 characters</small><BR>
+                <BR/>
+                <small><strong>Required</strong>; max length = 300 characters</small><BR/>
                 <input type="checkbox" id="display_input1_latex" checked="" onchange="convert('input1_latex','display_input1_latex', 'preview_input1_latex','output_input1_latex')">
                 <small><label for="display_input1_latex">Display style</label></small>
                 <input type="button" value="optional preview of TeX before submitting form" id="preview_input1_latex" onclick="convert('input1_latex','display_input1_latex', 'preview_input1_latex','output_input1_latex')">
                 <br clear="all">
                   <div id="output_input1_latex"></div>
               </td>
-              <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300, id="input1_name", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
-              <td>{{ webform.input1_note.label }}: {{ webform.input1_note(size=20, maxlength=300, id="input1_note", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
+              <td>{{ webform.input1_name.label }}: {{ webform.input1_name(size=20, maxlength=300, id="input1_name", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
+              <td>{{ webform.input1_note.label }}: {{ webform.input1_note(size=20, maxlength=300, id="input1_note", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
             {% elif loop.index0 == 1 %}
               {% if list_of_local_id|length > 0 %}
               <td>{{ subfield(onclick='enable_input1_radio2(true)') }}</td>
@@ -364,7 +364,7 @@ function enable_output3_radio3(enabled){
                     <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
                     {%- endfor %}
                   </select>
-                  <BR>
+                  <BR/>
                   <a href="{{ url_for('list_all_expressions') }}?referrer=provide_expr_for_inf_rule }}" target="_blank">list of all expressions</a>
               </td>
             {%- else -%}
@@ -388,18 +388,18 @@ function enable_output3_radio3(enabled){
               <td>{{ subfield(onclick='enable_input2_radio1(true)') }}</td>
               <td>{{ subfield.label }}</td>
               <td>{{ webform.input2.label }}: {{ webform.input2(size=50, maxlength=300, id="input2_latex", onchange="onChangeFunction();") }}
-                <BR>
-                <small><B>Required</B>; max length = 300 characters</small><BR>
+                <BR/>
+                <small><strong>Required</strong>; max length = 300 characters</small><BR/>
                 <input type="checkbox" id="display_input2_latex" checked="" onchange="convert('input2_latex','display_input2_latex', 'preview_input2_latex','output_input2_latex')">
                 <small><label for="display_input2_latex">Display style</label></small>
                 <input type="button" value="optional preview of TeX before submitting form" id="preview_input2_latex" onclick="convert('input2_latex','display_input2_latex', 'preview_input2_latex','output_input2_latex')">
                 <br clear="all">
                   <div id="output_input2_latex"></div>
         </td>
-              <td>{{ webform.input2_name.label }}: {{ webform.input2_name(size=20, maxlength=300, id="input2_name", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
-              <td>{{ webform.input2_note.label }}: {{ webform.input2_note(size=20, maxlength=300, id="input2_note", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
+              <td>{{ webform.input2_name.label }}: {{ webform.input2_name(size=20, maxlength=300, id="input2_name", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
+              <td>{{ webform.input2_note.label }}: {{ webform.input2_note(size=20, maxlength=300, id="input2_note", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
             {% elif loop.index0 == 1 %}
               <td>{{ subfield(onclick='enable_input2_radio2(true)') }}</td>
               <td>{{ subfield.label }}</td>
@@ -421,7 +421,7 @@ function enable_output3_radio3(enabled){
                     <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
                     {% endfor %}
                   </select>
-                  <BR>
+                  <BR/>
                   <a href="{{ url_for('list_all_expressions') }}?referrer=provide_expr_for_inf_rule }}" target="_blank">list of all expressions</a>
               </td>
             {% else %}
@@ -444,18 +444,18 @@ function enable_output3_radio3(enabled){
               <td>{{ subfield(onclick='enable_input3_radio1(true)') }}</td>
               <td>{{ subfield.label }}</td>
               <td>{{ webform.input3.label }}: {{ webform.input3(size=50, maxlength=300, id="input3_latex", onchange="onChangeFunction();") }}
-                <BR>
-                <small><B>Required</B>; max length = 300 characters</small><BR>
+                <BR/>
+                <small><strong>Required</strong>; max length = 300 characters</small><BR/>
                 <input type="checkbox" id="display_input3_latex" checked="" onchange="convert('input3_latex','display_input3_latex', 'preview_input3_latex','output_input3_latex')">
                 <small><label for="display_input3_latex">Display style</label></small>
                 <input type="button" value="optional preview of TeX before submitting form" id="preview_input3_latex" onclick="convert('input3_latex','display_input3_latex', 'preview_input3_latex','output_input3_latex')">
                 <br clear="all">
                   <div id="output_input3_latex"></div>
         </td>
-              <td>{{ webform.input3_name.label }}: {{ webform.input3_name(size=20, maxlength=300, id="input3_name", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
-              <td>{{ webform.input3_note.label }}: {{ webform.input3_note(size=20, maxlength=300, id="input3_note", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
+              <td>{{ webform.input3_name.label }}: {{ webform.input3_name(size=20, maxlength=300, id="input3_name", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
+              <td>{{ webform.input3_note.label }}: {{ webform.input3_note(size=20, maxlength=300, id="input3_note", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
             {% elif loop.index0 == 1 %}
               <td>{{ subfield(onclick='enable_input3_radio2(true)') }}</td>
               <td>{{ subfield.label }}</td>
@@ -477,7 +477,7 @@ function enable_output3_radio3(enabled){
                     <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
                     {% endfor %}
                   </select>
-                  <BR>
+                  <BR/>
                   <a href="{{ url_for('list_all_expressions') }}?referrer=provide_expr_for_inf_rule }}" target="_blank">list of all expressions</a>
               </td>
             {% else %}
@@ -500,18 +500,18 @@ function enable_output3_radio3(enabled){
               <td>{{ subfield(onclick='enable_input4_radio1(true)') }}</td>
               <td>{{ subfield.label }}</td>
               <td>{{ webform.input4.label }}: {{ webform.input4(size=50, maxlength=300, id="input4_latex", onchange="onChangeFunction();") }}
-                <BR>
-                <small><B>Required</B>; max length = 300 characters</small><BR>
+                <BR/>
+                <small><strong>Required</strong>; max length = 300 characters</small><BR/>
                 <input type="checkbox" id="display_input4_latex" checked="" onchange="convert('input4_latex','display_input4_latex', 'preview_input4_latex','output_input4_latex')">
                 <small><label for="display_input4_latex">Display style</label></small>
                 <input type="button" value="optional preview of TeX before submitting form" id="preview_input4_latex" onclick="convert('input4_latex','display_input4_latex', 'preview_input4_latex','output_input4_latex')">
                 <br clear="all">
                   <div id="output_input4_latex"></div>
         </td>
-              <td>{{ webform.input4_name.label }}: {{ webform.input4_name(size=20, maxlength=300, id="input4_name", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
-              <td>{{ webform.input4_note.label }}: {{ webform.input4_note(size=20, maxlength=300, id="input4_note", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
+              <td>{{ webform.input4_name.label }}: {{ webform.input4_name(size=20, maxlength=300, id="input4_name", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
+              <td>{{ webform.input4_note.label }}: {{ webform.input4_note(size=20, maxlength=300, id="input4_note", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
             {% elif loop.index0 == 1 %}
               <td>{{ subfield(onclick='enable_input4_radio2(true)') }}</td>
               <td>{{ subfield.label }}</td>
@@ -533,7 +533,7 @@ function enable_output3_radio3(enabled){
                     <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
                     {% endfor %}
                   </select>
-                  <BR>
+                  <BR/>
                   <a href="{{ url_for('list_all_expressions') }}?referrer=provide_expr_for_inf_rule }}" target="_blank">list of all expressions</a>
               </td>
             {% else %}
@@ -556,18 +556,18 @@ function enable_output3_radio3(enabled){
               <td>{{ subfield(onclick='enable_input5_radio1(true)') }}</td>
               <td>{{ subfield.label }}</td>
               <td>{{ webform.input5.label }}: {{ webform.input5(size=50, maxlength=300, id="input5_latex", onchange="onChangeFunction();") }}
-                <BR>
-                <small><B>Required</B>; max length = 300 characters</small><BR>
+                <BR/>
+                <small><strong>Required</strong>; max length = 300 characters</small><BR/>
                 <input type="checkbox" id="display_input5_latex" checked="" onchange="convert('input5_latex','display_input5_latex', 'preview_input5_latex','output_input5_latex')">
                 <small><label for="display_input5_latex">Display style</label></small>
                 <input type="button" value="optional preview of TeX before submitting form" id="preview_input5_latex" onclick="convert('input5_latex','display_input5_latex', 'preview_input5_latex','output_input5_latex')">
                 <br clear="all">
                   <div id="output_input5_latex"></div>
         </td>
-              <td>{{ webform.input5_name.label }}: {{ webform.input5_name(size=20, maxlength=300, id="input5_name", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
-              <td>{{ webform.input5_note.label }}: {{ webform.input5_note(size=20, maxlength=300, id="input5_note", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
+              <td>{{ webform.input5_name.label }}: {{ webform.input5_name(size=20, maxlength=300, id="input5_name", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
+              <td>{{ webform.input5_note.label }}: {{ webform.input5_note(size=20, maxlength=300, id="input5_note", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
             {% elif loop.index0 == 1 %}
               <td>{{ subfield(onclick='enable_input5_radio2(true)') }}</td>
               <td>{{ subfield.label }}</td>
@@ -589,7 +589,7 @@ function enable_output3_radio3(enabled){
                     <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
                     {% endfor %}
                   </select>
-                  <BR>
+                  <BR/>
                   <a href="{{ url_for('list_all_expressions') }}?referrer=provide_expr_for_inf_rule }}" target="_blank">list of all expressions</a>
 
               </td>
@@ -613,18 +613,18 @@ function enable_output3_radio3(enabled){
               <td>{{ subfield(onclick='enable_input6_radio1(true)') }}</td>
               <td>{{ subfield.label }}</td>
               <td>{{ webform.input6.label }}: {{ webform.input6(size=50, maxlength=300, id="input6_latex", onchange="onChangeFunction();") }}
-                <BR>
-                <small><B>Required</B>; max length = 300 characters</small><BR>
+                <BR/>
+                <small><strong>Required</strong>; max length = 300 characters</small><BR/>
                 <input type="checkbox" id="display_input6_latex" checked="" onchange="convert('input6_latex','display_input6_latex', 'preview_input6_latex','output_input6_latex')">
                 <small><label for="display_input6_latex">Display style</label></small>
                 <input type="button" value="optional preview of TeX before submitting form" id="preview_input6_latex" onclick="convert('input6_latex','display_input6_latex', 'preview_input6_latex','output_input6_latex')">
                 <br clear="all">
                   <div id="output_input6_latex"></div>
         </td>
-              <td>{{ webform.input6_name.label }}: {{ webform.input6_name(size=20, maxlength=300, id="input6_name", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
-              <td>{{ webform.input6_note.label }}: {{ webform.input6_note(size=20, maxlength=300, id="input6_note", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
+              <td>{{ webform.input6_name.label }}: {{ webform.input6_name(size=20, maxlength=300, id="input6_name", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
+              <td>{{ webform.input6_note.label }}: {{ webform.input6_note(size=20, maxlength=300, id="input6_note", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
             {% elif loop.index0 == 1 %}
               <td>{{ subfield(onclick='enable_input6_radio2(true)') }}</td>
               <td>{{ subfield.label }}</td>
@@ -646,7 +646,7 @@ function enable_output3_radio3(enabled){
                     <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
                     {% endfor %}
                   </select>
-                  <BR>
+                  <BR/>
                   <a href="{{ url_for('list_all_expressions') }}?referrer=provide_expr_for_inf_rule }}" target="_blank">list of all expressions</a>
               </td>
             {% else %}
@@ -669,18 +669,18 @@ function enable_output3_radio3(enabled){
               <td>{{ subfield(onclick='enable_input7_radio1(true)') }}</td>
               <td>{{ subfield.label }}</td>
               <td>{{ webform.input7.label }}: {{ webform.input7(size=50, maxlength=300, id="input7_latex", onchange="onChangeFunction();") }}
-                <BR>
-                <small><B>Required</B>; max length = 300 characters</small><BR>
+                <BR/>
+                <small><strong>Required</strong>; max length = 300 characters</small><BR/>
                 <input type="checkbox" id="display_input7_latex" checked="" onchange="convert('input7_latex','display_input7_latex', 'preview_input7_latex','output_input7_latex')">
                 <small><label for="display_input7_latex">Display style</label></small>
                 <input type="button" value="optional preview of TeX before submitting form" id="preview_input7_latex" onclick="convert('input7_latex','display_input7_latex', 'preview_input7_latex','output_input7_latex')">
                 <br clear="all">
                   <div id="output_input7_latex"></div>
         </td>
-              <td>{{ webform.input7_name.label }}: {{ webform.input7_name(size=20, maxlength=300, id="input7_name", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
-              <td>{{ webform.input7_note.label }}: {{ webform.input7_note(size=20, maxlength=300, id="input7_note", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
+              <td>{{ webform.input7_name.label }}: {{ webform.input7_name(size=20, maxlength=300, id="input7_name", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
+              <td>{{ webform.input7_note.label }}: {{ webform.input7_note(size=20, maxlength=300, id="input7_note", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
             {% elif loop.index0 == 1 %}
               <td>{{ subfield(onclick='enable_input7_radio2(true)') }}</td>
               <td>{{ subfield.label }}</td>
@@ -702,7 +702,7 @@ function enable_output3_radio3(enabled){
                     <option value="{{ expr_global_id }}">{{ expr_global_id }}, {{ dat['expressions'][expr_global_id]['latex'][0:50] }}</option>
                     {% endfor %}
                   </select>
-                  <BR>
+                  <BR/>
                   <a href="{{ url_for('list_all_expressions') }}?referrer=provide_expr_for_inf_rule }}" target="_blank">list of all expressions</a>
               </td>
             {% else %}
@@ -756,7 +756,7 @@ function enable_output3_radio3(enabled){
         { % else % } <!- - static feed count -->
 
         {% if inf_rule_dict['number of feeds']|int() > 0|int() %}
-          <P>{{ webform.static_feed1.label }}: {{ webform.static_feed1(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed1.label }}: {{ webform.static_feed1(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed1_latex" checked="" onchange="convert('static_feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
             <small><label for="display_feed1_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed1_latex" onclick="convert('static_feed1','display_feed1_latex', 'preview_feed1_latex','output_feed1_latex')">
@@ -766,7 +766,7 @@ function enable_output3_radio3(enabled){
         {% endif %}
 
         {% if inf_rule_dict['number of feeds']|int() > 1|int() %}
-          <P>{{ webform.static_feed2.label }}: {{ webform.static_feed2(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed2.label }}: {{ webform.static_feed2(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed2_latex" checked="" onchange="convert('static_feed2','display_feed2_latex', 'preview_feed2_latex','output_feed2_latex')">
             <small><label for="display_feed2_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed2_latex" onclick="convert('static_feed2','display_feed2_latex', 'preview_feed2_latex','output_feed2_latex')">
@@ -776,7 +776,7 @@ function enable_output3_radio3(enabled){
         {% endif %}
 
         {% if inf_rule_dict['number of feeds']|int() > 2|int() %}
-          <P>{{ webform.static_feed3.label }}: {{ webform.static_feed3(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed3.label }}: {{ webform.static_feed3(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed3_latex" checked="" onchange="convert('static_feed3','display_feed3_latex', 'preview_feed3_latex','output_feed3_latex')">
             <small><label for="display_feed3_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed3_latex" onclick="convert('static_feed3','display_feed3_latex', 'preview_feed3_latex','output_feed3_latex')">
@@ -785,7 +785,7 @@ function enable_output3_radio3(enabled){
           </P>
         {% endif %}
         {% if inf_rule_dict['number of feeds']|int() > 3|int() %}
-          <P>{{ webform.static_feed4.label }}: {{ webform.static_feed4(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed4.label }}: {{ webform.static_feed4(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed4_latex" checked="" onchange="convert('static_feed4','display_feed4_latex', 'preview_feed4_latex','output_feed4_latex')">
             <small><label for="display_feed4_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed4_latex" onclick="convert('static_feed4','display_feed4_latex', 'preview_feed4_latex','output_feed4_latex')">
@@ -794,7 +794,7 @@ function enable_output3_radio3(enabled){
           </P>
         {% endif %}
         {% if inf_rule_dict['number of feeds']|int() > 4|int() %}
-          <P>{{ webform.static_feed5.label }}: {{ webform.static_feed5(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed5.label }}: {{ webform.static_feed5(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed5_latex" checked="" onchange="convert('static_feed5','display_feed5_latex', 'preview_feed5_latex','output_feed5_latex')">
             <small><label for="display_feed5_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed5_latex" onclick="convert('static_feed5','display_feed5_latex', 'preview_feed5_latex','output_feed5_latex')">
@@ -803,7 +803,7 @@ function enable_output3_radio3(enabled){
           </P>
         {% endif %}
         {% if inf_rule_dict['number of feeds']|int() > 5|int() %}
-          <P>{{ webform.static_feed6.label }}: {{ webform.static_feed6(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed6.label }}: {{ webform.static_feed6(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed6_latex" checked="" onchange="convert('static_feed6','display_feed6_latex', 'preview_feed6_latex','output_feed6_latex')">
             <small><label for="display_feed6_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed6_latex" onclick="convert('static_feed6','display_feed6_latex', 'preview_feed6_latex','output_feed6_latex')">
@@ -812,7 +812,7 @@ function enable_output3_radio3(enabled){
           </P>
         {% endif %}
         {% if inf_rule_dict['number of feeds']|int() > 6|int() %}
-          <P>{{ webform.static_feed7.label }}: {{ webform.static_feed7(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed7.label }}: {{ webform.static_feed7(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed7_latex" checked="" onchange="convert('static_feed7','display_feed7_latex', 'preview_feed7_latex','output_feed7_latex')">
             <small><label for="display_feed7_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed7_latex" onclick="convert('static_feed7','display_feed7_latex', 'preview_feed7_latex','output_feed7_latex')">
@@ -821,7 +821,7 @@ function enable_output3_radio3(enabled){
           </P>
         {% endif %}
         {% if inf_rule_dict['number of feeds']|int() > 7|int() %}
-          <P>{{ webform.static_feed8.label }}: {{ webform.static_feed8(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed8.label }}: {{ webform.static_feed8(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed8_latex" checked="" onchange="convert('static_feed8','display_feed8_latex', 'preview_feed8_latex','output_feed8_latex')">
             <small><label for="display_feed8_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed8_latex" onclick="convert('static_feed8','display_feed8_latex', 'preview_feed8_latex','output_feed8_latex')">
@@ -830,7 +830,7 @@ function enable_output3_radio3(enabled){
           </P>
         {% endif %}
         {% if inf_rule_dict['number of feeds']|int() > 8|int() %}
-          <P>{{ webform.static_feed9.label }}: {{ webform.static_feed9(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed9.label }}: {{ webform.static_feed9(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed9_latex" checked="" onchange="convert('static_feed9','display_feed9_latex', 'preview_feed9_latex','output_feed9_latex')">
             <small><label for="display_feed9_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed9_latex" onclick="convert('static_feed9','display_feed9_latex', 'preview_feed9_latex','output_feed9_latex')">
@@ -839,7 +839,7 @@ function enable_output3_radio3(enabled){
           </P>
         {% endif %}
         {% if inf_rule_dict['number of feeds']|int() > 9|int() %}
-          <P>{{ webform.static_feed10.label }}: {{ webform.static_feed10(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed10.label }}: {{ webform.static_feed10(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed10_latex" checked="" onchange="convert('static_feed10','display_feed10_latex', 'preview_feed10_latex','output_feed10_latex')">
             <small><label for="display_feed10_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed10_latex" onclick="convert('static_feed10','display_feed10_latex', 'preview_feed10_latex','output_feed10_latex')">
@@ -848,7 +848,7 @@ function enable_output3_radio3(enabled){
           </P>
         {% endif %}
         {% if inf_rule_dict['number of feeds']|int() > 10|int() %}
-          <P>{{ webform.static_feed11.label }}: {{ webform.static_feed11(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed11.label }}: {{ webform.static_feed11(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed11_latex" checked="" onchange="convert('static_feed11','display_feed11_latex', 'preview_feed11_latex','output_feed11_latex')">
             <small><label for="display_feed11_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed11_latex" onclick="convert('static_feed11','display_feed11_latex', 'preview_feed11_latex','output_feed11_latex')">
@@ -857,7 +857,7 @@ function enable_output3_radio3(enabled){
           </P>
         {% endif %}
         {% if inf_rule_dict['number of feeds']|int() > 11|int() %}
-          <P>{{ webform.static_feed12.label }}: {{ webform.static_feed12(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed12.label }}: {{ webform.static_feed12(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed12_latex" checked="" onchange="convert('static_feed12','display_feed12_latex', 'preview_feed12_latex','output_feed12_latex')">
             <small><label for="display_feed12_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed12_latex" onclick="convert('static_feed12','display_feed12_latex', 'preview_feed12_latex','output_feed12_latex')">
@@ -866,7 +866,7 @@ function enable_output3_radio3(enabled){
           </P>
         {% endif %}
         {% if inf_rule_dict['number of feeds']|int() > 12|int() %}
-          <P>{{ webform.static_feed13.label }}: {{ webform.static_feed13(size=100, maxlength=300) }} <small><B>Required</B>; max length = 300 characters</small><BR>
+          <P>{{ webform.static_feed13.label }}: {{ webform.static_feed13(size=100, maxlength=300) }} <small><strong>Required</strong>; max length = 300 characters</small><BR/>
             <input type="checkbox" id="display_feed13_latex" checked="" onchange="convert('static_feed13','display_feed13_latex', 'preview_feed13_latex','output_feed13_latex')">
             <small><label for="display_feed13_latex">Display style</label></small>
             <input type="button" value="optional preview of TeX before submitting form" id="preview_feed13_latex" onclick="convert('static_feed13','display_feed13_latex', 'preview_feed13_latex','output_feed13_latex')">
@@ -885,8 +885,8 @@ function enable_output3_radio3(enabled){
               <td>{{ subfield.label }}</td>
 
             <td>{{ webform.output1.label }}: {{ webform.output1(size=50, maxlength=300, id="output1_latex", onchange="onChangeFunction();") }}
-        <BR>
-                   <small><B>Required</B>; max length = 300 characters</small><BR>
+        <BR/>
+                   <small><strong>Required</strong>; max length = 300 characters</small><BR/>
            <input type="checkbox" id="display_output1_latex" checked="" onchange="convert('output1_latex','display_output1_latex', 'preview_output1_latex','output_output1_latex')">
            <small><label for="display_output1_latex">Display style</label></small>
 
@@ -895,10 +895,10 @@ function enable_output3_radio3(enabled){
            <br clear="all">
            <div id="output_output1_latex"></div>
         </td>
-              <td>{{ webform.output1_name.label }}: {{ webform.output1_name(size=20, maxlength=300, id="output1_name", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
-              <td>{{ webform.output1_note.label }}: {{ webform.output1_note(size=20, maxlength=300, id="output1_note", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
+              <td>{{ webform.output1_name.label }}: {{ webform.output1_name(size=20, maxlength=300, id="output1_name", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
+              <td>{{ webform.output1_note.label }}: {{ webform.output1_note(size=20, maxlength=300, id="output1_note", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
           {% elif loop.index0 == 1 %}
               <td>{{ subfield(onclick='enable_output1_radio2(true)') }}</td>
               <td>{{ subfield.label }}</td>
@@ -943,8 +943,8 @@ function enable_output3_radio3(enabled){
               <td>{{ subfield(onclick='enable_output2_radio1(true)') }}</td>
               <td>{{ subfield.label }}</td>
 
-            <td>{{ webform.output2.label }}: {{ webform.output2(size=50, maxlength=300, id="output2_latex", onchange="onChangeFunction();") }} <BR>
-                   <small><B>Required</B>; max length = 300 characters</small>
+            <td>{{ webform.output2.label }}: {{ webform.output2(size=50, maxlength=300, id="output2_latex", onchange="onChangeFunction();") }} <BR/>
+                   <small><strong>Required</strong>; max length = 300 characters</small>
 
            <input type="checkbox" id="display_output2_latex" checked="" onchange="convert('output2_latex','display_output2_latex', 'preview_output2_latex','output_output2_latex')">
            <small><label for="display_output2_latex">Display style</label></small>
@@ -955,10 +955,10 @@ function enable_output3_radio3(enabled){
            <div id="output_output2_latex"></div>
 
         </td>
-              <td>{{ webform.output2_name.label }}: {{ webform.output2_name(size=20, maxlength=300, id="output2_name", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
-              <td>{{ webform.output2_note.label }}: {{ webform.output2_note(size=20, maxlength=300, id="output2_note", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
+              <td>{{ webform.output2_name.label }}: {{ webform.output2_name(size=20, maxlength=300, id="output2_name", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
+              <td>{{ webform.output2_note.label }}: {{ webform.output2_note(size=20, maxlength=300, id="output2_note", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
           {% elif loop.index0 == 1 %}
               <td>{{ subfield(onclick='enable_output2_radio2(true)') }}</td>
               <td>{{ subfield.label }}</td>
@@ -1003,8 +1003,8 @@ function enable_output3_radio3(enabled){
               <td>{{ subfield(onclick='enable_output3_radio1(true)') }}</td>
               <td>{{ subfield.label }}</td>
 
-            <td>{{ webform.output3.label }}: {{ webform3.output(size=50, maxlength=300, id="output3_latex", onchange="onChangeFunction();") }}<BR>
-                      <small><B>Required</B>; max length = 300 characters</small>
+            <td>{{ webform.output3.label }}: {{ webform3.output(size=50, maxlength=300, id="output3_latex", onchange="onChangeFunction();") }}<BR/>
+                      <small><strong>Required</strong>; max length = 300 characters</small>
 
            <input type="checkbox" id="display_output3_latex" checked="" onchange="convert('output3_latex','display_output3_latex', 'preview_output3_latex','output_output3_latex')">
            <small><label for="display_output3_latex">Display style</label></small>
@@ -1015,10 +1015,10 @@ function enable_output3_radio3(enabled){
            <div id="output_output3_latex"></div>
 
         </td>
-              <td>{{ webform.output3_name.label }}: {{ webform.output3_name(size=20, maxlength=300, id="output3_name", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
-              <td>{{ webform.output3_note.label }}: {{ webform.output3_note(size=20, maxlength=300, id="output3_note", onchange="onChangeFunction();") }}<BR>
-                   <small><i>optional</i></small></td>
+              <td>{{ webform.output3_name.label }}: {{ webform.output3_name(size=20, maxlength=300, id="output3_name", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
+              <td>{{ webform.output3_note.label }}: {{ webform.output3_note(size=20, maxlength=300, id="output3_note", onchange="onChangeFunction();") }}<BR/>
+                   <small><em>optional</em></small></td>
           {% elif loop.index0 == 1 %}
               <td>{{ subfield(onclick='enable_output3_radio2(true)') }}</td>
               <td>{{ subfield.label }}</td>

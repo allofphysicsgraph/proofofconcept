@@ -1,7 +1,7 @@
 <!-- unlike all other pages, this page does not inherit from _base.html
      That's because the "sign in" and "navigation" links are not shown at the top of the page -->
 <!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
-<html>
+<HTML lang='en'>
   <head>
     {% if title %}
     <title>Physics Derivation Graph: {{ title }}</title>
@@ -21,14 +21,14 @@
 </center>
 
 <P>
-  <i>Objective for this project:</i> Write down all known mathematical physics in a way that can be both read by humans and checked by a computer algebra system.<BR>
+  <em>Objective for this project:</em> Write down all known mathematical physics in a way that can be both read by humans and checked by a computer algebra system.<BR/>
   To support that, the Physics Derivation Graph provides a schema and software infrastructure for the systemization of documenting mathematical physics. By semantically enriching mathematical expressions, connections between topics is observable.
-<BR>
+<BR/>
   For the impatient, see the Physics Derivation Graph <a href="{{ url_for('navigation') }}?referrer=index">navigation</a>.
 </P>
 
 <P>
-  <i>Example:</i> A simple example is the relation between period, \(T\), and linear frequency, \(f\).
+  <em>Example:</em> A simple example is the relation between period, \(T\), and linear frequency, \(f\).
   The mathematical expression of the relation is \(T=1/f\).
   To express frequency as a function of period, multiply both sides of the expression by \(f\) to get a new expression, \(T\ f=1\).
   Finally, divide both sides of the second expression by \(T\) to yield the third expression, \(f=1/T\).
@@ -55,7 +55,7 @@
 </P>
 
 <P>
-  <i>Motivation:</i> <a href="https://en.wikipedia.org/wiki/Mathematical_physics">Mathematical Physics</a> uses the tools of math applied to measurements of our environment.
+  <em>Motivation:</em> <a href="https://en.wikipedia.org/wiki/Mathematical_physics">Mathematical Physics</a> uses the tools of math applied to measurements of our environment.
   Physics is a unique field in that all existing knowledge can be recorded.
   Another aspect that is unique is that the result can be checked for correctness by a computer algebra system.
   A third unique facet to Physics is that claims can be tested by experiment.

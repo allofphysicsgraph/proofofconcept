@@ -1,7 +1,7 @@
 <!-- unlike all other pages, this page does not inherit from _base.html
      That's because the "sign in" and "navigation" links are not shown at the top of the page -->
 <!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
-<html>
+<HTML lang='en'>
   <head>
     <title>Physics Derivation Graph: {{ title }}</title>
 
@@ -26,7 +26,7 @@ src="{{ url_for('static', filename='mathjax/tex-chtml.js') }}"></script>
   "use strict";
 //  function generate_text(){
     // https://stackoverflow.com/questions/805107/creating-multiline-strings-in-javascript
-    //var first_line_text = `hello<BR>
+    //var first_line_text = `hello<BR/>
 //                           goodbye`;
   //  document.getElementById('outside_last_line') = first_line_text;
     //document.getElementById('inside_last_line') = first_line_text;
@@ -248,7 +248,7 @@ src="{{ url_for('static', filename='mathjax/tex-chtml.js') }}"></script>
             <table border="1">
               <tr>
                 <td>
-            multiply both sides by arg1<BR>
+            multiply both sides by arg1<BR/>
             arg1 = \(f\)
                 </td>
               </tr>
@@ -305,7 +305,7 @@ src="{{ url_for('static', filename='mathjax/tex-chtml.js') }}"></script>
             <table border="1">
               <tr>
                 <td>
-            Divide both sides by arg1<BR>
+            Divide both sides by arg1<BR/>
             arg1 = \(T\)
                 </td>
               </tr>
