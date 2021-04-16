@@ -69,19 +69,29 @@ neo4j:
 flask:
 	python3 controller.py
 
+# https://docs.gunicorn.org/en/stable/
+# Gunicorn ‘Green Unicorn’ is a Python WSGI HTTP Server for UNIX.
 gunicorn:
 	gunicorn --bind 0.0.0.0:5000 wsgi:app
 
+# https://mypy.readthedocs.io/en/stable/
+# Mypy is a static type checker
 typehints:
 	mypy --check-untyped-defs $(FILE_NAME)
 
+# https://pycallgraph.readthedocs.io/en/master/
+# creates call graph visualizations
 pycallgraph:
 	pycallgraph graphviz -- ./controller.py
-# https://pycallgraph.readthedocs.io/en/master/
 
+# http://prospector.landscape.io/en/master/
+# analyze Python code and output information about errors, 
+# potential problems, convention violations and complexity.
 prospector:
 	prospector
 
+# https://flake8.pycqa.org/en/latest/
+# enforce style consistency across Python projects.
 flake8:
 	flake8 --ignore W291,E115,E121,E122,E124,E126,E127,E128,E203,E221,E225,E231,E241,E251,E261,E265,E302,E303,E501,E701
 # E115 expected an indented block
@@ -104,6 +114,8 @@ flake8:
 # E501 Line too long; https://www.flake8rules.com/rules/E501.html
 # E701 Multiple statements on one line; https://www.flake8rules.com/rules/E701.html
 
+# https://black.readthedocs.io/en/stable/
+# By using Black, you agree to cede control over minutiae of hand-formatting.
 black:
 	black common_lib.py
 	black compute.py
@@ -116,26 +128,25 @@ black:
 	#black wsgi.py
 	black inference_rules.py
 
+# https://www.pylint.org/
+# http://pylint.pycqa.org/en/latest/
+# checks for errors in Python code, tries to enforce a coding standard and looks for code smells.
 pylint:
 	pylint $(FILE_NAME)
 
+# https://docs.python.org/3/library/doctest.html
+# searches for pieces of text that look like interactive Python sessions, and 
+# then executes those sessions to verify that they work exactly as shown.
 doctest:
 	python3 -m doctest -v $(FILE_NAME)
 
+# https://pypi.org/project/mccabe/
+# check McCabe complexity; see
+# https://en.wikipedia.org/wiki/Cyclomatic_complexity
 mccabe:
 	python3 -m mccabe $(FILE_NAME)
 
-
-#all:
-#	@(MAKE) example1 VAR=$(VAR)
-#	@(MAKE) example2 VAR=$(VAR)
-
 clean:
 	rm *.log *.tex *.pdf *.txt
-#	rm -rf ex2dir
 
-#example:
-#	bash do_thing1.sh $(VAR)
-
-#example2:
-#	bash do_thing2.sh $(VAR)
+# EOF
