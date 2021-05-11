@@ -341,7 +341,10 @@ class NewSymbolForm(FlaskForm):
     logger.info("[trace]")
     symbol_category = RadioField(
         "category",
-        choices=[("variable", "variable"), ("constant", "constant"),],
+        choices=[
+            ("variable", "variable"),
+            ("constant", "constant"),
+        ],
         default="variable",
     )
 
@@ -690,9 +693,9 @@ def set_secure_headers(response):
 @app.errorhandler(404)
 def page_not_found(er):
     """
-   https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
-   404 = page not found
-   """
+    https://flask.palletsprojects.com/en/1.1.x/patterns/errorpages/
+    404 = page not found
+    """
     logger.info("[trace] page_not_found")
     logger.debug(er)
     logger.debug(
@@ -1527,7 +1530,8 @@ def start_new_derivation():
         notes = str(web_form.notes.data)
 
         logger.debug(
-            "start_new_derivation: name of derivation = %s", name_of_derivation,
+            "start_new_derivation: name of derivation = %s",
+            name_of_derivation,
         )
         deriv_id = compute.initialize_derivation(
             name_of_derivation, str(current_user.email), notes, path_to_db
@@ -1948,8 +1952,8 @@ def list_all_expressions():
         list_of_expr = []
 
     try:
-        list_of_expr_not_appearing_in_any_derivations = compute.get_sorted_list_of_expr_not_in_use(
-            path_to_db
+        list_of_expr_not_appearing_in_any_derivations = (
+            compute.get_sorted_list_of_expr_not_in_use(path_to_db)
         )
     except Exception as err:
         logger.error(str(err))
@@ -2014,7 +2018,8 @@ def list_all_inference_rules():
         infrule_popularity_dict = {}
     if request.method == "POST":
         logger.debug(
-            "list_all_inference_rules; request.form = %s", request.form,
+            "list_all_inference_rules; request.form = %s",
+            request.form,
         )
         if "inf_rule_name" in request.form.keys():
             # request.form = ImmutableMultiDict([('inf_rule_name', 'testola'), ('num_inputs', '1'), ('num_feeds', '0'), ('num_outputs', '0'), ('latex', 'adsfmiangasd')])
@@ -2044,7 +2049,8 @@ def list_all_inference_rules():
                 status_message = "error"
             flash(str(status_message))
             logger.debug(
-                "list_all_inference_rules; status = %s", status_message,
+                "list_all_inference_rules; status = %s",
+                status_message,
             )
             logger.info("[trace page end " + trace_id + "]")
             return redirect(
@@ -2064,7 +2070,8 @@ def list_all_inference_rules():
                 status_message = "error"
             flash(str(status_message))
             logger.debug(
-                "list_all_inference_rules; status = %s", status_message,
+                "list_all_inference_rules; status = %s",
+                status_message,
             )
             logger.info("[trace page end " + trace_id + "]")
             return redirect(
@@ -2084,7 +2091,8 @@ def list_all_inference_rules():
                 status_message = "error"
             flash(str(status_message))
             logger.debug(
-                "list_all_inference_rules; status = %s", status_message,
+                "list_all_inference_rules; status = %s",
+                status_message,
             )
             logger.info("[trace page end " + trace_id + "]")
             return redirect(
@@ -2100,8 +2108,8 @@ def list_all_inference_rules():
         infrules_modified_latex_dict[infrule_name] = infrule_dict
 
     try:
-        sorted_list_infrules_not_in_use = compute.get_sorted_list_of_inf_rules_not_in_use(
-            path_to_db
+        sorted_list_infrules_not_in_use = (
+            compute.get_sorted_list_of_inf_rules_not_in_use(path_to_db)
         )
     except Exception as err:
         flash(str(err))
@@ -2139,7 +2147,8 @@ def select_derivation_to_edit():
 
     if request.method == "POST":
         logger.debug(
-            "request.form = %s", request.form,
+            "request.form = %s",
+            request.form,
         )
         # TODO: go to correct page
 
@@ -2389,7 +2398,8 @@ def new_step_select_inf_rule(deriv_id: str):
         logger.debug("request form %s", request.form)
         selected_inf_rule = request.form.get("inf_rul_select")
         logger.debug(
-            "selected_inf_rule = %s", selected_inf_rule,
+            "selected_inf_rule = %s",
+            selected_inf_rule,
         )
         logger.info("[trace page end " + trace_id + "]")
         return redirect(
@@ -2414,7 +2424,8 @@ def new_step_select_inf_rule(deriv_id: str):
 
 
 @app.route(
-    "/provide_expr_for_inf_rule/<deriv_id>/<inf_rule>", methods=["GET", "POST"],
+    "/provide_expr_for_inf_rule/<deriv_id>/<inf_rule>",
+    methods=["GET", "POST"],
 )
 @login_required
 def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
@@ -2457,14 +2468,19 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
 
         try:
             step_id = compute.create_step(
-                latex_for_step_dict, inf_rule, deriv_id, current_user.email, path_to_db,
+                latex_for_step_dict,
+                inf_rule,
+                deriv_id,
+                current_user.email,
+                path_to_db,
             )
         except Exception as err:
             flash(str(err))
             logger.error(str(err))
             step_id = "0"
         logger.debug(
-            "step_id = %s", step_id,
+            "step_id = %s",
+            step_id,
         )
 
         try:
@@ -2581,7 +2597,8 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
 
 
 @app.route(
-    "/update_symbols/<deriv_id>/<step_id>", methods=["GET", "POST"],
+    "/update_symbols/<deriv_id>/<step_id>",
+    methods=["GET", "POST"],
 )
 @login_required
 def update_symbols(deriv_id: str, step_id: str):
@@ -2694,7 +2711,11 @@ def update_symbols(deriv_id: str, step_id: str):
                     sympy_symbol = this_key.replace("existing symbol for ", "")
                     if new_symbol_id != "NONE":
                         compute.update_symbol_in_step(
-                            sympy_symbol, new_symbol_id, deriv_id, step_id, path_to_db,
+                            sympy_symbol,
+                            new_symbol_id,
+                            deriv_id,
+                            step_id,
+                            path_to_db,
                         )
                         flash("updated " + sympy_symbol + " as ID " + new_symbol_id)
                 elif this_key == "csrf_token":
@@ -2709,8 +2730,10 @@ def update_symbols(deriv_id: str, step_id: str):
                 url_for("update_symbols", deriv_id=deriv_id, step_id=step_id)
             )
     try:
-        expressions_in_step_with_symbols = compute.generate_expressions_in_step_with_symbols(
-            deriv_id, step_id, path_to_db
+        expressions_in_step_with_symbols = (
+            compute.generate_expressions_in_step_with_symbols(
+                deriv_id, step_id, path_to_db
+            )
         )
     except Exception as err:
         logger.error(str(err))
@@ -2727,8 +2750,8 @@ def update_symbols(deriv_id: str, step_id: str):
         list_of_symbols_from_PDG_AST = []
 
     try:
-        list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
-            deriv_id, step_id, path_to_db
+        list_of_symbols_in_step_that_lack_id = (
+            compute.find_symbols_in_step_that_lack_id(deriv_id, step_id, path_to_db)
         )
     except Exception as err:
         flash(str(err))
@@ -2737,14 +2760,16 @@ def update_symbols(deriv_id: str, step_id: str):
 
     dict_of_ranked_list = {}
     for sympy_symbol in list_of_symbols_in_step_that_lack_id:
-        ranked_list_of_candidate_symbol_ids = compute.rank_candidate_pdg_symbols_for_sympy_symbol(
-            sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
+        ranked_list_of_candidate_symbol_ids = (
+            compute.rank_candidate_pdg_symbols_for_sympy_symbol(
+                sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
+            )
         )
         dict_of_ranked_list[sympy_symbol] = ranked_list_of_candidate_symbol_ids
 
     try:
-        list_of_symbols_for_this_derivation = compute.list_symbols_used_in_derivation_from_PDG_AST(
-            deriv_id, path_to_db
+        list_of_symbols_for_this_derivation = (
+            compute.list_symbols_used_in_derivation_from_PDG_AST(deriv_id, path_to_db)
         )
     except Exception as err:
         logger.error(str(err))
@@ -2841,7 +2866,8 @@ def update_symbols(deriv_id: str, step_id: str):
 
 
 @app.route(
-    "/step_review/<deriv_id>/<step_id>/", methods=["GET", "POST"],
+    "/step_review/<deriv_id>/<step_id>/",
+    methods=["GET", "POST"],
 )
 @login_required
 def step_review(deriv_id: str, step_id: str):
@@ -2967,8 +2993,8 @@ def step_review(deriv_id: str, step_id: str):
 
     # the following is also used in modify_step
     try:
-        list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
-            deriv_id, step_id, path_to_db
+        list_of_symbols_in_step_that_lack_id = (
+            compute.find_symbols_in_step_that_lack_id(deriv_id, step_id, path_to_db)
         )
     except Exception as err:
         flash(str(err))
@@ -3018,8 +3044,8 @@ def step_review(deriv_id: str, step_id: str):
 
     # find symbols that lack IDs
     try:
-        list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
-            deriv_id, step_id, path_to_db
+        list_of_symbols_in_step_that_lack_id = (
+            compute.find_symbols_in_step_that_lack_id(deriv_id, step_id, path_to_db)
         )
     except Exception as err:
         logger.error(str(err))
@@ -3028,8 +3054,10 @@ def step_review(deriv_id: str, step_id: str):
 
     dict_of_ranked_list = {}
     for sympy_symbol in list_of_symbols_in_step_that_lack_id:
-        ranked_list_of_candidate_symbol_ids = compute.rank_candidate_pdg_symbols_for_sympy_symbol(
-            sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
+        ranked_list_of_candidate_symbol_ids = (
+            compute.rank_candidate_pdg_symbols_for_sympy_symbol(
+                sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
+            )
         )
         dict_of_ranked_list[sympy_symbol] = ranked_list_of_candidate_symbol_ids
 
@@ -3329,8 +3357,8 @@ def review_derivation(deriv_id: str):
         expression_popularity_dict = {}
 
     try:
-        list_of_symbols_for_this_derivation = compute.list_symbols_used_in_derivation_from_PDG_AST(
-            deriv_id, path_to_db
+        list_of_symbols_for_this_derivation = (
+            compute.list_symbols_used_in_derivation_from_PDG_AST(deriv_id, path_to_db)
         )
     except Exception as err:
         logger.error(str(err))
@@ -3519,7 +3547,9 @@ def modify_step(deriv_id: str, step_id: str):
                 expr_updated_sympy = request.form["revised_text"]
                 try:
                     compute.update_expr_sympy(
-                        expr_global_id, expr_updated_sympy, path_to_db,
+                        expr_global_id,
+                        expr_updated_sympy,
+                        path_to_db,
                     )
                 except Exception as err:
                     logger.error(str(err))
@@ -3533,7 +3563,9 @@ def modify_step(deriv_id: str, step_id: str):
                 expr_updated_latex = request.form["revised_text"]
                 try:
                     compute.update_expr_latex(
-                        expr_global_id, expr_updated_latex, path_to_db,
+                        expr_global_id,
+                        expr_updated_latex,
+                        path_to_db,
                     )
                 except Exception as err:
                     logger.error(str(err))
@@ -3610,8 +3642,8 @@ def modify_step(deriv_id: str, step_id: str):
 
     # find symbols that lack IDs
     try:
-        list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
-            deriv_id, step_id, path_to_db
+        list_of_symbols_in_step_that_lack_id = (
+            compute.find_symbols_in_step_that_lack_id(deriv_id, step_id, path_to_db)
         )
     except Exception as err:
         logger.error(str(err))
@@ -3654,8 +3686,8 @@ def modify_step(deriv_id: str, step_id: str):
 
     # find symbols that lack IDs
     try:
-        list_of_symbols_in_step_that_lack_id = compute.find_symbols_in_step_that_lack_id(
-            deriv_id, step_id, path_to_db
+        list_of_symbols_in_step_that_lack_id = (
+            compute.find_symbols_in_step_that_lack_id(deriv_id, step_id, path_to_db)
         )
     except Exception as err:
         logger.error(str(err))
@@ -3663,8 +3695,10 @@ def modify_step(deriv_id: str, step_id: str):
         list_of_symbols_in_step_that_lack_id = []
     dict_of_ranked_list = {}
     for sympy_symbol in list_of_symbols_in_step_that_lack_id:
-        ranked_list_of_candidate_symbol_ids = compute.rank_candidate_pdg_symbols_for_sympy_symbol(
-            sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
+        ranked_list_of_candidate_symbol_ids = (
+            compute.rank_candidate_pdg_symbols_for_sympy_symbol(
+                sympy_symbol, list_of_symbols_from_PDG_AST, path_to_db
+            )
         )
         dict_of_ranked_list[sympy_symbol] = ranked_list_of_candidate_symbol_ids
 

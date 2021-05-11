@@ -2381,8 +2381,8 @@ def popularity_of_symbols_in_expressions(path_to_db: str) -> dict:
             if "AST" in expr_dict.keys():
                 # logger.debug("ast = " + expr_dict["AST"])
 
-                list_of_symbol_IDs_for_this_expr = latex_to_sympy.get_symbol_IDs_from_AST_str(
-                    expr_dict["AST"]
+                list_of_symbol_IDs_for_this_expr = (
+                    latex_to_sympy.get_symbol_IDs_from_AST_str(expr_dict["AST"])
                 )
             else:  # no AST in expr_dict
                 raise Exception("no AST in " + expr_global_id)
@@ -5070,24 +5070,24 @@ def create_step(
     path_to_db: str,
 ) -> str:
     """
-    https://strftime.org/
+        https://strftime.org/
 
-    Args:
-        deriv_id: numeric identifier of the derivation
-        user_email: email address of the content author
-        path_to_db: filename of the SQL database containing
-                    a JSON entry that returns a nested dictionary
-    Returns:
+        Args:
+            deriv_id: numeric identifier of the derivation
+            user_email: email address of the content author
+            path_to_db: filename of the SQL database containing
+                        a JSON entry that returns a nested dictionary
+        Returns:
 
-    Raises:
+        Raises:
 
 
-    >>> latex_for_step_dict = ImmutableMultiDict([('input1', ''), ('input1_radio', 'global'), ('input1_global_id', '5530148480'), ('feed1', 'asgasgag'), ('output1', ''), ('output1_radio', 'global'), ('output1_global_id', '9999999951'), ('submit_button', 'Submit')])
+        >>> latex_for_step_dict = ImmutableMultiDict([('input1', ''), ('input1_radio', 'global'), ('input1_global_id', '5530148480'), ('feed1', 'asgasgag'), ('output1', ''), ('output1_radio', 'global'), ('output1_global_id', '9999999951'), ('submit_button', 'Submit')])
 
-# prior to the radio buttons, this was the style:
-#    >>> latex_for_step_dict = ImmutableMultiDict([('output1', 'a = b')])
-#    >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', "pdg.db")
-#    9492849
+    # prior to the radio buttons, this was the style:
+    #    >>> latex_for_step_dict = ImmutableMultiDict([('output1', 'a = b')])
+    #    >>> create_step(latex_for_step_dict, 'begin derivation', 'deriv name', "pdg.db")
+    #    9492849
     """
     trace_id = str(random.randint(1000000, 9999999))
     logger.info("[trace start " + trace_id + "]")

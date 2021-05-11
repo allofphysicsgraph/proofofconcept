@@ -330,7 +330,8 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str):
 
     latex_as_sympy_expr_tree = sympy.srepr(sympy_expr)
     logger.debug(
-        "latex as Sympy expr tree = %s", str(latex_as_sympy_expr_tree),
+        "latex as Sympy expr tree = %s",
+        str(latex_as_sympy_expr_tree),
     )
 
     logger.info("[trace end " + trace_id + "]")
