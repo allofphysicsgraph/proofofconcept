@@ -1106,7 +1106,7 @@ def search_redirect_to_google():
         "request.url: " + str(request.url)
     )  # https://stackoverflow.com/a/46176337/1164295
     logger.debug("search term is " + str(request.args.get("search")))
-    logger.debug("request.args ="+ str(request.args))
+    logger.debug("request.args =" + str(request.args))
 
     return redirect(
         "https://www.google.com/search?&q=site%3Aderivationmap.net+"
