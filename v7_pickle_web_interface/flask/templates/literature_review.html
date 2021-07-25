@@ -5,108 +5,378 @@
 <H1>Literature Review for the Physics Derivation Graph</H1>
 <P>
   This page contains references to papers that lack associated software.
-  For software and papers, see also <a href="{{ url_for('other_projects') }}">this listing</a>.
-
+  For software, see also <a href="{{ url_for('other_projects') }}">this listing</a>.
+    <!--
   <div id="toc_container">
   <p class="toc_title">Contents</p>
   <OL class="toc_list">
-    <!--
+
     <LI><a href="#"></a></LI>
 
     In bash,
     cat literature_review.html | grep "<H4" | sed 's/H4>/LI>/g' | sed 's/name="/name="#/'
-    -->
-    <LI><a name="#Consilience">Consilience: The Unity of Knowledge</a></LI>
-    <LI><a name="#Gellish">Gellish</a></LI>
-    <LI><a name="#Desirability of Formalization">Desirability of Formalization</a></LI>
-    <LI><a name="#QED Manifesto">QED Manifesto</a></LI>
-    <LI><a name="#document markup">Document Markup and Enrichment</a></LI>
+
 
   </OL>
   </div>
+-->
   The purpose of these references is to contextualize the Physics Derivation Graph.
 
 <!--
 Recommendations for reading (not everything listed here is worth reading).
 -->
+
+<!--
+To create a new citation, use
+https://truben.no/latex/bibtex/#
+
+To clean up formatting of a citation, use
+https://flamingtempura.github.io/bibtex-tidy/
+-->
+<table border="1"  class="sortable">
+  <tr>
+    <th>Citation</th>
+    <th>Comment</th>
+    <th>Domain</th>
+    <th>Semantic Enrichment</th>
+  </tr>
+  <tr>
+    <td>
+      <pre>
+@book{1998_Wilson_Consilience,
+  title        = {Consilience: The Unity of Knowledge},
+  author       = {<a href="https://en.wikipedia.org/wiki/E._O._Wilson">Edward O. Wilson</a>},
+  year         = {1998},
+  url          = {<a href="https://en.wikipedia.org/wiki/Consilience\%5F(book)">https://en.wikipedia.org/wiki/Consilience\%5F(book)</a>},
+  note         = {Tackles "the synthesis of knowledge from
+                  different specialized fields of human endeavor."}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+      <blockquote cite="https://www.azquotes.com/quote/1117453">
+        Science offers the boldest metaphysics of the age. It is a thoroughly human construct, driven by the faith that if we dream, press to discover, explain, and dream again, thereby plunging repeatedly into new terrain, the world will somehow come clearer and we will grasp the true strangeness of the universe.
+        <strong>And the strangeness will all prove to be connected, and make sense</strong>.
+        <footer><cite><a href="https://www.azquotes.com/quote/1117453">source</a></cite></footer>
+      </blockquote>
+    </td> <!-- comment -->
+    <td>Science</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
+  </tr>
+  <tr>
+    <td>
+      <pre>
+@book{1913_whiteheadrussell,
+  title        = {Principia Mathematica},
+  author       = {Whitehead and Russell},
+  year         = {1913},
+  url          = {<a href="https://en.wikipedia.org/wiki/Principia\%5FMathematica" target="\%5Fblank">https://en.wikipedia.org/wiki/Principia\%5FMathematica</a>;
+                  <a href="https://plato.stanford.edu/entries/principia-mathematica/" target="\%5Fblank">https://plato.stanford.edu/entries/principia-mathematica/</a>},
+  note         = {famous for proof of 1+1=2}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+      The ambitious effort of Whitehead and Russell to prove the foundations of
+      mathematics is not similar to the Physics Derivation Graph.
+      <P>
+        "Proof" doesn't apply in Physics.
+      <P>
+        The Physics Derivation Graph is about documenting existing knowledge
+        in a format which can be parsed by computers.
+    </td> <!-- comment -->
+    <td>Math</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
+  </tr>
+
+  <tr>
+    <td>
+      <pre>
+@article{,
+  title        = {Improving the Representation and Conversion of Mathematical
+                  Formulae by Considering their Textual Context},
+  author       = {M. Schubotz and A. Greiner-Petter and P. Scharpf and
+                  N. Meuschke and H. S. Cohl and B. Gipp},
+  year= {2018},
+  url = {<a href="https://arxiv.org/pdf/1804.04956.pdf">https://arxiv.org/pdf/1804.04956.pdf</a>}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+    </td> <!-- comment -->
+    <td></td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+
+  <tr>
+    <td>
+      <pre>
+@unpublished{2009_McKain,
+  title        = {},
+  year = {2009},
+  author       = {D.~McKain},
+  url = {<a href="https://www.slideshare.net/cstan98/math-content-conversion">math-content-conversion</a>;
+         <a href="https://stadium.open.ac.uk/webcast-ou/documents/mc09_david_mckain_conversion.pdf">mc09_david_mckain_conversion.pdf</a>}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+    </td> <!-- comment -->
+    <td></td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+
+  <tr>
+    <td>
+      <pre>
+@book{2009_Chein,
+  author={M.~Chein and M.~Mugnier},
+  year={2009},
+  title={Graph-based Knowledge Representation: Computational Foundations of Conceptual Graphs},
+  publisher={Springer},
+  ISBN={978-1-84800-285-2}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+    </td> <!-- comment -->
+    <td></td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+
+  <tr>
+    <td>
+      <pre>
+@article{1976_Sowa,
+  author={J.~.F.~Sowa},
+  month={July},
+  year={1976},
+  title={Conceptual Graphs for a Data Base Interface},
+  journal={IBM Journal of Research and Development},
+  url={http://www.jfsowa.com/pubs/cg1976.pdf},
+  pages={336–-357}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+    </td> <!-- comment -->
+    <td></td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+
+
+  <tr>
+    <td>
+      <pre>
+@book{Gellish,
+  title        = {},
+  author       = {},
+  url = {<a href="https://en.wikipedia.org/wiki/Gellish">https://en.wikipedia.org/wiki/Gellish</a>}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+      Data structure for knowledge.
+
+      <P>
+        See also <a href="https://www.youtube.com/watch?v=-Z-ul0GzzM4">FreeSpeech</a>
+    </td> <!-- comment -->
+    <td>Data structure syntax</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
+  </tr>
+  <tr>
+    <td>
+      <pre>
+@book{OWL,
+  title        = {Ontological Web Language},
+  author       = {},
+  url = {<a href="https://en.wikipedia.org/wiki/Web_Ontology_Language">https://en.wikipedia.org/wiki/Web_Ontology_Language</a>}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+      Data structure for knowledge
+    </td> <!-- comment -->
+    <td>Data structure syntax</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
+  </tr>
+  <tr>
+    <td>
+      <pre>
+@article{1968_Suppes,
+  title        = {The Desirability of Formalization in Science},
+  author       = {P. Suppes},
+  year         = {1968},
+  journal      = {Journal of Philosophy},
+  volume       = {65},
+  pages        = {651--664}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+      Argues for a set-theory-based need for science to support explicitness,
+      standardization, generality, objectivity, self-contained assumptions,
+      and minimal assumptions.
+    </td> <!-- comment -->
+    <td></td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+  <tr>
+    <td>
+      <pre>
+@article{1993_Boyer,
+  title        = {QED manifesto},
+  author       = {R. Boyer},
+  year         = {1993},
+  url          = {<a href="https://en.wikipedia.org/wiki/QED\%5Fmanifesto">https://en.wikipedia.org/wiki/QED\%5Fmanifesto</a>;
+                  <a href="https://www.cs.ru.nl/~freek/qed/qed.html">https://www.cs.ru.nl/~freek/qed/qed.html</a>}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+      Content after 1994 is likely based on or influenced by the QED manifesto, so that is useful to read.
+      <P>
+      Goal:
+      </P>
+      <blockquote cite="https://www.cs.ru.nl/~freek/qed/qed.html">
+      To build a computer system that effectively represents all important mathematical knowledge and techniques. The QED system will conform to the highest standards of mathematical rigor, including the use of strict formality in the internal representation of knowledge and the use of mechanical methods to check proofs of the correctness of all entries in the system.
+        <footer>
+          <cite>
+            <a href="https://www.cs.ru.nl/~freek/qed/qed.html">source</a>
+          </cite>
+        </footer>
+      </blockquote>
+
+    </td> <!-- comment -->
+    <td></td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+  <tr>
+    <td>
+      <pre>
+@article{2016_Weiss,
+  title        = {The QED Manifesto after Two Decades -- Version 2.0},
+  author       = {Weiss},
+  year         = {2016},
+  url          = {<a href="https://pdfs.semanticscholar.org/6139/579ab589c62397ef4ba6728da42f519c9b8c.pdf">source</a>}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+      Describes "Mathropolis" and a "mathematical content markup language"
+      A non-CAS based metalanguage is attempted in "The QED Manifesto after Two Decades -- Version 2.0"
+      The paper discusses Mathropolis, which is intended to optimize for readability over formality.
+      The paper describes a "mathematical content markup language" and provides an example.
+      <P>
+      In email conversation with Weiss, he said,
+      <blockquote>
+        "I started fleshing out some code but when I realised the extent of the project is
+        huge and that it would consume my maths research I decided to stop."
+      </blockquote>
+        He also said,
+      <blockquote>
+      "I still think that the idea of MCML would be extremely helpful in academia and particularly
+      in subjects such as mathematics and physics (and others)."
+      </blockquote>
+    </td> <!-- comment -->
+    <td>Math</td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+  <tr>
+    <td>
+      <pre>
+@article{2003_Stuber_Brand,
+  title        = {Extracting mathematical semantics from LATEX documents},
+  author       = {J. Stuber and M. Brand},
+  year = {2003},
+  url = {<a href="https://pdfs.semanticscholar.org/a91a/f3fa64e1296de470206f375a29ddc1c7b54d.pdf">semanticscholar.org</a>}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+    </td> <!-- comment -->
+    <td>Document Markup and Enrichment</td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+  <tr>
+    <td>
+      <pre>
+@article{2015_Moore,
+  title        = {Semantic Enrichment of Mathematics via tooltips},
+  author       = {Moore},
+  year         = {2015},
+  url          = {<a href="https://tug.org/tug2015/preprints/moore-mathsem-cicm2015-v7.pdf">https://tug.org/tug2015/preprints/moore-mathsem-cicm2015-v7.pdf</a>}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+      "mathsem" source code not found online
+    </td> <!-- comment -->
+    <td>Document Markup and Enrichment</td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+  <tr>
+    <td>
+      <pre>
+@article{2019_Szegedy,
+  title        = {Graph Representations for
+                  Higher-Order Logic and Theorem Proving},
+  author       = {C. Szegedy and },
+  year = {2019}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+      comment thread: <a href="https://news.ycombinator.com/item?id=24389058">https://news.ycombinator.com/item?id=24389058</a><BR/>
+      <P>
+      This paper is not related to the Physics Derivation Graph as far as I can tell.
+    </td> <!-- comment -->
+    <td></td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+  <tr>
+    <td>
+      <pre>
+@article{2009_redish_gupta,
+  title        = {Making Meaning with Math in Physics:
+                  A semantic analysis},
+  author       = {E. F. Redish and A. Gupta},
+  year = {2009},
+  url = {<a href="https://arxiv.org/abs/1002.0472">https://arxiv.org/abs/1002.0472</a>}
+}
+      </pre>
+    </td> <!-- citation -->
+    <td>
+    </td> <!-- comment -->
+    <td>Document Markup and Enrichment</td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+  </tr>
+</table>
+
+<P>
+  Derivation sites to assess:
+  <UL>
+    <LI><a href="http://www.dfcd.net/articles/derivations/derivations.html">http://www.dfcd.net/articles/derivations/derivations.html</a></LI>
+    <LI><a href="https://www.science20.com/curious_inquirer/most_famous_equation_physics_and_its_derivation-89948">https://www.science20.com/curious_inquirer/most_famous_equation_physics_and_its_derivation-89948</a></LI>
+    <LI><a href="https://en.wikibooks.org/wiki/A-level_Physics_(Advancing_Physics)/Simple_Harmonic_Motion/Mathematical_Derivation">Simple_Harmonic_Motion/Mathematical_Derivation</a></LI>
+    <LI><a href="http://dev.physicslab.org/Document.aspx?doctype=3&filename=AtomicNuclear_BohrModelDerivation.xml">Derivation of Bohr's Model for the Hydrogen Spectrum</a></LI>
+    <LI><a href="https://physics.info/">https://physics.info/</a></LI>
+    <LI><a href=""></a></LI>
+    <LI><a href=""></a></LI>
+    <LI><a href=""></a></LI>
+  </UL>
 </P>
 
-<!--
-<H4><a name=""></a></H4>
 <P>
--->
+  Quotations
+  <blockquote cite="Six Lectures on Modern Natural Philosophy">
+    There is nothing that can be said by mathematical symbols and relations which cannot also
+    be said by words. The converse, however, is false. Much that can be and is said by words
+    cannot be put into equations – because it is nonsense.
+    <footer>
+      <cite>Clifford A. Truesdell in "Six Lectures on Modern Natural Philosophy"; Chapter 3; page 35</cite>
+    </footer>
 
-<H4><a name="Consilience">Consilience: The Unity of Knowledge</a></H4>
-<P>
-  In the 1998 <a href="https://en.wikipedia.org/wiki/Consilience_(book)">book</a> by <a href="https://en.wikipedia.org/wiki/E._O._Wilson">Edward O. Wilson</a>, he tackled "the synthesis of knowledge from different specialized fields of human endeavor."
-
-  <blockquote cite="https://www.azquotes.com/quote/1117453">
-    Science offers the boldest metaphysics of the age. It is a thoroughly human construct, driven by the faith that if we dream, press to discover, explain, and dream again, thereby plunging repeatedly into new terrain, the world will somehow come clearer and we will grasp the true strangeness of the universe.
-    <strong>And the strangeness will all prove to be connected, and make sense</strong>.
   </blockquote>
-
-<H4><a name="Gellish">Gellish</a></H4>
-<a href="https://en.wikipedia.org/wiki/Gellish">https://en.wikipedia.org/wiki/Gellish</a>
-
-<H4><a name="Desirability of Formalization">Desirability of Formalization</a></H4>
-"The Desirability of Formalization in Science"<BR/>
-  P. Suppes in <em>Journal of Philosophy</em> 65, 1968, pages 651--664.
-
-<H4><a name="QED Manifesto">QED Manifesto</a></H4>
-<P>
-Content after 1994 is likely based on or influenced by the QEC manifesto, so that is useful to read.
-
-<P>
-"The QED Manifesto after Two Decades -- Version 2.0" by Weiss (2016)<BR/>
-  <a href="https://pdfs.semanticscholar.org/6139/579ab589c62397ef4ba6728da42f519c9b8c.pdf">source</a><BR/>
-  Describes "Mathropolis" and a "mathematical content markup language"
-A non-CAS based metalanguage is attempted in "The QED Manifesto after Two Decades -- Version 2.0"
-The paper discusses Mathropolis, which is intended to optimize for readability over formality.
-The paper describes a "mathematical content markup language" and provides an example.
-
-In email conversation with Weiss, he says,
-<blockquote>
-  "I started fleshing out some code but when I realised the extent of the project is
-  huge and that it would consume my maths research I decided to stop."
-</blockquote>
-  He also said,
-<blockquote>
-"I still think that the idea of MCML would be extremely helpful in academia and particularly
-in subjects such as mathematics and physics (and others)."
-</blockquote>
-
-
-
-<H4><a name="document markup">Document Markup and Enrichment</a></H4>
-
-
-"Extracting mathematical semantics from LATEX documents"<BR/>
-<a href="https://pdfs.semanticscholar.org/a91a/f3fa64e1296de470206f375a29ddc1c7b54d.pdf">semanticscholar.org</a><BR/>
-J. Stuber and M. Brand (2003)
-
-<P>
-"Semantic Enrichment of Mathematics via tooltips"<BR/>
-Moore, 2015<BR/>
-<a href="https://tug.org/tug2015/preprints/moore-mathsem-cicm2015-v7.pdf">https://tug.org/tug2015/preprints/moore-mathsem-cicm2015-v7.pdf</a><BR/>
-notes: "mathsem" source code not found online
-
-
-<P>
-"Graph Representations for Higher-Order Logic and Theorem Proving"<BR/>
-C. Szegedy et al, 2019<BR/>
-comment thread: <a href="https://news.ycombinator.com/item?id=24389058">https://news.ycombinator.com/item?id=24389058</a><BR/>
-notes: This paper is not related to the Physics Derivation Graph as far as I can tell.
-
-<P>
-"Making Meaning with Math in Physics: A semantic analysis"<BR/>
-<a href="https://arxiv.org/abs/1002.0472">https://arxiv.org/abs/1002.0472</a><BR/>
-E. F. Redish and A. Gupta (2009)
-
-<!--
-<H2>Derivations</H2>
--->
-
-
-
 
 {% endblock %}

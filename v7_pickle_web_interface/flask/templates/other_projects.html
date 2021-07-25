@@ -14,6 +14,7 @@
    <a href="https://en.wikipedia.org/wiki/Lean_(proof_assistant)">Lean</a>)
   or formal proofs. No <a href="https://en.wikipedia.org/wiki/Category_theory">Category theory</a> is used.
   The Physics Derivation Graph does not use Natural Language Processing.
+  The Physics Derivation Graph is not intended as a tutorial.
 
   <!--
   <div id="toc_container">
@@ -52,6 +53,8 @@
     <td></td> <!-- author or group -- >
   </tr>
   -->
+
+
   <tr>
     <td><a href="https://derivationmap.net/">Physics Derivation Graph</td> <!-- name, website -->
     <td>Goal: Create software that supports writing down all known mathematical physics in a way that can be both read by humans and checked by a computer algebra system.</td> <!-- summary -->
@@ -79,6 +82,78 @@
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
     <td>NIST</td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="https://en.wikipedia.org/wiki/Google_Knowledge_Graph">Google's Knowledge Graph</a></td> <!-- name, website -->
+    <td></td> <!-- summary -->
+    <td>Everything</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
+    <td>No</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td>Google</td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="https://www2.ph.ed.ac.uk/snuggletex/documentation/overview-and-features.html">SnuggleTeX</a></td> <!-- name, website -->
+    <td>Java library for converting fragments of LaTeX to XML (usually XHTML + MathML)</td> <!-- summary -->
+    <td></td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td></td> <!-- active? -->
+    <td></td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="https://en.wikipedia.org/wiki/PlanetPhysics">PlanetPhysics</a></td> <!-- name, website -->
+    <td></td> <!-- summary -->
+    <td>Physics</td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>No</td> <!-- active? -->
+    <td></td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="https://cmap.ihmc.us/">CmapTools</a></td> <!-- name, website -->
+    <td></td> <!-- summary -->
+    <td></td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+    <td></td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td>Florida Institute for Human & Machine Cognition (IHMC)</td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="http://mathdox.org/formulaeditor/">MathDox formula editor</a></td> <!-- name, website -->
+    <td>
+      a web-based editor for mathematical formulas.<BR>
+      Features:
+        <UL>
+          <LI>has a two-dimensional WYSIWYG interface.
+          <LI>can produce a semantic representation of the formula.
+          <LI>No plugins need to be installed in the browser to use the editor.
+          <LI>can be easily integrated into existing HTML pages.
+        </UL>
+    </td> <!-- summary -->
+    <td>Math</td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+    <td></td> <!-- open source? -->
+    <td></td> <!-- free? -->
+    <td></td> <!-- active? -->
+    <td></td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="http://mizar.uwb.edu.pl/project/">Mizar</a></td> <!-- name, website -->
+    <td>
+      Goal: "reconstruct mathematical vernacular in a computer-oriented environment."<BR>
+      Status: "a database which includes more than 9400 definitions of mathematical concepts and more than 49000 theorems."
+    </td> <!-- summary -->
+    <td>Math</td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td></td> <!-- author or group -->
   </tr>
   <tr>
     <td><a href="https://functions.wolfram.com/">Wolfram Mathematical Functions</a></td> <!-- name, website -->
@@ -152,7 +227,8 @@
       <a href="https://www.cs.utexas.edu/users/novak/cgi/physdemod.cgi" target="_blank">Math / Physics Problem Solver</a>
     </td> <!-- website -->
     <td>
-        The <a href="https://www.cs.utexas.edu/users/novak/cgi/physdemod.cgi" target="_blank">Math / Physics Problem Solver</a> by <a href="https://www.cs.utexas.edu/users/novak/">Gordon Novak</a> "solves simple math and physics problems stated in English."
+        The <a href="https://www.cs.utexas.edu/users/novak/cgi/physdemod.cgi" target="_blank">Math / Physics Problem Solver</a>
+        "solves simple math and physics problems stated in English."
       <P>
         The <a href="https://www.cs.utexas.edu/users/novak/cgi/physlaws.lsp" target="_blank">source code (Lisp)</a> and <a href="https://www.cs.utexas.edu/users/novak/cgi/equations.lsp">equations</a> are available.
       <P>
@@ -211,7 +287,7 @@
       <a name="MathFoldr"></a>
       <a href="https://topos.site/blog/2021/07/introducing-the-mathfoldr-project/" target="_blank">MathFoldr</a></td> <!-- website -->
     <td>
-        Authors are category theorists. </P>
+        Authors are category theorists.
       <P>
         Goal is to "use natural language processing on a corpus of texts to assemble an imperfect but large and useful hierarchy of concepts" according to <a href="https://twitter.com/johncarlosbaez/status/1414999084042055684">this thread</a>.
         The "Plan is to start with things that can be done with existing natural language processing software."
@@ -272,6 +348,8 @@
       <a name="formuladatabase"></a>
       <a href="http://www.formula-database.com/release/" target="_blank">FormulaDatabase</a></td> <!-- website -->
     <td>
+      Input: web GUI for equations. Output: returns a list of equations similar to query. Each returned equation as the symbols defined.
+      <P>
         Formula Database is a website described by the authors as
         a ``math search engine'' which has a built-in equation editor.
         The search feature is not just matching the \(\rm\LaTeX\) input --
@@ -342,22 +420,6 @@
   </tr>
   <tr>
     <td>
-      <a name="principia"></a>
-      <a href="https://en.wikipedia.org/wiki/Principia_Mathematica" target="_blank">Principia_Mathematica</a></td> <!-- website -->
-    <td>
-      The ambitious effort of Whitehead and Russell to prove the foundations of
-      mathematics is not similar to this project. "Proof" doesn't apply in Physics.
-      The Physics Derivation Graph is about documenting existing knowledge in a format which can be parsed by computers.
-    </td> <!-- summary -->
-    <td>Math</td> <!-- domain -->
-    <td>No</td> <!-- semantic enrichment -->
-    <td></td> <!-- open source? -->
-    <td></td> <!-- free? -->
-    <td>No</td> <!-- active? -->
-    <td>Whitehead and Russell</td> <!-- author or group -->
-  </tr>
-  <tr>
-    <td>
       <a name="equationmap"></a>
       <a href="http://equationmap.com/" target="_blank">Equation Map</a></td> <!-- website -->
     <td>
@@ -399,7 +461,7 @@
       <a name="symbolab"></a>
       <a href="https://www.symbolab.com" target="_blank">SymboLab</a></td> <!-- website -->
     <td>
-      a web interface for solving symbolic expressions. There is no graph.
+      A web interface for solving symbolic expressions. There is no graph.
       There is a backend database of content.
     </td> <!-- summary -->
     <td>Math, Physics</td> <!-- domain -->
@@ -481,6 +543,8 @@
       <a href="https://www.wolframalpha.com" target="_blank">Wolfram Alpha</a></td> <!-- website -->
     <td>
         All science knowledge with a searchable web interface.
+      <P>
+        <a href="https://writings.stephenwolfram.com/2014/08/computational-knowledge-and-the-future-of-pure-mathematics/">Computational Knowledge and the Future of Pure Mathematics</a>
       <P>
         Wolfram Alpha has a backend database of content which is not open source; access is a mix of free and paid.</td> <!-- summary -->
     <td>Science</td> <!-- domain -->
@@ -693,11 +757,9 @@
   <tr>
     <td>
       <a name="directed graphs in linguistics">directed graphs in linguistics</a>
-      <P>
-        Examples include <a href="https://visuwords.com/" target="_blank">visuwords.com</a> and
-          <a href="https://code.google.com/archive/p/synonym/" target="_blank">code.google.com/archive/p/synonym/</a>
     </td> <!-- website -->
-    <td></td> <!-- summary -->
+    <td>Examples include <a href="https://visuwords.com/" target="_blank">visuwords.com</a> and
+      <a href="https://code.google.com/archive/p/synonym/" target="_blank">synonym</a></td> <!-- summary -->
     <td>Linguistics</td> <!-- domain -->
     <td>varies</td> <!-- semantic enrichment -->
     <td>varies</td> <!-- open source? -->
