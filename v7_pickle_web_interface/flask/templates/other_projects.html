@@ -7,6 +7,7 @@
   This page is a survey of software related to the Physics Derivation Graph.
   For a literature review, see <a href="{{ url_for('literature_review') }}">this page</a>.
 
+<P>
   The scope of the Physics Derivation Graph does not include proof assistants
   (<a href="https://en.wikipedia.org/wiki/HOL_(proof_assistant)">HOL</a>,
    <a href="https://en.wikipedia.org/wiki/Coq">COQ</a>,
@@ -19,49 +20,12 @@
   <p class="toc_title">Contents</p>
   <OL class="toc_list">
 
-    <!--
     In bash,
     cat other_projects.html | grep "<H4" | sed 's/H4>/LI>/g' | sed 's/name="/name="#/'
-    -->
-    <!--
-    <LI><a name="#incredible proof machine">Incredible Proof Machine</a></LI>
-    <LI><a name="#Explorable Physics">Explorable Physics</a></LI>
-    <LI><a name="#NLPphysicsSolver">NLP Physics Solver</a></LI>
-    <LI><a name="#sciencewise">ScienceWise</a><LI>
-    <LI><a name="#imkt">International Mathematical Knowledge Trust</a></LI>
-    <LI><a name="#MathFoldr">MathFoldr</a></LI>
-    <LI><a name="#murray-rust">Murray-Rust Group at University of Cambridge</a></LI>
-    <LI><a name="#CrystallographyOpenDatabase">Crystallography Open Database</a></LI>
-    <LI><a name="#NumericalAtlas">Numerical Atlas</a><LI>
-    <LI><a name="#formuladatabase">FormulaDatabase</a></LI>
-    <LI><a name="#wikipedia">Wikipedia</a></LI>
-    <LI><a name="#principia">Principia Mathematica</a></LI>
-    <LI><a name="#equationmap">EquationMap</a></LI>
-    <LI><a name="#symbolab">SymboLab</a></LI>
-    <LI><a name="#hyperphysics">HyperPhysics</a></LI>
-    <LI><a name="#mathematica">Wolfram Mathematica</a></LI>
-    <LI><a name="#wolfram physics">Wolfram Physics</a></LI>
-    <LI><a name="#wolframalpha">Wolfram Alpha</a></LI>
-    <LI><a name="#OpenMath">OpenMath</a></LI>
-    <LI><a name="PhysML">PhysML</a></LI>
-    <LI><a name="#MathML">MathML</a></LI>
-    <LI><a name="#omdoc">omdoc</a></LI>
-    <LI><a name="#LatexML">LatexML</a></LI>
-    <LI><a name="#Formal Mathematical Language">Formal Mathematical Language</a></LI>
-    <LI><a name="#Leibniz">Leibniz</a></LI>
-    <LI><a name="#polymath">PolyMath</a></LI>
-    <LI><a name="#metamath">MetaMath</a></LI>
-    <LI><a name="#mathlingua">MathLingua</a></LI>
-    <LI><a name="#directed graphs in linguistics">directed graphs in linguistics</a></LI>
-    <LI><a name="#AtlasIDE">Atlas IDE</a></LI>
-    <LI><a name="#calcula.tech">calcula.tech</a></LI>
-    <LI><a name="#blockpad.net">blockpad.net</a></LI>
-    <LI><a name="#engineerjs.com">engineerjs.com</a></LI>
 
-  </OL>
-  </div>
 -->
-  The purpose of these references is to contrast with the scope and intention of the Physics Derivation Graph.
+<P>
+  The purpose of these efforts is to contrast with the scope and intention of the Physics Derivation Graph.
 </P>
 
 
@@ -70,6 +34,7 @@
     <th>Name and Website</th>
     <th>Summary</th>
     <th>Domain</th>
+    <th>Semantic Enrichment</th>
     <th>Open source?</th>
     <th>Free?</th>
     <th>Active as of 2021-07-25?</th>
@@ -80,6 +45,7 @@
     <td></td> <!-- name, website -- >
     <td></td> <!-- summary -- >
     <td></td> <!-- domain -- >
+    <td></td> <!-- semantic enrichment -- >
     <td></td> <!-- open source? -- >
     <td></td> <!-- free? -- >
     <td></td> <!-- active? -- >
@@ -87,11 +53,60 @@
   </tr>
   -->
   <tr>
+    <td><a href="https://derivationmap.net/">Physics Derivation Graph</td> <!-- name, website -->
+    <td>Goal: Create software that supports writing down all known mathematical physics in a way that can be both read by humans and checked by a computer algebra system.</td> <!-- summary -->
+    <td>Mathematical Physics</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td>ben.is.located AT gmail.com</td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="https://dlmf.nist.gov/">NIST Digital Library of Mathematical Functions</a></td> <!-- name, website -->
+    <td>
+      <blockquote cite="https://dlmf.nist.gov/front/foreword">
+      In 1964 the National Institute of Standards and Technology published the Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables, edited by Milton Abramowitz and Irene A. Stegun.
+        <footer>
+          <cite><a href="https://dlmf.nist.gov/front/foreword">source</a></cite>
+        </footer>
+      </blockquote>
+      DLMF is the culmination of a project that was conceived in 1996 at NIST.
+    </td> <!-- summary -->
+    <td>Math</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
+    <td>No</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td>NIST</td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="https://functions.wolfram.com/">Wolfram Mathematical Functions</a></td> <!-- name, website -->
+    <td>"World's largest collection of formulas and graphics about mathematical functions"</td> <!-- summary -->
+    <td>Math</td> <!-- domain -->
+    <td>Unknown</td> <!-- semantic enrichment -->
+    <td>No</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td><a href="https://www.stephenwolfram.com/">Stephen Wolfram</a></td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="https://eudml.org/">European Digital Mathematics Library</a></td> <!-- name, website -->
+    <td>"EuDML makes the mathematics literature available online in the form of an enduring digital collection, developed and maintained by a network of institutions."</td> <!-- summary -->
+    <td>Math</td> <!-- domain -->
+    <td>Unknown</td> <!-- semantic enrichment -->
+    <td></td> <!-- open source? -->
+    <td></td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td></td> <!-- author or group -->
+  </tr>
+  <tr>
     <td>
       <a name="MioGatto"></a>
       <a href="https://github.com/wtsnjp/MioGatto">MioGatto annotation</a></td> <!-- website -->
     <td>A web-based annotation tool for Latex documents</td> <!-- summary -->
     <td>Science</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -102,7 +117,6 @@
       <a name="incredible proof machine"></a>
       <a href="http://incredible.pm/" target="_blank">Incredible Proof Machine</a></td> <!-- website -->
     <td>
-      <P>
         Similar in intent to the Physics Derivation Graph, though IPM is focused on logic.
         I am impressed by the interface for drawing proofs.
       <P>
@@ -111,6 +125,7 @@
         The <a href="https://news.ycombinator.com/item?id=10276160" target="_blank">comment thread on Hacker News</a>
     </td> <!-- summary -->
     <td>Logic</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -124,7 +139,8 @@
       The <a href="https://github.com/landgreen/landgreen.github.io" target="_blank">source code</a><BR>
       The <a href="https://news.ycombinator.com/item?id=17178031" target="_blank">comment thread on Hacker News</a>
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>Physics</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -136,7 +152,6 @@
       <a href="https://www.cs.utexas.edu/users/novak/cgi/physdemod.cgi" target="_blank">Math / Physics Problem Solver</a>
     </td> <!-- website -->
     <td>
-      <P>
         The <a href="https://www.cs.utexas.edu/users/novak/cgi/physdemod.cgi" target="_blank">Math / Physics Problem Solver</a> by <a href="https://www.cs.utexas.edu/users/novak/">Gordon Novak</a> "solves simple math and physics problems stated in English."
       <P>
         The <a href="https://www.cs.utexas.edu/users/novak/cgi/physlaws.lsp" target="_blank">source code (Lisp)</a> and <a href="https://www.cs.utexas.edu/users/novak/cgi/equations.lsp">equations</a> are available.
@@ -144,6 +159,7 @@
         See <a href="https://yoavartzi.com/pub/kazb-acl.2014.pdf" target="_blank">"Learning to Automatically Solve Algebra Word Problems" (2014)</a>
     </td> <!-- summary -->
     <td>Physics</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -153,8 +169,13 @@
     <td>
       <a name="sciencewise"></a>
       <a href="http://sciencewise.info/" target="_blank">Sciencewise</a></td> <!-- website -->
-    <td>a tagging mechanism for words that is integrated with arXiv.</td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>
+        a tagging mechanism for words that is integrated with arXiv.
+      <P>
+        WISE stands for Web-based Interactive Semantic Environment.
+    </td> <!-- summary -->
+    <td>Science</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -165,12 +186,21 @@
       <a name="imkt"></a>
       <a href="https://imkt.org/" target="_blank">International Mathematical Knowledge Trust</a></td> <!-- website -->
     <td>
-      <P>
         Goal is to create "a comprehensive mathematical knowledge base."
       <P>
         <a href="https://en.wikipedia.org/wiki/International_Mathematical_Knowledge_Trust" target="_blank">Wikipedia entry</a>
+
+      <P>
+        <a href="https://imkt.org/math-portal/mathematics-classifications">https://imkt.org/math-portal/mathematics-classifications</a>
+      <P>
+        <a href="https://imkt.org/math-portal/mathematics-topics/">https://imkt.org/math-portal/mathematics-topics/</a>
+
+      <P>
+        <a href="https://imkt.org/activities/initiatives/">https://imkt.org/activities/initiatives/</a>
+
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>Math</td> <!-- domain -->
+    <td>Unknown</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -181,14 +211,14 @@
       <a name="MathFoldr"></a>
       <a href="https://topos.site/blog/2021/07/introducing-the-mathfoldr-project/" target="_blank">MathFoldr</a></td> <!-- website -->
     <td>
-      <P>
         Authors are category theorists. </P>
       <P>
-        Goal is to "use natural language processing on a corpus of texts to assemble an imperfect but large and useful hierarchy of concepts." according to <a href="https://twitter.com/johncarlosbaez/status/1414999084042055684">this thread</a>.
-        "plan is to start with things that can be done with existing natural language processing software."
+        Goal is to "use natural language processing on a corpus of texts to assemble an imperfect but large and useful hierarchy of concepts" according to <a href="https://twitter.com/johncarlosbaez/status/1414999084042055684">this thread</a>.
+        The "Plan is to start with things that can be done with existing natural language processing software."
       </p>
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td>Yes?</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
     <td></td> <!-- active? -->
@@ -198,12 +228,12 @@
     <td>
       <a name="murray-rust"></a>
       <a href="http://www-pmr.ch.cam.ac.uk/wiki/Main_Page" target="_blank">Murray-Rust Group at University of Cambridge</a></td> <!-- website -->
-    <td>
-      <P>Software "for the representation, extraction and processing of scientific data across
+    <td>Software "for the representation, extraction and processing of scientific data across
         chemistry, materials science and solid-state physics. We're particularly interested in the following areas: chemical data representation and semantics, scientific publication and scientific literature, polymer informatics and materials informatics and simulation."</P>
       <P><a href="https://github.com/petermr/CEVOpen" target="_blank">https://github.com/petermr/CEVOpen</a>
     </td> <!-- summary -->
     <td>Chemistry, Material Science, Physics</td> <!-- domain -->
+    <td>Unknown</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -213,8 +243,10 @@
     <td>
       <a name="CrystallographyOpenDatabase"></a>
       <a href="https://www.crystallography.net/cod/" target="_blank">Crystallography Open Database</a></td> <!-- website -->
-    <td></td> <!-- summary -->
+    <td>For an example, see
+    <a href="https://www.crystallography.net/cod/1000118.html">https://www.crystallography.net/cod/1000118.html</a></td> <!-- summary -->
     <td></td> <!-- domain -->
+    <td>Unknown</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -224,8 +256,12 @@
     <td>
       <a name="NumericalAtlas"></a>
       <a href="http://numericalatlas.cs.ucl.ac.uk/" target="_blank">Numerical Atlas</a></td> <!-- website -->
-    <td>From the paper <a href="https://arxiv.org/abs/2107.00665" target="_blank">Towards Machine Learning-Based Meta-Studies: Applications to Cosmological Parameters</a></td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>
+        A web-based seach interface for variables in arxiv papers.
+      <P>
+        From the paper <a href="https://arxiv.org/abs/2107.00665" target="_blank">Towards Machine Learning-Based Meta-Studies: Applications to Cosmological Parameters</a></td> <!-- summary -->
+    <td>Physics</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -236,7 +272,6 @@
       <a name="formuladatabase"></a>
       <a href="http://www.formula-database.com/release/" target="_blank">FormulaDatabase</a></td> <!-- website -->
     <td>
-      <P>
         Formula Database is a website described by the authors as
         a ``math search engine'' which has a built-in equation editor.
         The search feature is not just matching the \(\rm\LaTeX\) input --
@@ -283,10 +318,11 @@
       Objects in the FormulaDatabase.
       </P>
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
-    <td></td> <!-- open source? -->
+    <td>Science</td> <!-- domain -->
+    <td>Unknown</td> <!-- semantic enrichment -->
+    <td>No</td> <!-- open source? -->
     <td></td> <!-- free? -->
-    <td></td> <!-- active? -->
+    <td>No</td> <!-- active? -->
     <td></td> <!-- author or group -->
   </tr>
   <tr>
@@ -294,10 +330,11 @@
       <a name="wikipedia"></a>
       <a href="https://en.wikipedia.org/wiki/Main_Page" target="_blank">Wikipedia<a/></td> <!-- website -->
     <td>
-      text-based with hyperlinks. <BR/>
+      Gather all knowledge in a text-based structure with hyperlinks. <BR/>
       In contrast, the Physics Derivation Graph is effectively language-independent.
     </td> <!-- summary -->
     <td>Everything</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -313,17 +350,18 @@
       The Physics Derivation Graph is about documenting existing knowledge in a format which can be parsed by computers.
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
-    <td></td> <!-- active? -->
-    <td></td> <!-- author or group -->
+    <td>No</td> <!-- active? -->
+    <td>Whitehead and Russell</td> <!-- author or group -->
   </tr>
   <tr>
     <td>
       <a name="equationmap"></a>
       <a href="http://equationmap.com/" target="_blank">Equation Map</a></td> <!-- website -->
     <td>
-      an interface for putting expressions into a graph format. Inference rules and feeds were
+      An interface for putting expressions into a graph format. Inference rules and feeds were
       not included, nor is checking of the graph via a computer algebra system.
 
       <P>
@@ -349,10 +387,11 @@
         Screenshot of the option to provide .tex files to EquationMap website, and download .tex files.
       </P>
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>Mathematical Physics</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
     <td>No; proprietary</td> <!-- open source? -->
-    <td></td> <!-- free? -->
-    <td></td> <!-- active? -->
+    <td>Yes</td> <!-- free? -->
+    <td>No</td> <!-- active? -->
     <td></td> <!-- author or group -->
   </tr>
   <tr>
@@ -364,6 +403,7 @@
       There is a backend database of content.
     </td> <!-- summary -->
     <td>Math, Physics</td> <!-- domain -->
+    <td>Probably?</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>No</td> <!-- active? -->
@@ -374,29 +414,32 @@
       <a name="hyperphysics"></a>
       <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html" target="_blank">HyperPhysics</a></td> <!-- website -->
     <td>
-      <P>A static set of linked concept maps for topics in Physics.
-      Concept maps are linked to text, graphs, and equations.
+        A static set of linked concept maps for topics in Physics.
+        Concept maps are linked to text, graphs, and equations.
 
-      Although hyperlinked concept maps are a departure from the standard textbook presentation of physics,
-      the leaves of this tree are the same content found in textbooks.
+        Although hyperlinked concept maps are a departure from the standard textbook presentation of physics,
+        the leaves of this tree are the same content found in textbooks.
       </P>
 
-      <P><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html" target="_blank">HyperPhysics</a> is
+      <P>
+        <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html" target="_blank">HyperPhysics</a> is
         similar to <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/>in that
           it is text based for edges. <BR/>
-      <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html" target="_blank">HyperPhysics</a> has
-      what appears to be a graph (hand drawn), but is actually a multi-level
-      tree -- a concept diagram. For example, content in
-      the <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html#mechcon">Classical Mechanics subpage</a>
-      does not link to any other subject. <BR/>
-      The number of levels can vary. For example,
-      the <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html">main page</a> links
-      to <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html#mechcon">mechanics</a> links
-      to <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/colcon.html">Collisions</a> links to
-      <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/mom.html#mom" target="_blank">Momentum</a>.
+        <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html" target="_blank">HyperPhysics</a> has
+        what appears to be a graph (hand drawn), but is actually a multi-level
+        tree -- a concept diagram. For example, content in
+        the <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html#mechcon">Classical Mechanics subpage</a>
+        does not link to any other subject.
+      <P>
+        The number of levels can vary. For example,
+        the <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html">main page</a> links
+        to <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html#mechcon">mechanics</a> links
+        to <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/colcon.html">Collisions</a> links to
+        <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/mom.html#mom" target="_blank">Momentum</a>.
       </P>
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>Physics</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
     <td>The licensing of the content is described as "not freeware or shareware" by the author, though the site is free to access.</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -411,6 +454,7 @@
       the Physics Derivation Graph is documentation of known mathematical physics relations.
     </td> <!-- summary -->
     <td>Math, Physics</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>No</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -420,23 +464,27 @@
     <td>
       <a name="wolfram physics"></a>
       <a href="https://www.wolframphysics.org/" target="_blank">Wolfram Physics</a></td> <!-- website -->
-    <td>
-      <P>using graphs as a method of developing fundemental Physics concepts.</P>
+    <td>Uses graphs as a method of developing fundemental Physics concepts.</P>
       <P>Completely unrelated to the Physics Derivation Graph.</P>
       <P>For a useful overview and assessment, listen to
         <a href="https://www.preposterousuniverse.com/podcast/2021/07/12/155-stephen-wolfram-on-computation-hypergraphs-and-fundamental-physics/">Episode 155 of Sean Carrl's Mindscape</a></td> <!-- summary -->
     <td>Physics</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
-    <td></td> <!-- active? -->
+    <td>Yes</td> <!-- active? -->
     <td><a href="https://www.stephenwolfram.com/">Stephen Wolfram</a></td> <!-- author or group -->
   </tr>
   <tr>
     <td>
       <a name="wolframalpha"></a>
       <a href="https://www.wolframalpha.com" target="_blank">Wolfram Alpha</a></td> <!-- website -->
-    <td>Wolfram Alpha has a backend database of content which is not open source; access is a mix of free and paid.</td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>
+        All science knowledge with a searchable web interface.
+      <P>
+        Wolfram Alpha has a backend database of content which is not open source; access is a mix of free and paid.</td> <!-- summary -->
+    <td>Science</td> <!-- domain -->
+    <td>Probably?</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>mixture</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -457,10 +505,11 @@
       <a href="https://en.wikipedia.org/wiki/OpenMath" target="_blank">https://en.wikipedia.org/wiki/OpenMath</a><BR/>
       <a href="https://github.com/OpenMath" target="_blank">https://github.com/OpenMath</a><BR/>
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
-    <td></td> <!-- open source? -->
-    <td></td> <!-- free? -->
-    <td></td> <!-- active? -->
+    <td>Math</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
     <td><a href="http://kwarc.info/" target="_blank">Knowledge Adaptation and Reasoning for Content</a></td> <!-- author or group -->
   </tr>
   <tr>
@@ -468,7 +517,6 @@
       <a name="PhysML"></a>
       <a href="https://github.com/OMdoc/OMDoc/wiki/PhysML" target="_blank">PhysML</a></td> <!-- website -->
     <td>
-      <P>
         <a href="https://github.com/OMdoc/OMDoc/wiki/PhysML" target="_blank">PhysML</a> is part of the OMdoc effort.
       <P>
         PhysML is for identifying categories of content.
@@ -477,7 +525,8 @@
        in that ScienceWise is about linking specific terms to a common database, whereas PhysML
       is for identifying categories of content.
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>Physics</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
     <td></td> <!-- active? -->
@@ -500,7 +549,8 @@
 
       (source: <a href="https://pdfs.semanticscholar.org/a91a/f3fa64e1296de470206f375a29ddc1c7b54d.pdf" target="_blank">"Extracting Mathematical Semantics from LATEX Documents"</a>)
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>Math</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
     <td></td> <!-- active? -->
@@ -513,10 +563,11 @@
       Presentation MathML (layout only) and Content MathML (semantics)<BR/>
       <a href="https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics" target="_blank">https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics</a>
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
-    <td></td> <!-- open source? -->
-    <td></td> <!-- free? -->
-    <td></td> <!-- active? -->
+    <td>Math, Mathematical Physics</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
     <td></td> <!-- author or group -->
   </tr>
   <tr>
@@ -524,7 +575,6 @@
       <a name="LatexML"></a>
       <a href="https://github.com/brucemiller/LaTeXML" target="_blank">LaTeXML</a></td> <!-- website -->
     <td>
-      <P>
       LatexML converts to Presentation MathML, not Content MathML<BR/>
       <a href="https://dlmf.nist.gov/LaTeXML/" target="_blank">https://dlmf.nist.gov/LaTeXML/</a><BR/>
 
@@ -539,7 +589,8 @@
       <a href="https://arxiv.org/abs/1507.00524" target="_blank">https://arxiv.org/abs/1507.00524</a>
 
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>Math, Mathematical Physics</td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -549,11 +600,17 @@
     <td>
       <a name="Formal Mathematical Language"></a>
       <a href="https://www.mat.univie.ac.at/~neum/FMathL.html" target="_blank">Formal Mathematical Language</a></td> <!-- website -->
-    <td></td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>a modeling and documentation language for mathematics.
+      <blockquote cite="https://www.mat.univie.ac.at/~neum/FMathL.html">
+        the FMathL system might turn into a user-friendly automatic mathematical assistant for retrieving, editing, and checking mathematics (but also computer science and theoretical physics) in both informal, partially formalized, and completely formalized mathematical form.
+      </blockquote>
+
+    </td> <!-- summary -->
+    <td>Math</td> <!-- domain -->
+    <td>Unknown</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
-    <td></td> <!-- active? -->
+    <td>Yes</td> <!-- active? -->
     <td></td> <!-- author or group -->
   </tr>
   <tr>
@@ -561,7 +618,6 @@
       <a name="Leibniz"></a>
       <a href="https://github.com/khinsen/leibniz" target="_blank">Leibniz</a></td> <!-- website -->
     <td>
-      <P>
         "Digital Scientific Notations as a Human-Computer Interface in Computer-Aided Research"<BR/>
         <a href="https://arxiv.org/abs/1802.09307" target="_blank">https://arxiv.org/abs/1802.09307</a>
       <P>
@@ -573,6 +629,7 @@
       <a href="https://www.sjscience.org/article?id=527" target="_blank">https://www.sjscience.org/article?id=527</a>
     </td> <!-- summary -->
     <td>Science</td> <!-- domain -->
+    <td>Yes?</td> <!-- semantic enrichment -->
     <td>Yes: CRAPL</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -583,7 +640,7 @@
       <a name="polymath"></a>
       <a href="https://polymathprojects.org/" target="_blank">PolyMath</a></td> <!-- website -->
     <td>
-      a "group blog" with the intent of
+      A "group blog" with the intent of
       <blockquote cite="http://https://polymathprojects.org/about/">
        hosting "polymath" projects – massively collaborative mathematical research projects.
        <footer>
@@ -603,10 +660,11 @@
       <P>
       The Physics Derivation Graph is an effort to create the software infrastructure for a "PolyPhysics"
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
-    <td></td> <!-- open source? -->
-    <td></td> <!-- free? -->
-    <td></td> <!-- active? -->
+    <td>Math</td> <!-- domain -->
+    <td>No</td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
     <td></td> <!-- author or group -->
   </tr>
   <tr>
@@ -625,23 +683,23 @@
       </blockquote>
 
     </td> <!-- summary -->
-    <td></td> <!-- domain -->
-    <td></td> <!-- open source? -->
-    <td></td> <!-- free? -->
-    <td></td> <!-- active? -->
+    <td>Math</td> <!-- domain -->
+    <td>Yes?</td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
     <td></td> <!-- author or group -->
   </tr>
   <tr>
     <td>
-      <a name="directed graphs in linguistics">directed graphs in linguistics</a>Examples:
-      <UL>
-        <LI><a href="https://visuwords.com/" target="_blank">https://visuwords.com/</a></LI>
-        <LI><a href="http://wordventure.eti.pg.gda.pl/wne/wne.html" target="_blank">http://wordventure.eti.pg.gda.pl/wne/wne.html</a></LI>
-        <LI><a href="https://code.google.com/archive/p/synonym/" target="_blank">https://code.google.com/archive/p/synonym/</a></LI>
-      </UL>
+      <a name="directed graphs in linguistics">directed graphs in linguistics</a>
+      <P>
+        Examples include <a href="https://visuwords.com/" target="_blank">visuwords.com</a> and
+          <a href="https://code.google.com/archive/p/synonym/" target="_blank">code.google.com/archive/p/synonym/</a>
     </td> <!-- website -->
-    <td>There are many projects in this domain</td> <!-- summary -->
+    <td></td> <!-- summary -->
     <td>Linguistics</td> <!-- domain -->
+    <td>varies</td> <!-- semantic enrichment -->
     <td>varies</td> <!-- open source? -->
     <td>varies</td> <!-- free? -->
     <td>varies</td> <!-- active? -->
@@ -664,6 +722,7 @@
 
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td>Yes?</td> <!-- semantic enrichment -->
     <td>Yes: Apache 2.0</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -671,10 +730,15 @@
   </tr>
   <tr>
     <td>
-      <a name="AtlasIDE"></a>
+      <a name="Atlas IDE"></a>
       <a href="http://atlasengineering.io/" target="_blank">Atlas IDE</a></td> <!-- website -->
-    <td>IDE for math. Paid product (not free, not open source).</td> <!-- summary -->
-    <td></td> <!-- domain -->
+    <td>
+        IDE for math. Includes visualization. Automatic linking of variables. Variables have definitions.
+      <P>
+        <a href="https://news.ycombinator.com/item?id=27112529">https://news.ycombinator.com/item?id=27112529</a>
+    </td> <!-- summary -->
+    <td>Mathematical Physics</td> <!-- domain -->
+    <td>Yes</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>No</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
@@ -683,9 +747,8 @@
   <tr>
     <td>
       <a name="calcula.tech"></a>
-      <a href="https://calcula.tech/" target="_blank">calcula.tech</a></td> <!-- website -->
-    <td>
-      <P>Create Latex equations in a web browser and solve numerical equations.
+      <a href="https://calcula.tech/" target="_blank">calcula.tech IDE</a></td> <!-- website -->
+    <td>Create Latex equations in a web browser and solve numerical equations.
       <blockquote cite="https://calcula.tech/">
         <P>
           Do calculations in the browser with realtime pretty printed output.
@@ -693,13 +756,13 @@
         <footer>
           <cite><a href="https://calcula.tech/">source</a></cite>
         </footer>
-
       </blockquote>
-
+      <a href="https://github.com/mkhan45/CalcuLaTeX">source code</a>
     </td> <!-- summary -->
     <td></td> <!-- domain -->
-    <td></td> <!-- open source? -->
-    <td></td> <!-- free? -->
+    <td></td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
     <td></td> <!-- author or group -->
   </tr>
@@ -707,10 +770,11 @@
     <td>
       <a name="blockpad.net"></a>
       <a href="https://blockpad.net/" target="_blank">blockpad.net</a></td> <!-- website -->
-    <td>MathCAD in a web browser</td> <!-- summary -->
+    <td>mash-up of MathCAD and Excel in a web browser</td> <!-- summary -->
     <td>Math</td> <!-- domain -->
-    <td></td> <!-- open source? -->
-    <td></td> <!-- free? -->
+    <td></td> <!-- semantic enrichment -->
+    <td>No</td> <!-- open source? -->
+    <td>No</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
     <td></td> <!-- author or group -->
   </tr>
@@ -718,10 +782,13 @@
     <td>
       <a name="engineerjs.com"></a>
       <a href="http://engineerjs.com/" target="_blank">engineerjs.com</a></td> <!-- website -->
-    <td></td> <!-- summary -->
+    <td>
+      <a href="https://news.ycombinator.com/item?id=12825798">https://news.ycombinator.com/item?id=12825798</a>
+    </td> <!-- summary -->
     <td></td> <!-- domain -->
+    <td></td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
-    <td></td> <!-- free? -->
+    <td>Yes</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
     <td></td> <!-- author or group -->
   </tr>
