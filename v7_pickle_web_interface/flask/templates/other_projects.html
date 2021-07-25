@@ -2,32 +2,49 @@
 {% block content %}
 
 
-<H1>Comparison of the Physics Derivation Graph with other Physics projects</H1>
+<H1>Comparison of the Physics Derivation Graph with other projects</H1>
 <P>
- A survey of software related to the Physics Derivation Graph.
+ This page is a survey of software related to the Physics Derivation Graph.
  For a literature review, see <a href="{{ url_for('literature_review') }}">this page</a>.
   <div id="toc_container">
   <p class="toc_title">Contents</p>
   <OL class="toc_list">
     <!--
     <LI><a href="#"></a></LI>
-    -->
-    <LI><a href="#incredible proof machine">Incredible Proof Machine</a></LI>
-    <LI><a name="#Explorable Physics">Explorable Physics</a></LI>
-    <LI><a href="#NLPphysicsSolver">NLP Physics Solver</a></LI>
-    <LI><a href="#sciencewise">ScienceWise</a></LI>
-    <LI><a href="#physml">PhysML</a></LI>
-    <LI><a href="#formuladatabase">FormulaDatabase</a></LI>
-    <LI><a href="#wikipedia">Wikipedia</a></LI>
-    <LI><a href="#principia">Principia Mathematica</a></LI>
-    <LI><a href="#equationmap">EquationMap</a></LI>
-    <LI><a href="#symbolab">SymboLab</a></LI>
-    <LI><a href="#hyperphysics">HyperPhysics</a></LI>
-    <LI><a href="#mathematica">Mathematica</a></LI>
-    <LI><a href="#wolfram physics">Wolfram Physics</a></LI>
-    <LI><a href="#wolframalpha">Wolfram Alpha</a></LI>
-    <LI><a href="#Consilience">Consilience</a></LI>
 
+    In bash,
+    cat other_projects.html | grep "<H4" | sed 's/H4>/LI>/g' | sed 's/name="/name="#/' 
+    -->
+    <LI><a name="#incredible proof machine">Incredible Proof Machine</a></LI>
+    <LI><a name="#Explorable Physics">Explorable Physics</a></LI>
+    <LI><a name="#NLPphysicsSolver">NLP Physics Solver</a></LI>
+    <LI><a name="#sciencewise">ScienceWise</a><LI>
+    <LI><a name="#physml">PhysML (in OMdoc)</a></LI>
+    <LI><a name="#imkt">International Mathematical Knowledge Trust</a></LI>
+    <LI><a name="#MathFoldr">MathFoldr</a></LI>
+    <LI><a name="#murray-rust">Murray-Rust Group at University of Cambridge</a></LI>
+    <LI><a name="#CrystallographyOpenDatabase">Crystallography Open Database</a></LI>
+    <LI><a name="#NumericalAtlas">Numerical Atlas</a><LI>
+    <LI><a name="#formuladatabase">FormulaDatabase</a></LI>
+    <LI><a name="#wikipedia">Wikipedia</a></LI>
+    <LI><a name="#principia">Principia Mathematica</a></LI>
+    <LI><a name="#equationmap">EquationMap</a></LI>
+    <LI><a name="#symbolab">SymboLab</a></LI>
+    <LI><a name="#hyperphysics">HyperPhysics</a></LI>
+    <LI><a name="#mathematica">Wolfram Mathematica</a></LI>
+    <LI><a name="#wolfram physics">Wolfram Physics</a></LI>
+    <LI><a name="#wolframalpha">Wolfram Alpha</a></LI>
+    <LI><a name="#Consilience">Consilience: The Unity of Knowledge</a></LI>
+    <LI><a name="#OpenMath">OpenMath</a></LI>
+    <LI><a name="#MathML">MathML</a></LI>
+    <LI><a name="#omdoc">omdoc</a></LI>
+    <LI><a name="#LatexML">LatexML</a></LI>
+    <LI><a name="#Formal Mathematical Language">Formal Mathematical Language</a></LI>
+    <LI><a name="#Leibniz">Leibniz</a></LI>
+    <LI><a name="#polymath">PolyMath</a></LI>
+    <LI><a name="#metamath">MetaMath</a></LI>
+    <LI><a name="#mathlingua">MathLingua</a></LI>
+    <LI><a name="#directed graphs in linguistics">directed graphs in linguistics</a></LI>
   </OL>
   </div>
   The purpose of these references is to contrast with the scope and intention of the Physics Derivation Graph.
@@ -75,6 +92,48 @@
 
 PhysML is for identifying categories of content.
 
+<H4><a name="imkt">International Mathematical Knowledge Trust</a></H4>
+<P>
+  <a href="https://imkt.org/">https://imkt.org/</a> has the goal to create 
+  "a comprehensive mathematical knowledge base."
+</P>
+<P>
+  <a href="https://en.wikipedia.org/wiki/International_Mathematical_Knowledge_Trust">Wikipedia entry</a>
+</P>
+
+<H4><a name="MathFoldr">MathFoldr</a></H4>
+<P>
+  Authors are category theorists. See 
+  <a href="https://topos.site/blog/2021/07/introducing-the-mathfoldr-project/">https://topos.site/blog/2021/07/introducing-the-mathfoldr-project/</a>
+</P>
+
+<P>
+  Goal is to "use natural language processing on a corpus of texts to assemble an imperfect but large and useful hierarchy of concepts." according to <a href="https://twitter.com/johncarlosbaez/status/1414999084042055684">this thread</a>.
+  "plan is to start with things that can be done with existing natural language processing software."
+</p>
+
+<H4><a name="murray-rust">Murray-Rust Group at University of Cambridge</a></H4>
+<P>
+  <a href="http://www-pmr.ch.cam.ac.uk/wiki/Main_Page">http://www-pmr.ch.cam.ac.uk/wiki/Main_Page</a>
+<P>
+  Software "for the representation, extraction and processing of scientific data across chemistry, materials science and solid-state physics. We're particularly interested in the following areas: chemical data representation and semantics, scientific publication and scientific literature, polymer informatics and materials informatics and simulation."
+</P>
+<P>
+  <a href="https://github.com/petermr/CEVOpen">https://github.com/petermr/CEVOpen</a>
+</P>
+
+
+<H4><a name="CrystallographyOpenDatabase">Crystallography Open Database</a></H4>
+<P>
+  <a href="https://www.crystallography.net/cod/">https://www.crystallography.net/cod/</a>
+</P>
+
+<H4><a name="NumericalAtlas">Numerical Atlas</a><H4>
+<P>
+  <a href="http://numericalatlas.cs.ucl.ac.uk/">http://numericalatlas.cs.ucl.ac.uk/</a><BR>
+  From the paper <a href="https://arxiv.org/abs/2107.00665">Towards Machine Learning-Based Meta-Studies: Applications to Cosmological Parameters</a>
+</P>
+
 <H4><a name="formuladatabase">FormulaDatabase</a></H4>
 <P>
   Formula Database (<a href="http://www.formula-database.com/release/">http://www.formula-database.com/release/</a>) is a website described by the authors as a ``math search engine'' which has a built-in equation editor.
@@ -118,16 +177,16 @@ Objects in the FormulaDatabase.
 </P>
 
 
+<H4><a name="wikipedia">Wikipedia</a></H4>
 <P>
-  <H4><a name="wikipedia">Wikipedia</a></H4>
     <em>How is the Physics Derivation Graph different than <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/>?</em>
   </a><BR/>
   <a href="https://en.wikipedia.org/wiki/Main_Page">Wikipedia<a/> is text-based with hyperlinks. <BR/>
   In contrast, the Physics Derivation Graph is effectively language-independent.
 </P>
 
-<P>
 <H4><a name="principia">Principia Mathematica</a></H4>
+<P>
 <em>How is the Physics Derivation Graph different than the <a href="https://en.wikipedia.org/wiki/Principia_Mathematica">Principia_Mathematica</a>?</em>
 </a><BR/>
 The ambitious effort of Whitehead and Russell to prove the foundations of mathematics is not similar to this project. "Proof" doesn't apply in Physics. This project is about documenting existing knowledge in a format which can be parsed by computers.
@@ -184,15 +243,15 @@ The number of levels can vary. For example, the <a href="http://hyperphysics.phy
 <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/mom.html#mom">Momentum</a>.
 </P>
 
+<H4><a name="mathematica">Wolfram Mathematica</a></H4>
 <P>
-  <H4><a name="mathematica">Wolfram Mathematica</a></H4>
   <a href="https://www.wolfram.com/mathematica/">Mathematica</a> is a commercial product, whereas the Physics Derivation Graph is open source.<BR/>
   <a href="https://www.wolfram.com/mathematica/">Mathematica</a> is a <a href="https://en.wikipedia.org/wiki/Computer_algebra_system">computer algebra system</a>, whereas the Physics Derivation Graph is documentation of known mathematical physics relations.<BR/>
 
 
+<H4><a name="wolfram physics">Wolfram Physics</a></H4>
 <P>
-  <H4><a name="wolfram physics">Wolfram Physics</a></H4>
-  The <a href="https://www.wolframphysics.org/">Wolfram Physics</a> focuses on using Graph generation as a method of developing fundemental Physics concepts.
+  <a href="https://www.wolframphysics.org/">Wolfram Physics</a> focuses on using Graph generation as a method of developing fundemental Physics concepts.
 </P>
 
 
