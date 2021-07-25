@@ -13,6 +13,17 @@ A surprising outcome of this work has been the enumeration of [inference rules u
 
 [![Join the chat at https://gitter.im/allofphysicsgraph/Lobby](https://badges.gitter.im/allofphysicsgraph/Lobby.svg)](https://gitter.im/allofphysicsgraph/Lobby)
 
+# Goals / Objectives
+
+- [x] Create a framework capable of describing all mathematics needed for physics derivations. I use Latex as the syntax in the framework because Latex is how I think of equations. However, Latex is insufficient for processing by computer algebra systems. Status: proof of concept exists
+- [x] Create machine-readable databases which use the above framework to capture the mathematical derivations in physics. To hold the content of the databases I'm using custom XML. Status: proof of concept exists
+- [x] Create graphical representation of relations content in the databases. I'm using d3js (previously GraphViz) to render the visualization. Status: proof of concept works
+- [x] Use a computer algebra system to verify the relations in the databases. I'm using SymPy as the CAS. Status: proof-of-concept completed in 2020
+- [x] Create a web browser-based viewing of the generated graph. HTML5 seems capable. Status: proof-of-concept completed in 2020
+- [x] Create a web browser-based graph input tool. Status: proof-of-concept completed in 2020
+
+The proof-of-concept for all objectives were completed during the Covid-19 lockdown (summer of 2020). The next steps are unclear. Adding content manually is burdensome. The website is not polished -- errors occur and the look is amateur. 
+
 # Licensing
 
 
