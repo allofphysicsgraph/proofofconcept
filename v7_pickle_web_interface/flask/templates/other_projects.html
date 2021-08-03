@@ -35,6 +35,7 @@
     <th>Name and Website</th>
     <th>Summary</th>
     <th>Domain</th>
+    <th>Relation to PDG</th>
     <th>Semantic Enrichment</th>
     <th>Open source?</th>
     <th>Free?</th>
@@ -46,6 +47,7 @@
     <td></td> <!-- name, website -- >
     <td></td> <!-- summary -- >
     <td></td> <!-- domain -- >
+    <td></td> <!-- relation to PDG -- >
     <td></td> <!-- semantic enrichment -- >
     <td></td> <!-- open source? -- >
     <td></td> <!-- free? -- >
@@ -59,6 +61,7 @@
     <td><a href="https://derivationmap.net/">Physics Derivation Graph</td> <!-- name, website -->
     <td>Goal: Create software that supports writing down all known mathematical physics in a way that can be both read by humans and checked by a computer algebra system.</td> <!-- summary -->
     <td>Mathematical Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -77,6 +80,7 @@
       DLMF is the culmination of a project that was conceived in 1996 at NIST.
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -87,6 +91,7 @@
     <td><a href="https://en.wikipedia.org/wiki/Google_Knowledge_Graph">Google's Knowledge Graph</a></td> <!-- name, website -->
     <td></td> <!-- summary -->
     <td>Everything</td> <!-- domain -->
+    <td>PDG is also a knowledge graph</td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -94,9 +99,68 @@
     <td>Google</td> <!-- author or group -->
   </tr>
   <tr>
+    <td><a href="https://www.sympy.org/en/index.html">Sympy</a></td> <!-- name, website -->
+    <td>Computer Algebra System (CAS) in Python</td> <!-- summary -->
+    <td>Math, Physics</td> <!-- domain -->
+    <td>PDG relies on SymPy for validation of steps</td> <!-- relation to PDG -->
+    <td>No</td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td></td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="http://nevidal.org/">Evidence Algorithm</a></td> <!-- name, website -->
+    <td><a href="http://nevidal.org/sad.en.html">System for Automated Deduction (SAD)</a> =
+          automated processing of formal mathematical texts written in a special language
+          called ForTheL (FORmal THEory Language) or in a traditional first-order language.</td> <!-- summary -->
+    <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
+    <td></td> <!-- semantic enrichment -->
+    <td><a href="http://nevidal.org/dload.en.html">Yes</a></td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td><a href="http://nevidal.org/team.en.html">Lyaletski, Verchinine, Paskevich</a></td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="https://ontomathpro.org/">OntoMathPro</a></td> <!-- name, website -->
+    <td>a Linked Data Hub for mathematics</td> <!-- summary -->
+    <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
+    <td>Yes</td> <!-- semantic enrichment -->
+    <td>Yes; https://github.com/CLLKazan/OntoMathPro</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td>Intelligent Search Systems and Semantic Technologies laboratory at Kazan Federal University</td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="https://kwarc.info/systems/sTeX/">sTeX: Semantic Markup for LaTeX</a></td> <!-- name, website -->
+    <td>sTeX system allows to embed /structural semantics into documents. Concretely sTeX is a “semantic version of LaTeX” that allows to use special macros to encode mathematical meaning explicitly.</td> <!-- summary -->
+    <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
+    <td>Yes</td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td><a href="http://kwarc.info/" target="_blank">Knowledge Adaptation and Reasoning for Content</a></td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="https://korpora-exp.zim.uni-duisburg-essen.de/naproche/">Naproche project (Natural language Proof Checking)</a></td> <!-- name, website -->
+    <td>A central goal of Naproche is to develop a controlled natural language (CNL) for mathematical texts and adapted proof checking software which checks texts written in the CNL for syntactical and mathematical correctness.</td> <!-- summary -->
+    <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
+    <td></td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td></td> <!-- author or group -->
+  </tr>
+
+  <tr>
     <td><a href="https://www2.ph.ed.ac.uk/snuggletex/documentation/overview-and-features.html">SnuggleTeX</a></td> <!-- name, website -->
     <td>Java library for converting fragments of LaTeX to XML (usually XHTML + MathML)</td> <!-- summary -->
     <td></td> <!-- domain -->
+    <td>PDG could use MathML but does not currently.</td> <!-- relation to PDG -->
     <td></td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -107,6 +171,7 @@
     <td><a href="https://en.wikipedia.org/wiki/PlanetPhysics">PlanetPhysics</a></td> <!-- name, website -->
     <td></td> <!-- summary -->
     <td>Physics</td> <!-- domain -->
+    <td>PDG is a collection of Physics knowledge</td> <!-- relation to PDG -->
     <td></td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -117,6 +182,7 @@
     <td><a href="https://cmap.ihmc.us/">CmapTools</a></td> <!-- name, website -->
     <td></td> <!-- summary -->
     <td></td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td></td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -136,6 +202,7 @@
         </UL>
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td></td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -149,6 +216,7 @@
       Status: "a database which includes more than 9400 definitions of mathematical concepts and more than 49000 theorems."
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td></td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -159,6 +227,7 @@
     <td><a href="https://functions.wolfram.com/">Wolfram Mathematical Functions</a></td> <!-- name, website -->
     <td>"World's largest collection of formulas and graphics about mathematical functions"</td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Unknown</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -169,6 +238,7 @@
     <td><a href="https://eudml.org/">European Digital Mathematics Library</a></td> <!-- name, website -->
     <td>"EuDML makes the mathematics literature available online in the form of an enduring digital collection, developed and maintained by a network of institutions."</td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Unknown</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -181,6 +251,7 @@
       <a href="https://github.com/wtsnjp/MioGatto">MioGatto annotation</a></td> <!-- website -->
     <td>A web-based annotation tool for Latex documents</td> <!-- summary -->
     <td>Science</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -200,6 +271,7 @@
         The <a href="https://news.ycombinator.com/item?id=10276160" target="_blank">comment thread on Hacker News</a>
     </td> <!-- summary -->
     <td>Logic</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>No</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -215,6 +287,7 @@
       The <a href="https://news.ycombinator.com/item?id=17178031" target="_blank">comment thread on Hacker News</a>
     </td> <!-- summary -->
     <td>Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>No</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -235,6 +308,7 @@
         See <a href="https://yoavartzi.com/pub/kazb-acl.2014.pdf" target="_blank">"Learning to Automatically Solve Algebra Word Problems" (2014)</a>
     </td> <!-- summary -->
     <td>Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>No</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -251,6 +325,7 @@
         WISE stands for Web-based Interactive Semantic Environment.
     </td> <!-- summary -->
     <td>Science</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -276,6 +351,7 @@
 
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Unknown</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -294,6 +370,7 @@
       </p>
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes?</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -309,6 +386,7 @@
       <P><a href="https://github.com/petermr/CEVOpen" target="_blank">https://github.com/petermr/CEVOpen</a>
     </td> <!-- summary -->
     <td>Chemistry, Material Science, Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Unknown</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -322,6 +400,7 @@
     <td>For an example, see
     <a href="https://www.crystallography.net/cod/1000118.html">https://www.crystallography.net/cod/1000118.html</a></td> <!-- summary -->
     <td></td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Unknown</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -337,6 +416,7 @@
       <P>
         From the paper <a href="https://arxiv.org/abs/2107.00665" target="_blank">Towards Machine Learning-Based Meta-Studies: Applications to Cosmological Parameters</a></td> <!-- summary -->
     <td>Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -397,6 +477,7 @@
       </P>
     </td> <!-- summary -->
     <td>Science</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Unknown</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -412,6 +493,7 @@
       In contrast, the Physics Derivation Graph is effectively language-independent.
     </td> <!-- summary -->
     <td>Everything</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>No</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -450,6 +532,7 @@
       </P>
     </td> <!-- summary -->
     <td>Mathematical Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>No</td> <!-- semantic enrichment -->
     <td>No; proprietary</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -465,6 +548,7 @@
       There is a backend database of content.
     </td> <!-- summary -->
     <td>Math, Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Probably?</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -501,6 +585,7 @@
       </P>
     </td> <!-- summary -->
     <td>Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>No</td> <!-- semantic enrichment -->
     <td>The licensing of the content is described as "not freeware or shareware" by the author, though the site is free to access.</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -516,6 +601,7 @@
       the Physics Derivation Graph is documentation of known mathematical physics relations.
     </td> <!-- summary -->
     <td>Math, Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>No</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>No</td> <!-- free? -->
@@ -531,6 +617,7 @@
       <P>For a useful overview and assessment, listen to
         <a href="https://www.preposterousuniverse.com/podcast/2021/07/12/155-stephen-wolfram-on-computation-hypergraphs-and-fundamental-physics/">Episode 155 of Sean Carrl's Mindscape</a></td> <!-- summary -->
     <td>Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>No</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -548,6 +635,7 @@
       <P>
         Wolfram Alpha has a backend database of content which is not open source; access is a mix of free and paid.</td> <!-- summary -->
     <td>Science</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Probably?</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>mixture</td> <!-- free? -->
@@ -570,6 +658,7 @@
       <a href="https://github.com/OpenMath" target="_blank">https://github.com/OpenMath</a><BR/>
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -590,6 +679,7 @@
       is for identifying categories of content.
     </td> <!-- summary -->
     <td>Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -614,6 +704,7 @@
       (source: <a href="https://pdfs.semanticscholar.org/a91a/f3fa64e1296de470206f375a29ddc1c7b54d.pdf" target="_blank">"Extracting Mathematical Semantics from LATEX Documents"</a>)
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -628,6 +719,7 @@
       <a href="https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics" target="_blank">https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics</a>
     </td> <!-- summary -->
     <td>Math, Mathematical Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -654,6 +746,7 @@
 
     </td> <!-- summary -->
     <td>Math, Mathematical Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td></td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -671,6 +764,7 @@
 
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Unknown</td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
@@ -693,6 +787,7 @@
       <a href="https://www.sjscience.org/article?id=527" target="_blank">https://www.sjscience.org/article?id=527</a>
     </td> <!-- summary -->
     <td>Science</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes?</td> <!-- semantic enrichment -->
     <td>Yes: CRAPL</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -725,6 +820,7 @@
       The Physics Derivation Graph is an effort to create the software infrastructure for a "PolyPhysics"
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>No</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -748,6 +844,7 @@
 
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes?</td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -761,6 +858,7 @@
     <td>Examples include <a href="https://visuwords.com/" target="_blank">visuwords.com</a> and
       <a href="https://code.google.com/archive/p/synonym/" target="_blank">synonym</a></td> <!-- summary -->
     <td>Linguistics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>varies</td> <!-- semantic enrichment -->
     <td>varies</td> <!-- open source? -->
     <td>varies</td> <!-- free? -->
@@ -784,6 +882,7 @@
 
     </td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes?</td> <!-- semantic enrichment -->
     <td>Yes: Apache 2.0</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -800,6 +899,7 @@
         <a href="https://news.ycombinator.com/item?id=27112529">https://news.ycombinator.com/item?id=27112529</a>
     </td> <!-- summary -->
     <td>Mathematical Physics</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td>Yes</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>No</td> <!-- free? -->
@@ -822,6 +922,7 @@
       <a href="https://github.com/mkhan45/CalcuLaTeX">source code</a>
     </td> <!-- summary -->
     <td></td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td></td> <!-- semantic enrichment -->
     <td>Yes</td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->
@@ -834,6 +935,7 @@
       <a href="https://blockpad.net/" target="_blank">blockpad.net</a></td> <!-- website -->
     <td>mash-up of MathCAD and Excel in a web browser</td> <!-- summary -->
     <td>Math</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td></td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
     <td>No</td> <!-- free? -->
@@ -848,6 +950,7 @@
       <a href="https://news.ycombinator.com/item?id=12825798">https://news.ycombinator.com/item?id=12825798</a>
     </td> <!-- summary -->
     <td></td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
     <td></td> <!-- semantic enrichment -->
     <td></td> <!-- open source? -->
     <td>Yes</td> <!-- free? -->

@@ -18,29 +18,49 @@
 
 <H2 id="context">Context</h2>
 <P>
-Prior to the use of computers, knowledge about physics has been recorded in the form of notes, letters, journal articles, and text books.
+Prior to the use of computers, knowledge about physics has been recorded in the
+form of notes, letters, journal articles, and text books.
 The content is typically composed of text, equations, and pictures.
-The presentation is in a linear sequence, though references are often made to link the current section with previous sections and later sections.
+The presentation is in a linear sequence, though references are often made to
+link the current section with previous sections and later sections.
 </P>
 
 <P>
-A recent addition to the toolset for capturing knowledge has been the use of linked webpages.
-A primary example of this is Wikipedia, an <a href="https://en.wikipedia.org/wiki/HTML">HTML</a>-based encyclopedia.
-Webpages such as Wikipedia still use text, equations, and pictures, but feature a novel capability: hyperlinks.
+A recent addition to the toolset for capturing knowledge has been the use of
+linked webpages.
+A primary example of this is Wikipedia, an
+<a href="https://en.wikipedia.org/wiki/HTML">HTML</a>-based encyclopedia.
+Webpages such as Wikipedia still use text, equations, and pictures, but feature
+a novel capability: hyperlinks.
 Hypertext Markup Language offers the ability to connect content to any other content.
-This enables non-linear exploration of content, in contrast to a textbook which is designed to be read sequentially.
+This enables non-linear exploration of content, in contrast to a textbook which
+is designed to be read sequentially.
 </P>
 
 <P>
-  The Physics Derivation Graph applies the concept of non-linear documentation to mathematical physics content.
-  Instead of starting from linear text with references, this project starts with the network of mathematical relations.
-  A more formal term for this network is a <a href="https://en.wikipedia.org/wiki/Graph_(mathematics)">graph</a> composed of nodes and edges.
-  The graph associated with the PDG has two essential types of nodes: mathematical expressions and <a href="#inference rules">inference rules</a>.
+  The Physics Derivation Graph applies the concept of non-linear documentation
+  to mathematical physics content.
+  Instead of starting from linear text with references, this project starts
+  with the network of mathematical relations.
+  A more formal term for this network is a
+  <a href="https://en.wikipedia.org/wiki/Graph_(mathematics)">graph</a> composed of nodes and edges.
+  The graph associated with the PDG has two essential types of nodes:
+  mathematical expressions and <a href="#inference rules">inference rules</a>.
+
+<P>
+  A Physics-focused machine-oriented
+  <a href="https://en.wikipedia.org/wiki/Controlled_natural_language">controlled natural language</a>
+  is defined by
+  <a href="{{ url_for('developer_documentation') }}?referrer=user_documentation#CNL grammar">grammar</a>
+  and vocabulary.  The jargon for concepts in the Physics Derivation Graph are
+  related by the following graph:
 
   <img src="{{ url_for('static', filename='jargon_relations.png') }}">
 <P>
-  Every mathematical expression is connected to an inference rule by a directed edge.
-  No two expressions are directly connected without an inference rule, and no two inference rules are connected directly.
+  Every mathematical expression is connected to an inference rule by a
+  directed edge.
+  No two expressions are directly connected without an inference rule, and
+  no two inference rules are connected directly.
   An example is provided in the next section to illustrate the concepts.
 </P>
 
@@ -56,7 +76,8 @@ This enables non-linear exploration of content, in contrast to a textbook which 
 <P>
 <blockquote>
   The following is what might be presented in a textbook or online article: <BR/>
-  <a href="https://en.wikipedia.org/wiki/Frequency">Frequency</a> \(f\) and <a href="https://simple.wikipedia.org/wiki/Period_(physics)">period</a> \(T\) are related by
+  <a href="https://en.wikipedia.org/wiki/Frequency">Frequency</a> \(f\) and
+  <a href="https://simple.wikipedia.org/wiki/Period_(physics)">period</a> \(T\) are related by
     <!-- http://docs.mathjax.org/en/latest/input/tex/eqnumbers.html -->
 \begin{equation}
 T\ f = 1
@@ -67,21 +88,30 @@ Thus, frequency in terms of the period is
 f = 1/T
 \label{eq:freq_is_inverse_period}
 \end{equation}
-The relation between equations \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is that both sides of \eqref{eq:period_and_freq} were divided by \(T\).
+The relation between equations \eqref{eq:period_and_freq} and
+\eqref{eq:freq_is_inverse_period} is that both sides of \eqref{eq:period_and_freq}
+were divided by \(T\).
 </blockquote>
 </P>
 
 <P>
-In the above example, three terms used in the Physics Derivation Graph are demonstrated. There are two <U>mathematical expressions</U>: \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period}.
-These expressions are related by an <U>inference rule</U>: "Divide both sides of first expression by a scalar value to yield the second expression."
-This inference rule takes an argument, referred to here as the <U>feed</U>, which in this example is \(T\).
+In the above example, three terms used in the Physics Derivation Graph are
+demonstrated. There are two <U>mathematical expressions</U>:
+\eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period}.
+These expressions are related by an <U>inference rule</U>: "Divide both sides
+of first expression by a scalar value to yield the second expression."
+This inference rule takes an argument, referred to here as the <U>feed</U>,
+which in this example is \(T\).
 The relation of these terms is shown graphically below in figure 1:<!--in Fig. \ref{fig:freq_period}:-->
 </P>
 
 <!--\begin{figure}-->
 <img src="{{ url_for('static', filename='frequency_period_relation.png') }}" width=400>
 <CENTER>
-  Figure 1. A derivation step represented as a graph. The directed graph is comprised of an input expression (top blue circle), an output expressions (bottom blue circle), an inference rule (red trapazoid), and a feed (purple rectangle).
+  Figure 1. A derivation step represented as a graph. The directed graph is
+  comprised of an input expression (top blue circle), an output expressions
+  (bottom blue circle), an inference rule (red trapazoid), and a feed (purple
+  rectangle).
 </CENTER>
 <!--
 \label{fig:freq_period}
@@ -91,111 +121,175 @@ The relation of these terms is shown graphically below in figure 1:<!--in Fig. \
 <H2 id="graph content">Graph content</H2>
 
 <P>
-  The graph content takes the form of <a href="#expressions">expressions</a> (e.g., equations and inequalities), <a href="#inference rules">inference rules</a>, and feeds.
-  The expressions and feeds are built from <a href="{{ url_for('list_all_symbols') }}?referrer=user_documentation">symbols</a>.
-  In the <a href="#example">example provided above</a>, the symbols are period \(T\), frequency \(f\), equality \(=\), division \(/\), (implicity) multiplication, and the numeric value 1.
+  The graph content takes the form of <a href="#expressions">expressions</a>
+  (e.g., equations and inequalities), <a href="#inference rules">inference rules</a>, and feeds.
+  The expressions and feeds are built from
+  <a href="{{ url_for('list_all_symbols') }}?referrer=user_documentation">symbols</a>.
+  In the <a href="#example">example provided above</a>, the symbols are
+  period \(T\), frequency \(f\), equality \(=\), division \(/\), (implicity)
+  multiplication, and the numeric value 1.
   The two expressions are \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period}.
-  An inference rule is defined here as an atomic transformation of one expression to another.
-  The inference rule being applied implicitly between \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first equation by a value to yield the second equation."
+  An inference rule is defined here as an atomic transformation of one
+  expression to another.
+  The inference rule being applied implicitly between \eqref{eq:period_and_freq}
+  and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first equation
+  by a value to yield the second equation."
 This inference rule takes an argument (the "feed"), which in this example is \(T\).
 </P>
 
 <P>
-The Physics Derivation Graph is a collection of derivations, with each derivation composed of one or more steps.
+The Physics Derivation Graph is a collection of derivations, with each
+derivation composed of one or more steps.
 Each step has one inference rule.
-An inference rule (like "Divide both sides of first equation by a value to yield the second equation") may appear many times in the Physics Derivation Graph.
+An inference rule (like "Divide both sides of first equation by a value to
+yield the second equation") may appear many times in the Physics Derivation Graph.
   Similarly, feed values (like \(f\)) can appear more than once.
-  In contrast to inference rules and feeds, expression only appear once in the Physics Derivation Graph.
+  In contrast to inference rules and feeds, expression only appear once in
+  the Physics Derivation Graph.
   This constraint is what leads to the connectedness of the graph.
   If multiple derivations reference \(1/T = f\), it is the same expression.
   Similarly, symbols are defined once for the entire Physics Derivation Graph.
 </P>
 
 <P>
-  Symbol re-use is common in science and is addressed in the PDG by the use of unique identifiers.
-  For example, \(c\) is commonly used to represent the speed of light, but the same symbol is also used in the quadratic equation
+  Symbol re-use is common in science and is addressed in the PDG by the use
+  of unique identifiers.
+  For example, \(c\) is commonly used to represent the speed of light, but
+  the same symbol is also used in the quadratic equation
 \begin{equation}
 a x^2+b x+c =0.
 \label{eq:quadratic}
 \end{equation}
   In \eqref{eq:quadratic}, \(c\) does not refer to the speed of light.
-  This is distinguishable in the Physics Derivation Graph because the \(c\) referring to the speed of light has a different numeric identifier than the \(c\) in \eqref{eq:quadratic}.
+  This is distinguishable in the Physics Derivation Graph because the \(c\)
+  referring to the speed of light has a different numeric identifier than
+  the \(c\) in \eqref{eq:quadratic}.
 </P>
 
 <P>
-  Each time an expression, symbol, or inference rule is used in a step in the PDG, the unique identifier is referenced.
-  The referencing of unique node identifiers is what enables construction of the graph.
-  For example, if \eqref{eq:period_and_freq} is used in two distinct derivations, the same expression is referenced.
-  Similarly, when the symbol \(T\) is used in any derivation, the associated numeric identifier refers to period.
-  The symbol \(T\) used in another context would have a different unique numeric identifier.
-This referencing of unique expressions, symbols, and inference rules is done using a numeric identifier (alphanumeric for inference rules).
-This uniqueness of expressions, symbols, and inference rules is the core utility of the Physics Derivation Graph.
+  Each time an expression, symbol, or inference rule is used in a step in the
+  PDG, the unique identifier is referenced.
+  The referencing of unique node identifiers is what enables construction of
+  the graph.
+  For example, if \eqref{eq:period_and_freq} is used in two distinct
+  derivations, the same expression is referenced.
+  Similarly, when the symbol \(T\) is used in any derivation, the associated
+  numeric identifier refers to period.
+  The symbol \(T\) used in another context would have a different unique
+  numeric identifier.
+This referencing of unique expressions, symbols, and inference rules is
+done using a numeric identifier (alphanumeric for inference rules).
+This uniqueness of expressions, symbols, and inference rules is the core
+utility of the Physics Derivation Graph.
 This results in no duplication and fixed references (a static directed graph).
-The Physics Derivation Graph is designed to show one instance of each expression, but feeds and inference rules will have duplicates on the graph.
+The Physics Derivation Graph is designed to show one instance of each
+expression, but feeds and inference rules will have duplicates on the graph.
 </P>
 
 <H2 id="expressions">Expressions</H2>
 <P>
   Expressions are mathematical statements composed of symbols.
-  Each expression has three components: a left-hand side (LHS), a primary operator, and a right-hand side (RHS).
+  Each expression has three components: a left-hand side (LHS), a primary
+  operator, and a right-hand side (RHS).
   The primary operator is usually equality \(=\) or an inequality.
   Each expression appears only once in the Physics Derivation Graph.
 </P>
 
 <P>
-  The <a href="{{ url_for('list_all_expressions') }}?referrer=user_documentation">list of expressions used in the Physics Derivation Graph</a> is intended to be comprehensive.
+  The <a href="{{ url_for('list_all_expressions') }}?referrer=user_documentation">list
+    of expressions used in the Physics Derivation Graph</a> is intended to be comprehensive.
 </P>
 
 <h2 id="inference rules">Inference Rules</H2>
 <P>
   Inference rules operate on expressions to produce new expressions.
-  In the <a href="#example">example</a>, the inference rule between expressions \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period} is "Divide both sides of first expression by a scalar value to yield the second expression."
+  In the <a href="#example">example</a>, the inference rule between
+  expressions \eqref{eq:period_and_freq} and \eqref{eq:freq_is_inverse_period}
+  is "Divide both sides of first expression by a scalar value to yield the second expression."
 </P>
 
 <P>
-  Inference rules are necessary to perform derivations in physics, but have received little attention as they are typically left to the field of logic and mathematics.
-  Inference rules are distinct from axioms, in that there is not a fundemental set of inference rules.
-  An inference rule in the context of the Physics Derivation Graph is a subcategory of <a href="https://en.wikipedia.org/wiki/Logical_connective">logical connectives</a>, similar to "and therefore" in language.
-  Inference rules in the Physics Derivation Graph include both rules of inference and rules of replacement.
-  (The difference between the two is explained as "Whereas a rule of inference is always applied to a whole logical expression, a rule of replacement may be applied to only a particular segment." [<a href="https://en.wikipedia.org/wiki/Rule_of_inference">source</a>].)
-  Inference rules are mechanical manipulations applied to the Abstract Syntax Trees of expressions.
+  Inference rules are necessary to perform derivations in physics, but have
+  received little attention as they are typically left to the field of logic
+  and mathematics.
+  Inference rules are distinct from axioms, in that there is not a fundemental
+  set of inference rules.
+  An inference rule in the context of the Physics Derivation Graph is a
+  subcategory of <a href="https://en.wikipedia.org/wiki/Logical_connective">logical
+    connectives</a>, similar to "and therefore" in language.
+  Inference rules in the Physics Derivation Graph include both rules of
+  inference and rules of replacement.
+  (The difference between the two is explained as "Whereas a rule of inference
+  is always applied to a whole logical expression, a rule of replacement may
+  be applied to only a particular segment." [<a href="https://en.wikipedia.org/wiki/Rule_of_inference">source</a>].)
+  Inference rules are mechanical manipulations applied to the Abstract Syntax
+  Trees of expressions.
 
 <P>
-  One result of an education in mathematics is building a library of inference rules, though that is not the common description in the field of math education.
-  In Physics, knowing that it is valid to multiply both sides of an expression by one is assumed to have been learned in a math course.
-  In the math course, the inference rule of multiplying both sides of an expression by one is taught with the common explanation that students need that inference rule to solve the relevant problems provided in the class.
-  One of the consequences of constructing the Physics Derivation Graph is the enumeration of inference rules necessary for Physics.
+  One result of an education in mathematics is building a library of inference
+  rules, though that is not the common description in the field of math education.
+  In Physics, knowing that it is valid to multiply both sides of an expression
+  by one is assumed to have been learned in a math course.
+  In the math course, the inference rule of multiplying both sides of an
+  expression by one is taught with the common explanation that students need
+  that inference rule to solve the relevant problems provided in the class.
+  One of the consequences of constructing the Physics Derivation Graph is the
+  enumeration of inference rules necessary for Physics.
 </P>
 
 
 <P>
-  Inference rules for the Physics Derivation Graph are intended to meet a threshold -- can the computer algebra system validate that the claim is true?
-  There is a balance between inference rules that are simple for a CAS to validate versus but onerous in number for a human user versus challenging for a CAS but efficient for humans to apply.
-  Also, there are variations to a given inference rule that can lead to the same outcome; for example "add X to both sides of an expression" is the reverse of "subtract X from both sides of an expression," so really only one of these is necessary (by flipping the sign of the feed value).
-  Thus another route to too many inference rules is the tension between redundancy and ease-of-use.
+  Inference rules for the Physics Derivation Graph are intended to meet a
+  threshold -- can the computer algebra system validate that the claim is true?
+  There is a balance between inference rules that are simple for a CAS to
+  validate versus but onerous in number for a human user versus challenging
+  for a CAS but efficient for humans to apply.
+  Also, there are variations to a given inference rule that can lead to the
+  same outcome; for example "add X to both sides of an expression" is the
+  reverse of "subtract X from both sides of an expression," so really only
+  one of these is necessary (by flipping the sign of the feed value).
+  Thus another route to too many inference rules is the tension between
+  redundancy and ease-of-use.
 </P>
 
-<P>Inference rule have a few interesting properties, like the reversal just described.
-  An inference rule, effectively a directed edge on the graph of expressions, can always be undone.
-  (Addition and subtraction, multiplication and division, powers and roots, matrix multiplication and inversion, trigfunctions and arctrigfunctions  , exponents and logs, integration and differentiation)
+<P>Inference rule have a few interesting properties, like the reversal just
+  described.
+  An inference rule, effectively a directed edge on the graph of expressions,
+  can always be undone.
+  (Addition and subtraction, multiplication and division, powers and roots,
+  matrix multiplication and inversion, trigfunctions and arctrigfunctions,
+  exponents and logs, integration and differentiation)
   Some inference rules are self-reversing, like "substitute X for Y in an expression."
-  Lastly, some inference rules have a left/right symmetry: for the inference rule "substitute LHS of expr1 into expr2" there is also the symmetric version "substitute RHS of expr1 into expr2." This comes from the <a href="https://en.wikipedia.org/wiki/Equality_(mathematics)#Basic_properties">symmetric property of equality</a>.
+  Lastly, some inference rules have a left/right symmetry: for the inference
+  rule "substitute LHS of expr1 into expr2" there is also the symmetric version
+  "substitute RHS of expr1 into expr2." This comes from the
+  <a href="https://en.wikipedia.org/wiki/Equality_(mathematics)#Basic_properties">
+    symmetric property of equality</a>.
 <P>
-  The <a href="{{ url_for('list_all_inference_rules') }}?referrer=user_documentation">list of inference rules used in the Physics Derivation Graph</a> is intended to short enough to fit in a person's memory while also being sufficiently narrow to be tested by Sympy.
+  The <a href="{{ url_for('list_all_inference_rules') }}?referrer=user_documentation">
+    list of inference rules used in the Physics Derivation Graph</a> is intended
+    to short enough to fit in a person's memory while also being sufficiently
+    well-defined to be tested by Sympy.
 </P>
 
 <P>
-  Inference rules are useful for catching simple mistakes by CAS validation. Common mistakes include not carrying the negative symbol through a derivation or unintentionally dropping a term. The inference rules are atomic (simplest step possible) and first order -- they only relate nearest-neighbor expressions.
+  Inference rules are useful for catching simple mistakes by CAS validation.
+  Common mistakes include not carrying the negative symbol through a derivation
+  or unintentionally dropping a term. The inference rules are atomic (simplest
+  step possible) and first order -- they only relate nearest-neighbor expressions.
 </P>
 
 <P>
-  Reference to inference rules is made in <a href="https://www.researchgate.net/publication/259195233_Physics_and_Proof_Theory">Physics and Proof Theory</a> by Paleo (2010); doi 10.1016/j.amc.2011.06.058
+  Reference to inference rules is made in
+  <a href="https://www.researchgate.net/publication/259195233_Physics_and_Proof_Theory">
+    Physics and Proof Theory</a> by Paleo (2010); doi 10.1016/j.amc.2011.06.058
 </P>
 
 <H2><a name="feeds">Feeds</a></H2>
 
 <P>
-  The <a href="#inference rules">inference rules</a> take <a href="#expressions">expressions</a> as input and produce expressions as output.
+  The <a href="#inference rules">inference rules</a> take
+  <a href="#expressions">expressions</a> as input and produce expressions as output.
   A second type of input for inference rules is the "feed."
   A feed is distinct from an expression.
   A feed may appear more than once in the Physics Derivation Graph.
@@ -203,38 +297,51 @@ The Physics Derivation Graph is designed to show one instance of each expression
 </P>
 
 <H2 id="topic scope">Physics Topics</H2>
-This requires breadth of coverage across all the domains of physics (\ie, classical mechanics, quantum mechanics, relativity, thermodynamics, statistical mechanics, etc). As a consequence, much of mathematics covered up to undergraduate level is likely to be required.
+This requires breadth of coverage across all the domains of physics (\ie,
+classical mechanics, quantum mechanics, relativity, thermodynamics, statistical
+mechanics, etc). As a consequence, much of mathematics covered up to undergraduate
+level is likely to be required.
 
 
 <H2 id="use cases">Use cases</H2>
 
 <P>
-The Physics Derivation Graph is expected to be useful to multiple audiences and users. Viewers of the content could include students in math and physics, and analysis of the content could help shape curriculum. Contributors to the Physics Derivation Graph would be scientists who add new developments based on their work.
+The Physics Derivation Graph is expected to be useful to multiple audiences
+and users. Viewers of the content could include students in math and physics,
+and analysis of the content could help shape curriculum. Contributors to the
+Physics Derivation Graph would be scientists who add new developments based
+on their work.
 </P>
 
 <H4 id="use case:students">Education in Math and Physics</H4>
 <P>
-  Currently students in Math and Physics are taught content using lectures, textbooks, and homework.
+  Currently students in Math and Physics are taught content using lectures,
+  textbooks, and homework.
   The method of presentation varies, but the overarching story is often historically driven.
   Algebra is old, calculus is newer, and topology is recent.
   Classical mechanics is old, thermodynamics is newer, and quantum mechanics is recent.
-  When teaching, these subjects are taught by building on previous content -- calculus leverages algebra, thermodynamics leverages classical mechanics.
+  When teaching, these subjects are taught by building on previous content --
+  calculus leverages algebra, thermodynamics leverages classical mechanics.
 </P>
 
 <P>
   <a name="audience:teachers">
 <em>How could the Physics Derivation Graph benefit teachers?</em>
 </a><BR/>
-For physics teachers, this project could address questions like, "how much of what is known have I learned?" and "what else is there to learn?"<BR/>
-For math students, this project could address questions like, "when would I apply what I am learning?" and "what is this useful for?"
+For physics teachers, this project could address questions like, "how much of
+what is known have I learned?" and "what else is there to learn?"<BR/>
+For math students, this project could address questions like, "when would
+I apply what I am learning?" and "what is this useful for?"
 </P>
 
 <P>
   <a name="audience:students">
 <em>How could the Physics Derivation Graph benefit students?</em>
 </a><BR/>
-For physics students, this project could address questions like, "how much of what is known have I learned?" and "what else is there to learn?"<BR/>
-For math students, this project could address questions like, "when would I apply what I am learning?" and "what is this useful for?"
+For physics students, this project could address questions like, "how much of
+what is known have I learned?" and "what else is there to learn?"<BR/>
+For math students, this project could address questions like, "when would I
+apply what I am learning?" and "what is this useful for?"
 </P>
 
 <P>As an example, see
@@ -253,21 +360,30 @@ For math students, this project could address questions like, "when would I appl
 <H4 name="use case:scientific articles">Documenting Scientific Progress in Articles</H4>
 
 <P>
-The Physics Derivation Graph provides a very detailed explanation of how complex derivations are carried out.
+The Physics Derivation Graph provides a very detailed explanation of how
+complex derivations are carried out.
 It also explicitly enumerates the assumptions necessary to perform derivations.
-Imposing these requirements on researchers would require clear and significant benefit to both the individual researchers and the community.
+Imposing these requirements on researchers would require clear and significant
+benefit to both the individual researchers and the community.
 </P>
 
 <P>
-  Peer-reviewed journal articles are one of the current methods of demonstrating value in the scientific community.
-  Conciseness is a feature of this writing style, and the mathematics presented is correspondingly sparse -- just sufficient to covey the author's intention.
-  This results in a burden on the reader of the article, either to take the author's claims on faith, or to rederive the mathematical expressions.
-  A reader's derivation is complicated by implicit assumptions made by the author and unintentional mistakes in calculation.
+  Peer-reviewed journal articles are one of the current methods of
+  demonstrating value in the scientific community.
+  Conciseness is a feature of this writing style, and the mathematics
+  presented is correspondingly sparse -- just sufficient to covey the
+  author's intention.
+  This results in a burden on the reader of the article, either to take
+  the author's claims on faith, or to rederive the mathematical expressions.
+  A reader's derivation is complicated by implicit assumptions made by
+  the author and unintentional mistakes in calculation.
 </P>
 
 <P>
-  With journals allowing supplemental materials for articles, calculations could be included.
-  However, it is not clear what the appropriate level of detail is in supplied calculations.
+  With journals allowing supplemental materials for articles,
+  calculations could be included.
+  However, it is not clear what the appropriate level of detail is in
+  supplied calculations.
   The intention is to be able to reproduce the work, but validation via computer.
 </P>
 
@@ -284,21 +400,32 @@ Imposing these requirements on researchers would require clear and significant b
 
 <H4 id="use case:education curriculum design">Education Curriculum Design</H4>
 <P>
-  A less direct use case but potentially important impact of the Physics Derivation Graph is on understanding the relevance of what is being taught in the education system.
-  Math classes essentially teach a set of inference rules, and physics is the application of those inference rules.
-  The Physics Derivation Graph could answer two important questions: "When am I going to use this inference rule?" and "What is the relative importance of this math skill?"
+  A less direct use case but potentially important impact of the
+  Physics Derivation Graph is on understanding the relevance of what
+  is being taught in the education system.
+  Math classes essentially teach a set of inference rules, and physics
+  is the application of those inference rules.
+  The Physics Derivation Graph could answer two important questions:
+  "When am I going to use this inference rule?" and "What is the relative
+  importance of this math skill?"
 
 <P>
-  The focus for students in mathematics classes is on the technique, e.g., "integrate both sides with respect to \(Y\)," and application is necessarily of secondary importance.
-  Physics students are expected to know the mathematical techniques and teaching is focused on application.
+  The focus for students in mathematics classes is on the technique, e.g.,
+  "integrate both sides with respect to \(Y\)," and application is
+  necessarily of secondary importance.
+  Physics students are expected to know the mathematical techniques
+  and teaching is focused on application.
   The Physics Derivation Graph can assist both scenarios.
-  The student in a math class can see where the inference rules they learn are applied in Physics.
+  The student in a math class can see where the inference rules they
+  learn are applied in Physics.
   The student in the Physics class can see which inference rules are required in their field.
 
 <P>
-  Each inference rule seems equally important, since it currently is not known what the frequency of use for that inference rule is.
+  Each inference rule seems equally important, since it currently is
+  not known what the frequency of use for that inference rule is.
   In the Physics Derivation Graph, it is simple to count utilization of inference rules.
-  Thus, we are able to measure the ratio of how often "multiply both sides by X" is used relative to "integrate both sides with respect to \(Y\)."
+  Thus, we are able to measure the ratio of how often "multiply both
+  sides by X" is used relative to "integrate both sides with respect to \(Y\)."
 </P>
 
 
