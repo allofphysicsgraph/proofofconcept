@@ -2458,7 +2458,7 @@
         },
         "000011": {
             "name": "quadratic equation derivation",
-            "notes": "",
+            "notes": "https://en.wikipedia.org/wiki/Quadratic_formula#Derivations_of_the_formula",
             "creation date": "2020-04-23",
             "author": "4a0987466473c589d2c328d12856760e",
             "steps": {
@@ -4347,7 +4347,7 @@
         "551770": {
             "name": "Lorentz transformation",
             "author": "4a0987466473c589d2c328d12856760e",
-            "notes": "source: \\cite{1999_Tipler_Llewellyn}, page 21; see also https://en.wikipedia.org/wiki/Lorentz_transformation",
+            "notes": "source: \\cite{1999_Tipler_Llewellyn}, page 21; see also https://en.wikipedia.org/wiki/Lorentz_transformation and https://en.wikipedia.org/wiki/Derivations_of_the_Lorentz_transformations",
             "creation date": "2020-05-08",
             "steps": {
                 "1337934": {
@@ -7235,7 +7235,7 @@
         "142831": {
             "name": "Schwarzschild radius for non-rotating black hole",
             "author": "4a0987466473c589d2c328d12856760e",
-            "notes": "",
+            "notes": "https://en.wikipedia.org/wiki/Derivation_of_the_Schwarzschild_solution",
             "creation date": "2020-05-26",
             "steps": {
                 "4980032": {
@@ -7609,7 +7609,7 @@
         "282755": {
             "name": "radius for satellite in geostationary orbit",
             "author": "4a0987466473c589d2c328d12856760e",
-            "notes": "",
+            "notes": "https://en.wikipedia.org/wiki/Geostationary_orbit#Derivation_of_geostationary_altitude",
             "creation date": "2020-05-26",
             "steps": {
                 "4586003": {
