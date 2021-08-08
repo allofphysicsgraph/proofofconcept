@@ -21,7 +21,7 @@ wheel
 gunicorn
 
 # https://github.com/allofphysicsgraph/proofofconcept/issues/157
-secure
+secure==0.2.1
 
 # convert internal data structure to dataframe; 
 # also used for monitoring page when parsing logs

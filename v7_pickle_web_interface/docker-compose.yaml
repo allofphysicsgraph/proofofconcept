@@ -47,6 +47,7 @@ services:
      - /var/log/auth.log:/home/appuser/app/logs/auth.log
   nginx:
     build: ./services/nginx
+    restart: on-failure
     ports:
      - "80:80"
      - "443:443"
