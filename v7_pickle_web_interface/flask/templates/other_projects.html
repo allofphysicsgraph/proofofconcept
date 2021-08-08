@@ -134,6 +134,30 @@
     <td>Intelligent Search Systems and Semantic Technologies laboratory at Kazan Federal University</td> <!-- author or group -->
   </tr>
   <tr>
+    <td><a href="http://nanopub.org/guidelines/working_draft/">Nanopublications</a></td> <!-- name, website -->
+    <td>Scientific claims in RDF</td> <!-- summary -->
+    <td>Science</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
+    <td>No</td> <!-- semantic enrichment -->
+    <td>Yes</td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td><a href="https://arxiv.org/pdf/1809.06532.pdf">multiple</a></td> <!-- author or group -->
+  </tr>
+  <tr>
+    <td><a href="http://attempto.ifi.uzh.ch/race/">reasoning features for ACE texts</a> and <a href="http://attempto.ifi.uzh.ch/ape/"></a></td> <!-- name, website -->
+    <td>Attempto Controlled English. <BR>
+      <a href="http://attempto.ifi.uzh.ch/site/docs/race_webservice.html">RACE documentation</a><BR>
+      <a href="https://github.com/tkuhn/aida">AIDA: a scheme for English sentences</a></td> <!-- summary -->
+    <td>human-oriented controlled natural language</td> <!-- domain -->
+    <td>PDG is a machine-oriented CNL.</td> <!-- relation to PDG -->
+    <td>No</td> <!-- semantic enrichment -->
+    <td><a href="https://github.com/tkuhn/AceRules">Yes</a></td> <!-- open source? -->
+    <td>Yes</td> <!-- free? -->
+    <td>Yes</td> <!-- active? -->
+    <td><a href="https://github.com/tkuhn">Tobias Kuhn</a></td> <!-- author or group -->
+  </tr>
+  <tr>
     <td><a href="https://kwarc.info/systems/sTeX/">sTeX: Semantic Markup for LaTeX</a></td> <!-- name, website -->
     <td>sTeX system allows to embed /structural semantics into documents. Concretely sTeX is a “semantic version of LaTeX” that allows to use special macros to encode mathematical meaning explicitly.</td> <!-- summary -->
     <td>Math</td> <!-- domain -->
@@ -180,7 +204,7 @@
   </tr>
   <tr>
     <td><a href="https://cmap.ihmc.us/">CmapTools</a></td> <!-- name, website -->
-    <td></td> <!-- summary -->
+    <td>CMapTools knowledge modeling kit</td> <!-- summary -->
     <td></td> <!-- domain -->
     <td></td> <!-- relation to PDG -->
     <td></td> <!-- semantic enrichment -->
@@ -330,6 +354,19 @@
     <td></td> <!-- open source? -->
     <td></td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
+    <td></td> <!-- author or group -->
+  </tr>
+
+  <tr>
+    <td><a href="https://en.wikipedia.org/wiki/General_Problem_Solver">General Problem Solver</a></td> <!-- name, website -->
+    <td>a computer program intended to work as a universal problem solver machine.</td> <!-- summary -->
+    <td>logic</td> <!-- domain -->
+    <td>similar in that starts with sources (axioms) and sinks (desired conclusions).
+        The Physics Derivation Graph does not claim to enable automation of steps.</td> <!-- relation to PDG -->
+    <td>No</td> <!-- semantic enrichment -->
+    <td>unknown</td> <!-- open source? -->
+    <td>unknown</td> <!-- free? -->
+    <td>as <a href="https://en.wikipedia.org/wiki/Soar_(cognitive_architecture)">SOAR</a></td> <!-- active? -->
     <td></td> <!-- author or group -->
   </tr>
   <tr>
@@ -633,12 +670,16 @@
       <P>
         <a href="https://writings.stephenwolfram.com/2014/08/computational-knowledge-and-the-future-of-pure-mathematics/">Computational Knowledge and the Future of Pure Mathematics</a>
       <P>
-        Wolfram Alpha has a backend database of content which is not open source; access is a mix of free and paid.</td> <!-- summary -->
+        Wolfram Alpha has a backend database of content which is not open source; access is a mix of free and paid.
+      <P>
+        The closest to the Physics Derivation Graph is
+        <a href="https://www.wolframalpha.com/pro/step-by-step-math-solver">step-by-step solver</a>
+      </td> <!-- summary -->
     <td>Science</td> <!-- domain -->
     <td></td> <!-- relation to PDG -->
     <td>Probably?</td> <!-- semantic enrichment -->
     <td>No</td> <!-- open source? -->
-    <td>mixture</td> <!-- free? -->
+    <td>mixture; step-by-step is $4.75/month as of 2021-08-08</td> <!-- free? -->
     <td>Yes</td> <!-- active? -->
     <td><a href="https://www.stephenwolfram.com/">Stephen Wolfram</a></td> <!-- author or group -->
   </tr>
@@ -712,11 +753,34 @@
     <td><a href="http://kwarc.info/" target="_blank">Knowledge Adaptation and Reasoning for Content</a></td> <!-- author or group -->
   </tr>
   <tr>
+    <td><a href="https://www.gellish.net/">Gellish.net</a></td> <!-- name, website -->
+    <td>
+      <P>
+        <a href="https://en.wikipedia.org/wiki/Gellish">https://en.wikipedia.org/wiki/Gellish</a><BR/>
+        Data structure for knowledge.
+      <P>
+        See also <a href="https://www.youtube.com/watch?v=-Z-ul0GzzM4">Ajit Narayanan:
+        A word game to communicate in any language</a>
+        which is about the app FreeSpeech.
+    </td> <!-- summary -->
+    <td>knowledge management</td> <!-- domain -->
+    <td></td> <!-- relation to PDG -->
+    <td>no</td> <!-- semantic enrichment -->
+    <td><a href="https://github.com/AndriesSHP/Gellish">unknown</a></td> <!-- open source? -->
+    <td>unknown</td> <!-- free? -->
+    <td>yes</td> <!-- active? -->
+    <td>Andries van Renssen</td> <!-- author or group -->
+  </tr>
+
+  <tr>
     <td>
       <a name="MathML">MathML</a></td> <!-- website -->
     <td>
-      Presentation MathML (layout only) and Content MathML (semantics)<BR/>
-      <a href="https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics" target="_blank">https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics</a>
+      <P>
+        Presentation MathML (layout only) and Content MathML (semantics)<BR/>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics" target="_blank">https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics</a>
+
+        
     </td> <!-- summary -->
     <td>Math, Mathematical Physics</td> <!-- domain -->
     <td></td> <!-- relation to PDG -->
