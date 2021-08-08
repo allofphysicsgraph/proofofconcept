@@ -43,6 +43,7 @@ cat developer_documentation.html |\
     <LI><a href="#run gunicorn container">Run gunicorn container</a></LI>
   </OL>
   <LI><a href="#how to navigate the codebase">How to Navigate the codebase</a></LI>
+  <LI><a href="#how webpages and the Python functions relate">How webpages and the Python functions relate</a></LI>
   <LI><a href="#frequency period from first principles">Derivation to Graph from First Principles</a></LI>
   <LI><a href="#build pdg code from scratch">Build the Physics Derivation Graph software from scratch</a></LI>
   <OL>
@@ -148,9 +149,9 @@ The grammar of the Physics Derivation Graph is
 <P>
   The full list of vocabulary used in the Physics Derivation Graph is documented
   in the
-  <a href="https://derivationmap.net/list_all_inference_rules">list of inference rules</a> and
-  <a href="https://derivationmap.net/list_all_expressions">list of expressions</a> and
-  <a href="https://derivationmap.net/list_all_symbols">list of symbols</a>.
+  <a href="{{ url_for('list_all_inference_rules') }}?referrer=developer_documentation">list of inference rules</a> and
+  <a href="{{ url_for('list_all_expressions') }}?referrer=developer_documentation">list of expressions</a> and
+  <a href="{{ url_for('list_all_symbols') }}?referrer=developer_documentation">list of symbols</a>.
 <P>&nbsp;</P>
 <HR/>
 <P>&nbsp;</P>
@@ -362,6 +363,24 @@ The grammar of the Physics Derivation Graph is
 </P>
 State diagram for the web interface.
 </center>
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+<H2><a name="how webpages and the Python functions relate">How webpages and the Python functions relate</a></H2>
+
+<P>
+  When a web browser requests the page
+  <a href="{{ url_for('developer_documentation') }}?referrer=developer_documentation">https://derivationmap.net/developer_documentation</a>
+  nginx calls gunicorn calls
+  <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/controller.py">controller.py</a>
+  with the URL string. The Python flask package uses the URL information to
+  call the relevant Python function. For example, requesting <code>list_all_derivations</code>
+  invokes the function <code>def list_all_derivations():</code>. That
+  Python function relies on functions in
+  <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/compute.py">computer.py</a>
+  to get data from the <code>data.json</code> database. 
+
 <P>&nbsp;</P>
 <HR/>
 <P>&nbsp;</P>

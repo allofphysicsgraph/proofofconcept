@@ -2306,7 +2306,9 @@ def popularity_of_derivations(path_to_db: str) -> dict:
                             "shares expressions with"
                         ].append(tup)
         # remove duplicates
-        derivations_popularity_dict[deriv_id1]["shares expressions with"] = list(set(derivations_popularity_dict[deriv_id1]["shares expressions with"]))
+        derivations_popularity_dict[deriv_id1]["shares expressions with"] = list(
+            set(derivations_popularity_dict[deriv_id1]["shares expressions with"])
+        )
     logger.info("[trace end " + trace_id + "]")
     return derivations_popularity_dict
 
