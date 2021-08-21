@@ -1,0 +1,153 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>building a docker image for the Physics Derivation Graph</H1>
+
+<P><small>Published 2018-06-02T14:20:00.003Z by Physics Derivation Graph</small></P>
+
+<h3>
+Requirements</h3>
+<div>
+In order to build the Physics Derivation Graph in a Docker image, the minimum functionality needed is</div>
+<div>
+<ul>
+<li>Compile .tex files to .pdf and .png (LaTeX)</li>
+<li>Compile .gv files to .png (GraphViz)</li>
+<li>Run a webserver (eg flask or nginx or lighthttpd)</li>
+<li>Run .py scripts (Python 3)</li>
+<li>Read SQLite</li>
+</ul>
+<div>
+In this post I explore whether Alpine is a sufficient OS. If not, Ubuntu is a candidate OS which supports the needed functionality.</div>
+</div>
+<div>
+<br /></div>
+<h3>
+Alpine-based</h3>
+The build will be executed from the "proofofconcept" folder because the contents of the Docker image depend on files in the v4_file_per_expression/ folder.<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cd proofofconcept</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">mkdir sandbox/docker_images/python_alpine</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cat &gt; sandbox/docker_images/python_alpine/Dockerfile &lt;&lt; EOF</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">FROM python:2.7-alpine</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">MAINTAINER My Name &lt;my.email.address@gmail.com&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">LABEL distro_style="apk" distro="alpine" arch="x86_64" operatingsystem="linux"</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN apk add --update --no-cache graphviz</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN apk add --update --no-cache texlive-full</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN apk add --update --no-cache texlive</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN pip install pyyaml</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN pip install sympy</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN mkdir /derivations</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN mkdir /inference_rules</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">ADD ./v4_file_per_expression/bin/interactive_user_prompt.py interactive_user_prompt.py</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">ADD ./v4_file_per_expression/lib/lib_physics_graph.py /lib/lib_physics_graph.py</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">ADD ./v4_file_per_expression/inference_rules/* /inference_rules/</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">#WORKDIR /bin</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">CMD ["python", "interactive_user_prompt.py"]</span><br />
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span></div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">EOF</span><br />
+<br />
+The above Dockerfile fails due to "texlive" and "texlive-full" not existing for alpine.<br />
+<br />
+Now that the Dockerfile exists, we can build the image:<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker build --tag python_alpine/example sandbox/docker_images/python_alpine/</span><br />
+and run it to get the interactive prompt:<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker run -ti python_alpine/example</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<br />
+<h3>
+Ubuntu-based</h3>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cd proofofconcept</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">mkdir sandbox/docker_images/python_ubuntu</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cat &gt; sandbox/docker_images/python_ubuntu/Dockerfile &lt;&lt; EOF</span><br />
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"></span><br />
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"># 20180602</span></div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+<div>
+<br /></div>
+<div>
+FROM ubuntu:18.04</div>
+<div>
+<br /></div>
+<div>
+MAINTAINER My Name &lt;my.email.address@gmail.com&gt;</div>
+<div>
+<br /></div>
+<div>
+RUN apt-get update \</div>
+<div>
+&nbsp; &nbsp; &amp;&amp; apt-get upgrade -y \</div>
+<div>
+&nbsp; &nbsp; &amp;&amp; apt-get install -y \</div>
+<div>
+&nbsp; &nbsp; python-pip \</div>
+<div>
+&nbsp; &nbsp; python2.7 \</div>
+<div>
+&nbsp; &nbsp; graphviz&nbsp; &nbsp;&nbsp;</div>
+<div>
+<br /></div>
+<div>
+RUN pip install pyyaml</div>
+<div>
+RUN pip install sympy</div>
+<div>
+<br /></div>
+<div>
+RUN mkdir /derivations</div>
+<div>
+RUN mkdir /inference_rules</div>
+<div>
+<br /></div>
+<div>
+ADD ./v4_file_per_expression/bin/interactive_user_prompt.py interactive_user_prompt.py</div>
+<div>
+ADD ./v4_file_per_expression/lib/lib_physics_graph.py /lib/lib_physics_graph.py</div>
+<div>
+ADD ./v4_file_per_expression/inference_rules/* /inference_rules/</div>
+<div>
+<br /></div>
+<div>
+#WORKDIR /bin</div>
+<div>
+#ENTRYPOINT ["/usr/bin/python2.7"]</div>
+<div>
+<br /></div>
+<div>
+CMD ["python", "interactive_user_prompt.py"]</div>
+<div>
+<br /></div>
+<div>
+EOF</div>
+</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker build --tag python_ubuntu/example sandbox/docker_images/python_ubuntu/</span></div>
+<h3>
+<span style="font-family: inherit;">Stop and remove all images</span></h3>
+<div>
+<span style="font-family: inherit;">Not unexpectedly, I ran out of disk space.</span></div>
+<div>
+<span style="font-family: inherit;"><br /></span></div>
+<div>
+docker stop $(docker ps -a -q)</div>
+<div>
+docker rm $(docker ps -aq)</div>
+<div>
+docker rmi -f $(docker images -q)</div>
+
+{% endblock %}

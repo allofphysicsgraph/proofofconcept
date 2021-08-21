@@ -1,0 +1,114 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>insertions and deletions in git versus time</H1>
+
+<P><small>Published 2020-04-13T13:05:00.002Z by Physics Derivation Graph</small></P>
+
+I wanted to plot the changes in the code base with more detail than is shown on<br />
+<a href="https://github.com/allofphysicsgraph/proofofconcept/graphs/contributors">https://github.com/allofphysicsgraph/proofofconcept/graphs/contributors</a><br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-3ElEO7xgnnI/XpROy034q5I/AAAAAAAA-Qk/pxxWuuEyNVcltzMKWIFJBKnyESg-wWOpgCLcBGAsYHQ/s1600/Screen%2BShot%2B2020-04-13%2Bat%2B7.36.28%2BAM.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="264" data-original-width="450" height="187" src="https://1.bp.blogspot.com/-3ElEO7xgnnI/XpROy034q5I/AAAAAAAA-Qk/pxxWuuEyNVcltzMKWIFJBKnyESg-wWOpgCLcBGAsYHQ/s320/Screen%2BShot%2B2020-04-13%2Bat%2B7.36.28%2BAM.png" width="320" /></a></div>
+<br />
+My first attempt was to use git log and grab the hash and date:<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ git --no-pager log <a href="https://git-scm.com/docs/pretty-formats">--pretty=format:"%H %ad"</a></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">....</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">6cf2a0255e4e8ac5db4eabf086f119717e650306 Sun Jan 4 11:23:28 2015 -0500</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">db738d9b246a9592c9b5dc89407d7b2587df5b6f Fri Jan 2 09:06:13 2015 -0500</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">282a80b8b346294ef1c986d7c98f02daa3b2283d Fri Jan 2 08:58:41 2015 -0500</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">....</span><br />
+<br />
+I'll save that for later,<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ git --no-pager log --pretty=format:"%H %ad" &gt; hash_and_dat.log</span><br />
+<br />
+Those two columns (hash, date) are necessary but not sufficient -- I also need the number of lines changed.<br />
+<br />
+I saw that "<a href="https://git-scm.com/docs/git-show">git show</a>" produces the specific changes per commit, so I could combine that with grep<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ git show 46d4649074e34019b336d13838564db90790eba6 | grep -v ^+++ | grep ^+ | wc -l</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp;130</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ git show 46d4649074e34019b336d13838564db90790eba6 | grep -v ^--- | grep ^- | wc -l</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; 20</span><br />
+<div>
+<br /></div>
+<div>
+It would be better to put the two numbers on the same line, something like</div>
+<div>
+<br /></div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ removed=`git show 46d4649074e34019b336d13838564db90790eba6 | grep -v ^--- | grep ^- | wc -l`; added=`git show 46d4649074e34019b336d13838564db90790eba6 | grep -v ^+++ | grep ^+ | wc -l`; echo $removed $added</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">20 130</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+Then I stumbled onto <a href="https://stackoverflow.com/a/53127502/1164295">https://stackoverflow.com/a/53127502/1164295</a> which has almost what I wanted.&nbsp;&nbsp;</div>
+<div>
+<br /></div>
+<div>
+<div>
+<span style="font-family: inherit;">I ran into a problem,</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">git diff --shortstat d2d48dcde6e04306d79f2270cdefbb846b0c6a4b | sed -E 's/[^[:digit:][:space:]]//g'</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"></span><br />
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">warning: inexact rename detection was skipped due to too many files.</span></div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+</span>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">warning: you may want to set your diff.renameLimit variable to at least 2154 and retry the command.</span></div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+<div>
+91015</div>
+</span></div>
+<div>
+<br /></div>
+</div>
+<div>
+I found the fix on&nbsp;https://stackoverflow.com/a/28064699/1164295 and ran</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">git config&nbsp; diff.renameLimit 2154</span></div>
+<div>
+<br /></div>
+<div>
+I made some alterations since I care about both the additions and removals</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ git diff --shortstat d2d48dcde6e04306d79f2270cdefbb846b0c6a4b | sed -E 's/[^[:digit:][:space:]]//g' | awk '{print $2 " " $3}' 66283 19430</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span></div>
+<div>
+<br /></div>
+<div>
+Which can be written as a function,</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ function gcount() {</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; git diff --shortstat $1 | sed -E 's/[^[:digit:][:space:]]//g' | awk '{ print $2 " " $3 }'</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">}</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+Then I ran this loop:</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ git log --pretty=format:"%H %ad" | while read hash</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">do</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; this_hash=`echo $hash | cut -f1`</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; this_date=`echo $hash | cut -d' ' -f3-`</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; echo "$(gcount $this_hash)" $this_date</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">done &gt; insertions_deletions_date.log</span></div>
+</div>
+
+{% endblock %}

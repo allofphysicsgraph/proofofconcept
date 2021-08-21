@@ -1,0 +1,11 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>parsing latex using Sympy - what works and what does not</H1>
+
+<P><small>Published 2020-06-25T01:28:00.002Z by Physics Derivation Graph</small></P>
+
+<br />
+<span style="font-family: Courier New, Courier, monospace;"># python<br />Python 3.6.9 (default, Apr 18 2020, 01:56:04)<br />&gt;&gt;&gt; from sympy.parsing.latex import parse_latex<br />&gt;&gt;&gt; parse_latex('a = b')<br />Eq(a, b)<br />&gt;&gt;&gt; parse_latex('\\frac{\\partial}{\\partial t} \\psi( r,t)')<br />Derivative(\psi(r, t), t)<br />&gt;&gt;&gt; parse_latex('\\int_{a}^{b} f(x) dx')<br />Integral(f(x), (x, a, b))</span><br />To can check that the Sympy expression gets converted to Latex correctly:<br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; from sympy import *<br />&gt;&gt;&gt; sympy.latex(parse_latex('\\int_{a}^{b} f(x) dx'))</span><br /><br />vectors do not get parsed correctly<br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; parse_latex('\\vec{a} = \\vec{g} t')</span><br />see https://docs.sympy.org/latest/modules/vector/index.html<br />Similarly,<br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; parse_latex('\\hat{x} + \\hat{y}')</span><br />The "hat" is typically used for unit vectors. These are referenced in<br />https://docs.sympy.org/latest/modules/physics/vector/vectors.html<br />but I don't see a Sympy-specific notation for unit vectors.<br /><br />bra-ket notation does not raise an exception but is not interpreted correctly<br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; parse_latex('\\langle \\alpha | = 1')</span><br />see https://docs.sympy.org/latest/modules/physics/quantum/state.html<br /><br />The following triggers an exception<br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; parse_latex('\\mathcal{H} = 5')</span><br />For a discussion of that symbol in Latex, see https://tex.stackexchange.com/questions/429749/two-different-mathcalh<br />https://docs.sympy.org/latest/modules/physics/quantum/hilbert.html<br /><br />Complex conjugation notation is not interpreted correctly:<br /><span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; parse_latex('Z Z^* = 5')</span>
+
+{% endblock %}

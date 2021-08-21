@@ -1,0 +1,106 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>how to edit the SymPy Latex parser and rebuild the antlr artifacts for a pull request</H1>
+
+<P><small>Published 2020-08-16T20:35:00.002Z by Physics Derivation Graph</small></P>
+
+https://github.com/sympy/sympy/wiki/Development-workflow#fork-sympy-project<br />
+<br />
+Go to&nbsp;<a href="https://github.com/sympy/sympy">https://github.com/sympy/sympy</a><br />
+Fork to&nbsp;<a href="https://github.com/bhpayne/sympy/">https://github.com/bhpayne/sympy/</a><br />
+In&nbsp;<a href="https://github.com/bhpayne/sympy/">https://github.com/bhpayne/sympy/</a>&nbsp;create a new branch, e.g. "floor-patch"<br />
+In the bhpayne/sympy:floor-patch branch, change three files<br />
+<br />
+<ul>
+<li><a href="https://github.com/bhpayne/sympy/blob/floor-patch/sympy/parsing/latex/LaTeX.g4">https://github.com/bhpayne/sympy/blob/floor-patch/sympy/parsing/latex/LaTeX.g4</a></li>
+<li><a href="https://github.com/bhpayne/sympy/blob/floor-patch/sympy/parsing/latex/_parse_latex_antlr.py">https://github.com/bhpayne/sympy/blob/floor-patch/sympy/parsing/latex/_parse_latex_antlr.py</a></li>
+<li><a href="https://github.com/bhpayne/sympy/blob/floor-patch/sympy/parsing/tests/test_latex.py">https://github.com/bhpayne/sympy/blob/floor-patch/sympy/parsing/tests/test_latex.py</a></li>
+</ul>
+<br />
+Then, in a local directory run<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">mkdir build_sympy</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cd build_sympy</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">git clone&nbsp;<a href="https://github.com/bhpayne/sympy/">https://github.com/bhpayne/sympy/</a></span><br />
+<br />
+I use a Docker container to build SymPy<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cat &lt;&lt;EOF &gt;&gt; Dockerfile</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">FROM phusion/baseimage:0.11</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN apt-get update &amp;&amp; \</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; apt-get install -y \</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;vim \</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;python3</span><span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp;python3-pip&nbsp;</span><span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">python3-dev \</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;wget \</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;default-jre \</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &amp;&amp; rm -rf /var/lib/apt/lists/*</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">WORKDIR /usr/local/lib</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN curl -O https://www.antlr.org/download/antlr-4.7.2-complete.jar</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">COPY sympy/ /opt/</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN echo "alias python=python3" &gt; /root/.bashrc</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN ln -s /usr/bin/python3.6 /usr/bin/python</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"># import the pip package for integration of grammar with Python&nbsp; &nbsp;&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN pip3 install antlr4-python3-runtime mpmath</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"># build antlr grammar</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">WORKDIR /opt/sympy/parsing/latex</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">ENV CLASSPATH=".:/usr/local/lib/antlr-4.7.2-complete.jar:$CLASSPATH"</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN java -jar /usr/local/lib/antlr-4.7.2-complete.jar LaTeX.g4 -no-visitor -no-listener -o _antlr</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"># from msgoff</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">COPY rename.py /opt/sympy/parsing/latex</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN python3 rename.py</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"># set up Sympy</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">WORKDIR /opt/</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">RUN python3 setup.py install</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">EOF</span><br />
+<br />
+A second file, created by msgoff, is used for the Antlr build process<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cat &lt;&lt;EOF &gt;&gt; rename.py</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">import glob</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">import os</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">output_dir = "_antlr"</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">for path in glob.glob(os.path.join(output_dir, "LaTeX*.*")) + glob.glob(</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; os.path.join(output_dir, "latex*.*")):</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; offset = 0</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; new_path = os.path.join(output_dir, os.path.basename(path).lower())</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; with open(path, "r") as f:</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; lines = [line.rstrip() + "\n" for line in f.readlines()]</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; os.unlink(path)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; with open(new_path, "w") as out_file:</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; if path.endswith(".py"):</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; offset = 2</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; out_file.write(header)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; out_file.writelines(lines[offset:])</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">EOF</span>
+<br />
+<br />
+Inside the container,
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cd&nbsp;/scratch/sympy/sympy/parsing/latex</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">java -jar /usr/local/lib/antlr-4.7.2-complete.jar LaTeX.g4 -no-visitor -no-listener -o _antlr</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">python rename.py</span><br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">Now rebuild sympy</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cd&nbsp;</span><span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">/scratch/sympy/</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">python setup.py install</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: inherit;">leave the container</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">exit</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: inherit;">On the host, add the build artifacts for Antlr</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cd sympy/</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">git status</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">git add&nbsp;sympy/parsing/latex/_antlr/latexlexer.py&nbsp;sympy/parsing/latex/_antlr/latexparser.py</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<h3>
+<span style="font-family: inherit;">Testing</span></h3>
+<span style="font-family: inherit;"><a href="https://github.com/sympy/sympy/wiki/Running-tests">https://github.com/sympy/sympy/wiki/Running-tests</a></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; import sympy</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.test()</span><br />
+<span style="font-family: inherit;">takes 2 hours on my MacBook Air</span><br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">The relevant test is</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; sympy.test("sympy/parsing/tests/test_latex.py")</span>
+
+{% endblock %}

@@ -1,0 +1,152 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>replacing symbols in a Sympy expression and generalizing the AST</H1>
+
+<P><small>Published 2020-05-30T20:14:00.001Z by Physics Derivation Graph</small></P>
+
+Sympy's ability to convert a Latex string to a Sympy expression is useful but does not relate information about the variables in the Latex string to other resources (like dimension).<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; import sympy</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; from sympy import Equality, Add, Symbol, Mul, Pow,&nbsp;Integral, Tuple</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; from sympy.parsing.latex import parse_latex</span><br />
+<div>
+<br /></div>
+<div>
+First, remove all presentation-related markup from a Latex string.</div>
+<div>
+Then convert a Latex string to a Sympy expression using</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; eq = parse_latex('a + b = c')</span></div>
+</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; eq</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Eq(a + b, c)</span></div>
+<div>
+<br /></div>
+<div>
+In this post we will replace the variables with the reference IDs for each variable while maintaining the structure of the expression.&nbsp;</div>
+<div>
+The structure of the expression is</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.srepr(eq)</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">"Equality(Add(Symbol('a'), Symbol('b')), Symbol('c'))"</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+Since this is a string, we can replace each variable in the expression with a reference ID.</div>
+<div>
+The set of variables in the expression can be accessed using</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; set_of_symbols_in_eq = eq.free_symbols</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; set_of_symbols_in_eq</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">{a, c, b}</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+We can then replace each variable with an ID</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; eq_str_with_id = sympy.srepr(eq).replace("'a'","'pdg4942'").replace("'b'","'pdg3291'").replace("'c'","'pdg0021'")</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; eq_str_with_id</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">"Equality(Add(Symbol('pdg4942'), Symbol('pdg3291')), Symbol('pdg0021'))"</span></div>
+<div>
+<br /></div>
+<div>
+Lastly, evaluate the string to get a Sympy expression</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; eq_with_id = eval(eq_str_with_id)</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; eq_with_id</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Eq(pdg3291 + pdg4942, pdg0021)</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+The reason this representation is useful is because of the separation of presentation from semantic structure.<br />
+<br />
+And getting the symbol list is easy:<br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; eq_with_id.free_symbols</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp;{pdg3291, pdg4942, pdg0021}</span><br />
+<br /></div>
+<div>
+<h3>
+Example</h3>
+</div>
+<div>
+To show why separation matters, suppose we have the Latex string</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">f = \int_{x_{\rm bottom}}^{x_{\rm top}} g dg</span></div>
+<div>
+That is a challenge for Sympy's parse_latex, even though Sympy can handle semantically equivalent structures like</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; parse_latex('f = \int_a^b g dg')</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Eq(f, Integral(g, (g, a, b)))</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+If we happen to know that x_{\rm bottom} is a variable and we know that x_{\rm top} is a variable, then we can simplify the presentation string to a temporary string using dummy variables</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; initial_latex_str = 'f = \int_{x_{\rm bottom}}^{x_{\rm top}} g dg'</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; tmp_latex_str = initial_latex_str.replace('x_{\rm bottom}','p').replace('x_{\rm top}','q')</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; tmp_latex_str</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">'f = \\int_{p}^{q} g dg'</span></div>
+<div>
+<i>Caveat</i>: the dummy variables (here <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">p</span> and <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">q</span>) cannot exist in <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">initial_latex_str</span></div>
+<div>
+<br /></div>
+<div>
+Now we can act on the tmp_latex_str as we did in the first example</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; eq = parse_latex(tmp_latex_str)</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; eq_str_with_id = sympy.srepr(eq).replace("'p'","'pdg4942'").replace("'q'","'pdg3291'").replace("'g'","'pdg0021'").replace("'f'","'pdg2103'")</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; eq_with_id = eval(eq_str_with_id)</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; eq_with_id</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Eq(pdg2103, Integral(pdg0021, (pdg0021, pdg4942, pdg3291)))</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+<br />
+<h3>
+Algorithm for Converting Latex to Semantically-meaningful expression</h3>
+</div>
+<div>
+<ol>
+<li>get a Latex string</li>
+<li>clean the Latex by removing presentation syntax</li>
+<li>In the cleaned Latex string, identify known variables from the PDG that the Sympy parser does not handle, e.g., <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">r_{\rm Earth}</span></li>
+<li>In the cleaned Latex string,&nbsp;replace each known variable with a dummy variable, e.g. <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">d = r_{\rm Earth},</span><span style="font-family: inherit;"> where the dummy variable does not appear in the Latex string.</span></li>
+<li><span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">eq = parse_latex(<i>cleaned latex string with dummy variables</i>)</span></li>
+<li>replace variables and dummy variables in <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">eq</span> with PDG symbol ID</li>
+</ol>
+<div>
+<br /></div>
+</div>
+<div>
+<br /></div>
+
+{% endblock %}

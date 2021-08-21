@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>why web interfaces are limited in search capability</H1>
+
+<P><small>Published 2020-05-20T19:46:00.004Z by Physics Derivation Graph</small></P>
+
+Webpages have content. For text content, a common task is to search for something.<br />
+Web browsers have a plain text search feature, usually mapped to ctrl+f.<br />
+<br />
+<b>Why don't websites feature richer search functionality?&nbsp;</b><br />
+For example, sorting tables, regular expressions for text, SQL, Cypher/Gremlin, infinite scroll (rather than pagination).<br />
+<br />
+Answers include<br />
+<ul>
+<li>adding complex functionality takes effort</li>
+<li>most users will be confused by advanced search capability</li>
+<li>complex search features can be used maliciously/incorrectly if direct access to the backend database is allowed:&nbsp;</li>
+<ul>
+<li>a user could delete data via SQL</li>
+<li>a user could edit data</li>
+</ul>
+<li>if a user is given read-only access to the server, a user could write an infinite loop and saturate server resources</li>
+</ul>
+<div>
+Shipping all the data to the front-end isn't reasonable when the data is large (e.g., more than 1 MB), so interaction with the back-end is necessary (e.g., for pagination).</div>
+
+{% endblock %}

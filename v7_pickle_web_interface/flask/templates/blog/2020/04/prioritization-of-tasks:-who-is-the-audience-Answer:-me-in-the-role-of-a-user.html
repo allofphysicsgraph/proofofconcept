@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>prioritization of tasks: who is the audience? Answer: me in the role of a user</H1>
+
+<P><small>Published 2020-04-30T14:44:00.001Z by Physics Derivation Graph</small></P>
+
+The Physics Derivation Graph has a backlog of tasks, including bugs and feature requests.<br />
+Having an objective would facilitate prioritization of the tasks.<br />
+<br />
+I grappled with two candidate objectives:<br />
+<ul>
+<li>The Physics Derivation Graph is a vanity project. I am the sole user and I don't expect any other users for the project</li>
+<li>The Physics Derivation Graph is intended for use by other contributors.&nbsp;</li>
+</ul>
+<div>
+These two objectives lead to different prioritizations. For example, resolving the login capability is vital for the second objective and not for the first. In the first objective, I would be better off just running a local Docker image and posting static content to the website.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+I realized I could unify these two objectives as</div>
+<div>
+<ul>
+<li>I want to use the Physics Derivation Graph website as a "typical" user.&nbsp;</li>
+</ul>
+<div>
+I don't care whether there are other users at this point, but I do want to use the website as though I were a user.<br />
+<br />
+This objective is written as a story in which value is provided to the user. Here I am the user and the value is documenting derivations on the web.&nbsp;</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>histogram of expression lengths in bash</H1>
+
+<P><small>Published 2020-05-10T11:59:00.001Z by Physics Derivation Graph</small></P>
+
+Reading the JSON as text does not work since there are multiple entries that have the key "latex"
+<br />
+<pre> cat data.json | grep "            \"latex\":"
+</pre>
+<br />
+So I decided to read JSON into Python on command line<br />
+<a href="https://www.cambus.net/parsing-json-from-command-line-using-python/">https://www.cambus.net/parsing-json-from-command-line-using-python/</a><br />
+<br />
+That worked but I learned that handling for loops in command line requires extra work<br />
+<a href="https://stackoverflow.com/questions/2043453/executing-multi-line-statements-in-the-one-line-command-line">https://stackoverflow.com/questions/2043453/executing-multi-line-statements-in-the-one-line-command-line</a><br />
+<br />
+Once I knew the length of the values, I added a leading zero<br />
+<a href="https://stackoverflow.com/questions/21620602/add-leading-zero-python">https://stackoverflow.com/questions/21620602/add-leading-zero-python</a><br />
+<br />
+Then I used cut to eliminate the last digit (so the histogram bin size is 10).<br />
+<br />
+<br />
+<pre>cat data.json |\</pre>
+<pre>   python -c "exec(\"import sys, json; expr=json.load(sys.stdin)['expressions'];\nfor i,d in expr.items(): print(str(len(d['latex'])).zfill(3))\")" |\</pre>
+<pre>   sort -n |\</pre>
+<pre>   cut -c1-2 |\</pre>
+<pre>   uniq -c
+ 127 00
+  63 01
+  75 02
+  54 03
+  34 04
+  28 05
+  17 06
+  18 07
+  14 08
+  15 09
+  11 10
+  10 11
+   6 12
+   5 13
+   2 14
+   1 15
+   1 16
+   1 18
+   1 20
+   2 23
+   1 27
+</pre>
+<br />
+The longest expressions<br />
+<pre>cat data.json |\</pre>
+<pre>   python -c "exec(\"import sys, json; expr=json.load(sys.stdin)['expressions'];\nfor i,d in expr.items(): print(len(d['latex']))\")" |\</pre>
+<pre>   sort -n |\</pre>
+<pre>   tail -n 5
+186
+201
+231
+233
+271
+</pre>
+<br />
+The shortest expressions<br />
+<pre>cat data.json |\</pre>
+<pre>   python -c "exec(\"import sys, json; expr=json.load(sys.stdin)['expressions'];\nfor i,d in expr.items(): print(len(d['latex']))\")" |\</pre>
+<pre>   sort -n |\</pre>
+<pre>   head -n 5
+1
+1
+1
+1
+1
+</pre>
+<br />
+<br />
+Similarly, we can get the popularity of inference rules<br />
+<pre>cat data.json |\</pre>
+<pre>   grep "inf rule" |\</pre>
+<pre>   sed 's/"inf rule": //' |\</pre>
+<pre>   tr -s " " |\</pre>
+<pre>   sort |\</pre>
+<pre>   uniq -c |\</pre>
+<pre>   sort -n |\</pre>
+<pre>   tail -n 10
+  11  "substitute X for Y",
+  12  "declare identity",
+  13  "subtract X from both sides",
+  14  "declare variable replacement",
+  20  "declare final expr",
+  21  "divide both sides by",
+  21  "substitute LHS of expr 1 into expr 2",
+  31  "simplify",
+  31  "substitute RHS of expr 1 into expr 2",
+  54  "declare initial expr",
+
+</pre>
+
+{% endblock %}

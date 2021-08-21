@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>cleaning up the code using pylint and flake8 and bandit</H1>
+
+<P><small>Published 2018-08-02T23:42:00.001Z by Physics Derivation Graph</small></P>
+
+I realized with so much Python, there's a need to clean up the code.<br />
+<a href="https://www.youtube.com/watch?v=G1lDk_WKXvY">https://www.youtube.com/watch?v=G1lDk_WKXvY</a><br />
+In this post I document a few software tools I used.<br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Pylint">Pylint</a><br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ pylint interactive_user_prompt.py --disable bad-whitespace,missing-docstring,superfluous-parens,bad-indentation,line-too-long,trailing-whitespace,len-as-condition,too-many-locals,invalid-name,too-many-branches,too-many-return-statements,too-many-statements --reports=n</span><br />
+<br />
+and flake8<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ flake8 --ignore=E111,E225,E231,E501,E226,W291,E221,E115,E201,W293,E261,E302,E265 interactive_user_prompt.py</span><br />
+<br />
+Not surprisingly, some of my functions are <a href="https://en.wikipedia.org/wiki/Cyclomatic_complexity">complicated</a> (<a href="https://dzone.com/articles/what-exactly-is-mccabe-cyclomatic-complexity">a score of greater than 10 is frowned upon</a>)<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ python -m mccabe --min 9 interactive_user_prompt.py | wc -l</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; 15</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ python -m mccabe --min 15 interactive_user_prompt.py | wc -l</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp;4</span><br />
+So 15 functions scored 9 or greater; 4 functions were 15 or higher!<br />
+<br />
+That's out of 50 functions and 1946 lines of Python (including comments and blank lines)
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ cat interactive_user_prompt.py | wc -l</span>
+<br />
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; 1946</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ cat interactive_user_prompt.py | grep "^def " | wc -l</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; 50</span></div>
+<br />
+Although I'm not concerned about security of a locally run Python script, I also tried <a href="https://pypi.org/project/bandit/">bandit</a>:<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ bandit -r interactive_user_prompt.py</span><br />
+which complained about my use of the shell.<br />
+<br />
+I'm aware of <a href="https://pypi.org/project/autopep8/">autopep8</a> but haven't used it yet.<br />
+<br />
+<br />
+<br />
+
+{% endblock %}

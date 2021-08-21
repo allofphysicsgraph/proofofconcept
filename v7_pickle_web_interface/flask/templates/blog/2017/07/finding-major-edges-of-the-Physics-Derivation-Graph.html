@@ -1,0 +1,562 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>finding major edges of the Physics Derivation Graph</H1>
+
+<P><small>Published 2017-07-03T23:06:00.006Z by Physics Derivation Graph</small></P>
+
+I've decided to focus on building content for the Physics Derivation Graph. Since I don't think it's reasonable to enter all the mathematical physics content manually on my own, in this post I'll define some bounds.<br />
+<br />
+<div>
+Step 1: identify major fields in Physics</div>
+<ul>
+<li>Electromagnetism</li>
+<li>relativity</li>
+<ul>
+<li>astrophysics</li>
+</ul>
+<li>quantum mechanics</li>
+<li>classical mechanics</li>
+<ul>
+<li>thermodynamics</li>
+</ul>
+</ul>
+<div>
+Step 2: identify top derivations associated with each area</div>
+<div>
+<ul style="text-align: left;">
+<li>Electromagnetism: Maxwell's equations</li>
+<li>Relativity: Lorentz (time dilation, length contraction)</li><ul><li>astrophysics:&nbsp;</li></ul>
+<li>Quantum mechanics: Schrodinger, Uncertainty</li>
+<li>Classical mechanics: F=ma, conservation of energy and momentum</li><ul><li>thermodynamics: entropy</li></ul>
+</ul>
+</div>
+<div>
+<br /></div>
+<div>
+Step 3:&nbsp;</div>
+<br />
+There are expressions, domains, and notations that need to be included to demonstrate the comprehensive nature of the project and the capability of the framework.<br />
+<br />
+<br />
+<!--<tr>
+  <td></td><td></td><td></td></tr>--><table border="2" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<th>Expressions</th><th>Domains</th><th>Notation</th>
+</tr>
+<tr>
+  <td><a href="https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation">Schrodinger's equation</a></td><td>Quantum</td><td>Dirac/bra-ket</td></tr>
+<tr>
+  <td><br /></td><td></td><td></td></tr><tr><td>Maxwell's equations</td><td>Electromagnetics</td><td>differentiation, vectors</td></tr>
+<tr>
+  <td>contravariant/covariant</td><td>Electrodynamics</td><td>Einstein notation</td></tr>
+<tr>
+  <td><a href="https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations">Navier Stokes</a></td><td>Fluid Mechanics</td><td>differentiation, vectors</td></tr>
+<tr>
+  <td>mass-energy relation</td><td></td><td></td></tr>
+<tr>
+  <td></td><td>Special Relativity</td><td></td></tr>
+<tr>
+  <td></td><td>Thermodynamics</td><td></td></tr>
+<tr>
+  <td>Uncertainty relation</td><td>Quantum Mechanics</td><td></td></tr>
+<tr>
+  <td>energy conservation</td><td>classical mechanics</td><td></td></tr>
+<tr>
+  <td></td><td>string theory</td><td></td></tr>
+<tr>
+  <td>wave equation</td><td></td><td></td></tr>
+<tr>
+  <td></td><td>statistical mechanics</td><td></td></tr>
+<tr>
+  <td></td><td>aerodynamics</td><td></td></tr>
+<tr>
+  <td><a href="http://ocw.mit.edu/courses/nuclear-engineering/22-51-quantum-theory-of-radiation-interactions-fall-2012/lecture-notes/MIT22_51F12_Ch9.pdf">simple harmonic oscillator</a></td><td></td><td></td></tr>
+
+</tbody>
+</table>
+<br />
+<div>
+Other comprehensive lists of "things to know" in Physics</div>
+<div>
+<a href="https://www.staff.science.uu.nl/~gadda001/goodtheorist/">https://www.staff.science.uu.nl/~gadda001/goodtheorist/</a></div>
+<div>
+<a href="https://news.ycombinator.com/item?id=10714048">https://news.ycombinator.com/item?id=10714048</a></div>
+<div>
+<br /></div>
+<div>
+<a href="http://www.physics.uoguelph.ca/poisson/research/notes.html">http://www.physics.uoguelph.ca/poisson/research/notes.html</a></div>
+<div>
+<br /></div>
+<div>
+<a href="https://www.physics.uoguelph.ca/poisson/research/mech.pdf">https://www.physics.uoguelph.ca/poisson/research/mech.pdf</a></div>
+<div>
+<br /></div>
+<div>
+<a href="http://theoreticalminimum.com/courses">http://theoreticalminimum.com/courses</a></div>
+<div>
+<br /></div>
+<div>
+<a href="https://github.com/allofphysicsgraph/proofofconcept/wiki/All-Branches-of-Physics">https://github.com/allofphysicsgraph/proofofconcept/wiki/All-Branches-of-Physics</a></div>
+<div>
+<br /></div>
+<div>
+<br /></div>
+<br />
+The Physics Derivation Graph has a few&nbsp;pertinent&nbsp;scales:<br />
+<ul>
+<li>topics within physics, ie thermodynamics, quantum mechanics, classical&nbsp;mechanics</li>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Outline_of_physics#Branches_of_physics">https://en.wikipedia.org/wiki/Outline_of_physics#Branches_of_physics</a></li>
+<li><a href="https://en.wikiversity.org/wiki/High_school_physics">https://en.wikiversity.org/wiki/High_school_physics</a></li>
+</ul>
+<li>major (often named) expressions within a domain, ie "E=mc^2", Schrodinger's equation, Maxwell's equations</li>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Physics_equations">https://en.wikipedia.org/wiki/Physics_equations</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Category:Equations_of_physics">https://en.wikipedia.org/wiki/Category:Equations_of_physics</a></li>
+<li><a href="https://en.wikipedia.org/wiki/List_of_equations">https://en.wikipedia.org/wiki/List_of_equations</a></li>
+<li><a href="https://www.mcat-prep.com/mcat-physics-equations-sheet/">https://www.mcat-prep.com/mcat-physics-equations-sheet/</a></li>
+<li><a href="https://physics.info/equations/">https://physics.info/equations/</a></li>
+</ul>
+<li>derivations linking the major expressions</li>
+<ul>
+<li><a href="http://srjcstaff.santarosa.edu/~lwillia2/42/WaveEquationDerivation.pdf">Derivation of Electromagnetic Waves from Maxwell’s Equations</a></li>
+<li><a href="http://lejpt.academicdirect.org/A26/031_048.pdf">Deriving time dependent Schrödinger equation from Wave-Mechanics</a></li>
+</ul>
+<li><a href="https://physicsderivationgraph.blogspot.com/2017/05/abstract-syntax-trees-and-inference.html">abstract syntax trees of an expression</a></li>
+</ul>
+<div>
+In this post, I'll focus on finding examples of&nbsp;derivations linking the major expressions<br />
+<br />
+<h3>
+Useful places to search</h3>
+<ul>
+<li>Google Scholar</li>
+<li>Arxiv</li>
+<li>journals for Physics teachers</li>
+</ul>
+<div>
+Useful search string: derivation of equation</div>
+</div>
+<div>
+<br />
+<h3>
+Unsorted results</h3>
+https://en.wikipedia.org/wiki/ADM_formalism<br />
+https://en.wikipedia.org/wiki/Abraham–Lorentz_force<br />
+https://en.wikipedia.org/wiki/Acoustic_wave_equation<br />
+https://en.wikipedia.org/wiki/Action-angle_coordinates<br />
+https://en.wikipedia.org/wiki/Adiabatic_process<br />
+https://en.wikipedia.org/wiki/Angular_momentum<br />
+https://en.wikipedia.org/wiki/Angular_momentum_operator<br />
+https://en.wikipedia.org/wiki/Appell's_equation_of_motion<br />
+https://en.wikipedia.org/wiki/Area_of_a_circle<br />
+https://en.wikipedia.org/wiki/Available_energy_(particle_collision)<br />
+https://en.wikipedia.org/wiki/Avrami_equation<br />
+https://en.wikipedia.org/wiki/Azimuthal_quantum_number<br />
+https://en.wikipedia.org/wiki/BET_theory<br />
+https://en.wikipedia.org/wiki/Backpropagation<br />
+https://en.wikipedia.org/wiki/Ballistic_pendulum<br />
+https://en.wikipedia.org/wiki/Beer–Lambert_law<br />
+https://en.wikipedia.org/wiki/Bell's_theorem<br />
+https://en.wikipedia.org/wiki/Bethe–Salpeter_equation<br />
+https://en.wikipedia.org/wiki/Bivector<br />
+https://en.wikipedia.org/wiki/Black–Scholes_model<br />
+https://en.wikipedia.org/wiki/Bloch_oscillations<br />
+https://en.wikipedia.org/wiki/Boltzmann_relation<br />
+https://en.wikipedia.org/wiki/Bose–Einstein_statistics<br />
+https://en.wikipedia.org/wiki/Braking_distance<br />
+https://en.wikipedia.org/wiki/CHSH_inequality<br />
+https://en.wikipedia.org/wiki/Capillary_wave<br />
+https://en.wikipedia.org/wiki/Catenary<br />
+https://en.wikipedia.org/wiki/Causal_dynamical_triangulation<br />
+https://en.wikipedia.org/wiki/Causality<br />
+https://en.wikipedia.org/wiki/Centimetre–gram–second_system_of_units<br />
+https://en.wikipedia.org/wiki/Centripetal_force<br />
+https://en.wikipedia.org/wiki/Charge_conservation<br />
+https://en.wikipedia.org/wiki/Classical_electron_radius<br />
+https://en.wikipedia.org/wiki/Clausius–Clapeyron_relation<br />
+https://en.wikipedia.org/wiki/Coefficient_of_restitution<br />
+https://en.wikipedia.org/wiki/Collective_noun<br />
+https://en.wikipedia.org/wiki/Collision_theory<br />
+https://en.wikipedia.org/wiki/Compton_scattering<br />
+https://en.wikipedia.org/wiki/Conductance_quantum<br />
+https://en.wikipedia.org/wiki/Confidence_interval<br />
+https://en.wikipedia.org/wiki/Convolution<br />
+https://en.wikipedia.org/wiki/Darcy's_law<br />
+https://en.wikipedia.org/wiki/Debye_model<br />
+https://en.wikipedia.org/wiki/Derivative<br />
+https://en.wikipedia.org/wiki/Diffusion_equation<br />
+https://en.wikipedia.org/wiki/Doppler_broadening<br />
+https://en.wikipedia.org/wiki/Drag_equation<br />
+https://en.wikipedia.org/wiki/Dynamic_mechanical_analysis<br />
+https://en.wikipedia.org/wiki/Eddington_luminosity<br />
+https://en.wikipedia.org/wiki/Effective_medium_approximations<br />
+https://en.wikipedia.org/wiki/Elastic_collision<br />
+https://en.wikipedia.org/wiki/Electrodynamic_tether<br />
+https://en.wikipedia.org/wiki/Equilibrium_constant<br />
+https://en.wikipedia.org/wiki/Euler–Bernoulli_beam_theory<br />
+https://en.wikipedia.org/wiki/Euler–Maclaurin_formula<br />
+https://en.wikipedia.org/wiki/Ewald_summation<br />
+https://en.wikipedia.org/wiki/Exponential_decay<br />
+https://en.wikipedia.org/wiki/Fermat's_principle<br />
+https://en.wikipedia.org/wiki/Feynman_parametrization<br />
+https://en.wikipedia.org/wiki/Fick's_laws_of_diffusion<br />
+https://en.wikipedia.org/wiki/Fictitious_force<br />
+https://en.wikipedia.org/wiki/Fisher_information<br />
+https://en.wikipedia.org/wiki/Flory–Huggins_solution_theory<br />
+https://en.wikipedia.org/wiki/Fluctuation-dissipation_theorem<br />
+https://en.wikipedia.org/wiki/Four-gradient<br />
+https://en.wikipedia.org/wiki/Four-momentum<br />
+https://en.wikipedia.org/wiki/Fourier_optics<br />
+https://en.wikipedia.org/wiki/Freund–Rubin_compactification<br />
+https://en.wikipedia.org/wiki/Gaussian_gravitational_constant<br />
+https://en.wikipedia.org/wiki/Geiger–Nuttall_law<br />
+https://en.wikipedia.org/wiki/Generalizations_of_the_derivative<br />
+https://en.wikipedia.org/wiki/Gibbs_free_energy<br />
+https://en.wikipedia.org/wiki/Gibbs–Duhem_equation<br />
+https://en.wikipedia.org/wiki/Giovanni_Semerano<br />
+https://en.wikipedia.org/wiki/Golden_ratio<br />
+https://en.wikipedia.org/wiki/Group_velocity<br />
+https://en.wikipedia.org/wiki/Group_velocity_dispersion<br />
+https://en.wikipedia.org/wiki/Gullstrand–Painlevé_coordinates<br />
+https://en.wikipedia.org/wiki/Gyroradius<br />
+https://en.wikipedia.org/wiki/Hamilton–Jacobi_equation<br />
+https://en.wikipedia.org/wiki/Harmonic_coordinate_condition<br />
+https://en.wikipedia.org/wiki/Haynes–Shockley_experiment<br />
+https://en.wikipedia.org/wiki/Heat_equation<br />
+https://en.wikipedia.org/wiki/Helmholtz_coil<br />
+https://en.wikipedia.org/wiki/Helmholtz_decomposition<br />
+https://en.wikipedia.org/wiki/Hyperfocal_distance<br />
+https://en.wikipedia.org/wiki/Interference_(wave_propagation)<br />
+https://en.wikipedia.org/wiki/Ion_acoustic_wave<br />
+https://en.wikipedia.org/wiki/Isotropic_radiator<br />
+https://en.wikipedia.org/wiki/Kalman_filter<br />
+https://en.wikipedia.org/wiki/Killing_vector_field<br />
+https://en.wikipedia.org/wiki/Kinetic_energy<br />
+https://en.wikipedia.org/wiki/Klein–Gordon_equation<br />
+https://en.wikipedia.org/wiki/Kramers–Kronig_relations<br />
+https://en.wikipedia.org/wiki/Kramers–Wannier_duality<br />
+https://en.wikipedia.org/wiki/Kutta–Joukowski_theorem<br />
+https://en.wikipedia.org/wiki/Lamb_shift<br />
+https://en.wikipedia.org/wiki/Landau_quantization<br />
+https://en.wikipedia.org/wiki/Langmuir_(unit)<br />
+https://en.wikipedia.org/wiki/Laplace_expansion_(potential)<br />
+https://en.wikipedia.org/wiki/Large_eddy_simulation<br />
+https://en.wikipedia.org/wiki/Larmor_formula<br />
+https://en.wikipedia.org/wiki/Leibniz_integral_rule<br />
+https://en.wikipedia.org/wiki/Length_contraction<br />
+https://en.wikipedia.org/wiki/Lie_algebra<br />
+https://en.wikipedia.org/wiki/Liénard–Wiechert_potential<br />
+https://en.wikipedia.org/wiki/Linear_least_squares_(mathematics)<br />
+https://en.wikipedia.org/wiki/Linearized_gravity<br />
+https://en.wikipedia.org/wiki/Lippmann–Schwinger_equation<br />
+https://en.wikipedia.org/wiki/Magic_number_(physics)<br />
+https://en.wikipedia.org/wiki/Magnetic_quantum_number<br />
+https://en.wikipedia.org/wiki/Mass–energy_equivalence<br />
+https://en.wikipedia.org/wiki/Maxwell–Boltzmann_statistics<br />
+https://en.wikipedia.org/wiki/Mean_effective_pressure<br />
+https://en.wikipedia.org/wiki/Mean_free_path<br />
+https://en.wikipedia.org/wiki/Metalloid<br />
+https://en.wikipedia.org/wiki/Mooney–Rivlin_solid<br />
+https://en.wikipedia.org/wiki/Newton's_theorem_of_revolving_orbits<br />
+https://en.wikipedia.org/wiki/Noether's_theorem<br />
+https://en.wikipedia.org/wiki/Non-associative_algebra<br />
+https://en.wikipedia.org/wiki/Optical_flat<br />
+https://en.wikipedia.org/wiki/Optical_theorem<br />
+https://en.wikipedia.org/wiki/Orbital_state_vectors<br />
+https://en.wikipedia.org/wiki/Parabola<br />
+https://en.wikipedia.org/wiki/Parallax<br />
+https://en.wikipedia.org/wiki/Parametric_oscillator<br />
+https://en.wikipedia.org/wiki/Particle_in_a_spherically_symmetric_potential<br />
+https://en.wikipedia.org/wiki/Paschen's_law<br />
+https://en.wikipedia.org/wiki/Path_integral_formulation<br />
+https://en.wikipedia.org/wiki/Perpendicular_axis_theorem<br />
+https://en.wikipedia.org/wiki/Pilot_wave<br />
+https://en.wikipedia.org/wiki/Planck's_law<br />
+https://en.wikipedia.org/wiki/Planck_particle<br />
+https://en.wikipedia.org/wiki/Plasmon<br />
+https://en.wikipedia.org/wiki/Poisson–Boltzmann_equation<br />
+https://en.wikipedia.org/wiki/Polarization_identity<br />
+https://en.wikipedia.org/wiki/Ponderomotive_energy<br />
+https://en.wikipedia.org/wiki/Ponderomotive_force<br />
+https://en.wikipedia.org/wiki/Potential_energy<br />
+https://en.wikipedia.org/wiki/Potential_temperature<br />
+https://en.wikipedia.org/wiki/Poynting's_theorem<br />
+<a href="https://en.wikipedia.org/wiki/Price_equation">https://en.wikipedia.org/wiki/Price_equation</a><br />
+https://en.wikipedia.org/wiki/Principal_quantum_number<br />
+https://en.wikipedia.org/wiki/Principle_of_maximum_entropy<br />
+https://en.wikipedia.org/wiki/Quadratic_equation<br />
+https://en.wikipedia.org/wiki/Quartz_crystal_microbalance<br />
+https://en.wikipedia.org/wiki/RRKM_theory<br />
+https://en.wikipedia.org/wiki/Radian<br />
+https://en.wikipedia.org/wiki/Radius_of_gyration<br />
+https://en.wikipedia.org/wiki/Rainbow<br />
+https://en.wikipedia.org/wiki/Read_(surname)<br />
+https://en.wikipedia.org/wiki/Redshift<br />
+https://en.wikipedia.org/wiki/Reduced_mass<br />
+https://en.wikipedia.org/wiki/Relational_quantum_mechanics<br />
+https://en.wikipedia.org/wiki/Richards_equation<br />
+https://en.wikipedia.org/wiki/Roche_limit<br />
+https://en.wikipedia.org/wiki/Rodrigues'_rotation_formula<br />
+https://en.wikipedia.org/wiki/Rotating_wave_approximation<br />
+https://en.wikipedia.org/wiki/Rutherford_scattering<br />
+https://en.wikipedia.org/wiki/Saha_ionization_equation<br />
+https://en.wikipedia.org/wiki/Scale_relativity<br />
+https://en.wikipedia.org/wiki/Schrödinger_equation<br />
+https://en.wikipedia.org/wiki/Schwinger–Dyson_equation<br />
+https://en.wikipedia.org/wiki/Second_law_of_thermodynamics<br />
+https://en.wikipedia.org/wiki/Shallow_water_equations<br />
+https://en.wikipedia.org/wiki/Shockley_diode_equation<br />
+https://en.wikipedia.org/wiki/Spin_connection<br />
+https://en.wikipedia.org/wiki/Spin_quantum_number<br />
+https://en.wikipedia.org/wiki/Stefan–Boltzmann_law<br />
+https://en.wikipedia.org/wiki/Stretch_rule<br />
+https://en.wikipedia.org/wiki/String_theory<br />
+https://en.wikipedia.org/wiki/Sverdrup_balance<br />
+https://en.wikipedia.org/wiki/Taylor's_theorem<br />
+https://en.wikipedia.org/wiki/Terminal_velocity<br />
+https://en.wikipedia.org/wiki/Tetum_language<br />
+https://en.wikipedia.org/wiki/Theorem<br />
+https://en.wikipedia.org/wiki/Torque<br />
+<br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Torricelli%27s_equation#Derivation">https://en.wikipedia.org/wiki/Torricelli%27s_equation#Derivation</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm#Derivation">https://en.wikipedia.org/wiki/Tridiagonal_matrix_algorithm#Derivation</a><br />
+tag: math<br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Tropical_cyclone#Maximum_potential_intensity">https://en.wikipedia.org/wiki/Tropical_cyclone#Maximum_potential_intensity</a><br />
+tag: weather<br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Twomey_effect#Derivation">https://en.wikipedia.org/wiki/Twomey_effect#Derivation</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Van_der_Waals_equation#Derivation">https://en.wikipedia.org/wiki/Van_der_Waals_equation#Derivation</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Variable-range_hopping#Derivation">https://en.wikipedia.org/wiki/Variable-range_hopping#Derivation</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Visibility#Derivation">https://en.wikipedia.org/wiki/Visibility#Derivation</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Wallis_product#Derivation">https://en.wikipedia.org/wiki/Wallis_product#Derivation</a><br />
+tag: math<br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Washburn%27s_equation#Derivation">https://en.wikipedia.org/wiki/Washburn%27s_equation#Derivation</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Wheeler%E2%80%93DeWitt_equation#Derivation_from_path_integral">https://en.wikipedia.org/wiki/Wheeler%E2%80%93DeWitt_equation#Derivation_from_path_integral</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_equation#Derivation">https://en.wikipedia.org/wiki/Black%E2%80%93Scholes_equation#Derivation</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Optical_theorem">https://en.wikipedia.org/wiki/Optical_theorem</a><br />
+<a href="https://farside.ph.utexas.edu/teaching/qm/lectures/node87.html">https://farside.ph.utexas.edu/teaching/qm/lectures/node87.html</a><br />
+<br />
+Seismic Wave Equation<br />
+<a href="http://www.ees.nmt.edu/outside/courses/GEOP523/Docs/waveeq.pdf">http://www.ees.nmt.edu/outside/courses/GEOP523/Docs/waveeq.pdf</a><br />
+tag: PDF<br />
+<br />
+Noether's theorem<br />
+<a href="https://en.wikipedia.org/wiki/Noether%27s_theorem#Derivations">https://en.wikipedia.org/wiki/Noether%27s_theorem#Derivations</a><br />
+<a href="https://www.youtube.com/watch?v=Rqfj7n5aSwY">https://www.youtube.com/watch?v=Rqfj7n5aSwY</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Kalman_filter#Derivations">https://en.wikipedia.org/wiki/Kalman_filter#Derivations</a><br />
+<br />
+<a href="http://www.mrelativity.net/RelationshipEF/The_Relationship_between_E_and_F_P1.htm">E=mc2 and F=ma</a><br />
+Ives, Herbert E. (1952), "Derivation of the mass–energy relation", Journal of the Optical Society of America, 42 (8): 540–543, doi:10.1364/JOSA.42.000540&nbsp; &nbsp;| tag: paywall<br />
+On the page <a href="http://www.emc2-explained.info/Emc2/Deriving.htm">http://www.emc2-explained.info/Emc2/Deriving.htm</a><br />
+there's a step which involves <a href="https://en.wikipedia.org/wiki/Integration_by_substitution">https://en.wikipedia.org/wiki/Integration_by_substitution</a><br />
+--&gt; I don't understand the third line of equations. The infinitesimal switches from ds to d(mv), and the integration limit changes.<br />
+<br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Maxwell_relations#Derivation">https://en.wikipedia.org/wiki/Maxwell_relations#Derivation</a></div>
+<a href="http://srjcstaff.santarosa.edu/~lwillia2/42/WaveEquationDerivation.pdf">Derivation of Electromagnetic Waves from Maxwell’s Equations</a><br />
+tag: PDF<br />
+<a href="http://www.feynmanlectures.caltech.edu/II_18.html">Maxwell's equations as presented in Feynman's lectures</a><br />
+Feynman's derivation of Maxwell equations and extra dimensions:&nbsp;<a href="https://arxiv.org/abs/hep-ph/0106235">https://arxiv.org/abs/hep-ph/0106235</a><br />
+<br />
+<a href="http://dx.doi.org/10.1063/1.857686">derivation of the time‐dependent convective‐diffusion equation for surfactant transport along a deforming interface</a><br />
+tag: paywall<br />
+<br />
+<a href="https://doi.org/10.1103/PhysRevLett.44.55">Derivation of the Continuous-Time Random-Walk Equation</a><br />
+tag: paywall<br />
+<br />
+<a href="https://doi.org/10.1016/0378-4371(92)90283-V">derivation of the chemical master equation</a><br />
+tag: paywall<br />
+<br />
+<a href="https://doi.org/10.1103/PhysRevB.26.6516">Derivation of Kramer's equation, friction coefficient, and macroscopic laws for physisorption</a><br />
+tag: paywall<br />
+<br />
+<a href="http://jetp.ac.ru/cgi-bin/dn/e_016_01_0094.pdf">QUANTUM-MECHANICAL DERIVATION OF AN EQUATION OF STATE OF IRON</a><br />
+tag: PDF<br />
+<br />
+derivation of an equation for predicting minimum spouting velocity - DOI: 10.1002/aic.690040423<br />
+tag: paywall<br />
+<div>
+<br />
+<a href="http://dx.doi.org/10.1119/1.4830067">Derivation of the Biot-Savart Law from Ampere's Law Using the Displacement Current</a><br />
+tag: paywall<br />
+<a href="https://physics.stackexchange.com/questions/67445/is-biot-savart-law-obtained-empirically-or-can-it-be-derived">https://physics.stackexchange.com/questions/67445/is-biot-savart-law-obtained-empirically-or-can-it-be-derived</a><br />
+<a href="http://www.wikihow.com/Derive-the-Biot%E2%80%90Savart-Law">http://www.wikihow.com/Derive-the-Biot%E2%80%90Savart-Law</a><br />
+<br />
+<h3>
+Classical mechanics</h3>
+<a href="https://en.wikipedia.org/wiki/Projectile_motion">https://en.wikipedia.org/wiki/Projectile_motion</a><br />
+<a href="https://en.wikipedia.org/wiki/Trajectory#Derivation_of_the_equation_of_motion">https://en.wikipedia.org/wiki/Trajectory#Derivation_of_the_equation_of_motion</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Wave_equation#Derivation_of_the_wave_equation">https://en.wikipedia.org/wiki/Wave_equation#Derivation_of_the_wave_equation</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Work_(physics)#Derivation_for_a_particle_in_constrained_movement">https://en.wikipedia.org/wiki/Work_(physics)#Derivation_for_a_particle_in_constrained_movement</a><br />
+<br />
+Derivation of <a href="https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion">Kepler's laws</a>:&nbsp;<a href="https://physics.stackexchange.com/questions/112668/derivation-of-keplers-laws">https://physics.stackexchange.com/questions/112668/derivation-of-keplers-laws</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Diffusion_equation#Derivation">https://en.wikipedia.org/wiki/Diffusion_equation#Derivation</a><br />
+<a href="http://isn.ucsd.edu/classes/beng221/lectures/beng221-lecture9-notes.pdf">Heat and Diffusion Equation in Space and Time</a><br />
+tag: PDF<br />
+<a href="http://math.unm.edu/~lromero/pdes/class_notes/derive.pdf">Derivation of the Diﬀusion Equation</a><br />
+tag: PDF<br />
+<br />
+<a href="http://www.math.utep.edu/Faculty/sewell/tamu/664/prob4b.pdf">Derivation of Diffusion Equation</a><br />
+tag: PDF<br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Airfoil#Derivation_of_thin_airfoil_theory">https://en.wikipedia.org/wiki/Airfoil#Derivation_of_thin_airfoil_theory</a><br />
+<br />
+Relation between F=ma and Newton's Second Law of Motion<br />
+<a href="http://winnerscience.com/2013/06/06/derive-relation-f-ma-from-newton-2nd-law-of-motion/">http://winnerscience.com/2013/06/06/derive-relation-f-ma-from-newton-2nd-law-of-motion/</a><br />
+<a href="https://physics.stackexchange.com/questions/105460/deriving-f-ma-newtons-second-law-of-motion">https://physics.stackexchange.com/questions/105460/deriving-f-ma-newtons-second-law-of-motion</a><br />
+<a href="http://zonalandeducation.com/mstm/physics/mechanics/momentum/introductoryProblems/momentumSummary2.html">http://zonalandeducation.com/mstm/physics/mechanics/momentum/introductoryProblems/momentumSummary2.html</a><br />
+<a href="http://www.batesville.k12.in.us/Physics/PhyNet/Mechanics/Momentum/deriving_eqn.htm">http://www.batesville.k12.in.us/Physics/PhyNet/Mechanics/Momentum/deriving_eqn.htm</a><br />
+<br />
+Rocket equation<br />
+<a href="http://my.fit.edu/~dkirk/4262/Lectures/Rocket%20Equation%20Differential%20Form.doc">http://my.fit.edu/~dkirk/4262/Lectures/Rocket%20Equation%20Differential%20Form.doc</a><br />
+<a href="http://www.pgccphy.net/rec/rec006-rocket.pdf">http://www.pgccphy.net/rec/rec006-rocket.pdf</a><br />
+<a href="https://spaceflightsystems.grc.nasa.gov/education/rocket/rktpow.html">https://spaceflightsystems.grc.nasa.gov/education/rocket/rktpow.html</a><br />
+<a href="http://web.mit.edu/16.unified/www/FALL/thermodynamics/notes/node103.html">http://web.mit.edu/16.unified/www/FALL/thermodynamics/notes/node103.html</a><br />
+<a href="https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation#Derivation">https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation#Derivation</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Derivation_of_the_Navier%E2%80%93Stokes_equations">https://en.wikipedia.org/wiki/Derivation_of_the_Navier%E2%80%93Stokes_equations</a><br />
+<br />
+A New Derivation of Jeffery’s Equation --&nbsp;DOI: 10.1007/s00021-005-0208-0<br />
+tag: paywall, PDF<br />
+<h3>
+Relativity</h3>
+<div>
+<a href="http://users.sussex.ac.uk/~waa22/relativity/Complete_Derivation_files/derivation.pdf">Derivation of time dilation</a></div>
+<div>
+<a href="http://dx.doi.org/10.1119/1.4895356">A Simple Derivation of Time Dilation and Length Contraction in Special Relativity</a></div>
+<div>
+<br /></div>
+<div>
+<a href="https://en.wikipedia.org/wiki/Deriving_the_Schwarzschild_solution">https://en.wikipedia.org/wiki/Deriving_the_Schwarzschild_solution</a></div>
+<div>
+<a href="https://en.wikipedia.org/wiki/Schwarzschild_radius#Derivation">https://en.wikipedia.org/wiki/Schwarzschild_radius#Derivation</a></div>
+<div>
+<br /></div>
+<div>
+<a href="https://users.sussex.ac.uk/~waa22/relativity/What_is_gravitational_time_dilation.html">https://users.sussex.ac.uk/~waa22/relativity/What_is_gravitational_time_dilation.html</a></div>
+<div>
+<a href="http://eujournal.org/index.php/esj/article/viewFile/8701/8315">Gravitational Time Dilation Derived from Special Relativity and Newtonian Gravitational Potential</a></div>
+<h3>
+Electronics</h3>
+<a href="https://en.wikipedia.org/wiki/M-derived_filter#Derivation">https://en.wikipedia.org/wiki/M-derived_filter#Derivation</a><br />
+<br />
+<a href="http://www.ams.jhu.edu/~prashant/KCL_KVL.pdf">kirchoff current law and kirchoff voltage law</a><br />
+tag: PDF<br />
+<br />
+<h3>
+Thermal, aka statistical, mechanics</h3>
+<a href="https://en.wikipedia.org/wiki/Widom_scaling">https://en.wikipedia.org/wiki/Widom_scaling</a><br />
+<br />
+<a href="https://doi.org/10.1016/j.jcis.2004.01.028">Local thermodynamic derivation of Young's equation</a><br />
+tag: paywall, PDF<br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Relations_between_heat_capacities#Derivation">https://en.wikipedia.org/wiki/Relations_between_heat_capacities#Derivation</a><br />
+<div>
+<br /></div>
+<br />
+<a href="https://en.wikipedia.org/wiki/Gibbs%E2%80%93Helmholtz_equation#Derivation">https://en.wikipedia.org/wiki/Gibbs%E2%80%93Helmholtz_equation#Derivation</a><br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Gibbs_free_energy#Derivation">https://en.wikipedia.org/wiki/Gibbs_free_energy#Derivation</a><br />
+<br />
+<a href="https://www.physik.uni-augsburg.de/theo1/hanggi/Campisi_AJP.pdf">Derivation of the Boltzmann principle</a><br />
+tag: PDF<br />
+<br />
+Boltzmann distribution<br />
+<a href="https://gravityandlevity.wordpress.com/2018/07/14/how-thick-is-the-atmosphere-a-derivation-of-the-boltmzann-distribution/amp/">https://gravityandlevity.wordpress.com/2018/07/14/how-thick-is-the-atmosphere-a-derivation-of-the-boltmzann-distribution/amp/</a><br />
+<a href="https://news.ycombinator.com/item?id=17539765">https://news.ycombinator.com/item?id=17539765</a><br />
+<br />
+<a href="https://doi.org/10.1016/0031-8914(60)90061-6">Note on the derivation of the Boltzmann equation from the Liouville equation</a><br />
+tag: paywall, PDF<br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution#Derivation_and_related_distributions">https://en.wikipedia.org/wiki/Maxwell%E2%80%93Boltzmann_distribution#Derivation_and_related_distributions</a><br />
+<div>
+<br /></div>
+<div>
+Entropy</div>
+<div>
+<a href="http://micro.stanford.edu/~caiwei/me334/Chap7_Entropy_v04.pdf">http://micro.stanford.edu/~caiwei/me334/Chap7_Entropy_v04.pdf</a></div>
+tag: PDF<br />
+<br />
+<a href="https://en.wikipedia.org/wiki/Fundamental_thermodynamic_relation">https://en.wikipedia.org/wiki/Fundamental_thermodynamic_relation</a><br />
+<br />
+Derivation of the Ideal Gas Law<br />
+DOI: 10.1021/ed084p1832<br />
+<a href="http://homepage.smc.edu/gallogly_ethan/files/ideal%20gas%20law%20derivation.pdf">http://homepage.smc.edu/gallogly_ethan/files/ideal%20gas%20law%20derivation.pdf</a><br />
+tag: PDF<br />
+<a href="http://quantumfreak.com/derivation-of-pvnrt-the-equation-of-ideal-gas/">http://quantumfreak.com/derivation-of-pvnrt-the-equation-of-ideal-gas/</a><br />
+<a href="https://en.wikipedia.org/wiki/Ideal_gas_law#Theoretical">https://en.wikipedia.org/wiki/Ideal_gas_law#Theoretical</a><br />
+<br />
+<h3>
+Quantum Mechanics</h3>
+<a href="https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation#Derivation">https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation#Derivation</a><br />
+<a href="http://lejpt.academicdirect.org/A26/031_048.pdf">Deriving time dependent Schrödinger equation from Wave-Mechanics</a><br />
+tag: PDF<br />
+<div>
+<a href="https://arxiv.org/abs/1702.01880">Derivation of Schrodinger's equation</a><br />
+tag: arxiv</div>
+<div>
+Derivation of Schrödinger's equation from stochastic electrodynamics -DOI: 10.1007/BF00670387<br />
+tag: paywall</div>
+<div>
+<a href="https://doi.org/10.1103/PhysRev.150.1079">Derivation of the Schrödinger Equation from Newtonian Mechanics</a><br />
+tag: paywall, PDF</div>
+<a href="https://doi.org/10.1088/0305-4470/7/11/005">Covariant Feynman derivation of Schrodinger's equation in a riemannian space</a><br />
+tag: paywall, PDF<br />
+<a href="http://fermatslibrary.com/s/feynmans-derivation-of-the-schrodinger-equation">http://fermatslibrary.com/s/feynmans-derivation-of-the-schrodinger-equation</a><br />
+<br />
+<a href="https://doi.org/10.1088/0143-0807/17/4/004">Derivation of the Dirac equation from a relativistic representation of spin</a><br />
+tag: paywall, PDF<br />
+<a href="https://arxiv.org/vc/quant-ph/papers/0607/0607001v1.pdf">Physical meaning and derivation of Schrodinger and Dirac equations</a><br />
+tag: arxiv<br />
+<br />
+<a href="https://www2.warwick.ac.uk/fac/sci/physics/staff/academic/boyd/stuff/dirac.pdf">The Dirac Equation</a><br />
+tag: PDF<br />
+<br />
+Particle in a 1D box<br />
+<a href="https://chem.libretexts.org/Core/Physical_and_Theoretical_Chemistry/Quantum_Mechanics/05.5%3A_Particle_in_Boxes/Particle_in_a_1-dimensional_box">https://chem.libretexts.org/Core/Physical_and_Theoretical_Chemistry/Quantum_Mechanics/05.5%3A_Particle_in_Boxes/Particle_in_a_1-dimensional_box</a><br />
+<a href="http://quantummechanics.ucsd.edu/ph130a/130_notes/node136.html">http://quantummechanics.ucsd.edu/ph130a/130_notes/node136.html</a><br />
+<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/quantum/pbox.html">http://hyperphysics.phy-astr.gsu.edu/hbase/quantum/pbox.html</a><br />
+<a href="https://en.wikipedia.org/wiki/Particle_in_a_box">https://en.wikipedia.org/wiki/Particle_in_a_box</a><br />
+<br />
+<h3>
+Plasma</h3>
+<a href="https://doi.org/10.1017/S0022377800012836">Thermodynamic derivation of Saha's equation for a multi-temperature plasma</a><br />
+tag: paywall, PDF<br />
+<br />
+<br /></div>
+The Einstein and the Navier-Stokes Equations: Connecting the Two by Bredberg, Irene, Ph.D., HARVARD UNIVERSITY, 2012, 132 pages; 3513905<br />
+Abstract: This thesis establishes a precise mathematical connection between the Einstein equations of general relativity and the incompressible Navier-Stokes equation of fluid dynamics.<br />
+see also <a href="http://arxiv.org/abs/1101.2451">http://arxiv.org/abs/1101.2451</a><br />
+<br />
+Relation between uncertainty and the quantum harmonic oscillator<br />
+<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/quantum/hosc4.html">http://hyperphysics.phy-astr.gsu.edu/hbase/quantum/hosc4.html</a><br />
+<a href="https://www.eng.fsu.edu/~dommelen/quantum/style_a/nt_uprl.html">https://www.eng.fsu.edu/~dommelen/quantum/style_a/nt_uprl.html</a><br />
+<a href="http://hitoshi.berkeley.edu/221a/coherentstate.pdf">http://hitoshi.berkeley.edu/221a/coherentstate.pdf</a><br />
+<br />
+Schrodinger equation and quantum harmonic oscillator<br />
+<a href="http://homepage.univie.ac.at/reinhold.bertlmann/pdfs/T2_Skript_Ch_5.pdf">http://homepage.univie.ac.at/reinhold.bertlmann/pdfs/T2_Skript_Ch_5.pdf</a><br />
+<br />
+Schrodinger equation and wave equation<br />
+<a href="http://physics.stackexchange.com/questions/75363/how-is-the-schroedinger-equation-a-wave-equation">http://physics.stackexchange.com/questions/75363/how-is-the-schroedinger-equation-a-wave-equation</a><br />
+<a href="http://www.tcm.phy.cam.ac.uk/~bds10/aqp/handout_foundations.pdf">http://www.tcm.phy.cam.ac.uk/~bds10/aqp/handout_foundations.pdf</a><br />
+<br />
+
+{% endblock %}

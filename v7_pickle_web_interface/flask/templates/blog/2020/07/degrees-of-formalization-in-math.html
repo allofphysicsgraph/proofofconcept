@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>degrees of formalization in math</H1>
+
+<P><small>Published 2020-07-30T14:22:00.002Z by Physics Derivation Graph</small></P>
+
+<div><i>Update 2021-07-30</i>: this concept is <a href="https://www.cs.ru.nl/~freek/factor/">the&nbsp;de Bruijn factor</a>.</div><div><br /></div>There are many different views of formalization for mathematics. They are not all competing in the same scope. There are different degrees of formalization. Three analogies for this are<br />
+<ul>
+<li>spectrum of formalization, from informal (e.g., Latex) to increasing formality, like CAS and then to Proof assistants.</li>
+<li>"levels of zoom" as in visualization, like Google Maps but for Math</li>
+<li>compiling "high level concepts" (e.g., Latex) to controlled natural language to proofs</li>
+</ul>
+The idea of "zooming visualization" is relevant to the user experience -- a reader should be able to select the level of granularity.<br />
+<br />
+The idea of "compiling" is about making implicit concepts explicit. Also, compiling to different architectures is similar to formalizing in different logics and axioms. Unlike the visualization concept, there is not one underlying basis to specify formalization in.<br />
+<br />
+<br />
+What are the degrees of formalization in math?<br />
+<ol>
+<li>verbal (hallway chats, post-conference dinners, coffee breaks)</li>
+<li>white board or chalk board</li>
+<li>physical paper + pen or pencil</li>
+<li><i>typesetting</i>: Latex or equivalents like Markdown or&nbsp;<a href="https://pretextbook.org/">pretextbook.org</a>&nbsp;(XML based) or <a href="https://pandoc.org/">pandoc</a>; Powerpoint; <a href="https://rmarkdown.rstudio.com/">Rmd</a>, reStructuredText, MyST, <a href="https://jupyterbook.org/intro.html">jupyterbook</a></li>
+<li>semantic enrichment/decoration: sTeX, OMDoc; PDG inference rules; <a href="http://lamport.azurewebsites.net/latex/pf2.pdf">pf2 package</a>&nbsp;(<a href="https://lamport.azurewebsites.net/latex/latex.html">sty</a>)</li><li>controlled natural languages (e.g., Naproche)</li>
+<li>CAS verification of inference rules (e.g. Sage, SymPy)</li>
+<li>formal verification in a selected target logic and axioms (e.g., Lean, Isabella, COQ)</li>
+</ol><div><br /></div><div>References</div><div><br /></div><div><a href="https://arxiv.org/pdf/2005.12876.pdf">https://arxiv.org/pdf/2005.12876.pdf</a> and&nbsp;<a href="https://easychair.org/smart-slide/slide/1rfW#">https://easychair.org/smart-slide/slide/1rfW#</a>&nbsp;</div><div>from <a href="https://physicsderivationgraph.blogspot.com/2020/07/notes-from-cicm-2020-13th-conference-on.html">https://physicsderivationgraph.blogspot.com/2020/07/notes-from-cicm-2020-13th-conference-on.html</a></div>
+
+{% endblock %}

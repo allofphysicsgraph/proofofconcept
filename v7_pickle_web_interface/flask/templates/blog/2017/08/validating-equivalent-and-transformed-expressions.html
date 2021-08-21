@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>validating equivalent and transformed expressions</H1>
+
+<P><small>Published 2017-08-29T01:45:00.002Z by Physics Derivation Graph</small></P>
+
+To check whether a step was implemented correctly, the question is, "given the input expressions (and feeds), do the output expressions conform to the transform prescribed by the inference rule?"<br />
+<br />
+For example, suppose we start with "A=B" and operate on this with the inference rule "add X to both sides," where X=2. If the output is "A+2 = B+2," was the step implemented correctly?<br />
+<br />
+The inference rule can be described by an&nbsp;abstract syntax tree (AST):<br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; = &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; / &nbsp; \ &nbsp; &nbsp; &nbsp; &nbsp;--&gt; &nbsp; &nbsp; &nbsp;/ &nbsp; &nbsp; \</span><br />
+<span style="font-family: Courier New, Courier, monospace;">LHS &nbsp; RHS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;+ &nbsp; &nbsp; &nbsp; &nbsp;+</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;/ &nbsp; \ &nbsp; &nbsp;/ &nbsp; \&nbsp;</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LHS &nbsp; x &nbsp; RHS &nbsp; x</span><br />
+<br />
+<br />
+<a href="https://blog.plover.com/math/24-puzzle-2.html">https://blog.plover.com/math/24-puzzle-2.html</a><br />
+<a href="https://news.ycombinator.com/item?id=15075110">https://news.ycombinator.com/item?id=15075110</a>
+
+{% endblock %}

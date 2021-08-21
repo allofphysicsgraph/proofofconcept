@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>working with Sympy symbols extracted from a Latex expression</H1>
+
+<P><small>Published 2020-05-28T02:13:00.001Z by Physics Derivation Graph</small></P>
+
+I'm using SymPy to work with Latex expressions<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>import sympy</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>sympy.__version__</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">'1.5.1'</span><br />
+<br />
+I can convert Latex to SymPy using<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>from sympy.parsing.latex import parse_latex</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>eq = parse_latex("F = m a")</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>eq.rhs</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">a*m</span><br />
+However, to work with the symbols in SymPy I need to extract them from the expression<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>set_of_symbols_in_eq = eq.free_symbols</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>set_of_symbols_in_eq</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">{a, F, m}</span><br />
+The entries exist in the set<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>type(list(set_of_symbols_in_eq)[0])</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&lt;class 'sympy.core.symbol.Symbol'&gt;</span><br />
+but they are not defined as Python variables<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>F</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Traceback (most recent call last):</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; File "&lt;stdin&gt;", line 1, in &lt;module&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">NameError: name 'F' is not defined</span><br />
+<br />
+To associate a Python variable with each symbol, I used<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>for symb in set_of_symbols_in_eq:</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">...&nbsp; &nbsp; &nbsp;<b>exec(str(symb) + " = sympy.symbols('" + str(symb) + "')")</b></span><br />
+<br />
+Then the Python variable "F" is associated with the Sympy Symbol "F"<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>F</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">F</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; <b>type(F)</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&lt;class 'sympy.core.symbol.Symbol'&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: inherit;">For the relevance of this thread, see</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><a href="https://groups.google.com/d/msg/sympy/_RnbbOqhERM/YAoJAbyPAgAJ">https://groups.google.com/d/msg/sympy/_RnbbOqhERM/YAoJAbyPAgAJ</a></span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+
+{% endblock %}

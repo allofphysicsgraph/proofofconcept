@@ -1,0 +1,65 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>moving from local terminal interface with CSV to web interface with a database backend</H1>
+
+<P><small>Published 2015-11-30T16:09:00Z by Physics Derivation Graph</small></P>
+
+The existing Physics Derivation Graph is centered on command-line input with PNG output. Recently I've been exploring use of d3js as a web frontend.<br />
+<br />
+I'm considering moving the Physics Derivation Graph to something which&nbsp;supports a web frontend connected to a hosted database backend. No command-line interaction or installation required.<br />
+<br />
+I've been using CSV to store the data because it is the most common&nbsp;format. That works fine as long as the PDG is local and command-line&nbsp;driven. Now I want to move to a website, (ie openshift --<br />
+<a href="https://openshift.redhat.com/app/console/application_type/" target="_blank">https://openshift.redhat.com/<wbr></wbr>app/console/application_type/</a>&nbsp;)<br />
+I've set up a Django cartridge<br />
+<br />
+I realized I don't need to sketch a design for the PDG web interface.&nbsp;Instead, I can start with determining minimum functionality:<br />
+<ul>
+<li>user login (don't want spammers writing to the database)</li>
+<li>user view existing content</li>
+<li>user add new content</li>
+</ul>
+I've used Flask previously, but I think the functionality I want is sufficiently complex that Flask wouldn't be enough.<br />
+<br />
+I don't know whether I could continue to use the existing CSV as a backend storage. At this point I don't need scalability in terms of user latency or amount of data.<br />
+<br />
+<br />
+Vision: enable users of the PDG to interact with content in a web interface<br />
+<br />
+Goal: use Django on Openshift to enable authentication, storage of content, and manipulating content<br />
+<br />
+Path:<br />
+<br />
+<ol>
+<li>Flask local instance</li>
+<ul>
+<li><a href="https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask006.html">https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask006.html</a></li>
+<li><a href="http://code.tutsplus.com/tutorials/an-introduction-to-pythons-flask-framework--net-28822">http://code.tutsplus.com/tutorials/an-introduction-to-pythons-flask-framework--net-28822</a></li>
+</ul>
+<li>Flask read values from database - CSV</li>
+<li>convert PDG CSV to local SQL database</li>
+<li>read from local SQL database</li>
+<li>write to local SQL database -&nbsp;<a href="https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/sqlite3.1.html">https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man1/sqlite3.1.html</a></li>
+<li>Flask read values from database - SQL</li>
+<li>Django local instance</li>
+<li>Django local instance read values from database</li>
+<li>Django local instance write values from database</li>
+<li>Django on Openshift -&nbsp;<a href="http://physicsderivationgraph.blogspot.com/2015/11/django-and-openshift.html">http://physicsderivationgraph.blogspot.com/2015/11/django-and-openshift.html</a></li>
+<li>Django on Openshift read values from database</li>
+<li>Django on Openshift write values from database</li>
+<li>Django on Openshift write values from database by authenticated user</li>
+</ol>
+<br />
+<br />
+<h3>
+Database choices</h3>
+<a href="https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems">https://www.digitalocean.com/community/tutorials/sqlite-vs-mysql-vs-postgresql-a-comparison-of-relational-database-management-systems</a><br />
+<a href="https://www.digitalocean.com/community/tutorials/a-comparison-of-nosql-database-management-systems-and-models">https://www.digitalocean.com/community/tutorials/a-comparison-of-nosql-database-management-systems-and-models</a><br />
+<h4>
+CSV</h4>
+<h4>
+SQLite</h4>
+SQLite only supports a single writer at a time (meaning the execution of an individual transaction). SQLite locks the entire database when it needs a lock (either read or write) and only one writer can hold a write lock at a time.<br />
+SQLite 3.7.0 added a new journal mode called Write Ahead Locking that supports concurrent reading while writing.
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>example Latex expressions to parse</H1>
+
+<P><small>Published 2020-02-04T02:20:00.002Z by Physics Derivation Graph</small></P>
+
+<h3>
+valid math latex in order of increasing complexity</h3>
+a = b<br />
+<br />
+\sin x<br />
+<br />
+\sin x \in f<br />
+<br />
+f \in g<br />
+<h3>
+invalid math latex in order of increasing complexity</h3>
+a = b +&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; operator with no input<br />
+<br />
+\sin x \left(&nbsp; &nbsp; &nbsp; &nbsp; unpaired "("<br />
+<br />
+\sin x \sum&nbsp; &nbsp; &nbsp; &nbsp;operator with no input<br />
+<h3>
+valid ambiguous latex in order of increasing complexity</h3>
+1/2\pi = (1/2) \pi&nbsp; OR 1/(2 \pi); source:&nbsp;<a href="https://www.ntg.nl/maps/26/16.pdf">https://www.ntg.nl/maps/26/16.pdf</a><br />
+<br />
+\sin x / y = (\sin x)/y&nbsp; OR \sin (x/y); source:&nbsp;<a href="https://www.ntg.nl/maps/26/16.pdf">https://www.ntg.nl/maps/26/16.pdf</a><br />
+<br />
+\sin x + 2 = (\sin x) + 2&nbsp; OR \sin (x + 2)<br />
+<br />
+https://math.stackexchange.com/a/1025217<br />
+https://math.stackexchange.com/a/1026483<br />
+<h3>
+valid ambiguous latex in a step in which the ambiguity can be resolved</h3>
+input expression: \sin x / y = g<br />
+inf rule: multiply both sides by y<br />
+output expression: \sin x = g y<br />
+<br />
+Here the input expression is ambiguous -- it isn't clear whether "\sin x / y" = (\sin x)/y&nbsp; OR \sin (x/y)<br />
+The output expression implies that (\sin x)/y was the user's intention.<br />
+<br />
+<br />
+input expression: \sin x + 2 = g<br />
+inf rule: subtract "2" from both sides<br />
+output expression: \sin x = g - 2<br />
+<br />
+Here the input expression is ambiguous -- it isn't clear whether "\sin x + 2" = (\sin x) + 2&nbsp; OR \sin (x + 2)<br />
+The output expression implies that (\sin x) + 2 was the user's intention.<br />
+<br />
+<h3>
+valid ambiguous latex in a step in which the ambiguity cannot be resolved</h3>
+a = b
+
+{% endblock %}

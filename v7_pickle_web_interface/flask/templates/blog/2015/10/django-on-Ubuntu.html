@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>django on Ubuntu</H1>
+
+<P><small>Published 2015-10-08T02:01:00.005Z by Physics Derivation Graph</small></P>
+
+https://www.howtoforge.com/tutorial/django-install-ubuntu-14.04/<br />
+<br />
+https://www.digitalocean.com/community/tutorials/how-to-install-the-django-web-framework-on-ubuntu-14-04<br />
+<br />
+<br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">cd ~</span><br />
+<span style="font-family: Courier New, Courier, monospace;">django-admin startproject mysite</span><br />
+<span style="font-family: Courier New, Courier, monospace;">cd mysite</span><br />
+<span style="font-family: Courier New, Courier, monospace;">sudo pip install -U django</span><br />
+<span style="font-family: Courier New, Courier, monospace;">python manage.py migrate</span><br />
+<span style="font-family: Courier New, Courier, monospace;">python manage.py runserver</span><br />
+<span style="font-family: Courier New, Courier, monospace;">firefox 127.0.0.1:8000</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+
+{% endblock %}

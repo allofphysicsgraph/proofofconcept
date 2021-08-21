@@ -1,0 +1,40 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>mathjax for github.io site</H1>
+
+<P><small>Published 2018-07-31T13:04:00.002Z by Physics Derivation Graph</small></P>
+
+For the project website hosted at&nbsp;<a href="http://allofphysicsgraph.github.io/proofofconcept/">http://allofphysicsgraph.github.io/proofofconcept/</a> I've been using static PNGs generated off-line to render the expressions in the graph using d3js.<br />
+<br />
+In order to dynamically enter content on a webpage without resorting to off-line rendering, I used MathJax to display content.<br />
+<br />
+The javascript for MathJax is at<br />
+<a href="https://github.com/mathjax/MathJax/blob/master/MathJax.js">https://github.com/mathjax/MathJax/blob/master/MathJax.js</a><br />
+with instructions for use here<br />
+<a href="https://docs.mathjax.org/en/latest/configuration.html">https://docs.mathjax.org/en/latest/configuration.html</a><br />
+<br />
+I was able to get a page that accepts input and renders Latex input:<br />
+<a href="http://allofphysicsgraph.github.io/proofofconcept/site/mjtest">http://allofphysicsgraph.github.io/proofofconcept/site/mjtest</a><br />
+Source code for the page is here:<br />
+<a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/site/mjtest.html">https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/site/mjtest.html</a><br />
+<br />
+Next I ran scaling tests for latency as a function of the number of rendered expressions in Chrome.<br />
+<br />
+25 expressions:<br />
+<ul>
+<li>http://allofphysicsgraph.github.io/proofofconcept/site/mjtest_scaling_25</li>
+<li>DOMContentLoaded: 203 ms; Load: 516 ms; Finish: 835 ms</li>
+</ul>
+50 expressions:<br />
+<ul>
+<li>http://allofphysicsgraph.github.io/proofofconcept/site/mjtest_scaling_50</li>
+<li>DOMContentLoaded: 202 ms; Load: 548 ms; Finish: 977 ms</li>
+</ul>
+100 expressions:<br />
+<ul>
+<li>http://allofphysicsgraph.github.io/proofofconcept/site/mjtest_scaling_100</li>
+<li>DOMContentLoaded: 220 ms; Load: 538 ms; Finish: 1140 ms</li>
+</ul>
+
+{% endblock %}

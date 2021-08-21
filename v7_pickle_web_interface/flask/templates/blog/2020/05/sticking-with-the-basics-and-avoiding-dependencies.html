@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>sticking with the basics and avoiding dependencies</H1>
+
+<P><small>Published 2020-05-08T16:35:00Z by Physics Derivation Graph</small></P>
+
+There's a trade-off between "write all the code yourself" and "use external libraries."<br />
+<br />
+<ul>
+<li>The "use external libraries" approach allows for quicker time-to-market and leverages the expertise of other people. The downside is that if any of the providers change their code, you now have to keep up with those dependencies. This means refactoring as versions change.&nbsp;</li>
+<li>The "write all the code yourself" approach can take longer and incurs the burden of learning things outside the initial focus. The upside is that there's less risk associated with dependencies.</li>
+</ul>
+<br />
+Based on my observations of other projects not being durable due to the necessary upkeep of code when the "use external libraries" choice is selected, I've opted to write most of the code for the Physics Derivation Graph and thus minimize my risk associated with dependencies.<br />
+<br />
+An example of this is avoidance of jQuery and other external Javascript libraries.<br />
+I was happy to find the site<br />
+<a href="https://plainjs.com/">https://plainjs.com/</a>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>characterizing Latex content in arXiv.org .tex files</H1>
+
+<P><small>Published 2020-05-31T02:23:00Z by Physics Derivation Graph</small></P>
+
+<ul>
+<li> how many total .tex files?
+</li>
+<li> how many english words per file?
+</li>
+<li> how many expressions total in the corpus?
+</li>
+<li> distribution of (number of expressions) per file
+</li>
+<li> what's the distribution of (ratio of words per file to expressions per file)
+</li>
+<li> how many known latex symbols are present in all the expressions
+</li>
+<li> what is the distribution of (expression length in characters)
+</li>
+<li> what is the distribution of (known symbols per expression)
+</li>
+<li>are there character sequences that are extremely rare? binary files hidden in .tex and other anomalies</li>
+</ul>
+This characterization step will be useful when comparing domains.
+For example, if we sample another domain (e.g., quantum mechanics),
+are the distributions similar or not?
+If we see that the same characterization, then we can expect that the
+techniques you develop are likely to apply to a novel corpus.
+
+<br />
+<br />
+Establishing that the sample being used is generic means we can work
+with a smaller data set (rather than "all the .tex in arXiv"). Showing
+the distribution shape does not change as more .tex files are added
+means convergence is possible.
+
+<br />
+<br />
+If we find a domain that doesn't have a similar distributions, then we
+can investigate why it is anomalous.
+<br />
+<br />
+
+{% endblock %}

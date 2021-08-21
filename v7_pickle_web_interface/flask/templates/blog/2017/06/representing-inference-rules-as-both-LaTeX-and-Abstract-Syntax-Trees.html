@@ -1,0 +1,179 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>representing inference rules as both LaTeX and Abstract Syntax Trees</H1>
+
+<P><small>Published 2017-06-08T01:26:00Z by Physics Derivation Graph</small></P>
+
+All inference rules in the Physics Derivation Graph are written in&nbsp;<a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a>. See the full list at<br />
+<a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v4_file_per_expression/inference_rules">https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v4_file_per_expression/inference_rules</a><br />
+For example, the inference rule "add X to both sides" in LaTeX is<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+Add $#1$ to both sides of Eq.~\ref{eq:#2}.<br />
+</span>
+<br />
+<h3>
+AST representation in plain text</h3>
+<a href="https://calculem.us/abstract-binding-trees-1/">https://calculem.us/abstract-binding-trees-1/</a><br />
+Inference rules are transformations to the abstract syntax trees that represent expressions.<br />
+For example, the "add X to both sides" (addition property of equality) does the following transform:<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+input:expression<br />
+op<br />
+&nbsp; LHS<br />
+&nbsp; RHS<br />
+<br />
+input:feed<br />
+x<br />
+<br />
+output:expression<br />
+op<br />
+&nbsp; +<br />
+&nbsp; &nbsp; LHS<br />
+&nbsp; &nbsp; x<br />
+&nbsp; +<br />
+&nbsp; &nbsp; RHS<br />
+&nbsp; &nbsp; x<br />
+</span>
+<br />
+<br />
+Here I'm using a two space indent to show the tree structure of the AST.<br />
+The "LHS" and "RHS" are <a href="https://en.wikipedia.org/wiki/Sides_of_an_equation">sides of the expression</a>. The "op" is the <a href="https://en.wikipedia.org/wiki/Relational_operator">operator</a> relating LHS and RHS.<br />
+I wanted a format that is visually accessible and not to verbose, while capable of being converted to some other format.<br />
+<br />
+<br />
+<h3>
+Order matters</h3>
+My AST representation needs to include order. The expression "a-b" is distinct from "b-a" even though a tree doesn't specify the order:<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+<br />input:expression:1<br />
+op<br />
+&nbsp; c<br />
+&nbsp; -<br />
+&nbsp; &nbsp; a<br />
+&nbsp; &nbsp; b<br />
+<br />
+</span>which is distinct from<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+input:expression:2<br />
+op<br />
+&nbsp; c<br />
+&nbsp; -<br />
+&nbsp; &nbsp; b<br />
+&nbsp; &nbsp; a<br />
+</span>
+<br />
+<br />
+This also applies to cross product since it's also non-commutative.<br />
+To provide clarification, I'll assume the "top-to-bottom" order in the above format corresponds to "left-to-right." With that specification, the top AST corresponds to "c=a-b" and the bottom AST is "c=b-a".<br />
+<br />
+<h3>
+AST for integrals and derivatives</h3>
+<div>
+Shown here:&nbsp;<a href="https://tug.org/TUGboat/tb12-3-4/tb33arnon.pdf">https://tug.org/TUGboat/tb12-3-4/tb33arnon.pdf</a></div>
+<div>
+<br /></div>
+Mentioned here (<a href="http://www.math.wpi.edu/IQP/BVCalcHist/calc5.html">http://www.math.wpi.edu/IQP/BVCalcHist/calc5.html</a>) but not explored explicitly.<br />
+<br />
+A definite integral in Latex<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\int_{low}^{high}&nbsp;LHS d(x) = \int_{low}^{high} RHS d(x)</span><br />
+can be written as an AST:<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">input:expression</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">op</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \int</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; low</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; high</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; LHS</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; x</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \int</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; low</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; high</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; RHS</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; x</span><br />
+<br />
+Similarly, a differential equation in Latex<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\frac{d}{d(x)} LHS = \frac{d}{d(x)} RHS</span><br />
+can be written as an AST:<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">input:expression</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">op</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; dif</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; LHS</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; x</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; dif</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; RHS</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; x</span><br />
+<br />
+AST for Dirac notation<br />
+<br />
+<h3>
+Distinguishing input and output expressions</h3>
+Some inference rules act on multiple expressions, and some inference rules produce multiple expressions (ie the taking the square root). Here's the AST for "add Eq1 to Eq2":<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+input:expression:1<br />
+op<br />
+&nbsp; LHS:1<br />
+&nbsp; RHS:1<br />
+<br />
+input:expression:2<br />
+op<br />
+&nbsp; LHS:2<br />
+&nbsp; RHS:2<br /><br />
+</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">output:expression<br />
+op<br />
+&nbsp;&nbsp;+<br />
+&nbsp; &nbsp; LHS:1<br />
+&nbsp; &nbsp; LHS:2<br />
+&nbsp;&nbsp;+<br />
+&nbsp; &nbsp; RHS:1<br />
+&nbsp; &nbsp; RHS:2<br />
+</span>
+<br />
+<h3>
+</h3>
+<h3>
+Complicated expressions as ASTs</h3>
+Some expressions are more complicated than simply "LHS = RHS". Suppose we have an expression
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+<br />
+y = { &nbsp;x^2 &nbsp; for x&gt;0<br />
+&nbsp; &nbsp; { &nbsp;0 &nbsp; &nbsp; for x&lt;=0<br />
+</span>
+<br />
+I don't know how to represent this as an AST. Here's an attempt:<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+op<br />
+&nbsp; y<br />
+&nbsp; set<br />
+&nbsp; &nbsp; domain<br />
+&nbsp; &nbsp; &nbsp; ^<br />
+&nbsp; &nbsp; &nbsp; &nbsp; x<br />
+&nbsp; &nbsp; &nbsp; &nbsp; 2<br />
+&nbsp; &nbsp; &nbsp; &gt;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; x<br />
+&nbsp; &nbsp; &nbsp; &nbsp; 0<br />
+&nbsp; &nbsp; domain<br />
+&nbsp; &nbsp; &nbsp; 0<br />
+&nbsp; &nbsp; &nbsp; &lt;=<br />
+&nbsp; &nbsp; &nbsp; &nbsp; x<br />
+&nbsp; &nbsp; &nbsp; &nbsp; 0<br />
+</span>
+<br />
+<br />
+I needed to introduce two new symbols: "set" and "domain"<br />
+<br />
+<br />
+<h3>
+Related work</h3>
+<div>
+<a href="http://mathlex.org/bundles/mathlexmain/thesis.pdf">Mathlex thesis</a></div>
+<div>
+<br /></div>
+<div>
+<a href="http://mathlex.org/doc/how-mathlex-works">http://mathlex.org/doc/how-mathlex-works</a></div>
+
+{% endblock %}

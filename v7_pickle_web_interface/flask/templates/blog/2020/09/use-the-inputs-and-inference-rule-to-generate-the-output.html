@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>use the inputs and inference rule to generate the output</H1>
+
+<P><small>Published 2020-09-20T22:51:00Z by Physics Derivation Graph</small></P>
+
+<p>Instead of expecting the user to provide the inputs and outputs and inference rule, supplying the inputs and inference rule is sufficient to generate the output. This output is necessarily consistent with the inputs and inference rule.</p><p><span style="font-family: courier;">
+&gt;&gt;&gt; from sympy import *
+</span></p><p>Define an inference rule</p><p><span style="font-family: courier;">
+def mult_both_sides_by(expr, feed):<br />&nbsp; &nbsp; return Equality(expr.lhs*feed, expr.rhs*feed, evaluate=False)<br />
+&nbsp;<br />
+&gt;&gt;&gt; expr = parse_latex('a = b')<br />
+&gt;&gt;&gt; feed = parse_latex('f')<br />
+&gt;&gt;&gt; mult_both_sides_by(expr, feed)<br />
+Eq(a*f, b*f)
+</span></p><p>This generalizes to include the relation</p><p>
+
+</p><p><span style="font-family: courier;">
+def mult_both_sides_by(expr, feed, relation):<br />&nbsp; &nbsp; return relation(expr.lhs*feed, expr.rhs*feed, evaluate=False)<br />
+&nbsp;<br />
+&gt;&gt;&gt; mult_both_sides_by(expr, feed, Equality)<br />
+Eq(a*f, b*f)
+</span></p><p>Other relations are available; see https://docs.sympy.org/latest/modules/core.html<br /><span style="font-family: courier;">
+&gt;&gt;&gt; mult_both_sides_by(expr, feed, Le)<br />
+a*f &lt;= b*f</span></p><p></p><p></p><p></p><p></p>
+
+{% endblock %}

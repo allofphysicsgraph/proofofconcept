@@ -1,0 +1,35 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Integration path for contributions</H1>
+
+<P><small>Published 2020-02-23T21:00:00.002Z by Physics Derivation Graph</small></P>
+
+So far I've been hesitant on collaborations involving software in the Physics Derivation Graph. I didn't have a good path for integration of contributions, especially of complex features. I think I can provide both more details explanation of what would be helpful, as well as a clear integration path.<br />
+<br />
+For example, in <a href="https://physicsderivationgraph.blogspot.com/2020/02/example-latex-expressions-to-parse.html">this post</a> I provided a set of valid and invalid and ambiguous Latex examples. I did not provide details on how I would integrate a suggested solution written by a contributor.<br />
+<br />
+Here are three specific aspects I would need for integration of contributed code:<br />
+<br />
+<ol>
+<li>I will write doctests in Python. That way I can express the function as it would be integrated in the PDG project code</li>
+<li>The contributed Python script should run inside a Docker image. That way the dependencies are made explicit</li>
+<li>The "docker build" can assume to have Internet access, but the "docker run" process should assume no Internet connection</li>
+</ol>
+<br />
+As an example from the above blog post, I can express the interface as a Python3 function<br />
+<span style="font-family: Courier New, Courier, monospace;">def is_expression_valid_latex(expr_latex: str) -&gt; bool:</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; """</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &gt;&gt;&gt; is_expression_valid_latex("a = b")</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; True</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &gt;&gt;&gt; is_expression_valid_latex("a = b +")</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; True</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &gt;&gt;&gt; is_expression_valid_latex("\si a")</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; False</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; """</span><br />
+<br />
+By using sys.stdin, we could expose that function to the container such that the following would be an acceptance test:<br />
+<span style="font-family: Courier New, Courier, monospace;">docker run -it --rm demo:latest python3 /opt/<span class="sewm38iz38lxkr7"></span><span class="sewm38iz38lxkr7"></span>my_script.py "a = b"</span><br />
+<span style="font-family: Courier New, Courier, monospace;">True</span>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Using EquationMap for content entry</H1>
+
+<P><small>Published 2015-12-03T04:21:00.001Z by Physics Derivation Graph</small></P>
+
+For the <a href="http://allofphysicsgraph.github.io/proofofconcept/">Physics Derivation Graph</a>, I started out entering expressions manually into a plaintext file. I then graduated to manually entering expressions into a XML, then CSV file. Rendering was done in GraphViz and then d3js. In the past few months, I created an interactive terminal prompt for a more automated entry using Python, still rendering with d3js. I experimented with a web-based interface using Flask, but recognized I was slowly evolving towards the <a href="http://equationmap.com/">EquationMap</a> interface for both display and entry.<br />
+<br />
+Instead of re-inventing <a href="http://equationmap.com/">EquationMap</a>, I realized I could use <a href="http://equationmap.com/">EquationMap</a> as a front end. I would then export the graph .tex file and parse it into the Physics Derivation Graph. This benefits both EquationMap and the Physics Derivation Graph: <a href="http://equationmap.com/">EquationMap</a> gets more traffic and more use cases, and PDG doesn't need to create a front-end.<br />
+<br />
+Here's two different examples of using EquationMap with Inference Rules:<br />
+<a href="http://equationmap.com/#sSCdqOvUii">http://equationmap.com/#sSCdqOvUii</a><br />
+<a href="http://equationmap.com/#6NXnawarhb">http://equationmap.com/#6NXnawarhb</a><br />
+I like the second instance better.<br />
+<br />
+Here's an example of completing the square without inference rules<br />
+<a href="http://equationmap.com/#OZbmPo15Ha">http://equationmap.com/#OZbmPo15Ha</a><br />
+and with inference rules<br />
+<a href="http://equationmap.com/#7xXumkNaTH">http://equationmap.com/#7xXumkNaTH</a><br />
+and generalized symbolically<br />
+<a href="http://equationmap.com/#xq8KZ0bnkT">http://equationmap.com/#xq8KZ0bnkT</a><br />
+<br />
+I like the fact that I can easily refer to different iterations of the development<br />
+<br />
+The ease of entering Latex and connecting nodes is very convenient!<br />
+<br />
+The export function produces a combination of JSON and Latex. <br />
+I've written a parser for the .tex output from EquationMap<br />
+<br />
+<a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/sandbox/equationMap_tex_parser">https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/sandbox/equationMap_tex_parser</a><br />
+<br />
+
+{% endblock %}

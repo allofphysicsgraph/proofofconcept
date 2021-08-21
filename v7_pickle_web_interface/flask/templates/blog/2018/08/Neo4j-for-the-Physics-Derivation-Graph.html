@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Neo4j for the Physics Derivation Graph</H1>
+
+<P><small>Published 2018-08-04T18:21:00.004Z by Physics Derivation Graph</small></P>
+
+I've been focusing my efforts on the <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v4_file_per_expression/interactive_user_prompt.py">interactive user prompt</a>, a <a href="https://en.wikipedia.org/wiki/Python_(programming_language)">Python</a>-based <a href="https://en.wikipedia.org/wiki/Command-line_interface">CLI</a> for the <a href="http://allofphysicsgraph.github.io/proofofconcept/">Physics Derivation Graph</a>. Effectively, I'm working through a <a href="https://en.wikipedia.org/wiki/Finite-state_machine">finite state machine</a> with associated actions for each option. (Tangential task: a pictorial representation of the state machine would be useful.)<br />
+<br />
+I've use Neo4j for other tasks associated with knowledge representation, so I'm surprised I haven't considered property graphs for storing the PDG (there's no mention in <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/doc/physics_graph_notes.log">my old notes</a> or <a href="https://github.com/allofphysicsgraph/proofofconcept/issues?utf8=%E2%9C%93&amp;q=neo4j">issues</a> or anything meaningful besides <a href="https://github.com/allofphysicsgraph/proofofconcept/wiki/similar-projects">a generic link on the wiki</a>.)<br />
+<br />
+One of the potential benefits of using a property graph over a normal graph is the labeling of edges. Currently when there are multiple input expressions or feeds to an inference rule, it's not clear which input is referenced. For example, consider "IntOverFromTo" which has <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v4_file_per_expression/inference_rules/IntOverFromTo_latex_20151229.tex">the LaTeX expansion</a>, "Integrate Eq.~\ref{eq:#4} over $#1$ from lower limit $#2$ to upper limit $#3$." There are three feeds. Without labeling which feed is which, the substitution is undetermined.<br />
+<br />
+With a property graph, the inference rule would have pre-defined labeled edges, ie "lower_limit" and "upper_limit" and "integrate_wrt."<br />
+<br />
+Benefits to using the property graph include<br />
+<ul>
+<li>visualization tools are more likely to exist, rather than me having to code up a d3js-based web display.</li>
+<li>querying and editing the graph uses standard syntax, rather than relying on me creating a Python-based CLI with pre-set abilities.&nbsp;</li>
+<li>the current data structure is a list of dictionaries in memory and a set of CSV files in directories; using Neo4j I wouldn't need to manage the data structure and could still translate back to plain text</li>
+<li>adding additional properties (ie LaTeX for expressions versus SymPy, comments, weblinks) would be more scalable than the current data structure and schema which is manually crafted.</li>
+<li>cross-platform compatibility is not lost</li>
+</ul>
+<br />
+<br />
+<br />
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>editing Physics Derivation Graph on AWS EC2 Ubuntu</H1>
+
+<P><small>Published 2017-02-11T17:55:00Z by Physics Derivation Graph</small></P>
+
+<div style="color: #222222; font-family: arial, sans-serif; font-size: small;">
+I wanted to play around with EC2, and AWS offers limited compute for 1 year for free.&nbsp;</div>
+<div style="color: #222222; font-family: arial, sans-serif; font-size: small;">
+<span style="background-color: white;">Start here: https://aws.amazon.com/free/faqs/?ft=nf</span></div>
+<br style="color: #222222; font-family: arial, sans-serif; font-size: small;" />
+<span style="background-color: white; color: #222222; font-family: &quot;arial&quot; , sans-serif; font-size: x-small;">I turned on alerts for billing to prevent charges.</span><br />
+<br style="color: #222222; font-family: arial, sans-serif; font-size: small;" />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><span style="background-color: white; color: #222222; font-size: x-small;">$ chmod 600 filename.pem</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">$ ssh -i filename.pem ubuntu@&lt;IP address&gt;</span></span><br />
+<h3>
+<span style="background-color: white; color: #222222; font-family: &quot;arial&quot; , sans-serif; font-size: x-small;">PDG on AWS</span></h3>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><span style="background-color: white; color: #222222; font-size: x-small;">$ sudo apt-get install git</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">$ git config --global user.name "&lt;my name&gt;"</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">$ git config --global user.email &lt;my email address&gt;</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">$ git config --list</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">$ ssh-keygen -t rsa -b 4096 -C "&lt;my email address"</span></span><br />
+<span style="background-color: white; color: #222222; font-family: &quot;arial&quot; , sans-serif; font-size: x-small;">go to https://github.com/settings/keys</span><br />
+<br style="color: #222222; font-family: arial, sans-serif; font-size: small;" />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><span style="background-color: white; color: #222222; font-size: x-small;">$ ssh-add -l</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">Could not open a connection to your authentication agent.</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">$ eval "$(ssh-agent -s)"</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">Agent pid 2690</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">$ ssh-add -l</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">The agent has no identities.</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">$ ssh-add ~/.ssh/id_rsa</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">Identity added: /home/ubuntu/.ssh/id_rsa (/home/ubuntu/.ssh/id_rsa)</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">$ ssh-add -l</span><br style="color: #222222; font-size: small;" /><span style="background-color: white; color: #222222; font-size: x-small;">4096 64:84:9f:91:c7:8c:7d:14:98:2a:db:05:6d:39:c8:0f /home/ubuntu/.ssh/id_rsa (RSA)</span></span><br />
+<span style="background-color: white; color: #222222; font-family: &quot;arial&quot; , sans-serif; font-size: x-small;">Validate setup:</span><br />
+<span style="background-color: white; color: #222222; font-size: x-small;"><span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ ssh -T git@github.com</span></span><br />
+<br style="color: #222222; font-family: arial, sans-serif; font-size: small;" />
+<span style="background-color: white; color: #222222; font-family: &quot;arial&quot; , sans-serif; font-size: x-small;">On the page&nbsp;<a href="https://github.com/allofphysicsgraph/proofofconcept">https://github.com/allofphysicsgraph/proofofconcept</a></span><br />
+<span style="background-color: white; color: #222222; font-family: &quot;arial&quot; , sans-serif; font-size: x-small;">switch from HTTPS to SSH to find the address</span><br />
+<span style="background-color: white; color: #222222; font-size: x-small;"><span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">git clone git@github.com:allofphysicsgraph/proofofconcept.git</span></span><br />
+<br />
+<div>
+<span style="background-color: white; color: #222222; font-family: &quot;arial&quot; , sans-serif; font-size: x-small;"><br /></span></div>
+
+{% endblock %}

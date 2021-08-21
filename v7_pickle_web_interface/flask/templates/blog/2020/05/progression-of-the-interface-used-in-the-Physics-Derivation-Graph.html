@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>progression of the interface used in the Physics Derivation Graph</H1>
+
+<P><small>Published 2020-05-28T02:35:00.003Z by Physics Derivation Graph</small></P>
+
+Initially, content in the&nbsp;Physics Derivation Graph was manually entered into text files (e.g., CSV, XML). Presentation was Graphviz only.<br />
+<br />
+Then the process was automated through use of a command line interface. Instead of the user generating numeric indices, IDs were created by the application. The user was able to specify a local ID in order to avoid retyping Latex for existing expressions. Presentation was Graphviz only.<br />
+<br />
+The latest interface is browser-based, running in a Docker container either locally or on a website (derivationmap.net). The user is presented with forms and types in Latex. Some symbols are recognized automatically by the application. Presentation of the graph uses both Graphviz and d3js. The d3js graph has hyperlinked nodes.<br />
+<br />
+<br />
+I see two potential ways to iterate:<br />
+<ul>
+<li>interactive graph. More intuitive to type text and connect nodes; no dependence on the user interacting with numeric IDs</li>
+<li>linear input based on article structure with text, pictures, and expressions. The "form" would be more dynamic, like a Mathematica notebook entry or like Overleaf + inference rules and validation.&nbsp;</li>
+</ul>
+<div>
+Both of these approaches are more intuitive for users.<br />
+<br />
+<br />
+I also considered writing a Latex package that specifies the inference rules as macros. However, that lacks the ability to check the math.&nbsp;</div>
+
+{% endblock %}

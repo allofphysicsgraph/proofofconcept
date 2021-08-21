@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>addressing the rendering versus verifiability challenge</H1>
+
+<P><small>Published 2016-05-26T02:54:00Z by Physics Derivation Graph</small></P>
+
+For the Physics Derivation Graph, the primary output is visual. Thus rendering expressions should be beautiful. Latex is a natural choice and the entry is intuitive and straightforward.<br />
+<br />
+In addition to rendering, the other task is to verify that the content is correct. This means using a computer algebra system (ie Mathematica, Octave). Latex is not amenable to CAS input because Latex can be mathematically ambiguous -- resolution depends on context.<br />
+<br />
+One way to resolve this would be to stick with Latex, then convert to a CAS format for verifying correctness.<br />
+<br />
+<h3>
+Sage</h3>
+As an example, suppose I want to check that the expression "multbothsidesby" was correctly entered for input T/f=1, output T=f, with feed f. The <a href="https://cloud.sagemath.com/">Sage syntax</a> looks like<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">T,f=var('T,f')</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">input_expr = T/f==1</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">expected_output_expr= T==f</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">expected_output_expr == input_expr*f</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: inherit;">The above Sage returns true, building confidence that the step is valid. More simply,</span><br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">T,f=var('T,f')</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">(T==f) == ((T/f==1)*f)</span><br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">If Latex is to be used as the input, then we need to convert it to Sage syntax.</span><br />
+<ul>
+<li>declare each variable in Sage</li>
+<li>replace "=" in Latex with "=="</li>
+<li>convert the inference rule to something that can be checked</li>
+</ul>
+<div>
+In addition to using a Sage notebook (<a href="https://cloud.sagemath.com/">https://cloud.sagemath.com</a>), there's a one-time eval option --&nbsp;<a href="http://sagecell.sagemath.org/">http://sagecell.sagemath.org/</a><br />
+Calling a local installation of Sage is possible from Python, see&nbsp;<a href="http://ask.sagemath.org/question/8215/using-sage-in-a-python-cgi-script/">http://ask.sagemath.org/question/8215/using-sage-in-a-python-cgi-script/</a></div>
+
+{% endblock %}

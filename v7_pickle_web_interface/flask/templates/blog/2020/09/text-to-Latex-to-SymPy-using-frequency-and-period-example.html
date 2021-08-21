@@ -1,0 +1,77 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>text to Latex to SymPy using frequency and period example</H1>
+
+<P><small>Published 2020-09-20T21:30:00.006Z by Physics Derivation Graph</small></P>
+
+<p>As an illustration of the gradations from text to Latex to CAS is provided below. In the derivation the CAS is 1-to-1 with the Latex.</p><p><br /></p><p><br /></p><p><i>statement</i></p><p>Frequency and period are inversely related.</p>
+<hr /><i>statement with mathematical notation</i><div><i><br /></i><div>Frequency and period are inversely related; thus <span style="font-family: courier;">T = 1/f</span> and <span style="font-family: courier;">f = 1/T</span>.&nbsp;<br /><hr /><i>statement with mathematical notation and explanation of derivation</i></div><div><br /></div><div>Frequency and period are inversely related; thus&nbsp;<span style="font-family: courier;">T = 1/f</span>.&nbsp;<br />Multiple both sides by <span style="font-family: courier;">f</span>, then divide by <span style="font-family: courier;">T</span> to get <span style="font-family: courier;">f = 1/T</span>.
+<hr /><i>statement with explanation of derivation, separating expressions from text</i></div><div><i><br /></i></div><div>Frequency and period are inversely related; thus&nbsp;<div><span style="font-family: courier;">T = 1/f</span>. <br />Multiple both sides by <span style="font-family: courier;">f</span> to get<br /><span style="font-family: courier;">f T=1</span><br /> then divide by <span style="font-family: courier;">T</span> to get <br /><span style="font-family: courier;">f = 1/T</span>.</div><div><hr /></div><div><i>statement with expressions separated from text and with bindings between math and text made&nbsp;</i><i>explicit</i></div><div><br /></div><div>Frequency and period are inversely related; thus&nbsp;</div><div><span style="color: #2b00fe;"><span style="font-family: inherit;"><i>expression 1</i>: </span><span style="font-family: courier;">T = 1/f</span>.&nbsp;</span><br />Multiple both sides of&nbsp;<u>expression 1</u>&nbsp;by&nbsp;<span style="font-family: courier;">f</span>&nbsp;to get&nbsp;<u>expression 2</u><br /><span style="color: #2b00fe; font-family: inherit;"><i>expression 2</i>: </span><span style="color: #2b00fe; font-family: courier;">f T=1</span><br />then divide both sides of&nbsp;<u>expression 2</u>&nbsp;by&nbsp;<span style="font-family: courier;">T</span>&nbsp;to get&nbsp;<u>expression 3</u><br /><span style="color: #2b00fe;"><span style="font-family: inherit;"><i>expression 3</i>: </span><span style="font-family: courier;">f = 1/T</span>.</span></div><div><div><hr /></div><div><i>statement with inference rules made&nbsp;</i><i>explicit</i></div><div><i><br /></i></div><div><i>claim</i>: Frequency and period are inversely related; thus</div><div><span style="color: red;"><i>inference rule: </i>declare initial expression</span></div><div><span style="color: #2b00fe; font-family: inherit;"><i>expression 1</i>: </span><span style="color: #2b00fe; font-family: courier;">T = 1/f</span>.&nbsp;<br /><span style="color: red;"><i>inference rule:&nbsp;</i>Multiple both sides of&nbsp;<u>expression 1</u>&nbsp;by&nbsp;<span style="font-family: courier;">f</span>&nbsp;to get&nbsp;<u>expression 2</u><br /></span><span style="color: #2b00fe; font-family: inherit;"><i>expression 2</i>: </span><span style="color: #2b00fe; font-family: courier;">f T=1</span><br />then&nbsp;</div><div><span style="color: red;"><i>inference rule:&nbsp;</i>divide both sides of&nbsp;<u>expression 2</u>&nbsp;by&nbsp;<span style="font-family: courier;">T</span>&nbsp;to get&nbsp;<u>expression 3</u><br /></span><span style="color: #2b00fe;"><span style="font-family: inherit;"><i>expression 3</i>: </span><span style="font-family: courier;">f = 1/T</span></span>.<br /><span style="color: red;"><i>inference rule: </i>declare final expression<br /></span>
+  <br />
+  <hr />
+<p><i>use of a Computer algebra system to implement inference rules</i></p><p>The following expansion requires</p><p></p><ul style="text-align: left;"><li><span style="font-family: inherit;">conversion of Latex to SymPy</span></li><li>correctly implemented inference rules</li></ul><p></p><p><span style="color: #274e13; font-family: courier;">
+&gt;&gt;&gt; <b>import sympy</b><br />
+&gt;&gt;&gt; <b>from sympy import *</b><br />
+&gt;&gt;&gt; <b>from sympy.parsing.latex import parse_latex
+</b></span></p><div><i>claim</i>: Frequency and period are inversely related; thus</div><div><span style="color: red;"><i>inference rule: </i>declare initial expression</span></div><div><span style="color: #2b00fe; font-family: inherit;"><i>expression 1</i>: </span><span style="color: #2b00fe; font-family: courier;">T = 1/f</span>.&nbsp;<br /></div><div><br /></div><div>To confirm consistency of representations, the input Latex expression can be converted to SymPy and then back to Latex using</div><p><span style="color: #274e13; font-family: courier;">
+&gt;&gt;&gt; <b>latex(eval(sympy.srepr(parse_latex('T = 1/f'))))</b><br />
+'T = \\frac{1}{f}'
+</span></p><p>We'll work with the SymPy representation of expression 1,</p><p><span style="color: #274e13; font-family: courier;">
+&gt;&gt;&gt; <b>sympy.srepr(parse_latex('T = 1/f'))</b><br />
+"Equality(Symbol('T'), Pow(Symbol('f'), Integer(-1)))"
+</span></p><p>Rather than using the SymPy, use the raw format of expression 1</p><p><span style="color: #274e13; font-family: courier;">
+&gt;&gt;&gt; <b>expr1 = parse_latex('T = 1/f')
+</b></span></p><p><span style="color: red;"><i>inference rule:&nbsp;</i>Multiple both sides of&nbsp;<u>expression 1</u>&nbsp;by&nbsp;<span style="font-family: courier;">f</span>&nbsp;to get&nbsp;<u>expression 2</u><br /></span><span style="color: #2b00fe; font-family: inherit;"><i>expression 2</i>: </span><span style="color: #2b00fe; font-family: courier;">f T=1</span><br /></p><p><span style="font-family: inherit;">Although we can multiply a variable and an expression,</span></p><p><span style="color: #274e13; font-family: courier;">
+&gt;&gt;&gt; <b>expr1*Symbol('f')</b><br />
+f*(Eq(T, 1/f))
+</span></p><p>what actually needs to happen is first split the expression, then apply the multiplication to both sides</p><p><span style="color: #274e13; font-family: courier;">
+&gt;&gt;&gt; <b>Equality(expr1.lhs*Symbol('f'), expr1.rhs*Symbol('f'))</b><br />
+Eq(T*f, 1)
+</span></p><p>Application of an inference rule (above) results in the desired result, so save that result as the second expression (below).</p><p><span style="color: #274e13; font-family: courier;">
+&gt;&gt;&gt; <b>expr2 = Equality(expr1.lhs*Symbol('f'), expr1.rhs*Symbol('f'))
+</b></span></p><p><span style="color: red;"><i>inference rule:&nbsp;</i>divide both sides of&nbsp;<u>expression 2</u>&nbsp;by&nbsp;<span style="font-family: courier;">T</span>&nbsp;to get&nbsp;<u>expression 3</u><br /></span><span style="color: #2b00fe; font-family: inherit;"><i>expression 3</i>: </span><span style="color: #2b00fe; font-family: courier;">f = 1/T</span>.<br /></p><p><span style="color: #274e13; font-family: courier;">
+&gt;&gt;&gt; <b>Equality(expr2.lhs/Symbol('T'), expr2.rhs/Symbol('T'))</b><br />
+Eq(f, 1/T)
+</span></p><p><span style="font-family: inherit;">Again, save that to a variable</span></p><p><span style="color: #274e13; font-family: courier;">
+&gt;&gt;&gt; <b>expr3 = Equality(expr2.lhs/Symbol('T'), expr2.rhs/Symbol('T'))</b><br />
+</span></p><p><span style="color: #274e13; font-family: courier;">
+&gt;&gt;&gt; <b>latex(expr3)</b><br />
+'f = \\frac{1}{T}'</span></p><p><span style="color: red;"><i>inference rule: </i>declare final expression</span></p><hr /><p><i>statement with inference rules</i><i>&nbsp;and numeric IDs for symbols</i></p><p>To relate the above derivation to any other content in the Physics Derivation Graph, replace T and f with numeric IDs unique to "period" and "frequency"</p><p><span style="color: #274e13; font-family: courier;">&gt;&gt;&gt;&nbsp;<b>import sympy</b><br />&gt;&gt;&gt;&nbsp;<b>from sympy import *</b><br />&gt;&gt;&gt;&nbsp;<b>from sympy.parsing.latex import parse_latex</b></span></p><div><i>claim</i>: Frequency and period are inversely related; thus</div><div><span style="color: red;"><i>inference rule:&nbsp;</i>declare initial expression</span></div><div><span style="color: #2b00fe; font-family: inherit;"><i>expression 1</i>:&nbsp;</span><span style="color: #2b00fe; font-family: courier;">T = 1/f</span>.&nbsp;<br /></div><div><br /></div></div></div><div><div><span style="font-family: courier;">&gt;&gt;&gt; expr1 = parse_latex('T = 1/f')</span></div><div><span style="font-family: courier;">&gt;&gt;&gt; eval(srepr(expr1).replace('T','pdg9491').replace('f','pdg4201'))</span></div><div><span style="font-family: courier;">Eq(pdg9491, 1/pdg4201)</span></div><div><br /></div><div>Save the result as expression 1</div><div><span style="font-family: courier;">&gt;&gt;&gt; expr1 = eval(srepr(expr1).replace('T','pdg9491').replace('f','pdg4201'))</span></div></div><div><p><span style="color: red;"><i>inference rule:&nbsp;</i>Multiple both sides of&nbsp;<u>expression 1</u>&nbsp;by&nbsp;<span style="font-family: courier;">f</span>&nbsp;to get&nbsp;<u>expression 2</u><br /></span><span style="color: #2b00fe; font-family: inherit;"><i>expression 2</i>:&nbsp;</span><span style="color: #2b00fe; font-family: courier;">f T=1</span></p></div><div><div><span style="font-family: courier;">&gt;&gt;&gt; feed = Symbol('f')</span></div><div><span style="font-family: courier;">&gt;&gt;&gt; feed = eval(srepr(feed).replace('f','pdg4201'))</span></div><div><span style="font-family: courier;">&gt;&gt;&gt; Equality(expr1.lhs*feed, expr1.rhs*feed)</span></div><div><span style="font-family: courier;">&gt;&gt;&gt; Equality(expr1.lhs*feed, expr1.rhs*feed)</span></div><div><span style="font-family: courier;">Eq(pdg4201*pdg9491, 1)</span></div><div><span style="font-family: courier;">&gt;&gt;&gt; expr2 = Equality(expr1.lhs*feed, expr1.rhs*feed)</span></div></div><div><br /></div><div><span style="color: red;"><i>inference rule:&nbsp;</i>divide both sides of&nbsp;<u>expression 2</u>&nbsp;by&nbsp;<span style="font-family: courier;">T</span>&nbsp;to get&nbsp;<u>expression 3</u><br /></span><span style="color: #2b00fe;"><i>expression 3</i>:&nbsp;</span><span style="color: #2b00fe; font-family: courier;">f = 1/T</span>.</div><div><br /></div><div><div><span style="font-family: courier;">&gt;&gt;&gt; feed = Symbol('T')</span></div><div><span style="font-family: courier;">&gt;&gt;&gt; feed = eval(srepr(feed).replace('T','pdg9491'))</span></div><div><span style="font-family: courier;">&gt;&gt;&gt; Equality(expr2.lhs/feed, expr2.rhs/feed)</span></div><div><span style="font-family: courier;">Eq(pdg4201, 1/pdg9491)</span></div><div><span style="font-family: courier;">&gt;&gt;&gt; expr3 = Equality(expr2.lhs/feed, expr2.rhs/feed)</span></div></div><div><div><br /></div><div>Convert from numeric ID back to Latex symbols in Latex expression</div><div><span style="font-family: courier;">&gt;&gt;&gt; latex(eval(srepr(expr3).replace('pdg9491','T').replace('pdg4201','f')))</span></div><div><span style="font-family: courier;">'f = \\frac{1}{T}'</span></div></div><div><br /></div><div><i style="color: red;">inference rule:&nbsp;</i><span style="color: red;">declare final expression</span></div>
+
+<hr />
+  <p><i>removal of text, pure Python</i></p><p>
+  The above steps can be expressed as a Python script with two functions (one for each inference rule)
+    </p><p>
+  <span style="font-family: courier;">
+from sympy import *<br />
+from sympy.parsing.latex import parse_latex
+</span></p><p><span style="background-color: #fff2cc; font-family: courier;"># assumptions: the inference rules are correct, the conversion of symbols-to-IDs is correct, the Latex-to-SymPy parsing is correct</span></p><p><span style="font-family: courier;">
+def mult_both_sides_by(expr, feed):<br />
+&nbsp;&nbsp;&nbsp;&nbsp;return Equality(expr.lhs*feed, expr.rhs*feed)
+</span></p><p><span style="font-family: courier;">
+def divide_both_sides_by(expr, feed):<br />
+&nbsp;&nbsp;&nbsp;&nbsp;return Equality(expr.lhs/feed, expr.rhs/feed)
+</span></p><p><span style="font-family: courier;"><span style="color: red;">
+# <i>inference rule</i>: declare initial expression<br /></span>
+expr1 = parse_latex('T = 1/f')<br />
+expr1 = eval(srepr(expr1).replace('T','pdg9491').replace('f','pdg4201'))
+</span></p><p><span style="font-family: courier;">
+feed = Symbol('f')<br />
+feed = eval(srepr(feed).replace('f','pdg4201'))<br />
+expr2 = mult_both_sides_by(expr1, feed)
+</span></p><p><span style="font-family: courier;">
+feed = Symbol('T')<br />
+feed = eval(srepr(feed).replace('T','pdg9491'))<br />
+expr3 = divide_both_sides_by(expr2, feed)
+</span></p><p><span style="font-family: courier;">
+latex(eval(<br />srepr(expr3).replace('pdg9491','T').replace('pdg4201','f')))<br /><span style="color: red;">
+# <i>inference rule</i>: declare final expression
+  </span></span></p>
+
+<hr />
+  <p><i>How would the rigor of the above be increased?
+    
+</i></p><p>    To get beyond what a CAS can verify, a "proof" would relate each of the two functions to a set of axioms. Given the two arguments (an expression, a "feed" value), is the returned value always consistent with some set of axioms? </p><p>The set of axioms chosen matters. For example, we could start with&nbsp;<a href="https://en.wikipedia.org/wiki/Zermelo%E2%80%93Fraenkel_set_theory#Axioms">Zermelo–Fraenkel set theory</a></p><p>That would leave a significant gap between building up addition and subtraction and getting to calculus and differential equations. "Theorems of calculus derive from the axioms of the real, rational, integer, and natural number systems, as well as set theory." (<a href="https://math.stackexchange.com/a/564994/819530">source</a>)</p><p><br /></p><p></p></div></div>
+
+{% endblock %}

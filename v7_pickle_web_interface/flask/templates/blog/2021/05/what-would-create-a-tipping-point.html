@@ -1,0 +1,44 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>what would create a tipping point</H1>
+
+<P><small>Published 2021-05-17T01:26:00.006Z by Physics Derivation Graph</small></P>
+
+<p>Every scientist coming to the website&nbsp;<a href="https://derivationmap.net/">https://derivationmap.net/</a> is unlikely.&nbsp;</p>
+
+<h2 style="text-align: left;">Graph analysis&nbsp;</h2>
+<p>This is what I've historically chased -- identifying the data structure, and the data input mechanism.&nbsp;</p><p>Extracting value from staring at a visualization of the graph of equations is unlikely. I'm not clear what graph queries are relevant to run against the graph content.</p><p><br /></p>
+
+<h2 style="text-align: left;">Consistency within a document</h2>
+<p>The local value to both the author and the reader is in determining whether the mathematical content of the paper being read is self-consistent. Practically, that means</p>
+<ul style="text-align: left;">
+  <li>are the dimensions of variables with each expression consistent?</li><li>are the units used in each expression consistent?</li>
+  <li>are the variables clearly defined? Here "definition" means a tuple of (symbol, dimensions, definition)</li>
+  <ul>
+    <li>are the variables used consistently throughout this paper?</li>
+  </ul>
+  <li>are the operators well defined? Here "definition" means a tuple of (symbol, number of inputs, number of outputs, constraints per input, constraints per output).&nbsp;</li>
+  <ul>
+    <li>are the operators used consistently throughout this paper?</li>
+  </ul>
+  <li>is the mathematical content consistent with the written text?</li>
+</ul><div>Some of these aspects are explored on&nbsp;<a href="https://derivationmap.net/clickable_layers">https://derivationmap.net/clickable_layers</a></div>
+<p>As an author, I want to write Latex that generates a document that is mathematically correct.</p><p>Mathematical typos should be detected (similar to spell-check). As I enter text (or as a post-processing phase), the computer should guess whether the content is math or non-math. If math, then prompt the author for relevant details.&nbsp;</p>
+<h4 style="text-align: left;">Options for implementation</h4>
+<ul>
+  <li>collaborate with an existing online Latex editor. There are many --&nbsp;<a href="https://www.google.com/search?q=latex+editor+online">https://www.google.com/search?q=latex+editor+online</a></li>
+  <li>a Latex package hosted on&nbsp;<a href="https://ctan.org/pkg/latex?lang=en">https://ctan.org/pkg/latex?lang=en</a>&nbsp;that installs locally.&nbsp;</li>
+  <li>an offline thick-client application that compiles Latex and checks the math</li>
+</ul>
+<p>Overleaf is open source:&nbsp;<a href="https://github.com/overleaf/overleaf">https://github.com/overleaf/overleaf</a>, so modifying it could be an option.</p><p><br /></p>
+
+<h2 style="text-align: left;">Cross-document analysis</h2>
+<p>In a larger context, the relevant value questions include</p>
+<ul style="text-align: left;"><li>how does the paper I'm currently reading (or writing) relate to other papers?</li><li>how does the paper I'm currently reading (or writing) build on previous work?</li></ul>
+
+<p>Rather than bibliographic citation, I care about mathematical provenance.&nbsp;</p>
+<p>The specific symbols may vary across papers, and the dimensions may vary (e.g., renormalizing the speed of light to 1), but definitions have to be shared.&nbsp;</p>
+<p>The scientific community currently resorts to bibliographic citation because that is the only provenance available, not because it is what matters or what we value.</p><p>The cross-document analysis is not feasible without semantic content. The current approach of unstructured text with few hyperlinks requires human readers. Addressing the intra-document consistency challenge might yield semantic markup that enables cross-document analysis.</p>
+
+{% endblock %}

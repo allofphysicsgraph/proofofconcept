@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>visualization of step validation; 271 steps to address</H1>
+
+<P><small>Published 2020-08-30T03:22:00.005Z by Physics Derivation Graph</small></P>
+
+I created a page listing all the steps from every derivation. The utility is that I can summarize how many steps are valid (180 out of 638, or 28%), how many are declarations and assumptions (179+8, or 29%), and how many fail or are not checked -- the remaining 40%.<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-izchZBcdygo/X0sba7ByzMI/AAAAAAABDMA/iDbptnlFjfkcgqVfIq3PgXrXDLR6nEQIACLcBGAsYHQ/s1600/Screen%2BShot%2B2020-08-29%2Bat%2B11.21.53%2BPM.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="275" data-original-width="1006" height="174" src="https://1.bp.blogspot.com/-izchZBcdygo/X0sba7ByzMI/AAAAAAABDMA/iDbptnlFjfkcgqVfIq3PgXrXDLR6nEQIACLcBGAsYHQ/s640/Screen%2BShot%2B2020-08-29%2Bat%2B11.21.53%2BPM.png" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+</div>
+<br />
+My plan is to work on addressing the<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">638-(180+179+8)=<b>271</b>&nbsp;</span><br />
+failed or unchecked expressions.<br />
+<br />
+I expect SymPy doesn't support all the inference rules, so I need a way to categorize that issue.
+
+{% endblock %}

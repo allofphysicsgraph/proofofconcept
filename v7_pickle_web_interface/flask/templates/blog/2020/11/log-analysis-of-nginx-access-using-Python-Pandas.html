@@ -1,0 +1,71 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>log analysis of nginx access using Python Pandas</H1>
+
+<P><small>Published 2020-11-22T02:50:00.002Z by Physics Derivation Graph</small></P>
+
+<p>My first step is to review logins on the site,<br />
+  https://physicsderivationgraph.blogspot.com/2020/05/inspecting-list-of-users-who-have.html</p>
+<p>My previous post on reviewing logs <br />
+  https://physicsderivationgraph.blogspot.com/2020/05/grepping-nginx-logs-to-observe-user.html<br />
+  was written prior to the current nginx format I'm using.</p>
+<p>I haven't gotten around to a deeper analysis like<br />
+  https://physicsderivationgraph.blogspot.com/2020/04/analysis-of-web-logs-to-understand-how.html</p>
+<p><br /></p>
+<p>First I had to install supporting software<br />
+  </p><pre>  sudo apt install python3-pip
+  pip3 install pandas
+</pre>
+<p>Inline Python in bash with Pandas is possible because every line is formatted like a Python dictionary.
+Here I want to review what columns are present in the logs</p><pre>cat nginx_access.log | python3 -c "import sys
+import pandas
+pandas.options.display.max_rows = 999 # https://pandas.pydata.org/pandas-docs/stable/user_guide/options.html
+list_of_lines = []
+for line in sys.stdin:
+    list_of_lines.append(eval(line))
+df = pandas.DataFrame(list_of_lines)
+print(df.columns)
+"
+</pre>
+How many of each entry for a few columns?
+<pre>cat nginx_access.log | python3 -c "import sys
+import pandas
+pandas.options.display.max_rows = 999 # https://pandas.pydata.org/pandas-docs/stable/user_guide/options.html
+list_of_lines = []
+for line in sys.stdin:
+    list_of_lines.append(eval(line))
+df = pandas.DataFrame(list_of_lines)
+threshold = 20
+print('user:')
+vc = df['user'].value_counts()
+print(vc[vc&gt;threshold])
+print('IP:')
+vc = df['ip'].value_counts()
+print(vc[vc&gt;threshold])
+print('req:')
+vc = df['req'].value_counts()
+print(vc[vc&gt;threshold])
+#print(df.head())
+"
+</pre>
+For IPs that have made multiple (e.g., 30) requests, what pages have been accessed?
+<pre>cat nginx_access.log | python3 -c "import sys
+import pandas
+pandas.options.display.max_rows = 999 # https://pandas.pydata.org/pandas-docs/stable/user_guide/options.html
+list_of_lines = []
+for line in sys.stdin:
+    list_of_lines.append(eval(line))
+df = pandas.DataFrame(list_of_lines)
+threshold = 30
+vc = df['ip'].value_counts()
+for ip, number_of_requests in vc[vc&gt;threshold].items():
+    print('\nIP = ',ip, 'made',number_of_requests,'requests')
+    df_this_ip = df[df['ip']==ip]
+    #for request in df_this_ip['req'].values:
+    #    print(request)
+    print(df_this_ip['req'].value_counts())
+"
+</pre>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>significant challenges feel like emotional barriers to progress</H1>
+
+<P><small>Published 2020-08-23T17:16:00.001Z by Physics Derivation Graph</small></P>
+
+The current form of the Physics Derivation Graph has served to validate my claim of feasibility. There are a number of&nbsp;significant challenges that inhibit scalability, regardless of whether I generate more content or other people contribute.<br />
+<br />
+<ul>
+<li><b>Input complexity</b>: the current multi-step webform process is tedious and burdensome. There are&nbsp;many steps, resulting in a burdensome workload for both the backend developer (many features are necessary) and the front-end user (using all those features). Alternative interaction mechanisms are technically feasible but not in my current skillset.</li>
+<li><b>Display complexity</b>: the graph with hundreds of nodes exceeds the ability to visually navigate given the current d3.js and Graphviz interfaces. Rendering the graph in 3D might help, but the readability of node labels is important.&nbsp;</li>
+<li><b>Limited ability to query</b>: the graph is presented visually but lacks support for responding to user queries. Currently writing custom analysis scripts that read the JSON is the only access.</li>
+<li><b>Use correct symbol IDs</b>: the current JSON database is populated with incorrect symbol references and a mixture of SymPy+text symbols.&nbsp;</li>
+<li><b>Validation of steps</b>: the current JSON database is populated with incorrect&nbsp;steps. Inference rules are used but either are not feasible in SymPy or are implemented incorrectly.&nbsp;</li>
+<li><b>Validation of dimension</b>: after correcting the symbols and the steps, each expression needs to be verified to have the correct dimension.&nbsp;</li>
+</ul>
+<div>
+The last three are listed in dependency order. The symbols need to be fixed, then validation of steps and dimension are possible.</div>
+<div>
+<br /></div>
+<div>
+I don't currently have attacks planned on either display complexity or query capability.&nbsp;</div>
+<br />
+<br />
+<i>My current task list</i>:<br />
+<div dir="auto">
+<ul>
+<li>Correct the symbol IDs in data.json</li>
+<li>Change layout of expression input table to distinguish input, output, and feed relation to inference rule</li>
+<li>add capability to edit SymPy from web interface</li>
+<li>functionally, separate symbol replacement from expression-as-sympy. For the web interface, insert new steps: Latex math expression -&gt; symbols -&gt; SymPy&nbsp;expression</li>
+<li>web interface for reviewing correctness of Latex -&gt; SymPy&nbsp;-&gt; Latex for expressions</li>
+</ul>
+</div>
+<br />
+
+{% endblock %}

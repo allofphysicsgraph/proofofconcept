@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>how I validate changes and deploy updates to derivationmap.net website</H1>
+
+<P><small>Published 2021-07-25T17:58:00.001Z by Physics Derivation Graph</small></P>
+
+On my local server, I make changes to the local file and then validate using
+<pre>cd ~/version_controlled/allofphysicsgraph/proofofconcept/v7_pickle_web_interface
+docker-compose up --build --remove-orphans
+</pre><div>Build time is 10 minutes when layers are not cached.</div><div><br /></div>
+Check the result in a local web browser by visiting <code>http://localhost</code>
+
+If I'm happy with the content,
+<pre>git add filename
+git commit -m "a message"
+git push
+</pre>
+
+SSH to the DigitalOcean droplet VPS (virtual private server)
+<pre>cd ~/proofofconcept/v7_pickle_web_interface
+git pull
+docker-compose up --build --force-recreate --remove-orphans --detach</pre>
+Check the live page content at <a href="https://derivationmap.net/">https://derivationmap.net/</a>.
+
+{% endblock %}

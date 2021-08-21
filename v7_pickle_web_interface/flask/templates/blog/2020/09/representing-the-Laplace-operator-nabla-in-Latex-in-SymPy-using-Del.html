@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>representing the Laplace operator (nabla in Latex) in SymPy using Del</H1>
+
+<P><small>Published 2020-09-04T21:03:00.001Z by Physics Derivation Graph</small></P>
+
+https://en.wikipedia.org/wiki/Laplace_operator<br />
+https://docs.sympy.org/latest/modules/vector/fields.html<br />
+<br /><span style="font-family: courier;">
+&gt;&gt;&gt; import sympy<br /><div>&gt;&gt;&gt; from sympy import *</div>&gt;&gt;&gt; from sympy.parsing.latex import parse_latex<br />
+&gt;&gt;&gt; from sympy.vector import Del</span><br />
+<br />Original expression as Latex converted to SymPy to Latex:<div><div><span style="font-family: courier;">&gt;&gt;&gt; <b>latex(eval(sympy.srepr(parse_latex("\\frac{-\\hbar^2}{2m} \\nabla = {\\calH}"))))</b></span></div><div><span style="font-family: courier;">'- \\frac{\\hbar^{2} nabla}{2 m} = calH'</span></div><div><br /></div>The first two conversions yield SymPy:</div><div><div><span style="font-family: courier;">&gt;&gt;&gt; <b>sympy.srepr(parse_latex("\\frac{-\\hbar^2}{2m} \\nabla = {\\calH}"))</b></span></div><div><span style="font-family: courier;">"Equality(Mul(Symbol('nabla'), Mul(Mul(Integer(-1), Pow(Symbol('hbar'), Integer(2))), Pow(Mul(Integer(2), Symbol('m')), Integer(-1)))), Symbol('calH'))"</span></div><div><br /></div><div>This can be successfully evaluated as SymPy because the 'nabla' is a Symbol</div><div><div><span style="font-family: courier;">&gt;&gt;&gt; <b>eval("Equality(Mul(Symbol('nabla'), Mul(Mul(Integer(-1), Pow(Symbol('hbar'), Integer(2))), Pow(Mul(Integer(2), Symbol('m')), Integer(-1)))), Symbol('calH'))")</b></span></div><div><span style="font-family: courier;">Eq(-hbar**2*nabla/(2*m), calH)</span></div></div><div><br /></div><div>However, replacing 'nabla' with 'Del' causes the eval to fail:</div><div><div><span style="font-family: courier;">&gt;&gt;&gt; <b>eval("Equality(Mul(Del, Mul(Mul(Integer(-1), Pow(Symbol('hbar'), Integer(2))), Pow(Mul(Integer(2), Symbol('m')), Integer(-1)))), Symbol('calH'))")</b></span></div><div><span style="font-family: courier;">Traceback (most recent call last):</span></div><div><span style="font-family: courier;">...</span></div><div><span style="font-family: courier;">&nbsp; File "/usr/local/lib/python3.6/dist-packages/sympy/core/mul.py", line 307, in flatten</span></div><div><span style="font-family: courier;">&nbsp; &nbsp; b, e = o.as_base_exp()</span></div><div><span style="color: red; font-family: courier;">AttributeError: type object 'Del' has no attribute 'as_base_exp'</span></div><div><br /></div></div><br /><br />
+Original expression to convert to SymPy:<br /><span style="font-family: courier;">
+&gt;&gt;&gt; <b>sympy.srepr(parse_latex("\\nabla^2 \\psi \\left( \\vec{r},t) \\right) = \\frac{i}{\\hbar} \\vec{p} \\cdot \\left( \\vec{ \\nabla} \\psi( \\vec{r},t) \\right)"))</b><br />
+"Mul(Pow(Symbol('nabla'), Integer(2)), Mul(Symbol('psi'), Mul(Symbol('right'), Function('left')(Mul(Symbol('r'), Symbol('vec')), Symbol('t')))))"</span><br />
+<br />
+The Latex "\nabla" is SymPy's "Del". However, squaring Del isn't available<br /><span style="font-family: courier;">
+&gt;&gt;&gt; sympy.latex(sympy.Pow(Del, sympy.Integer(2)), sympy.Symbol('x'))<br />
+...<br />
+AttributeError: type object 'Del' has no attribute '_eval_power'</span><br />
+<br />
+The Laplacian operator is the dot product of two Del operators, so<br /><span style="font-family: courier;">
+&gt;&gt;&gt; <b>delop = Del()</b><br />
+&gt;&gt;&gt; <b>sympy.latex(delop.dot(delop(sympy.Function('\psi')(sympy.Symbol('r'), sympy.Symbol('t')))))</b><br />
+'0'<br /></span>
+<br /><br /></div>
+
+{% endblock %}

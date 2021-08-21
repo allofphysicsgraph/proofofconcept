@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>I want to be able to do Math with Latex as Input</H1>
+
+<P><small>Published 2015-12-25T16:52:00Z by Physics Derivation Graph</small></P>
+
+Now that I'm using <a href="http://equationmap.com/">EquationMap</a> for Latex input, the interface problem is effectively solved. Prior to that I developed the d3js-based web browser visualization of the Physics Derivation Graph. The remaining tasks are content entry and checking the graph using a <a href="https://en.wikipedia.org/wiki/Computer_algebra_system">Computer Algebra System (CAS)</a>.<br />
+<br />
+The goal would be to enter a derivation (ie the quadratic equation) in Latex via EquationMap.com, then have Sage check the resulting graph for correctness.<br />
+<br />
+Although I could do the content entry, I felt there wasn't a point to entering content in a format that isn't amenable to checking with a CAS. Ideally, I want a format that is easy to enter manually, and universally exportable (ie to Maple, Mathematica, Sage, SymPy).<br />
+<br />
+I stumbled upon "<a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.198.8849&amp;rep=rep1&amp;type=pdf">Extracting Mathematical Semantics from LATEX Documents</a>" which converts LaTeX math into <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Trees</a> as the universal structure.<br />
+<br />
+The idea of using Latex as the method of entry for mathematical calculations is a common objective, though no one has solved it.<br />
+<ul>
+<li>There's a project called <a href="http://mathlex.org/doc/how-mathlex-works">MathLex</a> which converts Latex-like syntax into an AST, which can then be translated to Latex and Sage; <a href="http://ugrthesis.mathlex.org/bundles/mathlexmain/thesis.pdf">thesis here</a></li>
+<li><a href="http://stackoverflow.com/questions/4818133/latex-math-parsing-for-c-c">http://stackoverflow.com/questions/4818133/latex-math-parsing-for-c-c</a></li>
+<li><a href="http://tex.stackexchange.com/questions/4223/what-parsers-for-latex-mathematics-exist-outside-of-the-tex-engines">http://tex.stackexchange.com/questions/4223/what-parsers-for-latex-mathematics-exist-outside-of-the-tex-engines</a></li>
+<li><a href="https://www.mathjax.org/">MathJax</a> supports Latex to MathML</li>
+<li><a href="http://hermes.roua.org/">Hermes</a> supports Latex to Presentation MathML</li>
+</ul>
+<div>
+<br /></div>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>latex is for rendering presentation and does not provide semantics</H1>
+
+<P><small>Published 2020-05-20T20:08:00Z by Physics Derivation Graph</small></P>
+
+Latex is used in the Physics Derivation Graph to specify mathematical expressions. This is a poor choice in that Latex does not provide explicit semantics for the content. That association is typically left to the human reader.<br />
+<br />
+In the Physics Derivation Graph we could manually assign semantic meaning to each expression. That's a tedious task.<br />
+<br />
+Alternatively, we could<br />
+<br />
+<ol>
+<li>parse the arxiv database and find the most common expressions</li>
+<li>assign semantic meaning to those.&nbsp;</li>
+<li>when the expression arises in the Physics Derivation Graph, the most likely interpretation of that expression is what has previously been labeled.</li>
+</ol>
+
+{% endblock %}

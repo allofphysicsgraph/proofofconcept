@@ -1,0 +1,119 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Increasing levels of formality in a trivial physics statement</H1>
+
+<P><small>Published 2020-07-31T14:07:00.003Z by Physics Derivation Graph</small></P>
+
+In this post I start with a trivial observation about Physics concepts and attempt to add layers of formalization through semantic enrichment. Inspired by <a href="https://kwarc.info/systems/sTeX/">sTeX</a>, I use pseudo-Latex which has no supported implementation. <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a> tags might be more appropriate.<br />
+<br />
+The initial observation is<br />
+<blockquote>
+The relation between period, T, and linear frequency, f, is T = 1/f. Thus frequency as a function of period is f = 1/T.
+</blockquote>
+The purpose of using this as a starting point is that it is simple and easily understood by a human.<br />
+The rest of this post explores what semantic additions would be needed for a computer to parse the text.<br />
+<br />
+Each of these transitions can be identified manually. I don't have reliable ways of automating this process.<br />
+<div>
+<br /></div>
+*********************<br />
+The first change is conversion from ASCII to Latex, a common presentation method in Math and Physics. This change only alters presentation. I've highlighted the changes in red.<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">The relation between period, <span style="color: red;">$</span>T<span style="color: red;">$</span>, and linear frequency, <span style="color: red;">$</span>f<span style="color: red;">$</span>, is</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\begin{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">T = 1/f.</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\end{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Thus frequency as a function of period is</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\begin{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">f = 1/T.</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\end{equation}</span><br />
+<br />
+*********************<br />
+<br />
+The next change is to bound claims being made.<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><span style="color: red;">\claim{1}{</span>The relation between period, $T$, and linear frequency, $f$, is</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \begin{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; T = 1/f.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \end{equation}</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Thus&nbsp;<span style="color: red;">\claim{2}{</span>frequency as a function of period is</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \begin{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; f = 1/T.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \end{equation}</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">}</span><br />
+<br />
+*********************<br />
+<br />
+Replace "thus" with the relation between claims.<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><span style="color: red;">\claim{1}{</span>The relation between period, $T$, and linear frequency, $f$, is</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \begin{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; T = 1/f.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \end{equation}</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><span style="color: red;">\relation_between_claims{claim 2 is derivable from claim 1}</span></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><span style="color: red;">\claim{2}{</span>frequency as a function of period is</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \begin{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; f = 1/T.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \end{equation}</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">}</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+*********************<br />
+<br />
+Within each claim there are variables and symbols. Identify those.<br />
+I've inserted parenthesis to make the order of operations clear.<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\claim{1}{The relation between <span style="color: red;">\named_variable{</span>period<span style="color: red;">}</span>, <span style="color: red;">\symbol{</span>T<span style="color: red;">}</span>, and <span style="color: red;">\named_variable{</span>linear frequency<span style="color: red;">}</span>, <span style="color: red;">\symbol{</span>f<span style="color: red;">}</span>, is</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \begin{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; <span style="color: red;">\symbol{</span>T<span style="color: red;">} \operator{</span>=<span style="color: red;">} <b>(</b>\integer{</span>1<span style="color: red;">}\operator{</span>/<span style="color: red;">}\symbol{</span>f<span style="color: red;">}<b>)</b></span>.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \end{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">}</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\relation_between_claims{claim 2 is derivable from claim 1}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\claim{2}{The <span style="color: red;">\named_variable{</span>frequency<span style="color: red;">}</span> as a function of <span style="color: red;">\named_variable{</span>period<span style="color: red;">}</span> is</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \begin{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; <span style="color: red;">\symbol{</span>f<span style="color: red;">} \operator{</span>=<span style="color: red;">} <b>(</b>\integer{</span>1<span style="color: red;">}\operator{</span>/<span style="color: red;">}\symbol{</span>T<span style="color: red;">}<b>)</b></span>.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \end{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">}</span><br />
+<br />
+Visually, this could be represented by color-coded boxing<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-LOFPlVeuH5k/XyQx1ITRdUI/AAAAAAABCXw/wATRoeYTgF0NEX94vNoqg1gh4erypMj6wCLcBGAsYHQ/s1600/natural%2Blanguage%2Bto%2Bstructured%2Brelations.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="309" data-original-width="748" src="https://1.bp.blogspot.com/-LOFPlVeuH5k/XyQx1ITRdUI/AAAAAAABCXw/wATRoeYTgF0NEX94vNoqg1gh4erypMj6wCLcBGAsYHQ/s1600/natural%2Blanguage%2Bto%2Bstructured%2Brelations.png" /></a></div>
+Here claims are red, connections are light green, expressions are dark green, named variables are pink, variables are blue, operators are light blue, and operators are purple.<br />
+<br />
+This visualization seems to relate to&nbsp;<a href="https://en.wikipedia.org/wiki/Discourse_representation_theory">discourse representation theory (DRT)</a>&nbsp;though I don't know how to leverage it. See box notation <a href="https://plato.stanford.edu/entries/discourse-representation-theory/">here</a> and <a href="https://www.ims.uni-stuttgart.de/document/team/uwe/Papers/DRT.pdf">here</a>.<br />
+<br />
+<br />
+*********************<br />
+The "T" and "f" symbols are conventions that are used in other papers. We can indicate that by assigning universal identifiers.<br />
+Similarly, the operators "/" and "=" are defined in other papers. Those also get a universal ID.<br />
+The relation between named variables and symbols needs to be made explicit.<br />
+With those associations made, replace the symbols and operators in the expressions.<br />
+<br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\def{symbol{T} = pdg2948}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;% the symbol "T" has a (universal) Godel number</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\def{symbol{f} = pdg9215}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;% the symbol "f" has a (universal) Godel number</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\def{operator{/} = pdg1340}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;% the operator "/" has a (universal) Godel number</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\def{operator{=} = pdg8821}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;% the operator "=" has a (universal) Godel number</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\def{named_variable{period} = symbol{T}}&nbsp; &nbsp; % the named variable "period" is equivalent to the symbol "T"</span><br />
+<span style="color: red; font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\def{named_variable{frequency} = symbol{f}} % the named variable "frequency" is equivalent to the symbol "f"</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\claim{1}{The relation between \named_variable{period}, <span style="color: red;">pdg2948</span>, and \named_variable{linear frequency}, <span style="color: red;">pdg9215</span>, is</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \begin{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; <span style="color: red;">pdg2948 pdg8821</span> (\integer{1} <span style="color: red;">pdg1340 pdg9215</span>).</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \end{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\relation_between_claims{claim 2 is derivable from claim 1}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\claim{2}{The \named_variable{frequency} as a function of \named_variable{period} is</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \begin{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; <span style="color: red;">pdg9215 pdg8821</span> (\integer{1} <span style="color: red;">pdg1340 pdg2948</span>).</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; \end{equation}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">}</span><br />
+<div>
+<br />
+One of the purposes of associating a symbol "T" with a universal identifier is that the type can be specified. Here "f" and "T" are both Real valued.<br />
+<br />
+At this point the relation between claims 1 and 2 could be converted to SymPy and verified; see<br />
+<a href="https://derivationmap.net/review_derivation/884319/">https://derivationmap.net/review_derivation/884319/</a></div>
+
+{% endblock %}

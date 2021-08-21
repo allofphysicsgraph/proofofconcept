@@ -1,0 +1,52 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>docker-compose version</H1>
+
+<P><small>Published 2020-04-25T21:25:00Z by Physics Derivation Graph</small></P>
+
+At home on my Mac I use Docker Compose to build the combined nginx + gunicorn containers.<br />
+In the file proofofconcept/v7_pickle_web_interface/docker-compose.yaml<br />
+I had<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">version: "3.7"</span><br />
+which worked for me.<br />
+(The compatibility matrix is here:&nbsp;https://docs.docker.com/compose/compose-file/)<br />
+<br />
+I ran docker-compose on DigitalOcean's 18.04 Ubuntu and got the message<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>docker-compose up --build --remove-orphans</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">ERROR: Version in "./docker-compose.yaml" is unsupported.&nbsp;</span><br />
+<br />
+The versions on DigitalOcean's Ubuntu 18.04 are<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>docker version</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Client: Docker Engine - Community</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp;Version:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;19.03.8</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>docker-compose version</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker-compose version 1.21.2, build a133471</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker-py version: 3.3.0</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">CPython version: 3.6.5</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">OpenSSL version: OpenSSL 1.0.1t&nbsp; 3 May 2016</span><br />
+<div>
+<br /></div>
+<div>
+while at home I have</div>
+<div>
+<br /></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>docker version</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Client: Docker Engine - Community</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp;Version:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;19.03.8</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>docker-compose version</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker-compose version 1.25.4, build 8d51620a</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker-py version: 4.1.0</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">CPython version: 3.7.5</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">OpenSSL version: OpenSSL 1.1.1d&nbsp; 10 Sep 2019</span><br />
+<br />
+The fix was to change the docker-compose.yaml line to<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">version: "3.7"</span></div>
+
+{% endblock %}

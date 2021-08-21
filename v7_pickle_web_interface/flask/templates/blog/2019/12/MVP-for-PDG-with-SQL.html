@@ -1,0 +1,147 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>MVP for PDG with SQL</H1>
+
+<P><small>Published 2019-12-12T03:22:00.002Z by Physics Derivation Graph</small></P>
+
+Currently I have a Docker container that runs flask on Ubuntu to present a web interface that uses forms to enter information.<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">sandbox/docker_images/flask_ubuntu/web</span><br />
+A Python script on the backend handles conversion from string LaTeX to PNG using dvipng, with graphviz generating the static graph PNG.<br />
+<br />
+The other major component of the backend is an sqlite3 database that holds the data when the container is offline. I don't have experience with SQL, so I need a plan to get to the minimum viable product.<br />
+<br />
+The purpose of the sqlite3 file is to store the multiple tables offline.&nbsp; I could use a Python Pickle file, but that would be specific to Python; the sqlite approach seems more portable and generic.<br />
+<br />
+The only actions I need are<br />
+<ul>
+<li>write data structure from memory (in Python) to sqlite</li>
+<li>read data structure from sqlite into Python</li>
+</ul>
+Summary:<br />
+SQL tables &lt;--&gt; Python data structures &lt;--&gt; graph structure &lt;--&gt; graph viz, website generation, UI web<br />
+<br />
+<br />
+On startup, read data into Python from sqlite.<br />
+After that, every time there is a change to the structure in Python, write to sqlite.<br />
+This approach is not elegant compared to "write only diff" or "write at end of session" but it eliminates any possibility of inconsistency.<br />
+This approach doesn't scale for large databases or multiple users, but those aren't problems I need to solve right now (I'm intentionally incurring technical debt).<br />
+<br />
+If I'm using SQL to store data structures from Python, I'll need to enumerate the table schemas. See<br />
+<a href="https://allofphysicsgraph.github.io/proofofconcept/site/how_to_build_the_physics_derivation.html">https://allofphysicsgraph.github.io/proofofconcept/site/how_to_build_the_physics_derivation.html</a><br />
+which shows the tables<br />
+<ul>
+<li>per derivation</li>
+<ul>
+<li>edge list (expression local ID to inference local ID)</li>
+<li>expression identifiers (expression ID to local ID)</li>
+<li>feeds (latex to local ID)</li>
+<li>inference rule identifiers (inference rule to local ID)</li>
+</ul>
+<li>global expression latex to expression ID</li>
+<li>global inference rule to latex, description, CAS representation</li>
+</ul>
+<br />
+Reviewing the options described on<br />
+<a href="https://stackoverflow.com/questions/695752/how-to-design-a-product-table-for-many-kinds-of-product-where-each-product-has-m">https://stackoverflow.com/questions/695752/how-to-design-a-product-table-for-many-kinds-of-product-where-each-product-has-m</a><br />
+I don't know which is applicable.<br />
+<br />
+Motives for SQLite use:<br />
+<br />
+<ul>
+<li>enforce column consistency (each row has N columns)</li>
+<li>enforce column types (e.g., string, integer)</li>
+<li>enforce entry length (e.g., local ID must be an integer with M digits)</li>
+</ul>
+<br />
+<h2>
+SQLite options</h2>
+<div>
+From the perspective of file management, having one file feels cleaner than a file per derivation.&nbsp;</div>
+<h3>
+5 tables in 1 SQLite file</h3>
+One option is to implement 5 table schemas:<br />
+<ul>
+<li>expression latex to expression ID. Columns:</li>
+<ul>
+<li>expression_latex (string)</li>
+<li>expression ID (integer)</li>
+</ul>
+<li>inference rule to latex, description, CAS representation</li>
+<ul>
+<li>inference rule (string)</li>
+<li>inference rule latex (string)</li>
+<li>inference rule description (string)</li>
+<li>CAS representation (string)</li>
+</ul>
+<li>derivation edges. Columns:</li>
+<ul>
+<li>derivation name (string)</li>
+<li>from local ID (integer)</li>
+<li>to local ID (integer)</li>
+</ul>
+<li>derivation feeds. Columns:</li>
+<ul>
+<li>derivation name (string)</li>
+<li>latex (string)</li>
+<li>local ID (integer)</li>
+</ul>
+<li>derivation expressions. Columns:</li>
+<ul>
+<li>derivation name (string)</li>
+<li>expression ID (integer)</li>
+<li>local ID (integer)</li>
+</ul>
+<li>derivation inference rules. Columns:</li>
+<ul>
+<li>derivation name (string)</li>
+<li>inference rule (string)</li>
+<li>local ID (integer)</li>
+</ul>
+</ul>
+I suspect this layout of tables is suboptimal -- having the "derivation name" repeating in a column is an indicator that the table count should be 2+3*D to eliminate duplication (rather than 5). This 2+3*D (where "D" is the number of derivations) design is also apparent in the "dict of derivations" structure described below. My motive for using 5 is that if I use 2+3*D, the table names are not static.<br />
+<br />
+<h3>
+2+3*D tables in 1 SQLite file</h3>
+<div>
+Two tables are independent of derivations:</div>
+<ul>
+<li>expression latex to expression ID. Columns:</li>
+<ul>
+<li>expression_latex (string)</li>
+<li>expression ID (integer)</li>
+</ul>
+<li>inference rule to latex, description, CAS representation</li>
+<ul>
+<li>inference rule (string)</li>
+<li>inference rule latex (string)</li>
+<li>inference rule description (string)</li>
+<li>CAS representation (string)</li>
+</ul>
+</ul>
+And 3 tables are needed per derivation. Problem with this is that the name of the tables isn't known in advance.<br />
+<h3>
+2 tables in 1 SQLite file; 3 tables in D SQLite files</h3>
+<div>
+Same as previous option, except instead of a single SQLite file, the derivations are in separate files.</div>
+<h3>
+SQLite to Python</h3>
+These tables in SQL are equivalently stored in Python as three data structures:<br />
+<br />
+<ul>
+<li>list of inference rules = <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[{'inf rule':'inf rule 1','in':1, 'out': 0},{'inf rule':'inf rule 2', 'in':2, 'out': 3}]</span></li>
+<li>list of expressions&nbsp;= <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[{'expr 1':59285924, 'expr 2': 954849, 'expr 3': 948299}]</span></li>
+<li>dict of derivations&nbsp;= <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">{'derivation name 1':[&lt;step1&gt;, &lt;step2&gt;, &lt;step3&gt;]}</span></li>
+</ul>
+<div>
+where each &lt;step&gt; has the structure&nbsp;</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">{'inf rule': 'this inf rule',&nbsp;</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">input: [{'expr local ID': 942, 'expr ID': 59285924}],&nbsp;</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">output: [{'expr local ID': 218, 'expr ID': 954849}]}</span></div>
+<br />
+<br />
+
+{% endblock %}

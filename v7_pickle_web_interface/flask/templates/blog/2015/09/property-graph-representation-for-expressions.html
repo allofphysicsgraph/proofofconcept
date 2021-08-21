@@ -1,0 +1,62 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>property graph representation for expressions</H1>
+
+<P><small>Published 2015-09-19T17:43:00.003Z by Physics Derivation Graph</small></P>
+
+There are many ways to represent an expression, ie a*x^2+b*x+c=d<br />
+Representing algebraic expressions is a good place to start, but for the Physics Derivation Graph I care about covering the full scope of Physics - calculus, derivatives, linear algebra, tensors, Dirac notation, Einstein notation, etc. See<br />
+https://github.com/allofphysicsgraph/proofofconcept/issues/7<br />
+<br />
+Mathematica has a "<a href="https://reference.wolfram.com/language/ref/TreeForm.html">tree form</a>" for expressions which yields an&nbsp;Abstract Syntax Tree. I think the AST is incomplete, and would be more accurate as a property tree.<br />
+<br />
+As an example, suppose we want to expand<br />
+TreeForm[ &nbsp;(a*x^2)+(b*x)+c=d ]<br />
+<br />
+The nodes are a,b,c,d,x,2,=,+,^,*<br />
+The (directed) edges are<br />
+<br />
+<ul>
+<li>x--&gt;power</li>
+<li>2--&gt;power</li>
+<li>a--&gt;times</li>
+<li>power--&gt;times</li>
+<li>times--&gt;plus</li>
+<li>b--&gt;times</li>
+<li>x--&gt;times</li>
+<li>times--&gt;plus</li>
+<li>c--&gt;plus</li>
+<li>plus--&gt;equal</li>
+<li>d--&gt;equal</li>
+</ul>
+<br />
+However, this graph representation is incomplete. First, the nodes are not all of the same type:<br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( x:variable )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( a:constant )<br />CREATE ( b:constant )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( c:constant )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( d:constant )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( 2:integer )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( =:relation )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( ^:operator { name:"power" } )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( +:operator { name:"plus" } )</span><br />
+<br />
+Then edges are created, similar to above<br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( x )--&gt;( power )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( 2 )--&gt;( power )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( a )--&gt;( times )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">...</span><br />
+<br />
+However, the bulleted list of edges has collisions -- there are two instances of "times--&gt;plus", but they are not supposed to be the same. Thus, the edges require unique IDs to deal with collisions.<br />
+Similarly, the nodes in the graph feature collisions. The expression refers to a single "x", but the TreeForm representation has multiple separate "x" nodes.<br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( 5938:variable { symbol:"</span><span style="font-family: 'Courier New', Courier, monospace;">x" }</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;)</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( 5782:constant { symbol:"a" } )<br />CREATE ( 4525:constant</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;</span><span style="font-family: 'Courier New', Courier, monospace;">{ symbol:"b" }</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;)</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( :constant</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;</span><span style="font-family: 'Courier New', Courier, monospace;">{ symbol:"c" }</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;)</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( :constant</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;</span><span style="font-family: 'Courier New', Courier, monospace;">{ symbol:"d" }</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;)</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( :integer</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;</span><span style="font-family: 'Courier New', Courier, monospace;">{ symbol:"2" }</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;)</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( :relation</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;</span><span style="font-family: 'Courier New', Courier, monospace;">{ symbol:"=" }</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;)</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( :operator { name:"power", symbol:"^" } )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">CREATE ( :operator { name:"plus"</span><span style="font-family: 'Courier New', Courier, monospace;">, symbol:"+"</span><span style="font-family: 'Courier New', Courier, monospace;">&nbsp;} )</span>
+
+{% endblock %}

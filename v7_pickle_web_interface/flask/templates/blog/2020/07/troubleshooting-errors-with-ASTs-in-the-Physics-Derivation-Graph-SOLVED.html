@@ -1,0 +1,122 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>troubleshooting errors with ASTs in the Physics Derivation Graph (SOLVED)</H1>
+
+<P><small>Published 2020-07-15T21:13:00.001Z by Physics Derivation Graph</small></P>
+
+At the top of derivation pages I display errors associated with processing the page. Most of the errors are associated with the Abstract Syntax Trees (ASTs) that are in
+
+<br />
+<br />
+For example, on the "curl curl identity" page https://derivationmap.net/review_derivation/000005/
+
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">in step 2339482: unable to eval AST for "sympy.Equality(cross(sympy.Symbol('E'), cross(Del, Del)), sympy.Function('nabla')(sympy.Add(sympy.Mul(sympy.Integer(-1), sympy.Symbol('E'), sympy.Pow(Del, sympy.Integer(2))), dot(sympy.Symbol('E'), Del))))"
+</span><br />
+<br />
+I need to recreate the issue on my local instance of the site, so my first step is to launch a Docker image<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cd ~/version_controlled/proofofconcept/v7_pickle_web_interface/flask/</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">make dockerlive
+</span><br />
+<br />
+In the Docker container I have the same environment as the website, so I open Python and run Sympy to parse the expression<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ python&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Python 3.6.9 (default, Apr 18 2020, 01:56:04)&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[GCC 8.4.0] on linux</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; import sympy</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.__version__&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">'1.5.1'</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.Equality(cross(sympy.Symbol('E'), cross(Del, Del)), sympy.Function('nabla')(sympy.Add(sympy.Mul(sympy.Integer(-1), sympy.Symbol('E'), sympy.Pow(Del, sympy.Integer(2))), dot(sympy.Symbol('E'), Del))))&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Traceback (most recent call last):&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">File "&lt;stdin&gt;", line 1, in &lt;module&gt;&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">NameError: name 'cross' is not defined</span><br />
+<br />
+Looking in the file&nbsp;validate_dimensions_sympy.py the relevant import statements exist:<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">from sympy.vector import cross, dot&nbsp; # type: ignore&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">from sympy.vector.deloperator import Del&nbsp; # type: ignore</span><br />
+<br />
+Next I looked in<br />
+logs/flask_critical_and_error_and_warning_and_info_and_debug.log<br />
+to see where the error is being observed.<br />
+<br />
+The error occurs on line 2984 in controller.py.<br />
+Actually this reference is just a try/except based on validate_dimensions in&nbsp;validate_dimensions_sympy.py<br />
+<br />
+As mentioned earlier, the "cross" and "dot" and "Del" are correctly imported. Going back to the REPL,<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; from sympy.vector import cross, dot&nbsp; # type: ignore&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; from sympy.vector.deloperator import Del&nbsp; # type: ignore</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.Equality(cross(sympy.Symbol('E'), cross(Del, Del)), sympy.Function('nabla')(sympy.Add(sympy.Mul(sympy.Integer(-1), sympy.Symbol('E'), sympy.Pow(Del, sympy.Integer(2))), dot(sympy.Symbol('E'), Del))))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Traceback (most recent call last):</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; File "&lt;stdin&gt;", line 1, in &lt;module&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; File "/usr/local/lib/python3.6/dist-packages/sympy/core/cache.py", line 94, in wrapper</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; retval = cfunc(*args, **kwargs)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; File "/usr/local/lib/python3.6/dist-packages/sympy/core/power.py", line 301, in __new__</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; obj = b._eval_power(e)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">AttributeError: type object 'Del' has no attribute '_eval_power'</span><br />
+<div>
+<br /></div>
+<div>
+The other information in the error message we can leverage is step_ID. That step contains the expression_ID&nbsp;7575859295 which has a complicated latex:</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\\vec{ \\nabla} \\times \\vec{ \\nabla} \\times \\vec{E} = \\vec{ \\nabla}( \\vec{ \\nabla} \\cdot \\vec{E} - \\nabla^2 \\vec{E})</span></div>
+<div>
+<br /></div>
+<div>
+Eliminating the "\\vec{}" we get</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\\nabla \\times \\nabla \\times E = \\nabla( \\nabla \\cdot E - \\nabla^2 E)</span></div>
+<div>
+which can be parsed by Sympy:</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; from sympy.parsing.latex import parse_latex</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; parse_latex("\\nabla \\times \\nabla \\times E = \\nabla( \\nabla \\cdot E - \\nabla^2 E)")</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Eq(E*(nabla*nabla), nabla(-E*nabla**2 + E*nabla))</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.srepr(parse_latex("\\nabla \\times \\nabla \\times E = \\nabla( \\nabla \\cdot E - \\nabla^2 E)"))</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">"Equality(Mul(Symbol('E'), Mul(Symbol('nabla'), Symbol('nabla'))), Function('nabla')(Add(Mul(Integer(-1), Symbol('E'), Pow(Symbol('nabla'), Integer(2))), Mul(Symbol('E'), Symbol('nabla')))))"</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+The output string does not work as-is in the Python prompt</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; Equality(Mul(Symbol('E'), Mul(Symbol('nabla'), Symbol('nabla'))), Function('nabla')(Add(Mul(Integer(-1), Symbol('E'), Pow(Symbol('nabla'), Integer(2))), Mul(Symbol('E'), Symbol('nabla')))))&nbsp;</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Traceback (most recent call last):&nbsp;</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">File "&lt;stdin&gt;", line 1, in &lt;module&gt;&nbsp;</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">NameError: name 'Equality' is not defined</span></div>
+<div>
+<br /></div>
+<div>
+Changes required:</div>
+<div>
+<ul>
+<li>Mul --&gt; cross</li>
+<li>Symbol('nabla') --&gt; Del</li>
+<li>append "sympy." in front of commands</li>
+</ul>
+<div>
+which gets us back to the original expression.</div>
+</div>
+<div>
+<br />
+Staring at the expression, I see it contains</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">sympy.Pow(Del, sympy.Integer(2))</span></div>
+<div>
+which is causing the error.<br />
+<br />
+The solution is to replace the operation with</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Mul(Del, Del)</span></div>
+<div>
+in expression_ID 7575859295 in data.json</div>
+
+{% endblock %}

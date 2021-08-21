@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>from Latex to Abstract Syntax Tree</H1>
+
+<P><small>Published 2020-02-04T01:59:00Z by Physics Derivation Graph</small></P>
+
+In the latest revision to the Physics Derivation Graph, the tuple (unique expression identifier, latex expression) has been replaced with (unique expression identifier, latex expression, abstract syntax tree). This is similar to the split between "presentation MathML" and "content MathML." This distinction requires a translation between a (visually pleasing and easy to input representation) and (a mathematically meaningful representation).<br />
+<br />
+Latex will be input by the user for the PDG; the user will not need to supply the AST as input. To validate a step, the AST is needed. This presents a few challenges:<br />
+<br />
+<ul>
+<li>Is the input valid tex?</li>
+<li>Is the valid tex a mathematical expression?</li>
+<li>Is the valid mathematical expression consistent with the step?&nbsp;</li>
+</ul>
+<div>
+A step in a derivation is defined as the application of a single inference rule with one or more expressions as input, feed, or output.</div>
+<div>
+<br /></div>
+<div>
+There are a few options for parsing mathematical tex:&nbsp;</div>
+<div>
+<ul>
+<li>write a custom parser&nbsp;</li>
+<li>use an existing parser, e.g. MathJax</li>
+</ul>
+</div>
+
+{% endblock %}

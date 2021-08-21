@@ -1114,8 +1114,8 @@ def search_redirect_to_google():
     )
 
 
-@app.route("/robots.txt")
-@app.route("/sitemap.txt")
+@app.route("/robots.txt") # https://github.com/allofphysicsgraph/proofofconcept/issues/160
+@app.route("/sitemap.txt") # https://github.com/allofphysicsgraph/proofofconcept/issues/165
 def static_from_root():
     """
     https://stackoverflow.com/a/14625619/1164295

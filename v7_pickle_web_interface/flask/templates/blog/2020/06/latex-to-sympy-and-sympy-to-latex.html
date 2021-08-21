@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>latex to sympy and sympy to latex</H1>
+
+<P><small>Published 2020-06-20T14:09:00.002Z by Physics Derivation Graph</small></P>
+
+<br />
+From Latex to Sympy:<br />
+<span style="font-family: Courier New, Courier, monospace;">$ <b>python</b></span><br />
+<span style="font-family: Courier New, Courier, monospace;">Python 3.6.9 (default, Apr 18 2020, 01:56:04) </span><br />
+<span style="font-family: Courier New, Courier, monospace;">[GCC 8.4.0] on linux</span><br />
+<span style="font-family: Courier New, Courier, monospace;">Type "help", "copyright", "credits" or "license" for more information.</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; <b>import sympy</b></span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; <b>from sympy.parsing.latex import parse_latex</b></span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; <b>sympy.srepr(parse_latex('\\frac{p}{\\hbar} = k'))</b></span><br />
+<span style="font-family: Courier New, Courier, monospace;">"Equality(Mul(Pow(Symbol('hbar'), Integer(-1)), Symbol('p')), Symbol('k'))"</span><br />
+<br />
+<h2>
+A more complicated example</h2>
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; <b>sympy.srepr(parse_latex('\\frac{\\partial}{\\partial t} \\psi( r,t)'))</b><br />"Derivative(Function('psi')(Symbol('r'), Symbol('t')), Tuple(Symbol('t'), Integer(1)))"</span><br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">Check that Sympy-to-Latex produces the same:</span><br /><span style="font-family: Courier New, Courier, monospace;">
+&gt;&gt;&gt; </span><b style="font-family: &quot;Courier New&quot;, Courier, monospace;">sympy.latex(sympy.Derivative(sympy.Function('psi')(sympy.Symbol('r'), sympy.Symbol('t')), sympy.Tuple(sympy.Symbol('t'), sympy.Integer(1))))</b><br /><span style="font-family: Courier New, Courier, monospace;">
+'\\frac{\\partial}{\\partial t} \\psi{\\left(r,t \\right)}'</span><br />
+
+{% endblock %}

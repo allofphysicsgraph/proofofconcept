@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Evaluating definite integrals for humans versus SymPy breaks the Latex-to-SymPy mapping of steps</H1>
+
+<P><small>Published 2020-09-04T19:48:00.002Z by Physics Derivation Graph</small></P>
+
+&nbsp;In the process of fixing expressions and steps in the PDG database, I encountered a novel challenge.<br />
+<div style="margin: 0px;">
+<br /></div>
+<div style="margin: 0px;">
+Currently every step in the PDG has a set of Latex expressions. These expressions are provided by the user, converted to SymPy, and then the step is validated using SymPy. There is a one-to-one mapping of "what the user sees" to "what the CAS checks."</div>
+<div style="margin: 0px;">
+<br /></div>
+<div style="margin: 0px;">
+In a derivation there is a sequence like</div>
+<div style="margin: 0px;">
+<br /></div>
+<div style="margin: 0px;">
+&nbsp; &nbsp; <span style="font-family: Courier New, Courier, monospace;">f = \int_a^b x dx</span></div>
+<div style="margin: 0px;">
+<br /></div>
+<div style="margin: 0px;">
+<i>inference rule</i>: carry out definite integration</div>
+<div style="margin: 0px;">
+<br /></div>
+<div style="margin: 0px;">
+&nbsp; &nbsp; <span style="font-family: Courier New, Courier, monospace;">f = (x^2/2)|_a^b</span></div>
+<div style="margin: 0px;">
+<br /></div>
+<div style="margin: 0px;">
+<i>inference rule</i>: simplify</div>
+<div style="margin: 0px;">
+<br /></div>
+<div style="margin: 0px;">
+&nbsp; &nbsp; <span style="font-family: Courier New, Courier, monospace;">f = 1/2 (b^2 - a^2)</span></div>
+<div style="margin: 0px;">
+<br /></div>
+<div style="margin: 0px;">
+It seems that SymPy doesn't support the middle expression and instead goes directly from the first to the last expression. That means there is an intermediary Latex expression that cannot be converted to Sympy, breaking the assumption of "what the human reads is one-to-one with what the CAS checks."</div>
+<div style="margin: 0px;">
+<br /></div>
+<div style="margin: 0px;">
+Accounting for the mismatch between Latex steps and CAS steps would make the already-messy graph structure more complicated. Some steps that are included for human readability would not be able to be specified to the CAS, nor would those steps be checked.</div>
+
+{% endblock %}

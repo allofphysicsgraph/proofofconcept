@@ -1,0 +1,31 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>connecting Jupyter and Neo4j</H1>
+
+<P><small>Published 2018-08-11T14:54:00.002Z by Physics Derivation Graph</small></P>
+
+<h3>
+Jupyter</h3>
+<span style="font-family: Courier New, Courier, monospace;">$ cd&nbsp;v5_property_graph</span><br />
+<span style="font-family: Courier New, Courier, monospace;">$ jupyter notebook</span><br />
+<br />
+Web browser opens to the URL<br />
+<a href="http://localhost:8888/tree">http://localhost:8888/tree</a><br />
+Then open a new Python notebook.<br />
+<br />
+<h3>
+Neo4j</h3>
+I'm running Neo4j Community version 3.2.3 on a Mac. I start the client GUI and then open a browser window to<br />
+<a href="http://127.0.0.1:7474/browser/">http://127.0.0.1:7474/browser/</a><br />
+<br />
+<h3>
+Connect Jupyter to Neo4j</h3>
+<span style="font-family: Courier New, Courier, monospace;">from py2neo import authenticate,Graph, Node, Relationship</span><br />
+<span style="font-family: Courier New, Courier, monospace;">authenticate("127.0.0.1:7474", "neo4j", "asdf")</span><br />
+<span style="font-family: Courier New, Courier, monospace;">graph = Graph("http://127.0.0.1:7474/browser/")</span><br />
+<span style="font-family: Courier New, Courier, monospace;">graph.delete_all()</span><br />
+<br />
+For more, see <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v5_property_graph/physics_derivation_graph_v5_using_neo4j.ipynb">this notebook</a>.
+
+{% endblock %}

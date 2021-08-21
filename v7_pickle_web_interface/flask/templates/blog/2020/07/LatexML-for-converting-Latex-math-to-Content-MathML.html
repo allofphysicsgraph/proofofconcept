@@ -1,0 +1,67 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>LatexML for converting Latex math to Content MathML</H1>
+
+<P><small>Published 2020-07-28T00:45:00.001Z by Physics Derivation Graph</small></P>
+
+Rather than <a href="https://github.com/allofphysicsgraph/latexml">creating a Dockerfile</a>, here's a one-liner:<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker run -it --rm phusion/baseimage:0.11 /bin/bash -c "apt update &amp;&amp; apt install -y latexml libtext-unidecode-perl &amp;&amp; latexmlmath --cmml=- A \\cdot B"</span><br />
+<br />
+The downside is that if you got the command wrong, the complete build process is necessary.<br />
+<br />
+<br />
+Here are two examples of LatexML converting Latex math into Content MathML:<br />
+<br />
+First, the quadratic formula (which features some ambiguity)<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">latexmlmath --cmml=- \\frac{b\\pm\\sqrt{b^2-4ac}}{2a}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" alttext="\frac{b\pm\sqrt{b^{2}-4ac}}{2a}" display="block"&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &lt;apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &lt;divide/&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &lt;apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &lt;csymbol cd="latexml"&gt;plus-or-minus&lt;/csymbol&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &lt;ci&gt;𝑏&lt;/ci&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &lt;apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &lt;root/&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &lt;apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;minus/&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;csymbol cd="ambiguous"&gt;superscript&lt;/csymbol&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;ci&gt;𝑏&lt;/ci&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;cn type="integer"&gt;2&lt;/cn&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;times/&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;cn type="integer"&gt;4&lt;/cn&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;ci&gt;𝑎&lt;/ci&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;ci&gt;𝑐&lt;/ci&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;/apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &lt;/apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &lt;/apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &lt;/apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &lt;apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &lt;times/&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &lt;cn type="integer"&gt;2&lt;/cn&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; &lt;ci&gt;𝑎&lt;/ci&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &lt;/apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &lt;/apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&lt;/math&gt;</span><br />
+<br />
+The following Latex math is ambiguous, so LatexML is not able to do much.<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">latexmlmath --cmml=- A \\cdot B</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&lt;math xmlns="http://www.w3.org/1998/Math/MathML" alttext="A\cdot B" display="block"&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &lt;apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &lt;ci&gt;⋅&lt;/ci&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &lt;ci&gt;𝐴&lt;/ci&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &lt;ci&gt;𝐵&lt;/ci&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &lt;/apply&gt;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&lt;/math&gt;</span><br />
+<div>
+<br /></div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>significant changes to the Physics Derivation Graph</H1>
+
+<P><small>Published 2020-02-02T19:58:00.003Z by Physics Derivation Graph</small></P>
+
+This weekend I initiated a significant rewrite of the Physics Derivation Graph.<br />
+<ul>
+<li>I revised the data structures, the level of details present in the data structure, and how the data structure is accessed.&nbsp;</li>
+<li>I also better understand the model-view-controller paradigm; this led to a better workflow.&nbsp;</li>
+<li>I improved the logging used in the Python code.</li>
+</ul>
+<h3>
+Improved Data Structures</h3>
+<div>
+I've investigated many different file formats (XML, CSV, plain text, SQL), each of which impose different constraints on the data structure, as well as imposing a translation between the file format and the representation internal to Python. I recently arrived at the insight that I could avoid both file format choices and the associated translation work by using Python's serialization -- the <a href="https://docs.python.org/3/library/pickle.html">pickles module</a>.<br />
+<br />
+In addition to eliminating work associated with translation, it freed my cognitive focus. This second aspect was vital as it led to improved mental agility in analyzing other options. Once I didn't have to worry about choosing the best file format, I could identify what work would lead to rapid progress.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+The first big change was having a single data structure (the dictionary "dat") which had all the other data structures (expressions, inference rules, derivations) as keys. Each of those was initially a list of dictionaries, but this proved to be cumbersome in implementing data access. I realized I could leverage the unique identifiers present in the Physics Derivation Graph as keys. That lead to a dictionary (top level "dat") of dictionaries (expressions, inference rules, derivations) of dictionaries (each expression, each inference rule, each derivation, respectively). While this may sound messy, accessing specific elements of the PDG is now much easier.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+Motivated by a conversation about how the PDG will integrate with a Computer algebra system, I decided to include a few additional keys in the top level data structure.
+
+Enabling validation of steps requires supporting a computer algebra system (CAS). To enable an arbitrary choice of CAS, I need to support abstract syntax trees (ASTs). To enable an AST, I need to define symbols and operators.  To enable symbols, I need units and measures. To summarize, I now track the following:<br />
+<br />
+<ul>
+<li>derivations</li>
+<li>expressions</li>
+<ul>
+<li>latex</li>
+<li>AST</li>
+</ul>
+<li>inference rules</li>
+<li>symbols</li>
+<li>operators</li>
+<li>units</li>
+<li>measures</li>
+</ul>
+<div>
+<br /></div>
+<h3>
+Improved understanding of the model-view-controller paradigm</h3>
+<div>
+Previously I had web form actions that led to a follow-on page. While technically possible, this turned out to be a bad decision. The problems are in tracking state (which variables get passed between pages) and poor visibility on the state changes. I updated the web forms to pass their action back to the "controller.py" which maintains both the variable passing and flow control (which page calls another page).</div>
+<div>
+<br /></div>
+<div>
+By adhering to the model-view-controller paradigm, troubleshooting and implementation were made much easier. This ease resulted in faster implementation of ideas.&nbsp;</div>
+<div>
+<br /></div>
+<h3>
+Improved logging in Python</h3>
+<div>
+I use print statements throughout my code to help in troubleshooting. There are different categories of print statements: trace, debug, error. These are now present in (almost) every print statement. I've also included the name of the file (either "compute" or "controller") in print statements, as well as the function the print statement is in. These changes help track the state of the application.&nbsp;</div>
+<div>
+<br /></div>
+</div>
+
+{% endblock %}

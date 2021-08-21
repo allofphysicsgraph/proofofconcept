@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>an argument in support of RDF instead of property graphs</H1>
+
+<P><small>Published 2020-12-12T16:12:00.001Z by Physics Derivation Graph</small></P>
+
+<p>
+  I've wrestled with whether to use Property Graphs to store and query the Physics Derivation Graph. 
+I see potential value, but the licensing of Neo4j keeps me from committing. I'm aware of other implementations, but I don't have confidence about either their stability or durability. 
+  </p><p>
+
+</p><p>
+<a href="https://www.semanticarts.com/property-graphs-training-wheels-on-the-way-to-knowledge-graphs/">This post</a> makes a convincing argument about both the short-comings of a property-graph-based knowledge graph and the value of an RDF-based storage method. To summarize,</p><p></p><ul style="text-align: left;"><li>don't be distracted by visualization capabilities; inference is more important</li><li>property graph IDs are local, whereas identifiers in RDF are global.&nbsp;</li><li>Global IDs are vital for enabling federation, merge, diff</li></ul><p></p><p>I know OWL (Web Ontology Language) is popular for knowledge representation, and this post was the first to provide a clear breakdown of the difference between property graphs, RDF, and OWL. OWL supports</p><p></p><ul style="text-align: left;"><li>the ability infer that a node that is a member of a class is also a member of any of its superclasses</li><li>properties can have superproperties</li></ul><div>OWL overview:</div><div><ul style="text-align: left;"><li>https://www.cambridgesemantics.com/blog/semantic-university/learn-rdf/</li><li>https://www.cambridgesemantics.com/blog/semantic-university/learn-owl-rdfs/owl-101/</li><li>https://www.cambridgesemantics.com/blog/semantic-university/learn-owl-rdfs/</li></ul></div><p></p><p></p><p></p>
+
+{% endblock %}

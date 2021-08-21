@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>task list for SQL and Docker and Flask</H1>
+
+<P><small>Published 2019-05-25T15:42:00.001Z by Physics Derivation Graph</small></P>
+
+Ordered tasks below. None of these tasks are extraordinary.<br />
+<ul>
+<li>Convert database from CSV files to single .sqlite3 database.&nbsp;</li>
+<ul><ul>
+</ul>
+</ul>
+<li>Rewrite interface to database to read/write .sqlite3 rather than from/to CSV</li>
+</ul>
+<br />
+<ul>
+<li>Create Docker image that supports Python Flask and Latex and Graphviz [done]</li>
+<li>Put current scripts inside Docker image; mount external data; be able to edit content from within container</li>
+<li>Run static content in Docker image and display images in web browser</li>
+<li>Rewrite command-line editing interface to use Python Flask as web interface</li>
+</ul>
+<div>
+<i><br /></i></div>
+<div>
+<i>Update 20190602</i>: created a Docker container that supports Python Flask and Latex. I can generate a PNG from user entered strings.</div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>SQL vs CSV vs PKL for data storage</H1>
+
+<P><small>Published 2019-12-12T22:43:00Z by Physics Derivation Graph</small></P>
+
+The CSV files are sufficient to build a proof of concept. Given that sufficiency, and my lack of familiarity with SQL, perhaps I shouldn't focus on using sqlite for the MVP.<br />
+(See&nbsp;<a href="https://physicsderivationgraph.blogspot.com/2019/12/mvp-for-pdg-with-sql.html">https://physicsderivationgraph.blogspot.com/2019/12/mvp-for-pdg-with-sql.html</a>)<br />
+<br />
+CSVs feel hacky and don't enable enforcement of consistency checks. However, they are easier to view and decrease the dependencies.<br />
+<br />
+The easiest solution might be using Pickle (PKL) files rather than converting from Python variables in-memory to a distinct off-line representation. A Pickle file is enables consolidation.<br />
+<br />
+
+{% endblock %}

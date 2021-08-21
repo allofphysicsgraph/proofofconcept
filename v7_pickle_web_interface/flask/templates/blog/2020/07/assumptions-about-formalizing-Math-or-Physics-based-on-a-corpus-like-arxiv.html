@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>assumptions about formalizing Math or Physics based on a corpus like arxiv</H1>
+
+<P><small>Published 2020-07-29T18:41:00.001Z by Physics Derivation Graph</small></P>
+
+I'm still reeling from the disconnect between what was proposed in the QED manifesto in 1994 and the current state of formalization of Math (and Physics) research in 2020.<br />
+<br />
+In this post I'll write down what assumptions and what truths I understand about the problem in the context of papers posted to arXiv. In no particular order,<br />
+<ul>
+<li><i>assumption</i>: There is an intentional meaning for each symbol and each expression.&nbsp;</li>
+<li><i>truth</i>: The meaning of each symbol and expression is not stated explicitly in writing.</li>
+<li><i>assumption</i>: An article is self-consistent in terms of both jargon and math expressions</li>
+<li><i>truth</i>: The syntax used for jargon and math is not consistent across different papers.&nbsp;</li>
+<li><i>truth</i>: There are conventions (often more than one) and which convention is being used is rarely stated explicitly.&nbsp;</li>
+<li><i>assumption</i>: Content of a given paper has information contextualized by other references,</li>
+<li><i>assumption</i>: the context of information is only partially known to the author of a paper.&nbsp;</li>
+</ul>
+<br />
+The consequence of inconsistent use of conventions and use of implicit associations is that developing a grammar for parsing article text and math will necessarily yield incomplete and incorrect results.<br />
+<br />
+
+{% endblock %}

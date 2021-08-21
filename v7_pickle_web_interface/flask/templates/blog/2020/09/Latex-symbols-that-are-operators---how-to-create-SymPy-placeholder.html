@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Latex symbols that are operators - how to create SymPy placeholder</H1>
+
+<P><small>Published 2020-09-04T21:30:00Z by Physics Derivation Graph</small></P>
+
+{\cal H} in Latex is used for the Hamiltonian in the "1D particle in a box"<div>
+https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics)<br /><div>
+Needs to be translated to a SymPy operator&nbsp;</div>
+<div>
+https://docs.sympy.org/latest/modules/physics/quantum/piab.html</div>
+</div>
+<div>
+<br /></div>
+<div>
+The Laplace operator \nabla^2 in Latex is&nbsp;</div>
+<div>
+delop = Del()</div>
+<div>
+delop.dot(delop())</div>
+
+{% endblock %}

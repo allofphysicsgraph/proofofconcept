@@ -1,0 +1,10 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>statements I believe to be true</H1>
+
+<P><small>Published 2020-09-20T20:35:00.002Z by Physics Derivation Graph</small></P>
+
+<p>Here is what I currently understand to be true:</p><p></p><ul style="text-align: left;"><li>Every Physics Derivation is comprised of discrete steps.</li><li>Each Step in a Physics Derivation has a single Inference rule.&nbsp;</li><li>Every mathematical expression in a Physics Derivation can be written in Latex.&nbsp;</li><li>There are some math expressions which cannot be written in a given CAS</li><ul><li>example: definite evaluation after integration, like <span style="font-family: courier;">(x+y)|_{a}^{b}</span> in SymPy</li></ul><li>There are some derivation steps that cannot be expressed in a given CAS</li><li>There is not a 1-to-1 correspondence between a CAS-based graph and a Latex-based graph.&nbsp;</li><li>There are many gradations between "text" and Latex and CAS and proof.&nbsp;</li></ul><p></p><p>The consequence of the CAS-based graph not having 1-to1 correspondence with a Latex-based graph is that the current data structure of Latex and SymPy in one graph is not suitable.&nbsp;</p><p><br /></p>
+
+{% endblock %}

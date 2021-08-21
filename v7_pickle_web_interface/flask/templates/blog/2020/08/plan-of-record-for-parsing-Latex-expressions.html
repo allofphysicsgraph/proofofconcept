@@ -1,0 +1,35 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>plan of record for parsing Latex expressions</H1>
+
+<P><small>Published 2020-08-15T20:50:00.001Z by Physics Derivation Graph</small></P>
+
+I'm assuming there's an interactive feedback loop with the user in the Physics Derivation Graph, whereas that's not the case for bulk content like arXiv. How to respond to ambiguity depends on whether we can assume the user is available for clarifications.<br />
+<br />
+<br />
+Given an input string to parse,<br />
+<ol>
+<li>Is the string valid Latex? If yes, continue; if no, return to user with complaint</li>
+<li>Is the string valid mathematical Latex? If yes, continue; if no, return to user with complaint</li>
+<li>Can the mathematical Latex be parsed without ambiguity? If yes, return SymPy to user; if no, continue</li>
+<li>If there is ambiguity, can the ambiguity be resolved by used a different flavor of the grammar? If no, return the options to the user so they can select the right parsing.</li>
+</ol>
+<div>
+<br /></div>
+<div>
+Removing markup specific to display may be relevant. For example, replacing "\ " with " " and replacing "\quad" with " " and replacing "\qquad" with " " and replacing "\left(" with "(" would reduce the parser workload.</div>
+<div>
+<br /></div>
+<div>
+Example of invalid math Latex:</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\frac a b</span></div>
+<div>
+<br /></div>
+<div>
+The user probably intended&nbsp;</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">\frac{a}{b}</span></div>
+
+{% endblock %}

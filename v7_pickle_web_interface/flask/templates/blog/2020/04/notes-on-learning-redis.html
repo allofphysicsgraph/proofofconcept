@@ -1,0 +1,53 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>notes on learning redis</H1>
+
+<P><small>Published 2020-04-08T22:16:00.002Z by Physics Derivation Graph</small></P>
+
+I'm running redis in a docker container and connecting to it from Python using<br />
+<a href="https://github.com/andymccurdy/redis-py">https://github.com/andymccurdy/redis-py</a><br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; from redis import Redis</span><br />
+<br />
+I initially wasn't able to connect until I found this<br />
+https://stackoverflow.com/a/57681086/1164295<br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; rd.ping()</span><br />
+<span style="font-family: Courier New, Courier, monospace;">True</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; rd = Redis(host='docker.for.mac.localhost', port=6379)</span><br />
+<br />
+Then I used&nbsp;<a href="https://realpython.com/python-redis/#ten-or-so-minutes-to-redis">https://realpython.com/python-redis/#ten-or-so-minutes-to-redis</a><br />
+<br />
+What keys exist?<br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; rd.keys()</span><br />
+<span style="font-family: Courier New, Courier, monospace;">[b'hits']</span><br />
+<br />
+Look for a key that doesn't exist:<br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; print(rd.get('mykey'))</span><br />
+<span style="font-family: Courier New, Courier, monospace;">None</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; rd.get('mykey')</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt;</span><br />
+<div>
+<br /></div>
+<div>
+Better method for looking for keys:</div>
+<div>
+<br /></div>
+<div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; rd.exists('mykey')</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">0</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; rd.exists('hits')</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">1</span></div>
+</div>
+<div>
+<br />
+<br /></div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Steps to convert a published scientific paper into the Physics Derivation Graph</H1>
+
+<P><small>Published 2021-08-08T15:15:00.002Z by Physics Derivation Graph</small></P>
+
+<p>This post documents the steps taken to get the derivations in the paper <a href="https://arxiv.org/pdf/2004.04818.pdf">Speed of sound from fundamental physical constants</a>&nbsp;into the Physics Derivation Graph.&nbsp;</p><p>1) Read the paper. I need to understand the point of the paper and where content is in the text.&nbsp;</p><p><br /></p><p>2) Identify the primary result of the derivation. Which equation is the output? Is there more than one?
+In this paper, equation 1 is the primary result. 
+
+</p><p><i>Tangent</i>: I tested the question of whether the most popular equation is the most important. <br />
+This is measurable using the command
+</p><pre>cat sound1.tex | tr " " "\n" |\          # replace spaces with newlines -- word tokenization
+   grep "ref{" |\                        # find internal references to labeled expressions
+   sed 's/.*\\ref{//' | sed 's/}.*//' |\ # remove the irrelevant latex "\ref{}" to isolate the expression label ID
+   sort | uniq -c | sort -n              # rank the popularity of expression labels
+2 v001
+3 abinitio
+3 all
+3 ratio
+3 v0
+3 v01
+3 v1
+5 elemental
+6 bohr
+6 rydberg
+11 a
+15 v00
+15 v3
+</pre>
+
+Decoding those latex labels to equations in the PDF,
+"v3" is equation 9, which is tied for most popular with "v00" -- equation 4. The second most popular label "a" is equation 10.
+The equation I'm claiming as the primary result, equation 1, is labeled as "v0" and is referenced 3 times.
+
+<p><br /></p><p>3) What sections of the paper contain the derivation?<br />
+There are actually two derivations of the same result.
+  </p><ul>
+<li> one derivation is on page 2 column 1</li>
+  <li> another derivation is on page 2 column 2</li>
+  </ul>
+
+  <p><br /></p><p>
+4) On paper, write out equations from the paper. Here I'm limiting the scope to one derivation on page 2 column 1. Fill in additional equations that are missing from the text. Use arrows to denote flow of derivation.
+
+</p><p>
+<a href="https://1.bp.blogspot.com/-Nima6iIavD8/YQ_l2MltSCI/AAAAAAABOD0/JfV6vFDmuhoJC6wDaOEacO_E1OdtyuwmACLcBGAsYHQ/s2048/20210807_143731.jpeg" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="2048" data-original-width="1478" height="640" src="https://1.bp.blogspot.com/-Nima6iIavD8/YQ_l2MltSCI/AAAAAAABOD0/JfV6vFDmuhoJC6wDaOEacO_E1OdtyuwmACLcBGAsYHQ/w462-h640/20210807_143731.jpeg" width="462" /></a>
+ 
+</p><p>Often I'll make math mistakes or go down paths that turn out to be irrelevant. If I were a typical researcher, this is where the reconstruction process would stop.</p><p><br /></p><p>5) On a separate paper, rewrite the graph and label the edges in the directed graph to describe the operation being carried out.&nbsp;</p><p><br /></p><p>6) On a separate paper, rewrite the content from the previous step to refine the "operation being carried out" to a directed graph with inference rules available in the Physics Derivation Graph.&nbsp;</p><p><br /></p><p>7) Enter the symbols used in this derivation in&nbsp;<a href="https://derivationmap.net/list_all_symbols#add%20symbol">https://derivationmap.net/list_all_symbols#add%20symbol</a> or identify pre-existing symbols and record their PDG ID.&nbsp;</p><p><br /></p><p>8) If novel inference rules are needed for this derivation, enter those in&nbsp;<a href="https://derivationmap.net/list_all_inference_rules#add_inf_rule">https://derivationmap.net/list_all_inference_rules#add_inf_rule</a></p><p><br /></p><p>9) Using&nbsp;<a href="https://derivationmap.net/start_new_derivation/">https://derivationmap.net/start_new_derivation/</a>, enter the expressions and inference rules for the steps of the derivation. For each step,&nbsp;</p><p></p><ul style="text-align: left;"><li>ensure the symbols are referenced correctly in each expression</li><li>ensure the SymPy version of the expression is correct</li></ul><p></p><p>The output of this step is&nbsp;<a href="https://derivationmap.net/review_derivation/608598/">https://derivationmap.net/review_derivation/608598/</a></p><p><br /></p><p>10) Offline, in the JSON file containing the derivation, edit the symbol IDs and SymPy representations as needed to get the step validations to be correct.&nbsp;</p><p>Review the modifications on&nbsp;<a href="https://derivationmap.net/review_derivation/608598/">https://derivationmap.net/review_derivation/608598/</a></p><p><br /></p><p><br /></p><p><i>TODO</i>: The extensive linking of variables to definitions is not made accessible in the output, so there is no way for the user to leverage the linked information.&nbsp;</p><p></p><ul style="text-align: left;"><li>expressions in the PDF/HTML output contain variables which have no link to their definitions</li><li>variables in the text of the PDF/HTML output are not linked to the expressions or their definitions</li></ul><div>As a result of the above observation,&nbsp;<a href="https://github.com/allofphysicsgraph/proofofconcept/issues/217">https://github.com/allofphysicsgraph/proofofconcept/issues/217</a> was opened.&nbsp;</div><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+
+{% endblock %}

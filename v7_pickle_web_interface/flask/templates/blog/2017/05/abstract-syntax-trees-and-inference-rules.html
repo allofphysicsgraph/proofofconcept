@@ -1,0 +1,50 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>abstract syntax trees and inference rules</H1>
+
+<P><small>Published 2017-05-29T20:37:00Z by Physics Derivation Graph</small></P>
+
+The Physics Derivation Graph is composed of inference rules and mathematical expressions. Inference rules describe how to get from one expression to another.<br />
+<br />
+In this post I first show that expressions can be represented as abstract syntax trees. Then I show that inference rules are effectively transformations applied to abstract syntax trees.<br />
+<br />
+<div>
+First I'll illustrate that every expression in the Physics Derivation Graph can be represented as an <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">abstract syntax tree</a>. For example, the expression</div>
+<div>
+a+b = c</div>
+<div>
+would be represented as</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://3.bp.blogspot.com/-X3XE1a6UFFs/WSx9mVSjhLI/AAAAAAAAXB4/qTRuhqHbhW0hnStYM3x6PH84daTjPBcZQCLcB/s1600/abstract%2Bsyntax%2Btree%2Bfor%2Ba%252Bb%253Dc.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="164" data-original-width="157" src="https://3.bp.blogspot.com/-X3XE1a6UFFs/WSx9mVSjhLI/AAAAAAAAXB4/qTRuhqHbhW0hnStYM3x6PH84daTjPBcZQCLcB/s1600/abstract%2Bsyntax%2Btree%2Bfor%2Ba%252Bb%253Dc.png" /></a></div>
+<br />
+An example of an inference rules in the Physics Derivation Graph is, "add 2 to both sides of the expression." In this example the value 2 is a "feed" to the inference rule and the inference rule operates against a single expression.<br />
+<br />
+Writing the inference rule as a function,<br />
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&lt;output_expression&gt; = add_x_to_both_sides( &lt;feed value&gt;, &lt;input_expression&gt; )</span><br />
+<div>
+<br /></div>
+<div>
+Applying the inference rule "add 2 to both sides of the expression" yields</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://2.bp.blogspot.com/-3WTklSzfroM/WSyEn092tII/AAAAAAAAXCI/RjVBl2-fmakCMXhNIkyN3VBrN8PeJrPiwCLcB/s1600/abstract%2Bsyntax%2Btree%2Bfor%2Ba%252Bb%252B2%253Dc%252B2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="232" data-original-width="215" src="https://2.bp.blogspot.com/-3WTklSzfroM/WSyEn092tII/AAAAAAAAXCI/RjVBl2-fmakCMXhNIkyN3VBrN8PeJrPiwCLcB/s1600/abstract%2Bsyntax%2Btree%2Bfor%2Ba%252Bb%252B2%253Dc%252B2.png" /></a></div>
+<div>
+The "add __ to both sides of the expression" inference rule essentially means transform input&nbsp;</div>
+<div>
+LHS = RHS</div>
+<div>
+to</div>
+<div>
+LHS&nbsp;+ __ = RHS&nbsp;+ __</div>
+<div>
+or, in terms of transforming an abstract syntax tree,</div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://2.bp.blogspot.com/-FsN1nx0XnvY/WSyGQ_Yd3OI/AAAAAAAAXCU/dAmDeF7e43gzefBq8-zR-Hj2-tOWWyGSwCLcB/s1600/abstract%2Bsyntax%2Btree%2Bfor%2Badd%2B__%2Bto%2Bboth%2Bsides.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="200" data-original-width="435" src="https://2.bp.blogspot.com/-FsN1nx0XnvY/WSyGQ_Yd3OI/AAAAAAAAXCU/dAmDeF7e43gzefBq8-zR-Hj2-tOWWyGSwCLcB/s1600/abstract%2Bsyntax%2Btree%2Bfor%2Badd%2B__%2Bto%2Bboth%2Bsides.png" /></a></div>
+<div>
+<i>Claim</i>: every inference rule can be written as a transform from one abstract syntax tree to another.&nbsp;</div>
+<div>
+<br /></div>
+</div>
+
+{% endblock %}

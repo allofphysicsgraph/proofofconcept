@@ -1,0 +1,35 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>notes from reading "A Step-by-Step Solution Methodology for Mathematical Expressions"</H1>
+
+<P><small>Published 2020-03-14T01:58:00.001Z by Physics Derivation Graph</small></P>
+
+A Step-by-Step Solution Methodology for Mathematical Expressions<br />
+by Sahereh Hosseinpour, Mir Mohammad Reza Alavi Milani and Hüseyin Pehlivan<br />
+Symmetry 2018, 10(7), 285; https://doi.org/10.3390/sym10070285<br />
+<a href="https://www.mdpi.com/2073-8994/10/7/285/htm">https://www.mdpi.com/2073-8994/10/7/285/htm</a><br />
+<br />
+<br />
+The following sites parse input, take a specified action, and show the steps<br />
+(I'm not sure whether these two sites are related or clones of each other)<br />
+https://www.softmath.com/math-com-calculator/quadratic-equations/myalgebra.com.html<br />
+https://www.mathsite.org/maths-factors/perpendicular-lines/myalgebra.com.html<br />
+Also see https://www.mathway.com/Algebra and http://www.webmath.com/<br />
+<br />
+I find it fascinating to read about someone else having an idea similar to mine:<br />
+"Our methodology uses a grammar-based approach to convert mathematical expressions into abstract syntax trees (AST) on which new methods can be developed for different evaluation or interpretation requirements. In this way, users can dynamically enter expressions and all the intermediate operations on them can successfully be achieved through AST nodes." ... "It can also be a good platform for the development of educational products in the field of mathematics, which can display all problem-solving steps."<br />
+<br />
+I'm not clear on the distinctions of the three approaches to solvers, but it's helpful to know there's more than one approach<br />
+<br />
+<ul>
+<li>computer algebra system</li>
+<li>rule based: "Starting with a mathematical expression, this approach transforms it into another equivalent expression and compares it with the intended target expression for equivalence verification."</li>
+<li>structural approach: "two mathematical expressions are first represented as two mathematical expression trees. Then, tree matching algorithm is used to compare the two trees using dynamic programming for equivalence verification.</li>
+</ul>
+<div>
+<b><br /></b></div>
+<div>
+<b>Section 2.3 walks through the entire process of getting from BNF to an AST.&nbsp;</b></div>
+
+{% endblock %}

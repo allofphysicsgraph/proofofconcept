@@ -1,0 +1,44 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>type hinting and linting in the Docker image</H1>
+
+<P><small>Published 2020-02-09T15:47:00.001Z by Physics Derivation Graph</small></P>
+
+See also<br />
+<a href="https://physicsderivationgraph.blogspot.com/2018/08/cleaning-up-code-using-pylint-and.html">https://physicsderivationgraph.blogspot.com/2018/08/cleaning-up-code-using-pylint-and.html</a><br />
+<br />
+Usually I start my Docker container using<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ python create_tmp_pkl.py ; docker build -t flask_ub .; docker run -it --rm --publish 5000:5000 flask_ub
+
+</span><br />
+<br />
+However, if I need the command line to run mypy or flake8, I'll start a shell using<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ python create_tmp_pkl.py ; docker build -t flask_ub .; docker run -it --rm --entrypoint='' --publish 5000:5000 flask_ub /bin/bash
+
+</span><br />
+<br />
+Then, in the container, I can run commands like<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ mypy compute.py</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Success: no issues found in 1 source file</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ mypy --ignore-missing-imports controller.py&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Success: no issues found in 1 source file</span><br />
+see&nbsp;<a href="https://mypy.readthedocs.io/en/latest/running_mypy.html#ignore-missing-imports">https://mypy.readthedocs.io/en/latest/running_mypy.html#ignore-missing-imports</a><br />
+<br />
+and linting with<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ flake8 compute.py</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">compute.py:4:80: E501 line too long (89 &gt; 79 characters)
+</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: inherit;">and check doctest using</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ python3 -m doctest -v compute.py</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: inherit;">Code complexity measurement:</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ python3 -m mccabe compute.py</span>
+
+{% endblock %}

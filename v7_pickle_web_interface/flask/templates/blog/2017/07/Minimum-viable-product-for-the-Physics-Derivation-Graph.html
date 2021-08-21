@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Minimum viable product for the Physics Derivation Graph</H1>
+
+<P><small>Published 2017-07-09T00:57:00.003Z by Physics Derivation Graph</small></P>
+
+I've been looking for <a href="https://physicsderivationgraph.blogspot.com/2017/06/realizing-my-value-for-physics.html">ways to pare down the tasks</a> that I face in building the&nbsp;Physics Derivation Graph. Defining a&nbsp;<a href="https://en.wikipedia.org/wiki/Minimum_viable_product">minimum viable product</a> for delivery would help prioritize what I work on.<br />
+<br />
+Although the <a href="https://d3js.org/">d3js</a>-based interactive graphs are neat, they don't provide much value. The static <a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG</a>s of derivations are not as sexy, but they are easier to navigate. The PNGs are the minimum viable product.<br />
+<br />
+As far as storage formating, I think the <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v4_file_per_expression">"file per expression" approach</a> is still the best option, compared to CSV, XML, and MathML.<br />
+<br />
+Thus, the MVP needs to be able to generate PNGs of a graph from derivations stored in the "file per expression" method.<br />
+<br />
+Generating a file per expression is a tedious task that both limits scalability and could introduce errors if done manually. The command-line based&nbsp;<a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v3_CSV/bin/interactive_user_prompt.py">interactive user prompt</a> is a useful tool that addresses both concerns.<br />
+<br />
+The interactive user prompt is a potential time sink. Minimum functionality is user should be able to enter a new derivation and write results to file.<br />
+Do not include ability to edit existing derivations, or to link existing derivations by deconflicting expressions with different identifiers.<br />
+<br />
+<i>Task 1</i>: generate graph PNG from file per expressions<br />
+<i>Task 2</i>: generate file per expression from interactive prompt<br />
+<i>Task 3</i>: convert from interactive command-line prompt to web-based prompt
+
+{% endblock %}

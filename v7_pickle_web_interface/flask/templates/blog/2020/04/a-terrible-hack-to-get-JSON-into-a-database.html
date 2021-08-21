@@ -1,0 +1,45 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>a terrible hack to get JSON into a database</H1>
+
+<P><small>Published 2020-04-08T19:38:00.002Z by Physics Derivation Graph</small></P>
+
+I've been using JSON to store Physics Derivation Graph content. The motive is that JSON is capable of storing data in a way that most closely reflects how I think of the data structure in Python (nested dictionaries and lists).<br />
+<br />
+To support multiple concurrent users, JSON doesn't work. The multiple users with concurrent writes would require locks to ensure changes are not lost.<br />
+Migrating from JSON to a table-based data structure (e.g., MySQL, PostGRESQL, SQLite) incurs a significant rewrite. Another option would be to use Redis, specifically the ReJSON plugin that alters the flat hashes in Redis to a nested structure closer to JSON.<br />
+<br />
+I'm wary of using a plugin for data storge, and I'm reluctant to rewrite the PDG as tables.<br />
+There is a terrible hack that allows me to stick with JSON while also resolving the concurrency issue that doesn't require a significant rewrite: I could serialize the JSON and store it in Redis as a very long string.<br />
+<br />
+Redis has a maximum string length of 512 MB (!) according to<br />
+<a href="https://redis.io/topics/data-types">https://redis.io/topics/data-types</a><br />
+<br />
+What I'm currently doing:<br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; import json</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; path_to_db = 'data.json'</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; with open(path_to_db) as json_file:</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp;dat = json.load(json_file)</span><br />
+<br />
+Terrible hack:<br />
+<br />
+Read the content as text, then save to redis<br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; with open(path_to_db) as jfil:</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; jcontent = jfil.read()</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; rd.set(name='data.json', value=jcontent)</span><br />
+<span style="font-family: Courier New, Courier, monospace;">True</span><br />
+<br />
+which can be simplified to<br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; with open(path_to_db) as jfil:</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; rd.set(name='data.json', value=jfil.read())</span><br />
+<br />
+Then, to read the file back in, use<br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; file_content = rd.get('data.json')</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; dat = json.loads(file_content)</span><br />
+<div>
+<br /></div>
+
+{% endblock %}

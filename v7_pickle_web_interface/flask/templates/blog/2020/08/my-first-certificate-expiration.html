@@ -1,0 +1,63 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>my first certificate expiration</H1>
+
+<P><small>Published 2020-08-09T20:41:00.007Z by Physics Derivation Graph</small></P>
+
+<div class="separator" style="clear: both; text-align: center;">
+This morning I was greeted with this warning from Chrome when visiting <a href="https://derivationmap.net/">https://derivationmap.net</a></div>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-DhpVxAlwkbw/XzBW4-Vya3I/AAAAAAABCiw/RG6bcnAj0Y8dXm0UoTREbvtHtGADEqGtgCLcBGAsYHQ/s1600/Screen%2BShot%2B2020-08-09%2Bat%2B4.03.52%2BPM.png" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="468" data-original-width="824" height="363" src="https://1.bp.blogspot.com/-DhpVxAlwkbw/XzBW4-Vya3I/AAAAAAABCiw/RG6bcnAj0Y8dXm0UoTREbvtHtGADEqGtgCLcBGAsYHQ/s640/Screen%2BShot%2B2020-08-09%2Bat%2B4.03.52%2BPM.png" width="640" /></a></div>
+The error message indicated my certificates had expired.<br />
+<br />
+I SSH'd into my DigitalOcean node and ran a scan of the certs that certbot can find<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ sudo certbot renew</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">----------------------</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Processing /etc/letsencrypt/renewal/derivationmap.net.conf</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">----------------------</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Cert not yet due for renewal</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">----------------------</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">The following certs are not due for renewal yet:</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; /etc/letsencrypt/live/derivationmap.net/fullchain.pem expires on 2020-10-08 (skipped)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">No renewals were attempted.</span><br />
+<br />
+However, when I run a manual scan of the certs used by my site,<br />
+<br />
+<pre>$ openssl x509 -dates -noout &lt; /home/pdg/proofofconcept/v7_pickle_web_interface/certs/fullchain.pem
+notBefore=May 11 15:26:19 2020 GMT
+notAfter=Aug&nbsp; 9 15:26:19 2020 GMT
+</pre>
+<div>
+<br /></div>
+<div>
+The corresponds with the command history entry from&nbsp;2020-05-11,</div>
+<pre>sudo certbot certonly --webroot \
+-w /home/pdg/proofofconcept/v7_pickle_web_interface/certs \
+--server https://acme-v02.api.letsencrypt.org/directory \
+-d derivationmap.net -d www.derivationmap.net
+</pre>
+<h2>Solution</h2>
+<div>
+delete existing certs</div>
+<pre>sudo rm -rf /etc/letsencrypt/{live,renewal,archive}/{derivationmap.net,derivationmap.net.conf}/
+</pre>
+<p>request new certs</p>
+<pre>sudo certbot certonly --webroot \
+-w /home/pdg/proofofconcept/v7_pickle_web_interface/certs \
+--server https://acme-v02.api.letsencrypt.org/directory \
+-d derivationmap.net -d www.derivationmap.net</pre>
+<p>Copy new certs to directory that nginx mounts in Docker-compose</p>
+<pre>cd /home/pdg/proofofconcept/v7_pickle_web_interface/certs
+sudo cp /etc/letsencrypt/live/derivationmap.net/fullchain.pem .
+sudo cp /etc/letsencrypt/live/derivationmap.net/privkey.pem .
+sudo chown pdg:pdg privkey.pem
+openssl dhparam -out dhparam.pem 2048
+</pre>
+<p>Restart Docker-compose</p>
+<pre>docker-compose up --build --force-recreate --remove-orphans --detach</pre>
+
+<p>If the docker containers are not restarted, the changes made to the file on the host won't take effect.</p><p>Verify in a browser that&nbsp;https://derivationmap.net/ has the updated certificate.</p><p>Set a calendar reminder to renew the certificate</p>
+
+{% endblock %}

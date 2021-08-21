@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>I'm stuck -- I don't know how to proceed</H1>
+
+<P><small>Published 2015-12-12T02:36:00.001Z by Physics Derivation Graph</small></P>
+
+<i>Current status</i>:<br />
+I've written a translator that takes exported .tex files from EquationMap.com and converts the output to syntax for the Physics Derivation Graph. This effectively "solves" the interface problem for me, but not anyone else. That is, if someone else wanted to provide content for the PDG, they could use EquationMap, but then they'd need to submit the content to me. That clearly doesn't scale. However, I don't have a huge number of contributors to contend with.<br />
+<br />
+Given that I have a user input interface, that leaves a few major tasks:<br />
+<ul>
+<li>building content</li>
+<li>checking content using a CAS</li>
+<li>talk to potential users</li>
+</ul>
+<br />
+I don't know how to deal with the CAS, as Mathematica is useful but not free and Sympy is free but not as useful.
+<br />
+<br />
+I'm hesitant to build content, given that I can't do anything useful when viewing the graph of everything. Also, queries are not possible; current state is display only.
+
+{% endblock %}

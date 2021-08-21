@@ -1,0 +1,17 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>read-only static page (web 1.0) versus user-editable dynamic content (web 2.0)</H1>
+
+<P><small>Published 2015-11-30T20:30:00.001Z by Physics Derivation Graph</small></P>
+
+I recently found a use case for&nbsp;user-editable dynamic web content, which is a significant shift from the previous use case of&nbsp;read-only static web pages. I've spent the day exploring how to enable&nbsp;user-editable dynamic content using Flask as a web framework.<br />
+<br />
+I realized that d3js is a distractingly pretty interface for the static graph, but it doesn't move me towards&nbsp;<a href="http://equationmap.com/">EquationMap.com</a>'s intuitive interface. My Flask-based interface for dynamic content is driven by conventional <a href="http://www.w3schools.com/html/html_forms.asp">form-based input</a>. While this would accomplish the functionality, it's not as sexy as EquationMap.<br />
+<br />
+There remains important work to be done with the static read-only content, namely a "zoom" interface which connects the concept map to specific derivations.<br />
+<br />
+<br />
+Update 20151207: a generated "overview" concept map showing the relations between derivations was created
+
+{% endblock %}

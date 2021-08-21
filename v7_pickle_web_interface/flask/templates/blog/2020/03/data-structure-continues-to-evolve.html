@@ -1,0 +1,132 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>data structure continues to evolve</H1>
+
+<P><small>Published 2020-03-20T11:57:00.003Z by Physics Derivation Graph</small></P>
+
+I've experimented with seven different data structures for the Physics Derivation Graph:<br />
+<br />
+<ul>
+<li>v1_plain_text</li>
+<li>v2_XML</li>
+<li>v3_CSV</li>
+<li>v4_file_per_expression</li>
+<li>v5_property_graph</li>
+<li>v6_sqlite</li>
+<li>v7_pickle_web_interface</li>
+</ul>
+<div>
+Each of these have required a rewrite of the code from scratch, as well as transfer code (to move from n to n+1).&nbsp;</div>
+<div>
+<br /></div>
+<div>
+These changes progress concurrently with my knowledge of data structures. I didn't know about property graphs when I was implementing v1, v2, and v3. I wasn't comfortable with SQL when I implemented v4. I didn't know about <a href="https://en.wikipedia.org/wiki/Tidy_data">Tidy data</a> when I implemented v1 to v6.&nbsp; The data structures used in the PDG slightly lag my understanding of data structures.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+Within a given implementation, there are design decisions with trade-offs to evaluate. I typically don't know all the options or consequences until I implement one of them and then determine what inefficiencies exist. Knowledge gained through evolutionary iteration is expensive and takes a lot of time.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+Here's an example of two "minor" tweaks that incur a rewrite of all the code. My current data structure in v7 is</div>
+<div>
+<br /></div>
+<div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">dat['derivations'] = {</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; 'fun deriv': { # name of derivation</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp;'4928482': {&nbsp; &nbsp; # key is "step ID"&nbsp; &nbsp;</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'inf rule': 'declare initial expr',</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'inputs':&nbsp; {},</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'feeds':&nbsp; &nbsp;{},</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'outputs': {'9428': '4928923942'}, # key is "expr local ID", value is "expr global ID"</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'linear index': 1}, # linear index for PDF and for graph orientation</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp;'2948592': {</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'inf rule': 'add X to both sides',</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'inputs':&nbsp; {'9428': '4928923942'},</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'feeds':&nbsp; &nbsp;{'3190': '9494829190'},</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'outputs': {'3921': '9499959299'},</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'linear index': 2},</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+A better data structure would be</div>
+<div>
+<br /></div>
+<div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">dat['derivations'] = {</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; 'fun deriv': { # name of derivation</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp;'4928482': {&nbsp; &nbsp; # key is "step ID"&nbsp; &nbsp;</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'inf rule': 'declare initial expr',</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'inputs':&nbsp; {},</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'feeds':&nbsp; &nbsp;{},</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'outputs': {1: '9428'}, # key is index, value is "expr local ID"</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'linear index': 1}, # linear index for PDF and for graph orientation</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp;'2948592': {</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'inf rule': 'add X to both sides',</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'inputs':&nbsp; {1: '9428'},</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'feeds':&nbsp; &nbsp;{1: '3190'},</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'outputs': {1: '3921'},</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 'linear index': 2},</span></div>
+</div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;"><br /></span></div>
+<div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">dat['expr local to global'] = {</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; '9428': '4928923942',</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; '3190': '9494829190',</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; '3921': '9499959299',</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; '9128': '1492842000'}</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+The reasons this second data structure is an improvement is</div>
+<div>
+<ol>
+<li>the global expression ID does not appear in the 'derivations' dict</li>
+<li>the inputs, feeds, and outputs have an index. The index is relevant for both printing in a PDF and use in inference rules.&nbsp;</li>
+</ol>
+<div>
+I'm slowly evolving towards the likelihood that there will be a "v8" based on tables. The backend database would be something like SQLite3, and the internal representation in Python would be dataframes.&nbsp;</div>
+</div>
+<div>
+<br /></div>
+<div>
+I'm not going to switch to v8 yet; I'll continue to invest effort in v7 for a bit longer to explore a few challenges (like implementation of inference rules).&nbsp;</div>
+
+{% endblock %}

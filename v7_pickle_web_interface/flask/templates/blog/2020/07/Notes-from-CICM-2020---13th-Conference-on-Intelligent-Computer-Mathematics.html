@@ -1,0 +1,111 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Notes from CICM 2020 - 13th Conference on Intelligent Computer Mathematics</H1>
+
+<P><small>Published 2020-07-28T14:41:00Z by Physics Derivation Graph</small></P>
+
+<a href="https://cicm-conference.org/2020/cicm.php">https://cicm-conference.org/2020/cicm.php</a><br />
+<br />
+The schedule is <a href="https://easychair.org/smart-program/CICM-13/">https://easychair.org/smart-program/CICM-13/</a><br />
+<br />
+The list below is incomplete since I didn't attend every presentation.<br />
+<h2>
+Monday</h2>
+<div>
+<br />
+Joe Wells: slides for this talk are on Ciarán's web page: <a href="https://www.macs.hw.ac.uk/~cmd1/assets/talks/cicm-2020-talk.pdf">https://www.macs.hw.ac.uk/~cmd1/assets/talks/cicm-2020-talk.pdf</a><br />
+There is also a nearly-identical preprint on arxiv: <a href="https://arxiv.org/pdf/2005.13954.pdf">https://arxiv.org/pdf/2005.13954.pdf</a><br />
+The machine-checked proofs that the axioms of zfp hold in the model we build for it can be found at: <a href="https://www.macs.hw.ac.uk/~cmd1/cicm2020/ZFPDoc/ZFP.html">https://www.macs.hw.ac.uk/~cmd1/cicm2020/ZFPDoc/ZFP.html</a><br />
+<br />
+Hanna Lachnitt:&nbsp;<a href="https://youtu.be/nbwZ-521sMQ">https://youtu.be/nbwZ-521sMQ</a></div>
+<div>
+<br /></div>
+<h2>
+Tuesday</h2>
+<h3>
+Survey of languages for formalizing math :: Cezary Kaliszyk</h3>
+<br />
+<i>Observation</i>: The language of formal systems is not the way mathematicians actually communicate (in person verbally, in writing).<br />
+Computer Algebra Systems (CAS) and Proof Assistants are viewed as "code" separate from Natural Language.<br />
+<br />
+Natural Language Processing (NLP) of math does not recognize repeated use of the same notation, whereas humans recognize that as a convention.<br />
+<br />
+Aspects that distinguish formal from informal communication: types, inheritance, equality (isomorphism). Each of those aspects are typically implicit for human consumers.<br />
+The goal of formal specification is proof, whereas in informal communication the goal is to convince the reader. Those are distinct.<br />
+<br />
+Spectrum of math language formality:<br />
+<table border="1">
+   <tbody>
+<tr>
+<td>natural language</td>
+<td>presentation</td>
+<td>semantic</td>
+<td>controlled natural languages</td>
+<td>proof assistants</td>
+</tr>
+<tr>
+<td>speaking</td>
+       <td>Latex</td>
+       <td>CAS</td>
+       <td><a href="http://nevidal.org/sad.en.html"><span id="goog_24214623"></span>ForTheL<span id="goog_24214624"></span></a></td>
+       <td>Coq</td>
+     </tr>
+<tr>
+<td>written text</td>
+       <td>presentation MathML</td>
+       <td>sTeX</td>
+       <td>Mizar</td>
+       <td>Lean</td>
+     </tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+       <td>Isabelle</td>
+</tr>
+</tbody></table>
+&lt;-- more informal&nbsp; &nbsp; &nbsp; &nbsp; //&nbsp; &nbsp; &nbsp; &nbsp;more formal --&gt;<br />
+<br />
+<i>Observation</i>: formal language can be more concise than Controlled Natural Language due to possibility of autocompletion in formal languages.
+
+<br />
+<br />
+Cezary expects deep learning to be useful in translation from informal to formal languages, though the capability seems to vary.<br />
+<br />
+<h3>
+Representing Structural Language features in formal meta languages :: Dennis Muller</h3>
+<br />
+MMT is defined in a 2013 Kohlhase paper "A scalable module system"<br />
+MMT is for math theories.<br />
+<br />
+<h3>
+Formalization of Elementary Number Theory in Mizar :: Adam Naumowicz</h3>
+Mizar has 60,000 theorems and 12,000 definitions in 1300 files.<br />
+Mizar is based on set theory.<br />
+<br />
+The focus of this talk is the first 10 problems from the 1970 textbook by&nbsp;Sierpinski.<br />
+<br />
+<i>Question from audience</i>: when will Mizar be open source?<br />Adam has no problem with open sourcing Mizar.<br />The specific barrier is not clear to me.<br />
+<br />
+<h3>
+Interpreting Math texts in Naproche-SAD :: Peter Koepke</h3>
+Naproche = Natural Proof Checking<br />
+SAD = System of Automated Deduction<br />
+<br />
+The origin of Mizar is in a 1985 paper "Computer Aided Reasoning" by Blair and Trybulec<br />
+<br />
+<h3>
+Integrating ForTheL with Latex :: Adrian De Lon</h3>
+technique is to separate Latex text from math Latex and then develop separate grammars.<br />
+<a href="https://github.com/adelon/nave">https://github.com/adelon/nave</a>&nbsp;- written in Haskell<br />
+<br />
+<br />
+<h3>
+Guided tour of Formally verified constraint solvers :: Catherine Dubois</h3>
+bugs have been found in constraint programming<br />
+<br />
+<br />
+
+{% endblock %}

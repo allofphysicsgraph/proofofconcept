@@ -1,0 +1,48 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>quantum bra ket Dirac notation in Sympy</H1>
+
+<P><small>Published 2020-07-29T13:21:00.004Z by Physics Derivation Graph</small></P>
+
+Quantum mechanics notation is supported in SymPy, but not for parsing Latex input.<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; import sympy</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.__version__</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">'1.5.1'</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; from sympy.parsing.latex import parse_latex</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.srepr(parse_latex("\\langle a |"))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">"Mul(Symbol('a'), Symbol('langle'))"</span><br />
+<br />
+That isn't what I intended.<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; from sympy.physics.quantum.state import Ket, Bra</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.latex(Bra('a'))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">'{\\left\\langle a\\right|}'</span><br />
+<br />
+SymPy can produce Latex; can it then parse that?<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.srepr(parse_latex("{\\left\\langle a\\right|}"))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; ...</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; File "/usr/local/lib/python3.6/dist-packages/sympy/parsing/latex/_parse_latex_antlr.py", line 57, in syntaxError</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; raise LaTeXParsingError(err)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">sympy.parsing.latex.errors.LaTeXParsingError: I don't understand this</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">{\left\langle a\right|}</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">~~~~~~~~~~~~~~~~~~~~~^</span><br />
+<div>
+<br /></div>
+<div>
+I've opened a ticket&nbsp;</div>
+<div>
+<a href="https://github.com/sympy/sympy/issues/19854">https://github.com/sympy/sympy/issues/19854</a><br />
+<br />
+<br />
+A good amount of Dirac notation is supported in Sympy:<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; from sympy.physics.quantum import Operator, Dagger</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.latex(Bra('a')*Dagger(Operator('A'))*Ket('b'))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">{\left\langle a\right|} A^{\dagger} {\left|b\right\rangle }</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; sympy.latex(sympy.Symbol('alpha')*Bra('pdg1')*Ket('pdg2'))&nbsp;</span><br />
+<span style="font-family: Courier New, Courier, monospace;">'\\alpha {\\left\\langle pdg_{1}\\right|} {\\left|pdg_{2}\\right\\rangle }'</span></div>
+
+{% endblock %}

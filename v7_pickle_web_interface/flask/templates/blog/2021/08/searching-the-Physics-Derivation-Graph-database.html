@@ -1,0 +1,33 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>searching the Physics Derivation Graph database</H1>
+
+<P><small>Published 2021-08-20T20:56:00Z by Physics Derivation Graph</small></P>
+
+<p>The&nbsp;Physics Derivation Graph database is just a JSON file, so searching a plain text file is easy. However, the value of search is in the relations, not just finding a match.&nbsp;</p><p>There are multiple aspects of the Physics Derivation Graph database to search: symbols, units, dimensions, inference rules, symbol names, operators.&nbsp;</p><p>A workflow for search is</p>
+<p></p>
+<ol style="text-align: left;">
+  <li>user searches web interface for "x"</li>
+  <li>the search interface returns multiple rows of a table; something like
+   <table border="1">
+    <tbody>
+      <tr>
+        <th>symbol ID</th><th>symbol</th><th>name</th><th>dimension</th>   <th>units</th>
+      </tr><tr>
+        <td>948294</td>   <td>x_m</td>   <td>asdf</td><td>L:0,T:1,M:0</td> <td></td>
+      </tr><tr>
+        <td>113942</td>   <td>y_x</td>   <td>mimi</td><td>L:-1,T:0,M:0</td><td>Kg</td>
+      </tr><tr>
+        <td>501901</td>   <td>XM</td>    <td>minX</td><td>L:0,T:2,M:1</td> <td>seconds^2</td>
+      </tr>
+    </tbody>
+</table>
+  </li>
+  <li>if the user selects one of the symbols, then</li>
+  <li>the search interface shows which expressions contain that symbol</li>
+  <li>if the user selects one of the expressions, then</li>
+  <li>the search interface shows which derivations contain that expression</li>
+</ol><div><br /></div><div>Currently, the search of symbols (&nbsp;<a href="https://derivationmap.net/list_all_symbols">https://derivationmap.net/list_all_symbols</a> ) is separate from the search of expressions ( <a href="https://derivationmap.net/list_all_expressions">https://derivationmap.net/list_all_expressions</a> ) though the two are hyperlinked in both directions.</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>heroku on mac</H1>
+
+<P><small>Published 2015-10-08T02:04:00.001Z by Physics Derivation Graph</small></P>
+
+<div class="p1">
+<span class="s1">&nbsp; 502&nbsp; sudo pip install virtualenv</span></div>
+<div class="p1">
+<span class="s1">&nbsp; 503&nbsp; heroku</span></div>
+<div class="p1">
+&nbsp; 505&nbsp; cd ~/version_controlled/</div>
+<div class="p1">
+&nbsp; 507&nbsp; git clone https://github.com/heroku/python-getting-started.git</div>
+<div class="p1">
+<span class="s1">&nbsp; 508&nbsp; cd python-getting-started/</span></div>
+<div class="p1">
+&nbsp; 510&nbsp; heroku create</div>
+<div class="p1">
+<span class="s1">&nbsp; 511&nbsp; git push heroku master</span></div>
+<div class="p1">
+<span class="s1">&nbsp; 512&nbsp; heroku ps:scale web=1</span></div>
+<div class="p1">
+&nbsp; 514&nbsp; heroku open</div>
+<br />
+<div class="p1">
+<br /></div>
+
+{% endblock %}

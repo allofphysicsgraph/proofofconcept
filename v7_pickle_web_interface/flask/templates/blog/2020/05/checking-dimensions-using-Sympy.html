@@ -1,0 +1,53 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>checking dimensions using Sympy</H1>
+
+<P><small>Published 2020-05-27T17:41:00.006Z by Physics Derivation Graph</small></P>
+
+Suppose we have the expression<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">F = m a</span><br />
+and we want to validate the consistency of dimensions.<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">import sympy.physics.units</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">import sympy.physics.units.systems.si</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">from sympy.parsing.latex import parse_latex</span><br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">eq = parse_latex("F = m a")</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">lhs = eq.lhs</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">rhs = eq.rhs</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">set_of_symbols_in_eq = eq.free_symbols</span><br />
+<br />
+for each recognized symbol, associate that symbol with the ID in the PDG.<br />
+for each symbol ID in the PDG, determine the dimensions of that variable.<br />
+for each symbol, create a new "_dim" variable for the dimensions based on the lookup table in the PDG<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">F = sympy.physics.units.mass * sympy.physics.units.length / (sympy.physics.units.time**2)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">m = sympy.physics.units.mass</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">a = sympy.physics.units.length / (sympy.physics.units.time**2)</span><br />
+<br />
+I wanted to avoid manually entering the AST,<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">sympy.physics.units.systems.si.dimsys_SI.equivalent_dims(F_dim, m_dim * a_dim)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: inherit;">This conversation&nbsp;</span><br />
+<span style="font-family: inherit;">https://groups.google.com/d/msg/sympy/_RnbbOqhERM/dehog-xpAgAJ</span><br />
+<span style="font-family: inherit;">led to</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">import sympy</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">from sympy.physics.units import mass, length, time</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">from sympy.physics.units.systems.si import dimsys_SI</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">from sympy.parsing.latex import parse_latex</span><br />
+<span style="font-family: inherit;">convert the Latex string into SymPy expression</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">eq = parse_latex("F = m a")</span><br />
+<span style="font-family: inherit;">specify the dimension of each symbol&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">F = mass * length / time**2</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">m = mass</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">a = length / time**2</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">dimsys_SI.equivalent_dims( eval(str(eq.lhs)), eval(str(eq.rhs)) )</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: inherit;">For more on this content, see</span><br />
+<span style="font-family: inherit;"><a href="https://groups.google.com/d/msg/sympy/_RnbbOqhERM/YAoJAbyPAgAJ">https://groups.google.com/d/msg/sympy/_RnbbOqhERM/YAoJAbyPAgAJ</a></span>
+
+{% endblock %}

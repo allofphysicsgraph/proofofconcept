@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>limiting my effort to just Latex for expressions</H1>
+
+<P><small>Published 2018-05-04T01:47:00.001Z by Physics Derivation Graph</small></P>
+
+The core of the Physics Derivation graph is the relation between expressions. I've considered how much additional knowledge could be captured by <a href="https://physicsderivationgraph.blogspot.com/2017/05/abstract-syntax-trees-and-inference.html">storing expressions as Abstract Syntax Trees</a>. While this would add a lot of work and therefore take more time, there's potentially a lot of value in having a more robust representation. Additionally, there's the challenge that <a href="https://physicsderivationgraph.blogspot.com/2017/06/representing-inference-rules-as-both.html">I don't know how to represent all expressions in Physics using Abstract Syntax Trees</a>.<br />
+<br />
+Rather than store each expression as an AST, I'm going to limit my effort to just storing expressions using Latex. As a consequence, <b>the validity of inference rules applied to expressions not be able to be checked</b>. If someone comes up with a representation more useful than Latex (ie ASTs, MathML, etc), then a conversion will need to be performed.<br />
+<br />
+The second reason the choice of Latex is significant because <b>it limits how far down in the hierarchy that can be enumerated</b>. Specifically, in the context of these layers<br />
+<br />
+<ul>
+<li>Physics derivation graph</li>
+<li>Derivation&nbsp;</li>
+<li>Step&nbsp;</li>
+<li>Expressions, inference rules&nbsp;</li>
+<li>Symbol, operators</li>
+</ul>
+<br />
+the Physics Derivation Graph with Latex will not be able to explore systematically the symbols and operators used.
+
+{% endblock %}

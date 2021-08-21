@@ -1,0 +1,59 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>plan for parsing math latex expressions from arxiv</H1>
+
+<P><small>Published 2020-05-26T21:37:00.004Z by Physics Derivation Graph</small></P>
+
+The arxiv content is available through AWS S3:&nbsp;<a href="https://arxiv.org/help/bulk_data_s3">https://arxiv.org/help/bulk_data_s3</a><br />
+As an alternative to S3, arxiv points to a subset that's available without going through AWS:&nbsp;<a href="https://www.cs.cornell.edu/projects/kddcup/datasets.html">https://www.cs.cornell.edu/projects/kddcup/datasets.html</a><br />
+<div>
+<br />
+The value of having a large number of expressions in Latex is that we could use the expressions to predict what a user wants to enter, decreasing the amount of manual entry required. Also, if a derivation contains similar expressions to what exists in the arxiv content, we could investigate whether the derivation is related to the arxiv paper.</div>
+<br />
+<h3>
+Steps for working with arxiv data</h3>
+Download papers (in .tex format) for a given domain.<br />
+<br />
+For each tex file, separate the text content from the math from the latex commands.<br />
+<i>Task</i>: identify all latex commands.<br />
+<i>Task</i>: identify latex commands that alter the math latex content (e.g., \newcommand)<br />
+<br />
+Before attempting to parse the math latex content, remove all presentation-related artifacts<br />
+<ul>
+<li>replace '\left(' with '('</li>
+<li>replace '\right)' with ')'</li>
+<li>replace '\ ' with ' '</li>
+<li>replace '\,' with ' '</li>
+<li>replace '\quad' with ' '</li>
+<li>replace '\qquad' with ' '</li>
+</ul>
+<i>Task</i>: identify all non-math commands used in math latex.<br />
+<br />
+Sources to help with parsing math latex:<br />
+<ul>
+<li>within the math latex string to parse, what can be deduced about the expected context?</li>
+<li>given other math expressions in the same paper, what would be consistent?</li>
+<li>given the text in a paper surrounding the math expressions, what would be expected based on keywords?</li>
+<li>given other papers in the same domain or based on citations, what would be likely?</li>
+<li>what is statistically likely give the corpus of all articles?</li>
+<ul>
+<li>Use the Trie data structure to determine what the valid characters in the grammar should be. (Probably be some subset of ASCII with some Unicode chars.)&nbsp;</li>
+<li>What are the tokens/symbols of the language?</li>
+<li>What are the common sequences of tokens?</li>
+<li><div dir="auto">
+What are the appropriate labels for the tokens?</div>
+</li>
+<li><div dir="auto">
+Instead of listing 10 different relational operators each time, create a group of relational operators and reference the group.</div>
+</li>
+<li><div dir="auto">
+What are some logical grouping of symbols?</div>
+</li>
+</ul>
+</ul>
+Parsing a LaTeX expression should return candidate SymPy expressions with a probability. In case of unambiguous matching, only one expression should match (p=1). In the case of ambiguous matching, two or more SymPy expressions some probability (p_1 + p_2 = 1).<br />
+<br />
+That is, in some sense, the same process a human goes through to decode the intended meaning of any given math expression in a scientific paper. We are looking to encode that process as a Python program.
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>grepping nginx logs to observe user behavior</H1>
+
+<P><small>Published 2020-05-01T11:02:00Z by Physics Derivation Graph</small></P>
+
+<h2>
+<span style="font-family: inherit; font-weight: normal;">What IP addresses made page requests and how many pages did they request?</span></h2>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>cat nginx_access.log | cut -d' ' -f1,7 | grep -v "\.xml\|\.js\|php\|cgi\|\.png\|\.txt\|/$\|400$" | cut -d' ' -f1 | sort | uniq -c | sort -nr</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; 431 <a href="http://geoiplookup.net/ip/71.244.214.232/">71.244.214.232</a></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; 301 <a href="http://geoiplookup.net/ip/18.223.152.78">18.223.152.78</a></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; 131 <a href="http://geoiplookup.net/ip/66.249.79.109/">66.249.79.109</a>&nbsp; &nbsp;- Googlebot</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; 106 <a href="http://geoiplookup.net/ip/96.245.195.226/">96.245.195.226</a></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp;50 <a href="http://geoiplookup.net/ip/66.249.79.111/">66.249.79.111</a>&nbsp; &nbsp;- Google crawler</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp;24 <a href="http://geoiplookup.net/ip/66.249.79.113/">66.249.79.113</a>&nbsp; &nbsp;- Google crawler</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp;23 <a href="http://geoiplookup.net/ip/174.198.15.222/">174.198.15.222</a></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp; 9 <a href="http://geoiplookup.net/ip/35.197.133.35/">35.197.133.35</a></span><br />
+<div>
+<br />
+That same list without the leading counts:<br />
+<span style="font-family: Courier New, Courier, monospace;">$ <b>cat nginx_access.log | cut -d' ' -f1,7 | grep -v "\.xml\|\.js\|php\|cgi\|\.png\|\.txt\|/$\|400$" | cut -d' ' -f1 | sort | uniq -c | sort -nr | head -n 20 | tr -s " " | cut -d' ' -f3</b></span><br />
+which is handy for&nbsp;<a href="https://www.maxmind.com/en/geoip-demo">https://www.maxmind.com/en/geoip-demo</a><br />
+<br />
+<br /></div>
+<h2>
+<span style="font-weight: normal;">
+What were the page dwell times for a given IP address?</span></h2>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$</span><span style="font-family: courier new, courier, monospace;"><b>&nbsp;ip="18.223.152.78"</b></span><br />
+<span style="font-family: courier new, courier, monospace;">$ <b>cat nginx_access.log | grep $ip | cut -d' ' -f4,7 | grep -v "\.png\|\.js"</b></span></div>
+</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[30/Apr/2020:19:19:29 /navigation</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[30/Apr/2020:19:19:35 /list_all_expressions?referrer=navigation</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[30/Apr/2020:19:19:42 /list_all_symbols?referrer=_table_of_expressions</span></div>
+</div>
+<div>
+<br />
+<br /></div>
+<div>
+<h2>
+<span style="font-weight: normal;">What was the user agent strings for a given IP address?</span></h2>
+<span style="font-family: Courier New, Courier, monospace;">$ <b>cat nginx_access.log | grep $ip | cut -d' ' -f12- | sort | uniq -c</b></span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp;60 "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" "-"</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; 3 "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.92 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" "-"</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; 8 "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)" "-"</span></div>
+<div>
+<br /></div>
+
+{% endblock %}

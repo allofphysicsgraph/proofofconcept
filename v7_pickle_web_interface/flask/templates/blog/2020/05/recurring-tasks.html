@@ -1,0 +1,45 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>recurring tasks</H1>
+
+<P><small>Published 2020-05-09T15:54:00.002Z by Physics Derivation Graph</small></P>
+
+There are a few recurring tasks:<br />
+<ul>
+<li>blacken code to enforce formatting consistency</li>
+<li>manually inspect PDFs to verify output; these seem to be the most sensitive aspect of the presentation</li>
+<li>mypy to validate consistency</li>
+<li>sphinx to generate current documentation</li>
+<li>DigitalOcean renewal of $5/month</li>
+<li>Let's Encrypt certificate renewal - 90 days -&nbsp;<a href="https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https">https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https</a></li>
+<li>check site for broken links -&nbsp;<a href="https://github.com/allofphysicsgraph/proofofconcept/issues/138">https://github.com/allofphysicsgraph/proofofconcept/issues/138</a></li>
+<li>check Google index status -&nbsp;<a href="https://github.com/allofphysicsgraph/proofofconcept/issues/159">https://github.com/allofphysicsgraph/proofofconcept/issues/159</a></li>
+<li>validate SSL status -&nbsp;<a href="https://www.ssllabs.com/ssltest/analyze.html?d=derivationmap.net&amp;latest">https://www.ssllabs.com/ssltest/analyze.html?d=derivationmap.net&amp;latest</a></li>
+</ul>
+<div>
+Each of these tasks take time, so including all of them as git commit hooks induces undesirable latency.&nbsp;</div>
+<div>
+<br />
+Currently .git/hooks/pre-commit contains</div>
+<br />
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">#!/bin/bash</span></div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cd v7_pickle_web_interface/flask</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker run --rm -v`pwd`:/scratch --entrypoint='' -w /scratch/ flask_ub make black</span></div>
+</div>
+<div>
+<br /></div>
+<div>
+I don't want to run mypy and sphinx every time because that would take a lot of my time.</div>
+<div>
+I could run these two every tenth commit.<br />
+<br />
+To get a command to run every tenth commit, I could leverage the date and run a command if the date is modulo 10.<br />
+<br />
+GIT_AUTHOR_DATE='@1589048959 -0400'</div>
+
+{% endblock %}

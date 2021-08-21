@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>disable DigitalOcean default gunicorn and nginx; start docker-compose</H1>
+
+<P><small>Published 2020-04-25T21:46:00.002Z by Physics Derivation Graph</small></P>
+
+<span style="font-family: inherit;">See this post</span><br />
+<span style="font-family: inherit;"><a href="https://www.digitalocean.com/community/questions/how-to-stop-gunicorn-nginx-from-serving-up-the-default-project-on-ubuntu-django-droplet">https://www.digitalocean.com/community/questions/how-to-stop-gunicorn-nginx-from-serving-up-the-default-project-on-ubuntu-django-droplet</a></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ service gunicorn stop</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ service nginx stop</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ sudo systemctl disable nginx.service</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ sudo systemctl disable gunicorn.service</span><br />
+<br />
+Then I added "restart: always" to the docker-compose.yaml file<br />
+https://docs.docker.com/compose/compose-file/<br />
+based on this post:<br />
+https://stackoverflow.com/a/52955638/1164295
+
+{% endblock %}

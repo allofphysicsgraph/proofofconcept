@@ -1,0 +1,41 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Python: convert XML to dictionary</H1>
+
+<P><small>Published 2018-07-22T14:56:00.001Z by Physics Derivation Graph</small></P>
+
+<span style="font-family: Courier New, Courier, monospace;">#https://stackoverflow.com/questions/13101653/python-convert-complex-dictionary-of-strings-from-unicode-to-ascii</span><br />
+<span style="font-family: Courier New, Courier, monospace;">def convert(input):</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; if isinstance(input, dict):</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; return {convert(key): convert(value) for key, value in input.iteritems()}</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; elif isinstance(input, list):</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; return [convert(element) for element in input]</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; elif isinstance(input, unicode):</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; return input.encode('utf-8')</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; else:</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; return input</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">#https://docs.python-guide.org/scenarios/xml/</span><br />
+<span style="font-family: Courier New, Courier, monospace;">import xmltodict</span><br />
+<span style="font-family: Courier New, Courier, monospace;">with open('sample.xml') as fd:</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; doc = xmltodict.parse(fd.read())</span><br />
+<span style="font-family: Courier New, Courier, monospace;">#print(doc)</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;"># doc is an ordered dict containing unicode.&nbsp;</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">#https://stackoverflow.com/questions/3860813/recursively-traverse-multidimensional-dictionary-dimension-unknown</span><br />
+<span style="font-family: Courier New, Courier, monospace;">import pprint</span><br />
+<span style="font-family: Courier New, Courier, monospace;">#pprint.pprint(doc) # expects dict, not ordered dict</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">#https://stackoverflow.com/questions/20166749/how-to-convert-an-ordereddict-into-a-regular-dict-in-python3</span><br />
+<span style="font-family: Courier New, Courier, monospace;">import json</span><br />
+<span style="font-family: Courier New, Courier, monospace;">from collections import OrderedDict</span><br />
+<span style="font-family: Courier New, Courier, monospace;">output_dict = json.loads(json.dumps(doc))</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;"># remove the unicode from keys and values</span><br />
+<span style="font-family: Courier New, Courier, monospace;">doc = convert(output_dict)</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">pprint.pprint(doc)</span>
+
+{% endblock %}

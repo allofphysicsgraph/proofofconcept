@@ -1,0 +1,42 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>converting the Physics Derivation Graph backend from JSON to a property graph</H1>
+
+<P><small>Published 2020-07-31T13:14:00.001Z by Physics Derivation Graph</small></P>
+
+I shared the JSON database with a few researchers and realized I am embarrassed by the pointer chasing needed to construct the graph. The complexity of numerical IDs used for every feature in the PDG is confusing.<br />
+<br />
+I had come up with a <a href="https://derivationmap.net/developer_documentation?referrer=_footer.html#historical%20evolution">property graph schema</a>&nbsp;which greatly simplifies the concepts and reduces the pointer chasing present in the JSON. Implementing the backend of the PDG as a property graph instead of JSON is a reasonable and beneficial task, but I'm not comfortable with any of the available property graph databases. There are many options available:<br />
+<br />
+<ul>
+<li><i>survey</i>:&nbsp;<a href="https://wiki.python.org/moin/PythonGraphApi">https://wiki.python.org/moin/PythonGraphApi</a></li>
+<li>Neo4j community edition</li>
+<li>OrientDB community edition</li>
+<li>TinkerPop</li>
+<li>CayleyGraph</li>
+</ul>
+<div>
+My criteria are open source, widely adopted, stable.&nbsp;</div>
+<div>
+I want the graph content to be plain text. For Neo4j, this means exporting graph content to a Cypher representation:</div>
+<div>
+<ul>
+<li><a href="https://neo4j.com/docs/labs/apoc/current/export/cypher/">https://neo4j.com/docs/labs/apoc/current/export/cypher/</a></li>
+<li><a href="https://neo4j.com/developer/kb/export-sub-graph-to-cypher-and-import/">https://neo4j.com/developer/kb/export-sub-graph-to-cypher-and-import/</a></li>
+</ul>
+<div>
+I want to be able to enforce constraints on the property graph to prevent undesired edges or properties. In Neo4j this is possible but not supported in the community edition.</div>
+</div>
+<div>
+<ul>
+<li><a href="https://neo4j.com/docs/cypher-manual/current/administration/constraints/">https://neo4j.com/docs/cypher-manual/current/administration/constraints/</a></li>
+<li><a href="https://neo4j.com/docs/labs/nsmntx/current/validation/">https://neo4j.com/docs/labs/nsmntx/current/validation/</a></li>
+</ul>
+<div>
+<br /></div>
+</div>
+<div>
+Staring at the current PDG JSON file, the structure is reasonably intuitive and relatively close to the&nbsp;<a href="https://derivationmap.net/developer_documentation?referrer=_footer.html#historical%20evolution">property graph schema</a>&nbsp;I had come up with. The JSON structure is not a "nodes and edges" design. The JSON is hierarchical (nested dictionaries) to both be more concise and to reduce the computational pointer chasing.&nbsp;</div>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>expanding the list of Computer Algebra Systems used by the Physics Derivation Graph</H1>
+
+<P><small>Published 2020-09-06T12:46:00.003Z by Physics Derivation Graph</small></P>
+
+The current implementation of the&nbsp;Physics Derivation Graph relies on user to 1) enter expressions as Latex and 2) assist/review the conversion from Latex to SymPy.<br />
+<br />
+The choice of Latex as the input interface is based on ease of use (conciseness, low barrier to entry) and could be replaced by other options for specifying expressions. Entering characters and then parsing into an AST could be applied to a variety of input methods. A second choice is what to use the AST for -- currently the output is Sympy,&nbsp;but a variety of output representations is available (Sage, Mathematica, Maxima, etc).<br />
+<br />
+In my experience with Sage, expressions in Sage are not as compact. There seems to be less support for features like units (feet, meters, seconds) -- https://ask.sagemath.org/question/49511/working-with-units/<br />
+<br />
+I'm confident there are expressions in the PDG that Sage supports and SymPy does not. Expanding the CAS used by PDG means having three representations -- Latex and SymPy and Sage. The negative consequences of this expansion would include<br />
+<ul>
+<li>increases the work needed to input the different representations, and</li>
+<li>increases the work of verifying consistency between representations, and&nbsp;</li>
+<li>imposes extra knowledge requirements on the developer, and</li>
+<li>additional dependencies</li>
+</ul>
+<div>
+The potential benefit would be coverage for validating some steps not currently possible with SymPy. There might be value to other people who want to compare SymPy to Sage.&nbsp;</div>
+
+{% endblock %}

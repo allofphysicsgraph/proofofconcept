@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>dhparam.pem necessary for nginix web server</H1>
+
+<P><small>Published 2021-07-10T12:07:00.005Z by Physics Derivation Graph</small></P>
+
+<p>This morning I was alerted by&nbsp;<a href="https://www.wachete.com/notifications">Wachete</a> that the <a href="https://derivationmap.net/">derivationmap.net</a> website was unavailable.&nbsp;</p>
+
+<p>I logged into the <a href="https://www.digitalocean.com/">digitalocean.com</a> virtual private server (VPS) and used <code>top</code> to see that the container processes were running.</p>
+
+<p>Normally the command I run to start the Docker containers is
+</p><pre>docker-compose up --build --force-recreate --remove-orphans --detach
+</pre>
+
+<p>To troubleshoot, I ran
+</p><pre>docker-compose up --build --force-recreate --remove-orphans
+</pre>
+<p>and the output was
+</p><pre>Successfully built 0ffaac97e769
+Successfully tagged v7_pickle_web_interface_nginx:latest
+Recreating v7_pickle_web_interface_flask_1 ... done
+Recreating v7_pickle_web_interface_nginx_1 ... done
+Attaching to v7_pickle_web_interface_flask_1, v7_pickle_web_interface_nginx_1
+nginx_1  | 2021/07/10 11:48:41 [emerg] 1#1: PEM_read_bio_DHparams("/certs/dhparam.pem") failed (SSL: error:0909006C:PEM routines:get_name:no start line:Expecting: DH PARAMETERS)
+nginx_1  | nginx: [emerg] PEM_read_bio_DHparams("/certs/dhparam.pem") failed (SSL: error:0909006C:PEM routines:get_name:no start line:Expecting: DH PARAMETERS)
+v7_pickle_web_interface_nginx_1 exited with code 1
+</pre>
+
+<p>The fix was to point nginix to the dhparam.pem file.</p><p><a href="https://security.stackexchange.com/questions/94390/whats-the-purpose-of-dh-parameters">https://security.stackexchange.com/questions/94390/whats-the-purpose-of-dh-parameters</a></p><p></p><p></p><p></p>
+
+{% endblock %}

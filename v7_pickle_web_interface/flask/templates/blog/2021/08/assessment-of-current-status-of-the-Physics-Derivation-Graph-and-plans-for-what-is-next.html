@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>assessment of current status of the Physics Derivation Graph and plans for what is next</H1>
+
+<P><small>Published 2021-08-14T11:01:00.003Z by Physics Derivation Graph</small></P>
+
+<h3 style="text-align: left;">What has been done</h3>
+<div>
+  <ul style="text-align: left;">
+    <li>developed content for multiple derivations that are linked</li>
+    <li>identified common symbols within and across derivations</li><li>created a data structure (currently JSON) for capturing all the content</li><li>created a website for displaying and interacting with content</li>
+    <li>validated steps within derivations using a computer algebra system (SymPy)</li><li>validated dimensions and units for expressions</li>
+  </ul>
+  </div>
+  <div><br /></div>
+  <h3 style="text-align: left;">Problems with the current approach</h3>
+<div>(1) In the process of showing that the math in a paper is correct, I decouple the math from the original paper. There is no connection between the equations in the text of a paper and the mathematical validation. As consequences,</div>
+  <div>
+    <ul style="text-align: left;">
+      <li>errors could occur if there is inconsistency between the paper and the formalized derivation</li>
+      <li>reader needs to context switch between the paper and the formalized derivation</li>
+    </ul>
+  </div>
+  <div>(2) There is a second decoupling between the latex and the computer algebra system representation.</div>
+  <div><br /></div>
+  <div>(3) Not all steps needed for a formalized derivation are present in the text of a paper, so a way of including those is needed.</div><div><br /></div><div>(4) Some expressions for a derivation are inline text rather than numbered expressions. It is possible to number and label inline equations; see <a href="https://tex.stackexchange.com/questions/78579/labelled-in-line-equation">https://tex.stackexchange.com/questions/78579/labelled-in-line-equation</a> and <a href="https://latex.org/forum/viewtopic.php?t=11524">https://latex.org/forum/viewtopic.php?t=11524</a>.</div><div><br /></div><h3 style="text-align: left;">Defining a gold standard</h3><div>The unique value of the physics derivation graph is the mathematical correctness of statements made in a paper, and forcing the enumeration of assumptions and approximations. On a larger scale, papers could reference each other's equations, based on the assumption the variables are consistent.&nbsp;</div><div><br /></div><div>A useful exercise is to imagine the ideal outcome.&nbsp;</div><div><ul style="text-align: left;"><li>An appendix with CAS verified derivation&nbsp;</li><li>Semantic tagging of text and derivation&nbsp;</li><li>linking semantic tags with pre-existing databases.&nbsp;</li></ul></div><div>There is a version of owl for physics variables? QUDT</div>
+
+{% endblock %}

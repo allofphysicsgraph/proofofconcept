@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>a grand vision for bulk .tex analysis</H1>
+
+<P><small>Published 2020-06-07T02:02:00.001Z by Physics Derivation Graph</small></P>
+
+Current plan for bulk .tex analysis and math extraction<br />
+<ol>
+<li>characterization and counting of .tex in arxiv</li>
+<li>anomaly detection, trie data structures of .tex in arxiv</li>
+<li>clean up latex to remove formatting indications (this can be handled in the grammar)</li>
+<li>The minimal regex is based on a threshold from the trie data structure.
+<br />
+Work is in progress to automate regex generation. <br />
+</li>
+<li>use the regex to lex latex character stream into ASTs.
+</li>
+<li>parse ASTs for math syntax (e.g., into Sympy)</li>
+<li>check dimensionality of expressions using Sympy</li>
+<li>use inference rules to create steps that relate math expressions</li>
+<li>use Sympy to validate inference rule application</li>
+</ol>
+
+{% endblock %}

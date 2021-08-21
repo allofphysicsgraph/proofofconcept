@@ -1,0 +1,41 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>autocomplete and variations</H1>
+
+<P><small>Published 2015-09-27T13:44:00.001Z by Physics Derivation Graph</small></P>
+
+<br />
+Suppose I'm given a list of words, <i>{dog, cat, tv, boing}</i>. When the user enters a new word, I want to let them know that there are exact or similar matches which already exist.<br />
+<br />
+This will happen in a sequence of steps. From simplest to more complex,<br />
+<br />
+phase 1: exact match the beginning of the word.<br />
+If I type "d", I am provided "dog"<br />
+If I type "o", I have no prompts<br />
+If I type "k", I have no prompts<br />
+<br />
+phase 2: exact match anywhere in the word<br />
+If I type "d", I am provided "dog"<br />
+If I type "o", I am provided "dog" and "boing"<br />
+If I type "k", I have no prompts<br />
+<br />
+phase 3: similar match anywhere in the word. Return exact matches and top X% of similar, ranked by similarity<br />
+If I type "d", I am provided "dog"<br />
+<div>
+If I type "o", I am provided "dog" and "boing"</div>
+<div>
+If I type "og", I am provided "dog" (exact) and "boing" (similar)</div>
+<div>
+If I type "k", I have no prompts</div>
+<div>
+<br />
+<br />
+<a href="http://stackoverflow.com/questions/7821661/how-to-code-autocompletion-in-python">http://stackoverflow.com/questions/7821661/how-to-code-autocompletion-in-python</a><br />
+<a href="https://pymotw.com/2/readline/">https://pymotw.com/2/readline/</a><br />
+<br />
+I'm not looking for tab completion. Instead, as I type I want the top <i>n</i> matches to automatically refresh<br />
+<br />
+<br /></div>
+
+{% endblock %}

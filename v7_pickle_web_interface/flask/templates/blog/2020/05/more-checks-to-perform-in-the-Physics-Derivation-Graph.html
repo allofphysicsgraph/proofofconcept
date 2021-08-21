@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>more checks to perform in the Physics Derivation Graph</H1>
+
+<P><small>Published 2020-05-01T11:16:00.002Z by Physics Derivation Graph</small></P>
+
+Up until now I've only considered a single check throughout the Physics Derivation Graph: the validation of a derivation step. This validation is made by verifying that changes to the per-expression ASTs are consistent with the inference rule and feeds.<br />
+<br />
+There are other checks that can be performed.<br />
+<br />
+<ul>
+<li><b>Symbolic consistency within an expression</b>. For a given latex symbol in an expression, there can be only one numeric ID.&nbsp;This could manifest within one side of an expression or across both sides.&nbsp;</li>
+<ul>
+<li>If there are multiple instances of "a" on the LHS, are they all the same numeric ID?</li>
+<li>Is the symbol "a" used on the LHS the same "a" used on the RHS? For example, in the expression "a + b = a * 2", both "a" symbols must have the same numeric ID.</li>
+</ul>
+<li><b>Symbolic consistency within a step.</b> A step involving more than one expression must have consistent symbols. For example, given "a + b" and the inference rule "add X to both sides" where the feed is 2, the output is "a + 2 = b + 2". Is the "a" in "a + b" the same as the "a" in "a + 2 = b + 2"? Changes of variable are feasible but must be explicit</li>
+<li><b>Symbolic consistency within a derivation.</b> A a given latex symbol has multiple numeric IDs in a derivation, is the change documented in an explicit inference rule or do the two cases not intersect? For example, the symbol "c" could appear as both a constant and a variable in the same derivation, but not in the same step.</li>
+<li><b>Dimensional analysis.</b> Variables can be dimensional. The dimensions must be consistent within an expression. As an example, adding acceleration and velocity is not allowed. See&nbsp;<a href="https://docs.sympy.org/latest/modules/physics/units/dimensions.html">https://docs.sympy.org/latest/modules/physics/units/dimensions.html</a></li>
+<li><b>Unit consistency.</b> Constants have a unit and a value. The units must be consistent when applied in an expression As an example, adding "meters per second" and "miles per hour" is not allowed even though both are speeds.&nbsp; See&nbsp;<a href="https://docs.sympy.org/latest/modules/physics/units/unitsystem.html">https://docs.sympy.org/latest/modules/physics/units/unitsystem.html</a>&nbsp;and&nbsp;<a href="https://docs.sympy.org/latest/modules/physics/units/examples.html#equation-with-quantities">https://docs.sympy.org/latest/modules/physics/units/examples.html#equation-with-quantities</a></li>
+</ul>
+<div>
+Sympy has some of these features built in; see&nbsp;<a href="https://docs.sympy.org/latest/modules/physics/units/quantities.html">https://docs.sympy.org/latest/modules/physics/units/quantities.html</a></div>
+<div>
+and&nbsp;<a href="https://docs.sympy.org/latest/modules/physics/mechanics/advanced.html">https://docs.sympy.org/latest/modules/physics/mechanics/advanced.html</a></div>
+
+{% endblock %}

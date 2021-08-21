@@ -1,0 +1,53 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>ufw allow status numbered delete -- managing the firewall</H1>
+
+<P><small>Published 2020-09-04T15:24:00.002Z by Physics Derivation Graph</small></P>
+
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ sudo ufw status verbose</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Status: active</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Logging: on (low)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Default: deny (incoming), allow (outgoing), deny (routed)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">New profiles: skip</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">To&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Action&nbsp; &nbsp; &nbsp; From</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">--&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;------&nbsp; &nbsp; &nbsp; ----</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">22/tcp&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LIMIT IN&nbsp; &nbsp; Anywhere&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">443/tcp&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ALLOW IN&nbsp; &nbsp; Anywhere&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">80/tcp&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ALLOW IN&nbsp; &nbsp; Anywhere&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">25&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ALLOW IN&nbsp; &nbsp; Anywhere&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">22/tcp (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LIMIT IN&nbsp; &nbsp; Anywhere (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">443/tcp (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ALLOW IN&nbsp; &nbsp; Anywhere (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">80/tcp (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ALLOW IN&nbsp; &nbsp; Anywhere (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">25 (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ALLOW IN&nbsp; &nbsp; Anywhere (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ sudo ufw allow 8000/tcp</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Rule added</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Rule added (v6)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ sudo&nbsp; ufw status numbered</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Status: active</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp;To&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Action&nbsp; &nbsp; &nbsp; From</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp;--&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;------&nbsp; &nbsp; &nbsp; ----</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[ 1] 22/tcp&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;LIMIT IN&nbsp; &nbsp; Anywhere&nbsp; &nbsp; &nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[ 2] 443/tcp&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ALLOW IN&nbsp; &nbsp; Anywhere&nbsp;&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[ 3] 80/tcp&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ALLOW IN&nbsp; &nbsp; Anywhere&nbsp;&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[ 4] 22/tcp (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LIMIT IN&nbsp; &nbsp; Anywhere (v6)&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[ 5] 443/tcp (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ALLOW IN&nbsp; &nbsp; Anywhere (v6)&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[ 6] 80/tcp (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ALLOW IN&nbsp; &nbsp; Anywhere (v6)&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">[ 7] 25 (v6)&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; ALLOW IN&nbsp; &nbsp; Anywhere (v6)&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ sudo ufw delete 7</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Deleting:</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp;allow 25</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Proceed with operation (y|n)? y</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Rule deleted (v6)</span><br />
+<div>
+<br /></div>
+
+{% endblock %}

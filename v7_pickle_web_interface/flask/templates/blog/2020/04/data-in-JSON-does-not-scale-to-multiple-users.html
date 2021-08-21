@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>data in JSON does not scale to multiple users</H1>
+
+<P><small>Published 2020-04-06T20:40:00Z by Physics Derivation Graph</small></P>
+
+In version 7 of the Physics Derivation Graph I realized that I could use Python's Pickle format to serialize the data stored in memory without having to decide what storage format (CSV, XML, SQLite) is best.&nbsp; That insight lead to use of JSON because everything needed fits in dictionaries and lists.<br />
+<br />
+The use of Pickle and then then JSON enabled development of many features, so it was a worthwhile investment. However, some operations are not well suited to the nested dictionaries and lists. A set of tables might be better for some operations. Converting from the current dictionaries and lists to tables would be a big rewrite, so I haven't started that yet.<br />
+<br />
+If I move away from JSON for storage, the current candidates are Redis and PostgreSQL and SQLite3.<br />
+<br />
+Use of a relational database would require a significant rewrite since most of the functions in the PDG rely on the nested dictionaries.<br />
+<br />
+As a potentially easier transition, Redis has a plugin that supports JSON:<br />
+<a href="https://redislabs.com/blog/redis-as-a-json-store/">https://redislabs.com/blog/redis-as-a-json-store/</a><br />
+<a href="https://redislabs.com/redis-best-practices/data-storage-patterns/json-storage/">https://redislabs.com/redis-best-practices/data-storage-patterns/json-storage/</a><br />
+However, I'm not comfortable with the PDG being dependent on a plugin.<br />
+<br />
+If I go with a relational database, I'll need to choose which one.<br />
+MySQL or PostgreSQL versus SQLite<br />
+<a href="https://stackoverflow.com/questions/5102027/can-sqlite-support-multiple-users">https://stackoverflow.com/a/5102105/1164295</a><br />
+"SQLite can support multiple users at once. It does however lock the whole database when writing, so if you have lots of concurrent writes it is not the database you want (usually the time the database is locked is a few milliseconds - so for most uses this does not matter)."<br />
+<a href="https://www.sqlite.org/whentouse.html">https://www.sqlite.org/whentouse.html</a><br />
+"Any site that gets fewer than 100K hits/day should work fine with SQLite."<br />
+To improve concurrency, reads can happen without blocking writes:&nbsp;<a href="https://www.sqlite.org/wal.html">https://www.sqlite.org/wal.html</a><br />
+<br />
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>barriers to implementing formalization in mathematics</H1>
+
+<P><small>Published 2020-07-28T14:21:00.003Z by Physics Derivation Graph</small></P>
+
+Inspired by reading the&nbsp;<a href="https://en.wikipedia.org/wiki/QED_manifesto">QED manifesto</a>&nbsp;and responses like<br />
+<ul>
+<li><a href="https://people.eecs.berkeley.edu/~fateman/papers/openmathcrit.pdf">"A Critique of OpenMath and Thoughts on Encoding Mathematics"&nbsp;</a></li>
+<li><a href="https://www.cs.ru.nl/F.Wiedijk/pubs/qed2.pdf">"The QED manifesto revisited"</a>&nbsp;</li>
+</ul>
+<br />
+I attended a conference on formalization of mathematics. The challenges to progress appear to include the following<br />
+<ul>
+<li>The diversity of topics (both depth and breadth) is huge.&nbsp;</li>
+<li>The variable level of formalization (from natural language to Latex to Constrained Natural Languages to Computer Algebra Systems to Proof assistants.&nbsp;</li>
+<li>Addressing all the requirements (readability, conciseness, preciseness) is infeasible with current techniques, so selecting any potential solution is suboptimal. Investing resources (time, attention, compute, creativity) in a suboptimal solution is an opportunity cost.</li>
+<li>There is more brain power than staffing. Good ideas don't get implemented because hiring software programmers isn't accessible</li>
+<li>The staffing that is available is graduate students. These are neither domain experts nor experienced programmers</li>
+<li>The degree of automation for projects varies. What is considered hard or scalable depends on who is doing the work.&nbsp;</li>
+<li>Design decisions are driven by the specific problems being solved. A "universal" and comprehensive approach incurs inefficiency in any given domain.&nbsp;</li>
+<li>The degree of software development best practices varies (linting, continuous integration/continuous deployment, use of version control)</li>
+<li>The diversity of implementation choices (Python, Haskell, Coq, C, C++)</li>
+<li>Inventing novel domain specific languages is easy for this community, further mudding the options</li>
+<li>Standard (basic) math is not exciting to build a product around</li>
+<li>Maintenance of software and databases is not exciting research</li>
+<li>There are a variety of databases which hold proofs:&nbsp;</li>
+<ul>
+<li><a href="https://github.com/leanprover-community/mathlib">https://github.com/leanprover-community/mathlib</a></li>
+<li><a href="https://www.isa-afp.org/topics.html">https://www.isa-afp.org/topics.html</a></li>
+<li><a href="http://www.mizar.org/library/">http://www.mizar.org/library/</a></li>
+<li><a href="https://dlmf.nist.gov/">https://dlmf.nist.gov/</a></li>
+</ul>
+<li>Anyone can post code (e.g., github); also there is no requirement to post source code</li>
+<ul>
+<li>There is no standardization on what level of quality is acceptable</li>
+<li>There is no review process</li>
+<li>Linking of code to papers to presentations is unusual</li>
+</ul>
+<li>Licensing of code and results varies -- open source, closed source, unspecified</li>
+<li>Who the audience should be is unclear -- advancing research or sharing with advanced peers or on-boarding graduate students or&nbsp; teaching undergraduates?</li>
+<li>Specific goal (beyond QED manifesto) is not agreed upon; there are no milestones.</li>
+<ul>
+<li>use cases are undefined</li>
+<li>well-defined challenge thresholds are needed</li>
+</ul>
+<li>A survey and detailed comparison of various options is not readily available?</li>
+<li>Translation between representations is usually lossy since scopes are not one-to-one</li>
+<li>There is no authority, formal or informal. There is no designated leader</li>
+<li>There is no governance structure. Decision making is ad hoc and social</li>
+<li>Incentives for participants include</li>
+<ul>
+<li>Publishing papers</li>
+<li>Advancing knowledge</li>
+<li>Building reputation</li>
+<li>Forming alliances</li>
+</ul>
+</ul>
+<div>
+<br /></div>
+<div>
+As a consequence of the above issues, the selection function becomes who can produce the most creative idea and get it implemented in order to compete for attention.<br />
+<br />
+Top-down direction of effort isn't required, but the consequence of bottom-up coordination is that there duplicated effort and investment in translation between faction required.</div>
+<div>
+<br />
+<br />
+<br />
+The above list gets oversimplified into observations like "no barrier exists other than someone sitting down and doing the work."<br />
+There are a couple implicit assumptions there:<br />
+<br />
+<ul>
+<li>the ill-defined approach in my mind is the best and right method</li>
+<li>that someone is not me. Probably a graduate student since the work is trivial</li>
+</ul>
+</div>
+<div>
+<br /></div>
+<div>
+Speed does not seem to be an issue. There is not a compute bottleneck.&nbsp;</div>
+
+{% endblock %}

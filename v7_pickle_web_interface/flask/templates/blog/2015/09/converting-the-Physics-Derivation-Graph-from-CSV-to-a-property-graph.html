@@ -1,0 +1,70 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>converting the Physics Derivation Graph from CSV to a property graph</H1>
+
+<P><small>Published 2015-09-19T17:08:00.004Z by Physics Derivation Graph</small></P>
+
+I started the Physics Derivation Graph as a plain-text CSV set of files. I then converted the content to XML files. The current instance of the Physics Derivation Graph is back to a set of CSVs. CSV is attractive for its universal parsability and human readability.<br />
+<br />
+Recently I learned about property graphs. Expanding on the node/edge idea of graphs, a property graph adds types and properties:<br />
+<br />
+Nodes have<br />
+<ul>
+<li>node id</li>
+<li>node type</li>
+<li>node property (key-value pair)</li>
+</ul>
+<div>
+Edges have</div>
+<div>
+<ul>
+<li>edge id</li>
+<li>edge type</li>
+<li>edge property (key-value pair)</li>
+</ul>
+<div>
+Using syntax from <a href="http://neo4j.com/">Neo4j</a> for a simple example,</div>
+</div>
+<div>
+<br /></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">CREATE ( 149832:Expression { latex:"k=m j" } )</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">CREATE&nbsp;( 119831:Expression { latex:"k/j=m" } )</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">CREATE ( 149832 )-[:DIVIDEBOTHSIDESBY { feed_1:"j" } ]-&gt;( 119831 )</span></div>
+<div>
+<br /></div>
+<div>
+Each expression is a node, and inference rules are directed edges.&nbsp;</div>
+<div>
+<br />
+Complications in translating:&nbsp;</div>
+<div>
+<ul>
+<li>within each derivation, each expression has a local ID for latex labels.&nbsp;</li>
+<li>each expression belongs to one or more derivations</li>
+<li>each expression has a different representation in various CASs</li>
+<li>Latex uses a double quote ("), so parsing may break. Reference pictures instead?</li>
+</ul>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">CREATE ( 149832:Expression { picture: "149832.png", sympy:"k=m*j", local_tex_id:"59589", in_derivations:["maxwell","funky"] } )</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">CREATE&nbsp;( 119831:Expression { picture: "119831.png", sympy:"k/j=m",&nbsp;local_tex_id:"58584",&nbsp;in_derivations:"maxwell" } )</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">CREATE ( 149832 )-[:DIVIDEBOTHSIDESBY { feed_1_picture: "4958.png" } ]-&gt;( 119831 )</span></div>
+</div>
+</div>
+<div>
+<span style="font-family: inherit;"><br /></span></div>
+<div>
+<span style="font-family: inherit;">Although property graphs could have an equivalent amount of information compared to the current CSV format, the complexity is not less than the current CSV method. Also, only Neo4j supports this context. Thus, I'm not currently motivated to switch to property graph representation.</span></div>
+<div>
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;"><a href="http://www.remwebdevelopment.com/blog/sql/some-basic-and-useful-cypher-queries-for-neo4j-201.html">http://www.remwebdevelopment.com/blog/sql/some-basic-and-useful-cypher-queries-for-neo4j-201.html</a></span><br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;"><a href="http://peterspangler.com/?p=147">http://peterspangler.com/?p=147</a></span></div>
+
+{% endblock %}

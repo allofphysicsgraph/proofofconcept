@@ -1,0 +1,129 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Sage as a candidate Computer Algebra System for the Physics Derivation Graph</H1>
+
+<P><small>Published 2015-12-25T20:05:00.001Z by Physics Derivation Graph</small></P>
+
+I was excited to use <a href="http://www.sagemath.org/">Sage</a>'s <a href="https://cloud.sagemath.com/">online notebook interface</a>&nbsp;to see whether it could handle the variety of expressions and inference rules in the <a href="http://allofphysicsgraph.github.io/proofofconcept/">Physics Derivation Graph</a>.<br />
+<br />
+I found a few unexpected behaviors. There's good support for many of the inference rules. When I tried to apply Sage to more advanced uses, either I don't understand the math well enough, or support in Sage doesn't exist.<br />
+<h3>
+Expectation value doesn't render Latex</h3>
+Expectation values are used in the variance relation identity. I was impressed by the ability of <a href="http://www.sagemath.org/">Sage</a> to use <a href="https://en.wikipedia.org/wiki/Expectation_value_(quantum_mechanics)">Expectation value</a> from <a href="http://www.sympy.org/en/index.html">SymPy</a>.<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">x=var('x')</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">from sympy.stats import E # expectation value</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">expr1=E((x-E(x))^2)==E(x^2)-(E(x))^2</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">expr2=E(x^2-2*x*E(x)+E(x)^2)==E(x^2)-(E(x))^2</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">print(bool(expr1.lhs() == expr2.lhs()))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">expr3=E(x^2)-2*E(x)*E(x)+E(x)^2==E(x^2)-(E(x))^2</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">print(bool(expr3.lhs() == expr2.lhs()))</span><br />
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i>True</i></span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i>True</i></span></div>
+<div>
+<br /></div>
+<div>
+However, I wasn't able to display the content in LaTeX:</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">print(latex(expr3))</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i>0 == 0</i></span></div>
+<div>
+<br /></div>
+<div>
+This is unfortunate but not a blocker</div>
+<div>
+<br /></div>
+<h3>
+Real Part of Expression isn't what I was expecting</h3>
+<div>
+Sage doesn't produce the output I expected from .real_part()&nbsp;</div>
+<div>
+<br /></div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">forget()</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">x=var('x')</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">assume(x,'real')</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">this=cos(x) + I*sin(x)</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">this.real_part()</span></div>
+</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i>cos(real_part(x))*cosh(imag_part(x)) - cos(real_part(x))*sinh(imag_part(x))</i></span></div>
+<div>
+<br /></div>
+<div>
+What I was looking for was that <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">this.real_part()</span> would return <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cos(x)</span>; similarly <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">this.imag_part()</span> should return <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">sin(x)</span>.</div>
+<div>
+<br /></div>
+<div>
+<h3>
+Symbolic Levi-Civita not supported in Sage?</h3>
+<div>
+<div>
+A <a href="https://en.wikipedia.org/wiki/Levi-Civita_symbol">Levi-Civita operator</a> can be defined</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">levicivita = SymmetricGroup(3)</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">levicivita([1,2,3]).sign()</span></div>
+</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i>1</i></span></div>
+<div>
+<br /></div>
+<div>
+However, I can't use symbols as arguments</div>
+<div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">forget()</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">h,j,k=var('h,j,k')</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">assume(h,'integer')</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">assume(j,'integer')</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">assume(k,'integer')</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">levicivita = SymmetricGroup(3)</span></div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">levicivita([j,k,m]).sign()</span></div>
+</div>
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i>Invalid permutation vector: [h,j, k]</i></span></div>
+<br />
+<h3>
+Del (aka Nabla) lacks symbolic support in Sage?</h3>
+Symbolic <a href="https://en.wikipedia.org/wiki/Cross_product">cross-products </a>work as desired<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">h,j,k=var('h,j,k')</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">m,n,p=var('m,n,p')</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">E = vector(SR, [h,j,k])</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">F = vector(SR, [m,n,p])</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">print(E.cross_product(F))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i>(-k*n + j*p, k*m - h*p, -j*m + h*n)</i></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i><br /></i></span>
+<span style="font-family: inherit;">Other vector calculus operations appear to lack support for symbolic manipulation</span><br />
+<a href="https://en.wikipedia.org/wiki/Del#Gradient">https://en.wikipedia.org/wiki/Del#Gradient</a><br />
+<a href="https://en.wikipedia.org/wiki/Del#Divergence">https://en.wikipedia.org/wiki/Del#Divergence</a><br />
+<a href="https://en.wikipedia.org/wiki/Del#Curl">https://en.wikipedia.org/wiki/Del#Curl</a><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i><br /></i></span>
+<span style="font-family: inherit;">I don't quite understand what's being done with the following:</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">forget()</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">V = VectorSpace(SR,3)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">h,j,k=var('h,j,k')</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">m,n,p=var('m,n,p')</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">E = vector(SR, [h,j,k])</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">print(E.curl([1,2,3]))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">print(E.div([1,2,3]))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i>(0, -1, 1)</i></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i>1</i></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i><br /></i></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><i><br /></i></span></div>
+
+{% endblock %}

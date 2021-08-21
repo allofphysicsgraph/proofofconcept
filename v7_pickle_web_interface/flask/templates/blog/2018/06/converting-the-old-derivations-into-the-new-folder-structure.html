@@ -1,0 +1,28 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>converting the old derivations into the new folder structure</H1>
+
+<P><small>Published 2018-06-19T02:49:00.001Z by Physics Derivation Graph</small></P>
+
+<i>Context</i>: this post documents a one-time fix that converts old derivations to the new convention.<br />
+<br />
+In the "version 4" implementation of the Physics Derivation Graph, there are two directories that contain Latex and PNG files of expressions and feeds:<br />
+<br />
+<ul>
+<li>in the directory of the derivation, ie "proofofconcept/v4_file_per_expression/derivations/frequency period relation"</li>
+<li>in the directory containing all expressions, ie "proofofconcept/v4_file_per_expression/expressions"</li>
+</ul>
+<br />
+One reason for this redundancy is to enable modification of the derivation content with disrupting the complete graph. Also, deconflicting expression index collisions doesn't need to be carried out until the derivation is verified. Lastly, I don't have an automatic method for deconflicting expression indices.<br />
+<br />
+As of today (20180618), there are the derivations which were manually created don't follow the convention of having Latex and PNG in the folder of the specific derivation. These older derivations only have the Latex and PNG in the second directory.<br />
+<br />
+In order to enable editing of existing derivations, I needed to copy expressions and feeds from the shared folder into each derivation. To do this, I started in a specific derivation folder and copied only the relevant LaTeX and PNG into the folder.<br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">pwd</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">proofofconcept/v4_file_per_expression/derivations/derivation of Schrodinger Eq</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">while IFS='' read -r line || [[ -n "$line" ]]; do cp ../../feeds/${line}* .; done &lt; feeds.csv</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">while IFS='' read -r line || [[ -n "$line" ]]; do cp ../../expressions/${line}* .; done &lt; &lt;(</span><span style="font-family: &quot;courier new&quot;, courier, monospace;">cat expression_identifiers.csv | cut -d',' -f2)</span>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>spectrum of formalized scientific documentation</H1>
+
+<P><small>Published 2021-08-07T23:03:00.002Z by Physics Derivation Graph</small></P>
+
+<p>This post is an expansion of <a href="https://physicsderivationgraph.blogspot.com/2020/07/degrees-of-formalization-in-math.html">July 2020 post</a> which was informed by <a href="https://physicsderivationgraph.blogspot.com/2020/07/notes-from-cicm-2020-13th-conference-on.html">Kaliszyk's survey</a>.
+
+</p><p>Spectrum of formality:</p><div>
+<table border="1">
+   <tbody>
+<tr>
+  <td><i>category</i></td>
+  <td>verbal natural language</td>
+  <td>verbal presentation with aids</td>
+  <td>written text</td>
+  <td>semantic enrichment</td>
+  <td>human-oriented controlled natural languages</td>
+  <td>machine-oriented controlled natural languages</td>
+  <td>computer algebra systems</td>
+  <td>proof assistants, theorem provers</td>
+</tr>
+<tr>
+  <td><i>media</i></td>
+  <td>human speaking</td>
+  <td>human speaking; Latex containing text and equations -- Beamer</td><td>Latex containing text and equations and hyperlinks</td>
+  <td>Latex containing text and equations and hyperlinks;<br />sTex</td>
+  <td><a href="https://arxiv.org/abs/1806.01507">AIDA</a>, <a href="http://attempto.ifi.uzh.ch/site/">ACE</a></td>
+  <td><i>text</i>: RDF, <a href="https://www.w3.org/OWL/">OWL</a><br /><i>mathematical physics</i>: <a href="https://derivationmap.net/">Physics Derivation Graph</a><br /><i>math</i>:&nbsp;<a href="http://nevidal.org/sad.en.html">ForTheL</a>,&nbsp;<a href="http://mizar.org/language/mizar-grammar.xml">Mizar</a></td>
+  <td><a href="https://www.sympy.org/en/index.html">SymPy</a></td>
+  <td><a href="https://coq.inria.fr/">Coq</a>, <a href="https://leanprover.github.io/">Lean</a>, <a href="https://isabelle.in.tum.de/">Isabelle</a></td>
+</tr>
+<tr>
+  <td><i>purpose</i></td>
+  <td>social knowledge transfer, one-to-one</td>
+  <td>social knowledge transfer, one-to-many</td>
+  <td>human readers; text search</td>
+  <td>human readers; semantic search</td>
+  <td>consistency validation of logical claims</td>
+  <td>inference of novel knowledge</td>
+  <td>correctness of inference rules; dimensional consistency; unit consistency</td>
+  <td>mathematical correctness (consistency wrt a logical basis)</td>
+</tr>
+<tr>
+  <td><i>grouping</i></td>
+  <td colspan="3" style="text-align: center;">standard practice</td>
+  <td colspan="3" style="text-align: center;">knowledge representation</td>
+  <td colspan="2" style="text-align: center;">mathematical correctness</td>
+</tr>
+<tr>
+  <td><i>techniques</i></td><td><br /></td>
+  <td></td><td><br /></td>
+  <td><a href="https://github.com/wtsnjp/MioGatto/wiki/Annotator's-Guide">manual annotation</a>; supervised machine learning</td>
+  <td colspan="2">needs vocabulary and grammar:
+    <ul>
+      <li><a href="http://mizar.org/language/vocabularies.html">Mizar vocab</a></li>
+      <li><a href="http://nevidal.org/download/forthel.pdf">ForTheL grammar</a></li>
+      <li><a href="https://derivationmap.net/developer_documentation?referrer=user_documentation#CNL%20grammar">PDG grammar</a></li>
+    </ul>
+      </td>
+  <td></td>
+  <td></td>
+</tr>
+     
+</tbody></table>
+
+<p>Left side of the spectrum is less rigorous, right side is more rigorous.&nbsp;</p><p>Left side of the spectrum has higher <a href="https://www.cs.ru.nl/~freek/factor/">de Bruijn factor</a>, right side has lower de Bruijn factor. </p><p><br /></p><p>The Physics Derivation Graph is a machine-oriented controlled natural language that is integrated with a computer algebra system.</p><p><br /></p><p>Semantic tagging can relate definitions for terms within a document to the associated variables used in that document.&nbsp;<br />The motive for the semantic tagging is to enhance search-ability. Since search-ability doesn't benefit the author, the author is not motivated to do the work of tagging.</p><p>Semantic tagging can identify common words across documents in a corpus. OWL is interesting conceptually but since the author doesn't benefit, the author is not motivated to do the work of linking.&nbsp;</p></div><p></p><p></p>
+
+{% endblock %}

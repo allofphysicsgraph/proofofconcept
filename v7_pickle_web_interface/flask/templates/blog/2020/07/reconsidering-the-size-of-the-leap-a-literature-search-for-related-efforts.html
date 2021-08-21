@@ -1,0 +1,150 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>reconsidering the size of the leap; a literature search for related efforts</H1>
+
+<P><small>Published 2020-07-27T17:38:00.001Z by Physics Derivation Graph</small></P>
+
+A pure graph-based approach is far from what is standard (sequential presentation in PDFs). The value isn't sufficient for content creators (Physics researchers) to cross the entry barrier. I needed to learn this lesson:<br />
+<blockquote>
+Improving on tradition is good, but ignoring tradition is stupid.</blockquote>
+More specifically,<br />
+<blockquote>
+Focus on formalization of actual mathematical practice, and not also try to ‘improve’ on the way that people currently do mathematics.
+</blockquote>
+From <a href="http://mizar.org/trybulec65/8.pdf">"The QED manifesto revisited"</a> (2007)<br />
+<br />
+If a graph-based semantically-encoded representation is too much, what are the more incremental options? Non-graph options for sequential content with semantic decoration:<br />
+<br />
+<ul>
+<li>start the workflow of document creation in a CAS (e.g., Sympy) and generate .tex from that.&nbsp;</li>
+<li>create documents in Latex, then check the .tex file using a CAS</li>
+</ul>
+<br />
+We could ignore both graphs and validation and focus merely on semantically meaningful expressions. That alone would constitute an evolutionary step.<br />
+<br />
+<ul>
+<li>create a .tex document using semantically enriching <a href="https://en.wikipedia.org/wiki/Domain-specific_language">domain-specific language</a></li>
+<ul>
+<li>see&nbsp;<a href="https://github.com/slatex/sTeX">https://github.com/slatex/sTeX</a>&nbsp;and specifically the <span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cmathml</span> package</li>
+<li>see "mathematical content markup language" referenced in&nbsp;<a href="https://pdfs.semanticscholar.org/6139/579ab589c62397ef4ba6728da42f519c9b8c.pdf">https://pdfs.semanticscholar.org/6139/579ab589c62397ef4ba6728da42f519c9b8c.pdf</a></li>
+<li><a href="https://arxiv.org/abs/1707.01271">https://arxiv.org/abs/1707.01271</a>&nbsp;-- requires DSL like <span style="font-family: Courier New, Courier, monospace;">\giacinputmath{factor(x^10-1)}</span></li>
+</ul>
+<li>create a .tex document with standard Latex, then decorate the expressions with semantics (using context present in the document).&nbsp;</li>
+<ul>
+<li><a href="https://sigmathling.kwarc.info/resources/arxmliv-dataset-082018/">https://sigmathling.kwarc.info/resources/arxmliv-dataset-082018/</a>&nbsp;and&nbsp;<a href="https://kwarc.info/projects/arXMLiv/">https://kwarc.info/projects/arXMLiv/</a>&nbsp;and&nbsp;<a href="https://www.youtube.com/watch?v=cDzIpFPNPpI">https://www.youtube.com/watch?v=cDzIpFPNPpI</a></li>
+</ul>
+</ul>
+<br />
+This semantic representation is a necessary dependency for validation and for a rigorous graph.<br />
+A mathematically-linked graph that has edges which are not rigorously checked is closer to Wikipedia's hyperlinked text pages.<br />
+<div>
+<br /></div>
+<div>
+<br /></div>
+<div>
+</div>
+<h2>
+Semantic text in Latex</h2>
+<div>
+<br /></div>
+<div>
+<h3>
+"SALT – Semantically Annotated LATEX for Scientific Publications."</h3>
+</div>
+<div>
+Groza, Tudor, Handschuh, Siegfried, Möller, Knud, Decker, Stefan</div>
+<div>
+In Franconi, Enrico, Kifer, Michael, May, Wolfgang (eds.) ESWC 2007. LNCS vol. 4519, pp. 518–532. Springer, Heidelberg (2007)</div>
+<div>
+<a href="https://link.springer.com/content/pdf/10.1007/978-3-540-72667-8_37.pdf">https://link.springer.com/content/pdf/10.1007/978-3-540-72667-8_37.pdf</a></div>
+<div>
+--&gt; focuses on decorators like "claim" and "explanation." No suggestion of handling mathematics.<br />
+<br /></div>
+<div>
+<h3>
+QED v2: Mathropolis and&nbsp;mathematical content markup language</h3>
+<div>
+"The QED Manifesto after Two Decades -- Version 2.0"</div>
+<div>
+<a href="https://pdfs.semanticscholar.org/6139/579ab589c62397ef4ba6728da42f519c9b8c.pdf">https://pdfs.semanticscholar.org/6139/579ab589c62397ef4ba6728da42f519c9b8c.pdf</a></div>
+<div>
+<br /></div>
+<div>
+MCML appears focused on the structure of proofs rather than expressions.</div>
+<div>
+No source code available.&nbsp;</div>
+<div>
+<br /></div>
+<h3>
+sTeX: An Infrastructure for Semantic Preloading of LaTeX Documents</h3>
+</div>
+<div>
+sTeX handles expressions and proofs.<br />
+<b>Most relevant to the PDG is "cmathml" which provides a method for concise Content MathML that gets converted to Latex for display.&nbsp;</b></div>
+<div>
+<br />
+<a href="https://kwarc.info/systems/sTeX/">https://kwarc.info/systems/sTeX/</a>&nbsp;- sTeX homepage</div>
+<div>
+<a href="https://github.com/slatex/sTeX">https://github.com/slatex/sTeX</a>&nbsp;- sTeX source code</div>
+<div>
+<a href="https://ctan.org/pkg/stex?lang=en">https://ctan.org/pkg/stex?lang=en</a>&nbsp;- sTeX package for Latex</div>
+<div>
+<br />
+<br />
+<a href="https://github.com/slatex/sTeX/blob/master/sty/stex/stex.pdf">https://github.com/slatex/sTeX/blob/master/sty/stex/stex.pdf</a>&nbsp;"Semantic Markup in Tex/Latex" (2019)<br />
+This document advises that github is the best source since CTAN is tedious to update and thus not current.<br />
+<br /></div>
+<div>
+<a href="http://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/stex/sty/stex/stex.pdf">http://ctan.math.utah.edu/ctan/tex-archive/macros/latex/contrib/stex/sty/stex/stex.pdf</a>&nbsp;"Semantic Markup in Tex/Latex" (2019)<br />
+<br />
+<br /></div>
+<div>
+<a href="https://caligari.dartmouth.edu/doc/texmf-dist/doc/latex/stex/stex.pdf">https://caligari.dartmouth.edu/doc/texmf-dist/doc/latex/stex/stex.pdf</a>&nbsp;(2010)<br />
+Overview of packages in sTeX.<br />
+<br /></div>
+<div>
+<a href="http://www.bakoma-tex.com/doc/latex/stex/stex.pdf">http://www.bakoma-tex.com/doc/latex/stex/stex.pdf</a>&nbsp;(2008)</div>
+<div>
+An amalgamation of the above summary plus the PDFs for each package<br />
+<br />
+<h4>
+Sub-packages in sTeX</h4>
+<a href="https://tools.ietf.org/doc/texlive-doc/latex/stex/cmathml/cmathml.pdf">https://tools.ietf.org/doc/texlive-doc/latex/stex/cmathml/cmathml.pdf</a>&nbsp;"cmathml.sty: A TEX/LATEX-based Syntax for Content MathML" (2012)<br />
+"This package provides a collection of semantic macros for content MathML and their LATEXML bindings. These macros form the basis of a naive translation from semantically preloaded LATEX formulae into the content MathML formulae via the LATEXML system."<br />
+<b>content --&gt; presentation </b>(Latex or Presentation MathML)<br />
+<br />
+"statements" in sTeX<br />
+<a href="https://ctan.math.illinois.edu/macros/latex/contrib/stex/sty/statements/statements.pdf">https://ctan.math.illinois.edu/macros/latex/contrib/stex/sty/statements/statements.pdf</a>&nbsp;"Semantic Markup for Mathematical Statements" (2019)<br />
+abstract: "This package provides semantic markup facilities for mathematical statements like Theorems, Lemmata, Axioms, Definitions, etc. in STEX files. This structure can be used by MKM systems for added-value services, either directly from the STEX sources, or after translation."</div>
+<div>
+<br />
+"omtext" in sTeX<br />
+<a href="http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/stex/sty/omtext/omtext.pdf">http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/stex/sty/omtext/omtext.pdf</a>&nbsp;"omtext: Semantic Markup for Mathematical Text Fragments in LATEX" (2019)</div>
+<div>
+abstract: "This package supplies an infrastructure for writing OMDoc text fragments in LATEX."</div>
+<div>
+<br /></div>
+<div>
+<br />
+<br />
+<h2>
+<br class="Apple-interchange-newline" />Latex packages which are not relevant</h2>
+A package for common math commands:&nbsp;COntent Oriented LaTeX<br />
+<a href="https://www.ctan.org/pkg/cool">https://www.ctan.org/pkg/cool</a><br />
+<a href="http://ftp.math.purdue.edu/mirrors/ctan.org/macros/latex/contrib/cool/Content_LaTeX_Package_Demo.pdf">http://ftp.math.purdue.edu/mirrors/ctan.org/macros/latex/contrib/cool/Content_LaTeX_Package_Demo.pdf</a><br />
+<br />
+<br />
+There are tools for performing arithmetic calculations in Latex,<br />
+<ul>
+<li><a href="http://latexcalc.sourceforge.net/">http://latexcalc.sourceforge.net/</a></li>
+<li><a href="https://ctan.org/pkg/calc?lang=en">https://ctan.org/pkg/calc?lang=en</a>&nbsp;and&nbsp;<a href="https://texdoc.net/texmf-dist/doc/latex/tools/calc.pdf">https://texdoc.net/texmf-dist/doc/latex/tools/calc.pdf</a></li>
+</ul>
+<div>
+<br />
+There's no math support on&nbsp;<a href="https://schema.org/">https://schema.org/</a>&nbsp;for webpages.&nbsp;</div>
+</div>
+<div>
+</div>
+
+{% endblock %}

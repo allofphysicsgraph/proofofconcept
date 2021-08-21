@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>analyzing the text of Wikipedia posts</H1>
+
+<P><small>Published 2018-07-21T01:59:00.002Z by Physics Derivation Graph</small></P>
+
+<div>
+In a previous post, an <a href="https://physicsderivationgraph.blogspot.com/2018/07/a-differnet-approach-to-generating.html">outline for analyzing Wikipedia content</a> was described. In this post, I document a few initial observations about the data collected from Wikipedia.</div>
+<div>
+<br /></div>
+<div>
+Searching for "derivation" as a section marker means searching for "=== Derivation ===". There are other meanings to derivation, so sometimes the results include non-mathematical content like "=== Derivation and other names ===". To filter out irrelevant content, only sections with mathematical expressions (ie ":&amp;lt;math&amp;gt;") are relevant.</div>
+<div>
+<br /></div>
+<div>
+In addition to the text, there are potentially relevant images like</div>
+<div>
+<div>
+https://en.wikipedia.org/wiki/File:Derivation_of_acoustic_wave_equation.png</div>
+<div>
+which has dimensions 813 × 570 pixels. Pictures with "derivation" in the name and dimensions greater than 300 x 300 might be relevant.</div>
+</div>
+<div>
+<br /></div>
+<div>
+In the "derivation" section, lines that start with ":&amp;lt;math&amp;gt;" in the text are expressions. The closing bracket "&amp;lt;/math&amp;gt;" may occur on a following line.&nbsp;</div>
+
+{% endblock %}

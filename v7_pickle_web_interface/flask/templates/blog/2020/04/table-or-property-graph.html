@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>table or property graph?</H1>
+
+<P><small>Published 2020-04-23T12:51:00.001Z by Physics Derivation Graph</small></P>
+
+Currently in v7 I'm using JSON to store a dictionary of nested dictionaries and lists. That design is somewhat fragile in that 1) it doesn't allow atomic operations like a database; 2) it is an approximation for a property graph.<br />
+<br />
+Because what I care about is nodes and edges with attributes, my data structure and code is essentially a DSL property graph. I previously recognized this (see v5) but didn't go very deep because I wasn't satisfied by Neo4j's rendering of nodes in a web interface. Now that I've built a web interface, I am wondering whether a property graph would be a better backend.<br />
+<br />
+Neo4j is open source (<a href="https://github.com/neo4j/neo4j">https://github.com/neo4j/neo4j</a>) so I shouldn't be any more reluctant to use it than I would be with SQLite3 (<a href="https://sqlite.org/src/doc/trunk/README.md">https://sqlite.org/src/doc/trunk/README.md</a>).<br />
+<br />
+I've been thinking that the next iteration (v8) would be table based. The blocker for that approach is my lack of knowledge of SQL queries needed to replace the current functions that use nested dictionaries. If I were to use a property graph in v8, I'd need to learn Cypher.
+
+{% endblock %}

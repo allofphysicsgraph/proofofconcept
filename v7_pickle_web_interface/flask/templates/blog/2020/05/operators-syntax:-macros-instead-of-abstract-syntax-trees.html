@@ -1,0 +1,74 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>operators syntax: macros instead of abstract syntax trees</H1>
+
+<P><small>Published 2020-05-09T16:01:00.004Z by Physics Derivation Graph</small></P>
+
+Currently the JSON file has a set of named operators with the attributes "argument count", "latex", "scope". The "argument count" is a non-negative integer and the "scope" is a list with elements like real, complex, vector, matrix. integer.<br />
+<br />
+What's missing is the AST structure that defines where the arguments go with respect to the operator. For example,<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">x + y</span><br />
+is valid while<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">x y +</span><br />
+is not.<br />
+<br />
+Similarly,<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cos x</span><br />
+is valid while<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">x cos</span><br />
+is not.<br />
+<br />
+While I can state these concepts I don't know how to formalize the notation.<br />
+For example, a definite integral takes 4 arguments in a specific location:<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">int_x^y f(z) dz</span><br />
+<span style="font-family: inherit;"><br /></span>
+<span style="font-family: inherit;">I could express operators using a latex macro</span><br />
+<span style="font-family: inherit;"><br /></span>
+<br />
+<pre>\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage[dvipdfmx,colorlinks=true,pdfkeywords={physics derivation graph}]{hyperref}
+\newcommand\addition[2]{ #1 + #2}
+\newcommand\subtraction[2]{ #1 - #2}
+\newcommand\divisionSameLine[2]{ #1 / #2 }
+\newcommand\divisionFrac[2]{ \frac{ #1}{ #2} }
+\newcommand\integralDefinite[4]{ \int_{ #1}^{ #2} #3 #4}
+\newcommand\addXtobothsides[3]{Add $#1$ to both sides of Eq.~\ref{eq:#2}; yields Eq.~\ref{eq:#3}.}
+\title{Lorentz transformation}
+\date{\today}
+\setlength{\topmargin}{-.5in}
+\setlength{\textheight}{9in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\begin{document}
+\maketitle
+\begin{abstract}
+This is the abstract
+\end{abstract}
+
+\begin{equation}
+\addition{a}{b}
+\end{equation}
+
+\begin{equation}
+\divisionFrac{a}{b}
+\end{equation}
+
+\begin{equation}
+\integralDefinite{a}{b}{f(x)}{dx}
+\end{equation}
+
+\end{document}
+</pre>
+<br />
+Compile to PDF using
+
+<br />
+<br />
+<pre>latex runthis.tex 
+latex runthis.tex 
+dvipdfmx runme.dvi 
+</pre>
+
+{% endblock %}

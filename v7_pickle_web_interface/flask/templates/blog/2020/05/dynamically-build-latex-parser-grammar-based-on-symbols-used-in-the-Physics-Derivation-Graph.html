@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>dynamically build latex parser grammar based on symbols used in the Physics Derivation Graph</H1>
+
+<P><small>Published 2020-05-09T11:29:00.001Z by Physics Derivation Graph</small></P>
+
+I've been using the Sympy Latex parser. After encountering a wide variety of issues, I realized a new strategy is needed.<br /><br />
+The previous mindset was "make modifications to the ANTLR grammar as we encounter novel issues in Latex." That approach would constant process of catching up with whatever is in the Physics Derivation Graph.<br /><br />Here is a different method that takes advantage of the information available in the Physics Derivation Graph to inform the ANTLR grammar.<br /><br />
+The Physics Derivation Graph has a list of symbols in its database. We could leverage that list of symbols and build an ANTLR grammar specification that is based on the Physics Derivation Graph list of symbols.<br />
+<br />The process would be<br />
+<ol>
+<li>get list of symbols from Physics Derivation Graph</li>
+<li>add those symbols into the ANTLR grammar</li>
+<li>when Sympy parses Latex, use the modified grammar specification</li>
+<li>when new symbols are added to the Physics Derivation Graph, go to step 1</li>
+</ol>
+
+{% endblock %}

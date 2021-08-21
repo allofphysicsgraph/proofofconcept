@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>lesson learned for model-view-controller: form workflows</H1>
+
+<P><small>Published 2019-12-31T02:21:00Z by Physics Derivation Graph</small></P>
+
+<a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model-view-controller</a>&nbsp;(MVC) is a way to separate presentation from the backend computation and data transformation.<br />
+<br />
+For my application, "model" = compute.py; "view" = a collection of webpages; "controller" = controller.py<br />
+<br />
+MVC nuances with Flask and WTForms --<br />
+<br />
+<ul>
+<li>The business logic workflow is captured exclusively in controller.py</li>
+<li>Upon form submission the workflow should return back to controller.py rather than linking to next page. The controller.py uses redirect(url_for()) to transition between pages.</li>
+<li>Form data extraction occurs in the controller; manipulations to the form data are made in compute.py (the model).&nbsp;</li>
+</ul>
+
+{% endblock %}

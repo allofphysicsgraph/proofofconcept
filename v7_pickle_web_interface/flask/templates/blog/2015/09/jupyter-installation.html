@@ -1,0 +1,31 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>jupyter installation</H1>
+
+<P><small>Published 2015-09-28T14:07:00.002Z by Physics Derivation Graph</small></P>
+
+Installation of Jupyter (&nbsp;<a href="https://jupyter.readthedocs.org/en/latest/install.html">https://jupyter.readthedocs.org/en/latest/install.html</a>&nbsp;) and<br />
+<a href="https://github.com/ipython/ipyparallel">https://github.com/ipython/ipyparallel</a><br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">sudo pip install jupyter</span><br />
+
+
+
+
+
+
+
+
+<br />
+<div class="p1">
+<span class="s1"><span style="font-family: Courier New, Courier, monospace;">sudo pip install ipyparallel</span></span></div>
+<br />
+<div class="p1">
+<span class="s1"><span style="font-family: Courier New, Courier, monospace;">jupyter notebook --generate-config</span></span></div>
+<div class="p1">
+<span style="font-family: Courier New, Courier, monospace;"><span class="s1">vi ~</span>/.jupyter/jupyter_notebook_config.py&nbsp;</span></div>
+<div class="p1">
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp;c.NotebookApp.server_extensions.append('ipyparallel.nbextension')</span></div>
+
+{% endblock %}

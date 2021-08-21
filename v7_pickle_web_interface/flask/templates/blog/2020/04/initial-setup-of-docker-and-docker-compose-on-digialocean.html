@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>initial setup of docker and docker-compose on digialocean</H1>
+
+<P><small>Published 2020-04-24T02:41:00.001Z by Physics Derivation Graph</small></P>
+
+I registered an account and paid $5 using Paypal to get a droplet.<br />
+<br />
+I registered my SSH key.<br />
+<br />
+I wanted to run docker-compose. The instructions for<br />
+<a href="https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04">https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04</a><br />
+led me to<br />
+<a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04">https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04</a><br />
+where I logged in as root and set up a new user. I was then able to SSH in as the new user.<br />
+<br />
+Then I completed the instructions for the Docker installation, including adding the non-root user to the docker group.<br />
+<a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04">https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04</a><br />
+<br />
+Finally I was able to complete the docker-compose instructions<br />
+<a href="https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04">https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04</a><br />
+<br />
+Total time from initial registration to having docker-compose working: 25 minutes.
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>why implementing a single feature took 12 hours</H1>
+
+<P><small>Published 2020-04-05T02:49:00.001Z by Physics Derivation Graph</small></P>
+
+Yesterday I started investigating how to get <a href="https://d3js.org/">d3.js</a> working for the Physics Derivation Graph.&nbsp; I already had an implementation working on the live website, so I didn't expect the update to take too much effort or time.<br />
+<br />
+Below is the sequence of challenges I encountered for this feature update.<br />
+<ol>
+<li>I learned that I had used v3; the current version is v5</li>
+<li>v5 doesn't support the .force() used in v3</li>
+<li>I found a v5-based force directed graph on&nbsp;<a href="https://observablehq.com/@d3/force-directed-graph">https://observablehq.com/@d3/force-directed-graph</a></li>
+<li>Although I was able to get the code running locally, I found the files seemed to depend on remote resources.&nbsp;</li>
+<li>I found a better instance that was pure d3.v5.js instead of relying on observable code:&nbsp;<a href="https://bl.ocks.org/mapio/53fed7d84cd1812d6a6639ed7aa83868">https://bl.ocks.org/mapio/53fed7d84cd1812d6a6639ed7aa83868</a></li>
+<li>Figured out how to get images associated with nodes</li>
+<li>The JSON file needs images to have distinct and consistent names</li>
+<li>Instead of temporary image file names, use expr_global_id and expr_name</li>
+<li>The functions using "return False, error_message" meant the errors didn't propagate to the web interface. The "right" method is to use "raise Exception"&nbsp;</li>
+<li>With exceptions raised in compute, needed to add "try/except" in controller.py</li>
+<li>With Exceptions caught in controller.py, use flash() to tell the user there was a problem</li>
+<li>With Exceptions now sent to user via web interface, I learned that the PNG wasn't being created due to a missing command, "braket"</li>
+<li>I found that "braket" is a latex package available from CTAN</li>
+<li>I tried to install "braket" using "tlmgr install"; see&nbsp;<a href="https://tex.stackexchange.com/questions/73016/how-do-i-install-an-individual-package-on-a-linux-system">https://tex.stackexchange.com/questions/73016/how-do-i-install-an-individual-package-on-a-linux-system</a></li>
+<li>I wasn't able to run "tlmgr" in Docker due to not having wget</li>
+<li>I wasn't able to install wget in Docker using "apt-get install -y wget", possible due to using phusion as a base image?</li>
+<li>Looked up instructions on installing packages manually; opened&nbsp;<a href="https://github.com/allofphysicsgraph/proofofconcept/issues/82">https://github.com/allofphysicsgraph/proofofconcept/issues/82</a></li>
+<li>In the process of debugging the PDF generation (notice that I strayed from the d3js effort), realized the migration of inference rules was incomplete -- new style is to have words separated by spaces in create_tmp_db.py</li>
+<li>Added an exception in compute.py to identify inconsistent inference rule names</li>
+<li>Manually fixed inference rule entries in create_tmp_db.py</li>
+<li>Altered the inference rule schema in compute.py -- use feeds+inputs+outputs</li>
+<li>Manually updated inference rules in create_tmp_db.py to reflect revised schema</li>
+<li>Compiling derivation PDF failed due to incorrect implementation of inference rule</li>
+<li>Realized that the "braket" issue wasn't a missing package, it was custom macros defined in an old version of the PDG</li>
+<li>Wrote function to generate JSON needed for d3js</li>
+<li>In the process of iterating that, added page latency measurement</li>
+</ol>
+<div>
+Lessons learned:</div>
+<div>
+<ul>
+<li>In the process of implementing a new feature or updating a feature, I uncovered a few bugs and a lot of technical debt that lead to the implementation taking longer than expected</li>
+<li>Some of the bugs were easy to fix (aka buy down the tech debt) as I discovered them, while others were sufficiently worthy of a new ticket.&nbsp;</li>
+<li>Some bugs were blockers -- I couldn't proceed with the desired work until I resolved architecture flaws; other issues were tangential and could be delayed.</li>
+</ul>
+<div>
+<br /></div>
+</div>
+
+{% endblock %}

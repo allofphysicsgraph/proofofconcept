@@ -1,0 +1,72 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>validating that a user is human by validating steps</H1>
+
+<P><small>Published 2020-04-12T18:02:00Z by Physics Derivation Graph</small></P>
+
+The Physics Derivation Graph doesn't currently support the existence of user accounts, but I expect that may be needed in the future.<br />
+<br />
+There will be multiple problems to address associated with having users, and one of them is figuring out whether a user is human or not. There are many&nbsp;<a href="https://en.wikipedia.org/wiki/CAPTCHA">CAPTCHA</a> (Completely Automated Public Turing test to tell Computers and Humans Apart) methods to choose from; in this post I'll outline a CAPTCHA specific to the Physics Derivation Graph.<br />
+<br />
+A challenge in the Physics Derivation Graph is to determine whether a step in a derivation is valid or not. Using a computer algebra system (CAS) like Sympy or Sage is viable for simple inference rules and simple expressions. No one CAS is capable of supporting all the PDG content, so manual intervention is necessary.<br />
+<br />
+<i>Idea</i>: use the task of validating steps to measure whether a user is human or not.<br />
+This relies on the task of validation being challenging.<br />
+<br />
+Roles:<br />
+<ul>
+<li>step with known validity (either true or false)</li>
+<li>step with unknown validity (either true or false)</li>
+<li>known human user</li>
+<li>computer algebra system (e.g., Sympy) capable of determining step validity</li>
+<li>candidate user (either human or machine)</li>
+</ul>
+<div>
+The steps that are validated by both a CAS and a known human will be referred to as "steps that are true" and steps that are not valid as verified by a known human will be referred to as "steps that are false." Both the CAS and the known human are fallible, but I'm going to assume a binary outcome.&nbsp;</div>
+<br />
+<div>
+Similarly, the candidate user has been forced into a binary category of machine or human. There are gradients here (a good algorithm may be more effective than a dumb human), but I am going to focus on the humans that are smarter than algorithms.&nbsp;</div>
+<br />
+As with other <a href="https://en.wikipedia.org/wiki/Turing_test">Turing tests</a>, a single binary question is insufficient because I need to be able to distinguish from a candidate user who merely flips a coin to answer the question.
+
+<br />
+The challenge relevant for the use of step validation can be reduced to the following:
+<br />
+<blockquote>
+Given N questions with a binary outcome, how certain can I be that the coin is biased?</blockquote>
+The bias of the coin in this situation is the intelligence of the candidate user. A machine algorithm or a dumb user should have results similar to an unbiased coin, while a smart user should get more answers correct than incorrect.&nbsp;
+<br />
+<br />
+Instead of focusing on the binary question of "is the step valid or not," attention should be on "did the candidate user get the response correct or not?" with respect to a step where the outcome is known.<br />
+<br />
+Coin flips are modeled by the&nbsp;<a href="https://en.wikipedia.org/wiki/Binomial_distribution">https://en.wikipedia.org/wiki/Binomial_distribution</a>, and the number of outcomes for N coin flips is given by&nbsp;<a href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">https://en.wikipedia.org/wiki/Pascal%27s_triangle</a><br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-HM3fmbxdO0k/XpNSKZMtlKI/AAAAAAAA-O8/P0YeWAFPJtkcmT7rtlR6ieSz7MDHx-hwwCLcBGAsYHQ/s1600/Screen%2BShot%2B2020-04-12%2Bat%2B1.38.38%2BPM.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="326" data-original-width="395" height="165" src="https://1.bp.blogspot.com/-HM3fmbxdO0k/XpNSKZMtlKI/AAAAAAAA-O8/P0YeWAFPJtkcmT7rtlR6ieSz7MDHx-hwwCLcBGAsYHQ/s200/Screen%2BShot%2B2020-04-12%2Bat%2B1.38.38%2BPM.png" width="200" /></a>
+
+</div>
+<br />
+Suppose I have N=3 coin flips. The unbiased coin with sides "correct" and "incorrect" will yield "correct, correct, correct" 1/8th of outcomes, just as the outcome of "incorrect, incorrect, incorrect" occurs 1/8th of the time. The other two outcomes (incor, incor, cor) (cor, cor, incor) have three permutations each. This distribution corresponsds to the "1 3&nbsp; 3&nbsp; 1" row in Pascal's triangle.<br />
+<br />
+Now consider N=4 coin flips. The unbiased coin will yield "cor, cor, cor, cor" 1/16th of the time. There are 6 permutations of "cor, cor, incor, incor" which correspond with a 50% success rate -- the most common outcome for an unbiased coin. The "1 4 6 4 1" row of the triangle tells us how many permutations of each outcome there are.<br />
+<br />
+Observations:<br />
+<ul>
+<li>The "number of flips" corresponds to the second diagonal</li>
+<li>There is always one permutation of "all incorrect" and one permutation of "all correct" -- these are the outermost "1" in the triangle</li>
+<li>For an even number of flips, the middle number in the triangle's row is the most common successful outcomes for an unbiased coin.&nbsp;</li>
+</ul>
+<div>
+For the Physics Derivation Graph, if we provide a candidate user with N questions and they answer N-1 of them correctly, then we have the following likelihood that the coin was unbiased:</div>
+<div>
+<ul>
+<li>N=2 steps to validate, N-1=1 steps validated correctly: 50%</li>
+<li>N=3 steps to validate, N-1=1 steps validated correctly: %</li>
+<li>N=4 steps to validate, N-1=1 steps validated correctly: %</li>
+<li>N=5 steps to validate, N-1=1 steps validated correctly: %</li>
+</ul>
+<div>
+The motivation for using this approach is to support including an additional step for which the validation is unknown. If we have 4 steps for which the validation is known and 1 step for which the validation is unknown, then we can include the extra step and build a profile of whether candidate users think the step is valid or invalid. This extra step would need to be reviewed by many candidate users in order to build up a statistically significant ratio of votes as to the validity.&nbsp;</div>
+</div>
+
+{% endblock %}

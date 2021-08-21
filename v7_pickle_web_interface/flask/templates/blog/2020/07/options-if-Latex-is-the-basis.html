@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>options if Latex is the basis</H1>
+
+<P><small>Published 2020-07-29T01:27:00Z by Physics Derivation Graph</small></P>
+
+Latex is the representation of Math that everyone can agree is common across domains. There is also consensus that Latex is inadequate for formal math.<br />
+<br />
+Brainstorming possible methods of leveraging Latex,<br />
+<br />
+<br />
+<br />
+<br />
+<ul>
+<li>Having authors use semantic markup (e.g.,<span>&nbsp;</span><a href="https://kwarc.info/systems/sTeX/">sTeX</a>) when creating documents.</li>
+<li>After documents have been created, perform bulk analysis (arXiv corpus) to extract semantics. After separating text from math in a given document, tasks are to (identify article text as theorems or claims or lemma) and (identify parts of expressions in math Latex using either a grammar or machine learning).</li>
+<li>After author has written document but before they share it, the author uses software to categorize sections of text and identify parts of expressions. (This requires an addition to existing workflows, creation of novel software, and reliance on novel grammars or ML algorithms.)</li>
+<li>Instead of authoring Latex in a text editor or GUI or OverLeaf, author the content in a CAS (e.g., Sage) and generate the .tex from the CAS. Here the CAS is serving as a Latex editor, constraining what's allowed by or required from an author. While CAS software can generate Latex output, using a CAS as a Latex editor isn't standard.&nbsp;</li>
+</ul>
+
+{% endblock %}

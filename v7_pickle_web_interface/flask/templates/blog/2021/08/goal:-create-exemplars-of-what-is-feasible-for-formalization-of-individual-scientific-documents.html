@@ -1,0 +1,10 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>goal: create exemplars of what is feasible for formalization of individual scientific documents</H1>
+
+<P><small>Published 2021-08-14T11:08:00Z by Physics Derivation Graph</small></P>
+
+<p>There's a lot of knowledge management decorations available for a single document: hyperlinks, semantic tagging, ontologies, controlled natural languages, CAS validation, theorem provers. What would it take to put them all together in one Physics article?&nbsp;</p><p>The purpose of this post is to provide an example of what that process is like for a document. Starting from an unadorned .tex file that compiles to PDF, the&nbsp;</p><h2 style="text-align: left;">sTex = semantic LaTeX</h2><p><a href="https://kwarc.info/systems/sTeX/">https://kwarc.info/systems/sTeX/</a><br /><a href="https://github.com/slatex/sTeX">https://github.com/slatex/sTeX</a><br /><a href="https://ctan.org/pkg/stex?lang=en">https://ctan.org/pkg/stex?lang=en</a></p><p>sTeX system enables embedding of structural semantics into documents. sTeX is a “semantic version of LaTeX” that allows to use special macros to encode mathematical meaning explicitly.&nbsp;</p><p>OpenMath, ContentML, and sTex are in the category of "content-oriented markup languages for mathematics on the web." [<a href="https://kwarc.info/people/mkohlhase/papers/mcs08-stex.pdf">citation</a>]</p><p>The point of adding sTex decorations is to aid in the creation of OMDoc</p><p><br /></p><h3 style="text-align: left;">OMDoc and MMT</h3><p><a href="https://en.wikipedia.org/wiki/OMDoc">https://en.wikipedia.org/wiki/OMDoc</a><br /><a href="https://www.omdoc.org/">https://www.omdoc.org/</a></p><p>"OMDoc is a markup format and data model for Open Mathematical Documents. It serves as semantics-oriented representation format and ontology language for mathematical knowledge. The formal part of OMDoc has been refined into the MMT format, and we use the MMT System as the reference implementation."</p><p><a href="https://uniformal.github.io/doc/philosophy/omdoc">https://uniformal.github.io/doc/philosophy/omdoc</a></p>
+
+{% endblock %}

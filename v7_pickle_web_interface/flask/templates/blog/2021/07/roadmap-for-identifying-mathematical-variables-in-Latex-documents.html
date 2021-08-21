@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>roadmap for identifying mathematical variables in Latex documents</H1>
+
+<P><small>Published 2021-07-12T01:03:00Z by Physics Derivation Graph</small></P>
+
+<p><i>Context</i>: I think there's a graph of mathematical expressions in Physics. That graph has math expressions as nodes and the nodes are related by inference rules. The graph spans textbooks and journal articles. The scope of this post is limited to the graph within one document.&nbsp;</p>
+
+<p>For <a href="https://physicsderivationgraph.blogspot.com/2021/05/what-would-create-tipping-point.html">determining consistency of mathematical content within one document</a>, the first step is to identify mathematical variables and operators. In practice, variables commonly appear inline as <code>$a$</code> or within an expression like</p>
+<pre>\begin{equation}
+a = 2
+\end{equation}</pre>
+<p>Another way variables appear in text is within \newcommand, like</p>
+
+<pre>\newcommand{\R}{\mathbb{R}}</pre>
+<p>or</p>
+<pre>\newcommand{\bb}[1]{\mathbb{#1}}
+Other numerical systems have similar notations. 
+The complex numbers \( \bb{C} \), the rational 
+numbers \( \bb{Q} \) and the integer numbers \( \bb{Z} \).
+</pre>
+<p><a href="https://www.overleaf.com/learn/latex/Commands"><i>source</i></a>
+
+</p><p>For addressing the complexity of expanding newcommand <a href="https://en.wikibooks.org/wiki/LaTeX/Macros">macros</a>, see&nbsp;<a href="https://stackoverflow.com/questions/1509799/how-to-replace-latex-macros-with-their-definitions-using-latex">https://stackoverflow.com/questions/1509799/how-to-replace-latex-macros-with-their-definitions-using-latex</a></p><p><br /></p><p>Once variables and operators are identified, the next step would be to associate each symbol with the respective definition (e.g., wikipedia links) and <a href="https://en.wikipedia.org/wiki/International_System_of_Quantities#Base_quantities">dimensions</a> (e.g., length, time, charge).&nbsp;</p><p><br /></p><p><br /></p><h2 style="text-align: left;">Options</h2><p>https://pypi.org/project/TexSoup/, https://texsoup.alvinwan.com/, https://github.com/alvinwan/TexSoup,&nbsp;https://stackoverflow.com/users/4855984/alvin-wan</p><p>https://pylatexenc.readthedocs.io/en/latest/latexwalker/,&nbsp;https://github.com/phfaist/pylatexenc/</p><p></p>
+
+{% endblock %}

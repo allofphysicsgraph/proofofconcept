@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>anatomy of the "file per expression" data format in the Physics Derivation Graph</H1>
+
+<P><small>Published 2017-07-09T01:41:00.001Z by Physics Derivation Graph</small></P>
+
+Each derivation gets a folder. The folder typically contains four CSV files:<br />
+<br />
+<ul>
+<li>expression_identifiers.csv: two columns of integers (7 digits, 10 digits) where each row looks like "1432042,1029039904"</li>
+<li>feeds.csv: a single column of integers (7 digits) where each row looks like&nbsp;"2342425"&nbsp;</li>
+<li>inference_rule_identifiers.csv: two columns, the first is an integer (7 digits). An example row looks like&nbsp;1294844,declareInitialExpression</li>
+<li>derivation_edge_list.csv: two columns of integers (7 digits each) where each row looks like "3934948,3499522"</li>
+</ul>
+<div>
+Elsewhere in this documentation I refer to the 7 digit integers as "temporary IDs" and the digit integers as "permanent IDs".&nbsp;</div>
+<div>
+<br /></div>
+<div>
+The graph visualization is built from the content of derivation_edge_list.csv, but additional decorations are need to renders a meaningful picture. That's where the other three CSVs come into play -- they indicate what the relevant decoration is (either a feed, expression, or inference rule).&nbsp;</div>
+<div>
+<br /></div>
+<div>
+<br /></div>
+
+{% endblock %}

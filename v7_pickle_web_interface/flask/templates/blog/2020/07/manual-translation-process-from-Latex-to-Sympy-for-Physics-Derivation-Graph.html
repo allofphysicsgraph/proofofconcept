@@ -1,0 +1,49 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>manual translation process from Latex to Sympy for Physics Derivation Graph</H1>
+
+<P><small>Published 2020-07-29T19:39:00Z by Physics Derivation Graph</small></P>
+
+Suppose I have a Latex string like<br />
+<br />
+1 = \\int_0^W a \\sin\\left(\\frac{n \\pi}{W} x\\right) \\psi(x)^* dx<br />
+<br />
+The first step is to eliminate notation that is presentation oriented<br />
+<br />
+1 = \\int_0^W a \\sin(\\frac{n \\pi}{W} x) \\psi(x)^* dx<br />
+<br />
+Second, rewrite multi-character variables to single variable<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; import sympy&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.__version__&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">'1.5.1'&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; from sympy.parsing.latex import parse_latex</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.srepr(parse_latex('1 = \int_0^W a \sin(\\frac{n \pi}{W} x) f(x)^* dx'))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">"Equality(Integer(1), Integral(Mul(Symbol('a'), Mul(Function('f')(Symbol('x')), sin(Mul(Symbol('x'), Mul(Pow(Symbol('W'), Integer(-1)), Mul(Symbol('n'), Symbol('pi'))))))), Tuple(Symbol('x'), Integer(0), Symbol('W'))))"</span><br />
+<br />
+Note that the complex conjugate operation was dropped without warning. We'll need to manually insert that later.<br />
+<br />
+The SymPy representation is challenging to review, so it can be transformed back to Latex:<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&gt;&gt;&gt; sympy.latex((parse_latex('1 = \int_0^W a \sin(\\frac{n \pi}{W} x) f(x)^* dx')))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">'1 = \\int\\limits_{0}^{W} a f{\\left(x \\right)} \\sin{\\left(x \\frac{n \\pi}{W} \\right)}\\, dx'</span><br />
+which shows that the input Latex does not get transformed exactly, but close enough for human verification.<br />
+<br />
+From the single-variable representation, replace variables with PDG symbol IDs.<br />
+W --&gt;&nbsp;<a href="https://www.blogger.com/null" name="2523">2523</a><br />
+a --&gt; ?<br />
+n --&gt;&nbsp;<a href="https://www.blogger.com/null" name="1592">1592</a><br />
+pi --&gt;&nbsp;<a href="https://www.blogger.com/null" name="3141">3141</a><br />
+x --&gt; ?<br />
+f --&gt; psi --&gt;&nbsp;9489<br />
+In the context of an isolated function, I don't know which "a" and which "x" are relevant.<br />
+To determine those IDs I would need to review the derivation.<br />
+<br />
+which, replacing all instances, yields<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Equality(Integer(1), Integral(Mul(Symbol('a'), Mul(Function('pdg9489')(Symbol('x')), sin(Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141'))))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))</span><br />
+<br />
+Finally, insert the "conjugate" for \psi(x)<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Equality(Integer(1), Integral(Mul(Symbol('a'), Mul(conjugate(Function('pdg9489')(Symbol('x'))), sin(Mul(Symbol('x'), Mul(Pow(Symbol('pdg2523'), Integer(-1)), Mul(Symbol('pdg1592'), Symbol('pdg3141'))))))), Tuple(Symbol('x'), Integer(0), Symbol('pdg2523'))))</span><br />
+<br />
+
+{% endblock %}

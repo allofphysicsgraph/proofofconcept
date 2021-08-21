@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>inspecting the list of users who have logged in</H1>
+
+<P><small>Published 2020-05-13T11:19:00.005Z by Physics Derivation Graph</small></P>
+
+<pre>$ sqlite3 flask/users_sqlite.db 
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter ".help" for usage hints.
+sqlite&gt; select * from user;
+</pre>
+<br />
+use ctrl+d to terminate sqlite
+<br />
+<br />
+<a href="https://sqlite.org/cli.html">https://sqlite.org/cli.html</a>
+
+{% endblock %}

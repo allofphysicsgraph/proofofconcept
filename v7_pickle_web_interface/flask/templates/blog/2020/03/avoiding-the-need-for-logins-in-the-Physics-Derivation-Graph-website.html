@@ -1,0 +1,37 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>avoiding the need for logins in the Physics Derivation Graph website</H1>
+
+<P><small>Published 2020-03-14T01:19:00.002Z by Physics Derivation Graph</small></P>
+
+Now that the PDG interface is a webpage, and users (not just developers) are the audience, there is a question of whether users of the website need accounts.<br />
+<br />
+<h3>
+User accounts</h3>
+Having an account would enable persistence of data specific to one user.<br />
+Downsides:<br />
+<br />
+<ul>
+<li>Password management and security</li>
+<li>user account shenanigans</li>
+<li><br /></li>
+</ul>
+<br />
+<h3>
+No users accounts</h3>
+Live use without an account, modeled after services like&nbsp;<a href="https://repl.it/">https://repl.it/</a>&nbsp; and&nbsp;<a href="https://www.onlinecharttool.com/graph">https://www.onlinecharttool.com/graph</a>, enable users to explore the capabilities without need for registering and creating a password.<br />
+<br />
+Data could be uploaded and download<br />
+<h3>
+Source code</h3>
+<div>
+Historically the Physics Derivation Graph was developed on the command line using bash and Python. This implied a single user.<br />
+The source code was available, so other developers could pull a local copy to make edits.<br />
+<br /></div>
+<h3>
+API calls</h3>
+<div>
+This would allow interfaces to be developed that are independent of the backend.</div>
+
+{% endblock %}

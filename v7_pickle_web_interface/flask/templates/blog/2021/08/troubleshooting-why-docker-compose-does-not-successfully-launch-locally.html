@@ -1,0 +1,40 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>troubleshooting why docker-compose does not successfully launch locally</H1>
+
+<P><small>Published 2021-08-08T20:22:00.008Z by Physics Derivation Graph</small></P>
+
+<p>Normally I make changes to the repo&nbsp;<a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface">https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface</a>&nbsp;and then run <code>git pull</code> on my DigitalOcean VPS Droplet. It has been a long time since I tried running the web server locally on my laptop.&nbsp;</p><p>Here's the process I went through to get the web server running locally.</p>
+
+<p><br /></p>
+
+<p>First I had populated the "certs" directory
+</p><pre>/Users/username/version_controlled/allofphysicsgraph/proofofconcept/v7_pickle_web_interface/certs</pre>
+on my laptop from the remote VPS.&nbsp;
+
+<p><br /></p><p>Then I had to create&nbsp;
+</p><pre>/Users/username/version_controlled/allofphysicsgraph/proofofconcept/v7_pickle_web_interface/.env</pre>
+with the Google variables for login authentication.&nbsp;
+
+<p><br /></p><p>In the directory on my laptop
+</p><pre>/Users/username/version_controlled/allofphysicsgraph/proofofconcept/v7_pickle_web_interface</pre>
+running the command&nbsp;<code>docker-compose up --build&nbsp;</code>failed. Specifically, the nginx and flask containers would start, but nginx would fail because the flask container wasn't responding. I added
+<pre>restart: on-failure</pre>
+to the nginx section in docker-compose.yaml
+
+<P>That didn't solve the flask issue, but it allowed the containers to persist while I inspected the logs. Even though I couldn't enter the flask container, I could review the logs produced by gunicorn by running the command<div><div><pre>tail -f flask/logs/gunicorn_error.log</pre>which showed the causal issue
+
+<pre>  File "&lt;frozen importlib._bootstrap&gt;", line 219, in _call_with_frames_removed
+  File "/home/appuser/app/wsgi.py", line 15, in &lt;module&gt;
+    from controller import app
+  File "/home/appuser/app/controller.py", line 63, in &lt;module&gt;
+    from secure import SecureHeaders  # type: ignore
+ImportError: cannot import name 'SecureHeaders'
+[2021-08-08 19:56:37 +0000] [11] [INFO] Worker exiting (pid: 11)
+[2021-08-08 19:56:37 +0000] [1] [WARNING] Worker with pid 11 was terminated due to signal 15
+[2021-08-08 19:56:37 +0000] [1] [INFO] Shutting down: Master
+[2021-08-08 19:56:37 +0000] [1] [INFO] Reason: Worker failed to boot.
+</pre><i>Root case</i>: In my requirements.txt I hadn't pinned the version of the Python library <code>secure</code>. According to <a href="https://github.com/smicallef/spiderfoot/issues/1166">this issue</a> there was <a href="https://pypi.org/project/secure/#history">a recent update</a>&nbsp;. I ended up pinning secure==0.2.1 in requirements.txt<p>Now I am able to run <code>docker-compose up</code> and get a web page at&nbsp;https://localhost/</p></div></div></div>
+
+{% endblock %}

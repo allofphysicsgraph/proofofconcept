@@ -1,0 +1,128 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>timing page rendering with and without Sympy</H1>
+
+<P><small>Published 2020-05-14T21:55:00.002Z by Physics Derivation Graph</small></P>
+
+I noticed that page rendering for derivationmap.net is slow and wanted to time the rendering to see what timing "slow" actually meant.<br />
+<br />
+To summarize the results below, the first load of SUVAT with Sympy turned on took almost 30 seconds. In constrast, with Sympy turned off, the second load of the same derivation took 8 seconds.<br />
+--&gt; That's a big difference in user experience.<br />
+30 seconds is also the threshold where Nginx times out waiting for the backend, so getting the time lower is important (or else the page won't show up).<br />
+<br />
+The more meaningful comparison is second load of SUVAT with and without Sympy. That change is 15 seconds to 8 seconds, a factor of 2x improvement.<br />
+The same 2x improvement also occurs for the other derivation (6.4 to 3.2 seconds).<br />
+--&gt; That indicates there is value in caching Sympy validation results (though we probably won't recover the full 2x).<br />
+<br />
+The second takeaway is that 8 seconds for a page to load with Sympy is turned off is still too long.<br />
+The flask logs are not configured to enable profiling -- they merely indicate when an event started. Because I don't long when an event finished, I cannot create a <a href="http://www.brendangregg.com/flamegraphs.html">flame graph</a>.<br />
+<br />
+<table border="1">
+  <tbody>
+<tr>
+<th>derivation</th>
+    <th>which render</th>
+    <th>render time in seconds</th>
+    <th>with d3js</th>
+    <th>with graphviz PNG</th>
+    <th>with Sympy inf rule check</th> </tr>
+<tr>
+  <td>SUVAT</td><!-- derivation -->
+  <td>1</td><!-- which render -->
+  <td>19.6</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>No</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>SUVAT</td><!-- derivation -->
+  <td>2</td><!-- which render -->
+  <td>7.8</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>No</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>SUVAT</td><!-- derivation -->
+  <td>3</td><!-- which render -->
+  <td>7.4</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>No</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>SUVAT</td><!-- derivation -->
+  <td>1</td><!-- which render -->
+  <td>28.4</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>Yes</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>SUVAT</td><!-- derivation -->
+  <td>2</td><!-- which render -->
+  <td>15.2</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>Yes</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>SUVAT</td><!-- derivation -->
+  <td>3</td><!-- which render -->
+  <td>14.8</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>Yes</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>Maxwell Eq</td><!-- derivation -->
+  <td>1</td><!-- which render -->
+  <td>7.4</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>No</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>Maxwell Eq</td><!-- derivation -->
+  <td>2</td><!-- which render -->
+  <td>3.2</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>No</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>Maxwell Eq</td><!-- derivation -->
+  <td>3</td><!-- which render -->
+  <td>3.2</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>No</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>Maxwell Eq</td><!-- derivation -->
+  <td>1</td><!-- which render -->
+  <td>13.6</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>Yes</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>Maxwell Eq</td><!-- derivation -->
+  <td>2</td><!-- which render -->
+  <td>6.4</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>Yes</td><!-- Sympy -->
+</tr>
+<tr>
+  <td>Maxwell Eq</td><!-- derivation -->
+  <td>3</td><!-- which render -->
+  <td>6.7</td><!-- time -->
+  <td>Yes</td><!-- d3js -->
+  <td>Yes</td><!-- graphviz -->
+  <td>Yes</td><!-- Sympy -->
+</tr>
+</tbody></table>
+
+{% endblock %}

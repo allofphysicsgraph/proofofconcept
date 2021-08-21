@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>function Latex for Sympy</H1>
+
+<P><small>Published 2020-07-29T13:59:00.004Z by Physics Derivation Graph</small></P>
+
+<span style="font-variant-ligatures: no-common-ligatures;">I am interested in parsing functions written in Latex into a Sympy representation. For simple examples, this currently works:</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">&gt;&gt;&gt; import sympy&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">&gt;&gt;&gt; sympy.__version__&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">'1.5.1'&nbsp;</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">&gt;&gt;&gt; from sympy.parsing.latex import parse_latex</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">&gt;&gt;&gt; sympy.srepr(parse_latex('f(x)'))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">"Function('f')(Symbol('x'))"</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-variant-ligatures: no-common-ligatures;">That's good. Sympy also supports expressions like</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">&gt;&gt;&gt; sympy.srepr(parse_latex('x=0'))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">"Equality(Symbol('x'), Integer(0))"</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-variant-ligatures: no-common-ligatures;">However, a function with a constraint written in Latex is not parsed correctly:</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">&gt;&gt;&gt; sympy.srepr(parse_latex('f(x = 0)'))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">"Symbol('f')"</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-variant-ligatures: no-common-ligatures;">The opposite direction does work (from Sympy to Latex)</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">&gt;&gt;&gt; sympy.latex(sympy.Function('f')(sympy.Equality(sympy.Symbol('x'), sympy.Integer(0))))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">'f{\\left(x = 0 \\right)}'</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-variant-ligatures: no-common-ligatures;">Similarly, we can get more complicated expressions from Sympy to Latex</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">&gt;&gt;&gt; sympy.latex(sympy.Equality(sympy.Function('f')(sympy.Equality(sympy.Symbol('x'), sympy.Integer(0))),sympy.Symbol('a')))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">'f{\\left(x = 0 \\right)} = a'</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-variant-ligatures: no-common-ligatures;">but the opposite (Latex to Sympy) is not working:</span><br />
+<span style="font-variant-ligatures: no-common-ligatures;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">&gt;&gt;&gt; sympy.srepr(parse_latex('f{\\left(x = 0 \\right)} = a'))</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace; font-variant-ligatures: no-common-ligatures;">"Symbol('f')"</span><br />
+<div>
+<br />
+I've opened<br />
+<a href="https://github.com/sympy/sympy/issues/19855">https://github.com/sympy/sympy/issues/19855</a></div>
+
+{% endblock %}

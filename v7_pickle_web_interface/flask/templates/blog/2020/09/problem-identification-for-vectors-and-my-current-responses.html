@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>problem identification for vectors and my current responses</H1>
+
+<P><small>Published 2020-09-20T19:38:00.003Z by Physics Derivation Graph</small></P>
+
+<p>I encountered a few issues with SymPy today. I'll explain what I found and what I plan to do about it.</p><p>I have an expression (1158485859) that, in Latex, is
+
+</p><p><span style="font-family: courier;"> \frac{-\hbar^2}{2m} \nabla^2 = {\cal H}
+
+</span></p><p>The <span style="font-family: courier;">\nabla^2</span> is represented in SymPy as <span style="font-family: courier;">Laplacian()</span>, though an argument is required for the operator.
+
+</p><p><i>My solution</i>: leave the SymPy representation as <span style="font-family: courier;">Pow(Symbol('nabla'), Integer(2))
+
+
+</span></p><p><br /></p><p>Also on the topic of vectors, I encountered the expression
+
+</p><p><span style="font-family: courier;">     \vec{p} \cdot \vec{F}(\vec{r}, t) = a
+
+</span></p><p>In order to convert that to SymPy, I'd need to specify a basis for `\vec{p}` (e.g., `from sympy.vector import CoordSys3D`). For example,&nbsp;</p><p><span style="font-family: courier;">&gt;&gt;&gt; N = CoordSys3D('N')<br />
+&gt;&gt;&gt; p = Symbol('p_x')*N.i + Symbol('p_y')*N.j + Symbol('p_z')*N.k<br />
+&gt;&gt;&gt; F = Symbol('F_x')*N.i + Symbol('F_y')*N.j + Symbol('F_z')*N.k<br />
+&gt;&gt;&gt; p.dot(F)<br />
+F_x*p_x + F_y*p_y + F_z*p_z
+
+
+</span></p><p>However, that doesn't seem to extend to functions:
+
+</p><p><span style="font-family: courier;">&gt;&gt;&gt; p.dot(Function(F)(Symbol('r'), Symbol('t')))<br />
+  Traceback (most recent call last):<br />
+  ...<br />
+  TypeError: expecting string or Symbol for name</span><br />
+</p><p><i>My solution</i>: leave the SymPy representation as incorrect, using "multiplication" instead of "dot"
+
+</p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+
+{% endblock %}

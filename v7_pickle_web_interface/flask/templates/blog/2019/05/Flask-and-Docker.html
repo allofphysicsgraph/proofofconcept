@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Flask and Docker</H1>
+
+<P><small>Published 2019-05-25T15:35:00Z by Physics Derivation Graph</small></P>
+
+I wanted to improve the portability of the <a href="https://allofphysicsgraph.github.io/proofofconcept/site/derivations.html">Physics Derivation Graph</a>, and I recognized the value of <a href="https://physicsderivationgraph.blogspot.com/2018/06/building-docker-image-for-physics.html">putting the code in a Docker image</a>. As a Docker image, anyone would be able to get started with editing and contributing quickly rather than resolving software dependencies.<br />
+<br />
+In addition to improving portability, I also recognize a command-line interface is not sufficient for most users. With the code in a Docker image, another useful change would be to run a webserver in the container. The web server could both display the current state and be the interface for making edits to the content.<br />
+<br />
+I have heard of nginx but not used it. Another option is&nbsp;lighttpd; I haven't used that either. While either of these two options would be sufficient for running static HTML content or something interactive (eg PHP or cgi), my backend code is currently Python. Therefore, I think Flask is a reasonable choice for presenting a web interface and enabling edits to the database.<br />
+<br />
+<i>Update</i> <b>20200512</b>: good explanation of the relevance of Nginx:&nbsp;<a href="https://rushter.com/blog/gunicorn-and-low-and-slow-attacks/">https://rushter.com/blog/gunicorn-and-low-and-slow-attacks/</a><br />
+<br />
+<i>Update </i><b>20190602</b><i>:</i><br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">cd</span> to your local copy of<br />
+<a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/sandbox/docker_images/flask_ubuntu">https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/sandbox/docker_images/flask_ubuntu</a><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker build -t flask_ub:latest .</span><br />
+To run interactively and manually, use<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker run -it --publish 5000:5000 --mount type=bind,source="$(pwd)",target=/another --entrypoint /bin/bash flask_ub</span><br />
+and then run<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">python3 app/controller.py</span><br />
+inside the Docker container.&nbsp; To run interactively automatically, use<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">docker run -it --publish 5000:5000 flask_ub</span><br />
+In either case, navigate your browser to <a href="http://localhost:5000/">http://localhost:5000</a> to use the interface.
+
+{% endblock %}

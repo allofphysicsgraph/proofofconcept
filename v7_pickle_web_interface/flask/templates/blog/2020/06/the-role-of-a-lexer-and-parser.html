@@ -1,0 +1,24 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>the role of a lexer and parser</H1>
+
+<P><small>Published 2020-06-07T02:12:00.001Z by Physics Derivation Graph</small></P>
+
+A lexer detects patterns in a sequence of characters (the input string). The patterns are specified as regex in a grammar file (e.g., ANTLR's .g4 file).<br />
+<br />
+The lexer produces a stream of tokens consumed by the parser.<br />
+<br />
+A parser assembles an AST<br />
+The nodes of the AST are tokens.<br />
+The parser then has a set of rules which are used to apply actions.<br />
+For example (in the context of the Physics Derivation Graph), the rules produce Sympy expressions.<br />
+<br />
+<br />
+<br />
+For the Physics Derivation Graph, the lexer will be consuming math latex.<br />
+<br />
+The math latex strings are expected to be agnostic to which Physics domain the .tex file is from.<br />
+In contrast, the parser rules may be domain-specific.
+
+{% endblock %}

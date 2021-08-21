@@ -1,0 +1,45 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>change of mindset to improve user experience</H1>
+
+<P><small>Published 2016-03-08T23:24:00Z by Physics Derivation Graph</small></P>
+
+Instead of treating this software project from the perspective of a developer, approach it from that of a customer.<br />
+<br />
+First customer action: download a zip. The zip contains scripts, databases, documentation<br />
+--&gt; action for me: write a tool which creates a zip<br />
+<br />
+Second customer action: run the contents of the zip<br />
+--&gt; action for me: document dependencies<br />
+--&gt; task: define what "working" means<br />
+<br />
+I'll define "working" by the following use cases:<br />
+<br />
+<ul>
+<li>for a single derivation, generate the PNG of the graph</li>
+<li>for each of N derivations, generate a PNG per derivation</li>
+<li>for all derivations, generate a PNG</li>
+<li>for a single derivation, generate the HTML/d3js of the graph</li>
+<li>for each of N derivations, generate a&nbsp;HTML/d3js&nbsp;per derivation</li>
+<li>for all derivations, generate a&nbsp;HTML/d3js</li>
+<li>user should be able to enter a new derivation</li>
+</ul>
+<div>
+These tasks require subtasks</div>
+<div>
+<ul>
+<li>generate PNG per expression</li>
+<li>generate new random index that doesn't conflict</li>
+</ul>
+<div>
+Other actions:</div>
+</div>
+<div>
+--&gt; publish inference rules to website</div>
+<div>
+--&gt; provide example for each inference rule</div>
+<div>
+--&gt; publish reports (currently PDF) as HTML</div>
+
+{% endblock %}

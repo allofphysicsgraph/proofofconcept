@@ -1,0 +1,96 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>todo list for February 2020 (completed!)</H1>
+
+<P><small>Published 2020-02-10T02:09:00Z by Physics Derivation Graph</small></P>
+
+Current status: I have an interactive web interface using Docker and Flask that I'm reasonably happy with. In this post I outline tasks that need to be done prior to wider exposure.<br />
+<br />
+Functionality<br />
+<ul>
+<li>list all&nbsp;</li>
+<ul>
+<li><strike>operators</strike></li>
+<ul>
+<li>in which derivation is each used?</li>
+<li>popularity: how many references are there to this operator?</li>
+</ul>
+<li><strike>symbols</strike></li>
+<ul>
+<li>in which derivation is each used?</li>
+<li>popularity:&nbsp;how many references are there to this symbol?</li>
+</ul>
+<li>derivations</li>
+<ul>
+<li>popularity:&nbsp;include stats -- number of steps, number of inf rules, number of expressions</li>
+</ul>
+<li><strike>expressions</strike></li>
+<ul>
+<li>popularity:&nbsp;list which derivations use which expressions</li>
+</ul>
+<li><strike>inference rules</strike></li>
+<ul>
+<li>include number of inputs, outputs</li>
+<li>popularity:&nbsp;which derivations use each inference rule?</li>
+</ul>
+</ul>
+<li>show a complete derivation</li>
+<li>edit&nbsp;</li>
+<ul>
+<li>an inference rule</li>
+<ul>
+<li>how to address all the places that inference rule gets used?</li>
+</ul>
+<li>a derivation</li>
+<ul>
+<li>edit a step</li>
+<ul>
+<li>how to address dangling steps?</li>
+</ul>
+</ul>
+<li>an expression</li>
+<ul>
+<li>where else is that expression used?</li>
+</ul>
+</ul>
+<ul>
+</ul>
+</ul>
+<br />
+functionality<br />
+<ul>
+<li>Latex to AST</li>
+<ul>
+<li>suggest related expressions</li>
+</ul>
+<li>Web interface</li>
+<ul>
+<li>download pkl file</li>
+<li>upload pkl file</li>
+<li>export derivation PNG</li>
+<li>export derivation to PDF</li>
+</ul>
+<li>CAS integration</li>
+<ul>
+<li>validate a single step of a derivation</li>
+</ul>
+</ul>
+Rendering<br />
+<ul>
+<li>use d3.js instead of graphviz</li>
+</ul>
+<br />
+visualize trace of flow<br />
+convert trace of flow to Selenium script<br />
+generate PDG website<br />
+<br />
+host on DigitalOcean droplet<br />
+account management<br />
+<br />
+Previous task list:<br />
+<a href="https://physicsderivationgraph.blogspot.com/2018/07/snapshot-of-milestones-for-physics.html">https://physicsderivationgraph.blogspot.com/2018/07/snapshot-of-milestones-for-physics.html</a><br />
+see also<br />
+<a href="https://physicsderivationgraph.blogspot.com/2017/06/not-getting-caught-in-details.html">https://physicsderivationgraph.blogspot.com/2017/06/not-getting-caught-in-details.html</a>
+
+{% endblock %}

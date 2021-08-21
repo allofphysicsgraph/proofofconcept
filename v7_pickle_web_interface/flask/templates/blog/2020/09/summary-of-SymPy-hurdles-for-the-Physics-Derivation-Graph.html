@@ -1,0 +1,19 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>summary of SymPy hurdles for the Physics Derivation Graph</H1>
+
+<P><small>Published 2020-09-06T12:23:00.001Z by Physics Derivation Graph</small></P>
+
+<br />
+<ul>
+<li>parsing Latex expressions, e.g., \vec{x} and \hat{a}. The SymPy support exists, but the conversion of Latex to SymPy is not</li>
+<li>novel operators, e.g., {\cal H}, how specify these operators in SymPy? - https://physicsderivationgraph.blogspot.com/2020/09/latex-symbols-that-are-operators-how-to.html</li>
+<li>Laplace operator \nabla^2, how to distinguish "\nabla^2" from "delop.dot(delop)" --&nbsp;https://physicsderivationgraph.blogspot.com/2020/09/representing-laplace-operator-nabla-in.html</li>
+<li>multi-line SymPy operations, like the need for "delop = Del()"</li>
+<li>notation for definite integrals. This could be a structural issue with the Physics Derivation Graph, though it could be resolved with SymPy support (unlikely)&nbsp;-- https://physicsderivationgraph.blogspot.com/2020/09/evaluating-definite-integrals-for.html</li>
+</ul>
+<div>
+<br /></div>
+
+{% endblock %}

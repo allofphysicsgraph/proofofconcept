@@ -1,0 +1,37 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>live display of input</H1>
+
+<P><small>Published 2020-05-07T12:03:00.001Z by Physics Derivation Graph</small></P>
+
+I realized it would be helpful to provide users a live preview of what the Latex renders as so the mistaken input can be corrected before submitting a step. (Decreasing feedback latency is a recurring theme.)<br />
+<br />
+There are Javascript-based approaches like<br />
+<a href="https://stackoverflow.com/questions/20876797/create-live-preview-of-form-inputs">https://stackoverflow.com/questions/20876797/create-live-preview-of-form-inputs</a><br />
+(see demo here -&nbsp;<a href="https://jsfiddle.net/mYjrn/1/">https://jsfiddle.net/mYjrn/1/</a>&nbsp;)<br />
+and<br />
+<a href="https://demos.joypixels.com/latest/live-preview.html">https://demos.joypixels.com/latest/live-preview.html</a><br />
+but these both rely on JQuery.<br />
+<br />
+JQuery is "a tool used to make writing common JavaScript tasks more concise." (source:&nbsp;<a href="https://www.digitalocean.com/community/tutorials/an-introduction-to-jquery">https://www.digitalocean.com/community/tutorials/an-introduction-to-jquery</a>&nbsp;)<br />
+I want to avoid unnecessary dependencies, so live preview of text that relies on JQuery is unattractive.<br />
+<br />
+I was able to find a live preview example that is written in pure Javascript:<br />
+<a href="https://www.codespeedy.com/show-live-preview-of-html-textarea-with-javascript/">https://www.codespeedy.com/show-live-preview-of-html-textarea-with-javascript/</a><br />
+I can get that to work on my website, but wrapping the output in \( \) to get Mathjax to interpret the live input does not work.<br />
+<br />
+I needed to find a "live preview of Mathjax" since the input is parsed as Latex.<br />
+This snippet from 2013 didn't work<br />
+<a href="https://github.com/mathjax/mathjax-docs/wiki/More-live-preview-examples">https://github.com/mathjax/mathjax-docs/wiki/More-live-preview-examples</a><br />
+but a similar code posted here<br />
+<a href="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/test/sample-dynamic.html">https://cdn.rawgit.com/mathjax/MathJax/2.7.1/test/sample-dynamic.html</a><br />
+does work for live preview of Mathjax!<br />
+<br />
+That link is for 2.7 but I had been using Mathjax 3. I couldn't find a v3-based approach, so I posted a question<br />
+<a href="https://stackoverflow.com/questions/61658297/mathjax-live-preview-for-version-3">https://stackoverflow.com/questions/61658297/mathjax-live-preview-for-version-3</a><br />
+and was directed to<br />
+<a href="https://mathjax.github.io/MathJax-demos-web/input-tex2chtml.html">https://mathjax.github.io/MathJax-demos-web/input-tex2chtml.html</a><br />
+which is a suitable solution for v3.
+
+{% endblock %}

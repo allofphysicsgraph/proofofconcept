@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>when to use a dropdown menu versus list of links in the web interface</H1>
+
+<P><small>Published 2019-12-25T14:23:00.002Z by Physics Derivation Graph</small></P>
+
+For the web interface, there are multiple pages that have a list from which a user can select. One way to render the list would be a set of hyperlinks; another way would be a dropdown menu.<br />
+<br />
+Suppose the user needs to select an inference rule for a step. They should only chose one, so a dropdown is the preferred method.<br />
+--&gt; when the user should be restricted to one option, use a dropdown menu.<br />
+<br />
+Suppose the user is presented with a list of derivations to view. They could chose one or more (to open in new tabs), so a list is the preferred method.<br />
+--&gt; when the user can chose one or more options, use a dynamically generated list of hyperlinks.
+
+{% endblock %}

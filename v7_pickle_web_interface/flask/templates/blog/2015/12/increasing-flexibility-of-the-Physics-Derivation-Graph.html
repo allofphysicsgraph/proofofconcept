@@ -1,0 +1,76 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>increasing flexibility of the Physics Derivation Graph</H1>
+
+<P><small>Published 2015-12-29T10:17:00Z by Physics Derivation Graph</small></P>
+
+Currently the <a href="http://allofphysicsgraph.github.io/proofofconcept/">Physics Derivation Graph</a> is designed as though there is a single authoritative user/developer (historically me). Having additional contributors is new, and contributors (including me) don't always provide valid content.<br />
+<br />
+The following are ideas for a significant re-design of the Physics Derivation Graph<br />
+<h3>
+Independent Graphs per Derivation</h3>
+Suppose every derivation was an independent graph. This is easier to debug and analyze. A set of these derivations could be then merged to analyze the full graph, but that shouldn't be a requirement. Merging derivation graphs incurs overhead of finding overlaps. The overlap would be identifying common expressions. For example,<br />
+<span style="font-family: Courier New, Courier, monospace;">A/B = C</span><br />
+is the same as<br />
+<span style="font-family: Courier New, Courier, monospace;">\frac{A}{B} = C</span><br />
+These should have the same unique index. This index (the <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>) should be unique across all derivations. Although the graph of the derivation is independent of other derivations, the expression database will need to be shared globally.<br />
+<h3>
+</h3>
+<h3>
+Enable arbitrary formats</h3>
+Currently all expressions are stored as Latex in a single CSV. I don't actually care about the representation (in this case Latex). Instead, I want a single numeric index (the Godel number) associated with arbitrary but equivalent representations. For example,<br />
+<span style="font-family: Courier New, Courier, monospace;">A/B = C</span><br />
+gets the same unique numeric index as<br />
+<span style="font-family: Courier New, Courier, monospace;">\frac{A}{B} = C</span><br />
+<div>
+and a <a href="http://www.sagemath.org/">Sage</a> representation is also acceptable:</div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">A,B,C = var('A,B,C')</span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;">expr = A/B == C</span></div>
+<div>
+<br /></div>
+<div>
+To enable arbitrary formats, place each in a separate file with the naming convention</div>
+<div>
+&lt;unique numeric id&gt;_&lt;type&gt;_&lt;date&gt;.&lt;extension&gt;</div>
+<div>
+"Type" = {Latex, Mathematica, Sage, etc}</div>
+<div>
+The date is to distinguish versions of the same expression, ie <span style="font-family: Courier New, Courier, monospace;">A/B = C</span> versus <span style="font-family: Courier New, Courier, monospace;">\frac{A}{B} = C</span>.</div>
+<div>
+A single unique numeric index may have multiple files:</div>
+<div>
+4924829_latex_20151228.tex</div>
+<div>
+4924829_latex_20151229.tex</div>
+<div>
+4924829_mathematica_20151228.nb</div>
+<div>
+<br /></div>
+<div>
+The reason to have separate files for each representation and for each expression is to increase flexibility.&nbsp;</div>
+<div>
+This adds to confusion when building the graph: <i>which of the two equivalent latex representations should be used?</i></div>
+<div>
+An additional source of work: checking that the various representations are consistent. An abstract syntax tree should be able to determine the equivalence of representations.</div>
+<div>
+<br /></div>
+<h3>
+Implementing Inference Rules</h3>
+<div>
+Similarly for inference rule representations, there are Latex, Sage, and Mathematica implementations. Currently I have a single CSV for all the inference rules in Latex. Implement each inference rule in the relevant language:</div>
+<div>
+multiplyBothSidesBy_latex_20151228.tex</div>
+<div>
+multiplyBothSidesBy_sage_20151228.sagews</div>
+<div>
+multiplyBothSidesBy_mathematica_20151228.nb</div>
+<div>
+<br /></div>
+<div>
+Again, there may be multiple ways to implement an inference rule. <i>Which should be used when checking with the Computer Algebra System?</i><br />
+The inference rule representations might not be synchronized. This would be detectable if the derivation checks out using one CAS and not another.&nbsp;</div>
+
+{% endblock %}

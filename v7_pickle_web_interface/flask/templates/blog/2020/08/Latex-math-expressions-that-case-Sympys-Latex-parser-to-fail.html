@@ -1,0 +1,120 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Latex math expressions that case Sympy's Latex parser to fail</H1>
+
+<P><small>Published 2020-08-12T17:41:00.001Z by Physics Derivation Graph</small></P>
+
+<span style="font-family: Courier New, Courier, monospace;">$ git clone https://github.com/allofphysicsgraph/proofofconcept.git</span><br />
+<span style="font-family: Courier New, Courier, monospace;">$ cd proofofconcept/v7_pickle_web_interface/flask</span><br />
+<span style="font-family: Courier New, Courier, monospace;">$ make dockerlive</span><br />
+<span style="font-family: Courier New, Courier, monospace;">$ python</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; import sympy</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; sympy.__version__</span><br />
+<span style="font-family: Courier New, Courier, monospace;">'1.5.1'</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; from sympy.parsing.latex import parse_latex</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; import json</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; with open('data.json') as json_file:</span><br />
+<span style="font-family: Courier New, Courier, monospace;">...&nbsp; &nbsp; &nbsp;dat = json.load(json_file)</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; for expr_id, expr_dict in dat['expressions'].items():</span><br />
+<span style="font-family: Courier New, Courier, monospace;">...&nbsp; &nbsp; &nbsp;print(expr_dict['latex'])</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">&gt;&gt;&gt; for expr_id, expr_dict in dat['expressions'].items():</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; try:</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; x = parse_latex(expr_dict['latex'])</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; except Exception as er:</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print('expr ID =', expr_id)</span><br />
+<span style="font-family: Courier New, Courier, monospace;">&nbsp; &nbsp; &nbsp; &nbsp; print(er)</span><br />
+<br />
+Using that approach, I found the following problems in the current (valid) Latex expressions used in the Physics Derivation Graph.<br />
+<br />
+<br />
+<h2>
+Subscripts with spaces</h2>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 8871333437</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I don't understand this</span><br />
+<span style="color: red; font-family: Courier New, Courier, monospace;">PE_{\rm Earth\ surface}</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~^</span><br />
+<div>
+<span style="font-family: Courier New, Courier, monospace;"><br /></span></div>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 7053449926</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I don't understand this</span><br />
+<span style="color: red; font-family: Courier New, Courier, monospace;">r_{\rm geostationary\ orbit}</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~~~~~~~~^</span><br />
+<div>
+<span style="font-family: Courier New, Courier, monospace;"><br /></span></div>
+<div>
+<span style="font-family: Courier New, Courier, monospace;"><br /></span></div>
+<h2>
+<span style="font-family: inherit;">Use of "\left."</span></h2>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 0439492440</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I don't understand this</span><br />
+<span style="font-family: Courier New, Courier, monospace;">\frac{1}{a^2} = \frac{1}{2}W - \frac{1}{2}\left. \frac{W}{2n\pi}\sin\left(\frac{2n\pi}{W} x\right) \right|_0^W</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^</span><br />
+<div>
+<span style="font-family: Courier New, Courier, monospace;"><br /></span></div>
+<h2>
+<span style="font-family: inherit;">Spaces in subscript</span></h2>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 7575859306</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I don't understand this</span><br />
+<span style="font-family: Courier New, Courier, monospace;">\left( \delta^{l}_{\ \ j} \delta^{m}_{\ \ k} - \delta^{l}_{\ \ k} \delta^{m}_{\ \ h} \right) \hat{x}_i \nabla_j \nabla^m E^n = \vec{ \nabla}( \vec{ \nabla} \cdot \vec{E} - \nabla^2 \vec{E})</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~~~~~~~^</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 7575859308</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I don't understand this</span><br />
+<span style="font-family: Courier New, Courier, monospace;">\left( \delta^{l}_{\ \ j} \delta^{m}_{\ \ k} \hat{x}_i \nabla_j \nabla^m E^n\right)-\left( \delta^{l}_{\ \ k} \delta^{m}_{\ \ h} \hat{x}_i \nabla_j \nabla^m E^n \right)&nbsp; = \vec{ \nabla}( \vec{ \nabla} \cdot \vec{E} - \nabla^2 \vec{E})</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~~~~~~~^</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<h2>
+<span style="font-family: inherit;">Apostrophe</span></h2>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 4662369843</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I don't understand this</span><br />
+<span style="font-family: Courier New, Courier, monospace;">x' = \gamma (x - v t)</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~^</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 2983053062</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I don't understand this</span><br />
+<span style="font-family: Courier New, Courier, monospace;">x = \gamma (x' + v t')</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~^</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 3426941928</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I don't understand this</span><br />
+<span style="font-family: Courier New, Courier, monospace;">x = \gamma ( \gamma (x - v t) + v t' )</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<h2>
+<span style="font-family: inherit;">Comma in subscript</span></h2>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 9973952056</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I expected something else here</span><br />
+<span style="font-family: Courier New, Courier, monospace;">-g t = v_y - v_{0, y}</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~~~~~^</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 7391837535</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I expected something else here</span><br />
+<span style="font-family: Courier New, Courier, monospace;">\cos(\theta) = \frac{v_{0, x}}{v_0}</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~~~~~~~~~~~~~^</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 8949329361</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I expected something else here</span><br />
+<span style="font-family: Courier New, Courier, monospace;">v_0 \sin(\theta) = v_{0, y}</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~~~~~~~~~~~^</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<h2>
+<span style="font-family: inherit;">Spaces</span></h2>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 3920616792</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I don't understand this</span><br />
+<span style="font-family: Courier New, Courier, monospace;">T_{\rm geostationary orbit} = 24\ {\rm hours}</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<h2>
+<span style="font-family: inherit;">Much greater than</span></h2>
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: Courier New, Courier, monospace;">expr ID = 9674924517</span><br />
+<span style="font-family: Courier New, Courier, monospace;">I don't understand this</span><br />
+<span style="font-family: Courier New, Courier, monospace;">K &gt;&gt; G</span><br />
+<span style="font-family: Courier New, Courier, monospace;">~~~^</span>
+
+{% endblock %}

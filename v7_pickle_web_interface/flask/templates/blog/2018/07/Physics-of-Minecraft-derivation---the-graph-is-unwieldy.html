@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Physics of Minecraft derivation - the graph is unwieldy</H1>
+
+<P><small>Published 2018-07-17T01:53:00.003Z by Physics Derivation Graph</small></P>
+
+There's <a href="https://www.youtube.com/watch?v=aE9_YAXao3I">a video on the&nbsp;Physics of Minecraft</a>&nbsp;which measures the gravitation in Minecraft. I wanted to see how well the <a href="https://en.wikipedia.org/wiki/Projectile_motion">projectile motion</a>&nbsp;is described in the Physics Derivation Graph.<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-cS1YF_m6-l8/W01GF4RcmDI/AAAAAAAAhjA/I0yagCq84-0GeVvoaqepyqkIBqmPhqiLgCLcBGAs/s1600/Screen%2BShot%2B2018-07-16%2Bat%2B9.26.55%2BPM.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="370" data-original-width="649" height="364" src="https://1.bp.blogspot.com/-cS1YF_m6-l8/W01GF4RcmDI/AAAAAAAAhjA/I0yagCq84-0GeVvoaqepyqkIBqmPhqiLgCLcBGAs/s640/Screen%2BShot%2B2018-07-16%2Bat%2B9.26.55%2BPM.png" width="640" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+Screenshot from 0:35 in <a href="https://www.youtube.com/watch?v=aE9_YAXao3I">the video</a>. Useful <a href="https://news.ycombinator.com/item?id=3543039">commentary is on news.ycombinator</a>. The <a href="https://www.wired.com/2012/02/minecraft-physics/">post on Wired.com</a> was basic.</div>
+<br />
+On paper, the derivation was 4 expressions and two lines of text. The Physics Derivation Graph yields a cumbersome 7 expressions and a total of 25 nodes (feeds, expressions, and inference rules).<br />
+<br />
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://1.bp.blogspot.com/-Y0aRnu7SF5U/W01LV3nDX4I/AAAAAAAAhjM/OC2JL2vRYCAVHlYGwuULEbLBnJw8DbAgQCLcBGAs/s1600/out.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="1600" data-original-width="997" height="640" src="https://1.bp.blogspot.com/-Y0aRnu7SF5U/W01LV3nDX4I/AAAAAAAAhjM/OC2JL2vRYCAVHlYGwuULEbLBnJw8DbAgQCLcBGAs/s640/out.png" width="398" /></a></div>
+<div class="separator" style="clear: both; text-align: center;">
+Current output from the Physics Derivation</div>
+<br />
+The reason the graph is large is because the "subXforY" is used three times. Analysis of the midpoint is really three concurrent substitutions: at y=y_mid, v_horizontal=0 and t=t_midpoint. Concurrent substitutions are not supported, so three steps are required.<br />
+<br />
+Also, the current implementation lacks <a href="https://github.com/allofphysicsgraph/proofofconcept/issues/48">support for comments</a>.
+
+{% endblock %}

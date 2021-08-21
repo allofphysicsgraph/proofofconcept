@@ -1,0 +1,67 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>not getting caught in the details -- identifying priorities</H1>
+
+<P><small>Published 2017-06-16T00:52:00.003Z by Physics Derivation Graph</small></P>
+
+There are lots of relevant topics with the Physics Derivation Graph:<br />
+<br />
+<ul>
+<li>representing expressions prettily -- ie Latex, MathJax, MathML (presentation)</li>
+<li>storing expressions meaningfully -- ie an Abstract Syntax Tree, MathML (content)</li>
+<li>converting between presentation and content</li>
+<li>converting between non-propriatry content representation and a Computer Algebra System</li>
+<li>finding a Computer Algebra System capable of handling most of mathematical physics</li>
+<li>manually creating content (ie actual derivations)</li>
+<li>entering content manually into the Physics Derivation Graph</li>
+<li>searching for content (ie PDFs of derivations)</li>
+<li>converting found content (ie PDFs) to input for the Physics Derivation Graph</li>
+<li>checking the consistency of content in the Physics Derivation Graph</li>
+<li>rendering the content of the Physics Derivation Graph, ie using d3js or GraphViz</li>
+</ul>
+<div>
+There are dependencies among these tasks. Also, there is an order for the tasks. Below I group and order the tasks.&nbsp;</div>
+<div>
+<br /></div>
+<div>
+<div>
+Getting content is vital to the Physics Derivation Graph being useful.&nbsp;</div>
+<ul>
+<li>manually creating content (ie actual derivations)</li>
+<ul>
+<li>entering content manually into the Physics Derivation Graph</li>
+</ul>
+<li>searching for content (ie PDFs of derivations)</li>
+<ul>
+<li>converting found content (ie PDFs) to input for the Physics Derivation Graph</li>
+</ul>
+</ul>
+</div>
+<div>
+Before entering content into a computer, it makes sense to choose how to store the data</div>
+<div>
+<ul>
+<li>representing expressions prettily -- ie Latex, MathJax, MathML (presentation)</li>
+<li>storing expressions meaningfully -- ie an Abstract Syntax Tree, MathML (content)</li>
+<ul>
+<li>converting between presentation and content</li>
+</ul>
+</ul>
+<div>
+Once content exists, it would be useful to validate</div>
+<ul>
+<li>checking the consistency of content in the Physics Derivation Graph</li>
+<li>finding a Computer Algebra System capable of handling most of mathematical physics</li>
+<ul>
+<li>converting between non-proprietary content representation and a Computer Algebra System</li>
+</ul>
+</ul>
+<div>
+Lastly, but no less important, how will consumers interact with the data?</div>
+<ul><ul></ul>
+<li>rendering the content of the Physics Derivation Graph, ie using d3js or GraphViz</li>
+</ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>static analysis of function dependency in Python</H1>
+
+<P><small>Published 2018-07-04T18:40:00.002Z by Physics Derivation Graph</small></P>
+
+With 1400 lines of Python, I wanted to find a way to visualize the static dependencies of functions internal to the script<br />
+https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v4_file_per_expression/bin/interactive_user_prompt.py<br />
+<br />
+I looked at <a href="https://pycallgraph.readthedocs.io/en/master/">PyCallGraph</a> but it only supports dynamic call graphs. In addition to <a href="https://github.com/davidfraser/pyan">Pyan</a> and <a href="http://furius.ca/snakefood/">Snakefood</a>, I found <a href="http://blog.prashanthellina.com/generating-call-graphs-for-understanding-and-refactoring-python-code.html">a blog post</a> that included <a href="http://code.prashanthellina.com/code/construct_call_graph.py">an AST parser</a> as a single file.<br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">python construct_call_graph.py -i ../../proofofconcept/v4_file_per_expression/bin/interactive_user_prompt.py &gt; graph.dot</span><br />
+<br />
+add "<span style="font-family: Courier New, Courier, monospace;">overlap=false;</span>" in the graph.dot file<br />
+<br />
+<span style="font-family: Courier New, Courier, monospace;">neato -Tpng graph.dot -o graph.png</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<span style="font-family: inherit;">which yields</span><br />
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+<div class="separator" style="clear: both; text-align: center;">
+<a href="https://2.bp.blogspot.com/-YbdJhcJRsWQ/Wz0UhnEd3LI/AAAAAAAAhJY/HRHLMkL6nKISRvoO1DE-j_UVmwnhbFnzQCLcBGAs/s1600/graph.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" data-original-height="1378" data-original-width="1600" src="https://2.bp.blogspot.com/-YbdJhcJRsWQ/Wz0UhnEd3LI/AAAAAAAAhJY/HRHLMkL6nKISRvoO1DE-j_UVmwnhbFnzQCLcBGAs/s1600/graph.png" /></a></div>
+<span style="font-family: Courier New, Courier, monospace;"><br /></span>
+
+{% endblock %}

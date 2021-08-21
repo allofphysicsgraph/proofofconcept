@@ -1,0 +1,51 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>a differnet approach to generating content for the Physics Derivation Graph</H1>
+
+<P><small>Published 2018-07-21T00:41:00Z by Physics Derivation Graph</small></P>
+
+I've been focused on creating the interface for the Physics Derivation Graph to enable manual entry of content. An alternative method to create content would be parsing large databases like <a href="https://dumps.wikimedia.org/">Wikipedia</a>.<br />
+<br />
+The first step would be to extract pages that contain derivations. Pages with a section title containing "derivation" and containing at least three mathematical expressions in that section would be a useful set. Suppose there are a thousand pages containing derivations which contain text+Latex.<br />
+<br />
+<i>Side note</i>:&nbsp;Wikipedia "text is available under the Creative Commons Attribution-ShareAlike License."<br />
+<br />
+Given 1000 pages of text+Latex there are two nested challenges:<br />
+<br />
+<ol>
+<li>Between any two adjacent expressions in your data set, there are likely a bunch of missing steps.</li>
+<li>Suppose all the expressions were present. Even in that situation, the inference rules are missing. Filling in these is a big challenge.</li>
+</ol>
+<br />
+<div>
+To address these challenges, text analysis would be useful. Suppose the sequence is</div>
+<div>
+<ul>
+<li>text1</li>
+<li>expression1</li>
+<li>text2</li>
+<li>expression2</li>
+<li>text3</li>
+<li>expression3</li>
+<li>text4</li>
+</ul>
+<div>
+There are a few distinct categories of text to analyze:</div>
+<div>
+<ul>
+<li>s1 = the last two sentences in "text1" proceeding "expression1"</li>
+<li>s(i) = if text2 and text3 are short (ie a few sentences), then they are&nbsp;potential inference rules</li>
+<li>s(j) = if text2 and text3 are longer than a few sentences, then probably the two sentences following an expression and the two sentences proceeding an expression are relevant</li>
+<li>sf = the first two sentences of the "text4" which is text after the last expression.</li>
+</ul>
+<div>
+We now have 1000 instances of "s1" sentences. In this "s1" data set, what's the most common word? What's the most common two word phrase? What's the most common three word phrase? If there are things that look like inference rules, that would be interesting. I doubt that "declare initial expression" will appear, but some consistency would be validating.</div>
+</div>
+</div>
+<div>
+<br /></div>
+<div>
+Similarly, run the same word and phrase frequency analysis for the 1000 "sf" sentences. Also apply to each of "s(i)" and "s(j)."</div>
+
+{% endblock %}

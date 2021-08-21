@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>lesson learned about triggers for when to save and commit to git repo</H1>
+
+<P><small>Published 2020-04-18T21:32:00.001Z by Physics Derivation Graph</small></P>
+
+Historically I've been committing changes to git whenever I complete a feature. That has worked because 1) I haven't lost any data and 2) the window for losing data was small because the features were minor.<br />
+<br />
+Earlier this week I was working on implementing logins. That feature is complicated and involves lots of copy-pasting code from various sites to see what works. After a few hours I somehow typed a command in vim that deleted the first 100 lines of a 1000 line Python script. I didn't notice my mistake until I re-opened the file, at which point the backup file was already removed so my recovery using that approach was unavailable.<br />
+<br />
+Because the feature of logins hadn't been completed, I lost about 4 hours of work. I was able to recover most of the missing 100 lines from the file from the previous git commit, but all the changes associated with logins had to be recreated.<br />
+<br />
+The lesson I learned is that my trigger condition for committing to the git repo needed to be adapted to the change in feature size. Previously a feature took no more than an hour, so committing per-feature made sense. In the future I will try to commit every 20 to 30 minutes, even if the feature is incomplete.
+
+{% endblock %}

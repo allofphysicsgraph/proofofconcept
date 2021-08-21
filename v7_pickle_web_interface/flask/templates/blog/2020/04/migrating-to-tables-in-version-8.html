@@ -1,0 +1,30 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>migrating to tables in version 8</H1>
+
+<P><small>Published 2020-04-09T11:51:00.001Z by Physics Derivation Graph</small></P>
+
+Currently the Physics Derivation Graph is "version 7: pkl and web interface". While v7 started as a Python Pickle data file, it then moved to JSON, and is now a JSON file stored as a string in Redis.<br />
+<br />
+While I could rewrite the "JSON as string in Redis" into a proper Redis-based interface, my plan is to rewrite the code to support an SQLite3&nbsp;backend. This would mean rewriting all the functions to use tables rather than nested dictionaries and lists.<br />
+<br />
+While the in-memory data of Redis sounds attractive for low-latency, the downside is that the Redis server needs to be running in order to query the content. An SQLite3 database is available offline.<br />
+<br />
+Three issues have held me back from implementing the database as tables. Two of the issues are about translating the nested dictionaries and lists to tables. I want the translation to be to a schema design that is compact (not too many tables) and tidy (no element should contain lists).<br />
+<br />
+<i>Issue</i>: a symbol can be a constant or a variable, for constants there may be multiple values. Should this be one table with multiple rows per value for constants, or a table of symbols + a table for values?<br />
+The multiple tables is a better schema but not as intuitive for users.<br />
+<i>Resolution</i>: The HTML table displayed in the web interface doesn't have to be the same as the backend schema. I will use a single table for the web frontend and multiple tables in SQLite3.<br />
+<br />
+<i>Issue</i>: the derivation table columns could be<br />
+<span style="font-family: Courier New, Courier, monospace;">['step id', 'inference rule', 'input expr1', 'input expr 2', 'input expr 3', 'feed 1', 'feed 2', 'feed 3', 'output expr 1', 'output expr 2', 'output expr 3']</span><br />
+which is one row per step and not tidy<br />
+or<br />
+<span style="font-family: Courier New, Courier, monospace;">['step id', 'in connection type', 'in id', 'out connection type', 'out id']</span><br />
+which has multiple rows per step and is tidy.<br />
+<i>Resolution</i>: use the tidy table schema and write a converter to the dictionary with lists?<br />
+<br /><i>Issue</i>: I'm not comfortable with SQL<br />
+<i>Resolution</i>: learn SQL.
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>schema for tables</H1>
+
+<P><small>Published 2020-04-13T15:35:00.001Z by Physics Derivation Graph</small></P>
+
+I previously <a href="https://physicsderivationgraph.blogspot.com/2019/06/sql-schema.html">proposed a schema</a> for a relational database to hold the Physics Derivation Graph content but ended up using nested dictionaries and lists in v7.<br />
+<br />
+One of the tasks associated with using the nest dictionaries was a desire to convert the content to a table design. I came up with <a href="https://physicsderivationgraph.blogspot.com/2020/04/migrating-to-tables-in-version-8.html">two potential schemas for derivations</a> but wasn't comfortable with either of them. In this post I outline a schema for tables that should work. The consequence is improved JSON-to-tables in v7 as well as enabling the transition from v7 to v8.<br />
+<br />
+Columns per table:<br />
+<ul>
+<li>"step ID", "inference rule", "derivation name", "linear index"</li>
+<li>"step ID", "input local ID", "input index"</li>
+<li>"step ID", "output local ID", "output index"</li>
+<li>"step ID", "feed local ID", "feed index"</li>
+<li>"local ID", "global ID"</li>
+<li>"global ID", "expr latex", "AST as JSON"</li>
+<li>"symbol ID", "symbol latex"</li>
+<li>"symbol ID", "reference URL"</li>
+<li>"operator name", "operator latex"</li>
+<li>"operator name", "reference URL"</li>
+</ul>
+<div>
+What's not clear to me is how to store an <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">AST</a>. The AST relates the use of symbols and operators in a tree structure.&nbsp;</div>
+<div>
+<a href="https://www.reddit.com/r/AskProgramming/comments/7go3b2/sql_schemas_or_nosql_alternatives_for_storing/">https://www.reddit.com/r/AskProgramming/comments/7go3b2/sql_schemas_or_nosql_alternatives_for_storing/</a></div>
+<div>
+--&gt; store AST as JSON</div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>analyze each commit in a repo</H1>
+
+<P><small>Published 2020-04-13T17:15:00Z by Physics Derivation Graph</small></P>
+
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>git --no-pager log --pretty=format:"%H %ad" &gt; hash_and_date.log</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>cat hash_and_date.log | wc -l</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; &nbsp;538</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$&nbsp;<b>mkdir -p /tmp/my_bundle</b></span><br />
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"></span><br />
+<div style="font-family: Times;">
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$&nbsp;<b>cp hash_and_date.log /tmp/my_bundle/</b></span></span></div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+</span>
+<br />
+<div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><b><br /></b></span></span></div>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">
+</span></div>
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>git branch -a</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">* gh-pages</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; master</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; remotes/origin/HEAD -&gt; origin/master</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; remotes/origin/gh-pages</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; remotes/origin/haskell</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; remotes/origin/master</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; remotes/origin/mike</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; remotes/origin/test_branch</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>git bundle create pdg.bundle gh-pages</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Enumerating objects: 6317, done.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Counting objects: 100% (6317/6317), done.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Delta compression using up to 4 threads</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Compressing objects: 100% (5936/5936), done.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Writing objects: 100% (6317/6317), 92.21 MiB | 11.46 MiB/s, done.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Total 6317 (delta 3369), reused 150 (delta 68)</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>ls -hal pdg.bundle&nbsp;</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">&nbsp; &nbsp; 92M Apr 13 11:44 pdg.bundle</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>cp pdg.bundle /tmp/my_bundle/</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>cd&nbsp;</b></span><span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><b>/tmp/my_bundle/</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ <b>git clone --no-checkout pdg.bundle&nbsp;</b></span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Cloning into 'pdg'...</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Receiving objects: 100% (6317/6317), 92.21 MiB | 51.80 MiB/s, done.</span><br />
+<br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">Resolving deltas: 100% (3369/3369), done.</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: inherit;"><span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">see <a href="https://gist.github.com/bhpayne/fb63fa0816be63733488162baebf9b14">https://gist.github.com/bhpayne/fb63fa0816be63733488162baebf9b14</a></span>
+</span><br />
+<span style="font-family: inherit;">for lcount function</span><br />
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;"><br /></span>
+<span style="font-family: &quot;courier new&quot; , &quot;courier&quot; , monospace;">$ while read -r line; do this_hash=`echo $line | cut -d' ' -f1`; this_date=`echo $line | cut -d' ' -f3-`; rm -rf *; git checkout $this_hash; lcount $this_hash "$this_date" &gt;&gt; ../record.log; done &lt; ../hash_and_date.log</span>
+
+{% endblock %}

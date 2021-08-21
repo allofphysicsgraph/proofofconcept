@@ -1,0 +1,49 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>SQL schema</H1>
+
+<P><small>Published 2019-06-03T10:38:00.003Z by Physics Derivation Graph</small></P>
+
+Tables as bullets, columns per table as sub-bullets:&nbsp;
+<br />
+<ul>
+<li>expressions</li>
+<ul>
+<li>unique numeric ID</li>
+<li>Latex</li>
+</ul>
+<li>inference rules</li>
+<ul>
+<li>unique string name</li>
+<li>text expansion in Latex</li>
+<li>number of input arguments</li>
+<li>number of output arguments</li>
+</ul>
+</ul>
+For each "name of derivation",
+<br />
+<ul>
+<li>edge list</li>
+<ul>
+<li>source temp index</li>
+<li>destination temp index</li>
+</ul>
+<li>expression identifiers</li>
+<ul>
+<li>unique numeric ID</li>
+<li>temp index</li>
+</ul>
+<li>inference rule identifiers</li>
+<ul>
+<li>unique string name</li>
+<li>temp index</li>
+</ul>
+<li>feeds</li>
+<ul>
+<li>temp index</li>
+<li>Latex</li>
+</ul>
+</ul>
+
+{% endblock %}

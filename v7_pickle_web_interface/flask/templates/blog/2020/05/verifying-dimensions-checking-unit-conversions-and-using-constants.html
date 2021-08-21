@@ -1,0 +1,39 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>verifying dimensions, checking unit conversions, and using constants</H1>
+
+<P><small>Published 2020-05-27T01:42:00.001Z by Physics Derivation Graph</small></P>
+
+There are multiple checks that can be performed for a step.<br />
+<ul>
+<li>apply inference rule to expressions, verify change to AST is correct</li>
+<li>verify that the dimensionality of variables is consistent</li>
+<li>if units are present, validate unit conversions and consistency</li>
+</ul>
+<div>
+The existence of the AST depends on having all symbols in the expression accounted for.</div>
+<div>
+The ability to verify dimensions relies on having the AST.</div>
+<div>
+The ability to check units requires dimension validation.<br />
+<br /></div>
+<div>
+<br /></div>
+<div>
+My prioritization is to validate the scope of coverage. The claim of coverage means</div>
+<div>
+<ol>
+<li>all domains (e.g., electrodynamics, classical mechanics, quantum mechanics, thermodynamics)</li>
+<li>all symbols&nbsp;</li>
+<li>all expressions (e.g., E=mc^2, F=ma, Schrodinger, Maxwell, wave equation)</li>
+</ol>
+<div>
+Even though my prioritization is scope, it would be foolish to tackle scope and then later realize the PDG infrastructure does not handle checking inference rules, checking dimensionality, and checking units.&nbsp;</div>
+</div>
+<div>
+<br /></div>
+<div>
+Therefore, I should pause adding derivations and verify that, for a given derivation, I can check dimensionality and units.&nbsp;</div>
+
+{% endblock %}

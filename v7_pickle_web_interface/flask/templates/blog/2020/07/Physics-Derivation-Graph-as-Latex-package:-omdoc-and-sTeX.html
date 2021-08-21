@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>Physics Derivation Graph as Latex package: omdoc and sTeX</H1>
+
+<P><small>Published 2020-07-27T17:58:00.001Z by Physics Derivation Graph</small></P>
+
+Since Physics content is authored as .tex files, a useful question would be to consider how the Physics Derivation Graph could be made into a Latex package.<br />
+<br />
+A literature search indicates sTeX is the closest implementation, featuring a domain specific language (the cmathml package) enabling concise specification of Content MathML and the ability to generate math Latex or Presentation MathML. While necessary, the Content MathML does not address other aspects of the Physics Derivation Graph like (Godel numbering for symbols) and (inference rules between steps).<br />
+<br />
+There are efforts to semantically structure mathematical papers, for example <a href="https://en.wikipedia.org/wiki/OMDoc">OMDoc</a>.<br />
+<blockquote>
+Both MathML and OpenMath address mathematical formulas in isolation, whereas OMDoc allows to express the structure of mathematical documents, for example the relation between definitions, theorems and proofs.
+</blockquote>
+source: <a href="https://pdfs.semanticscholar.org/a91a/f3fa64e1296de470206f375a29ddc1c7b54d.pdf">"Extracting Mathematical Semantics from LATEX Documents"</a><br />
+<br />
+There is a Physics extension for OMDoc, PhysML<br />
+<a href="https://github.com/OMdoc/OMDoc/wiki/PhysML">https://github.com/OMdoc/OMDoc/wiki/PhysML</a><br />
+<a href="https://github.com/OMDoc/PhysML">https://github.com/OMDoc/PhysML</a>
+
+{% endblock %}

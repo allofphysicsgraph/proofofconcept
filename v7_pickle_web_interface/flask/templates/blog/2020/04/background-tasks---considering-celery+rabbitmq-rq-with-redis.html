@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>background tasks - considering celery+rabbitmq, rq with redis</H1>
+
+<P><small>Published 2020-04-09T12:02:00.003Z by Physics Derivation Graph</small></P>
+
+Currently the first access to the "editor" page incurs a significant delay while pictures are generated in the background. While this task only runs the first time and could be moved elsewhere in the code to distribute the latency more evenly, I expect the need for a task queue to arise.<br />
+<a href="https://www.fullstackpython.com/task-queues.html">https://www.fullstackpython.com/task-queues.html</a><br />
+<br />
+Celery has workers. RQ has both workers and a queue; RabbitMQ has just the queueing system. <a href="https://bhavaniravi.com/blog/asynchronous-task-execution-in-python">Source</a><br />
+<br />
+Celery versus RQ:<br />
+<ul>
+<li>https://stackoverflow.com/a/29837939/1164295</li>
+<li><a href="https://www.reddit.com/r/learnpython/comments/czc0fl/celery_vs_rq_for_small_scale_projects/">https://www.reddit.com/r/learnpython/comments/czc0fl/celery_vs_rq_for_small_scale_projects/</a></li>
+</ul>
+RQ is simpler and Celery has more features. RQ only works with Redis.
+<br />
+<br />
+Migrating from Celery to RQ:&nbsp;<a href="https://frappe.io/blog/technology/why-we-moved-from-celery-to-rq">https://frappe.io/blog/technology/why-we-moved-from-celery-to-rq</a><br />
+<br />
+<br />
+<br />
+
+{% endblock %}

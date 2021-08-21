@@ -1,0 +1,29 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<H1>docker - no space left on device</H1>
+
+<P><small>Published 2020-06-20T13:56:00.001Z by Physics Derivation Graph</small></P>
+
+When Docker runs out of space, the error messages can be misleading.<br />
+<br />
+<pre>docker images | grep "&lt;none&gt;                              &lt;none&gt;" | tr -s " " | cut -d' ' -f3 | xargs docker rmi -f
+</pre>
+<br />
+<pre>docker image prune -f
+</pre>
+<br />
+<pre>docker rm $(docker ps -q -f 'status=exited')
+</pre>
+<br />
+<pre>docker rmi $(docker images -q -f "dangling=true")
+</pre>
+<br />
+<pre>docker system prune
+</pre>
+<br />
+<br />
+<a href="https://domm.plix.at/perl/2020_06_docker_prune_volumes_by_label.html">https://domm.plix.at/perl/2020_06_docker_prune_volumes_by_label.html</a><br />
+<a href="https://news.ycombinator.com/item?id=23571953">https://news.ycombinator.com/item?id=23571953</a>
+
+{% endblock %}
