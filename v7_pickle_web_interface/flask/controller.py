@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # Physics Derivation Graph
-# Ben Payne, 2020
+# Ben Payne, 2021
 # https://creativecommons.org/licenses/by/4.0/
 # Attribution 4.0 International (CC BY 4.0)
 
@@ -1318,6 +1318,26 @@ def faq():
     """
     logger.info("[trace]")
     return render_template("faq.html", title="Frequently Asked Questions")
+
+@app.route("/blog/<YYYY>/<MM>/<blog_title>", methods=["GET"])
+def blog(YYYY: str, MM: str, blog_title:str):
+    """
+    blog/YYYY/MM/blog-title
+
+    blog()
+    """
+    logger.info("[trace]")
+    return render_template("blog/"+YYYY+"/"+MM+"/"+blog_title )
+
+@app.route("/central_expessions", methods=["GET"])
+def central_expressions():
+    """
+    "central expressions" is a static page
+
+    >>> central_expessions()
+    """
+    logger.info("[trace]")
+    return render_template("central_expressions.html", title="central expressions")
 
 
 @app.route("/other_projects", methods=["GET", "POST"])

@@ -1,0 +1,637 @@
+{% extends "_base.html" %}
+{% block content %}
+
+
+<center>
+<H3>Expressions Central to Physics</H3>
+</center>
+<P>Page content is from
+  <a href="https://en.wikipedia.org/wiki/List_of_equations">Wikipedia's list of equation</a> and
+  <a href="https://www.wondersofphysics.com/2019/09/groundbreaking-equations-in-physics.html">Top Ten Important Equations In Physics</a> and
+  <a href="https://sciencestruck.com/physics-formulas-list">Physics formula list</a> and
+  <a href="https://cosmosmagazine.com/physics/six-physics-equations-changed-course-history/">six equations</a> and
+  <a href="https://www.livescience.com/57849-greatest-mathematical-equations.html">11 Most Beautiful Mathematical Equations</a> and
+  <a href="https://physics.info/equations/">list of Physics equations</a>
+<P>
+  <table border="1"  class="sortable">
+    <tr>
+      <th>Expression</th>
+      <th>name</th>
+      <th>domain</th>
+      <th>description</th>
+    </tr><tr>
+      <td>\(F = m a\)</td> <!-- expression -->
+      <td>
+        <a href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion#Constant_Mass">Second Law of Motion</a></td> <!-- name -->
+      <td>Classical Mechanics</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\(E = m c^2\)</td> <!-- expression -->
+      <td>
+        <a href="https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence">Energy-mass equivalence</a></td> <!-- name -->
+      <td>special theory of relativity</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \Delta x \Delta \rho \geq \frac{\hbar}{2} \) </td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Uncertainty_principle">Uncertainty principle</a></td> <!-- name -->
+      <td>Quantum Mechanics</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( i \hbar \frac{\partial}{\partial t} | \psi(t) \rangle = \hat{H} | \psi(t) \rangle \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Schr%C3%B6dinger_equation">Schrödinger equation</td> <!-- name -->
+      <td>Quantum Mechanics</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \vec{\nabla} \times \vec{E} = - \frac{\partial \vec{B}}{\partial t} \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Faraday%27s_law_of_induction#Maxwell%E2%80%93Faraday_equation">Maxwell-Faraday equation</a></td> <!-- name -->
+      <td>Electrodynamics</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( (i \partial\!\!\!\big / -m) \psi = 0 \)</td> <!-- expression -->
+      <!-- for partial slash, see https://tex.stackexchange.com/a/299343/235813
+           and https://tex.stackexchange.com/a/277367/235813 -->
+      <td><a href="https://en.wikipedia.org/wiki/Dirac_equation">Dirac equation</a></td> <!-- name -->
+      <td>Partical Physics</td> <!-- domain -->
+      <td><blockquote cite="https://www.wondersofphysics.com/2019/09/groundbreaking-equations-in-physics.html">
+        Dirac developed an equation that explained spin number as a consequence
+        of the union of quantum mechanics and special relativity. The equation
+        also predicted the existence of anti-matter, previously unsuspected and
+        unobserved, and which was experimentally discovered in 1932.
+        <footer><cite><a href="https://www.wondersofphysics.com/2019/09/groundbreaking-equations-in-physics.html">source</a></cite></footer>
+      </blockquote></td> <!-- description -->
+    </tr><tr>
+      <td>\( \Delta S \geq 0 \) where \( S = k_{Boltzmann} \ln W \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Second_law_of_thermodynamics">Law of entropy</a></td> <!-- name -->
+      <td>Thermodynamics</td> <!-- domain -->
+      <td><blockquote cite="https://www.wondersofphysics.com/2019/09/groundbreaking-equations-in-physics.html">
+        when energy changes from one form to another form, or when matter moves
+        freely, the disorder in a closed system increases.
+        <footer><cite><a href="https://www.wondersofphysics.com/2019/09/groundbreaking-equations-in-physics.html">source</a></cite></footer>
+      </blockquote></td> <!-- description -->
+    </tr><tr>
+      <td>\( G_{\mu \nu} + \Lambda g_{\mu \nu} = \frac{8 \pi G}{c^4} T_{\mu \nu} \)</td> <!-- expression -->
+      <td>
+        <a href="https://en.wikipedia.org/wiki/Einstein_field_equations">Einstein field equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td><blockquote cite="https://www.wondersofphysics.com/2019/09/groundbreaking-equations-in-physics.html">
+        The expression on the left hand side of the equation represents the
+        curvature of spacetime. The expression on the right is the energy
+        density of spacetime. The equation dictates how energy determines
+        he curvature of space and time.
+        <footer><cite><a href="https://www.wondersofphysics.com/2019/09/groundbreaking-equations-in-physics.html">source</a></cite></footer>
+      </blockquote></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{\partial^2 u}{\partial t^2} = \frac{\partial^2 u}{\partial x^2} c^2 \)</td> <!-- expression -->
+      <td>wave equation</td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( E = h f \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Planck%27s_law">Planck's equation</a></td> <!-- name -->
+      <td>quantum mechanics</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{\partial \mathbf{u}}{\partial t} + (\mathbf{u} \cdot \nabla) \mathbf{u} - \nu \,\nabla^2 \mathbf{u} = - \nabla w + \mathbf{g} \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Navier%E2%80%93Stokes_equations">Navier-Stokes</a></td> <!-- name -->
+      <td>fluid dynamics</td> <!-- domain -->
+      <td>describes the motion of viscous fluid substances. mathematically express conservation of momentum and conservation of mass for Newtonian fluids.</td> <!-- description -->
+    </tr>
+    <tr>
+      <td>\( \vec{\nabla} \times \vec{B} = \mu_0 \vec{J} \) and \( \vec{\nabla} \times \vec{H} = \vec{J}_f \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Amp%C3%A8re%27s_circuital_law" title="Ampère&#39;s circuital law">Ampère's circuital law</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( P_1 + \frac{1}{2} \rho v_1^2 + \rho g h_1 = P_2 + \frac{1}{2} \rho v_2^2 + \rho g h_2 \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Bernoulli%27s_equation" title="Bernoulli&#39;s equation">Bernoulli's equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/BBGKY_hierarchy" title="BBGKY hierarchy">Bogoliubov–Born–Green–Kirkwood–Yvon hierarchy of equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Bessel%27s_differential_equation" title="Bessel&#39;s differential equation">Bessel's differential equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{\partial f}{\partial t} + \frac{\mathbf{p}}{m}\cdot\nabla f + \mathbf{F} \cdot \frac{\partial f}{\partial \mathbf{p}} = \left(\frac{\partial f}{\partial t} \right)_\mathrm{coll} \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Boltzmann_equation" title="Boltzmann equation">Boltzmann equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Borda%E2%80%93Carnot_equation" title="Borda–Carnot equation">Borda–Carnot equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Burgers%27_equation" title="Burgers&#39; equation">Burgers' equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Darcy%E2%80%93Weisbach_equation" title="Darcy–Weisbach equation">Darcy–Weisbach equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Dirac_equation" title="Dirac equation">Dirac equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Doppler_equations" title="Doppler equations">Doppler equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Drake_equation" title="Drake equation">Drake equation</a> (aka <a href="https://en.wikipedia.org/wiki/Green_Bank_equation" title="Green Bank equation">Green Bank equation</a>)</td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Euler_equations_(fluid_dynamics)" title="Euler equations (fluid dynamics)">Euler equations (fluid dynamics)</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Euler%27s_equations_(rigid_body_dynamics)" title="Euler&#39;s equations (rigid body dynamics)">Euler's equations (rigid body dynamics)</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Relativistic_Euler_equations" title="Relativistic Euler equations">Relativistic Euler equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{d}{dt} \left( \frac{\partial L}{\partial \dot{\mathbf{q}}} \right) = \frac{\partial L}{\partial \mathbf{q}} \)</td> <!-- expression -->
+      <!-- expression is from https://en.wikipedia.org/wiki/Noether%27s_theorem -->
+      <td><a href="https://en.wikipedia.org/wiki/Euler%E2%80%93Lagrange_equation" title="Euler–Lagrange equation">Euler–Lagrange equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \mathcal{E} = -\frac{\mathrm{d}\Phi_B}{\mathrm{d}t} \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Faraday%27s_law_of_induction" title="Faraday&#39;s law of induction">Faraday's law of induction</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td><UL>
+        <LI>\( \mathcal{E} \) is the electromotive force</LI>
+        <LI>\( \Phi_B \) is the magnetic flux.</LI>
+      </UL></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{\partial}{\partial t} p(x, t) = -\frac{\partial}{\partial x}\left[\mu(x, t) p(x, t)\right] + \frac{\partial^2}{\partial x^2}\left[D(x, t) p(x, t)\right] \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Fokker%E2%80%93Planck_equation" title="Fokker–Planck equation">Fokker–Planck equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td><blockquote cite="https://en.wikipedia.org/wiki/Fokker%E2%80%93Planck_equation">
+        describes the time evolution of the probability density function of the velocity of a particle under the influence of drag forces and random forces, as in Brownian motion
+        <footer><cite><a href="https://en.wikipedia.org/wiki/Fokker%E2%80%93Planck_equation">source</a></cite></footer>
+      </blockquote>
+      </td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Fresnel_equations" title="Fresnel equations">Fresnel equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Friedmann_equations" title="Friedmann equations">Friedmann equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \Phi_E = \frac{Q}{\varepsilon_0} \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Gauss%27s_law" title="Gauss&#39;s law">Gauss's law for electricity</a></td> <!-- name -->
+      <td>Electrodynamics</td> <!-- domain -->
+      <td><blockquote cite="https://en.wikipedia.org/wiki/Gauss%27s_law">
+        The net electric flux through any hypothetical closed surface is equal
+        to \( \frac{1}{\varepsilon _{0}} \) times the net electric charge within
+        that closed surface.
+        <footer><cite><a href="https://en.wikipedia.org/wiki/Gauss%27s_law">source</a></cite></footer>
+      </blockquote></td> <!-- description -->
+    </tr><tr>
+      <td>\(\vec{\nabla} \cdot \vec{g} = -4 \pi G \rho \) </td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Gauss%27s_law_for_gravity" title="Gauss&#39;s law for gravity">Gauss's law for gravity</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td>equivalent to Newton's law of universal gravitation
+        <UL>
+          <LI>\( G \) is the universal gravitational constant,</LI>
+          <LI>\( \rho \) is the mass density at each point.</LI>
+        </UL>
+      </td> <!-- description -->
+    </tr><tr>
+      <td>\( \vec{\nabla} \cdot \vec{B} = 0 \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Gauss%27s_law_for_magnetism" title="Gauss&#39;s law for magnetism">Gauss's law for magnetism</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \left( \frac{\partial \left( \frac{G} {T} \right) } {\partial T} \right)_p = - \frac {H} {T^2} \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Gibbs%E2%80%93Helmholtz_equation" title="Gibbs–Helmholtz equation">Gibbs–Helmholtz equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \left(-\frac{\hbar^2}{2m}{\partial^2\over\partial\mathbf{r}^2} + V(\mathbf{r})  + {4\pi\hbar^2a_s\over m}\vert\psi(\mathbf{r})\vert^2\right)\psi(\mathbf{r})=\mu\psi(\mathbf{r}) \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Gross%E2%80%93Pitaevskii_equation" title="Gross–Pitaevskii equation">Gross–Pitaevskii equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Hamilton%E2%80%93Jacobi%E2%80%93Bellman_equation" title="Hamilton–Jacobi–Bellman equation">Hamilton–Jacobi–Bellman equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \nabla^2 f = -k^2 f \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Helmholtz_equation" title="Helmholtz equation">Helmholtz equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( J(\phi) = A \cos^2 \phi + B \cos\,\phi + C \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Karplus_equation" title="Karplus equation">Karplus equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( M = E - e \sin E \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Kepler%27s_equation" title="Kepler&#39;s equation">Kepler's equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td>
+        <UL>
+          <LI>\( M \) is the mean anomoly</LI>
+          <LI>\( E \) is the eccentric anomoly</LI>
+          <LI>\( e \) is the eccentricity</LI>
+        </UL>
+      </td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion" title="Kepler&#39;s laws of planetary motion">Kepler's laws of planetary motion</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( U(P) = \frac{1}{4\pi} \int_{S} \left[ U \frac{\partial}{\partial n} \left( \frac{e^{iks}}{s} \right) - \frac{e^{iks}}{s} \frac{\partial U}{\partial n} \right]dS \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Kirchhoff%27s_diffraction_formula" title="Kirchhoff&#39;s diffraction formula">Kirchhoff's diffraction formula</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \left( \nabla^2 - \frac{m^2 c^2}{\hbar^2} \right) \psi(\vec{r}) = 0 \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Klein%E2%80%93Gordon_equation" title="Klein–Gordon equation">Klein–Gordon equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td><blockquote cite="">
+        a relativistic wave equation, related to the Schrödinger equation
+        <footer></footer>
+      </blockquote></td> <!-- description -->
+    </tr><tr>
+      <td>\( \partial_t \phi + \partial^3_x \phi - 6\, \phi\, \partial_x \phi =0\ \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Korteweg%E2%80%93de_Vries_equation" title="Korteweg–de Vries equation">Korteweg–de Vries equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{d \mathbf{M}}{d t}=-\gamma \left(\mathbf{M} \times \mathbf{H}_{\mathrm{eff}} - \eta \mathbf{M}\times\frac{d \mathbf{M}}{d t}\right) \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Landau%E2%80%93Lifshitz%E2%80%93Gilbert_equation" title="Landau–Lifshitz–Gilbert equation">Landau–Lifshitz–Gilbert equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{1}{\xi^2} \frac{d}{d\xi} \left({\xi^2 \frac{d\theta}{d\xi}}\right) + \theta^n = 0 \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Lane%E2%80%93Emden_equation" title="Lane–Emden equation">Lane–Emden equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( m \frac{d \vec{v}}{dt} = -\lambda \vec{v} + \eta(t) \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Langevin_equation" title="Langevin equation">Langevin equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{\mathbf{d}\varepsilon_1}{\sigma'_1}=\frac{\mathbf{d}\varepsilon_2}
+{\sigma'_2}=\frac{\mathbf{d}\varepsilon_3}{\sigma'_3}=\mathbf{d}\lambda \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Levy%E2%80%93Mises_equations" title="Levy–Mises equations">Levy–Mises equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \dot\rho=-{i\over\hbar}[H,\rho]+\sum_{n,m = 1}^{N^2-1} h_{nm}\left(A_n\rho A_m^\dagger-\frac{1}{2}\left\{A_m^\dagger A_n, \rho\right\}\right) \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Lindblad_equation" title="Lindblad equation">Lindblad equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \vec{F} = q \vec{E} + q\vec{v}\times \vec{B} \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Lorentz_equation" title="Lorentz equation">Lorentz equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td><blockquote cite="https://en.wikipedia.org/wiki/Lorentz_force">
+The electromagnetic force on a charge \(q\) is a combination of a
+force in the direction of the electric field \vec{E} proportional to
+the magnitude of the field and the quantity of charge, and a force
+at right angles to the magnetic field \vec{B} and the velocity \vec{v} of the
+charge, proportional to the magnitude of the field, the charge, and the velocity.
+<footer><cite><a href="https://en.wikipedia.org/wiki/Lorentz_force">source</a></cite></footer>
+      </blockquote></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Maxwell%27s_equations" title="Maxwell&#39;s equations">Maxwell's equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Maxwell_relations" title="Maxwell relations">Maxwell's relations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Newton%27s_laws_of_motion" title="Newton&#39;s laws of motion">Newton's laws of motion</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Reynolds-averaged_Navier%E2%80%93Stokes_equations" title="Reynolds-averaged Navier–Stokes equations">Reynolds-averaged Navier–Stokes equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td>Prandtl–Reuss equations</td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Prony_equation" title="Prony equation">Prony equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Rankine%E2%80%93Hugoniot_equation" title="Rankine–Hugoniot equation">Rankine–Hugoniot equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Roothaan_equations" title="Roothaan equations">Roothaan equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Saha_ionization_equation" title="Saha ionization equation">Saha ionization equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Sackur%E2%80%93Tetrode_equation" title="Sackur–Tetrode equation">Sackur–Tetrode equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Screened_Poisson_equation" title="Screened Poisson equation">screened Poisson equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Schwinger%E2%80%93Dyson_equation" title="Schwinger–Dyson equation">Schwinger–Dyson equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Sellmeier_equation" title="Sellmeier equation">Sellmeier equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Stokes%E2%80%93Einstein_relation" title="Stokes–Einstein relation">Stokes–Einstein relation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Tsiolkovsky_rocket_equation" title="Tsiolkovsky rocket equation">Tsiolkovsky rocket equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Van_der_Waals_equation" title="Van der Waals equation">Van der Waals equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Vlasov_equation" title="Vlasov equation">Vlasov equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \vec{v} = \frac{d \vec{x}}{d t} = g(t) \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Wiener_equation" title="Wiener equation">Wiener equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{\partial\psi}{\partial t} +\nabla\cdot\left( \psi{\mathbf u}\right) =0 \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Advection_equation" title="Advection equation">Advection equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Barotropic_vorticity_equation" title="Barotropic vorticity equation">Barotropic vorticity equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{j} = \sigma \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Continuity_equation" title="Continuity equation">Continuity equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{\partial\phi(\mathbf{r},t)}{\partial t} = \nabla \cdot \big[ D(\phi,\mathbf{r}) \ \nabla\phi(\mathbf{r},t) \big] \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Diffusion_equation" title="Diffusion equation">Diffusion equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( F_{\rm d}\, =\, \tfrac12\, \rho\, u^2\, c_{\rm d}\, A \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Drag_equation" title="Drag equation">Drag equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td><UL>
+        <LI>\( F_{\rm d} \) is the drag force</LI>
+        <LI>\( \rho \) is the mass density of the fluid </LI>
+        <LI>\( u \) is the flow velocity relative to the object </LI>
+        <LI>\( A \) is the reference area </LI>
+        <LI>\( c_{\rm d} \) is the drag coefficient</LI>
+      </UL></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Equation_of_motion" title="Equation of motion">Equation of motion</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Equation_of_state" title="Equation of state">Equation of state</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Equation_of_time" title="Equation of time">Equation of time</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Heat_equation" title="Heat equation">Heat equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Ideal_gas_equation" title="Ideal gas equation">Ideal gas equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Magnetohydrodynamics#Ideal_MHD_equations" title="Magnetohydrodynamics">Ideal MHD equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Mass%E2%80%93energy_equivalence" title="Mass–energy equivalence">Mass–energy equivalence equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Primitive_equations" title="Primitive equations">Primitive equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Relativistic_wave_equations" title="Relativistic wave equations">Relativistic wave equations</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( v^2 = GM \left({ 2 \over r} - {1 \over a}\right) \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Vis-viva_equation" title="Vis-viva equation">Vis-viva equation</a></td> <!-- name -->
+      <td>astrodynamics</td> <!-- domain -->
+      <td>
+        <UL>
+          <LI>\( v \) is the relative speed of the two bodies</LI>
+          <LI>\( r \) is the distance between the two bodies</LI>
+          <LI>\( a \) is the length of the semi-major axis</LI>
+          <LI>\( G \) is the gravitational constant</LI>
+          <LI>\( M \) is the mass of the central body</LI>
+        </UL>
+      </td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{D\boldsymbol\omega}{Dt} = \frac{\partial \boldsymbol \omega}{\partial t} + (\mathbf u \cdot \nabla) \boldsymbol \omega \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Vorticity_equation" title="Vorticity equation">Vorticity equation</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \sum_i I_i = 0 \)</td> <!-- expression -->
+      <td>Kirchoff’s Current Law</td> <!-- name -->
+      <td>Electrical circuits</td> <!-- domain -->
+      <td>At every node of an electrical circuit, current \( I \) sums to zero. </td> <!-- description -->
+    </tr><tr>
+      <td>\( dU = dQ + dW \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/First_law_of_thermodynamics">First Law of Thermodynamics</a></td> <!-- name -->
+      <td>Thermodynamics</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \lambda = \sqrt{1 - (v^2/c^2)} \)</td> <!-- expression -->
+      <td>Lorentz Transformations</td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td>Snell's law</td> <!-- name -->
+      <td>optics</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{1}{u} + \frac{1}{v} = \frac{1}{f} \)</td> <!-- expression -->
+      <td><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/geoopt/lenseq.html">Gauss Lens Formula</a>, aka <a href="https://en.wikipedia.org/wiki/Thin_lens">thin lens equation</a></td> <!-- name -->
+      <td>optics</td> <!-- domain -->
+      <td>u = object distance; v = image distance; f = Focal length of the lens</td> <!-- description -->
+    </tr><tr>
+      <td>\( \frac{1}{f} = (n-1)\left( \frac{1}{R_1} - \frac{1}{R_2} + \frac{(n-1)d}{nR_1R_2} \right) \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Lens#Lensmaker's_equation">Lensmaker's equation</a></td> <!-- name -->
+      <td>optics</td> <!-- domain -->
+      <td>The focal length of a lens in air, where
+        <ul>
+          <LI>\( f \) is the focal length of the lens,</LI>
+          <LI>\( n \) is the refractive index of the lens material,</LI>
+          <LI>\( R_{1} \) is the radius of curvature (with sign, see below) of the lens surface closer to the light source,</LI>
+          <LI>\( R_{2} \) is the radius of curvature of the lens surface farther from the light source, and</LI>
+          <LI>\( d \) is the thickness of the lens (the distance along the lens axis between the two surface vertices).</LI>
+        </UL>
+      </td> <!-- description -->
+    </tr><tr>
+      <td>\( \lambda = h/p \)</td> <!-- expression -->
+      <td>De Broglie Wavelength</td> <!-- name -->
+      <td>quantum mechanics</td> <!-- domain -->
+      <td>
+        <UL>
+          <LI>\( \lambda \) is the De Broglie Wavelength</LI>
+          <LI>\( h \) is Planck’s Constant</LI>
+          <LI>\( p \) is momentum of the particle.</LI>
+        </UL>
+      </td> <!-- description -->
+    </tr><tr>
+      <td>\( 2 a \sin \theta = n \lambda \)</td> <!-- expression -->
+      <td>Bragg’s Law of Diffraction</td> <!-- name -->
+      <td>optics</td> <!-- domain -->
+      <td>
+        <ul>
+          <li>\( a \) is Distance between atomic planes</li>
+          <li>\( n \) is Order of Diffraction</li>
+          <li>\( \theta \) is Angle of Diffraction</li>
+          <li>\( \lambda \) is Wavelength of incident radiation</li>
+      </ul></td> <!-- description -->
+    </tr><tr>
+      <td>\( \mathcal{L}_{SM} = -\frac{1}{4} F_{\mu \nu} F^{\mu \nu} + ... \)</td> <!-- expression -->
+      <!-- see https://twitter.com/mathtype/status/1073237387164176384 and
+           https://physics.stackexchange.com/questions/370100/question-about-standard-model-lagrangian -->
+      <td><a href="https://www.symmetrymagazine.org/article/the-deconstructed-standard-model-equation">Lagrangian for the Standard model</a></td> <!-- name -->
+      <td>subatomic physics</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( F = G \frac{m_1m_2}{r^2} \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Newton%27s_law_of_universal_gravitation">Newton's law of universal gravitation</a></td> <!-- name -->
+      <td>classical mechanics</td> <!-- domain -->
+      <td>
+        <UL>
+          <LI>\( F \) is the gravitational force acting between two objects,
+          <LI>\( m1 \) and \( m2  \) are the masses of the objects,
+          <LI>\( r \) is the distance between the centers of their masses, and
+          <LI>\( G \) is the gravitational constant.
+        </UL>
+      </td> <!-- description -->
+    </tr><tr>
+      <td>\( \hat{f}(\xi) = \int_{-\infty}^{\infty} f(x)\ e^{-2\pi i x \xi}\,dx \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Fourier_transform">Fourier Transform</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \left[M\frac{\partial }{\partial M}+\beta(g)\frac{\partial }{\partial g}+n\gamma\right] G^{(n)}(x_1,x_2,\ldots,x_n;M,g)=0 \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Callan%E2%80%93Symanzik_equation">Callan-Symanzik equation</a></td> <!-- name -->
+      <td>Quantum field theory</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( F_{\texttt{spring}} = k x \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Hooke%27s_law">Hooke's Law</a></td> <!-- name -->
+      <td>Classical Mechanics</td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( \lambda_{\texttt{peak}} = \frac{b}{T} \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Wien%27s_displacement_law">Wien's displacement law</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td>
+        <UL>
+          <LI>\( \lambda_{peak} \) Wavelength</LI>
+          <LI>\( T \) is absolute temperature</LI>
+          <LI>\( b \) is Wien's displacement constant</LI>
+        </UL>
+      </td> <!-- description -->
+    </tr><tr>
+      <td>\( j^* = \sigma T^4 \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Stefan%E2%80%93Boltzmann_law">Stefan–Boltzmann law</a></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td>\( F = K \frac{q_1 q_2}{r^2} \)</td> <!-- expression -->
+      <td><a href="https://en.wikipedia.org/wiki/Coulomb%27s_law">Coulomb's law</a></td> <!-- name -->
+      <td>Electrodynamics</td> <!-- domain -->
+      <td>quantifies the amount of force between two stationary, electrically charged particles. </td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr><tr>
+      <td></td> <!-- expression -->
+      <td></td> <!-- name -->
+      <td></td> <!-- domain -->
+      <td></td> <!-- description -->
+    </tr>
+  </table>
+</P>
+
+{% endblock %}
