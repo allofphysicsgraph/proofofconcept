@@ -1319,15 +1319,17 @@ def faq():
     logger.info("[trace]")
     return render_template("faq.html", title="Frequently Asked Questions")
 
+
 @app.route("/blog/<YYYY>/<MM>/<blog_title>", methods=["GET"])
-def blog(YYYY: str, MM: str, blog_title:str):
+def blog(YYYY: str, MM: str, blog_title: str):
     """
     blog/YYYY/MM/blog-title
 
     blog()
     """
     logger.info("[trace]")
-    return render_template("blog/"+YYYY+"/"+MM+"/"+blog_title )
+    return render_template("blog/" + YYYY + "/" + MM + "/" + blog_title)
+
 
 @app.route("/central_expessions", methods=["GET"])
 def central_expressions():
