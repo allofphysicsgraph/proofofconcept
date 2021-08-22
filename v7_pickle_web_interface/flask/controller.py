@@ -1335,12 +1335,12 @@ def blog(YYYY: str, MM: str, blog_title: str):
     return render_template("blog/" + YYYY + "/" + MM + "/" + blog_title)
 
 
-@app.route("/central_expessions", methods=["GET"])
+@app.route("/central_expressions", methods=["GET"])
 def central_expressions():
     """
     "central expressions" is a static page
 
-    >>> central_expessions()
+    >>> central_expressions()
     """
     logger.info("[trace]")
     return render_template("central_expressions.html", title="central expressions")
