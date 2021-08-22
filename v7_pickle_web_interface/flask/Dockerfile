@@ -7,7 +7,7 @@
 # https://docs.docker.com/engine/reference/builder/#from
 # https://github.com/phusion/baseimage-docker
 FROM phusion/baseimage:0.11
-# Ubuntu is too big 
+# Ubuntu is too big
 #FROM ubuntu:latest
 
 # PYTHONDONTWRITEBYTECODE: Prevents Python from writing pyc files to disk (equivalent to python -B option)
@@ -61,7 +61,7 @@ RUN npm install mathjax@3
 # https://stackoverflow.com/a/63457606/1164295
 RUN pip3 install --upgrade pip
 
-RUN pip3 install -r /tmp/requirements.txt
+RUN pip3 install -r /tmp/requirements.txt --no-cache-dir -vvv
 
 RUN useradd --create-home appuser
 WORKDIR       /home/appuser/app
@@ -106,6 +106,5 @@ RUN bash -l /home/appuser/.bashrc
 ENTRYPOINT ["python3"]
 
 # There can only be one CMD instruction in a Dockerfile
-# The CMD instruction should be used to run the software contained by your image, along with any arguments. 
+# The CMD instruction should be used to run the software contained by your image, along with any arguments.
 CMD ["/home/appuser/app/controller.py"]
-
