@@ -9574,6 +9574,230 @@
                     "creation date": "2020-08-29"
                 }
             }
+        },
+        "670255": {
+            "name": "equation of motion for a spring",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "notes": "",
+            "creation date": "2021-08-22",
+            "steps": {
+                "4514656": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "3065061"
+                    ],
+                    "linear index": 1,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "4790069": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "2664105"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "1216158": {
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "feeds": [],
+                    "outputs": [
+                        "9761157"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "5376872": {
+                    "inf rule": "LHS of expr 1 equals LHS of expr 2",
+                    "inputs": [
+                        "3065061",
+                        "2664105"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7273319"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "6129880": {
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "7273319"
+                    ],
+                    "feeds": [
+                        "1294073"
+                    ],
+                    "outputs": [
+                        "5403312"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "5272817": {
+                    "inf rule": "LHS of expr 1 equals LHS of expr 2",
+                    "inputs": [
+                        "5403312",
+                        "9761157"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "4154219"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "2315272": {
+                    "inf rule": "declare guess solution",
+                    "inputs": [
+                        "4154219"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "2877569"
+                    ],
+                    "linear index": 7,
+                    "notes": "what, when differentiated twice, yields a negative of itself? cosine",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "8476862": {
+                    "inf rule": "differentiate with respect to",
+                    "inputs": [
+                        "2877569"
+                    ],
+                    "feeds": [
+                        "5689050"
+                    ],
+                    "outputs": [
+                        "4463004"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "5435505": {
+                    "inf rule": "differentiate with respect to",
+                    "inputs": [
+                        "4463004"
+                    ],
+                    "feeds": [
+                        "9332704"
+                    ],
+                    "outputs": [
+                        "4836115"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "3234596": {
+                    "inf rule": "LHS of expr 1 equals LHS of expr 2",
+                    "inputs": [
+                        "4836115",
+                        "4154219"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7792692"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "4208810": {
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "2877569",
+                        "7792692"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7745098"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "5391046": {
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "7745098"
+                    ],
+                    "feeds": [
+                        "9713990"
+                    ],
+                    "outputs": [
+                        "8360924"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "4482244": {
+                    "inf rule": "square root both sides",
+                    "inputs": [
+                        "8360924"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "7243628",
+                        "2051755"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "8522636": {
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "7243628",
+                        "2877569"
+                    ],
+                    "feeds": [],
+                    "outputs": [
+                        "5872898"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                },
+                "8719992": {
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "5872898"
+                    ],
+                    "feeds": [],
+                    "outputs": [],
+                    "linear index": 15,
+                    "notes": "",
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2021-08-22"
+                }
+            }
         }
     },
     "expr local to global": {
@@ -10535,7 +10759,26 @@
         "5395954": "3868998312",
         "6426652": "1128605625",
         "6070484": "4830221561",
-        "8702257": "5866629429"
+        "8702257": "5866629429",
+        "3065061": "5345738321",
+        "2664105": "4428528271",
+        "9761157": "6831694380",
+        "7273319": "2334518266",
+        "1294073": "3634715785",
+        "5403312": "8655294002",
+        "4154219": "8991236357",
+        "2877569": "5415824175",
+        "5689050": "5846177002",
+        "4463004": "7652131521",
+        "9332704": "1451839362",
+        "4836115": "5945893986",
+        "7792692": "1772973171",
+        "7745098": "2148049269",
+        "9713990": "7473576008",
+        "8360924": "1931103031",
+        "7243628": "1784114349",
+        "2051755": "1888494137",
+        "5872898": "6908055431"
     },
     "expressions": {
         "2344320475": {
@@ -17713,6 +17956,150 @@
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-29"
+        },
+        "4428528271": {
+            "latex": "F_{\\rm{spring}} = -k x",
+            "AST": "Equality(Symbol('pdg4183'), Mul(Integer(-1), Mul(Symbol('pdg1356'), Symbol('pdg4037'))))",
+            "name": "Hooke's law",
+            "notes": "https://en.wikipedia.org/wiki/Hooke%27s_law",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "6831694380": {
+            "latex": "a = \\frac{d^2 x}{dt^2}",
+            "AST": "Equality(Symbol('a'), Mul(Mul(Pow(Symbol('d'), Integer(2)), Symbol('x')), Pow(Pow(Symbol('dt'), Integer(2)), Integer(-1))))",
+            "name": "acceleration",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "2334518266": {
+            "latex": "m a = -k x",
+            "AST": "Equality(Mul(Symbol('pdg9140'), Symbol('pdg5156')), Mul(Integer(-1), Mul(Symbol('pdg1356'), Symbol('pdg4037'))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "3634715785": {
+            "latex": "m",
+            "AST": "Symbol('pdg5156')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "8655294002": {
+            "latex": "a = -\\frac{k}{m}x",
+            "AST": "Equality(Symbol('pdg9140'), Mul(Integer(-1), Mul(Symbol('pdg4037'), Mul(Symbol('pdg1356'), Pow(Symbol('pdg5156'), Integer(-1))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "8991236357": {
+            "latex": "\\frac{d^2 x}{dt^2} = -\\frac{k}{m} x",
+            "AST": "Equality(Mul(Mul(Pow(Symbol('d'), Integer(2)), Symbol('pdg4037')), Pow(Pow(Symbol('dt'), Integer(2)), Integer(-1))), Mul(Integer(-1), Mul(Symbol('pdg4037'), Mul(Symbol('pdg1356'), Pow(Symbol('pdg5156'), Integer(-1))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "5415824175": {
+            "latex": "x(t) = A \\cos(\\omega t)",
+            "AST": "Equality(Function('x')(Symbol('pdg1467')), Mul(Symbol('pdg9885'), cos(Mul(Symbol('pdg2321'), Symbol('pdg1467')))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "5846177002": {
+            "latex": "t",
+            "AST": "Symbol('t')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "7652131521": {
+            "latex": "\\frac{dx}{dt} = -A \\omega \\sin (\\omega t)",
+            "AST": "Equality(Derivative(Symbol('pdg4037'), Tuple(Symbol('pdg1467'), Integer(1))), Mul(Integer(-1), Mul(Symbol('pdg9885'), Mul(Symbol('pdg2321'), sin(Mul(Symbol('pdg2321'), Symbol('pdg1467')))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "1451839362": {
+            "latex": "t",
+            "AST": "Symbol('pdg1467')",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "5945893986": {
+            "latex": "\\frac{d^2 x}{dt^2} = -A \\omega^2 \\cos(\\omega t)",
+            "AST": "Equality(Mul(Mul(Pow(Symbol('d'), Integer(2)), Symbol('x')), Pow(Pow(Symbol('dt'), Integer(2)), Integer(-1))), Mul(Integer(-1), Mul(Symbol('pdg9885'), Mul(Pow(Symbol('pdg2321'), Integer(2)), cos(Mul(Symbol('pdg2321'), Symbol('pdg1467')))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "1772973171": {
+            "latex": "-\\frac{k}{m} x = -A \\omega^2 \\cos(\\omega t)",
+            "AST": "Equality(Mul(Integer(-1), Mul(Symbol('x'), Mul(Symbol('k'), Pow(Symbol('m'), Integer(-1))))), Mul(Integer(-1), Mul(Symbol('A'), Mul(Pow(Symbol('omega'), Integer(2)), cos(Mul(Symbol('omega'), Symbol('t')))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "2148049269": {
+            "latex": "-\\frac{k}{m} A \\cos(\\omega t) = -A \\omega^2 \\cos(\\omega t)",
+            "AST": "Equality(Mul(Integer(-1), Mul(Mul(Symbol('A'), cos(Mul(Symbol('omega'), Symbol('t')))), Mul(Symbol('k'), Pow(Symbol('m'), Integer(-1))))), Mul(Integer(-1), Mul(Symbol('A'), Mul(Pow(Symbol('omega'), Integer(2)), cos(Mul(Symbol('omega'), Symbol('t')))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "7473576008": {
+            "latex": "\\frac{-1}{A \\cos(\\omega t)}",
+            "AST": "Mul(Symbol('l'), Mul(Symbol('a'), Mul(Symbol('t'), Mul(Symbol('e'), Mul(Symbol('x'), Mul(Symbol('e'), Mul(Symbol('r'), Mul(Symbol('r'), Mul(Symbol('o'), Symbol('r'))))))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "1931103031": {
+            "latex": "\\frac{k}{m} = \\omega^2",
+            "AST": "Equality(Mul(Symbol('pdg1356'), Pow(Symbol('pdg5156'), Integer(-1))), Pow(Symbol('pdg2321'), Integer(2)))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "1784114349": {
+            "latex": "\\sqrt{\\frac{k}{m}} = \\omega",
+            "AST": "Equality(Pow(Mul(Symbol('pdg1356'), Pow(Symbol('pdg5156'), Integer(-1))), Rational(1, 2)), Symbol('pdg2321'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "1888494137": {
+            "latex": "-\\sqrt{\\frac{k}{m}} = \\omega",
+            "AST": "Equality(Mul(Integer(-1), Pow(Mul(Symbol('pdg1356'), Pow(Symbol('pdg5156'), Integer(-1))), Rational(1, 2))), Symbol('pdg2321'))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "6908055431": {
+            "latex": "x(t) = A \\cos\\left(\\frac{k}{m} t\\right)",
+            "AST": "Equality(Function('x')(Symbol('pdg1467')), Mul(Symbol('pdg9885'), cos(Mul(Symbol('pdg1467'), Mul(Symbol('k'), Pow(Symbol('pdg5156'), Integer(-1)))))))",
+            "name": "",
+            "notes": "",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
         }
     },
     "inference rules": {
@@ -17919,7 +18306,7 @@
         "declare guess solution": {
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
-            "latex": "Judicious choice as a guessed solution to Eq.~\\ref{eq:#1} is",
+            "latex": "Judicious choice as a guessed solution to Eq.~\\ref{eq:#1} is Eq.~\\ref{eq:#2},",
             "notes": "",
             "number of feeds": 0,
             "number of inputs": 1,
@@ -23428,6 +23815,69 @@
             },
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-09-11"
+        },
+        "4183": {
+            "category": "variable",
+            "latex": "F_{\\rm{spring}}",
+            "name": "force of a spring",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Hooke%27s_law"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 1,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "1356": {
+            "category": "variable",
+            "latex": "k",
+            "name": "linear stiffness, aka spring constant",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Stiffness"
+            ],
+            "domain": "any",
+            "dimensions": {
+                "length": 0,
+                "time": -2,
+                "mass": 1,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
+        },
+        "9885": {
+            "category": "variable",
+            "latex": "A",
+            "name": "amplitude",
+            "scope": "real",
+            "references": [
+                "https://en.wikipedia.org/wiki/Amplitude"
+            ],
+            "domain": "nonnegative",
+            "dimensions": {
+                "length": 0,
+                "time": 0,
+                "mass": 0,
+                "temperature": 0,
+                "electric charge": 0,
+                "amount of substance": 0,
+                "luminous intensity": 0
+            },
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2021-08-22"
         }
     },
     "units": {
