@@ -83,7 +83,7 @@ open /Applications/Google\ Chrome.app --args --allow-file-access-from-files file
 20151105
 
 now that I'm doing rapid prototyping, I need a development environment which is 
-sparate from the projection environment.
+separate from the projection environment.
 --> added /dev/
 
 
@@ -133,14 +133,14 @@ Symbol, operators
 Expressions, inference rules 
 Step 
 Derivation
-Physics dervation graph 
+Physics derivation graph 
 
 20150806
 
 I recognized that derivations are distinct from identities and definitions.
 What confused me is that validation of an identity is a derivation.
 
-F=m*a is not an identiy
+F=m*a is not an identity
 Euler equation is an identity. 
 
 http://www.purplemath.com/modules/proving.htm
@@ -609,7 +609,7 @@ http://www.orcca.on.ca/MathML/texmml/mmltotex.html
 
 I have 3 potential tasks:
 -graph visualization. Takes a lot of work
--implment CAS checker. Somewhat useless since {Latex, symbol definitions, SymPy} are not actually related
+-implement CAS checker. Somewhat useless since {Latex, symbol definitions, SymPy} are not actually related
 -add content to graph database. However, I want confidence that it is correct (CAS checker) and I want to visualize it.
 
 Based on this analysis, I need a better desing of the database to relate Latex, symbol definitions, and SymPy statements.
@@ -621,7 +621,7 @@ Latex is pretty, but too flexible to be reliably interpreted by a CAS
 
 20140817
 
-From talking with other projects which share overlap (Formula Database, Symbolab, EquationMap), the back-end databases might be similar. I think it would be worth having a common syntax. However, what motivation would private, commerical projects have for supporting shared syntax?
+From talking with other projects which share overlap (Formula Database, Symbolab, EquationMap), the back-end databases might be similar. I think it would be worth having a common syntax. However, what motivation would private, commercial projects have for supporting shared syntax?
 No one wants to supply me with their backend info, but I don't want to replicate previous work.
 Equation map doesn't have a backend database. FD and Symbolab do. 
 
@@ -638,7 +638,7 @@ Asked an astrophysicist what the most important equations are in his field. Ende
 Astrophysics then depends on classical mechanics and radiative transfer. Find equilibrium for pressure, radiation, gravity. 
 Famous equation: GR tensor (General Relativity tensor)
 
-Good refernce textbook: Icko Iben, Stellar Evolution Physics
+Good reference textbook: Icko Iben, Stellar Evolution Physics
 
 20140527
 
@@ -675,7 +675,7 @@ Reason for not collaborating is Wojciech is in Poland
 
 20140527
 
-Although HTML5 Canvas is fun to move graphs around with, I need an example showing that it can be used to visualize graphs larger than fits ona single page. Can I think of the canvas as a window for viewing a graph larger than the screen? The ability to zoom in/out would be useful.
+Although HTML5 Canvas is fun to move graphs around with, I need an example showing that it can be used to visualize graphs larger than fits on a single page. Can I think of the canvas as a window for viewing a graph larger than the screen? The ability to zoom in/out would be useful.
 
 Graph Dracula
 http://www.graphdracula.net/
@@ -950,7 +950,7 @@ I realized I have two diverging objectives, and I was stuck at the fork since ta
 My vision and strength is in building the database, not the GUI. How can I best spend my effort on this part?
 There are two subtasks: 
 -developing/choosing a syntax to express the equations. Latex, Mathematica, ML, XML,
--determing what the audience is interested in getting from this work. What would motivate interest in this project by users and developers?
+-determining what the audience is interested in getting from this work. What would motivate interest in this project by users and developers?
 I think non-physicists and beginners are aware of a one or a few mathematical elements of physics. The most common is "E=mc^2". Although practically everyone is aware of it, few know how it's related to anything else. Undergrads in physics are aware of "F=ma" and "distance=rate*time" but there's not clear connection. 
 
 Thus, this project can demonstrate value by showing the relation between things people already have familiarity with. 
@@ -1197,7 +1197,7 @@ observations:
 -only work on entering one derivation at a time
 -recompile the graph every few entries to limit the amount of code errors can hide in
 -Also, compiling PDFs shows bugs not found compiling the graph
--the start and end of a derivation should be limited by named statements or statements which have experimental relavence. Basically, if you are at some equation which would be useful to other derivations, terminate.
+-the start and end of a derivation should be limited by named statements or statements which have experimental relevance. Basically, if you are at some equation which would be useful to other derivations, terminate.
 
 
 20130109
@@ -1348,7 +1348,7 @@ Worse, I feel quantum mechanic notation does not follow any standard convention.
 $|x \right> |y \right>$ may be a meaningless expression, or it may be equivalent to $|x y\right> = |x,y \right>$.
 These are what I would call local conventions.
 
-The problem with the existance of local conventions is that people with different local conventions are less likely to enthusiastically use this framework.
+The problem with the existence of local conventions is that people with different local conventions are less likely to enthusiastically use this framework.
 This is because, in addition to embracing the framework, they also need to accept a different local convention.
 Therefore I have to explicitly explain what benefits there are to the local conventions I use.
 -are they more efficient expressions
@@ -1379,7 +1379,7 @@ Algorithm for adding content to the graph:
 -do the derivation you are interested, writing out steps needed on paper. Should be simple and as few steps as possible
 -re-write with all the intermediary steps (include the statements previously skipped)
 -re-write with the simplest grammar rules possible -- ones which cannot be decomposed
--add content to connections database. Use grammer rules from database and input equations as needed. Add these same equations to the statements database.
+-add content to connections database. Use grammar rules from database and input equations as needed. Add these same equations to the statements database.
 -every few connections run the build scripts to check the syntax and formatting of your input
 
 Using
@@ -1650,7 +1650,7 @@ equation
  Final
 
 How to group these? (the connections_database is operator/[optional] input/[optional] output)
-Operators take input equation indices and and produce output in the form \begin{equation}a=b\end{equation}
+Operators take input equation indices and produce output in the form \begin{equation}a=b\end{equation}
 
 ------------
 | Initial  |
@@ -1777,7 +1777,7 @@ In contrast, the <statement_label> number is not unique -- it must be used in mo
 
 observation:
 I was able to piece together the derivation of the quadratic equation based just on the equations. I had to supply the operators and the feed values.
-I'm reading Noam Chomsky's "Three models for the description of language" and it says that this isn't possible with English and grammer rules.
+I'm reading Noam Chomsky's "Three models for the description of language" and it says that this isn't possible with English and grammar rules.
 I think I'm doing something similar for physics. I don't see how to automate what I did.
 
 To resolve:
@@ -1876,7 +1876,7 @@ Therefore I should continue to play with implementation as a way to find new pro
 
 the problem which arises since not all the statements are immediately linked (you work on one derivation, then you work on a separate problem derivation) is that knowing what has already been added to the database is necessary for linking.
 That is, including $\omega=2\pi f$ as a linked statement in the problem I'm working on should be the same $\omega=2\pi f$ already present in the statements database.
-However, due to symbolic notation differences, recognizing this will be very difficult. The problem is probably separable into "easy" statements like $T=1/f$ and $k=2\pi/\lambda$ versus more complex statements (ie hard than Maxwell's equations).
+However, due to symbolic notation differences, recognizing this will be very difficult. The problem is probably separable into "easy" statements like $T=1/f$ and $k=2\pi/\lambda$ versus more complex statements (e.g., hard than Maxwell's equations).
 This is where knowing the physical meaning behind each symbol (i.e., $f$ is defined as the frequency with units Hertz) becomes necessary.
 
 20121201
@@ -1889,7 +1889,7 @@ I don't have an xml-->tex converter. Given the xml database, produce a human-rea
 
 I don't have the mathematica checker written. Given the xml database, produce pairs of statements related by an operation which can be checked. 
 For this I also need a latex to mathematica checker for each statement.
-Each operater needs to be translated to an equivalent mathematica script.
+Each operator needs to be translated to an equivalent mathematica script.
 
 20121124
 
