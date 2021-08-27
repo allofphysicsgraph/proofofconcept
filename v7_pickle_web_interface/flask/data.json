@@ -19370,7 +19370,9 @@
                 "luminous intensity": 0
             },
             "references": [
-                "https://en.wikipedia.org/wiki/Energy"
+                "https://en.wikipedia.org/wiki/Energy",
+                "https://www.wikidata.org/wiki/Q11379",
+                "https://schema.org/Energy"
             ],
             "scope": [
                 "real"
@@ -19929,7 +19931,9 @@
             },
             "name": "speed of light in vacuum",
             "references": [
-                "https://en.wikipedia.org/wiki/Speed_of_light"
+                "https://en.wikipedia.org/wiki/Speed_of_light",
+                "https://www.wikidata.org/wiki/Q2111",
+                "https://id.loc.gov/authorities/subjects/sh85076878.html"
             ],
             "scope": [
                 "real"
@@ -19989,7 +19993,9 @@
             "latex": "m",
             "name": "mass",
             "references": [
-                "https://en.wikipedia.org/wiki/Mass"
+                "https://en.wikipedia.org/wiki/Mass",
+                "https://www.wikidata.org/wiki/Q11423",
+                "https://schema.org/Mass"
             ],
             "dimensions": {
                 "length": 0,
@@ -23444,7 +23450,8 @@
             "name": "force",
             "scope": "real",
             "references": [
-                "https://en.wikipedia.org/wiki/Force"
+                "https://en.wikipedia.org/wiki/Force",
+                "https://www.wikidata.org/wiki/Q11402"
             ],
             "domain": "any",
             "dimensions": {
@@ -23965,7 +23972,8 @@
                 "luminous intensity": 0
             },
             "references": [
-                "https://en.wikipedia.org/wiki/Kilogram"
+                "https://en.wikipedia.org/wiki/Kilogram",
+                "https://www.wikidata.org/wiki/Q11570"
             ]
         },
         "light-year": {
