@@ -89,7 +89,7 @@ cat developer_documentation.html |\
 <img src="{{ url_for('static', filename='frequency_and_period_exploded_steps.png') }}">
 <BR/>
 <center>
-  Two steps with all numeric IDs shown.
+  Figure 1. Two steps with all numeric IDs shown.
 </center>
 
 <P>
@@ -104,7 +104,7 @@ cat developer_documentation.html |\
 <P>
   In the Physics Derivation Graph, the primary vocabulary is a set of
   inference rules that relate mathematical expressions.<BR>
-The grammar of the Physics Derivation Graph is
+The grammar of the Physics Derivation Graph is specified by this list, with all items joined by "and":
 </P>
 <UL>
   <LI>The Physics Derivation Graph is a set of derivations.</LI>
@@ -258,15 +258,17 @@ The grammar of the Physics Derivation Graph is
 <HR/>
 <P>&nbsp;</P>
 
-<H2><a name="running the code">Running the Physics Derivation Graph code</a></H2>
-
+<H2><a name="running the code">Running the Physics Derivation Graph website</a></H2>
+<P>The following is an illustration of the various software interactions that are used in this website.
 <center>
 <img src="{{ url_for('static', filename='data_flow_components.png') }}">
+Figure 2.
 </center>
+
 
 <H3><a name="run flask container">Run Flask container</a></H3>
 <P>
-  Quick start:
+  Quick start on the command line:
   <pre>
   git clone https://github.com/allofphysicsgraph/proofofconcept.git
   cd proofofconcept/v7_pickle_web_interface/flask/
@@ -276,7 +278,7 @@ The grammar of the Physics Derivation Graph is
              --publish 5000:5000 flask_ub
   </pre>
 
-  To enter the container, use
+  To enter the container, run the commands
   <pre>
   docker run -it --rm -v`pwd`:/scratch \
              -v`pwd`/data.json:/home/appuser/app/data.json \
@@ -297,7 +299,7 @@ The grammar of the Physics Derivation Graph is
 </p>
 <H3><a name="run gunicorn container">Run gunicorn container</a></H3>
 <P>
-  Quick start:
+  Quick start on the command line:
   <pre>
   git clone https://github.com/allofphysicsgraph/proofofconcept.git
   cd proofofconcept/v7_pickle_web_interface/flask/
@@ -361,7 +363,7 @@ The grammar of the Physics Derivation Graph is
   <img src="{{ url_for('static', filename='state_diagram_for_web_interface.png') }}">
   </a>
 </P>
-State diagram for the web interface.
+Figure 3. State diagram for the web interface.
 </center>
 <P>&nbsp;</P>
 <HR/>
@@ -379,7 +381,7 @@ State diagram for the web interface.
   invokes the function <code>def list_all_derivations():</code>. That
   Python function relies on functions in
   <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/compute.py">computer.py</a>
-  to get data from the <code>data.json</code> database. 
+  to get data from the <code>data.json</code> database.
 
 <P>&nbsp;</P>
 <HR/>
@@ -466,7 +468,7 @@ State diagram for the web interface.
 <img src="{{ url_for('static', filename='single_step_with_AST_per_expression_and_symbols.png') }}">
 <BR/>
 <center>
-All of the jargon used and the relation between jargon used in the Physics Derivation Graph.
+Figure 4. All of the jargon used and the relation between jargon used in the Physics Derivation Graph.
 </center>
 <P>&nbsp;</P>
 <HR/>
@@ -992,7 +994,15 @@ func = subtractXfromBothSides [func, b/(2 a)]
 
 <H2><a name="not in scope">Outside of Current Scope</a></H2>
 
-Not expected within the scope of the Physics Derivation Graph are inclusion of graphics, explanatory text, animations of concepts, and interactive models.
+<P>Not within the scope of the Physics Derivation Graph:
+<UL>
+  <LI>inclusion of graphics, e.g. free body diagrams, Feynman diagrams, geometrical diagrams.
+  <LI>explanatory text,
+  <LI>animations of concepts,
+  <LI>experimental processes,
+  <LI>interactive models.
+</UL>
+
 
 <!--
 <h2 id="bibliography">Citations</a></H2>
