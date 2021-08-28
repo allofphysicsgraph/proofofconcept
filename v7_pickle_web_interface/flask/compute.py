@@ -5125,11 +5125,15 @@ def create_step(
         if "static_feed" in key:  # novel latex
             # logger.debug("in feed for " + text)
             expr_global_id = create_expr_global_id(path_to_db)
+
+            try:
+                this_ast = latex_to_sympy.create_sympy_expr_tree_from_latex(latex_for_step_dict[key])
+            except:
+                raise Exception("13422342 invalid latex provided in " + str(latex_for_step_dict[key]))
+
             dat["expressions"][expr_global_id] = {
                 "latex": latex_for_step_dict[key],
-                "AST": latex_to_sympy.create_sympy_expr_tree_from_latex(
-                    latex_for_step_dict[key]
-                ),
+                "AST": this_ast,
                 "name": "",
                 "notes": "",
                 "author": md5_of_string(str(user_email).lower()),
@@ -5155,11 +5159,16 @@ def create_step(
                         if latex_for_step_dict[connection_type + expr_index] == "":
                             logger.error("empty Latex is not accepted")
                             raise Exception("empty Latex is not accepted")
+
+                        try:
+                            this_ast = latex_to_sympy.create_sympy_expr_tree_from_latex(
+                                latex_for_step_dict[connection_type + expr_index])
+                        except:
+                            raise Exception("494829 invalid latex provided for "+str(latex_for_step_dict[connection_type + expr_index]))
+
                         dat["expressions"][expr_global_id] = {
                             "latex": latex_for_step_dict[connection_type + expr_index],
-                            "AST": latex_to_sympy.create_sympy_expr_tree_from_latex(
-                                latex_for_step_dict[connection_type + expr_index]
-                            ),
+                            "AST": ,
                             "name": latex_for_step_dict[
                                 connection_type + expr_index + "_name"
                             ],
