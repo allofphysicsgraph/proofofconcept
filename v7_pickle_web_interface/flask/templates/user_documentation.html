@@ -128,22 +128,23 @@ The relation of these terms is shown graphically below in figure 1:<!--in Fig. \
 <P>Here is a simple three step derivation:
 
 <blockquote>
-An initial expression for this derivation is \(a = b\).
+<P>An initial expression for this derivation is \(a = b\).<BR>
 <i>[The inference rule is "declare initial expression", there is no input expression, and the output expression is \(a = b\).]</i>
 
-Given the expression \(a = b\), add 2 to both sides to get \(a+2 = b+2 \).
+<P>Given the expression \(a = b\), add 2 to both sides to get \(a+2 = b+2 \).<BR>
 <i>[The inference rule is "add X to both sides", there is a feed value of 2 needed by the inference rule, the input expression is "a=b", and the output expression is \(a+2 = b+2\).]</i>
 
-A final expression in this derivation is \(a+2 = b+2 \).
+<P>A final expression in this derivation is \(a+2 = b+2 \).<BR>
 <i>[The inference rule is "declare final expression", the input expression is \(a+2 = b+2 \), and there is no output expression.]</i>
-<blockquote>
+</blockquote>
 
 <P>Visually, that can be represented as a graph:
 
   <img src="{{ url_for('static', filename='derivation_ab_add2.png') }}" width=400>
   <CENTER>
-    Figure 3. A three step derivation involving two expressions.
+    Figure 3. A three step derivation involving two expressions. In this rendering, the start of the derivation is at the bottom of the image.
   </CENTER>
+</P>
 
 <H2 id="graph content">Graph content</H2>
 
