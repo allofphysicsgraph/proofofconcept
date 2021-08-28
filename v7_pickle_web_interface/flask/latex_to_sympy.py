@@ -325,7 +325,7 @@ def create_sympy_expr_tree_from_latex(latex_expr_str: str):
     except Exception as err:
         logger.error(str(err))
         raise Exception("59932922 invalid latex; do not proceed")
-        #sympy_expr = parse_latex("latex error")
+        # sympy_expr = parse_latex("latex error")
 
     logger.debug("Sympy expression = %s", str(sympy_expr))
 

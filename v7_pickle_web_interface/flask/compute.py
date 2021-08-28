@@ -5127,9 +5127,14 @@ def create_step(
             expr_global_id = create_expr_global_id(path_to_db)
 
             try:
-                this_ast = latex_to_sympy.create_sympy_expr_tree_from_latex(latex_for_step_dict[key])
+                this_ast = latex_to_sympy.create_sympy_expr_tree_from_latex(
+                    latex_for_step_dict[key]
+                )
             except:
-                raise Exception("13422342 invalid latex provided in " + str(latex_for_step_dict[key]))
+                raise Exception(
+                    "13422342 invalid latex provided in "
+                    + str(latex_for_step_dict[key])
+                )
 
             dat["expressions"][expr_global_id] = {
                 "latex": latex_for_step_dict[key],
@@ -5162,9 +5167,13 @@ def create_step(
 
                         try:
                             this_ast = latex_to_sympy.create_sympy_expr_tree_from_latex(
-                                latex_for_step_dict[connection_type + expr_index])
+                                latex_for_step_dict[connection_type + expr_index]
+                            )
                         except:
-                            raise Exception("494829 invalid latex provided for "+str(latex_for_step_dict[connection_type + expr_index]))
+                            raise Exception(
+                                "494829 invalid latex provided for "
+                                + str(latex_for_step_dict[connection_type + expr_index])
+                            )
 
                         dat["expressions"][expr_global_id] = {
                             "latex": latex_for_step_dict[connection_type + expr_index],
