@@ -2520,7 +2520,6 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
                 )
             )
 
-
         logger.debug(
             "step_id = %s",
             step_id,
