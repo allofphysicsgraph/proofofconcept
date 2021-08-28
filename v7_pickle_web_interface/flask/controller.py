@@ -1105,12 +1105,16 @@ def search_redirect_to_google():
     logger.debug(
         "request.url: " + str(request.url)
     )  # https://stackoverflow.com/a/46176337/1164295
-    logger.debug("search term is " + str(request.args.get("search")))
-    logger.debug("request.args =" + str(request.args))
+
+    # request.args are embedded in the URL
+    #logger.debug("search term is " + str(request.args.get("search")))
+    #logger.debug("request.args =" + str(request.args))
+    logger.debug("request.form =" + str(request.form))
+    logger.debug("request.form.keys() =" + str(request.form.keys()))
 
     return redirect(
         "https://www.google.com/search?&q=site%3Aderivationmap.net+"
-        + str(request.args.get("search"))
+        + str(request.form.get("search"))
     )
 
 
