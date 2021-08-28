@@ -2508,7 +2508,19 @@ def provide_expr_for_inf_rule(deriv_id: str, inf_rule: str):
         except Exception as err:
             flash(str(err))
             logger.error(str(err))
-            step_id = "0"
+
+            # instead of continuing with the rest of the page,
+            # have the user try again
+            return redirect(
+                url_for(
+                    "provide_expr_for_inf_rule",
+                    deriv_id=deriv_id,
+                    inf_rule=inf_rule,
+                    referrer="provide_expr_for_inf_rule",
+                )
+            )
+
+
         logger.debug(
             "step_id = %s",
             step_id,
