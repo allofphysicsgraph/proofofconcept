@@ -5168,7 +5168,7 @@ def create_step(
 
                         dat["expressions"][expr_global_id] = {
                             "latex": latex_for_step_dict[connection_type + expr_index],
-                            "AST": ,
+                            "AST": this_ast,
                             "name": latex_for_step_dict[
                                 connection_type + expr_index + "_name"
                             ],
