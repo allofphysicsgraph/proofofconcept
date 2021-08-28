@@ -56,6 +56,10 @@ is designed to be read sequentially.
   related by the following graph:
 
   <img src="{{ url_for('static', filename='jargon_relations.png') }}">
+  <CENTER>
+    Figure 1. Conceptual relations between jargon used in the Physics Derivation Graph.
+  </CENTER>
+
 <P>
   Every mathematical expression is connected to an inference rule by a
   directed edge.
@@ -108,7 +112,7 @@ The relation of these terms is shown graphically below in figure 1:<!--in Fig. \
 <!--\begin{figure}-->
 <img src="{{ url_for('static', filename='frequency_period_relation.png') }}" width=400>
 <CENTER>
-  Figure 1. A derivation step represented as a graph. The directed graph is
+  Figure 2. A derivation step represented as a graph. The directed graph is
   comprised of an input expression (top blue circle), an output expressions
   (bottom blue circle), an inference rule (red trapazoid), and a feed (purple
   rectangle).
@@ -117,6 +121,29 @@ The relation of these terms is shown graphically below in figure 1:<!--in Fig. \
 \label{fig:freq_period}
 \end{figure}
 -->
+
+<H2 id="example">
+  Example Derivation with Multiple Steps
+</H2>
+<P>Here is a simple three step derivation:
+
+<blockquote>
+An initial expression for this derivation is \(a = b\).
+<i>[The inference rule is "declare initial expression", there is no input expression, and the output expression is \(a = b\).]</i>
+
+Given the expression \(a = b\), add 2 to both sides to get \(a+2 = b+2 \).
+<i>[The inference rule is "add X to both sides", there is a feed value of 2 needed by the inference rule, the input expression is "a=b", and the output expression is \(a+2 = b+2\).]</i>
+
+A final expression in this derivation is \(a+2 = b+2 \).
+<i>[The inference rule is "declare final expression", the input expression is \(a+2 = b+2 \), and there is no output expression.]</i>
+<blockquote>
+
+<P>Visually, that can be represented as a graph:
+
+  <img src="{{ url_for('static', filename='derivation_ab_add2.png') }}" width=400>
+  <CENTER>
+    Figure 3. A three step derivation involving two expressions.
+  </CENTER>
 
 <H2 id="graph content">Graph content</H2>
 
