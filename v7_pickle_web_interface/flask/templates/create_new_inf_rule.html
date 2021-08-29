@@ -5,6 +5,7 @@
 <!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
 
 <form method="post" action="">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
 
 <P>number of feeds: {{ form.input1 }}
 
@@ -19,4 +20,3 @@
 {% include '_table_of_inference_rules.html' %}
 
 {% endblock %}
-

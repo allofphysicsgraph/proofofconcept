@@ -1117,7 +1117,7 @@ def search_redirect_to_google():
         + str(request.form.get("search"))
     )
 
-
+@app.route("/favicon.ico")#     https://www.favicongenerator.com/
 @app.route(
     "/robots.txt"
 )  # https://github.com/allofphysicsgraph/proofofconcept/issues/160
@@ -3913,6 +3913,42 @@ def confirm_delete_derivation(deriv_id):
         confirm_deriv_name=RevisedTextForm(request.form),
         title="confirm delete derivation",
     )
+
+
+votes = 0
+
+@app.route("/create_new_derivation/", methods=["GET", "POST"])
+@login_required
+def create_new_derivation():
+    """
+    >>> create_new_derivation()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "]" + current_user.email)
+
+    if request.method == "POST":
+        logger.debug("request.form = %s", request.form)
+
+    logger.info("[trace page end " + trace_id + "]")
+    return render_template(
+        "create_new_derivation.html", title="create new derivation", votes=votes
+    )
+
+
+# https://iq.opengenus.org/single-page-application-with-flask-ajax/
+@app.route("/up", methods=["POST"])
+def upvote():
+    global votes
+    votes = votes + 1
+    return str(votes)
+
+# https://iq.opengenus.org/single-page-application-with-flask-ajax/
+@app.route("/down", methods=["POST"])
+def downvote():
+    global votes
+    if votes >= 1:
+        votes = votes - 1
+    return str(votes)
 
 
 @app.route("/create_new_inf_rule/", methods=["GET", "POST"])
