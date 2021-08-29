@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+{% block content %}
+
+<!-- https://stackoverflow.com/questions/28375565/add-input-fields-dynamically-with-wtforms -->
+
+
+<!-- https://iq.opengenus.org/single-page-application-with-flask-ajax/ -->
+
+<fieldset>
+  Votes: <span id="count">{{ votes }}</span>
+ <br><br>
+ <!--<form method="post">-->
+ <form>
+ <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+ <button id="up">UP</button>
+ <br>
+ <button id="down">DOWN</button>
+ </form>
+</fieldset>
+
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('button').forEach(button => {
+            button.onclick = () => {
+                const request = new XMLHttpRequest();
+                request.open('POST', `/${button.id}`);
+                request.onload = () => {
+                    const response = request.responseText;
+                    document.getElementById('count').innerHTML = response;
+                };
+                request.send();
+            };
+        });
+    });
+</script>
+
+{% endblock %}
