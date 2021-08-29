@@ -73,7 +73,10 @@ def create_sql_connection(db_file: str):
             # logger.info("[trace end " + trace_id + "]")
             return my_db
         except sqlite3.Error:
-            logger.error("common_lib create_sql_connection sqlite3 connection:"+str(sqlite3.Error))
+            logger.error(
+                "common_lib create_sql_connection sqlite3 connection:"
+                + str(sqlite3.Error)
+            )
             raise Exception(str(sqlite3.Error))
     else:  # file does not exist
         logger.info(db_file + " does not seem to exist; creating it")
@@ -178,13 +181,12 @@ def write_db(path_to_db: str, dat: dict) -> None:
     else:
         raise Exception("no connection to sql database")
 
-    try: # delete whatever is in SQL to prepare for overwriting with SQL
+    try:  # delete whatever is in SQL to prepare for overwriting with SQL
         cur.execute("""drop table data""")
         logger.debug("deleted table from sql")
     except sqlite3.OperationalError as err:
         logger.error("common_lib write_db sqlite3.OperationalError")
         logger.error('Unable to drop "data"; ' + str(err))
-
 
     # table "data" with column "entry"
     cur.execute("""CREATE TABLE data ("entry TEXT NOT NULL")""")
