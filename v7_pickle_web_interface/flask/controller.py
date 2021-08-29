@@ -1117,7 +1117,8 @@ def search_redirect_to_google():
         + str(request.form.get("search"))
     )
 
-@app.route("/favicon.ico")#     https://www.favicongenerator.com/
+
+@app.route("/favicon.ico")  #     https://www.favicongenerator.com/
 @app.route(
     "/robots.txt"
 )  # https://github.com/allofphysicsgraph/proofofconcept/issues/160
@@ -3917,6 +3918,7 @@ def confirm_delete_derivation(deriv_id):
 
 votes = 0
 
+
 @app.route("/create_new_derivation/", methods=["GET", "POST"])
 @login_required
 def create_new_derivation():
@@ -3941,6 +3943,7 @@ def upvote():
     global votes
     votes = votes + 1
     return str(votes)
+
 
 # https://iq.opengenus.org/single-page-application-with-flask-ajax/
 @app.route("/down", methods=["POST"])
