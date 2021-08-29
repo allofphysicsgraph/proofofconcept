@@ -38,7 +38,7 @@ class User(UserMixin):
            "SELECT * FROM user WHERE id = ?", (user_id,)
             ).fetchone()
         except sqlite3.OperationalError as err:
-            logger.error(str(err))
+            logger.error("user.py get error: "+str(err))
             logger.debug(str(user_id))
             return None
 #            init_db()

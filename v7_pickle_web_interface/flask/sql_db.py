@@ -41,7 +41,7 @@ def init_db():
         try:
             db.executescript(f.read().decode("utf8"))
         except Exception as err:
-            logger.error(str(err))
+            logger.error("sql_db.py init_db error with schema.sql:" + str(err))
 
     logger.debug("ran schema.sql")
 
