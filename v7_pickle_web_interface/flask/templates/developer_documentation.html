@@ -2,7 +2,10 @@
 {% block content %}
 
 <P>
-  <em>Recommendation</em>: Read the <a href="{{ url_for('user_documentation') }}?referrer=developer_documentation">user documentation</a> and <a href="{{ url_for('faq') }}?referrer=developer_documentation">FAQ</a> first.
+  <em>Recommendation</em>: Read the
+  <a href="{{ url_for('user_documentation') }}?referrer=developer_documentation">user documentation</a>
+  and <a href="{{ url_for('faq') }}?referrer=developer_documentation">FAQ</a> first.
+  This page assumes familiarity with the jargon used in the Physics Derivation Graph.
 </P>
 
 <P>
@@ -24,33 +27,34 @@ cat developer_documentation.html |\
      sed 's/<H4><a name="/      <LI><a href="#/'
 -->
 <OL class="toc_list">
-  <LI><a href="#indices">Numeric indices are the core enabling concept for the PDG</a></LI>
-  <LI><a href="#data structure">Data structure used in the PDG</a></LI>
-  <LI><a href="#CNL grammar">Grammar of the controlled natural language</a></LI>
-  <LI><a href="#latex for expressions">\(\rm\LaTeX\) representation of expressions</a></LI>
-  <LI><a href="#software">Software used in the Physics Derivation Graph</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#design decisions">Design Decisions</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#CNL grammar">Grammar of the controlled natural language</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#indices">Numeric indices are the core enabling concept for the PDG</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#data structure">Data structure used in the PDG</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#latex for expressions">\(\rm\LaTeX\) representation of expressions</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#frequency period from first principles">Derivation to Graph from First Principles</a></LI>
+  <LI><small>[Mechanics of the project] </small><a href="#software">Software used in the Physics Derivation Graph</a></LI>
   <OL>
     <LI><a href="#python">Python</a></LI>
     <LI><a href="#mvc">Model-view-controller in Flask</a></LI>
     <LI><a href="#containerization">Docker</a></LI>
-    <LI><a href="#web stack">Flask - Gunicorn - Nginx</a></LI>
-    <LI><a href="#software:latex">Latex</a></LI>
-    <LI><a href="#software:git">git</a></LI>
+    <LI><a href="#web stack">Web stack</a></LI>
+    <LI><a href="#software:rendering">Latex</a></LI>
+    <LI><a href="#software:version control">git</a></LI>
   </OL>
-  <LI><a href="#running the code">Running the Physics Derivation Graph code</a></LI>
+  <LI><small>[Mechanics of the project] </small><a href="#running the code">Running the Physics Derivation Graph code</a></LI>
   <OL>
     <LI><a href="#run flask container">Run Flask container</a></LI>
     <LI><a href="#run gunicorn container">Run gunicorn container</a></LI>
   </OL>
-  <LI><a href="#how to navigate the codebase">How to Navigate the codebase</a></LI>
-  <LI><a href="#how webpages and the Python functions relate">How webpages and the Python functions relate</a></LI>
-  <LI><a href="#frequency period from first principles">Derivation to Graph from First Principles</a></LI>
-  <LI><a href="#build pdg code from scratch">Build the Physics Derivation Graph software from scratch</a></LI>
+  <LI><small>[Mechanics of the project] </small><a href="#how to navigate the codebase">How to Navigate the codebase</a></LI>
+  <LI><small>[Mechanics of the project] </small><a href="#how webpages and the Python functions relate">How webpages and the Python functions relate</a></LI>
+  <LI><small>[Mechanics of the project] </small><a href="#build pdg code from scratch">Build the Physics Derivation Graph software from scratch</a></LI>
   <OL>
     <LI><a name="Docker and Make">Initial infrastructure: Docker and Make</a></LI>
     <LI><a name="Python and Flask">Initial infrastructure: Python and Flask</a></LI>
   </OL>
-  <LI><a href="#historical evolution">Historical design evolution</a></LI>
+  <LI><small>[Mechanics of the project] </small><a href="#historical evolution">Historical design evolution</a></LI>
   <OL>
     <LI><a href="#other avenues">Other approaches</a></LI>
     <OL>
@@ -59,7 +63,7 @@ cat developer_documentation.html |\
       <LI><a href="#rdf">RDF/OWL</a></LI>
     </OL>
   </OL>
-  <LI><a href="#comparison:syntax">Comparison of Syntax Options</a></LI>
+  <LI><small>[Mechanics of the project] </small><a href="#comparison:syntax">Comparison of Syntax Options</a></LI>
   <OL>
     <LI><a href="#test cases">Test Cases</a></LI>
     <LI><a href="#quantitative comparison of syntax">Quantitative Comparison of Test Cases</a></LI>
@@ -67,38 +71,37 @@ cat developer_documentation.html |\
     <LI><a href="#conversion of syntax">Transforming between Syntax options</a></LI>
     <LI><a href="#correctness of derivations">Auditing the Correctness of Derivations</a></LI>
   </OL>
-  <LI><a href="#comparison:computer algebra systems">Comparison of Computer Algebra Systems</a></LI>
+  <LI><small>[Appendix] </small><a href="#comparison:computer algebra systems">Comparison of Computer Algebra Systems</a></LI>
   <OL>
     <LI><a href="#cas:sage">Sage</a></LI>
     <LI><a href="#cas:mathematica">Mathematica</a></LI>
     <LI><a href="#cas:sympy">Sympy</a></LI>
     <LI><a href="#HOLLight">HOL Light theorem prover</a></LI>
   </OL>
-  <LI><a href="#not in scope">Outside of Current Scope</a></LI>
+  <LI><small>[Appendix] </small><a href="#not in scope">Outside of Current Scope</a></LI>
 </OL>
 </div>
 
+<P>&nbsp;</P>
 
-<H2><a name="indices">Numeric indices are the core enabling concept for the Physics Derivation Graph</a></H2>
-<P>
-  The visualization of a graph with expressions and inference rules as nodes relies on each node having a distinct index.
-  Each expression, symbol, and inference rule appears only once in the database.
-  This is made possible through use of numeric IDs associated with every facet of the visualization.
-  To see what this means in terms of the "period and frequency" example on <a href="{{ url_for('index', referrer="developer_documentation") }}">the homepage</a>, here is a view of the indices supporting that visualization for a single step:
-</P>
-<img src="{{ url_for('static', filename='frequency_and_period_exploded_steps.png') }}">
-<BR/>
-<center>
-  Figure 1. Two steps with all numeric IDs shown.
-</center>
+<H2><a name="design decisions">Design Decisions</a></H2>
 
 <P>
-  Manipulating these indices underlies all other tasks in the Physics Derivation Graph.
-  Access to these indices is performed through a single data structure.
+  The objective for the Physics Derivation Graph project is to write down
+  all known mathematical physics in a way that can be both read by humans and
+  checked by a computer algebra system. To do that, primary design considerations
+  include how to represent the objects
+  (<a href="{{ url_for('user_documentation')}}?referrer=developer_documentation#inference rules">inference rules</a>
+  and <a href="{{ url_for('user_documentation')}}?referrer=developer_documentation#expressions">expressions</a> and symbols)
+  what data structure is sufficient for the objective.
+</P><P>
+  This page describes the current status and historical evoluation of design
+  decisions critical to the Physics Derivation Graph.
 </P>
 <P>&nbsp;</P>
 <HR/>
 <P>&nbsp;</P>
+
 
 <H2><a name="CNL grammar">Grammar of the controlled natural language</a></H2>
 <P>
@@ -158,6 +161,32 @@ The grammar of the Physics Derivation Graph is specified by this list, with all 
 
 
 
+<H2><a name="indices">Numeric indices are the core enabling concept for the Physics Derivation Graph</a></H2>
+<P>
+  The visualization of a graph with expressions and inference rules as nodes
+  relies on each node having a distinct index.
+  Each expression, symbol, and inference rule appears only once in the database.
+  This is made possible through use of unique IDs associated with every facet of the visualization.
+  To see what this means in terms of the "period and frequency"
+  example on <a href="{{ url_for('index') }}?referrer=developer_documentation">the homepage</a>,
+  here is a view of the indices supporting that visualization for two sequential steps:
+</P>
+<img src="{{ url_for('static', filename='frequency_and_period_exploded_steps.png') }}">
+<BR/>
+<center>
+  Figure 1. Two steps with all numeric IDs shown.
+</center>
+
+<P>
+  Manipulating these indices underlies all other tasks in the Physics Derivation Graph.
+  Access to these indices is performed through a single data structure.
+</P>
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+
+
 <H2><a name="data structure">Data structure used in the Physics Derivation Graph</a></H2>
 <P>
   The Physics Derivation Graph is currently stored in a single JSON file. <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/data.json">The JSON file</a> is read into Python as a dictionary.
@@ -182,6 +211,95 @@ The grammar of the Physics Derivation Graph is specified by this list, with all 
 <P>&nbsp;</P>
 <HR/>
 <P>&nbsp;</P>
+
+<H2><a name="frequency period from first principles">Derivation of Graph from First Principles</a></H2>
+
+<!-- this content is derived from
+     https://allofphysicsgraph.github.io/proofofconcept/site/how_to_build_the_physics_derivation.html
+-->
+
+<P>
+  A reasonable question is, "Why is the Physics Derivation Graph complicated?"
+  To answer that, let's walk through the process of creating a derivation.
+</P>
+
+<P>
+  A simple derivation is the transition from the expression \(T = 1/f\) to \(f = 1/T\), the same example used on the <a href="{{ url_for('index') }}">home page</a>.
+  The purpose of this section is to explain how a graph relates to the steps associated with this math.
+
+<P>
+  The steps needed to make the transformation are to multiply both sides by \(f\), then divide both sides by \(T\).
+  There are four steps in this derivation:
+<OL>
+<LI>declare initial expression \(T=1/f\)</LI>
+<LI>multiply both sides of \(T=1/f\) by \(f\) to get \(T*f=1\)</LI>
+<LI>divide both sides of \(T f=1\) by \(T\) to get \(f=1/T\)</LI>
+<LI>declare final expression: \(f=1/T\)</LI>
+</OL>
+  This expansion to atomic steps is not typically documented.
+  This expansion can be tedious for derivations, but it is necessary for validation of steps using a Computer Algebra System.
+  As a recommendation, starting the derivation on paper and then expanding to atomic steps with inference rules is best done on paper.</P>
+
+<P>
+  The next step is to visualize this graph.
+  When building a graph, there are three types of nodes: inference rules, expressions, and feeds.
+  The graph will only have three types of directed edges:
+<UL>
+<LI>source:"inference rule", destination:"expression"</LI>
+<LI>source:"expression", destination:"inference rule"</LI>
+<LI>source:"feed", destination:"inference rule"</LI>
+</UL>
+
+<P>
+  Although there is enough information present to generate a graph, the objective for the Physics Derivation Graph is to support more complex derivations and to link multiple derivations.
+  In the Physics Derivation Graph the inference rule "multiply both sides by" may appear in multiple steps.
+  The graph should not render multiple uses of the same inference rule as the same node.
+  Multiple references to the same expression should be a single node.
+  Therefore, an index which has a scope limited to the local derivation step is needed.
+  This leads to the notion of a unique numeric index local to each inference rule.
+  The local index for the inference rule is a unique identifier within a derivation step.</P>
+</P>
+
+<P>
+  Another complication arises regarding the expressions.
+  The usefulness of \(T = 1/f\) depends on what is reading the expression.
+  Multiple readers of the expression can be expected: humans, <a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a>, and Computer Algebra Systems (e.g., <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">Mathematica</a>, <a href="https://en.wikipedia.org/wiki/SymPy">Sympy</a>).
+  This leads to the need for a unique identifier which is associated with the expression independent of the representation.
+  In <a href="https://en.wikipedia.org/wiki/Logic">Logic</a>, this unique identifier is referred to as the <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>.
+  Similarly, the "feeds" (here <em>f</em> and <em>T</em> need unique identifiers.
+<P>
+
+<P>To summarize the above points,
+<UL>
+<LI>each inference rule gets a local identifier</LI>
+<LI>each expression gets a unique identifier</LI>
+<LI>each feed gets a unique identifier</LI>
+</UL>
+
+
+<P>
+  The expression index is the same across all derivations, whereas the local index is scoped to just the derivation step.
+  Similarly, the inference rule index is specific to the derivation step.
+</p>
+
+<P>
+  The inference rule needs the local index to build the graph.
+  The expression needs a local index to build the \(\rm\LaTeX\) PDF.
+</P>
+
+<P>
+  In addition to the inference rules and expressions, each \(\rm\LaTeX\) expression actually represents an Abstract Syntax Tree (AST) composed of symbols.
+</P>
+<img src="{{ url_for('static', filename='single_step_with_AST_per_expression_and_symbols.png') }}">
+<BR/>
+<center>
+Figure 4. All of the jargon used and the relation between jargon used in the Physics Derivation Graph.
+</center>
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+
 
 <H2><a name="software">Software used in the Physics Derivation Graph</a></H2>
 <P>
@@ -217,7 +335,7 @@ The grammar of the Physics Derivation Graph is specified by this list, with all 
   Ubuntu provides necessary packages.
 </P>
 
-<H3><a name="web stack">Flask - Gunicorn - Nginx</a></H3>
+<H3><a name="web stack">Web stack</a></H3>
 <P>
   To provide a web interface, <a href="https://flask.palletsprojects.com/">Flask</a> is used.
   HTML (with Javascript) pages are rendered using Jinja2.
@@ -228,11 +346,11 @@ The grammar of the Physics Derivation Graph is specified by this list, with all 
 <P>
   Why this complexity is relevant is addressed in <a href="https://serverfault.com/a/331263">this StackOverflow answer</a>.
 
-<H3><a name="software:latex">Latex</a></H3>
+<H3><a name="software:rendering">Rendering</a></H3>
 
 <P>Latex, dvipng, texlive
 
-<H3><a name="software:git">git</a></H3>
+<H3><a name="software:version control">Version control</a></H3>
 <P>git, github
 
 <!--
@@ -383,93 +501,6 @@ Figure 3. State diagram for the web interface.
   <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/compute.py">computer.py</a>
   to get data from the <code>data.json</code> database.
 
-<P>&nbsp;</P>
-<HR/>
-<P>&nbsp;</P>
-
-<H2><a name="frequency period from first principles">Derivation of Graph from First Principles</a></H2>
-
-<!-- this content is derived from
-     https://allofphysicsgraph.github.io/proofofconcept/site/how_to_build_the_physics_derivation.html
--->
-
-<P>
-  A reasonable question is, "Why is the Physics Derivation Graph complicated?"
-  To answer that, let's walk through the process of creating a derivation.
-</P>
-
-<P>
-  A simple derivation is the transition from the expression \(T = 1/f\) to \(f = 1/T\), the same example used on the <a href="{{ url_for('index') }}">home page</a>.
-  The purpose of this section is to explain how a graph relates to the steps associated with this math.
-
-<P>
-  The steps needed to make the transformation are to multiply both sides by \(f\), then divide both sides by \(T\).
-  There are four steps in this derivation:
-<OL>
-<LI>declare initial expression \(T=1/f\)</LI>
-<LI>multiply both sides of \(T=1/f\) by \(f\) to get \(T*f=1\)</LI>
-<LI>divide both sides of \(T f=1\) by \(T\) to get \(f=1/T\)</LI>
-<LI>declare final expression: \(f=1/T\)</LI>
-</OL>
-  This expansion to atomic steps is not typically documented.
-  This expansion can be tedious for derivations, but it is necessary for validation of steps using a Computer Algebra System.
-  As a recommendation, starting the derivation on paper and then expanding to atomic steps with inference rules is best done on paper.</P>
-
-<P>
-  The next step is to visualize this graph.
-  When building a graph, there are three types of nodes: inference rules, expressions, and feeds.
-  The graph will only have three types of directed edges:
-<UL>
-<LI>source:"inference rule", destination:"expression"</LI>
-<LI>source:"expression", destination:"inference rule"</LI>
-<LI>source:"feed", destination:"inference rule"</LI>
-</UL>
-
-<P>
-  Although there is enough information present to generate a graph, the objective for the Physics Derivation Graph is to support more complex derivations and to link multiple derivations.
-  In the Physics Derivation Graph the inference rule "multiply both sides by" may appear in multiple steps.
-  The graph should not render multiple uses of the same inference rule as the same node.
-  Multiple references to the same expression should be a single node.
-  Therefore, an index which has a scope limited to the local derivation step is needed.
-  This leads to the notion of a unique numeric index local to each inference rule.
-  The local index for the inference rule is a unique identifier within a derivation step.</P>
-</P>
-
-<P>
-  Another complication arises regarding the expressions.
-  The usefulness of \(T = 1/f\) depends on what is reading the expression.
-  Multiple readers of the expression can be expected: humans, <a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a>, and Computer Algebra Systems (e.g., <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">Mathematica</a>, <a href="https://en.wikipedia.org/wiki/SymPy">Sympy</a>).
-  This leads to the need for a unique identifier which is associated with the expression independent of the representation.
-  In <a href="https://en.wikipedia.org/wiki/Logic">Logic</a>, this unique identifier is referred to as the <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>.
-  Similarly, the "feeds" (here <em>f</em> and <em>T</em> need unique identifiers.
-<P>
-
-<P>To summarize the above points,
-<UL>
-<LI>each inference rule gets a local identifier</LI>
-<LI>each expression gets a unique identifier</LI>
-<LI>each feed gets a unique identifier</LI>
-</UL>
-
-
-<P>
-  The expression index is the same across all derivations, whereas the local index is scoped to just the derivation step.
-  Similarly, the inference rule index is specific to the derivation step.
-</p>
-
-<P>
-  The inference rule needs the local index to build the graph.
-  The expression needs a local index to build the \(\rm\LaTeX\) PDF.
-</P>
-
-<P>
-  In addition to the inference rules and expressions, each \(\rm\LaTeX\) expression actually represents an Abstract Syntax Tree (AST) composed of symbols.
-</P>
-<img src="{{ url_for('static', filename='single_step_with_AST_per_expression_and_symbols.png') }}">
-<BR/>
-<center>
-Figure 4. All of the jargon used and the relation between jargon used in the Physics Derivation Graph.
-</center>
 <P>&nbsp;</P>
 <HR/>
 <P>&nbsp;</P>
@@ -994,7 +1025,8 @@ func = subtractXfromBothSides [func, b/(2 a)]
 
 <H2><a name="not in scope">Outside of Current Scope</a></H2>
 
-<P>Not within the scope of the Physics Derivation Graph:
+<P>Although the Physics Derivation Graph is intended to be comprehensive
+  across domains, there are aspect of Physics not within the current scope of the project:
 <UL>
   <LI>inclusion of graphics, e.g. free body diagrams, Feynman diagrams, geometrical diagrams.
   <LI>explanatory text,
@@ -1002,7 +1034,8 @@ func = subtractXfromBothSides [func, b/(2 a)]
   <LI>experimental processes,
   <LI>interactive models.
 </UL>
-
+These aspects could be included if the data structure and workflow were adapted
+to an expanded scope.
 
 <!--
 <h2 id="bibliography">Citations</a></H2>
