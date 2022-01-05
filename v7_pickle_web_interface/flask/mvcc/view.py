@@ -15,5 +15,5 @@ def get_input():
 def present_output(r):
     """Write results to terminal window."""
     s = compute.compute(r)
-    print 'Hello, World! sin(%g)=%g' % (r, s)
+    print('Hello, World! sin(%g)=%g' % (r, s))
 

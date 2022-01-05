@@ -1,0 +1,30 @@
+<!-- unlike all other pages, this page does not inherit from _base.html
+     That's because the "sign in" and "navigation" links are not shown at the top of the page -->
+<!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
+<HTML lang='en'>
+  <head>
+    <title>Physics Derivation Graph: {{ title }}</title>
+
+    {% include '_js_head.html' %}
+
+    <!-- https://stackoverflow.com/a/15027568/1164295 -->
+    <style type="text/css">
+      fieldset.inline {
+        display: inline;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <center>
+      <H2>{{ title }}</H2>
+    </center>
+    <P>
+
+    see class_notes/
+
+    {% include '_footer.html' %}
+
+    </body>
+</html>

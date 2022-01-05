@@ -5,7 +5,7 @@
 # https://creativecommons.org/licenses/by/4.0/
 # Attribution 4.0 International (CC BY 4.0)
 
-
+"""
 # convention: every function and class includes a [trace] print
 # reason: to help the developer understand functional dependencies and which state the program is in,
 # a "trace" is printed to the terminal at the start of each function
@@ -25,6 +25,7 @@
 # from redis import Redis
 # https://pypi.org/project/rejson/
 # from rejson import Client, Path
+"""
 
 import os
 import json
@@ -1226,6 +1227,30 @@ def layers_without_arg():
     return render_template(
         "layers_overview.html", title="Roadmap for Formal Mathematical Physics Content"
     )
+
+@app.route("/class_notes/<which_class>", methods=["GET", "POST"])
+def class_notes(which_class):
+    """
+    class notes from school
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    logger.info("[trace page start " + trace_id + "] ")
+
+    if which_class == "overview":
+        logger.info("URL is overview")
+        logger.info("[trace page end " + trace_id + "]")
+        return render_template("class_notes_overview.html", title="overview")
+    elif which_class == "math402_mathematical_physics_hale":
+        logger.info("URL is 402")
+        logger.info("[trace page end " + trace_id + "]")
+        return render_template("class_notes_math402_mathematical_physics_hale.html", title="Math 402")
+    else:
+        logger.info("no URL")
+        logger.info("[trace page end " + trace_id + "]")
+        return render_template("class_notes_overview.html", title="class notes overview")
+
+    logger.info("[trace page end " + trace_id + "]")
+    return render_template("class_notes_overview.html", title="class notes overview")
 
 
 @app.route("/roadmap/<which_layer>", methods=["GET", "POST"])
