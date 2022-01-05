@@ -1228,6 +1228,7 @@ def layers_without_arg():
         "layers_overview.html", title="Roadmap for Formal Mathematical Physics Content"
     )
 
+
 @app.route("/class_notes", methods=["GET", "POST"])
 def class_notes_without_subpage():
     """
@@ -1235,6 +1236,7 @@ def class_notes_without_subpage():
     """
     logger.info("[trace page]")
     return render_template("class_notes_overview.html", title="class notes overview")
+
 
 @app.route("/class_notes/<which_class>", methods=["GET", "POST"])
 def class_notes_subpage(which_class: str):
