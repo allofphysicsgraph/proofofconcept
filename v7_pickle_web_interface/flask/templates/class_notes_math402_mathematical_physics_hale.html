@@ -33,12 +33,21 @@
       <p class="toc_title">Contents</p>
       <OL class="toc_list">
         <LI><a href="#notation">Notation</a></LI>
-        <LI>Definitions of <a href="#field">field</a>, <a href="#space">space</a>, <a href="#unitary-vector-space">unitary vector space</a>
+        <LI>Definitions of <a href="#field">field</a>,
+          <a href="#space">space</a>,
+          <a href="#normed-vector-space">normed vector space</a>,
+          <a href="#unitary-vector-space">unitary vector space</a>,
+          <a href="#orthogonality">orthogonality</a>,
+          <a href="#linear-independence">linear independence</a>,
+          <a href="#metric-space">metric space</a>,
+          <a href="#completeness">completeness</a>
+          <a href="#basis-vectors">basis vectors</a>,
+          <a href="#dimension">dimension</a>
       </OL>
     </div>
     <P>
       <a id="notation">Notation</a>:
-      <OL>
+      <UL>
         <LI>\(\in\) = element of</LI>
         <LI>\(\exists\) = there exists</LI>
         <LI>\(\backepsilon\) = such that</LI>
@@ -49,7 +58,7 @@
         <LI>\(a\) = real number</LI>
         <LI>\(^*\) = complex conjugate</LI>
         <LI>\(\vec{r}\) = three dimensional position vector with components \((x,y,z)\)</LI>
-      </OL>
+      </UL>
     <hr>
 
     <P>
@@ -57,7 +66,7 @@
       Definition of <a href="https://en.wikipedia.org/wiki/Field_(mathematics)">field</a></a>:<BR>
       \(F \equiv \{\alpha, \beta, \gamma, ...\}\) where \(\alpha, \beta, \gamma, ...\) are
       (in general) complex numbers and
-      <OL>
+      <UL>
         <LI>\(\alpha+\beta\) and \(\alpha-\beta\) are defined and are elements of F. (\(\alpha+\beta \in F\) and \(\alpha-\beta \in F\).)</LI>
         <LI>\(\alpha+(\beta+\gamma)=(\alpha+\beta)+\gamma\) (Associative Property of addition) and <BR>
             \(\alpha\cdot(\beta\cdot \gamma)=(\alpha\cdot \beta)\cdot \gamma\) (Associative Property of multiplication) and <BR>
@@ -71,7 +80,7 @@
         <LI>at least one element of \(F \neq 0\)</LI>
         <LI>\(\forall \alpha \in F, \exists \beta \in F \backepsilon \alpha\cdot \beta = E\); e.g., \(\beta \equiv \alpha^{-1}\)<BR>
           Read as "For every \(\alpha\) in field \(F\) there exists \(\beta\) in \(F\) such that the product of \(\alpha\cdot\beta\) is element E (unity). In other words, \(\beta\) is the inverse of \(\alpha\). "</LI>
-      </OL>
+      </UL>
       <hr>
 
       <P>
@@ -79,7 +88,7 @@
         Definition of <a href="https://en.wikipedia.org/wiki/Space_(mathematics)">space</a></a>:<BR>
         \(\vec{S} \equiv \{ \vec{x}, \vec{y}, \vec{z},\vec{v},...\}\) where \(\vec{x}, \vec{y}, \vec{z},\vec{v},...\)
         are mathematical objects ("vectors") over field \(F\) and
-      <OL>
+      <UL>
         <LI>\(\vec{x}+\vec{y} \in \vec{S} \forall \vec{x}\in\vec{S}\) and \(\vec{y}\in\vec{S}\); and<BR>
           \(\alpha\vec{x}\in\vec{S} \forall \alpha\in F\) and \(\vec{x}\in\vec{S}\)</LI>
         <LI>\(\vec{x}+\vec{y}=\vec{y}+\vec{x}\)</LI>
@@ -87,10 +96,10 @@
         <LI>\(\alpha(\vec{x}+\vec{y})=\alpha\vec{x}+\alpha\vec{y}\)</LI>
         <LI>The "zero" or "null" vector \(\vec{0}\) exists (and \(\vec{0}\in\vec{S}\)) \(\backepsilon \vec{x}+\vec{0}=\vec{x}\) and \(\alpha\vec{0}=\vec{0}\)<BR>
           also, \(\forall \vec{x}\in\vec{S} \exists \vec{y}\in\vec{S}\backepsilon \vec{x}+\vec{y}=\vec{0}\), e.g., \(\vec{y}\) is the additive inverse of \(\vec{x}\).</LI>
-      </OL>
+      </UL>
 
       <P>Examples of vector spaces:
-        <OL>
+        <UL>
           <LI>three dimensional Euclidean space. (The \(\vec{r}\) coordinate space with \(F\) being the real numbers.)</LI>
           <LI>n-dimensional vector space over the field of complex numbers; \(vec{x}=(a_1, a_2,...,a_n)\)</LI>
           <LI>set of all real, continuous functions \(f(x)\) on \([0,1]\). Note that \(f(x)=\vec{y}\), a vector element of \(\vec{S}\).</LI>
@@ -98,7 +107,7 @@
           This is sometimes called \(L^2\), a Hilbert space of all square integrable functions</LI>
           <LI>set of solutions to \(\nabla^2f(\vec{r})=0\), or \(\nabla^2f(\vec{r})=k^2\) for real \(k\).</LI>
           <LI>set of functions \(\Psi(\vec{r})\) where \(|\vec{r}|\leq\infty\) and where the integral over all space \(\int|\Psi(\vec{r})|^2d^3x\) is finite.</LI>
-        </OL>
+        </UL>
 
       <P>n-dimensional vector space over the field of real numbers is described by
         \begin{equation}
@@ -111,18 +120,20 @@
         \end{equation}
 
       <hr>
-      <P>A <a href="https://en.wikipedia.org/wiki/Normed_vector_space">normed vector space</a>
+      <P>
+        <a id="normed-vector-space">
+        A <a href="https://en.wikipedia.org/wiki/Normed_vector_space">normed vector space</a></a>
          is a vector space in which \(\forall \vec{x}\in\vec{S}\) a quantity defined
         to be in the norm of \(\vec{x}\), denoted as \(||\vec{x}||\), exists. The norm must satisfy
-        <OL>
+        <UL>
           <LI>\(||\vec{x}|| \geq 0\)</LI>
           <LI>\(||\alpha\vec{x}|| = |\alpha|\cdot||\vec{x}||\)</LI>
           <LI>\(||\vec{x}+\vec{y}||\leq||\vec{x}||+||\vec{y}||\). This is called the <a href="https://en.wikipedia.org/wiki/Minkowski_inequality">Minkowski inequality</a></LI>
-        </OL>
+        </UL>
         \(||\vec{x}||=0\) iff \(\vec{x}=\vec{0}\)
 
         <P>
-          Example: <BR>
+          <i>Example</i>: <BR>
             In an n-dimensional Euclidean space with \(\vec{x}=(a_1, a_2, ..., a_n)\) then<BR>
           \begin{equation}
           ||\vec{x}||=\sqrt{|a_1|^2+|a_2|^2+...+|a_n|^2}
@@ -134,12 +145,12 @@
          </a>
         <P>A vector space is unitary iff it is possible to define a special operation called the inner product (or scalar product) \((\vec{x}, \vec{y}) \forall \vec{x},\vec{y}\in\vec{S}\).
           The inner product must satisfy
-          <OL>
+          <UL>
             <LI>\((\vec{x},\vec{y})=(\vec{y},\vec{x})^*\)</LI>
             <LI>\((\vec{x},\vec{y}+\vec{z})=(\vec{x},\vec{y}) + (\vec{x},\vec{z})\)</LI>
             <LI>\((\vec{x},\alpha\vec{y})=\alpha(\vec{x},\vec{y})\)</LI>
             <LI>\((\vec{x},\vec{x})\geq 0\) and \((\vec{x},\vec{x})=0\) iff \(\vec{x}=\vec{0}\)</LI>
-          </OL>
+          </UL>
           From the above it can be shown that
           \begin{equation}
           (\alpha\vec{x},\vec{y})=\alpha^*(\vec{x},\vec{y})
@@ -168,6 +179,44 @@
         where \(T\) is the <a href="https://en.wikipedia.org/wiki/Transpose">transpose</a> operation and \(\vec{x}\) and \(\vec{y}\) are matrices.
 
       <hr>
+      <P>
+        <a id="orthogonality">
+          Definition of <a href="https://en.wikipedia.org/wiki/Orthogonality#Euclidean_vector_spaces">orthogonality</a>:
+          </a><BR>
+          Two vectors \(\vec{x}\) and \(\vec{y}\) are said to be orthogonal if \((\vec{x},\vec{y})=0\).
+
+      <hr>
+      <P>
+        <a id="linear-independence">
+          Definition: the vectors \(\vec{x}_1, \vec{x}_2, ..., \vec{x}_n\) are said to be linearly independent if
+          </a><BR>
+          \begin{equation}
+          \alpha^1\vec{x}_1 + \alpha^2\vec{x}_2 + ... + \alpha^n \vec{x}_n\ \texttt{iff}\ \alpha^i=0
+          \end{equation}
+          Any set of non-zero mutually orthogonal vectors are linearly independent.
+
+      <hr>
+      <p>
+        <a id="metric-space">
+          A vector space is a <i>metric space</i> iff
+        </a>
+        for every \(\vec{x}\) and \(\vec{y}\) in \(\vec{S}\) it is possible to define a <a href="https://en.wikipedia.org/wiki/Real_number">real number</a> (written \(d(\vec{x},\vec{y})\) and called the metric) such that
+        <UL>
+          <LI>\(d(\vec{x},\vec{y})=0\)</LI>
+          <LI>\(d(\vec{x},\vec{y}) \leq d(\vec{x},\vec{z}) + d(\vec{y},\vec{z})\ \forall\ \vec{z}\in\vec{S}\)</LI>
+        </UL>
+        Every <a href="#normed-vector-space">normed vector space</a> is a metric space with \(d(\vec{x},\vec{y})=||\vec{x}-\vec{y}||\).
+
+        <hr>
+        <p>
+        A <a href="#normed-vector-space">normed vector space</a> \(\vec{S}\) is <a id="completeness">complete</a> iff every Cauchy sequence of vectors \(\{\vec{x}_n\}\)
+        <hr>
+        <p>
+        <a id="basis-vectors">basis vectors</a>,
+        <hr>
+        <p>
+        <a id="dimension"><a href="https://en.wikipedia.org/wiki/Dimension_(vector_space)">dimension</a></a>
+
 
     {% include '_footer.html' %}
 

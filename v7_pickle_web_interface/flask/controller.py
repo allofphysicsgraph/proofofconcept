@@ -1228,8 +1228,16 @@ def layers_without_arg():
         "layers_overview.html", title="Roadmap for Formal Mathematical Physics Content"
     )
 
+@app.route("/class_notes", methods=["GET", "POST"])
+def class_notes_without_subpage():
+    """
+    class notes from school
+    """
+    logger.info("[trace page]")
+    return render_template("class_notes_overview.html", title="class notes overview")
+
 @app.route("/class_notes/<which_class>", methods=["GET", "POST"])
-def class_notes(which_class):
+def class_notes_subpage(which_class: str):
     """
     class notes from school
     """
@@ -1243,11 +1251,15 @@ def class_notes(which_class):
     elif which_class == "math402_mathematical_physics_hale":
         logger.info("URL is 402")
         logger.info("[trace page end " + trace_id + "]")
-        return render_template("class_notes_math402_mathematical_physics_hale.html", title="Math 402")
+        return render_template(
+            "class_notes_math402_mathematical_physics_hale.html", title="Math 402"
+        )
     else:
         logger.info("no URL")
         logger.info("[trace page end " + trace_id + "]")
-        return render_template("class_notes_overview.html", title="class notes overview")
+        return render_template(
+            "class_notes_overview.html", title="class notes overview"
+        )
 
     logger.info("[trace page end " + trace_id + "]")
     return render_template("class_notes_overview.html", title="class notes overview")
