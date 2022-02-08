@@ -18307,7 +18307,7 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "Judicious choice as a guessed solution to Eq.~\\ref{eq:#1} is Eq.~\\ref{eq:#2},",
-            "notes": "",
+            "notes": "https://en.wikipedia.org/wiki/Ansatz",
             "number of feeds": 0,
             "number of inputs": 1,
             "number of outputs": 1,
