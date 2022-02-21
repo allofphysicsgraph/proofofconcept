@@ -3436,19 +3436,21 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                     if "image" in step_dict.keys():
                         lat_file.write("\\begin{center}\n")
                         lat_file.write("\\begin{figure}\n")
-                        shutil.copy(
-                            "static/diagrams/" + step_dict["image"]["file name"],
-                            step_dict["image"]["file name"],
-                        )
+                #        shutil.copy(
+                #            "static/diagrams/" + step_dict["image"]["file name"],
+                    #        step_dict["image"]["file name"],
+                        #)
                         lat_file.write(
                             "\\includegraphics{"
                             + step_dict["image"]["file name"]
                             + "}\n"
                         )
-                        if "caption" in step_dict.keys():
-                            lat_file.write(
-                                "\\caption{" + step_dict["image"]["caption"] + "}\n"
-                            )
+                        lat_file.write(
+                            "\\caption{" + step_dict["image"]["caption"] + "}\n"
+                        )
+                        lat_file.write(
+                            "\\label{fig:" + step_dict["image"]["label"] + "}\n"
+                        )
                         lat_file.write("\\end{figure}\n")
                         lat_file.write("\\end{center}\n")
                     # using the newcommand, populate the expression identifiers
