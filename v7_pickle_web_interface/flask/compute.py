@@ -3267,17 +3267,21 @@ def make_string_safe_for_latex(unsafe_str: str) -> str:
     # some_text = "an example cite{2222_asdf} and http://asdf_fagaaf and cite{9492_942} of http:/ss_asdf and more"
     # is greedy
     # to use a non-greedy search; https://stackoverflow.com/a/2503438/1164295
-    #unsafe_str_without_citations = re.sub(r"cite{.*?}", "", unsafe_str)
+    # unsafe_str_without_citations = re.sub(r"cite{.*?}", "", unsafe_str)
 
     # replace the first _ that occurs within citation with another string
-    unsafe_str_replaced_cite = re.sub(r'cite{(.*?)_(.*?)}','cite{\\1NONSTANDARDUNDRSCR\\2}',unsafe_str)
+    unsafe_str_replaced_cite = re.sub(
+        r"cite{(.*?)_(.*?)}", "cite{\\1NONSTANDARDUNDRSCR\\2}", unsafe_str
+    )
     # that approach breaks when cite has more than one underscore, for example
     # \cite{yyyy_author1_author2}
-    unsafe_str_replaced_cite = re.sub(r'cite{(.*?)_(.*?)}','cite{\\1NONSTANDARDUNDRSCR\\2}',unsafe_str_replaced_cite)
+    unsafe_str_replaced_cite = re.sub(
+        r"cite{(.*?)_(.*?)}", "cite{\\1NONSTANDARDUNDRSCR\\2}", unsafe_str_replaced_cite
+    )
 
     safe_str = unsafe_str_replaced_cite.replace("_", "\_").replace("%", "\%")
 
-    return safe_str.replace("NONSTANDARDUNDRSCR","_")
+    return safe_str.replace("NONSTANDARDUNDRSCR", "_")
 
 
 def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str) -> str:
@@ -3433,13 +3437,18 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                         lat_file.write("\\begin{center}\n")
                         lat_file.write("\\begin{figure}\n")
                         shutil.copy(
-                            "static/diagrams/" + step_dict["image"]["file name"], step_dict["image"]["file name"]
+                            "static/diagrams/" + step_dict["image"]["file name"],
+                            step_dict["image"]["file name"],
                         )
                         lat_file.write(
-                            "\\includegraphics{" + step_dict["image"]"file name" + "}\n"
+                            "\\includegraphics{"
+                            + step_dict["image"]["file name"]
+                            + "}\n"
                         )
                         if "caption" in step_dict.keys():
-                            lat_file.write("\\caption{" + step_dict["image"]["caption"] + "}\n")
+                            lat_file.write(
+                                "\\caption{" + step_dict["image"]["caption"] + "}\n"
+                            )
                         lat_file.write("\\end{figure}\n")
                         lat_file.write("\\end{center}\n")
                     # using the newcommand, populate the expression identifiers
@@ -3541,7 +3550,7 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     #        "/home/appuser/app/static/diagrams/", tmp_latex_folder_full_path
     # )
     for filename in glob.glob("/home/appuser/app/static/diagrams/*"):
-        #logger.info("copied "+filename+" from "+filename+" to "+tmp_latex_folder_full_path)
+        # logger.info("copied "+filename+" from "+filename+" to "+tmp_latex_folder_full_path)
         shutil.copy(filename, tmp_latex_folder_full_path)
 
     # TODO: it would be good to check whether \cite appears in the .tex content
