@@ -26,6 +26,7 @@ import errno
 import signal
 import os
 import re
+import glob
 
 # move and copy files
 import shutil
@@ -3180,7 +3181,7 @@ def generate_html_for_derivation(deriv_id: str, path_to_db: str) -> str:
                     if "image" in step_dict.keys():
                         str_to_write += (
                             "<img src=\"{{ url_for('static', filename='diagrams/'"
-                            + step_dict["image"]
+                            + step_dict["image"]["file name"]
                             + ')}}">'
                         )
                     # using the newcommand, populate the expression identifiers
@@ -3266,10 +3267,17 @@ def make_string_safe_for_latex(unsafe_str: str) -> str:
     # some_text = "an example cite{2222_asdf} and http://asdf_fagaaf and cite{9492_942} of http:/ss_asdf and more"
     # is greedy
     # to use a non-greedy search; https://stackoverflow.com/a/2503438/1164295
-    unsafe_str_without_citations = re.sub(r"cite{.*?}", "", unsafe_str)
+    #unsafe_str_without_citations = re.sub(r"cite{.*?}", "", unsafe_str)
 
-    safe_str = unsafe_str_without_citations.replace("_", "\_").replace("%", "\%")
-    return safe_str
+    # replace the first _ that occurs within citation with another string
+    unsafe_str_replaced_cite = re.sub(r'cite{(.*?)_(.*?)}','cite{\\1NONSTANDARDUNDRSCR\\2}',unsafe_str)
+    # that approach breaks when cite has more than one underscore, for example
+    # \cite{yyyy_author1_author2}
+    unsafe_str_replaced_cite = re.sub(r'cite{(.*?)_(.*?)}','cite{\\1NONSTANDARDUNDRSCR\\2}',unsafe_str_replaced_cite)
+
+    safe_str = unsafe_str_replaced_cite.replace("_", "\_").replace("%", "\%")
+
+    return safe_str.replace("NONSTANDARDUNDRSCR","_")
 
 
 def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str) -> str:
@@ -3425,13 +3433,13 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                         lat_file.write("\\begin{center}\n")
                         lat_file.write("\\begin{figure}\n")
                         shutil.copy(
-                            "static/diagrams/" + step_dict["image"], step_dict["image"]
+                            "static/diagrams/" + step_dict["image"]["file name"], step_dict["image"]["file name"]
                         )
                         lat_file.write(
-                            "\\includegraphics{" + step_dict["image"] + "}\n"
+                            "\\includegraphics{" + step_dict["image"]"file name" + "}\n"
                         )
                         if "caption" in step_dict.keys():
-                            lat_file.write("\\caption{"+step_dict["caption"]+"}\n")
+                            lat_file.write("\\caption{" + step_dict["image"]["caption"] + "}\n")
                         lat_file.write("\\end{figure}\n")
                         lat_file.write("\\end{center}\n")
                     # using the newcommand, populate the expression identifiers
@@ -3524,21 +3532,17 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
 
     # copy the current pdg.bib from static to local for use with bibtex when compiling tex to PDF
     # https://docs.python.org/3/library/shutil.html
-    shutil.copy(
-            "/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path
-    )
-    #shutil.copy("/home/appuser/app/static/pdg.bib", "/home/appuser/app/")
+    shutil.copy("/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path)
+    # shutil.copy("/home/appuser/app/static/pdg.bib", "/home/appuser/app/")
 
     # images need to be in the temporary folder to compile the .tex to PDF
     # https://docs.python.org/3/library/shutil.html#shutil.copytree
-    #shutil.copytree(
+    # shutil.copytree(
     #        "/home/appuser/app/static/diagrams/", tmp_latex_folder_full_path
-    #)
+    # )
     for filename in glob.glob("/home/appuser/app/static/diagrams/*"):
-        shutil.copy(
-                filename, tmp_latex_folder_full_path
-        )
-
+        #logger.info("copied "+filename+" from "+filename+" to "+tmp_latex_folder_full_path)
+        shutil.copy(filename, tmp_latex_folder_full_path)
 
     # TODO: it would be good to check whether \cite appears in the .tex content
 
@@ -3593,6 +3597,16 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     logger.debug("bibtex std err: %s", bibtex_stderr)
 
     # run latex a second time to enable references to work
+    process = subprocess.run(
+        ["latex", "-halt-on-error", tex_filename_without_extension + ".tex"],
+        cwd=tmp_latex_folder_full_path,
+        stdout=PIPE,
+        stderr=PIPE,
+        timeout=proc_timeout,
+    )
+
+    # https://tex.stackexchange.com/questions/204291/bibtex-latex-compiling
+    # run latex a third time to enable references to work
     process = subprocess.run(
         ["latex", "-halt-on-error", tex_filename_without_extension + ".tex"],
         cwd=tmp_latex_folder_full_path,
