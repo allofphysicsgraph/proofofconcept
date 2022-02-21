@@ -3436,10 +3436,10 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                     if "image" in step_dict.keys():
                         lat_file.write("\\begin{center}\n")
                         lat_file.write("\\begin{figure}\n")
-                #        shutil.copy(
-                #            "static/diagrams/" + step_dict["image"]["file name"],
-                    #        step_dict["image"]["file name"],
-                        #)
+                        #        shutil.copy(
+                        #            "static/diagrams/" + step_dict["image"]["file name"],
+                        #        step_dict["image"]["file name"],
+                        # )
                         lat_file.write(
                             "\\includegraphics{"
                             + step_dict["image"]["file name"]
