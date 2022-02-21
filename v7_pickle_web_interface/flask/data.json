@@ -3863,7 +3863,12 @@
                     ],
                     "linear index": 1,
                     "notes": "",
-                    "image": "brewsters_angle.png",
+                    "image": {
+                       "file name": "brewsters_angle.png",
+                       "caption": "Brewster's angle",
+                       "label": "brewsters_angle",
+                       "position": "before step"
+                    },
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-04-23"
                 },
@@ -6210,7 +6215,12 @@
                     ],
                     "linear index": 35,
                     "notes": "",
-                    "image": "vector_v_components_vx_vy_theta.png",
+                    "image": {
+                       "file name": "vector_v_components_vx_vy_theta.png",
+                       "caption": "vector v components",
+                       "label": "components_of_v",
+                       "position": "before step"
+                    },
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-17"
                 },
@@ -7371,7 +7381,12 @@
                         "1124189"
                     ],
                     "linear index": 4,
-                    "image": "circuit_two_resistors_in_series.png",
+                    "image": {
+                       "file name": "circuit_two_resistors_in_series.png",
+                       "caption": "Two resistors in series",
+                       "label": "two-resistors-series",
+                       "position": "before step"
+                    },
                     "notes": "voltage is measured across both resistors",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-26"
@@ -7519,7 +7534,12 @@
                         "3843569"
                     ],
                     "linear index": 5,
-                    "image": "circuit_two_resistors_in_parallel.png",
+                    "image": {
+                       "file name": "circuit_two_resistors_in_parallel.png",
+                       "caption": "Two resistors in parallel.",
+                       "label": "two-resistors-parallel",
+                       "position": "before step"
+                    },
                     "notes": "current flows through both resistors",
                     "author": "4a0987466473c589d2c328d12856760e",
                     "creation date": "2020-05-26"
