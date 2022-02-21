@@ -3266,7 +3266,7 @@ def make_string_safe_for_latex(unsafe_str: str) -> str:
     # some_text = "an example cite{2222_asdf} and http://asdf_fagaaf and cite{9492_942} of http:/ss_asdf and more"
     # is greedy
     # to use a non-greedy search; https://stackoverflow.com/a/2503438/1164295
-    unsafe_str_without_citations = re.sub(r'cite{.*?}', '', unsafe_str)
+    unsafe_str_without_citations = re.sub(r"cite{.*?}", "", unsafe_str)
 
     safe_str = unsafe_str_without_citations.replace("_", "\_").replace("%", "\%")
     return safe_str
@@ -3422,6 +3422,7 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
             for step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
                 if step_dict["linear index"] == linear_indx:
                     if "image" in step_dict.keys():
+                        lat_file.write("\\begin{center}\n")
                         lat_file.write("\\begin{figure}\n")
                         shutil.copy(
                             "static/diagrams/" + step_dict["image"], step_dict["image"]
@@ -3429,7 +3430,10 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                         lat_file.write(
                             "\\includegraphics{" + step_dict["image"] + "}\n"
                         )
+                        if "caption" in step_dict.keys():
+                            lat_file.write("\\caption{"+step_dict["caption"]+"}\n")
                         lat_file.write("\\end{figure}\n")
+                        lat_file.write("\\end{center}\n")
                     # using the newcommand, populate the expression identifiers
                     if step_dict["inf rule"] not in dat["inference rules"].keys():
                         logger.error(
@@ -3519,11 +3523,22 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     shutil.move(tex_filename_without_extension + ".tex", tmp_latex_folder_full_path)
 
     # copy the current pdg.bib from static to local for use with bibtex when compiling tex to PDF
-    #    shutil.copy(
-    #        "/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path + "pdg.bib"
-    #    )
     # https://docs.python.org/3/library/shutil.html
-    shutil.copy("/home/appuser/app/static/pdg.bib", "/home/appuser/app/")
+    shutil.copy(
+            "/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path
+    )
+    #shutil.copy("/home/appuser/app/static/pdg.bib", "/home/appuser/app/")
+
+    # images need to be in the temporary folder to compile the .tex to PDF
+    # https://docs.python.org/3/library/shutil.html#shutil.copytree
+    #shutil.copytree(
+    #        "/home/appuser/app/static/diagrams/", tmp_latex_folder_full_path
+    #)
+    for filename in glob.glob("/home/appuser/app/static/diagrams/*"):
+        shutil.copy(
+                filename, tmp_latex_folder_full_path
+        )
+
 
     # TODO: it would be good to check whether \cite appears in the .tex content
 
