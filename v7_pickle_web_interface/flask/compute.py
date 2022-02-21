@@ -3247,6 +3247,7 @@ def generate_html_for_derivation(deriv_id: str, path_to_db: str) -> str:
 
     return str_to_write
 
+
 def make_string_safe_for_latex(unsafe_str: str) -> str:
     """
     Args:
@@ -3254,14 +3255,22 @@ def make_string_safe_for_latex(unsafe_str: str) -> str:
     Returns:
         safe_str: a string that latex should be able to print, e.g., "a\_string"
     """
-    # TODO: some notes have valid underscores, like
+    # some derivation notes have valid underscores, like
     # \cite{yyyy_author}
     # while some underscores are invalid latex, like
     # https://en.wikipedia.org/wiki/Equations_of_motion
-    # Not clear how to distinguish those
+    # --> Remove citations
+    # problem: using
+    # re.sub(r'cite{.*}', '', some_text)
+    # on the string
+    # some_text = "an example cite{2222_asdf} and http://asdf_fagaaf and cite{9492_942} of http:/ss_asdf and more"
+    # is greedy
+    # to use a non-greedy search; https://stackoverflow.com/a/2503438/1164295
+    unsafe_str_without_citations = re.sub(r'cite{.*?}', '', unsafe_str)
 
-    safe_str = unsafe_str.replace("_","\_").replace("%","\%")
+    safe_str = unsafe_str_without_citations.replace("_", "\_").replace("%", "\%")
     return safe_str
+
 
 def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str) -> str:
     """
@@ -3401,7 +3410,9 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
         if "notes" in dat["derivations"][deriv_id].keys():
             if len(dat["derivations"][deriv_id]["notes"]) > 0:
                 # fixed bug https://github.com/allofphysicsgraph/proofofconcept/issues/249
-                safe_string = make_string_safe_for_latex(dat["derivations"][deriv_id]["notes"])
+                safe_string = make_string_safe_for_latex(
+                    dat["derivations"][deriv_id]["notes"]
+                )
                 lat_file.write(safe_string + "\n")
         else:
             logger.warn("notes field should be present in derivation " + deriv_id)
@@ -3508,13 +3519,11 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     shutil.move(tex_filename_without_extension + ".tex", tmp_latex_folder_full_path)
 
     # copy the current pdg.bib from static to local for use with bibtex when compiling tex to PDF
-#    shutil.copy(
-#        "/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path + "pdg.bib"
-#    )
-    shutil.copy(
-        "/home/appuser/app/static/pdg.bib", "/home/appuser/app/pdg.bib"
-    )
-
+    #    shutil.copy(
+    #        "/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path + "pdg.bib"
+    #    )
+    # https://docs.python.org/3/library/shutil.html
+    shutil.copy("/home/appuser/app/static/pdg.bib", "/home/appuser/app/")
 
     # TODO: it would be good to check whether \cite appears in the .tex content
 
