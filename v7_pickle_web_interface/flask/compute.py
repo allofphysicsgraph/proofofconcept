@@ -3247,6 +3247,21 @@ def generate_html_for_derivation(deriv_id: str, path_to_db: str) -> str:
 
     return str_to_write
 
+def make_string_safe_for_latex(unsafe_str: str) -> str:
+    """
+    Args:
+        unsafe_str: strings that may cause Latex compilation to fail, e.g., "a_string"
+    Returns:
+        safe_str: a string that latex should be able to print, e.g., "a\_string"
+    """
+    # TODO: some notes have valid underscores, like
+    # \cite{yyyy_author}
+    # while some underscores are invalid latex, like
+    # https://en.wikipedia.org/wiki/Equations_of_motion
+    # Not clear how to distinguish those
+
+    safe_str = unsafe_str.replace("_","\_").replace("%","\%")
+    return safe_str
 
 def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str) -> str:
     """
@@ -3385,7 +3400,9 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
         )
         if "notes" in dat["derivations"][deriv_id].keys():
             if len(dat["derivations"][deriv_id]["notes"]) > 0:
-                lat_file.write(dat["derivations"][deriv_id]["notes"] + "\n")
+                # fixed bug https://github.com/allofphysicsgraph/proofofconcept/issues/249
+                safe_string = make_string_safe_for_latex(dat["derivations"][deriv_id]["notes"])
+                lat_file.write(safe_string + "\n")
         else:
             logger.warn("notes field should be present in derivation " + deriv_id)
         lat_file.write("\\end{abstract}\n")
@@ -3491,9 +3508,13 @@ def generate_pdf_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
     shutil.move(tex_filename_without_extension + ".tex", tmp_latex_folder_full_path)
 
     # copy the current pdg.bib from static to local for use with bibtex when compiling tex to PDF
+#    shutil.copy(
+#        "/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path + "pdg.bib"
+#    )
     shutil.copy(
-        "/home/appuser/app/static/pdg.bib", tmp_latex_folder_full_path + "pdg.bib"
+        "/home/appuser/app/static/pdg.bib", "/home/appuser/app/pdg.bib"
     )
+
 
     # TODO: it would be good to check whether \cite appears in the .tex content
 
