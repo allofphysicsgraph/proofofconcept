@@ -220,7 +220,7 @@ The grammar of the Physics Derivation Graph is specified by this list, with all 
 
 <P>
   A reasonable question is, "Why is the Physics Derivation Graph complicated?"
-  To answer that, let's walk through the process of creating a derivation.
+  To answer that, let's walk through the process of tracking information used in a derivation.
 </P>
 
 <P>
@@ -245,9 +245,9 @@ The grammar of the Physics Derivation Graph is specified by this list, with all 
   When building a graph, there are three types of nodes: inference rules, expressions, and feeds.
   The graph will only have three types of directed edges:
 <UL>
-<LI>source:"inference rule", destination:"expression"</LI>
-<LI>source:"expression", destination:"inference rule"</LI>
-<LI>source:"feed", destination:"inference rule"</LI>
+<LI>from "inference rule" to "expression"</LI>
+<LI>from "expression" to "inference rule"</LI>
+<LI>from "feed" to "inference rule"</LI>
 </UL>
 
 <P>
