@@ -1435,13 +1435,25 @@ def developer_documentation():
         "developer_documentation.html", title="Developer Documentation"
     )
 
+
+@app.route("/site_map", methods=["GET", "POST"])
+def site_map():
+    """
+    a static page for site content
+
+    >>> static_map()
+    """
+    logger.info("[trace]")
+    return render_template("site_map.html", title="Site Map")
+
+
 @app.route("/design_documentation", methods=["GET", "POST"])
 def design_documentation():
     """
     a static page aimed at people interested in understanding
     design decisions
 
-    >>> developer_documentation()
+    >>> design_documentation()
     """
     logger.info("[trace]")
     return render_template(

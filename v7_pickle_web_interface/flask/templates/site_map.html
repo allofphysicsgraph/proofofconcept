@@ -1,0 +1,27 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<UL>
+  <LI><a href="{{ url_for('index', referrer='site_map.html') }}">Physics Derivation Graph homepage</a></LI>
+  <LI><a href="{{ url_for('site_map', referrer='site_map.html') }}">site map</a></LI>
+  <LI><a href="{{ url_for('faq', referrer='site_map.html') }}">FAQ</a></LI>
+  <LI><a href="{{ url_for('user_documentation', referrer='site_map.html') }}">documentation for users</a></LI>
+  <LI><a href="{{ url_for('design_documentation', referrer='site_map.html') }}">design decision documentation</a></LI>
+  <LI><a href="{{ url_for('developer_documentation', referrer='site_map.html') }}">documentation for developers</a></LI>
+  <LI><a href="{{ url_for('api_documentation', referrer='site_map.html') }}">API documentation</a></LI>
+  <LI><a href="{{ url_for('clickable_layers', referrer='site_map.html') }}">symantic enrichment demo</a></LI>
+  <LI><a href="{{ url_for('roadmap', referrer='site_map.html') }}">roadmap</a></LI>
+  <LI><a href="{{ url_for('other_projects', referrer='site_map.html') }}">other projects</a></LI>
+  <LI><a href="{{ url_for('literature_review', referrer='site_map.html') }}">literature review</a></LI>
+  <LI><a href="{{ url_for('navigation', referrer='site_map.html') }}">navigation</a></LI>
+  <LI><a href="{{ url_for('list_all_derivations', referrer='site_map.html') }}">list of all derivations</a></LI>
+  <LI><a href="{{ url_for('list_all_operators', referrer='site_map.html') }}">list of all operators</a></LI>
+  <LI><a href="{{ url_for('list_all_symbols', referrer='site_map.html') }}">list of all symbols</a></LI>
+  <LI><a href="{{ url_for('list_all_expressions', referrer='site_map.html') }}">list of all expressions</a></LI>
+  <LI><a href="{{ url_for('list_all_inference_rules', referrer='site_map.html') }}">list of all inference rules</a></LI>
+  <LI><a href="{{ url_for('central_expessions', referrer='site_map.html') }}">central expressions</a></LI>
+  <LI><a href="{{ url_for('static_dir', referrer='site_map.html') }}">listing of contents in "static" directory</a></LI>
+  <LI><a href="{{ url_for('tmp_dir', referrer='site_map.html') }}">listing of contents in "tmp" directory</a></LI>
+</UL>
+
+{% endblock %}
