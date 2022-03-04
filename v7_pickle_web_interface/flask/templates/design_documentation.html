@@ -1,0 +1,838 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  <em>Recommendation</em>: Read the
+  <a href="{{ url_for('user_documentation') }}?referrer=developer_documentation">user documentation</a>
+  and <a href="{{ url_for('faq') }}?referrer=developer_documentation">FAQ</a> first.
+  This page assumes familiarity with the jargon used in the Physics Derivation Graph.
+</P>
+
+<P>
+  This page provides background context for design decisions associated with the Physics Derivation Graph (PDG).
+  Contributions to the project are welcome; see <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/CONTRIBUTING.md">CONTRIBUTING.md</a> on how to get started.
+  The Physics Derivation Graph is covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, so if you don't like a choice that was made you are welcome to <a href="https://github.com/allofphysicsgraph/proofofconcept/fork">fork the Physics Derivation Graph project</a>.
+
+<P>
+  Looking for the API? See <a href="{{ url_for('pdg_api.api_documentation') }}?referrer=developer_documentation">API documentation</a>.
+
+<div id="toc_container">
+<p class="toc_title">Contents</p>
+<!-- the following table was generated on the command line using
+cat developer_documentation.html |\
+     grep "<H" |\
+     sed 's/<\/H.*>/<\/a><\/LI>/' |\
+     sed 's/<H2><a name="/  <LI><a href="#/' |\
+     sed 's/<H3><a name="/    <LI><a href="#/' |\
+     sed 's/<H4><a name="/      <LI><a href="#/'
+-->
+<OL class="toc_list">
+  <LI><small>[Conceptual underpinnings] </small><a href="#design decisions">Design Decisions</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#CNL grammar">Grammar of the controlled natural language</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#indices">Numeric indices are the core enabling concept for the PDG</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#data structure">Data structure used in the PDG</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#latex for expressions">\(\rm\LaTeX\) representation of expressions</a></LI>
+  <LI><small>[Conceptual underpinnings] </small><a href="#frequency period from first principles">Derivation to Graph from First Principles</a></LI>
+  <LI><small>[Mechanics of the project] </small><a href="#historical evolution">Historical design evolution</a></LI>
+  <OL>
+    <LI><a href="#other avenues">Other approaches</a></LI>
+    <OL>
+      <LI><a href="#networkx">Networkx</a></LI>
+      <LI><a href="#graphml">GraphML</a></LI>
+      <LI><a href="#rdf">RDF/OWL</a></LI>
+    </OL>
+  </OL>
+  <LI><small>[Mechanics of the project] </small><a href="#comparison:syntax">Comparison of Syntax Options</a></LI>
+  <OL>
+    <LI><a href="#test cases">Test Cases</a></LI>
+    <LI><a href="#quantitative comparison of syntax">Quantitative Comparison of Test Cases</a></LI>
+    <LI><a href="#qualitative comparison of syntax">Qualitative Comparisons of Syntax Methods</a></LI>
+    <LI><a href="#conversion of syntax">Transforming between Syntax options</a></LI>
+    <LI><a href="#correctness of derivations">Auditing the Correctness of Derivations</a></LI>
+  </OL>
+  <LI><small>[Appendix] </small><a href="#comparison:computer algebra systems">Comparison of Computer Algebra Systems</a></LI>
+  <OL>
+    <LI><a href="#cas:sage">Sage</a></LI>
+    <LI><a href="#cas:mathematica">Mathematica</a></LI>
+    <LI><a href="#cas:sympy">Sympy</a></LI>
+    <LI><a href="#HOLLight">HOL Light theorem prover</a></LI>
+  </OL>
+  <LI><small>[Appendix] </small><a href="#not in scope">Outside of Current Scope</a></LI>
+</OL>
+</div>
+
+<P>&nbsp;</P>
+
+<H2><a name="design decisions">Design Decisions</a></H2>
+
+<P>
+  The objective for the Physics Derivation Graph project is to write down
+  all known mathematical physics in a way that can be both read by humans and
+  checked by a computer algebra system. To do that, primary design considerations
+  include how to represent the objects
+  (e.g., <a href="{{ url_for('user_documentation')}}?referrer=developer_documentation#inference rules">inference rules</a>
+  and <a href="{{ url_for('user_documentation')}}?referrer=developer_documentation#expressions">expressions</a>
+  and symbols) and what data structure is sufficient for the objective.
+</P><P>
+  This page describes the current status and historical evoluation of design
+  decisions critical to the Physics Derivation Graph.
+</P>
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+
+<H2><a name="CNL grammar">Grammar of the controlled natural language</a></H2>
+<P>
+  In the Physics Derivation Graph, the primary vocabulary is a set of
+  inference rules that relate mathematical expressions.<BR>
+The grammar of the Physics Derivation Graph is specified by this list, with all items joined by "and":
+</P>
+<UL>
+  <LI>The Physics Derivation Graph is a set of derivations.</LI>
+  <LI>Each derivation has one or more steps.</LI>
+  <LI>Each step has one <a href="https://en.wikipedia.org/wiki/Rule_of_inference">inference rule</a>.</LI>
+  <LI>Each inference rule has at least one
+    <a href="https://en.wikipedia.org/wiki/Expression_(mathematics)">expression</a>.</LI>
+  <LI>Each inference rule has zero or more input expressions.</LI>
+  <LI>Each inference rule has zero or more output expressions.</LI>
+  <LI>Some inference rules have one or more required feeds.</LI>
+  <LI>Each expression and each feed is composed of symbols.</LI>
+  <LI>Each expression and each feed is represented by an
+    <a href="https://en.wikipedia.org/wiki/Abstract_syntax_tree">Abstract Syntax Tree</a>.</LI>
+  <LI>Each expression contains one or more relation operators (e.g.,
+    <a href="https://en.wikipedia.org/wiki/Equation">=</a>, &lt;, &gt;,
+    <a href="https://en.wikipedia.org/wiki/Inequality_(mathematics)">&ne;</a>).
+  <LI>A symbol is either an
+    <a href="https://en.wikipedia.org/wiki/Operation_(mathematics)">operator</a>
+    or a
+    <a href="https://en.wikipedia.org/wiki/Constant_(mathematics)">constant</a>
+    or a
+    <a href="https://en.wikipedia.org/wiki/Variable_(mathematics)">variable</a>.</LI>
+  <LI>Every symbol is uniquely identified by a numeric value.</LI>
+  <LI>Every operator acts on one or more symbols. </LI>
+  <LI>Every constant and variable is
+    <a href="https://en.wikipedia.org/wiki/Dimensionless_quantity">dimensionless</a>
+    or has
+    <a href="https://en.wikipedia.org/wiki/Dimensional_analysis">dimenions</a>.</LI>
+  <LI>Dimenions are from the set of
+    <a href="https://en.wikipedia.org/wiki/SI_base_unit">seven SI base quantities</a>:
+    <a href="https://en.wikipedia.org/wiki/Time">time</a>,
+    <a href="https://en.wikipedia.org/wiki/Length">length</a>,
+    <a href="https://en.wikipedia.org/wiki/Mass">mass</a>,
+    <a href="https://en.wikipedia.org/wiki/Electric_current">electric current</a>,
+    <a href="https://en.wikipedia.org/wiki/Thermodynamic_temperature">thermodynamic temperature</a>,
+    <a href="https://en.wikipedia.org/wiki/Amount_of_substance">amount of substance</a>,
+    <a href="https://en.wikipedia.org/wiki/Luminous_intensity">luminous intensity</a>.
+  </LI>
+  <LI>Constants have a numeric value and are either dimensionless or have a unit.</LI>
+  <LI>Every unit is associated with one or more dimenions.</LI>
+</UL>
+<P>
+  The full list of vocabulary used in the Physics Derivation Graph is documented
+  in the
+  <a href="{{ url_for('list_all_inference_rules') }}?referrer=developer_documentation">list of inference rules</a> and
+  <a href="{{ url_for('list_all_expressions') }}?referrer=developer_documentation">list of expressions</a> and
+  <a href="{{ url_for('list_all_symbols') }}?referrer=developer_documentation">list of symbols</a>.
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+
+
+<H2><a name="indices">Numeric indices are the core enabling concept for the Physics Derivation Graph</a></H2>
+<P>
+  The visualization of a graph with expressions and inference rules as nodes
+  relies on each node having a distinct index.
+  Each expression, symbol, and inference rule appears only once in the database.
+  This is made possible through use of unique IDs associated with every facet of the visualization.
+  To see what this means in terms of the "period and frequency"
+  example on <a href="{{ url_for('index') }}?referrer=developer_documentation">the homepage</a>,
+  here is a view of the indices supporting that visualization for two sequential steps:
+</P>
+<img src="{{ url_for('static', filename='frequency_and_period_exploded_steps.png') }}">
+<BR/>
+<center>
+  Figure 1. Two steps with all numeric IDs shown.
+</center>
+
+<P>
+  Manipulating these indices underlies all other tasks in the Physics Derivation Graph.
+  Access to these indices is performed through a single data structure.
+</P>
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+
+
+<H2><a name="data structure">Data structure used in the Physics Derivation Graph</a></H2>
+<P>
+  The Physics Derivation Graph is currently stored in a single JSON file. <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/v7_pickle_web_interface/flask/data.json">The JSON file</a> is read into Python as a dictionary.
+</P>
+<P>
+  JSON is convenient because it is plain text and the ease of detailed validation available using schemas.
+  The many alternatives to JSON (e.g., SQLite, Redis, Python Pickle, CSV, GraphML) offer trade-offs, a few of which <a href="#historical evolution">have been explored</a>.
+
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+<H2><a name="latex for expressions">\(\rm\LaTeX\) representation of expressions</a></H2>
+<P>
+  There are multiple choices of how to represent a mathematical expression.
+  The choices feature trade-offs between conciseness, ability to express the range of notations necessary for Physics, symantic meaning, and ability to use the expression in a computer algebra system (CAS).
+  See the <a href="#comparison:syntax">comparison of syntax</a> below.
+  \(\rm\LaTeX\) was selected primarily because of the common use in Physics, display of complex math, conciseness, and expressiveness.
+  The use of \(\rm\LaTeX\) means other tasks like parsing symbols and resolving ambiguity are harder.
+</p>
+
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+<H2><a name="frequency period from first principles">Derivation of Graph from First Principles</a></H2>
+
+<!-- this content is derived from
+     https://allofphysicsgraph.github.io/proofofconcept/site/how_to_build_the_physics_derivation.html
+-->
+
+<P>
+  A reasonable question is, "Why is the Physics Derivation Graph complicated?"
+  To answer that, let's walk through the process of tracking information used in a derivation.
+</P>
+
+<P>
+  A simple derivation is the transition from the expression \(T = 1/f\) to \(f = 1/T\), the same example used on the <a href="{{ url_for('index') }}">home page</a>.
+  The purpose of this section is to explain how a graph relates to the steps associated with this math.
+
+<P>
+  The steps needed to make the transformation are to multiply both sides by \(f\), then divide both sides by \(T\).
+  There are four steps in this derivation:
+<OL>
+<LI>declare initial expression \(T=1/f\)</LI>
+<LI>multiply both sides of \(T=1/f\) by \(f\) to get \(T*f=1\)</LI>
+<LI>divide both sides of \(T f=1\) by \(T\) to get \(f=1/T\)</LI>
+<LI>declare final expression: \(f=1/T\)</LI>
+</OL>
+  This expansion to atomic steps is not typically documented.
+  This expansion can be tedious for derivations, but it is necessary for validation of steps using a Computer Algebra System.
+  As a recommendation, starting the derivation on paper and then expanding to atomic steps with inference rules is best done on paper.</P>
+
+<P>
+  The next step is to visualize this graph.
+  When building a graph, there are three types of nodes: inference rules, expressions, and feeds.
+  The graph will only have three types of directed edges:
+<UL>
+<LI>from "inference rule" to "expression"</LI>
+<LI>from "expression" to "inference rule"</LI>
+<LI>from "feed" to "inference rule"</LI>
+</UL>
+
+<P>
+  Although there is enough information present to generate a graph, the objective for the Physics Derivation Graph is to support more complex derivations and to link multiple derivations.
+  In the Physics Derivation Graph the inference rule "multiply both sides by" may appear in multiple steps.
+  The graph should not render multiple uses of the same inference rule as the same node.
+  Multiple references to the same expression should be a single node.
+  Therefore, an index which has a scope limited to the local derivation step is needed.
+  This leads to the notion of a unique numeric index local to each inference rule.
+  The local index for the inference rule is a unique identifier within a derivation step.</P>
+</P>
+
+<P>
+  Another complication arises regarding the expressions.
+  The usefulness of \(T = 1/f\) depends on what is reading the expression.
+  Multiple readers of the expression can be expected: humans, <a href="https://en.wikipedia.org/wiki/LaTeX">LaTeX</a>, and Computer Algebra Systems (e.g., <a href="https://en.wikipedia.org/wiki/Wolfram_Mathematica">Mathematica</a>, <a href="https://en.wikipedia.org/wiki/SymPy">Sympy</a>).
+  This leads to the need for a unique identifier which is associated with the expression independent of the representation.
+  In <a href="https://en.wikipedia.org/wiki/Logic">Logic</a>, this unique identifier is referred to as the <a href="https://en.wikipedia.org/wiki/G%C3%B6del_numbering">Godel number</a>.
+  Similarly, the "feeds" (here <em>f</em> and <em>T</em> need unique identifiers.
+<P>
+
+<P>To summarize the above points,
+<UL>
+<LI>each inference rule gets a local identifier</LI>
+<LI>each expression gets a unique identifier</LI>
+<LI>each feed gets a unique identifier</LI>
+</UL>
+
+
+<P>
+  The expression index is the same across all derivations, whereas the local index is scoped to just the derivation step.
+  Similarly, the inference rule index is specific to the derivation step.
+</p>
+
+<P>
+  The inference rule needs the local index to build the graph.
+  The expression needs a local index to build the \(\rm\LaTeX\) PDF.
+</P>
+
+<P>
+  In addition to the inference rules and expressions, each \(\rm\LaTeX\) expression actually represents an Abstract Syntax Tree (AST) composed of symbols.
+</P>
+<img src="{{ url_for('static', filename='single_step_with_AST_per_expression_and_symbols.png') }}">
+<BR/>
+<center>
+Figure 4. All of the jargon used and the relation between jargon used in the Physics Derivation Graph.
+</center>
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+
+
+
+<H2><a name="historical evolution">Historical design evolution</a></H2>
+<P>
+  The Physics Derivation Graph has progressed through multiple architectures, with data structure changes keeping pace with the developer's knowledge.
+  <OL>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v1_plain_text">plain text</a>:
+         databases for comments, connections, equations, operators. Perl script to convert database content to images.
+      One line per entry in each database.
+    </LI>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v2_XML">XML</a>:
+    </LI>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v3_CSV">CSV</a>:
+    </LI>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v4_file_per_expression">file per expression</a>:
+    </LI>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v5_property_graph">property graph</a>:
+      a very limited exploration.
+      Written in Cypher/Neo4j but could also use Gremlin/<a href="https://tinkerpop.apache.org/">TinkerPop</a>.
+      No significant code base.
+      Schema: <BR/>
+      <img src="{{ url_for('static', filename='property_graph_schema.png') }}">
+      <BR/>
+      <center>
+        Schema for property graph representation.
+      </center>
+
+    </LI>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v6_sqlite">sqlite</a>:
+      a very limited exploration.
+      No significant code base.
+      Schema: <!-- see https://physicsderivationgraph.blogspot.com/2020/04/schema-for-tables.html -->
+      <UL>
+        <LI><em>Table</em>: derivations; <em>columns</em>: derivation_ID, name, notes, creation date, author
+        <LI><em>Table</em>: expressions; <em>columns</em>: expr_global_ID, latex, creation date, author, AST_as_string, note, name
+        <LI><em>Table</em>: inference_rules; <em>columns</em>: name, creation date, author, latex, number of inputs, number of feeds, number of outputs,
+        <LI><em>Table</em>: symbols; <em>columns</em>: symbol_id, creation date, author, latex, scope, value, references
+        <LI><em>Table</em>: operators; <em>columns</em>: latex, creation date, author, scope, macro, references
+        <LI><em>Table</em>: step; <em>columns</em>: step_id, creation date, author, inference_rule, derivation_ID, linear_index
+        <LI><em>Table</em>: step_inputs; <em>columns</em>: step_id, expr_local_ID, index
+        <LI><em>Table</em>: step_feeds; <em>columns</em>: step_id, expr_local_ID, index
+        <LI><em>Table</em>: step_outputs; <em>columns</em>: step_id, expr_local_ID, index
+        <LI><em>Table</em>: local_to_global; <em>columns</em>: expr_local_ID, expr_global_ID
+      </UL>
+      TODO: is this schema in <a href="https://en.wikipedia.org/wiki/Third_normal_form">3NF</a>?
+    </LI>
+    <LI>
+      <a href="https://github.com/allofphysicsgraph/proofofconcept/tree/gh-pages/v7_pickle_web_interface">web interface</a>:
+      the current implementation.
+      Uses Python, <a href="https://flask.palletsprojects.com/">Flask</a>, Docker.
+      Data is stored in a JSON file.
+      Limited support for checking inference rules using Sympy.
+      Storage formats evolved:
+      <OL>
+        <LI>nested Python dictionaries and lists stored as a Python Pickle
+        <LI>nested Python dictionaries and lists stored as a JSON file. With this approach the schema can be validated
+        <LI>nested Python dictionaries and lists stored as a JSON file stored in Redis. Retains the schema validation of JSON while preventing concurrent writes to file; see https://redis.io/topics/transactions
+        <LI>nested Python dictionaries and lists stored as a JSON file stored in SQLite3. Part of the migration towards table-based implementation. SQLite3 is better than Redis because Redis requires a Redis server to be running whereas SQLite3 is a file.
+      </OL>
+    </LI>
+  </OL>
+Each of these have required a rewrite of the code from scratch, as well as transfer code (to move from n to n+1).
+The author didn't know about property graphs when implementing v1, v2, and v3.
+</p>
+
+<P>
+  Within a given implementation, there are design decisions with trade-offs to evaluate.
+  Knowing all the options or consequences is not feasible until one or more are implemented.
+  Then the inefficiencies can be observed.
+  Knowledge gained through evolutionary iteration is expensive and takes a lot of time.
+</P>
+
+<P>
+  A few storage methods were considered and then rejected without a full implementation.
+
+<H3><a name="other avenues">Other approaches</a></H3>
+<H4><a name="networkx">Networkx</a></H4>
+<!-- from https://allofphysicsgraph.github.io/proofofconcept/site/more_aspects/example_T_f_networkx.html -->
+<pre><code>
+import networkx as nx
+G=nx.digraph()
+G.add_edge([8332941,8482459])
+G.add_edge([8482459,6822583])
+G.add_edge([5749291,6822583])
+G.add_edge([6822583,8341200])
+G.add_edge([8341200,9483715])
+G.add_edge([8837284,9483715])
+G.add_edge([9483715,9380032])
+G.add_edge([9380032,8345721])
+nx.plot()
+plt.show()
+</code></pre>
+
+<H4><a name="graphml">GraphML</a></H4>
+
+<!-- from https://allofphysicsgraph.github.io/proofofconcept/site/more_aspects/example_T_f_graphml.html -->
+
+<P>
+  See <a href="http://graphml.graphdrawing.org/">GraphML file format</a>.
+
+<!-- the following didn't work:
+  <pre lang="xml">
+based on https://stackoverflow.com/a/35648278/1164295
+see https://www.w3.org/MarkUp/html3/literal.html
+and https://stackoverflow.com/questions/5134242/semantics-standards-and-using-the-lang-attribute-for-source-code-in-markup
+which points to https://www.w3.org/TR/html401/struct/dirlang.html#langcodes
+-->
+<P>
+<textarea rows="20" cols="90" style="border:none;">
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<graph id="G" edgedefault="directed">
+<node id="8332941"/>
+<node id="3131111133"/>
+<edge source="8332941" target="3131111133"/>
+<node id="6822583"/>
+<edge source="3131111133" target="6822583"/>
+<node id="574929"/>
+<edge source="5749291" target="6822583"/>
+<node id="2131616531"/>
+<edge source="6822583" target="2131616531"/>
+<node id="9483715"/>
+<edge source="2131616531" target="9483715"/>
+<node id="8837284"/>
+<edge source="8837284" target="9483715"/>
+<node id="2113211456"/>
+<edge source="9483715" target="2113211456"/>
+<node id="8345721"/>
+<edge source="2113211456" target="8345721"/>
+<edge source="7473895" target="4938429483"/>
+<node id="3848927"/>
+<node id="2393922"/>
+<edge source="2393922" target="3848927"/>
+<node id="2384942"/>
+<node id="2103023049"/>
+<edge source="2103023049" target="2384942"/>
+</graph>
+</graphml>
+</textarea>
+
+
+<H4><a name="rdf">RDF/OWL</a></H4>
+
+<P>
+  The Physics Derivation Graph can be expressed in <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>.
+
+<P>
+  Each step in a derivation could be put in the subject–predicate–object triple form. For example, suppose the step is
+<Pre>
+Input 1: y=mx+b
+inference rule: multiply both sides by
+feed: 2
+output 2: 2*y = 2*m*x + 2*b
+</Pre>
+Putting this in RDF,
+<pre>
+step 1 | has input | y=mx+b
+step 1 | has inference rule | multiply both sides by
+step 1 | has feed | 2
+step 1 | has output | 2*y = 2*m*x + 2*b
+</pre>
+  While it's easy to convert, I am unaware of the advantages of using RDF.
+  The Physics Derivation Graph is oriented towards visualization.
+  SPARQL is the query language for RDF. I don't see much use for querying the graph.
+  Using RDF doesn't help with using a computer algebra system for validation of the step.
+</P>
+
+
+
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+<H2><a name="comparison:syntax">Comparison of Syntax Options</a></H2>
+
+<P>
+  Here methods of capturing mathematical syntax required to describe derivations in physics are compared.
+  This survey covers \(\rm\LaTeX\), Mathematical Markup Language (MathML), Mathematica, and SymPy.
+  For MathML, both Presentation and Content forms are included.
+</P>
+
+
+<P>
+Although \(\rm\LaTeX\) is intuitive for scientists and is concise, it is a typesetting language and not well suited for the web or use in Computer Algebra Systems (CAS). Mathematica is also concise and has wide spread use by scientists, though its cost limits accessibility. Mathematica is also proprietary, which limits the ability to explore the correctness of this CAS
+</P>
+
+<P>
+\(\rm\LaTeX\) is concise and is widely used in the scientific community. It does not work well for portability to other representations and is ill-suited for use by CAS. For the initial phases of development for the Physics Derivation Graph, portability and compatibilty with a CAS are not the priority. Since getting content into the graph is the priority, the Latex representation will be used.
+</P>
+
+<P>
+  For this survey it is assumed that users cares about the learning curve, leveraging previous experience, how wide spread use in their community, speed, ease of input, presentation (rendering), ability to access content across devices, OS independence, ease of setup.
+  To evaluate criteria relevant to users, including the ability to <a href="#quantitative comparison of syntax">manually input syntax</a>, the ability to <a href="#conversion of syntax">transform between representations</a>, and the ability to <a href="#correctness of derivations">audit correctness</a>.
+</P>
+
+<P>
+  Use of a single syntax for the graph content is important. To illustrate why, consider the approach where each syntax is used for its intended purpose -- Latex for rendering equation, SymPy for the CAS, and MathML for portability. This introduces a significant source of error when a single equation requires three distinct representation. The manual entry could result in the three representations not being sychronized. Thus, a single representation satisfying multiple criteria is needed. If no single syntax meets all the needs of the Physics Derivation Graph, then the requirements must be prioritized.
+</P>
+
+<P>
+This comparison is between syntax methods which do not serve the same purpose. Latex is a type-setting language, while Mathematica and SymPy are Computer Algebra Systems (CAS). The reason these approaches for rendering and CAS were picked is twofold: they are widely used in the scientific community and they address requirements for the Physics Derivation Graph.
+</P>
+
+<P>
+We can ignore syntax methods which do not support notation necessary for describing physics. Example of this include <a href="#cite:ascii">ASCII</a> and <a href="#cite:html">HTML</a>. Storage of the generated content (essentially a knowledge base for all of physics) isn't expected to exceed a Gigabyte, so compactness in terms of storage isn't a criterion in this evaluation.
+
+<H3><a name="test cases">Test Cases</a></H3>
+<P>
+  to demonstrate the variety of uses in distinct domains of Physics, a set of test cases are provided in this section. These cases are not meant to be exhaustive of either the syntax or the scientific domain. Rather, they are examples of both capability requirements of the Physics Derivation Graph and of the syntax methods.
+</P>
+<!-- https://www.physicsforums.com/threads/formulae-of-various-topics.102736/ -->
+
+<a name="test case 1"/>
+<P>
+Case 1 is a second order polynomial. Algebra
+\begin{equation}
+a x^2 + b x + c = 0
+\label{eq:polynomial_case1_body}
+\end{equation}
+</P>
+
+<a name="test case 2"/>
+<P>
+Case 2, <a href="https://en.wikipedia.org/wiki/Stokes%27_theorem">Stokes' theorem</a>, includes integrals, cross products, and vectors. Calculus
+\begin{equation}
+\int \int_{\sum} \vec{\nabla} \times \vec{F} \dot d\sum = \oint_{\partial \sum} \vec{F}\dot d\vec{r}
+\label{eq:stokes_case2_body}
+\end{equation}
+</P>
+
+<a name="test case 3"/>
+<P>
+Case 3: Tensor analysis. <a href="https://en.wikipedia.org/wiki/Einstein_notation">Einstein notation</a>: contravariant = superscript, covariant = subscript. Used in electrodynamics
+\begin{equation}
+Y^i(X_j) = \delta^i_{\ j}
+\label{eq:tensor_analysis_case3_body}
+\end{equation}
+</P>
+
+<P>
+Case 4 covers notation used in Quantum Mechanics. Symbols such as \(\hbar\) and Dirac notation are typically used.
+</P>
+
+<a name="test case 4a"/>
+<P>
+Case 4a is the creation operator
+\begin{equation}
+\hat{a}^+ |n\rangle = \sqrt{n+1} |n+1\rangle
+\label{eq:creation_operator_case4a_body}
+\end{equation}
+</P>
+
+<a name="test case 4b"/>
+<P>
+Case 4b is the uncertainty principle
+\begin{equation}
+\sigma_x \sigma_p \geq \frac{\hbar}{2}
+\label{eq:uncertainty_principle_case4b_body}
+\end{equation}
+</P>
+
+<a name="test case 4c"/>
+<P>
+Case 4c: L&uuml;ders projection
+\begin{equation}
+ |\psi\rangle \rightarrow \sum_n  |c_n|^2 P_n,\ \rm{where}\ P_n = \sum_i |\psi_{ni}\rangle \langle \psi_{ni}|
+\label{eq:Luders_projection_case4c_body}
+\end{equation}
+</p>
+
+<H3><a name="quantitative comparison of syntax">Quantitative Comparison of Test Cases</a></H3>
+
+<table border="1" class="sortable">
+  <tr>
+    <th>Name</th>
+    <th>case 1</th>
+    <th>case 2</th>
+    <th>case 3</th>
+    <th>case 4a</th>
+    <th>case 4b</th>
+    <th>case 4c</th>
+  </tr>
+  <tr>
+    <td>Latex</td>
+    <td>20</td>
+    <td>101</td>
+    <td>26</td>
+    <td>45</td>
+    <td>39</td>
+    <td>110</td>
+  </tr>
+  <tr>
+    <td>PMathML</td>
+    <td>324</td>
+    <td>538</td>
+    <td>348</td>
+    <td>372</td>
+    <td>250</td>
+  </tr>
+  <tr>
+    <td>CMathML</td>
+    <td>381</td>
+  </tr>
+  <tr>
+    <td>Mathematica</td>
+  </tr>
+  <tr>
+    <td>SymPy</td>
+  </tr>
+</table>
+
+<P>
+  MathML is comprised of empty elements (symbols, e.g., <code>&lt;plus/&gt;</code>), token elements (both ASCII and entities), and annotation elements.
+  The token elements in Presentation MathML include mi=identifiers, mn=numbers, mo=operators.
+  The token elements in Content MathML include ci=identifiers and cn=numbers.
+</P>
+
+<P>
+Character count for the MathML was carried out using
+<pre>
+wc -m mathML_presentation_case*.xml
+</pre>
+</p>
+
+
+<H3><a name="qualitative comparison of syntax">Qualitative Comparisons of Syntax Methods</a></H3>
+
+<P>
+  Latex, MathML, and SymPy are free and open source. Mathematica is proprietary and not free.
+</P>
+
+<P>
+  For Physicists comfortable writing journal articles in Latex or exploring ideas in Mathematica, these are natural syntax methods. Both Latex and Mathematica are concise, making them intuitive to read and quick to enter. MathML is a verbose syntax which is lengthy to manually enter and yield difficult to read the native XML.
+</P>
+
+<P>
+Unicode is needed to support Dirac notation and any other non-ASCII text in MathML
+</P>
+
+
+<H3><a name="conversion of syntax">Transforming between Syntax options</a></H3>
+
+<P>
+Wolfram Research offers the ability to convert from Mathematica expressions to MathML on their site <a href="http://www.mathmlcentral.com/Tools/ToMathML.jsp">www.mathmlcentral.com/Tools/ToMathML.jsp</a>.
+
+A CAS typically produces output syntax such as Latex or MathML in a single format. However, there are often many ways to represent the same math,  equation \ref{eq:example_partial_derivative_representations}.
+</P>
+
+
+<H3><a name="correctness of derivations">Auditing the Correctness of Derivations</a></H3>
+
+
+<P>
+  Latex and Presentation MathML are intended for rendering equations and are not easily parsed consistently by a CAS. For example, scientists and mathematicians often render the same partial differential operation in multiple ways:
+\begin{equation}
+\frac{\partial^2}{\partial t^2}F =
+\frac{\partial}{\partial t}\frac{\partial F}{\partial t} =
+\frac{\partial^2 F}{\partial t^2} =
+\frac{\partial}{\partial t}\dot{F} =
+\frac{\partial \dot{F}}{\partial t} = \ddot{F}.
+\label{eq:example_partial_derivative_representations}
+\end{equation}
+All of these are equivalent.
+</p>
+
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+<H2><a name="comparison:computer algebra systems">Comparison of Computer Algebra Systems</a></H2>
+
+<P>
+  Sage, Mathematica, and SymPy are candidates capable of checking the correctness of derivations.
+
+<H3><a name="cas:sage">Sage</a></H3>
+
+<P>
+  The following Sage code checks that the claimed step as stated by the inference rule is carried out correctly:
+<pre>
+T=var('T')
+f=var('f')
+# latex input: T = 1/f
+input_expr = (1)/(f) == (T)
+# latex output: T f = 1
+expected_output_expr = T * f == 1
+# latex feed: f
+feed = f
+input_expr * feed == expected_output_expr
+</pre>
+The output is
+<pre>
+True
+</pre>
+which means that the claimed step in the derivation was implemented consistent with the inference rule applied.
+
+<P>
+  Sage code can be run in <a href="https://sagecell.sagemath.org/">https://sagecell.sagemath.org/</a>.
+
+<P>
+  In this <a href="https://physicsderivationgraph.blogspot.com/2015/12/sage-isnt-robust-computer-algebra.html">analysis of Sage</a> the support for standard operations wasn't sufficient.
+
+<H3><a name="cas:mathematica">Mathematica</a></H3>
+<!-- from https://allofphysicsgraph.github.io/proofofconcept/site/more_aspects/example_T_f_mathematica.html -->
+<P>
+  A computer algebra system like Mathematica can validate the steps of a derivation.
+<pre>
+Input:
+
+multiplyBothSidesOfExpression[LHS_, relation_, RHS_, feed_] := {LHSout = LHS*feed, relationOut = relation, RHSout = RHS*feed}
+divideBothSidesOfExpression[LHS_, relation_, RHS_, feed_] := {LHSout = LHS/feed, relationOut = relation, RHSout = RHS/feed}
+
+LHS = T;
+RHS = 1/f;
+relation = "=";
+{LHS, relation, RHS}
+
+result = multiplyBothSidesOfExpression[LHS, relation, RHS, f]; (* should yield T*f=1 *)
+result = divideBothSidesOfExpression[result[[1]], result[[2]], result[[3]], T]; (* should yield f=1/T *)
+
+{result[[1]], result[[2]], result[[3]]}
+
+Output:
+
+{T,=,1/f}
+
+{f,=,1/T}
+</pre>
+
+Quadratic equation derivation<BR/>
+First, set up the inference rules:
+<pre>
+dividebothsidesby[expr_, x_] := Apart[First[expr]/x] == Apart[Last[expr]/x];
+subtractXfromBothSides [expr_, x_] := First[expr]-x == Last[expr]-x;
+addXtoBothSides[expr_, x_] := First[expr]+x == Last[expr]+x;
+subXforY[expr_, x_, y_] := expr /. x -> y
+raiseBothSidesToPower[expr_, pwr_] = First[expr]^pwr == Last[expr]^pwr
+simplifyLHS [expr_, condition_] := FullSimplify [First[expr], condition] == Last[expr]
+</pre>
+Next, use the inference rules
+<pre>
+func = a*x^2+b*x+c == 0
+func = dividebothsidesby[func, a]
+func = subtractXfromBothSides [func, c/a]
+func = addXtoBothSides[func, (b/(2 a))^2]
+func = subXforY[func, First[func], (x+b/(2 a))^2]
+func = subXforY[func, Last[func], (b^2-4 ac)/(4 a^2)]
+func = raiseBothSidesToPower[func, (1/2)]
+func = simplifyLHS [func, (x+b/(2 a)) > 0]
+func = subXforY[func, Last[func], ±Last[func]]
+func = subtractXfromBothSides [func, b/(2 a)]
+</pre>
+
+<H3><a name="cas:sympy">Sympy</a></H3>
+<P>
+  The motives for using Sympy are the cost (free), the code (open source), the integration (Python), support for Physics, and the support for parsing Latex.
+
+<P>
+  The snippets of SymPy can be run in <a href="http://live.sympy.org/">http://live.sympy.org/</a>
+
+<H3><a name="HOLLight">HOL Light theorem prover</a></H3>
+
+<a href="https://www.cl.cam.ac.uk/~jrh13/hol-light/tutorial.pdf">HOL Light tutorial</a>
+
+<P>&nbsp;</P>
+<HR/>
+<P>&nbsp;</P>
+
+<H2><a name="not in scope">Outside of Current Scope</a></H2>
+
+<P>Although the Physics Derivation Graph is intended to be comprehensive
+  across domains, there are aspect of Physics not within the current scope of the project:
+<UL>
+  <LI>inclusion of graphics, e.g. free body diagrams, Feynman diagrams, geometrical diagrams.
+  <LI>explanatory text,
+  <LI>animations of concepts,
+  <LI>experimental processes,
+  <LI>interactive models.
+</UL>
+These aspects could be included if the data structure and workflow were adapted
+to an expanded scope.
+
+<!--
+<h2 id="bibliography">Citations</a></H2>
+
+<a name="cite:xml"/>
+<pre>
+@misc{2008_XML,
+url = {http://www.w3.org/TR/REC-xml/},
+title = {Extensible Markup Language (XML) 1.0 (Fifth Edition)},
+version = {W3C Recommendation 26 November 2008},
+year={2008}
+}
+</pre>
+
+<a name="cite:mathematica"/>
+<pre>
+@manual{2014_mathematica,
+title = {Mathematica},
+author = {Wolfram Research, Inc.},
+edition = {Version 10.0},
+publisher = {Wolfram Research, Inc.},
+address = {Champaign, Illinois},
+year = {2014},
+url = {http://support.wolfram.com/kb/472}
+}
+</pre>
+
+<a name="cite:sympy"/>
+<pre>
+@manual{2014_SymPy,
+title = {SymPy: Python library for symbolic mathematics},
+author = {SymPy Development Team},
+year = {2014},
+url = {http://www.sympy.org}
+}
+</pre>
+
+<a name="cite:ascii"/>
+<pre>
+@misc{1968_ASCII,
+title = {American Standard Code for Information Interchange},
+url={http://www.itl.nist.gov/History%20Documents/FIPS%201.pdf},
+year = {1968}
+}
+</pre>
+
+<a name="cite:html"/>
+<pre>
+@misc{1999_HTML,
+title = {HTML 4.01 Specification},
+url = {http://www.w3.org/TR/html4/},
+version = {W3C Recommendation 24 December 1999},
+year={1999}
+}
+</pre>
+
+<a name="cite:mathml"/>
+<pre>
+@misc{2014_MathML,
+url = {http://www.w3.org/TR/MathML/},
+title = {Mathematical Markup Language (MathML) Version 3.0 2nd Edition},
+version = {W3C Recommendation 10 April 2014},
+year = {2014}
+}
+</pre>
+-->
+
+{% endblock %}

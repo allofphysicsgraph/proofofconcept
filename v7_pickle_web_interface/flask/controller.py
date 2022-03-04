@@ -1435,6 +1435,19 @@ def developer_documentation():
         "developer_documentation.html", title="Developer Documentation"
     )
 
+@app.route("/design_documentation", methods=["GET", "POST"])
+def design_documentation():
+    """
+    a static page aimed at people interested in understanding
+    design decisions
+
+    >>> developer_documentation()
+    """
+    logger.info("[trace]")
+    return render_template(
+        "design_documentation.html", title="Design Decisions Documentation"
+    )
+
 
 # @app.route("/example_T_f_d3js", methods=["GET", "POST"])
 # def example_T_f_d3js():
