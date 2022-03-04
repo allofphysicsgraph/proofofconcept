@@ -3,8 +3,8 @@
 
 <P>
   <em>Recommendation</em>: Read the
-  <a href="{{ url_for('user_documentation') }}?referrer=developer_documentation">user documentation</a>
-  and <a href="{{ url_for('faq') }}?referrer=developer_documentation">FAQ</a> first.
+  <a href="{{ url_for('user_documentation') }}?referrer=design_documentation">user documentation</a>
+  and <a href="{{ url_for('faq') }}?referrer=design_documentation">FAQ</a> first.
   This page assumes familiarity with the jargon used in the Physics Derivation Graph.
 </P>
 
@@ -13,8 +13,6 @@
   Contributions to the project are welcome; see <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/CONTRIBUTING.md">CONTRIBUTING.md</a> on how to get started.
   The Physics Derivation Graph is covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, so if you don't like a choice that was made you are welcome to <a href="https://github.com/allofphysicsgraph/proofofconcept/fork">fork the Physics Derivation Graph project</a>.
 
-<P>
-  Looking for the API? See <a href="{{ url_for('pdg_api.api_documentation') }}?referrer=developer_documentation">API documentation</a>.
 
 <div id="toc_container">
 <p class="toc_title">Contents</p>
@@ -27,13 +25,13 @@ cat developer_documentation.html |\
      sed 's/<H4><a name="/      <LI><a href="#/'
 -->
 <OL class="toc_list">
-  <LI><small>[Conceptual underpinnings] </small><a href="#design decisions">Design Decisions</a></LI>
-  <LI><small>[Conceptual underpinnings] </small><a href="#CNL grammar">Grammar of the controlled natural language</a></LI>
-  <LI><small>[Conceptual underpinnings] </small><a href="#indices">Numeric indices are the core enabling concept for the PDG</a></LI>
-  <LI><small>[Conceptual underpinnings] </small><a href="#data structure">Data structure used in the PDG</a></LI>
-  <LI><small>[Conceptual underpinnings] </small><a href="#latex for expressions">\(\rm\LaTeX\) representation of expressions</a></LI>
-  <LI><small>[Conceptual underpinnings] </small><a href="#frequency period from first principles">Derivation to Graph from First Principles</a></LI>
-  <LI><small>[Mechanics of the project] </small><a href="#historical evolution">Historical design evolution</a></LI>
+  <LI><a href="#design decisions">Design Decisions</a></LI>
+  <LI><a href="#CNL grammar">Grammar of the controlled natural language</a></LI>
+  <LI><a href="#indices">Numeric indices are the core enabling concept for the PDG</a></LI>
+  <LI><a href="#data structure">Data structure used in the PDG</a></LI>
+  <LI><a href="#latex for expressions">\(\rm\LaTeX\) representation of expressions</a></LI>
+  <LI><a href="#frequency period from first principles">Derivation to Graph from First Principles</a></LI>
+  <LI><a href="#historical evolution">Historical design evolution</a></LI>
   <OL>
     <LI><a href="#other avenues">Other approaches</a></LI>
     <OL>
@@ -42,7 +40,7 @@ cat developer_documentation.html |\
       <LI><a href="#rdf">RDF/OWL</a></LI>
     </OL>
   </OL>
-  <LI><small>[Mechanics of the project] </small><a href="#comparison:syntax">Comparison of Syntax Options</a></LI>
+  <LI><a href="#comparison:syntax">Comparison of Syntax Options</a></LI>
   <OL>
     <LI><a href="#test cases">Test Cases</a></LI>
     <LI><a href="#quantitative comparison of syntax">Quantitative Comparison of Test Cases</a></LI>
@@ -70,8 +68,8 @@ cat developer_documentation.html |\
   all known mathematical physics in a way that can be both read by humans and
   checked by a computer algebra system. To do that, primary design considerations
   include how to represent the objects
-  (e.g., <a href="{{ url_for('user_documentation')}}?referrer=developer_documentation#inference rules">inference rules</a>
-  and <a href="{{ url_for('user_documentation')}}?referrer=developer_documentation#expressions">expressions</a>
+  (e.g., <a href="{{ url_for('user_documentation')}}?referrer=design_documentation#inference rules">inference rules</a>
+  and <a href="{{ url_for('user_documentation')}}?referrer=design_documentation#expressions">expressions</a>
   and symbols) and what data structure is sufficient for the objective.
 </P><P>
   This page describes the current status and historical evoluation of design
@@ -131,9 +129,9 @@ The grammar of the Physics Derivation Graph is specified by this list, with all 
 <P>
   The full list of vocabulary used in the Physics Derivation Graph is documented
   in the
-  <a href="{{ url_for('list_all_inference_rules') }}?referrer=developer_documentation">list of inference rules</a> and
-  <a href="{{ url_for('list_all_expressions') }}?referrer=developer_documentation">list of expressions</a> and
-  <a href="{{ url_for('list_all_symbols') }}?referrer=developer_documentation">list of symbols</a>.
+  <a href="{{ url_for('list_all_inference_rules') }}?referrer=design_documentation">list of inference rules</a> and
+  <a href="{{ url_for('list_all_expressions') }}?referrer=design_documentation">list of expressions</a> and
+  <a href="{{ url_for('list_all_symbols') }}?referrer=design_documentation">list of symbols</a>.
 <P>&nbsp;</P>
 <HR/>
 <P>&nbsp;</P>
@@ -147,7 +145,7 @@ The grammar of the Physics Derivation Graph is specified by this list, with all 
   Each expression, symbol, and inference rule appears only once in the database.
   This is made possible through use of unique IDs associated with every facet of the visualization.
   To see what this means in terms of the "period and frequency"
-  example on <a href="{{ url_for('index') }}?referrer=developer_documentation">the homepage</a>,
+  example on <a href="{{ url_for('index') }}?referrer=design_documentation">the homepage</a>,
   here is a view of the indices supporting that visualization for two sequential steps:
 </P>
 <img src="{{ url_for('static', filename='frequency_and_period_exploded_steps.png') }}">

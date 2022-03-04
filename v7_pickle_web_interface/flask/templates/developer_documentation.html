@@ -3,15 +3,17 @@
 
 <P>
   <em>Recommendation</em>: Read the
-  <a href="{{ url_for('user_documentation') }}?referrer=developer_documentation">user documentation</a>
-  and <a href="{{ url_for('faq') }}?referrer=developer_documentation">FAQ</a> first.
+  <a href="{{ url_for('user_documentation') }}?referrer=developer_documentation">user documentation</a>,
+  <a href="{{ url_for('faq') }}?referrer=developer_documentation">FAQ</a>, and
+  <a href="{{ url_for('design_documentation') }}?referrer=developer_documentation">user documentation</a> first.
   This page assumes familiarity with the jargon used in the Physics Derivation Graph.
 </P>
 
 <P>
-  This page provides background context for design decisions associated with the Physics Derivation Graph (PDG).
+  This page provides developer guidance for the Physics Derivation Graph (PDG).
   Contributions to the project are welcome; see <a href="https://github.com/allofphysicsgraph/proofofconcept/blob/gh-pages/CONTRIBUTING.md">CONTRIBUTING.md</a> on how to get started.
-  The Physics Derivation Graph is covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>, so if you don't like a choice that was made you are welcome to <a href="https://github.com/allofphysicsgraph/proofofconcept/fork">fork the Physics Derivation Graph project</a>.
+  The Physics Derivation Graph is covered by the <a href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>,
+  so if you don't like a choice that was made you are welcome to <a href="https://github.com/allofphysicsgraph/proofofconcept/fork">fork the Physics Derivation Graph project</a>.
 
 <P>
   Looking for the API? See <a href="{{ url_for('pdg_api.api_documentation') }}?referrer=developer_documentation">API documentation</a>.
@@ -27,7 +29,7 @@ cat developer_documentation.html |\
      sed 's/<H4><a name="/      <LI><a href="#/'
 -->
 <OL class="toc_list">
-  <LI><small>[Mechanics of the project] </small><a href="#software">Software used in the Physics Derivation Graph</a></LI>
+  <LI><a href="#software">Software used in the Physics Derivation Graph</a></LI>
   <OL>
     <LI><a href="#python">Python</a></LI>
     <LI><a href="#mvc">Model-view-controller in Flask</a></LI>
@@ -36,14 +38,14 @@ cat developer_documentation.html |\
     <LI><a href="#software:rendering">Latex</a></LI>
     <LI><a href="#software:version control">git</a></LI>
   </OL>
-  <LI><small>[Mechanics of the project] </small><a href="#running the code">Running the Physics Derivation Graph code</a></LI>
+  <LI><a href="#running the code">Running the Physics Derivation Graph code</a></LI>
   <OL>
     <LI><a href="#run flask container">Run Flask container</a></LI>
     <LI><a href="#run gunicorn container">Run gunicorn container</a></LI>
   </OL>
-  <LI><small>[Mechanics of the project] </small><a href="#how to navigate the codebase">How to Navigate the codebase</a></LI>
-  <LI><small>[Mechanics of the project] </small><a href="#how webpages and the Python functions relate">How webpages and the Python functions relate</a></LI>
-  <LI><small>[Mechanics of the project] </small><a href="#build pdg code from scratch">Build the Physics Derivation Graph software from scratch</a></LI>
+  <LI><a href="#how to navigate the codebase">How to Navigate the codebase</a></LI>
+  <LI><a href="#how webpages and the Python functions relate">How webpages and the Python functions relate</a></LI>
+  <LI><a href="#build pdg code from scratch">Build the Physics Derivation Graph software from scratch</a></LI>
   <OL>
     <LI><a name="Docker and Make">Initial infrastructure: Docker and Make</a></LI>
     <LI><a name="Python and Flask">Initial infrastructure: Python and Flask</a></LI>
