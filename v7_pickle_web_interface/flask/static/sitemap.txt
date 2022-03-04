@@ -27,7 +27,6 @@ http://derivationmap.net/monitoring
 http://derivationmap.net/static_dir
 http://derivationmap.net/tmp_dir
 http://derivationmap.net/clickable_layers
-http://derivationmap.net/roadmap
 http://derivationmap.net/roadmap/overview
 http://derivationmap.net/roadmap/lecture
 http://derivationmap.net/roadmap/handwritten
