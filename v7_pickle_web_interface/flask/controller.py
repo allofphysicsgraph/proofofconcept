@@ -1222,7 +1222,6 @@ def clickable_layers():
     return render_template("clickable_layers.html", title="options")
 
 
-
 @app.route("/class_notes", methods=["GET", "POST"])
 def class_notes_without_subpage():
     """
@@ -1260,13 +1259,16 @@ def class_notes_subpage(which_class: str):
     logger.info("[trace page end " + trace_id + "]")
     return render_template("class_notes_overview.html", title="class notes overview")
 
+
 @app.route("/central_expessions", methods=["GET", "POST"])
 def central_expessions():
     return render_template("central_expessions.html", title="central expressions")
 
+
 @app.route("/roadmap", methods=["GET", "POST"])
 def roadmap():
     return render_template("layers_overview.html", title="Roadmap Overview")
+
 
 @app.route("/roadmap/<which_layer>", methods=["GET", "POST"])
 def roadmap_layer(which_layer):
@@ -1436,6 +1438,7 @@ def developer_documentation():
         "developer_documentation.html", title="Developer Documentation"
     )
 
+
 @app.route("/api_documentation", methods=["GET", "POST"])
 def api_documentation():
     """
@@ -1444,9 +1447,7 @@ def api_documentation():
     >>> api_documentation()
     """
     logger.info("[trace]")
-    return render_template(
-        "api_documentation.html", title="API Documentation"
-    )
+    return render_template("api_documentation.html", title="API Documentation")
 
 
 @app.route("/site_map", methods=["GET", "POST"])
