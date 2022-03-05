@@ -8,7 +8,7 @@ services:
     build:
       context: ./webserver
       dockerfile: Dockerfile
-    restart: unless-stopped 
+    restart: unless-stopped
 # using "ports" makes flask/gunicorn accessible without going through nginx
     expose:
       - 5000
@@ -25,17 +25,21 @@ services:
 
   # see https://neo4j.com/docs/operations-manual/current/docker/introduction/
   # https://neo4j.com/docs/operations-manual/current/docker/clustering/
+  # https://stackoverflow.com/questions/48465046/run-neo4j-with-docker-compose-neo4j-not-accessible-from-localhost7474
+  # https://medium.com/@faaizhussain/neo4j-4-0-docker-compose-9bead6634c8
   neo4j_docker:
     image: neo4j:4.4.4-community
-    #network_mode: "bridge"
     restart: unless-stopped
+
     hostname: neo4j_host
+
+    #network_mode: "bridge"
+    # https://stackoverflow.com/a/48637671/1164295
     networks:
       neo4j-internal:
         aliases:
           - neo4j-network
 
-    container_name: neo4j
 
     # The ports that will be accessible from outside the container
     # 7474=HTTP, 7473=HTTPS, 7687=Bolt; as per https://neo4j.com/developer/docker-run-neo4j/
@@ -44,7 +48,9 @@ services:
       - "7473:7473"
       - "7687:7687"
     volumes:
-      - '$HOME/neo4j/data:/data'
+      - './data:/var/lib/neo4j/data'
+      - './logs:/var/lib/neo4j/logs'
+      - './neo4j.conf:/conf/neo4j.conf'
     # https://docs.docker.com/compose/compose-file/compose-file-v3/#environment
     # see https://neo4j.com/docs/operations-manual/current/docker/ref-settings/
     environment:
@@ -53,6 +59,6 @@ services:
 
 networks:
   neo4j-internal:
+    driver: bridge
 
 # EOF
-

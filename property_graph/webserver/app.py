@@ -21,10 +21,10 @@ from neo4j import GraphDatabase
 # https://pythontic.com/database/neo4j/query%20nodes%20using%20label
 
 # Database Credentials
-#uri             = "bolt://neo4j_docker:7474"
+# "bolt" vs "neo4j" https://community.neo4j.com/t/different-between-neo4j-and-bolt/18498
 uri = "bolt://neo4j_docker:7687"
-userName        = "neo4j"
-password        = "test"
+#userName        = "neo4j"
+#password        = "test"
 
 # Connect to the neo4j database server
 #neo4j_available=False
@@ -39,19 +39,28 @@ def add_friend(tx, name, friend_name):
     tx.run("MERGE (a:Person {name: $name}) "
            "MERGE (a)-[:KNOWS]->(friend:Person {name: $friend_name})",
            name=name, friend_name=friend_name)
+    return
 
 def print_friends(tx, name):
+    str_to_print=""
     for record in tx.run("MATCH (a:Person)-[:KNOWS]->(friend) WHERE a.name = $name "
                          "RETURN friend.name ORDER BY friend.name", name=name):
-        print(record["friend.name"])
+        str_to_print+=record["friend.name"]+"\n"
+    return str_to_print
 
 
 app = Flask(__name__)
 
 
-
 @app.route('/')
 def main():
+    """
+    """
+
+    return "create_friends, show_friends"
+
+@app.route('/create_friends')
+def create_friends():
     """
     """
     graphDB_Driver  = GraphDatabase.driver(uri)
@@ -60,11 +69,20 @@ def main():
         session.write_transaction(add_friend, "Arthur", "Guinevere")
         session.write_transaction(add_friend, "Arthur", "Lancelot")
         session.write_transaction(add_friend, "Arthur", "Merlin")
-        session.read_transaction(print_friends, "Arthur")
+        #session.read_transaction(print_friends, "Arthur")
 
     graphDB_Driver.close()
 
-    return "Hello"
+    return "created friends"
 
+@app.route("/show_friends")
+def show_friends():
+    graphDB_Driver  = GraphDatabase.driver(uri)
+
+    with graphDB_Driver.session() as session:
+        str_to_print = session.read_transaction(print_friends, "Arthur")
+
+    graphDB_Driver.close()
+    return str_to_print
 
 # EOF
