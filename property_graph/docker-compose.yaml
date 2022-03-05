@@ -47,10 +47,11 @@ services:
       - "7474:7474"
       - "7473:7473"
       - "7687:7687"
+    # as per https://neo4j.com/docs/operations-manual/current/docker/clustering/
     volumes:
       - './data:/var/lib/neo4j/data'
       - './logs:/var/lib/neo4j/logs'
-      - './neo4j.conf:/conf/neo4j.conf'
+      - './conf:/var/lib/neo4j/conf'
     # https://docs.docker.com/compose/compose-file/compose-file-v3/#environment
     # see https://neo4j.com/docs/operations-manual/current/docker/ref-settings/
     environment:
