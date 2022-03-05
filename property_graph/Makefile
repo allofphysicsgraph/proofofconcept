@@ -12,7 +12,9 @@ help:
 
 
 up:
-	docker-compose down
+	# https://docs.docker.com/compose/reference/down/
+	docker-compose down --volumes --remove-orphans
+	# https://docs.docker.com/compose/reference/up/
 	docker-compose up --build --remove-orphans
 
 down:

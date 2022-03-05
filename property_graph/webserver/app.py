@@ -2,17 +2,23 @@ from flask import Flask
 
 import time
 
+# overview of Python options: native driver, py2neo, neomodel
 # https://neo4j.com/developer/python/
+
+# Python native driver
 # https://neo4j.com/docs/api/python-driver/current/api.html
 # https://pypi.org/project/neo4j/
 # https://github.com/neo4j/neo4j-python-driver
+
+# this demo has a local Flask app connect to a remote Neo4j server
 # https://neo4j.com/developer/python-movie-app/
 # https://github.com/neo4j-examples/neo4j-movies-template/blob/master/flask-api/app.py
-# https://pythontic.com/database/neo4j/query%20nodes%20using%20label
+
+
 import neo4j
 from neo4j import GraphDatabase
 
-# https://pythontic.com/database/neo4j/query%20nodes%20using%20label 
+# https://pythontic.com/database/neo4j/query%20nodes%20using%20label
 
 # Database Credentials
 #uri             = "bolt://neo4j_docker:7474"

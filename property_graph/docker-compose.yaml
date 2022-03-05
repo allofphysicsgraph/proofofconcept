@@ -14,18 +14,30 @@ services:
       - 5000
     depends_on:
       - "neo4j_docker"
+    networks:
+      neo4j-internal:
+        aliases:
+          - neo4j-network
     ports:
      - "5000:5000"
     volumes:
      - ${PWD}/:/scratch
 
   # see https://neo4j.com/docs/operations-manual/current/docker/introduction/
+  # https://neo4j.com/docs/operations-manual/current/docker/clustering/
   neo4j_docker:
     image: neo4j:4.4.4-community
-    network_mode: "bridge"
+    #network_mode: "bridge"
     restart: unless-stopped
-    hostname: neo4j
+    hostname: neo4j_host
+    networks:
+      neo4j-internal:
+        aliases:
+          - neo4j-network
+
     container_name: neo4j
+
+    # The ports that will be accessible from outside the container
     # 7474=HTTP, 7473=HTTPS, 7687=Bolt; as per https://neo4j.com/developer/docker-run-neo4j/
     ports:
       - "7474:7474"
@@ -38,6 +50,9 @@ services:
     environment:
       - NEO4J_dbms_allow__upgrade=true
       - NEO4J_AUTH=none
+
+networks:
+  neo4j-internal:
 
 # EOF
 
