@@ -7,9 +7,13 @@ help:
 	@echo "make help"
 	@echo "      this message"
 	@echo "==== Targets outside container ===="
-	@echo "make docker"
+	@echo "make up"
 	@echo "      build and run docker"
 
 
-docker:
-	docker-compose up --build
+up:
+	docker-compose down
+	docker-compose up --build --remove-orphans
+
+down:
+	docker-compose down

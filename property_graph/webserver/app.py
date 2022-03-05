@@ -1,18 +1,64 @@
 from flask import Flask
 
-# https://py2neo.org/v4/
-import py2neo
-print('py2neo',py2neo.__version__)
-from py2neo import Graph,Node,Relationship
+import time
+
+# https://neo4j.com/developer/python/
+# https://neo4j.com/docs/api/python-driver/current/api.html
+# https://pypi.org/project/neo4j/
+# https://github.com/neo4j/neo4j-python-driver
+# https://neo4j.com/developer/python-movie-app/
+# https://github.com/neo4j-examples/neo4j-movies-template/blob/master/flask-api/app.py
+# https://pythontic.com/database/neo4j/query%20nodes%20using%20label
+import neo4j
+from neo4j import GraphDatabase
+
+# https://pythontic.com/database/neo4j/query%20nodes%20using%20label 
+
+# Database Credentials
+#uri             = "bolt://neo4j_docker:7474"
+uri = "bolt://neo4j_docker:7687"
+userName        = "neo4j"
+password        = "test"
+
+# Connect to the neo4j database server
+#neo4j_available=False
+#while not neo4j_available:
+#    try:
+#graphDB_Driver  = GraphDatabase.driver(uri)
+#    except ValueError:
+#        print("waiting 5 seconds for neo4j connection")
+#        time.sleep(5)
+
+def add_friend(tx, name, friend_name):
+    tx.run("MERGE (a:Person {name: $name}) "
+           "MERGE (a)-[:KNOWS]->(friend:Person {name: $friend_name})",
+           name=name, friend_name=friend_name)
+
+def print_friends(tx, name):
+    for record in tx.run("MATCH (a:Person)-[:KNOWS]->(friend) WHERE a.name = $name "
+                         "RETURN friend.name ORDER BY friend.name", name=name):
+        print(record["friend.name"])
 
 
 app = Flask(__name__)
 
-graph =  Graph("http://192.168.0.1:7474/db/data/",secure=False)
-
-graph.delete_all()
 
 
 @app.route('/')
-def hello():
+def main():
+    """
+    """
+    graphDB_Driver  = GraphDatabase.driver(uri)
+
+    with graphDB_Driver.session() as session:
+        session.write_transaction(add_friend, "Arthur", "Guinevere")
+        session.write_transaction(add_friend, "Arthur", "Lancelot")
+        session.write_transaction(add_friend, "Arthur", "Merlin")
+        session.read_transaction(print_friends, "Arthur")
+
+    graphDB_Driver.close()
+
     return "Hello"
+
+
+# EOF
