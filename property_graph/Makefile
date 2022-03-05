@@ -19,3 +19,6 @@ up:
 
 down:
 	docker-compose down
+
+black:
+	black webserver/app.py
