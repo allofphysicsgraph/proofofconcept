@@ -10,6 +10,8 @@ services:
       dockerfile: Dockerfile
     restart: unless-stopped
 # using "ports" makes flask/gunicorn accessible without going through nginx
+    environment:
+     - SECRET_KEY=${SECRET_KEY}
     expose:
       - 5000
     depends_on:

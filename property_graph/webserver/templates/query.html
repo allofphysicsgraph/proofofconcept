@@ -1,0 +1,33 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=show_friends">main page</a>
+</P>
+
+Examples:
+<UL>
+  <LI>MATCH (n) RETURN n  // all nodes</LI>
+  <LI>MATCH (n)-[r]->(m) RETURN n,r,m // all nodes and edges</LI>
+  <LI>MATCH (n) DETACH DELETE n // fails because it tries to write</LI>
+</UL>
+<fieldset>
+  <legend>
+    Cypher query
+  </legend>
+
+<form method="post" action="" onsubmit="return checkForm(this);">
+  {{ form.csrf_token }}
+  <P>
+    {{ form.query.label}}: {{ form.query(size=100) }}
+  <input type="submit" value="query graph">
+</form>
+</fieldset>
+
+<UL>
+{% for record in list_of_records %}
+    <LI>{{ record }}</LI>
+{% endfor %}
+</UL>
+
+{% endblock %}
