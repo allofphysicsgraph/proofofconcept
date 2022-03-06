@@ -9,8 +9,16 @@ Examples:
 <UL>
   <LI>MATCH (n) RETURN n  // all nodes</LI>
   <LI>MATCH (n)-[r]->(m) RETURN n,r,m // all nodes and edges</LI>
-  <LI>MATCH (n) DETACH DELETE n // fails because it tries to write</LI>
+  <LI>MATCH (n) RETURN distinct labels(n) // To get all distinct node labels (<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)</LI>
+  <LI>MATCH (n) RETURN distinct labels(n), count(*) // To get the node count for each label (<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)</LI>
 </UL>
+<a href="https://gist.github.com/DaniSancas/1d5265fc159a95ff457b940fc5046887">cheatsheet</a>
+
+The following fail because they try to write:
+<UL>
+  <LI>MATCH (n) DETACH DELETE n // delete all nodes</LI>
+</UL>
+
 <fieldset>
   <legend>
     Cypher query

@@ -1,5 +1,5 @@
 from flask import Flask
-
+import random
 import time
 
 # overview of Python options: native driver, py2neo, neomodel
@@ -13,6 +13,8 @@ import time
 # this demo has a local Flask app connect to a remote Neo4j server
 # https://neo4j.com/developer/python-movie-app/
 # https://github.com/neo4j-examples/neo4j-movies-template/blob/master/flask-api/app.py
+
+# https://neo4j.com/docs/python-manual/current/cypher-workflow/
 
 import neo4j
 from neo4j import GraphDatabase
@@ -80,9 +82,133 @@ class Config(object):
     SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
+def generate_random_id(list_of_current_IDs: list) -> str:
+    found_new_ID = False
+    while not found_new_ID:
+        new_id = str(random.randint(1000000, 9999999))
+        if new_id not in list_of_current_IDs:
+            found_new_ID = True
+    return new_id
+
+
 # CYPHER help
 # https://neo4j.com/docs/cypher-manual/current
 # https://neo4j.com/docs/cypher-refcard/current/
+
+
+def neo4j_query_get_list_of_IDs(tx, node_type: str) -> list:
+    """
+    TODO: find ID per derivation, per step, per expression, or per feed
+    """
+    list_of_IDs = []
+    if node_type == "derivation":
+        for record in tx.run("MATCH (n:derivation) RETURN n.derivation_id"):
+            list_of_IDs.append(record.data()["n.derivation_id"])
+    elif node_type == "step":
+        for record in tx.run("MATCH (n:step) RETURN n.step_id"):
+            list_of_IDs.append(record.data()["n.step_id"])
+    return list_of_IDs
+
+
+def neo4j_query_add_derivation(
+    tx,
+    derivation_name_latex: str,
+    derivation_abstract_latex: str,
+    author_name_latex: str,
+) -> str:
+    # TODO: include current date-time
+    with graphDB_Driver.session() as session:
+        list_of_derivation_IDs = session.read_transaction(
+            neo4j_query_get_list_of_IDs, "derivation"
+        )
+    derivation_id = generate_random_id(list_of_derivation_IDs)
+
+    for record in tx.run(
+        "CREATE (a:derivation "
+        "{name_latex:$derivation_name_latex,"
+        "abstract_latex:$derivation_abstract_latex,"
+        "author_name_latex:$author_name_latex,"
+        "derivation_id:$derivation_id})",
+        derivation_name_latex=derivation_name_latex,
+        derivation_abstract_latex=derivation_abstract_latex,
+        author_name_latex=author_name_latex,
+        derivation_id=derivation_id,
+    ):
+        pass
+        # print(record)
+        # print(record.data)
+    return derivation_id
+
+
+def neo4j_query_add_step_to_derivation(
+    tx,
+    derivation_id: int,
+    inference_rule: str,
+    note_before_step_latex: str,
+    note_after_step_latex: str,
+    list_of_input_expressions_latex: list,
+    list_of_feed_expressions_latex: list,
+    list_of_output_expressions_latex: list,
+    author_name_latex: str,
+):
+    """
+    https://neo4j.com/docs/cypher-manual/current/clauses/create/
+
+    TODO: include current date-time
+
+    TODO: use of ID(a) is bad because the IDs can be re-used after a node is deleted.
+          Better (?) is https://neo4j.com/labs/apoc/4.4/overview/apoc.uuid/apoc.uuid.list/
+          see https://stackoverflow.com/a/60748909/1164295
+    """
+    with graphDB_Driver.session() as session:
+        list_of_step_IDs = session.read_transaction(neo4j_query_get_list_of_IDs, "step")
+    step_id = generate_random_id(list_of_step_IDs)
+
+    for record in tx.run(
+        "MATCH (a:derivation)"
+        "WHERE ID(a)==$derivation_id"
+        "CREATE (a)-[:HAS_STEP {sequence_index: 1}]->(b:step"
+        "{inference_rule:$inference_rule,"
+        "author_name_latex:$author_name_latex,"
+        "note_before_step_latex=$note_before_step_latex,"
+        "note_after_step_latex=$note_after_step_latex,"
+        "step_id=$step_id})",
+        inference_rule=inference_rule,
+        note_before_step_latex=note_before_step_latex,
+        note_after_step_latex=note_after_step_latex,
+        author_name_latex=author_name_latex,
+        step_id=step_id,
+    ):
+        pass
+    step_id = record["id"]
+    for input_index, input_expr in enumerate(list_of_input_expressions_latex):
+        tx.run(
+            "MATCH (a:step)"
+            "WHERE ID(a)==$step_id"
+            "CREATE (b:expression {user_latex: $expr_latex})-[:EXPRESSION {sequence_index: $input_index}]->(a)",
+            step_id=step_id,
+            input_index=input_index,
+            expr_latex=input_expr,
+        )
+    for feed_index, feed_expr in enumerate(list_of_feed_expressions_latex):
+        tx.run(
+            "MATCH (a:step)"
+            "WHERE ID(a)==$step_id"
+            "CREATE (b:feed {user_latex: $expr_latex})-[:FEED {sequence_index: $feed_index}]->(a)",
+            step_id=step_id,
+            feed_index=feed_index,
+            expr_latex=feed_expr,
+        )
+    for output_index, output_expr in enumerate(list_of_output_expressions_latex):
+        tx.run(
+            "MATCH (a:step)"
+            "WHERE ID(a)==$step_id"
+            "CREATE (a)-[:EXPRESSION {sequence_index: $output_index}]->(b:expression {user_latex: $expr_latex})",
+            step_id=step_id,
+            output_index=output_index,
+            expr_latex=output_expr,
+        )
+    return step_id
 
 
 def neo4j_query_add_friend(tx, name, friend_name):
@@ -129,6 +255,8 @@ def neo4j_query_delete_all_nodes_and_relationships(tx) -> None:
 def neo4j_query_all_nodes(tx):
     print("func: neo4j_query_all_nodes")
     str_to_print = ""
+    for record in tx.run("MATCH (n) RETURN n"):
+        print(record.data())
     for record in tx.run("MATCH (n) RETURN n.name"):
         print(record)
         str_to_print += str(record["n.name"]) + "\n"
@@ -218,6 +346,10 @@ def main():
         if line.startswith("@app.route("):
             func = cont.split("\n")[index + 1]
             func_name = func.replace("def ", "").replace("():", "")
+            if "(" in func_name:
+                continue  # skip rest of this loop and continue to next iteration
+                # func_name=func_name.split("(")[0]
+
             url = line.replace('@app.route("', "").replace('")', "")
 
             # list_of_valid_URLs.append(url)
@@ -226,6 +358,53 @@ def main():
     return render_template(
         "site_map.html", title="site map", list_of_funcs=list_of_func
     )
+
+
+@app.route("/add_derivation", methods=["GET", "POST"])
+def to_add_derivation():
+    """
+    create new derivation
+    user provides deritivation name and abstract
+    """
+    derivation_name_latex = "a deriv"
+    derivation_abstract_latex = "an abstract for deriv"
+    author_name_latex = "ben"
+    with graphDB_Driver.session() as session:
+        session.write_transaction(
+            neo4j_query_add_derivation,
+            derivation_name_latex,
+            derivation_abstract_latex,
+            author_name_latex,
+        )
+    return "added derivation"
+
+
+@app.route("/add_step/<derivation_id>", methods=["GET", "POST"])
+def to_add_step(derivation_id):
+    """
+    add new step to existing derivation
+    user provides latex and inference rule
+    """
+    author_name_latex = "ben"
+    inference_rule = "addXtoBothSides"
+    note_before_step_latex = "before step"
+    note_after_step_latex = "after step"
+    list_of_input_expressions_latex = ["a = b"]
+    list_of_feed_expressions_latex = ["2"]
+    list_of_output_expressions_latex = ["a + 2 = b + 2"]
+    with graphDB_Driver.session() as session:
+        session.write_transaction(
+            neo4j_query_add_step_to_derivation,
+            derivation_id,
+            inference_rule,
+            note_before_step_latex,
+            note_after_step_latex,
+            list_of_input_expressions_latex,
+            list_of_feed_expressions_latex,
+            list_of_output_expressions_latex,
+            author_name_latex,
+        )
+    return "added step"
 
 
 @app.route("/add_new_friends", methods=["GET", "POST"])
