@@ -25,12 +25,11 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 
-
 import os
-#import logging
 
-#logger = logging.getLogger(__name__)
+# import logging
 
+# logger = logging.getLogger(__name__)
 
 
 # https://hplgit.github.io/web4sciapps/doc/pub/._web4sa_flask004.html
@@ -77,15 +76,18 @@ class Config(object):
     """
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
     """
+
     SECRET_KEY = os.environ.get("SECRET_KEY")
+
 
 # CYPHER help
 # https://neo4j.com/docs/cypher-manual/current
 # https://neo4j.com/docs/cypher-refcard/current/
 
+
 def neo4j_query_add_friend(tx, name, friend_name):
     tx.run(
-        "MERGE (a:Person {name: $name}) " # node type "person" with property "name"
+        "MERGE (a:Person {name: $name}) "  # node type "person" with property "name"
         "MERGE (a)-[:KNOWS]->(friend:Person {name: $friend_name})",
         name=name,
         friend_name=friend_name,
@@ -98,24 +100,31 @@ def neo4j_query_all_edges(tx):
     str_to_print = ""
     print("raw:")
     for record in tx.run("MATCH (n)-[r]->(m) RETURN n,r,m"):
-        print("n=",record['n'],'r=',record['r'],'m=',record['m'])
+        print("n=", record["n"], "r=", record["r"], "m=", record["m"])
 
-# n= <Node id=0 labels=frozenset({'Person'}) properties={'name': 'Arthur'}>
-# r= <Relationship id=2 nodes=(<Node id=0 labels=frozenset({'Person'}) properties={'name': 'Arthur'}>, <Node id=3 labels=frozenset({'Person'}) properties={'name': 'Merlin'}>) type='KNOWS' properties={}>
+    # n= <Node id=0 labels=frozenset({'Person'}) properties={'name': 'Arthur'}>
+    # r= <Relationship id=2 nodes=(<Node id=0 labels=frozenset({'Person'}) properties={'name': 'Arthur'}>, <Node id=3 labels=frozenset({'Person'}) properties={'name': 'Merlin'}>) type='KNOWS' properties={}>
 
-# https://stackoverflow.com/questions/31485802/how-to-return-relationship-type-with-neo4js-cypher-queries
+    # https://stackoverflow.com/questions/31485802/how-to-return-relationship-type-with-neo4js-cypher-queries
     print("proper return:")
     for record in tx.run("MATCH (n)-[r]->(m) RETURN n.name,type(r),m.name"):
         print(record)
         str_to_print += (
-            str(record["n.name"]) + "-" + str(record["type(r)"]) + "->" + str(record["m.name"]) + "\n"
+            str(record["n.name"])
+            + "-"
+            + str(record["type(r)"])
+            + "->"
+            + str(record["m.name"])
+            + "\n"
         )
     return str_to_print
+
 
 def neo4j_query_delete_all_nodes_and_relationships(tx) -> None:
     print("func: neo4j_query_delete_all_nodes_and_relationships")
     tx.run("MATCH (n) DETACH DELETE n")
     return
+
 
 def neo4j_query_all_nodes(tx):
     print("func: neo4j_query_all_nodes")
@@ -125,18 +134,19 @@ def neo4j_query_all_nodes(tx):
         str_to_print += str(record["n.name"]) + "\n"
     return str_to_print
 
+
 def neo4j_query_user_query(tx, query: str) -> str:
-    """
-    """
+    """ """
     list_of_records = []
     try:
         for record in tx.run(query):
             list_of_records.append(str(record))
     except neo4j.exceptions.ClientError:
-        list_of_records=["WRITE OPERATIONS NOT ALLOWED (1)"]
+        list_of_records = ["WRITE OPERATIONS NOT ALLOWED (1)"]
     except neo4j.exceptions.TransactionError:
-        list_of_records=["WRITE OPERATIONS NOT ALLOWED (2)"]
+        list_of_records = ["WRITE OPERATIONS NOT ALLOWED (2)"]
     return list_of_records
+
 
 def neo4j_query_who_are_friends_of(tx, name: str) -> list:
     print("func: neo4j_query_who_are_friends_of")
@@ -150,6 +160,7 @@ def neo4j_query_who_are_friends_of(tx, name: str) -> list:
         print(record["friend.name"])
         list_of_friends.append(str(record["friend.name"]))
     return list_of_friends
+
 
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 csrf = CSRFProtect()
@@ -173,15 +184,21 @@ app.config["DEBUG"] = True
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 csrf.init_app(app)
 
+
 class SpecifyNewFriendshipForm(FlaskForm):
     """
     Ben - KNOWS -> Bob
     """
+
     first_name = StringField(
         "first name",
         validators=[validators.InputRequired(), validators.Length(max=100)],
     )
-    second_name = StringField("second name",validators=[validators.InputRequired(), validators.Length(max=100)])
+    second_name = StringField(
+        "second name",
+        validators=[validators.InputRequired(), validators.Length(max=100)],
+    )
+
 
 class CypherQueryForm(FlaskForm):
     query = StringField(
@@ -210,18 +227,20 @@ def main():
         "site_map.html", title="site map", list_of_funcs=list_of_func
     )
 
+
 @app.route("/add_new_friends", methods=["GET", "POST"])
 def to_add_new_friends():
 
     web_form = SpecifyNewFriendshipForm(request.form)
     if request.method == "POST" and web_form.validate():
-        first_name  = str(web_form.first_name.data)
+        first_name = str(web_form.first_name.data)
         second_name = str(web_form.second_name.data)
-        print("relation to add:",first_name, second_name)
+        print("relation to add:", first_name, second_name)
         with graphDB_Driver.session() as session:
-            session.write_transaction(neo4j_query_add_friend, first_name,second_name)
+            session.write_transaction(neo4j_query_add_friend, first_name, second_name)
         return redirect(url_for("to_show_friends_of"))
     return render_template("input_new_friendship.html", form=web_form)
+
 
 @app.route("/query", methods=["GET", "POST"])
 def to_query():
@@ -229,15 +248,18 @@ def to_query():
     list_of_records = []
     if request.method == "POST" and web_form.validate():
         query = str(web_form.query.data)
-        print("query:",query)
+        print("query:", query)
         try:
             with graphDB_Driver.session() as session:
-                list_of_records=session.read_transaction(neo4j_query_user_query, query)
+                list_of_records = session.read_transaction(
+                    neo4j_query_user_query, query
+                )
         except neo4j.exceptions.ClientError:
-            list_of_records=["WRITE OPERATIONS NOT ALLOWED (3)"]
+            list_of_records = ["WRITE OPERATIONS NOT ALLOWED (3)"]
         except neo4j.exceptions.TransactionError:
-            list_of_records=["WRITE OPERATIONS NOT ALLOWED (4)"]
-    return render_template("query.html", form=web_form,list_of_records=list_of_records)
+            list_of_records = ["WRITE OPERATIONS NOT ALLOWED (4)"]
+    return render_template("query.html", form=web_form, list_of_records=list_of_records)
+
 
 @app.route("/create_friends")
 def to_create_friends():
@@ -271,7 +293,9 @@ def to_delete_graph_content():
     https://neo4j.com/developer/kb/large-delete-transaction-best-practices-in-neo4j/
     """
     with graphDB_Driver.session() as session:
-        str_to_print = session.write_transaction(neo4j_query_delete_all_nodes_and_relationships)
+        str_to_print = session.write_transaction(
+            neo4j_query_delete_all_nodes_and_relationships
+        )
     return "deleted all graph content"
 
 
@@ -289,6 +313,7 @@ def to_delete_graph_content():
 # queries:
 # https://stackoverflow.com/a/20894360/1164295
 
+
 @app.route("/show_friends_of")
 def to_show_friends_of():
     print("func: to_show_friends_of")
@@ -296,10 +321,17 @@ def to_show_friends_of():
     origin_person = "Arthur"
 
     with graphDB_Driver.session() as session:
-        list_of_friends = session.read_transaction(neo4j_query_who_are_friends_of, origin_person)
+        list_of_friends = session.read_transaction(
+            neo4j_query_who_are_friends_of, origin_person
+        )
 
     # graphDB_Driver.close()
-    return render_template("show_friends_of.html", title="created", list_to_print=list_of_friends, origin=origin_person)
+    return render_template(
+        "show_friends_of.html",
+        title="created",
+        list_to_print=list_of_friends,
+        origin=origin_person,
+    )
 
 
 # EOF
