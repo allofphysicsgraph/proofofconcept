@@ -1,0 +1,49 @@
+{% extends "_base.html" %}
+{% block content %}
+
+
+<P>Select an inference rule to create a new step for TODO:name_of_derivation
+
+
+<!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
+
+<fieldset>
+<legend>
+  <H2>Select inference rule from list</h2>
+</legend>
+
+<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
+<input type="text" id="inf_rule_input" onkeyup="select_infrule()" placeholder="Select inference rule">
+
+<UL id="inf_rules_UL">
+  {% for inf_rule in inf_rule_list %}
+  <LI>{{inf_rule}}</LI>
+  {% endfor %}
+</UL>
+
+</fieldset>
+
+<script>
+function select_infrule() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('inf_rule_input');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("inf_rules_UL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+
+{% endblock %}

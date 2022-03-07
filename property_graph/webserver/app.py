@@ -328,6 +328,28 @@ class SpecifyNewFriendshipForm(FlaskForm):
     )
 
 
+class SpecifyNewDerivationForm(FlaskForm):
+    """ """
+
+    derivation_name_latex = StringField(
+        "derivation name (latex)",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+    abstract_latex = StringField(
+        "abstract (latex)",
+        validators=[validators.InputRequired(), validators.Length(max=10000)],
+    )
+
+
+class SpecifyNewStepForm(FlaskForm):
+    """ """
+
+    inference_rule = StringField(
+        "inference rule",
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
+    )
+
+
 class CypherQueryForm(FlaskForm):
     query = StringField(
         "Cypher query",
@@ -366,17 +388,25 @@ def to_add_derivation():
     create new derivation
     user provides deritivation name and abstract
     """
-    derivation_name_latex = "a deriv"
-    derivation_abstract_latex = "an abstract for deriv"
-    author_name_latex = "ben"
-    with graphDB_Driver.session() as session:
-        session.write_transaction(
-            neo4j_query_add_derivation,
-            derivation_name_latex,
-            derivation_abstract_latex,
-            author_name_latex,
-        )
-    return "added derivation"
+
+    web_form = SpecifyNewDerivationForm(request.form)
+    if request.method == "POST" and web_form.validate():
+        derivation_name_latex = str(web_form.derivation_name_latex.data)
+        abstract_latex = str(web_form.abstract_latex.data)
+        print("derivation to add:", derivation_name_latex, abstract_latex)
+
+        #        derivation_name_latex = "a deriv"
+        #        derivation_abstract_latex = "an abstract for deriv"
+        author_name_latex = "ben"
+        with graphDB_Driver.session() as session:
+            derivation_id = session.write_transaction(
+                neo4j_query_add_derivation,
+                derivation_name_latex,
+                abstract_latex,
+                author_name_latex,
+            )
+        return redirect(url_for("to_add_step", derivation_id=derivation_id))
+    return render_template("create_derivation.html", form=web_form)
 
 
 @app.route("/add_step/<derivation_id>", methods=["GET", "POST"])
@@ -385,24 +415,34 @@ def to_add_step(derivation_id):
     add new step to existing derivation
     user provides latex and inference rule
     """
-    author_name_latex = "ben"
-    inference_rule = "addXtoBothSides"
-    note_before_step_latex = "before step"
-    note_after_step_latex = "after step"
-    list_of_input_expressions_latex = ["a = b"]
-    list_of_feed_expressions_latex = ["2"]
-    list_of_output_expressions_latex = ["a + 2 = b + 2"]
-    with graphDB_Driver.session() as session:
-        session.write_transaction(
-            neo4j_query_add_step_to_derivation,
-            derivation_id,
-            inference_rule,
-            note_before_step_latex,
-            note_after_step_latex,
-            list_of_input_expressions_latex,
-            list_of_feed_expressions_latex,
-            list_of_output_expressions_latex,
-            author_name_latex,
+
+    inf_rule_list = ["addXtoBothSides", "multBothSidesBy"]
+
+    web_form = SpecifyNewStepForm(request.form)
+    if request.method == "POST" and web_form.validate():
+
+        author_name_latex = "ben"
+        inference_rule = "addXtoBothSides"
+        note_before_step_latex = "before step"
+        note_after_step_latex = "after step"
+        list_of_input_expressions_latex = ["a = b"]
+        list_of_feed_expressions_latex = ["2"]
+        list_of_output_expressions_latex = ["a + 2 = b + 2"]
+        with graphDB_Driver.session() as session:
+            session.write_transaction(
+                neo4j_query_add_step_to_derivation,
+                derivation_id,
+                inference_rule,
+                note_before_step_latex,
+                note_after_step_latex,
+                list_of_input_expressions_latex,
+                list_of_feed_expressions_latex,
+                list_of_output_expressions_latex,
+                author_name_latex,
+            )
+    else:
+        return render_template(
+            "new_step_select_inference_rule.html", inf_rule_list=inf_rule_list
         )
     return "added step"
 
