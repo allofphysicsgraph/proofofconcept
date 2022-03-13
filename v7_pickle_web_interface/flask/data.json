@@ -23948,6 +23948,7 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
+            "measure": "temperature",
             "references": [
                 "https://en.wikipedia.org/wiki/Kelvin"
             ]
@@ -23977,6 +23978,7 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
+            "measure": "length",
             "references": [
                 "https://en.wikipedia.org/wiki/Hand_(unit)"
             ]
@@ -23991,6 +23993,7 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
+            "measure": "mass",
             "references": [
                 "https://en.wikipedia.org/wiki/Kilogram",
                 "https://www.wikidata.org/wiki/Q11570"
@@ -24006,6 +24009,7 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
+            "measure": "length",
             "references": [
                 "https://en.wikipedia.org/wiki/Light-year"
             ]
@@ -24020,6 +24024,7 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
+            "measure": "length",
             "references": [
                 "https://en.wikipedia.org/wiki/Metre"
             ]
@@ -24049,6 +24054,7 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
+            "measure": "length",
             "references": [
                 "https://en.wikipedia.org/wiki/Parsec"
             ]
@@ -24063,6 +24069,7 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
+            "measure": "time",
             "references": [
                 "https://en.wikipedia.org/wiki/Second"
             ]
@@ -24077,6 +24084,7 @@
                 "amount of substance": 0,
                 "luminous intensity": 0
             },
+            "measure": "time",
             "references": [
                 "https://en.wikipedia.org/wiki/Sol_(day_on_Mars)"
             ]
