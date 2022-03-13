@@ -65,7 +65,7 @@ uri = "bolt://neo4j_docker:7687"
 # Connect to the neo4j database server
 neo4j_available = False
 while not neo4j_available:
-    print("started while loop")
+    print("TRACE: started while loop")
     try:
         graphDB_Driver = GraphDatabase.driver(uri)
         neo4j_available = True
@@ -83,6 +83,10 @@ class Config(object):
 
 
 def generate_random_id(list_of_current_IDs: list) -> str:
+    """
+    statically defined numeric IDs for nodes in the graph
+    """
+    print("[TRACE] func: generate_random_id")
     found_new_ID = False
     while not found_new_ID:
         new_id = str(random.randint(1000000, 9999999))
@@ -100,6 +104,7 @@ def neo4j_query_get_list_of_IDs(tx, node_type: str) -> list:
     """
     TODO: find ID per derivation, per step, per expression, or per feed
     """
+    print("[TRACE] func: neo4j_query_get_list_of_IDs")
     list_of_IDs = []
     if node_type == "derivation":
         for record in tx.run("MATCH (n:derivation) RETURN n.derivation_id"):
@@ -107,7 +112,34 @@ def neo4j_query_get_list_of_IDs(tx, node_type: str) -> list:
     elif node_type == "step":
         for record in tx.run("MATCH (n:step) RETURN n.step_id"):
             list_of_IDs.append(record.data()["n.step_id"])
+    elif node_type == "symbol":
+        for record in tx.run("MATCH (n:symbol) RETURN n.symbol_id"):
+            list_of_IDs.append(record.data()["n.step_id"])
+    elif node_type == "operator":
+        for record in tx.run("MATCH (n:operator) RETURN n.operator_id"):
+            list_of_IDs.append(record.data()["n.operator_id"])
+    elif node_type == "expression":
+        for record in tx.run("MATCH (n:expression) RETURN n.expression_id"):
+            list_of_IDs.append(record.data()["n.expression_id"])
+    elif node_type == "inference_rule":
+        for record in tx.run("MATCH (n:inference_rule) RETURN n.inference_rule_id"):
+            list_of_IDs.append(record.data()["n.inference_rule_id"])
+    else:
+        raise Exception("ERROR: Unrecognized node type")
     return list_of_IDs
+
+
+def neo4j_query_get_list_of_inference_rules(tx) -> list:
+    """
+    what inference rules exist?
+    """
+    print("[TRACE] func: neo4j_query_get_list_of_inference_rules")
+    str_to_print=""
+    for record in tx.run("MATCH (n:inference_rule) RETURN n"):
+        print(str(record["n"]))
+        str_to_print+=record["n"]+"\n"
+
+    return list_of_inference_rules
 
 
 def neo4j_query_add_derivation(
@@ -116,6 +148,7 @@ def neo4j_query_add_derivation(
     derivation_abstract_latex: str,
     author_name_latex: str,
 ) -> str:
+    print("[TRACE] func: neo4j_query_add_derivation")
     # TODO: include current date-time
     with graphDB_Driver.session() as session:
         list_of_derivation_IDs = session.read_transaction(
@@ -125,7 +158,7 @@ def neo4j_query_add_derivation(
 
     for record in tx.run(
         "CREATE (a:derivation "
-        "{name_latex:$derivation_name_latex,"
+        "{   name_latex:$derivation_name_latex,"
         "abstract_latex:$derivation_abstract_latex,"
         "author_name_latex:$author_name_latex,"
         "derivation_id:$derivation_id})",
@@ -138,6 +171,34 @@ def neo4j_query_add_derivation(
         # print(record)
         # print(record.data)
     return derivation_id
+
+
+def neo4j_query_add_inference_rule(
+    tx, inference_rule_name: str, inference_rule_latex: str, author_name_latex: str
+):
+    """
+    >>> neo4j_query_add_inference_rule(tx,)
+    """
+    print("[TRACE] func: neo4j_query_add_inference_rule")
+    with graphDB_Driver.session() as session:
+        list_of_inference_rule_IDs = session.read_transaction(
+            neo4j_query_get_list_of_IDs, "inference_rule"
+        )
+    inference_rule_id = generate_random_id(list_of_inference_rule_IDs)
+
+    for record in tx.run(
+        "CREATE (a:inference_rule"
+        "{name:$inference_rule_name,"
+        "latex:$inference_rule_latex,"
+        "author_name_latex:$author_name_latex,"
+        "inference_rule_id:$inference_rule_id})",
+        inference_rule_name=inference_rule_name,
+        inference_rule_latex=inference_rule_latex,
+        author_name_latex=author_name_latex,
+        inference_rule_id=inference_rule_id,
+    ):
+        pass
+    return inference_rule_id
 
 
 def neo4j_query_add_step_to_derivation(
@@ -160,21 +221,23 @@ def neo4j_query_add_step_to_derivation(
           Better (?) is https://neo4j.com/labs/apoc/4.4/overview/apoc.uuid/apoc.uuid.list/
           see https://stackoverflow.com/a/60748909/1164295
     """
+    print("[TRACE] func: neo4j_query_add_step_to_derivation")
     with graphDB_Driver.session() as session:
         list_of_step_IDs = session.read_transaction(neo4j_query_get_list_of_IDs, "step")
     step_id = generate_random_id(list_of_step_IDs)
+
+    # TODO: for the derivation, determine the list of all sequence_index values,
+    #       then increment max to get the sequence_index for this step
 
     # inference rule
     for record in tx.run(
         "MATCH (a:derivation)"
         "WHERE ID(a)==$derivation_id"
         "CREATE (a)-[:HAS_STEP {sequence_index: 1}]->(b:step"
-        "{inference_rule:$inference_rule,"
-        "author_name_latex:$author_name_latex,"
+        "{author_name_latex:$author_name_latex,"
         "note_before_step_latex=$note_before_step_latex,"
         "note_after_step_latex=$note_after_step_latex,"
         "step_id=$step_id})",
-        inference_rule=inference_rule,
         note_before_step_latex=note_before_step_latex,
         note_after_step_latex=note_after_step_latex,
         author_name_latex=author_name_latex,
@@ -182,6 +245,18 @@ def neo4j_query_add_step_to_derivation(
     ):
         pass
     step_id = record["id"]
+
+    # TODO: match both step and existing inference rule
+    for record in tx.run(
+        "MATCH (a:step)"
+        "WHERE ID(a)==$step_id"
+        "MATCH (b:inference_rule)"
+        "WHERE ID(b)==$inference_rule"
+        "CREATE (a)-[:HAS_INFERENCE_RULE]->(b)",
+        inference_rule=inference_rule,
+        step_id=step_id,
+    ):
+        pass
 
     # input expressions
     for input_index, input_expr in enumerate(list_of_input_expressions_latex):
@@ -218,18 +293,33 @@ def neo4j_query_add_step_to_derivation(
     return step_id
 
 
-def neo4j_query_add_friend(tx, name, friend_name):
-    tx.run(
-        "MERGE (a:Person {name: $name}) "  # node type "person" with property "name"
-        "MERGE (a)-[:KNOWS]->(friend:Person {name: $friend_name})",
-        name=name,
-        friend_name=friend_name,
-    )
-    return
+# def neo4j_query_add_friend(tx, name, friend_name):
+#    tx.run(
+#        "MERGE (a:Person {name: $name}) "  # node type "person" with property "name"
+#        "MERGE (a)-[:KNOWS]->(friend:Person {name: $friend_name})",
+#        name=name,
+#        friend_name=friend_name,
+#    )
+#    return
+
+
+def neo4j_query_list_all_inference_rules(tx):
+    """
+    >>> neo4j_query_list_all_inference_rules(tx)
+    """
+    print("[TRACE] func: neo4j_query_list_all_inference_rules")
+    str_to_print = ""
+    for record in tx.run("MATCH (n:inference_rule) RETURN n"):
+        print("n=",str(record["n"]))
+        str_to_print += str(record["n"]) + "\n"
+    return str_to_print
 
 
 def neo4j_query_all_edges(tx):
-    print("func: neo4j_query_all_edges")
+    """
+    >>>
+    """
+    print("[TRACE] func: neo4j_query_all_edges")
     str_to_print = ""
     print("raw:")
     for record in tx.run("MATCH (n)-[r]->(m) RETURN n,r,m"):
@@ -261,7 +351,7 @@ def neo4j_query_delete_all_nodes_and_relationships(tx) -> None:
 
     >>> neo4j_query_delete_all_nodes_and_relationships(tx)
     """
-    print("func: neo4j_query_delete_all_nodes_and_relationships")
+    print("[TRACE] func: neo4j_query_delete_all_nodes_and_relationships")
     tx.run("MATCH (n) DETACH DELETE n")
     return
 
@@ -274,7 +364,7 @@ def neo4j_query_all_nodes(tx):
 
     >>> neo4j_query_all_nodes(tx)
     """
-    print("func: neo4j_query_all_nodes")
+    print("[TRACE] func: neo4j_query_all_nodes")
     str_to_print = ""
     for record in tx.run("MATCH (n) RETURN n"):
         print(record.data())
@@ -292,6 +382,7 @@ def neo4j_query_user_query(tx, query: str) -> str:
 
     >>> neo4j_query_user_query(tx, "test")
     """
+    print("[TRACE] func: neo4j_query_user_query")
     list_of_records = []
     try:
         for record in tx.run(query):
@@ -303,21 +394,21 @@ def neo4j_query_user_query(tx, query: str) -> str:
     return list_of_records
 
 
-def neo4j_query_who_are_friends_of(tx, name: str) -> list:
-    """
-    DEMO; CAN BE DELETED
-    """
-    print("func: neo4j_query_who_are_friends_of")
-    list_of_friends = []
-    for record in tx.run(
-        "MATCH (a:Person)-[:KNOWS]->(friend) WHERE a.name = $name "
-        "RETURN friend.name ORDER BY friend.name",
-        name=name,
-    ):
-        print(record)
-        print(record["friend.name"])
-        list_of_friends.append(str(record["friend.name"]))
-    return list_of_friends
+# def neo4j_query_who_are_friends_of(tx, name: str) -> list:
+#    """
+#    DEMO; CAN BE DELETED
+#    """
+#    print("func: neo4j_query_who_are_friends_of")
+#    list_of_friends = []
+#    for record in tx.run(
+#        "MATCH (a:Person)-[:KNOWS]->(friend) WHERE a.name = $name "
+#        "RETURN friend.name ORDER BY friend.name",
+#        name=name,
+#    ):
+#        print(record)
+#        print(record["friend.name"])
+#        list_of_friends.append(str(record["friend.name"]))
+#    return list_of_friends
 
 
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
@@ -343,21 +434,21 @@ app.config["DEBUG"] = True
 csrf.init_app(app)
 
 
-class SpecifyNewFriendshipForm(FlaskForm):
-    """
-    DEMO; CAN BE DELETED
-
-    Ben - KNOWS -> Bob
-    """
-
-    first_name = StringField(
-        "first name",
-        validators=[validators.InputRequired(), validators.Length(max=100)],
-    )
-    second_name = StringField(
-        "second name",
-        validators=[validators.InputRequired(), validators.Length(max=100)],
-    )
+# class SpecifyNewFriendshipForm(FlaskForm):
+#    """
+#    DEMO; CAN BE DELETED
+#
+#    Ben - KNOWS -> Bob
+#    """
+#
+#    first_name = StringField(
+#        "first name",
+#        validators=[validators.InputRequired(), validators.Length(max=100)],
+#    )
+#    second_name = StringField(
+#        "second name",
+#        validators=[validators.InputRequired(), validators.Length(max=100)],
+#    )
 
 
 class SpecifyNewDerivationForm(FlaskForm):
@@ -375,6 +466,17 @@ class SpecifyNewDerivationForm(FlaskForm):
         "abstract (latex)",
         validators=[validators.InputRequired(), validators.Length(max=10000)],
     )
+
+
+class SpecifyNewInferenceRuleForm(FlaskForm):
+    """
+    web form for user to provide inference rule
+
+    TODO: check that the name of the inference rule doesn't conflict with existing
+    """
+
+    inference_rule_name = StringField()
+    inference_rule_latex = StringField()
 
 
 class SpecifyNewStepForm(FlaskForm):
@@ -406,7 +508,7 @@ def main():
 
     >>> main()
     """
-    print("func: main")
+    print("[TRACE] func: main")
     with open("app.py", "r") as file_handle:
         cont = file_handle.read()
     list_of_func = []
@@ -434,7 +536,7 @@ def to_add_derivation():
     create new derivation
     user provides deritivation name and abstract
     """
-
+    print("[TRACE] func: to_add_derivation")
     web_form = SpecifyNewDerivationForm(request.form)
     if request.method == "POST" and web_form.validate():
         derivation_name_latex = str(web_form.derivation_name_latex.data)
@@ -461,7 +563,7 @@ def to_add_step(derivation_id):
     add new step to existing derivation
     user provides latex and inference rule
     """
-
+    print("[TRACE] func: to_add_step")
     inf_rule_list = ["addXtoBothSides", "multBothSidesBy"]
 
     web_form = SpecifyNewStepForm(request.form)
@@ -493,20 +595,41 @@ def to_add_step(derivation_id):
     return "added step"
 
 
-@app.route("/add_new_friends", methods=["GET", "POST"])
-def to_add_new_friends():
-    """
-    DEMO; CAN BE DELETED
-    """
-    web_form = SpecifyNewFriendshipForm(request.form)
+@app.route("/add_inference_rule/", methods=["GET", "POST"])
+def to_add_inference_rule():
+    """ """
+    print("[TRACE] func: to_add_inference_rule")
+    web_form = SpecifyNewInferenceRuleForm(request.form)
     if request.method == "POST" and web_form.validate():
-        first_name = str(web_form.first_name.data)
-        second_name = str(web_form.second_name.data)
-        print("relation to add:", first_name, second_name)
+        inference_rule_name = str(web_form.inference_rule_name.data)
+        inference_rule_latex = str(web_form.inference_rule_latex.data)
+        author_name_latex = "ben"
         with graphDB_Driver.session() as session:
-            session.write_transaction(neo4j_query_add_friend, first_name, second_name)
-        return redirect(url_for("to_show_friends_of"))
-    return render_template("input_new_friendship.html", form=web_form)
+            session.write_transaction(
+                neo4j_query_add_inference_rule,
+                inference_rule_name=inference_rule_name,
+                inference_rule_latex=inference_rule_latex,
+                author_name_latex=author_name_latex,
+            )
+    else:
+        return render_template("new_inference_rule.html", form=web_form)
+    return "added inference rule"
+
+
+# @app.route("/add_new_friends", methods=["GET", "POST"])
+# def to_add_new_friends():
+#    """
+#    DEMO; CAN BE DELETED
+#    """
+#    web_form = SpecifyNewFriendshipForm(request.form)
+#    if request.method == "POST" and web_form.validate():
+#        first_name = str(web_form.first_name.data)
+#        second_name = str(web_form.second_name.data)
+#        print("relation to add:", first_name, second_name)
+#        with graphDB_Driver.session() as session:
+#            session.write_transaction(neo4j_query_add_friend, first_name, second_name)
+#        return redirect(url_for("to_show_friends_of"))
+#    return render_template("input_new_friendship.html", form=web_form)
 
 
 @app.route("/query", methods=["GET", "POST"])
@@ -514,6 +637,7 @@ def to_query():
     """
     page for submitting Cypher queries
     """
+    print("[TRACE] func: to_query")
     web_form = CypherQueryForm(request.form)
     list_of_records = []
     if request.method == "POST" and web_form.validate():
@@ -531,17 +655,28 @@ def to_query():
     return render_template("query.html", form=web_form, list_of_records=list_of_records)
 
 
-@app.route("/create_friends")
-def to_create_friends():
+# @app.route("/create_friends")
+# def to_create_friends():
+#    """
+#    DEMO; CAN BE DELETED
+#    """
+#    print("func: create_friends")
+#    with graphDB_Driver.session() as session:
+#        session.write_transaction(neo4j_query_add_friend, "Arthur", "Guinevere")
+#        session.write_transaction(neo4j_query_add_friend, "Arthur", "Lancelot")
+#        session.write_transaction(neo4j_query_add_friend, "Arthur", "Merlin")
+#    return "created friends"
+
+
+@app.route("/show_all_inference_rules")
+def to_show_all_inference_rules():
     """
-    DEMO; CAN BE DELETED
+    >>> to_show_all_inference_rules()
     """
-    print("func: create_friends")
+    print("[TRACE] func: to_show_all_inference_rules")
     with graphDB_Driver.session() as session:
-        session.write_transaction(neo4j_query_add_friend, "Arthur", "Guinevere")
-        session.write_transaction(neo4j_query_add_friend, "Arthur", "Lancelot")
-        session.write_transaction(neo4j_query_add_friend, "Arthur", "Merlin")
-    return "created friends"
+        str_to_print = session.read_transaction(neo4j_query_list_all_inference_rules)
+    return str_to_print
 
 
 @app.route("/show_all_nodes")
@@ -549,6 +684,7 @@ def to_show_all_nodes():
     """
     show all nodes
     """
+    print("[TRACE] func: to_show_all_nodes")
     with graphDB_Driver.session() as session:
         str_to_print = session.read_transaction(neo4j_query_all_nodes)
     return str_to_print
@@ -559,6 +695,7 @@ def to_show_all_edges():
     """
     show all edges
     """
+    print("[TRACE] func: to_show_all_edges")
     with graphDB_Driver.session() as session:
         str_to_print = session.read_transaction(neo4j_query_all_edges)
     return str_to_print
@@ -570,6 +707,7 @@ def to_delete_graph_content():
     https://neo4j.com/docs/cypher-manual/current/clauses/delete/
     https://neo4j.com/developer/kb/large-delete-transaction-best-practices-in-neo4j/
     """
+    print("[TRACE] func: to_delete_graph_content")
     with graphDB_Driver.session() as session:
         str_to_print = session.write_transaction(
             neo4j_query_delete_all_nodes_and_relationships
@@ -592,27 +730,27 @@ def to_delete_graph_content():
 # https://stackoverflow.com/a/20894360/1164295
 
 
-@app.route("/show_friends_of")
-def to_show_friends_of():
-    """
-    DEMO; CAN BE DELETED
-    """
-    print("func: to_show_friends_of")
-    # graphDB_Driver = GraphDatabase.driver(uri)
-    origin_person = "Arthur"
-
-    with graphDB_Driver.session() as session:
-        list_of_friends = session.read_transaction(
-            neo4j_query_who_are_friends_of, origin_person
-        )
-
-    # graphDB_Driver.close()
-    return render_template(
-        "show_friends_of.html",
-        title="created",
-        list_to_print=list_of_friends,
-        origin=origin_person,
-    )
+# @app.route("/show_friends_of")
+# def to_show_friends_of():
+#    """
+#    DEMO; CAN BE DELETED
+#    """
+#    print("func: to_show_friends_of")
+#    # graphDB_Driver = GraphDatabase.driver(uri)
+#    origin_person = "Arthur"
+#
+#    with graphDB_Driver.session() as session:
+#        list_of_friends = session.read_transaction(
+#            neo4j_query_who_are_friends_of, origin_person
+#        )
+#
+#    # graphDB_Driver.close()
+#    return render_template(
+#        "show_friends_of.html",
+#        title="created",
+#        list_to_print=list_of_friends,
+#        origin=origin_person,
+#    )
 
 
 # EOF

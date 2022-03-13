@@ -1,0 +1,23 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=new_inference_rule">main page</a>
+</P>
+
+<fieldset>
+  <legend>
+    Create new inference rule
+  </legend>
+
+<form method="post" action="" onsubmit="return checkForm(this);">
+  {{ form.csrf_token }}
+  <P>
+    {{ form.inference_rule_name.label}}: {{ form.inference_rule_name(size=50, maxlength=1000) }} <BR/>
+    &nbsp;<BR/>
+   {{form.inference_rule_latex.label }}: {{ form.inference_rule_latex(size=50, maxlength=1000) }}<BR/>
+  <input type="submit" value="add inference rule">
+</form>
+</fieldset>
+
+{% endblock %}

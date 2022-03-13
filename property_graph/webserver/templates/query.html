@@ -6,18 +6,57 @@
 </P>
 
 Examples:
-<UL>
-  <LI>MATCH (n) RETURN n  // all nodes</LI>
-  <LI>MATCH (n)-[r]->(m) RETURN n,r,m // all nodes and edges</LI>
-  <LI>MATCH (n) RETURN distinct labels(n) // To get all distinct node labels (<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)</LI>
-  <LI>MATCH (n) RETURN distinct labels(n), count(*) // To get the node count for each label (<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)</LI>
-</UL>
-<a href="https://gist.github.com/DaniSancas/1d5265fc159a95ff457b940fc5046887">cheatsheet</a>
+<table>
+  <tr>
+    <th>purpose</th>
+    <th>Cypher query</th>
+  </tr>
+  <tr>
+    <td>list all nodes</td>
+    <td>MATCH (n) RETURN n</td>
+  </tr>
+  <tr>
+    <td>list all nodes and edges</td>
+    <td>MATCH (n)-[r]->(m) RETURN n,r,m</td>
+  </tr>
+  <tr>
+    <td>list all distinct node labels (<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)</td>
+    <td>MATCH (n) RETURN distinct labels(n)</td>
+  </tr>
+  <tr>
+    <td>list the node count for each label (<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)</td>
+    <td>MATCH (n) RETURN distinct labels(n), count(*)</td>
+  </tr>
+  <tr>
+    <td>list derivations</td>
+    <td>MATCH (n:derivation) RETURN n</td>
+  </tr>
+  <tr>
+    <td>list inference rules</td>
+    <td>MATCH (n:inference_rule) RETURN n</td>
+  </tr>
+  <tr>
+    <td>list steps for derivation</td>
+    <td>MATCH (n:inference_rule) RETURN n</td>
+  </tr>
+</table>
+<P>
+  <a href="https://gist.github.com/DaniSancas/1d5265fc159a95ff457b940fc5046887">cheatsheet</a>
+</P>
 
-The following fail because they try to write:
-<UL>
-  <LI>MATCH (n) DETACH DELETE n // delete all nodes</LI>
-</UL>
+<P>
+  The following fail because they try to write:
+</P>
+<table>
+  <tr>
+    <th>purpose</th>
+    <th>Cypher query</th>
+  </tr>
+  <tr>
+    <td>delete all nodes</td>
+    <td>MATCH (n) DETACH DELETE n</td>
+  </tr>
+</table>
 
 <fieldset>
   <legend>
