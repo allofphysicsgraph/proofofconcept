@@ -164,6 +164,7 @@ def neo4j_query_add_step_to_derivation(
         list_of_step_IDs = session.read_transaction(neo4j_query_get_list_of_IDs, "step")
     step_id = generate_random_id(list_of_step_IDs)
 
+    # inference rule
     for record in tx.run(
         "MATCH (a:derivation)"
         "WHERE ID(a)==$derivation_id"
@@ -181,6 +182,8 @@ def neo4j_query_add_step_to_derivation(
     ):
         pass
     step_id = record["id"]
+
+    # input expressions
     for input_index, input_expr in enumerate(list_of_input_expressions_latex):
         tx.run(
             "MATCH (a:step)"
@@ -190,6 +193,8 @@ def neo4j_query_add_step_to_derivation(
             input_index=input_index,
             expr_latex=input_expr,
         )
+
+    # feed expressions
     for feed_index, feed_expr in enumerate(list_of_feed_expressions_latex):
         tx.run(
             "MATCH (a:step)"
@@ -199,6 +204,8 @@ def neo4j_query_add_step_to_derivation(
             feed_index=feed_index,
             expr_latex=feed_expr,
         )
+
+    # output expressions
     for output_index, output_expr in enumerate(list_of_output_expressions_latex):
         tx.run(
             "MATCH (a:step)"
@@ -247,12 +254,26 @@ def neo4j_query_all_edges(tx):
 
 
 def neo4j_query_delete_all_nodes_and_relationships(tx) -> None:
+    """
+    Delete all nodes and relationships from Neo4j database
+
+    This requires write access to Neo4j database
+
+    >>> neo4j_query_delete_all_nodes_and_relationships(tx)
+    """
     print("func: neo4j_query_delete_all_nodes_and_relationships")
     tx.run("MATCH (n) DETACH DELETE n")
     return
 
 
 def neo4j_query_all_nodes(tx):
+    """
+    List all nodes in Neo4j database
+
+    Read-only for Neo4j database
+
+    >>> neo4j_query_all_nodes(tx)
+    """
     print("func: neo4j_query_all_nodes")
     str_to_print = ""
     for record in tx.run("MATCH (n) RETURN n"):
@@ -264,7 +285,13 @@ def neo4j_query_all_nodes(tx):
 
 
 def neo4j_query_user_query(tx, query: str) -> str:
-    """ """
+    """
+    User-submitted Cypher query for Neo4j database
+
+    Read-only for Neo4j database
+
+    >>> neo4j_query_user_query(tx, "test")
+    """
     list_of_records = []
     try:
         for record in tx.run(query):
@@ -277,6 +304,9 @@ def neo4j_query_user_query(tx, query: str) -> str:
 
 
 def neo4j_query_who_are_friends_of(tx, name: str) -> list:
+    """
+    DEMO; CAN BE DELETED
+    """
     print("func: neo4j_query_who_are_friends_of")
     list_of_friends = []
     for record in tx.run(
@@ -315,6 +345,8 @@ csrf.init_app(app)
 
 class SpecifyNewFriendshipForm(FlaskForm):
     """
+    DEMO; CAN BE DELETED
+
     Ben - KNOWS -> Bob
     """
 
@@ -329,7 +361,11 @@ class SpecifyNewFriendshipForm(FlaskForm):
 
 
 class SpecifyNewDerivationForm(FlaskForm):
-    """ """
+    """
+    web form for user to provide name of (new) derivation
+
+    TODO: check that the name of the derivation doesn't conflict with existing derivation names
+    """
 
     derivation_name_latex = StringField(
         "derivation name (latex)",
@@ -342,7 +378,9 @@ class SpecifyNewDerivationForm(FlaskForm):
 
 
 class SpecifyNewStepForm(FlaskForm):
-    """ """
+    """
+    web form for user to specify inference rule in derivation
+    """
 
     inference_rule = StringField(
         "inference rule",
@@ -351,6 +389,10 @@ class SpecifyNewStepForm(FlaskForm):
 
 
 class CypherQueryForm(FlaskForm):
+    """
+    web form for user to provide Cypher query for Neo4j database
+    """
+
     query = StringField(
         "Cypher query",
         validators=[validators.InputRequired()],
@@ -359,7 +401,11 @@ class CypherQueryForm(FlaskForm):
 
 @app.route("/")
 def main():
-    """ """
+    """
+    initial page
+
+    >>> main()
+    """
     print("func: main")
     with open("app.py", "r") as file_handle:
         cont = file_handle.read()
@@ -449,7 +495,9 @@ def to_add_step(derivation_id):
 
 @app.route("/add_new_friends", methods=["GET", "POST"])
 def to_add_new_friends():
-
+    """
+    DEMO; CAN BE DELETED
+    """
     web_form = SpecifyNewFriendshipForm(request.form)
     if request.method == "POST" and web_form.validate():
         first_name = str(web_form.first_name.data)
@@ -463,6 +511,9 @@ def to_add_new_friends():
 
 @app.route("/query", methods=["GET", "POST"])
 def to_query():
+    """
+    page for submitting Cypher queries
+    """
     web_form = CypherQueryForm(request.form)
     list_of_records = []
     if request.method == "POST" and web_form.validate():
@@ -482,7 +533,9 @@ def to_query():
 
 @app.route("/create_friends")
 def to_create_friends():
-    """ """
+    """
+    DEMO; CAN BE DELETED
+    """
     print("func: create_friends")
     with graphDB_Driver.session() as session:
         session.write_transaction(neo4j_query_add_friend, "Arthur", "Guinevere")
@@ -493,6 +546,9 @@ def to_create_friends():
 
 @app.route("/show_all_nodes")
 def to_show_all_nodes():
+    """
+    show all nodes
+    """
     with graphDB_Driver.session() as session:
         str_to_print = session.read_transaction(neo4j_query_all_nodes)
     return str_to_print
@@ -500,6 +556,9 @@ def to_show_all_nodes():
 
 @app.route("/show_all_edges")
 def to_show_all_edges():
+    """
+    show all edges
+    """
     with graphDB_Driver.session() as session:
         str_to_print = session.read_transaction(neo4j_query_all_edges)
     return str_to_print
@@ -535,6 +594,9 @@ def to_delete_graph_content():
 
 @app.route("/show_friends_of")
 def to_show_friends_of():
+    """
+    DEMO; CAN BE DELETED
+    """
     print("func: to_show_friends_of")
     # graphDB_Driver = GraphDatabase.driver(uri)
     origin_person = "Arthur"
