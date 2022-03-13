@@ -134,10 +134,10 @@ def neo4j_query_get_list_of_inference_rules(tx) -> list:
     what inference rules exist?
     """
     print("[TRACE] func: neo4j_query_get_list_of_inference_rules")
-    str_to_print=""
+    str_to_print = ""
     for record in tx.run("MATCH (n:inference_rule) RETURN n"):
         print(str(record["n"]))
-        str_to_print+=record["n"]+"\n"
+        str_to_print += record["n"] + "\n"
 
     return list_of_inference_rules
 
@@ -310,7 +310,7 @@ def neo4j_query_list_all_inference_rules(tx):
     print("[TRACE] func: neo4j_query_list_all_inference_rules")
     str_to_print = ""
     for record in tx.run("MATCH (n:inference_rule) RETURN n"):
-        print("n=",str(record["n"]))
+        print("n=", str(record["n"]))
         str_to_print += str(record["n"]) + "\n"
     return str_to_print
 
