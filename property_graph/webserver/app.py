@@ -509,25 +509,9 @@ def main():
     >>> main()
     """
     print("[TRACE] func: main")
-    with open("app.py", "r") as file_handle:
-        cont = file_handle.read()
-    list_of_func = []
-    for index, line in enumerate(cont.split("\n")):
-        if line.startswith("@app.route("):
-            func = cont.split("\n")[index + 1]
-            func_name = func.replace("def ", "").replace("():", "")
-            if "(" in func_name:
-                continue  # skip rest of this loop and continue to next iteration
-                # func_name=func_name.split("(")[0]
-
-            url = line.replace('@app.route("', "").replace('")', "")
-
-            # list_of_valid_URLs.append(url)
-            list_of_func.append(func_name)
 
     return render_template(
-        "site_map.html", title="site map", list_of_funcs=list_of_func
-    )
+        "site_map.html", title="site map")
 
 
 @app.route("/add_derivation", methods=["GET", "POST"])
@@ -556,6 +540,14 @@ def to_add_derivation():
         return redirect(url_for("to_add_step", derivation_id=derivation_id))
     return render_template("create_derivation.html", form=web_form)
 
+@app.route("/edit_derivation", methods=["GET", "POST"])
+def to_edit_derivation():
+    """
+    add step to existing derivation
+
+    >>> to_edit_derivation
+    """
+    return "No HTML page available yet"
 
 @app.route("/add_step/<derivation_id>", methods=["GET", "POST"])
 def to_add_step(derivation_id):
@@ -714,43 +706,25 @@ def to_delete_graph_content():
         )
     return "deleted all graph content"
 
+@app.route("/export_to_cypher")
+def to_export_cypher():
+    """
+    TODO: export graph to CYPHER
 
-# TODO: export graph to CYPHER
+    # apoc
+    # https://neo4j.com/labs/apoc/4.1/export/cypher/
+    # https://neo4j.com/labs/apoc/4.1/overview/apoc.export/apoc.export.cypher.all/
+    # apoc.export.cypherQuery()
+    # https://stackoverflow.com/questions/44688194/efficient-importing-of-cypher-statements
 
-# apoc
-# https://neo4j.com/labs/apoc/4.1/export/cypher/
-# https://neo4j.com/labs/apoc/4.1/overview/apoc.export/apoc.export.cypher.all/
-# apoc.export.cypherQuery()
-# https://stackoverflow.com/questions/44688194/efficient-importing-of-cypher-statements
+    # command line
+    # https://neo4j.com/developer/kb/export-sub-graph-to-cypher-and-import/
 
-# command line
-# https://neo4j.com/developer/kb/export-sub-graph-to-cypher-and-import/
-
-# queries:
-# https://stackoverflow.com/a/20894360/1164295
-
-
-# @app.route("/show_friends_of")
-# def to_show_friends_of():
-#    """
-#    DEMO; CAN BE DELETED
-#    """
-#    print("func: to_show_friends_of")
-#    # graphDB_Driver = GraphDatabase.driver(uri)
-#    origin_person = "Arthur"
-#
-#    with graphDB_Driver.session() as session:
-#        list_of_friends = session.read_transaction(
-#            neo4j_query_who_are_friends_of, origin_person
-#        )
-#
-#    # graphDB_Driver.close()
-#    return render_template(
-#        "show_friends_of.html",
-#        title="created",
-#        list_to_print=list_of_friends,
-#        origin=origin_person,
-#    )
+    # queries:
+    # https://stackoverflow.com/a/20894360/1164295
+    """
+    print("[TRACE] func: to_export_cypher")
+    return "Cypher output not yet available"
 
 
 # EOF
