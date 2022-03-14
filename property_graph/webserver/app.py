@@ -100,46 +100,60 @@ def generate_random_id(list_of_current_IDs: list) -> str:
 # https://neo4j.com/docs/cypher-refcard/current/
 
 
-def neo4j_query_get_list_of_IDs(tx, node_type: str) -> list:
+def neo4j_query_list_IDs(tx, node_type: str) -> list:
     """
     TODO: find ID per derivation, per step, per expression, or per feed
     """
-    print("[TRACE] func: neo4j_query_get_list_of_IDs")
+    print("[TRACE] func: neo4j_query_list_IDs")
     list_of_IDs = []
-    if node_type == "derivation":
-        for record in tx.run("MATCH (n:derivation) RETURN n.derivation_id"):
-            list_of_IDs.append(record.data()["n.derivation_id"])
-    elif node_type == "step":
-        for record in tx.run("MATCH (n:step) RETURN n.step_id"):
-            list_of_IDs.append(record.data()["n.step_id"])
-    elif node_type == "symbol":
-        for record in tx.run("MATCH (n:symbol) RETURN n.symbol_id"):
-            list_of_IDs.append(record.data()["n.step_id"])
-    elif node_type == "operator":
-        for record in tx.run("MATCH (n:operator) RETURN n.operator_id"):
-            list_of_IDs.append(record.data()["n.operator_id"])
-    elif node_type == "expression":
-        for record in tx.run("MATCH (n:expression) RETURN n.expression_id"):
-            list_of_IDs.append(record.data()["n.expression_id"])
-    elif node_type == "inference_rule":
-        for record in tx.run("MATCH (n:inference_rule) RETURN n.inference_rule_id"):
-            list_of_IDs.append(record.data()["n.inference_rule_id"])
-    else:
-        raise Exception("ERROR: Unrecognized node type")
+    node_id = "n." + node_type + "_id"
+    for record in tx.run("MATCH (n:" + node_type + ") RETURN " + node_id):
+        list_of_IDs.append(record.data()[node_id])
+
+    # if node_type == "derivation":
+    #     for record in tx.run("MATCH (n:derivation) RETURN n.derivation_id"):
+    #         list_of_IDs.append(record.data()["n.derivation_id"])
+    # elif node_type == "step":
+    #     for record in tx.run("MATCH (n:step) RETURN n.step_id"):
+    #         list_of_IDs.append(record.data()["n.step_id"])
+    # elif node_type == "symbol":
+    #     for record in tx.run("MATCH (n:symbol) RETURN n.symbol_id"):
+    #         list_of_IDs.append(record.data()["n.step_id"])
+    # elif node_type == "operator":
+    #     for record in tx.run("MATCH (n:operator) RETURN n.operator_id"):
+    #         list_of_IDs.append(record.data()["n.operator_id"])
+    # elif node_type == "expression":
+    #     for record in tx.run("MATCH (n:expression) RETURN n.expression_id"):
+    #         list_of_IDs.append(record.data()["n.expression_id"])
+    # elif node_type == "inference_rule":
+    #     for record in tx.run("MATCH (n:inference_rule) RETURN n.inference_rule_id"):
+    #         list_of_IDs.append(record.data()["n.inference_rule_id"])
+    # else:
+    #     raise Exception("ERROR: Unrecognized node type")
     return list_of_IDs
 
 
-def neo4j_query_get_list_of_inference_rules(tx) -> list:
+def neo4j_query_list_nodes_of_type(tx, node_type: str) -> list:
     """
-    what inference rules exist?
-    """
-    print("[TRACE] func: neo4j_query_get_list_of_inference_rules")
-    str_to_print = ""
-    for record in tx.run("MATCH (n:inference_rule) RETURN n"):
-        print(str(record["n"]))
-        str_to_print += record["n"] + "\n"
 
-    return list_of_inference_rules
+    >>> neo4j_query_list_derivations(tx)
+    """
+    print("[TRACE] func: neo4j_query_list_nodes_of_type")
+    if node_type not in [
+        "derivation",
+        "inference_rule",
+        "symbol",
+        "operator",
+        "step",
+        "expression",
+    ]:
+        raise Exception("Unrecognized node type", node_type)
+
+    node_list = []
+    for record in tx.run("MATCH (n:" + node_type + ") RETURN n"):
+        print(record.data()["n"])
+        node_list.append(record.data()["n"])
+    return node_list
 
 
 def neo4j_query_add_derivation(
@@ -152,7 +166,7 @@ def neo4j_query_add_derivation(
     # TODO: include current date-time
     with graphDB_Driver.session() as session:
         list_of_derivation_IDs = session.read_transaction(
-            neo4j_query_get_list_of_IDs, "derivation"
+            neo4j_query_list_IDs, "derivation"
         )
     derivation_id = generate_random_id(list_of_derivation_IDs)
 
@@ -182,7 +196,7 @@ def neo4j_query_add_inference_rule(
     print("[TRACE] func: neo4j_query_add_inference_rule")
     with graphDB_Driver.session() as session:
         list_of_inference_rule_IDs = session.read_transaction(
-            neo4j_query_get_list_of_IDs, "inference_rule"
+            neo4j_query_list_IDs, "inference_rule"
         )
     inference_rule_id = generate_random_id(list_of_inference_rule_IDs)
 
@@ -223,7 +237,7 @@ def neo4j_query_add_step_to_derivation(
     """
     print("[TRACE] func: neo4j_query_add_step_to_derivation")
     with graphDB_Driver.session() as session:
-        list_of_step_IDs = session.read_transaction(neo4j_query_get_list_of_IDs, "step")
+        list_of_step_IDs = session.read_transaction(neo4j_query_list_IDs, "step")
     step_id = generate_random_id(list_of_step_IDs)
 
     # TODO: for the derivation, determine the list of all sequence_index values,
@@ -301,18 +315,6 @@ def neo4j_query_add_step_to_derivation(
 #        friend_name=friend_name,
 #    )
 #    return
-
-
-def neo4j_query_list_all_inference_rules(tx):
-    """
-    >>> neo4j_query_list_all_inference_rules(tx)
-    """
-    print("[TRACE] func: neo4j_query_list_all_inference_rules")
-    str_to_print = ""
-    for record in tx.run("MATCH (n:inference_rule) RETURN n"):
-        print("n=", str(record["n"]))
-        str_to_print += str(record["n"]) + "\n"
-    return str_to_print
 
 
 def neo4j_query_all_edges(tx):
@@ -510,8 +512,7 @@ def main():
     """
     print("[TRACE] func: main")
 
-    return render_template(
-        "site_map.html", title="site map")
+    return render_template("site_map.html", title="site map")
 
 
 @app.route("/add_derivation", methods=["GET", "POST"])
@@ -540,14 +541,43 @@ def to_add_derivation():
         return redirect(url_for("to_add_step", derivation_id=derivation_id))
     return render_template("create_derivation.html", form=web_form)
 
-@app.route("/edit_derivation", methods=["GET", "POST"])
-def to_edit_derivation():
+
+@app.route("/select_derivation_to_edit", methods=["GET", "POST"])
+def to_select_derivation_to_edit():
     """
-    add step to existing derivation
+    which existing derivation to edit?
+
+    >>> to_select_derivation_to_edit()
+    """
+    print("[TRACE] func: to_select_derivation_to_edit")
+    #    if request.method == "POST" and web_form.validate():
+
+    with graphDB_Driver.session() as session:
+        derivation_list = session.read_transaction(
+            neo4j_query_list_nodes_of_type, "derivation"
+        )
+
+    for deriv_dict in derivation_list:
+        print(deriv_dict)
+
+    return render_template("select_derivation.html", derivation_list=derivation_list)
+
+
+@app.route("/edit_derivation/<derivation_id>", methods=["GET", "POST"])
+def to_edit_derivation(derivation_id):
+    """
+    * add step to existing derivation
+    * delete step from existing derivation
+    * edit step in derivation
+    * delete derivation
 
     >>> to_edit_derivation
     """
-    return "No HTML page available yet"
+    print("[TRACE] func: to_edit_derivation")
+    #    if request.method == "POST" and web_form.validate():
+
+    return render_template("edit_derivation.html")
+
 
 @app.route("/add_step/<derivation_id>", methods=["GET", "POST"])
 def to_add_step(derivation_id):
@@ -667,7 +697,7 @@ def to_show_all_inference_rules():
     """
     print("[TRACE] func: to_show_all_inference_rules")
     with graphDB_Driver.session() as session:
-        str_to_print = session.read_transaction(neo4j_query_list_all_inference_rules)
+        str_to_print = session.read_transaction(neo4j_query_list_inference_rules)
     return str_to_print
 
 
@@ -705,6 +735,7 @@ def to_delete_graph_content():
             neo4j_query_delete_all_nodes_and_relationships
         )
     return "deleted all graph content"
+
 
 @app.route("/export_to_cypher")
 def to_export_cypher():
