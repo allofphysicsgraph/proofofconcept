@@ -1,7 +1,9 @@
+# Ben Payne
+# Physics Derivation Graph
+# https://allofphysics.com
 
-
-# 
-.PHONY: help docker 
+#
+.PHONY: help docker
 
 help:
 	@echo "make help"

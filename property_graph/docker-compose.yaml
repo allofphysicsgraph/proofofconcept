@@ -1,5 +1,11 @@
-# https://docs.docker.com/compose/compose-file/
+# Ben Payne
+# Physics Derivation Graph
+# https://allofphysics.com
 
+# Creative Commons Attribution 4.0 International License
+# https://creativecommons.org/licenses/by/4.0/
+
+# https://docs.docker.com/compose/compose-file/
 # https://docs.docker.com/compose/compose-file/#environment
 version: "3.6"
 
@@ -51,14 +57,24 @@ services:
       - "7687:7687"
     # as per https://neo4j.com/docs/operations-manual/current/docker/clustering/
     volumes:
-      - './data:/var/lib/neo4j/data'
-      - './logs:/var/lib/neo4j/logs'
-      - './conf:/var/lib/neo4j/conf'
+      - './neo4j_pdg/data:/var/lib/neo4j/data'
+      - './neo4j_pdg/logs:/var/lib/neo4j/logs'
+      - './neo4j_pdg/conf:/var/lib/neo4j/conf'
+      - './neo4j_pdg/plugins:/var/lib/neo4j/plugins'
     # https://docs.docker.com/compose/compose-file/compose-file-v3/#environment
     # see https://neo4j.com/docs/operations-manual/current/docker/ref-settings/
+    # https://community.neo4j.com/t/docker-compose-setting-for-apoc-installation/11621/9
+    # https://linuxtut.com/en/a37f1ee0e486658d10de/
+    # https://neo4j.com/labs/apoc/4.1/installation/
     environment:
       - NEO4J_dbms_allow__upgrade=true
       - NEO4J_AUTH=none
+      - NEO4J_apoc_export_file_enabled=true
+      - NEO4J_apoc_import_file_enabled=true
+      - NEO4J_apoc_import_file_use__neo4j__config=true
+      - NEO4J_dbms_directories_import=import # relative to /var/lib/neo4j
+      - NEO4J_dbms_security_procedures_allowlist=gds.*, apoc.*
+      - NEO4JLABS_PLUGINS=["apoc"]
 
 networks:
   neo4j-internal:

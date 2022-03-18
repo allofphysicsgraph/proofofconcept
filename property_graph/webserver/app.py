@@ -1,20 +1,52 @@
+#!/usr/bin/env python3
+# Ben Payne
+# Physics Derivation Graph
+# https://allofphysics.com
+
+# Creative Commons Attribution 4.0 International License
+# https://creativecommons.org/licenses/by/4.0/
+
+"""
+
+# How to run on the command line inside the docker container:
+```python3
+import neo4j
+from neo4j import GraphDatabase
+uri = "bolt://neo4j_docker:7687"
+graphDB_Driver = GraphDatabase.driver(uri)
+
+def apoc_help(tx):
+    for record in tx.run("CALL apoc.help('text')"):
+        print(str(record))
+
+
+with graphDB_Driver.session() as session:
+    session.read_transaction(apoc_export_json)
+```
+
+
+# options for connecting to Neo4j from Python
+- native driver
+- py2neo
+- neomodel
+See https://neo4j.com/developer/python/
+
+# Python native driver
+- https://neo4j.com/docs/api/python-driver/current/api.html
+- https://pypi.org/project/neo4j/
+- https://github.com/neo4j/neo4j-python-driver
+
+# demo of a local Flask app connecting to a remote Neo4j server
+- https://neo4j.com/developer/python-movie-app/
+- https://github.com/neo4j-examples/neo4j-movies-template/blob/master/flask-api/app.py
+
+# Tips on using Cypher from Python
+- https://neo4j.com/docs/python-manual/current/cypher-workflow/
+"""
+
 from flask import Flask
 import random
 import time
-
-# overview of Python options: native driver, py2neo, neomodel
-# https://neo4j.com/developer/python/
-
-# Python native driver
-# https://neo4j.com/docs/api/python-driver/current/api.html
-# https://pypi.org/project/neo4j/
-# https://github.com/neo4j/neo4j-python-driver
-
-# this demo has a local Flask app connect to a remote Neo4j server
-# https://neo4j.com/developer/python-movie-app/
-# https://github.com/neo4j-examples/neo4j-movies-template/blob/master/flask-api/app.py
-
-# https://neo4j.com/docs/python-manual/current/cypher-workflow/
 
 import neo4j
 from neo4j import GraphDatabase
@@ -131,6 +163,40 @@ def neo4j_query_list_IDs(tx, node_type: str) -> list:
     # else:
     #     raise Exception("ERROR: Unrecognized node type")
     return list_of_IDs
+
+
+def apoc_export_json(tx, output_filename: str):
+    """
+    https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.json.all/
+
+    >>> apoc_export_json(tx)
+    """
+    for record in tx.run(
+        "CALL apoc.export.json.all('$output_filename',{useTypes:true})",
+        output_filename=output_filename,
+    ):
+        pass
+    return record
+
+
+def apoc_export_cypher(tx, output_filename: str):
+    """
+    https://neo4j.com/labs/apoc/4.4/export/cypher/
+    https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypher.all/
+
+    >>> apoc_export_cypher(tx)
+    """
+    for record in tx.run(
+        "CALL apoc.export.cypher.all('$output_filename', {"
+        "format: 'cypher-shell',"
+        "useOptimizations: {type: 'UNWIND_BATCH', unwindBatchSize: 20}"
+        "}) "
+        "YIELD file, batches, source, format, nodes, relationships, properties, time, rows, batchSize "
+        "RETURN file, batches, source, format, nodes, relationships, properties, time, rows, batchSize;",
+        output_filename=output_filename,
+    ):
+        pass
+    return record
 
 
 def neo4j_query_list_nodes_of_type(tx, node_type: str) -> list:
@@ -531,6 +597,8 @@ def to_add_derivation():
         #        derivation_name_latex = "a deriv"
         #        derivation_abstract_latex = "an abstract for deriv"
         author_name_latex = "ben"
+
+        # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             derivation_id = session.write_transaction(
                 neo4j_query_add_derivation,
@@ -552,6 +620,7 @@ def to_select_derivation_to_edit():
     print("[TRACE] func: to_select_derivation_to_edit")
     #    if request.method == "POST" and web_form.validate():
 
+    # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
         derivation_list = session.read_transaction(
             neo4j_query_list_nodes_of_type, "derivation"
@@ -598,6 +667,8 @@ def to_add_step(derivation_id):
         list_of_input_expressions_latex = ["a = b"]
         list_of_feed_expressions_latex = ["2"]
         list_of_output_expressions_latex = ["a + 2 = b + 2"]
+
+        # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             session.write_transaction(
                 neo4j_query_add_step_to_derivation,
@@ -626,6 +697,8 @@ def to_add_inference_rule():
         inference_rule_name = str(web_form.inference_rule_name.data)
         inference_rule_latex = str(web_form.inference_rule_latex.data)
         author_name_latex = "ben"
+
+        # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             session.write_transaction(
                 neo4j_query_add_inference_rule,
@@ -666,6 +739,7 @@ def to_query():
         query = str(web_form.query.data)
         print("query:", query)
         try:
+            # https://neo4j.com/docs/python-manual/current/session-api/
             with graphDB_Driver.session() as session:
                 list_of_records = session.read_transaction(
                     neo4j_query_user_query, query
@@ -696,6 +770,8 @@ def to_show_all_inference_rules():
     >>> to_show_all_inference_rules()
     """
     print("[TRACE] func: to_show_all_inference_rules")
+
+    # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
         str_to_print = session.read_transaction(neo4j_query_list_inference_rules)
     return str_to_print
@@ -707,6 +783,8 @@ def to_show_all_nodes():
     show all nodes
     """
     print("[TRACE] func: to_show_all_nodes")
+
+    # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
         str_to_print = session.read_transaction(neo4j_query_all_nodes)
     return str_to_print
@@ -718,6 +796,8 @@ def to_show_all_edges():
     show all edges
     """
     print("[TRACE] func: to_show_all_edges")
+
+    # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
         str_to_print = session.read_transaction(neo4j_query_all_edges)
     return str_to_print
@@ -730,6 +810,8 @@ def to_delete_graph_content():
     https://neo4j.com/developer/kb/large-delete-transaction-best-practices-in-neo4j/
     """
     print("[TRACE] func: to_delete_graph_content")
+
+    # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
         str_to_print = session.write_transaction(
             neo4j_query_delete_all_nodes_and_relationships
@@ -740,11 +822,23 @@ def to_delete_graph_content():
 @app.route("/export_to_cypher")
 def to_export_cypher():
     """
-    TODO: export graph to CYPHER
+    TODO: export "graph to JSON" as file via web interface
+    """
+    print("[TRACE] func: to_export_json")
 
-    # apoc
-    # https://neo4j.com/labs/apoc/4.1/export/cypher/
-    # https://neo4j.com/labs/apoc/4.1/overview/apoc.export/apoc.export.cypher.all/
+    with graphDB_Driver.session() as session:
+        res = session.read_transaction(apoc_export_json, "pdg.json")
+
+    # <Record file='all.json' source='database: nodes(4), rels(0)' format='json' nodes=4 relationships=0 properties=16 time=123 rows=4 batchSize=-1 batches=0 done=True data=None>
+
+    return str(res)
+
+
+@app.route("/export_to_cypher")
+def to_export_cypher():
+    """
+    TODO: export "graph to CYPHER" as file via web interface
+
     # apoc.export.cypherQuery()
     # https://stackoverflow.com/questions/44688194/efficient-importing-of-cypher-statements
 
@@ -755,7 +849,13 @@ def to_export_cypher():
     # https://stackoverflow.com/a/20894360/1164295
     """
     print("[TRACE] func: to_export_cypher")
-    return "Cypher output not yet available"
+
+    with graphDB_Driver.session() as session:
+        res = session.read_transaction(apoc_export_cypher, "pdg.cypher")
+
+    # <Record file='all.cypher' batches=1 source='database: nodes(4), rels(0)' format='cypher' nodes=4 relationships=0 properties=16 time=13 rows=4 batchSize=20000>
+
+    return str(res)
 
 
 # EOF
