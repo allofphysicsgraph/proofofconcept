@@ -169,12 +169,14 @@ def apoc_export_json(tx, output_filename: str):
     """
     https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.json.all/
 
+    The output file is written to disk within the neo4j container.
+    For the PDG, docker-compose has a shared folder on the host accessible both Neo4j and Flask.
+    The file from neo4j can then be accessed by Flask for providing to the user via the web interface.
+
     >>> apoc_export_json(tx)
     """
     for record in tx.run(
-        "CALL apoc.export.json.all('$output_filename',{useTypes:true})",
-        output_filename=output_filename,
-    ):
+        "CALL apoc.export.json.all('"+output_filename+"',{useTypes:true})"):
         pass
     return record
 
@@ -184,17 +186,19 @@ def apoc_export_cypher(tx, output_filename: str):
     https://neo4j.com/labs/apoc/4.4/export/cypher/
     https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypher.all/
 
+    The output file is written to disk within the neo4j container.
+    For the PDG, docker-compose has a shared folder on the host accessible both Neo4j and Flask.
+    The file from neo4j can then be accessed by Flask for providing to the user via the web interface.
+
     >>> apoc_export_cypher(tx)
     """
     for record in tx.run(
-        "CALL apoc.export.cypher.all('$output_filename', {"
+        "CALL apoc.export.cypher.all('"+output_filename+"', {"
         "format: 'cypher-shell',"
         "useOptimizations: {type: 'UNWIND_BATCH', unwindBatchSize: 20}"
         "}) "
         "YIELD file, batches, source, format, nodes, relationships, properties, time, rows, batchSize "
-        "RETURN file, batches, source, format, nodes, relationships, properties, time, rows, batchSize;",
-        output_filename=output_filename,
-    ):
+        "RETURN file, batches, source, format, nodes, relationships, properties, time, rows, batchSize;"):
         pass
     return record
 
@@ -202,7 +206,7 @@ def apoc_export_cypher(tx, output_filename: str):
 def neo4j_query_list_nodes_of_type(tx, node_type: str) -> list:
     """
 
-    >>> neo4j_query_list_derivations(tx)
+    >>> neo4j_query_list_nodes_of_type(tx)
     """
     print("[TRACE] func: neo4j_query_list_nodes_of_type")
     if node_type not in [
@@ -217,7 +221,7 @@ def neo4j_query_list_nodes_of_type(tx, node_type: str) -> list:
 
     node_list = []
     for record in tx.run("MATCH (n:" + node_type + ") RETURN n"):
-        print(record.data()["n"])
+        #print(record.data()["n"])
         node_list.append(record.data()["n"])
     return node_list
 
@@ -267,10 +271,10 @@ def neo4j_query_add_inference_rule(
     inference_rule_id = generate_random_id(list_of_inference_rule_IDs)
 
     for record in tx.run(
-        "CREATE (a:inference_rule"
-        "{name:$inference_rule_name,"
-        "latex:$inference_rule_latex,"
-        "author_name_latex:$author_name_latex,"
+        "CREATE (a:inference_rule "
+        "{name:$inference_rule_name, "
+        "latex:$inference_rule_latex, "
+        "author_name_latex:$author_name_latex, "
         "inference_rule_id:$inference_rule_id})",
         inference_rule_name=inference_rule_name,
         inference_rule_latex=inference_rule_latex,
@@ -610,30 +614,10 @@ def to_add_derivation():
     return render_template("create_derivation.html", form=web_form)
 
 
-@app.route("/select_derivation_to_edit", methods=["GET", "POST"])
-def to_select_derivation_to_edit():
-    """
-    which existing derivation to edit?
-
-    >>> to_select_derivation_to_edit()
-    """
-    print("[TRACE] func: to_select_derivation_to_edit")
-    #    if request.method == "POST" and web_form.validate():
-
-    # https://neo4j.com/docs/python-manual/current/session-api/
-    with graphDB_Driver.session() as session:
-        derivation_list = session.read_transaction(
-            neo4j_query_list_nodes_of_type, "derivation"
-        )
-
-    for deriv_dict in derivation_list:
-        print(deriv_dict)
-
-    return render_template("select_derivation.html", derivation_list=derivation_list)
 
 
-@app.route("/edit_derivation/<derivation_id>", methods=["GET", "POST"])
-def to_edit_derivation(derivation_id):
+@app.route("/review_derivation/<derivation_id>", methods=["GET", "POST"])
+def to_review_derivation(derivation_id):
     """
     * add step to existing derivation
     * delete step from existing derivation
@@ -642,10 +626,10 @@ def to_edit_derivation(derivation_id):
 
     >>> to_edit_derivation
     """
-    print("[TRACE] func: to_edit_derivation")
+    print("[TRACE] func: to_review_derivation")
     #    if request.method == "POST" and web_form.validate():
 
-    return render_template("edit_derivation.html")
+    return render_template("review_derivation.html")
 
 
 @app.route("/add_step/<derivation_id>", methods=["GET", "POST"])
@@ -655,12 +639,17 @@ def to_add_step(derivation_id):
     user provides latex and inference rule
     """
     print("[TRACE] func: to_add_step")
+
+    # TODO: get list of inference rules
     inf_rule_list = ["addXtoBothSides", "multBothSidesBy"]
 
     web_form = SpecifyNewStepForm(request.form)
     if request.method == "POST" and web_form.validate():
 
+        # TODO: get user name from Google login
         author_name_latex = "ben"
+
+        # TODO: web form supplies the inference rule
         inference_rule = "addXtoBothSides"
         note_before_step_latex = "before step"
         note_after_step_latex = "after step"
@@ -763,13 +752,36 @@ def to_query():
 #        session.write_transaction(neo4j_query_add_friend, "Arthur", "Merlin")
 #    return "created friends"
 
+@app.route("/list_derivations", methods=["GET", "POST"])
+def to_list_derivation():
+    """
+    which existing derivation to edit?
 
-@app.route("/show_all_inference_rules")
-def to_show_all_inference_rules():
+    >>> to_select_derivation_to_edit()
+    """
+    print("[TRACE] func: list_derivations")
+    #    if request.method == "POST" and web_form.validate():
+
+    # https://neo4j.com/docs/python-manual/current/session-api/
+    with graphDB_Driver.session() as session:
+        derivation_list = session.read_transaction(
+            neo4j_query_list_nodes_of_type, "derivation"
+        )
+
+    for deriv_dict in derivation_list:
+        print(deriv_dict)
+
+    # TODO: convert derivation_dict['abstract_latex'] to HTML using pandoc
+
+    return render_template("list_derivations.html", derivation_list=derivation_list)
+
+
+@app.route("/list_inference_rules")
+def to_list_inference_rules():
     """
     >>> to_show_all_inference_rules()
     """
-    print("[TRACE] func: to_show_all_inference_rules")
+    print("[TRACE] func: list_inference_rules")
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
@@ -777,12 +789,12 @@ def to_show_all_inference_rules():
     return str_to_print
 
 
-@app.route("/show_all_nodes")
-def to_show_all_nodes():
+@app.route("/list_all_nodes")
+def to_list_all_nodes():
     """
     show all nodes
     """
-    print("[TRACE] func: to_show_all_nodes")
+    print("[TRACE] func: to_list_all_nodes")
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
@@ -790,8 +802,8 @@ def to_show_all_nodes():
     return str_to_print
 
 
-@app.route("/show_all_edges")
-def to_show_all_edges():
+@app.route("/list_all_edges")
+def to_list_all_edges():
     """
     show all edges
     """
@@ -819,8 +831,8 @@ def to_delete_graph_content():
     return "deleted all graph content"
 
 
-@app.route("/export_to_cypher")
-def to_export_cypher():
+@app.route("/export_to_json")
+def to_export_json():
     """
     TODO: export "graph to JSON" as file via web interface
     """
@@ -853,9 +865,12 @@ def to_export_cypher():
     with graphDB_Driver.session() as session:
         res = session.read_transaction(apoc_export_cypher, "pdg.cypher")
 
+    print("res=",str(res))
     # <Record file='all.cypher' batches=1 source='database: nodes(4), rels(0)' format='cypher' nodes=4 relationships=0 properties=16 time=13 rows=4 batchSize=20000>
 
-    return str(res)
+    return redirect(
+        url_for(     "static",       filename="dumping_grounds/pdg.cypher"))
+
 
 
 # EOF

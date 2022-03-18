@@ -30,6 +30,8 @@ services:
      - "5000:5000"
     volumes:
      - ${PWD}/:/scratch
+     - './dumping_grounds:/code/static/dumping_grounds'
+
 
   # see https://neo4j.com/docs/operations-manual/current/docker/introduction/
   # https://neo4j.com/docs/operations-manual/current/docker/clustering/
@@ -61,6 +63,7 @@ services:
       - './neo4j_pdg/logs:/var/lib/neo4j/logs'
       - './neo4j_pdg/conf:/var/lib/neo4j/conf'
       - './neo4j_pdg/plugins:/var/lib/neo4j/plugins'
+      - './dumping_grounds:/var/lib/neo4j/dumping_grounds'
     # https://docs.docker.com/compose/compose-file/compose-file-v3/#environment
     # see https://neo4j.com/docs/operations-manual/current/docker/ref-settings/
     # https://community.neo4j.com/t/docker-compose-setting-for-apoc-installation/11621/9
@@ -72,9 +75,9 @@ services:
       - NEO4J_apoc_export_file_enabled=true
       - NEO4J_apoc_import_file_enabled=true
       - NEO4J_apoc_import_file_use__neo4j__config=true
-      - NEO4J_dbms_directories_import=import # relative to /var/lib/neo4j
+      - NEO4J_dbms_directories_import=dumping_grounds # relative to /var/lib/neo4j
       - NEO4J_dbms_security_procedures_allowlist=gds.*, apoc.*
-      - NEO4JLABS_PLUGINS=["apoc"]
+#      - NEO4JLABS_PLUGINS=["apoc"] # downloads from gitlab everytime the container is started
 
 networks:
   neo4j-internal:

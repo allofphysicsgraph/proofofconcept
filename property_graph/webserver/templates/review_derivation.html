@@ -2,22 +2,25 @@
 {% block content %}
 
 <P>
-  Return to <a href="{{ url_for('main') }}?referrer=edit_derivation">main page</a>
+  Return to <a href="{{ url_for('main') }}?referrer=review_derivation">main page</a>
 </P>
+
+<H2>TODO: Derivation Name</H2>
 
 <fieldset>
 <legend>
-  <H2>Select Derivation from list</h2>
+  <H2>Edit Derivation</h2>
 </legend>
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
 <input type="text" id="derivation_input" onkeyup="select_derivation()" placeholder="Select derivation">
 
-<UL id="derivation_UL">
-  {% for derivation_dict in derivation_list %}
-  <LI>{{derivation_dict['name_latex']}}</LI>
-  {% endfor %}
-</UL>
+<UL>
+<LI> add step to existing derivation
+<LI> delete step from existing derivation
+<LI> edit step in derivation
+<LI> delete derivation
+  </UL>
 
 </fieldset>
 
