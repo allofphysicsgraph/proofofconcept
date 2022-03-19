@@ -44,9 +44,11 @@ See https://neo4j.com/developer/python/
 - https://neo4j.com/docs/python-manual/current/cypher-workflow/
 """
 
-from flask import Flask
 import random
 import time
+import datetime
+
+from flask import Flask
 
 import neo4j
 from neo4j import GraphDatabase
@@ -113,7 +115,6 @@ class Config(object):
 
     SECRET_KEY = os.environ.get("SECRET_KEY")
 
-
 def generate_random_id(list_of_current_IDs: list) -> str:
     """
     statically defined numeric IDs for nodes in the graph
@@ -176,7 +177,8 @@ def apoc_export_json(tx, output_filename: str):
     >>> apoc_export_json(tx)
     """
     for record in tx.run(
-        "CALL apoc.export.json.all('"+output_filename+"',{useTypes:true})"):
+        "CALL apoc.export.json.all('" + output_filename + "',{useTypes:true})"
+    ):
         pass
     return record
 
@@ -193,12 +195,13 @@ def apoc_export_cypher(tx, output_filename: str):
     >>> apoc_export_cypher(tx)
     """
     for record in tx.run(
-        "CALL apoc.export.cypher.all('"+output_filename+"', {"
+        "CALL apoc.export.cypher.all('" + output_filename + "', {"
         "format: 'cypher-shell',"
         "useOptimizations: {type: 'UNWIND_BATCH', unwindBatchSize: 20}"
         "}) "
         "YIELD file, batches, source, format, nodes, relationships, properties, time, rows, batchSize "
-        "RETURN file, batches, source, format, nodes, relationships, properties, time, rows, batchSize;"):
+        "RETURN file, batches, source, format, nodes, relationships, properties, time, rows, batchSize;"
+    ):
         pass
     return record
 
@@ -221,10 +224,24 @@ def neo4j_query_list_nodes_of_type(tx, node_type: str) -> list:
 
     node_list = []
     for record in tx.run("MATCH (n:" + node_type + ") RETURN n"):
-        #print(record.data()["n"])
+        # print(record.data()["n"])
         node_list.append(record.data()["n"])
     return node_list
 
+def neo4j_query_steps_in_this_derivation(tx,derivation_id:str)->list:
+    """
+    >>> neo4j_query_steps_in_this_derivation(tx)
+    """
+    print("[TRACE] func: neo4j_query_steps_in_this_derivation")
+    list_of_step_IDs = []
+    for record in tx.run(
+        "MATCH (n:derivation {derivation_id:$derivation_id})-[r]->(m:step) RETURN n,r,m",
+        derivation_id=derivation_id):
+        print(record)
+        print("n=", record.data()["n"], "r=", record.data()["r"], "m=", record.data()["m"])
+
+        list_of_step_IDs.append(record.data()["m"])
+    return list_of_step_IDs
 
 def neo4j_query_add_derivation(
     tx,
@@ -232,24 +249,31 @@ def neo4j_query_add_derivation(
     derivation_abstract_latex: str,
     author_name_latex: str,
 ) -> str:
+    """
+    >>> neo4j_query_add_derivation(tx)
+    """
     print("[TRACE] func: neo4j_query_add_derivation")
-    # TODO: include current date-time
+
     with graphDB_Driver.session() as session:
         list_of_derivation_IDs = session.read_transaction(
             neo4j_query_list_IDs, "derivation"
         )
     derivation_id = generate_random_id(list_of_derivation_IDs)
 
+    now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
+
     for record in tx.run(
         "CREATE (a:derivation "
         "{   name_latex:$derivation_name_latex,"
         "abstract_latex:$derivation_abstract_latex,"
+        "created_datetime:$now_str,"
         "author_name_latex:$author_name_latex,"
         "derivation_id:$derivation_id})",
         derivation_name_latex=derivation_name_latex,
         derivation_abstract_latex=derivation_abstract_latex,
         author_name_latex=author_name_latex,
         derivation_id=derivation_id,
+        now_str=now_str
     ):
         pass
         # print(record)
@@ -299,8 +323,6 @@ def neo4j_query_add_step_to_derivation(
     """
     https://neo4j.com/docs/cypher-manual/current/clauses/create/
 
-    TODO: include current date-time
-
     TODO: use of ID(a) is bad because the IDs can be re-used after a node is deleted.
           Better (?) is https://neo4j.com/labs/apoc/4.4/overview/apoc.uuid/apoc.uuid.list/
           see https://stackoverflow.com/a/60748909/1164295
@@ -313,15 +335,18 @@ def neo4j_query_add_step_to_derivation(
     # TODO: for the derivation, determine the list of all sequence_index values,
     #       then increment max to get the sequence_index for this step
 
+    now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
+
     # inference rule
     for record in tx.run(
         "MATCH (a:derivation)"
         "WHERE ID(a)==$derivation_id"
         "CREATE (a)-[:HAS_STEP {sequence_index: 1}]->(b:step"
         "{author_name_latex:$author_name_latex,"
-        "note_before_step_latex=$note_before_step_latex,"
-        "note_after_step_latex=$note_after_step_latex,"
-        "step_id=$step_id})",
+        "note_before_step_latex:$note_before_step_latex,"
+        "created_datetime:$now_str,"
+        "note_after_step_latex:$note_after_step_latex,"
+        "step_id:$step_id})",
         note_before_step_latex=note_before_step_latex,
         note_after_step_latex=note_after_step_latex,
         author_name_latex=author_name_latex,
@@ -573,14 +598,45 @@ class CypherQueryForm(FlaskForm):
     )
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def main():
     """
     initial page
 
+    file upload: see https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+
     >>> main()
     """
     print("[TRACE] func: main")
+
+    if request.method == "POST":
+        print("request.form = %s", request.form)
+
+        # check if the post request has the file part
+        if "file" not in request.files:
+            print("file not in request files")
+            return redirect(request.url)
+        file_obj = request.files["file"]
+
+        print(request.files)
+        # if user does not select file, browser also
+        # submit an empty part without filename
+        if file_obj.filename == "":
+            print("no selected file")
+            return redirect(request.url)
+        if "upload_database" in request.form.keys():
+            allowed_bool=True
+        else:
+            raise Exception("unrecognized button")
+
+
+        if file_obj and allowed_bool:
+            filename = secure_filename(file_obj.filename)
+            print("filename = %s", filename)
+            path_to_uploaded_file = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+            file_obj.save(path_to_uploaded_file)
+
+            shutil.copy(path_to_uploaded_file, "/code/" + path_to_db)
 
     return render_template("site_map.html", title="site map")
 
@@ -614,8 +670,6 @@ def to_add_derivation():
     return render_template("create_derivation.html", form=web_form)
 
 
-
-
 @app.route("/review_derivation/<derivation_id>", methods=["GET", "POST"])
 def to_review_derivation(derivation_id):
     """
@@ -629,19 +683,30 @@ def to_review_derivation(derivation_id):
     print("[TRACE] func: to_review_derivation")
     #    if request.method == "POST" and web_form.validate():
 
-    return render_template("review_derivation.html")
+    # list all steps in this derivation
+    with graphDB_Driver.session() as session:
+        list_of_steps = session.read_transaction(
+            neo4j_query_steps_in_this_derivation, derivation_id
+        )
 
 
-@app.route("/add_step/<derivation_id>", methods=["GET", "POST"])
-def to_add_step(derivation_id):
+    return render_template("review_derivation.html", derivation_dict=derivation_dict)
+
+@app.route("/new_step_select_inf_rule/<derivation_id>/", methods=["GET", "POST"])
+def to_add_step_select_inference_rule(derivation_id):
     """
     add new step to existing derivation
-    user provides latex and inference rule
+
+    What inference rule should be used for this step?
     """
-    print("[TRACE] func: to_add_step")
+    print("[TRACE] func: to_add_step_select_inference_rule")
 
     # TODO: get list of inference rules
-    inf_rule_list = ["addXtoBothSides", "multBothSidesBy"]
+    with graphDB_Driver.session() as session:
+        inference_rule_list = session.read_transaction(neo4j_query_list_nodes_of_type,"inference_rule")
+
+
+    print("inference_rule_list=",inference_rule_list)
 
     web_form = SpecifyNewStepForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -672,7 +737,7 @@ def to_add_step(derivation_id):
             )
     else:
         return render_template(
-            "new_step_select_inference_rule.html", inf_rule_list=inf_rule_list
+            "new_step_select_inference_rule.html", inference_rule_list=inference_rule_list
         )
     return "added step"
 
@@ -697,6 +762,8 @@ def to_add_inference_rule():
             )
     else:
         return render_template("new_inference_rule.html", form=web_form)
+
+    # TODO: return to referrer
     return "added inference rule"
 
 
@@ -752,6 +819,7 @@ def to_query():
 #        session.write_transaction(neo4j_query_add_friend, "Arthur", "Merlin")
 #    return "created friends"
 
+
 @app.route("/list_derivations", methods=["GET", "POST"])
 def to_list_derivation():
     """
@@ -760,7 +828,12 @@ def to_list_derivation():
     >>> to_select_derivation_to_edit()
     """
     print("[TRACE] func: list_derivations")
-    #    if request.method == "POST" and web_form.validate():
+
+    if request.method == "POST":
+        print("request = ", request)
+        print("request.form = ", request.form)
+        derivation_id="5389624"
+        return render_template("review_derivation.html", derivation_id=derivation_id)
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
@@ -865,12 +938,10 @@ def to_export_cypher():
     with graphDB_Driver.session() as session:
         res = session.read_transaction(apoc_export_cypher, "pdg.cypher")
 
-    print("res=",str(res))
+    print("res=", str(res))
     # <Record file='all.cypher' batches=1 source='database: nodes(4), rels(0)' format='cypher' nodes=4 relationships=0 properties=16 time=13 rows=4 batchSize=20000>
 
-    return redirect(
-        url_for(     "static",       filename="dumping_grounds/pdg.cypher"))
-
+    return redirect(url_for("static", filename="dumping_grounds/pdg.cypher"))
 
 
 # EOF

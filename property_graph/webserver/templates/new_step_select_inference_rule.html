@@ -16,12 +16,14 @@
 <input type="text" id="inf_rule_input" onkeyup="select_infrule()" placeholder="Select inference rule">
 
 <UL id="inf_rules_UL">
-  {% for inf_rule in inf_rule_list %}
+  {% for inf_rule in inference_rule_list %}
   <LI>{{inf_rule}}</LI>
   {% endfor %}
 </UL>
 
 </fieldset>
+
+<a href="{{ url_for('to_add_inference_rule') }}">Create a new inference rule</a>
 
 <script>
 function select_infrule() {

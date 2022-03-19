@@ -15,7 +15,7 @@
 
 <UL id="derivation_UL">
   {% for derivation_dict in derivation_list %}
-  <LI><a href="{{ url_for( derivation_dict['derivation_id'] ) }}">
+  <LI><a href="{{ url_for( 'to_review_derivation', derivation_id=derivation_dict['derivation_id'] ) }}">
            {{derivation_dict['name_latex']}}</a>:
            {{ derivation_dict['abstract_latex'] }}</LI>
   {% endfor %}

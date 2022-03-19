@@ -20,4 +20,24 @@ Danger zone!
   <LI><a href="{{ url_for('to_delete_graph_content') }}?referrer=main">delete all content</a></LI>
 </UL>
 
+<P>
+  <fieldset>
+    <legend>
+      <H3>
+        <a name="download upload database">
+          Download/Upload database
+        </a>
+      </H3>
+    </legend>
+
+    <!-- https://www.google.com/search?q=flask+upload+file -->
+    Upload database file (.cypher only):
+    <!-- from https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/ -->
+    <form method="post" enctype="multipart/form-data" id="upload_form">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <input type="file" name="file" accept=".cypher">
+      <input type="submit" name="upload_cypher" value="Upload Cypher">
+    </form>
+  </fieldset>
+</P>
 {% endblock %}
