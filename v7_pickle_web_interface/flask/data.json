@@ -15595,7 +15595,7 @@
         },
         "8406170337": {
             "latex": "y",
-            "AST": "Symbol('pdg7092')",
+            "AST": "Symbol('pdg5647')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15707,7 +15707,7 @@
         },
         "3273630811": {
             "latex": "x",
-            "AST": "Symbol('pdg3652')",
+            "AST": "Symbol('pdg4037')",
             "name": "",
             "notes": "",
             "author": "4a0987466473c589d2c328d12856760e",

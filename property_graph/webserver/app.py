@@ -115,6 +115,7 @@ class Config(object):
 
     SECRET_KEY = os.environ.get("SECRET_KEY")
 
+
 def generate_random_id(list_of_current_IDs: list) -> str:
     """
     statically defined numeric IDs for nodes in the graph
@@ -228,7 +229,8 @@ def neo4j_query_list_nodes_of_type(tx, node_type: str) -> list:
         node_list.append(record.data()["n"])
     return node_list
 
-def neo4j_query_steps_in_this_derivation(tx,derivation_id:str)->list:
+
+def neo4j_query_steps_in_this_derivation(tx, derivation_id: str) -> list:
     """
     >>> neo4j_query_steps_in_this_derivation(tx)
     """
@@ -236,12 +238,16 @@ def neo4j_query_steps_in_this_derivation(tx,derivation_id:str)->list:
     list_of_step_IDs = []
     for record in tx.run(
         "MATCH (n:derivation {derivation_id:$derivation_id})-[r]->(m:step) RETURN n,r,m",
-        derivation_id=derivation_id):
+        derivation_id=derivation_id,
+    ):
         print(record)
-        print("n=", record.data()["n"], "r=", record.data()["r"], "m=", record.data()["m"])
+        print(
+            "n=", record.data()["n"], "r=", record.data()["r"], "m=", record.data()["m"]
+        )
 
         list_of_step_IDs.append(record.data()["m"])
     return list_of_step_IDs
+
 
 def neo4j_query_add_derivation(
     tx,
@@ -273,7 +279,7 @@ def neo4j_query_add_derivation(
         derivation_abstract_latex=derivation_abstract_latex,
         author_name_latex=author_name_latex,
         derivation_id=derivation_id,
-        now_str=now_str
+        now_str=now_str,
     ):
         pass
         # print(record)
@@ -625,10 +631,9 @@ def main():
             print("no selected file")
             return redirect(request.url)
         if "upload_database" in request.form.keys():
-            allowed_bool=True
+            allowed_bool = True
         else:
             raise Exception("unrecognized button")
-
 
         if file_obj and allowed_bool:
             filename = secure_filename(file_obj.filename)
@@ -689,8 +694,8 @@ def to_review_derivation(derivation_id):
             neo4j_query_steps_in_this_derivation, derivation_id
         )
 
-
     return render_template("review_derivation.html", derivation_dict=derivation_dict)
+
 
 @app.route("/new_step_select_inf_rule/<derivation_id>/", methods=["GET", "POST"])
 def to_add_step_select_inference_rule(derivation_id):
@@ -703,10 +708,11 @@ def to_add_step_select_inference_rule(derivation_id):
 
     # TODO: get list of inference rules
     with graphDB_Driver.session() as session:
-        inference_rule_list = session.read_transaction(neo4j_query_list_nodes_of_type,"inference_rule")
+        inference_rule_list = session.read_transaction(
+            neo4j_query_list_nodes_of_type, "inference_rule"
+        )
 
-
-    print("inference_rule_list=",inference_rule_list)
+    print("inference_rule_list=", inference_rule_list)
 
     web_form = SpecifyNewStepForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -737,7 +743,8 @@ def to_add_step_select_inference_rule(derivation_id):
             )
     else:
         return render_template(
-            "new_step_select_inference_rule.html", inference_rule_list=inference_rule_list
+            "new_step_select_inference_rule.html",
+            inference_rule_list=inference_rule_list,
         )
     return "added step"
 
@@ -832,7 +839,7 @@ def to_list_derivation():
     if request.method == "POST":
         print("request = ", request)
         print("request.form = ", request.form)
-        derivation_id="5389624"
+        derivation_id = "5389624"
         return render_template("review_derivation.html", derivation_id=derivation_id)
 
     # https://neo4j.com/docs/python-manual/current/session-api/
