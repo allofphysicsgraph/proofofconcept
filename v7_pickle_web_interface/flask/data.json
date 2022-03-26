@@ -13111,7 +13111,7 @@
             "creation date": "2020-04-14",
             "latex": "\\psi(x=W) = 0",
             "name": "",
-            "notes": ""
+            "notes": "2022-03-25 BHP: Conversion between Latex and Sympy is incomplete"
         },
         "9499428242": {
             "AST": "Equality(Function('pdg6238')(Symbol('pdg9472'), Symbol('pdg1467')), Mul(Function('pdg6238')(Symbol('pdg9472')), Function('pdg2718')(Mul(Symbol('pdg4621'), Mul(Symbol('pdg2321'), Symbol('pdg1467'))))))",
@@ -15893,7 +15893,7 @@
             "latex": "W = G m_1 m_2 \\left( \\frac{1}{x} \\bigg\\rvert_{ r_{\\rm Earth} }^{\\infty} \\right)",
             "AST": "Symbol('pdg6277')",
             "name": "",
-            "notes": "",
+            "notes": "2022-03-25 BHP: Conversion between Latex and Sympy is incomplete",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24"
         },
