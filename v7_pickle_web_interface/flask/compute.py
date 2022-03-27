@@ -1083,8 +1083,8 @@ def create_files_of_db_content(path_to_db: str) -> list:
     json_file_name = "data.json"
     with open(json_file_name, "w") as json_file_handle:
         json.dump(
-            dat, json_file_handle, indent=4, separators=(",", ": ")
-        )  # , sort_keys=True)
+            dat, json_file_handle, indent=4, separators=(",", ": "), sort_keys=True
+        )
     shutil.copy(json_file_name, "/home/appuser/app/static/")
 
     try:
