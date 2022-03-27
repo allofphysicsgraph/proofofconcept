@@ -39,6 +39,12 @@ Examples:
     <td>list steps for derivation</td>
     <td>MATCH (n:inference_rule) RETURN n</td>
   </tr>
+  <tr>
+    <td>list properties for a specific derivation</td>
+    <td>MATCH (n:derivation) WHERE n.derivation_id = '5389624' RETURN n<BR>
+    or<BR>
+    MATCH (n:derivation {derivation_id:'5389624'}) RETURN n </td>
+  </tr>
 </table>
 <P>
   <a href="https://gist.github.com/DaniSancas/1d5265fc159a95ff457b940fc5046887">cheatsheet</a>

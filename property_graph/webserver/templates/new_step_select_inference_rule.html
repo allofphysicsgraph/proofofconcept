@@ -1,8 +1,11 @@
 {% extends "_base.html" %}
 {% block content %}
 
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=create_derivation">main page</a>
+</P>
 
-<P>Select an inference rule to create a new step for TODO:name_of_derivation
+<P>Select an inference rule to create a new step for {{ derivation_dict['derivation name'] }}
 
 
 <!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
@@ -16,14 +19,20 @@
 <input type="text" id="inf_rule_input" onkeyup="select_infrule()" placeholder="Select inference rule">
 
 <UL id="inf_rules_UL">
-  {% for inf_rule in inference_rule_list %}
-  <LI>{{inf_rule}}</LI>
+  {% for inf_rule_dict in inference_rule_list %}
+  <LI>
+    <a href="{{ url_for( 'to_add_step_select_inference_rule',
+                         derivation_id=derivation_dict['derivation_id'],
+                         inference_rule_id=inf_rule_dict['inference_rule_id'] ) }}">
+      {{inf_rule['name']}}
+    </a>
+  </LI>
   {% endfor %}
 </UL>
 
 </fieldset>
 
-<a href="{{ url_for('to_add_inference_rule') }}">Create a new inference rule</a>
+<a href="{{ url_for('to_add_inference_rule') }}?referrer=derivationID_{{derivation_dict['derivation_id']}}">Create a new inference rule</a>
 
 <script>
 function select_infrule() {
