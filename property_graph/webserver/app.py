@@ -248,20 +248,21 @@ def neo4j_query_steps_in_this_derivation(tx, derivation_id: str) -> list:
         list_of_step_IDs.append(record.data()["m"])
     return list_of_step_IDs
 
-def neo4j_query_derivation_properties(tx,derivation_id:str)->dict:
+
+def neo4j_query_derivation_properties(tx, derivation_id: str) -> dict:
     """
     >>> neo4j_query_derivation_properties()
     """
     print("[TRACE] func: neo4j_query_derivation_properties")
     for record in tx.run(
         "MATCH (n:derivation) WHERE n.derivation_id = $derivation_id RETURN n",
-        derivation_id=derivation_id):
+        derivation_id=derivation_id,
+    ):
         print(record)
-        print(
-            "n=", record.data()["n"]
-        )
+        print("n=", record.data()["n"])
 
     return record.data()["n"]
+
 
 def neo4j_query_add_derivation(
     tx,
@@ -676,7 +677,6 @@ def to_add_derivation():
     for deriv_dict in derivation_list:
         print(deriv_dict)
 
-
     web_form = SpecifyNewDerivationForm(request.form)
     if request.method == "POST" and web_form.validate():
         derivation_name_latex = str(web_form.derivation_name_latex.data)
@@ -696,9 +696,13 @@ def to_add_derivation():
                 abstract_latex,
                 author_name_latex,
             )
-        print("derivation ID=",derivation_id)
-        return redirect(url_for("to_add_step_select_inference_rule", derivation_id=derivation_id))
-    return render_template("create_derivation.html", form=web_form, derivation_list=derivation_list)
+        print("derivation ID=", derivation_id)
+        return redirect(
+            url_for("to_add_step_select_inference_rule", derivation_id=derivation_id)
+        )
+    return render_template(
+        "create_derivation.html", form=web_form, derivation_list=derivation_list
+    )
 
 
 @app.route("/review_derivation/<derivation_id>", methods=["GET", "POST"])
@@ -718,9 +722,10 @@ def to_review_derivation(derivation_id):
 
     # get properties for derivation
     with graphDB_Driver.session() as session:
-        derivation_dict= session.read_transaction(
-            neo4j_query_derivation_properties, derivation_id)
-    print('derivation_dict:',derivation_dict)
+        derivation_dict = session.read_transaction(
+            neo4j_query_derivation_properties, derivation_id
+        )
+    print("derivation_dict:", derivation_dict)
 
     # list all steps in this derivation
     # TODO: instead of a list of steps,
@@ -730,7 +735,7 @@ def to_review_derivation(derivation_id):
             neo4j_query_steps_in_this_derivation, derivation_id
         )
 
-    print('list of steps for',str(derivation_id),":",list_of_steps)
+    print("list of steps for", str(derivation_id), ":", list_of_steps)
 
     for this_step_id in list_of_steps:
         pass
@@ -750,7 +755,7 @@ def to_add_step_select_inference_rule(derivation_id):
     print("[TRACE] func: to_add_step_select_inference_rule")
 
     # TODO: get derivation properties
-    #derivation_id
+    # derivation_id
 
     # get list of inference rules
     with graphDB_Driver.session() as session:
@@ -760,10 +765,10 @@ def to_add_step_select_inference_rule(derivation_id):
 
     # get properties for derivation ID
     with graphDB_Driver.session() as session:
-        derivation_dict= session.read_transaction(
-            neo4j_query_derivation_properties, derivation_id)
-    print('derivation_dict:',derivation_dict)
-
+        derivation_dict = session.read_transaction(
+            neo4j_query_derivation_properties, derivation_id
+        )
+    print("derivation_dict:", derivation_dict)
 
     print("inference_rule_list=", inference_rule_list)
     # [{'inference_rule_id': '7616707',
@@ -804,19 +809,22 @@ def to_add_step_select_inference_rule(derivation_id):
         return render_template(
             "new_step_select_inference_rule.html",
             inference_rule_list=inference_rule_list,
-            derivation_dict=derivation_dict
+            derivation_dict=derivation_dict,
         )
     return "added step"
 
-@app.route("/new_step_expressions/<derivation_id>/<inference_rule_id>", methods=["GET", "POST"])
-def to_add_step_select_expressions(derivation_id: str, inference_rule_id:str):
-    """
-    """
+
+@app.route(
+    "/new_step_expressions/<derivation_id>/<inference_rule_id>", methods=["GET", "POST"]
+)
+def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
+    """ """
     print("[TRACE] func: to_add_step_select_expressions")
-    print("derivation_id:",derivation_id)
-    print("inference_rule_id:",inference_rule_id)
+    print("derivation_id:", derivation_id)
+    print("inference_rule_id:", inference_rule_id)
 
     return
+
 
 @app.route("/add_inference_rule/", methods=["GET", "POST"])
 def to_add_inference_rule():
