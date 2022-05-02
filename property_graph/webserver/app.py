@@ -240,7 +240,7 @@ def neo4j_query_steps_in_this_derivation(tx, derivation_id: str) -> list:
         "MATCH (n:derivation {derivation_id:$derivation_id})-[r]->(m:step) RETURN n,r,m",
         derivation_id=derivation_id,
     ):
-        print(record)
+        print('record:',record)
         print(
             "n=", record.data()["n"], "r=", record.data()["r"], "m=", record.data()["m"]
         )
@@ -258,7 +258,7 @@ def neo4j_query_derivation_properties(tx, derivation_id: str) -> dict:
         "MATCH (n:derivation) WHERE n.derivation_id = $derivation_id RETURN n",
         derivation_id=derivation_id,
     ):
-        print(record)
+        print('record:',record)
         print("n=", record.data()["n"])
 
     return record.data()["n"]
@@ -441,7 +441,8 @@ def neo4j_query_all_edges(tx):
     str_to_print = ""
     print("raw:")
     for record in tx.run("MATCH (n)-[r]->(m) RETURN n,r,m"):
-        print("n=", record["n"], "r=", record["r"], "m=", record["m"])
+        #print("n=", record["n"], "r=", record["r"], "m=", record["m"])
+        print(record)
 
     # n= <Node id=0 labels=frozenset({'Person'}) properties={'name': 'Arthur'}>
     # r= <Relationship id=2 nodes=(<Node id=0 labels=frozenset({'Person'}) properties={'name': 'Arthur'}>, <Node id=3 labels=frozenset({'Person'}) properties={'name': 'Merlin'}>) type='KNOWS' properties={}>
@@ -449,7 +450,7 @@ def neo4j_query_all_edges(tx):
     # https://stackoverflow.com/questions/31485802/how-to-return-relationship-type-with-neo4js-cypher-queries
     print("proper return:")
     for record in tx.run("MATCH (n)-[r]->(m) RETURN n.name,type(r),m.name"):
-        print(record)
+        print("record",record)
         str_to_print += (
             str(record["n.name"])
             + "-"
@@ -483,13 +484,25 @@ def neo4j_query_all_nodes(tx):
     >>> neo4j_query_all_nodes(tx)
     """
     print("[TRACE] func: neo4j_query_all_nodes")
-    str_to_print = ""
+    all_nodes = {}
     for record in tx.run("MATCH (n) RETURN n"):
-        print(record.data())
-    for record in tx.run("MATCH (n) RETURN n.name"):
-        print(record)
-        str_to_print += str(record["n.name"]) + "\n"
-    return str_to_print
+        #print("record n",record["n"])
+        # <Node id=0 labels=frozenset({'derivation'}) properties={'name_latex': 'a deriv', 'abstract_latex': 'an abstract for deriv', 'author_name_latex': 'ben', 'derivation_id': '5389624'}>
+        #print("record.data()",record.data())
+        # {'n': {'name_latex': 'a deriv', 'abstract_latex': 'an abstract for deriv', 'author_name_latex': 'ben', 'derivation_id': '5389624'}}
+        if len(record["n"].labels)>1:
+            print("this record",record)
+            raise Exception("multiple labels for this node")
+        for this_label in record["n"].labels:
+            try:
+                all_nodes[this_label].append(record.data())
+            except KeyError:
+                all_nodes[this_label]=[record.data()]
+
+
+    #for record in tx.run("MATCH (n) RETURN n.name"):
+    #    record["n.name"]
+    return all_nodes
 
 
 def neo4j_query_user_query(tx, query: str) -> str:
@@ -639,7 +652,7 @@ def main():
             return redirect(request.url)
         file_obj = request.files["file"]
 
-        print(request.files)
+        print("request.files",request.files)
         # if user does not select file, browser also
         # submit an empty part without filename
         if file_obj.filename == "":
@@ -675,7 +688,7 @@ def to_add_derivation():
         )
 
     for deriv_dict in derivation_list:
-        print(deriv_dict)
+        print("deriv_dict:",deriv_dict)
 
     web_form = SpecifyNewDerivationForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -706,8 +719,9 @@ def to_add_derivation():
 
 
 @app.route("/review_derivation/<derivation_id>", methods=["GET", "POST"])
-def to_review_derivation(derivation_id):
+def to_review_derivation(derivation_id: str):
     """
+    options from this page:
     * add step to existing derivation
     * delete step from existing derivation
     * edit step in derivation
@@ -742,20 +756,55 @@ def to_review_derivation(derivation_id):
         # TODO: get list of associated inference rule IDs and properties (as dict)
         # TODO: get list of associated expressions IDs and properties (as dict)
 
-    return render_template("review_derivation.html", derivation_dict=derivation_dict)
+    return render_template("review_derivation.html",
+        derivation_dict=derivation_dict,
+        list_of_steps=list_of_steps)
 
+@app.route("/select_step/<derivation_id>/", methods=["GET", "POST"])
+def to_select_step(derivation_id: str):
+    """
+    """
+    print("[TRACE] func: to_select_step")
+
+    # get properties for derivation ID
+    with graphDB_Driver.session() as session:
+        derivation_dict = session.read_transaction(
+            neo4j_query_derivation_properties, derivation_id
+        )
+    print("derivation_dict:", derivation_dict)
+
+    return "select step does not exist yet"
+
+@app.route("/edit_derivation_metadata/<derivation_id>/", methods=["GET", "POST"])
+def to_edit_derivation_metadata(derivation_id: str):
+    """
+    """
+    print("[TRACE] func: to_edit_derivation_metadata")
+
+    # get properties for derivation ID
+    with graphDB_Driver.session() as session:
+        derivation_dict = session.read_transaction(
+            neo4j_query_derivation_properties, derivation_id
+        )
+    print("derivation_dict:", derivation_dict)
+
+    return "edit derivation metadata does not exist yet"
+
+@app.route("/delete_derivation/<derivation_id>/", methods=["GET", "POST"])
+def to_delete_derivation(derivation_id: str):
+    """
+    """
+    print("[TRACE] func: to_delete_derivation")
+    return "delete derivation page does not exist yet"
 
 @app.route("/new_step_select_inf_rule/<derivation_id>/", methods=["GET", "POST"])
-def to_add_step_select_inference_rule(derivation_id):
+def to_add_step_select_inference_rule(derivation_id: str):
     """
     add new step to existing derivation
 
     What inference rule should be used for this step?
     """
     print("[TRACE] func: to_add_step_select_inference_rule")
-
-    # TODO: get derivation properties
-    # derivation_id
 
     # get list of inference rules
     with graphDB_Driver.session() as session:
@@ -850,7 +899,7 @@ def to_add_inference_rule():
         return render_template("new_inference_rule.html", form=web_form)
 
     # TODO: return to referrer
-    return "added inference rule"
+    return redirect(url_for("to_list_inference_rules"))
 
 
 # @app.route("/add_new_friends", methods=["GET", "POST"])
@@ -928,7 +977,7 @@ def to_list_derivation():
         )
 
     for deriv_dict in derivation_list:
-        print(deriv_dict)
+        print("deriv_dict",deriv_dict)
 
     # TODO: convert derivation_dict['abstract_latex'] to HTML using pandoc
 
@@ -944,8 +993,12 @@ def to_list_inference_rules():
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
-        str_to_print = session.read_transaction(neo4j_query_list_inference_rules)
-    return str_to_print
+        inference_rule_list = session.read_transaction(
+            neo4j_query_list_nodes_of_type, "inference_rule"
+        )
+
+    return render_template("list_inference_rules.html",
+            inference_rule_list=inference_rule_list)
 
 
 @app.route("/list_all_nodes")
@@ -957,8 +1010,8 @@ def to_list_all_nodes():
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
-        str_to_print = session.read_transaction(neo4j_query_all_nodes)
-    return str_to_print
+        dict_all_nodes = session.read_transaction(neo4j_query_all_nodes)
+    return render_template("list_all_nodes.html",dict_all_nodes=dict_all_nodes)
 
 
 @app.route("/list_all_edges")
@@ -969,6 +1022,7 @@ def to_list_all_edges():
     print("[TRACE] func: to_show_all_edges")
 
     # https://neo4j.com/docs/python-manual/current/session-api/
+
     with graphDB_Driver.session() as session:
         str_to_print = session.read_transaction(neo4j_query_all_edges)
     return str_to_print

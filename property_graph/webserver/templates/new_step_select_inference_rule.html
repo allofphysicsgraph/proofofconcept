@@ -24,7 +24,7 @@
     <a href="{{ url_for( 'to_add_step_select_inference_rule',
                          derivation_id=derivation_dict['derivation_id'],
                          inference_rule_id=inf_rule_dict['inference_rule_id'] ) }}">
-      {{inf_rule['name']}}
+      {{inf_rule_dict['name']}}
     </a>
   </LI>
   {% endfor %}

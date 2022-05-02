@@ -5,21 +5,25 @@
   Return to <a href="{{ url_for('main') }}?referrer=review_derivation">main page</a>
 </P>
 
-<H2>TODO: Derivation Name</H2>
+<H2>{{ derivation_dict['name_latex'] }}</H2>
+
+TODO: display graph of derivation (e.g., graphviz)
+
+TODO: display tex, PDF
 
 <fieldset>
 <legend>
   <H2>Edit Derivation</h2>
 </legend>
 
-<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
-<input type="text" id="derivation_input" onkeyup="select_derivation()" placeholder="Select derivation">
 
 <UL>
-<LI> add step to existing derivation
-<LI> delete step from existing derivation
-<LI> edit step in derivation
-<LI> delete derivation
+<LI> <a href="{{ url_for('to_add_step_select_inference_rule', derivation_id=derivation_dict['derivation_id']) }}">add step to this derivation</a></LI>
+<LI> <a href="{{ url_for('to_select_step', derivation_id=derivation_dict['derivation_id']) }}">delete step from this derivation</a></LI>
+<LI> <a href="{{ url_for('to_edit_derivation_metadata', derivation_id=derivation_dict['derivation_id']) }}">rename this derivation</a></LI>
+<LI> <a href="{{ url_for('to_edit_derivation_metadata', derivation_id=derivation_dict['derivation_id']) }}">edit metadata for this derivation</a></LI>
+<LI> <a href="{{ url_for('to_select_step', derivation_id=derivation_dict['derivation_id']) }}">edit step in this derivation</a></LI>
+<LI> <a href="{{ url_for('to_delete_derivation', derivation_id=derivation_dict['derivation_id']) }}">delete this derivation</a></LI>
   </UL>
 
 </fieldset>

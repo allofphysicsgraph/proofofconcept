@@ -1,0 +1,47 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=list_derivations">main page</a>
+</P>
+
+<fieldset>
+<legend>
+  <H2>List of Derivations</h2>
+</legend>
+
+<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp - ->
+<input type="text" id="derivation_input" onkeyup="select_derivation()" placeholder="Select derivation">
+-->
+
+<UL id="derivation_UL">
+  {% for node_type in dict_all_nodes %}
+  <LI>{{ node_type }}</LI>
+  {% endfor %}
+</UL>
+
+</fieldset>
+
+<script>
+function select_derivation() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('derivation_input');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("derivation_UL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+{% endblock %}

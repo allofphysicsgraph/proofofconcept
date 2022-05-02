@@ -1,0 +1,56 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=list_inference_rules">main page</a>
+</P>
+
+<fieldset>
+<legend>
+  <H2>List of Inference Rules</h2>
+</legend>
+
+<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
+<input type="text" id="infrule_input" onkeyup="select_infrule()" placeholder="Select Inference Rule">
+
+
+<table border="1" id="infrule_UL">
+  <tr>
+    <th>ID</th>
+    <th>name</th>
+    <th>latex</th>
+  </tr>
+  {% for infrule_dict in inference_rule_list %}
+  <tr>
+    <td>{{ infrule_dict['inference_rule_id'] }}</td>
+    <td>{{ infrule_dict['name'] }}</td>
+    <td>{{ infrule_dict['latex']}}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+</fieldset>
+
+<script>
+function select_infrule() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('infrule_input');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("infrule_UL");
+  li = ul.getElementsByTagName('tr');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("td")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+{% endblock %}
