@@ -16,6 +16,13 @@
     {{ form.inference_rule_name.label}}: {{ form.inference_rule_name(size=50, maxlength=1000) }} <BR/>
     &nbsp;<BR/>
    {{form.inference_rule_latex.label }}: {{ form.inference_rule_latex(size=50, maxlength=1000) }}<BR/>
+    &nbsp;<BR/>
+   {{form.inference_rule_number_of_inputs.label }}: {{ form.inference_rule_number_of_inputs() }} <BR/>
+    &nbsp;<BR/>
+   {{form.inference_rule_number_of_feeds.label }}: {{ form.inference_rule_number_of_feeds() }} <BR/>
+    &nbsp;<BR/>
+   {{form.inference_rule_number_of_outputs.label }}: {{ form.inference_rule_number_of_outputs() }} <BR/>
+
   <input type="submit" value="add inference rule">
 </form>
 </fieldset>

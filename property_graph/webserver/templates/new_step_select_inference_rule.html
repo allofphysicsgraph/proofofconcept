@@ -21,7 +21,7 @@
 <UL id="inf_rules_UL">
   {% for inf_rule_dict in inference_rule_list %}
   <LI>
-    <a href="{{ url_for( 'to_add_step_select_inference_rule',
+    <a href="{{ url_for( 'to_add_step_select_expressions',
                          derivation_id=derivation_dict['derivation_id'],
                          inference_rule_id=inf_rule_dict['inference_rule_id'] ) }}">
       {{inf_rule_dict['name']}}

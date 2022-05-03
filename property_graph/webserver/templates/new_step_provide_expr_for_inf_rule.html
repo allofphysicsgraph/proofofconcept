@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=list_derivations">main page</a>
+</P>
+
+<H2>Derivation: <a href="{{ url_for('to_review_derivation',derivation_id=derivation_id) }}">
+  {{ derivation_name }}</a></H2>
+
+<fieldset>
+  <legend>
+    <H2>Provide inputs and feeds and outputs for {{ inf_rule }}</H2>
+  </legend>
+
+
+
+</fieldset>
+
+
+{% endblock %}
