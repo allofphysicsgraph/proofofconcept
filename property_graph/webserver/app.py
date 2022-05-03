@@ -316,7 +316,9 @@ def neo4j_query_add_derivation(
 
 
 def neo4j_query_add_inference_rule(
-    tx, inference_rule_name: str, inference_rule_latex: str,
+    tx,
+    inference_rule_name: str,
+    inference_rule_latex: str,
     author_name_latex: str,
     number_of_inputs: int,
     number_of_feeds: int,
@@ -347,7 +349,7 @@ def neo4j_query_add_inference_rule(
         inference_rule_id=inference_rule_id,
         number_of_inputs=number_of_inputs,
         number_of_feeds=number_of_feeds,
-        number_of_outputs=number_of_outputs
+        number_of_outputs=number_of_outputs,
     ):
         pass
     return inference_rule_id
@@ -628,16 +630,24 @@ class SpecifyNewInferenceRuleForm(FlaskForm):
     https://wtforms.readthedocs.io/en/2.3.x/validators/
     """
 
-    inference_rule_name = StringField("name",
-    validators=[validators.InputRequired(), validators.Length(max=1000)])
-    inference_rule_latex = StringField("latex",
-    validators=[validators.InputRequired(), validators.Length(max=10000)])
-    inference_rule_number_of_inputs = IntegerField("number of inputs",
-    validators=[validators.InputRequired(), validators.NumberRange(min=0, max=20)])
-    inference_rule_number_of_feeds = IntegerField("number of feeds",
-    validators=[validators.InputRequired(), validators.NumberRange(min=0, max=20)])
-    inference_rule_number_of_outputs = IntegerField("number of outputs",
-    validators=[validators.InputRequired(), validators.NumberRange(min=0, max=20)])
+    inference_rule_name = StringField(
+        "name", validators=[validators.InputRequired(), validators.Length(max=1000)]
+    )
+    inference_rule_latex = StringField(
+        "latex", validators=[validators.InputRequired(), validators.Length(max=10000)]
+    )
+    inference_rule_number_of_inputs = IntegerField(
+        "number of inputs",
+        validators=[validators.InputRequired(), validators.NumberRange(min=0, max=20)],
+    )
+    inference_rule_number_of_feeds = IntegerField(
+        "number of feeds",
+        validators=[validators.InputRequired(), validators.NumberRange(min=0, max=20)],
+    )
+    inference_rule_number_of_outputs = IntegerField(
+        "number of outputs",
+        validators=[validators.InputRequired(), validators.NumberRange(min=0, max=20)],
+    )
 
 
 class SpecifyNewStepForm(FlaskForm):
@@ -650,12 +660,14 @@ class SpecifyNewStepForm(FlaskForm):
         validators=[validators.InputRequired(), validators.Length(max=1000)],
     )
 
+
 class SpecifyNewStepExpressions(FlaskForm):
     """
     web form for user to specify expressions for a step
 
     this class is "LatexIO" in v7
     """
+
     input1 = StringField(
         "input LaTeX 1",
         validators=[validators.Length(max=1000)],
@@ -741,8 +753,6 @@ def to_add_derivation():
 
     # TODO: check that the name of the derivation doesn't
     #       conflict with existing derivation names
-
-
 
     web_form = SpecifyNewDerivationForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -903,8 +913,7 @@ def to_add_step_select_inference_rule(derivation_id: str):
 
         print("request.form = ", request.form)
 
-
-        redirect(url_for("to_review_derivation",derivation_id=derivation_id))
+        redirect(url_for("to_review_derivation", derivation_id=derivation_id))
     else:
         return render_template(
             "new_step_select_inference_rule.html",
@@ -912,7 +921,7 @@ def to_add_step_select_inference_rule(derivation_id: str):
             derivation_dict=derivation_dict,
         )
     # workflow shouldn't reach this condition, but if it does,
-    return redirect(url_for("to_review_derivation",derivation_id=derivation_id))
+    return redirect(url_for("to_review_derivation", derivation_id=derivation_id))
 
 
 @app.route(
@@ -934,9 +943,7 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
             neo4j_query_derivation_properties, derivation_id
         )
 
-    print("derivation_dict",derivation_dict)
-
-
+    print("derivation_dict", derivation_dict)
 
     web_form = SpecifyNewStepExpressions(request.form)
     if request.method == "POST" and web_form.validate():
@@ -945,8 +952,6 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
         input1 = str(web_form.input1.data)
         feed1 = str(web_form.feed1.data)
         output1 = str(web_form.output1.data)
-
-
 
         # TODO: web form supplies the inference rule
         inference_rule = "addXtoBothSides"
@@ -970,12 +975,14 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
                 author_name_latex,
             )
     else:
-        return render_template("new_step_provide_expr_for_inf_rule.html",
-        form=web_form,derivation_name=derivation_dict['name_latex'])
+        return render_template(
+            "new_step_provide_expr_for_inf_rule.html",
+            form=web_form,
+            derivation_name=derivation_dict["name_latex"],
+        )
 
     # TODO: return to referrer
-    return redirect(url_for("to_review_derivation",derivation_id=derivation_id))
-
+    return redirect(url_for("to_review_derivation", derivation_id=derivation_id))
 
 
 @app.route("/add_inference_rule/", methods=["GET", "POST"])
@@ -1129,7 +1136,7 @@ def to_list_all_nodes():
     with graphDB_Driver.session() as session:
         dict_all_nodes = session.read_transaction(neo4j_query_all_nodes)
 
-    print("dict_all_nodes",dict_all_nodes)
+    print("dict_all_nodes", dict_all_nodes)
     return render_template("list_all_nodes.html", dict_all_nodes=dict_all_nodes)
 
 
