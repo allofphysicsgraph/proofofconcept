@@ -1065,7 +1065,7 @@ def profile():
     list_of_exprs = ["424252", "525252"]
 
     return render_template(
-        "user.html",
+        "profile.html",
         # user_name=user_name,
         sign_up_date=sign_up_date,
         last_previous_contribution_date=last_previous_contribution_date,
