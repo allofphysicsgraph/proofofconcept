@@ -36,7 +36,12 @@
 
 <P>
  <center>
-<svg id='viz'></svg>
+   <table>
+     <tr>
+       <td><svg id='viz'></svg></td>
+       <td><img src="{{ url_for('static', filename='frequency_and_period_from_PDF.png') }}" width="400"></td>
+     </tr>
+   </table>
  </center>
 </P>
 
@@ -87,7 +92,7 @@
 <P>"Inference rules", "expressions", and "feeds" are words specific to the Physics Derivation Graph.
   Represented graphically, their relation is
 
-<img src="{{ url_for('static', filename='single_step.png') }}">
+<img src="{{ url_for('static', filename='single_step.png') }}" width=300>
 
 <P>Read this directed graph as, "The inference rule acts on the input expression and, combined with the feed, produces the output expression." Inference rules can be considered as functions; the above picture would be
 
@@ -102,7 +107,7 @@ def inference_rule(input_expression, feed):
   Use the Physics Derivation Graph <a href="{{ url_for('navigation') }}?referrer=index">navigation</a>, or read the <a href="{{ url_for('faq') }}">FAQ</a>, or review the <a href="{{ url_for('user_documentation') }}">documentation</a>.
 </P>
 <P>
-  See also <a href="{{ url_for('other_projects') }}?referrer=index">other related or similar projects</a>, <a href="{{ url_for('literature_review') }}?referrer=index">literature review</a>, and <a href="{{ url_for('clickable_layers') }}?referrer=index">experiments in annotation</a>. 
+  See also <a href="{{ url_for('other_projects') }}?referrer=index">other related or similar projects</a>, <a href="{{ url_for('literature_review') }}?referrer=index">literature review</a>, and <a href="{{ url_for('clickable_layers') }}?referrer=index">experiments in annotation</a>.
 </P>
 
 {% include '_d3_js.html' %}
