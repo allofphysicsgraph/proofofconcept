@@ -274,6 +274,7 @@ def neo4j_query_inference_rule_properties(tx, inference_rule_id: str) -> dict:
 
     return record.data()["n"]
 
+
 def neo4j_query_derivation_properties(tx, derivation_id: str) -> dict:
     """
     metadata associated with the derivation
@@ -1047,27 +1048,26 @@ def to_add_inference_rule():
     # TODO: return to referrer
     return redirect(url_for("to_list_inference_rules"))
 
+
 @app.route("/edit_inference_rule/", methods=["GET", "POST"])
 def to_edit_inference_rule():
-    """
-
-    """
+    """ """
     print("[TRACE] func: to_edit_inference_rule")
 
     return render_template("inference_rule_edit.html")
     # once done editing, go back to list
-    #return redirect(url_for("to_list_inference_rules"))
+    # return redirect(url_for("to_list_inference_rules"))
+
 
 @app.route("/delete_inference_rule/", methods=["GET", "POST"])
 def to_delete_inference_rule():
-    """
-
-    """
+    """ """
     print("[TRACE] func: to_delete_inference_rule")
 
     return render_template("inference_rule_delete.html")
     # once done creating new, go back to list
-    #return redirect(url_for("to_list_inference_rules"))
+    # return redirect(url_for("to_list_inference_rules"))
+
 
 # @app.route("/add_new_friends", methods=["GET", "POST"])
 # def to_add_new_friends():
@@ -1121,6 +1121,7 @@ def to_query():
 #        session.write_transaction(neo4j_query_add_friend, "Arthur", "Merlin")
 #    return "created friends"
 
+
 @app.route("/list_expressions", methods=["GET", "POST"])
 def to_list_expressions():
     """
@@ -1135,6 +1136,7 @@ def to_list_expressions():
     print("expression_list", expression_list)
 
     return render_template("list_expressions.html", expressions_list=expressions_list)
+
 
 @app.route("/list_derivations", methods=["GET", "POST"])
 def to_list_derivation():
@@ -1242,7 +1244,7 @@ def to_export_json():
     with graphDB_Driver.session() as session:
         res = session.read_transaction(apoc_export_json, "pdg.json")
 
-    print("res=",res)
+    print("res=", res)
     # <Record file='all.json' source='database: nodes(4), rels(0)' format='json' nodes=4 relationships=0 properties=16 time=123 rows=4 batchSize=-1 batches=0 done=True data=None>
 
     # "dumping_grounds" is a variable set in the docker-compose file using variable NEO4J_dbms_directories_import
