@@ -31,6 +31,13 @@
 
 </fieldset>
 
+<P>Actions</P>
+<UL>
+  <LI><a href="{{ url_for('to_add_inference_rule')  }}?referrer=list_inference_rules">add inference rule</a>    (status: works)</LI>
+  <LI><a href="{{ url_for('to_edit_inference_rule') }}?referrer=list_inference_rules">edit inference rule</a>   (status: TODO)</LI>
+  <LI><a href="{{ url_for('to_delete_inference_rule') }}?referrer=list_inference_rules">delete inference rule</a>   (status: TODO)</LI>
+</UL>
+
 <script>
 function select_infrule() {
   // Declare variables

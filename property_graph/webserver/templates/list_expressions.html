@@ -2,7 +2,7 @@
 {% block content %}
 
 <P>
-  Return to <a href="{{ url_for('main') }}?referrer=list_derivations">main page</a>
+  Return to <a href="{{ url_for('main') }}?referrer=list_expressions">main page</a>
 </P>
 
 <fieldset>
@@ -11,30 +11,26 @@
 </legend>
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
-<input type="text" id="derivation_input" onkeyup="select_derivation()" placeholder="Select derivation to review">
+<input type="text" id="expression_input" onkeyup="select_expression()" placeholder="Select expression to review">
 
-<UL id="derivation_UL">
+<UL id="expression_UL">
   {% for derivation_dict in derivation_list %}
-  <LI><a href="{{ url_for( 'to_review_derivation', derivation_id=derivation_dict['derivation_id'] ) }}">
-           {{derivation_dict['name_latex']}}</a>:
-           {{ derivation_dict['abstract_latex'] }}</LI>
+  <LI><a href="{{ url_for( 'to_review_expression', expression_id=expression_dict['expression_id'] ) }}">
+           {{expression_dict['name_latex']}}</a>:
+           {{ expression_dict['abstract_latex'] }}</LI>
   {% endfor %}
 </UL>
 
 </fieldset>
 
-<P>Actions:</P>
-<UL>
-  <LI><a href="{{ url_for('to_add_derivation') }}?referrer=main">add new derivation</a>        (status: works)</LI>
-</UL>
 
 <script>
-function select_derivation() {
+function select_expression() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('derivation_input');
+  input = document.getElementById('expression_input');
   filter = input.value.toUpperCase();
-  ul = document.getElementById("derivation_UL");
+  ul = document.getElementById("expression_UL");
   li = ul.getElementsByTagName('li');
 
   // Loop through all list items, and hide those who don't match the search query

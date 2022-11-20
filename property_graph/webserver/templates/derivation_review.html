@@ -7,15 +7,18 @@
 
 <H2>Review {{ derivation_dict['name_latex'] }}</H2>
 
-TODO: display graph of derivation (e.g., graphviz)
+<P> Derivation dictionary: {{ derivation_dict }}
 
-TODO: display tex, PDF
+<P> List of steps: {{ list_of_steps }}
+
+<P>TODO: display graph of derivation (e.g., graphviz)
+
+<P>TODO: display tex, PDF
 
 <fieldset>
 <legend>
   <H2>Edit Derivation</h2>
 </legend>
-
 
 <UL>
 <LI> <a href="{{ url_for('to_add_step_select_inference_rule', derivation_id=derivation_dict['derivation_id']) }}">add step to this derivation</a></LI>

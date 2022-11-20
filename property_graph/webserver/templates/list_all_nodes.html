@@ -5,6 +5,7 @@
   Return to <a href="{{ url_for('main') }}?referrer=list_derivations">main page</a>
 </P>
 
+
 <fieldset>
 <legend>
   <H2>List of Derivations</h2>
@@ -15,8 +16,25 @@
 -->
 
 <UL id="derivation_UL">
-  {% for node_type in dict_all_nodes %}
-  <LI>{{ node_type }}</LI>
+  {% for this_node in dict_all_nodes['derivation'] %}
+  <LI>{{ this_node }}</LI>
+  {% endfor %}
+</UL>
+
+</fieldset>
+
+<fieldset>
+<legend>
+  <H2>List of Inference Rules</h2>
+</legend>
+
+<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp - ->
+<input type="text" id="derivation_input" onkeyup="select_derivation()" placeholder="Select derivation">
+-->
+
+<UL id="inference_rule_UL">
+  {% for this_node in dict_all_nodes['inference_rule'] %}
+  <LI>{{ this_node }}</LI>
   {% endfor %}
 </UL>
 

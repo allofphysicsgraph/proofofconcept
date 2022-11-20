@@ -5,15 +5,14 @@
 
 <UL>
   <LI><a href="{{ url_for('main') }}?referrer=main">site map</a> (this page)</LI>
-  <LI><a href="{{ url_for('to_query') }}?referrer=main">Cypher query</a></LI>
-  <LI><a href="{{ url_for('to_export_cypher') }}?referrer=main">export Cypher</a></LI>
-  <LI><a href="{{ url_for('to_export_json') }}?referrer=main">export JSON</a></LI>
-  <LI><a href="{{ url_for('to_list_derivation') }}?referrer=main">select derivation to review</a></LI>
-  <LI><a href="{{ url_for('to_add_derivation') }}?referrer=main">add new derivation</a></LI>
-  <LI><a href="{{ url_for('to_list_inference_rules') }}?referrer=main">show all inference rules</a></LI>
-  <LI><a href="{{ url_for('to_add_inference_rule') }}?referrer=main">add inference rule</a></LI>
-  <LI><a href="{{ url_for('to_list_all_nodes') }}?referrer=main">show all nodes</a></LI>
-  <LI><a href="{{ url_for('to_list_all_edges') }}?referrer=main">show all edges</a></LI>
+  <LI><a href="{{ url_for('to_query') }}?referrer=main">query graph using Cypher</a>                       (status: works)</LI>
+  <LI><a href="{{ url_for('to_export_cypher') }}?referrer=main">export Cypher</a>              (status: works)</LI>
+  <LI><a href="{{ url_for('to_export_json') }}?referrer=main">export JSON</a>                  (status: TODO)</LI>
+  <LI><a href="{{ url_for('to_list_derivation') }}?referrer=main">show all derivations</a>, from which you can select derivation to review. (status: works)</LI>
+  <LI><a href="{{ url_for('to_list_inference_rules') }}?referrer=main">show all inference rules</a> (status: works)</LI>
+  <LI><a href="{{ url_for('to_list_expressions') }}?referrer=main">show all expressions</a> (status: TODO)</LI>  
+  <LI><a href="{{ url_for('to_list_all_nodes') }}?referrer=main">show all nodes</a>            (status: TODO)</LI>
+  <LI><a href="{{ url_for('to_list_all_edges') }}?referrer=main">show all edges</a>            (status: TODO)</LI>
 </UL>
 Danger zone!
 <UL>
@@ -24,8 +23,8 @@ Danger zone!
   <fieldset>
     <legend>
       <H3>
-        <a name="download upload database">
-          Download/Upload database
+        <a name="upload data">
+          Upload data
         </a>
       </H3>
     </legend>

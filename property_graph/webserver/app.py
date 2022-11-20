@@ -258,6 +258,22 @@ def neo4j_query_steps_in_this_derivation(tx, derivation_id: str) -> list:
     return list_of_step_IDs
 
 
+def neo4j_query_inference_rule_properties(tx, inference_rule_id: str) -> dict:
+    """
+    metadata associated with the inference_rule
+
+    >>> neo4j_query_inference_rule_properties()
+    """
+    print("[TRACE] func: neo4j_query_inference_rule_properties")
+    for record in tx.run(
+        "MATCH (n:inference_rule) WHERE n.inference_rule_id = $inference_rule_id RETURN n",
+        inference_rule_id=inference_rule_id,
+    ):
+        print("record:", record)
+        print("n=", record.data()["n"])
+
+    return record.data()["n"]
+
 def neo4j_query_derivation_properties(tx, derivation_id: str) -> dict:
     """
     metadata associated with the derivation
@@ -928,7 +944,11 @@ def to_add_step_select_inference_rule(derivation_id: str):
     "/new_step_expressions/<derivation_id>/<inference_rule_id>", methods=["GET", "POST"]
 )
 def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
-    """ """
+    """
+    derivation_id is the numeric ID of the derivation being edited
+
+    inference_rule_id is the numeric ID of the inference rule being used for this step
+    """
     print("[TRACE] func: to_add_step_select_expressions")
     print("derivation_id:", derivation_id)
     print("inference_rule_id:", inference_rule_id)
@@ -942,8 +962,14 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
         derivation_dict = session.read_transaction(
             neo4j_query_derivation_properties, derivation_id
         )
-
     print("derivation_dict", derivation_dict)
+
+    # get properties for inference rule
+    with graphDB_Driver.session() as session:
+        infrule_dict = session.read_transaction(
+            neo4j_query_inference_rule_properties, inference_rule_id
+        )
+    print("infrule_dict", infrule_dict)
 
     web_form = SpecifyNewStepExpressions(request.form)
     if request.method == "POST" and web_form.validate():
@@ -978,6 +1004,7 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
         return render_template(
             "new_step_provide_expr_for_inf_rule.html",
             form=web_form,
+            infrule_dict=infrule_dict,
             derivation_name=derivation_dict["name_latex"],
         )
 
@@ -1015,11 +1042,32 @@ def to_add_inference_rule():
                 author_name_latex=author_name_latex,
             )
     else:
-        return render_template("new_inference_rule.html", form=web_form)
+        return render_template("inference_rule_new.html", form=web_form)
 
     # TODO: return to referrer
     return redirect(url_for("to_list_inference_rules"))
 
+@app.route("/edit_inference_rule/", methods=["GET", "POST"])
+def to_edit_inference_rule():
+    """
+
+    """
+    print("[TRACE] func: to_edit_inference_rule")
+
+    return render_template("inference_rule_edit.html")
+    # once done editing, go back to list
+    #return redirect(url_for("to_list_inference_rules"))
+
+@app.route("/delete_inference_rule/", methods=["GET", "POST"])
+def to_delete_inference_rule():
+    """
+
+    """
+    print("[TRACE] func: to_delete_inference_rule")
+
+    return render_template("inference_rule_delete.html")
+    # once done creating new, go back to list
+    #return redirect(url_for("to_list_inference_rules"))
 
 # @app.route("/add_new_friends", methods=["GET", "POST"])
 # def to_add_new_friends():
@@ -1073,6 +1121,20 @@ def to_query():
 #        session.write_transaction(neo4j_query_add_friend, "Arthur", "Merlin")
 #    return "created friends"
 
+@app.route("/list_expressions", methods=["GET", "POST"])
+def to_list_expressions():
+    """
+    >>> to_list_expressions()
+    """
+    print("[TRACE] func: to_list_expressions")
+
+    with graphDB_Driver.session() as session:
+        expression_list = session.read_transaction(
+            neo4j_query_list_nodes_of_type, "expression"
+        )
+    print("expression_list", expression_list)
+
+    return render_template("list_expressions.html", expressions_list=expressions_list)
 
 @app.route("/list_derivations", methods=["GET", "POST"])
 def to_list_derivation():
@@ -1081,7 +1143,7 @@ def to_list_derivation():
 
     >>> to_select_derivation_to_edit()
     """
-    print("[TRACE] func: list_derivations")
+    print("[TRACE] func: to_list_derivation")
 
     if request.method == "POST":
         print("request = ", request)
@@ -1108,7 +1170,7 @@ def to_list_inference_rules():
     """
     >>> to_show_all_inference_rules()
     """
-    print("[TRACE] func: list_inference_rules")
+    print("[TRACE] func: to_list_inference_rules")
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
@@ -1145,7 +1207,7 @@ def to_list_all_edges():
     """
     show all edges
     """
-    print("[TRACE] func: to_show_all_edges")
+    print("[TRACE] func: to_list_all_edges")
 
     # https://neo4j.com/docs/python-manual/current/session-api/
 
@@ -1180,9 +1242,11 @@ def to_export_json():
     with graphDB_Driver.session() as session:
         res = session.read_transaction(apoc_export_json, "pdg.json")
 
+    print("res=",res)
     # <Record file='all.json' source='database: nodes(4), rels(0)' format='json' nodes=4 relationships=0 properties=16 time=123 rows=4 batchSize=-1 batches=0 done=True data=None>
 
-    return str(res)
+    # "dumping_grounds" is a variable set in the docker-compose file using variable NEO4J_dbms_directories_import
+    return redirect(url_for("static", filename="dumping_grounds/pdg.json"))
 
 
 @app.route("/export_to_cypher")

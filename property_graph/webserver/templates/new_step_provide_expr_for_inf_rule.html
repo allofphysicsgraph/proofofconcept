@@ -10,10 +10,17 @@
 
 <fieldset>
   <legend>
-    <H2>Provide inputs and feeds and outputs for {{ inf_rule }}</H2>
+    <H2>Provide inputs and feeds and outputs for {{ infrule_dict['name'] }}</H2>
   </legend>
 
+<P>latex: {{ infrule_dict['latex'] }}
 
+<P>input count: {{ infrule_dict['number_of_inputs'] }}
+
+{{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300, id="input1_latex") }}
+
+<P>feed count: {{ infrule_dict['number_of_feeds'] }}
+<P>output count: {{ infrule_dict['number_of_outputs'] }}
 
 </fieldset>
 

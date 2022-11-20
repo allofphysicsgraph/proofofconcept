@@ -5,7 +5,8 @@
   Return to <a href="{{ url_for('main') }}?referrer=create_derivation">main page</a>
 </P>
 
-<P>Select an inference rule to create a new step for {{ derivation_dict['derivation name'] }}
+<!-- TODO: sometimes "name_latex" won't look right in HTML -->
+<P>Select an inference rule to create a new step for {{ derivation_dict['name_latex'] }}
 
 
 <!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
