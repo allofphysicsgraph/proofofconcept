@@ -116,8 +116,6 @@ class Config(object):
     SECRET_KEY = os.environ.get("SECRET_KEY")
 
 
-
-
 def generate_random_id(list_of_current_IDs: list) -> str:
     """
     create statically defined numeric IDs for nodes in the graph
@@ -221,7 +219,7 @@ def neo4j_query_list_nodes_of_type(tx, node_type: str) -> list:
     >>> neo4j_query_list_nodes_of_type(tx)
     """
     print("[TRACE] func: neo4j_query_list_nodes_of_type")
-    assert(check_for_valid_node_type(node_type))
+    assert check_for_valid_node_type(node_type)
 
     node_list = []
     for record in tx.run("MATCH (n:" + node_type + ") RETURN n"):
@@ -251,25 +249,24 @@ def neo4j_query_steps_in_this_derivation(tx, derivation_id: str) -> list:
     return list_of_step_IDs
 
 
-def neo4j_query_node_properties(tx, node_type:str, node_id: str) -> dict:
+def neo4j_query_node_properties(tx, node_type: str, node_id: str) -> dict:
     """
     metadata associated with the node_id
 
     >>> neo4j_query_node_properties()
     """
     print("[TRACE] func: neo4j_query_node_properties")
-    assert(check_for_valid_node_type(node_type))
-    
+    assert check_for_valid_node_type(node_type)
+
     for record in tx.run(
         "MATCH (n:$node_type) WHERE n.id = $node_id RETURN n",
         node_type=node_type,
-        node_id=node_id
+        node_id=node_id,
     ):
         print("record:", record)
         print("n=", record.data()["n"])
 
     return record.data()["n"]
-
 
 
 def neo4j_query_add_derivation(
@@ -453,6 +450,101 @@ def neo4j_query_add_step_to_derivation(
             expr_latex=output_expr,
         )
     return step_id
+
+
+
+def neo4j_query_add_expression(
+    tx,
+    expression_name: str,
+    expression_latex: str,
+    expression_description: str,
+    author_name_latex: str):
+    """
+    >>> neo4j_query_add_expression(tx,)
+    """
+    print("[TRACE] func: neo4j_query_add_expression")
+    with graphDB_Driver.session() as session:
+        list_of_expression_IDs = session.read_transaction(
+            neo4j_query_list_IDs, "expression"
+        )
+    expression_id = generate_random_id(list_of_expression_IDs)
+
+    for record in tx.run(
+        "CREATE (a:expression "
+        "{name:$expression_name, "
+        "latex:$expression_latex, "
+        "description:$inference_rule_description, "
+        "author_name_latex:$author_name_latex, "
+        "expression_id:$expression_id})",
+        expression_name=expression_name,
+        expression_latex=expression_latex,
+        author_name_latex=author_name_latex,
+        expression_id=expression_id,
+    ):
+        pass
+    return expression_id
+
+def neo4j_query_add_symbol(
+    tx,
+    symbol_name: str,
+    symbol_latex: str,
+    symbol_description: str,
+    author_name_latex: str):
+    """
+    >>> neo4j_query_add_symbol(tx,)
+    """
+    print("[TRACE] func: neo4j_query_add_symbol")
+    with graphDB_Driver.session() as session:
+        list_of_symbol_IDs = session.read_transaction(
+            neo4j_query_list_IDs, "symbol"
+        )
+    symbol_id = generate_random_id(list_of_symbol_IDs)
+
+    for record in tx.run(
+        "CREATE (a:symbol "
+        "{name:$symbol_name, "
+        "latex:$symbol_latex, "
+        "description:$inference_rule_description, "
+        "author_name_latex:$author_name_latex, "
+        "symbol_id:$symbol_id})",
+        symbol_name=symbol_name,
+        symbol_latex=symbol_latex,
+        author_name_latex=author_name_latex,
+        symbol_id=symbol_id,
+    ):
+        pass
+    return symbol_id
+
+def neo4j_query_add_operator(
+    tx,
+    operator_name: str,
+    operator_latex: str,
+    operator_description: str,
+    author_name_latex: str):
+    """
+    >>> neo4j_query_add_operator(tx,)
+    """
+    print("[TRACE] func: neo4j_query_add_operator")
+    with graphDB_Driver.session() as session:
+        list_of_operator_IDs = session.read_transaction(
+            neo4j_query_list_IDs, "operator"
+        )
+    operator_id = generate_random_id(list_of_operator_IDs)
+
+    for record in tx.run(
+        "CREATE (a:operator "
+        "{name:$operator_name, "
+        "latex:$operator_latex, "
+        "description:$inference_rule_description, "
+        "author_name_latex:$author_name_latex, "
+        "operator_id:$operator_id})",
+        operator_name=operator_name,
+        operator_latex=operator_latex,
+        author_name_latex=author_name_latex,
+        operator_id=operator_id,
+    ):
+        pass
+    return operator_id
 
 
 # def neo4j_query_add_friend(tx, name, friend_name):
@@ -692,6 +784,7 @@ class SpecifyNewExpressionForm(FlaskForm):
         validators=[validators.Length(max=1000)],
     )
 
+
 class SpecifyNewSymbolForm(FlaskForm):
     """
     web form for user to specify symbols used in expressions
@@ -721,7 +814,8 @@ class CypherQueryForm(FlaskForm):
         validators=[validators.InputRequired()],
     )
 
-def check_for_valid_node_type(node_type:str)->bool:
+
+def check_for_valid_node_type(node_type: str) -> bool:
     if node_type not in [
         "derivation",
         "inference_rule",
@@ -776,7 +870,7 @@ def main():
     return render_template("site_map.html", title="site map")
 
 
-@app.route("/add_derivation", methods=["GET", "POST"])
+@app.route("/new_derivation", methods=["GET", "POST"])
 def to_add_derivation():
     """
     create new derivation
@@ -816,7 +910,10 @@ def to_add_derivation():
             )
         print("derivation ID=", derivation_id)
         return redirect(
-            url_for("to_add_step_select_or_create_inference_rule", derivation_id=derivation_id)
+            url_for(
+                "to_add_step_select_or_create_inference_rule",
+                derivation_id=derivation_id,
+            )
         )
     return render_template(
         "derivation_create.html", form=web_form, derivation_list=derivation_list
@@ -946,7 +1043,7 @@ def to_add_step_select_inference_rule(derivation_id: str):
     #   'name': 'add x to both sides',
     #   'latex': 'ADD _ to BOTH sides'},...]
 
-    #web_form = SpecifyNewStepForm(request.form)
+    # web_form = SpecifyNewStepForm(request.form)
     if request.method == "POST" and web_form.validate():
 
         # TODO: get user name from Google login
@@ -964,6 +1061,7 @@ def to_add_step_select_inference_rule(derivation_id: str):
     # workflow shouldn't reach this condition, but if it does,
     return redirect(url_for("to_review_derivation", derivation_id=derivation_id))
 
+
 @app.route("/edit_expression/<expression_id>", methods=["GET", "POST"])
 def to_edit_expression(expression_id: str):
     """
@@ -976,6 +1074,7 @@ def to_edit_expression(expression_id: str):
         print("POSTED")
 
     return redirect(url_for("to_list_expressions"))
+
 
 @app.route("/new_expression/", methods=["GET", "POST"])
 def to_add_expression():
@@ -998,13 +1097,22 @@ def to_add_expression():
         print("expression_name:", expression_name)
         print("expression_description", expression_description)
 
-        # TODO: add expression to database
+
+        # https://neo4j.com/docs/python-manual/current/session-api/
+        with graphDB_Driver.session() as session:
+            session.write_transaction(
+            neo4j_query_add_expression,
+                expression_name,
+                expression_latex,
+                expression_description,
+                author_name_latex
+            )
 
     else:
         return render_template("expression_create.html", form=web_form)
 
-
     return redirect(url_for("to_list_expressions"))
+
 
 @app.route("/edit_operator/<operator_id>", methods=["GET", "POST"])
 def to_edit_operator(operator_id: str):
@@ -1035,6 +1143,7 @@ def to_edit_symbol(symbol_id: str):
 
     return redirect(url_for("to_list_symbols"))
 
+
 @app.route("/new_symbol/", methods=["GET", "POST"])
 def to_add_symbol():
     """
@@ -1057,6 +1166,16 @@ def to_add_symbol():
         print("symbol_description", symbol_description)
 
         # TODO: add symbol to database
+
+        # https://neo4j.com/docs/python-manual/current/session-api/
+        with graphDB_Driver.session() as session:
+            session.write_transaction(
+                neo4j_query_add_symbol,
+                    symbol_name,
+                    symbol_latex,
+                    symbol_description,
+                    author_name_latex
+            )
 
     else:
         return render_template("symbol_create.html", form=web_form)
@@ -1112,7 +1231,7 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
         list_of_input_expression_IDs = ["248249"]
         list_of_feed_expression_IDs = ["21111", "1119229"]
         list_of_output_expression_IDs = ["42892"]
-        author_name_latex="benno"
+        author_name_latex = "benno"
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
@@ -1139,7 +1258,7 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
     return redirect(url_for("to_review_derivation", derivation_id=derivation_id))
 
 
-@app.route("/add_inference_rule/", methods=["GET", "POST"])
+@app.route("/new_inference_rule/", methods=["GET", "POST"])
 def to_add_inference_rule():
     """
     TODO: check that the name of the inference rule doesn't conflict with existing
@@ -1192,7 +1311,6 @@ def to_edit_inference_rule(inference_rule_id: str):
     # return redirect(url_for("to_list_inference_rules"))
 
 
-
 @app.route("/delete_inference_rule/<inference_rule_id>", methods=["GET", "POST"])
 def to_delete_inference_rule(inference_rule_id: str):
     """
@@ -1207,9 +1325,12 @@ def to_delete_inference_rule(inference_rule_id: str):
         )
     print("inference_rule_dict", inference_rule_dict)
 
-    return render_template("inference_rule_delete.html", inference_rule_dict=inference_rule_dict)
+    return render_template(
+        "inference_rule_delete.html", inference_rule_dict=inference_rule_dict
+    )
     # once done creating new, go back to list
     # return redirect(url_for("to_list_inference_rules"))
+
 
 @app.route("/delete_symbol/<symbol_id>", methods=["GET", "POST"])
 def to_delete_symbol(symbol_id: str):
@@ -1219,6 +1340,7 @@ def to_delete_symbol(symbol_id: str):
     return render_template("symbol_delete.html")
     # once done creating new, go back to list
     # return redirect(url_for("to_list_symbols"))
+
 
 @app.route("/delete_operator/<operator_id>", methods=["GET", "POST"])
 def to_delete_operator(operator_id: str):
@@ -1230,22 +1352,6 @@ def to_delete_operator(operator_id: str):
     # return redirect(url_for("to_list_operators"))
 
 
-# @app.route("/add_new_friends", methods=["GET", "POST"])
-# def to_add_new_friends():
-#    """
-#    DEMO; CAN BE DELETED
-#    """
-#    web_form = SpecifyNewFriendshipForm(request.form)
-#    if request.method == "POST" and web_form.validate():
-#        first_name = str(web_form.first_name.data)
-#        second_name = str(web_form.second_name.data)
-#        print("relation to add:", first_name, second_name)
-#        with graphDB_Driver.session() as session:
-#            session.write_transaction(neo4j_query_add_friend, first_name, second_name)
-#        return redirect(url_for("to_show_friends_of"))
-#    return render_template("input_new_friendship.html", form=web_form)
-
-
 @app.route("/query", methods=["GET", "POST"])
 def to_query():
     """
@@ -1255,7 +1361,7 @@ def to_query():
     web_form = CypherQueryForm(request.form)
     list_of_records = []
 
-    query_str = request.args.get('cypher', None)
+    query_str = request.args.get("cypher", None)
 
     # query via URL keyword
     if query_str:
@@ -1288,18 +1394,6 @@ def to_query():
     return render_template("query.html", form=web_form, list_of_records=list_of_records)
 
 
-# @app.route("/create_friends")
-# def to_create_friends():
-#    """
-#    DEMO; CAN BE DELETED
-#    """
-#    print("func: create_friends")
-#    with graphDB_Driver.session() as session:
-#        session.write_transaction(neo4j_query_add_friend, "Arthur", "Guinevere")
-#        session.write_transaction(neo4j_query_add_friend, "Arthur", "Lancelot")
-#        session.write_transaction(neo4j_query_add_friend, "Arthur", "Merlin")
-#    return "created friends"
-
 @app.route("/list_operators", methods=["GET", "POST"])
 def to_list_operators():
     """
@@ -1324,9 +1418,7 @@ def to_list_symbols():
     print("[TRACE] func: to_list_symbols")
 
     with graphDB_Driver.session() as session:
-        symbol_list = session.read_transaction(
-            neo4j_query_list_nodes_of_type, "symbol"
-        )
+        symbol_list = session.read_transaction(neo4j_query_list_nodes_of_type, "symbol")
     print("symbol_list", symbol_list)
 
     return render_template("list_symbols.html", symbol_list=symbol_list)
