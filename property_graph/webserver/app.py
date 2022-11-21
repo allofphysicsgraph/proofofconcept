@@ -792,6 +792,7 @@ class SpecifyNewSymbolForm(FlaskForm):
         validators=[validators.Length(max=1000)],
     )
 
+
 class SpecifyNewOperatorForm(FlaskForm):
     """
     web form for user to specify operators used in expressions
@@ -1190,6 +1191,7 @@ def to_add_symbol():
 
     return redirect(url_for("to_list_symbols"))
 
+
 @app.route("/new_operator/", methods=["GET", "POST"])
 def to_add_operator():
     """
@@ -1464,7 +1466,9 @@ def to_list_symbols():
     print("[TRACE] func: to_list_symbols")
 
     with graphDB_Driver.session() as session:
-        list_of_symbols = session.read_transaction(neo4j_query_list_nodes_of_type, "symbol")
+        list_of_symbols = session.read_transaction(
+            neo4j_query_list_nodes_of_type, "symbol"
+        )
     print("list_of_symbols", list_of_symbols)
 
     return render_template("list_symbols.html", list_of_symbols=list_of_symbols)
@@ -1483,7 +1487,9 @@ def to_list_expressions():
         )
     print("list_of_expressions", list_of_expressions)
 
-    return render_template("list_expressions.html", list_of_expressions=list_of_expressions)
+    return render_template(
+        "list_expressions.html", list_of_expressions=list_of_expressions
+    )
 
 
 @app.route("/list_derivations", methods=["GET", "POST"])
@@ -1512,7 +1518,9 @@ def to_list_derivations():
 
     # TODO: convert derivation_dict['abstract_latex'] to HTML using pandoc
 
-    return render_template("list_derivations.html", list_of_derivations=list_of_derivations)
+    return render_template(
+        "list_derivations.html", list_of_derivations=list_of_derivations
+    )
 
 
 @app.route("/list_inference_rules")
