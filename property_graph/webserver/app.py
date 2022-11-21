@@ -150,8 +150,8 @@ def neo4j_query_list_IDs(tx, node_type: str) -> list:
     print("[TRACE] func: neo4j_query_list_IDs")
     list_of_IDs = []
     for record in tx.run("MATCH (n:" + node_type + ") RETURN n.id"):
-        #print(record.data())
-        list_of_IDs.append(record.data()['n.id'])
+        # print(record.data())
+        list_of_IDs.append(record.data()["n.id"])
 
     # if node_type == "derivation":
     #     for record in tx.run("MATCH (n:derivation) RETURN n.derivation_id"):
@@ -266,8 +266,8 @@ def neo4j_query_node_properties(tx, node_type: str, node_id: str) -> dict:
     print("node_id:", node_id)
 
     for record in tx.run(
-        "MATCH (n: "+node_type+") WHERE n.id = \"$node_id\" RETURN n",
-        #node_type=node_type,
+        "MATCH (n: " + node_type + ') WHERE n.id = "$node_id" RETURN n',
+        # node_type=node_type,
         node_id=node_id,
     ):
         print("record:", record)
@@ -717,11 +717,11 @@ class SpecifyNewDerivationForm(FlaskForm):
 
     derivation_name_latex = StringField(
         "derivation name (latex)",
-        validators=[validators.InputRequired(), validators.Length(min=5,max=1000)],
+        validators=[validators.InputRequired(), validators.Length(min=5, max=1000)],
     )
     abstract_latex = StringField(
         "abstract (latex)",
-        validators=[validators.InputRequired(), validators.Length(min=5,max=10000)],
+        validators=[validators.InputRequired(), validators.Length(min=5, max=10000)],
     )
 
 
@@ -733,10 +733,12 @@ class SpecifyNewInferenceRuleForm(FlaskForm):
     """
 
     inference_rule_name = StringField(
-        "name (latex)", validators=[validators.InputRequired(), validators.Length(min=5,max=1000)]
+        "name (latex)",
+        validators=[validators.InputRequired(), validators.Length(min=5, max=1000)],
     )
     inference_rule_latex = StringField(
-        "latex", validators=[validators.InputRequired(), validators.Length(min=5,max=10000)]
+        "latex",
+        validators=[validators.InputRequired(), validators.Length(min=5, max=10000)],
     )
     inference_rule_number_of_inputs = IntegerField(
         "number of inputs (non-negative integer)",
@@ -776,7 +778,7 @@ class SpecifyNewExpressionForm(FlaskForm):
 
     expression_latex = StringField(
         "LaTeX expression",
-        validators=[validators.Length(min=1,max=1000)],
+        validators=[validators.Length(min=1, max=1000)],
     )
     expression_name = StringField(
         "name (LaTeX)",
@@ -795,7 +797,7 @@ class SpecifyNewSymbolForm(FlaskForm):
 
     symbol_latex = StringField(
         "LaTeX symbol",
-        validators=[validators.Length(min=1,max=1000)],
+        validators=[validators.Length(min=1, max=1000)],
     )
     symbol_name = StringField(
         "name (LaTeX)",
@@ -814,7 +816,7 @@ class SpecifyNewOperatorForm(FlaskForm):
 
     operator_latex = StringField(
         "LaTeX operator",
-        validators=[validators.Length(min=1,max=1000)],
+        validators=[validators.Length(min=1, max=1000)],
     )
     operator_name = StringField(
         "name (LaTeX)",
@@ -939,7 +941,9 @@ def to_add_derivation():
             )
         )
     return render_template(
-        "derivation_create.html", form=web_form, list_of_derivation_dicts=list_of_derivation_dicts
+        "derivation_create.html",
+        form=web_form,
+        list_of_derivation_dicts=list_of_derivation_dicts,
     )
 
 
@@ -1023,7 +1027,6 @@ def to_edit_derivation_metadata(derivation_id: str):
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
-
     return render_template(
         "derivation_edit_metadata.html", form=web_form, derivation_dict=derivation_dict
     )
@@ -1068,7 +1071,7 @@ def to_add_step_select_inference_rule(derivation_id: str):
     # to populate the dropdown menu we need the list of inference rule IDs
     list_of_inference_rule_IDs = []
     for inference_rule_dict in list_of_inference_rule_dicts:
-        list_of_inference_rule_IDs.append(inference_rule_dict['id'])
+        list_of_inference_rule_IDs.append(inference_rule_dict["id"])
 
     # get properties of this derivation
     with graphDB_Driver.session() as session:
@@ -1078,7 +1081,7 @@ def to_add_step_select_inference_rule(derivation_id: str):
     print("derivation_dict:", derivation_dict)
 
     # web_form = SpecifyNewStepForm(request.form)
-    if request.method == "POST": # and web_form.validate():
+    if request.method == "POST":  # and web_form.validate():
 
         # TODO: get user name from Google login
         author_name = "ben"
@@ -1115,8 +1118,10 @@ def to_edit_expression(expression_id: str):
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
-    return render_template("expression_edit.html", form=web_form, expression_dict=expression_dict)
-    #return redirect(url_for("to_list_expressions"))
+    return render_template(
+        "expression_edit.html", form=web_form, expression_dict=expression_dict
+    )
+    # return redirect(url_for("to_list_expressions"))
 
 
 @app.route("/new_expression/", methods=["GET", "POST"])
@@ -1177,10 +1182,10 @@ def to_edit_operator(operator_id: str):
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
-
-
-    return render_template("operator_create.html", form=web_form, operator_dict=operator_dict)
-    #return redirect(url_for("to_list_operators"))
+    return render_template(
+        "operator_create.html", form=web_form, operator_dict=operator_dict
+    )
+    # return redirect(url_for("to_list_operators"))
 
 
 @app.route("/edit_symbol/<symbol_id>", methods=["GET", "POST"])
@@ -1204,10 +1209,8 @@ def to_edit_symbol(symbol_id: str):
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
-
-
     return render_template("symbol_edit.html", form=web_form, symbol_dict=symbol_dict)
-    #return redirect(url_for("to_list_symbols"))
+    # return redirect(url_for("to_list_symbols"))
 
 
 @app.route("/new_symbol/", methods=["GET", "POST"])
@@ -1312,8 +1315,7 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
 
     list_of_expression_IDs = []
     for expression_dict in list_of_expression_dicts:
-        list_of_expression_IDs.append(list_of_expression_dicts['id'])
-
+        list_of_expression_IDs.append(list_of_expression_dicts["id"])
 
     # TODO: for this inference_rule_id, how many inputs and outputs and feeds?
     # TODO: get all expressions in this derivations
@@ -1433,8 +1435,11 @@ def to_edit_inference_rule(inference_rule_id: str):
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
-
-    return render_template("inference_rule_edit.html", form=web_form, inference_rule_dict=inference_rule_dict)
+    return render_template(
+        "inference_rule_edit.html",
+        form=web_form,
+        inference_rule_dict=inference_rule_dict,
+    )
     # once done editing, go back to list
     # return redirect(url_for("to_list_inference_rules"))
 
@@ -1622,7 +1627,8 @@ def to_list_inference_rules():
         print(inference_rule_dict)
 
     return render_template(
-        "list_inference_rules.html", list_of_inference_rule_dicts=list_of_inference_rule_dicts
+        "list_inference_rules.html",
+        list_of_inference_rule_dicts=list_of_inference_rule_dicts,
     )
 
 
