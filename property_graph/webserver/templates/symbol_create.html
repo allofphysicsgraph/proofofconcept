@@ -2,33 +2,29 @@
 {% block content %}
 
 <P>
-  Return to <a href="{{ url_for('main') }}?referrer=list_derivations">main page</a>
+  Return to <a href="{{ url_for('main') }}?referrer=symbol_create">main page</a>
 </P>
 
 <fieldset>
-<legend>
-  <H2>List of Derivations</h2>
-</legend>
+  <legend>
+    Create symbol
+  </legend>
 
-<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
-<input type="text" id="derivation_input" onkeyup="select_derivation()" placeholder="Select derivation to review">
+<form method="post" action="" onsubmit="return checkForm(this);">
+  {{ form.csrf_token }}
+  <P>
+    {{ form.symbol_latex.label}}: {{ form.symbol_latex(size=50, maxlength=1000) }} <BR/>
+    &nbsp;<BR/>
+   {{form.symbol_name.label }}: {{ form.symbol_name(size=50, maxlength=1000) }}<BR/>
+   &nbsp;<BR/>
+  {{form.symbol_description.label }}: {{ form.symbol_description(size=50, maxlength=1000) }}<BR/>
 
-<table border="1" id="infrule_table">
-  <tr>
-    <th>ID</th>
-    <th>name</th>
-    <th>latex</th>
-  </tr>
-  {% for infrule_dict in inference_rule_list %}
-  <tr>
-    <td>{{ infrule_dict['inference_rule_id'] }}</td>
-    <td>{{ infrule_dict['name'] }}</td>
-    <td>{{ infrule_dict['latex']}}</td>
-  </tr>
-  {% endfor %}
-</table>
+  <input type="submit" value="add symbol">
 
+</form>
+</fieldset>
 
+TODO: as user is entering symbol, filter the list of existing symbols
 
 <UL id="derivation_UL">
   {% for derivation_dict in derivation_list %}
@@ -36,13 +32,6 @@
            {{derivation_dict['name_latex']}}</a>:
            {{ derivation_dict['abstract_latex'] }}</LI>
   {% endfor %}
-</UL>
-
-</fieldset>
-
-<P>Actions:</P>
-<UL>
-  <LI><a href="{{ url_for('to_add_derivation') }}?referrer=main">add new derivation</a>        (status: works)</LI>
 </UL>
 
 <script>
@@ -66,5 +55,7 @@ function select_derivation() {
   }
 }
 </script>
+
+
 
 {% endblock %}

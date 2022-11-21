@@ -15,6 +15,27 @@
 <input type="text" id="derivation_input" onkeyup="select_derivation()" placeholder="Select derivation">
 -->
 
+<table border="1" id="operator_table">
+  <tr>
+    <th>ID</th>
+    <th>latex</th>
+    <th>name</th>
+    <th>description</th>
+  </tr>
+  {% for operator_dict in operator_list %}
+  <tr>
+    <td>
+      <a href="{{ url_for( 'to_edit_operator', operator_id=operator_dict['operator_id'] ) }}">
+          {{ operator_dict['operator_id'] }}
+      </a>
+    </td>
+    <td>{{ operator_dict['operator_latex']}}</td>
+    <td>{{ operator_dict['operator_name'] }}</td>
+    <td>{{ operator_dict['operator_description'] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
 <UL id="derivation_UL">
   {% for this_node in dict_all_nodes['derivation'] %}
   <LI>{{ this_node }}</LI>

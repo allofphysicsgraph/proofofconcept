@@ -7,22 +7,39 @@
 
 <fieldset>
 <legend>
-  <H2>List of Derivations</h2>
+  <H2>List of Expressions</h2>
 </legend>
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
 <input type="text" id="expression_input" onkeyup="select_expression()" placeholder="Select expression to review">
 
-<UL id="expression_UL">
-  {% for derivation_dict in derivation_list %}
-  <LI><a href="{{ url_for( 'to_review_expression', expression_id=expression_dict['expression_id'] ) }}">
-           {{expression_dict['name_latex']}}</a>:
-           {{ expression_dict['abstract_latex'] }}</LI>
+<table border="1" id="expression_table">
+  <tr>
+    <th>ID</th>
+    <th>latex</th>
+    <th>name</th>
+    <th>description</th>
+  </tr>
+  {% for expression_dict in expression_list %}
+  <tr>
+    <td>
+      <a href="{{ url_for( 'to_edit_expression', expression_id=expression_dict['expression_id'] ) }}">
+          {{ expression_dict['expression_id'] }}
+      </a>
+    </td>
+    <td>{{ expression_dict['expression_latex']}}</td>
+    <td>{{ expression_dict['expression_name'] }}</td>
+    <td>{{ expression_dict['expression_description'] }}</td>
+  </tr>
   {% endfor %}
-</UL>
+</table>
 
 </fieldset>
 
+<P>Actions:</P>
+<UL>
+  <LI><a href="{{ url_for('to_add_expression') }}?referrer=list_expressions">add new expression</a>        (status: TODO)</LI>
+</UL>
 
 <script>
 function select_expression() {

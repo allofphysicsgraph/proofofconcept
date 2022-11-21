@@ -11,20 +11,24 @@
 </legend>
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
-<input type="text" id="infrule_input" onkeyup="select_infrule()" placeholder="Select Inference Rule">
+<input type="text" id="inference_rule_input" onkeyup="select_inference_rule()" placeholder="Select Inference Rule">
 
 
-<table border="1" id="infrule_UL">
+<table border="1" id="inference_rule_table">
   <tr>
     <th>ID</th>
     <th>name</th>
     <th>latex</th>
   </tr>
-  {% for infrule_dict in inference_rule_list %}
+  {% for inference_rule_dict in inference_rule_list %}
   <tr>
-    <td>{{ infrule_dict['inference_rule_id'] }}</td>
-    <td>{{ infrule_dict['name'] }}</td>
-    <td>{{ infrule_dict['latex']}}</td>
+    <td>
+      <a href="{{ url_for( 'to_edit_inference_rule', inference_rule_id=inference_rule_dict['inference_rule_id'] ) }}">
+        {{ inference_rule_dict['inference_rule_id'] }}
+      </a>
+    </td>
+    <td>{{ inference_rule_dict['name'] }}</td>
+    <td>{{ inference_rule_dict['latex']}}</td>
   </tr>
   {% endfor %}
 </table>
@@ -39,12 +43,12 @@
 </UL>
 
 <script>
-function select_infrule() {
+function select_inference_rule() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('infrule_input');
+  input = document.getElementById('inference_rule_input');
   filter = input.value.toUpperCase();
-  ul = document.getElementById("infrule_UL");
+  ul = document.getElementById("inference_rule_UL");
   li = ul.getElementsByTagName('tr');
 
   // Loop through all list items, and hide those who don't match the search query

@@ -17,7 +17,16 @@
 
 <P>input count: {{ infrule_dict['number_of_inputs'] }}
 
-{{ webform.input1.label }}: {{ webform.input1(size=50, maxlength=300, id="input1_latex") }}
+<form method="post" action="">
+  {{ form.csrf_token }}
+
+
+{{ form.input1.label }}: {{ form.input1(size=50, maxlength=300, id="input1_latex") }}
+
+<input type="submit" name="submit_button" value="Submit">
+
+
+</form>
 
 <P>feed count: {{ infrule_dict['number_of_feeds'] }}
 <P>output count: {{ infrule_dict['number_of_outputs'] }}
