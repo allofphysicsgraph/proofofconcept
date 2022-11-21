@@ -398,6 +398,7 @@ def neo4j_query_add_step_to_derivation(
         "note_after_step_latex:$note_after_step_latex,"
         "step_id:$step_id})",
         note_before_step_latex=note_before_step_latex,
+        inference_rule_id=inference_rule_id,
         note_after_step_latex=note_after_step_latex,
         author_name_latex=author_name_latex,
         step_id=step_id,
@@ -452,13 +453,13 @@ def neo4j_query_add_step_to_derivation(
     return step_id
 
 
-
 def neo4j_query_add_expression(
     tx,
     expression_name: str,
     expression_latex: str,
     expression_description: str,
-    author_name_latex: str):
+    author_name_latex: str,
+):
     """
     >>> neo4j_query_add_expression(tx,)
     """
@@ -473,54 +474,58 @@ def neo4j_query_add_expression(
         "CREATE (a:expression "
         "{name:$expression_name, "
         "latex:$expression_latex, "
-        "description:$inference_rule_description, "
+        "description:$expression_description, "
         "author_name_latex:$author_name_latex, "
-        "expression_id:$expression_id})",
+        "id:$expression_id})",
         expression_name=expression_name,
         expression_latex=expression_latex,
+        expression_description=expression_description,
         author_name_latex=author_name_latex,
         expression_id=expression_id,
     ):
         pass
     return expression_id
 
+
 def neo4j_query_add_symbol(
     tx,
     symbol_name: str,
     symbol_latex: str,
     symbol_description: str,
-    author_name_latex: str):
+    author_name_latex: str,
+):
     """
     >>> neo4j_query_add_symbol(tx,)
     """
     print("[TRACE] func: neo4j_query_add_symbol")
     with graphDB_Driver.session() as session:
-        list_of_symbol_IDs = session.read_transaction(
-            neo4j_query_list_IDs, "symbol"
-        )
+        list_of_symbol_IDs = session.read_transaction(neo4j_query_list_IDs, "symbol")
     symbol_id = generate_random_id(list_of_symbol_IDs)
 
     for record in tx.run(
         "CREATE (a:symbol "
         "{name:$symbol_name, "
         "latex:$symbol_latex, "
-        "description:$inference_rule_description, "
+        "description:$symbol_description, "
         "author_name_latex:$author_name_latex, "
-        "symbol_id:$symbol_id})",
+        "id:$symbol_id})",
         symbol_name=symbol_name,
         symbol_latex=symbol_latex,
+        symbol_description=symbol_description,
         author_name_latex=author_name_latex,
         symbol_id=symbol_id,
     ):
         pass
     return symbol_id
 
+
 def neo4j_query_add_operator(
     tx,
     operator_name: str,
     operator_latex: str,
     operator_description: str,
-    author_name_latex: str):
+    author_name_latex: str,
+):
     """
     >>> neo4j_query_add_operator(tx,)
     """
@@ -535,11 +540,12 @@ def neo4j_query_add_operator(
         "CREATE (a:operator "
         "{name:$operator_name, "
         "latex:$operator_latex, "
-        "description:$inference_rule_description, "
+        "description:$operator_description, "
         "author_name_latex:$author_name_latex, "
-        "operator_id:$operator_id})",
+        "id:$operator_id})",
         operator_name=operator_name,
         operator_latex=operator_latex,
+        operator_description=operator_description,
         author_name_latex=author_name_latex,
         operator_id=operator_id,
     ):
@@ -688,23 +694,6 @@ app.config["DEBUG"] = True
 csrf.init_app(app)
 
 
-# class SpecifyNewFriendshipForm(FlaskForm):
-#    """
-#    DEMO; CAN BE DELETED
-#
-#    Ben - KNOWS -> Bob
-#    """
-#
-#    first_name = StringField(
-#        "first name",
-#        validators=[validators.InputRequired(), validators.Length(max=100)],
-#    )
-#    second_name = StringField(
-#        "second name",
-#        validators=[validators.InputRequired(), validators.Length(max=100)],
-#    )
-
-
 class SpecifyNewDerivationForm(FlaskForm):
     """
     web form for user to provide name of (new) derivation
@@ -803,6 +792,24 @@ class SpecifyNewSymbolForm(FlaskForm):
         validators=[validators.Length(max=1000)],
     )
 
+class SpecifyNewOperatorForm(FlaskForm):
+    """
+    web form for user to specify operators used in expressions
+    """
+
+    operator_latex = StringField(
+        "LaTeX operator",
+        validators=[validators.Length(max=1000)],
+    )
+    operator_name = StringField(
+        "name (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    operator_description = StringField(
+        "description (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+
 
 class CypherQueryForm(FlaskForm):
     """
@@ -879,11 +886,11 @@ def to_add_derivation():
     print("[TRACE] func: to_add_derivation")
 
     with graphDB_Driver.session() as session:
-        derivation_list = session.read_transaction(
+        list_of_derivations = session.read_transaction(
             neo4j_query_list_nodes_of_type, "derivation"
         )
 
-    for deriv_dict in derivation_list:
+    for deriv_dict in list_of_derivations:
         print("deriv_dict:", deriv_dict)
 
     # TODO: check that the name of the derivation doesn't
@@ -916,7 +923,7 @@ def to_add_derivation():
             )
         )
     return render_template(
-        "derivation_create.html", form=web_form, derivation_list=derivation_list
+        "derivation_create.html", form=web_form, list_of_derivations=list_of_derivations
     )
 
 
@@ -1097,15 +1104,16 @@ def to_add_expression():
         print("expression_name:", expression_name)
         print("expression_description", expression_description)
 
+        author_name_latex = "ben"
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             session.write_transaction(
-            neo4j_query_add_expression,
+                neo4j_query_add_expression,
                 expression_name,
                 expression_latex,
                 expression_description,
-                author_name_latex
+                author_name_latex,
             )
 
     else:
@@ -1165,22 +1173,60 @@ def to_add_symbol():
         print("symbol_name:", symbol_name)
         print("symbol_description", symbol_description)
 
-        # TODO: add symbol to database
+        author_name_latex = "ben"
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             session.write_transaction(
                 neo4j_query_add_symbol,
-                    symbol_name,
-                    symbol_latex,
-                    symbol_description,
-                    author_name_latex
+                symbol_name,
+                symbol_latex,
+                symbol_description,
+                author_name_latex,
             )
 
     else:
         return render_template("symbol_create.html", form=web_form)
 
-    return redirect(url_for("to_list_expressions"))
+    return redirect(url_for("to_list_symbols"))
+
+@app.route("/new_operator/", methods=["GET", "POST"])
+def to_add_operator():
+    """
+    novel operator
+    """
+    print("[TRACE] func: to_add_operator")
+
+    web_form = SpecifyNewOperatorForm(request.form)
+    if request.method == "POST" and web_form.validate():
+        print("request.form = ", request.form)
+
+        # request.form =  ImmutableMultiDict([('input1', 'a = b'), ('submit_button', 'Submit')])
+
+        operator_latex = str(web_form.operator_latex.data)
+        operator_name = str(web_form.operator_name.data)
+        operator_description = str(web_form.operator_description.data)
+
+        print("operator_latex:", operator_latex)
+        print("operator_name:", operator_name)
+        print("operator_description", operator_description)
+
+        author_name_latex = "ben"
+
+        # https://neo4j.com/docs/python-manual/current/session-api/
+        with graphDB_Driver.session() as session:
+            session.write_transaction(
+                neo4j_query_add_operator,
+                operator_name,
+                operator_latex,
+                operator_description,
+                author_name_latex,
+            )
+
+    else:
+        return render_template("operator_create.html", form=web_form)
+
+    return redirect(url_for("to_list_operators"))
 
 
 @app.route(
@@ -1402,12 +1448,12 @@ def to_list_operators():
     print("[TRACE] func: to_list_operators")
 
     with graphDB_Driver.session() as session:
-        operator_list = session.read_transaction(
+        list_of_operators = session.read_transaction(
             neo4j_query_list_nodes_of_type, "operator"
         )
-    print("operator_list", operator_list)
+    print("list_of_operators", list_of_operators)
 
-    return render_template("list_operators.html", operator_list=operator_list)
+    return render_template("list_operators.html", list_of_operators=list_of_operators)
 
 
 @app.route("/list_symbols", methods=["GET", "POST"])
@@ -1418,10 +1464,10 @@ def to_list_symbols():
     print("[TRACE] func: to_list_symbols")
 
     with graphDB_Driver.session() as session:
-        symbol_list = session.read_transaction(neo4j_query_list_nodes_of_type, "symbol")
-    print("symbol_list", symbol_list)
+        list_of_symbols = session.read_transaction(neo4j_query_list_nodes_of_type, "symbol")
+    print("list_of_symbols", list_of_symbols)
 
-    return render_template("list_symbols.html", symbol_list=symbol_list)
+    return render_template("list_symbols.html", list_of_symbols=list_of_symbols)
 
 
 @app.route("/list_expressions", methods=["GET", "POST"])
@@ -1432,12 +1478,12 @@ def to_list_expressions():
     print("[TRACE] func: to_list_expressions")
 
     with graphDB_Driver.session() as session:
-        expressions_list = session.read_transaction(
+        list_of_expressions = session.read_transaction(
             neo4j_query_list_nodes_of_type, "expression"
         )
-    print("expressions_list", expressions_list)
+    print("list_of_expressions", list_of_expressions)
 
-    return render_template("list_expressions.html", expressions_list=expressions_list)
+    return render_template("list_expressions.html", list_of_expressions=list_of_expressions)
 
 
 @app.route("/list_derivations", methods=["GET", "POST"])
@@ -1457,16 +1503,16 @@ def to_list_derivations():
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
-        derivation_list = session.read_transaction(
+        list_of_derivations = session.read_transaction(
             neo4j_query_list_nodes_of_type, "derivation"
         )
 
-    for deriv_dict in derivation_list:
+    for deriv_dict in list_of_derivations:
         print("deriv_dict", deriv_dict)
 
     # TODO: convert derivation_dict['abstract_latex'] to HTML using pandoc
 
-    return render_template("list_derivations.html", derivation_list=derivation_list)
+    return render_template("list_derivations.html", list_of_derivations=list_of_derivations)
 
 
 @app.route("/list_inference_rules")

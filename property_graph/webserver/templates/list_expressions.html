@@ -20,16 +20,16 @@
     <th>name</th>
     <th>description</th>
   </tr>
-  {% for expression_dict in expression_list %}
+  {% for expression_dict in list_of_expressions %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_expression', expression_id=expression_dict['expression_id'] ) }}">
-          {{ expression_dict['expression_id'] }}
+          {{ expression_dict['id'] }}
       </a>
     </td>
-    <td>{{ expression_dict['expression_latex']}}</td>
-    <td>{{ expression_dict['expression_name'] }}</td>
-    <td>{{ expression_dict['expression_description'] }}</td>
+    <td>{{ expression_dict['latex']}}</td>
+    <td>{{ expression_dict['name'] }}</td>
+    <td>{{ expression_dict['description'] }}</td>
   </tr>
   {% endfor %}
 </table>

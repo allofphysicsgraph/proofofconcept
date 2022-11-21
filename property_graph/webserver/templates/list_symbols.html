@@ -20,16 +20,16 @@
     <th>name</th>
     <th>description</th>
   </tr>
-  {% for symbol_dict in symbol_list %}
+  {% for symbol_dict in list_of_symbols %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_symbol', symbol_id=symbol_dict['symbol_id'] ) }}">
-          {{ symbol_dict['symbol_id'] }}
+          {{ symbol_dict['id'] }}
       </a>
     </td>
-    <td>{{ symbol_dict['symbol_latex']}}</td>
-    <td>{{ symbol_dict['symbol_name'] }}</td>
-    <td>{{ symbol_dict['symbol_description'] }}</td>
+    <td>{{ symbol_dict['latex']}}</td>
+    <td>{{ symbol_dict['name'] }}</td>
+    <td>{{ symbol_dict['description'] }}</td>
   </tr>
   {% endfor %}
 </table>

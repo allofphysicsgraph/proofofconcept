@@ -20,15 +20,18 @@
     <th>name</th>
     <th>latex</th>
   </tr>
-  {% for inference_rule_dict in inference_rule_list %}
+  {% for inference_rule_dict in list_of_inference_rules %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_inference_rule', inference_rule_id=inference_rule_dict['inference_rule_id'] ) }}">
-        {{ inference_rule_dict['inference_rule_id'] }}
+        {{ inference_rule_dict['id'] }}
       </a>
     </td>
     <td>{{ inference_rule_dict['name'] }}</td>
     <td>{{ inference_rule_dict['latex']}}</td>
+    <td>{{ inference_rule_dict['inputs'] }}</td>
+    <td>{{ inference_rule_dict['feeds']}}</td>
+    <td>{{ inference_rule_dict['outputs']}}</td>
   </tr>
   {% endfor %}
 </table>

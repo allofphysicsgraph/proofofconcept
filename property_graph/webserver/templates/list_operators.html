@@ -20,16 +20,16 @@
     <th>name</th>
     <th>description</th>
   </tr>
-  {% for operator_dict in operator_list %}
+  {% for operator_dict in list_of_operators %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_operator', operator_id=operator_dict['operator_id'] ) }}">
-          {{ operator_dict['operator_id'] }}
+          {{ operator_dict['id'] }}
       </a>
     </td>
-    <td>{{ operator_dict['operator_latex']}}</td>
-    <td>{{ operator_dict['operator_name'] }}</td>
-    <td>{{ operator_dict['operator_description'] }}</td>
+    <td>{{ operator_dict['latex']}}</td>
+    <td>{{ operator_dict['name'] }}</td>
+    <td>{{ operator_dict['description'] }}</td>
   </tr>
   {% endfor %}
 </table>
