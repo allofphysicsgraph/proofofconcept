@@ -5,12 +5,25 @@
   Return to <a href="{{ url_for('main') }}?referrer=expession_edit">main page</a>
 </P>
 
+{{ expression_dict }}
+
 <fieldset>
-<legend>
-  <H2>Edit Expression</h2>
-</legend>
+  <legend>
+    <H2>Edit Expression</h2>
+  </legend>
 
-
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+      {{ form.expression_latex.label}}: {{ form.expression_latex(size=50, maxlength=1000) }} <BR/>
+      &nbsp;<BR/>
+      {{form.expression_name.label }}: {{ form.expression_name(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      {{form.expression_description.label }}: {{ form.expression_description(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      <input type="submit" value="Edit expression">
+    </P>
+  </form>
 </fieldset>
 
 

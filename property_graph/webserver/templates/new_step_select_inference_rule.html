@@ -2,7 +2,7 @@
 {% block content %}
 
 <P>
-  Return to <a href="{{ url_for('main') }}?referrer=create_derivation">main page</a>
+  Return to <a href="{{ url_for('main') }}?referrer=new_step_select_inference_rule">main page</a>
 </P>
 
 <!-- TODO: sometimes "name_latex" won't look right in HTML -->
@@ -18,6 +18,13 @@
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
 <input type="text" id="inf_rule_input" onkeyup="select_infrule()" placeholder="Select inference rule">
+
+<select name="input1_local_id" class="selectpicker form-control" id="input1_local">
+  {% for inference_rule_id in list_of_inference_rule_IDs_id %}
+  <option value="{{ inference_rule_id }}">{{ inference_rule_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>
+  {% endfor %}
+</select>
+
 
 <UL id="inf_rules_UL">
   {% for inf_rule_dict in inference_rule_list %}

@@ -13,30 +13,7 @@
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
 <input type="text" id="derivation_input" onkeyup="select_derivation()" placeholder="Select derivation to review">
 
-<table border="1" id="derivation_table">
-  <tr>
-    <th>ID</th>
-    <th>name</th>
-    <th>latex</th>
-  </tr>
-  {% for derivation_dict in list_of_derivations %}
-  <tr>
-    <td>{{ derivation_dict['inference_rule_id'] }}</td>
-    <td>{{ derivation_dict['name'] }}</td>
-    <td>{{ derivation_dict['description']}}</td>
-  </tr>
-  {% endfor %}
-</table>
-
-
-
-<UL id="derivation_UL">
-  {% for derivation_dict in derivation_list %}
-  <LI><a href="{{ url_for( 'to_review_derivation', derivation_id=derivation_dict['derivation_id'] ) }}">
-           {{derivation_dict['name_latex']}}</a>:
-           {{ derivation_dict['abstract_latex'] }}</LI>
-  {% endfor %}
-</UL>
+{% include '_table_of_derivations.html' %}
 
 </fieldset>
 

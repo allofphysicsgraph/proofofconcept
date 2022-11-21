@@ -5,11 +5,29 @@
   Return to <a href="{{ url_for('main') }}?referrer=list_derivations">main page</a>
 </P>
 
+{{ inference_rule_dict }}
+
 <fieldset>
 <legend>
-  <H2>Edit Metadata for Derivation {{ derivation_dict['name_latex'] }}</h2>
+  <H2>Edit Inference Rule</h2>
 </legend>
 
+<form method="post" action="" onsubmit="return checkForm(this);">
+  {{ form.csrf_token }}
+  <P>
+    {{ form.inference_rule_name.label}}: {{ form.inference_rule_name(size=50, maxlength=1000) }} <BR/>
+    &nbsp;<BR/>
+    {{form.inference_rule_latex.label }}: {{ form.inference_rule_latex(size=50, maxlength=1000) }}<BR/>
+    &nbsp;<BR/>
+    {{form.inference_rule_number_of_inputs.label }}: {{ form.inference_rule_number_of_inputs() }} <BR/>
+    &nbsp;<BR/>
+    {{form.inference_rule_number_of_feeds.label }}: {{ form.inference_rule_number_of_feeds() }} <BR/>
+    &nbsp;<BR/>
+    {{form.inference_rule_number_of_outputs.label }}: {{ form.inference_rule_number_of_outputs() }} <BR/>
+    &nbsp;<BR/>
+    <input type="submit" value="Edit inference rule">
+  </P>
+</form>
 
 </fieldset>
 

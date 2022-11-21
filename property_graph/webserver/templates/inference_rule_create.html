@@ -10,21 +10,25 @@
     Create new inference rule
   </legend>
 
-<form method="post" action="" onsubmit="return checkForm(this);">
-  {{ form.csrf_token }}
-  <P>
-    {{ form.inference_rule_name.label}}: {{ form.inference_rule_name(size=50, maxlength=1000) }} <BR/>
-    &nbsp;<BR/>
-   {{form.inference_rule_latex.label }}: {{ form.inference_rule_latex(size=50, maxlength=1000) }}<BR/>
-    &nbsp;<BR/>
-   {{form.inference_rule_number_of_inputs.label }}: {{ form.inference_rule_number_of_inputs() }} <BR/>
-    &nbsp;<BR/>
-   {{form.inference_rule_number_of_feeds.label }}: {{ form.inference_rule_number_of_feeds() }} <BR/>
-    &nbsp;<BR/>
-   {{form.inference_rule_number_of_outputs.label }}: {{ form.inference_rule_number_of_outputs() }} <BR/>
-
-  <input type="submit" value="add inference rule">
-</form>
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+      {{ form.inference_rule_name.label}}: {{ form.inference_rule_name(size=50, maxlength=1000) }} <BR/>
+      &nbsp;<BR/>
+      {{form.inference_rule_latex.label }}: {{ form.inference_rule_latex(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      {{form.inference_rule_number_of_inputs.label }}: {{ form.inference_rule_number_of_inputs() }} <BR/>
+      &nbsp;<BR/>
+      {{form.inference_rule_number_of_feeds.label }}: {{ form.inference_rule_number_of_feeds() }} <BR/>
+      &nbsp;<BR/>
+      {{form.inference_rule_number_of_outputs.label }}: {{ form.inference_rule_number_of_outputs() }} <BR/>
+      &nbsp;<BR/>
+      <input type="submit" value="add inference rule">
+    </P>
+  </form>
 </fieldset>
+
+{% include '_table_of_inference_rules.html' %}
+
 
 {% endblock %}

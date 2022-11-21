@@ -14,35 +14,13 @@
 <input type="text" id="inference_rule_input" onkeyup="select_inference_rule()" placeholder="Select Inference Rule">
 
 
-<table border="1" id="inference_rule_table">
-  <tr>
-    <th>ID</th>
-    <th>name</th>
-    <th>latex</th>
-  </tr>
-  {% for inference_rule_dict in list_of_inference_rules %}
-  <tr>
-    <td>
-      <a href="{{ url_for( 'to_edit_inference_rule', inference_rule_id=inference_rule_dict['inference_rule_id'] ) }}">
-        {{ inference_rule_dict['id'] }}
-      </a>
-    </td>
-    <td>{{ inference_rule_dict['name'] }}</td>
-    <td>{{ inference_rule_dict['latex']}}</td>
-    <td>{{ inference_rule_dict['inputs'] }}</td>
-    <td>{{ inference_rule_dict['feeds']}}</td>
-    <td>{{ inference_rule_dict['outputs']}}</td>
-  </tr>
-  {% endfor %}
-</table>
+{% include '_table_of_inference_rules.html' %}
 
 </fieldset>
 
 <P>Actions</P>
 <UL>
   <LI><a href="{{ url_for('to_add_inference_rule')  }}?referrer=list_inference_rules">add inference rule</a>    (status: works)</LI>
-  <LI><a href="{{ url_for('to_edit_inference_rule') }}?referrer=list_inference_rules">edit inference rule</a>   (status: TODO)</LI>
-  <LI><a href="{{ url_for('to_delete_inference_rule') }}?referrer=list_inference_rules">delete inference rule</a>   (status: TODO)</LI>
 </UL>
 
 <script>

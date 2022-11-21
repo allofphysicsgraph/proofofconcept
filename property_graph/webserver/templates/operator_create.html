@@ -10,37 +10,31 @@
     Create operator
   </legend>
 
-<form method="post" action="" onsubmit="return checkForm(this);">
-  {{ form.csrf_token }}
-  <P>
-    {{ form.operator_latex.label}}: {{ form.operator_latex(size=50, maxlength=1000) }} <BR/>
-    &nbsp;<BR/>
-   {{form.operator_name.label }}: {{ form.operator_name(size=50, maxlength=1000) }}<BR/>
-   &nbsp;<BR/>
-  {{form.operator_description.label }}: {{ form.operator_description(size=50, maxlength=1000) }}<BR/>
-
-  <input type="submit" value="add operator">
-
-</form>
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+      {{ form.operator_latex.label}}: {{ form.operator_latex(size=50, maxlength=1000) }} <BR/>
+      &nbsp;<BR/>
+      {{form.operator_name.label }}: {{ form.operator_name(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      {{form.operator_description.label }}: {{ form.operator_description(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      <input type="submit" value="add operator">
+    </P>
+  </form>
 </fieldset>
 
 TODO: as user is entering operator, filter the list of existing operators
 
-<UL id="derivation_UL">
-  {% for derivation_dict in derivation_list %}
-  <LI><a href="{{ url_for( 'to_review_derivation', derivation_id=derivation_dict['derivation_id'] ) }}">
-           {{derivation_dict['name_latex']}}</a>:
-           {{ derivation_dict['abstract_latex'] }}</LI>
-  {% endfor %}
-</UL>
+{% include '_table_of_operators.html' %}
 
 <script>
-function select_derivation() {
+function select_operator() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('derivation_input');
+  input = document.getElementById('operator_input');
   filter = input.value.toUpperCase();
-  ul = document.getElementById("derivation_UL");
+  ul = document.getElementById("operator_UL");
   li = ul.getElementsByTagName('li');
 
   // Loop through all list items, and hide those who don't match the search query

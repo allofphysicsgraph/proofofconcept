@@ -1,0 +1,24 @@
+<table border="1" id="inference_rule_table">
+  <tr>
+    <th>ID</th>
+    <th>name</th>
+    <th>latex</th>
+    <th>input count</th>
+    <th>feed count</th>
+    <th>output count</th>
+  </tr>
+  {% for inference_rule_dict in list_of_inference_rule_dicts %}
+  <tr>
+    <td>
+      <a href="{{ url_for( 'to_edit_inference_rule', inference_rule_id=inference_rule_dict['id'] ) }}">
+        {{ inference_rule_dict['id'] }}
+      </a>
+    </td>
+    <td>{{ inference_rule_dict['name'] }}</td>
+    <td>{{ inference_rule_dict['latex']}}</td>
+    <td>{{ inference_rule_dict['number_of_inputs'] }}</td>
+    <td>{{ inference_rule_dict['number_of_feeds']}}</td>
+    <td>{{ inference_rule_dict['number_of_outputs']}}</td>
+  </tr>
+  {% endfor %}
+</table>

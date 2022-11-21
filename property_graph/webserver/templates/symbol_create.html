@@ -10,37 +10,31 @@
     Create symbol
   </legend>
 
-<form method="post" action="" onsubmit="return checkForm(this);">
-  {{ form.csrf_token }}
-  <P>
-    {{ form.symbol_latex.label}}: {{ form.symbol_latex(size=50, maxlength=1000) }} <BR/>
-    &nbsp;<BR/>
-   {{form.symbol_name.label }}: {{ form.symbol_name(size=50, maxlength=1000) }}<BR/>
-   &nbsp;<BR/>
-  {{form.symbol_description.label }}: {{ form.symbol_description(size=50, maxlength=1000) }}<BR/>
-
-  <input type="submit" value="add symbol">
-
-</form>
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+      {{ form.symbol_latex.label}}: {{ form.symbol_latex(size=50, maxlength=1000) }} <BR/>
+      &nbsp;<BR/>
+      {{form.symbol_name.label }}: {{ form.symbol_name(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      {{form.symbol_description.label }}: {{ form.symbol_description(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      <input type="submit" value="add symbol">
+    </P>
+  </form>
 </fieldset>
 
 TODO: as user is entering symbol, filter the list of existing symbols
 
-<UL id="derivation_UL">
-  {% for derivation_dict in derivation_list %}
-  <LI><a href="{{ url_for( 'to_review_derivation', derivation_id=derivation_dict['derivation_id'] ) }}">
-           {{derivation_dict['name_latex']}}</a>:
-           {{ derivation_dict['abstract_latex'] }}</LI>
-  {% endfor %}
-</UL>
+{% include '_table_of_symbols.html' %}
 
 <script>
-function select_derivation() {
+function select_symbol() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('derivation_input');
+  input = document.getElementById('symbol_input');
   filter = input.value.toUpperCase();
-  ul = document.getElementById("derivation_UL");
+  ul = document.getElementById("symbol_UL");
   li = ul.getElementsByTagName('li');
 
   // Loop through all list items, and hide those who don't match the search query

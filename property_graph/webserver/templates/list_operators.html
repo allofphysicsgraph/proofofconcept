@@ -13,27 +13,7 @@
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
 <input type="text" id="operator_input" onkeyup="select_operator()" placeholder="Select operator to review">
 
-<table border="1" id="operator_table">
-  <tr>
-    <th>ID</th>
-    <th>latex</th>
-    <th>name</th>
-    <th>description</th>
-  </tr>
-  {% for operator_dict in list_of_operators %}
-  <tr>
-    <td>
-      <a href="{{ url_for( 'to_edit_operator', operator_id=operator_dict['operator_id'] ) }}">
-          {{ operator_dict['id'] }}
-      </a>
-    </td>
-    <td>{{ operator_dict['latex']}}</td>
-    <td>{{ operator_dict['name'] }}</td>
-    <td>{{ operator_dict['description'] }}</td>
-  </tr>
-  {% endfor %}
-</table>
-
+{% include '_table_of_operators.html' %}
 
 </fieldset>
 

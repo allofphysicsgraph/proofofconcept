@@ -5,11 +5,25 @@
   Return to <a href="{{ url_for('main') }}?referrer=edit_operator">main page</a>
 </P>
 
+{{ operator_dict }}
+
 <fieldset>
 <legend>
   <H2>Edit Operator</h2>
 </legend>
 
+<form method="post" action="" onsubmit="return checkForm(this);">
+  {{ form.csrf_token }}
+  <P>
+    {{ form.operator_latex.label}}: {{ form.operator_latex(size=50, maxlength=1000) }} <BR/>
+    &nbsp;<BR/>
+    {{form.operator_name.label }}: {{ form.operator_name(size=50, maxlength=1000) }}<BR/>
+    &nbsp;<BR/>
+    {{form.operator_description.label }}: {{ form.operator_description(size=50, maxlength=1000) }}<BR/>
+    &nbsp;<BR/>
+    <input type="submit" value="Edit operator">
+  </P>
+</form>
 
 </fieldset>
 

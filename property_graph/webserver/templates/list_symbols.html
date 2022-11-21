@@ -13,27 +13,7 @@
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
 <input type="text" id="symbol_input" onkeyup="select_symbol()" placeholder="Select symbol to review">
 
-<table border="1" id="symbol_table">
-  <tr>
-    <th>ID</th>
-    <th>latex</th>
-    <th>name</th>
-    <th>description</th>
-  </tr>
-  {% for symbol_dict in list_of_symbols %}
-  <tr>
-    <td>
-      <a href="{{ url_for( 'to_edit_symbol', symbol_id=symbol_dict['symbol_id'] ) }}">
-          {{ symbol_dict['id'] }}
-      </a>
-    </td>
-    <td>{{ symbol_dict['latex']}}</td>
-    <td>{{ symbol_dict['name'] }}</td>
-    <td>{{ symbol_dict['description'] }}</td>
-  </tr>
-  {% endfor %}
-</table>
-
+{% include '_table_of_symbols.html' %}
 
 </fieldset>
 

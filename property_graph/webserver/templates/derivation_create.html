@@ -2,34 +2,29 @@
 {% block content %}
 
 <P>
-  Return to <a href="{{ url_for('main') }}?referrer=create_derivation">main page</a>
+  Return to <a href="{{ url_for('main') }}?referrer=derivation_create">main page</a>
 </P>
 
 <fieldset>
   <legend>
-    Create derivation
+    Create a derivation
   </legend>
 
-<form method="post" action="" onsubmit="return checkForm(this);">
-  {{ form.csrf_token }}
-  <P>
-    {{ form.derivation_name_latex.label}}: {{ form.derivation_name_latex(size=50, maxlength=1000) }} <BR/>
-    &nbsp;<BR/>
-   {{form.abstract_latex.label }}: {{ form.abstract_latex(size=50, maxlength=1000) }}<BR/>
-  <input type="submit" value="add derivation">
-
-</form>
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+      {{ form.derivation_name_latex.label}}: {{ form.derivation_name_latex(size=50, maxlength=1000) }} <BR/>
+      &nbsp;<BR/>
+      {{form.abstract_latex.label }}: {{ form.abstract_latex(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      <input type="submit" value="add derivation">
+    </P>
+  </form>
 </fieldset>
 
 TODO: as user is entering derivation name, filter the list of existing derivations
 
-<UL id="derivation_UL">
-  {% for derivation_dict in derivation_list %}
-  <LI><a href="{{ url_for( 'to_review_derivation', derivation_id=derivation_dict['derivation_id'] ) }}">
-           {{derivation_dict['name_latex']}}</a>:
-           {{ derivation_dict['abstract_latex'] }}</LI>
-  {% endfor %}
-</UL>
+{% include '_table_of_derivations.html' %}
 
 <script>
 function select_derivation() {
