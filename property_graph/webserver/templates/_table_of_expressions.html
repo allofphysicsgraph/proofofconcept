@@ -1,3 +1,5 @@
+{{ list_of_expression_dicts }}
+
 <table border="1" id="expression_table">
   <tr>
     <th>ID</th>
@@ -5,7 +7,7 @@
     <th>name</th>
     <th>description</th>
   </tr>
-  {% for expression_dict in list_of_expressions %}
+  {% for expression_dict in list_of_expression_dicts %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_expression', expression_id=expression_dict['id'] ) }}">

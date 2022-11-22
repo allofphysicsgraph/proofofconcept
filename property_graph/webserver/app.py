@@ -273,9 +273,9 @@ def neo4j_query_node_properties(tx, node_type: str, node_id: str) -> dict:
         print("record:", record)
         print("n=", record.data()["n"])
 
-    if record:
+    try:
         return record.data()["n"]
-    else:
+    except UnboundLocalError:
         return None
 
 
@@ -298,6 +298,8 @@ def neo4j_query_add_derivation(
         )
     derivation_id = generate_random_id(list_of_derivation_IDs)
 
+    # as per https://strftime.org/
+    # %f = Microsecond as a decimal number, zero-padded on the left.
     now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
 
     for record in tx.run(
@@ -396,6 +398,7 @@ def neo4j_query_add_step_to_derivation(
     # TODO: for the derivation, determine the list of all sequence_index values,
     #       then increment max to get the sequence_index for this step
 
+    # %f = Microsecond as a decimal number, zero-padded on the left.
     now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
 
     # inference rule
@@ -835,7 +838,7 @@ class CypherQueryForm(FlaskForm):
 
     query = StringField(
         "Cypher query",
-        validators=[validators.InputRequired()],
+        validators=[validators.InputRequired(), validators.Length(min=1)],
     )
 
 
@@ -1054,6 +1057,7 @@ def to_add_step_select_inference_rule(derivation_id: str):
     What inference rule should be used for this step?
     """
     print("[TRACE] func: to_add_step_select_inference_rule")
+    print("derivation_id: ", derivation_id)
 
     # get list of inference rules
     with graphDB_Driver.session() as session:
@@ -1082,13 +1086,17 @@ def to_add_step_select_inference_rule(derivation_id: str):
 
     # web_form = SpecifyNewStepForm(request.form)
     if request.method == "POST":  # and web_form.validate():
+        print("request.form = ", request.form)
 
         # TODO: get user name from Google login
         author_name = "ben"
 
-        print("request.form = ", request.form)
+        # TODO: get the inference_rule_id from the webform
 
-        redirect(url_for("to_review_derivation", derivation_id=derivation_id))
+
+        redirect(url_for("to_add_step_select_expressions",
+            derivation_id=derivation_id,
+            inference_rule_id=inference_rule_id))
     else:
         return render_template(
             "new_step_select_inference_rule.html",
@@ -1096,6 +1104,7 @@ def to_add_step_select_inference_rule(derivation_id: str):
             derivation_dict=derivation_dict,
         )
     # workflow shouldn't reach this condition, but if it does,
+    raise Exception("How did you reach this?")
     return redirect(url_for("to_review_derivation", derivation_id=derivation_id))
 
 
@@ -1494,36 +1503,29 @@ def to_query():
     web_form = CypherQueryForm(request.form)
     list_of_records = []
 
-    query_str = request.args.get("cypher", None)
-
     # query via URL keyword
+    query_str = request.args.get("cypher", None)
     if query_str:
         print("query:", query_str)
-        try:
-            # https://neo4j.com/docs/python-manual/current/session-api/
-            with graphDB_Driver.session() as session:
-                list_of_records = session.read_transaction(
-                    neo4j_query_user_query, query
-                )
-        except neo4j.exceptions.ClientError:
-            list_of_records = ["WRITE OPERATIONS NOT ALLOWED (3)"]
-        except neo4j.exceptions.TransactionError:
-            list_of_records = ["WRITE OPERATIONS NOT ALLOWED (4)"]
+        query = query_str
 
     # query via web form
     elif request.method == "POST" and web_form.validate():
         query = str(web_form.query.data)
         print("query:", query)
-        try:
-            # https://neo4j.com/docs/python-manual/current/session-api/
-            with graphDB_Driver.session() as session:
-                list_of_records = session.read_transaction(
-                    neo4j_query_user_query, query
-                )
-        except neo4j.exceptions.ClientError:
-            list_of_records = ["WRITE OPERATIONS NOT ALLOWED (3)"]
-        except neo4j.exceptions.TransactionError:
-            list_of_records = ["WRITE OPERATIONS NOT ALLOWED (4)"]
+
+    try:
+        # https://neo4j.com/docs/python-manual/current/session-api/
+        with graphDB_Driver.session() as session:
+            list_of_records = session.read_transaction(
+                neo4j_query_user_query, query
+            )
+    except neo4j.exceptions.ClientError:
+        list_of_records = ["WRITE OPERATIONS NOT ALLOWED (3)"]
+    except neo4j.exceptions.TransactionError:
+        list_of_records = ["WRITE OPERATIONS NOT ALLOWED (4)"]
+
+
     return render_template("query.html", form=web_form, list_of_records=list_of_records)
 
 
@@ -1535,12 +1537,12 @@ def to_list_operators():
     print("[TRACE] func: to_list_operators")
 
     with graphDB_Driver.session() as session:
-        list_of_operators = session.read_transaction(
+        list_of_operator_dicts = session.read_transaction(
             neo4j_query_list_nodes_of_type, "operator"
         )
     print("list_of_operators", list_of_operators)
 
-    return render_template("list_operators.html", list_of_operators=list_of_operators)
+    return render_template("list_operators.html", list_of_operator_dicts=list_of_operator_dicts)
 
 
 @app.route("/list_symbols", methods=["GET", "POST"])
@@ -1551,12 +1553,12 @@ def to_list_symbols():
     print("[TRACE] func: to_list_symbols")
 
     with graphDB_Driver.session() as session:
-        list_of_symbols = session.read_transaction(
+        list_of_symbol_dicts = session.read_transaction(
             neo4j_query_list_nodes_of_type, "symbol"
         )
-    print("list_of_symbols", list_of_symbols)
+    print("list_of_symbols", list_of_symbol_dicts)
 
-    return render_template("list_symbols.html", list_of_symbols=list_of_symbols)
+    return render_template("list_symbols.html", list_of_symbol_dicts=list_of_symbol_dicts)
 
 
 @app.route("/list_expressions", methods=["GET", "POST"])
@@ -1567,13 +1569,13 @@ def to_list_expressions():
     print("[TRACE] func: to_list_expressions")
 
     with graphDB_Driver.session() as session:
-        list_of_expressions = session.read_transaction(
+        list_of_expression_dicts = session.read_transaction(
             neo4j_query_list_nodes_of_type, "expression"
         )
-    print("list_of_expressions", list_of_expressions)
+    print("list_of_expression_dicts", list_of_expression_dicts)
 
     return render_template(
-        "list_expressions.html", list_of_expressions=list_of_expressions
+        "list_expressions.html", list_of_expression_dicts=list_of_expression_dicts
     )
 
 
@@ -1674,7 +1676,7 @@ def to_delete_graph_content():
         str_to_print = session.write_transaction(
             neo4j_query_delete_all_nodes_and_relationships
         )
-    return "deleted all graph content"
+    return redirect(url_for("/"))
 
 
 @app.route("/export_to_json")

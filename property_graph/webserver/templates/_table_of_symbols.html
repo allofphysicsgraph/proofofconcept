@@ -1,3 +1,5 @@
+{{ list_of_symbol_dicts }}
+
 <table border="1" id="symbol_table">
   <tr>
     <th>ID</th>
@@ -5,7 +7,7 @@
     <th>name</th>
     <th>description</th>
   </tr>
-  {% for symbol_dict in list_of_symbols %}
+  {% for symbol_dict in list_of_symbol_dicts %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_symbol', symbol_id=symbol_dict['id'] ) }}">
