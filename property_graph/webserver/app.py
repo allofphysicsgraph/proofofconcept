@@ -1093,10 +1093,13 @@ def to_add_step_select_inference_rule(derivation_id: str):
 
         # TODO: get the inference_rule_id from the webform
 
-
-        redirect(url_for("to_add_step_select_expressions",
-            derivation_id=derivation_id,
-            inference_rule_id=inference_rule_id))
+        redirect(
+            url_for(
+                "to_add_step_select_expressions",
+                derivation_id=derivation_id,
+                inference_rule_id=inference_rule_id,
+            )
+        )
     else:
         return render_template(
             "new_step_select_inference_rule.html",
@@ -1517,14 +1520,11 @@ def to_query():
     try:
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
-            list_of_records = session.read_transaction(
-                neo4j_query_user_query, query
-            )
+            list_of_records = session.read_transaction(neo4j_query_user_query, query)
     except neo4j.exceptions.ClientError:
         list_of_records = ["WRITE OPERATIONS NOT ALLOWED (3)"]
     except neo4j.exceptions.TransactionError:
         list_of_records = ["WRITE OPERATIONS NOT ALLOWED (4)"]
-
 
     return render_template("query.html", form=web_form, list_of_records=list_of_records)
 
@@ -1542,7 +1542,9 @@ def to_list_operators():
         )
     print("list_of_operators", list_of_operators)
 
-    return render_template("list_operators.html", list_of_operator_dicts=list_of_operator_dicts)
+    return render_template(
+        "list_operators.html", list_of_operator_dicts=list_of_operator_dicts
+    )
 
 
 @app.route("/list_symbols", methods=["GET", "POST"])
@@ -1558,7 +1560,9 @@ def to_list_symbols():
         )
     print("list_of_symbols", list_of_symbol_dicts)
 
-    return render_template("list_symbols.html", list_of_symbol_dicts=list_of_symbol_dicts)
+    return render_template(
+        "list_symbols.html", list_of_symbol_dicts=list_of_symbol_dicts
+    )
 
 
 @app.route("/list_expressions", methods=["GET", "POST"])
