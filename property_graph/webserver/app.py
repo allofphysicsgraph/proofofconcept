@@ -274,7 +274,7 @@ def neo4j_query_node_properties(tx, node_type: str, node_id: str) -> dict:
     print("node_id:", node_id)
 
     for record in tx.run(
-        "MATCH (n: " + node_type + ") WHERE n.id = \""+node_id+"\" RETURN n",
+        "MATCH (n: " + node_type + ') WHERE n.id = "' + node_id + '" RETURN n',
         # node_type=node_type,
         # node_id=node_id,
     ):
