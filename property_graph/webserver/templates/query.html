@@ -41,9 +41,9 @@ Examples:
   </tr>
   <tr>
     <td>list properties for a specific derivation</td>
-    <td>MATCH (n:derivation) WHERE n.derivation_id = '5389624' RETURN n<BR>
+    <td>MATCH (n:derivation) WHERE n.id = '5389624' RETURN n<BR>
     or<BR>
-    MATCH (n:derivation {derivation_id:'5389624'}) RETURN n </td>
+    MATCH (n:derivation {id:'5389624'}) RETURN n </td>
   </tr>
 </table>
 <P>
@@ -72,7 +72,7 @@ Examples:
 <form method="post" action="" onsubmit="return checkForm(this);">
   {{ form.csrf_token }}
   <P>
-    {{ form.query.label}}: {{ form.query(size=100) }}
+    {{ form.query.label}}: {{ form.query(size=100, minlength=1) }}
   <input type="submit" value="query graph">
 </form>
 </fieldset>

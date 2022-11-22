@@ -274,9 +274,9 @@ def neo4j_query_node_properties(tx, node_type: str, node_id: str) -> dict:
     print("node_id:", node_id)
 
     for record in tx.run(
-        "MATCH (n: " + node_type + ') WHERE n.id = "$node_id" RETURN n',
+        "MATCH (n: " + node_type + ") WHERE n.id = \""+node_id+"\" RETURN n",
         # node_type=node_type,
-        node_id=node_id,
+        # node_id=node_id,
     ):
         print("record:", record)
         print("n=", record.data()["n"])
@@ -846,11 +846,14 @@ class SpecifyNewOperatorForm(FlaskForm):
 class CypherQueryForm(FlaskForm):
     """
     web form for user to provide Cypher query for Neo4j database
+
+    although a minimum input length of 1 sounds reasonable,
+    that causes the empty form to fail
     """
 
     query = StringField(
         "Cypher query",
-        validators=[validators.InputRequired(), validators.Length(min=1)],
+        validators=[validators.InputRequired()],
     )
 
 
@@ -920,18 +923,18 @@ def to_add_derivation():
     # TODO: check that the name of the derivation doesn't
     #       conflict with existing derivation names
 
-    print("request.form=",request.form)
+    print("request.form=", request.form)
     web_form = SpecifyNewDerivationForm(request.form)
 
-    print("request.method=",request.method)
-    print("web_form.validate()=",web_form.validate())
+    print("request.method=", request.method)
+    print("web_form.validate()=", web_form.validate())
 
     if request.method == "POST" and web_form.validate():
         print("request.form = %s", request.form)
         derivation_name_latex = str(web_form.derivation_name_latex.data)
         abstract_latex = str(web_form.abstract_latex.data)
-        print("       derivation to add:", derivation_name_latex)
-        print("       submitted abstract:", abstract_latex)
+        print("       derivation:", derivation_name_latex)
+        print("       abstract:", abstract_latex)
         author_name_latex = "ben"
 
         # https://neo4j.com/docs/python-manual/current/session-api/
@@ -960,10 +963,10 @@ def to_add_derivation():
             print("deriv_dict:", deriv_dict)
 
         return render_template(
-        "derivation_create.html",
-        form=web_form,
-        list_of_derivation_dicts=list_of_derivation_dicts,
-    )
+            "derivation_create.html",
+            form=web_form,
+            list_of_derivation_dicts=list_of_derivation_dicts,
+        )
     raise Exception("You definitely shouldn't reach here")
     return "broken"
 
@@ -1069,7 +1072,7 @@ def to_edit_derivation_metadata(derivation_id: str):
 #     return render_template("derivation_delete.html", derivation_dict=derivation_dict)
 
 
-@app.route("/new_step_select_inf_rule/<derivation_id>/", methods=["GET", "POST"])
+@app.route("/new_step_select_inference_rule/<derivation_id>/", methods=["GET", "POST"])
 def to_add_step_select_inference_rule(derivation_id: str):
     """
     add new step to existing derivation
@@ -1079,15 +1082,12 @@ def to_add_step_select_inference_rule(derivation_id: str):
     print("[TRACE] func: to_add_step_select_inference_rule")
     print("derivation_id: ", derivation_id)
 
-
     # web_form = SpecifyNewStepForm(request.form)
-    if request.method == "POST":  # and web_form.validate():
+    if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
         # TODO: get user name from Google login
         author_name = "ben"
-
-
 
         # TODO: get the inference_rule_id from the webform
         # inference_rule_id =
@@ -1100,7 +1100,6 @@ def to_add_step_select_inference_rule(derivation_id: str):
             )
         )
     else:
-
         # get list of inference rules
         with graphDB_Driver.session() as session:
             list_of_inference_rule_dicts = session.read_transaction(
@@ -1125,7 +1124,6 @@ def to_add_step_select_inference_rule(derivation_id: str):
                 neo4j_query_node_properties, "derivation", derivation_id
             )
         print("derivation_dict:", derivation_dict)
-
 
         return render_template(
             "new_step_select_inference_rule.html",
@@ -1203,8 +1201,11 @@ def to_add_expression():
                 neo4j_query_list_nodes_of_type, "expression"
             )
 
-        return render_template("expression_create.html", form=web_form,
-         list_of_expression_dicts=list_of_expression_dicts)
+        return render_template(
+            "expression_create.html",
+            form=web_form,
+            list_of_expression_dicts=list_of_expression_dicts,
+        )
 
     return redirect(url_for("to_list_expressions"))
 
@@ -1300,9 +1301,11 @@ def to_add_symbol():
                 neo4j_query_list_nodes_of_type, "symbol"
             )
 
-
-        return render_template("symbol_create.html", form=web_form,
-        list_of_symbol_dicts=list_of_symbol_dicts)
+        return render_template(
+            "symbol_create.html",
+            form=web_form,
+            list_of_symbol_dicts=list_of_symbol_dicts,
+        )
 
     return redirect(url_for("to_list_symbols"))
 
@@ -1348,8 +1351,11 @@ def to_add_operator():
                 neo4j_query_list_nodes_of_type, "operator"
             )
 
-        return render_template("operator_create.html", form=web_form,
-        list_of_operator_dicts=list_of_operator_dicts)
+        return render_template(
+            "operator_create.html",
+            form=web_form,
+            list_of_operator_dicts=list_of_operator_dicts,
+        )
 
     return redirect(url_for("to_list_operators"))
 
@@ -1374,15 +1380,11 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
         list_of_expression_dicts = session.read_transaction(
             neo4j_query_list_nodes_of_type, "expression"
         )
-    print("list_of_expressions=", list_of_expressions)
+    print("list_of_expression_dicts=", list_of_expression_dicts)
 
     list_of_expression_IDs = []
     for expression_dict in list_of_expression_dicts:
         list_of_expression_IDs.append(list_of_expression_dicts["id"])
-
-    # TODO: for this inference_rule_id, how many inputs and outputs and feeds?
-    # TODO: get all expressions in this derivations
-    # TODO: get all expressions in PDG
 
     # get properties for derivation
     with graphDB_Driver.session() as session:
@@ -1483,8 +1485,11 @@ def to_add_inference_rule():
                 neo4j_query_list_nodes_of_type, "inference_rule"
             )
 
-        return render_template("inference_rule_create.html", form=web_form,
-        list_of_inference_rule_dicts=list_of_inference_rule_dicts)
+        return render_template(
+            "inference_rule_create.html",
+            form=web_form,
+            list_of_inference_rule_dicts=list_of_inference_rule_dicts,
+        )
 
     # TODO: return to referrer
     return redirect(url_for("to_list_inference_rules"))
@@ -1565,7 +1570,7 @@ def to_query():
     web_form = CypherQueryForm(request.form)
     list_of_records = []
 
-    print("request.method=",request.method)
+    print("request.method=", request.method)
 
     # query via URL keyword
     query_str = request.args.get("cypher", None)
@@ -1578,11 +1583,7 @@ def to_query():
         query = str(web_form.query.data)
         print("query:", query)
 
-    else:
-        print("request.method=",request.method)
-        raise Exception("how did you get here?")
-
-    print("query=",query)
+    print("query=", query)
     try:
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
@@ -1746,7 +1747,7 @@ def to_delete_graph_content():
         str_to_print = session.write_transaction(
             neo4j_query_delete_all_nodes_and_relationships
         )
-    return redirect(url_for("/"))
+    return redirect(url_for("main"))
 
 
 @app.route("/export_to_json")
