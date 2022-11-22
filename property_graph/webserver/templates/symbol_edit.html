@@ -8,23 +8,37 @@
 {{ symbol_dict }}
 
 <fieldset>
-<legend>
-  <H2>Edit Symbol</h2>
-</legend>
+  <legend>
+    <H2>Edit Symbol</h2>
+  </legend>
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+      {{ form.symbol_latex.label}}: {{ form.symbol_latex(size=50, maxlength=1000) }} <BR/>
+      &nbsp;<BR/>
+      {{form.symbol_name.label }}: {{ form.symbol_name(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      {{form.symbol_description.label }}: {{ form.symbol_description(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      <input type="submit" value="Edit symbol">
+    </P>
+  </form>
+
+</fieldset>
+
+<fieldset>
+  <legend>
+    <H2>Delete Symbol</H2>
+  </legend>
 
 <form method="post" action="" onsubmit="return checkForm(this);">
   {{ form.csrf_token }}
   <P>
-    {{ form.symbol_latex.label}}: {{ form.symbol_latex(size=50, maxlength=1000) }} <BR/>
-    &nbsp;<BR/>
-    {{form.symbol_name.label }}: {{ form.symbol_name(size=50, maxlength=1000) }}<BR/>
-    &nbsp;<BR/>
-    {{form.symbol_description.label }}: {{ form.symbol_description(size=50, maxlength=1000) }}<BR/>
-    &nbsp;<BR/>
-    <input type="submit" value="Edit symbol">
-  </P>
-</form>
 
+  <input type="submit" value="delete symbol">
+
+</form>
 </fieldset>
 
 

@@ -20,18 +20,17 @@
 <form method="post" action="">
   {{ form.csrf_token }}
 
-
-{{ form.input1.label }}: {{ form.input1(size=50, maxlength=300, id="input1_latex") }}
-
-
-<select name="input1_local_id" class="selectpicker form-control" id="input1_local">
-  {% for expression_id in list_of_expression_IDs %}
-  <option value="{{ expression_id }}">{{ expression_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>
-  {% endfor %}
-</select>
+  {{ form.input1.label }}: {{ form.input1(size=50, maxlength=300, id="input1_latex") }}
 
 
-<input type="submit" name="submit_button" value="Submit">
+  <select name="input1_local_id" class="selectpicker form-control" id="input1_local">
+    {% for expression_id in list_of_expression_IDs %}
+    <option value="{{ expression_id }}">{{ expression_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>
+    {% endfor %}
+  </select>
+
+
+  <input type="submit" name="submit_button" value="Submit">
 
 
 </form>

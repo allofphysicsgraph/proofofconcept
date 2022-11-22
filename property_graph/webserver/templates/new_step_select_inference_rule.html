@@ -12,35 +12,32 @@
 <!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
 
 <fieldset>
-<legend>
-  <H2>Select inference rule from list</h2>
-</legend>
+  <legend>
+    <H2>Select inference rule from list</h2>
+  </legend>
 
-<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
-<input type="text" id="inf_rule_input" onkeyup="select_infrule()" placeholder="Select inference rule">
+  <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
+  <input type="text" id="inf_rule_input" onkeyup="select_infrule()" placeholder="Select inference rule">
 
-<select name="input1_local_id" class="selectpicker form-control" id="input1_local">
-  {% for inference_rule_id in list_of_inference_rule_IDs_id %}
-  <option value="{{ inference_rule_id }}">{{ inference_rule_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>
-  {% endfor %}
-</select>
-
-
-<UL id="inf_rules_UL">
-  {% for inf_rule_dict in inference_rule_list %}
-  <LI>
-    <a href="{{ url_for( 'to_add_step_select_expressions',
-                         derivation_id=derivation_dict['derivation_id'],
-                         inference_rule_id=inf_rule_dict['inference_rule_id'] ) }}">
-      {{inf_rule_dict['name']}}
-    </a>
-  </LI>
-  {% endfor %}
-</UL>
+  <UL id="inf_rules_UL">
+    {% for inf_rule_dict in list_of_inference_rule_dicts %}
+    <LI>
+      <a href="{{ url_for( 'to_add_step_select_expressions',
+                           derivation_id=derivation_dict['id'],
+                           inference_rule_id=inf_rule_dict['id'] ) }}">
+        {{inf_rule_dict['name']}}
+      </a>
+    </LI>
+    {% endfor %}
+  </UL>
 
 </fieldset>
 
-<a href="{{ url_for('to_add_inference_rule') }}?referrer=derivationID_{{derivation_dict['derivation_id']}}">Create a new inference rule</a>
+<P>
+  If you don't see the inference rule you need, <BR>
+    <a href="{{ url_for('to_add_inference_rule') }}?referrer=derivationID_{{derivation_dict['id']}}">
+      Create a new inference rule</a>
+</P>
 
 <script>
 function select_infrule() {

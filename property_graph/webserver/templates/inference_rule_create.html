@@ -7,15 +7,15 @@
 
 <fieldset>
   <legend>
-    Create new inference rule
+    <H2>Create new inference rule</H2>
   </legend>
 
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
     <P>
-      {{ form.inference_rule_name.label}}: {{ form.inference_rule_name(size=50, maxlength=1000) }} <BR/>
+      {{ form.inference_rule_name.label}}: {{ form.inference_rule_name(size=50, minlength=5, maxlength=1000) }} <BR/>
       &nbsp;<BR/>
-      {{form.inference_rule_latex.label }}: {{ form.inference_rule_latex(size=50, maxlength=1000) }}<BR/>
+      {{form.inference_rule_latex.label }}: {{ form.inference_rule_latex(size=50, minlength=5, maxlength=1000) }}<BR/>
       &nbsp;<BR/>
       {{form.inference_rule_number_of_inputs.label }}: {{ form.inference_rule_number_of_inputs() }} <BR/>
       &nbsp;<BR/>

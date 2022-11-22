@@ -8,22 +8,35 @@
 {{ derivation_dict }}
 
 <fieldset>
-<legend>
-  <H2>Edit Metadata for Derivation {{ derivation_dict['name_latex'] }}</h2>
-</legend>
+  <legend>
+    <H2>Edit Metadata for Derivation {{ derivation_dict['name_latex'] }}</h2>
+  </legend>
 
-<form method="post" action="" onsubmit="return checkForm(this);">
-  {{ form.csrf_token }}
-  <P>
-    {{ form.derivation_name_latex.label}}: {{ form.derivation_name_latex(size=50, maxlength=1000) }} <BR/>
-    &nbsp;<BR/>
-    {{form.abstract_latex.label }}: {{ form.abstract_latex(size=50, maxlength=1000) }}<BR/>
-    &nbsp;<BR/>
-    <input type="submit" value="add derivation">
-  </P>
-</form>
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+      {{ form.derivation_name_latex.label}}: {{ form.derivation_name_latex(size=50, maxlength=1000) }} <BR/>
+      &nbsp;<BR/>
+      {{form.abstract_latex.label }}: {{ form.abstract_latex(size=50, maxlength=1000) }}<BR/>
+      &nbsp;<BR/>
+      <input type="submit" value="add derivation">
+    </P>
+  </form>
 
 </fieldset>
 
+<fieldset>
+  <legend>
+    <H2>Delete Derivation</H2>
+  </legend>
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+
+    <input type="submit" value="delete derivation">
+
+  </form>
+</fieldset>
 
 {% endblock %}
