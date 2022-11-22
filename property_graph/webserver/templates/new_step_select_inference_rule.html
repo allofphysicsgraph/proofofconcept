@@ -6,7 +6,7 @@
 </P>
 
 <!-- TODO: sometimes "name_latex" won't look right in HTML -->
-<P>Select an inference rule to create a new step for {{ derivation_dict['name_latex'] }}
+<P>Select an inference rule to create a new step for {{ derivation_dict['name'] }}
 
 
 <!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
@@ -19,17 +19,35 @@
   <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
   <input type="text" id="inf_rule_input" onkeyup="select_infrule()" placeholder="Select inference rule">
 
-  <UL id="inf_rules_UL">
-    {% for inf_rule_dict in list_of_inference_rule_dicts %}
-    <LI>
-      <a href="{{ url_for( 'to_add_step_select_expressions',
-                           derivation_id=derivation_dict['id'],
-                           inference_rule_id=inf_rule_dict['id'] ) }}">
-        {{inf_rule_dict['name']}}
-      </a>
-    </LI>
+
+
+  <table border="1" id="inference_rule_table">
+    <tr>
+      <th>ID</th>
+      <th>name</th>
+      <th>latex</th>
+      <th>input count</th>
+      <th>feed count</th>
+      <th>output count</th>
+    </tr>
+    {% for inference_rule_dict in list_of_inference_rule_dicts %}
+    <tr>
+      <td>
+        <a href="{{ url_for( 'to_add_step_select_expressions',
+        derivation_id=derivation_dict['id'],
+        inference_rule_id=inference_rule_dict['id'] ) }}">
+          {{ inference_rule_dict['id'] }}
+        </a>
+      </td>
+      <td>{{ inference_rule_dict['name'] }}</td>
+      <td>{{ inference_rule_dict['latex']}}</td>
+      <td>{{ inference_rule_dict['number_of_inputs'] }}</td>
+      <td>{{ inference_rule_dict['number_of_feeds']}}</td>
+      <td>{{ inference_rule_dict['number_of_outputs']}}</td>
+    </tr>
     {% endfor %}
-  </UL>
+  </table>
+
 
 </fieldset>
 

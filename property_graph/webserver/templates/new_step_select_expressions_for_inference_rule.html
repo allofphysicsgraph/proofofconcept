@@ -5,40 +5,46 @@
   Return to <a href="{{ url_for('main') }}?referrer=new_step_select_expressions_for_inference_rule">main page</a>
 </P>
 
-<H2>Derivation: <a href="{{ url_for('to_review_derivation',derivation_id=derivation_id) }}">
-  {{ derivation_name }}</a></H2>
+<H2>Derivation: <a href="{{ url_for('to_review_derivation',derivation_id=derivation_dict['id']) }}">
+  {{ derivation_dict['name'] }}</a></H2>
+
+expression IDs: {{ list_of_expression_IDs }}
 
 <fieldset>
   <legend>
-    <H2>Provide inputs and feeds and outputs for {{ infrule_dict['name'] }}</H2>
+    <H2>Provide inputs and feeds and outputs for {{ inference_rule_dict['name'] }}</H2>
   </legend>
 
-<P>latex: {{ infrule_dict['latex'] }}
+<P>latex: {{ inference_rule_dict['latex'] }}
 
-<P>input count: {{ infrule_dict['number_of_inputs'] }}
+<P>input count: {{ inference_rule_dict['number_of_inputs'] }}
 
 <form method="post" action="">
   {{ form.csrf_token }}
 
-  {{ form.input1.label }}: {{ form.input1(size=50, maxlength=300, id="input1_latex") }}
-
+  {{ form.note_before_step_latex.label }}: {{ form.note_before_step_latex(size=50, maxlength=300, id="note_before") }}
+  {{ form.note_after_step_latex.label }}: {{ form.note_after_step_latex(size=50, maxlength=300, id="note_after") }}
 
   <select name="input1_local_id" class="selectpicker form-control" id="input1_local">
     {% for expression_id in list_of_expression_IDs %}
-    <option value="{{ expression_id }}">{{ expression_id }}, {{  dat["expressions"][ dat["expr local to global"][expr_local_id]]['latex']  }}</option>
+    <option value="{{ expression_id }}">{{ expression_id }}, </option>
     {% endfor %}
   </select>
 
 
-  <input type="submit" name="submit_button" value="Submit">
 
 
-</form>
 
-<P>feed count: {{ infrule_dict['number_of_feeds'] }}
-<P>output count: {{ infrule_dict['number_of_outputs'] }}
+<P>feed count: {{ inference_rule_dict['number_of_feeds'] }}
+<P>output count: {{ inference_rule_dict['number_of_outputs'] }}
 
+  <P><input type="submit" name="submit_button" value="add step">
+  </form>
 </fieldset>
 
+<P>Actions:</P>
+<UL>
+  <LI><a href="{{ url_for('to_add_expression') }}?referrer=list_expressions">add new expression</a></LI>
+</UL>
 
 {% endblock %}
