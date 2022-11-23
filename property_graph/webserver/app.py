@@ -379,31 +379,33 @@ def neo4j_query_add_step_to_derivation(
 
     print("insert step with id; this works")
     for record in tx.run(
-        "CREATE (a:step "
-        "{id:"+step_id+", name:"Ben"})",
-        #step_id=step_id,
+        "CREATE (a:step " "{id:" + step_id + ', name:"Ben"})',
+        # step_id=step_id,
     ):
         pass
 
     print("step with edge", derivation_id)
     for record in tx.run(
         "MATCH (a:derivation) "
-        "WHERE a.id="+derivation_id+" "
-        "CREATE (a)-[:HAS_STEP]->(b:step)"):
+        "WHERE a.id=" + derivation_id + " "
+        "CREATE (a)-[:HAS_STEP]->(b:step)"
+    ):
         pass
 
     print("step with edge")
     for record in tx.run(
         "MATCH (a:derivation) "
-        "WHERE a.id="+derivation_id+" "
-        "CREATE (a)-[:HAS_STEP]->(b:step {prop: \"cool\"})"):
+        "WHERE a.id=" + derivation_id + " "
+        'CREATE (a)-[:HAS_STEP]->(b:step {prop: "cool"})'
+    ):
         print(record)
 
     print("step with edge")
     for record in tx.run(
         "MATCH (a:derivation) "
-        "WHERE a.id="+derivation_id+" "
-        "CREATE (a)-[:HAS_STEP]->(b:step {prop: 'cool'})"):
+        "WHERE a.id=" + derivation_id + " "
+        "CREATE (a)-[:HAS_STEP]->(b:step {prop: 'cool'})"
+    ):
         pass
 
     print("step with edge and properties")
@@ -411,7 +413,7 @@ def neo4j_query_add_step_to_derivation(
     for record in tx.run(
         "MATCH (a:derivation) "
         'WHERE ID(a)="$derivation_id" '
-        "CREATE (a)-[:HAS_STEP {sequence_index: \"1\"}]->(b:step "
+        'CREATE (a)-[:HAS_STEP {sequence_index: "1"}]->(b:step '
         '{author_name:"$author_name_latex", '
         'note_before_step:"$note_before_step_latex", '
         'created_datetime:"$now_str", '
@@ -444,36 +446,36 @@ def neo4j_query_add_step_to_derivation(
     for input_index, input_id in enumerate(list_of_input_expression_IDs):
         tx.run(
             "MATCH (a:step) "
-            "WHERE ID(a)=\"$step_id\" "
+            'WHERE ID(a)="$step_id" '
             "MATCH (b:expression) "
-            "WHERE ID(b)=\"$input_id\" "
-            "CREATE (a)-[:HAS_INPUT {sequence_index: \"$input_index\"}]->(b)",
+            'WHERE ID(b)="$input_id" '
+            'CREATE (a)-[:HAS_INPUT {sequence_index: "$input_index"}]->(b)',
             step_id=step_id,
             input_index=input_index,
-            input_id=input_id
+            input_id=input_id,
         )
 
     # feed expressions
     for feed_index, feed_id in enumerate(list_of_feed_expression_IDs):
         tx.run(
             "MATCH (a:step)"
-            "WHERE ID(a)=\"$step_id\" "
+            'WHERE ID(a)="$step_id" '
             "MATCH (b:expression) "
-            "WHERE ID(b)=\"$feed_id\" "
-            "CREATE (a)-[:HAS_FEED {sequence_index: \"$feed_index\"}]->(b)",
+            'WHERE ID(b)="$feed_id" '
+            'CREATE (a)-[:HAS_FEED {sequence_index: "$feed_index"}]->(b)',
             step_id=step_id,
             feed_index=feed_index,
-            feed_id=feed_id
+            feed_id=feed_id,
         )
 
     # output expressions
     for output_index, output_id in enumerate(list_of_output_expression_IDs):
         tx.run(
             "MATCH (a:step)"
-            "WHERE ID(a)=\"$step_id\" "
+            'WHERE ID(a)="$step_id" '
             "MATCH (b:expression) "
-            "WHERE ID(b)=\"$output_id\" "
-            "CREATE (a)-[:HAS_OUTPUT {sequence_index: \"$output_index\"}]->(b)",
+            'WHERE ID(b)="$output_id" '
+            'CREATE (a)-[:HAS_OUTPUT {sequence_index: "$output_index"}]->(b)',
             step_id=step_id,
             output_index=output_index,
             output_id=output_id,
@@ -1452,15 +1454,15 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
         note_before_step_latex = str(web_form.note_before_step_latex.data).strip()
         note_after_step_latex = str(web_form.note_after_step_latex.data).strip()
 
-        list_of_input_expression_IDs=[]
-        list_of_feed_expression_IDs=[]
-        list_of_output_expression_IDs=[]
-        for k,v in request.form.items():
-            if ('input' in k) and ('expession_id' in k):
+        list_of_input_expression_IDs = []
+        list_of_feed_expression_IDs = []
+        list_of_output_expression_IDs = []
+        for k, v in request.form.items():
+            if ("input" in k) and ("expession_id" in k):
                 list_of_input_expression_IDs.append(str(v))
-            if ('feed' in k) and ('expession_id' in k):
+            if ("feed" in k) and ("expession_id" in k):
                 list_of_feed_expression_IDs.append(str(v))
-            if ('output' in k) and ('expession_id' in k):
+            if ("output" in k) and ("expession_id" in k):
                 list_of_output_expression_IDs.append(str(v))
 
         author_name_latex = "benno"
@@ -1475,7 +1477,6 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
 
         # %f = Microsecond as a decimal number, zero-padded on the left.
         now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
-
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
