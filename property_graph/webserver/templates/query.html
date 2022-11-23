@@ -5,6 +5,26 @@
   Return to <a href="{{ url_for('main') }}?referrer=show_friends">main page</a>
 </P>
 
+<fieldset>
+  <legend>
+    <H2>Cypher query</H2>
+  </legend>
+
+<form method="post" action="" onsubmit="return checkForm(this);">
+  {{ form.csrf_token }}
+  <P>
+    {{ form.query.label}}: {{ form.query(size=100, minlength=1) }}
+  <input type="submit" value="query graph">
+</form>
+</fieldset>
+
+<UL>
+{% for record in list_of_records %}
+    <LI>{{ record }}</LI>
+{% endfor %}
+</UL>
+
+
 Examples:
 <table border="1">
   <tr>
@@ -88,23 +108,5 @@ Examples:
   </tr>
 </table>
 
-<fieldset>
-  <legend>
-    Cypher query
-  </legend>
-
-<form method="post" action="" onsubmit="return checkForm(this);">
-  {{ form.csrf_token }}
-  <P>
-    {{ form.query.label}}: {{ form.query(size=100, minlength=1) }}
-  <input type="submit" value="query graph">
-</form>
-</fieldset>
-
-<UL>
-{% for record in list_of_records %}
-    <LI>{{ record }}</LI>
-{% endfor %}
-</UL>
 
 {% endblock %}

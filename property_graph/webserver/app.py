@@ -230,11 +230,16 @@ def neo4j_query_steps_in_this_derivation(tx, derivation_id: str) -> list:
     print("[TRACE] func: neo4j_query_steps_in_this_derivation")
     list_of_step_IDs = []
     for record in tx.run(
-        "MATCH (n:derivation {id:\""+derivation_id+"\"})-[r]->(m:step) RETURN n,r,m",
+        'MATCH (n:derivation {id:"' + derivation_id + '"})-[r]->(m:step) RETURN n,r,m',
     ):
         print("record:", record)
         print(
-            "n=", record.data()["n"], "\nr=", record.data()["r"], "\nm=", record.data()["m"]
+            "n=",
+            record.data()["n"],
+            "\nr=",
+            record.data()["r"],
+            "\nm=",
+            record.data()["m"],
         )
 
         list_of_step_IDs.append(record.data()["m"])
@@ -268,7 +273,8 @@ def neo4j_query_node_properties(tx, node_type: str, node_id: str) -> dict:
 
 def neo4j_query_add_derivation(
     tx,
-    derivation_id: str, now_str: str,
+    derivation_id: str,
+    now_str: str,
     derivation_name_latex: str,
     derivation_abstract_latex: str,
     author_name_latex: str,
@@ -279,13 +285,21 @@ def neo4j_query_add_derivation(
     >>> neo4j_query_add_derivation(tx)
     """
     print("[TRACE] func: neo4j_query_add_derivation")
+    print(
+        derivation_id,
+        now_str,
+        derivation_name_latex,
+        derivation_abstract_latex,
+        author_name_latex,
+    )
 
-    result = tx.run("CREATE (:derivation "
-        "{name:"+derivation_name_latex+","
-        " abstract:"+derivation_abstract_latex+","
-        " created_datetime:"+now_str+","
-        " author_name:"+author_name_latex+","
-        " id:\""+derivation_id+"\"})"
+    result = tx.run(
+        "CREATE (:derivation "
+        '{name:"' + derivation_name_latex + '",'
+        ' abstract:"' + derivation_abstract_latex + '",'
+        ' created_datetime:"' + now_str + '",'
+        ' author_name:"' + author_name_latex + '",'
+        ' id:"' + derivation_id + '"})'
     )
     return
 
@@ -313,14 +327,15 @@ def neo4j_query_add_inference_rule(
 
     result = tx.run(
         "CREATE (a:inference_rule "
-        "{name:\""+inference_rule_name+"\", "
-        " latex:\""+inference_rule_latex+"\", "
-        " author_name:\""+author_name_latex+"\", "
-        " id:\""+inference_rule_id+"\", "
-        " number_of_inputs:\""+number_of_inputs+"\", "
-        " number_of_feeds:\""+number_of_feeds+"\", "
-        " number_of_outputs:\""+number_of_outputs+"\"})"
+        '{name:"' + inference_rule_name + '", '
+        ' latex:"' + inference_rule_latex + '", '
+        ' author_name:"' + author_name_latex + '", '
+        ' id:"' + inference_rule_id + '", '
+        ' number_of_inputs:"' + number_of_inputs + '", '
+        ' number_of_feeds:"' + number_of_feeds + '", '
+        ' number_of_outputs:"' + number_of_outputs + '"})'
     )
+
 
 def neo4j_query_add_step_to_derivation(
     tx,
@@ -352,53 +367,55 @@ def neo4j_query_add_step_to_derivation(
 
     print("insert step with id; this works")
     result = tx.run(
-        "MERGE (:step {id:\"" + step_id + "\", name:\""+author_name_latex+"\"})"
+        'MERGE (:step {id:"' + step_id + '", name:"' + author_name_latex + '"})'
     )
 
-# TODO: include these properties with step
-        # '{author_name:\""+author_name_latex+"\", "
-        # 'note_before_step:\""+note_before_step_latex+"\", "
-        # 'created_datetime:\""+now_str+"\", "
-        # 'note_after_step:\""+note_after_step_latex+"\", "
-        # 'id:\""+step_id+"\"})"
+    # TODO: include these properties with step
+    # '{author_name:\""+author_name_latex+"\", "
+    # 'note_before_step:\""+note_before_step_latex+"\", "
+    # 'created_datetime:\""+now_str+"\", "
+    # 'note_after_step:\""+note_after_step_latex+"\", "
+    # 'id:\""+step_id+"\"})"
 
     print("step with edge", derivation_id)
-    result = tx.run("MATCH (a:derivation),(b:step) "
-        "WHERE a.id=\""+derivation_id+"\" AND b.id=\""+str(step_id)+"\" "
-        "MERGE (a)-[r:HAS_STEP]->(b) RETURN r")
+    result = tx.run(
+        "MATCH (a:derivation),(b:step) "
+        'WHERE a.id="' + derivation_id + '" AND b.id="' + str(step_id) + '" '
+        "MERGE (a)-[r:HAS_STEP]->(b) RETURN r"
+    )
 
-# TODO: include these properties with edge
-#        'MERGE (a)-[:HAS_STEP {sequence_index: "1"}]->(b) '
-
+    # TODO: include these properties with edge
+    #        'MERGE (a)-[:HAS_STEP {sequence_index: "1"}]->(b) '
 
     # TODO: match both step and existing inference rule
     result = tx.run(
         "MATCH (a:step),(b:inference_rule) "
-        "WHERE a.id=\""+step_id+"\" AND b.id=\""+inference_rule_id+"\""
-        "MERGE (a)-[:HAS_INFERENCE_RULE]->(b)")
+        'WHERE a.id="' + step_id + '" AND b.id="' + inference_rule_id + '"'
+        "MERGE (a)-[:HAS_INFERENCE_RULE]->(b)"
+    )
 
     # input expressions
     for input_index, input_id in enumerate(list_of_input_expression_IDs):
         result = tx.run(
             "MATCH (a:step),(b:expression) "
-            "WHERE a.id=\""+step_id+"\" AND b.id=\""+input_id+"\" "
-            "MERGE (a)-[:HAS_INPUT {sequence_index: \""+input_index+"\"}]->(b)"
+            'WHERE a.id="' + step_id + '" AND b.id="' + input_id + '" '
+            'MERGE (a)-[:HAS_INPUT {sequence_index: "' + input_index + '"}]->(b)'
         )
 
     # feed expressions
     for feed_index, feed_id in enumerate(list_of_feed_expression_IDs):
         result = tx.run(
             "MATCH (a:step),(b:expression) "
-            "WHERE a.id=\""+step_id+"\" AND b.id=\""+feed_id+"\" "
-            "MERGE (a)-[:HAS_FEED {sequence_index: \""+feed_index+"\"}]->(b)"
+            'WHERE a.id="' + step_id + '" AND b.id="' + feed_id + '" '
+            'MERGE (a)-[:HAS_FEED {sequence_index: "' + feed_index + '"}]->(b)'
         )
 
     # output expressions
     for output_index, output_id in enumerate(list_of_output_expression_IDs):
         result = tx.run(
             "MATCH (a:step),(b:expression) "
-            "WHERE a.id=\""+step_id+"\" AND b.id=\""+output_id+"\" "
-            "MERGE (a)-[:HAS_OUTPUT {sequence_index: \""+output_index+"\"}]->(b)"
+            'WHERE a.id="' + step_id + '" AND b.id="' + output_id + '" '
+            'MERGE (a)-[:HAS_OUTPUT {sequence_index: "' + output_index + '"}]->(b)'
         )
     return
 
@@ -418,11 +435,12 @@ def neo4j_query_add_expression(
 
     result = tx.run(
         "CREATE (a:expression "
-        "{name:\""+expression_name+"\", "
-        " latex:\""+expression_latex+"\", "
-        " description:\""+expression_description+"\", "
-        " author_name:\""+author_name_latex+"\", "
-        " id:\""+expression_id+"\"})")
+        '{name:"' + expression_name + '", '
+        ' latex:"' + expression_latex + '", '
+        ' description:"' + expression_description + '", '
+        ' author_name:"' + author_name_latex + '", '
+        ' id:"' + expression_id + '"})'
+    )
     return
 
 
@@ -441,11 +459,11 @@ def neo4j_query_add_symbol(
 
     result = tx.run(
         "CREATE (:symbol "
-        "{name:\""+symbol_name+"\", "
-        " latex:\""+symbol_latex+"\", "
-        " description:\""+symbol_description+"\", "
-        " author_name_latex:\""+author_name_latex+"\", "
-        " id:\""+symbol_id+"\"})"
+        '{name:"' + symbol_name + '", '
+        ' latex:"' + symbol_latex + '", '
+        ' description:"' + symbol_description + '", '
+        ' author_name_latex:"' + author_name_latex + '", '
+        ' id:"' + symbol_id + '"})'
     )
     return
 
@@ -465,11 +483,12 @@ def neo4j_query_add_operator(
 
     result = tx.run(
         "CREATE (a:operator "
-        "{name:\""+operator_name+"\", "
-        " latex:\""+operator_latex+"\", "
-        " description:\""+operator_description+"\", "
-        " author_name:\""+author_name_latex+"\", "
-        " id:\""+operator_id+"\"})")
+        '{name:"' + operator_name + '", '
+        ' latex:"' + operator_latex + '", '
+        ' description:"' + operator_description + '", '
+        ' author_name:"' + author_name_latex + '", '
+        ' id:"' + operator_id + '"})'
+    )
     return
 
 
@@ -864,12 +883,12 @@ def to_add_derivation():
         print("       abstract:", abstract_latex)
         author_name_latex = "ben"
 
-
         with graphDB_Driver.session() as session:
             list_of_derivation_IDs = session.read_transaction(
                 neo4j_query_list_IDs, "derivation"
             )
         derivation_id = generate_random_id(list_of_derivation_IDs)
+        print("derivation_id=", derivation_id)
 
         # as per https://strftime.org/
         # %f = Microsecond as a decimal number, zero-padded on the left.
@@ -1231,7 +1250,9 @@ def to_add_symbol():
         author_name_latex = "ben"
 
         with graphDB_Driver.session() as session:
-            list_of_symbol_IDs = session.read_transaction(neo4j_query_list_IDs, "symbol")
+            list_of_symbol_IDs = session.read_transaction(
+                neo4j_query_list_IDs, "symbol"
+            )
         symbol_id = generate_random_id(list_of_symbol_IDs)
 
         # https://neo4j.com/docs/python-manual/current/session-api/
@@ -1372,7 +1393,6 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
         #
         # print("input1=",input1)
 
-        # TODO: web form supplies the inference rule
         note_before_step_latex = str(web_form.note_before_step_latex.data).strip()
         note_after_step_latex = str(web_form.note_after_step_latex.data).strip()
 
