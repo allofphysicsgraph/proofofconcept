@@ -19,11 +19,11 @@
       &nbsp;<BR/>
       {{form.inference_rule_latex.label }}: {{ form.inference_rule_latex(size=50, maxlength=1000, value=inference_rule_dict['label']) }}<BR/>
       &nbsp;<BR/>
-      {{form.inference_rule_number_of_inputs.label }}: {{ form.inference_rule_number_of_inputs(), value=inference_rule_dict['number_of_inputs']) }} <BR/>
+      {{form.inference_rule_number_of_inputs.label }}: {{ form.inference_rule_number_of_inputs(value=inference_rule_dict['number_of_inputs']) }} <BR/>
       &nbsp;<BR/>
-      {{form.inference_rule_number_of_feeds.label }}: {{ form.inference_rule_number_of_feeds(), value=inference_rule_dict['number_of_feeds']) }} <BR/>
+      {{form.inference_rule_number_of_feeds.label }}: {{ form.inference_rule_number_of_feeds(value=inference_rule_dict['number_of_feeds']) }} <BR/>
       &nbsp;<BR/>
-      {{form.inference_rule_number_of_outputs.label }}: {{ form.inference_rule_number_of_outputs(), value=inference_rule_dict['number_of_outputs']) }} <BR/>
+      {{form.inference_rule_number_of_outputs.label }}: {{ form.inference_rule_number_of_outputs(value=inference_rule_dict['number_of_outputs']) }} <BR/>
       &nbsp;<BR/>
       <input type="submit" value="Edit inference rule">
     </P>

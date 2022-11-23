@@ -42,9 +42,24 @@ Examples:
                                                   MATCH (n:inference_rule) RETURN n</a></td>
   </tr>
   <tr>
+    <td>list expressions</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:expression) RETURN n">
+                                                  MATCH (n:expression) RETURN n</a></td>
+  </tr>
+  <tr>
+    <td>list symbols</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:symbol) RETURN n">
+                                                  MATCH (n:symbol) RETURN n</a></td>
+  </tr>
+  <tr>
+    <td>list operators</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:operator) RETURN n">
+                                                  MATCH (n:operator) RETURN n</a></td>
+  </tr>
+  <tr>
     <td>list steps for derivation</td>
-    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:inference_rule) RETURN n">
-                                                  MATCH (n:inference_rule) RETURN n</a></td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:step), (m:derivation) WHERE m.id='5389624' RETURN n">
+                                                  MATCH (n:step), (m:derivation) WHERE m.id='5389624' RETURN n</a></td>
   </tr>
   <tr>
     <td>list properties for a specific derivation</td>
