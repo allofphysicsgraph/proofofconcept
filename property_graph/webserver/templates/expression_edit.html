@@ -15,11 +15,11 @@
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
     <P>
-      {{ form.expression_latex.label}}: {{ form.expression_latex(size=50, maxlength=1000) }} <BR/>
+      {{ form.expression_latex.label}}: {{ form.expression_latex(size=50, maxlength=1000, value=expression_dict['latex']) }} <BR/>
       &nbsp;<BR/>
-      {{form.expression_name.label }}: {{ form.expression_name(size=50, maxlength=1000) }}<BR/>
+      {{form.expression_name.label }}: {{ form.expression_name(size=50, maxlength=1000, value=expression_dict['name']) }}<BR/>
       &nbsp;<BR/>
-      {{form.expression_description.label }}: {{ form.expression_description(size=50, maxlength=1000) }}<BR/>
+      {{form.expression_description.label }}: {{ form.expression_description(size=50, maxlength=1000, value=expression_dict['description']) }}<BR/>
       &nbsp;<BR/>
       <input type="submit" value="Edit expression">
     </P>

@@ -17,27 +17,6 @@ This new iteration is based on a property graph (specifically Neo4j)
 with cleaner separation between the MVC and the database.
 
 
-The current schema is determined by searching for the string
-CREATE (
-in this file. The `def neo4j_` definitions contain the relevant properties.
-
-# How to run on the command line inside the docker container:
-```python3
-import neo4j
-from neo4j import GraphDatabase
-uri = "bolt://neo4j_docker:7687"
-graphDB_Driver = GraphDatabase.driver(uri)
-
-def apoc_help(tx):
-    for record in tx.run("CALL apoc.help('text')"):
-        print(str(record))
-
-
-with graphDB_Driver.session() as session:
-    session.read_transaction(apoc_export_json)
-```
-
-
 # options for connecting to Neo4j from Python
 - native driver
 - py2neo
@@ -250,7 +229,7 @@ def neo4j_query_steps_in_this_derivation(tx, derivation_id: str) -> list:
     print("[TRACE] func: neo4j_query_steps_in_this_derivation")
     list_of_step_IDs = []
     for record in tx.run(
-        "MATCH (n:derivation {id:\"$derivation_id\"})-[r]->(m:step) RETURN n,r,m",
+        'MATCH (n:derivation {id:"$derivation_id"})-[r]->(m:step) RETURN n,r,m',
         derivation_id=derivation_id,
     ):
         print("record:", record)
@@ -312,11 +291,11 @@ def neo4j_query_add_derivation(
 
     for record in tx.run(
         "CREATE (a:derivation "
-        "{name:\"$derivation_name_latex\","
-        "abstract:\"$derivation_abstract_latex\","
-        "created_datetime:\"$now_str\","
-        "author_name:\"$author_name_latex\","
-        "id:\"$derivation_id\"})",
+        '{name:"$derivation_name_latex",'
+        'abstract:"$derivation_abstract_latex",'
+        'created_datetime:"$now_str",'
+        'author_name:"$author_name_latex",'
+        'id:"$derivation_id"})',
         derivation_name_latex=derivation_name_latex,
         derivation_abstract_latex=derivation_abstract_latex,
         author_name_latex=author_name_latex,
@@ -352,13 +331,13 @@ def neo4j_query_add_inference_rule(
 
     for record in tx.run(
         "CREATE (a:inference_rule "
-        "{name:\"$inference_rule_name\", "
-        "latex:\"$inference_rule_latex\", "
-        "author_name:\"$author_name_latex\", "
-        "id:\"$inference_rule_id\", "
-        "number_of_inputs:\"$number_of_inputs\", "
-        "number_of_feeds:\"$number_of_feeds\", "
-        "number_of_outputs:\"$number_of_outputs\"})",
+        '{name:"$inference_rule_name", '
+        'latex:"$inference_rule_latex", '
+        'author_name:"$author_name_latex", '
+        'id:"$inference_rule_id", '
+        'number_of_inputs:"$number_of_inputs", '
+        'number_of_feeds:"$number_of_feeds", '
+        'number_of_outputs:"$number_of_outputs"})',
         inference_rule_name=inference_rule_name,
         inference_rule_latex=inference_rule_latex,
         author_name_latex=author_name_latex,
@@ -377,9 +356,9 @@ def neo4j_query_add_step_to_derivation(
     inference_rule_id: str,
     note_before_step_latex: str,
     note_after_step_latex: str,
-    list_of_input_expressions_latex: list,
-    list_of_feed_expressions_latex: list,
-    list_of_output_expressions_latex: list,
+    list_of_input_expression_IDs: list,
+    list_of_feed_expression_IDs: list,
+    list_of_output_expression_IDs: list,
     author_name_latex: str,
 ):
     """
@@ -390,93 +369,114 @@ def neo4j_query_add_step_to_derivation(
           see https://stackoverflow.com/a/60748909/1164295
     """
     print("[TRACE] func: neo4j_query_add_step_to_derivation")
-    print("derivation_id", derivation_id)
-    print("inference_rule_id", inference_rule_id)
-    print("note_before_step_latex", note_before_step_latex)
-    print("note_after_step_latex", note_after_step_latex)
-    print("list_of_input_expressions_latex", list_of_input_expressions_latex)
-    print("list_of_feed_expressions_latex", list_of_feed_expressions_latex)
-    print("list_of_output_expressions_latex", list_of_output_expressions_latex)
-    print("author_name_latex", author_name_latex)
 
-    with graphDB_Driver.session() as session:
-        list_of_step_IDs = session.read_transaction(neo4j_query_list_IDs, "step")
-    step_id = generate_random_id(list_of_step_IDs)
-    print("generated step_id=",step_id)
+    # print("no record")
+    # result= tx.run(
+    #     "CREATE (a:step {id:"+step_id+"})")
 
-    # TODO: for the derivation, determine the list of all sequence_index values,
-    #       then increment max to get the sequence_index for this step
+    # # https://neo4j.com/docs/api/python-driver/current/api.html#neo4j.Result
+    # print("result=",result.single())
 
-    # %f = Microsecond as a decimal number, zero-padded on the left.
-    now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
+    print("insert step with id; this works")
+    for record in tx.run(
+        "CREATE (a:step "
+        "{id:"+step_id+", name:"Ben"})",
+        #step_id=step_id,
+    ):
+        pass
 
-    # inference rule
+    print("step with edge", derivation_id)
     for record in tx.run(
         "MATCH (a:derivation) "
-        "WHERE ID(a)=\"$derivation_id\" "
-        "CREATE (a)-[:HAS_STEP {sequence_index: 1}]->(b:step "
-        "{author_name:\"$author_name_latex\", "
-        "note_before_step:\"$note_before_step_latex\", "
-        "inference_rule_id:\"$inference_rule_id\", "
-        "created_datetime:\"$now_str\", "
-        "note_after_step:\"$note_after_step_latex\", "
-        "id:\"$step_id\"})",
+        "WHERE a.id="+derivation_id+" "
+        "CREATE (a)-[:HAS_STEP]->(b:step)"):
+        pass
+
+    print("step with edge")
+    for record in tx.run(
+        "MATCH (a:derivation) "
+        "WHERE a.id="+derivation_id+" "
+        "CREATE (a)-[:HAS_STEP]->(b:step {prop: \"cool\"})"):
+        print(record)
+
+    print("step with edge")
+    for record in tx.run(
+        "MATCH (a:derivation) "
+        "WHERE a.id="+derivation_id+" "
+        "CREATE (a)-[:HAS_STEP]->(b:step {prop: 'cool'})"):
+        pass
+
+    print("step with edge and properties")
+    # step
+    for record in tx.run(
+        "MATCH (a:derivation) "
+        'WHERE ID(a)="$derivation_id" '
+        "CREATE (a)-[:HAS_STEP {sequence_index: \"1\"}]->(b:step "
+        '{author_name:"$author_name_latex", '
+        'note_before_step:"$note_before_step_latex", '
+        'created_datetime:"$now_str", '
+        'note_after_step:"$note_after_step_latex", '
+        'id:"$step_id"})',
+        derivation_id=derivation_id,
         note_before_step_latex=note_before_step_latex,
-        inference_rule_id=inference_rule_id,
         note_after_step_latex=note_after_step_latex,
         author_name_latex=author_name_latex,
         step_id=step_id,
     ):
         pass
-#    print("record=",record)
-#    step_id = record["id"]
+    #    print("record=",record)
+    #    step_id = record["id"]
     print("step_id=", step_id)
 
     # TODO: match both step and existing inference rule
     for record in tx.run(
         "MATCH (a:step) "
-        "WHERE ID(a)=\"$step_id\" "
+        'WHERE ID(a)="$step_id" '
         "MATCH (b:inference_rule) "
-        "WHERE ID(b)=\"$inference_rule\" "
+        'WHERE ID(b)="$inference_rule_id" '
         "CREATE (a)-[:HAS_INFERENCE_RULE]->(b)",
-        inference_rule=inference_rule,
+        inference_rule_id=inference_rule_id,
         step_id=step_id,
     ):
         pass
 
     # input expressions
-    for input_index, input_expr in enumerate(list_of_input_expressions_latex):
+    for input_index, input_id in enumerate(list_of_input_expression_IDs):
         tx.run(
             "MATCH (a:step) "
             "WHERE ID(a)=\"$step_id\" "
-            "CREATE (b:expression "
-            "{latex: $expr_latex})-[:EXPRESSION {sequence_index: $input_index}]->(a)",
+            "MATCH (b:expression) "
+            "WHERE ID(b)=\"$input_id\" "
+            "CREATE (a)-[:HAS_INPUT {sequence_index: \"$input_index\"}]->(b)",
             step_id=step_id,
             input_index=input_index,
-            expr_latex=input_expr,
+            input_id=input_id
         )
 
     # feed expressions
-    for feed_index, feed_expr in enumerate(list_of_feed_expressions_latex):
+    for feed_index, feed_id in enumerate(list_of_feed_expression_IDs):
         tx.run(
             "MATCH (a:step)"
-            "WHERE ID(a)=\"$step_id\""
-            "CREATE (b:feed "
-            "{latex: $expr_latex})-[:FEED {sequence_index: $feed_index}]->(a)",
+            "WHERE ID(a)=\"$step_id\" "
+            "MATCH (b:expression) "
+            "WHERE ID(b)=\"$feed_id\" "
+            "CREATE (a)-[:HAS_FEED {sequence_index: \"$feed_index\"}]->(b)",
             step_id=step_id,
             feed_index=feed_index,
-            expr_latex=feed_expr,
+            feed_id=feed_id
         )
 
     # output expressions
-    for output_index, output_expr in enumerate(list_of_output_expressions_latex):
+    for output_index, output_id in enumerate(list_of_output_expression_IDs):
         tx.run(
             "MATCH (a:step)"
-            "WHERE ID(a)=\"$step_id\""
-            "CREATE (a)-[:EXPRESSION {sequence_index: $output_index}]->(b:expression {latex: $expr_latex})",
+            "WHERE ID(a)=\"$step_id\" "
+            "MATCH (b:expression) "
+            "WHERE ID(b)=\"$output_id\" "
+            "CREATE (a)-[:HAS_OUTPUT {sequence_index: \"$output_index\"}]->(b)",
             step_id=step_id,
             output_index=output_index,
-            expr_latex=output_expr,
+            output_id=output_id,
         )
     return step_id
 
@@ -500,11 +500,11 @@ def neo4j_query_add_expression(
 
     for record in tx.run(
         "CREATE (a:expression "
-        "{name:\"$expression_name\", "
-        "latex:\"$expression_latex\", "
-        "description:\"$expression_description\", "
-        "author_name:\"$author_name_latex\", "
-        "id:\"$expression_id\"})",
+        '{name:"$expression_name", '
+        'latex:"$expression_latex", '
+        'description:"$expression_description", '
+        'author_name:"$author_name_latex", '
+        'id:"$expression_id"})',
         expression_name=expression_name,
         expression_latex=expression_latex,
         expression_description=expression_description,
@@ -532,11 +532,11 @@ def neo4j_query_add_symbol(
 
     for record in tx.run(
         "CREATE (a:symbol "
-        "{name:\"$symbol_name\", "
-        "latex:\"$symbol_latex\", "
-        "description:\"$symbol_description\", "
-        "author_name_latex:\"$author_name_latex\", "
-        "id:\"$symbol_id\"})",
+        '{name:"$symbol_name", '
+        'latex:"$symbol_latex", '
+        'description:"$symbol_description", '
+        'author_name_latex:"$author_name_latex", '
+        'id:"$symbol_id"})',
         symbol_name=symbol_name,
         symbol_latex=symbol_latex,
         symbol_description=symbol_description,
@@ -566,11 +566,11 @@ def neo4j_query_add_operator(
 
     for record in tx.run(
         "CREATE (a:operator "
-        "{name:\"$operator_name\", "
-        "latex:\"$operator_latex\", "
-        "description:\"$operator_description\", "
-        "author_name:\"$author_name_latex\", "
-        "id:\"$operator_id\"})",
+        '{name:"$operator_name", '
+        'latex:"$operator_latex", '
+        'description:"$operator_description", '
+        'author_name:"$author_name_latex", '
+        'id:"$operator_id"})',
         operator_name=operator_name,
         operator_latex=operator_latex,
         operator_description=operator_description,
@@ -913,35 +913,38 @@ def main():
             shutil.copy(path_to_uploaded_file, "/code/" + path_to_db)
 
     with graphDB_Driver.session() as session:
-        number_of_derivations = len(session.read_transaction(
-            neo4j_query_list_nodes_of_type, "derivation"
-        ))
+        number_of_derivations = len(
+            session.read_transaction(neo4j_query_list_nodes_of_type, "derivation")
+        )
     with graphDB_Driver.session() as session:
-        number_of_inference_rules = len(session.read_transaction(
-            neo4j_query_list_nodes_of_type, "inference_rule"
-        ))
+        number_of_inference_rules = len(
+            session.read_transaction(neo4j_query_list_nodes_of_type, "inference_rule")
+        )
 
     with graphDB_Driver.session() as session:
-        number_of_expressions = len(session.read_transaction(
-            neo4j_query_list_nodes_of_type, "expression"
-        ))
+        number_of_expressions = len(
+            session.read_transaction(neo4j_query_list_nodes_of_type, "expression")
+        )
 
     with graphDB_Driver.session() as session:
-        number_of_symbols = len(session.read_transaction(
-            neo4j_query_list_nodes_of_type, "symbol"
-        ))
+        number_of_symbols = len(
+            session.read_transaction(neo4j_query_list_nodes_of_type, "symbol")
+        )
 
     with graphDB_Driver.session() as session:
-        number_of_operators = len(session.read_transaction(
-            neo4j_query_list_nodes_of_type, "operator"
-        ))
+        number_of_operators = len(
+            session.read_transaction(neo4j_query_list_nodes_of_type, "operator")
+        )
 
-    return render_template("site_map.html", title="site map",
-     number_of_derivations=number_of_derivations,
-     number_of_inference_rules=number_of_inference_rules,
-     number_of_expressions=number_of_expressions,
-     number_of_symbols=number_of_symbols,
-     number_of_operators=number_of_operators)
+    return render_template(
+        "site_map.html",
+        title="site map",
+        number_of_derivations=number_of_derivations,
+        number_of_inference_rules=number_of_inference_rules,
+        number_of_expressions=number_of_expressions,
+        number_of_symbols=number_of_symbols,
+        number_of_operators=number_of_operators,
+    )
 
 
 @app.route("/new_derivation", methods=["GET", "POST"])
@@ -1418,6 +1421,10 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
     for expression_dict in list_of_expression_dicts:
         list_of_expression_IDs.append(expression_dict["id"])
 
+    dict_of_expression_dicts = {}
+    for expression_dict in list_of_expression_dicts:
+        dict_of_expression_dicts[expression_dict["id"]] = expression_dict
+
     # get properties for derivation
     with graphDB_Driver.session() as session:
         derivation_dict = session.read_transaction(
@@ -1444,10 +1451,31 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
         # TODO: web form supplies the inference rule
         note_before_step_latex = str(web_form.note_before_step_latex.data).strip()
         note_after_step_latex = str(web_form.note_after_step_latex.data).strip()
-        list_of_input_expression_IDs = ["248249"]
-        list_of_feed_expression_IDs = ["21111", "1119229"]
-        list_of_output_expression_IDs = ["42892"]
+
+        list_of_input_expression_IDs=[]
+        list_of_feed_expression_IDs=[]
+        list_of_output_expression_IDs=[]
+        for k,v in request.form.items():
+            if ('input' in k) and ('expession_id' in k):
+                list_of_input_expression_IDs.append(str(v))
+            if ('feed' in k) and ('expession_id' in k):
+                list_of_feed_expression_IDs.append(str(v))
+            if ('output' in k) and ('expession_id' in k):
+                list_of_output_expression_IDs.append(str(v))
+
         author_name_latex = "benno"
+
+        with graphDB_Driver.session() as session:
+            list_of_step_IDs = session.read_transaction(neo4j_query_list_IDs, "step")
+        step_id = generate_random_id(list_of_step_IDs)
+        print("generated step_id=", step_id)
+
+        # TODO: for the derivation, determine the list of all sequence_index values,
+        #       then increment max to get the sequence_index for this step
+
+        # %f = Microsecond as a decimal number, zero-padded on the left.
+        now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
+
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
@@ -1467,6 +1495,7 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
             "new_step_select_expressions_for_inference_rule.html",
             form=web_form,
             list_of_expression_IDs=list_of_expression_IDs,
+            dict_of_expression_dicts=dict_of_expression_dicts,
             inference_rule_dict=inference_rule_dict,
             derivation_dict=derivation_dict,
         )
@@ -1505,16 +1534,16 @@ def to_add_inference_rule():
             )
 
         for inference_rule_dict in list_of_inference_rule_dicts:
-            print("inference_rule_name",inference_rule_name)
-            print("inference_rule_dict['name']",inference_rule_dict['name'])
-            if inference_rule_name==inference_rule_dict['name']:
+            print("inference_rule_name", inference_rule_name)
+            print("inference_rule_dict['name']", inference_rule_dict["name"])
+            if inference_rule_name == inference_rule_dict["name"]:
                 print("INVALID INPUT: inference rule with that name already exists")
                 # TODO: a notice should be provided to the user
-                return redirect(url_for('to_add_inference_rule'))
-            if inference_rule_latex==inference_rule_dict['latex']:
+                return redirect(url_for("to_add_inference_rule"))
+            if inference_rule_latex == inference_rule_dict["latex"]:
                 print("INVALID INPUT: inference rule with that latex already exists")
                 # TODO: a notice should be provided to the user
-                return redirect(url_for('to_add_inference_rule'))
+                return redirect(url_for("to_add_inference_rule"))
 
         print("No conflicting name or latex detected")
 
@@ -1624,7 +1653,7 @@ def to_query():
 
     print("request.method=", request.method)
 
-    query=None
+    query = None
 
     # query via URL keyword
     query_str = request.args.get("cypher", None)
@@ -1643,7 +1672,9 @@ def to_query():
         try:
             # https://neo4j.com/docs/python-manual/current/session-api/
             with graphDB_Driver.session() as session:
-                list_of_records = session.read_transaction(neo4j_query_user_query, query)
+                list_of_records = session.read_transaction(
+                    neo4j_query_user_query, query
+                )
         except neo4j.exceptions.ClientError:
             list_of_records = ["WRITE OPERATIONS NOT ALLOWED (3)"]
         except neo4j.exceptions.TransactionError:

@@ -15,11 +15,11 @@
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
     <P>
-      {{ form.operator_latex.label}}: {{ form.operator_latex(size=50, maxlength=1000), value=operator_dict['latex'] }} <BR/>
+      {{ form.operator_latex.label}}: {{ form.operator_latex(size=50, maxlength=1000, value=operator_dict['latex']) }} <BR/>
       &nbsp;<BR/>
-      {{form.operator_name.label }}: {{ form.operator_name(size=50, maxlength=1000), value=operator_dict['name'] }}<BR/>
+      {{form.operator_name.label }}: {{ form.operator_name(size=50, maxlength=1000, value=operator_dict['name']) }}<BR/>
       &nbsp;<BR/>
-      {{form.operator_description.label }}: {{ form.operator_description(size=50, maxlength=1000), value=operator_dict['description'] }}<BR/>
+      {{form.operator_description.label }}: {{ form.operator_description(size=50, maxlength=1000, value=operator_dict['description']) }}<BR/>
       &nbsp;<BR/>
       <input type="submit" value="Edit operator">
     </P>

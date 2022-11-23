@@ -17,26 +17,38 @@ expression IDs: {{ list_of_expression_IDs }}
 
 <P>latex: {{ inference_rule_dict['latex'] }}
 
-<P>input count: {{ inference_rule_dict['number_of_inputs'] }}
+<P>expressions: {{ dict_of_expression_dicts }}
 
 <form method="post" action="">
   {{ form.csrf_token }}
 
   {{ form.note_before_step_latex.label }}: {{ form.note_before_step_latex(size=50, maxlength=300, id="note_before") }}
-  {{ form.note_after_step_latex.label }}: {{ form.note_after_step_latex(size=50, maxlength=300, id="note_after") }}
 
-  <select name="input1_local_id" class="selectpicker form-control" id="input1_local">
+  <P>input count: {{ inference_rule_dict['number_of_inputs'] }}
+  <select name="input1_expression_id" class="selectpicker form-control" id="input1_expression_id">
     {% for expression_id in list_of_expression_IDs %}
-    <option value="{{ expression_id }}">{{ expression_id }}, </option>
+    <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }} </option>
+    {% endfor %}
+  </select>
+
+  <P>feed count: {{ inference_rule_dict['number_of_feeds'] }}
+
+  <select name="feed_expression_id" class="selectpicker form-control" id="feed_expression_id">
+    {% for expression_id in list_of_expression_IDs %}
+    <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }}</option>
     {% endfor %}
   </select>
 
 
+  <P>output count: {{ inference_rule_dict['number_of_outputs'] }}
 
+  <select name="output1_expression_id" class="selectpicker form-control" id="output1_expression_id">
+    {% for expression_id in list_of_expression_IDs %}
+    <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }}</option>
+    {% endfor %}
+  </select>
 
-
-<P>feed count: {{ inference_rule_dict['number_of_feeds'] }}
-<P>output count: {{ inference_rule_dict['number_of_outputs'] }}
+  {{ form.note_after_step_latex.label }}: {{ form.note_after_step_latex(size=50, maxlength=300, id="note_after") }}
 
   <P><input type="submit" name="submit_button" value="add step">
   </form>

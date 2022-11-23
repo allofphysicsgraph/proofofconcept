@@ -13,37 +13,46 @@ Examples:
   </tr>
   <tr>
     <td>list all nodes</td>
-    <td>MATCH (n) RETURN n</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n) RETURN n">
+                                                  MATCH (n) RETURN n</a></td>
   </tr>
   <tr>
     <td>list all nodes and edges</td>
-    <td>MATCH (n)-[r]->(m) RETURN n,r,m</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n)-[r]->(m) RETURN n,r,m">
+                                                  MATCH (n)-[r]->(m) RETURN n,r,m</a></td>
   </tr>
   <tr>
     <td>list all distinct node labels (<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)</td>
-    <td>MATCH (n) RETURN distinct labels(n)</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n) RETURN distinct labels(n)">
+                                                  MATCH (n) RETURN distinct labels(n)</a></td>
   </tr>
   <tr>
     <td>list the node count for each label (<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)</td>
-    <td>MATCH (n) RETURN distinct labels(n), count(*)</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n) RETURN distinct labels(n), count(*)">
+                                                  MATCH (n) RETURN distinct labels(n), count(*)</a></td>
   </tr>
   <tr>
     <td>list derivations</td>
-    <td>MATCH (n:derivation) RETURN n</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:derivation) RETURN n">
+                                                  MATCH (n:derivation) RETURN n</a></td>
   </tr>
   <tr>
     <td>list inference rules</td>
-    <td>MATCH (n:inference_rule) RETURN n</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:inference_rule) RETURN n">
+                                                  MATCH (n:inference_rule) RETURN n</a></td>
   </tr>
   <tr>
     <td>list steps for derivation</td>
-    <td>MATCH (n:inference_rule) RETURN n</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:inference_rule) RETURN n">
+                                                  MATCH (n:inference_rule) RETURN n</a></td>
   </tr>
   <tr>
     <td>list properties for a specific derivation</td>
-    <td>MATCH (n:derivation) WHERE n.id = '5389624' RETURN n<BR>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:derivation) WHERE n.id = '5389624' RETURN n">
+                                                  MATCH (n:derivation) WHERE n.id = '5389624' RETURN n</a><BR>
     or<BR>
-    MATCH (n:derivation {id:'5389624'}) RETURN n </td>
+    <a href="{{ url_for('to_query') }}?cypher=MATCH (n:derivation {id:'5389624'}) RETURN n">
+                                              MATCH (n:derivation {id:'5389624'}) RETURN n</a></td>
   </tr>
 </table>
 <P>

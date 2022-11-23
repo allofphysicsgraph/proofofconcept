@@ -6,21 +6,21 @@
 </P>
 
 <!-- TODO: sometimes "name_latex" won't look right in HTML -->
-<P>Select an inference rule to create a new step for {{ derivation_dict['name'] }}
+<P>Which inference rule does this new step use in the derivation {{ derivation_dict['name'] }} ?
 
 
 <!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
 
 <fieldset>
   <legend>
-    <H2>Select inference rule from list</h2>
+    <H2>Select inference rule for step</h2>
   </legend>
 
   <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
-  <input type="text" id="inf_rule_input" onkeyup="select_infrule()" placeholder="Select inference rule">
+  <P><input type="text" id="inf_rule_input" onkeyup="select_infrule()" placeholder="Select inference rule">
 
 
-
+  <P>Clicking on the inference rule ID selects that inference rule for the step<BR>
   <table border="1" id="inference_rule_table">
     <tr>
       <th>ID</th>
