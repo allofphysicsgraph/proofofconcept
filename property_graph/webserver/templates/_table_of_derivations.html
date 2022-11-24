@@ -5,6 +5,7 @@
     <th>ID</th>
     <th>name</th>
     <th>abstract</th>
+    <th>number of steps</th>
   </tr>
   {% for derivation_dict in list_of_derivation_dicts %}
   <tr>
@@ -15,6 +16,7 @@
     </td>
     <td>{{ derivation_dict['name'] }}</td>
     <td>{{ derivation_dict['description']}}</td>
+    <td>{{ number_of_steps_per_derivation[derivation_dict['id']] }}</td>
   </tr>
   {% endfor %}
 </table>

@@ -345,27 +345,13 @@ def neo4j_query_add_step_to_derivation(
     now_str: str,
     note_before_step_latex: str,
     note_after_step_latex: str,
-    list_of_input_expression_IDs: list,
-    list_of_feed_expression_IDs: list,
-    list_of_output_expression_IDs: list,
     author_name_latex: str,
 ):
     """
-    https://neo4j.com/docs/cypher-manual/current/clauses/create/
+    can't add inference rules in same query because step needs to exist first
 
-    TODO: use of ID(a) is bad because the IDs can be re-used after a node is deleted.
-          Better (?) is https://neo4j.com/labs/apoc/4.4/overview/apoc.uuid/apoc.uuid.list/
-          see https://stackoverflow.com/a/60748909/1164295
     """
     print("[TRACE] func: neo4j_query_add_step_to_derivation")
-
-    print("list_of_input_expression_IDs", list_of_input_expression_IDs)
-    print("list_of_feed_expression_IDs", list_of_feed_expression_IDs)
-    print("list_of_output_expression_IDs", list_of_output_expression_IDs)
-
-    # print("no record")
-    # result= tx.run(
-    #     "CREATE (a:step {id:"+step_id+"})")
 
     # # https://neo4j.com/docs/api/python-driver/current/api.html#neo4j.Result
     # print("result=",result.single())
@@ -379,29 +365,40 @@ def neo4j_query_add_step_to_derivation(
         'note_after_step:"' + note_after_step_latex + '"})'
     )
 
-    # TODO: include these properties with step
-    # '{author_name:\""+author_name_latex+"\", "
-    # 'note_before_step:\""+note_before_step_latex+"\", "
-    # 'created_datetime:\""+now_str+"\", "
-    # 'note_after_step:\""+note_after_step_latex+"\", "
-    # 'id:\""+step_id+"\"})"
-
     print("step with edge", derivation_id)
     result = tx.run(
         "MATCH (a:derivation),(b:step) "
         'WHERE a.id="' + derivation_id + '" AND b.id="' + str(step_id) + '" '
-        "MERGE (a)-[r:HAS_STEP]->(b) RETURN r"
+        "MERGE (a)-[r:HAS_STEP {sequence_index: '1'}]->(b) RETURN r"
     )
 
-    # TODO: include these properties with edge
-    #        'MERGE (a)-[:HAS_STEP {sequence_index: "1"}]->(b) '
-
-    # TODO: match both step and existing inference rule
+    print("inference_rule_id", inference_rule_id)
     result = tx.run(
         "MATCH (a:step),(b:inference_rule) "
         'WHERE a.id="' + step_id + '" AND b.id="' + inference_rule_id + '"'
         "MERGE (a)-[:HAS_INFERENCE_RULE]->(b)"
     )
+
+    return
+
+
+def neo4j_query_add_expressions_to_step(
+    tx,
+    step_id: str,
+    now_str: str,
+    list_of_input_expression_IDs: list,
+    list_of_feed_expression_IDs: list,
+    list_of_output_expression_IDs: list,
+    author_name_latex: str,
+):
+    """
+    adding expressions to step can only be done once step exists
+    """
+    print("[TRACE] func: neo4j_query_add_expressions_to_step")
+
+    print("list_of_input_expression_IDs", list_of_input_expression_IDs)
+    print("list_of_feed_expression_IDs", list_of_feed_expression_IDs)
+    print("list_of_output_expression_IDs", list_of_output_expression_IDs)
 
     # input expressions
     for input_index, input_id in enumerate(list_of_input_expression_IDs):
@@ -414,6 +411,7 @@ def neo4j_query_add_step_to_derivation(
 
     # feed expressions
     for feed_index, feed_id in enumerate(list_of_feed_expression_IDs):
+        print("feed_id=", feed_id)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
             'WHERE a.id="' + step_id + '" AND b.id="' + feed_id + '" '
@@ -422,6 +420,7 @@ def neo4j_query_add_step_to_derivation(
 
     # output expressions
     for output_index, output_id in enumerate(list_of_output_expression_IDs):
+        print("output_id=", output_id)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
             'WHERE a.id="' + step_id + '" AND b.id="' + output_id + '" '
@@ -1119,12 +1118,50 @@ def to_edit_expression(expression_id: str):
         )
     print("expression_dict:", expression_dict)
 
+    # editing the expression includes modifying the symbols present.
+
+    # get list of symbols
+    with graphDB_Driver.session() as session:
+        list_of_symbol_dicts = session.read_transaction(
+            neo4j_query_list_nodes_of_type, "symbol"
+        )
+    print("list_of_symbol_dicts=", list_of_symbol_dicts)
+
+    list_of_symbol_IDs = []
+    for symbol_dict in list_of_symbol_dicts:
+        list_of_symbol_IDs.append(symbol_dict["id"])
+
+    dict_of_symbol_dicts = {}
+    for symbol_dict in list_of_symbol_dicts:
+        dict_of_symbol_dicts[symbol_dict["id"]] = symbol_dict
+
+    # get list of operators
+    with graphDB_Driver.session() as session:
+        list_of_operator_dicts = session.read_transaction(
+            neo4j_query_list_nodes_of_type, "operator"
+        )
+    print("list_of_operator_dicts=", list_of_operator_dicts)
+
+    list_of_operator_IDs = []
+    for operator_dict in list_of_operator_dicts:
+        list_of_operator_IDs.append(operator_dict["id"])
+
+    dict_of_operator_dicts = {}
+    for operator_dict in list_of_operator_dicts:
+        dict_of_operator_dicts[operator_dict["id"]] = operator_dict
+
     web_form = SpecifyNewExpressionForm(request.form)
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
     return render_template(
-        "expression_edit.html", form=web_form, expression_dict=expression_dict
+        "expression_edit.html",
+        form=web_form,
+        expression_dict=expression_dict,
+        list_of_symbol_IDs=list_of_symbol_IDs,
+        dict_of_symbol_dicts=dict_of_symbol_dicts,
+        list_of_operator_IDs=list_of_operator_IDs,
+        dict_of_operator_dicts=dict_of_operator_dicts,
     )
     # return redirect(url_for("to_list_expressions"))
 
@@ -1440,11 +1477,20 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
                 now_str,
                 note_before_step_latex,
                 note_after_step_latex,
+                author_name_latex,
+            )
+
+            # adding expressions can only be done after step exists
+            session.write_transaction(
+                neo4j_query_add_expressions_to_step,
+                step_id,
+                now_str,
                 list_of_input_expression_IDs,
                 list_of_feed_expression_IDs,
                 list_of_output_expression_IDs,
                 author_name_latex,
             )
+
     else:
         return render_template(
             "new_step_select_expressions_for_inference_rule.html",
@@ -1715,13 +1761,22 @@ def to_list_derivations():
             neo4j_query_list_nodes_of_type, "derivation"
         )
 
-    for deriv_dict in list_of_derivation_dicts:
-        print("deriv_dict", deriv_dict)
+    number_of_steps_per_derivation = {}
+    for derivation_dict in list_of_derivation_dicts:
+        print("derivation_dict", derivation_dict)
+
+        with graphDB_Driver.session() as session:
+            list_of_steps = session.read_transaction(
+                neo4j_query_steps_in_this_derivation, derivation_dict["id"]
+            )
+        number_of_steps_per_derivation[derivation_dict["id"]] = len(list_of_steps)
 
     # TODO: convert derivation_dict['abstract_latex'] to HTML using pandoc
 
     return render_template(
-        "list_derivations.html", list_of_derivation_dicts=list_of_derivation_dicts
+        "list_derivations.html",
+        list_of_derivation_dicts=list_of_derivation_dicts,
+        number_of_steps_per_derivation=number_of_steps_per_derivation,
     )
 
 

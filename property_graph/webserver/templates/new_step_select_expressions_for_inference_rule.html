@@ -25,7 +25,7 @@ expression IDs: {{ list_of_expression_IDs }}
   {{ form.note_before_step_latex.label }}: {{ form.note_before_step_latex(size=50, maxlength=300, id="note_before") }}
 
   <P>input count: {{ inference_rule_dict['number_of_inputs'] }}
-  <select name="input1_expression_id" class="selectpicker form-control" id="input1_expression_id">
+  <select name="input1_expression_field_name" class="selectpicker form-control" id="input1_expression_field_id">
     {% for expression_id in list_of_expression_IDs %}
     <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }} </option>
     {% endfor %}

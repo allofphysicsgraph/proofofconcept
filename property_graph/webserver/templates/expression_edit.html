@@ -9,8 +9,41 @@
 
 <fieldset>
   <legend>
-    <H2>Edit Expression</h2>
+    <H2>Symbols in Expression</h2>
   </legend>
+  <form method="post" action="" onsubmit="return checkForm(this);">
+
+    <P>symbol count: {{ inference_rule_dict['number_of_inputs'] }}
+    <select name="symbol_select_name" class="selectpicker form-control" id="symbol_select_id">
+      {% for symbol_id in list_of_symbol_IDs %}
+      <option value="{{ symbol_id }}">{{ symbol_id }}, {{ dict_of_symbol_dicts[symbol_id]['latex'] }} </option>
+      {% endfor %}
+    </select>
+
+  </form>
+</fieldset>
+
+<fieldset>
+  <legend>
+    <H2>Operator in Expression</h2>
+  </legend>
+  <form method="post" action="" onsubmit="return checkForm(this);">
+
+    <P>operator count: {{ inference_rule_dict['number_of_inputs'] }}
+    <select name="operator_select_name" class="selectpicker form-control" id="operator_select_id">
+      {% for operator_id in list_of_operator_IDs %}
+      <option value="{{ operator_id }}">{{ operator_id }}, {{ dict_of_operator_dicts[operator_id]['latex'] }} </option>
+      {% endfor %}
+    </select>
+
+  </form>
+</fieldset>
+
+
+  <fieldset>
+    <legend>
+      <H2>Edit Expression</h2>
+    </legend>
 
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
