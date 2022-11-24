@@ -342,6 +342,7 @@ def neo4j_query_add_step_to_derivation(
     step_id: str,
     derivation_id: str,
     inference_rule_id: str,
+    now_str: str,
     note_before_step_latex: str,
     note_after_step_latex: str,
     list_of_input_expression_IDs: list,
@@ -358,6 +359,10 @@ def neo4j_query_add_step_to_derivation(
     """
     print("[TRACE] func: neo4j_query_add_step_to_derivation")
 
+    print("list_of_input_expression_IDs", list_of_input_expression_IDs)
+    print("list_of_feed_expression_IDs", list_of_feed_expression_IDs)
+    print("list_of_output_expression_IDs", list_of_output_expression_IDs)
+
     # print("no record")
     # result= tx.run(
     #     "CREATE (a:step {id:"+step_id+"})")
@@ -367,7 +372,11 @@ def neo4j_query_add_step_to_derivation(
 
     print("insert step with id; this works")
     result = tx.run(
-        'MERGE (:step {id:"' + step_id + '", name:"' + author_name_latex + '"})'
+        'MERGE (:step {id:"' + step_id + '", '
+        'author_name:"' + author_name_latex + '", '
+        'note_before_step:"' + note_before_step_latex + '", '
+        'created_datetime:"' + now_str + '", '
+        'note_after_step:"' + note_after_step_latex + '"})'
     )
 
     # TODO: include these properties with step
@@ -396,6 +405,7 @@ def neo4j_query_add_step_to_derivation(
 
     # input expressions
     for input_index, input_id in enumerate(list_of_input_expression_IDs):
+        print("input_id=", input_id)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
             'WHERE a.id="' + step_id + '" AND b.id="' + input_id + '" '
@@ -896,7 +906,7 @@ def to_add_derivation():
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
-            derivation_id = session.write_transaction(
+            session.write_transaction(
                 neo4j_query_add_derivation,
                 derivation_id,
                 now_str,
@@ -1427,6 +1437,7 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
                 step_id,
                 derivation_id,
                 inference_rule_id,
+                now_str,
                 note_before_step_latex,
                 note_after_step_latex,
                 list_of_input_expression_IDs,
