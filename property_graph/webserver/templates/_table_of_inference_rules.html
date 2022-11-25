@@ -8,6 +8,7 @@
     <th>input count</th>
     <th>feed count</th>
     <th>output count</th>
+    <th>used in</th>
   </tr>
   {% for inference_rule_dict in list_of_inference_rule_dicts %}
   <tr>
@@ -21,6 +22,7 @@
     <td>{{ inference_rule_dict['number_of_inputs'] }}</td>
     <td>{{ inference_rule_dict['number_of_feeds']}}</td>
     <td>{{ inference_rule_dict['number_of_outputs']}}</td>
+    <td>TODO</td>
   </tr>
   {% endfor %}
 </table>

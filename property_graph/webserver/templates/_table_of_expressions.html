@@ -6,6 +6,7 @@
     <th>latex</th>
     <th>name</th>
     <th>description</th>
+    <th>used in derivation</th>
   </tr>
   {% for expression_dict in list_of_expression_dicts %}
   <tr>
@@ -17,6 +18,7 @@
     <td>{{ expression_dict['latex']}}</td>
     <td>{{ expression_dict['name'] }}</td>
     <td>{{ expression_dict['description'] }}</td>
+    <td>TODO</td>
   </tr>
   {% endfor %}
 </table>

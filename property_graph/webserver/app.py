@@ -135,6 +135,7 @@ def neo4j_query_list_IDs(tx, node_type: str) -> list:
 
     """
     print("[TRACE] func: neo4j_query_list_IDs")
+    assert check_for_valid_node_type(node_type)
     list_of_IDs = []
     for record in tx.run("MATCH (n:" + node_type + ") RETURN n.id"):
         # print(record.data())
@@ -246,6 +247,45 @@ def neo4j_query_steps_in_this_derivation(tx, derivation_id: str) -> list:
     return list_of_step_IDs
 
 
+def neo4j_query_step_has_inference_rule(tx, step_id: str):
+    """
+    use case: when displaying a derivation, user wants to see inference rule per step
+
+    """
+    print("[TRACE] func: neo4j_query_step_has_inference_rule")
+    result = tx.run(
+        'MATCH (n:step {id:"'
+        + step_id
+        + '"})-[r:HAS_INFERENCE_RULE]->(m:inference_rule) RETURN m'
+    )
+    print(result.data())
+    return inference_rule_id
+
+
+def neo4j_query_step_has_expressions(tx, step_id: str, expression_type: str):
+    """
+    use case: when displaying a derivation, for each step the user wants to know the inputs, feeds, and outputs.
+
+    """
+    print("[TRACE] func: neo4j_query_step_has_expressions")
+    assert (
+        expression_type == "HAS_INPUT"
+        or expression_type == "HAS_FEED"
+        or expression_type == "HAS_OUTPUT"
+    )
+    list_of_expression_IDs = []
+    for record in tx.run(
+        'MATCH (n:step {id:"'
+        + step_id
+        + '"})-[r:'
+        + expression_type
+        + "]->(m:inference_rule) RETURN m"
+    ):
+        print(result.data())
+        list_of_expression_IDs.append(result.data())
+    return list_of_expression_IDs
+
+
 def neo4j_query_node_properties(tx, node_type: str, node_id: str) -> dict:
     """
     metadata associated with the node_id
@@ -258,7 +298,11 @@ def neo4j_query_node_properties(tx, node_type: str, node_id: str) -> dict:
     print("node_id:", node_id)
 
     for record in tx.run(
-        "MATCH (n: " + node_type + ') WHERE n.id = "' + node_id + '" RETURN n',
+        "MATCH (n: "
+        + str(node_type)
+        + ') WHERE n.id = "'
+        + str(node_id)
+        + '" RETURN n',
         # node_type=node_type,
         # node_id=node_id,
     ):
@@ -314,9 +358,18 @@ def neo4j_query_add_inference_rule(
     number_of_outputs: int,
 ):
     """
+    the "number_of_" are passed in as integers,
+    but when writing the query string they are
+    cast to integers to enable concatenation, but
+    Neo4j sees the query as containing integers.
+
     >>> neo4j_query_add_inference_rule(tx,)
     """
     print("[TRACE] func: neo4j_query_add_inference_rule")
+
+    assert int(number_of_inputs) > 0
+    assert int(number_of_feeds) > 0
+    assert int(number_of_feeds) > 0
 
     with graphDB_Driver.session() as session:
         list_of_inference_rule_IDs = session.read_transaction(
@@ -331,9 +384,9 @@ def neo4j_query_add_inference_rule(
         ' latex:"' + inference_rule_latex + '", '
         ' author_name:"' + author_name_latex + '", '
         ' id:"' + inference_rule_id + '", '
-        ' number_of_inputs:"' + number_of_inputs + '", '
-        ' number_of_feeds:"' + number_of_feeds + '", '
-        ' number_of_outputs:"' + number_of_outputs + '"})'
+        " number_of_inputs:" + str(number_of_inputs) + ", "
+        " number_of_feeds:" + str(number_of_feeds) + ", "
+        " number_of_outputs:" + str(number_of_outputs) + "})"
     )
 
 
@@ -368,14 +421,14 @@ def neo4j_query_add_step_to_derivation(
     print("step with edge", derivation_id)
     result = tx.run(
         "MATCH (a:derivation),(b:step) "
-        'WHERE a.id="' + derivation_id + '" AND b.id="' + str(step_id) + '" '
+        'WHERE a.id="' + str(derivation_id) + '" AND b.id="' + str(step_id) + '" '
         "MERGE (a)-[r:HAS_STEP {sequence_index: '1'}]->(b) RETURN r"
     )
 
     print("inference_rule_id", inference_rule_id)
     result = tx.run(
         "MATCH (a:step),(b:inference_rule) "
-        'WHERE a.id="' + step_id + '" AND b.id="' + inference_rule_id + '"'
+        'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(inference_rule_id) + '"'
         "MERGE (a)-[:HAS_INFERENCE_RULE]->(b)"
     )
 
@@ -396,6 +449,10 @@ def neo4j_query_add_expressions_to_step(
     """
     print("[TRACE] func: neo4j_query_add_expressions_to_step")
 
+    assert len(list_of_input_expression_IDs) > 0
+    assert len(list_of_feed_expression_IDs) > 0
+    assert len(list_of_output_expression_IDs) > 0
+
     print("list_of_input_expression_IDs", list_of_input_expression_IDs)
     print("list_of_feed_expression_IDs", list_of_feed_expression_IDs)
     print("list_of_output_expression_IDs", list_of_output_expression_IDs)
@@ -405,8 +462,8 @@ def neo4j_query_add_expressions_to_step(
         print("input_id=", input_id)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
-            'WHERE a.id="' + step_id + '" AND b.id="' + input_id + '" '
-            'MERGE (a)-[:HAS_INPUT {sequence_index: "' + input_index + '"}]->(b)'
+            'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(input_id) + '" '
+            'MERGE (a)-[:HAS_INPUT {sequence_index: "' + str(input_index) + '"}]->(b)'
         )
 
     # feed expressions
@@ -414,8 +471,8 @@ def neo4j_query_add_expressions_to_step(
         print("feed_id=", feed_id)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
-            'WHERE a.id="' + step_id + '" AND b.id="' + feed_id + '" '
-            'MERGE (a)-[:HAS_FEED {sequence_index: "' + feed_index + '"}]->(b)'
+            'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(feed_id) + '" '
+            'MERGE (a)-[:HAS_FEED {sequence_index: "' + str(feed_index) + '"}]->(b)'
         )
 
     # output expressions
@@ -423,8 +480,8 @@ def neo4j_query_add_expressions_to_step(
         print("output_id=", output_id)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
-            'WHERE a.id="' + step_id + '" AND b.id="' + output_id + '" '
-            'MERGE (a)-[:HAS_OUTPUT {sequence_index: "' + output_index + '"}]->(b)'
+            'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(output_id) + '" '
+            'MERGE (a)-[:HAS_OUTPUT {sequence_index: "' + str(output_index) + '"}]->(b)'
         )
     return
 
@@ -444,11 +501,11 @@ def neo4j_query_add_expression(
 
     result = tx.run(
         "CREATE (a:expression "
-        '{name:"' + expression_name + '", '
-        ' latex:"' + expression_latex + '", '
-        ' description:"' + expression_description + '", '
-        ' author_name:"' + author_name_latex + '", '
-        ' id:"' + expression_id + '"})'
+        '{name:"' + str(expression_name) + '", '
+        ' latex:"' + str(expression_latex) + '", '
+        ' description:"' + str(expression_description) + '", '
+        ' author_name:"' + str(author_name_latex) + '", '
+        ' id:"' + str(expression_id) + '"})'
     )
     return
 
@@ -468,11 +525,11 @@ def neo4j_query_add_symbol(
 
     result = tx.run(
         "CREATE (:symbol "
-        '{name:"' + symbol_name + '", '
-        ' latex:"' + symbol_latex + '", '
-        ' description:"' + symbol_description + '", '
-        ' author_name_latex:"' + author_name_latex + '", '
-        ' id:"' + symbol_id + '"})'
+        '{name:"' + str(symbol_name) + '", '
+        ' latex:"' + str(symbol_latex) + '", '
+        ' description:"' + str(symbol_description) + '", '
+        ' author_name_latex:"' + str(author_name_latex) + '", '
+        ' id:"' + str(symbol_id) + '"})'
     )
     return
 
@@ -492,23 +549,13 @@ def neo4j_query_add_operator(
 
     result = tx.run(
         "CREATE (a:operator "
-        '{name:"' + operator_name + '", '
-        ' latex:"' + operator_latex + '", '
-        ' description:"' + operator_description + '", '
-        ' author_name:"' + author_name_latex + '", '
-        ' id:"' + operator_id + '"})'
+        '{name:"' + str(operator_name) + '", '
+        ' latex:"' + str(operator_latex) + '", '
+        ' description:"' + str(operator_description) + '", '
+        ' author_name:"' + str(author_name_latex) + '", '
+        ' id:"' + str(operator_id) + '"})'
     )
     return
-
-
-# def neo4j_query_add_friend(tx, name, friend_name):
-#    tx.run(
-#        "MERGE (a:Person {name: $name}) "  # node type "person" with property "name"
-#        "MERGE (a)-[:KNOWS]->(friend:Person {name: $friend_name})",
-#        name=name,
-#        friend_name=friend_name,
-#    )
-#    return
 
 
 def neo4j_query_all_edges(tx):
@@ -832,6 +879,9 @@ def main():
 
             shutil.copy(path_to_uploaded_file, "/code/" + path_to_db)
 
+    # TODO: replace the counts below with
+    # MATCH (n) RETURN distinct labels(n), count(*)
+
     with graphDB_Driver.session() as session:
         number_of_derivations = len(
             session.read_transaction(neo4j_query_list_nodes_of_type, "derivation")
@@ -872,11 +922,23 @@ def to_add_derivation():
     """
     create new derivation
     user provides deritivation name and abstract
+
+    WIP:
+    http://localhost:5000/new_derivation?derivation_name=asdf123&derivation_abstract=4924858miminginasf
     """
     print("[TRACE] func: to_add_derivation")
 
     # TODO: check that the name of the derivation doesn't
     #       conflict with existing derivation names
+
+    derivation_name_from_URL = None
+    derivation_abstract_from_URL = None
+    # via URL keyword
+    derivation_name_from_URL = str(request.args.get("derivation_name", None))
+    derivation_abstract_from_URL = str(request.args.get("derivation_abstract", None))
+    if derivation_name_from_URL and derivation_abstract_from_URL:
+        print("derivation_name_from_URL:", derivation_name_from_URL)
+        print("derivation_abstract_from_URL:", derivation_abstract_from_URL)
 
     print("request.form=", request.form)
     web_form = SpecifyNewDerivationForm(request.form)
@@ -913,7 +975,6 @@ def to_add_derivation():
                 abstract_latex,
                 author_name_latex,
             )
-        print("derivation ID=", derivation_id)
         return redirect(
             url_for(
                 "to_add_step_select_inference_rule",
@@ -926,6 +987,10 @@ def to_add_derivation():
                 neo4j_query_list_nodes_of_type, "derivation"
             )
 
+        number_of_steps_per_derivation = count_number_of_steps_per_derivation(
+            list_of_derivation_dicts
+        )
+
         print("derivations in the database:")
         for deriv_dict in list_of_derivation_dicts:
             print("deriv_dict:", deriv_dict)
@@ -934,6 +999,7 @@ def to_add_derivation():
             "derivation_create.html",
             form=web_form,
             list_of_derivation_dicts=list_of_derivation_dicts,
+            number_of_steps_per_derivation=number_of_steps_per_derivation,
         )
     raise Exception("You definitely shouldn't reach here")
     return "broken"
@@ -1447,11 +1513,21 @@ def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
         list_of_feed_expression_IDs = []
         list_of_output_expression_IDs = []
         for k, v in request.form.items():
-            if ("input" in k) and ("expession_id" in k):
+            print("k=", k, "v=", v)
+            if ("input" in k) and (
+                "expression_" in k
+            ):  # field name is what matters here
+                print("in adding", v)
                 list_of_input_expression_IDs.append(str(v))
-            if ("feed" in k) and ("expession_id" in k):
+            if ("feed" in k) and (
+                "expression_" in k
+            ):  # field name is what matters here
+                print("fe adding", v)
                 list_of_feed_expression_IDs.append(str(v))
-            if ("output" in k) and ("expession_id" in k):
+            if ("output" in k) and (
+                "expression_" in k
+            ):  # field name is what matters here
+                print("out adding", v)
                 list_of_output_expression_IDs.append(str(v))
 
         author_name_latex = "benno"
@@ -1523,9 +1599,14 @@ def to_add_inference_rule():
 
         inference_rule_name = str(web_form.inference_rule_name.data).strip()
         inference_rule_latex = str(web_form.inference_rule_latex.data).strip()
-        number_of_inputs = str(web_form.inference_rule_number_of_inputs.data).strip()
-        number_of_feeds = str(web_form.inference_rule_number_of_feeds.data).strip()
-        number_of_outputs = str(web_form.inference_rule_number_of_outputs.data).strip()
+        number_of_inputs = int(
+            str(web_form.inference_rule_number_of_inputs.data).strip()
+        )
+        number_of_feeds = int(str(web_form.inference_rule_number_of_feeds.data).strip())
+        number_of_outputs = int(
+            str(web_form.inference_rule_number_of_outputs.data).strip()
+        )
+        # TODO: name should come from authenticated user session
         author_name_latex = "ben"
 
         # https://neo4j.com/docs/python-manual/current/session-api/
@@ -1761,6 +1842,23 @@ def to_list_derivations():
             neo4j_query_list_nodes_of_type, "derivation"
         )
 
+    number_of_steps_per_derivation = count_number_of_steps_per_derivation(
+        list_of_derivation_dicts
+    )
+
+    # TODO: convert derivation_dict['abstract_latex'] to HTML using pandoc
+
+    return render_template(
+        "list_derivations.html",
+        list_of_derivation_dicts=list_of_derivation_dicts,
+        number_of_steps_per_derivation=number_of_steps_per_derivation,
+    )
+
+
+def count_number_of_steps_per_derivation(list_of_derivation_dicts: dict):
+    """
+    >>> count_number_of_steps_per_derivation()
+    """
     number_of_steps_per_derivation = {}
     for derivation_dict in list_of_derivation_dicts:
         print("derivation_dict", derivation_dict)
@@ -1770,14 +1868,7 @@ def to_list_derivations():
                 neo4j_query_steps_in_this_derivation, derivation_dict["id"]
             )
         number_of_steps_per_derivation[derivation_dict["id"]] = len(list_of_steps)
-
-    # TODO: convert derivation_dict['abstract_latex'] to HTML using pandoc
-
-    return render_template(
-        "list_derivations.html",
-        list_of_derivation_dicts=list_of_derivation_dicts,
-        number_of_steps_per_derivation=number_of_steps_per_derivation,
-    )
+    return number_of_steps_per_derivation
 
 
 @app.route("/list_inference_rules")

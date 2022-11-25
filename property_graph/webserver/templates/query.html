@@ -37,6 +37,11 @@ Examples:
                                                   MATCH (n) RETURN n</a></td>
   </tr>
   <tr>
+    <td>list all edges</td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n)-[r]->(m) RETURN r">
+                                                  MATCH (n)-[r]->(m) RETURN r</a></td>
+  </tr>
+  <tr>
     <td>list all nodes and edges</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n)-[r]->(m) RETURN n,r,m">
                                                   MATCH (n)-[r]->(m) RETURN n,r,m</a></td>
