@@ -27,3 +27,4 @@ black_out:
 
 black_in:
 	black webserver/app.py
+	black webserver/neo4j_query.py
