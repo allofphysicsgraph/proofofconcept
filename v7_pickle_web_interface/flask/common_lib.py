@@ -139,10 +139,27 @@ def read_db(path_to_db: str) -> dict:
     loaded_dat = False
     # the call to load data from row occasionally (rarely) fails
     # but I don't understand why
-    for row in cur.execute("SELECT * FROM data"):
-        dat = json.loads(row[0])
-        loaded_dat = True
-    conn.close()
+
+    # Error message trace is
+    #     File "/home/appuser/app/controller.py", line 1094, in index
+    #      dat = clib.read_db(path_to_db)
+    #    File "/home/appuser/app/common_lib.py", line 142, in read_db
+    #      for row in cur.execute("SELECT * FROM data"):
+    #  sqlite3.OperationalError: no such table: data
+
+    attempt_index = 0
+    while attempt_index < 3:
+        attempt_index += 1
+        try:
+            for row in cur.execute("SELECT * FROM data"):
+                dat = json.loads(row[0])
+                loaded_dat = True
+            conn.close()
+        except sqlite3.OperationalError as err:
+            logger.error("common_lib read_db sqlite3.OperationalError")
+            logger.error('Unable to find table "data"; ' + str(err))
+            logger.error("attempt " + str(attempt_index))
+            # raise Exception()
 
     if not loaded_dat:
         raise Exception("dat not loaded from SQL DB")

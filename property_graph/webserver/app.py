@@ -112,7 +112,8 @@ while not neo4j_available:
         time.sleep(5)
 
 
-unique_numeric_id_as_str = NewType('unique_numeric_id_as_str', str)
+unique_numeric_id_as_str = NewType("unique_numeric_id_as_str", str)
+
 
 class Config(object):
     """
@@ -926,7 +927,9 @@ def to_add_operator():
 @app.route(
     "/new_step_expressions/<derivation_id>/<inference_rule_id>", methods=["GET", "POST"]
 )
-def to_add_step_select_expressions(derivation_id: unique_numeric_id_as_str, inference_rule_id: unique_numeric_id_as_str):
+def to_add_step_select_expressions(
+    derivation_id: unique_numeric_id_as_str, inference_rule_id: unique_numeric_id_as_str
+):
     """
     derivation_id is the numeric ID of the derivation being edited
 
