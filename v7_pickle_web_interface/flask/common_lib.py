@@ -155,6 +155,7 @@ def read_db(path_to_db: str) -> dict:
                 dat = json.loads(row[0])
                 loaded_dat = True
             conn.close()
+            break
         except sqlite3.OperationalError as err:
             logger.error("common_lib read_db sqlite3.OperationalError")
             logger.error('Unable to find table "data"; ' + str(err))
