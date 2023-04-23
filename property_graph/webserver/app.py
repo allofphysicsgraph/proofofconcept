@@ -45,6 +45,10 @@ import random
 import time
 import datetime
 
+# https://docs.python.org/3/library/typing.html
+# inspired by https://news.ycombinator.com/item?id=33844117
+from typing import NewType
+
 from flask import Flask
 
 import neo4j
@@ -108,6 +112,8 @@ while not neo4j_available:
         time.sleep(5)
 
 
+unique_numeric_id_as_str = NewType('unique_numeric_id_as_str', str)
+
 class Config(object):
     """
     https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
@@ -144,7 +150,7 @@ def constrain_id_to_be_unique():
     return
 
 
-def generate_random_id(list_of_current_IDs: list) -> str:
+def generate_random_id(list_of_current_IDs: list) -> unique_numeric_id_as_str:
     """
     create statically defined numeric IDs for nodes in the graph
 
@@ -157,7 +163,7 @@ def generate_random_id(list_of_current_IDs: list) -> str:
         new_id = str(random.randint(1000000, 9999999))
         if new_id not in list_of_current_IDs:
             found_new_ID = True
-    return new_id
+    return str(new_id)
 
 
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
@@ -484,7 +490,7 @@ def to_add_derivation():
 
 
 @app.route("/review_derivation/<derivation_id>", methods=["GET", "POST"])
-def to_review_derivation(derivation_id: str):
+def to_review_derivation(derivation_id: unique_numeric_id_as_str):
     """
     options from this page:
     * add step to existing derivation
@@ -529,7 +535,7 @@ def to_review_derivation(derivation_id: str):
 
 
 @app.route("/select_step/<derivation_id>/", methods=["GET", "POST"])
-def to_select_step(derivation_id: str):
+def to_select_step(derivation_id: unique_numeric_id_as_str):
     """
     User wants to delete step or edit step
     """
@@ -548,7 +554,7 @@ def to_select_step(derivation_id: str):
 
 
 @app.route("/edit_derivation_metadata/<derivation_id>/", methods=["GET", "POST"])
-def to_edit_derivation_metadata(derivation_id: str):
+def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
     """ """
     print("[TRACE] func: to_edit_derivation_metadata")
 
@@ -571,7 +577,7 @@ def to_edit_derivation_metadata(derivation_id: str):
 
 
 @app.route("/new_step_select_inference_rule/<derivation_id>/", methods=["GET", "POST"])
-def to_add_step_select_inference_rule(derivation_id: str):
+def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
     """
     add new step to existing derivation
 
@@ -634,7 +640,7 @@ def to_add_step_select_inference_rule(derivation_id: str):
 
 
 @app.route("/edit_expression/<expression_id>", methods=["GET", "POST"])
-def to_edit_expression(expression_id: str):
+def to_edit_expression(expression_id: unique_numeric_id_as_str):
     """
     novel expression
     """
@@ -754,7 +760,7 @@ def to_add_expression():
 
 
 @app.route("/edit_operator/<operator_id>", methods=["GET", "POST"])
-def to_edit_operator(operator_id: str):
+def to_edit_operator(operator_id: unique_numeric_id_as_str):
     """
     edit operator
     """
@@ -779,7 +785,7 @@ def to_edit_operator(operator_id: str):
 
 
 @app.route("/edit_symbol/<symbol_id>", methods=["GET", "POST"])
-def to_edit_symbol(symbol_id: str):
+def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
     """
     edit symbol
 
@@ -920,7 +926,7 @@ def to_add_operator():
 @app.route(
     "/new_step_expressions/<derivation_id>/<inference_rule_id>", methods=["GET", "POST"]
 )
-def to_add_step_select_expressions(derivation_id: str, inference_rule_id: str):
+def to_add_step_select_expressions(derivation_id: unique_numeric_id_as_str, inference_rule_id: unique_numeric_id_as_str):
     """
     derivation_id is the numeric ID of the derivation being edited
 
@@ -1131,7 +1137,7 @@ def to_add_inference_rule():
 
 
 @app.route("/edit_inference_rule/<inference_rule_id>", methods=["GET", "POST"])
-def to_edit_inference_rule(inference_rule_id: str):
+def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
     """ """
     print("[TRACE] func: to_edit_inference_rule")
 
