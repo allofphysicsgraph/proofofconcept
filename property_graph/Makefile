@@ -26,5 +26,4 @@ black_out:
 	docker run --rm -v`pwd`:/scratch --entrypoint='' -w /scratch/ property_graph_webserver make black_in
 
 black_in:
-	black webserver/app.py
-	black webserver/neo4j_query.py
+	black webserver/app.py webserver/neo4j_query.py
