@@ -5345,6 +5345,282 @@
                 }
             }
         },
+        "207210": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "name": "Newton's Law of Gravitation",
+            "notes": "from https://www.youtube.com/watch?v=fJYdFIZlD8k",
+            "steps": {
+                "1345199": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of two expressions into expr",
+                    "inputs": [
+                        "8320848",
+                        "5440061",
+                        "6174613"
+                    ],
+                    "linear index": 17,
+                    "notes": "",
+                    "outputs": [
+                        "1206000"
+                    ]
+                },
+                "1388833": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "3755872",
+                        "5891249"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "outputs": [
+                        "2239910"
+                    ]
+                },
+                "1894519": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 10,
+                    "notes": "",
+                    "outputs": [
+                        "5154120"
+                    ]
+                },
+                "2320827": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 9,
+                    "notes": "",
+                    "outputs": [
+                        "9055493"
+                    ]
+                },
+                "2431777": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "linear index": 5,
+                    "notes": "",
+                    "outputs": [
+                        "5891249"
+                    ]
+                },
+                "2676398": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [],
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "8373934"
+                    ],
+                    "linear index": 19,
+                    "notes": "",
+                    "outputs": []
+                },
+                "2901381": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "6969192",
+                        "2020292"
+                    ],
+                    "linear index": 7,
+                    "notes": "",
+                    "outputs": [
+                        "3755872"
+                    ]
+                },
+                "3408108": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "4470678"
+                    ],
+                    "linear index": 15,
+                    "notes": "",
+                    "outputs": [
+                        "7324555"
+                    ]
+                },
+                "3492706": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "5154120",
+                        "9055493"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "outputs": [
+                        "7653722"
+                    ]
+                },
+                "4575140": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [
+                        "4627450",
+                        "6309279"
+                    ],
+                    "inf rule": "change variable X to Y",
+                    "inputs": [
+                        "5546471"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "outputs": [
+                        "8320848"
+                    ]
+                },
+                "4705210": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [],
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "1206000"
+                    ],
+                    "linear index": 18,
+                    "notes": "",
+                    "outputs": [
+                        "8373934"
+                    ]
+                },
+                "5400789": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "9170078"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "outputs": [
+                        "5175707"
+                    ]
+                },
+                "5550676": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [
+                        "7991420"
+                    ],
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "5175707"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "outputs": [
+                        "4470678"
+                    ]
+                },
+                "5863314": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 1,
+                    "notes": "",
+                    "outputs": [
+                        "2020292"
+                    ]
+                },
+                "6715674": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 6,
+                    "notes": "",
+                    "outputs": [
+                        "6969192"
+                    ]
+                },
+                "7387809": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [
+                        "4770215",
+                        "3625079"
+                    ],
+                    "inf rule": "change variable X to Y",
+                    "inputs": [
+                        "5546471"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "outputs": [
+                        "5440061"
+                    ]
+                },
+                "7878437": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "7653722",
+                        "2239910"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "outputs": [
+                        "9170078"
+                    ]
+                },
+                "8162484": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "declare guess solution",
+                    "inputs": [
+                        "7324555"
+                    ],
+                    "linear index": 16,
+                    "notes": "this is a big leap of logic that is consistent with Kepler's third law of motion",
+                    "outputs": [
+                        "6174613"
+                    ]
+                },
+                "9492883": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-10",
+                    "feeds": [],
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "2020292"
+                    ],
+                    "linear index": 2,
+                    "notes": "",
+                    "outputs": [
+                        "5546471"
+                    ]
+                }
+            }
+        },
         "282755": {
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-26",
@@ -9863,6 +10139,7 @@
         "1189259": "7826132469",
         "1199299": "1314864131",
         "1203491": "1020394900",
+        "1206000": "3650814381",
         "1209482": "0001209482",
         "1209604": "8311458118",
         "1212129": "5938459282",
@@ -9942,6 +10219,7 @@
         "2009493": "1994296484",
         "2016533": "5323719091",
         "2018605": "1357848476",
+        "2020292": "5345738321",
         "2022953": "5438722682",
         "2028521": "8406170337",
         "2040029": "3594626260",
@@ -9968,6 +10246,7 @@
         "2237799": "1590774089",
         "2238158": "7749253510",
         "2239424": "0002239424",
+        "2239910": "4267808354",
         "2283140": "2983053062",
         "2293278": "3485125659",
         "2300056": "6306552185",
@@ -10122,6 +10401,7 @@
         "3550368": "5787469164",
         "3566114": "3723096423",
         "3576787": "4298359851",
+        "3625079": "9594072504",
         "3640931": "1916173354",
         "3642765": "3291685884",
         "3686928": "8604483515",
@@ -10132,6 +10412,7 @@
         "3741728": "9999999965",
         "3747585": "4928239482",
         "3747849": "0003747849",
+        "3755872": "6026694087",
         "3778087": "8357234146",
         "3784785": "4923339482",
         "3830663": "6055078815",
@@ -10223,6 +10504,7 @@
         "4451366": "9601500174",
         "4454896": "8435841627",
         "4463004": "7652131521",
+        "4470678": "3004158505",
         "4471422": "3426941928",
         "4487753": "6681646197",
         "4499582": "9999999961",
@@ -10241,6 +10523,7 @@
         "4600503": "5962145508",
         "4603243": "3219318145",
         "4622149": "9897284307",
+        "4627450": "3876446703",
         "4642245": "1314464131",
         "4648410": "7735731560",
         "4648848": "6050070428",
@@ -10256,6 +10539,7 @@
         "4757562": "9991999979",
         "4758524": "1025759423",
         "4758592": "8494839423",
+        "4770215": "2346952973",
         "4777195": "1702349646",
         "4787865": "2064205392",
         "4803506": "4447113478",
@@ -10319,8 +10603,10 @@
         "5129639": "8922441655",
         "5130250": "8435841627",
         "5140250": "1323602089",
+        "5154120": "6785303857",
         "5160388": "7875206161",
         "5168370": "2051901211",
+        "5175707": "7672365885",
         "5179630": "3417126140",
         "5183800": "6976493023",
         "5191462": "1511199318",
@@ -10351,6 +10637,7 @@
         "5409843": "6529793063",
         "5410092": "7221917737",
         "5427510": "4662369843",
+        "5440061": "4490788873",
         "5440162": "6239815585",
         "5454988": "7217021879",
         "5459812": "4275004561",
@@ -10358,6 +10645,7 @@
         "5513927": "7607271250",
         "5523081": "7391837535",
         "5535257": "5985371230",
+        "5546471": "1848400430",
         "5563180": "8945218208",
         "5564581": "2113211456",
         "5577530": "1259826355",
@@ -10389,6 +10677,7 @@
         "5872898": "6908055431",
         "5883117": "5789289057",
         "5888046": "3464107376",
+        "5891249": "4820320578",
         "5891715": "2378095808",
         "5916018": "9370882921",
         "5927974": "3497828859",
@@ -10410,6 +10699,7 @@
         "6139485": "8717193282",
         "6154610": "9337785146",
         "6167182": "8953094349",
+        "6174613": "1571582377",
         "6181437": "5838268428",
         "6199255": "2405307372",
         "6213797": "5775658332",
@@ -10420,6 +10710,7 @@
         "6277762": "8486706976",
         "6300507": "9413609246",
         "6306015": "5021965469",
+        "6309279": "7905984866",
         "6310702": "4303372136",
         "6313158": "9243879541",
         "6316097": "7057864873",
@@ -10486,6 +10777,7 @@
         "6913493": "2999795755",
         "6923850": "2998709778",
         "6935293": "8061701434",
+        "6969192": "8361238989",
         "6972103": "5353282496",
         "6973462": "2857430695",
         "6979804": "5646314683",
@@ -10517,6 +10809,7 @@
         "7273319": "2334518266",
         "7283949": "8558338742",
         "7300369": "3566149658",
+        "7324555": "3650370389",
         "7336772": "8198310977",
         "7360652": "6946088325",
         "7362045": "3512166162",
@@ -10561,6 +10854,7 @@
         "7634995": "3021493603",
         "7636749": "0007636749",
         "7647794": "2405307372",
+        "7653722": "5177311762",
         "7666907": "8515803375",
         "7668898": "7543102525",
         "7682341": "2267521164",
@@ -10589,6 +10883,7 @@
         "7969677": "5181421075",
         "7978425": "3809726424",
         "7978426": "3809726424",
+        "7991420": "3448601530",
         "7992949": "9110536742",
         "8002723": "2271186630",
         "8007427": "6457044853",
@@ -10615,6 +10910,7 @@
         "8283443": "2613006036",
         "8296872": "1525861537",
         "8320432": "8857931498",
+        "8320848": "4264859781",
         "8321379": "5095822224",
         "8323044": "2897612567",
         "8341200": "2131616531",
@@ -10622,6 +10918,7 @@
         "8356816": "8120663858",
         "8360924": "1931103031",
         "8369684": "9749777192",
+        "8373934": "1292735067",
         "8374556": "3132131132",
         "8392798": "1716984328",
         "8394853": "0934990943",
@@ -10698,6 +10995,7 @@
         "9038289": "9848294829",
         "9050104": "9645178657",
         "9050111": "3268645065",
+        "9055493": "3411994811",
         "9081932": "4669290568",
         "9091270": "8582954722",
         "9092600": "2396787389",
@@ -10713,6 +11011,7 @@
         "9155336": "6504442697",
         "9159337": "2308660627",
         "9164799": "1608399874",
+        "9170078": "6268336290",
         "9190817": "3660957533",
         "9192406": "1020854560",
         "9214650": "3131211131",
@@ -11601,6 +11900,14 @@
             "name": "",
             "notes": ""
         },
+        "1292735067": {
+            "AST": "Equality(Symbol('pdg2867'), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "F_{gravitational} = G \\frac{m_1 m_2}{r^2}",
+            "name": "",
+            "notes": ""
+        },
         "1293913110": {
             "AST": "Equality(Integer(0), Symbol('pdg1939'))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11817,6 +12124,14 @@
             "name": "",
             "notes": ""
         },
+        "1571582377": {
+            "AST": "Equality(Symbol('pdg2867'), Mul(Symbol('k'), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "F_{gravitational} \\propto \\frac{1}{r^2}",
+            "name": "",
+            "notes": ""
+        },
         "1586866563": {
             "AST": "Equality(Add(Add(Pow(Symbol('pdg6728'), Integer(2)), Add(Mul(Pow(Symbol('pdg4037'), Integer(2)), Add(Mul(Integer(-1), Pow(Symbol('pdg4567'), Integer(2)), Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('pdg1357'), Integer(-2)), Mul(Pow(Symbol('pdg1790'), Integer(-4)), Pow(Add(Integer(1), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)))), Integer(2)))), Pow(Symbol('pdg1790'), Integer(2)))), Pow(Symbol('pdg5647'), Integer(2)))), Add(Mul(Integer(-1), Integer(2), Pow(Symbol('pdg4567'), Integer(2)), Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('pdg1357'), Integer(-1)), Symbol('pdg4037'), Mul(Symbol('pdg1467'),Mul(Add(Integer(1), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)))), Pow(Pow(Symbol('pdg1790'), Integer(2)), Integer(-1))))), Mul(Integer(-1), Mul(Pow(Symbol('pdg1790'), Integer(2)), Mul(Integer(2), Mul(Symbol('pdg4037'), Mul(Symbol('pdg1467'), Symbol('pdg1357')))))))), Mul(Pow(Symbol('pdg1467'), Integer(2)), Add(Mul(Pow(Symbol('pdg4567'), Integer(2)), Pow(Symbol('pdg1790'), Integer(2))), Mul(Integer(-1), Pow(Symbol('pdg1790'), Integer(2)), Pow(Symbol('pdg1357'), Integer(2))))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11992,6 +12307,14 @@
             "latex": "KE_2 = 0",
             "name": "",
             "notes": "object is not moving at $x=\\infty$"
+        },
+        "1848400430": {
+            "AST": "Mul(Symbol('F'), Mul(Symbol('m'), Symbol('propto')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "F \\propto m",
+            "name": "",
+            "notes": ""
         },
         "1857710291": {
             "AST": "Equality(Integer(0), Mul(Symbol('pdg9139'), sin(Mul(Symbol('pdg1592'), Symbol('pdg3141')))))",
@@ -12390,6 +12713,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-09",
             "latex": "r",
+            "name": "",
+            "notes": ""
+        },
+        "2346952973": {
+            "AST": "Symbol('m')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "m",
             "name": "",
             "notes": ""
         },
@@ -12857,6 +13188,14 @@
             "name": "",
             "notes": ""
         },
+        "3004158505": {
+            "AST": "Equality(Mul(Symbol('pdg2867'), Mul(Pow(Symbol('pdg8762'), Integer(2)), Pow(Symbol('pdg2530'), Integer(-1)))), Mul(Mul(Pow(Symbol('pdg8762'), Integer(2)), Pow(Symbol('pdg2530'), Integer(-1))), Mul(Mul(Integer(4), Mul(Pow(Symbol('pdg3141'), Integer(2)), Mul(Symbol('pdg5156'), Symbol('pdg2530')))), Pow(Pow(Symbol('pdg8762'), Integer(2)), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "\\frac{T^2}{r} F_{gravitational} = \\left( \\frac{4 \\pi^2 m r}{T^2} \\right)\\frac{T^2}{r}",
+            "name": "",
+            "notes": ""
+        },
         "3031116098": {
             "AST": "Symbol('pdg3461')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13241,6 +13580,14 @@
             "name": "",
             "notes": ""
         },
+        "3448601530": {
+            "AST": "Mul(Pow(Symbol('T'), Integer(2)), Pow(Symbol('r'), Integer(-1)))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "\\frac{T^2}{r}",
+            "name": "",
+            "notes": ""
+        },
         "3462972452": {
             "AST": "Equality(Symbol('pdg1357'), Add(Mul(Symbol('pdg9140'), Symbol('pdg1467')), Symbol('pdg5153')))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13401,6 +13748,22 @@
             "name": "",
             "notes": ""
         },
+        "3650370389": {
+            "AST": "Equality(Mul(Symbol('pdg2867'), Mul(Pow(Symbol('pdg8762'), Integer(2)), Pow(Symbol('pdg2530'), Integer(-1)))), Mul(Integer(4), Mul(Symbol('pdg5156'), Pow(Symbol('pdg3141'), Integer(2)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "\\frac{T^2}{r} F_{gravitational} = 4 \\pi^2 m",
+            "name": "",
+            "notes": ""
+        },
+        "3650814381": {
+            "AST": "Mul(Symbol('pdg2867'), Mul(Symbol('propto'), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "F_{gravitational} \\propto \\frac{m_1 m_2}{r^2}",
+            "name": "",
+            "notes": ""
+        },
         "3652511721": {
             "AST": "Symbol('pdg1357')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13518,6 +13881,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-29",
             "latex": "{\\rm sech}^2\\ x = \\frac{4}{\\left(\\exp(x)+\\exp(-x)\\right)^2}",
+            "name": "",
+            "notes": ""
+        },
+        "3876446703": {
+            "AST": "Symbol('m')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "m",
             "name": "",
             "notes": ""
         },
@@ -13833,6 +14204,22 @@
             "name": "",
             "notes": ""
         },
+        "4264859781": {
+            "AST": "Mul(Symbol('F'), Mul(Symbol('m_{1}'), Symbol('propto')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "F \\propto m_1",
+            "name": "",
+            "notes": ""
+        },
+        "4267808354": {
+            "AST": "Equality(Symbol('pdg2867'), Mul(Symbol('m'), Mul(Pow(Symbol('r'), Integer(-1)), Pow(Symbol('pdg1357'), Integer(2)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "F_{gravitational} = m \\frac{v^2}{r}",
+            "name": "",
+            "notes": ""
+        },
         "4268085801": {
             "AST": "Equality(Add(Symbol('pdg1943'), Symbol('pdg1572')), Add(Mul(Symbol('pdg5153'), Mul(Symbol('pdg2467'), cos(Symbol('pdg1575')))), Symbol('pdg1572')))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13982,6 +14369,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
             "latex": "t_{\\rm Earth\\ orbit}",
+            "name": "",
+            "notes": ""
+        },
+        "4490788873": {
+            "AST": "Mul(Symbol('F'), Mul(Symbol('m_{2}'), Symbol('propto')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "F \\propto m_2",
             "name": "",
             "notes": ""
         },
@@ -14190,6 +14585,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24",
             "latex": "W = \\frac{1}{2} m v_2^2 - \\frac{1}{2} m v_1^2",
+            "name": "",
+            "notes": ""
+        },
+        "4820320578": {
+            "AST": "Equality(Symbol('pdg2867'), Symbol('pdg1687'))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "F_{gravitational} = F_{centripetal}",
             "name": "",
             "notes": ""
         },
@@ -14518,6 +14921,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-08",
             "latex": "t' = \\frac{\\gamma x (1 - \\gamma^2 )}{\\gamma^2 v} + \\gamma t",
+            "name": "",
+            "notes": ""
+        },
+        "5177311762": {
+            "AST": "Equality(Symbol('pdg1357'), Mul(Pow(Symbol('pdg8762'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('r')))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "v = \\frac{2 \\pi r}{T}",
             "name": "",
             "notes": ""
         },
@@ -15161,6 +15572,14 @@
             "name": "",
             "notes": ""
         },
+        "6026694087": {
+            "AST": "Equality(Symbol('pdg1687'), Mul(Symbol('m'), Mul(Pow(Symbol('r'), Integer(-1)), Pow(Symbol('v'), Integer(2)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "F_{centripetal} = m \\frac{v^2}{r}",
+            "name": "",
+            "notes": ""
+        },
         "6031385191": {
             "AST": "Equality(Pow(sinh(Symbol('pdg1464')), Integer(2)), Mul(Mul(Pow(Integer(2), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Symbol('pdg1464')))), exp(Symbol('pdg1464')))), Mul(Pow(Integer(2), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Symbol('pdg1464')))), exp(Symbol('pdg1464'))))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15294,6 +15713,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14",
             "latex": "A",
+            "name": "",
+            "notes": ""
+        },
+        "6268336290": {
+            "AST": "Equality(Symbol('pdg2867'), Mul(Pow(Mul(Pow(Symbol('pdg8762'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('pdg2530')))), Integer(2)), Mul(Symbol('pdg4851'), Pow(Symbol('pdg2530'), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "F_{gravitational} = \\frac{m}{r}\\left(\\frac{2\\pi r}{T}\\right)^2",
             "name": "",
             "notes": ""
         },
@@ -16169,6 +16596,14 @@
             "name": "",
             "notes": ""
         },
+        "7672365885": {
+            "AST": "Equality(Symbol('pdg2867'), Mul(Mul(Integer(4), Mul(Pow(Symbol('pdg3141'), Integer(2)), Mul(Symbol('pdg4851'), Symbol('pdg2530')))), Pow(Pow(Symbol('pdg8762'), Integer(2)), Integer(-1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "F_{gravitational} = \\frac{4 \\pi^2 m r}{T^2}",
+            "name": "",
+            "notes": ""
+        },
         "7675171493": {
             "AST": "Equality(Symbol('pdg8257'), Mul(Symbol('pdg4501'), Symbol('pdg8697')))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16358,6 +16793,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-10",
             "latex": "W_{\\rm to\\ system} = \\int_{\\infty}^r \\vec{F}\\cdot d\\vec{r}",
+            "name": "",
+            "notes": ""
+        },
+        "7905984866": {
+            "AST": "Symbol('m_{1}')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "m_1",
             "name": "",
             "notes": ""
         },
@@ -16624,6 +17067,14 @@
             "latex": "\\gamma = \\frac{-1}{\\sqrt{1-\\frac{v^2}{c^2}}}",
             "name": "",
             "notes": "not a physically valid result in this context"
+        },
+        "8361238989": {
+            "AST": "Equality(Symbol('a_{c*(e*(n*(t*(r*(i*(p*(e*(t*(a*l)))))))))}'), Mul(Pow(Symbol('pdg2530'), Integer(-1)), Pow(Symbol('pdg1357'), Integer(2))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "a_{centripetal} = \\frac{v^2}{r}",
+            "name": "",
+            "notes": ""
         },
         "8362338572": {
             "AST": "Symbol('pdg8656')",
@@ -17694,6 +18145,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-29",
             "latex": "9.80665",
+            "name": "",
+            "notes": ""
+        },
+        "9594072504": {
+            "AST": "Symbol('m_{2}')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-10",
+            "latex": "m_2",
             "name": "",
             "notes": ""
         },
