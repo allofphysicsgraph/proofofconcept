@@ -9682,6 +9682,302 @@
                 }
             }
         },
+        "764666": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "name": "Langmuir Adsorption",
+            "notes": "from https://arxiv.org/pdf/2210.12150.pdf",
+            "steps": {
+                "1573241": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [
+                        "5179934"
+                    ],
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "2575148"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "outputs": [
+                        "2552367"
+                    ]
+                },
+                "2080556": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 11,
+                    "notes": "definition of equilibrium",
+                    "outputs": [
+                        "5044727"
+                    ]
+                },
+                "2371653": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [
+                        "1990849"
+                    ],
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "2575148"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "outputs": [
+                        "5003983"
+                    ]
+                },
+                "2420735": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-12",
+                    "feeds": [
+                        "1707483"
+                    ],
+                    "inf rule": "raise both sides to power",
+                    "inputs": [
+                        "7042641"
+                    ],
+                    "linear index": 16,
+                    "notes": "",
+                    "outputs": [
+                        "4039036"
+                    ]
+                },
+                "2537687": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-12",
+                    "feeds": [
+                        "6943575"
+                    ],
+                    "inf rule": "raise both sides to power",
+                    "inputs": [
+                        "5044727"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "outputs": [
+                        "8620451"
+                    ]
+                },
+                "3651783": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-12",
+                    "feeds": [
+                        "8164525",
+                        "4008926"
+                    ],
+                    "inf rule": "change variable X to Y",
+                    "inputs": [
+                        "8754546"
+                    ],
+                    "linear index": 18,
+                    "notes": "",
+                    "outputs": [
+                        "4829867"
+                    ]
+                },
+                "4202402": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-12",
+                    "feeds": [
+                        "3240507"
+                    ],
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "4487508"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "outputs": [
+                        "5382248"
+                    ]
+                },
+                "4242980": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-12",
+                    "feeds": [],
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "4039036",
+                        "5382248"
+                    ],
+                    "linear index": 17,
+                    "notes": "",
+                    "outputs": [
+                        "8754546"
+                    ]
+                },
+                "4463019": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-12",
+                    "feeds": [
+                        "1437372"
+                    ],
+                    "inf rule": "raise both sides to power",
+                    "inputs": [
+                        "4829867"
+                    ],
+                    "linear index": 19,
+                    "notes": "",
+                    "outputs": [
+                        "8722827"
+                    ]
+                },
+                "4708398": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [],
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "linear index": 3,
+                    "notes": "",
+                    "outputs": [
+                        "9492936"
+                    ]
+                },
+                "5303332": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8859060",
+                        "1615903"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "outputs": [
+                        "2575148"
+                    ]
+                },
+                "5941581": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-12",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 15,
+                    "notes": "",
+                    "outputs": [
+                        "7042641"
+                    ]
+                },
+                "6500091": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "7133735",
+                        "9492936"
+                    ],
+                    "linear index": 4,
+                    "notes": "",
+                    "outputs": [
+                        "1615903"
+                    ]
+                },
+                "6549607": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 2,
+                    "notes": "",
+                    "outputs": [
+                        "8859060"
+                    ]
+                },
+                "7080403": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-12",
+                    "feeds": [],
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "8722827"
+                    ],
+                    "linear index": 20,
+                    "notes": "",
+                    "outputs": []
+                },
+                "7766035": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 7,
+                    "notes": "The concentration of all sites by summing the concentration of free sites [S] and occupied sites",
+                    "outputs": [
+                        "7265984"
+                    ]
+                },
+                "7979473": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "5003983",
+                        "7265984"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "outputs": [
+                        "1337055"
+                    ]
+                },
+                "8400219": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [
+                        "5460074"
+                    ],
+                    "inf rule": "factor out X",
+                    "inputs": [
+                        "1337055"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "outputs": [
+                        "9195751"
+                    ]
+                },
+                "8982754": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-12",
+                    "feeds": [],
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8620451",
+                        "9195751"
+                    ],
+                    "linear index": 13,
+                    "notes": "",
+                    "outputs": [
+                        "4487508"
+                    ]
+                },
+                "9643014": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-06-11",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 1,
+                    "notes": "",
+                    "outputs": [
+                        "7133735"
+                    ]
+                }
+            }
+        },
         "884319": {
             "author": "bp",
             "creation date": "2020-04-23",
@@ -10157,6 +10453,7 @@
         "1321587": "9973952056",
         "1333038": "3353418803",
         "1334112": "0001334112",
+        "1337055": "4301729661",
         "1353291": "7939947931",
         "1353583": "4298359835",
         "1366396": "5693047217",
@@ -10168,6 +10465,7 @@
         "1405078": "7621705408",
         "1414263": "8483686863",
         "1432042": "1029039904",
+        "1437372": "3911081515",
         "1439312": "2741489181",
         "1441436": "4593428198",
         "1476448": "8706092970",
@@ -10187,6 +10485,7 @@
         "1580045": "4938429483",
         "1584527": "6555185548",
         "1588002": "9906920183",
+        "1615903": "3507029294",
         "1619188": "5404822208",
         "1633402": "6554292307",
         "1635641": "3364286646",
@@ -10195,6 +10494,7 @@
         "1650804": "7743841045",
         "1654988": "4370074654",
         "1693888": "5148266645",
+        "1707483": "7564010952",
         "1708642": "2809345867",
         "1712972": "2924222857",
         "1719451": "4560648264",
@@ -10215,6 +10515,7 @@
         "1983598": "1616666229",
         "1987304": "9053099840",
         "1988214": "5398681503",
+        "1990849": "8162179726",
         "2007644": "3652511721",
         "2009493": "1994296484",
         "2016533": "5323719091",
@@ -10287,8 +10588,10 @@
         "2502147": "5359471792",
         "2502645": "7857757625",
         "2522307": "9933742680",
+        "2552367": "5085809757",
         "2562123": "3182633789",
         "2565189": "5542528160",
+        "2575148": "3488423948",
         "2590216": "9070454719",
         "2593741": "7846240076",
         "2597988": "4961662865",
@@ -10361,6 +10664,7 @@
         "3194924": "2123139121",
         "3232241": "0003232242",
         "3232242": "0003232242",
+        "3240507": "5426418187",
         "3246829": "3060393541",
         "3257704": "8173074178",
         "3267212": "5799753649",
@@ -10456,9 +10760,11 @@
         "3993940": "1293923844",
         "3994928": "9499428242",
         "4001109": "8563535636",
+        "4008926": "7630953440",
         "4009221": "2762326680",
         "4014685": "8710504862",
         "4037937": "7002609475",
+        "4039036": "8131665171",
         "4041665": "5781435087",
         "4052253": "1639827492",
         "4068150": "5530148480",
@@ -10506,6 +10812,7 @@
         "4463004": "7652131521",
         "4470678": "3004158505",
         "4471422": "3426941928",
+        "4487508": "7517073655",
         "4487753": "6681646197",
         "4499582": "9999999961",
         "4499742": "3846345263",
@@ -10548,6 +10855,7 @@
         "4824772": "2510804451",
         "4825483": "3942849294",
         "4829194": "0004829194",
+        "4829867": "7267424860",
         "4831494": "0004831494",
         "4836115": "5945893986",
         "4840471": "8960645192",
@@ -10587,10 +10895,12 @@
         "4978059": "1638282134",
         "4994113": "6498985149",
         "5000579": "9956609318",
+        "5003983": "9562264720",
         "5010170": "6204539227",
         "5011637": "4585932229",
         "5013638": "6175547907",
         "5020923": "7837519722",
+        "5044727": "7924063906",
         "5049530": "8399484849",
         "5077893": "8090924099",
         "5080789": "4213426349",
@@ -10608,6 +10918,7 @@
         "5168370": "2051901211",
         "5175707": "7672365885",
         "5179630": "3417126140",
+        "5179934": "1945487024",
         "5183800": "6976493023",
         "5191462": "1511199318",
         "5195494": "8072682558",
@@ -10628,6 +10939,7 @@
         "5359560": "5349866551",
         "5369477": "9262596735",
         "5377003": "8418527415",
+        "5382248": "6457999644",
         "5385244": "9658195023",
         "5395034": "0005395034",
         "5395954": "3868998312",
@@ -10641,6 +10953,7 @@
         "5440162": "6239815585",
         "5454988": "7217021879",
         "5459812": "4275004561",
+        "5460074": "1268845856",
         "5493675": "8497631728",
         "5513927": "7607271250",
         "5523081": "7391837535",
@@ -10777,6 +11090,7 @@
         "6913493": "2999795755",
         "6923850": "2998709778",
         "6935293": "8061701434",
+        "6943575": "5516739892",
         "6969192": "8361238989",
         "6972103": "5353282496",
         "6973462": "2857430695",
@@ -10786,6 +11100,7 @@
         "7008990": "7912578203",
         "7034924": "2186083170",
         "7037795": "7410124465",
+        "7042641": "2114909846",
         "7054973": "6535639720",
         "7072262": "6974054946",
         "7076437": "3685779219",
@@ -10794,6 +11109,7 @@
         "7109663": "7587034465",
         "7110498": "9510328252",
         "7112224": "5846639423",
+        "7133735": "3736177473",
         "7139326": "2617541067",
         "7169020": "2096918413",
         "7188516": "7010294143",
@@ -10805,6 +11121,7 @@
         "7247144": "1439089569",
         "7248942": "2754264786",
         "7262448": "5591692598",
+        "7265984": "3599953931",
         "7266552": "7844317489",
         "7273319": "2334518266",
         "7283949": "8558338742",
@@ -10901,6 +11218,7 @@
         "8148802": "4128500715",
         "8155541": "3547519267",
         "8163462": "4167526462",
+        "8164525": "6346902704",
         "8167187": "3270039798",
         "8186016": "8495187962",
         "8195408": "5763749235",
@@ -10946,6 +11264,7 @@
         "8585856": "2768857871",
         "8587761": "9029795851",
         "8592617": "5379546684",
+        "8620451": "6240546932",
         "8635275": "2700934933",
         "8635770": "1277713901",
         "8638087": "2858549874",
@@ -10959,9 +11278,11 @@
         "8702257": "5866629429",
         "8712395": "1742775076",
         "8713399": "1457415749",
+        "8722827": "4689334676",
         "8725566": "7708501762",
         "8727369": "1614343171",
         "8742281": "8750379055",
+        "8754546": "7928111771",
         "8761200": "9999999969",
         "8771215": "3731774096",
         "8773482": "1779497048",
@@ -10976,6 +11297,7 @@
         "8842811": "0008842811",
         "8844119": "5136652623",
         "8858248": "3274926090",
+        "8859060": "6955192897",
         "8873965": "3462972452",
         "8882098": "9285928292",
         "8883350": "4928007622",
@@ -11014,6 +11336,7 @@
         "9170078": "6268336290",
         "9190817": "3660957533",
         "9192406": "1020854560",
+        "9195751": "2168306601",
         "9214650": "3131211131",
         "9245668": "8532702080",
         "9255270": "9674924517",
@@ -11049,6 +11372,7 @@
         "9485857": "0009485857",
         "9485858": "0009485858",
         "9492929": "0009492929",
+        "9492936": "6783009163",
         "9493949": "4857475848",
         "9494155": "7175416299",
         "9495882": "1858772113",
@@ -11892,6 +12216,14 @@
             "name": "",
             "notes": ""
         },
+        "1268845856": {
+            "AST": "Symbol('pdg4940')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "[A_{\\rm adsorption}]",
+            "name": "",
+            "notes": ""
+        },
         "1277713901": {
             "AST": "Symbol('pdg1943')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -11901,7 +12233,7 @@
             "notes": ""
         },
         "1292735067": {
-            "AST": "Equality(Symbol('pdg2867'), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
+            "AST": "Equality(Symbol('pdg2867'), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('pdg5022'), Symbol('pdg4851')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-11",
             "latex": "F_{gravitational} = G \\frac{m_1 m_2}{r^2}",
@@ -12396,6 +12728,14 @@
             "name": "",
             "notes": ""
         },
+        "1945487024": {
+            "AST": "Mul(Symbol('pdg9067'), Symbol('pdg9046'))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "p_A [S]",
+            "name": "",
+            "notes": ""
+        },
         "1963253044": {
             "AST": "Equality(Mul(Symbol('pdg4711'), Symbol('pdg2958')), Symbol('pdg9199'))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12556,6 +12896,14 @@
             "name": "",
             "notes": ""
         },
+        "2114909846": {
+            "AST": "Equality(Symbol('pdg1791'), Mul(Symbol('pdg4940'), Pow(Symbol('pdg3037'), Integer(-1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "\\theta_A = \\frac{[A_{\\rm adsorption}]}{[S_0]}",
+            "name": "",
+            "notes": ""
+        },
         "2121790783": {
             "AST": "Equality(Pow(tanh(Symbol('pdg1464')), Integer(2)), Mul(Pow(Add(Mul(Integer(-1), exp(Mul(Integer(-1), Symbol('pdg1464')))), exp(Symbol('pdg1464'))), Integer(2)), Pow(Pow(Add(exp(Mul(Integer(-1), Symbol('pdg1464'))), exp(Symbol('pdg1464'))), Integer(2)), Integer(-1))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12593,6 +12941,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2021-08-22",
             "latex": "-\\frac{k}{m} A \\cos(\\omega t) = -A \\omega^2 \\cos(\\omega t)",
+            "name": "",
+            "notes": ""
+        },
+        "2168306601": {
+            "AST": "Equality(Symbol('pdg3037'), Mul(Symbol('pdg4940'), Add(Integer(1), Mul(Pow(Symbol('pdg9046'), Integer(-1)), Mul(Pow(Symbol('pdg6850'), Integer(-1)), Symbol('pdg8379'))))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "[S_0] = \\left(\\frac{k_{\\rm desorption}}{k_{\\rm adsorption}} \\frac{1}{p_A} + 1\\right)[A_{\\rm adsorption}]",
             "name": "",
             "notes": ""
         },
@@ -13644,6 +14000,14 @@
             "name": "",
             "notes": ""
         },
+        "3488423948": {
+            "AST": "Equality(Mul(Symbol('pdg6850'), Mul(Symbol('pdg9067'), Symbol('pdg9046'))), Mul(Symbol('pdg4940'), Symbol('pdg8379')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "k_{\\rm adsorption} p_A [S] = k_{\\rm desorption} [A_{\\rm adsorption}]",
+            "name": "",
+            "notes": ""
+        },
         "3495403335": {
             "AST": "Symbol('pdg1464')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13657,6 +14021,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14",
             "latex": "V = \\frac{n R T}{P}",
+            "name": "",
+            "notes": ""
+        },
+        "3507029294": {
+            "AST": "Equality(Mul(Symbol('pdg6850'), Mul(Symbol('pdg9067'), Symbol('pdg9046'))), Symbol('pdg1966'))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "k_{\\rm adsorption} p_A [S] = r_{\\rm desorption}",
             "name": "",
             "notes": ""
         },
@@ -13716,6 +14088,14 @@
             "name": "",
             "notes": ""
         },
+        "3599953931": {
+            "AST": "Equality(Symbol('pdg3037'), Add(Symbol('pdg4940'), Symbol('pdg9067')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "[S_0] = [S] + [A_{\\rm adsorption}]",
+            "name": "",
+            "notes": ""
+        },
         "3605073197": {
             "AST": "Equality(Symbol('pdg4645'), Mul(Mul(Pow(Symbol('pdg7586'), Integer(-1)), Mul(Integer(-1), Mul(Symbol('pdg2834'), Mul(Symbol('pdg8179'), Symbol('pdg7343'))))), Mul(Integer(-1), Pow(Pow(Symbol('pdg8134'), Integer(2)), Integer(-1)))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -13757,7 +14137,7 @@
             "notes": ""
         },
         "3650814381": {
-            "AST": "Mul(Symbol('pdg2867'), Mul(Symbol('propto'), Mul(Mul(Symbol('m_{1}'), Symbol('m_{2}')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
+            "AST": "Mul(Symbol('pdg2867'), Mul(Symbol('propto'), Mul(Mul(Symbol('pdg5022'), Symbol('pdg4851')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "F_{gravitational} \\propto \\frac{m_1 m_2}{r^2}",
@@ -13825,6 +14205,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-11",
             "latex": "KE",
+            "name": "",
+            "notes": ""
+        },
+        "3736177473": {
+            "AST": "Equality(Symbol('pdg6687'), Mul(Symbol('pdg6850'), Mul(Symbol('pdg9067'), Symbol('pdg9046'))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "r_{\\rm adsorption} = k_{\\rm adsorption} p_A [S]",
             "name": "",
             "notes": ""
         },
@@ -13897,6 +14285,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-26",
             "latex": "G \\frac{m_{\\rm Earth}}{r} = \\frac{4 \\pi^2 r^2}{T_{\\rm orbit}^2}",
+            "name": "",
+            "notes": ""
+        },
+        "3911081515": {
+            "AST": "Integer(-1)",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "-1",
             "name": "",
             "notes": ""
         },
@@ -14205,7 +14601,7 @@
             "notes": ""
         },
         "4264859781": {
-            "AST": "Mul(Symbol('F'), Mul(Symbol('m_{1}'), Symbol('propto')))",
+            "AST": "Mul(Symbol('F'), Mul(Symbol('pdg5022'), Symbol('propto')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "F \\propto m_1",
@@ -14273,6 +14669,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "E = \\frac{p^2}{2m}",
+            "name": "",
+            "notes": ""
+        },
+        "4301729661": {
+            "AST": "Equality(Symbol('pdg3037'), Add(Symbol('pdg4940'), Mul(Symbol('pdg4940'), Pow(Mul(Symbol('pdg9046'), Mul(Symbol('pdg6850'), Pow(Symbol('pdg8379'), Integer(-1)))), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "[S_0] = \\frac{[A_{\\rm adsorption}]}{\\left( \\frac{k_{\\rm adsorption}}{k_{\\rm desorption}} \\right) p_A} + [A_{\\rm adsorption}]",
             "name": "",
             "notes": ""
         },
@@ -14373,7 +14777,7 @@
             "notes": ""
         },
         "4490788873": {
-            "AST": "Mul(Symbol('F'), Mul(Symbol('m_{2}'), Symbol('propto')))",
+            "AST": "Mul(Symbol('F'), Mul(Symbol('pdg4851'), Symbol('propto')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "F \\propto m_2",
@@ -14513,6 +14917,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-20",
             "latex": "PE_1 = -F x_1",
+            "name": "",
+            "notes": ""
+        },
+        "4689334676": {
+            "AST": "Equality(Symbol('pdg1791'), Mul(Mul(Symbol('pdg4933'), Symbol('pdg9046')), Pow(Add(Mul(Symbol('pdg4933'), Symbol('pdg9046')), Integer(1)), Integer(-1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "\\theta_A = \\frac{K_{\\rm equilibrium}\\ p_A}{1+K_{\\rm equilibrium}\\ p_A}",
             "name": "",
             "notes": ""
         },
@@ -14884,6 +15296,14 @@
             "name": "",
             "notes": ""
         },
+        "5085809757": {
+            "AST": "Equality(Mul(Symbol('pdg6850'), Pow(Symbol('pdg8379'), Integer(-1))), Mul(Symbol('pdg4940'), Pow(Mul(Symbol('pdg9067'), Symbol('pdg9046')), Integer(-1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "\\frac{k_{\\rm adsorption}}{k_{\\rm desorption}} = \\frac{[A_{\\rm adsorption}]}{p_A [S]}",
+            "name": "",
+            "notes": ""
+        },
         "5089196493": {
             "AST": "Symbol('pdg4202')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15084,6 +15504,14 @@
             "name": "",
             "notes": ""
         },
+        "5426418187": {
+            "AST": "Symbol('pdg4940')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "[A_{\\rm adsorption}]",
+            "name": "",
+            "notes": ""
+        },
         "5438722682": {
             "AST": "Equality(Symbol('pdg4037'), Add(Mul(Symbol('pdg5153'), Mul(Symbol('pdg1467'), cos(Symbol('pdg1575')))), Symbol('pdg1572')))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15113,6 +15541,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-20",
             "latex": "E_2 - E_1 = (KE_2 - KE_1) + (PE_2 - PE_1)",
+            "name": "",
+            "notes": ""
+        },
+        "5516739892": {
+            "AST": "Integer(-1)",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "-1",
             "name": "",
             "notes": ""
         },
@@ -15708,6 +16144,14 @@
             "name": "",
             "notes": ""
         },
+        "6240546932": {
+            "AST": "Equality(Pow(Symbol('pdg4933'), Integer(-1)), Mul(Pow(Symbol('pdg6850'), Integer(-1)), Symbol('pdg8379')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "\\frac{1}{K_{equilibrium}} = \\frac{k_{\\rm desorption}}{k_{\\rm adsorption}}",
+            "name": "",
+            "notes": ""
+        },
         "6259833695": {
             "AST": "Symbol('pdg3285')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15745,6 +16189,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17",
             "latex": "I = (A + B)(A^* + B^*)",
+            "name": "",
+            "notes": ""
+        },
+        "6346902704": {
+            "AST": "Integer(1)",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "1",
             "name": "",
             "notes": ""
         },
@@ -15833,6 +16285,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-14",
             "latex": "v - a t = v_0",
+            "name": "",
+            "notes": ""
+        },
+        "6457999644": {
+            "AST": "Equality(Mul(Pow(Symbol('pdg4940'), Integer(-1)), Symbol('pdg3037')), Add(Integer(1), Mul(Pow(Symbol('pdg4933'), Integer(-1)), Pow(Symbol('pdg9046'), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "\\frac{[S_0]}{[A_{\\rm adsorption}]} = \\frac{1}{K_{\\rm equilibrium}} \\frac{1}{p_A} + 1",
             "name": "",
             "notes": ""
         },
@@ -16012,6 +16472,14 @@
             "name": "",
             "notes": "for coherent waves"
         },
+        "6783009163": {
+            "AST": "Equality(Symbol('pdg6687'), Symbol('pdg1966'))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "r_{\\rm adsorption} = r_{\\rm desorption}",
+            "name": "",
+            "notes": ""
+        },
         "6785303857": {
             "AST": "Equality(Symbol('pdg3034'), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('pdg2530'))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16105,6 +16573,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-06",
             "latex": "v = \\frac{C}{t}",
+            "name": "",
+            "notes": ""
+        },
+        "6955192897": {
+            "AST": "Equality(Symbol('pdg1966'), Mul(Symbol('pdg4940'), Symbol('pdg8379')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "r_{\\rm desorption} = k_{\\rm desorption} [A_{\\rm adsorption}]",
             "name": "",
             "notes": ""
         },
@@ -16324,6 +16800,14 @@
             "name": "",
             "notes": ""
         },
+        "7267424860": {
+            "AST": "Equality(Pow(Symbol('pdg1791'), Integer(-1)), Mul(Pow(Mul(Symbol('pdg4933'), Symbol('pdg9046')), Integer(-1)), Add(Mul(Symbol('pdg4933'), Symbol('pdg9046')), Integer(1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "\\frac{1}{\\theta_A} = \\frac{1+(K_{\\rm equilibrium}\\ p_A)}{K_{\\rm equilibrium}\\ p_A}",
+            "name": "",
+            "notes": ""
+        },
         "7321695558": {
             "AST": "Symbol('pdg4928')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16452,6 +16936,14 @@
             "name": "",
             "notes": ""
         },
+        "7517073655": {
+            "AST": "Equality(Symbol('pdg3037'), Mul(Symbol('pdg4940'), Add(Integer(1), Mul(Pow(Symbol('pdg4933'), Integer(-1)), Pow(Symbol('pdg9046'), Integer(-1))))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "[S_0] = \\left(\\frac{1}{K_{\\rm equilibrium}} \\frac{1}{p_A} + 1\\right)[A_{\\rm adsorption}]",
+            "name": "",
+            "notes": ""
+        },
         "7556442438": {
             "AST": "Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2)))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16465,6 +16957,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-29",
             "latex": "m",
+            "name": "",
+            "notes": ""
+        },
+        "7564010952": {
+            "AST": "Integer(-1)",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "-1",
             "name": "",
             "notes": ""
         },
@@ -16585,6 +17085,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17",
             "latex": "I = |A|^2 + |B|^2 + |A| |B| \\exp(-i \\theta) \\exp(i \\phi) + |A| |B| \\exp(i \\theta) \\exp(-i \\phi)",
+            "name": "",
+            "notes": ""
+        },
+        "7630953440": {
+            "AST": "Mul(Pow(Mul(Symbol('pdg4933'), Symbol('pdg9046')), Integer(-1)), Mul(Symbol('pdg4933'), Symbol('pdg9046')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "\\frac{K_{\\rm equilibrium} p_A}{K_{\\rm equilibrium} p_A}",
             "name": "",
             "notes": ""
         },
@@ -16797,7 +17305,7 @@
             "notes": ""
         },
         "7905984866": {
-            "AST": "Symbol('m_{1}')",
+            "AST": "Symbol('pdg5022')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "m_1",
@@ -16828,11 +17336,27 @@
             "name": "",
             "notes": ""
         },
+        "7924063906": {
+            "AST": "Equality(Symbol('pdg4933'), Mul(Symbol('pdg6850'), Pow(Symbol('pdg8379'), Integer(-1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "K_{equilibrium} = \\frac{k_{\\rm adsorption}}{k_{\\rm desorption}}",
+            "name": "",
+            "notes": ""
+        },
         "7924842770": {
             "AST": "Symbol('pdg7343')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-14",
             "latex": "T",
+            "name": "",
+            "notes": ""
+        },
+        "7928111771": {
+            "AST": "Equality(Pow(Symbol('pdg1791'), Integer(-1)), Add(Integer(1), Pow(Mul(Symbol('pdg4933'), Symbol('pdg9046')), Integer(-1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "\\frac{1}{\\theta_A} = \\frac{1}{K_{\\rm equilibrium} p_A} + 1",
             "name": "",
             "notes": ""
         },
@@ -16964,6 +17488,14 @@
             "name": "",
             "notes": ""
         },
+        "8131665171": {
+            "AST": "Equality(Pow(Symbol('pdg1791'), Integer(-1)), Mul(Pow(Symbol('pdg4940'), Integer(-1)), Symbol('pdg3037')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-12",
+            "latex": "\\frac{1}{\\theta_A} = \\frac{[S_0]}{[A_{\\rm adsorption}]}",
+            "name": "",
+            "notes": ""
+        },
         "8135396036": {
             "AST": "Symbol('pdg1467')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16985,6 +17517,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17",
             "latex": "-g t dt + v_{0, y} dt = dy",
+            "name": "",
+            "notes": ""
+        },
+        "8162179726": {
+            "AST": "Mul(Symbol('pdg6850'), Symbol('pdg9046'))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "k_{\\rm adsorption} p_A",
             "name": "",
             "notes": ""
         },
@@ -18108,6 +18648,14 @@
             "name": "",
             "notes": ""
         },
+        "9562264720": {
+            "AST": "Equality(Symbol('pdg9067'), Mul(Mul(Symbol('pdg4940'), Symbol('pdg8379')), Pow(Mul(Symbol('pdg6850'), Symbol('pdg9046')), Integer(-1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-06-11",
+            "latex": "[S] = \\frac{k_{\\rm desorption} [A_{\\rm adsorption}]}{k_{\\rm adsorption} p_A}",
+            "name": "",
+            "notes": ""
+        },
         "9565166889": {
             "AST": "Symbol('pdg9491')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18149,7 +18697,7 @@
             "notes": ""
         },
         "9594072504": {
-            "AST": "Symbol('m_{2}')",
+            "AST": "Symbol('pdg4851')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "m_2",
@@ -20323,6 +20871,27 @@
                 "real"
             ]
         },
+        "1791": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-06-11",
+            "dimensions": {
+                "amount of substance": 0,
+                "electric charge": 0,
+                "length": 0,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": 0
+            },
+            "domain": "any",
+            "latex": "\\theta_A",
+            "name": "the fraction of the surface sites covered with A",
+            "references": [
+                "https://en.wikipedia.org/wiki/Langmuir_adsorption_model"
+            ],
+            "scope": "real"
+        },
         "1888": {
             "author": "4a0987466473c589d2c328d12856760e",
             "category": "variable",
@@ -20484,6 +21053,27 @@
             "name": " index of refraction for material 2",
             "references": [
                 "https://en.wikipedia.org/wiki/Refractive_index"
+            ],
+            "scope": "real"
+        },
+        "1966": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-06-11",
+            "dimensions": {
+                "amount of substance": 0,
+                "electric charge": 0,
+                "length": 0,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": -1
+            },
+            "domain": "any",
+            "latex": "r_{\\rm desorption}",
+            "name": "rate of desorption",
+            "references": [
+                "https://en.wikipedia.org/wiki/Langmuir_adsorption_model"
             ],
             "scope": "real"
         },
@@ -21099,6 +21689,27 @@
             "scope": [
                 "real"
             ]
+        },
+        "3037": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-06-11",
+            "dimensions": {
+                "amount of substance": 1,
+                "electric charge": 0,
+                "length": 0,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": 0
+            },
+            "domain": "nonnegative",
+            "latex": "[S_0]",
+            "name": "total number of sites",
+            "references": [
+                "https://en.wikipedia.org/wiki/Langmuir_adsorption_model"
+            ],
+            "scope": "real"
         },
         "3141": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -22235,6 +22846,48 @@
                 "real"
             ]
         },
+        "4933": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-06-11",
+            "dimensions": {
+                "amount of substance": 0,
+                "electric charge": 0,
+                "length": 0,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": 0
+            },
+            "domain": "any",
+            "latex": "K_{\\rm equilibrium}",
+            "name": "constant for equilibrium when rate of adsorption equals the rate of desorption ",
+            "references": [
+                "https://en.wikipedia.org/wiki/Langmuir_adsorption_model"
+            ],
+            "scope": "real"
+        },
+        "4940": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-06-11",
+            "dimensions": {
+                "amount of substance": 1,
+                "electric charge": 0,
+                "length": 2,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": 0
+            },
+            "domain": "nonnegative",
+            "latex": "[A_{\\rm adsorption}]",
+            "name": "surface concentration of A in molecules per square meter",
+            "references": [
+                "https://en.wikipedia.org/wiki/Langmuir_adsorption_model"
+            ],
+            "scope": "real"
+        },
         "4989": {
             "author": "4a0987466473c589d2c328d12856760e",
             "category": "variable",
@@ -23134,6 +23787,27 @@
             ],
             "scope": "real"
         },
+        "6687": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-06-11",
+            "dimensions": {
+                "amount of substance": 0,
+                "electric charge": 0,
+                "length": 0,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": -1
+            },
+            "domain": "any",
+            "latex": "r_{\\rm adsorption}",
+            "name": "rate of adsorption",
+            "references": [
+                "https://en.wikipedia.org/wiki/Langmuir_adsorption_model"
+            ],
+            "scope": "real"
+        },
         "6694": {
             "author": "4a0987466473c589d2c328d12856760e",
             "category": "variable",
@@ -23282,6 +23956,27 @@
                 "https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics)"
             ],
             "scope": "complex"
+        },
+        "6850": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-06-11",
+            "dimensions": {
+                "amount of substance": 0,
+                "electric charge": 0,
+                "length": 0,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": 0
+            },
+            "domain": "any",
+            "latex": "k_{\\rm adsorption}",
+            "name": "constant of forward adsorption reaction",
+            "references": [
+                "https://en.wikipedia.org/wiki/Langmuir_adsorption_model"
+            ],
+            "scope": "real"
         },
         "7055": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -23806,6 +24501,27 @@
             ],
             "scope": "real"
         },
+        "8379": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-06-11",
+            "dimensions": {
+                "amount of substance": 0,
+                "electric charge": 0,
+                "length": 0,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": 0
+            },
+            "domain": "any",
+            "latex": "k_{\\rm desorption}",
+            "name": "constant of backward desorption reaction",
+            "references": [
+                "https://en.wikipedia.org/wiki/Langmuir_adsorption_model"
+            ],
+            "scope": "real"
+        },
         "8586": {
             "author": "4a0987466473c589d2c328d12856760e",
             "category": "variable",
@@ -23951,6 +24667,48 @@
             "name": "final velocity",
             "references": [
                 "https://en.wikipedia.org/wiki/Velocity"
+            ],
+            "scope": "real"
+        },
+        "9046": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-06-11",
+            "dimensions": {
+                "amount of substance": 0,
+                "electric charge": 0,
+                "length": 0,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": 0
+            },
+            "domain": "any",
+            "latex": "p_A",
+            "name": "partial pressure of A over the surface",
+            "references": [
+                "https://en.wikipedia.org/wiki/Langmuir_adsorption_model"
+            ],
+            "scope": "real"
+        },
+        "9067": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-06-11",
+            "dimensions": {
+                "amount of substance": 1,
+                "electric charge": 0,
+                "length": -2,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": 0
+            },
+            "domain": "nonnegative",
+            "latex": "[S]",
+            "name": "concentration of free sites in number per square meter",
+            "references": [
+                "https://en.wikipedia.org/wiki/Langmuir_adsorption_model"
             ],
             "scope": "real"
         },
