@@ -3762,7 +3762,7 @@ Algorithm for Converting Latex to Semantically-meaningful expression&lt;/h3&gt;
       <blogger:type>BLOGGER</blogger:type>
     </author>
     <title>why software used by the Physics Derivation Graph is open source</title>
-    <content type='html'>The Physics Derivation Graph content is available under&amp;nbsp;the &lt;a href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;, and I use open source software.&lt;br /&gt;
+    <content type='html'>The Physics Derivation Graph content is available under&amp;nbsp;the &lt;a href="https://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;, and I use open source software.&lt;br /&gt;
 &lt;br /&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="https://docs.python.org/3/license.html"&gt;Python license&lt;/a&gt;&lt;/li&gt;
@@ -4824,7 +4824,7 @@ I wanted to avoid manually entering the AST,&lt;br /&gt;
     <content type='html'>There are two aspects to a project like the Physics Derivation Graph that could be&amp;nbsp;proprietary: the data, and the software which manipulates the data.&lt;br /&gt;
 &lt;br /&gt;
 One motivation for protecting these aspects of a project are to make money. I'm not seeking money.&lt;br /&gt;
-Another motivation for protection is to ensure citation when the project is used. I apply the Creative &lt;a href="http://creativecommons.org/licenses/by/4.0/"&gt;Commons Attribution 4.0 International License&lt;/a&gt; to the Physics Derivation Graph project.&lt;br /&gt;
+Another motivation for protection is to ensure citation when the project is used. I apply the Creative &lt;a href="https://creativecommons.org/licenses/by/4.0/"&gt;Commons Attribution 4.0 International License&lt;/a&gt; to the Physics Derivation Graph project.&lt;br /&gt;
 &lt;br /&gt;
 I want to enable other people, including commercial efforts, to benefit from use of both the data and software I create. I also share the syntax of the data format so that future contributions from others can adhere to the data I already have. A published syntax standard also enables writing parsers for translation of the data format.</content>
     <blogger:created>2017-07-07T23:55:57.338Z</blogger:created>
