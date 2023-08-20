@@ -1260,11 +1260,6 @@ def class_notes_subpage(which_class: str):
     return render_template("class_notes_overview.html", title="class notes overview")
 
 
-@app.route("/central_expressions", methods=["GET", "POST"])
-def central_expressions():
-    return render_template("central_expressions.html", title="central expressions")
-
-
 @app.route("/roadmap", methods=["GET", "POST"])
 def roadmap():
     return render_template("layers_overview.html", title="Roadmap Overview")
@@ -1382,7 +1377,7 @@ def blog(YYYY: str, MM: str, blog_title: str):
     return render_template("blog/" + YYYY + "/" + MM + "/" + blog_title)
 
 
-@app.route("/central_expressions", methods=["GET"])
+@app.route("/central_expressions", methods=["GET", "POST"])
 def central_expressions():
     """
     "central expressions" is a static page
