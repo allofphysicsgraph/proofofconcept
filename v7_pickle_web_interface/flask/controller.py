@@ -1260,9 +1260,9 @@ def class_notes_subpage(which_class: str):
     return render_template("class_notes_overview.html", title="class notes overview")
 
 
-@app.route("/central_expessions", methods=["GET", "POST"])
-def central_expessions():
-    return render_template("central_expessions.html", title="central expressions")
+@app.route("/central_expressions", methods=["GET", "POST"])
+def central_expressions():
+    return render_template("central_expressions.html", title="central expressions")
 
 
 @app.route("/roadmap", methods=["GET", "POST"])
