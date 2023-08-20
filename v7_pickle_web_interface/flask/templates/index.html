@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- unlike all other pages, this page does not inherit from _base.html
      That's because the "sign in" and "navigation" links are not shown at the top of the page -->
 <!-- see https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-ii-templates -->
@@ -8,6 +9,9 @@
     {% else %}
     <title>Welcome to the Physics Derivation Graph</title>
     {% endif %}
+
+    <!-- defines the default zoom for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 {% include '_js_head.html' %}
 
