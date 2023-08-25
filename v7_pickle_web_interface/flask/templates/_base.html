@@ -5,9 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     {% if title %}
     <title>Physics Derivation Graph: {{ title }}</title>
+    <meta property="og:title" content="{{ title }}" /> <!-- https://ogp.me/ -->
     {% else %}
     <title>Welcome to the Physics Derivation Graph</title>
+    <meta property="og:title" content="Physics Derivation Graph" />  <!-- https://ogp.me/ -->
     {% endif %}
+
+    <meta property="og:type" content="website" /> <!-- https://ogp.me/#types -->
+    <meta property="og:site_name" content="Physics Derivation Graph" /> <!-- https://ogp.me/#optional -->
 
 {% include '_js_head.html' %}
 
