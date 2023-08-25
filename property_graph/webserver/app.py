@@ -92,26 +92,7 @@ from secure import SecureHeaders  # type: ignore
 
 import neo4j_query
 
-# Database Credentials
-# "bolt" vs "neo4j" https://community.neo4j.com/t/different-between-neo4j-and-bolt/18498
-uri = "bolt://neo4j_docker:7687"
-# userName        = "neo4j"
-# password        = "test"
-
-# Connect to the neo4j database server
-neo4j_available = False
-while not neo4j_available:
-    print("TRACE: started while loop")
-    try:
-        graphDB_Driver = GraphDatabase.driver(uri)
-        neo4j_available = True
-        time.sleep(1)
-        constrain_id_to_be_unique()
-    except ValueError:
-        print("waiting 5 seconds for neo4j connection")
-        time.sleep(5)
-
-
+# ORDERING: this has to come before the functions that use this type
 unique_numeric_id_as_str = NewType("unique_numeric_id_as_str", str)
 
 
@@ -121,6 +102,21 @@ class Config(object):
     """
 
     SECRET_KEY = os.environ.get("SECRET_KEY")
+
+
+# ORDERING: this has to come before using the function wrapper
+# ORDERING: this has to be after the class "Config" is specified
+app = Flask(__name__, static_folder="static")
+app.config.from_object(
+    Config
+)  # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
+app.config[
+    "UPLOAD_FOLDER"
+] = "/home/appuser/app/uploads"  # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+app.config[
+    "SEND_FILE_MAX_AGE_DEFAULT"
+] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+app.config["DEBUG"] = True
 
 
 def count_number_of_steps_per_derivation(list_of_derivation_dicts: dict):
@@ -144,9 +140,11 @@ def constrain_id_to_be_unique():
     node ID must be unique
     """
     with graphDB_Driver.session() as session:
-        number_of_derivations = len(
-            session.write_transaction(neo4j_query.constrain_unique_id)
-        )
+        list_of_derivation_IDs = session.write_transaction(neo4j_query.constrain_unique_id)
+        if list_of_derivation_IDs:
+            number_of_derivations = len(list_of_derivation_IDs)
+        else: # list_of_derivation_IDs was "None"
+            number_of_derivations = 0
 
     return
 
@@ -166,28 +164,6 @@ def generate_random_id(list_of_current_IDs: list) -> unique_numeric_id_as_str:
             found_new_ID = True
     return str(new_id)
 
-
-# https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
-csrf = CSRFProtect()
-
-# https://secure.readthedocs.io/en/latest/frameworks.html#flask
-secure_headers = SecureHeaders()
-
-app = Flask(__name__, static_folder="static")
-app.config.from_object(
-    Config
-)  # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
-app.config[
-    "UPLOAD_FOLDER"
-] = "/home/appuser/app/uploads"  # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
-app.config[
-    "SEND_FILE_MAX_AGE_DEFAULT"
-] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
-app.config["DEBUG"] = True
-
-
-# https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
-csrf.init_app(app)
 
 
 class SpecifyNewDerivationForm(FlaskForm):
@@ -1444,6 +1420,40 @@ def to_export_cypher():
     # <Record file='all.cypher' batches=1 source='database: nodes(4), rels(0)' format='cypher' nodes=4 relationships=0 properties=16 time=13 rows=4 batchSize=20000>
 
     return redirect(url_for("static", filename="dumping_grounds/pdg.cypher"))
+
+# Database Credentials
+# "bolt" vs "neo4j" https://community.neo4j.com/t/different-between-neo4j-and-bolt/18498
+uri = "bolt://neo4j_docker:7687"
+# userName        = "neo4j"
+# password        = "test"
+
+
+# Connect to the neo4j database server
+neo4j_available = False
+while not neo4j_available:
+    print("TRACE: started while loop")
+    try:
+        graphDB_Driver = GraphDatabase.driver(uri)
+        neo4j_available = True
+        time.sleep(1)
+        constrain_id_to_be_unique()
+    except ValueError:
+        print("waiting 5 seconds for neo4j connection")
+        time.sleep(5)
+
+
+
+
+# https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
+csrf = CSRFProtect()
+
+# https://secure.readthedocs.io/en/latest/frameworks.html#flask
+secure_headers = SecureHeaders()
+
+
+
+# https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
+csrf.init_app(app)
 
 
 # EOF
