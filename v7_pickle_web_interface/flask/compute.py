@@ -3232,7 +3232,7 @@ def generate_html_for_derivation(deriv_id: str, path_to_db: str) -> str:
 
                     if len(step_dict["notes"]) > 0:
                         str_to_write += (
-                            step_dict["notes"] + "\n"
+                            make_string_safe_for_latex(step_dict["notes"]) + "\n"
                         )  # TODO: if the note contains a $ or %, shenanigans arise
                     # write output expressions
                     for expr_local_id in step_dict["outputs"]:
@@ -3287,7 +3287,9 @@ def make_string_safe_for_latex(unsafe_str: str) -> str:
 
     fixed_underscore_str = safe_str.replace("NONSTANDARDUNDRSCR", "_")
 
-    no_hashtag_str = fixed_underscore_str.replace("#","\#").replace("$","\$").replace("%","\%")
+    no_hashtag_str = (
+        fixed_underscore_str.replace("#", "\#").replace("$", "\$").replace("%", "\%")
+    )
 
     return no_hashtag_str
 
@@ -3412,7 +3414,11 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
             list_of_linear_index.append(step_dict["linear index"])
         list_of_linear_index.sort()
 
-        lat_file.write("\\title{" + make_string_safe_for_latex(dat["derivations"][deriv_id]["name"]) + "}\n")
+        lat_file.write(
+            "\\title{"
+            + make_string_safe_for_latex(dat["derivations"][deriv_id]["name"])
+            + "}\n"
+        )
         lat_file.write("\\date{\\today}\n")
         lat_file.write("\\author{" + make_string_safe_for_latex(user_email) + "}\n")
         lat_file.write("\\setlength{\\topmargin}{-.5in}\n")
@@ -3454,10 +3460,14 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                             + "}\n"
                         )
                         lat_file.write(
-                            "\\caption{" + make_string_safe_for_latex(step_dict["image"]["caption"]) + "}\n"
+                            "\\caption{"
+                            + make_string_safe_for_latex(step_dict["image"]["caption"])
+                            + "}\n"
                         )
                         lat_file.write(
-                            "\\label{fig:" + make_string_safe_for_latex(step_dict["image"]["label"]) + "}\n"
+                            "\\label{fig:"
+                            + make_string_safe_for_latex(step_dict["image"]["label"])
+                            + "}\n"
                         )
                         lat_file.write("\\end{figure}\n")
                         lat_file.write("\\end{center}\n")
