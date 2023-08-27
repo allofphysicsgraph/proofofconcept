@@ -9978,6 +9978,300 @@
                 }
             }
         },
+        "820976": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "name": "Kepler's Third Law: period squared propto distance cubed",
+            "notes": "https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion#Third_law",
+            "steps": {
+                "1401711": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "2340248",
+                        "9388996"
+                    ],
+                    "linear index": 8,
+                    "notes": "",
+                    "outputs": [
+                        "4575586"
+                    ]
+                },
+                "1630245": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "9110206",
+                        "1709969"
+                    ],
+                    "linear index": 19,
+                    "notes": "",
+                    "outputs": [
+                        "8711868"
+                    ]
+                },
+                "1709854": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 7,
+                    "notes": "",
+                    "outputs": [
+                        "2340248"
+                    ]
+                },
+                "1785558": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [
+                        "3601544"
+                    ],
+                    "inf rule": "multiply RHS by unity",
+                    "inputs": [
+                        "7795202"
+                    ],
+                    "linear index": 12,
+                    "notes": "",
+                    "outputs": [
+                        "6577160"
+                    ]
+                },
+                "1810306": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [
+                        "2217101",
+                        "1379855",
+                        "4166166",
+                        "4537297"
+                    ],
+                    "inf rule": "change two variables in expr",
+                    "inputs": [
+                        "8072137"
+                    ],
+                    "linear index": 3,
+                    "notes": "",
+                    "outputs": [
+                        "6652843"
+                    ]
+                },
+                "3184002": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [
+                        "6803169"
+                    ],
+                    "inf rule": "raise both sides to power",
+                    "inputs": [
+                        "7556753"
+                    ],
+                    "linear index": 11,
+                    "notes": "",
+                    "outputs": [
+                        "7795202"
+                    ]
+                },
+                "3800497": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "substitute LHS of expr 1 into expr 2",
+                    "inputs": [
+                        "6652843",
+                        "4382594"
+                    ],
+                    "linear index": 6,
+                    "notes": "",
+                    "outputs": [
+                        "9388996"
+                    ]
+                },
+                "6033269": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 17,
+                    "notes": "",
+                    "outputs": [
+                        "4476518"
+                    ]
+                },
+                "6781365": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "6644719"
+                    ],
+                    "linear index": 16,
+                    "notes": "",
+                    "outputs": [
+                        "1709969"
+                    ]
+                },
+                "6873690": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 1,
+                    "notes": "",
+                    "outputs": [
+                        "5331094"
+                    ]
+                },
+                "7496236": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [
+                        "5360317"
+                    ],
+                    "inf rule": "multiply both sides by",
+                    "inputs": [
+                        "6210646"
+                    ],
+                    "linear index": 10,
+                    "notes": "",
+                    "outputs": [
+                        "7556753"
+                    ]
+                },
+                "7602695": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "declare final expr",
+                    "inputs": [
+                        "8711868"
+                    ],
+                    "linear index": 20,
+                    "notes": "period squared propto distance cubed",
+                    "outputs": []
+                },
+                "7749118": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [
+                        "1729739"
+                    ],
+                    "inf rule": "multiply RHS by unity",
+                    "inputs": [
+                        "8324356"
+                    ],
+                    "linear index": 15,
+                    "notes": "",
+                    "outputs": [
+                        "6644719"
+                    ]
+                },
+                "7784926": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "linear index": 13,
+                    "notes": "",
+                    "outputs": [
+                        "8233899"
+                    ]
+                },
+                "7947474": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "2600680",
+                        "5331094"
+                    ],
+                    "linear index": 5,
+                    "notes": "",
+                    "outputs": [
+                        "4382594"
+                    ]
+                },
+                "8457537": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [
+                        "7400943"
+                    ],
+                    "inf rule": "divide both sides by",
+                    "inputs": [
+                        "4476518"
+                    ],
+                    "linear index": 18,
+                    "notes": "",
+                    "outputs": [
+                        "9110206"
+                    ]
+                },
+                "9076010": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "declare assumption",
+                    "inputs": [],
+                    "linear index": 4,
+                    "notes": "",
+                    "outputs": [
+                        "2600680"
+                    ]
+                },
+                "9471787": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "simplify",
+                    "inputs": [
+                        "4575586"
+                    ],
+                    "linear index": 9,
+                    "notes": "",
+                    "outputs": [
+                        "6210646"
+                    ]
+                },
+                "9781109": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "substitute RHS of expr 1 into expr 2",
+                    "inputs": [
+                        "8233899",
+                        "6577160"
+                    ],
+                    "linear index": 14,
+                    "notes": "",
+                    "outputs": [
+                        "8324356"
+                    ]
+                },
+                "9893296": {
+                    "author": "4a0987466473c589d2c328d12856760e",
+                    "creation date": "2023-08-27",
+                    "feeds": [],
+                    "inf rule": "declare initial expr",
+                    "inputs": [],
+                    "linear index": 2,
+                    "notes": "",
+                    "outputs": [
+                        "8072137"
+                    ]
+                }
+            }
+        },
         "884319": {
             "author": "bp",
             "creation date": "2020-04-23",
@@ -10457,6 +10751,7 @@
         "1353291": "7939947931",
         "1353583": "4298359835",
         "1366396": "5693047217",
+        "1379855": "1635147226",
         "1380211": "7819443873",
         "1381925": "9341391925",
         "1383337": "6599829782",
@@ -10496,8 +10791,10 @@
         "1693888": "5148266645",
         "1707483": "7564010952",
         "1708642": "2809345867",
+        "1709969": "4188580242",
         "1712972": "2924222857",
         "1719451": "4560648264",
+        "1729739": "9524810853",
         "1734000": "5959282914",
         "1781127": "8558338742",
         "1809997": "6259833695",
@@ -10543,6 +10840,7 @@
         "2178289": "9376481176",
         "2190752": "5978756813",
         "2206759": "9718685793",
+        "2217101": "8916428651",
         "2222222": "9483928192",
         "2237799": "1590774089",
         "2238158": "7749253510",
@@ -10554,6 +10852,7 @@
         "2303305": "7107090465",
         "2326309": "4298359845",
         "2338514": "0002338514",
+        "2340248": "3132131132",
         "2341415": "6131764194",
         "2342425": "0002342425",
         "2344324": "1158485859",
@@ -10595,6 +10894,7 @@
         "2590216": "9070454719",
         "2593741": "7846240076",
         "2597988": "4961662865",
+        "2600680": "3176662571",
         "2601896": "1650441634",
         "2619766": "2907404069",
         "2621708": "4968680693",
@@ -10705,6 +11005,7 @@
         "3550368": "5787469164",
         "3566114": "3723096423",
         "3576787": "4298359851",
+        "3601544": "8122039815",
         "3625079": "9594072504",
         "3640931": "1916173354",
         "3642765": "3291685884",
@@ -10777,6 +11078,7 @@
         "4137499": "2236639474",
         "4152602": "2867848403",
         "4154219": "8991236357",
+        "4166166": "9884115626",
         "4176694": "2575937347",
         "4200334": "7917051060",
         "4202425": "1586866563",
@@ -10799,6 +11101,7 @@
         "4353144": "9350720370",
         "4362190": "3350830826",
         "4362314": "2297105551",
+        "4382594": "6829281943",
         "4383592": "3829492824",
         "4385757": "7215099603",
         "4399863": "3967985562",
@@ -10812,6 +11115,7 @@
         "4463004": "7652131521",
         "4470678": "3004158505",
         "4471422": "3426941928",
+        "4476518": "5128670694",
         "4487508": "7517073655",
         "4487753": "6681646197",
         "4499582": "9999999961",
@@ -10820,7 +11124,9 @@
         "4507350": "1559688463",
         "4510044": "9355039511",
         "4534919": "9854442418",
+        "4537297": "1036530438",
         "4544527": "3722461713",
+        "4575586": "9070394000",
         "4576755": "1085150613",
         "4577073": "6546594355",
         "4577339": "9191880568",
@@ -10934,9 +11240,11 @@
         "5313211": "5349669879",
         "5320197": "3046191961",
         "5327191": "3273630811",
+        "5331094": "1292735067",
         "5345567": "3948571256",
         "5358683": "5002539602",
         "5359560": "5349866551",
+        "5360317": "5684907106",
         "5369477": "9262596735",
         "5377003": "8418527415",
         "5382248": "6457999644",
@@ -11015,6 +11323,7 @@
         "6174613": "1571582377",
         "6181437": "5838268428",
         "6199255": "2405307372",
+        "6210646": "9838128064",
         "6213797": "5775658332",
         "6229292": "9180861128",
         "6238570": "4858693811",
@@ -11051,15 +11360,18 @@
         "6563727": "0006563727",
         "6566357": "4147101187",
         "6566358": "4147101187",
+        "6577160": "1811867899",
         "6580231": "7497687256",
         "6597230": "5803210729",
         "6608102": "9582958294",
         "6608123": "5982958249",
         "6613807": "7053449926",
         "6632540": "7676652285",
+        "6644719": "3781109867",
         "6644853": "0006644853",
         "6646457": "4153613253",
         "6650345": "3131111133",
+        "6652843": "3649797559",
         "6656532": "0006656532",
         "6685577": "2076171250",
         "6686671": "8750500372",
@@ -11081,6 +11393,7 @@
         "6786890": "7140470627",
         "6795282": "5438722682",
         "6798426": "7882872592",
+        "6803169": "7445388869",
         "6814979": "8269198922",
         "6815205": "3031116098",
         "6831354": "2902772962",
@@ -11137,6 +11450,7 @@
         "7388891": "9407192813",
         "7396349": "1552869972",
         "7396508": "5669500954",
+        "7400943": "8044416349",
         "7403799": "2417941373",
         "7404421": "8747785338",
         "7426234": "6831637424",
@@ -11156,6 +11470,7 @@
         "7547581": "8577275751",
         "7552471": "5075406409",
         "7552472": "5075406409",
+        "7556753": "9152823411",
         "7562671": "9059289981",
         "7563791": "0007563791",
         "7567097": "1143343287",
@@ -11180,6 +11495,7 @@
         "7777621": "5958392859",
         "7781977": "6774684564",
         "7792692": "1772973171",
+        "7795202": "9170048197",
         "7822040": "2397692197",
         "7834577": "8688588981",
         "7844176": "6031385191",
@@ -11210,6 +11526,7 @@
         "8050064": "6257526854",
         "8050243": "8362338572",
         "8062944": "1963253044",
+        "8072137": "4393258808",
         "8090893": "4245712581",
         "8093224": "6240206408",
         "8115404": "3236313290",
@@ -11224,6 +11541,7 @@
         "8195408": "5763749235",
         "8207477": "7676652285",
         "8222540": "1967582749",
+        "8233899": "5586102077",
         "8242154": "9226945488",
         "8283443": "2613006036",
         "8296872": "1525861537",
@@ -11231,6 +11549,7 @@
         "8320848": "4264859781",
         "8321379": "5095822224",
         "8323044": "2897612567",
+        "8324356": "2906548078",
         "8341200": "2131616531",
         "8345214": "7049769409",
         "8356816": "8120663858",
@@ -11276,6 +11595,7 @@
         "8696678": "4648451961",
         "8698819": "6998364753",
         "8702257": "5866629429",
+        "8711868": "5658865948",
         "8712395": "1742775076",
         "8713399": "1457415749",
         "8722827": "4689334676",
@@ -11322,6 +11642,7 @@
         "9091270": "8582954722",
         "9092600": "2396787389",
         "9108208": "1894894315",
+        "9110206": "2217103163",
         "9111466": "9347678744",
         "9120447": "3105350101",
         "9123670": "3285732911",
@@ -11353,6 +11674,7 @@
         "9380032": "2113211456",
         "9383749": "4872970974",
         "9385720": "5832984291",
+        "9388996": "3896798826",
         "9393848": "8572852424",
         "9394857": "9485747245",
         "9394858": "9485747246",
@@ -12024,6 +12346,14 @@
             "name": "",
             "notes": ""
         },
+        "1036530438": {
+            "AST": "Symbol('pdg2798')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "d_2",
+            "name": "",
+            "notes": ""
+        },
         "1038566242": {
             "AST": "Equality(sinh(Symbol('pdg1464')), Mul(Pow(Integer(2), Integer(-1)), Add(Mul(Integer(-1), exp(Mul(Integer(-1), Symbol('pdg1464')))), exp(Symbol('pdg1464')))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12097,7 +12427,7 @@
             "notes": ""
         },
         "1158485859": {
-            "AST": "Equality(Mul(Pow(Symbol('nabla'), Integer(2)), Mul(Mul(Integer(-1), Pow(Symbol('pdg1054'), Integer(2))), Pow(Mul(Integer(2), Symbol('m')), Integer(-1)))), Symbol('calH'))",
+            "AST": "Equality(Mul(Pow(Symbol('nabla'), Integer(2)), Mul(Mul(Integer(-1), Pow(Symbol('pdg1054'), Integer(2))), Pow(Mul(Integer(2), Symbol('pdg5156')), Integer(-1)))), Symbol('calH'))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-14",
             "latex": "\\frac{-\\hbar^2}{2m} \\nabla^2 = {\\cal H}",
@@ -12504,6 +12834,14 @@
             "name": "",
             "notes": ""
         },
+        "1635147226": {
+            "AST": "Symbol('pdg4851')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "m_2",
+            "name": "",
+            "notes": ""
+        },
         "1636453295": {
             "AST": "Equality(cross(Symbol('nabla'),cross(Symbol('nabla'),Symbol('pdg4326'))),Mul(Integer(-1), Mul(Symbol('pdg4326'), Pow(Symbol('nabla'), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -12585,7 +12923,7 @@
             "notes": ""
         },
         "1772973171": {
-            "AST": "Equality(Mul(Integer(-1), Mul(Symbol('x'), Mul(Symbol('k'), Pow(Symbol('m'), Integer(-1))))), Mul(Integer(-1), Mul(Symbol('A'), Mul(Pow(Symbol('omega'), Integer(2)), cos(Mul(Symbol('omega'), Symbol('t')))))))",
+            "AST": "Equality(Mul(Integer(-1), Mul(Symbol('x'), Mul(Symbol('k'), Pow(Symbol('pdg5156'), Integer(-1))))), Mul(Integer(-1), Mul(Symbol('A'), Mul(Pow(Symbol('pdg2321'), Integer(2)), cos(Mul(Symbol('pdg2321'), Symbol('pdg9491')))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2021-08-22",
             "latex": "-\\frac{k}{m} x = -A \\omega^2 \\cos(\\omega t)",
@@ -12605,6 +12943,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-20",
             "latex": "\\frac{E_2 - E_1}{t} = 0",
+            "name": "",
+            "notes": ""
+        },
+        "1811867899": {
+            "AST": "Equality(Pow(Symbol('pdg9491'), Integer(2)), Mul(Mul(Symbol('pdg2798'), Mul(Integer(4), Mul(Pow(Symbol('pdg3141'), Integer(2)), Mul(Pow(Symbol('pdg2530'), Integer(2)), Pow(Mul(Symbol('pdg6277'), Symbol('pdg5022')), Integer(-1)))))), Mul(Pow(Add(Symbol('pdg7652'), Symbol('pdg2798')), Integer(-1)), Add(Symbol('pdg7652'), Symbol('pdg2798')))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "T^2 = \\frac{d_1+d_2}{d_1+d_2} d_2 4 \\pi^2 \\frac{r^2}{G m_1}",
             "name": "",
             "notes": ""
         },
@@ -12641,7 +12987,7 @@
             "notes": "object is not moving at $x=\\infty$"
         },
         "1848400430": {
-            "AST": "Mul(Symbol('F'), Mul(Symbol('m'), Symbol('propto')))",
+            "AST": "Mul(Symbol('F'), Mul(Symbol('pdg5156'), Symbol('propto')))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "F \\propto m",
@@ -12937,7 +13283,7 @@
             "notes": ""
         },
         "2148049269": {
-            "AST": "Equality(Mul(Integer(-1), Mul(Mul(Symbol('A'), cos(Mul(Symbol('omega'), Symbol('t')))), Mul(Symbol('k'), Pow(Symbol('m'), Integer(-1))))), Mul(Integer(-1), Mul(Symbol('A'), Mul(Pow(Symbol('omega'), Integer(2)), cos(Mul(Symbol('omega'), Symbol('t')))))))",
+            "AST": "Equality(Mul(Integer(-1), Mul(Mul(Symbol('A'), cos(Mul(Symbol('pdg2321'), Symbol('pdg9491')))), Mul(Symbol('k'), Pow(Symbol('pdg5156'), Integer(-1))))), Mul(Integer(-1), Mul(Symbol('A'), Mul(Pow(Symbol('pdg2321'), Integer(2)), cos(Mul(Symbol('pdg2321'), Symbol('pdg9491')))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2021-08-22",
             "latex": "-\\frac{k}{m} A \\cos(\\omega t) = -A \\omega^2 \\cos(\\omega t)",
@@ -12957,6 +13303,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-04-20",
             "latex": "\\frac{KE_2 - KE_1}{t} = v F",
+            "name": "",
+            "notes": ""
+        },
+        "2217103163": {
+            "AST": "Equality(Mul(Pow(Symbol('pdg2798'), Integer(-1)), Mul(Symbol('pdg7652'), Symbol('pdg5022'))), Symbol('pdg4851'))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "\\frac{m_1 d_1}{d_2} = m_2",
             "name": "",
             "notes": ""
         },
@@ -13073,7 +13427,7 @@
             "notes": ""
         },
         "2346952973": {
-            "AST": "Symbol('m')",
+            "AST": "Symbol('pdg5156')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "m",
@@ -13477,6 +13831,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-08-29",
             "latex": "\\tanh(x) = \\frac{\\frac{1}{2}\\left( \\exp(x)-\\exp(-x) \\right)}{\\cosh(x)}",
+            "name": "",
+            "notes": ""
+        },
+        "2906548078": {
+            "AST": "Equality(Pow(Symbol('pdg9491'), Integer(2)), Mul(Mul(Symbol('pdg2798'), Mul(Integer(4), Mul(Pow(Symbol('pdg3141'), Integer(2)), Mul(Pow(Symbol('pdg2530'), Integer(2)), Pow(Mul(Symbol('pdg6277'), Symbol('pdg5022')), Integer(-1)))))), Mul(Symbol('pdg2530'), Pow(Add(Symbol('pdg7652'), Symbol('pdg2798')), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "T^2 = \\frac{r}{d_1+d_2} d_2 4 \\pi^2 \\frac{r^2}{G m_1}",
             "name": "",
             "notes": ""
         },
@@ -13937,7 +14299,7 @@
             "notes": ""
         },
         "3448601530": {
-            "AST": "Mul(Pow(Symbol('T'), Integer(2)), Pow(Symbol('r'), Integer(-1)))",
+            "AST": "Mul(Pow(Symbol('pdg9491'), Integer(2)), Pow(Symbol('pdg2530'), Integer(-1)))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "\\frac{T^2}{r}",
@@ -14128,6 +14490,14 @@
             "name": "",
             "notes": ""
         },
+        "3649797559": {
+            "AST": "Equality(Symbol('pdg1687'), Mul(Symbol('pdg4851'), Mul(Symbol('pdg2798'), Pow(Symbol('pdg2321'), Integer(2)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "F_{\\rm centripetal} = m_2 d_2 \\omega^2",
+            "name": "",
+            "notes": ""
+        },
         "3650370389": {
             "AST": "Equality(Mul(Symbol('pdg2867'), Mul(Pow(Symbol('pdg8762'), Integer(2)), Pow(Symbol('pdg2530'), Integer(-1)))), Mul(Integer(4), Mul(Symbol('pdg5156'), Pow(Symbol('pdg3141'), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14224,6 +14594,14 @@
             "name": "",
             "notes": ""
         },
+        "3781109867": {
+            "AST": "Equality(Pow(Symbol('pdg9491'), Integer(2)), Mul(Mul(Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2))), Pow(Symbol('pdg2530'), Integer(3))), Pow(Mul(Mul(Symbol('pdg6277'), Mul(Pow(Symbol('pdg2798'), Integer(-1)), Symbol('pdg5022'))), Add(Symbol('pdg7652'), Symbol('pdg2798'))), Integer(-1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "T^2 = \\frac{r^3 4 \\pi^2}{(d_1+d_2)  \\frac{m_1}{d_2}G}",
+            "name": "",
+            "notes": ""
+        },
         "3806977900": {
             "AST": "Equality(Add(Mul(Integer(-1), Symbol('pdg5579')), Symbol('pdg4550')), Integer(0))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14273,10 +14651,18 @@
             "notes": ""
         },
         "3876446703": {
-            "AST": "Symbol('m')",
+            "AST": "Symbol('pdg5156')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "m",
+            "name": "",
+            "notes": ""
+        },
+        "3896798826": {
+            "AST": "Equality(Mul(Symbol('pdg4851'), Mul(Symbol('pdg2798'), Pow(Symbol('pdg2321'), Integer(2)))), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('pdg5022'), Symbol('pdg4851')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "m_2 d_2 \\omega^2 = G \\frac{m_1 m_2}{r^2}",
             "name": "",
             "notes": ""
         },
@@ -14552,6 +14938,14 @@
             "name": "",
             "notes": "Z \\in \\mathbb{C}"
         },
+        "4188580242": {
+            "AST": "Equality(Pow(Symbol('pdg9491'), Integer(2)), Mul(Pow(Mul(Symbol('pdg6277'), Add(Mul(Symbol('pdg7652'), Mul(Pow(Symbol('pdg2798'), Integer(-1)), Symbol('pdg5022'))), Symbol('pdg5022'))), Integer(-1)), Mul(Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2))), Pow(Symbol('pdg2530'), Integer(3)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "T^2 = \\frac{r^3 4 \\pi^2}{\\left(m_1+\\left(\\frac{m_1}{d_2}d_1\\right)\\right)G}",
+            "name": "",
+            "notes": ""
+        },
         "4188639044": {
             "AST": "Symbol('pdg4037')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -14609,7 +15003,7 @@
             "notes": ""
         },
         "4267808354": {
-            "AST": "Equality(Symbol('pdg2867'), Mul(Symbol('m'), Mul(Pow(Symbol('r'), Integer(-1)), Pow(Symbol('pdg1357'), Integer(2)))))",
+            "AST": "Equality(Symbol('pdg2867'), Mul(Symbol('pdg5156'), Mul(Pow(Symbol('pdg2530'), Integer(-1)), Pow(Symbol('pdg1357'), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "F_{gravitational} = m \\frac{v^2}{r}",
@@ -14725,6 +15119,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17",
             "latex": "t = t_f",
+            "name": "",
+            "notes": ""
+        },
+        "4393258808": {
+            "AST": "Equality(Symbol('pdg1687'), Mul(Symbol('pdg5156'), Mul(Pow(Symbol('pdg2321'), Integer(2)), Symbol('pdg2530'))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "F_{\\rm centripetal} = m r \\omega^2",
             "name": "",
             "notes": ""
         },
@@ -14857,7 +15259,7 @@
             "notes": ""
         },
         "4593428198": {
-            "AST": "Equality(Symbol('pdg7427'), Mul(Pow(Float('3.1600000000000001', precision=53), Integer(-1)), Mul(Integer(2), Mul(Symbol('pi'), Symbol('pdg6081')))))",
+            "AST": "Equality(Symbol('pdg7427'), Mul(Pow(Float('3.1600000000000001', precision=53), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('pdg6081')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-07",
             "latex": "v_{\\rm Earth\\ orbit} = \\frac{2 \\pi r_{\\rm Earth\\ orbit}}{3.16\\ 10^7 {\\rm seconds}}",
@@ -15320,6 +15722,14 @@
             "name": "",
             "notes": ""
         },
+        "5128670694": {
+            "AST": "Equality(Mul(Symbol('pdg7652'), Symbol('pdg5022')), Mul(Symbol('pdg2798'), Symbol('pdg4851')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "m_1 d_1 = m_2 d_2",
+            "name": "",
+            "notes": ""
+        },
         "5136652623": {
             "AST": "Equality(Symbol('pdg4931'), Add(Symbol('pdg4929'), Symbol('pdg4930')))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15345,7 +15755,7 @@
             "notes": ""
         },
         "5177311762": {
-            "AST": "Equality(Symbol('pdg1357'), Mul(Pow(Symbol('pdg8762'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('r')))))",
+            "AST": "Equality(Symbol('pdg1357'), Mul(Pow(Symbol('pdg8762'), Integer(-1)), Mul(Integer(2), Mul(Symbol('pdg3141'), Symbol('pdg2530')))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "v = \\frac{2 \\pi r}{T}",
@@ -15592,6 +16002,14 @@
             "name": "",
             "notes": ""
         },
+        "5586102077": {
+            "AST": "Equality(Symbol('pdg2530'), Add(Symbol('pdg7652'), Symbol('pdg2798')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "r = d_1 + d_2",
+            "name": "",
+            "notes": ""
+        },
         "5591692598": {
             "AST": "Symbol('pdg1955')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15656,6 +16074,14 @@
             "name": "",
             "notes": ""
         },
+        "5658865948": {
+            "AST": "Equality(Pow(Symbol('pdg9491'), Integer(2)), Mul(Pow(Mul(Symbol('pdg6277'), Add(Symbol('pdg5022'), Symbol('pdg4851'))), Integer(-1)), Mul(Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2))), Pow(Symbol('pdg2530'), Integer(3)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "T^2 = \\frac{r^3 4 \\pi^2}{(m_1+m_2)G}",
+            "name": "",
+            "notes": ""
+        },
         "5667870149": {
             "AST": "Symbol('pdg1575')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -15669,6 +16095,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-09",
             "latex": "v^2 \\gamma^2",
+            "name": "",
+            "notes": ""
+        },
+        "5684907106": {
+            "AST": "Pow(Mul(Symbol('pdg2798'), Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2)))), Integer(-1))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "\\frac{1}{d_2 4 \\pi^2}",
             "name": "",
             "notes": ""
         },
@@ -16009,7 +16443,7 @@
             "notes": ""
         },
         "6026694087": {
-            "AST": "Equality(Symbol('pdg1687'), Mul(Symbol('m'), Mul(Pow(Symbol('r'), Integer(-1)), Pow(Symbol('v'), Integer(2)))))",
+            "AST": "Equality(Symbol('pdg1687'), Mul(Symbol('pdg5156'), Mul(Pow(Symbol('pdg2530'), Integer(-1)), Pow(Symbol('v'), Integer(2)))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2023-06-10",
             "latex": "F_{centripetal} = m \\frac{v^2}{r}",
@@ -16081,7 +16515,7 @@
             "notes": ""
         },
         "6131764194": {
-            "AST": "Equality(Symbol('W'), Mul(Symbol('G'), Mul(Symbol('pdg5458'), Mul(Symbol('pdg5156'), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))))))",
+            "AST": "Equality(Symbol('W'), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5458'), Mul(Symbol('pdg5156'), Pow(Pow(Symbol('pdg4037'), Integer(2)), Integer(-1))))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-24",
             "latex": "W = G m_{\\rm Earth} m \\left( \\frac{1}{x^2} \\bigg\\rvert_{ r_{\\rm Earth} }^{\\infty} \\right)",
@@ -16113,7 +16547,7 @@
             "notes": ""
         },
         "6204539227": {
-            "AST": "Equality(Add(Mul(Integer(-1), Mul(Symbol('g'), Symbol('pdg1467'))), Symbol('pdg9431')), Derivative(Symbol('pdg5647'), Tuple(Symbol('pdg1467'), Integer(1))))",
+            "AST": "Equality(Add(Mul(Integer(-1), Mul(Symbol('pdg6277'), Symbol('pdg1467'))), Symbol('pdg9431')), Derivative(Symbol('pdg5647'), Tuple(Symbol('pdg1467'), Integer(1))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17",
             "latex": "-g t + v_{0, y} = \\frac{dy}{dt}",
@@ -16496,6 +16930,14 @@
             "name": "",
             "notes": ""
         },
+        "6829281943": {
+            "AST": "Equality(Symbol('pdg1687'), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('pdg5022'), Symbol('pdg4851')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "F_{\\rm centripetal} = G \\frac{m_1 m_2}{r^2}",
+            "name": "",
+            "notes": ""
+        },
         "6831637424": {
             "AST": "Symbol('pdg4928')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16609,7 +17051,7 @@
             "notes": ""
         },
         "6998364753": {
-            "AST": "Equality(Symbol('pdg7427'), Mul(Pow(Float('3.1600000000000001', precision=53), Integer(-1)), Mul(Integer(2), Symbol('pi'))))",
+            "AST": "Equality(Symbol('pdg7427'), Mul(Pow(Float('3.1600000000000001', precision=53), Integer(-1)), Mul(Integer(2), Symbol('pdg3141'))))",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-07",
             "latex": "v_{\\rm Earth\\ orbit} = \\frac{2 \\pi \\left( 1.496\\ 10^8 {\\rm km} \\right)}{3.16\\ 10^7 {\\rm seconds}}",
@@ -16880,6 +17322,14 @@
             "name": "",
             "notes": ""
         },
+        "7445388869": {
+            "AST": "Integer(-1)",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "-1",
+            "name": "",
+            "notes": ""
+        },
         "7453225570": {
             "AST": "Symbol('pdg1464')",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -16905,7 +17355,7 @@
             "notes": ""
         },
         "7473576008": {
-            "AST": "Mul(Symbol('l'), Mul(Symbol('a'), Mul(Symbol('t'), Mul(Symbol('e'), Mul(Symbol('x'), Mul(Symbol('e'), Mul(Symbol('r'), Mul(Symbol('r'), Mul(Symbol('o'), Symbol('r'))))))))))",
+            "AST": "Symbol('pdg1467')",
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2021-08-22",
             "latex": "\\frac{-1}{A \\cos(\\omega t)}",
@@ -17400,6 +17850,14 @@
             "name": "",
             "notes": ""
         },
+        "8044416349": {
+            "AST": "Symbol('pdg2798')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "d_2",
+            "name": "",
+            "notes": ""
+        },
         "8046208134": {
             "AST": "Equality(Symbol('pdg8251'), Add(Add(Pow(Abs(Symbol('pdg4453')), Integer(2)), Pow(Abs(Symbol('pdg4453')), Integer(2))), Mul(Mul(Integer(2), Abs(Symbol('pdg4453'))), Abs(Symbol('pdg4453')))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -17485,6 +17943,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-06-03",
             "latex": "y_f",
+            "name": "",
+            "notes": ""
+        },
+        "8122039815": {
+            "AST": "Mul(Pow(Add(Symbol('pdg7652'), Symbol('pdg2798')), Integer(-1)), Add(Symbol('pdg7652'), Symbol('pdg2798')))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "\\frac{d_1+d_2}{d_1+d_2}",
             "name": "",
             "notes": ""
         },
@@ -18128,6 +18594,14 @@
             "name": "",
             "notes": "geometry"
         },
+        "8916428651": {
+            "AST": "Symbol('pdg5156')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "m",
+            "name": "",
+            "notes": ""
+        },
         "8922441655": {
             "AST": "Equality(Symbol('pdg1943'), Mul(Mul(Pow(Symbol('pdg1649'), Integer(-1)), Pow(Symbol('pdg5153'), Integer(2))), sin(Mul(Integer(2), Symbol('pdg1575')))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18240,6 +18714,14 @@
             "name": "",
             "notes": ""
         },
+        "9070394000": {
+            "AST": "Equality(Mul(Symbol('pdg4851'), Mul(Symbol('pdg2798'), Mul(Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2))), Pow(Pow(Symbol('pdg9491'), Integer(2)), Integer(-1))))), Mul(Symbol('pdg6277'), Mul(Mul(Symbol('pdg5022'), Symbol('pdg4851')), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "m_2 d_2 \\frac{4 \\pi^2}{T^2} = G \\frac{m_1 m_2}{r^2}",
+            "name": "",
+            "notes": ""
+        },
         "9070454719": {
             "AST": "Pow(Symbol('pdg5153'), Integer(2))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18277,6 +18759,22 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17",
             "latex": "y_f = 0",
+            "name": "",
+            "notes": ""
+        },
+        "9152823411": {
+            "AST": "Equality(Pow(Pow(Symbol('pdg9491'), Integer(2)), Integer(-1)), Mul(Mul(Symbol('pdg6277'), Mul(Symbol('pdg5022'), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))), Pow(Mul(Symbol('pdg2798'), Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2)))), Integer(-1))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "\\frac{1}{T^2} = \\frac{1}{d_2 4 \\pi^2} G \\frac{m_1}{r^2}",
+            "name": "",
+            "notes": ""
+        },
+        "9170048197": {
+            "AST": "Equality(Pow(Symbol('pdg9491'), Integer(2)), Mul(Symbol('pdg2798'), Mul(Integer(4), Mul(Pow(Symbol('pdg3141'), Integer(2)), Mul(Pow(Symbol('pdg2530'), Integer(2)), Pow(Mul(Symbol('pdg6277'), Symbol('pdg5022')), Integer(-1)))))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "T^2 = d_2 4 \\pi^2 \\frac{r^2}{G m_1}",
             "name": "",
             "notes": ""
         },
@@ -18648,6 +19146,14 @@
             "name": "",
             "notes": ""
         },
+        "9524810853": {
+            "AST": "Mul(Mul(Integer(1), Pow(Symbol('pdg2798'), Integer(-1))), Pow(Mul(Integer(1), Pow(Symbol('pdg2798'), Integer(-1))), Integer(-1)))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "\\frac{1/d_2}{1/d_2}",
+            "name": "",
+            "notes": ""
+        },
         "9562264720": {
             "AST": "Equality(Symbol('pdg9067'), Mul(Mul(Symbol('pdg4940'), Symbol('pdg8379')), Pow(Mul(Symbol('pdg6850'), Symbol('pdg9046')), Integer(-1))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18872,6 +19378,14 @@
             "name": "",
             "notes": ""
         },
+        "9838128064": {
+            "AST": "Equality(Mul(Symbol('pdg2798'), Mul(Mul(Integer(4), Pow(Symbol('pdg3141'), Integer(2))), Pow(Pow(Symbol('pdg9491'), Integer(2)), Integer(-1)))), Mul(Symbol('pdg6277'), Mul(Symbol('pdg5022'), Pow(Pow(Symbol('pdg2530'), Integer(2)), Integer(-1)))))",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "d_2 \\frac{4 \\pi^2}{T^2} = G \\frac{m_1}{r^2}",
+            "name": "",
+            "notes": ""
+        },
         "9847143017": {
             "AST": "Equality(Symbol('pdg4645'), Mul(Mul(Pow(Symbol('pdg7586'), Integer(-1)), Mul(Integer(-1), Mul(Symbol('pdg8134'), Symbol('pdg7586')))), Mul(Integer(-1), Pow(Pow(Symbol('pdg8134'), Integer(2)), Integer(-1)))))",
             "author": "4a0987466473c589d2c328d12856760e",
@@ -18933,6 +19447,14 @@
             "author": "4a0987466473c589d2c328d12856760e",
             "creation date": "2020-05-17",
             "latex": "v_{0, x} t = x - x_0",
+            "name": "",
+            "notes": ""
+        },
+        "9884115626": {
+            "AST": "Symbol('pdg2530')",
+            "author": "4a0987466473c589d2c328d12856760e",
+            "creation date": "2023-08-27",
+            "latex": "r",
             "name": "",
             "notes": ""
         },
@@ -21493,6 +22015,27 @@
                     "value": "2.71828"
                 }
             ]
+        },
+        "2798": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-08-27",
+            "dimensions": {
+                "amount of substance": 0,
+                "electric charge": 0,
+                "length": 1,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": 0
+            },
+            "domain": "any",
+            "latex": "d_2",
+            "name": "distance",
+            "references": [
+                "https://en.wikipedia.org/wiki/Distance"
+            ],
+            "scope": "real"
         },
         "2834": {
             "author": "4a0987466473c589d2c328d12856760e",
@@ -24190,6 +24733,27 @@
             "name": "volume",
             "references": [
                 "https://en.wikipedia.org/wiki/Volume_(thermodynamics)"
+            ],
+            "scope": "real"
+        },
+        "7652": {
+            "author": "4a0987466473c589d2c328d12856760e",
+            "category": "variable",
+            "creation date": "2023-08-27",
+            "dimensions": {
+                "amount of substance": 0,
+                "electric charge": 0,
+                "length": 1,
+                "luminous intensity": 0,
+                "mass": 0,
+                "temperature": 0,
+                "time": 0
+            },
+            "domain": "any",
+            "latex": "d_1",
+            "name": "distance",
+            "references": [
+                "https://en.wikipedia.org/wiki/Distance"
             ],
             "scope": "real"
         },
