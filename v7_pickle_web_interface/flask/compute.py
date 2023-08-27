@@ -3251,10 +3251,14 @@ def generate_html_for_derivation(deriv_id: str, path_to_db: str) -> str:
 
 def make_string_safe_for_latex(unsafe_str: str) -> str:
     """
+    latex characters that require an escape for printing:
+    # $ % & \ ^ _ { }
+    TODO: I'm not escaping all of these
+
     Args:
-        unsafe_str: strings that may cause Latex compilation to fail, e.g., "a_string"
+        unsafe_str: strings that may cause Latex compilation to fail, e.g., "a_string" or "url#subsection"
     Returns:
-        safe_str: a string that latex should be able to print, e.g., "a\_string"
+        safe_str: a string that latex should be able to print, e.g., "a\_string" or "url\#subsection"
     """
     # some derivation notes have valid underscores, like
     # \cite{yyyy_author}
@@ -3281,7 +3285,11 @@ def make_string_safe_for_latex(unsafe_str: str) -> str:
 
     safe_str = unsafe_str_replaced_cite.replace("_", "\_").replace("%", "\%")
 
-    return safe_str.replace("NONSTANDARDUNDRSCR", "_")
+    fixed_underscore_str = safe_str.replace("NONSTANDARDUNDRSCR", "_")
+
+    no_hashtag_str = fixed_underscore_str.replace("#","\#").replace("$","\$").replace("%","\%")
+
+    return no_hashtag_str
 
 
 def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str) -> str:
@@ -3404,9 +3412,9 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
             list_of_linear_index.append(step_dict["linear index"])
         list_of_linear_index.sort()
 
-        lat_file.write("\\title{" + dat["derivations"][deriv_id]["name"] + "}\n")
+        lat_file.write("\\title{" + make_string_safe_for_latex(dat["derivations"][deriv_id]["name"]) + "}\n")
         lat_file.write("\\date{\\today}\n")
-        lat_file.write("\\author{" + user_email + "}\n")
+        lat_file.write("\\author{" + make_string_safe_for_latex(user_email) + "}\n")
         lat_file.write("\\setlength{\\topmargin}{-.5in}\n")
         lat_file.write("\\setlength{\\textheight}{9in}\n")
         lat_file.write("\\setlength{\\oddsidemargin}{0in}\n")
@@ -3446,10 +3454,10 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                             + "}\n"
                         )
                         lat_file.write(
-                            "\\caption{" + step_dict["image"]["caption"] + "}\n"
+                            "\\caption{" + make_string_safe_for_latex(step_dict["image"]["caption"]) + "}\n"
                         )
                         lat_file.write(
-                            "\\label{fig:" + step_dict["image"]["label"] + "}\n"
+                            "\\label{fig:" + make_string_safe_for_latex(step_dict["image"]["label"]) + "}\n"
                         )
                         lat_file.write("\\end{figure}\n")
                         lat_file.write("\\end{center}\n")
@@ -3484,7 +3492,7 @@ def generate_tex_for_derivation(deriv_id: str, user_email: str, path_to_db: str)
                     lat_file.write("\n")
                     if len(step_dict["notes"]) > 0:
                         lat_file.write(
-                            step_dict["notes"] + "\n"
+                            make_string_safe_for_latex(step_dict["notes"]) + "\n"
                         )  # TODO: if the note contains a $ or %, shenanigans arise
                     # write output expressions
                     for expr_local_id in step_dict["outputs"]:
