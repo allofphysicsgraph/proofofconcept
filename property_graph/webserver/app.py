@@ -140,10 +140,12 @@ def constrain_id_to_be_unique():
     node ID must be unique
     """
     with graphDB_Driver.session() as session:
-        list_of_derivation_IDs = session.write_transaction(neo4j_query.constrain_unique_id)
+        list_of_derivation_IDs = session.write_transaction(
+            neo4j_query.constrain_unique_id
+        )
         if list_of_derivation_IDs:
             number_of_derivations = len(list_of_derivation_IDs)
-        else: # list_of_derivation_IDs was "None"
+        else:  # list_of_derivation_IDs was "None"
             number_of_derivations = 0
 
     return
@@ -163,7 +165,6 @@ def generate_random_id(list_of_current_IDs: list) -> unique_numeric_id_as_str:
         if new_id not in list_of_current_IDs:
             found_new_ID = True
     return str(new_id)
-
 
 
 class SpecifyNewDerivationForm(FlaskForm):
@@ -1421,6 +1422,7 @@ def to_export_cypher():
 
     return redirect(url_for("static", filename="dumping_grounds/pdg.cypher"))
 
+
 # Database Credentials
 # "bolt" vs "neo4j" https://community.neo4j.com/t/different-between-neo4j-and-bolt/18498
 uri = "bolt://neo4j_docker:7687"
@@ -1442,14 +1444,11 @@ while not neo4j_available:
         time.sleep(5)
 
 
-
-
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 csrf = CSRFProtect()
 
 # https://secure.readthedocs.io/en/latest/frameworks.html#flask
 secure_headers = SecureHeaders()
-
 
 
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
