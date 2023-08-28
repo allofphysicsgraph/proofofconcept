@@ -108,6 +108,155 @@ def apoc_export_cypher(tx, output_filename: str):
     return record
 
 
+def get_list_of_symbol_IDs(graphDB_Driver):
+    list_of_symbol_IDs = []
+    with graphDB_Driver.session() as session:
+        list_of_symbol_IDs = session.read_transaction(list_IDs, "symbol")
+    return list_of_symbol_IDs
+
+
+def get_symbol_dict(graphDB_Driver, symbol_id):
+    symbol_dict = {}
+    # get properties of this symbol
+    with graphDB_Driver.session() as session:
+        symbol_dict = session.read_transaction(node_properties, "symbol", symbol_id)
+    return symbol_dict
+
+
+def get_list_of_operator_IDs(graphDB_Driver):
+    list_of_operator_IDs = []
+    with graphDB_Driver.session() as session:
+        list_of_operator_IDs = session.read_transaction(list_IDs, "operator")
+    return list_of_operator_IDs
+
+
+def get_operator_dict(graphDB_Driver, operator_id):
+    operator_dict = {}
+    # get properties of this operator
+    with graphDB_Driver.session() as session:
+        operator_dict = session.read_transaction(
+            node_properties, "operator", operator_id
+        )
+    return operator_dict
+
+
+def get_list_of_operator_dicts(graphDB_Driver):
+    list_of_operator_dicts = []
+    # get list of operators
+    with graphDB_Driver.session() as session:
+        list_of_operator_dicts = session.read_transaction(
+            list_nodes_of_type, "operator"
+        )
+    return list_of_operator_dicts
+
+
+def get_list_of_symbol_dicts(graphDB_Driver):
+    list_of_symbol_dicts = []
+    # get list of symbols
+    with graphDB_Driver.session() as session:
+        list_of_symbol_dicts = session.read_transaction(list_nodes_of_type, "symbol")
+    return list_of_symbol_dicts
+
+
+def get_expression_dict(graphDB_Driver, expression_id):
+    expression_dict = {}
+    # get properties of this expression
+    with graphDB_Driver.session() as session:
+        expression_dict = session.read_transaction(
+            node_properties, "expression", expression_id
+        )
+    return expression_dict
+
+
+def get_inference_rule_dict(graphDB_Driver, inference_rule_id):
+    inference_rule_dict = {}
+    # get properties for inference rule
+    with graphDB_Driver.session() as session:
+        inference_rule_dict = session.read_transaction(
+            node_properties, "inference_rule", inference_rule_id
+        )
+    return inference_rule_dict
+
+
+def get_list_of_inference_rule_dicts(graphDB_Driver):
+    """get list of inference rules"""
+    list_of_inference_rule_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_inference_rule_dicts = session.read_transaction(
+            list_nodes_of_type, "inference_rule"
+        )
+    return list_of_inference_rule_dicts
+
+
+def get_derivation_dict(graphDB_Driver, derivation_id):
+    """get properties for derivation"""
+    derivation_dict = {}
+    with graphDB_Driver.session() as session:
+        derivation_dict = session.read_transaction(
+            node_properties, "derivation", derivation_id
+        )
+    return derivation_dict
+
+
+def get_list_of_derivation_dicts(graphDB_Driver) -> list:
+    list_of_derivation_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_derivation_dicts = session.read_transaction(
+            list_nodes_of_type, "derivation"
+        )
+    return list_of_derivation_dicts
+
+
+def count_derivations(graphDB_Driver) -> int:
+    number_of_derivations = None
+    with graphDB_Driver.session() as session:
+        number_of_derivations = len(
+            session.read_transaction(list_nodes_of_type, "derivation")
+        )
+    return number_of_derivations
+
+
+def count_inference_rules(graphDB_Driver) -> int:
+    number_of_inference_rules = None
+    with graphDB_Driver.session() as session:
+        number_of_inference_rules = len(
+            session.read_transaction(list_nodes_of_type, "inference_rule")
+        )
+    return number_of_inference_rules
+
+
+def count_expressions(graphDB_Driver) -> int:
+    number_of_expressions = None
+    with graphDB_Driver.session() as session:
+        number_of_expressions = len(
+            session.read_transaction(list_nodes_of_type, "expression")
+        )
+    return number_of_expressions
+
+
+def count_symbols(graphDB_Driver) -> int:
+    number_of_symbols = None
+    with graphDB_Driver.session() as session:
+        number_of_symbols = len(session.read_transaction(list_nodes_of_type, "symbol"))
+    return number_of_symbols
+
+
+def count_operators(graphDB_Driver) -> int:
+    number_of_operators = None
+    with graphDB_Driver.session() as session:
+        number_of_operators = len(
+            session.read_transaction(list_nodes_of_type, "operator")
+        )
+    return number_of_operators
+
+
+def list_derivation_IDs(graphDB_Driver) -> list:
+    list_of_derivation_IDs = []
+    with graphDB_Driver.session() as session:
+        list_of_derivation_IDs = session.read_transaction(list_IDs, "derivation")
+    return list_of_derivation_IDs
+
+
 def constrain_unique_id(tx):
     """
     https://neo4j.com/docs/getting-started/current/cypher-intro/schema/#cypher-intro-constraints
@@ -154,6 +303,49 @@ def list_nodes_of_type(tx, node_type: str) -> list:
         # print(record.data()["n"])
         node_list.append(record.data()["n"])
     return node_list
+
+
+def get_steps_in_derivation(graphDB_Driver, derivation_id):
+    list_of_steps = []
+    with graphDB_Driver.session() as session:
+        list_of_steps = session.read_transaction(
+            steps_in_this_derivation, derivation_id
+        )
+    return list_of_steps
+
+
+def get_list_of_expression_dicts(graphDB_Driver):
+    """ """
+    list_of_expression_dicts = []
+    # https://neo4j.com/docs/python-manual/current/session-api/
+    with graphDB_Driver.session() as session:
+        list_of_expression_dicts = session.read_transaction(
+            list_nodes_of_type, "expression"
+        )
+    return list_of_expression_dicts
+
+
+def get_list_of_expression_IDs(graphDB_Driver):
+    list_of_expression_IDs = []
+    with graphDB_Driver.session() as session:
+        list_of_expression_IDs = session.read_transaction(list_IDs, "expression")
+    return list_of_expression_IDs
+
+
+def get_list_of_inference_rule_IDs(graphDB_Driver):
+    list_of_inference_rule_IDs = []
+    with graphDB_Driver.session() as session:
+        list_of_inference_rule_IDs = session.read_transaction(
+            list_IDs, "inference_rule"
+        )
+    return list_of_inference_rule_IDs
+
+
+def get_list_of_step_IDs(graphDB_Driver):
+    list_of_step_IDs = []
+    with graphDB_Driver.session() as session:
+        list_of_step_IDs = session.read_transaction(list_IDs, "step")
+    return list_of_step_IDs
 
 
 def steps_in_this_derivation(tx, derivation_id: str) -> list:
@@ -254,6 +446,59 @@ def node_properties(tx, node_type: str, node_id: str) -> dict:
         return record.data()["n"]
     except UnboundLocalError:
         return None
+
+
+def update_derivation_metadata(
+    graphDB_Driver, derivation_id, derivation_name_latex, abstract_latex
+):
+    with graphDB_Driver.session() as session:
+        session.write_transaction(
+            edit_derivation_metadata,
+            derivation_id,
+            derivation_name_latex,
+            abstract_latex,
+        )
+    return
+
+
+def create_new_derivation(
+    graphDB_Driver,
+    derivation_id,
+    now_str,
+    derivation_name_latex,
+    abstract_latex,
+    author_name_latex,
+) -> None:
+    # https://neo4j.com/docs/python-manual/current/session-api/
+    with graphDB_Driver.session() as session:
+        session.write_transaction(
+            add_derivation,
+            derivation_id,
+            now_str,
+            derivation_name_latex,
+            abstract_latex,
+            author_name_latex,
+        )
+    return
+
+
+def edit_derivation_metadata(
+    tx, derivation_id: str, derivation_name_latex, abstract_latex
+) -> None:
+    """
+    Edit derivation metadata
+
+    >>> edit_derivation_metadata(tx)
+    """
+    print("[TRACE] func: edit_derivation_metadata")
+    print(
+        derivation_id,
+        derivation_name_latex,
+        abstract_latex,
+    )
+    # TODO: what is the Cypher command to update the entries?
+    print("didn't actually run the Cypher command")
+    return
 
 
 def add_derivation(
@@ -582,6 +827,38 @@ def user_query(tx, query: str) -> str:
     except neo4j.exceptions.TransactionError:
         list_of_records = ["WRITE OPERATIONS NOT ALLOWED (2)"]
     return list_of_records
+
+
+def constrain_id_to_be_unique(graphDB_Driver):
+    """
+    node ID must be unique
+    """
+    with graphDB_Driver.session() as session:
+        list_of_derivation_IDs = session.write_transaction(constrain_unique_id)
+        if list_of_derivation_IDs:
+            number_of_derivations = len(list_of_derivation_IDs)
+        else:  # list_of_derivation_IDs was "None"
+            number_of_derivations = 0
+
+    return
+
+
+def count_number_of_steps_per_derivation(
+    graphDB_Driver, list_of_derivation_dicts: dict
+):
+    """
+    >>> count_number_of_steps_per_derivation()
+    """
+    number_of_steps_per_derivation = {}
+    for derivation_dict in list_of_derivation_dicts:
+        print("derivation_dict", derivation_dict)
+
+        with graphDB_Driver.session() as session:
+            list_of_steps = session.read_transaction(
+                steps_in_this_derivation, derivation_dict["id"]
+            )
+        number_of_steps_per_derivation[derivation_dict["id"]] = len(list_of_steps)
+    return number_of_steps_per_derivation
 
 
 # def who_are_friends_of(tx, name: str) -> list:

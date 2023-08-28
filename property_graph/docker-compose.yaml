@@ -21,7 +21,9 @@ services:
     expose:
       - 5000
     depends_on:
-      - "neo4j_docker"
+      neo4j_docker:
+# https://docs.docker.com/compose/compose-file/05-services/#healthcheck
+        condition: service_healthy
     networks:
       neo4j-internal:
         aliases:
@@ -78,6 +80,13 @@ services:
       - NEO4J_dbms_directories_import=dumping_grounds # relative to /var/lib/neo4j
       - NEO4J_dbms_security_procedures_allowlist=gds.*, apoc.*
 #      - NEO4JLABS_PLUGINS=["apoc"] # downloads from gitlab everytime the container is started
+    # https://stackoverflow.com/a/74689805/1164295
+    healthcheck:
+      test: wget http://localhost:7474 || exit 1
+      interval: 3s
+      timeout: 10s
+      retries: 20
+      start_period: 3s
 
 networks:
   neo4j-internal:

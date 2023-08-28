@@ -6,7 +6,7 @@
 
 To start the containers, run
 ```bash
-make up
+docker kill $(docker ps -q); make up
 ```
 and then, in a web browser, go to <http://localhost:5000>
 
