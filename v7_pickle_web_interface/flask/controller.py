@@ -1141,7 +1141,7 @@ def monitoring():
     >>> monitoring()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    logger.info("[trace page start " + trace_id + "]")
+    logger.info("[trace page monitoring start " + trace_id + "]")
     number_of_lines_to_tail = 100
     list_of_pics = compute.generate_auth_summary()
     logger.debug(str(list_of_pics))
@@ -1162,7 +1162,7 @@ def monitoring():
         number_of_lines_to_tail,
     )
 
-    logger.info("[trace page end " + trace_id + "]")
+    logger.info("[trace page monitoring end " + trace_id + "]")
     return render_template(
         "monitoring.html",
         list_of_pics=list_of_pics,
@@ -1217,9 +1217,20 @@ def tmp_dir():
     )
 
 
+@app.route("/evaluation_of_LLM_prompts", methods=["GET", "POST"])
+def monitoring():
+    """
+    """
+    logger.info("[trace page evaluation_of_LLM_prompts")
+    return render_template("evaluation_of_LLM_prompts.html")
+
+
 @app.route("/clickable_layers", methods=["GET", "POST"])
 def clickable_layers():
-    return render_template("clickable_layers.html", title="options")
+    """
+    """
+    logger.info("[trace page clickable_layers")
+    return render_template("clickable_layers.html", title="clickable_layers")
 
 
 @app.route("/class_notes", methods=["GET", "POST"])
@@ -1227,7 +1238,7 @@ def class_notes_without_subpage():
     """
     class notes from school
     """
-    logger.info("[trace page]")
+    logger.info("[trace page class_notes]")
     return render_template("class_notes_overview.html", title="class notes overview")
 
 
