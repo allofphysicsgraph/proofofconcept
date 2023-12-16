@@ -1,0 +1,667 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<table border=1>
+  <tr>
+    <th>Prompt</th>
+    <th>LLM</th>
+    <th>response</th>
+    <TH>correct answer</TH>
+    <th>date (YYYY-MM-DD)</TH>
+    <th>input token count</TH>
+    <th>output token count</TH>
+    <TH>cost ($)</TH>
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Context: SymPy is an open-source Python library for symbolic computation. SymPy provides a computer algebra system. SymPy can convert Latex math to SymPy, and SymPy can render a mathematical expression as Latex.
+
+<P>Question: What is the SymPy representation for the Latex expression $x^2 + y^2 = 1$ ?
+
+<P>Answer:</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>Unsure about the answer.</td> <!-- response -->
+    <TD>(correct)</TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td>0</td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Context: SymPy is an open-source Python library for symbolic computation. SymPy provides a computer algebra system. SymPy can convert Latex math to SymPy, and SymPy can render a mathematical expression as Latex.
+
+<P>Question: What is the SymPy representation for the Latex expression $x^2 + y^2 = 1$ ?
+
+<P>Answer:
+    </td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The SymPy representation for the Latex expression $x^2 + y^2 = 1$ is `Eq(x**2 + y**2, 1)`.</td> <!-- response -->
+    <TD>close but no</TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td>0</td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Context: SymPy is an open-source Python library for symbolic computation. SymPy provides a computer algebra system. SymPy can convert Latex math to SymPy, and SymPy can render a mathematical expression as Latex.
+
+<P>Question: What is the SymPy representation for the Latex expression $x + y = 1$ ?
+
+<P>Answer:</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The SymPy representation for the Latex expression $x + y = 1$ is `Eq(x + y, 1)`.</td> <!-- response -->
+    <TD>close but no</TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td>0</td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Use the context below to produce a result. Keep the response short and concise. Respond "Unsure about answer" if not sure about the answer.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Context: Period (symbol T) is the interval of time between events. Frequency (symbol f) is the number of occurrences of a repeating event per unit of time
+
+<P>Specify the mathematical relation between period and frequency as an equation in Latex.</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The mathematical relation between period (T) and frequency (f) is expressed in Latex as:
+
+<P>\[ f = \frac{1}{T} \]</td> <!-- response -->
+    <TD>correct</TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td>0</td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Use the context below to produce a result. Keep the response short and concise. Respond "Unsure about answer" if not sure about the answer.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Context: Angular frequency (symbol \omega) is rate at which the object rotates. Period (symbol T) is the interval of time between events.
+
+<P>Specify the mathematical relation between period and angular frequency as an equation in Latex.</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The mathematical relation between period (\(T\)) and angular frequency (\(\omega\)) is expressed in Latex as:
+
+<P>\[ \omega = \frac{2\pi}{T} \]</td> <!-- response -->
+    <TD>correct</TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td>0</td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Provide citations based on the context below.
+
+<P>Context: arxiv is an open-access repository of electronic preprints
+
+<P>Context: a derivation in mathematical Physics consists of a sequence of steps. Each step relates mathematical expressions to an inference rule. An expression is comprised of symbols and operators. An inference rule typically transforms input expressions into output expressions.
+
+<P>Cite three papers from arxiv that contain mathematical derivations with more than four steps.</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>I'm unable to provide real-time data or specific papers from arXiv as my training only includes information up until January 2022, and I don't have the capability to browse the internet. You can visit arXiv (https://arxiv.org/) and use their search function to find papers with mathematical derivations. Typically, you can use keywords related to your specific area of interest or mathematical physics to narrow down your search.</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td>0</td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer. Let's work this out in a step by step way to be sure we have the right answer.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Context: a derivation in mathematical Physics consists of a sequence of steps. Each step relates mathematical expressions to an inference rule. An expression is comprised of symbols and operators. An inference rule typically transforms input expressions into output expressions.
+
+<P>Question: What mathematical steps relate the Latex math expression $i x = log(y)$ and $\exp(i x) = y$ ?
+
+<P>Answer:</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The mathematical steps that relate the Latex math expression $i x = \log(y)$ and $\exp(i x) = y$ are:
+
+<P>1. Take the exponential of both sides of the first equation: \(\exp(ix) = \exp(\log(y))\).<BR>
+2. Simplify the right side using the property \(\exp(\log(a)) = a\).
+
+<P>So, the final relation is \(\exp(ix) = y\).</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer. Let's work this out in a step by step way to be sure we have the right answer.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Context: a derivation in mathematical Physics consists of a sequence of steps. Each step relates mathematical expressions to an inference rule. An expression is comprised of symbols and operators. An inference rule typically transforms input expressions into output expressions.
+
+<P>Question: What is the derivative of $y = \cos(x) + i \sin(x)$ with respect to $x$ ?
+
+<P>Answer:</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The derivative of \(y = \cos(x) + i \sin(x)\) with respect to \(x\) is:
+
+<P>\[\frac{dy}{dx} = -\sin(x) + i \cos(x)\]</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer. Let's work this out in a step by step way to be sure we have the right answer.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Context: a derivation in mathematical Physics consists of a sequence of steps. Each step relates mathematical expressions to an inference rule. An expression is comprised of symbols and operators. An inference rule typically transforms input expressions into output expressions.
+
+<P>Question: derive the wave function for a quantum particle in a 1D box
+
+<P>Answer:</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>To derive the wave function for a quantum particle in a 1D box, we start with the Schrödinger equation for the system:
+
+<P>\[-\frac{\hbar^2}{2m} \frac{d^2\psi(x)}{dx^2} + V(x)\psi(x) = E\psi(x)\]
+
+<P>where \( \psi(x) \) is the wave function, \( m \) is the mass of the particle, \( V(x) \) is the potential energy, \( E \) is the total energy, and \( \hbar \) is the reduced Planck constant.
+
+<P>In the case of a particle in a 1D box with infinite potential walls, \( V(x) = 0 \) within the box, and \( V(x) = \infty \) outside the box. The solution involves finding the eigenfunctions and eigenvalues of this system, resulting in the quantized energy levels and corresponding wave functions:
+
+<P>\[ \psi_n(x) = \sqrt{\frac{2}{L}} \sin\left(\frac{n\pi x}{L}\right) \]
+
+<P>where \( n \) is the quantum number, \( L \) is the length of the box.</td> <!-- response -->
+    <TD>ChatGPT 3.5</TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer. Let's work this out in a step by step way to be sure we have the right answer.
+
+<P>Context: Lean is a proof assistant and programming language. Lean is based on the calculus of constructions with inductive types.
+
+<P>`a=b` is a proposition. The variable `a` is Real valued and `b` is Real valued. Prove in Lean that `(a=b) -> (a+2=b+2)`</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>Something went wrong. If this issue persists please contact us through our help center at help.openai.com.</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below.  Let's work this out in a step by step way to be sure we have the right answer.
+
+<P>Context: Lean is a proof assistant and programming language. Lean is based on the calculus of constructions with inductive types.
+
+<P>`a=b` is a proposition. The variable `a` is Real valued and `b` is Real valued. Prove in Lean that `(a=b) -> (a+2=b+2)`</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>Sure, let's break down the proof step by step.
+
+<P>In Lean, you would typically use tactics to prove a theorem. The goal is to show that if `a = b`, then `a + 2 = b + 2`.
+
+<P>Here's a possible proof in Lean:
+
+<pre>
+```lean
+import data.real.basic
+
+-- Assume a, b are real numbers
+variables (a b : ℝ)
+
+-- Assume the proposition a = b
+variable h : a = b
+
+-- To prove a + 2 = b + 2, add
+-- 2 to both sides of the
+-- equation a = b
+example : a + 2 = b + 2 :=
+begin
+  -- Use the tactic rw (rewrite)
+  -- to substitute a = b in
+  -- the goal
+  rw h,
+
+  -- Use the tactic ring to
+  -- simplify the goal using
+  -- the properties of
+  -- the real numbers
+  ring,
+end
+```
+</pre>
+
+<P>Let me explain the steps:
+
+<P>1. `import data.real.basic`: This imports the basic properties of real numbers in Lean.<BR>
+2. `variables (a b : ℝ)`: This declares `a` and `b` as real numbers.<BR>
+3. `variable h : a = b`: This declares `h` as the hypothesis that `a = b`.<BR>
+4. `example : a + 2 = b + 2 :=`: This sets up the goal to prove `a + 2 = b + 2`.<BR>
+5. `rw h`: This uses the `rw` tactic to rewrite the goal using the hypothesis `a = b`.<BR>
+6. `ring`: This uses the `ring` tactic to simplify the goal using the properties of the real numbers.
+
+<P>So, the proof in Lean is essentially showing that if `a = b`, then you can add 2 to both sides to get `a + 2 = b + 2`.</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer. Let's work this out in a step by step way to be sure we have the right answer.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Context: Lean is a proof assistant and programming language. Lean is based on the calculus of constructions with inductive types.
+
+<P>Context: a derivation in mathematical Physics consists of a sequence of steps. Each step relates mathematical expressions to an inference rule. An expression is comprised of symbols and operators. An inference rule typically transforms input expressions into output expressions.
+
+<P>$i x = log(y)$ is a proposition. The variable `x` is Real valued and `y` is Real valued. The constant $i$ is the square root of one. Prove in Lean that `(i x = log(y)) -> (\exp(i x) = y)`</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The provided statement appears to be a misunderstanding or contains a typo. The expression \(i x = \log(y)\) doesn't straightforwardly imply \(\exp(i x) = y\) based on standard mathematical rules.
+
+<P>However, if the intent is to show a relationship between complex numbers and exponentiation, a correct proposition might be \(\exp(ix) = \cos(x) + i \sin(x)\). If this is what you intended, please let me know, and I can help you with a Lean proof for that.</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Let's work this out in a step by step way to be sure we have the right answer.
+
+    Context: Lean is a proof assistant and programming language. Lean is based on the calculus of constructions with inductive types.
+
+    `i x = log(y)` is a proposition. The variable `x` is Real valued and `y` is Real valued. The constant $i$ is the square root of one. Prove in Lean that `(i x = log(y)) -> (\exp(i x) = y)`</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>In Lean, you can prove the given proposition using the properties of complex numbers and the exponential function. Here's a step-by-step proof:
+
+<P>```lean
+import data.real.basic
+import data.complex.basic
+
+-- Assume Real numbers x and y
+variables (x y : ℝ)
+
+-- Assume the proposition
+-- i x = log(y)
+variable h : complex.I * x = log y
+
+-- Prove that exp(i x) = y
+example : complex.exp (complex.I * x) = y :=
+begin
+  -- Use the property
+  -- exp(i x) = cos(x) + i * sin(x)
+  rw complex.exp_eq_cos_add_sin,
+
+  -- Substitute the given
+  -- proposition i x = log(y)
+  rw h,
+
+  -- Simplify using trigonometric
+  -- identities
+  simp [real.cos, real.sin],
+
+  -- The goal is now simplified
+  -- to y = y, which is true
+  refl,
+end
+```</pre>
+
+<P>This proof uses the fact that \(\exp(i x) = \cos(x) + i \sin(x)\) and then substitutes the given proposition \(i x = \log(y)\). The `rw` tactic is used for rewriting, and the `simp` tactic is used for simplifying trigonometric identities. The final goal is to show that \(y = y\), which is true, completing the proof.</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer. Let's work this out in a step by step way to be sure we have the right answer.
+
+Context: a derivation in mathematical Physics consists of a sequence of steps. Each step relates mathematical expressions to an inference rule. An expression is comprised of symbols and operators. An inference rule typically transforms input expressions into output expressions.
+
+provide a derivation of Newton's Law of Universal Gravitation</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>Unsure about the answer.</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below.  Let's work this out in a step by step way to be sure we have the right answer.
+
+Context: a derivation in mathematical Physics consists of a sequence of steps. Each step relates mathematical expressions to an inference rule. An expression is comprised of symbols and operators. An inference rule typically transforms input expressions into output expressions.
+
+provide a derivation of Newton's Law of Universal Gravitation</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>Certainly! Let's outline a step-by-step derivation of Newton's Law of Universal Gravitation:
+
+<P>**Derivation of Newton's Law of Universal Gravitation:**
+
+<P>1. **Start with the Law of Force between two masses:**<BR>
+   \[ F = ma \]<BR>
+   where \( F \) is the force, \( m \) is the mass, and \( a \) is the acceleration.
+
+<P>2. **Consider the gravitational force between two masses:**<BR>
+   \[ F = G \frac{m_1 m_2}{r^2} \]<BR>
+   where \( G \) is the gravitational constant, \( m_1 \) and \( m_2 \) are the masses, and \( r \) is the separation between their centers.
+
+<P>3. **Equate the gravitational force to the mass times gravitational acceleration:**<BR>
+   \[ ma = G \frac{m_1 m_2}{r^2} \]
+
+<P>4. **Cancel the mass \( m \) from both sides:**<BR>
+   \[ a = G \frac{m_1}{r^2} \]
+
+<P>5. **Recognize that \( a \) is the gravitational acceleration \( g \) near the Earth's surface:**<BR>
+   \[ g = G \frac{m_1}{r^2} \]
+
+<P>6. **For a mass \( m_2 \) near the Earth's surface, \( g \) becomes:**<BR>
+   \[ g = G \frac{m_{\text{Earth}}}{r^2} \]
+
+<P>7. **Express the gravitational acceleration in terms of mass and radius of the Earth:**<BR>
+   \[ g = \frac{GM_{\text{Earth}}}{r^2} \]
+
+<P>8. **Newton's Law of Universal Gravitation:**<BR>
+   \[ F = G \frac{m_1 m_2}{r^2} \]
+
+<P>This derivation shows how Newton's Law of Universal Gravitation is derived from the basic principles of force and gravitational acceleration.</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Question: What mathematical expressions are present in the following Latex?
+
+<pre>
+```
+\begin{equation}
+a = b + c
+\end{equation}
+Assuming you know $b$, then
+\begin{equation}
+b*c = f
+\end{equation}
+```
+</pre>
+Answer:</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The mathematical expressions present in the given LaTeX are:
+
+<P>1. \(a = b + c\) (Equation 1)<BR>
+2. \(b \cdot c = f\) (Equation 2)</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Question: What mathematical expressions are present in the following Latex?
+
+<pre>
+```
+\begin{equation}
+a = b + c
+\end{equation}
+Assuming you know $b$, then
+\begin{equation}
+b*c = f
+\end{equation}
+```</pre>
+Answer:</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The mathematical expressions present in the given LaTeX are:
+
+<P>1. \(a = b + c\) (Equation 1)<BR>
+2. \(b \cdot c = f\) (Equation 2)</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer.
+
+<P>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<P>Question: What variables are present in the following Latex?
+
+<pre>```
+\begin{equation}
+a = b + c
+\end{equation}
+Assuming you know $b$, then
+\begin{equation}
+b*c = f
+\end{equation}
+```</pre>
+<P>Answer:</td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The variables present in the given LaTeX are:
+
+<P>1. \(a\)<BR>
+2. \(b\)<BR>
+3. \(c\)<BR>
+4. \(f\)</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td>Answer the question based on the context below. Keep the answer short and concise. Respond "Unsure about answer" if not sure about the answer.
+
+<p>Context: Latex is software for document preparation to generate PDF files. Mathematical equations can be expressed in Latex using markup syntax.
+
+<p>Question: What mathematical expressions are present in the following Latex?
+
+<pre>```
+Several notable properties of condensed
+ matter phases are defined by fundamental
+ physical constants. The Bohr radius gives
+ a characteristic scale of interatomic
+ distance on the order of the Angstrom,
+ in terms of electron mass $m_e$, charge
+ $e$, and Planck constant $\hbar$. These
+ same fundamental constants enter the
+ Rydberg energy, setting the scale of a
+ characteristic bonding energy in condensed
+ phases and chemical compounds
+ \cite{ashcroft}.
+
+Among the fundamental constants, those
+ that are {\it dimensionless} and do
+ not depend on the choice of units, play
+  a special role in physics \cite{barrow}.
+  Two important dimensionless constants
+  are the fine structure constant $\alpha$
+  and the proton-to-electron mass ratio,
+  $\frac{m_p}{m_e}$. The finely-tuned
+  values of $\alpha$ and $\frac{m_p}{m_e}$,
+  and the balance between them, governs
+  nuclear reactions such as proton decay
+  and nuclear synthesis in stars, leading
+  to the creation of the essential
+  biochemical elements, including carbon.
+  This balance provides a narrow
+  ``habitable zone'' in the
+  ($\alpha$,$\frac{m_p}{m_e}$) space
+  where stars and planets can form and
+  life-supporting molecular structures
+  can emerge \cite{barrow}.
+
+We show that a simple combination of
+ $\alpha$ and $\frac{m_p}{m_e}$
+ results in another dimensionless
+ quantity which has an unexpected
+ and specific implication for a key
+ property of condensed phases, the
+ speed at which waves travel in solids
+ and liquids, or the speed of sound,
+ $v$. We find that this combination
+ provides an upper bound for $v$, $v_u$, as
+\begin{equation}
+\frac{v_u}{c}=\alpha\left(\frac{m_e}{2m_p}
+\right)^{\frac{1}{2}},
+\label{v0}
+\end{equation}
+\noindent where $c$ is the speed
+of light in vacuum.
+
+We support this result with a large
+set of experimental data for different
+systems, and the first principles
+modelling of atomic hydrogen.
+
+Identifying and understanding bounds
+ on physical properties is important
+ from the point of view of fundamental
+ physics, predictions for theory and
+ experiment, as well as searching for
+ and rationalizing universal behavior
+ (see, e.g., \cite{kss,zaanen3,hartnoll,
+zaanen2,spin,behnia,zaanen1,behnia1,
+hartnoll1}). Properties for which
+bounds were recently discussed include
+viscosity and diffusivity. The
+proposed {\it lower} bounds for
+these two properties feature in a
+range of areas including, for example,
+strongly-interacting field theories,
+quark-gluon plasmas, holographic
+duality, electron diffusion, transport
+properties in metals and superconductors,
+and spin transport in Fermi gases
+\cite{kss,zaanen3,hartnoll,zaanen2,
+  spin,behnia,zaanen1,behnia1,hartnoll1}.
+  Recently, two of us found a lower
+  bound for the kinematic viscosity of
+  liquids set by fundamental physical
+  constants \cite{sciadv}. Here, we
+  propose a new, {\it upper}, bound
+  for the speed of sound in condensed
+  matter phases in terms of
+  fundamental constants.
+
+Apart from setting the speed of elastic
+ interactions in solids, $v$ is related
+ to elasticity, hardness and affects
+ important low-temperature
+ thermodynamic properties such as
+ energy, entropy and heat capacity
+ \cite{landau}. As discussed below,
+ the upper bound of $v$ sets the smallest
+possible entropy and heat capacity
+at a given temperature.
+
+In solids, $v$ depends on elastic
+properties and density. These strongly
+ depend on the bonding type and
+ structure which are inter-dependent
+ \cite{phillips}. As a result, it
+ was not thought that $v$ can be
+ predicted analytically without
+ simulations, contrary to other
+ properties such as energy or heat
+ capacity which are universal in the
+ classical harmonic approximation
+ \cite{landau}. In view of this,
+ representing the upper bound of
+ $v$ in terms of fundamental constants
+ is notable.
+```</pre></td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td>The mathematical expressions present in the given LaTeX are:
+
+<P>1. \(\alpha\)<BR>
+2. \(\frac{m_p}{m_e}\)<BR>
+3. \(\frac{v_u}{c} = \alpha \left(\frac{m_e}{2m_p}\right)^{\frac{1}{2}}\) (Equation \(v_u\))<BR>
+4. \(c\) (speed of light in vacuum)</td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td></td> <!-- prompt -->
+    <td></td> <!-- LLM -->
+    <td></td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td></td> <!-- prompt -->
+    <td>ChatGPT 3.5</td> <!-- LLM -->
+    <td></td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td></td> <!-- prompt -->
+    <td></td> <!-- LLM -->
+    <td></td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td></td> <!-- prompt -->
+    <td></td> <!-- LLM -->
+    <td></td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+  <tr>
+    <td></td> <!-- prompt -->
+    <td></td> <!-- LLM -->
+    <td></td> <!-- response -->
+    <TD></TD> <!-- correct answer -->
+    <td>2023-12-16</td> <!-- date -->
+    <td></td> <!-- input token count -->
+    <td></td> <!-- output token count -->
+    <td></td> <!-- price -->
+  </tr>
+</table>
+
+{% endblock %}
