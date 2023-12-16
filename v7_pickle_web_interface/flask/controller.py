@@ -1219,16 +1219,14 @@ def tmp_dir():
 
 @app.route("/evaluation_of_LLM_prompts", methods=["GET", "POST"])
 def monitoring():
-    """
-    """
+    """ """
     logger.info("[trace page evaluation_of_LLM_prompts")
     return render_template("evaluation_of_LLM_prompts.html")
 
 
 @app.route("/clickable_layers", methods=["GET", "POST"])
 def clickable_layers():
-    """
-    """
+    """ """
     logger.info("[trace page clickable_layers")
     return render_template("clickable_layers.html", title="clickable_layers")
 
