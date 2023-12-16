@@ -1218,7 +1218,7 @@ def tmp_dir():
 
 
 @app.route("/evaluation_of_LLM_prompts", methods=["GET", "POST"])
-def monitoring():
+def evaluation_of_LLM_prompts():
     """ """
     logger.info("[trace page evaluation_of_LLM_prompts")
     return render_template("evaluation_of_LLM_prompts.html")
