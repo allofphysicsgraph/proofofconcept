@@ -5,6 +5,13 @@
   Return to <a href="{{ url_for('main') }}?referrer=show_friends">main page</a>
 </P>
 
+Three ways to submit a read-only query:
+<UL>
+  <LI>insert a Cypher query string in the prompt below</LI>
+  <LI>click on one of the pre-defined Cypher queries in the table below</LI>
+  <LI>submit a URL of the form <code>/query?cypher=</code>
+</UL>
+
 <fieldset>
   <legend>
     <H2>Cypher query</H2>
@@ -18,6 +25,11 @@
 </form>
 </fieldset>
 
+{% if submitted_query is defined %}
+For the query <BR>
+  {{ submitted_query }}<BR>
+  the results are
+{% endif %}
 <UL>
 {% for record in list_of_records %}
     <LI>{{ record }}</LI>
