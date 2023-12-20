@@ -10,6 +10,12 @@ docker kill $(docker ps -q); make up
 ```
 and then, in a web browser, go to <http://localhost:5000>
 
+Because software is in Docker containers (for reproducibility), the versions of the Docker software you're using matter. The software in this repo has been tested with
+* docker-compose 1.29.2
+* Compose file format 3.6
+* Docker Engine release 20.10.11
+See <https://docs.docker.com/compose/compose-file/compose-versioning/> for compatibility of versions.
+
 # Project contents
 Two containers: Neo4j (port 7474) and a flask web server (port 5000)
 
