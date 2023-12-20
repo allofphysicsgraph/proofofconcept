@@ -433,6 +433,7 @@ class infRuleInputsAndOutputs(FlaskForm):
 
 #    inputs_and_outputs = FieldList(EquationInputForm, min_entries=1)
 
+
 # https://stackoverflow.com/questions/37837682/python-class-input-argument/37837766
 # https://wtforms.readthedocs.io/en/stable/validators.html
 class LatexIO(FlaskForm):
@@ -2951,7 +2952,6 @@ def update_symbols(deriv_id: str, step_id: str):
     derivation_units_validity_dict = {}
     if deriv_id in dat["derivations"].keys():
         for this_step_id, step_dict in dat["derivations"][deriv_id]["steps"].items():
-
             for expr_local_id in step_dict["inputs"] + step_dict["outputs"]:
                 expr_global_id = dat["expr local to global"][expr_local_id]
                 try:
