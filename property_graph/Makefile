@@ -14,6 +14,9 @@ help:
 
 
 up:
+	if (! docker stats --no-stream ); then  open /Applications/Docker.app; while (! docker stats --no-stream ); do    echo "Waiting for Docker to launch...";  sleep 1; done; fi; docker-compose down --volumes --remove-orphans; docker-compose up --build --remove-orphans
+
+up_DEPRECATED:
 	# https://docs.docker.com/compose/reference/down/
 	docker-compose down --volumes --remove-orphans
 	# https://docs.docker.com/compose/reference/up/
