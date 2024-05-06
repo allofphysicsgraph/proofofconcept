@@ -9,12 +9,12 @@
 
 <fieldset>
 <legend>
-  <H2>Edit or delete a step in the Derivation {{ derivation_dict['name'] }}</h2>
+  <H2>Edit or delete a step in the Derivation {{ derivation_dict['name_latex'] }}</h2>
 </legend>
 
 <P>Which step to edit or delete:
 
-{{ all_steps }}
+{{ list_of_step_dicts_for_this_derivation }}
 
 <table border="1" id="expression_table">
   <tr>

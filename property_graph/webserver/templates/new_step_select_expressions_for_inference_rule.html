@@ -6,7 +6,7 @@
 </P>
 
 <H2>Derivation: <a href="{{ url_for('to_review_derivation',derivation_id=derivation_dict['id']) }}">
-  {{ derivation_dict['name'] }}</a></H2>
+  {{ derivation_dict['name_latex'] }}</a></H2>
 
 <P>expression IDs: <!--{ { list_of_expression_IDs } }-->
 
@@ -19,7 +19,7 @@
 
 <fieldset>
   <legend>
-    <H2>Provide inputs and feeds and outputs for {{ inference_rule_dict['name'] }}</H2>
+    <H2>Provide inputs and feeds and outputs for {{ inference_rule_dict['name_latex'] }}</H2>
   </legend>
 
 <P>latex: {{ inference_rule_dict['latex'] }}

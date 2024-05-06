@@ -123,275 +123,6 @@ def apoc_export_cypher(tx, output_filename: str):
     return record
 
 
-def get_list_of_symbol_IDs(graphDB_Driver) -> list:
-    """ """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_list_of_symbol_IDs start " + trace_id)
-
-    list_of_symbol_IDs = []
-    with graphDB_Driver.session() as session:
-        list_of_symbol_IDs = session.read_transaction(list_IDs, "symbol")
-
-    print("[TRACE] func: neo4j_query/get_list_of_symbol_IDs end " + trace_id)
-    return list_of_symbol_IDs
-
-
-def get_symbol_dict(graphDB_Driver, symbol_id) -> dict:
-    """ """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_symbol_dict start " + trace_id)
-
-    symbol_dict = {}
-    # get properties of this symbol
-    with graphDB_Driver.session() as session:
-        symbol_dict = session.read_transaction(node_properties, "symbol", symbol_id)
-
-    print("[TRACE] func: neo4j_query/get_symbol_dict end " + trace_id)
-    return symbol_dict
-
-
-def get_list_of_operator_IDs(graphDB_Driver) -> list:
-    """ """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_list_of_operator_IDs start " + trace_id)
-
-    list_of_operator_IDs = []
-    with graphDB_Driver.session() as session:
-        list_of_operator_IDs = session.read_transaction(list_IDs, "operator")
-
-    print("[TRACE] func: neo4j_query/get_list_of_operator_IDs end " + trace_id)
-    return list_of_operator_IDs
-
-
-def get_operator_dict(graphDB_Driver, operator_id) -> dict:
-    """
-
-    >>> get_operator_dict()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_operator_dict start " + trace_id)
-
-    operator_dict = {}
-    # get properties of this operator
-    with graphDB_Driver.session() as session:
-        operator_dict = session.read_transaction(
-            node_properties, "operator", operator_id
-        )
-
-    print("[TRACE] func: neo4j_query/get_operator_dict end " + trace_id)
-    return operator_dict
-
-
-def get_list_of_operator_dicts(graphDB_Driver) -> list:
-    """ """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_list_of_operator_dicts start " + trace_id)
-
-    list_of_operator_dicts = []
-    # get list of operators
-    with graphDB_Driver.session() as session:
-        list_of_operator_dicts = session.read_transaction(
-            list_nodes_of_type, "operator"
-        )
-
-    print("[TRACE] func: neo4j_query/get_list_of_operator_dicts end " + trace_id)
-    return list_of_operator_dicts
-
-
-def get_list_of_symbol_dicts(graphDB_Driver) -> list:
-    """ """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_list_of_symbol_dicts start " + trace_id)
-
-    list_of_symbol_dicts = []
-    # get list of symbols
-    with graphDB_Driver.session() as session:
-        list_of_symbol_dicts = session.read_transaction(list_nodes_of_type, "symbol")
-
-    print("[TRACE] func: neo4j_query/get_list_of_symbol_dicts end " + trace_id)
-    return list_of_symbol_dicts
-
-
-def get_expression_dict(graphDB_Driver, expression_id) -> dict:
-    """ """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_expression_dict start " + trace_id)
-
-    expression_dict = {}
-    # get properties of this expression
-    with graphDB_Driver.session() as session:
-        expression_dict = session.read_transaction(
-            node_properties, "expression", expression_id
-        )
-
-    print("[TRACE] func: neo4j_query/get_expression_dict end " + trace_id)
-    return expression_dict
-
-
-def get_inference_rule_dict(graphDB_Driver, inference_rule_id) -> dict:
-    """ """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_inference_rule_dict start " + trace_id)
-
-    inference_rule_dict = {}
-    # get properties for inference rule
-    with graphDB_Driver.session() as session:
-        inference_rule_dict = session.read_transaction(
-            node_properties, "inference_rule", inference_rule_id
-        )
-
-    print("[TRACE] func: neo4j_query/get_inference_rule_dict end " + trace_id)
-    return inference_rule_dict
-
-
-def get_list_of_inference_rule_dicts(graphDB_Driver):
-    """
-    get list of inference rules
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print(
-        "[TRACE] func: neo4j_query/get_list_of_inference_rule_dicts start " + trace_id
-    )
-
-    list_of_inference_rule_dicts = []
-    with graphDB_Driver.session() as session:
-        list_of_inference_rule_dicts = session.read_transaction(
-            list_nodes_of_type, "inference_rule"
-        )
-
-    print("[TRACE] func: neo4j_query/get_list_of_inference_rule_dicts end " + trace_id)
-    return list_of_inference_rule_dicts
-
-
-def get_derivation_dict(graphDB_Driver, derivation_id):
-    """
-    get properties for derivation
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_derivation_dict start " + trace_id)
-
-    derivation_dict = {}
-    with graphDB_Driver.session() as session:
-        derivation_dict = session.read_transaction(
-            node_properties, "derivation", derivation_id
-        )
-
-    print("[TRACE] func: neo4j_query/get_derivation_dict end " + trace_id)
-    return derivation_dict
-
-
-def get_list_of_derivation_dicts(graphDB_Driver) -> list:
-    """
-    >>> get_list_of_derivation_dicts
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_list_of_derivation_dicts start " + trace_id)
-
-    list_of_derivation_dicts = []
-    with graphDB_Driver.session() as session:
-        list_of_derivation_dicts = session.read_transaction(
-            list_nodes_of_type, "derivation"
-        )
-
-    print("[TRACE] func: neo4j_query/get_list_of_derivation_dicts end " + trace_id)
-    return list_of_derivation_dicts
-
-
-def count_derivations(graphDB_Driver) -> int:
-    """
-    >>> count_derivations
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/count_derivations start " + trace_id)
-
-    number_of_derivations = None
-    with graphDB_Driver.session() as session:
-        number_of_derivations = len(
-            session.read_transaction(list_nodes_of_type, "derivation")
-        )
-
-    print("[TRACE] func: neo4j_query/count_derivations end " + trace_id)
-    return number_of_derivations
-
-
-def count_inference_rules(graphDB_Driver) -> int:
-    """
-    >>> count_inference_rules()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/count_inference_rules start " + trace_id)
-
-    number_of_inference_rules = None
-    with graphDB_Driver.session() as session:
-        number_of_inference_rules = len(
-            session.read_transaction(list_nodes_of_type, "inference_rule")
-        )
-
-    print("[TRACE] func: neo4j_query/count_inference_rules end " + trace_id)
-    return number_of_inference_rules
-
-
-def count_expressions(graphDB_Driver) -> int:
-    """ """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/count_expressions start " + trace_id)
-
-    number_of_expressions = None
-    with graphDB_Driver.session() as session:
-        number_of_expressions = len(
-            session.read_transaction(list_nodes_of_type, "expression")
-        )
-
-    print("[TRACE] func: neo4j_query/count_expressions end " + trace_id)
-    return number_of_expressions
-
-
-def count_symbols(graphDB_Driver) -> int:
-    """
-    >>> count_symbols()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/count_symbols start " + trace_id)
-
-    number_of_symbols = None
-    with graphDB_Driver.session() as session:
-        number_of_symbols = len(session.read_transaction(list_nodes_of_type, "symbol"))
-
-    print("[TRACE] func: neo4j_query/count_symbols end " + trace_id)
-    return number_of_symbols
-
-
-def count_operators(graphDB_Driver) -> int:
-    """
-    >>> count_operators()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/count_operators start " + trace_id)
-
-    number_of_operators = None
-    with graphDB_Driver.session() as session:
-        number_of_operators = len(
-            session.read_transaction(list_nodes_of_type, "operator")
-        )
-
-    print("[TRACE] func: neo4j_query/count_operators end " + trace_id)
-    return number_of_operators
-
-
-def list_derivation_IDs(graphDB_Driver) -> list:
-    """
-    >>> list_derivation_IDs()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/list_derivation_IDs start " + trace_id)
-
-    list_of_derivation_IDs = []
-    with graphDB_Driver.session() as session:
-        list_of_derivation_IDs = session.read_transaction(list_IDs, "derivation")
-
-    print("[TRACE] func: neo4j_query/list_derivation_IDs end " + trace_id)
-    return list_of_derivation_IDs
-
 
 def constrain_unique_id(tx) -> None:
     """
@@ -421,25 +152,6 @@ def constrain_unique_id(tx) -> None:
     print("[TRACE] func: neo4j_query/constrain_unique_id end " + trace_id)
     return
 
-
-def constrain_id_to_be_unique(graphDB_Driver) -> None:
-    """
-    node ID must be unique
-
-    TODO 2023-12-17: how is constrain_id_to_be_unique distinct from constrain_unique_id ?
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/constrain_id_to_be_unique start " + trace_id)
-
-    with graphDB_Driver.session() as session:
-        list_of_derivation_IDs = session.write_transaction(constrain_unique_id)
-        if list_of_derivation_IDs:
-            number_of_derivations = len(list_of_derivation_IDs)
-        else:  # list_of_derivation_IDs was "None"
-            number_of_derivations = 0
-
-    print("[TRACE] func: neo4j_query/constrain_id_to_be_unique end " + trace_id)
-    return
 
 
 def list_nodes_of_type(tx, node_type: str) -> list:
@@ -471,85 +183,6 @@ def list_nodes_of_type(tx, node_type: str) -> list:
     print("[TRACE] func: neo4j_query/list_nodes_of_type end " + trace_id)
     return node_list
 
-
-def get_steps_in_derivation(graphDB_Driver, derivation_id) -> list:
-    """
-    >>> get_steps_in_derivation()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_steps_in_derivation start " + trace_id)
-
-    list_of_steps = []
-    with graphDB_Driver.session() as session:
-        list_of_steps = session.read_transaction(
-            steps_in_this_derivation, derivation_id
-        )
-
-    print("[TRACE] func: neo4j_query/get_steps_in_derivation end " + trace_id)
-    return list_of_steps
-
-
-def get_list_of_expression_dicts(graphDB_Driver) -> list:
-    """ """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_list_of_expression_dicts start " + trace_id)
-
-    list_of_expression_dicts = []
-    # https://neo4j.com/docs/python-manual/current/session-api/
-    with graphDB_Driver.session() as session:
-        list_of_expression_dicts = session.read_transaction(
-            list_nodes_of_type, "expression"
-        )
-
-    print("[TRACE] func: neo4j_query/get_list_of_expression_dicts end " + trace_id)
-    return list_of_expression_dicts
-
-
-def get_list_of_expression_IDs(graphDB_Driver) -> list:
-    """
-    >>>
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_list_of_expression_IDs start " + trace_id)
-
-    list_of_expression_IDs = []
-    with graphDB_Driver.session() as session:
-        list_of_expression_IDs = session.read_transaction(list_IDs, "expression")
-
-    print("[TRACE] func: neo4j_query/get_list_of_expression_IDs end " + trace_id)
-    return list_of_expression_IDs
-
-
-def get_list_of_inference_rule_IDs(graphDB_Driver) -> list:
-    """
-    >>> get_list_of_inference_rule_IDs()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_list_of_inference_rule_IDs start " + trace_id)
-
-    list_of_inference_rule_IDs = []
-    with graphDB_Driver.session() as session:
-        list_of_inference_rule_IDs = session.read_transaction(
-            list_IDs, "inference_rule"
-        )
-
-    print("[TRACE] func: neo4j_query/get_list_of_inference_rule_IDs end " + trace_id)
-    return list_of_inference_rule_IDs
-
-
-def get_list_of_step_IDs(graphDB_Driver):
-    """
-    >>> get_list_of_step_IDs()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_list_of_step_IDs start " + trace_id)
-
-    list_of_step_IDs = []
-    with graphDB_Driver.session() as session:
-        list_of_step_IDs = session.read_transaction(list_IDs, "step")
-
-    print("[TRACE] func: neo4j_query/get_list_of_step_IDs end " + trace_id)
-    return list_of_step_IDs
 
 
 def steps_in_this_derivation(tx, derivation_id: str) -> list:
@@ -595,10 +228,17 @@ def step_has_inference_rule(tx, step_id: str):
         + step_id
         + '"})-[r:HAS_INFERENCE_RULE]->(m:inference_rule) RETURN m'
     )
-    print(result.data())
+    print(type(result))
+    inf_rule_result = result.data()
+    print(type(inf_rule_result)) # <class 'list'>
+    print(len(inf_rule_result)) # 0
+    #print(inf_rule_result[0]) # IndexError: list index out of range
+    #print(inf_rule_result['m'])
+    #print(type(inf_rule_result[0]))
+    #print(inf_rule_result[0]['m'])
 
     print("[TRACE] func: neo4j_query/step_has_inference_rule end " + trace_id)
-    return inference_rule_id  # TODO 2023-12-17: what is the value of inference_rule_id set by?
+    return result['m']
 
 
 def step_has_expressions(tx, step_id: str, expression_type: str) -> list:
@@ -622,7 +262,7 @@ def step_has_expressions(tx, step_id: str, expression_type: str) -> list:
         + expression_type
         + "]->(m:inference_rule) RETURN m"
     ):
-        print(result.data())
+        #print(result.data())
         list_of_expression_IDs.append(result.data())
 
     print("[TRACE] func: neo4j_query/step_has_expressions end " + trace_id)
@@ -669,53 +309,7 @@ def node_properties(tx, node_type: str, node_id: str) -> dict:
         return None
 
 
-def create_new_derivation(
-    graphDB_Driver,
-    derivation_id,
-    now_str,
-    derivation_name_latex,
-    abstract_latex,
-    author_name_latex,
-) -> None:
-    """
-    >>> create_new_derivation()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/create_new_derivation start " + trace_id)
 
-    # https://neo4j.com/docs/python-manual/current/session-api/
-    with graphDB_Driver.session() as session:
-        session.write_transaction(
-            add_derivation,
-            derivation_id,
-            now_str,
-            derivation_name_latex,
-            abstract_latex,
-            author_name_latex,
-        )
-
-    print("[TRACE] func: neo4j_query/create_new_derivation end " + trace_id)
-    return
-
-
-def update_derivation_metadata(
-    graphDB_Driver, derivation_id, derivation_name_latex, abstract_latex
-) -> None:
-    """
-    >>> update_derivation_metadata()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/update_derivation_metadata start " + trace_id)
-
-    with graphDB_Driver.session() as session:
-        session.write_transaction(
-            edit_derivation_metadata,
-            derivation_id,
-            derivation_name_latex,
-            abstract_latex,
-        )
-    print("[TRACE] func: neo4j_query/update_derivation_metadata end " + trace_id)
-    return
 
 
 def add_derivation(
@@ -787,7 +381,7 @@ def add_inference_rule(
         ' author_name_latex:"' + author_name_latex + '", '
         ' id:"' + inference_rule_id + '", '
         " number_of_inputs:" + str(number_of_inputs) + ", "
-        " number_of feeds:" + str(number_of_feeds) + ", "
+        " number_of_feeds:" + str(number_of_feeds) + ", "
         " number_of_outputs:" + str(number_of_outputs) + "})"
     )
 
@@ -921,6 +515,7 @@ def add_expression(
     expression_id: str,
     expression_name: str,
     expression_latex: str,
+    expression_sympy: str,
     expression_description: str,
     author_name_latex: str,
 ) -> None:
@@ -936,6 +531,7 @@ def add_expression(
         "CREATE (a:expression "
         '{name_latex:"' + str(expression_name) + '", '
         ' latex:"' + str(expression_latex) + '", '
+        ' sympy:"' + str(expression_sympy) + '", '
         ' description_latex:"' + str(expression_description) + '", '
         ' author_name_latex:"' + str(author_name_latex) + '", '
         ' id:"' + str(expression_id) + '"})'
@@ -1119,33 +715,6 @@ def user_query(tx, query: str) -> str:
     print("[TRACE] func: neo4j_query/user_query end " + trace_id)
     return list_of_records
 
-
-def count_number_of_steps_per_derivation(
-    graphDB_Driver, list_of_derivation_dicts: dict
-):
-    """
-    >>> count_number_of_steps_per_derivation()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print(
-        "[TRACE] func: neo4j_query/count_number_of_steps_per_derivation start "
-        + trace_id
-    )
-
-    number_of_steps_per_derivation = {}
-    for derivation_dict in list_of_derivation_dicts:
-        print("derivation_dict", derivation_dict)
-
-        with graphDB_Driver.session() as session:
-            list_of_steps = session.read_transaction(
-                steps_in_this_derivation, derivation_dict["id"]
-            )
-        number_of_steps_per_derivation[derivation_dict["id"]] = len(list_of_steps)
-
-    print(
-        "[TRACE] func: neo4j_query/count_number_of_steps_per_derivation end " + trace_id
-    )
-    return number_of_steps_per_derivation
 
 
 # d e f who_are_friends_of(tx, name: str) -> list:

@@ -37,7 +37,8 @@ properties={'author_name_latex': str,     # 'jane doe'
             'name_latex': str,            # 'name of expression'
             'description_latex': str,     # 'explanation goes here'
             'id': str,                    # '9424534'
-            'latex': str}                 # 'a = b'
+            'latex': str,                 # 'a = b'
+            'sympy': str}                 # Eq(Sym('49248923'),Sym('2499492'))
 
 node type: 'operator'
 properties={'author_name_latex': str,     # 'jane doe'

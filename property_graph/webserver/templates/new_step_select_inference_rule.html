@@ -6,7 +6,7 @@
 </P>
 
 <!-- TODO: sometimes "name_latex" won't look right in HTML -->
-<P>Which inference rule does this new step use in the derivation {{ derivation_dict['name'] }} ?
+<P>Which inference rule does this new step use in the derivation {{ derivation_dict['name_latex'] }} ?
 
 
 <!-- https://stackoverflow.com/questions/32019733/getting-value-from-select-tag-using-flask -->
@@ -39,7 +39,7 @@
           {{ inference_rule_dict['id'] }}
         </a>
       </td>
-      <td>{{ inference_rule_dict['name'] }}</td>
+      <td>{{ inference_rule_dict['name_latex'] }}</td>
       <td>{{ inference_rule_dict['latex']}}</td>
       <td>{{ inference_rule_dict['number_of_inputs'] }}</td>
       <td>{{ inference_rule_dict['number_of_feeds']}}</td>
