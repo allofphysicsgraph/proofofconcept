@@ -5,10 +5,41 @@
   Return to <a href="{{ url_for('main') }}?referrer=list_derivations">main page</a>
 </P>
 
+{{ derivation_dict }}
+
 <fieldset>
 <legend>
-  <H2>Edit Metadata for Derivation {{ derivation_dict['name_latex'] }}</h2>
+  <H2>Edit or delete a step in the Derivation {{ derivation_dict['name'] }}</h2>
 </legend>
+
+<P>Which step to edit or delete:
+
+{{ all_steps }}
+
+<table border="1" id="expression_table">
+  <tr>
+    <th>step ID</th>
+    <th>inference rule</th>
+    <th>input(s)</th>
+    <th>feed(s)</th>
+    <TH>output(s)</TH>
+  </tr>
+  {% for step_ID, step_dict in all_steps.items() %}
+  <tr>
+    <td>
+      <a href="{{ url_for( 'to_edit_expression', expression_id=expression_dict['id'] ) }}">
+          {{ step_ID }}
+      </a>
+    </td>
+    <td>{{ step_dict['inference rule ID']}}</td>
+    <td>{{ step_dict['list of input IDs'] }}</td>
+    <td>{{ step_dict['list of feed IDs'] }}</td>
+    <td>{{ step_dict['list of output IDs'] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
 
 
 </fieldset>

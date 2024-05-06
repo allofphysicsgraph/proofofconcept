@@ -1,0 +1,71 @@
+schema
+
+
+node type: 'derivation'
+properties={'author_name': str,        # 'jane doe'
+            'name': str,               # 'mass energy conservation'
+            'id': str,                 # '2627576'
+            'abstract': str,           # 'explanation goes here'
+            'created_datetime': str}   # '2022-11-25_02-12-22-905120'
+
+node type: 'step'
+properties={'author_name': str,        # 'jane doe'
+            'note_before_step': '',    # 'explanation goes here'
+            'note_after_step': '',     # 'explanation goes here'
+            'id': str,                 # '2627576'
+            'created_datetime': str}   # '2022-11-25_02-12-22-905120'
+
+
+node type: 'symbol'
+properties={'author_name_latex': str   # 'jane doe'
+            'name': str,               # 'speed of an unladen swallow'
+            'description': str,        # 'explanation goes here'
+            'id': str,                 # '9424534'
+            'latex': str}              # '\alpha'
+
+node type: 'inference_rule'
+properties={'author_name': str         # 'jane doe'
+            'number_of_inputs': int,   # 1
+            'number_of_outputs': int,  # 1
+            'number_of_feeds': int,    # 1
+            'name': str,               # 'add x to both sides', 
+            'id': str,                 # '3064475', 
+            'latex': str}              # 'ADD _ to BOTH sides'
+
+node type: 'expression'
+properties={'author_name': str         # 'jane doe'
+            'name': str,               # 'name of expression'
+            'description': str,        # 'explanation goes here'
+            'id': str,                 # '9424534'
+            'latex': str}              # 'a = b'
+
+node type: 'operator'
+properties={'author_name': str   # 'jane doe'
+            'name': str,         # 'equality', 
+            'description': str,  # 'explanation goes here'
+            'id': str,           # '5607606', 
+            'latex': str}        # '+'
+
+
+
+edges:
+
+Node element_id='0' 
+type='HAS_STEP' properties={'sequence_index': '1'}
+Node element_id='15'
+
+Node element_id='1' 
+type='HAS_INPUT' properties={'sequence_index': '0'}
+Node element_id='7' 
+
+Node element_id='1' 
+type='HAS_FEED' properties={'sequence_index': '0'}
+Node element_id='7' 
+
+Node element_id='1' 
+type='HAS_OUTPUT' properties={'sequence_index': '0'}
+Node element_id='7' 
+
+Node element_id='1' 
+type='HAS_INFERENCE_RULE'
+Node element_id='6' 

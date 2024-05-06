@@ -1,0 +1,46 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=edit_step">main page</a>
+</P>
+
+{{ step_dict }}
+
+<fieldset>
+  <legend>
+    <H2>Edit Step</h2>
+  </legend>
+
+<P>change note before step
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+      {{ form.note_before_step_latex.label}}: {{ form.note_before_step_latex(size=50, maxlength=1000, value=step_dict['note before']) }} <BR/>
+      &nbsp;<BR/>
+      {{form.note_after_step_latex.label }}: {{ form.note_after_step_latex(size=50, maxlength=1000, value=step_dict['note after']) }}<BR/>
+      &nbsp;<BR/>
+      <input type="submit" value="Edit step">
+    </P>
+  </form>
+
+</fieldset>
+
+<fieldset>
+  <legend>
+    Delete step
+  </legend>
+
+<form method="post" action="" onsubmit="return checkForm(this);">
+  {{ form.csrf_token }}
+
+  <input type="submit" value="delete step">
+
+</form>
+</fieldset>
+
+
+
+
+{% endblock %}

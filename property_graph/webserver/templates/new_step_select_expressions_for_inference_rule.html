@@ -8,7 +8,14 @@
 <H2>Derivation: <a href="{{ url_for('to_review_derivation',derivation_id=derivation_dict['id']) }}">
   {{ derivation_dict['name'] }}</a></H2>
 
-expression IDs: {{ list_of_expression_IDs }}
+<P>expression IDs: <!--{ { list_of_expression_IDs } }-->
+
+<ul>
+{% for this_expression_ID in list_of_expression_IDs %}
+<li>{{ this_expression_ID }}</li>
+{% endfor %}
+</ul>
+
 
 <fieldset>
   <legend>
@@ -24,31 +31,89 @@ expression IDs: {{ list_of_expression_IDs }}
 
   {{ form.note_before_step_latex.label }}: {{ form.note_before_step_latex(size=50, maxlength=300, id="note_before") }}
 
-  <P>input count: {{ inference_rule_dict['number_of_inputs'] }}
+  <P>input count: {{ inference_rule_dict['number_of_inputs'] }}<BR>
+
+  {% if inference_rule_dict['number_of_inputs']>0 %}
   <select name="input1_expression_field_name" class="selectpicker form-control" id="input1_expression_field_id">
     {% for expression_id in list_of_expression_IDs %}
     <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }} </option>
     {% endfor %}
-  </select>
+  </select><BR>
+  {% endif %}
 
-  <P>feed count: {{ inference_rule_dict['number_of_feeds'] }}
+  {% if inference_rule_dict['number_of_inputs']>1 %}
+  <select name="input2_expression_field_name" class="selectpicker form-control" id="input2_expression_field_id">
+    {% for expression_id in list_of_expression_IDs %}
+    <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }} </option>
+    {% endfor %}
+  </select><BR>
+  {% endif %}
 
-  <select name="feed_expression_field_name" class="selectpicker form-control" id="feed_expression_field_id">
+  {% if inference_rule_dict['number_of_inputs']>2 %}
+  <select name="input3_expression_field_name" class="selectpicker form-control" id="input3_expression_field_id">
+    {% for expression_id in list_of_expression_IDs %}
+    <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }} </option>
+    {% endfor %}
+  </select><BR>
+  {% endif %}
+
+  <P>feed count: {{ inference_rule_dict['number_of_feeds'] }}<BR>
+
+  {% if inference_rule_dict['number_of_feeds']>0 %}
+  <select name="feed1_expression_field_name" class="selectpicker form-control" id="feed1_expression_field_id">
     {% for expression_id in list_of_expression_IDs %}
     <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }}</option>
     {% endfor %}
-  </select>
+  </select><BR>
+  {% endif %}
 
-
-  <P>output count: {{ inference_rule_dict['number_of_outputs'] }}
-
-  <select name="output1_expression_field_name" class="selectpicker form-control" id="output1_expression_field_id">
+  {% if inference_rule_dict['number_of_feeds']>1 %}
+  <select name="feed2_expression_field_name" class="selectpicker form-control" id="feed2_expression_field_id">
     {% for expression_id in list_of_expression_IDs %}
     <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }}</option>
     {% endfor %}
-  </select>
+  </select><BR>
+  {% endif %}
 
-  {{ form.note_after_step_latex.label }}: {{ form.note_after_step_latex(size=50, maxlength=300, id="note_after") }}
+  {% if inference_rule_dict['number_of_feeds']>2 %}
+  <select name="feed3_expression_field_name" class="selectpicker form-control" id="feed3_expression_field_id">
+    {% for expression_id in list_of_expression_IDs %}
+    <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }}</option>
+    {% endfor %}
+  </select><BR>
+  {% endif %}
+
+  <P>output count: {{ inference_rule_dict['number_of_outputs'] }}<BR>
+
+  {% if inference_rule_dict['number_of_outputs'] >0 %}
+    <select name="output1_expression_field_name" class="selectpicker form-control" id="output1_expression_field_id">
+      {% for expression_id in list_of_expression_IDs %}
+      <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }}</option>
+      {% endfor %}
+    </select>
+    <BR>
+  {% endif %}
+
+  {% if inference_rule_dict['number_of_outputs'] >1 %}
+    <select name="output2_expression_field_name" class="selectpicker form-control" id="output2_expression_field_id">
+      {% for expression_id in list_of_expression_IDs %}
+      <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }}</option>
+      {% endfor %}
+    </select>
+    <BR>
+  {% endif %}
+
+  {% if inference_rule_dict['number_of_outputs'] >2 %}
+    <select name="output3_expression_field_name" class="selectpicker form-control" id="output3_expression_field_id">
+      {% for expression_id in list_of_expression_IDs %}
+      <option value="{{ expression_id }}">{{ expression_id }}, {{ dict_of_expression_dicts[expression_id]['latex'] }}</option>
+      {% endfor %}
+    </select>
+    <BR>
+  {% endif %}
+
+
+  <P>{{ form.note_after_step_latex.label }}: {{ form.note_after_step_latex(size=50, maxlength=300, id="note_after") }}
 
   <P><input type="submit" name="submit_button" value="add step">
   </form>

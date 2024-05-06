@@ -1,4 +1,12 @@
-{{ list_of_expression_dicts }}
+<P>For debugging purposes, here is the all the info available:
+
+<!-- { { list_of_expression_dicts } } -->
+
+<ul>
+{% for this_expression_dict in list_of_expression_dicts %}
+<li>{{ this_expression_dict }}</li>
+{% endfor %}
+</ul>
 
 <table border="1" id="expression_table">
   <tr>
@@ -7,6 +15,8 @@
     <th>name</th>
     <th>description</th>
     <th>used in derivation</th>
+    <TH>symbols</TH>
+    <TH>operators</TH>
   </tr>
   {% for expression_dict in list_of_expression_dicts %}
   <tr>
@@ -18,6 +28,8 @@
     <td>{{ expression_dict['latex']}}</td>
     <td>{{ expression_dict['name'] }}</td>
     <td>{{ expression_dict['description'] }}</td>
+    <td>TODO</td>
+    <td>TODO</td>
     <td>TODO</td>
   </tr>
   {% endfor %}

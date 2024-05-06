@@ -1,4 +1,11 @@
-{{ list_of_inference_rule_dicts }}
+<P>For debugging purposes, here is the all the info available:
+<!-- { { list_of_inference_rule_dicts } } -->
+
+<ul>
+{% for this_inference_dict in list_of_inference_dicts %}
+<li>{{ this_inference_dict }}</li>
+{% endfor %}
+</ul>
 
 <table border="1" id="inference_rule_table">
   <tr>

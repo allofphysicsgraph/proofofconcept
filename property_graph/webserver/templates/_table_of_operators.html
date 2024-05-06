@@ -1,4 +1,12 @@
-{{ list_of_operator_dicts }}
+<P>For debugging purposes, here is the all the info available:
+
+<!-- { { list_of_operator_dicts } } -->
+
+<ul>
+{% for this_operator_dict in list_of_operator_dicts %}
+<li>{{ this_operator_dict }}</li>
+{% endfor %}
+</ul>
 
 <table border="1" id="operator_table">
   <tr>

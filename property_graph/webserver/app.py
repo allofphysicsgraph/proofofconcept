@@ -295,7 +295,7 @@ def main():
     >>> main()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: main start " + trace_id)
+    print("[TRACE] func: app/main start " + trace_id)
 
     if request.method == "POST":
         print("request.form = %s", request.form)
@@ -303,7 +303,7 @@ def main():
         # check if the post request has the file part
         if "file" not in request.files:
             print("file not in request files")
-            print("[TRACE] func: main end " + trace_id)
+            print("[TRACE] func: app/main end " + trace_id)
             return redirect(request.url)
         file_obj = request.files["file"]
 
@@ -312,12 +312,12 @@ def main():
         # submit an empty part without filename
         if file_obj.filename == "":
             print("no selected file")
-            print("[TRACE] func: main end " + trace_id)
+            print("[TRACE] func: app/main end " + trace_id)
             return redirect(request.url)
         if "upload_database" in request.form.keys():
             allowed_bool = True
         else:
-            print("[TRACE] func: main end " + trace_id)
+            print("[TRACE] func: app/main end " + trace_id)
             raise Exception("unrecognized button")
 
         if file_obj and allowed_bool:
@@ -337,7 +337,7 @@ def main():
     number_of_symbols = neo4j_query.count_symbols(graphDB_Driver)
     number_of_operators = neo4j_query.count_operators(graphDB_Driver)
 
-    print("[TRACE] func: main end " + trace_id)
+    print("[TRACE] func: app/main end " + trace_id)
     return render_template(
         "site_map.html",
         title="site map",
@@ -359,7 +359,7 @@ def to_add_derivation():
     http://localhost:5000/new_derivation?derivation_name=asdf123&derivation_abstract=4924858miminginasf
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_add_derivation start " + trace_id)
+    print("[TRACE] func: app/to_add_derivation start " + trace_id)
 
     # TODO: check that the name of the derivation doesn't
     #       conflict with existing derivation names
@@ -405,7 +405,7 @@ def to_add_derivation():
             author_name_latex,
         )
 
-        print("[TRACE] func: to_add_derivation end " + trace_id)
+        print("[TRACE] func: app/to_add_derivation end " + trace_id)
         return redirect(
             url_for(
                 "to_add_step_select_inference_rule",
@@ -427,7 +427,7 @@ def to_add_derivation():
         for deriv_dict in list_of_derivation_dicts:
             print("deriv_dict:", deriv_dict)
 
-        print("[TRACE] func: to_add_derivation end " + trace_id)
+        print("[TRACE] func: app/to_add_derivation end " + trace_id)
         return render_template(
             "derivation_create.html",
             form=web_form,
@@ -435,10 +435,10 @@ def to_add_derivation():
             number_of_steps_per_derivation=number_of_steps_per_derivation,
         )
 
-    print("[TRACE] func: to_add_derivation end " + trace_id)
+    print("[TRACE] func: app/to_add_derivation end " + trace_id)
     raise Exception("You definitely shouldn't reach here")
 
-    print("[TRACE] func: to_add_derivation end " + trace_id)
+    print("[TRACE] func: app/to_add_derivation end " + trace_id)
     return "broken"
 
 
@@ -456,7 +456,7 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
     >>> to_review_derivation()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_review_derivation start " + trace_id)
+    print("[TRACE] func: app/to_review_derivation start " + trace_id)
 
     #    if request.method == "POST" and web_form.validate():
 
@@ -464,22 +464,28 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
     print("derivation_dict:", derivation_dict)
 
     # list all steps in this derivation
-    # TODO: instead of a list of steps,
-    #       return a dict of step IDs and associated properties
-    list_of_steps = neo4j_query.get_steps_in_derivation(graphDB_Driver, derivation_id)
+    list_of_step_IDs = neo4j_query.get_steps_in_derivation(graphDB_Driver, derivation_id)
 
-    print("list of steps for", str(derivation_id), ":", list_of_steps)
+    print("list of steps for", str(derivation_id), ":", list_of_step_IDs)
 
-    for this_step_id in list_of_steps:
-        pass
-        # TODO: get list of associated inference rule IDs and properties (as dict)
-        # TODO: get list of associated expressions IDs and properties (as dict)
+    all_steps = {}
+    for this_step_id in list_of_step_IDs:
+        inference_rule_id = neo4j_query.step_has_inference_rule(graphDB_Driver,this_step_id)
+        list_of_input_IDs = neo4j_query.step_has_expressions(graphDB_Driver,this_step_id,HAS_INPUT)
+        list_of_feed_IDs = neo4j_query.step_has_expressions(graphDB_Driver,this_step_id,HAS_FEED)
+        list_of_output_IDs = neo4j_query.step_has_expressions(graphDB_Driver,this_step_id,HAS_OUTPUT)
 
-    print("[TRACE] func: to_review_derivation end " + trace_id)
+        all_steps[this_step_id] = {'inference rule ID': inference_rule_id,
+                                   'list of input IDs': list_of_input_IDs,
+                                   'list of feed IDs': list_of_feed_IDs,
+                                   'list of output IDs': list_of_output_IDs}
+
+    print("[TRACE] func: app/to_review_derivation end " + trace_id)
     return render_template(
         "derivation_review.html",
         derivation_dict=derivation_dict,
-        list_of_steps=list_of_steps,
+        list_of_step_IDs=list_of_step_IDs,
+        all_steps=all_steps,
     )
 
 
@@ -489,15 +495,18 @@ def to_select_step(derivation_id: unique_numeric_id_as_str):
     User wants to delete step or edit step
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_select_step start " + trace_id)
+    print("[TRACE] func: app/to_select_step start " + trace_id)
 
     # get properties for derivation ID
     derivation_dict = neo4j_query.get_derivation_dict(graphDB_Driver, derivation_id)
     print("derivation_dict:", derivation_dict)
 
-    print("[TRACE] func: to_select_step end " + trace_id)
+    list_of_step_IDs_for_this_derivation = neo4j_query.get_steps_in_derivation(graphDB_Driver, derivation_id)
+
+    print("[TRACE] func: app/to_select_step end " + trace_id)
     return render_template(
-        "derivation_select_step.html", derivation_dict=derivation_dict
+        "derivation_select_step.html", derivation_dict=derivation_dict,
+        list_of_step_IDs_for_this_derivation=list_of_step_IDs_for_this_derivation
     )
 
 
@@ -505,7 +514,7 @@ def to_select_step(derivation_id: unique_numeric_id_as_str):
 def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
     """ """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_edit_derivation_metadata start " + trace_id)
+    print("[TRACE] func: app/to_edit_derivation_metadata start " + trace_id)
 
     web_form = SpecifyNewDerivationForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -524,7 +533,7 @@ def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
     derivation_dict = neo4j_query.get_derivation_dict(graphDB_Driver, derivation_id)
     print("derivation_dict:", derivation_dict)
 
-    print("[TRACE] func: to_edit_derivation_metadata end " + trace_id)
+    print("[TRACE] func: app/to_edit_derivation_metadata end " + trace_id)
     return render_template(
         "derivation_edit_metadata.html", form=web_form, derivation_dict=derivation_dict
     )
@@ -538,7 +547,7 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
     What inference rule should be used for this step?
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_add_step_select_inference_rule start " + trace_id)
+    print("[TRACE] func: app/to_add_step_select_inference_rule start " + trace_id)
 
     print("derivation_id: ", derivation_id)
 
@@ -552,7 +561,7 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
         # TODO: get the inference_rule_id from the webform
         # inference_rule_id =
 
-        print("[TRACE] func: to_add_step_select_inference_rule end " + trace_id)
+        print("[TRACE] func: app/to_add_step_select_inference_rule end " + trace_id)
         redirect(
             url_for(
                 "to_add_step_select_expressions",
@@ -581,17 +590,17 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
         derivation_dict = neo4j_query.get_derivation_dict(graphDB_Driver, derivation_id)
         print("derivation_dict:", derivation_dict)
 
-        print("[TRACE] func: to_add_step_select_inference_rule end " + trace_id)
+        print("[TRACE] func: app/to_add_step_select_inference_rule end " + trace_id)
         return render_template(
             "new_step_select_inference_rule.html",
             list_of_inference_rule_dicts=list_of_inference_rule_dicts,
             derivation_dict=derivation_dict,
         )
     # workflow shouldn't reach this condition, but if it does,
-    print("[TRACE] func: to_add_step_select_inference_rule end " + trace_id)
+    print("[TRACE] func: app/to_add_step_select_inference_rule end " + trace_id)
     raise Exception("How did you reach this?")
 
-    print("[TRACE] func: to_add_step_select_inference_rule end " + trace_id)
+    print("[TRACE] func: app/to_add_step_select_inference_rule end " + trace_id)
     return redirect(url_for("to_review_derivation", derivation_id=derivation_id))
 
 
@@ -601,7 +610,7 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     novel expression
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_edit_expression start " + trace_id)
+    print("[TRACE] func: app/to_edit_expression start " + trace_id)
 
     print("expression_id: ", expression_id)
 
@@ -636,7 +645,9 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
-    print("[TRACE] func: to_edit_expression end " + trace_id)
+        #TODO (?)
+
+    print("[TRACE] func: app/to_edit_expression end " + trace_id)
     return render_template(
         "expression_edit.html",
         form=web_form,
@@ -655,7 +666,7 @@ def to_add_expression():
     novel expression
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_add_expression start " + trace_id)
+    print("[TRACE] func: app/to_add_expression start " + trace_id)
 
     web_form = SpecifyNewExpressionForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -692,14 +703,14 @@ def to_add_expression():
             graphDB_Driver
         )
 
-        print("[TRACE] func: to_add_expression end " + trace_id)
+        print("[TRACE] func: app/to_add_expression end " + trace_id)
         return render_template(
             "expression_create.html",
             form=web_form,
             list_of_expression_dicts=list_of_expression_dicts,
         )
 
-    print("[TRACE] func: to_add_expression end " + trace_id)
+    print("[TRACE] func: app/to_add_expression end " + trace_id)
     return redirect(url_for("to_list_expressions"))
 
 
@@ -709,7 +720,7 @@ def to_edit_operator(operator_id: unique_numeric_id_as_str):
     edit operator
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_edit_operator start " + trace_id)
+    print("[TRACE] func: app/to_edit_operator start " + trace_id)
 
     print("expression_id: ", operator_id)
 
@@ -741,7 +752,7 @@ def to_edit_operator(operator_id: unique_numeric_id_as_str):
     operator_dict = neo4j_query.get_operator_dict(graphDB_Driver, operator_id)
     print("operator_dict:", operator_dict)
 
-    print("[TRACE] func: to_edit_operator end " + trace_id)
+    print("[TRACE] func: app/to_edit_operator end " + trace_id)
     return render_template(
         "operator_edit.html", form=web_form, operator_dict=operator_dict
     )
@@ -756,7 +767,7 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
     >>> to_edit_symbol()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_edit_symbol start " + trace_id)
+    print("[TRACE] func: app/to_edit_symbol start " + trace_id)
 
     print("symbol_id: ", symbol_id)
 
@@ -784,7 +795,7 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
     symbol_dict = neo4j_query.get_symbol_dict(graphDB_Driver, symbol_id)
     print("symbol_dict:", symbol_dict)
 
-    print("[TRACE] func: to_edit_symbol end " + trace_id)
+    print("[TRACE] func: app/to_edit_symbol end " + trace_id)
     return render_template("symbol_edit.html", form=web_form, symbol_dict=symbol_dict)
     # return redirect(url_for("to_list_symbols"))
 
@@ -795,7 +806,7 @@ def to_add_symbol():
     novel symbol
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_add_symbol start " + trace_id)
+    print("[TRACE] func: app/to_add_symbol start " + trace_id)
 
     web_form = SpecifyNewSymbolForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -830,14 +841,14 @@ def to_add_symbol():
     else:
         list_of_symbol_dicts = neo4j_query.get_list_of_symbol_dicts(graphDB_Driver)
 
-        print("[TRACE] func: to_add_symbol end " + trace_id)
+        print("[TRACE] func: app/to_add_symbol end " + trace_id)
         return render_template(
             "symbol_create.html",
             form=web_form,
             list_of_symbol_dicts=list_of_symbol_dicts,
         )
 
-    print("[TRACE] func: to_add_symbol end " + trace_id)
+    print("[TRACE] func: app/to_add_symbol end " + trace_id)
     return redirect(url_for("to_list_symbols"))
 
 
@@ -847,7 +858,7 @@ def to_add_operator():
     novel operator
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_add_operator start " + trace_id)
+    print("[TRACE] func: app/to_add_operator start " + trace_id)
 
     web_form = SpecifyNewOperatorForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -882,14 +893,14 @@ def to_add_operator():
     else:
         list_of_operator_dicts = neo4j_query.get_list_of_operator_dicts(graphDB_Driver)
 
-        print("[TRACE] func: to_add_operator end " + trace_id)
+        print("[TRACE] func: app/to_add_operator end " + trace_id)
         return render_template(
             "operator_create.html",
             form=web_form,
             list_of_operator_dicts=list_of_operator_dicts,
         )
 
-    print("[TRACE] func: to_add_operator end " + trace_id)
+    print("[TRACE] func: app/to_add_operator end " + trace_id)
     return redirect(url_for("to_list_operators"))
 
 
@@ -907,7 +918,7 @@ def to_add_step_select_expressions(
     here we assume all expressions already exist
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_add_step_select_expressions start " + trace_id)
+    print("[TRACE] func: app/to_add_step_select_expressions start " + trace_id)
 
     print("derivation_id:", derivation_id)
     print("inference_rule_id:", inference_rule_id)
@@ -1003,7 +1014,7 @@ def to_add_step_select_expressions(
             )
 
     else:
-        print("[TRACE] func: to_add_step_select_expressions end " + trace_id)
+        print("[TRACE] func: app/to_add_step_select_expressions end " + trace_id)
         return render_template(
             "new_step_select_expressions_for_inference_rule.html",
             form=web_form,
@@ -1014,7 +1025,7 @@ def to_add_step_select_expressions(
         )
 
     # TODO: return to referrer
-    print("[TRACE] func: to_add_step_select_expressions end " + trace_id)
+    print("[TRACE] func: app/to_add_step_select_expressions end " + trace_id)
     return redirect(url_for("to_review_derivation", derivation_id=derivation_id))
 
 
@@ -1025,7 +1036,7 @@ def to_add_inference_rule():
 
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_add_inference_rule start " + trace_id)
+    print("[TRACE] func: app/to_add_inference_rule start " + trace_id)
 
     web_form = SpecifyNewInferenceRuleForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -1059,13 +1070,13 @@ def to_add_inference_rule():
                 print("INVALID INPUT: inference rule with that name already exists")
                 # TODO: a notice should be provided to the user
 
-                print("[TRACE] func: to_add_inference_rule end " + trace_id)
+                print("[TRACE] func: app/to_add_inference_rule end " + trace_id)
                 return redirect(url_for("to_add_inference_rule"))
             if inference_rule_latex == inference_rule_dict["latex"]:
                 print("INVALID INPUT: inference rule with that latex already exists")
                 # TODO: a notice should be provided to the user
 
-                print("[TRACE] func: to_add_inference_rule end " + trace_id)
+                print("[TRACE] func: app/to_add_inference_rule end " + trace_id)
                 return redirect(url_for("to_add_inference_rule"))
 
         print("status: No conflicting name or latex detected")
@@ -1093,7 +1104,7 @@ def to_add_inference_rule():
             graphDB_Driver
         )
 
-        print("[TRACE] func: to_add_inference_rule end " + trace_id)
+        print("[TRACE] func: app/to_add_inference_rule end " + trace_id)
         return render_template(
             "inference_rule_create.html",
             form=web_form,
@@ -1102,15 +1113,46 @@ def to_add_inference_rule():
 
     # TODO: return to referrer
 
-    print("[TRACE] func: to_add_inference_rule end " + trace_id)
+    print("[TRACE] func: app/to_add_inference_rule end " + trace_id)
     return redirect(url_for("to_list_inference_rules"))
+
+
+@app.route("/edit_step/<step_id>", methods=["GET", "POST"])
+def to_edit_step(step_id: unique_numeric_id_as_str):
+    """ """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: app/to_edit_step start " + trace_id)
+
+    web_form = SpecifyNewStepForm(request.form)
+    if request.method == "POST" and web_form.validate():
+        print("request.form = ", request.form)
+
+        note_before_step_latex = str(web_form.note_before_step_latex.data).strip()
+        note_after_step_latex = str(web_form.note_after_step_latex.data).strip()
+
+        print('note_before_step_latex',note_before_step_latex)
+        print('note_after_step_latex',note_after_step_latex)
+
+        with graphDB_Driver.session() as session:
+            session.write_transaction(
+                neo4j_query.edit_step_notes,
+                step_id,
+                note_before_step_latex,
+                note_after_step_latex
+            )
+
+
+
+    print("[TRACE] func: app/to_edit_step end " + trace_id)
+    return render_template(
+        "step_edit.html")
 
 
 @app.route("/edit_inference_rule/<inference_rule_id>", methods=["GET", "POST"])
 def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
     """ """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_edit_inference_rule start " + trace_id)
+    print("[TRACE] func: app/to_edit_inference_rule start " + trace_id)
 
     web_form = SpecifyNewInferenceRuleForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -1142,13 +1184,13 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
                 print("INVALID INPUT: inference rule with that name already exists")
                 # TODO: a notice should be provided to the user
 
-                print("[TRACE] func: to_edit_inference_rule end " + trace_id)
+                print("[TRACE] func: app/to_edit_inference_rule end " + trace_id)
                 return redirect(url_for("to_add_inference_rule"))
             if inference_rule_latex == inference_rule_dict["latex"]:
                 print("INVALID INPUT: inference rule with that latex already exists")
                 # TODO: a notice should be provided to the user
 
-                print("[TRACE] func: to_edit_inference_rule end " + trace_id)
+                print("[TRACE] func: app/to_edit_inference_rule end " + trace_id)
                 return redirect(url_for("to_add_inference_rule"))
 
         print("status: No conflicting name or latex detected")
@@ -1172,7 +1214,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
     )
     print("inference_rule_dict", inference_rule_dict)
 
-    print("[TRACE] func: to_edit_inference_rule end " + trace_id)
+    print("[TRACE] func: app/to_edit_inference_rule end " + trace_id)
     return render_template(
         "inference_rule_edit.html",
         form=web_form,
@@ -1187,7 +1229,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
 #     """
 #     >>> to_delete_inference_rule()
 #     """
-#     print("[TRACE] func: to_delete_inference_rule")
+#     print("[TRACE] func: app/to_delete_inference_rule")
 #
 #     # get properties for inference rule
 #     with graphDB_Driver.session() as session:
@@ -1206,7 +1248,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
 # @app.route("/delete_symbol/<symbol_id>", methods=["GET", "POST"])
 # def to_delete_symbol(symbol_id: str):
 #     """ """
-#     print("[TRACE] func: to_delete_symbol")
+#     print("[TRACE] func: app/to_delete_symbol")
 #
 #     return render_template("symbol_delete.html")
 #     # once done creating new, go back to list
@@ -1216,7 +1258,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
 # @app.route("/delete_operator/<operator_id>", methods=["GET", "POST"])
 # def to_delete_operator(operator_id: str):
 #     """ """
-#     print("[TRACE] func: to_delete_operator")
+#     print("[TRACE] func: app/to_delete_operator")
 #
 #     return render_template("operator_delete.html")
 #     # once done creating new, go back to list
@@ -1229,7 +1271,7 @@ def to_query():
     page for submitting Cypher queries
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_query start " + trace_id)
+    print("[TRACE] func: app/to_query start " + trace_id)
 
     web_form = CypherQueryForm(request.form)
 
@@ -1265,10 +1307,10 @@ def to_query():
         except neo4j.exceptions.TransactionError:
             list_of_records = ["probably invalid Cypher query"]
     # else:
-    #     print("[TRACE] func: to_query end " + trace_id)
+    #     print("[TRACE] func: app/to_query end " + trace_id)
     #     raise Exception("Shouldn't get here")
 
-    print("[TRACE] func: to_query end " + trace_id)
+    print("[TRACE] func: app/to_query end " + trace_id)
     return render_template(
         "query.html",
         form=web_form,
@@ -1283,12 +1325,12 @@ def to_list_operators():
     >>> to_list_operators()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_list_operators start " + trace_id)
+    print("[TRACE] func: app/to_list_operators start " + trace_id)
 
     list_of_operator_dicts = neo4j_query.get_list_of_operator_dicts(graphDB_Driver)
     print("list_of_operator_dicts", list_of_operator_dicts)
 
-    print("[TRACE] func: to_list_operators end " + trace_id)
+    print("[TRACE] func: app/to_list_operators end " + trace_id)
     return render_template(
         "list_operators.html", list_of_operator_dicts=list_of_operator_dicts
     )
@@ -1300,12 +1342,12 @@ def to_list_symbols():
     >>> to_list_symbols()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_list_symbols start " + trace_id)
+    print("[TRACE] func: app/to_list_symbols start " + trace_id)
 
     list_of_symbol_dicts = neo4j_query.get_list_of_symbol_dicts(graphDB_Driver)
     print("list_of_symbols", list_of_symbol_dicts)
 
-    print("[TRACE] func: to_list_symbols end " + trace_id)
+    print("[TRACE] func: app/to_list_symbols end " + trace_id)
     return render_template(
         "list_symbols.html", list_of_symbol_dicts=list_of_symbol_dicts
     )
@@ -1317,12 +1359,12 @@ def to_list_expressions():
     >>> to_list_expressions()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_list_expressions start " + trace_id)
+    print("[TRACE] func: app/to_list_expressions start " + trace_id)
 
     list_of_expression_dicts = neo4j_query.get_list_of_expression_dicts(graphDB_Driver)
     print("list_of_expression_dicts", list_of_expression_dicts)
 
-    print("[TRACE] func: to_list_expressions end " + trace_id)
+    print("[TRACE] func: app/to_list_expressions end " + trace_id)
     return render_template(
         "list_expressions.html", list_of_expression_dicts=list_of_expression_dicts
     )
@@ -1336,7 +1378,7 @@ def to_list_derivations():
     >>> to_list_derivations()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_list_derivations start " + trace_id)
+    print("[TRACE] func: app/to_list_derivations start " + trace_id)
 
     # The following is irrelevant since the page doesn't submit anything back to the server
     # if request.method == "POST":
@@ -1345,7 +1387,7 @@ def to_list_derivations():
     #     # TODO: this derivation_id should come from request.form; I just don't know the field yet
     #     derivation_id = "5389624"
     #
-    #     print("[TRACE] func: to_list_derivations end " + trace_id)
+    #     print("[TRACE] func: app/to_list_derivations end " + trace_id)
     #     return redirect(url_for(to_review_derivation, derivation_id))
 
     # https://neo4j.com/docs/python-manual/current/session-api/
@@ -1361,7 +1403,7 @@ def to_list_derivations():
 
     # TODO: convert derivation_dict['abstract_latex'] to HTML using pandoc
 
-    print("[TRACE] func: to_list_derivations end " + trace_id)
+    print("[TRACE] func: app/to_list_derivations end " + trace_id)
     return render_template(
         "list_derivations.html",
         list_of_derivation_dicts=list_of_derivation_dicts,
@@ -1375,7 +1417,7 @@ def to_list_inference_rules():
     >>> to_show_all_inference_rules()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_list_inference_rules start " + trace_id)
+    print("[TRACE] func: app/to_list_inference_rules start " + trace_id)
 
     list_of_inference_rule_dicts = neo4j_query.get_list_of_inference_rule_dicts(
         graphDB_Driver
@@ -1385,7 +1427,7 @@ def to_list_inference_rules():
     for inference_rule_dict in list_of_inference_rule_dicts:
         print(inference_rule_dict)
 
-    print("[TRACE] func: to_list_inference_rules end " + trace_id)
+    print("[TRACE] func: app/to_list_inference_rules end " + trace_id)
     return render_template(
         "list_inference_rules.html",
         list_of_inference_rule_dicts=list_of_inference_rule_dicts,
@@ -1398,7 +1440,7 @@ def to_list_all_nodes():
     show all nodes
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_list_all_nodes start " + trace_id)
+    print("[TRACE] func: app/to_list_all_nodes start " + trace_id)
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
@@ -1406,7 +1448,7 @@ def to_list_all_nodes():
 
     print("dict_all_nodes", dict_all_nodes)
 
-    print("[TRACE] func: to_list_all_nodes end " + trace_id)
+    print("[TRACE] func: app/to_list_all_nodes end " + trace_id)
     return render_template("list_all_nodes.html", dict_all_nodes=dict_all_nodes)
 
 
@@ -1416,14 +1458,14 @@ def to_list_all_edges():
     show all edges
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_list_all_edges start " + trace_id)
+    print("[TRACE] func: app/to_list_all_edges start " + trace_id)
 
     # https://neo4j.com/docs/python-manual/current/session-api/
 
     with graphDB_Driver.session() as session:
         str_to_print = session.read_transaction(neo4j_query.all_edges)
 
-    print("[TRACE] func: to_list_all_edges end " + trace_id)
+    print("[TRACE] func: app/to_list_all_edges end " + trace_id)
     return str_to_print
 
 
@@ -1434,7 +1476,7 @@ def to_delete_graph_content():
     https://neo4j.com/developer/kb/large-delete-transaction-best-practices-in-neo4j/
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_delete_graph_content start " + trace_id)
+    print("[TRACE] func: app/to_delete_graph_content start " + trace_id)
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
@@ -1442,7 +1484,7 @@ def to_delete_graph_content():
             neo4j_query.delete_all_nodes_and_relationships
         )
 
-    print("[TRACE] func: to_delete_graph_content end " + trace_id)
+    print("[TRACE] func: app/to_delete_graph_content end " + trace_id)
     return redirect(url_for("main"))
 
 
@@ -1452,7 +1494,7 @@ def to_export_json():
     TODO: export "graph to JSON" as file via web interface
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_export_json start " + trace_id)
+    print("[TRACE] func: app/to_export_json start " + trace_id)
 
     with graphDB_Driver.session() as session:
         res = session.read_transaction(neo4j_query.apoc_export_json, "pdg.json")
@@ -1461,7 +1503,7 @@ def to_export_json():
     # <Record file='all.json' source='database: nodes(4), rels(0)' format='json' nodes=4 relationships=0 properties=16 time=123 rows=4 batchSize=-1 batches=0 done=True data=None>
 
     # "dumping_grounds" is a variable set in the docker-compose file using variable NEO4J_dbms_directories_import
-    print("[TRACE] func: to_export_json end " + trace_id)
+    print("[TRACE] func: app/to_export_json end " + trace_id)
     return redirect(url_for("static", filename="dumping_grounds/pdg.json"))
 
 
@@ -1480,7 +1522,7 @@ def to_export_cypher():
     # https://stackoverflow.com/a/20894360/1164295
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: to_export_cypher start " + trace_id)
+    print("[TRACE] func: app/to_export_cypher start " + trace_id)
 
     with graphDB_Driver.session() as session:
         res = session.read_transaction(neo4j_query.apoc_export_cypher, "pdg.cypher")
@@ -1488,7 +1530,7 @@ def to_export_cypher():
     print("res=", str(res))
     # <Record file='all.cypher' batches=1 source='database: nodes(4), rels(0)' format='cypher' nodes=4 relationships=0 properties=16 time=13 rows=4 batchSize=20000>
 
-    print("[TRACE] func: to_export_cypher end " + trace_id)
+    print("[TRACE] func: app/to_export_cypher end " + trace_id)
     return redirect(url_for("static", filename="dumping_grounds/pdg.cypher"))
 
 
