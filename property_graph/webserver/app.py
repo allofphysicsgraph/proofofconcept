@@ -464,21 +464,33 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
     print("derivation_dict:", derivation_dict)
 
     # list all steps in this derivation
-    list_of_step_IDs = neo4j_query.get_steps_in_derivation(graphDB_Driver, derivation_id)
+    list_of_step_IDs = neo4j_query.get_steps_in_derivation(
+        graphDB_Driver, derivation_id
+    )
 
     print("list of steps for", str(derivation_id), ":", list_of_step_IDs)
 
     all_steps = {}
     for this_step_id in list_of_step_IDs:
-        inference_rule_id = neo4j_query.step_has_inference_rule(graphDB_Driver,this_step_id)
-        list_of_input_IDs = neo4j_query.step_has_expressions(graphDB_Driver,this_step_id,HAS_INPUT)
-        list_of_feed_IDs = neo4j_query.step_has_expressions(graphDB_Driver,this_step_id,HAS_FEED)
-        list_of_output_IDs = neo4j_query.step_has_expressions(graphDB_Driver,this_step_id,HAS_OUTPUT)
+        inference_rule_id = neo4j_query.step_has_inference_rule(
+            graphDB_Driver, this_step_id
+        )
+        list_of_input_IDs = neo4j_query.step_has_expressions(
+            graphDB_Driver, this_step_id, HAS_INPUT
+        )
+        list_of_feed_IDs = neo4j_query.step_has_expressions(
+            graphDB_Driver, this_step_id, HAS_FEED
+        )
+        list_of_output_IDs = neo4j_query.step_has_expressions(
+            graphDB_Driver, this_step_id, HAS_OUTPUT
+        )
 
-        all_steps[this_step_id] = {'inference rule ID': inference_rule_id,
-                                   'list of input IDs': list_of_input_IDs,
-                                   'list of feed IDs': list_of_feed_IDs,
-                                   'list of output IDs': list_of_output_IDs}
+        all_steps[this_step_id] = {
+            "inference rule ID": inference_rule_id,
+            "list of input IDs": list_of_input_IDs,
+            "list of feed IDs": list_of_feed_IDs,
+            "list of output IDs": list_of_output_IDs,
+        }
 
     print("[TRACE] func: app/to_review_derivation end " + trace_id)
     return render_template(
@@ -501,12 +513,15 @@ def to_select_step(derivation_id: unique_numeric_id_as_str):
     derivation_dict = neo4j_query.get_derivation_dict(graphDB_Driver, derivation_id)
     print("derivation_dict:", derivation_dict)
 
-    list_of_step_IDs_for_this_derivation = neo4j_query.get_steps_in_derivation(graphDB_Driver, derivation_id)
+    list_of_step_IDs_for_this_derivation = neo4j_query.get_steps_in_derivation(
+        graphDB_Driver, derivation_id
+    )
 
     print("[TRACE] func: app/to_select_step end " + trace_id)
     return render_template(
-        "derivation_select_step.html", derivation_dict=derivation_dict,
-        list_of_step_IDs_for_this_derivation=list_of_step_IDs_for_this_derivation
+        "derivation_select_step.html",
+        derivation_dict=derivation_dict,
+        list_of_step_IDs_for_this_derivation=list_of_step_IDs_for_this_derivation,
     )
 
 
@@ -645,7 +660,7 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
-        #TODO (?)
+        # TODO (?)
 
     print("[TRACE] func: app/to_edit_expression end " + trace_id)
     return render_template(
@@ -1130,22 +1145,19 @@ def to_edit_step(step_id: unique_numeric_id_as_str):
         note_before_step_latex = str(web_form.note_before_step_latex.data).strip()
         note_after_step_latex = str(web_form.note_after_step_latex.data).strip()
 
-        print('note_before_step_latex',note_before_step_latex)
-        print('note_after_step_latex',note_after_step_latex)
+        print("note_before_step_latex", note_before_step_latex)
+        print("note_after_step_latex", note_after_step_latex)
 
         with graphDB_Driver.session() as session:
             session.write_transaction(
                 neo4j_query.edit_step_notes,
                 step_id,
                 note_before_step_latex,
-                note_after_step_latex
+                note_after_step_latex,
             )
 
-
-
     print("[TRACE] func: app/to_edit_step end " + trace_id)
-    return render_template(
-        "step_edit.html")
+    return render_template("step_edit.html")
 
 
 @app.route("/edit_inference_rule/<inference_rule_id>", methods=["GET", "POST"])

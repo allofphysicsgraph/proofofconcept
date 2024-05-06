@@ -249,7 +249,9 @@ def get_list_of_inference_rule_dicts(graphDB_Driver):
     get list of inference rules
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/get_list_of_inference_rule_dicts start " + trace_id)
+    print(
+        "[TRACE] func: neo4j_query/get_list_of_inference_rule_dicts start " + trace_id
+    )
 
     list_of_inference_rule_dicts = []
     with graphDB_Driver.session() as session:
@@ -666,7 +668,6 @@ def node_properties(tx, node_type: str, node_id: str) -> dict:
         return None
 
 
-
 def create_new_derivation(
     graphDB_Driver,
     derivation_id,
@@ -694,6 +695,7 @@ def create_new_derivation(
 
     print("[TRACE] func: neo4j_query/create_new_derivation end " + trace_id)
     return
+
 
 def update_derivation_metadata(
     graphDB_Driver, derivation_id, derivation_name_latex, abstract_latex
@@ -791,10 +793,10 @@ def add_inference_rule(
     print("[TRACE] func: neo4j_query/add_inference_rule end " + trace_id)
     return
 
-def edit_step_notes(tx,
-                step_id: str,
-                note_before_step_latex: str,
-                note_after_step_latex: str) -> None:
+
+def edit_step_notes(
+    tx, step_id: str, note_before_step_latex: str, note_after_step_latex: str
+) -> None:
     """
     >>> edit_step_notes()
     """
@@ -805,6 +807,7 @@ def edit_step_notes(tx,
 
     print("[TRACE] func: neo4j_query/edit_step_notes end " + trace_id)
     return
+
 
 def add_step_to_derivation(
     tx,
@@ -871,7 +874,11 @@ def add_expressions_to_step(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/add_expressions_to_step start " + trace_id)
 
-    assert ((len(list_of_input_expression_IDs) > 0) or (len(list_of_feed_expression_IDs) > 0) or (len(list_of_output_expression_IDs) > 0))
+    assert (
+        (len(list_of_input_expression_IDs) > 0)
+        or (len(list_of_feed_expression_IDs) > 0)
+        or (len(list_of_output_expression_IDs) > 0)
+    )
 
     print("list_of_input_expression_IDs", list_of_input_expression_IDs)
     print("list_of_feed_expression_IDs", list_of_feed_expression_IDs)
@@ -1041,11 +1048,15 @@ def delete_all_nodes_and_relationships(tx) -> None:
     >>> delete_all_nodes_and_relationships(tx)
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/delete_all_nodes_and_relationships start " + trace_id)
+    print(
+        "[TRACE] func: neo4j_query/delete_all_nodes_and_relationships start " + trace_id
+    )
 
     tx.run("MATCH (n) DETACH DELETE n")
 
-    print("[TRACE] func: neo4j_query/delete_all_nodes_and_relationships end " + trace_id)
+    print(
+        "[TRACE] func: neo4j_query/delete_all_nodes_and_relationships end " + trace_id
+    )
     return
 
 
@@ -1115,7 +1126,10 @@ def count_number_of_steps_per_derivation(
     >>> count_number_of_steps_per_derivation()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/count_number_of_steps_per_derivation start " + trace_id)
+    print(
+        "[TRACE] func: neo4j_query/count_number_of_steps_per_derivation start "
+        + trace_id
+    )
 
     number_of_steps_per_derivation = {}
     for derivation_dict in list_of_derivation_dicts:
@@ -1127,7 +1141,9 @@ def count_number_of_steps_per_derivation(
             )
         number_of_steps_per_derivation[derivation_dict["id"]] = len(list_of_steps)
 
-    print("[TRACE] func: neo4j_query/count_number_of_steps_per_derivation end " + trace_id)
+    print(
+        "[TRACE] func: neo4j_query/count_number_of_steps_per_derivation end " + trace_id
+    )
     return number_of_steps_per_derivation
 
 
