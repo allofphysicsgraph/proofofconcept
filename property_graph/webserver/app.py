@@ -120,7 +120,9 @@ while not neo4j_available:
 
 try:
     with graphDB_Driver.session() as session:
-        list_of_derivation_IDs = session.write_transaction(neo4j_query.constrain_unique_id)
+        list_of_derivation_IDs = session.write_transaction(
+            neo4j_query.constrain_unique_id
+        )
         if list_of_derivation_IDs:
             number_of_derivations = len(list_of_derivation_IDs)
         else:  # list_of_derivation_IDs was "None"
@@ -355,18 +357,17 @@ def main():
             session.read_transaction(neo4j_query.list_nodes_of_type, "expression")
         )
 
-
     number_of_symbols = None
     with graphDB_Driver.session() as session:
-        number_of_symbols = len(session.read_transaction(neo4j_query.list_nodes_of_type, "symbol"))
-
+        number_of_symbols = len(
+            session.read_transaction(neo4j_query.list_nodes_of_type, "symbol")
+        )
 
     number_of_operators = None
     with graphDB_Driver.session() as session:
         number_of_operators = len(
             session.read_transaction(neo4j_query.list_nodes_of_type, "operator")
         )
-
 
     print("[TRACE] func: app/main end " + trace_id)
     return render_template(
@@ -418,11 +419,11 @@ def to_add_derivation():
         print("       abstract:", abstract_latex)
         author_name_latex = "ben"
 
-
         list_of_derivation_IDs = []
         with graphDB_Driver.session() as session:
-            list_of_derivation_IDs = session.read_transaction(neo4j_query.list_IDs, "derivation")
-
+            list_of_derivation_IDs = session.read_transaction(
+                neo4j_query.list_IDs, "derivation"
+            )
 
         derivation_id = compute.generate_random_id(list_of_derivation_IDs)
         print("derivation_id=", derivation_id)
@@ -430,7 +431,6 @@ def to_add_derivation():
         # as per https://strftime.org/
         # %f = Microsecond as a decimal number, zero-padded on the left.
         now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
-
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
@@ -442,7 +442,6 @@ def to_add_derivation():
                 abstract_latex,
                 author_name_latex,
             )
-
 
         print("[TRACE] func: app/to_add_derivation end " + trace_id)
         return redirect(
@@ -505,13 +504,11 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
 
     #    if request.method == "POST" and web_form.validate():
 
-
     derivation_dict = {}
     with graphDB_Driver.session() as session:
         derivation_dict = session.read_transaction(
             neo4j_query.node_properties, "derivation", derivation_id
         )
-
 
     print("derivation_dict:", derivation_dict)
 
@@ -522,7 +519,6 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
             neo4j_query.steps_in_this_derivation, derivation_id
         )
 
-
     print("list of steps for", str(derivation_id), ":", list_of_step_dicts)
 
     all_steps = {}
@@ -530,17 +526,20 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             inference_rule_dict = session.read_transaction(
-                neo4j_query.step_has_inference_rule, this_step_dict['id'])
+                neo4j_query.step_has_inference_rule, this_step_dict["id"]
+            )
         with graphDB_Driver.session() as session:
             list_of_input_IDs = session.read_transaction(
-                neo4j_query.step_has_expressions, this_step_dict['id'], HAS_INPUT)
+                neo4j_query.step_has_expressions, this_step_dict["id"], HAS_INPUT
+            )
         with graphDB_Driver.session() as session:
             list_of_feed_IDs = session.read_transaction(
-                neo4j_query.step_has_expressions, this_step_dict['id'], HAS_FEED)
+                neo4j_query.step_has_expressions, this_step_dict["id"], HAS_FEED
+            )
         with graphDB_Driver.session() as session:
             list_of_output_IDs = session.read_transaction(
-                neo4j_query.step_has_expressions, this_step_dict['id'], HAS_OUTPUT)
-
+                neo4j_query.step_has_expressions, this_step_dict["id"], HAS_OUTPUT
+            )
 
         all_steps[this_step_id] = {
             "inference rule dict": inference_rule_dict,
@@ -580,7 +579,6 @@ def to_select_step(derivation_id: unique_numeric_id_as_str):
             neo4j_query.steps_in_this_derivation, derivation_id
         )
 
-
     print("[TRACE] func: app/to_select_step end " + trace_id)
     return render_template(
         "derivation_select_step.html",
@@ -604,7 +602,6 @@ def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
         derivation_name_latex = str(web_form.derivation_name_latex.data).strip()
         abstract_latex = str(web_form.abstract_latex.data).strip()
 
-
         with graphDB_Driver.session() as session:
             session.write_transaction(
                 neo4j_query.edit_derivation_metadata,
@@ -612,8 +609,6 @@ def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
                 derivation_name_latex,
                 abstract_latex,
             )
-
-
 
     # get properties for derivation ID
     derivation_dict = {}
@@ -660,7 +655,6 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
             )
         )
     else:
-
         list_of_inference_rule_dicts = []
         with graphDB_Driver.session() as session:
             list_of_inference_rule_dicts = session.read_transaction(
@@ -722,12 +716,11 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
 
     # editing the expression includes modifying the symbols present.
 
-
     list_of_symbol_dicts = []
     with graphDB_Driver.session() as session:
-        list_of_symbol_dicts = session.read_transaction(neo4j_query.list_nodes_of_type, "symbol")
-
-
+        list_of_symbol_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "symbol"
+        )
 
     print("list_of_symbol_dicts=", list_of_symbol_dicts)
 
@@ -744,7 +737,6 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
         list_of_operator_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "operator"
         )
-
 
     print("list_of_operator_dicts=", list_of_operator_dicts)
 
@@ -805,7 +797,9 @@ def to_add_expression():
 
         list_of_expression_IDs = []
         with graphDB_Driver.session() as session:
-            list_of_expression_IDs = session.read_transaction(neo4j_query.list_IDs, "expression")
+            list_of_expression_IDs = session.read_transaction(
+                neo4j_query.list_IDs, "expression"
+            )
         expression_id = compute.generate_random_id(list_of_expression_IDs)
 
         # https://neo4j.com/docs/python-manual/current/session-api/
@@ -821,7 +815,6 @@ def to_add_expression():
             )
 
     else:
-
         list_of_expression_dicts = []
         with graphDB_Driver.session() as session:
             list_of_expression_dicts = session.read_transaction(
@@ -874,7 +867,6 @@ def to_edit_operator(operator_id: unique_numeric_id_as_str):
                 author_name_latex,
             )
 
-
     operator_dict = {}
     # get properties of this operator
     with graphDB_Driver.session() as session:
@@ -926,8 +918,9 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
 
     symbol_dict = {}
     with graphDB_Driver.session() as session:
-        symbol_dict = session.read_transaction(neo4j_query.node_properties, "symbol", symbol_id)
-
+        symbol_dict = session.read_transaction(
+            neo4j_query.node_properties, "symbol", symbol_id
+        )
 
     print("symbol_dict:", symbol_dict)
 
@@ -962,8 +955,9 @@ def to_add_symbol():
 
         list_of_symbol_IDs = []
         with graphDB_Driver.session() as session:
-            list_of_symbol_IDs = session.read_transaction(neo4j_query.list_IDs, "symbol")
-
+            list_of_symbol_IDs = session.read_transaction(
+                neo4j_query.list_IDs, "symbol"
+            )
 
         symbol_id = compute.generate_random_id(list_of_symbol_IDs)
 
@@ -981,7 +975,9 @@ def to_add_symbol():
     else:
         list_of_symbol_dicts = []
         with graphDB_Driver.session() as session:
-            list_of_symbol_dicts = session.read_transaction(neo4j_query.list_nodes_of_type, "symbol")
+            list_of_symbol_dicts = session.read_transaction(
+                neo4j_query.list_nodes_of_type, "symbol"
+            )
 
         print("[TRACE] func: app/to_add_symbol end " + trace_id)
         return render_template(
@@ -1018,11 +1014,11 @@ def to_add_operator():
 
         author_name_latex = "ben"
 
-
         list_of_operator_IDs = []
         with graphDB_Driver.session() as session:
-            list_of_operator_IDs = session.read_transaction(neo4j_query.list_IDs, "operator")
-
+            list_of_operator_IDs = session.read_transaction(
+                neo4j_query.list_IDs, "operator"
+            )
 
         operator_id = compute.generate_random_id(list_of_operator_IDs)
 
@@ -1043,7 +1039,6 @@ def to_add_operator():
             list_of_operator_dicts = session.read_transaction(
                 neo4j_query.list_nodes_of_type, "operator"
             )
-
 
         print("[TRACE] func: app/to_add_operator end " + trace_id)
         return render_template(
@@ -1100,13 +1095,11 @@ def to_add_step_select_expressions(
         )
     print("derivation_dict", derivation_dict)
 
-
     inference_rule_dict = {}
     with graphDB_Driver.session() as session:
         inference_rule_dict = session.read_transaction(
             neo4j_query.node_properties, "inference_rule", inference_rule_id
         )
-
 
     print("inference_rule_dict", inference_rule_dict)
 
@@ -1233,7 +1226,6 @@ def to_add_inference_rule():
                 neo4j_query.list_nodes_of_type, "inference_rule"
             )
 
-
         for inference_rule_dict in list_of_inference_rule_dicts:
             print("inference_rule_name", inference_rule_name)
             print("inference_rule_dict['name']", inference_rule_dict["name"])
@@ -1278,7 +1270,6 @@ def to_add_inference_rule():
             list_of_inference_rule_dicts = session.read_transaction(
                 neo4j_query.list_nodes_of_type, "inference_rule"
             )
-
 
         print("[TRACE] func: app/to_add_inference_rule end " + trace_id)
         return render_template(
@@ -1351,7 +1342,6 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
             list_of_inference_rule_dicts = session.read_transaction(
                 neo4j_query.list_nodes_of_type, "inference_rule"
             )
-
 
         for inference_rule_dict in list_of_inference_rule_dicts:
             print("inference_rule_name", inference_rule_name)
@@ -1506,13 +1496,11 @@ def to_list_operators():
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_list_operators start " + trace_id)
 
-
     list_of_operator_dicts = []
     with graphDB_Driver.session() as session:
         list_of_operator_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "operator"
         )
-
 
     print("list_of_operator_dicts", list_of_operator_dicts)
 
@@ -1532,7 +1520,9 @@ def to_list_symbols():
 
     list_of_symbol_dicts = []
     with graphDB_Driver.session() as session:
-        list_of_symbol_dicts = session.read_transaction(neo4j_query.list_nodes_of_type, "symbol")
+        list_of_symbol_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "symbol"
+        )
     print("list_of_symbols", list_of_symbol_dicts)
 
     print("[TRACE] func: app/to_list_symbols end " + trace_id)
@@ -1592,7 +1582,6 @@ def to_list_derivations():
 
     print("    list_of_derivation_dicts = ", list_of_derivation_dicts)
 
-
     number_of_steps_per_derivation = {}
     for derivation_dict in list_of_derivation_dicts:
         print("derivation_dict", derivation_dict)
@@ -1628,7 +1617,6 @@ def to_list_inference_rules():
         list_of_inference_rule_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "inference_rule"
         )
-
 
     print("inference rule list:")
     for inference_rule_dict in list_of_inference_rule_dicts:

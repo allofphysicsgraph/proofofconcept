@@ -123,7 +123,6 @@ def apoc_export_cypher(tx, output_filename: str):
     return record
 
 
-
 def constrain_unique_id(tx) -> None:
     """
     https://neo4j.com/docs/getting-started/current/cypher-intro/schema/#cypher-intro-constraints
@@ -151,7 +150,6 @@ def constrain_unique_id(tx) -> None:
 
     print("[TRACE] func: neo4j_query/constrain_unique_id end " + trace_id)
     return
-
 
 
 def list_nodes_of_type(tx, node_type: str) -> list:
@@ -182,7 +180,6 @@ def list_nodes_of_type(tx, node_type: str) -> list:
 
     print("[TRACE] func: neo4j_query/list_nodes_of_type end " + trace_id)
     return node_list
-
 
 
 def steps_in_this_derivation(tx, derivation_id: str) -> list:
@@ -230,15 +227,15 @@ def step_has_inference_rule(tx, step_id: str):
     )
     print(type(result))
     inf_rule_result = result.data()
-    print(type(inf_rule_result)) # <class 'list'>
-    print(len(inf_rule_result)) # 0
-    #print(inf_rule_result[0]) # IndexError: list index out of range
-    #print(inf_rule_result['m'])
-    #print(type(inf_rule_result[0]))
-    #print(inf_rule_result[0]['m'])
+    print(type(inf_rule_result))  # <class 'list'>
+    print(len(inf_rule_result))  # 0
+    # print(inf_rule_result[0]) # IndexError: list index out of range
+    # print(inf_rule_result['m'])
+    # print(type(inf_rule_result[0]))
+    # print(inf_rule_result[0]['m'])
 
     print("[TRACE] func: neo4j_query/step_has_inference_rule end " + trace_id)
-    return result['m']
+    return result["m"]
 
 
 def step_has_expressions(tx, step_id: str, expression_type: str) -> list:
@@ -262,7 +259,7 @@ def step_has_expressions(tx, step_id: str, expression_type: str) -> list:
         + expression_type
         + "]->(m:inference_rule) RETURN m"
     ):
-        #print(result.data())
+        # print(result.data())
         list_of_expression_IDs.append(result.data())
 
     print("[TRACE] func: neo4j_query/step_has_expressions end " + trace_id)
@@ -307,9 +304,6 @@ def node_properties(tx, node_type: str, node_id: str) -> dict:
     except UnboundLocalError:
         print("[TRACE] func: neo4j_query/node_properties end " + trace_id)
         return None
-
-
-
 
 
 def add_derivation(
@@ -714,7 +708,6 @@ def user_query(tx, query: str) -> str:
 
     print("[TRACE] func: neo4j_query/user_query end " + trace_id)
     return list_of_records
-
 
 
 # d e f who_are_friends_of(tx, name: str) -> list:
