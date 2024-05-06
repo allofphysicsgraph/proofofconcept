@@ -571,7 +571,7 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
         print("request.form = ", request.form)
 
         # TODO: get user name from Google login
-        author_name = "ben"
+        author_name_latex = "ben"
 
         # TODO: get the inference_rule_id from the webform
         # inference_rule_id =
@@ -592,7 +592,7 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
 
         # Inference rules have the schema
         # [{'id': '7616707',
-        #   'author_name': 'ben',
+        #   'author_name_latex': 'ben',
         #   'name': 'add x to both sides',
         #   'latex': 'ADD _ to BOTH sides'},...]
 

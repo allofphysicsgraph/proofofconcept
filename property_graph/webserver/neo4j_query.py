@@ -452,6 +452,7 @@ def list_nodes_of_type(tx, node_type: str) -> list:
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/list_nodes_of_type start " + trace_id)
 
+    # must be one of these node types. See also 'schema.log' file
     assert node_type in [
         "derivation",
         "inference_rule",
@@ -743,10 +744,10 @@ def add_derivation(
 
     result = tx.run(
         "CREATE (:derivation "
-        '{name:"' + derivation_name_latex + '",'
-        ' abstract:"' + derivation_abstract_latex + '",'
+        '{name_latex:"' + derivation_name_latex + '",'
+        ' abstract_latex:"' + derivation_abstract_latex + '",'
         ' created_datetime:"' + now_str + '",'
-        ' author_name:"' + author_name_latex + '",'
+        ' author_name_latex:"' + author_name_latex + '",'
         ' id:"' + derivation_id + '"})'
     )
 
@@ -781,12 +782,12 @@ def add_inference_rule(
 
     result = tx.run(
         "CREATE (a:inference_rule "
-        '{name:"' + inference_rule_name + '", '
+        '{name_latex:"' + inference_rule_name + '", '
         ' latex:"' + inference_rule_latex + '", '
-        ' author_name:"' + author_name_latex + '", '
+        ' author_name_latex:"' + author_name_latex + '", '
         ' id:"' + inference_rule_id + '", '
         " number_of_inputs:" + str(number_of_inputs) + ", "
-        " number_of_feeds:" + str(number_of_feeds) + ", "
+        " number_of feeds:" + str(number_of_feeds) + ", "
         " number_of_outputs:" + str(number_of_outputs) + "})"
     )
 
@@ -803,7 +804,7 @@ def edit_step_notes(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/edit_step_notes start " + trace_id)
 
-    print("[WARN]: NO EDIT TO NEO4J graph was made :(")
+    print("[WARN]: NO EDIT TO NEO4J graph was made :(  -- TODO")
 
     print("[TRACE] func: neo4j_query/edit_step_notes end " + trace_id)
     return
@@ -833,10 +834,10 @@ def add_step_to_derivation(
     print("insert step with id; this works")
     result = tx.run(
         'MERGE (:step {id:"' + step_id + '", '
-        'author_name:"' + author_name_latex + '", '
-        'note_before_step:"' + note_before_step_latex + '", '
+        'author_name_latex:"' + author_name_latex + '", '
+        'note_before_step_latex:"' + note_before_step_latex + '", '
         'created_datetime:"' + now_str + '", '
-        'note_after_step:"' + note_after_step_latex + '"})'
+        'note_after_step_latex:"' + note_after_step_latex + '"})'
     )
 
     print("step with edge", derivation_id)
@@ -933,10 +934,10 @@ def add_expression(
 
     result = tx.run(
         "CREATE (a:expression "
-        '{name:"' + str(expression_name) + '", '
+        '{name_latex:"' + str(expression_name) + '", '
         ' latex:"' + str(expression_latex) + '", '
-        ' description:"' + str(expression_description) + '", '
-        ' author_name:"' + str(author_name_latex) + '", '
+        ' description_latex:"' + str(expression_description) + '", '
+        ' author_name_latex:"' + str(author_name_latex) + '", '
         ' id:"' + str(expression_id) + '"})'
     )
 
@@ -962,9 +963,9 @@ def add_symbol(
 
     result = tx.run(
         "CREATE (:symbol "
-        '{name:"' + str(symbol_name) + '", '
+        '{name_latex:"' + str(symbol_name) + '", '
         ' latex:"' + str(symbol_latex) + '", '
-        ' description:"' + str(symbol_description) + '", '
+        ' description_latex:"' + str(symbol_description) + '", '
         ' author_name_latex:"' + str(author_name_latex) + '", '
         ' id:"' + str(symbol_id) + '"})'
     )
@@ -991,10 +992,10 @@ def add_operator(
 
     result = tx.run(
         "CREATE (a:operator "
-        '{name:"' + str(operator_name) + '", '
+        '{name_latex:"' + str(operator_name) + '", '
         ' latex:"' + str(operator_latex) + '", '
-        ' description:"' + str(operator_description) + '", '
-        ' author_name:"' + str(author_name_latex) + '", '
+        ' description_latex:"' + str(operator_description) + '", '
+        ' author_name_latex:"' + str(author_name_latex) + '", '
         ' id:"' + str(operator_id) + '"})'
     )
 
@@ -1022,14 +1023,14 @@ def all_edges(tx) -> str:
 
     # https://stackoverflow.com/questions/31485802/how-to-return-relationship-type-with-neo4js-cypher-queries
     print("proper return:")
-    for record in tx.run("MATCH (n)-[r]->(m) RETURN n.name,type(r),m.name"):
+    for record in tx.run("MATCH (n)-[r]->(m) RETURN n.name_latex,type(r),m.name_latex"):
         print("record", record)
         str_to_print += (
-            str(record["n.name"])
+            str(record["n.name_latex"])
             + "-"
             + str(record["type(r)"])
             + "->"
-            + str(record["m.name"])
+            + str(record["m.name_latex"])
             + "\n"
         )
 

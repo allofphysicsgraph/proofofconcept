@@ -2,49 +2,49 @@ schema
 
 
 node type: 'derivation'
-properties={'author_name': str,        # 'jane doe'
-            'name': str,               # 'mass energy conservation'
-            'id': str,                 # '2627576'
-            'abstract': str,           # 'explanation goes here'
-            'created_datetime': str}   # '2022-11-25_02-12-22-905120'
+properties={'author_name_latex': str,    # 'jane doe'
+            'name_latex': str,           # 'mass energy conservation'
+            'id': str,                   # '2627576'
+            'abstract_latex': str,       # 'explanation goes here'
+            'created_datetime': str}     # '2022-11-25_02-12-22-905120'
 
 node type: 'step'
-properties={'author_name': str,        # 'jane doe'
-            'note_before_step': '',    # 'explanation goes here'
-            'note_after_step': '',     # 'explanation goes here'
-            'id': str,                 # '2627576'
-            'created_datetime': str}   # '2022-11-25_02-12-22-905120'
+properties={'author_name_latex': str,     # 'jane doe'
+            'note_before_step_latex': '', # 'explanation goes here'
+            'note_after_step_latex': '',  # 'explanation goes here'
+            'id': str,                    # '2627576'
+            'created_datetime': str}      # '2022-11-25_02-12-22-905120'
 
 
 node type: 'symbol'
-properties={'author_name_latex': str   # 'jane doe'
-            'name': str,               # 'speed of an unladen swallow'
-            'description': str,        # 'explanation goes here'
-            'id': str,                 # '9424534'
-            'latex': str}              # '\alpha'
+properties={'author_name_latex': str      # 'jane doe'
+            'name_latex': str,            # 'speed of an unladen swallow'
+            'description_latex': str,     # 'explanation goes here'
+            'id': str,                    # '9424534'
+            'latex': str}                 # '\alpha'
 
 node type: 'inference_rule'
-properties={'author_name': str         # 'jane doe'
-            'number_of_inputs': int,   # 1
-            'number_of_outputs': int,  # 1
-            'number_of_feeds': int,    # 1
-            'name': str,               # 'add x to both sides', 
-            'id': str,                 # '3064475', 
-            'latex': str}              # 'ADD _ to BOTH sides'
+properties={'author_name_latex': str,     # 'jane doe'
+            'number_of_inputs': int,      # 1
+            'number_of_outputs': int,     # 1
+            'number_of_feeds': int,       # 1
+            'name_latex': str,            # 'add x to both sides', 
+            'id': str,                    # '3064475', 
+            'latex': str}                 # 'ADD _ to BOTH sides'
 
 node type: 'expression'
-properties={'author_name': str         # 'jane doe'
-            'name': str,               # 'name of expression'
-            'description': str,        # 'explanation goes here'
-            'id': str,                 # '9424534'
-            'latex': str}              # 'a = b'
+properties={'author_name_latex': str,     # 'jane doe'
+            'name_latex': str,            # 'name of expression'
+            'description_latex': str,     # 'explanation goes here'
+            'id': str,                    # '9424534'
+            'latex': str}                 # 'a = b'
 
 node type: 'operator'
-properties={'author_name': str   # 'jane doe'
-            'name': str,         # 'equality', 
-            'description': str,  # 'explanation goes here'
-            'id': str,           # '5607606', 
-            'latex': str}        # '+'
+properties={'author_name_latex': str,     # 'jane doe'
+            'name_latex': str,            # 'equality', 
+            'description_latex': str,     # 'explanation goes here'
+            'id': str,                    # '5607606', 
+            'latex': str}                 # '+'
 
 
 
@@ -69,3 +69,14 @@ Node element_id='7'
 Node element_id='1' 
 type='HAS_INFERENCE_RULE'
 Node element_id='6' 
+
+
+
+
+Although node properties are key-value pairs and the keys could be any string, the Cypher style guide
+https://neo4j.com/docs/cypher-manual/current/styleguide/
+recommends
+"Avoid having to use back-ticks to escape characters and keywords.""
+If the key were "name (latex)" that would be valid, but for queries it would need to use backticks:
+`name (latex)`
+To avoid backticks I'm using underscores.
