@@ -48,15 +48,21 @@
     {% endfor %}
   </table>
 
-<P>Caveat: the next step is to associate the inference rule with expressions, and the expressions have to already exist in the database. 
+  <P>Caveat: the next step is to associate the inference rule with expressions, and the expressions have to already exist in the database. 
 
 </fieldset>
 
-<P>
-  If you don't see the inference rule you need, <BR>
-    <a href="{{ url_for('to_add_inference_rule') }}?referrer=derivationID_{{derivation_dict['id']}}">
-      Create a new inference rule</a>
-</P>
+<fieldset>
+  <legend>
+    <H2>Create new inference rule</h2>
+  </legend>
+
+  <P>
+    If you don't see the inference rule you need, <BR>
+      <a href="{{ url_for('to_add_inference_rule') }}?referrer=derivationID_{{derivation_dict['id']}}">
+        Create a new inference rule</a>
+  </P>
+</fieldset>
 
 <script>
 function select_infrule() {

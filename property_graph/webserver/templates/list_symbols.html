@@ -19,11 +19,13 @@
 
 </fieldset>
 
-<P>Actions:</P>
-<UL>
-  <LI><a href="{{ url_for('to_add_symbol') }}?referrer=list_symbols">add new symbol</a></LI>
-</UL>
+<fieldset>
+<legend>
+  <H2>Actions for Symbols</h2>
+</legend>
+<a href="{{ url_for('to_add_symbol') }}?referrer=list_symbols">add new symbol</a>
 
+</fieldset>
 <script>
 function select_symbol() {
   // Declare variables

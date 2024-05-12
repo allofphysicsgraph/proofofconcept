@@ -225,15 +225,15 @@ def step_has_inference_rule(tx, step_id: str):
         + step_id
         + '"})-[r:HAS_INFERENCE_RULE]->(m:inference_rule) RETURN m'
     )
-    #print(type(result)) # don't access the `result` variable more than once, as mentioned on https://neo4j.com/docs/python-manual/current/transformers/
+    # print(type(result)) # don't access the `result` variable more than once, as mentioned on https://neo4j.com/docs/python-manual/current/transformers/
     inf_rule_list_of_dicts = result.data()
-    #print(type(inf_rule_result))  # <class 'list'>
-    #print(len(inf_rule_result))  # 0
-    #print(inf_rule_result)
-    #[{'m': {'name_latex': 'add x to both sides', 'number_of_outputs': 1, 'number_of_inputs': 1, 'author_name_latex': 'ben', 'number_of_feeds': 1, 'id': '8818915', 'latex': 'add $1 to both sides of Eq $2 to get Eq $3'}}]
+    # print(type(inf_rule_result))  # <class 'list'>
+    # print(len(inf_rule_result))  # 0
+    # print(inf_rule_result)
+    # [{'m': {'name_latex': 'add x to both sides', 'number_of_outputs': 1, 'number_of_inputs': 1, 'author_name_latex': 'ben', 'number_of_feeds': 1, 'id': '8818915', 'latex': 'add $1 to both sides of Eq $2 to get Eq $3'}}]
 
     print("[TRACE] func: neo4j_query/step_has_inference_rule end " + trace_id)
-    return inf_rule_list_of_dicts[0]['m']
+    return inf_rule_list_of_dicts[0]["m"]
 
 
 def step_has_expressions(tx, step_id: str, expression_type: str) -> list:
@@ -390,9 +390,36 @@ def edit_step_notes(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/edit_step_notes start " + trace_id)
 
-    print("[WARN]: NO EDIT TO NEO4J graph was made :(  -- TODO")
+    result = tx.run(
+        'MERGE (s:step {id:"' + str(step_id) + '", '
+        'SET s ={id:"' + str(step_id) + '", '
+                'note_before_step_latex: "'+ str(note_before_step_latex) +'", '
+                'note_before_step_latex: "'+ str(note_after_step_latex) +'"}'
+    )
 
     print("[TRACE] func: neo4j_query/edit_step_notes end " + trace_id)
+    return
+
+
+def edit_derivation_metadata(
+    tx, derivation_id: str, derivation_name_latex: str, abstract_latex: str
+) -> None:
+    """
+    >>> edit_derivation_metadata()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/edit_derivation_metadata start " + trace_id)
+
+    result = tx.run(
+        'MERGE (d:derivation {id:"' + str(derivation_id) + '"})'
+        'SET d = {id: "' + str(derivation_id) + '",'
+                 'derivation_name_latex: "'+str(derivation_name_latex)+'",'
+                 'abstract_latex: "'+ str(abstract_latex) +'"}'
+    )
+        #'SET d.derivation_name_latex = "'+ str(derivation_name_latex) +'", '
+        #'SET d.abstract_latex = "'+ str(abstract_latex) +'"})'
+
+    print("[TRACE] func: neo4j_query/edit_derivation_metadata end " + trace_id)
     return
 
 
@@ -425,6 +452,7 @@ def add_step_to_derivation(
         'created_datetime:"' + now_str + '", '
         'note_after_step_latex:"' + note_after_step_latex + '"})'
     )
+    print(result.data())
 
     print("step with edge", derivation_id)
     result = tx.run(
@@ -432,6 +460,7 @@ def add_step_to_derivation(
         'WHERE a.id="' + str(derivation_id) + '" AND b.id="' + str(step_id) + '" '
         "MERGE (a)-[r:HAS_STEP {sequence_index: '1'}]->(b) RETURN r"
     )
+    # TODO: sequence index has to increment (!)
 
     print("inference_rule_id", inference_rule_id)
     result = tx.run(
@@ -439,6 +468,7 @@ def add_step_to_derivation(
         'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(inference_rule_id) + '"'
         "MERGE (a)-[:HAS_INFERENCE_RULE]->(b)"
     )
+    print(result.data())
 
     print("[TRACE] func: neo4j_query/add_step_to_derivation end " + trace_id)
     return

@@ -14,7 +14,7 @@
 
 <P>Which step to edit or delete:
 
-{{ list_of_step_dicts_for_this_derivation }}
+{{ list_of_step_dicts }}
 
 <table border="1" id="expression_table">
   <tr>
@@ -24,11 +24,11 @@
     <th>feed(s)</th>
     <TH>output(s)</TH>
   </tr>
-  {% for step_ID, step_dict in all_steps.items() %}
+  {% for step_dict in list_of_step_dicts %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_expression', expression_id=expression_dict['id'] ) }}">
-          {{ step_ID }}
+          <!--{ { step_ID } }-->
       </a>
     </td>
     <td>{{ step_dict['inference rule ID']}}</td>

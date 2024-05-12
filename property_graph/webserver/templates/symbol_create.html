@@ -13,12 +13,13 @@
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
     <P>
-      {{ form.symbol_latex.label}}: {{ form.symbol_latex(size=50, minlength=1, maxlength=1000) }} <BR/>
+      {{ form.symbol_latex.label}} (required): {{ form.symbol_latex(size=50, minlength=1, maxlength=1000) }} <BR/>
       &nbsp;<BR/>
-      {{form.symbol_name.label }}: {{ form.symbol_name(size=50, maxlength=1000) }}<BR/>
+      {{form.symbol_name.label }} (optional): {{ form.symbol_name(size=50, maxlength=1000) }}<BR/>
       &nbsp;<BR/>
-      {{form.symbol_description.label }}: {{ form.symbol_description(size=50, maxlength=1000) }}<BR/>
+      {{form.symbol_description.label }} (optional): {{ form.symbol_description(size=50, maxlength=1000) }}<BR/>
       &nbsp;<BR/>
+      TODO: dimensions<BR>
       <input type="submit" value="add symbol">
     </P>
   </form>

@@ -9,15 +9,15 @@
 
 <fieldset>
   <legend>
-    <H2>Edit Metadata for Derivation {{ derivation_dict['name_latex'] }}</h2>
+    <H2>Edit name and/or abstract for Derivation {{ derivation_dict['name_latex'] }}</h2>
   </legend>
 
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
     <P>
-      {{ form.derivation_name_latex.label}}: {{ form.derivation_name_latex(size=50, maxlength=1000, value=derivation_dict['name']) }} <BR/>
+      {{ form.derivation_name_latex.label}}: was {{ derivation_dict['name_latex'] }}; reset to {{ form.derivation_name_latex(size=50, maxlength=1000, value=derivation_dict['name_latex']) }} <BR/>
       &nbsp;<BR/>
-      {{form.abstract_latex.label }}: {{ form.abstract_latex(size=50, maxlength=1000, value=derivation_dict['abstract']) }}<BR/>
+      {{form.abstract_latex.label }}: was {{ derivation_dict['abstract_latex'] }}; reset to {{ form.abstract_latex(size=50, maxlength=1000, value=derivation_dict['abstract_latex']) }}<BR/>
       &nbsp;<BR/>
       <input type="submit" value="edit derivation metadata">
     </P>

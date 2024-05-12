@@ -6,31 +6,36 @@
 </P>
 
 <fieldset>
-<legend>
-  <H2>List of Derivations</h2>
-</legend>
+  <legend>
+    <H2>List of Derivations</h2>
+  </legend>
 
 
-<P>To select a derivation click on a link in the table.
+  <P>To select a derivation click on a link in the table.
 
-<P>To filter the table of derivations enter a derivation ID or string in the form field.<BR>
-  SEARCH NOT WORKING as of 2023-12-17
-<form method="post" action="">
-<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
-<input type="text" id="derivation_input" onkeyup="select_derivation()" placeholder="Select derivation to review">
-<!-- <button type="submit" value="deriv">Search</button> -->
-</form>
+  <P>To filter the table of derivations enter a derivation ID or string in the form field.<BR>
+    SEARCH NOT WORKING as of 2023-12-17
+  <form method="post" action="">
+    <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
+    <input type="text" id="derivation_input" onkeyup="select_derivation()" placeholder="Select derivation to review">
+    <!-- <button type="submit" value="deriv">Search</button> -->
+  </form>
 
-<P>The derivation ID below links to a page where you can review that derivation.
+  <P>The derivation ID below links to a page where you can review that derivation.
 
-<P>{% include '_table_of_derivations.html' %}
+  <P>{% include '_table_of_derivations.html' %}
 
 </fieldset>
 
-<P>Actions:</P>
-<UL>
-  <LI><a href="{{ url_for('to_add_derivation') }}?referrer=main">add new derivation</a>        (status: works)</LI>
-</UL>
+<fieldset>
+  <legend>
+    <H2>Actions for Derivations</h2>
+  </legend>
+
+  <UL>
+    <LI><a href="{{ url_for('to_add_derivation') }}?referrer=main">add new derivation</a>        (status: works)</LI>
+  </UL>
+</fieldset>
 
 <script>
 function select_derivation() {
