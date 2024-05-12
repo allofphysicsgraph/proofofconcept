@@ -9,15 +9,13 @@
 
 <P> Derivation dictionary: {{ derivation_dict }}
 
-<P> List of steps: <!--{ { list_of_steps } } -->
+<P> List of steps: {{ all_steps }}
 
 <ul>
 {% for this_step in list_of_steps %}
 <li>{{ this_step }}</li>
 {% endfor %}
 </ul>
-
-{{ all_steps }}
 
 <P>TODO: display graph of derivation (e.g., graphviz)
 

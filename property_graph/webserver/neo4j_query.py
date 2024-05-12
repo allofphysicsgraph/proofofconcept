@@ -225,17 +225,15 @@ def step_has_inference_rule(tx, step_id: str):
         + step_id
         + '"})-[r:HAS_INFERENCE_RULE]->(m:inference_rule) RETURN m'
     )
-    print(type(result))
-    inf_rule_result = result.data()
-    print(type(inf_rule_result))  # <class 'list'>
-    print(len(inf_rule_result))  # 0
-    # print(inf_rule_result[0]) # IndexError: list index out of range
-    # print(inf_rule_result['m'])
-    # print(type(inf_rule_result[0]))
-    # print(inf_rule_result[0]['m'])
+    #print(type(result)) # don't access the `result` variable more than once, as mentioned on https://neo4j.com/docs/python-manual/current/transformers/
+    inf_rule_list_of_dicts = result.data()
+    #print(type(inf_rule_result))  # <class 'list'>
+    #print(len(inf_rule_result))  # 0
+    #print(inf_rule_result)
+    #[{'m': {'name_latex': 'add x to both sides', 'number_of_outputs': 1, 'number_of_inputs': 1, 'author_name_latex': 'ben', 'number_of_feeds': 1, 'id': '8818915', 'latex': 'add $1 to both sides of Eq $2 to get Eq $3'}}]
 
     print("[TRACE] func: neo4j_query/step_has_inference_rule end " + trace_id)
-    return result["m"]
+    return inf_rule_list_of_dicts[0]['m']
 
 
 def step_has_expressions(tx, step_id: str, expression_type: str) -> list:

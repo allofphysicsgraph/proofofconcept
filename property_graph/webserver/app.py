@@ -530,18 +530,18 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
             )
         with graphDB_Driver.session() as session:
             list_of_input_IDs = session.read_transaction(
-                neo4j_query.step_has_expressions, this_step_dict["id"], HAS_INPUT
+                neo4j_query.step_has_expressions, this_step_dict["id"], "HAS_INPUT"
             )
         with graphDB_Driver.session() as session:
             list_of_feed_IDs = session.read_transaction(
-                neo4j_query.step_has_expressions, this_step_dict["id"], HAS_FEED
+                neo4j_query.step_has_expressions, this_step_dict["id"], "HAS_FEED"
             )
         with graphDB_Driver.session() as session:
             list_of_output_IDs = session.read_transaction(
-                neo4j_query.step_has_expressions, this_step_dict["id"], HAS_OUTPUT
+                neo4j_query.step_has_expressions, this_step_dict["id"], "HAS_OUTPUT"
             )
 
-        all_steps[this_step_id] = {
+        all_steps[this_step_dict["id"]] = {
             "inference rule dict": inference_rule_dict,
             "list of input IDs": list_of_input_IDs,
             "list of feed IDs": list_of_feed_IDs,
@@ -552,7 +552,6 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
     return render_template(
         "derivation_review.html",
         derivation_dict=derivation_dict,
-        list_of_step_IDs=list_of_step_IDs,
         all_steps=all_steps,
     )
 
