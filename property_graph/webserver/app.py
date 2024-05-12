@@ -304,7 +304,8 @@ class SpecifyNewOperationForm(FlaskForm):
     )
     operation_number_of_arguments = IntegerField(
         "number of arguments (positive integer)",
-        validators=[validators.InputRequired(), validators.NumberRange(min=1, max=10)],)
+        validators=[validators.InputRequired(), validators.NumberRange(min=1, max=10)],
+    )
 
 
 class CypherQueryForm(FlaskForm):
@@ -642,7 +643,7 @@ def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
                 derivation_name_latex,
                 abstract_latex,
                 now_str,
-                author_name_latex
+                author_name_latex,
             )
 
     # get properties for derivation ID
@@ -1657,12 +1658,15 @@ def to_list_inference_rules():
     for this_inference_rule_dict in list_of_inference_rule_dicts:
         list_of_derivations_that_use_this_inference_rule_id = []
         with graphDB_Driver.session() as session:
-            list_of_derivations_that_use_this_inference_rule_id = session.read_transaction(
-                neo4j_query.derivations_that_use_inference_rule, this_inference_rule_dict['id']
+            list_of_derivations_that_use_this_inference_rule_id = (
+                session.read_transaction(
+                    neo4j_query.derivations_that_use_inference_rule,
+                    this_inference_rule_dict["id"],
+                )
             )
-        list_of_derivations_used_per_inference_rule[this_inference_rule_dict['id']] = list_of_derivations_that_use_this_inference_rule_id
-
-
+        list_of_derivations_used_per_inference_rule[
+            this_inference_rule_dict["id"]
+        ] = list_of_derivations_that_use_this_inference_rule_id
 
     print("inference rule list:")
     for inference_rule_dict in list_of_inference_rule_dicts:
@@ -1672,7 +1676,7 @@ def to_list_inference_rules():
     return render_template(
         "list_inference_rules.html",
         list_of_inference_rule_dicts=list_of_inference_rule_dicts,
-        list_of_derivations_used_per_inference_rule=list_of_derivations_used_per_inference_rule
+        list_of_derivations_used_per_inference_rule=list_of_derivations_used_per_inference_rule,
     )
 
 

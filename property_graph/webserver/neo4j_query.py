@@ -181,6 +181,7 @@ def list_nodes_of_type(tx, node_type: str) -> list:
     print("[TRACE] func: neo4j_query/list_nodes_of_type end " + trace_id)
     return node_list
 
+
 def derivations_that_use_inference_rule(tx, inference_rule_id: str) -> list:
     """
     which derivations contain this inference rule?
@@ -188,16 +189,23 @@ def derivations_that_use_inference_rule(tx, inference_rule_id: str) -> list:
     >>> derivations_that_use_inference_rule()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/derivations_that_use_inference_rule start " + trace_id)
+    print(
+        "[TRACE] func: neo4j_query/derivations_that_use_inference_rule start "
+        + trace_id
+    )
 
     list_of_derivations = []
 
     for record in tx.run(
-        "MATCH (d:derivation), (s:step), (i:inference_rule) WHERE i.id = "+str(inference_rule_id)+" RETURN d"):
-        list_of_derivations.append(record.data()["d"])    
+        "MATCH (d:derivation), (s:step), (i:inference_rule) WHERE i.id = "
+        + str(inference_rule_id)
+        + " RETURN d"
+    ):
+        list_of_derivations.append(record.data()["d"])
 
     print("[TRACE] func: neo4j_query/steps_in_this_derivation end " + trace_id)
     return list_of_derivations
+
 
 def expressions_that_use_symbol(tx, symbol_id: str) -> list:
     """
@@ -211,11 +219,13 @@ def expressions_that_use_symbol(tx, symbol_id: str) -> list:
     list_of_expressions = []
 
     for record in tx.run(
-        "MATCH (e:expression), (s:symbol) WHERE s.id = "+str(symbol_id)+" RETURN e"):
-        list_of_expressions.append(record.data()["e"])    
+        "MATCH (e:expression), (s:symbol) WHERE s.id = " + str(symbol_id) + " RETURN e"
+    ):
+        list_of_expressions.append(record.data()["e"])
 
     print("[TRACE] func: neo4j_query/expressions_that_use_symbol end " + trace_id)
     return list_of_expressions
+
 
 def expressions_that_use_operation(tx, operation_id: str) -> list:
     """
@@ -229,11 +239,15 @@ def expressions_that_use_operation(tx, operation_id: str) -> list:
     list_of_expressions = []
 
     for record in tx.run(
-        "MATCH (e:expression), (op:operation) WHERE op.id = "+str(operation_id)+" RETURN e"):
-        list_of_expressions.append(record.data()["e"])    
+        "MATCH (e:expression), (op:operation) WHERE op.id = "
+        + str(operation_id)
+        + " RETURN e"
+    ):
+        list_of_expressions.append(record.data()["e"])
 
     print("[TRACE] func: neo4j_query/expressions_that_use_operation end " + trace_id)
     return list_of_expressions
+
 
 def steps_in_this_derivation(tx, derivation_id: str) -> list:
     """
@@ -455,7 +469,12 @@ def edit_step_notes(
 
 
 def edit_derivation_metadata(
-    tx, derivation_id: str, derivation_name_latex: str, abstract_latex: str,now_str:str,author_name_latex:str
+    tx,
+    derivation_id: str,
+    derivation_name_latex: str,
+    abstract_latex: str,
+    now_str: str,
+    author_name_latex: str,
 ) -> None:
     """
     >>> edit_derivation_metadata()
