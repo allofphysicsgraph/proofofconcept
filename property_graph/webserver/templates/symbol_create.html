@@ -18,8 +18,66 @@
       {{form.symbol_name.label }} (optional): {{ form.symbol_name(size=50, maxlength=1000) }}<BR/>
       &nbsp;<BR/>
       {{form.symbol_description.label }} (optional): {{ form.symbol_description(size=50, maxlength=1000) }}<BR/>
+
+{{ new_symbol_form.symbol_scope.label }}: {{ new_symbol_form.symbol_scope }}<BR/>
+          {{ new_symbol_form.symbol_reference.label }}(<small><em>optional</em></small>): {{ new_symbol_form.symbol_reference }}
+      
       &nbsp;<BR/>
-      TODO: dimensions<BR>
+          <!-- https://en.wikipedia.org/wiki/International_System_of_Quantities#Base_quantities -->
+          <a href="https://www.ldeo.columbia.edu/~martins/hydro/case_studies/units_dimensions.html">dimensions</a>: 
+          <span class="input-group-addon">length</span>
+          <select name="dimension_length" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">time</span>
+          <select name="dimension_time" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">mass</span>
+          <select name="dimension_mass" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">temperature</span>
+          <select name="dimension_temperature" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">electric charge</span>
+          <select name="dimension_electric_charge" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">amount of substance</span>
+          <select name="dimension_amount_of_substance" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">luminous intensity</span>
+          <select name="dimension_luminous_intensity" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <BR/>
+          {{ new_symbol_form.symbol_radio_domain.label}}: {{ new_symbol_form.symbol_radio_domain }}
+
+
       <input type="submit" value="add symbol">
     </P>
   </form>

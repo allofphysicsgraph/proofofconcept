@@ -2,7 +2,7 @@
 <!-- { { list_of_inference_rule_dicts } } -->
 
 <ul>
-{% for this_inference_dict in list_of_inference_dicts %}
+{% for this_inference_dict in list_of_inference_rule_dicts %}
 <li>{{ this_inference_dict }}</li>
 {% endfor %}
 </ul>
@@ -15,7 +15,7 @@
     <th>input count</th>
     <th>feed count</th>
     <th>output count</th>
-    <th>used in</th>
+    <th>used in derivation</th>
   </tr>
   {% for inference_rule_dict in list_of_inference_rule_dicts %}
   <tr>

@@ -1,0 +1,44 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=edit_operation">main page</a>
+</P>
+
+{{ operation_dict }}
+
+<fieldset>
+  <legend>
+    <H2>Edit Operation</h2>
+  </legend>
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+      {{ form.operation_latex.label}}: {{ form.operation_latex(size=50, maxlength=1000, value=operation_dict['latex']) }} <BR/>
+      &nbsp;<BR/>
+      {{form.operation_name.label }}: {{ form.operation_name(size=50, maxlength=1000, value=operation_dict['name']) }}<BR/>
+      &nbsp;<BR/>
+      {{form.operation_description.label }}: {{ form.operation_description(size=50, maxlength=1000, value=operation_dict['description']) }}<BR/>
+      &nbsp;<BR/>
+      <input type="submit" value="Edit operation">
+    </P>
+  </form>
+
+<fieldset>
+  <legend>
+    Delete operation
+  </legend>
+
+<form method="post" action="" onsubmit="return checkForm(this);">
+  {{ form.csrf_token }}
+
+  <input type="submit" value="delete operation">
+
+</form>
+</fieldset>
+
+</fieldset>
+
+
+{% endblock %}

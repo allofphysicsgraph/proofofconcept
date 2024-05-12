@@ -258,25 +258,53 @@ class SpecifyNewSymbolForm(FlaskForm):
         "description (LaTeX)",
         validators=[validators.Length(max=1000)],
     )
+    symbol_reference = StringField("reference")
+
+    # https://en.wikipedia.org/wiki/List_of_types_of_numbers
+    # symbol_scope_real = BooleanField(
+    #    label="Real", description="check this", default="checked"
+    # )
+    symbol_scope = RadioField(
+        "scope",
+        choices=[("real", "real"), ("complex", "complex"), ("integer", "integer")],
+        default="real",
+        validators=[validators.InputRequired()],
+    )
+
+    # domain = input; range = output
+    symbol_radio_domain = RadioField(
+        "domain",
+        choices=[
+            ("any", "any"),
+            ("positive", "positive"),
+            ("negative", "negative"),
+            ("non-negative", "non-negative"),
+        ],
+        default="any",
+        validators=[validators.InputRequired()],
+    )
 
 
-class SpecifyNewOperatorForm(FlaskForm):
+class SpecifyNewOperationForm(FlaskForm):
     """
-    web form for user to specify operators used in expressions
+    web form for user to specify operations used in expressions
     """
 
-    operator_latex = StringField(
-        "LaTeX operator",
+    operation_latex = StringField(
+        "LaTeX operation",
         validators=[validators.Length(min=1, max=1000)],
     )
-    operator_name = StringField(
+    operation_name = StringField(
         "name (LaTeX)",
         validators=[validators.Length(max=1000)],
     )
-    operator_description = StringField(
+    operation_description = StringField(
         "description (LaTeX)",
         validators=[validators.Length(max=1000)],
     )
+    operation_number_of_arguments = IntegerField(
+        "number of arguments (positive integer)",
+        validators=[validators.InputRequired(), validators.NumberRange(min=1, max=10)],)
 
 
 class CypherQueryForm(FlaskForm):
@@ -363,10 +391,10 @@ def main():
             session.read_transaction(neo4j_query.list_nodes_of_type, "symbol")
         )
 
-    number_of_operators = None
+    number_of_operations = None
     with graphDB_Driver.session() as session:
-        number_of_operators = len(
-            session.read_transaction(neo4j_query.list_nodes_of_type, "operator")
+        number_of_operations = len(
+            session.read_transaction(neo4j_query.list_nodes_of_type, "operation")
         )
 
     print("[TRACE] func: app/main end " + trace_id)
@@ -377,7 +405,7 @@ def main():
         number_of_inference_rules=number_of_inference_rules,
         number_of_expressions=number_of_expressions,
         number_of_symbols=number_of_symbols,
-        number_of_operators=number_of_operators,
+        number_of_operations=number_of_operations,
     )
 
 
@@ -601,12 +629,20 @@ def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
         derivation_name_latex = str(web_form.derivation_name_latex.data).strip()
         abstract_latex = str(web_form.abstract_latex.data).strip()
 
+        # as per https://strftime.org/
+        # %f = Microsecond as a decimal number, zero-padded on the left.
+        now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
+
+        author_name_latex = "Ben"
+
         with graphDB_Driver.session() as session:
             session.write_transaction(
                 neo4j_query.edit_derivation_metadata,
                 derivation_id,
                 derivation_name_latex,
                 abstract_latex,
+                now_str,
+                author_name_latex
             )
 
     # get properties for derivation ID
@@ -731,21 +767,21 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     for symbol_dict in list_of_symbol_dicts:
         dict_of_symbol_dicts[symbol_dict["id"]] = symbol_dict
 
-    list_of_operator_dicts = []
+    list_of_operation_dicts = []
     with graphDB_Driver.session() as session:
-        list_of_operator_dicts = session.read_transaction(
-            neo4j_query.list_nodes_of_type, "operator"
+        list_of_operation_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "operation"
         )
 
-    print("list_of_operator_dicts=", list_of_operator_dicts)
+    print("list_of_operation_dicts=", list_of_operation_dicts)
 
-    list_of_operator_IDs = []
-    for operator_dict in list_of_operator_dicts:
-        list_of_operator_IDs.append(operator_dict["id"])
+    list_of_operation_IDs = []
+    for operation_dict in list_of_operation_dicts:
+        list_of_operation_IDs.append(operation_dict["id"])
 
-    dict_of_operator_dicts = {}
-    for operator_dict in list_of_operator_dicts:
-        dict_of_operator_dicts[operator_dict["id"]] = operator_dict
+    dict_of_operation_dicts = {}
+    for operation_dict in list_of_operation_dicts:
+        dict_of_operation_dicts[operation_dict["id"]] = operation_dict
 
     web_form = SpecifyNewExpressionForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -760,8 +796,8 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
         expression_dict=expression_dict,
         list_of_symbol_IDs=list_of_symbol_IDs,
         dict_of_symbol_dicts=dict_of_symbol_dicts,
-        list_of_operator_IDs=list_of_operator_IDs,
-        dict_of_operator_dicts=dict_of_operator_dicts,
+        list_of_operation_IDs=list_of_operation_IDs,
+        dict_of_operation_dicts=dict_of_operation_dicts,
     )
     # return redirect(url_for("to_list_expressions"))
 
@@ -831,17 +867,17 @@ def to_add_expression():
     return redirect(url_for("to_list_expressions"))
 
 
-@app.route("/edit_operator/<operator_id>", methods=["GET", "POST"])
-def to_edit_operator(operator_id: unique_numeric_id_as_str):
+@app.route("/edit_operation/<operation_id>", methods=["GET", "POST"])
+def to_edit_operation(operation_id: unique_numeric_id_as_str):
     """
-    edit operator
+    edit operation
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: app/to_edit_operator start " + trace_id)
+    print("[TRACE] func: app/to_edit_operation start " + trace_id)
 
-    print("expression_id: ", operator_id)
+    print("expression_id: ", operation_id)
 
-    web_form = SpecifyNewOperatorForm(request.form)
+    web_form = SpecifyNewoperationForm(request.form)
 
     print("request.method =", request.method)
 
@@ -849,37 +885,37 @@ def to_edit_operator(operator_id: unique_numeric_id_as_str):
     if request.method == "POST" and web_form.validate():
         print("in POST the request.form = ", request.form)
 
-        operator_latex = str(web_form.operator_latex.data).strip()
-        operator_name = str(web_form.operator_name.data).strip()
-        operator_description = str(web_form.operator_description.data).strip()
+        operation_latex = str(web_form.operation_latex.data).strip()
+        operation_name = str(web_form.operation_name.data).strip()
+        operation_description = str(web_form.operation_description.data).strip()
 
         author_name_latex = "ben"
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             session.write_transaction(
-                neo4j_query.add_operator,
-                operator_id,
-                operator_name,
-                operator_latex,
-                operator_description,
+                neo4j_query.add_operation,
+                operation_id,
+                operation_name,
+                operation_latex,
+                operation_description,
                 author_name_latex,
             )
 
-    operator_dict = {}
-    # get properties of this operator
+    operation_dict = {}
+    # get properties of this operation
     with graphDB_Driver.session() as session:
-        operator_dict = session.read_transaction(
-            neo4j_query.node_properties, "operator", operator_id
+        operation_dict = session.read_transaction(
+            neo4j_query.node_properties, "operation", operation_id
         )
 
-    print("operator_dict:", operator_dict)
+    print("operation_dict:", operation_dict)
 
-    print("[TRACE] func: app/to_edit_operator end " + trace_id)
+    print("[TRACE] func: app/to_edit_operation end " + trace_id)
     return render_template(
-        "operator_edit.html", form=web_form, operator_dict=operator_dict
+        "operation_edit.html", form=web_form, operation_dict=operation_dict
     )
-    # return redirect(url_for("to_list_operators"))
+    # return redirect(url_for("to_list_operations"))
 
 
 @app.route("/edit_symbol/<symbol_id>", methods=["GET", "POST"])
@@ -989,65 +1025,65 @@ def to_add_symbol():
     return redirect(url_for("to_list_symbols"))
 
 
-@app.route("/new_operator/", methods=["GET", "POST"])
-def to_add_operator():
+@app.route("/new_operation/", methods=["GET", "POST"])
+def to_add_operation():
     """
-    novel operator
+    novel operation
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: app/to_add_operator start " + trace_id)
+    print("[TRACE] func: app/to_add_operation start " + trace_id)
 
-    web_form = SpecifyNewOperatorForm(request.form)
+    web_form = SpecifyNewoperationForm(request.form)
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
         # request.form =  ImmutableMultiDict([('input1', 'a = b'), ('submit_button', 'Submit')])
 
-        operator_latex = str(web_form.operator_latex.data).strip()
-        operator_name = str(web_form.operator_name.data).strip()
-        operator_description = str(web_form.operator_description.data).strip()
+        operation_latex = str(web_form.operation_latex.data).strip()
+        operation_name = str(web_form.operation_name.data).strip()
+        operation_description = str(web_form.operation_description.data).strip()
 
-        print("operator_latex:", operator_latex)
-        print("operator_name:", operator_name)
-        print("operator_description", operator_description)
+        print("operation_latex:", operation_latex)
+        print("operation_name:", operation_name)
+        print("operation_description", operation_description)
 
         author_name_latex = "ben"
 
-        list_of_operator_IDs = []
+        list_of_operation_IDs = []
         with graphDB_Driver.session() as session:
-            list_of_operator_IDs = session.read_transaction(
-                neo4j_query.list_IDs, "operator"
+            list_of_operation_IDs = session.read_transaction(
+                neo4j_query.list_IDs, "operation"
             )
 
-        operator_id = compute.generate_random_id(list_of_operator_IDs)
+        operation_id = compute.generate_random_id(list_of_operation_IDs)
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             session.write_transaction(
-                neo4j_query.add_operator,
-                operator_id,
-                operator_name,
-                operator_latex,
-                operator_description,
+                neo4j_query.add_operation,
+                operation_id,
+                operation_name,
+                operation_latex,
+                operation_description,
                 author_name_latex,
             )
 
     else:
-        list_of_operator_dicts = []
+        list_of_operation_dicts = []
         with graphDB_Driver.session() as session:
-            list_of_operator_dicts = session.read_transaction(
-                neo4j_query.list_nodes_of_type, "operator"
+            list_of_operation_dicts = session.read_transaction(
+                neo4j_query.list_nodes_of_type, "operation"
             )
 
-        print("[TRACE] func: app/to_add_operator end " + trace_id)
+        print("[TRACE] func: app/to_add_operation end " + trace_id)
         return render_template(
-            "operator_create.html",
+            "operation_create.html",
             form=web_form,
-            list_of_operator_dicts=list_of_operator_dicts,
+            list_of_operation_dicts=list_of_operation_dicts,
         )
 
-    print("[TRACE] func: app/to_add_operator end " + trace_id)
-    return redirect(url_for("to_list_operators"))
+    print("[TRACE] func: app/to_add_operation end " + trace_id)
+    return redirect(url_for("to_list_operations"))
 
 
 @app.route(
@@ -1423,14 +1459,14 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
 #     # return redirect(url_for("to_list_symbols"))
 
 
-# @app.route("/delete_operator/<operator_id>", methods=["GET", "POST"])
-# def to_delete_operator(operator_id: str):
+# @app.route("/delete_operation/<operation_id>", methods=["GET", "POST"])
+# def to_delete_operation(operation_id: str):
 #     """ """
-#     print("[TRACE] func: app/to_delete_operator")
+#     print("[TRACE] func: app/to_delete_operation")
 #
-#     return render_template("operator_delete.html")
+#     return render_template("operation_delete.html")
 #     # once done creating new, go back to list
-#     # return redirect(url_for("to_list_operators"))
+#     # return redirect(url_for("to_list_operations"))
 
 
 @app.route("/query", methods=["GET", "POST"])
@@ -1487,25 +1523,25 @@ def to_query():
     )
 
 
-@app.route("/list_operators", methods=["GET", "POST"])
-def to_list_operators():
+@app.route("/list_operations", methods=["GET", "POST"])
+def to_list_operations():
     """
-    >>> to_list_operators()
+    >>> to_list_operations()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: app/to_list_operators start " + trace_id)
+    print("[TRACE] func: app/to_list_operations start " + trace_id)
 
-    list_of_operator_dicts = []
+    list_of_operation_dicts = []
     with graphDB_Driver.session() as session:
-        list_of_operator_dicts = session.read_transaction(
-            neo4j_query.list_nodes_of_type, "operator"
+        list_of_operation_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "operation"
         )
 
-    print("list_of_operator_dicts", list_of_operator_dicts)
+    print("list_of_operation_dicts", list_of_operation_dicts)
 
-    print("[TRACE] func: app/to_list_operators end " + trace_id)
+    print("[TRACE] func: app/to_list_operations end " + trace_id)
     return render_template(
-        "list_operators.html", list_of_operator_dicts=list_of_operator_dicts
+        "list_operations.html", list_of_operation_dicts=list_of_operation_dicts
     )
 
 
@@ -1617,6 +1653,17 @@ def to_list_inference_rules():
             neo4j_query.list_nodes_of_type, "inference_rule"
         )
 
+    list_of_derivations_used_per_inference_rule = {}
+    for this_inference_rule_dict in list_of_inference_rule_dicts:
+        list_of_derivations_that_use_this_inference_rule_id = []
+        with graphDB_Driver.session() as session:
+            list_of_derivations_that_use_this_inference_rule_id = session.read_transaction(
+                neo4j_query.derivations_that_use_inference_rule, this_inference_rule_dict['id']
+            )
+        list_of_derivations_used_per_inference_rule[this_inference_rule_dict['id']] = list_of_derivations_that_use_this_inference_rule_id
+
+
+
     print("inference rule list:")
     for inference_rule_dict in list_of_inference_rule_dicts:
         print(inference_rule_dict)
@@ -1625,6 +1672,7 @@ def to_list_inference_rules():
     return render_template(
         "list_inference_rules.html",
         list_of_inference_rule_dicts=list_of_inference_rule_dicts,
+        list_of_derivations_used_per_inference_rule=list_of_derivations_used_per_inference_rule
     )
 
 

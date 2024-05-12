@@ -25,14 +25,14 @@
 
 <fieldset>
   <legend>
-    <H2>Operator in Expression</h2>
+    <H2>operation in Expression</h2>
   </legend>
   <form method="post" action="" onsubmit="return checkForm(this);">
 
-    <P>operator count: {{ len(list_of_operator_IDs) }}
-    <select name="operator_select_name" class="selectpicker form-control" id="operator_select_id">
-      {% for operator_id in list_of_operator_IDs %}
-      <option value="{{ operator_id }}">{{ operator_id }}, {{ dict_of_operator_dicts[operator_id]['latex'] }} </option>
+    <P>operation count: {{ len(list_of_operation_IDs) }}
+    <select name="operation_select_name" class="selectpicker form-control" id="operation_select_id">
+      {% for operation_id in list_of_operation_IDs %}
+      <option value="{{ operation_id }}">{{ operation_id }}, {{ dict_of_operation_dicts[operation_id]['latex'] }} </option>
       {% endfor %}
     </select>
 

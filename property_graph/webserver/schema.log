@@ -40,7 +40,7 @@ properties={'author_name_latex': str,     # 'jane doe'
             'latex': str,                 # 'a = b'
             'sympy': str}                 # Eq(Sym('49248923'),Sym('2499492'))
 
-node type: 'operator'
+node type: 'operation'
 properties={'author_name_latex': str,     # 'jane doe'
             'name_latex': str,            # 'equality', 
             'description_latex': str,     # 'explanation goes here'

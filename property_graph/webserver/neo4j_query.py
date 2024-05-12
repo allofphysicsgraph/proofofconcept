@@ -39,7 +39,7 @@ def list_IDs(tx, node_type: str) -> list:
         "derivation",
         "inference_rule",
         "symbol",
-        "operator",
+        "operation",
         "step",
         "expression",
     ]
@@ -57,9 +57,9 @@ def list_IDs(tx, node_type: str) -> list:
     # elif node_type == "symbol":
     #     for record in tx.run("MATCH (n:symbol) RETURN n.symbol_id"):
     #         list_of_IDs.append(record.data()["n.step_id"])
-    # elif node_type == "operator":
-    #     for record in tx.run("MATCH (n:operator) RETURN n.operator_id"):
-    #         list_of_IDs.append(record.data()["n.operator_id"])
+    # elif node_type == "operation":
+    #     for record in tx.run("MATCH (n:operation) RETURN n.operation_id"):
+    #         list_of_IDs.append(record.data()["n.operation_id"])
     # elif node_type == "expression":
     #     for record in tx.run("MATCH (n:expression) RETURN n.expression_id"):
     #         list_of_IDs.append(record.data()["n.expression_id"])
@@ -136,7 +136,7 @@ def constrain_unique_id(tx) -> None:
         "derivation",
         "inference_rule",
         "symbol",
-        "operator",
+        "operation",
         "step",
         "expression",
     ]:
@@ -167,7 +167,7 @@ def list_nodes_of_type(tx, node_type: str) -> list:
         "derivation",
         "inference_rule",
         "symbol",
-        "operator",
+        "operation",
         "step",
         "expression",
     ]
@@ -181,6 +181,59 @@ def list_nodes_of_type(tx, node_type: str) -> list:
     print("[TRACE] func: neo4j_query/list_nodes_of_type end " + trace_id)
     return node_list
 
+def derivations_that_use_inference_rule(tx, inference_rule_id: str) -> list:
+    """
+    which derivations contain this inference rule?
+
+    >>> derivations_that_use_inference_rule()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/derivations_that_use_inference_rule start " + trace_id)
+
+    list_of_derivations = []
+
+    for record in tx.run(
+        "MATCH (d:derivation), (s:step), (i:inference_rule) WHERE i.id = "+str(inference_rule_id)+" RETURN d"):
+        list_of_derivations.append(record.data()["d"])    
+
+    print("[TRACE] func: neo4j_query/steps_in_this_derivation end " + trace_id)
+    return list_of_derivations
+
+def expressions_that_use_symbol(tx, symbol_id: str) -> list:
+    """
+    which expressions contain this symbol?
+
+    >>> expressions_that_use_symbol()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/expressions_that_use_symbol start " + trace_id)
+
+    list_of_expressions = []
+
+    for record in tx.run(
+        "MATCH (e:expression), (s:symbol) WHERE s.id = "+str(symbol_id)+" RETURN e"):
+        list_of_expressions.append(record.data()["e"])    
+
+    print("[TRACE] func: neo4j_query/expressions_that_use_symbol end " + trace_id)
+    return list_of_expressions
+
+def expressions_that_use_operation(tx, operation_id: str) -> list:
+    """
+    which expressions contain this operation?
+
+    >>> expressions_that_use_operation()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/expressions_that_use_operation start " + trace_id)
+
+    list_of_expressions = []
+
+    for record in tx.run(
+        "MATCH (e:expression), (op:operation) WHERE op.id = "+str(operation_id)+" RETURN e"):
+        list_of_expressions.append(record.data()["e"])    
+
+    print("[TRACE] func: neo4j_query/expressions_that_use_operation end " + trace_id)
+    return list_of_expressions
 
 def steps_in_this_derivation(tx, derivation_id: str) -> list:
     """
@@ -277,7 +330,7 @@ def node_properties(tx, node_type: str, node_id: str) -> dict:
         "derivation",
         "inference_rule",
         "symbol",
-        "operator",
+        "operation",
         "step",
         "expression",
     ]
@@ -402,7 +455,7 @@ def edit_step_notes(
 
 
 def edit_derivation_metadata(
-    tx, derivation_id: str, derivation_name_latex: str, abstract_latex: str
+    tx, derivation_id: str, derivation_name_latex: str, abstract_latex: str,now_str:str,author_name_latex:str
 ) -> None:
     """
     >>> edit_derivation_metadata()
@@ -413,7 +466,9 @@ def edit_derivation_metadata(
     result = tx.run(
         'MERGE (d:derivation {id:"' + str(derivation_id) + '"})'
         'SET d = {id: "' + str(derivation_id) + '",'
-        'derivation_name_latex: "' + str(derivation_name_latex) + '",'
+        'name_latex: "' + str(derivation_name_latex) + '",'
+        'created_datetime:"' + now_str + '",'
+        'author_name_latex:"' + author_name_latex + '",'
         'abstract_latex: "' + str(abstract_latex) + '"}'
     )
     #'SET d.derivation_name_latex = "'+ str(derivation_name_latex) +'", '
@@ -592,32 +647,32 @@ def add_symbol(
     return
 
 
-def add_operator(
+def add_operation(
     tx,
-    operator_id: str,
-    operator_name: str,
-    operator_latex: str,
-    operator_description: str,
+    operation_id: str,
+    operation_name: str,
+    operation_latex: str,
+    operation_description: str,
     author_name_latex: str,
 ) -> None:
     """
     nothing returned by function because action is to write change to Neo4j database
 
-    >>> add_operator(tx,)
+    >>> add_operation(tx,)
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/add_operator start " + trace_id)
+    print("[TRACE] func: neo4j_query/add_operation start " + trace_id)
 
     result = tx.run(
-        "CREATE (a:operator "
-        '{name_latex:"' + str(operator_name) + '", '
-        ' latex:"' + str(operator_latex) + '", '
-        ' description_latex:"' + str(operator_description) + '", '
+        "CREATE (a:operation "
+        '{name_latex:"' + str(operation_name) + '", '
+        ' latex:"' + str(operation_latex) + '", '
+        ' description_latex:"' + str(operation_description) + '", '
         ' author_name_latex:"' + str(author_name_latex) + '", '
-        ' id:"' + str(operator_id) + '"})'
+        ' id:"' + str(operation_id) + '"})'
     )
 
-    print("[TRACE] func: neo4j_query/add_operator end " + trace_id)
+    print("[TRACE] func: neo4j_query/add_operation end " + trace_id)
     return
 
 
