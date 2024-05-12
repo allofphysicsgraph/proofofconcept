@@ -393,8 +393,8 @@ def edit_step_notes(
     result = tx.run(
         'MERGE (s:step {id:"' + str(step_id) + '", '
         'SET s ={id:"' + str(step_id) + '", '
-                'note_before_step_latex: "'+ str(note_before_step_latex) +'", '
-                'note_before_step_latex: "'+ str(note_after_step_latex) +'"}'
+        'note_before_step_latex: "' + str(note_before_step_latex) + '", '
+        'note_before_step_latex: "' + str(note_after_step_latex) + '"}'
     )
 
     print("[TRACE] func: neo4j_query/edit_step_notes end " + trace_id)
@@ -413,11 +413,11 @@ def edit_derivation_metadata(
     result = tx.run(
         'MERGE (d:derivation {id:"' + str(derivation_id) + '"})'
         'SET d = {id: "' + str(derivation_id) + '",'
-                 'derivation_name_latex: "'+str(derivation_name_latex)+'",'
-                 'abstract_latex: "'+ str(abstract_latex) +'"}'
+        'derivation_name_latex: "' + str(derivation_name_latex) + '",'
+        'abstract_latex: "' + str(abstract_latex) + '"}'
     )
-        #'SET d.derivation_name_latex = "'+ str(derivation_name_latex) +'", '
-        #'SET d.abstract_latex = "'+ str(abstract_latex) +'"})'
+    #'SET d.derivation_name_latex = "'+ str(derivation_name_latex) +'", '
+    #'SET d.abstract_latex = "'+ str(abstract_latex) +'"})'
 
     print("[TRACE] func: neo4j_query/edit_derivation_metadata end " + trace_id)
     return

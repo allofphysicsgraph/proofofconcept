@@ -582,7 +582,7 @@ def to_select_step(derivation_id: unique_numeric_id_as_str):
     return render_template(
         "derivation_select_step.html",
         derivation_dict=derivation_dict,
-        list_of_step_dicts=list_of_step_dicts
+        list_of_step_dicts=list_of_step_dicts,
     )
 
 
