@@ -13,15 +13,15 @@
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
     <P>
-      {{ form.inference_rule_name.label}}: {{ form.inference_rule_name(size=50, minlength=5, maxlength=1000) }} <BR/>
+      {{ form.inference_rule_name.label}} (<B>required</B>): {{ form.inference_rule_name(size=50, minlength=5, maxlength=1000) }} <BR/>
       &nbsp;<BR/>
-      {{form.inference_rule_latex.label }}: {{ form.inference_rule_latex(size=50, minlength=5, maxlength=1000) }}<BR/>
+      {{form.inference_rule_latex.label }} (<B>required</B>): {{ form.inference_rule_latex(size=50, minlength=5, maxlength=1000) }}<BR/>
       &nbsp;<BR/>
-      {{form.inference_rule_number_of_inputs.label }}: {{ form.inference_rule_number_of_inputs() }} <BR/>
+      {{form.inference_rule_number_of_inputs.label }} (<B>required</B>): {{ form.inference_rule_number_of_inputs() }} <BR/>
       &nbsp;<BR/>
-      {{form.inference_rule_number_of_feeds.label }}: {{ form.inference_rule_number_of_feeds() }} <BR/>
+      {{form.inference_rule_number_of_feeds.label }} (<B>required</B>): {{ form.inference_rule_number_of_feeds() }} <BR/>
       &nbsp;<BR/>
-      {{form.inference_rule_number_of_outputs.label }}: {{ form.inference_rule_number_of_outputs() }} <BR/>
+      {{form.inference_rule_number_of_outputs.label }} (<B>required</B>): {{ form.inference_rule_number_of_outputs() }} <BR/>
       &nbsp;<BR/>
       <input type="submit" value="add inference rule">
     </P>

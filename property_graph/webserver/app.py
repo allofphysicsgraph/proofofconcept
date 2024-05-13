@@ -146,12 +146,12 @@ app = Flask(__name__, static_folder="static")
 app.config.from_object(
     Config
 )  # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
-app.config[
-    "UPLOAD_FOLDER"
-] = "/home/appuser/app/uploads"  # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
-app.config[
-    "SEND_FILE_MAX_AGE_DEFAULT"
-] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+app.config["UPLOAD_FOLDER"] = (
+    "/home/appuser/app/uploads"  # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+)
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = (
+    0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+)
 app.config["DEBUG"] = True
 
 
@@ -541,6 +541,23 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
 
     print("derivation_dict:", derivation_dict)
 
+    all_steps = all_steps_in_derivation(derivation_id)
+
+    print("[TRACE] func: app/to_review_derivation end " + trace_id)
+    return render_template(
+        "derivation_review.html",
+        derivation_dict=derivation_dict,
+        all_steps=all_steps,
+    )
+
+
+def all_steps_in_derivation(derivation_id: str):
+    """
+    >>> all_steps_in_derivation()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: app/all_steps_in_derivation start " + trace_id)
+
     # list all steps in this derivation
     list_of_step_dicts = []
     with graphDB_Driver.session() as session:
@@ -557,18 +574,22 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
             inference_rule_dict = session.read_transaction(
                 neo4j_query.step_has_inference_rule, this_step_dict["id"]
             )
+        print("inference_rule_dict=", inference_rule_dict)
         with graphDB_Driver.session() as session:
             list_of_input_IDs = session.read_transaction(
                 neo4j_query.step_has_expressions, this_step_dict["id"], "HAS_INPUT"
             )
+        print("list_of_input_IDs=", list_of_input_IDs)
         with graphDB_Driver.session() as session:
             list_of_feed_IDs = session.read_transaction(
                 neo4j_query.step_has_expressions, this_step_dict["id"], "HAS_FEED"
             )
+        print("list_of_feed_IDs=", list_of_feed_IDs)
         with graphDB_Driver.session() as session:
             list_of_output_IDs = session.read_transaction(
                 neo4j_query.step_has_expressions, this_step_dict["id"], "HAS_OUTPUT"
             )
+        print("list_of_output_IDs=", list_of_output_IDs)
 
         all_steps[this_step_dict["id"]] = {
             "inference rule dict": inference_rule_dict,
@@ -576,13 +597,8 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
             "list of feed IDs": list_of_feed_IDs,
             "list of output IDs": list_of_output_IDs,
         }
-
-    print("[TRACE] func: app/to_review_derivation end " + trace_id)
-    return render_template(
-        "derivation_review.html",
-        derivation_dict=derivation_dict,
-        all_steps=all_steps,
-    )
+    print("[TRACE] func: app/all_steps_in_derivation end " + trace_id)
+    return all_steps
 
 
 @app.route("/select_step/<derivation_id>/", methods=["GET", "POST"])
@@ -606,12 +622,24 @@ def to_select_step(derivation_id: unique_numeric_id_as_str):
         list_of_step_dicts = session.read_transaction(
             neo4j_query.steps_in_this_derivation, derivation_id
         )
+    print("list_of_step_dicts=", list_of_step_dicts)
+
+    # inference_rule_per_step = {}
+    # for this_step_dict in list_of_step_dicts:
+    #    with graphDB_Driver.session() as session:
+    #        neo4j_query.step_has_inference_rule,
+
+    #    with graphDB_Driver.session() as session:
+    #        neo4j_query.step_has_expressions
+
+    all_steps = all_steps_in_derivation(derivation_id)
 
     print("[TRACE] func: app/to_select_step end " + trace_id)
     return render_template(
         "derivation_select_step.html",
         derivation_dict=derivation_dict,
         list_of_step_dicts=list_of_step_dicts,
+        all_steps=all_steps,
     )
 
 
@@ -829,7 +857,10 @@ def to_add_expression():
         author_name_latex = "ben"
 
         # TODO: convert latex to SymPy
-        expression_sympy = "Eq(Sym('49248923'),Sym('2499492'))"
+        expression_sympy = "fake:Eq(Sym('49248923'),Sym('2499492'))"
+
+        # TODO: convert latex to lean
+        expression_lean = "fake:???"
 
         list_of_expression_IDs = []
         with graphDB_Driver.session() as session:
@@ -845,6 +876,7 @@ def to_add_expression():
                 expression_id,
                 expression_name,
                 expression_latex,
+                expression_lean,
                 expression_sympy,
                 expression_description,
                 author_name_latex,
@@ -977,11 +1009,29 @@ def to_add_symbol():
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
-        # request.form =  ImmutableMultiDict([('input1', 'a = b'), ('submit_button', 'Submit')])
+        # request.form =  ImmutableMultiDict(('symbol_latex', 'c'),
+        #      ('symbol_name', ''), ('symbol_description', ''),
+        #      ('symbol_scope', 'real'), ('symbol_reference', ''),
+        #      ('dimension_length', '1'), ('dimension_time', '0'), ('dimension_mass', '0'),
+        #      ('dimension_temperature', '0'), ('dimension_electric_charge', '0'),
+        #      ('dimension_amount_of_substance', '0'), ('dimension_luminous_intensity', '0'),
+        #      ('symbol_radio_domain', 'any')])
 
         symbol_latex = str(web_form.symbol_latex.data).strip()
         symbol_name = str(web_form.symbol_name.data).strip()
         symbol_description = str(web_form.symbol_description.data).strip()
+        symbol_scope = str(web_form.symbol_scope.data).strip()
+        symbol_reference = str(web_form.symbol_reference.data).strip()
+        symbol_domain = str(web_form.symbol_radio_domain.data).strip()
+        dimension_length = int(request.form["dimension_length"])
+        dimension_time = int(request.form["dimension_time"])
+        dimension_mass = int(request.form["dimension_mass"])
+        dimension_temperature = int(request.form["dimension_temperature"])
+        dimension_electric_charge = int(request.form["dimension_electric_charge"])
+        dimension_amount_of_substance = int(
+            request.form["dimension_amount_of_substance"]
+        )
+        dimension_luminous_intensity = int(request.form["dimension_luminous_intensity"])
 
         print("symbol_latex:", symbol_latex)
         print("symbol_name:", symbol_name)
@@ -1006,6 +1056,16 @@ def to_add_symbol():
                 symbol_latex,
                 symbol_description,
                 author_name_latex,
+                symbol_scope,
+                symbol_reference,
+                symbol_domain,
+                dimension_length,
+                dimension_time,
+                dimension_mass,
+                dimension_temperature,
+                dimension_electric_charge,
+                dimension_amount_of_substance,
+                dimension_luminous_intensity,
             )
 
     else:
@@ -1664,9 +1724,9 @@ def to_list_inference_rules():
                     this_inference_rule_dict["id"],
                 )
             )
-        list_of_derivations_used_per_inference_rule[
-            this_inference_rule_dict["id"]
-        ] = list_of_derivations_that_use_this_inference_rule_id
+        list_of_derivations_used_per_inference_rule[this_inference_rule_dict["id"]] = (
+            list_of_derivations_that_use_this_inference_rule_id
+        )
 
     print("inference rule list:")
     for inference_rule_dict in list_of_inference_rule_dicts:

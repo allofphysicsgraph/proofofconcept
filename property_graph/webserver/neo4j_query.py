@@ -194,6 +194,8 @@ def derivations_that_use_inference_rule(tx, inference_rule_id: str) -> list:
         + trace_id
     )
 
+    print("inference_rule_id=", inference_rule_id)
+
     list_of_derivations = []
 
     for record in tx.run(
@@ -202,6 +204,7 @@ def derivations_that_use_inference_rule(tx, inference_rule_id: str) -> list:
         + " RETURN d"
     ):
         list_of_derivations.append(record.data()["d"])
+        print("list_of_derivations=", list_of_derivations)
 
     print("[TRACE] func: neo4j_query/steps_in_this_derivation end " + trace_id)
     return list_of_derivations
@@ -326,6 +329,8 @@ def step_has_expressions(tx, step_id: str, expression_type: str) -> list:
     ):
         # print(result.data())
         list_of_expression_IDs.append(result.data())
+
+    print("list_of_expression_IDs=", list_of_expression_IDs)
 
     print("[TRACE] func: neo4j_query/step_has_expressions end " + trace_id)
     return list_of_expression_IDs
@@ -612,6 +617,7 @@ def add_expression(
     expression_name: str,
     expression_latex: str,
     expression_sympy: str,
+    expression_lean: str,
     expression_description: str,
     author_name_latex: str,
 ) -> None:
@@ -627,6 +633,7 @@ def add_expression(
         "CREATE (a:expression "
         '{name_latex:"' + str(expression_name) + '", '
         ' latex:"' + str(expression_latex) + '", '
+        ' lean:"' + str(expression_lean) + '", '
         ' sympy:"' + str(expression_sympy) + '", '
         ' description_latex:"' + str(expression_description) + '", '
         ' author_name_latex:"' + str(author_name_latex) + '", '
@@ -644,6 +651,16 @@ def add_symbol(
     symbol_latex: str,
     symbol_description: str,
     author_name_latex: str,
+    symbol_scope: str,
+    symbol_reference: str,
+    symbol_domain: str,
+    dimension_length: int,
+    dimension_time: int,
+    dimension_mass: int,
+    dimension_temperature: int,
+    dimension_electric_charge: int,
+    dimension_amount_of_substance: int,
+    dimension_luminous_intensity: int,
 ) -> None:
     """
     nothing returned by function because action is to write change to Neo4j database
@@ -659,6 +676,16 @@ def add_symbol(
         ' latex:"' + str(symbol_latex) + '", '
         ' description_latex:"' + str(symbol_description) + '", '
         ' author_name_latex:"' + str(author_name_latex) + '", '
+        ' symbol_scope:"' + str(symbol_scope) + '", '
+        ' symbol_reference:"' + str(symbol_reference) + '", '
+        ' symbol_domain:"' + str(symbol_domain) + '", '
+        " dimension_length: " + str(dimension_length) + ", "
+        " dimension_time: " + str(dimension_time) + ", "
+        " dimension_mass: " + str(dimension_mass) + ", "
+        " dimension_temperature: " + str(dimension_temperature) + ", "
+        " dimension_electric_charge: " + str(dimension_electric_charge) + ", "
+        " dimension_amount_of_substance: " + str(dimension_amount_of_substance) + ", "
+        " dimension_luminous_intensity: " + str(dimension_luminous_intensity) + ", "
         ' id:"' + str(symbol_id) + '"})'
     )
 

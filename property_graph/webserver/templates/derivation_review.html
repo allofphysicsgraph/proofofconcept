@@ -9,14 +9,41 @@
 
 <P> Derivation dictionary: {{ derivation_dict }}
 
-<P> List of steps: {{ all_steps }}
+<P> all_steps: {{ all_steps }}
 
+
+
+<table border="1" id="derivation_steps_table">
+  <tr>
+    <th>step ID</th>
+    <th>inference rule</th>
+    <th>input</th>
+    <th>feed</th>
+    <th>output</th>
+  </tr>
+  {% for step_id, step_dict in all_steps.items() %}
+  <tr>
+    <td>
+      <a href="{{ url_for( 'to_edit_step', step_id=step_id ) }}">
+        {{ step_id }}
+      </a>
+    </td>
+    <td>{{ step_dict['name_latex'] }}</td>
+    <td>{{ step_dict['list of input IDs'] }}</td>
+    <td>{{ step_dict['list of feed IDs'] }}</td>
+    <td>{{ step_dict['list of output IDs'] }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+
+<!--
 <ul>
-{% for this_step in list_of_steps %}
-<li>{{ this_step }}</li>
-{% endfor %}
+{ % for this_step in list_of_steps % }
+<li>{ { this_step } }</li>
+{ % endfor % }
 </ul>
-
+-->
 <P>TODO: display graph of derivation (e.g., graphviz)
 
 <P>TODO: display tex, PDF

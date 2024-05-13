@@ -5,6 +5,7 @@
   Return to <a href="{{ url_for('main') }}?referrer=list_inference_rules">main page</a>
 </P>
 
+<P>list_of_derivations_used_per_inference_rule:
 {{ list_of_derivations_used_per_inference_rule }}
 
 <fieldset>
@@ -27,7 +28,7 @@ TODO: this search box doesn't work as of 2024-05-11: <input type="text" id="infe
   <H2>Actions for Inference Rules</h2>
 </legend>
 
-<P><a href="{{ url_for('to_add_inference_rule')  }}?referrer=list_inference_rules">add inference rule</a>    (status: works)
+<P><a href="{{ url_for('to_add_inference_rule')  }}?referrer=list_inference_rules">add inference rule</a>
 </fieldset>
 <script>
 function select_inference_rule() {

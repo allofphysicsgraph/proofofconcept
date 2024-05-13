@@ -13,14 +13,14 @@
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
     <P>
-      {{ form.symbol_latex.label}} (required): {{ form.symbol_latex(size=50, minlength=1, maxlength=1000) }} <BR/>
+      {{ form.symbol_latex.label}} (<B>required</B>): {{ form.symbol_latex(size=50, minlength=1, maxlength=1000) }} <BR/>
       &nbsp;<BR/>
       {{form.symbol_name.label }} (optional): {{ form.symbol_name(size=50, maxlength=1000) }}<BR/>
       &nbsp;<BR/>
       {{form.symbol_description.label }} (optional): {{ form.symbol_description(size=50, maxlength=1000) }}<BR/>
 
-{{ new_symbol_form.symbol_scope.label }}: {{ new_symbol_form.symbol_scope }}<BR/>
-          {{ new_symbol_form.symbol_reference.label }}(<small><em>optional</em></small>): {{ new_symbol_form.symbol_reference }}
+{{ form.symbol_scope.label }}: {{ form.symbol_scope }}<BR/>
+          {{ form.symbol_reference.label }}(<small><em>optional</em></small>): {{ form.symbol_reference }}
       
       &nbsp;<BR/>
           <!-- https://en.wikipedia.org/wiki/International_System_of_Quantities#Base_quantities -->
@@ -75,7 +75,7 @@
           </select>
 
           <BR/>
-          {{ new_symbol_form.symbol_radio_domain.label}}: {{ new_symbol_form.symbol_radio_domain }}
+          {{ form.symbol_radio_domain.label}}: {{ form.symbol_radio_domain }}
 
 
       <input type="submit" value="add symbol">

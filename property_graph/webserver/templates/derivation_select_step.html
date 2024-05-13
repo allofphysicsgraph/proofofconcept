@@ -5,7 +5,7 @@
   Return to <a href="{{ url_for('main') }}?referrer=list_derivations">main page</a>
 </P>
 
-{{ derivation_dict }}
+<P>derivation_dict: {{ derivation_dict }}
 
 <fieldset>
 <legend>
@@ -14,7 +14,9 @@
 
 <P>Which step to edit or delete:
 
-{{ list_of_step_dicts }}
+<P>list_of_step_dicts: {{ list_of_step_dicts }}
+
+<P>all_steps: {{ all_steps }}
 
 <table border="1" id="expression_table">
   <tr>
@@ -27,8 +29,8 @@
   {% for step_dict in list_of_step_dicts %}
   <tr>
     <td>
-      <a href="{{ url_for( 'to_edit_expression', expression_id=expression_dict['id'] ) }}">
-          <!--{ { step_ID } }-->
+      <a href="{{ url_for( 'to_edit_step', step_id=step_dict['id'] ) }}">
+          {{ step_dict['id'] }}
       </a>
     </td>
     <td>{{ step_dict['inference rule ID']}}</td>

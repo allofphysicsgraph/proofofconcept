@@ -13,12 +13,12 @@
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
     <P>
-      {{ form.operation_latex.label}}: {{ form.operation_latex(size=50, minlength=1, maxlength=1000) }} <BR/>
+      {{ form.operation_latex.label}} (<B>required</B>): {{ form.operation_latex(size=50, minlength=1, maxlength=1000) }} <BR/>
       &nbsp;<BR/>
-      {{form.operation_name.label }}: {{ form.operation_name(size=50, maxlength=1000) }}<BR/>
+      {{form.operation_name.label }} (optional): {{ form.operation_name(size=50, maxlength=1000) }}<BR/>
       &nbsp;<BR/>
-      {{form.operation_description.label }}: {{ form.operation_description(size=50, maxlength=1000) }}<BR/>
-      {{form.operation_number_of_arguments.label }}: {{ form.operation_number_of_arguments() }} <BR/>
+      {{form.operation_description.label }} (optional): {{ form.operation_description(size=50, maxlength=1000) }}<BR/>
+      {{form.operation_number_of_arguments.label }} (<B>required</B>): {{ form.operation_number_of_arguments() }} <BR/>
       &nbsp;<BR/>
       <input type="submit" value="add operation">
     </P>

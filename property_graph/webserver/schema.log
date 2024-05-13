@@ -38,6 +38,7 @@ properties={'author_name_latex': str,     # 'jane doe'
             'description_latex': str,     # 'explanation goes here'
             'id': str,                    # '9424534'
             'latex': str,                 # 'a = b'
+            'lean': str,                  # '?'
             'sympy': str}                 # Eq(Sym('49248923'),Sym('2499492'))
 
 node type: 'operation'
@@ -51,26 +52,34 @@ properties={'author_name_latex': str,     # 'jane doe'
 
 edges:
 
-Node element_id='0' 
+:derivation
 type='HAS_STEP' properties={'sequence_index': '1'}
-Node element_id='15'
+:step
 
-Node element_id='1' 
+:inference_rule
 type='HAS_INPUT' properties={'sequence_index': '0'}
-Node element_id='7' 
+:expression
 
-Node element_id='1' 
+:inference_rule
 type='HAS_FEED' properties={'sequence_index': '0'}
-Node element_id='7' 
+:expression
 
-Node element_id='1' 
+:inference_rule
 type='HAS_OUTPUT' properties={'sequence_index': '0'}
-Node element_id='7' 
+:expression
 
-Node element_id='1' 
+:step
 type='HAS_INFERENCE_RULE'
-Node element_id='6' 
+:inference_rule
 
+
+:expression
+type='HAS_SYMBOL'
+:symbol
+
+:expression
+type='HAS_OPERATION'
+:operation
 
 
 
