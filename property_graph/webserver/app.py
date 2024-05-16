@@ -1324,8 +1324,10 @@ def to_add_inference_rule():
 
         print("inference_rule_name", inference_rule_name)
         for inference_rule_dict in list_of_inference_rule_dicts:
-            print('inference_rule_dict is',inference_rule_dict)
-            print("inference_rule_dict['name_latex']", inference_rule_dict["name_latex"])
+            print("inference_rule_dict is", inference_rule_dict)
+            print(
+                "inference_rule_dict['name_latex']", inference_rule_dict["name_latex"]
+            )
             if inference_rule_name == inference_rule_dict["name_latex"]:
                 print("INVALID INPUT: inference rule with that name already exists")
                 # TODO: a notice should be provided to the user
@@ -1406,7 +1408,7 @@ def to_edit_step(step_id: unique_numeric_id_as_str):
             )
 
     print("[TRACE] func: app/to_edit_step end " + trace_id)
-    return render_template("step_edit.html",form=web_form)
+    return render_template("step_edit.html", form=web_form)
 
 
 @app.route("/edit_inference_rule/<inference_rule_id>", methods=["GET", "POST"])

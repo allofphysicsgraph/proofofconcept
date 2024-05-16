@@ -319,7 +319,7 @@ def step_has_expressions(tx, step_id: str, expression_type: str) -> list:
         or expression_type == "HAS_FEED"
         or expression_type == "HAS_OUTPUT"
     )
-    print("step_id=",step_id,"; expression_type=",expression_type)
+    print("step_id=", step_id, "; expression_type=", expression_type)
 
     list_of_expression_IDs = []
     for result in tx.run(
@@ -436,8 +436,7 @@ def add_inference_rule(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/add_inference_rule start " + trace_id)
 
-    assert ((int(number_of_inputs) > 0) or 
-            (int(number_of_feeds) > 0))
+    assert (int(number_of_inputs) > 0) or (int(number_of_feeds) > 0)
     assert int(number_of_feeds) >= 0
 
     result = tx.run(
@@ -533,7 +532,7 @@ def add_step_to_derivation(
         'created_datetime:"' + now_str + '", '
         'note_after_step_latex:"' + note_after_step_latex + '"})'
     )
-    #print(result.data()) # this just shows "[]"
+    # print(result.data()) # this just shows "[]"
 
     print("step with edge", derivation_id)
     result = tx.run(
@@ -549,7 +548,7 @@ def add_step_to_derivation(
         'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(inference_rule_id) + '"'
         "MERGE (a)-[:HAS_INFERENCE_RULE]->(b)"
     )
-    #print(result.data()) # this just shows "[]"
+    # print(result.data()) # this just shows "[]"
 
     print("[TRACE] func: neo4j_query/add_step_to_derivation end " + trace_id)
     return
@@ -584,34 +583,34 @@ def add_expressions_to_step(
 
     # input expressions
     for input_index, input_id in enumerate(list_of_input_expression_IDs):
-        print("input_id=", input_id,"; input_index=",input_index)
-        print("step_id=",step_id)
+        print("input_id=", input_id, "; input_index=", input_index)
+        print("step_id=", step_id)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
             'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(input_id) + '" '
             'MERGE (a)-[:HAS_INPUT {sequence_index: "' + str(input_index) + '"}]->(b)'
         )
-        #print(result.data()) # this just shows "[]"
+        # print(result.data()) # this just shows "[]"
 
     # feed expressions
     for feed_index, feed_id in enumerate(list_of_feed_expression_IDs):
-        print("feed_id=", feed_id,"; feed_index=",feed_index)
+        print("feed_id=", feed_id, "; feed_index=", feed_index)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
             'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(feed_id) + '" '
             'MERGE (a)-[:HAS_FEED {sequence_index: "' + str(feed_index) + '"}]->(b)'
         )
-        #print(result.data()) # this just shows "[]"
+        # print(result.data()) # this just shows "[]"
 
     # output expressions
     for output_index, output_id in enumerate(list_of_output_expression_IDs):
-        print("output_id=", output_id,"; output_index=",output_index)
+        print("output_id=", output_id, "; output_index=", output_index)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
             'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(output_id) + '" '
             'MERGE (a)-[:HAS_OUTPUT {sequence_index: "' + str(output_index) + '"}]->(b)'
         )
-        #print(result.data()) # this just shows "[]"
+        # print(result.data()) # this just shows "[]"
 
     print("[TRACE] func: neo4j_query/add_expressions_to_step end " + trace_id)
     return
