@@ -146,12 +146,12 @@ app = Flask(__name__, static_folder="static")
 app.config.from_object(
     Config
 )  # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
-app.config["UPLOAD_FOLDER"] = (
-    "/home/appuser/app/uploads"  # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
-)
-app.config["SEND_FILE_MAX_AGE_DEFAULT"] = (
-    0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
-)
+app.config[
+    "UPLOAD_FOLDER"
+] = "/home/appuser/app/uploads"  # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+app.config[
+    "SEND_FILE_MAX_AGE_DEFAULT"
+] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
 app.config["DEBUG"] = True
 
 
@@ -910,7 +910,7 @@ def to_edit_operation(operation_id: unique_numeric_id_as_str):
 
     print("expression_id: ", operation_id)
 
-    web_form = SpecifyNewoperationForm(request.form)
+    web_form = SpecifyNewOperationForm(request.form)
 
     print("request.method =", request.method)
 
@@ -1094,7 +1094,7 @@ def to_add_operation():
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_operation start " + trace_id)
 
-    web_form = SpecifyNewoperationForm(request.form)
+    web_form = SpecifyNewOperationForm(request.form)
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
@@ -1189,7 +1189,7 @@ def to_add_step_select_expressions(
         derivation_dict = session.read_transaction(
             neo4j_query.node_properties, "derivation", derivation_id
         )
-    print("derivation_dict", derivation_dict)
+    print("derivation_dict is ", derivation_dict)
 
     inference_rule_dict = {}
     with graphDB_Driver.session() as session:
@@ -1197,7 +1197,7 @@ def to_add_step_select_expressions(
             neo4j_query.node_properties, "inference_rule", inference_rule_id
         )
 
-    print("inference_rule_dict", inference_rule_dict)
+    print("inference_rule_dict is ", inference_rule_dict)
 
     web_form = SpecifyNewStepForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -1219,12 +1219,12 @@ def to_add_step_select_expressions(
             if ("input" in k) and (
                 "expression_" in k
             ):  # field name is what matters here
-                print("in adding", v)
+                print("input adding", v)
                 list_of_input_expression_IDs.append(str(v))
             if ("feed" in k) and (
                 "expression_" in k
             ):  # field name is what matters here
-                print("fe adding", v)
+                print("feed adding", v)
                 list_of_feed_expression_IDs.append(str(v))
             if ("output" in k) and (
                 "expression_" in k
@@ -1322,10 +1322,11 @@ def to_add_inference_rule():
                 neo4j_query.list_nodes_of_type, "inference_rule"
             )
 
+        print("inference_rule_name", inference_rule_name)
         for inference_rule_dict in list_of_inference_rule_dicts:
-            print("inference_rule_name", inference_rule_name)
-            print("inference_rule_dict['name']", inference_rule_dict["name"])
-            if inference_rule_name == inference_rule_dict["name"]:
+            print('inference_rule_dict is',inference_rule_dict)
+            print("inference_rule_dict['name_latex']", inference_rule_dict["name_latex"])
+            if inference_rule_name == inference_rule_dict["name_latex"]:
                 print("INVALID INPUT: inference rule with that name already exists")
                 # TODO: a notice should be provided to the user
 
@@ -1405,7 +1406,7 @@ def to_edit_step(step_id: unique_numeric_id_as_str):
             )
 
     print("[TRACE] func: app/to_edit_step end " + trace_id)
-    return render_template("step_edit.html")
+    return render_template("step_edit.html",form=web_form)
 
 
 @app.route("/edit_inference_rule/<inference_rule_id>", methods=["GET", "POST"])
@@ -1724,9 +1725,9 @@ def to_list_inference_rules():
                     this_inference_rule_dict["id"],
                 )
             )
-        list_of_derivations_used_per_inference_rule[this_inference_rule_dict["id"]] = (
-            list_of_derivations_that_use_this_inference_rule_id
-        )
+        list_of_derivations_used_per_inference_rule[
+            this_inference_rule_dict["id"]
+        ] = list_of_derivations_that_use_this_inference_rule_id
 
     print("inference rule list:")
     for inference_rule_dict in list_of_inference_rule_dicts:

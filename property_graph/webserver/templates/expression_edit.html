@@ -11,12 +11,61 @@
   <legend>
     <H2>Symbols in Expression</h2>
   </legend>
+  TODO: list symbols  used in expression 
+</fieldset>
+
+<fieldset>
+  <legend>
+    <H2>Add Symbol used in Expression</h2>
+  </legend>
   <form method="post" action="" onsubmit="return checkForm(this);">
 
-    <P>symbol count: {{ len(list_of_symbol_IDs) }}
+    <P><!--symbol count: { { list_of_symbol_IDs|length } }-->
     <select name="symbol_select_name" class="selectpicker form-control" id="symbol_select_id">
       {% for symbol_id in list_of_symbol_IDs %}
       <option value="{{ symbol_id }}">{{ symbol_id }}, {{ dict_of_symbol_dicts[symbol_id]['latex'] }} </option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="add symbol to expression">
+  </form>
+</fieldset>
+
+<fieldset>
+  <legend>
+    <H2>Remove Symbol used in Expression</h2>
+  </legend>
+  <form method="post" action="" onsubmit="return checkForm(this);">
+TODO: this list should be the symbols currently used by the expression, not all the symbols
+    <P><!--symbol count: { { list_of_symbol_IDs|length } }-->
+    <select name="symbol_select_name" class="selectpicker form-control" id="symbol_select_id">
+      {% for symbol_id in list_of_symbol_IDs %}
+      <option value="{{ symbol_id }}">{{ symbol_id }}, {{ dict_of_symbol_dicts[symbol_id]['latex'] }} </option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="remove symbol from expression">
+  </form>
+</fieldset>
+
+
+
+<fieldset>
+  <legend>
+    <H2>operation in Expression</h2>
+  </legend>
+  TODO: list operations used in expression 
+</fieldset>
+
+
+<fieldset>
+  <legend>
+    <H2>Add operation used in Expression</h2>
+  </legend>
+  <form method="post" action="" onsubmit="return checkForm(this);">
+
+    <P><!-- operation count: { { list_of_operation_IDs|length } } -->
+    <select name="operation_select_name" class="selectpicker form-control" id="operation_select_id">
+      {% for operation_id in list_of_operation_IDs %}
+      <option value="{{ operation_id }}">{{ operation_id }}, {{ dict_of_operation_dicts[operation_id]['latex'] }} </option>
       {% endfor %}
     </select>
 
@@ -25,11 +74,11 @@
 
 <fieldset>
   <legend>
-    <H2>operation in Expression</h2>
+    <H2>Remove operation used in Expression</h2>
   </legend>
   <form method="post" action="" onsubmit="return checkForm(this);">
-
-    <P>operation count: {{ len(list_of_operation_IDs) }}
+TODO: this list should be the operations currently used by the expression, not all the operations
+    <P><!-- operation count: { { list_of_operation_IDs|length } } -->
     <select name="operation_select_name" class="selectpicker form-control" id="operation_select_id">
       {% for operation_id in list_of_operation_IDs %}
       <option value="{{ operation_id }}">{{ operation_id }}, {{ dict_of_operation_dicts[operation_id]['latex'] }} </option>
@@ -42,17 +91,17 @@
 
   <fieldset>
     <legend>
-      <H2>Edit Expression</h2>
+      <H2>Edit Expression and metadata</h2>
     </legend>
 
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
     <P>
-      {{ form.expression_latex.label}}: {{ form.expression_latex(size=50, maxlength=1000, value=expression_dict['latex']) }} <BR/>
+      {{ form.expression_latex.label}} (<B>required</B>): {{ form.expression_latex(size=50, maxlength=1000, value=expression_dict['latex']) }} <BR/>
       &nbsp;<BR/>
-      {{form.expression_name.label }}: {{ form.expression_name(size=50, maxlength=1000, value=expression_dict['name']) }}<BR/>
+      {{form.expression_name.label }} (optional): {{ form.expression_name(size=50, maxlength=1000, value=expression_dict['name']) }}<BR/>
       &nbsp;<BR/>
-      {{form.expression_description.label }}: {{ form.expression_description(size=50, maxlength=1000, value=expression_dict['description']) }}<BR/>
+      {{form.expression_description.label }} (optional): {{ form.expression_description(size=50, maxlength=1000, value=expression_dict['description']) }}<BR/>
       &nbsp;<BR/>
       <input type="submit" value="Edit expression">
     </P>

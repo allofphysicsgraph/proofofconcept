@@ -44,28 +44,28 @@ def list_IDs(tx, node_type: str) -> list:
         "expression",
     ]
     list_of_IDs = []
-    for record in tx.run("MATCH (n:" + node_type + ") RETURN n.id"):
-        # print(record.data())
-        list_of_IDs.append(record.data()["n.id"])
+    for result in tx.run("MATCH (n:" + node_type + ") RETURN n.id"):
+        # print(result.data())
+        list_of_IDs.append(result.data()["n.id"])
 
     # if node_type == "derivation":
-    #     for record in tx.run("MATCH (n:derivation) RETURN n.derivation_id"):
-    #         list_of_IDs.append(record.data()["n.derivation_id"])
+    #     for result in tx.run("MATCH (n:derivation) RETURN n.derivation_id"):
+    #         list_of_IDs.append(result.data()["n.derivation_id"])
     # elif node_type == "step":
-    #     for record in tx.run("MATCH (n:step) RETURN n.step_id"):
-    #         list_of_IDs.append(record.data()["n.step_id"])
+    #     for result in tx.run("MATCH (n:step) RETURN n.step_id"):
+    #         list_of_IDs.append(result.data()["n.step_id"])
     # elif node_type == "symbol":
-    #     for record in tx.run("MATCH (n:symbol) RETURN n.symbol_id"):
-    #         list_of_IDs.append(record.data()["n.step_id"])
+    #     for result in tx.run("MATCH (n:symbol) RETURN n.symbol_id"):
+    #         list_of_IDs.append(result.data()["n.step_id"])
     # elif node_type == "operation":
-    #     for record in tx.run("MATCH (n:operation) RETURN n.operation_id"):
-    #         list_of_IDs.append(record.data()["n.operation_id"])
+    #     for result in tx.run("MATCH (n:operation) RETURN n.operation_id"):
+    #         list_of_IDs.append(result.data()["n.operation_id"])
     # elif node_type == "expression":
-    #     for record in tx.run("MATCH (n:expression) RETURN n.expression_id"):
-    #         list_of_IDs.append(record.data()["n.expression_id"])
+    #     for result in tx.run("MATCH (n:expression) RETURN n.expression_id"):
+    #         list_of_IDs.append(result.data()["n.expression_id"])
     # elif node_type == "inference_rule":
-    #     for record in tx.run("MATCH (n:inference_rule) RETURN n.inference_rule_id"):
-    #         list_of_IDs.append(record.data()["n.inference_rule_id"])
+    #     for result in tx.run("MATCH (n:inference_rule) RETURN n.inference_rule_id"):
+    #         list_of_IDs.append(result.data()["n.inference_rule_id"])
     # else:
     #     raise Exception("ERROR: Unrecognized node type")
 
@@ -86,13 +86,13 @@ def apoc_export_json(tx, output_filename: str):
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/apoc_export_json start " + trace_id)
 
-    for record in tx.run(
+    for result in tx.run(
         "CALL apoc.export.json.all('" + output_filename + "',{useTypes:true})"
     ):
         pass
 
     print("[TRACE] func: neo4j_query/apoc_export_json end " + trace_id)
-    return record
+    return result
 
 
 def apoc_export_cypher(tx, output_filename: str):
@@ -109,7 +109,7 @@ def apoc_export_cypher(tx, output_filename: str):
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/apoc_export_cypher start " + trace_id)
 
-    for record in tx.run(
+    for result in tx.run(
         "CALL apoc.export.cypher.all('" + output_filename + "', {"
         "format: 'cypher-shell',"
         "useOptimizations: {type: 'UNWIND_BATCH', unwindBatchSize: 20}"
@@ -120,7 +120,7 @@ def apoc_export_cypher(tx, output_filename: str):
         pass
 
     print("[TRACE] func: neo4j_query/apoc_export_cypher end " + trace_id)
-    return record
+    return result
 
 
 def constrain_unique_id(tx) -> None:
@@ -174,9 +174,9 @@ def list_nodes_of_type(tx, node_type: str) -> list:
     print("              node type:", node_type)
 
     node_list = []
-    for record in tx.run("MATCH (n:" + node_type + ") RETURN n"):
-        # print(record.data()["n"])
-        node_list.append(record.data()["n"])
+    for result in tx.run("MATCH (n:" + node_type + ") RETURN n"):
+        # print(result.data()["n"])
+        node_list.append(result.data()["n"])
 
     print("[TRACE] func: neo4j_query/list_nodes_of_type end " + trace_id)
     return node_list
@@ -198,12 +198,12 @@ def derivations_that_use_inference_rule(tx, inference_rule_id: str) -> list:
 
     list_of_derivations = []
 
-    for record in tx.run(
+    for result in tx.run(
         "MATCH (d:derivation), (s:step), (i:inference_rule) WHERE i.id = "
         + str(inference_rule_id)
         + " RETURN d"
     ):
-        list_of_derivations.append(record.data()["d"])
+        list_of_derivations.append(result.data()["d"])
         print("list_of_derivations=", list_of_derivations)
 
     print("[TRACE] func: neo4j_query/steps_in_this_derivation end " + trace_id)
@@ -221,10 +221,10 @@ def expressions_that_use_symbol(tx, symbol_id: str) -> list:
 
     list_of_expressions = []
 
-    for record in tx.run(
+    for result in tx.run(
         "MATCH (e:expression), (s:symbol) WHERE s.id = " + str(symbol_id) + " RETURN e"
     ):
-        list_of_expressions.append(record.data()["e"])
+        list_of_expressions.append(result.data()["e"])
 
     print("[TRACE] func: neo4j_query/expressions_that_use_symbol end " + trace_id)
     return list_of_expressions
@@ -241,12 +241,12 @@ def expressions_that_use_operation(tx, operation_id: str) -> list:
 
     list_of_expressions = []
 
-    for record in tx.run(
+    for result in tx.run(
         "MATCH (e:expression), (op:operation) WHERE op.id = "
         + str(operation_id)
         + " RETURN e"
     ):
-        list_of_expressions.append(record.data()["e"])
+        list_of_expressions.append(result.data()["e"])
 
     print("[TRACE] func: neo4j_query/expressions_that_use_operation end " + trace_id)
     return list_of_expressions
@@ -262,20 +262,20 @@ def steps_in_this_derivation(tx, derivation_id: str) -> list:
     print("[TRACE] func: neo4j_query/steps_in_this_derivation start " + trace_id)
 
     list_of_step_IDs = []
-    for record in tx.run(
+    for result in tx.run(
         'MATCH (n:derivation {id:"' + derivation_id + '"})-[r]->(m:step) RETURN n,r,m',
     ):
-        print("record:", record)
+        print("result:", result)
         print(
             "    n=",
-            record.data()["n"],
+            result.data()["n"],
             "\n    r=",
-            record.data()["r"],
+            result.data()["r"],
             "\n    m=",
-            record.data()["m"],
+            result.data()["m"],
         )
 
-        list_of_step_IDs.append(record.data()["m"])
+        list_of_step_IDs.append(result.data()["m"])
 
     print("[TRACE] func: neo4j_query/steps_in_this_derivation end " + trace_id)
     return list_of_step_IDs
@@ -319,13 +319,15 @@ def step_has_expressions(tx, step_id: str, expression_type: str) -> list:
         or expression_type == "HAS_FEED"
         or expression_type == "HAS_OUTPUT"
     )
+    print("step_id=",step_id,"; expression_type=",expression_type)
+
     list_of_expression_IDs = []
-    for record in tx.run(
+    for result in tx.run(
         'MATCH (n:step {id:"'
         + step_id
         + '"})-[r:'
         + expression_type
-        + "]->(m:inference_rule) RETURN m"
+        + "]->(m:expression) RETURN m"
     ):
         # print(result.data())
         list_of_expression_IDs.append(result.data())
@@ -356,7 +358,7 @@ def node_properties(tx, node_type: str, node_id: str) -> dict:
     print("node_type:", node_type)
     print("node_id:", node_id)
 
-    for record in tx.run(
+    for result in tx.run(
         "MATCH (n: "
         + str(node_type)
         + ') WHERE n.id = "'
@@ -365,12 +367,12 @@ def node_properties(tx, node_type: str, node_id: str) -> dict:
         # node_type=node_type,
         # node_id=node_id,
     ):
-        print("    record:", record)
-        print("    n=", record.data()["n"])
+        print("    result:", result)
+        print("    n=", result.data()["n"])
 
     try:
         print("[TRACE] func: neo4j_query/node_properties end " + trace_id)
-        return record.data()["n"]
+        return result.data()["n"]
     except UnboundLocalError:
         print("[TRACE] func: neo4j_query/node_properties end " + trace_id)
         return None
@@ -434,9 +436,9 @@ def add_inference_rule(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/add_inference_rule start " + trace_id)
 
-    assert int(number_of_inputs) > 0
-    assert int(number_of_feeds) > 0
-    assert int(number_of_feeds) > 0
+    assert ((int(number_of_inputs) > 0) or 
+            (int(number_of_feeds) > 0))
+    assert int(number_of_feeds) >= 0
 
     result = tx.run(
         "CREATE (a:inference_rule "
@@ -531,7 +533,7 @@ def add_step_to_derivation(
         'created_datetime:"' + now_str + '", '
         'note_after_step_latex:"' + note_after_step_latex + '"})'
     )
-    print(result.data())
+    #print(result.data()) # this just shows "[]"
 
     print("step with edge", derivation_id)
     result = tx.run(
@@ -547,7 +549,7 @@ def add_step_to_derivation(
         'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(inference_rule_id) + '"'
         "MERGE (a)-[:HAS_INFERENCE_RULE]->(b)"
     )
-    print(result.data())
+    #print(result.data()) # this just shows "[]"
 
     print("[TRACE] func: neo4j_query/add_step_to_derivation end " + trace_id)
     return
@@ -582,30 +584,34 @@ def add_expressions_to_step(
 
     # input expressions
     for input_index, input_id in enumerate(list_of_input_expression_IDs):
-        print("input_id=", input_id)
+        print("input_id=", input_id,"; input_index=",input_index)
+        print("step_id=",step_id)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
             'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(input_id) + '" '
             'MERGE (a)-[:HAS_INPUT {sequence_index: "' + str(input_index) + '"}]->(b)'
         )
+        #print(result.data()) # this just shows "[]"
 
     # feed expressions
     for feed_index, feed_id in enumerate(list_of_feed_expression_IDs):
-        print("feed_id=", feed_id)
+        print("feed_id=", feed_id,"; feed_index=",feed_index)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
             'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(feed_id) + '" '
             'MERGE (a)-[:HAS_FEED {sequence_index: "' + str(feed_index) + '"}]->(b)'
         )
+        #print(result.data()) # this just shows "[]"
 
     # output expressions
     for output_index, output_id in enumerate(list_of_output_expression_IDs):
-        print("output_id=", output_id)
+        print("output_id=", output_id,"; output_index=",output_index)
         result = tx.run(
             "MATCH (a:step),(b:expression) "
             'WHERE a.id="' + str(step_id) + '" AND b.id="' + str(output_id) + '" '
             'MERGE (a)-[:HAS_OUTPUT {sequence_index: "' + str(output_index) + '"}]->(b)'
         )
+        #print(result.data()) # this just shows "[]"
 
     print("[TRACE] func: neo4j_query/add_expressions_to_step end " + trace_id)
     return
@@ -733,23 +739,23 @@ def all_edges(tx) -> str:
 
     str_to_print = ""
     print("raw:")
-    for record in tx.run("MATCH (n)-[r]->(m) RETURN n,r,m"):
-        # print("n=", record["n"], "r=", record["r"], "m=", record["m"])
-        print(record)
+    for result in tx.run("MATCH (n)-[r]->(m) RETURN n,r,m"):
+        # print("n=", result["n"], "r=", result["r"], "m=", result["m"])
+        print(result)
 
     # n= <Node id=0 labels=frozenset({'Person'}) properties={'name': 'Arthur'}>
     # r= <Relationship id=2 nodes=(<Node id=0 labels=frozenset({'Person'}) properties={'name': 'Arthur'}>, <Node id=3 labels=frozenset({'Person'}) properties={'name': 'Merlin'}>) type='KNOWS' properties={}>
 
     # https://stackoverflow.com/questions/31485802/how-to-return-relationship-type-with-neo4js-cypher-queries
     print("proper return:")
-    for record in tx.run("MATCH (n)-[r]->(m) RETURN n.name_latex,type(r),m.name_latex"):
-        print("record", record)
+    for result in tx.run("MATCH (n)-[r]->(m) RETURN n.name_latex,type(r),m.name_latex"):
+        print("result", result)
         str_to_print += (
-            str(record["n.name_latex"])
+            str(result["n.name_latex"])
             + "-"
-            + str(record["type(r)"])
+            + str(result["type(r)"])
             + "->"
-            + str(record["m.name_latex"])
+            + str(result["m.name_latex"])
             + "\n"
         )
 
@@ -792,24 +798,24 @@ def all_nodes(tx):
     print("[TRACE] func: neo4j_query/all_nodes start " + trace_id)
 
     all_nodes = {}
-    for record in tx.run("MATCH (n) RETURN n"):
-        # print("record n",record["n"])
+    for result in tx.run("MATCH (n) RETURN n"):
+        # print("result n",result["n"])
         # <Node id=0 labels=frozenset({'derivation'}) properties={'name_latex': 'a deriv', 'abstract_latex': 'an abstract for deriv', 'author_name_latex': 'ben', 'derivation_id': '5389624'}>
-        # print("record.data()",record.data())
+        # print("result.data()",result.data())
         # {'n': {'name_latex': 'a deriv', 'abstract_latex': 'an abstract for deriv', 'author_name_latex': 'ben', 'derivation_id': '5389624'}}
-        if len(record["n"].labels) > 1:
-            print("this record", record)
+        if len(result["n"].labels) > 1:
+            print("this result", result)
 
             print("[TRACE] func: neo4j_query/all_nodes end " + trace_id)
             raise Exception("multiple labels for this node")
-        for this_label in record["n"].labels:
+        for this_label in result["n"].labels:
             try:
-                all_nodes[this_label].append(record.data())
+                all_nodes[this_label].append(result.data())
             except KeyError:
-                all_nodes[this_label] = [record.data()]
+                all_nodes[this_label] = [result.data()]
 
-    # for record in tx.run("MATCH (n) RETURN n.name"):
-    #    record["n.name"]
+    # for result in tx.run("MATCH (n) RETURN n.name"):
+    #    result["n.name"]
 
     print("[TRACE] func: neo4j_query/all_nodes end " + trace_id)
     return all_nodes
@@ -826,17 +832,17 @@ def user_query(tx, query: str) -> str:
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/user_query start " + trace_id)
 
-    list_of_records = []
+    list_of_results = []
     try:
-        for record in tx.run(query):
-            list_of_records.append(str(record))
+        for result in tx.run(query):
+            list_of_results.append(str(result))
     except neo4j.exceptions.ClientError:
-        list_of_records = ["WRITE OPERATIONS NOT ALLOWED (1)"]
+        list_of_results = ["WRITE OPERATIONS NOT ALLOWED (1)"]
     except neo4j.exceptions.TransactionError:
-        list_of_records = ["WRITE OPERATIONS NOT ALLOWED (2)"]
+        list_of_results = ["WRITE OPERATIONS NOT ALLOWED (2)"]
 
     print("[TRACE] func: neo4j_query/user_query end " + trace_id)
-    return list_of_records
+    return list_of_results
 
 
 # d e f who_are_friends_of(tx, name: str) -> list:
@@ -845,12 +851,12 @@ def user_query(tx, query: str) -> str:
 #    """
 #    print("func: who_are_friends_of")
 #    list_of_friends = []
-#    for record in tx.run(
+#    for result in tx.run(
 #        "MATCH (a:Person)-[:KNOWS]->(friend) WHERE a.name = $name "
 #        "RETURN friend.name ORDER BY friend.name",
 #        name=name,
 #    ):
-#        print(record)
-#        print(record["friend.name"])
-#        list_of_friends.append(str(record["friend.name"]))
+#        print(result)
+#        print(result["friend.name"])
+#        list_of_friends.append(str(result["friend.name"]))
 #    return list_of_friends

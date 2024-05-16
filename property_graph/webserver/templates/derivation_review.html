@@ -9,7 +9,7 @@
 
 <P> Derivation dictionary: {{ derivation_dict }}
 
-<P> all_steps: {{ all_steps }}
+<P> <!-- all_steps: { { all_steps } } -->
 
 
 
@@ -28,10 +28,25 @@
         {{ step_id }}
       </a>
     </td>
-    <td>{{ step_dict['name_latex'] }}</td>
-    <td>{{ step_dict['list of input IDs'] }}</td>
-    <td>{{ step_dict['list of feed IDs'] }}</td>
-    <td>{{ step_dict['list of output IDs'] }}</td>
+    <td>{{ step_dict['inference rule dict'] }}</td> <!-- inference rule -->
+    <td>{% for m_dict in step_dict['list of input IDs'] %}
+      <OL>
+        <LI>{{ m_dict['m'] }}</LI>
+      </OL>
+        {% endfor %}
+    </td>
+    <td>{% for m_dict in step_dict['list of feed IDs'] %}
+      <OL>
+        <LI>{{ m_dict['m'] }}</LI>
+      </OL>
+        {% endfor %}
+    </td>
+    <td>{% for m_dict in step_dict['list of output IDs'] %}
+      <OL>
+        <LI>{{ m_dict['m'] }}</LI>
+      </OL>
+        {% endfor %}
+    </td>
   </tr>
   {% endfor %}
 </table>

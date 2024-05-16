@@ -24,7 +24,11 @@
 
 <P>latex: {{ inference_rule_dict['latex'] }}
 
-<P>expressions: {{ dict_of_expression_dicts }}
+<P>expressions: 
+  <UL>{% for k,v in dict_of_expression_dicts.items() %}
+    <LI>{{ k,v }}</LI>
+{% endfor %}
+  </UL>
 
 <form method="post" action="">
   {{ form.csrf_token }}
