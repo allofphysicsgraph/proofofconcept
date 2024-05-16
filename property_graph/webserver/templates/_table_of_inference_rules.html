@@ -1,15 +1,18 @@
+<!--
 <P>For debugging purposes, here is the all the info available:
+-->
 <!-- { { list_of_inference_rule_dicts } } -->
 
+<!--
 <ul>
-{% for this_inference_dict in list_of_inference_rule_dicts %}
-<li>{{ this_inference_dict }}</li>
-{% endfor %}
+{ % for this_inference_dict in list_of_inference_rule_dicts % }
+<li>{ { this_inference_dict } }</li>
+{ % endfor % }
 </ul>
+-->
 
 <table border="1" id="inference_rule_table">
   <tr>
-    <th>ID</th>
     <th>name</th>
     <th>latex</th>
     <th>input count</th>
@@ -21,15 +24,19 @@
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_inference_rule', inference_rule_id=inference_rule_dict['id'] ) }}">
-        {{ inference_rule_dict['id'] }}
+        {{ inference_rule_dict['name_latex'] }}
       </a>
     </td>
-    <td>{{ inference_rule_dict['name_latex'] }}</td>
     <td>{{ inference_rule_dict['latex']}}</td>
     <td>{{ inference_rule_dict['number_of_inputs'] }}</td>
     <td>{{ inference_rule_dict['number_of_feeds']}}</td>
     <td>{{ inference_rule_dict['number_of_outputs']}}</td>
-    <td>TODO</td>
+    <td>{% for this_derivation_dict in list_of_derivations_used_per_inference_rule[inference_rule_dict['id']] %}
+      <UL>
+        <LI><a href="{{ url_for('to_review_derivation', derivation_id=this_derivation_dict['id']) }}">{{ this_derivation_dict['name_latex'] }}</a></LI>
+      </UL>
+        {% endfor %}
+    </td>
   </tr>
   {% endfor %}
 </table>

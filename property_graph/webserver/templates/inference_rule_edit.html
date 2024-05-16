@@ -2,20 +2,33 @@
 {% block content %}
 
 <P>
-  Return to <a href="{{ url_for('main') }}?referrer=list_derivations">main page</a>
+  Return to <a href="{{ url_for('main') }}?referrer=inference_rules_edit">main page</a>
 </P>
 
-{{ inference_rule_dict }}
+<P>
+  Return to <a href="{{ url_for('to_list_inference_rules') }}?referrer=inference_rules_edit">list of inference rules</a>
+</P>
+
+<P>Used in the following derivations: 
+  {% for derivation_dict in list_of_derivations_that_use_this_inference_rule_id %}
+  <UL>
+    <LI>{{ derivation_dict }}</LI>
+  </UL>
+{% endfor %}
 
 <fieldset>
   <legend>
     <H2>Edit Inference Rule</h2>
   </legend>
 
+<P>{{ inference_rule_dict }}
+
+<P>TODO: editing the inference rule could break derivations.
+  
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form.csrf_token }}
     <P>
-      {{ form.inference_rule_name.label}}: {{ form.inference_rule_name(size=50, maxlength=1000, value=inference_rule_dict['name']) }} <BR/>
+      {{ form.inference_rule_name.label}}: {{ form.inference_rule_name(size=50, maxlength=1000, value=inference_rule_dict['name_latex']) }} <BR/>
       &nbsp;<BR/>
       {{form.inference_rule_latex.label }}: {{ form.inference_rule_latex(size=50, maxlength=1000, value=inference_rule_dict['latex']) }}<BR/>
       &nbsp;<BR/>

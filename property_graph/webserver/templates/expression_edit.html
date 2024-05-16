@@ -12,6 +12,7 @@
     <H2>Symbols in Expression</h2>
   </legend>
   TODO: list symbols  used in expression 
+  <P>{{ list_of_symbol_IDs_used_in_this_expression }}
 </fieldset>
 
 <fieldset>
@@ -19,9 +20,9 @@
     <H2>Add Symbol used in Expression</h2>
   </legend>
   <form method="post" action="" onsubmit="return checkForm(this);">
-
+    {{ form_no_options.csrf_token }}
     <P><!--symbol count: { { list_of_symbol_IDs|length } }-->
-    <select name="symbol_select_name" class="selectpicker form-control" id="symbol_select_id">
+    <select name="symbol_select_id_to_add" class="selectpicker form-control" id="symbol_select">
       {% for symbol_id in list_of_symbol_IDs %}
       <option value="{{ symbol_id }}">{{ symbol_id }}, {{ dict_of_symbol_dicts[symbol_id]['latex'] }} </option>
       {% endfor %}
@@ -35,9 +36,10 @@
     <H2>Remove Symbol used in Expression</h2>
   </legend>
   <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form_no_options.csrf_token }}
 TODO: this list should be the symbols currently used by the expression, not all the symbols
     <P><!--symbol count: { { list_of_symbol_IDs|length } }-->
-    <select name="symbol_select_name" class="selectpicker form-control" id="symbol_select_id">
+    <select name="symbol_select_id_to_remove" class="selectpicker form-control" id="symbol_select">
       {% for symbol_id in list_of_symbol_IDs %}
       <option value="{{ symbol_id }}">{{ symbol_id }}, {{ dict_of_symbol_dicts[symbol_id]['latex'] }} </option>
       {% endfor %}
@@ -53,6 +55,7 @@ TODO: this list should be the symbols currently used by the expression, not all 
     <H2>operation in Expression</h2>
   </legend>
   TODO: list operations used in expression 
+  <P>{{ list_of_operation_IDs_used_in_this_expression }}
 </fieldset>
 
 
@@ -61,9 +64,9 @@ TODO: this list should be the symbols currently used by the expression, not all 
     <H2>Add operation used in Expression</h2>
   </legend>
   <form method="post" action="" onsubmit="return checkForm(this);">
-
+    {{ form_no_options.csrf_token }}
     <P><!-- operation count: { { list_of_operation_IDs|length } } -->
-    <select name="operation_select_name" class="selectpicker form-control" id="operation_select_id">
+    <select name="operation_select_id_to_add" class="selectpicker form-control" id="operation_select">
       {% for operation_id in list_of_operation_IDs %}
       <option value="{{ operation_id }}">{{ operation_id }}, {{ dict_of_operation_dicts[operation_id]['latex'] }} </option>
       {% endfor %}
@@ -77,9 +80,10 @@ TODO: this list should be the symbols currently used by the expression, not all 
     <H2>Remove operation used in Expression</h2>
   </legend>
   <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form_no_options.csrf_token }}
 TODO: this list should be the operations currently used by the expression, not all the operations
     <P><!-- operation count: { { list_of_operation_IDs|length } } -->
-    <select name="operation_select_name" class="selectpicker form-control" id="operation_select_id">
+    <select name="operation_select_id_to_remove" class="selectpicker form-control" id="operation_select">
       {% for operation_id in list_of_operation_IDs %}
       <option value="{{ operation_id }}">{{ operation_id }}, {{ dict_of_operation_dicts[operation_id]['latex'] }} </option>
       {% endfor %}
@@ -95,13 +99,13 @@ TODO: this list should be the operations currently used by the expression, not a
     </legend>
 
   <form method="post" action="" onsubmit="return checkForm(this);">
-    {{ form.csrf_token }}
+    {{ form_new_expression.csrf_token }}
     <P>
-      {{ form.expression_latex.label}} (<B>required</B>): {{ form.expression_latex(size=50, maxlength=1000, value=expression_dict['latex']) }} <BR/>
+      {{ form_new_expression.expression_latex.label}} (<B>required</B>): {{ form_new_expression.expression_latex(size=50, maxlength=1000, value=expression_dict['latex']) }} <BR/>
       &nbsp;<BR/>
-      {{form.expression_name.label }} (optional): {{ form.expression_name(size=50, maxlength=1000, value=expression_dict['name']) }}<BR/>
+      {{form_new_expression.expression_name.label }} (optional): {{ form_new_expression.expression_name(size=50, maxlength=1000, value=expression_dict['name']) }}<BR/>
       &nbsp;<BR/>
-      {{form.expression_description.label }} (optional): {{ form.expression_description(size=50, maxlength=1000, value=expression_dict['description']) }}<BR/>
+      {{form_new_expression.expression_description.label }} (optional): {{ form_new_expression.expression_description(size=50, maxlength=1000, value=expression_dict['description']) }}<BR/>
       &nbsp;<BR/>
       <input type="submit" value="Edit expression">
     </P>

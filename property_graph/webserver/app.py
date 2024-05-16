@@ -146,12 +146,12 @@ app = Flask(__name__, static_folder="static")
 app.config.from_object(
     Config
 )  # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
-app.config[
-    "UPLOAD_FOLDER"
-] = "/home/appuser/app/uploads"  # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
-app.config[
-    "SEND_FILE_MAX_AGE_DEFAULT"
-] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+app.config["UPLOAD_FOLDER"] = (
+    "/home/appuser/app/uploads"  # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+)
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = (
+    0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+)
 app.config["DEBUG"] = True
 
 
@@ -320,6 +320,14 @@ class CypherQueryForm(FlaskForm):
         "Cypher query",
         validators=[validators.InputRequired()],
     )
+
+
+class NoOptionsForm(FlaskForm):
+    """
+    no text input
+    """
+
+    pass
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -709,6 +717,7 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
 
         # TODO: get the inference_rule_id from the webform
         # inference_rule_id =
+        print(inference_rule_id)
 
         print("[TRACE] func: app/to_add_step_select_inference_rule end " + trace_id)
         redirect(
@@ -778,6 +787,18 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
 
     print("expression_dict:", expression_dict)
 
+    list_of_symbol_IDs_used_in_this_expression = []
+    with graphDB_Driver.session() as session:
+        list_of_symbol_IDs_used_in_this_expression = session.read_transaction(
+            neo4j_query.symbol_IDs_used_in_expression, expression_id
+        )
+
+    list_of_operation_IDs_used_in_this_expression = []
+    with graphDB_Driver.session() as session:
+        list_of_operation_IDs_used_in_this_expression = session.read_transaction(
+            neo4j_query.operation_IDs_used_in_expression, expression_id
+        )
+
     # editing the expression includes modifying the symbols present.
 
     list_of_symbol_dicts = []
@@ -785,7 +806,6 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
         list_of_symbol_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "symbol"
         )
-
     print("list_of_symbol_dicts=", list_of_symbol_dicts)
 
     list_of_symbol_IDs = []
@@ -801,7 +821,6 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
         list_of_operation_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "operation"
         )
-
     print("list_of_operation_dicts=", list_of_operation_dicts)
 
     list_of_operation_IDs = []
@@ -812,16 +831,81 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     for operation_dict in list_of_operation_dicts:
         dict_of_operation_dicts[operation_dict["id"]] = operation_dict
 
-    web_form = SpecifyNewExpressionForm(request.form)
-    if request.method == "POST" and web_form.validate():
-        print("request.form = ", request.form)
+    web_form_new_expression = SpecifyNewExpressionForm(request.form)
+    if request.method == "POST" and web_form_new_expression.validate():
+        print("with web_form, request.form = ", request.form)
 
-        # TODO (?)
+        expression_latex = str(web_form_new_expression.expression_latex.data).strip()
+        expression_name = str(web_form_new_expression.expression_name.data).strip()
+        expression_description = str(
+            web_form_new_expression.expression_description.data
+        ).strip()
+
+        # TODO: write change to neo4j
+
+    web_form_no_options = NoOptionsForm(request.form)
+    if request.method == "POST":
+        print("no web_form; request.form = ", request.form)
+
+        if "symbol_select_id_to_disconnect" in request.form.keys():
+            symbol_id_to_disconnect = str(
+                request.form["symbol_select_id_to_disconnect"]
+            )
+            print("symbol_id_to_disconnect=", symbol_id_to_disconnect)
+
+            # https://neo4j.com/docs/python-manual/current/session-api/
+            with graphDB_Driver.session() as session:
+                session.write_transaction(
+                    neo4j_query.disconnect_symbol_from_expression,
+                    symbol_id_to_disconnect,
+                    expression_id,
+                )
+
+        if "symbol_select_id_to_add" in request.form.keys():
+            symbol_id_to_add = str(request.form["symbol_select_id_to_add"])
+            print("symbol_id_to_add=", symbol_id_to_add)
+
+            # https://neo4j.com/docs/python-manual/current/session-api/
+            with graphDB_Driver.session() as session:
+                session.write_transaction(
+                    neo4j_query.add_symbol_to_expression,
+                    symbol_id_to_add,
+                    expression_id,
+                )
+
+        if "operation_select_id_to_disconnect" in request.form.keys():
+            operation_id_to_disconnect = str(
+                request.form["operation_select_id_to_disconnect"]
+            )
+            print("symbol_id_to_disconnect=", operation_id_to_disconnect)
+
+            # https://neo4j.com/docs/python-manual/current/session-api/
+            with graphDB_Driver.session() as session:
+                session.write_transaction(
+                    neo4j_query.disconnect_operation_from_expression,
+                    operation_id_to_disconnect,
+                    expression_id,
+                )
+
+        if "operation_select_id_to_add" in request.form.keys():
+            operation_id_to_add = str(request.form["operation_select_id_to_add.data"])
+            print("symbol_id_to_add=", operation_id_to_add)
+
+            # https://neo4j.com/docs/python-manual/current/session-api/
+            with graphDB_Driver.session() as session:
+                session.write_transaction(
+                    neo4j_query.add_operation_to_expression,
+                    operation_id_to_add,
+                    expression_id,
+                )
 
     print("[TRACE] func: app/to_edit_expression end " + trace_id)
     return render_template(
         "expression_edit.html",
-        form=web_form,
+        form_no_options=web_form_no_options,
+        form_new_expression=web_form_new_expression,
+        list_of_symbol_IDs_used_in_this_expression=list_of_symbol_IDs_used_in_this_expression,
+        list_of_operation_IDs_used_in_this_expression=list_of_operation_IDs_used_in_this_expression,
         expression_dict=expression_dict,
         list_of_symbol_IDs=list_of_symbol_IDs,
         dict_of_symbol_dicts=dict_of_symbol_dicts,
@@ -921,6 +1005,9 @@ def to_edit_operation(operation_id: unique_numeric_id_as_str):
         operation_latex = str(web_form.operation_latex.data).strip()
         operation_name = str(web_form.operation_name.data).strip()
         operation_description = str(web_form.operation_description.data).strip()
+        operation_number_of_arguments = str(
+            web_form.operation_number_of_arguments.data
+        ).strip()
 
         author_name_latex = "ben"
 
@@ -932,6 +1019,7 @@ def to_edit_operation(operation_id: unique_numeric_id_as_str):
                 operation_name,
                 operation_latex,
                 operation_description,
+                operation_number_of_arguments,
                 author_name_latex,
             )
 
@@ -1383,11 +1471,23 @@ def to_add_inference_rule():
     return redirect(url_for("to_list_inference_rules"))
 
 
-@app.route("/edit_step/<step_id>", methods=["GET", "POST"])
+@app.route("/edit_step/<derivation_id>/<step_id>", methods=["GET", "POST"])
 def to_edit_step(step_id: unique_numeric_id_as_str):
     """ """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_step start " + trace_id)
+
+    # list all steps in this derivation
+    list_of_step_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_step_dicts = session.read_transaction(
+            neo4j_query.steps_in_this_derivation, derivation_id
+        )
+
+    for each_step_dict in list_of_step_dicts:
+        if this_step_dict["id"] == step_id:
+            this_step_dict = each_step_dict
+            break
 
     web_form = SpecifyNewStepForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -1408,7 +1508,7 @@ def to_edit_step(step_id: unique_numeric_id_as_str):
             )
 
     print("[TRACE] func: app/to_edit_step end " + trace_id)
-    return render_template("step_edit.html", form=web_form)
+    return render_template("step_edit.html", form=web_form, step_dict=this_step_dict)
 
 
 @app.route("/edit_inference_rule/<inference_rule_id>", methods=["GET", "POST"])
@@ -1473,6 +1573,16 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
                 author_name_latex=author_name_latex,
             )
 
+    list_of_derivations_that_use_this_inference_rule_id = []
+    with graphDB_Driver.session() as session:
+        list_of_derivations_that_use_this_inference_rule_id = session.read_transaction(
+            neo4j_query.derivations_that_use_inference_rule,
+            inference_rule_id,
+        )
+    list_of_derivations_that_use_this_inference_rule_id = list(
+        set(list_of_derivations_that_use_this_inference_rule_id)
+    )
+
     # get properties for inference rule
     inference_rule_dict = {}
     with graphDB_Driver.session() as session:
@@ -1487,6 +1597,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
         "inference_rule_edit.html",
         form=web_form,
         inference_rule_dict=inference_rule_dict,
+        list_of_derivations_that_use_this_inference_rule_id=list_of_derivations_that_use_this_inference_rule_id,
     )
     # once done editing, go back to list
     # return redirect(url_for("to_list_inference_rules"))
@@ -1626,7 +1737,7 @@ def to_list_symbols():
 
     print("[TRACE] func: app/to_list_symbols end " + trace_id)
     return render_template(
-        "list_symbols.html", list_of_symbol_dicts=list_of_symbol_dicts
+        "symbol_list.html", list_of_symbol_dicts=list_of_symbol_dicts
     )
 
 
@@ -1648,7 +1759,7 @@ def to_list_expressions():
 
     print("[TRACE] func: app/to_list_expressions end " + trace_id)
     return render_template(
-        "list_expressions.html", list_of_expression_dicts=list_of_expression_dicts
+        "expression_list.html", list_of_expression_dicts=list_of_expression_dicts
     )
 
 
@@ -1697,7 +1808,7 @@ def to_list_derivations():
 
     print("[TRACE] func: app/to_list_derivations end " + trace_id)
     return render_template(
-        "list_derivations.html",
+        "derivation_list.html",
         list_of_derivation_dicts=list_of_derivation_dicts,
         number_of_steps_per_derivation=number_of_steps_per_derivation,
     )
@@ -1716,6 +1827,7 @@ def to_list_inference_rules():
         list_of_inference_rule_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "inference_rule"
         )
+    list_of_inference_rule_dicts = list(set(list_of_inference_rule_dicts))
 
     list_of_derivations_used_per_inference_rule = {}
     for this_inference_rule_dict in list_of_inference_rule_dicts:
@@ -1727,9 +1839,12 @@ def to_list_inference_rules():
                     this_inference_rule_dict["id"],
                 )
             )
-        list_of_derivations_used_per_inference_rule[
-            this_inference_rule_dict["id"]
-        ] = list_of_derivations_that_use_this_inference_rule_id
+        list_of_derivations_that_use_this_inference_rule_id = list(
+            set(list_of_derivations_that_use_this_inference_rule_id)
+        )
+        list_of_derivations_used_per_inference_rule[this_inference_rule_dict["id"]] = (
+            list_of_derivations_that_use_this_inference_rule_id
+        )
 
     print("inference rule list:")
     for inference_rule_dict in list_of_inference_rule_dicts:
@@ -1737,45 +1852,45 @@ def to_list_inference_rules():
 
     print("[TRACE] func: app/to_list_inference_rules end " + trace_id)
     return render_template(
-        "list_inference_rules.html",
+        "inference_rule_list.html",
         list_of_inference_rule_dicts=list_of_inference_rule_dicts,
         list_of_derivations_used_per_inference_rule=list_of_derivations_used_per_inference_rule,
     )
 
 
-@app.route("/list_all_nodes")
-def to_list_all_nodes():
-    """
-    show all nodes
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: app/to_list_all_nodes start " + trace_id)
+# @app.route("/list_all_nodes")
+# def to_list_all_nodes():
+#     """
+#     show all nodes
+#     """
+#     trace_id = str(random.randint(1000000, 9999999))
+#     print("[TRACE] func: app/to_list_all_nodes start " + trace_id)
 
-    # https://neo4j.com/docs/python-manual/current/session-api/
-    with graphDB_Driver.session() as session:
-        dict_all_nodes = session.read_transaction(neo4j_query.all_nodes)
+#     # https://neo4j.com/docs/python-manual/current/session-api/
+#     with graphDB_Driver.session() as session:
+#         dict_all_nodes = session.read_transaction(neo4j_query.all_nodes)
 
-    print("dict_all_nodes", dict_all_nodes)
+#     print("dict_all_nodes", dict_all_nodes)
 
-    print("[TRACE] func: app/to_list_all_nodes end " + trace_id)
-    return render_template("list_all_nodes.html", dict_all_nodes=dict_all_nodes)
+#     print("[TRACE] func: app/to_list_all_nodes end " + trace_id)
+#     return render_template("list_all_nodes.html", dict_all_nodes=dict_all_nodes)
 
 
-@app.route("/list_all_edges")
-def to_list_all_edges():
-    """
-    show all edges
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: app/to_list_all_edges start " + trace_id)
+# @app.route("/list_all_edges")
+# def to_list_all_edges():
+#     """
+#     show all edges
+#     """
+#     trace_id = str(random.randint(1000000, 9999999))
+#     print("[TRACE] func: app/to_list_all_edges start " + trace_id)
 
-    # https://neo4j.com/docs/python-manual/current/session-api/
+#     # https://neo4j.com/docs/python-manual/current/session-api/
 
-    with graphDB_Driver.session() as session:
-        str_to_print = session.read_transaction(neo4j_query.all_edges)
+#     with graphDB_Driver.session() as session:
+#         str_to_print = session.read_transaction(neo4j_query.all_edges)
 
-    print("[TRACE] func: app/to_list_all_edges end " + trace_id)
-    return str_to_print
+#     print("[TRACE] func: app/to_list_all_edges end " + trace_id)
+#     return str_to_print
 
 
 @app.route("/delete_all")
