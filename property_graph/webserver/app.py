@@ -792,12 +792,20 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
         list_of_symbol_IDs_used_in_this_expression = session.read_transaction(
             neo4j_query.symbol_IDs_used_in_expression, expression_id
         )
+    print(
+        "list_of_symbol_IDs_used_in_this_expression=",
+        list_of_symbol_IDs_used_in_this_expression,
+    )
 
     list_of_operation_IDs_used_in_this_expression = []
     with graphDB_Driver.session() as session:
         list_of_operation_IDs_used_in_this_expression = session.read_transaction(
             neo4j_query.operation_IDs_used_in_expression, expression_id
         )
+    print(
+        "list_of_operation_IDs_used_in_this_expression=",
+        list_of_operation_IDs_used_in_this_expression,
+    )
 
     # editing the expression includes modifying the symbols present.
 

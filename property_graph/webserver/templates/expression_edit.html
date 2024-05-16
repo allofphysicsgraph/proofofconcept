@@ -5,6 +5,10 @@
   Return to <a href="{{ url_for('main') }}?referrer=expession_edit">main page</a>
 </P>
 
+<P>
+  Return to <a href="{{ url_for('to_list_expressions') }}?referrer=expession_edit">main page</a>
+</P>
+
 {{ expression_dict }}
 
 <fieldset>
@@ -71,7 +75,7 @@ TODO: this list should be the symbols currently used by the expression, not all 
       <option value="{{ operation_id }}">{{ operation_id }}, {{ dict_of_operation_dicts[operation_id]['latex'] }} </option>
       {% endfor %}
     </select>
-
+    <input type="submit" value="add operation to expression">
   </form>
 </fieldset>
 
@@ -88,7 +92,7 @@ TODO: this list should be the operations currently used by the expression, not a
       <option value="{{ operation_id }}">{{ operation_id }}, {{ dict_of_operation_dicts[operation_id]['latex'] }} </option>
       {% endfor %}
     </select>
-
+    <input type="submit" value="remove operation from expression">
   </form>
 </fieldset>
 

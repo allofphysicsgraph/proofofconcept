@@ -171,6 +171,7 @@ def symbol_IDs_used_in_expression(tx, expression_id: str) -> list:
         "MATCH (n:symbol),(m:expression) WHERE m.id=" + expression_id + " RETURN n"
     ):
         symbol_list.append(result.data()["n"])
+    prnt("expression_id=", expression_id, "symbol_list=", symbol_list)
 
     print(
         "[TRACE] func: neo4j_query/list_operation_IDs_used_in_this_expression end "
@@ -198,6 +199,8 @@ def operation_IDs_used_in_expression(tx, expression_id: str) -> list:
         "MATCH (n:operation),(m:expression) WHERE m.id=" + expression_id + " RETURN n"
     ):
         operation_list.append(result.data()["n"])
+
+    print("expression_id=", expression_id, "operation_list=", operation_list)
 
     print(
         "[TRACE] func: neo4j_query/list_operation_IDs_used_in_this_expression end "
@@ -576,6 +579,7 @@ def disconnect_symbol_from_expression(tx, symbol_id: str, expression_id: str) ->
         "[TRACE] func: neo4j_query/disconnect_symbol_from_expression start " + trace_id
     )
     # TODO
+    print("WARN: NOT YET ENACTED")
     print("[TRACE] func: neo4j_query/disconnect_symbol_from_expression end " + trace_id)
     return
 
@@ -592,6 +596,7 @@ def disconnect_operation_from_expression(
         + trace_id
     )
     # TODO
+    print("WARN: NOT YET ENACTED")
     print(
         "[TRACE] func: neo4j_query/disconnect_operation_from_expression end " + trace_id
     )
@@ -605,14 +610,14 @@ def add_symbol_to_expression(tx, symbol_id: str, expression_id: str) -> None:
     print("symbol_id=", symbol_id, "expression_id=", expression_id)
 
     print(
-        "MATCH (e:experssion),(s:symbol) WHERE e.id='"
+        "MATCH (e:expression),(s:symbol) WHERE e.id='"
         + str(expression_id)
         + "' AND s.id='"
         + str(symbol_id)
         + "' MERGE (e)-[r:HAS_SYMBOL]->(s) RETURN r"
     )
     print(
-        "MATCH (e:experssion),(s:symbol) WHERE e.id='"
+        "MATCH (e:expression),(s:symbol) WHERE e.id='"
         + str(expression_id)
         + "' AND s.id='"
         + str(symbol_id)
@@ -620,7 +625,7 @@ def add_symbol_to_expression(tx, symbol_id: str, expression_id: str) -> None:
     )
 
     result = tx.run(
-        "MATCH (e:experssion),(s:symbol) "
+        "MATCH (e:expression),(s:symbol) "
         + 'WHERE e.id="'
         + str(expression_id)
         + '" AND s.id="'
@@ -641,7 +646,7 @@ def add_operation_to_expression(tx, operation_id: str, expression_id: str) -> No
     print("[TRACE] func: neo4j_query/add_operation_to_expression start " + trace_id)
 
     result = tx.run(
-        "MATCH (e:experssion),(p:operation) "
+        "MATCH (e:expression),(p:operation) "
         + 'WHERE e.id="'
         + str(expression_id)
         + '" AND p.id="'
