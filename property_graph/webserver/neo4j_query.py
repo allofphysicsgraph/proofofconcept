@@ -171,7 +171,7 @@ def symbol_IDs_used_in_expression(tx, expression_id: str) -> list:
         "MATCH (n:symbol),(m:expression) WHERE m.id=" + expression_id + " RETURN n"
     ):
         symbol_list.append(result.data()["n"])
-    prnt("expression_id=", expression_id, "symbol_list=", symbol_list)
+    print("expression_id=", expression_id, "symbol_list=", symbol_list)
 
     print(
         "[TRACE] func: neo4j_query/list_operation_IDs_used_in_this_expression end "
@@ -269,7 +269,9 @@ def derivations_that_use_inference_rule(tx, inference_rule_id: str) -> list:
         list_of_derivations,
     )
 
-    print("[TRACE] func: neo4j_query/steps_in_this_derivation end " + trace_id)
+    print(
+        "[TRACE] func: neo4j_query/derivations_that_use_inference_rule end " + trace_id
+    )
     return list_of_derivations
 
 
@@ -578,8 +580,17 @@ def disconnect_symbol_from_expression(tx, symbol_id: str, expression_id: str) ->
     print(
         "[TRACE] func: neo4j_query/disconnect_symbol_from_expression start " + trace_id
     )
-    # TODO
-    print("WARN: NOT YET ENACTED")
+
+    result = tx.run(
+        "MATCH (e:expression)-[r:HAS_SYMBOL]->(s:symbol)"
+        + 'WHERE e.id="'
+        + str(expression_id)
+        + '" AND s.id="'
+        + str(symbol_id)
+        + '"  DELETE r'
+    )
+    print("result.data=", result.data())
+
     print("[TRACE] func: neo4j_query/disconnect_symbol_from_expression end " + trace_id)
     return
 
@@ -595,8 +606,16 @@ def disconnect_operation_from_expression(
         "[TRACE] func: neo4j_query/disconnect_operation_from_expression start "
         + trace_id
     )
-    # TODO
-    print("WARN: NOT YET ENACTED")
+    result = tx.run(
+        "MATCH (e:expression)-[r:HAS_OPERATION]->(p:operation)"
+        + 'WHERE e.id="'
+        + str(expression_id)
+        + '" AND p.id="'
+        + str(operation_id)
+        + '"  DELETE r'
+    )
+    print("result.data=", result.data())
+
     print(
         "[TRACE] func: neo4j_query/disconnect_operation_from_expression end " + trace_id
     )
@@ -661,11 +680,45 @@ def add_operation_to_expression(tx, operation_id: str, expression_id: str) -> No
     return
 
 
+def list_sequence_values(tx, derivation_id: str) -> list:
+    """
+    sequence value is a positive integer for ordering the steps of a derivation
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/list_sequence_values start " + trace_id)
+
+    list_of_sequence_values = []
+
+    print("derivation_id=", derivation_id)
+    print('MATCH (d:derivation {id:"' + derivation_id + '"})-[r]->(s:step) RETURN r')
+    for result in tx.run(
+        'MATCH (d:derivation {id:"' + derivation_id + '"})-[r]->(s:step) RETURN r'
+    ):
+        record = result.data()
+        print("record=", record)
+        # print(
+        #     "    d=",
+        #     result.data()["d"],
+        #     "\n    r=",
+        #     result.data()["r"],
+        #     "\n    s=",
+        #     result.data()["s"],
+        # )
+
+        list_of_sequence_values.append(record["r"][2])
+
+    print("list_of_sequence_values=", list_of_sequence_values)
+
+    print("[TRACE] func: neo4j_query/list_sequence_values end " + trace_id)
+    return list_of_sequence_values
+
+
 def add_step_to_derivation(
     tx,
     step_id: str,
     derivation_id: str,
     inference_rule_id: str,
+    new_sequence_value: str,
     now_str: str,
     note_before_step_latex: str,
     note_after_step_latex: str,
@@ -696,9 +749,10 @@ def add_step_to_derivation(
     result = tx.run(
         "MATCH (a:derivation),(b:step) "
         'WHERE a.id="' + str(derivation_id) + '" AND b.id="' + str(step_id) + '" '
-        "MERGE (a)-[r:HAS_STEP {sequence_index: '1'}]->(b) RETURN r"
+        "MERGE (a)-[r:HAS_STEP {sequence_index: '"
+        + str(new_sequence_value)
+        + "'}]->(b) RETURN r"
     )
-    # TODO: sequence index has to increment (!)
 
     print("inference_rule_id", inference_rule_id)
     result = tx.run(

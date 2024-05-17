@@ -942,6 +942,8 @@ def to_add_expression():
         expression_description = str(web_form.expression_description.data).strip()
 
         print("expression_latex:", expression_latex)
+        # TODO: validate that this string is actually Latex before adding to database
+
         print("expression_name:", expression_name)
         print("expression_description", expression_description)
 
@@ -1336,8 +1338,16 @@ def to_add_step_select_expressions(
         step_id = compute.generate_random_id(list_of_step_IDs)
         print("generated step_id=", step_id)
 
-        # TODO: for the derivation, determine the list of all sequence_index values,
+        # for the derivation, determine the list of all sequence_index values,
         #       then increment max to get the sequence_index for this step
+        list_of_sequence_values = []
+        # https://neo4j.com/docs/python-manual/current/session-api/
+        with graphDB_Driver.session() as session:
+            list_of_sequence_values = session.read_transaction(
+                neo4j_query.list_sequence_values, derivation_id
+            )
+        print("list_of_sequence_values=", list_of_sequence_values)
+        new_sequence_value = str(max(list_of_sequence_values) + 1)
 
         # %f = Microsecond as a decimal number, zero-padded on the left.
         now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
@@ -1349,6 +1359,7 @@ def to_add_step_select_expressions(
                 step_id,
                 derivation_id,
                 inference_rule_id,
+                new_sequence_value,
                 now_str,
                 note_before_step_latex,
                 note_after_step_latex,
@@ -1480,7 +1491,9 @@ def to_add_inference_rule():
 
 
 @app.route("/edit_step/<derivation_id>/<step_id>", methods=["GET", "POST"])
-def to_edit_step(step_id: unique_numeric_id_as_str):
+def to_edit_step(
+    derivation_id: unique_numeric_id_as_str, step_id: unique_numeric_id_as_str
+):
     """ """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_step start " + trace_id)
@@ -1692,10 +1705,37 @@ def to_query():
         except neo4j.exceptions.ClientError:
             list_of_records = ["WRITE OPERATIONS NOT ALLOWED (3)"]
         except neo4j.exceptions.TransactionError:
-            list_of_records = ["probably invalid Cypher query"]
+            list_of_records = ["probably tried a write Cypher query (TransactionError)"]
     # else:
     #     print("[TRACE] func: app/to_query end " + trace_id)
     #     raise Exception("Shouldn't get here")
+
+    derivation_id = ""
+    list_of_derivation_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_derivation_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "derivation"
+        )
+    print("list_of_derivation_dicts=", list_of_derivation_dicts)
+    derivation_id = list_of_derivation_dicts[0]["id"]
+
+    inference_rule_id = ""
+    list_of_inference_rule_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_inference_rule_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "inference_rule"
+        )
+    print("list_of_inference_rule_dicts=", list_of_inference_rule_dicts)
+    inference_rule_id = list_of_inference_rule_dicts[0]["id"]
+
+    step_id = ""
+    list_of_step_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_step_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "step"
+        )
+    print("list_of_step_dicts=", list_of_step_dicts)
+    step_id = list_of_step_dicts[0]["id"]
 
     print("[TRACE] func: app/to_query end " + trace_id)
     return render_template(
@@ -1703,6 +1743,9 @@ def to_query():
         form=web_form,
         submitted_query=query,
         list_of_records=list_of_records,
+        derivation_id=derivation_id,
+        inference_rule_id=inference_rule_id,
+        step_id=step_id,
     )
 
 
@@ -1835,7 +1878,6 @@ def to_list_inference_rules():
         list_of_inference_rule_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "inference_rule"
         )
-    list_of_inference_rule_dicts = list(set(list_of_inference_rule_dicts))
 
     list_of_derivations_used_per_inference_rule = {}
     for this_inference_rule_dict in list_of_inference_rule_dicts:

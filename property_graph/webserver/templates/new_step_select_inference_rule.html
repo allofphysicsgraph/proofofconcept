@@ -23,7 +23,6 @@
   <P>Clicking on the inference rule ID selects that inference rule for the step<BR>
   <table border="1" id="inference_rule_table">
     <tr>
-      <th>ID</th>
       <th>name</th>
       <th>latex</th>
       <th>input count</th>
@@ -36,10 +35,9 @@
         <a href="{{ url_for( 'to_add_step_select_expressions',
         derivation_id=derivation_dict['id'],
         inference_rule_id=inference_rule_dict['id'] ) }}">
-          {{ inference_rule_dict['id'] }}
+          {{ inference_rule_dict['name_latex'] }}
         </a>
       </td>
-      <td>{{ inference_rule_dict['name_latex'] }}</td>
       <td>{{ inference_rule_dict['latex']}}</td>
       <td>{{ inference_rule_dict['number_of_inputs'] }}</td>
       <td>{{ inference_rule_dict['number_of_feeds']}}</td>

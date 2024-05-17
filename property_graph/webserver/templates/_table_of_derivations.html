@@ -12,7 +12,6 @@
 
 <table border="1" id="derivation_table">
   <tr>
-    <th>ID</th>
     <th>name</th>
     <th>abstract</th>
     <th>number of steps</th>
@@ -21,10 +20,9 @@
   <tr>
     <td>
       <a href="{{ url_for( 'to_review_derivation', derivation_id=derivation_dict['id'] ) }}">
-        {{ derivation_dict['id'] }}
+        {{ derivation_dict['name_latex'] }}
       </a>
     </td>
-    <td>{{ derivation_dict['name_latex'] }}</td>
     <td>{{ derivation_dict['abstract_latex']}}</td>
     <td>{{ number_of_steps_per_derivation[derivation_dict['id']] }}</td>
   </tr>
