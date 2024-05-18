@@ -6,18 +6,56 @@
 </P>
 
 <P>
-  Return to <a href="{{ url_for('to_list_expressions') }}?referrer=expession_edit">main page</a>
+  Return to <a href="{{ url_for('to_list_expressions') }}?referrer=expession_edit">list of expressions</a>
 </P>
 
-{{ expression_dict }}
+<P>Being edited: {{ expression_dict }}
 
 <fieldset>
   <legend>
     <H2>Symbols in Expression</h2>
   </legend>
-  TODO: list symbols  used in expression 
-  <P>{{ list_of_symbol_IDs_used_in_this_expression }}
-</fieldset>
+
+<table border="1" id="symbol_table">
+  <tr>
+    <th>ID</th>
+    <th>latex</th>
+    <th>name</th>
+    <th>description</th>
+    <th>reference</th>
+    <th>dimension: time</th>
+    <th>dimension: length</th>
+    <th>dimension: mass</th>
+    <th>dimension: electric charge</th>
+    <th>dimension: luminous intensity</th>
+    <th>dimension: amount of substance</th>
+    <th>dimension: temperature</th>
+    <th>scope</th>
+    <th>domain</th>
+  </tr>
+  {% for symbol_id, symbol_dict in dict_of_symbol_dicts_in_expression.items() %}
+  <tr>
+    <td>
+      <a href="{{ url_for( 'to_edit_symbol', symbol_id=symbol_id ) }}">
+          {{ symbol_id }}
+      </a>
+    </td>
+    <td>{{ symbol_dict['latex']}}</td>
+    <td>{{ symbol_dict['name_latex'] }}</td>
+    <td>{{ symbol_dict['description_latex'] }}</td>
+    <td>{{ symbol_dict['symbol_reference'] }}</td>
+    <td>{{ symbol_dict['dimension_time'] }}</td>
+    <td>{{ symbol_dict['dimension_length'] }}</td>
+    <td>{{ symbol_dict['dimension_mass'] }}</td>
+    <td>{{ symbol_dict['dimension_electric_charge'] }}</td>
+    <td>{{ symbol_dict['dimension_luminous_intensity'] }}</td>
+    <td>{{ symbol_dict['dimension_amount_of_substance'] }}</td>
+    <td>{{ symbol_dict['dimension_temperature'] }}</td>
+    <td>{{ symbol_dict['symbol_scope'] }}</td>
+    <td>{{ symbol_dict['symbol_domain'] }}</td>
+  </tr>
+  {% endfor %}
+</table>
 
 <fieldset>
   <legend>
@@ -27,8 +65,8 @@
     {{ form_no_options.csrf_token }}
     <P><!--symbol count: { { list_of_symbol_IDs|length } }-->
     <select name="symbol_select_id_to_add" class="selectpicker form-control" id="symbol_select">
-      {% for symbol_id in list_of_symbol_IDs %}
-      <option value="{{ symbol_id }}">{{ symbol_id }}, {{ dict_of_symbol_dicts[symbol_id]['latex'] }} </option>
+      {% for symbol_id in dict_of_symbol_dicts_not_in_expression.keys() %}
+      <option value="{{ symbol_id }}">{{ symbol_id }}, {{ dict_of_all_symbol_dicts[symbol_id]['latex'] }} </option>
       {% endfor %}
     </select>
     <input type="submit" value="add symbol to expression">
@@ -41,27 +79,49 @@
   </legend>
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form_no_options.csrf_token }}
-TODO: this list should be the symbols currently used by the expression, not all the symbols
     <P><!--symbol count: { { list_of_symbol_IDs|length } }-->
     <select name="symbol_select_id_to_remove" class="selectpicker form-control" id="symbol_select">
-      {% for symbol_id in list_of_symbol_IDs %}
-      <option value="{{ symbol_id }}">{{ symbol_id }}, {{ dict_of_symbol_dicts[symbol_id]['latex'] }} </option>
+      {% for symbol_id in dict_of_symbol_dicts_in_expression.keys() %}
+      <option value="{{ symbol_id }}">{{ symbol_id }}, {{ dict_of_all_symbol_dicts[symbol_id]['latex'] }} </option>
       {% endfor %}
     </select>
     <input type="submit" value="remove symbol from expression">
   </form>
 </fieldset>
 
+</fieldset>
 
 
 <fieldset>
   <legend>
-    <H2>operation in Expression</h2>
+    <H2>Operations in Expression</h2>
   </legend>
-  TODO: list operations used in expression 
-  <P>{{ list_of_operation_IDs_used_in_this_expression }}
-</fieldset>
 
+  <P>{% for operation_id, operation_dict in dict_of_operation_dicts_in_expression.items() %}
+    <UL>
+      <LI>{{ operation_dict }}</LI>
+    </UL>
+     {% endfor %}
+
+
+<table border="1" id="operation_table">
+  <tr>
+    <th>ID</th>
+    <th>latex</th>
+    <th>name</th>
+    <th>number of arguments</th>
+    <th>description</th>
+  </tr>
+  {% for operation_id, operation_dict in dict_of_operation_dicts_in_expression.items() %}
+  <tr>
+    <td><a href="{{ url_for('to_edit_operation', operation_id=operation_id) }}">{{ operation_id }}</a></td> <!-- ID -->
+    <td>{{ operation_dict['latex'] }}</td> <!-- latex -->
+    <td>{{ operation_dict['name_latex'] }}</td> <!-- name -->
+    <td>{{ operation_dict['number_of_arguments'] }}</td>
+    <td>{{ operation_dict['description_latex'] }}</td>
+  </tr>
+  {% endfor %}
+</table>
 
 <fieldset>
   <legend>
@@ -71,8 +131,8 @@ TODO: this list should be the symbols currently used by the expression, not all 
     {{ form_no_options.csrf_token }}
     <P><!-- operation count: { { list_of_operation_IDs|length } } -->
     <select name="operation_select_id_to_add" class="selectpicker form-control" id="operation_select">
-      {% for operation_id in list_of_operation_IDs %}
-      <option value="{{ operation_id }}">{{ operation_id }}, {{ dict_of_operation_dicts[operation_id]['latex'] }} </option>
+      {% for operation_id, operation_dict in dict_of_operation_dicts_not_in_expression.items() %}
+      <option value="{{ operation_id }}">{{ operation_id }}, {{ operation_dict['latex'] }} </option>
       {% endfor %}
     </select>
     <input type="submit" value="add operation to expression">
@@ -85,17 +145,16 @@ TODO: this list should be the symbols currently used by the expression, not all 
   </legend>
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form_no_options.csrf_token }}
-TODO: this list should be the operations currently used by the expression, not all the operations
     <P><!-- operation count: { { list_of_operation_IDs|length } } -->
     <select name="operation_select_id_to_remove" class="selectpicker form-control" id="operation_select">
-      {% for operation_id in list_of_operation_IDs %}
-      <option value="{{ operation_id }}">{{ operation_id }}, {{ dict_of_operation_dicts[operation_id]['latex'] }} </option>
+      {% for operation_id, operation_dict in dict_of_operation_dicts_in_expression.items() %}
+      <option value="{{ operation_id }}">{{ operation_id }}, {{ operation_dict['latex'] }} </option>
       {% endfor %}
     </select>
     <input type="submit" value="remove operation from expression">
   </form>
 </fieldset>
-
+</fieldset>
 
   <fieldset>
     <legend>

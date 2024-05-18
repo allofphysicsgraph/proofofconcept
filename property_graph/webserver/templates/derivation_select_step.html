@@ -7,6 +7,12 @@
 
 <P>derivation_dict: {{ derivation_dict }}
 
+<P>timing of queries:{% for k,v in query_time_dict.items() %}
+  <UL>
+  <LI>{{ k }}, {{ v }}</LI>
+</UL>
+{% endfor %}
+
 <fieldset>
 <legend>
   <H2>Edit or delete a step in the Derivation {{ derivation_dict['name_latex'] }}</h2>

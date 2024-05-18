@@ -42,77 +42,105 @@ Examples:
   <tr>
     <th>purpose</th>
     <th>Cypher query</th>
+    <th>comment</th>
   </tr>
+
+
+  <tr>
+    <td>list all distinct node labels <!--(<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)--></td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n) RETURN distinct labels(n)">
+                                                  MATCH (n) RETURN distinct labels(n)</a></td>
+    <td>what is the schema for nodes?</td>
+  </tr>
+  <tr>
+    <td>list all distinct edge labels <!--(<a href="https://stackoverflow.com/a/42439326/1164295">citation</a>)--></td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (a)-[r]->(b) RETURN distinct type(r)">
+                                                  MATCH (a)-[r]->(b) RETURN distinct type(r)</a></td>
+    <td>what is the schema for edges?</td>
+  </tr>
+
+
+
+  <tr>
+    <td>list the node count for each label <!--(<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)--></td>
+    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n) RETURN distinct labels(n), count(*)">
+                                                  MATCH (n) RETURN distinct labels(n), count(*)</a></td>
+    <td>how many nodes of each type?</td>
+  </tr>
+
   <tr>
     <td>list all nodes</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n) RETURN n">
                                                   MATCH (n) RETURN n</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>list all edges</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n)-[r]->(m) RETURN r">
                                                   MATCH (n)-[r]->(m) RETURN r</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>list all nodes and edges</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n)-[r]->(m) RETURN n,r,m">
                                                   MATCH (n)-[r]->(m) RETURN n,r,m</a></td>
+    <td></td>
   </tr>
-  <tr>
-    <td>list all distinct node labels (<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)</td>
-    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n) RETURN distinct labels(n)">
-                                                  MATCH (n) RETURN distinct labels(n)</a></td>
-  </tr>
-  <tr>
-    <td>list the node count for each label (<a href="https://stackoverflow.com/a/24058571/1164295">citation</a>)</td>
-    <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n) RETURN distinct labels(n), count(*)">
-                                                  MATCH (n) RETURN distinct labels(n), count(*)</a></td>
-  </tr>
+
   <tr>
     <td>list derivations</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:derivation) RETURN n">
                                                   MATCH (n:derivation) RETURN n</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>list inference rules</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:inference_rule) RETURN n">
                                                   MATCH (n:inference_rule) RETURN n</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>list steps</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:step) RETURN n">
                                                   MATCH (n:step) RETURN n</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>list expressions</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:expression) RETURN n">
                                                   MATCH (n:expression) RETURN n</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>list symbols</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:symbol) RETURN n">
                                                   MATCH (n:symbol) RETURN n</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>list operations</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:operation) RETURN n">
                                                   MATCH (n:operation) RETURN n</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>list steps for a derivation</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:step), (m:derivation) WHERE m.id={{derivation_id}} RETURN n">
                                                   MATCH (n:step), (m:derivation) WHERE m.id='{{ derivation_id }}' RETURN n</a></td>
+    <td></td>
   </tr>
 
   <tr>
     <td>list inference rule used in a specific step</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:inference_rule), (m:step) WHERE m.id='{{step_id}}' RETURN n">
 MATCH (n:inference_rule), (m:step) WHERE m.id='{{step_id}}' RETURN n</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>list expressions connected to a specific inference rule</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (n:expression), (m:inference_rule) WHERE m.id='{{inference_rule_id}}' RETURN n">
 MATCH (n:expression), (m:inference_rule) WHERE m.id='{{inference_rule_id}}' RETURN n</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>list properties for a specific derivation</td>
@@ -121,12 +149,14 @@ MATCH (n:expression), (m:inference_rule) WHERE m.id='{{inference_rule_id}}' RETU
     or<BR>
     <a href="{{ url_for('to_query') }}?cypher=MATCH (n:derivation {id:'{{ derivation_id }}'}) RETURN n">
                                               MATCH (n:derivation {id:'{{ derivation_id }}'}) RETURN n</a></td>
+    <td></td>
   </tr>
   <tr>
     <td>an inference rule is in which derivations?</td>
     <td><a href="{{ url_for('to_query') }}?cypher=MATCH (d:derivation),(s:step),(i:inference_rule) WHERE i.id ='{{inference_rule_id}}' RETURN d">
                                                   MATCH (d:derivation),(s:step),(i:inference_rule) WHERE i.id='{{inference_rule_id}}' RETURN d
     </a></td>
+    <td></td>
   </tr>
 
 </table>

@@ -152,7 +152,7 @@ def constrain_unique_id(tx) -> None:
     return
 
 
-def symbol_IDs_used_in_expression(tx, expression_id: str) -> list:
+def symbols_in_expression(tx, expression_id: str) -> list:
     """
     an expression typically has one or more sybmols
     This read query returns which symbol IDs are used for the provided expression ID
@@ -161,26 +161,22 @@ def symbol_IDs_used_in_expression(tx, expression_id: str) -> list:
 
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print(
-        "[TRACE] func: neo4j_query/list_operation_IDs_used_in_this_expression start "
-        + trace_id
-    )
+    print("[TRACE] func: neo4j_query/symbols_in_expression start " + trace_id)
 
     symbol_list = []
     for result in tx.run(
-        "MATCH (n:symbol),(m:expression) WHERE m.id=" + expression_id + " RETURN n"
+        "MATCH (e:expression)-[:HAS_SYMBOL]->(s:symbol) WHERE e.id='"
+        + expression_id
+        + "' RETURN s.id"
     ):
-        symbol_list.append(result.data()["n"])
+        symbol_list.append(result.data()["s.id"])
     print("expression_id=", expression_id, "symbol_list=", symbol_list)
 
-    print(
-        "[TRACE] func: neo4j_query/list_operation_IDs_used_in_this_expression end "
-        + trace_id
-    )
+    print("[TRACE] func: neo4j_query/symbols_in_expression end " + trace_id)
     return symbol_list
 
 
-def operation_IDs_used_in_expression(tx, expression_id: str) -> list:
+def operations_in_expression(tx, expression_id: str) -> list:
     """
     an expression typically has one or more operations
     This read query returns which operation IDs are used for the provided expression ID
@@ -189,23 +185,19 @@ def operation_IDs_used_in_expression(tx, expression_id: str) -> list:
 
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print(
-        "[TRACE] func: neo4j_query/list_operation_IDs_used_in_this_expression start "
-        + trace_id
-    )
+    print("[TRACE] func: neo4j_query/operations_in_expression start " + trace_id)
 
     operation_list = []
     for result in tx.run(
-        "MATCH (n:operation),(m:expression) WHERE m.id=" + expression_id + " RETURN n"
+        "MATCH (e:expression)-[:HAS_OPERATION]->(p:operation) WHERE e.id='"
+        + expression_id
+        + "' RETURN p.id"
     ):
-        operation_list.append(result.data()["n"])
+        operation_list.append(result.data()["p.id"])
 
     print("expression_id=", expression_id, "operation_list=", operation_list)
 
-    print(
-        "[TRACE] func: neo4j_query/list_operation_IDs_used_in_this_expression end "
-        + trace_id
-    )
+    print("[TRACE] func: neo4j_query/operations_in_expression end " + trace_id)
     return operation_list
 
 
@@ -350,6 +342,24 @@ def steps_in_this_derivation(tx, derivation_id: str) -> list:
     return list_of_step_IDs
 
 
+def step_has_sequence_index(tx, step_id: str) -> int:
+    """
+    >>> step_has_sequence_index()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/step_has_sequence_index start " + trace_id)
+    sequence_index = 0
+    result = tx.run(
+        'MATCH ()-[r:HAS_STEP]->(n:step {id:"' + step_id + '"}) RETURN r.sequence_index'
+    )
+    # print(type(result)) # don't access the `result` variable more than once, as mentioned on https://neo4j.com/docs/python-manual/current/transformers/
+    sequence_index = result.data()[0]["r.sequence_index"]
+    print("sequence_index=", sequence_index)
+
+    print("[TRACE] func: neo4j_query/step_has_sequence_index end " + trace_id)
+    return sequence_index
+
+
 def step_has_inference_rule(tx, step_id: str):
     """
     use case: when displaying a derivation, user wants to see inference rule per step
@@ -389,6 +399,15 @@ def step_has_expressions(tx, step_id: str, expression_type: str) -> list:
         or expression_type == "HAS_OUTPUT"
     )
     print("step_id=", step_id, "; expression_type=", expression_type)
+
+    print("TODO: figure out how to get the sequence_index for this expression")
+    print(
+        'MATCH (n:step {id:"'
+        + step_id
+        + '"})-[r:'
+        + expression_type
+        + "]->(m:expression) RETURN m"
+    )
 
     list_of_expression_IDs = []
     for result in tx.run(
@@ -628,13 +647,13 @@ def add_symbol_to_expression(tx, symbol_id: str, expression_id: str) -> None:
     print("[TRACE] func: neo4j_query/add_symbol_to_expression start " + trace_id)
     print("symbol_id=", symbol_id, "expression_id=", expression_id)
 
-    print(
-        "MATCH (e:expression),(s:symbol) WHERE e.id='"
-        + str(expression_id)
-        + "' AND s.id='"
-        + str(symbol_id)
-        + "' MERGE (e)-[r:HAS_SYMBOL]->(s) RETURN r"
-    )
+    # print(
+    #     "MATCH (e:expression),(s:symbol) WHERE e.id='"
+    #     + str(expression_id)
+    #     + "' AND s.id='"
+    #     + str(symbol_id)
+    #     + "' MERGE (e)-[r:HAS_SYMBOL]->(s) RETURN r"
+    # )
     print(
         "MATCH (e:expression),(s:symbol) WHERE e.id='"
         + str(expression_id)
@@ -650,10 +669,9 @@ def add_symbol_to_expression(tx, symbol_id: str, expression_id: str) -> None:
         + '" AND s.id="'
         + str(symbol_id)
         + '" '
-        + "MERGE (e)-[r:HAS_SYMBOL]->(s) RETURN r"
+        + "MERGE (e)-[r:HAS_SYMBOL]->(s)"
     )
-    print("result.data=", result.data())
-    # TODO: probably don't need that "RETURN" statement
+    # print("result.data=", result.data())
 
     print("[TRACE] func: neo4j_query/add_symbol_to_expression end " + trace_id)
     return
@@ -690,22 +708,21 @@ def list_sequence_values(tx, derivation_id: str) -> list:
     list_of_sequence_values = []
 
     print("derivation_id=", derivation_id)
-    print('MATCH (d:derivation {id:"' + derivation_id + '"})-[r]->(s:step) RETURN r')
+    print(
+        'MATCH (d:derivation {id:"'
+        + derivation_id
+        + '"})-[r]->(s:step) RETURN r.sequence_index'
+    )
     for result in tx.run(
-        'MATCH (d:derivation {id:"' + derivation_id + '"})-[r]->(s:step) RETURN r'
+        'MATCH (d:derivation {id:"'
+        + derivation_id
+        + '"})-[r]->(s:step) RETURN r.sequence_index'
     ):
         record = result.data()
+        # record= {'r.sequence_index': '1'}
         print("record=", record)
-        # print(
-        #     "    d=",
-        #     result.data()["d"],
-        #     "\n    r=",
-        #     result.data()["r"],
-        #     "\n    s=",
-        #     result.data()["s"],
-        # )
 
-        list_of_sequence_values.append(record["r"][2])
+        list_of_sequence_values.append(int(record["r.sequence_index"]))
 
     print("list_of_sequence_values=", list_of_sequence_values)
 
@@ -749,9 +766,9 @@ def add_step_to_derivation(
     result = tx.run(
         "MATCH (a:derivation),(b:step) "
         'WHERE a.id="' + str(derivation_id) + '" AND b.id="' + str(step_id) + '" '
-        "MERGE (a)-[r:HAS_STEP {sequence_index: '"
+        "MERGE (a)-[r:HAS_STEP {sequence_index: "
         + str(new_sequence_value)
-        + "'}]->(b) RETURN r"
+        + "}]->(b) RETURN r"
     )
 
     print("inference_rule_id", inference_rule_id)
@@ -833,8 +850,8 @@ def add_expression(
     expression_id: str,
     expression_name: str,
     expression_latex: str,
-    expression_sympy: str,
     expression_lean: str,
+    expression_sympy: str,
     expression_description: str,
     author_name_latex: str,
 ) -> None:

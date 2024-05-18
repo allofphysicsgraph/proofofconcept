@@ -11,12 +11,15 @@
 
 <P> <!-- all_steps: { { all_steps } } -->
 
-
+<P>timing of queries:{% for k,v in query_time_dict.items() %}
+  <UL>
+  <LI>{{ k }}, {{ v }}</LI>
+</UL>
+{% endfor %}
 
 <table border="1" id="derivation_steps_table">
   <tr>
     <th>step</th>
-    <th>step ID</th>
     <th>inference rule</th>
     <th>input</th>
     <th>feed</th>
@@ -25,12 +28,11 @@
   </tr>
   {% for step_id, step_dict in all_steps.items() %}
   <tr>
-    <td>TODO</td> <!-- step 0,1,2... -->
     <td>
       <a href="{{ url_for( 'to_edit_step', derivation_id=derivation_dict['id'], step_id=step_id ) }}">
-        {{ step_id }}
+        {{ step_dict['sequence index'] }}
       </a>
-    </td>
+    </td><!-- step 0,1,2... -->
     <td><a href="{{ url_for('to_edit_inference_rule', inference_rule_id=step_dict['inference rule dict']['id']) }}">{{step_dict['inference rule dict']['id']}}</a><BR>
     {{ step_dict['inference rule dict'] }}</td> <!-- inference rule -->
     <td>{% for m_dict in step_dict['list of input IDs'] %}
