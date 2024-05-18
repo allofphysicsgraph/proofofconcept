@@ -112,7 +112,7 @@ def get_dict_of_derivations_used_per_inference_rule(
             new_temp_dict[this_derivation_dict["id"]] = this_derivation_dict
 
         list_of_derivations_that_use_this_inference_rule_id = []
-        for derivation_id, derivation_dict in new_temp_dict:
+        for derivation_id, derivation_dict in new_temp_dict.items():
             list_of_derivations_that_use_this_inference_rule_id.append(derivation_dict)
 
         dict_of_derivations_used_per_inference_rule[this_inference_rule_dict["id"]] = (
@@ -200,4 +200,4 @@ def all_steps_in_derivation(
             "list of output IDs": list_of_output_IDs,
         }
     print("[TRACE] func: app/all_steps_in_derivation end " + trace_id)
-    return all_steps
+    return all_steps, query_time_dict

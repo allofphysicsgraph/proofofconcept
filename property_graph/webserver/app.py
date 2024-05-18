@@ -87,6 +87,9 @@ from flask import (
 # https://nickjanetakis.com/blog/fix-missing-csrf-token-issues-with-flask
 from flask_wtf import FlaskForm, CSRFProtect, Form  # type: ignore
 
+# https://stackoverflow.com/a/61729817/1164295
+from werkzeug.utils import secure_filename
+
 # removed "Form" from wtforms; see https://stackoverflow.com/a/20577177/1164295
 from wtforms import StringField, validators, FieldList, FormField, IntegerField, RadioField, PasswordField, SubmitField, BooleanField  # type: ignore
 
@@ -147,7 +150,8 @@ app.config.from_object(
     Config
 )  # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-iii-web-forms
 app.config["UPLOAD_FOLDER"] = (
-    "/home/appuser/app/uploads"  # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+    # the following folder on the host is accessible to both flask and neo4j
+    "/scratch/dumping_grounds/"  # https://flask.palletsprojects.com/en/3.0.x/patterns/fileuploads/
 )
 app.config["SEND_FILE_MAX_AGE_DEFAULT"] = (
     0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
@@ -335,7 +339,7 @@ def main():
     """
     initial page
 
-    file upload: see https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+    file upload: see https://flask.palletsprojects.com/en/3.0.x/patterns/fileuploads/
 
     >>> main()
     """
@@ -347,7 +351,8 @@ def main():
 
         # check if the post request has the file part
         if "file" not in request.files:
-            print("file not in request files")
+            error_message_for_user = "ERROR: file not in request files"
+            print("ERROR: file not in request files")
             print("[TRACE] func: app/main end " + trace_id)
             return redirect(request.url)
         file_obj = request.files["file"]
@@ -356,6 +361,7 @@ def main():
         # if user does not select file, browser also
         # submit an empty part without filename
         if file_obj.filename == "":
+            error_message_for_user = "WARN: no selected file"
             print("WARN: no selected file")
             print("[TRACE] func: app/main end " + trace_id)
             return redirect(request.url)
@@ -367,12 +373,27 @@ def main():
 
         if file_obj and allowed_bool:
             filename = secure_filename(file_obj.filename)
-            print("filename = %s", filename)
+            print("filename = ", filename)
             path_to_uploaded_file = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-            file_obj.save(path_to_uploaded_file)
+            print("path_to_uploaded_file=", path_to_uploaded_file)
+            try:
+                file_obj.save(path_to_uploaded_file)
+            except FileNotFoundError as e:
+                error_message_for_user = "ERROR: unable to save file" + str(e)
+                print("ERROR: unable to save file" + str(e))
+                return redirect(request.url)
 
-            shutil.copy(path_to_uploaded_file, "/code/" + path_to_db)
-            # 2024-05-17: not clear to bhp how this file gets integrated...
+            # shutil.copy(path_to_uploaded_file, "/code/" + path_to_db)
+
+            with graphDB_Driver.session() as session:
+                str_to_print = session.write_transaction(
+                    neo4j_query.delete_all_nodes_and_relationships
+                )
+            # upload Cypher content inside the neo4j docker image
+            # TODO: how to automate this?
+            print(
+                "docker exec <CONTAINER_ID> bin/cypher-shell --file dumping_grounds/pdg.cypher"
+            )
 
     # TODO: replace the counts below with
     # MATCH (n) RETURN distinct labels(n), count(*)
@@ -832,7 +853,26 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
             web_form_new_expression.expression_description.data
         ).strip()
 
-        # TODO: write change to neo4j
+        print("expression_latex=", expression_latex)
+        print("expression_name=", expression_name)
+        print("expression_description=", expression_description)
+
+        # %f = Microsecond as a decimal number, zero-padded on the left.
+        now_str = str(datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S-%f"))
+
+        author_name_latex = "ben"
+
+        # https://neo4j.com/docs/python-manual/current/session-api/
+        with graphDB_Driver.session() as session:
+            session.write_transaction(
+                neo4j_query.edit_expression,
+                expression_id,
+                expression_latex,
+                expression_name,
+                expression_description,
+                now_str,
+                author_name_latex,
+            )
 
     web_form_no_options = NoOptionsForm(request.form)
     if request.method == "POST":
@@ -1044,8 +1084,9 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
 
     print("symbol_id: ", symbol_id)
 
-    web_form = SpecifyNewSymbolForm(request.form)
-    if request.method == "POST" and web_form.validate():
+    web_form_symbol_properties = SpecifyNewSymbolForm(request.form)
+    web_form_no_options = NoOptionsForm(request.form)
+    if request.method == "POST" and web_form_symbol_properties.validate():
         print("request.form = ", request.form)
 
         symbol_latex = str(web_form.symbol_latex.data).strip()
@@ -1064,6 +1105,8 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
                 symbol_description,
                 author_name_latex,
             )
+    elif request.method == "POST":
+        print("request.form = ", request.form)
 
     symbol_dict = {}
     with graphDB_Driver.session() as session:
@@ -1074,7 +1117,12 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
     print("symbol_dict:", symbol_dict)
 
     print("[TRACE] func: app/to_edit_symbol end " + trace_id)
-    return render_template("symbol_edit.html", form=web_form, symbol_dict=symbol_dict)
+    return render_template(
+        "symbol_edit.html",
+        form_symbol_properties=web_form_symbol_properties,
+        form_no_options=web_form_no_options,
+        symbol_dict=symbol_dict,
+    )
     # return redirect(url_for("to_list_symbols"))
 
 
@@ -1288,11 +1336,6 @@ def to_add_step_select_expressions(
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
-        # feed1 = str(web_form.feed1.data).strip()
-        # output1 = str(web_form.output1.data).strip()
-        #
-        # print("input1=",input1)
-
         note_before_step_latex = str(web_form.note_before_step_latex.data).strip()
         note_after_step_latex = str(web_form.note_after_step_latex.data).strip()
 
@@ -1367,20 +1410,90 @@ def to_add_step_select_expressions(
                 author_name_latex,
             )
 
-    else:
+        # after user provides latex for expressions have them provide Sympy and Lean for Latex
         print("[TRACE] func: app/to_add_step_select_expressions end " + trace_id)
-        return render_template(
-            "new_step_select_expressions_for_inference_rule.html",
-            form=web_form,
-            list_of_expression_IDs=list_of_expression_IDs,
-            dict_of_expression_dicts=dict_of_expression_dicts,
-            inference_rule_dict=inference_rule_dict,
-            derivation_dict=derivation_dict,
+        return redirect(
+            url_for(
+                "to_add_symbols_and_operations_for_expressions_in_step",
+                derivation_id=derivation_id,
+                step_id=step_id,
+            )
         )
 
-    # TODO: return to referrer
+    # first visit to this page
     print("[TRACE] func: app/to_add_step_select_expressions end " + trace_id)
-    return redirect(url_for("to_review_derivation", derivation_id=derivation_id))
+    return render_template(
+        "new_step_select_expressions_for_inference_rule.html",
+        form=web_form,
+        list_of_expression_IDs=list_of_expression_IDs,
+        dict_of_expression_dicts=dict_of_expression_dicts,
+        inference_rule_dict=inference_rule_dict,
+        derivation_dict=derivation_dict,
+    )
+
+
+@app.route(
+    "/symbols_and_operations_for_step/<derivation_id>/<step_id>",
+    methods=["GET", "POST"],
+)
+def to_add_symbols_and_operations_for_expressions_in_step(
+    derivation_id: unique_numeric_id_as_str, step_id: unique_numeric_id_as_str
+):
+    """
+    derivation_id is the numeric ID of the derivation being edited
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print(
+        "[TRACE] func: app/to_add_symbols_and_operations_for_expressions_in_step start "
+        + trace_id
+    )
+    # TODO: get the expressions associated with this step_id
+    # TODO: get the symbols associated with this derivation_id
+
+    web_form_no_options = NoOptionsForm(request.form)
+    if request.method == "POST":
+        print("request.form = ", request.form)
+        # TODO
+        print(
+            "[TRACE] func: app/to_add_symbols_and_operations_for_expressions_in_step end "
+            + trace_id
+        )
+        return redirect(
+            url_for(
+                "to_add_sympy_and_lean_for_latex_expressions_in_step",
+                derivation_id=derivation_id,
+                step_id=step_id,
+            )
+        )
+    return render_template(
+        "new_step_symbols_and_operations.html", form=web_form_no_options
+    )
+
+
+@app.route(
+    "/sympy_and_latex_for_step/<derivation_id>/<step_id>", methods=["GET", "POST"]
+)
+def to_add_sympy_and_lean_for_latex_expressions_in_step(
+    derivation_id: unique_numeric_id_as_str, step_id: unique_numeric_id_as_str
+):
+    """
+    derivation_id is the numeric ID of the derivation being edited
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print(
+        "[TRACE] func: app/to_add_sympy_and_lean_for_latex_expressions_in_step start "
+        + trace_id
+    )
+
+    if request.method == "POST":
+        print("request.form = ", request.form)
+        # TODO
+        print(
+            "[TRACE] func: app/to_add_sympy_and_lean_for_latex_expressions_in_step start "
+            + trace_id
+        )
+        return redirect(url_for("to_review_derivation", derivation_id=derivation_id))
+    return render_template("new_step_sympy_and_lean.html", form=web_form_no_options)
 
 
 @app.route("/new_inference_rule/", methods=["GET", "POST"])

@@ -11,11 +11,6 @@
 
 <P> <!-- all_steps: { { all_steps } } -->
 
-<P>timing of queries:{% for k,v in query_time_dict.items() %}
-  <UL>
-  <LI>{{ k }}, {{ v }}</LI>
-</UL>
-{% endfor %}
 
 <table border="1" id="derivation_steps_table">
   <tr>
@@ -89,5 +84,11 @@ the following two were removed because the user should click on step ID in table
   </UL>
 
 </fieldset>
+
+<P>timing of queries (in seconds):{% for what_is_being_timed,duration_in_seconds in query_time_dict.items() %}
+  <UL>
+  <LI>{{ what_is_being_timed }}, {{ duration_in_seconds }}</LI>
+</UL>
+{% endfor %}
 
 {% endblock %}

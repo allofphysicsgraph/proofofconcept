@@ -5,7 +5,9 @@
   Return to <a href="{{ url_for('main') }}?referrer=edit_operation">main page</a>
 </P>
 
-{{ operation_dict }}
+<P>Operation dict: {{ operation_dict }}
+
+<P>TODO: list of derivations that use this symbol
 
 <fieldset>
   <legend>
@@ -25,6 +27,8 @@
     </P>
   </form>
 
+</fieldset>
+
 <fieldset>
   <legend>
     Delete operation
@@ -36,8 +40,6 @@
   <input type="submit" value="delete operation">
 
 </form>
-</fieldset>
-
 </fieldset>
 
 

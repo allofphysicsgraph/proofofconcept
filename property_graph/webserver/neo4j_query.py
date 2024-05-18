@@ -98,7 +98,7 @@ def apoc_export_json(tx, output_filename: str):
 def apoc_export_cypher(tx, output_filename: str):
     """
     https://neo4j.com/labs/apoc/4.4/export/cypher/
-    https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypher.all/
+
 
     The output file is written to disk within the neo4j container.
     For the PDG, docker-compose has a shared folder on the host accessible both Neo4j and Flask.
@@ -108,6 +108,12 @@ def apoc_export_cypher(tx, output_filename: str):
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/apoc_export_cypher start " + trace_id)
+
+    # "cypher.all" produces 1 file with constraints
+    # https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypher.all/
+    # TODO: possibly switch to
+    # https://neo4j.com/labs/apoc/4.4/overview/apoc.export/apoc.export.cypher.query/
+    # which produces separate files for relationships and nodes
 
     for result in tx.run(
         "CALL apoc.export.cypher.all('" + output_filename + "', {"
@@ -562,6 +568,35 @@ def edit_step_notes(
     return
 
 
+def edit_expression(
+    tx,
+    expression_id: str,
+    expression_latex: str,
+    expression_name: str,
+    expression_description: str,
+    now_str: str,
+    author_name_latex: str,
+) -> None:
+    """
+    >>> edit_expression()
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/edit_expression start " + trace_id)
+
+    result = tx.run(
+        'MERGE (e:expression {id:"' + str(expression_id) + '"})'
+        'SET e = {id: "' + str(expression_id) + '",'
+        'name_latex: "' + str(expression_name) + '",'
+        'description_latex: "' + str(expression_description) + '",'
+        'created_datetime:"' + now_str + '",'
+        'author_name_latex:"' + author_name_latex + '",'
+        'latex: "' + str(expression_latex) + '"}'
+    )
+
+    print("[TRACE] func: neo4j_query/edit_expression end " + trace_id)
+    return
+
+
 def edit_derivation_metadata(
     tx,
     derivation_id: str,
@@ -850,8 +885,6 @@ def add_expression(
     expression_id: str,
     expression_name: str,
     expression_latex: str,
-    expression_lean: str,
-    expression_sympy: str,
     expression_description: str,
     author_name_latex: str,
 ) -> None:
@@ -867,8 +900,8 @@ def add_expression(
         "CREATE (a:expression "
         '{name_latex:"' + str(expression_name) + '", '
         ' latex:"' + str(expression_latex) + '", '
-        ' lean:"' + str(expression_lean) + '", '
-        ' sympy:"' + str(expression_sympy) + '", '
+        #' lean:"' + str(expression_lean) + '", '
+        #' sympy:"' + str(expression_sympy) + '", '
         ' description_latex:"' + str(expression_description) + '", '
         ' author_name_latex:"' + str(author_name_latex) + '", '
         ' id:"' + str(expression_id) + '"})'
