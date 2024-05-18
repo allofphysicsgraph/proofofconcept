@@ -626,8 +626,108 @@ def edit_derivation_metadata(
     return
 
 
+def disconnect_step_from_inference_rule(tx, step_id: str) -> None:
+    """
+    called by "delete derivation"
+    as part of this sequence:
+     1) for each step,
+           * disconnect step from inference rule (remove edge)
+           * disconnect step from expressions (remove edge)
+           * disconnect step from derivation (remove edge)
+           * delete step node
+     2) delete derivation node
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print(
+        "[TRACE] func: neo4j_query/disconnect_step_from_inference_rule start "
+        + trace_id
+    )
+    # TODO
+    print("not doing anything yet")
+    print(
+        "[TRACE] func: neo4j_query/disconnect_step_from_inference_rule end " + trace_id
+    )
+    return
+
+
+def disconnect_step_from_expressions(tx, step_id: str) -> None:
+    """
+    called by "delete derivation"
+    as part of this sequence:
+     1) for each step,
+           * disconnect step from inference rule (remove edge)
+           * disconnect step from expressions (remove edge)
+           * disconnect step from derivation (remove edge)
+           * delete step node
+     2) delete derivation node
+
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print(
+        "[TRACE] func: neo4j_query/disconnect_step_from_expressions start " + trace_id
+    )
+    # TODO
+    print("not doing anything yet")
+    print("[TRACE] func: neo4j_query/disconnect_step_from_expressions end " + trace_id)
+    return
+
+
+def disconnect_step_from_derivation(tx, step_id: str) -> None:
+    """
+    called by "delete derivation"
+    as part of this sequence:
+     1) for each step,
+           * disconnect step from inference rule (remove edge)
+           * disconnect step from expressions (remove edge)
+           * disconnect step from derivation (remove edge)
+           * delete step node
+     2) delete derivation node
+
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/disconnect_step_from_derivation start " + trace_id)
+    # TODO
+    print("not doing anything yet")
+    print("[TRACE] func: neo4j_query/disconnect_step_from_derivation end " + trace_id)
+    return
+
+
+def delete_node(tx, node_id: str, node_type) -> None:
+    """
+    called by "delete derivation"
+    as part of this sequence:
+     1) for each step,
+           * disconnect step from inference rule (remove edge)
+           * disconnect step from expressions (remove edge)
+           * disconnect step from derivation (remove edge)
+           * delete step node
+     2) delete derivation node
+
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/delete_node start " + trace_id)
+
+    # must be one of these node types. See also 'schema.log' file
+    assert node_type in [
+        "derivation",
+        "inference_rule",
+        "symbol",
+        "operation",
+        "step",
+        "expression",
+    ]
+    print("              node type:", node_type)
+
+    print("not doing anything yet")
+    # TODO
+    print("[TRACE] func: neo4j_query/delete_node end " + trace_id)
+    return
+
+
 def disconnect_symbol_from_expression(tx, symbol_id: str, expression_id: str) -> None:
     """
+    called by "edit expression"
+
     https://neo4j.com/docs/cypher-manual/current/clauses/delete/
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -653,6 +753,8 @@ def disconnect_operation_from_expression(
     tx, operation_id: str, expression_id: str
 ) -> None:
     """
+    called by "edit expression"
+
     https://neo4j.com/docs/cypher-manual/current/clauses/delete/
     """
     trace_id = str(random.randint(1000000, 9999999))
@@ -919,6 +1021,7 @@ def add_symbol(
     symbol_description: str,
     author_name_latex: str,
     symbol_scope: str,
+    symbol_variable_or_constant: str,
     symbol_reference: str,
     symbol_domain: str,
     dimension_length: int,
@@ -944,6 +1047,7 @@ def add_symbol(
         ' description_latex:"' + str(symbol_description) + '", '
         ' author_name_latex:"' + str(author_name_latex) + '", '
         ' symbol_scope:"' + str(symbol_scope) + '", '
+        ' symbol_variable_or_constant:"' + str(symbol_variable_or_constant) + '", '
         ' symbol_reference:"' + str(symbol_reference) + '", '
         ' symbol_domain:"' + str(symbol_domain) + '", '
         " dimension_length: " + str(dimension_length) + ", "

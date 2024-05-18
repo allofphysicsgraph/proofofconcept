@@ -27,7 +27,7 @@ Three ways to submit a read-only query:
 
 {% if submitted_query is defined %}
 For the query <BR>
-  {{ submitted_query }}<BR>
+  {{ submitted_query | safe }}<BR> <!-- https://stackoverflow.com/a/35215981/1164295 -->
   the results are
 {% endif %}
 <UL>

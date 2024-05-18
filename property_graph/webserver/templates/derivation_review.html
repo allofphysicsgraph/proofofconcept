@@ -85,6 +85,21 @@ the following two were removed because the user should click on step ID in table
 
 </fieldset>
 
+<fieldset>
+  <legend>
+    <H2>Delete Derivation and all associated steps</H2>
+  </legend>
+<P>This leaves expressions, symbols, and operations as-is. 
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>
+
+    <input type="submit" value="delete derivation">
+
+  </form>
+</fieldset>
+
+
 <P>timing of queries (in seconds):{% for what_is_being_timed,duration_in_seconds in query_time_dict.items() %}
   <UL>
   <LI>{{ what_is_being_timed }}, {{ duration_in_seconds }}</LI>

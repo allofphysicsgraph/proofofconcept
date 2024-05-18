@@ -245,7 +245,7 @@ class SpecifyNewExpressionForm(FlaskForm):
     )
 
 
-class SpecifyNewSymbolForm(FlaskForm):
+class SpecifyNewScalarSymbolForm(FlaskForm):
     """
     web form for user to specify symbols used in expressions
     """
@@ -275,6 +275,13 @@ class SpecifyNewSymbolForm(FlaskForm):
         validators=[validators.InputRequired()],
     )
 
+    symbol_variable_or_constant = RadioField(
+        "variable or constant",
+        choices=[("variable", "variable"), ("constant", "constant")],
+        default="real",
+        validators=[validators.InputRequired()],
+    )
+
     # domain = input; range = output
     symbol_radio_domain = RadioField(
         "domain",
@@ -287,6 +294,26 @@ class SpecifyNewSymbolForm(FlaskForm):
         default="any",
         validators=[validators.InputRequired()],
     )
+
+
+class SpecifyNewVectorSymbolForm(FlaskForm):
+    """
+    web form for user to specify symbols used in expressions
+    """
+
+    symbol_latex = StringField(
+        "LaTeX symbol",
+        validators=[validators.Length(min=1, max=1000)],
+    )
+    symbol_name = StringField(
+        "name (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    symbol_description = StringField(
+        "description (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    symbol_reference = StringField("reference")
 
 
 class SpecifyNewOperationForm(FlaskForm):
@@ -572,12 +599,59 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
         graphDB_Driver, derivation_id, query_time_dict
     )
 
+    web_form = NoOptionsForm(request.form)
+    if request.method == "POST":
+        print("request.form = ", request.form)
+        # delete derivation (yikes!). Here's how:
+        # 1) for each step,
+        #      * disconnect step from inference rule (remove edge)
+        #      * disconnect step from expressions (remove edge)
+        #      * disconnect step from derivation (remove edge)
+        #      * delete step node
+        # 2) delete derivation node
+
+        list_of_step_dicts = []
+        with graphDB_Driver.session() as session:
+            query_start_time = time.time()
+            list_of_step_dicts = session.read_transaction(
+                neo4j_query.steps_in_this_derivation, derivation_id
+            )
+            query_time_dict["to_review_derivation: steps_in_this_derivation"] = (
+                time.time() - query_start_time
+            )
+        print("list_of_step_dicts=", list_of_step_dicts)
+
+        for this_step_dict in list_of_step_dicts:
+
+            with graphDB_Driver.session() as session:
+                session.write_transaction(
+                    neo4j_query.disconnect_step_from_inference_rule,
+                    this_step_dict["id"],
+                )
+            with graphDB_Driver.session() as session:
+                session.write_transaction(
+                    neo4j_query.disconnect_step_from_expressions, this_step_dict["id"]
+                )
+            with graphDB_Driver.session() as session:
+                session.write_transaction(
+                    neo4j_query.disconnect_step_from_derivation, this_step_dict["id"]
+                )
+            with graphDB_Driver.session() as session:
+                session.write_transaction(
+                    neo4j_query.delete_node, this_step_dict["id"], "step"
+                )
+        with graphDB_Driver.session() as session:
+            session.write_transaction(
+                neo4j_query.delete_node, derivation_id, "derivation"
+            )
+
     print("[TRACE] func: app/to_review_derivation end " + trace_id)
     return render_template(
         "derivation_review.html",
         derivation_dict=derivation_dict,
         all_steps=all_steps,
         query_time_dict=query_time_dict,
+        form=web_form,
     )
 
 
@@ -954,8 +1028,11 @@ def to_add_expression():
             neo4j_query.list_nodes_of_type, "expression"
         )
 
-    symbols_per_expression, operations_per_expression = (
-        compute.symbols_and_operations_per_expression(graphDB_Driver)
+    (
+        symbols_per_expression,
+        operations_per_expression,
+    ) = compute.symbols_and_operations_per_expression(
+        graphDB_Driver, list_of_expression_dicts
     )
 
     web_form = SpecifyNewExpressionForm(request.form)
@@ -1083,9 +1160,10 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
 
     print("symbol_id: ", symbol_id)
 
-    web_form_symbol_properties = SpecifyNewSymbolForm(request.form)
+    web_form_symbol_properties_scalar = SpecifyNewScalarSymbolForm(request.form)
+    web_form_symbol_properties_vector = SpecifyNewVectorSymbolForm(request.form)
     web_form_no_options = NoOptionsForm(request.form)
-    if request.method == "POST" and web_form_symbol_properties.validate():
+    if request.method == "POST" and web_form_symbol_properties_scalar.validate():
         print("request.form = ", request.form)
 
         symbol_latex = str(web_form.symbol_latex.data).strip()
@@ -1104,8 +1182,17 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
                 symbol_description,
                 author_name_latex,
             )
+    elif request.method == "POST" and web_form_symbol_properties_vector.validate():
+        print("request.form = ", request.form)
+
+        print("[TRACE] func: app/to_edit_symbol end " + trace_id)
+        return redirect(url_for("to_list_symbols"))
+
     elif request.method == "POST":
         print("request.form = ", request.form)
+
+        print("[TRACE] func: app/to_edit_symbol end " + trace_id)
+        return redirect(url_for("to_list_symbols"))
 
     symbol_dict = {}
     with graphDB_Driver.session() as session:
@@ -1118,7 +1205,8 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
     print("[TRACE] func: app/to_edit_symbol end " + trace_id)
     return render_template(
         "symbol_edit.html",
-        form_symbol_properties=web_form_symbol_properties,
+        form_symbol_properties_scalar=web_form_symbol_properties_scalar,
+        form_symbol_properties_vector=web_form_symbol_properties_vector,
         form_no_options=web_form_no_options,
         symbol_dict=symbol_dict,
     )
@@ -1133,8 +1221,9 @@ def to_add_symbol():
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_symbol start " + trace_id)
 
-    web_form = SpecifyNewSymbolForm(request.form)
-    if request.method == "POST" and web_form.validate():
+    web_form_symbol_properties_scalar = SpecifyNewScalarSymbolForm(request.form)
+    web_form_symbol_properties_vector = SpecifyNewVectorSymbolForm(request.form)
+    if request.method == "POST" and web_form_symbol_properties_scalar.validate():
         print("request.form = ", request.form)
 
         # request.form =  ImmutableMultiDict(('symbol_latex', 'c'),
@@ -1149,6 +1238,9 @@ def to_add_symbol():
         symbol_name = str(web_form.symbol_name.data).strip()
         symbol_description = str(web_form.symbol_description.data).strip()
         symbol_scope = str(web_form.symbol_scope.data).strip()
+        symbol_variable_or_constant = str(
+            web_form.symbol_variable_or_constant.data
+        ).strip()
         symbol_reference = str(web_form.symbol_reference.data).strip()
         symbol_domain = str(web_form.symbol_radio_domain.data).strip()
         dimension_length = int(request.form["dimension_length"])
@@ -1185,6 +1277,7 @@ def to_add_symbol():
                 symbol_description,
                 author_name_latex,
                 symbol_scope,
+                symbol_variable_or_constant,
                 symbol_reference,
                 symbol_domain,
                 dimension_length,
@@ -1199,6 +1292,12 @@ def to_add_symbol():
         print("[TRACE] func: app/to_add_symbol end " + trace_id)
         return redirect(url_for("to_list_symbols"))
 
+    elif request.method == "POST" and web_form_symbol_properties_vector.validate():
+        print("request.form = ", request.form)
+
+        print("[TRACE] func: app/to_add_symbol end " + trace_id)
+        return redirect(url_for("to_list_symbols"))
+
     list_of_symbol_dicts = []
     with graphDB_Driver.session() as session:
         list_of_symbol_dicts = session.read_transaction(
@@ -1208,7 +1307,8 @@ def to_add_symbol():
     print("[TRACE] func: app/to_add_symbol end " + trace_id)
     return render_template(
         "symbol_create.html",
-        form=web_form,
+        form_symbol_properties_scalar=web_form_symbol_properties_scalar,
+        form_symbol_properties_vector=web_form_symbol_properties_vector,
         list_of_symbol_dicts=list_of_symbol_dicts,
     )
 
@@ -1406,7 +1506,12 @@ def to_add_step_select_expressions(
                 author_name_latex,
             )
 
-    # FILL IN WITH REDIRECT
+        return redirect(
+            url_for(
+                "to_review_derivation",
+                derivation_id=derivation_id,
+            )
+        )
 
     # first visit to this page
     print("[TRACE] func: app/to_add_step_select_expressions end " + trace_id)
@@ -1597,9 +1702,10 @@ def to_edit_step(
         )
 
     for each_step_dict in list_of_step_dicts:
-        if this_step_dict["id"] == step_id:
+        if each_step_dict["id"] == step_id:
             this_step_dict = each_step_dict
             break
+    print("this_step_dict=", this_step_dict)
 
     web_form = SpecifyNewStepForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -1925,8 +2031,11 @@ def to_list_expressions():
 
     print("list_of_expression_dicts", list_of_expression_dicts)
 
-    symbols_per_expression, operations_per_expression = (
-        compute.symbols_and_operations_per_expression(graphDB_Driver)
+    (
+        symbols_per_expression,
+        operations_per_expression,
+    ) = compute.symbols_and_operations_per_expression(
+        graphDB_Driver, list_of_expression_dicts
     )
 
     dict_of_all_symbol_dicts = compute.get_dict_of_symbol_dicts(graphDB_Driver)

@@ -10,22 +10,34 @@
     <H2>Create symbol</H2>
   </legend>
 
-  <form method="post" action="" onsubmit="return checkForm(this);">
-    {{ form.csrf_token }}
-    <P>
-      {{ form.symbol_latex.label}} (<B>required</B>): {{ form.symbol_latex(size=50, minlength=1, maxlength=1000) }} <BR/>
-      &nbsp;<BR/>
-      {{form.symbol_name.label }} (optional): {{ form.symbol_name(size=50, maxlength=1000) }}<BR/>
-      &nbsp;<BR/>
-      {{form.symbol_description.label }} (optional): {{ form.symbol_description(size=50, maxlength=1000) }}<BR/>
+<P>TODO: as user is entering symbol, filter the list of existing symbols
 
-{{ form.symbol_scope.label }}: {{ form.symbol_scope }}<BR/>
-          {{ form.symbol_reference.label }}(<small><em>optional</em></small>): {{ form.symbol_reference }}
-      
-      &nbsp;<BR/>
-          <!-- https://en.wikipedia.org/wiki/International_System_of_Quantities#Base_quantities -->
-          <a href="https://www.ldeo.columbia.edu/~martins/hydro/case_studies/units_dimensions.html">dimensions</a>: 
-          <span class="input-group-addon">length</span>
+<P>TODO: not clear how to provide input for Einstein summation notation. 
+
+<P>"scalar" includes +,/,determinat quantum operators, bra, ket.
+
+<fieldset>
+  <legend>
+    <H3>non-composite symbol</H3>
+  </legend>
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form_symbol_properties_scalar.csrf_token }}
+    <P>{{ form_symbol_properties_scalar.symbol_latex.label}} (<B>required</B>): {{ form_symbol_properties_scalar.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
+    
+    <P>{{form_symbol_properties_scalar.symbol_name.label }} (optional): {{ form_symbol_properties_scalar.symbol_name(size=50, maxlength=1000) }}</p>
+    
+    <P>{{form_symbol_properties_scalar.symbol_description.label }} (optional): {{ form_symbol_properties_scalar.symbol_description(size=50, maxlength=1000) }}</p>
+
+    <P>{{ form_symbol_properties_scalar.symbol_scope.label }}: {{ form_symbol_properties_scalar.symbol_scope }}</p>
+
+    <P>{{ form_symbol_properties_scalar.symbol_variable_or_constant.label }}: {{ form_symbol_properties_scalar.symbol_variable_or_constant }}</p>
+
+    <P>{{ form_symbol_properties_scalar.symbol_reference.label }}(<small><em>optional</em></small>): {{ form_symbol_properties_scalar.symbol_reference }}</p>
+
+    <!-- https://en.wikipedia.org/wiki/International_System_of_Quantities#Base_quantities -->
+    <a href="https://www.ldeo.columbia.edu/~martins/hydro/case_studies/units_dimensions.html">dimensions</a>: 
+    <span class="input-group-addon">length</span>
           <select name="dimension_length" class="selectpicker form-control">
             {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
               <option value="{{ intgr }}">{{ intgr }}</option>
@@ -74,16 +86,37 @@
             {% endfor %}
           </select>
 
-          <BR/>
-          {{ form.symbol_radio_domain.label}}: {{ form.symbol_radio_domain }}
+<P>{{ form_symbol_properties_scalar.symbol_radio_domain.label}}: {{ form_symbol_properties_scalar.symbol_radio_domain }}</P>
 
 
-      <input type="submit" value="add symbol">
+      <input type="submit" value="add scalar symbol">
     </P>
   </form>
 </fieldset>
 
-TODO: as user is entering symbol, filter the list of existing symbols
+<fieldset>
+  <legend>
+    <H3>vector symbol</H3>
+  </legend>
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form_symbol_properties_vector.csrf_token }}
+    <P>{{ form_symbol_properties_vector.symbol_latex.label}} (<B>required</B>): {{ form_symbol_properties_vector.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
+    
+    <P>{{form_symbol_properties_vector.symbol_name.label }} (optional): {{ form_symbol_properties_vector.symbol_name(size=50, maxlength=1000) }}</p>
+    
+    <P>{{form_symbol_properties_vector.symbol_description.label }} (optional): {{ form_symbol_properties_vector.symbol_description(size=50, maxlength=1000) }}</p>
+
+    <P>{{ form_symbol_properties_vector.symbol_reference.label }}(<small><em>optional</em></small>): {{ form_symbol_properties_vector.symbol_reference }}</p>
+
+
+      <input type="submit" value="add vector symbol">
+
+</fieldset>
+
+</fieldset>
+
+
 
 {% include '_table_of_symbols.html' %}
 

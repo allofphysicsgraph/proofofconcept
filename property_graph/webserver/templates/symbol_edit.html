@@ -15,13 +15,13 @@
   </legend>
 
   <form method="post" action="" onsubmit="return checkForm(this);">
-    {{ form_symbol_properties.csrf_token }}
+    {{ form_symbol_properties_scalar.csrf_token }}
     <P>
-      {{ form_symbol_properties.symbol_latex.label}}: {{ form_symbol_properties.symbol_latex(size=50, maxlength=1000, value=symbol_dict['latex']) }} <BR/>
+      {{ form_symbol_properties_scalar.symbol_latex.label}}: {{ form_symbol_properties_scalar.symbol_latex(size=50, maxlength=1000, value=symbol_dict['latex']) }} <BR/>
       &nbsp;<BR/>
-      {{form_symbol_properties.symbol_name.label }}: {{ form_symbol_properties.symbol_name(size=50, maxlength=1000, value=symbol_dict['name']) }}<BR/>
+      {{form_symbol_properties_scalar.symbol_name.label }}: {{ form_symbol_properties_scalar.symbol_name(size=50, maxlength=1000, value=symbol_dict['name']) }}<BR/>
       &nbsp;<BR/>
-      {{form_symbol_properties.symbol_description.label }}: {{ form_symbol_properties.symbol_description(size=50, maxlength=1000, value=symbol_dict['description']) }}<BR/>
+      {{form_symbol_properties_scalar.symbol_description.label }}: {{ form_symbol_properties_scalar.symbol_description(size=50, maxlength=1000, value=symbol_dict['description']) }}<BR/>
       &nbsp;<BR/>
       <input type="submit" value="Edit symbol">
     </P>

@@ -13,6 +13,8 @@ or return to <a href="{{ url_for('to_list_expressions') }}?referrer=expession_ed
     <H2>Symbols in Expression</h2>
   </legend>
 
+<P>See also <a href="{{ url_for('to_list_symbols') }}?referrer=expession_edit">all symbols</a>.</P>
+
 <table border="1" id="symbol_table">
   <tr>
     <th>ID</th>
@@ -93,6 +95,8 @@ or return to <a href="{{ url_for('to_list_expressions') }}?referrer=expession_ed
   <legend>
     <H2>Operations in Expression</h2>
   </legend>
+
+<P>See also <a href="{{ url_for('to_list_operations') }}?referrer=expession_edit">all operations</a>.</P>
 
   <P>{% for operation_id, operation_dict in dict_of_operation_dicts_in_expression.items() %}
     <UL>

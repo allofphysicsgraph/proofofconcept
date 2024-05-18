@@ -86,8 +86,8 @@ def get_dict_of_operation_dicts(
 
 
 def get_dict_of_derivations_used_per_inference_rule(
-    graphDB_Driver, list_of_inference_rule_dicts
-):
+    graphDB_Driver, list_of_inference_rule_dicts: list
+) -> dict:
     """ """
     dict_of_derivations_used_per_inference_rule = {}
     for this_inference_rule_dict in list_of_inference_rule_dicts:
@@ -121,7 +121,9 @@ def get_dict_of_derivations_used_per_inference_rule(
     return dict_of_derivations_used_per_inference_rule
 
 
-def symbols_and_operations_per_expression(graphDB_Driver):
+def symbols_and_operations_per_expression(
+    graphDB_Driver, list_of_expression_dicts: list
+):
     """ """
     symbols_per_expression = {}
     operations_per_expression = {}
@@ -147,7 +149,7 @@ def symbols_and_operations_per_expression(graphDB_Driver):
 
 
 def all_steps_in_derivation(
-    graphDB_Driver, derivation_id: str, query_time_dict: dict
+    graphDB_Driver, derivation_id: unique_numeric_id_as_str, query_time_dict: dict
 ) -> dict:
     """
     >>> all_steps_in_derivation()
