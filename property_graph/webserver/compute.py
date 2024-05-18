@@ -121,6 +121,31 @@ def get_dict_of_derivations_used_per_inference_rule(
     return dict_of_derivations_used_per_inference_rule
 
 
+def symbols_and_operations_per_expression(graphDB_Driver):
+    """ """
+    symbols_per_expression = {}
+    operations_per_expression = {}
+    for this_expression_dict in list_of_expression_dicts:
+        list_of_symbol_IDs_in_expression = []
+        with graphDB_Driver.session() as session:
+            list_of_symbol_IDs_in_expression = session.read_transaction(
+                neo4j_query.symbols_in_expression, this_expression_dict["id"]
+            )
+        symbols_per_expression[this_expression_dict["id"]] = (
+            list_of_symbol_IDs_in_expression
+        )
+
+        list_of_operation_IDs_in_expression = []
+        with graphDB_Driver.session() as session:
+            list_of_operation_IDs_in_expression = session.read_transaction(
+                neo4j_query.operations_in_expression, this_expression_dict["id"]
+            )
+        operations_per_expression[this_expression_dict["id"]] = (
+            list_of_operation_IDs_in_expression
+        )
+    return symbols_per_expression, operations_per_expression
+
+
 def all_steps_in_derivation(
     graphDB_Driver, derivation_id: str, query_time_dict: dict
 ) -> dict:

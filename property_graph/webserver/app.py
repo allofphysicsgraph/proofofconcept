@@ -455,14 +455,34 @@ def to_add_derivation():
     # TODO: check that the name of the derivation doesn't
     #       conflict with existing derivation names
 
-    derivation_name_from_URL = None
-    derivation_abstract_from_URL = None
-    # via URL keyword
-    derivation_name_from_URL = str(request.args.get("derivation_name", None))
-    derivation_abstract_from_URL = str(request.args.get("derivation_abstract", None))
-    if derivation_name_from_URL and derivation_abstract_from_URL:
-        print("derivation_name_from_URL:", derivation_name_from_URL)
-        print("derivation_abstract_from_URL:", derivation_abstract_from_URL)
+    list_of_derivation_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_derivation_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "derivation"
+        )
+
+    number_of_steps_per_derivation = {}
+    for derivation_dict in list_of_derivation_dicts:
+        print("derivation_dict", derivation_dict)
+
+        with graphDB_Driver.session() as session:
+            list_of_steps = session.read_transaction(
+                neo4j_query.steps_in_this_derivation, derivation_dict["id"]
+            )
+        number_of_steps_per_derivation[derivation_dict["id"]] = len(list_of_steps)
+
+    print("derivations in the database:")
+    for deriv_dict in list_of_derivation_dicts:
+        print("deriv_dict:", deriv_dict)
+
+    # derivation_name_from_URL = None
+    # derivation_abstract_from_URL = None
+    # # via URL keyword
+    # derivation_name_from_URL = str(request.args.get("derivation_name", None))
+    # derivation_abstract_from_URL = str(request.args.get("derivation_abstract", None))
+    # if derivation_name_from_URL and derivation_abstract_from_URL:
+    #     print("derivation_name_from_URL:", derivation_name_from_URL)
+    #     print("derivation_abstract_from_URL:", derivation_abstract_from_URL)
 
     print("request.form=", request.form)
     web_form = SpecifyNewDerivationForm(request.form)
@@ -471,7 +491,7 @@ def to_add_derivation():
     print("web_form.validate()=", web_form.validate())
 
     if request.method == "POST" and web_form.validate():
-        print("request.form = %s", request.form)
+        print("request.form =", request.form)
         derivation_name_latex = str(web_form.derivation_name_latex.data).strip()
         abstract_latex = str(web_form.abstract_latex.data).strip()
         print("       derivation:", derivation_name_latex)
@@ -509,40 +529,14 @@ def to_add_derivation():
                 derivation_id=derivation_id,
             )
         )
-    else:
-        list_of_derivation_dicts = []
-        with graphDB_Driver.session() as session:
-            list_of_derivation_dicts = session.read_transaction(
-                neo4j_query.list_nodes_of_type, "derivation"
-            )
-
-        number_of_steps_per_derivation = {}
-        for derivation_dict in list_of_derivation_dicts:
-            print("derivation_dict", derivation_dict)
-
-            with graphDB_Driver.session() as session:
-                list_of_steps = session.read_transaction(
-                    neo4j_query.steps_in_this_derivation, derivation_dict["id"]
-                )
-            number_of_steps_per_derivation[derivation_dict["id"]] = len(list_of_steps)
-
-        print("derivations in the database:")
-        for deriv_dict in list_of_derivation_dicts:
-            print("deriv_dict:", deriv_dict)
-
-        print("[TRACE] func: app/to_add_derivation end " + trace_id)
-        return render_template(
-            "derivation_create.html",
-            form=web_form,
-            list_of_derivation_dicts=list_of_derivation_dicts,
-            number_of_steps_per_derivation=number_of_steps_per_derivation,
-        )
 
     print("[TRACE] func: app/to_add_derivation end " + trace_id)
-    raise Exception("You definitely shouldn't reach here")
-
-    print("[TRACE] func: app/to_add_derivation end " + trace_id)
-    return "broken"
+    return render_template(
+        "derivation_create.html",
+        form=web_form,
+        list_of_derivation_dicts=list_of_derivation_dicts,
+        number_of_steps_per_derivation=number_of_steps_per_derivation,
+    )
 
 
 @app.route("/review_derivation/<derivation_id>", methods=["GET", "POST"])
@@ -954,6 +948,16 @@ def to_add_expression():
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_expression start " + trace_id)
 
+    list_of_expression_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_expression_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "expression"
+        )
+
+    symbols_per_expression, operations_per_expression = (
+        compute.symbols_and_operations_per_expression(graphDB_Driver)
+    )
+
     web_form = SpecifyNewExpressionForm(request.form)
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
@@ -973,12 +977,6 @@ def to_add_expression():
         # TODO: this shouldn't be hardcoded
         author_name_latex = "ben"
 
-        # TODO: convert latex to SymPy
-        expression_sympy = "fake:Eq(Sym('49248923'),Sym('2499492'))"
-
-        # TODO: convert latex to lean
-        expression_lean = "fake:???"
-
         list_of_expression_IDs = []
         with graphDB_Driver.session() as session:
             list_of_expression_IDs = session.read_transaction(
@@ -993,28 +991,29 @@ def to_add_expression():
                 expression_id,
                 expression_name,
                 expression_latex,
-                expression_lean,
-                expression_sympy,
                 expression_description,
                 author_name_latex,
             )
 
-    else:
-        list_of_expression_dicts = []
-        with graphDB_Driver.session() as session:
-            list_of_expression_dicts = session.read_transaction(
-                neo4j_query.list_nodes_of_type, "expression"
+        # after user provides latex for expression have them provide Sympy and Lean for Latex
+        print("[TRACE] func: app/to_add_step_select_expressions end " + trace_id)
+        return redirect(
+            url_for(
+                "to_add_symbols_and_operations_for_expression",
+                expression_id=expression_id,
             )
-
-        print("[TRACE] func: app/to_add_expression end " + trace_id)
-        return render_template(
-            "expression_create.html",
-            form=web_form,
-            list_of_expression_dicts=list_of_expression_dicts,
         )
 
+        return redirect(url_for("to_list_expressions"))
+
     print("[TRACE] func: app/to_add_expression end " + trace_id)
-    return redirect(url_for("to_list_expressions"))
+    return render_template(
+        "expression_create.html",
+        form=web_form,
+        symbols_per_expression=symbols_per_expression,
+        operations_per_expression=operations_per_expression,
+        list_of_expression_dicts=list_of_expression_dicts,
+    )
 
 
 @app.route("/edit_operation/<operation_id>", methods=["GET", "POST"])
@@ -1197,22 +1196,21 @@ def to_add_symbol():
                 dimension_luminous_intensity,
             )
 
-    else:
-        list_of_symbol_dicts = []
-        with graphDB_Driver.session() as session:
-            list_of_symbol_dicts = session.read_transaction(
-                neo4j_query.list_nodes_of_type, "symbol"
-            )
-
         print("[TRACE] func: app/to_add_symbol end " + trace_id)
-        return render_template(
-            "symbol_create.html",
-            form=web_form,
-            list_of_symbol_dicts=list_of_symbol_dicts,
+        return redirect(url_for("to_list_symbols"))
+
+    list_of_symbol_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_symbol_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "symbol"
         )
 
     print("[TRACE] func: app/to_add_symbol end " + trace_id)
-    return redirect(url_for("to_list_symbols"))
+    return render_template(
+        "symbol_create.html",
+        form=web_form,
+        list_of_symbol_dicts=list_of_symbol_dicts,
+    )
 
 
 @app.route("/new_operation/", methods=["GET", "POST"])
@@ -1222,6 +1220,12 @@ def to_add_operation():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_operation start " + trace_id)
+
+    list_of_operation_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_operation_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "operation"
+        )
 
     web_form = SpecifyNewOperationForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -1261,23 +1265,15 @@ def to_add_operation():
                 operation_number_of_arguments,
                 author_name_latex,
             )
-
-    else:
-        list_of_operation_dicts = []
-        with graphDB_Driver.session() as session:
-            list_of_operation_dicts = session.read_transaction(
-                neo4j_query.list_nodes_of_type, "operation"
-            )
-
         print("[TRACE] func: app/to_add_operation end " + trace_id)
-        return render_template(
-            "operation_create.html",
-            form=web_form,
-            list_of_operation_dicts=list_of_operation_dicts,
-        )
+        return redirect(url_for("to_list_operations"))
 
     print("[TRACE] func: app/to_add_operation end " + trace_id)
-    return redirect(url_for("to_list_operations"))
+    return render_template(
+        "operation_create.html",
+        form=web_form,
+        list_of_operation_dicts=list_of_operation_dicts,
+    )
 
 
 @app.route(
@@ -1410,15 +1406,7 @@ def to_add_step_select_expressions(
                 author_name_latex,
             )
 
-        # after user provides latex for expressions have them provide Sympy and Lean for Latex
-        print("[TRACE] func: app/to_add_step_select_expressions end " + trace_id)
-        return redirect(
-            url_for(
-                "to_add_symbols_and_operations_for_expressions_in_step",
-                derivation_id=derivation_id,
-                step_id=step_id,
-            )
-        )
+    # FILL IN WITH REDIRECT
 
     # first visit to this page
     print("[TRACE] func: app/to_add_step_select_expressions end " + trace_id)
@@ -1433,18 +1421,18 @@ def to_add_step_select_expressions(
 
 
 @app.route(
-    "/symbols_and_operations_for_step/<derivation_id>/<step_id>",
+    "/symbols_and_operations_for_step/<expression_id>",
     methods=["GET", "POST"],
 )
-def to_add_symbols_and_operations_for_expressions_in_step(
-    derivation_id: unique_numeric_id_as_str, step_id: unique_numeric_id_as_str
+def to_add_symbols_and_operations_for_expression(
+    expression_id: unique_numeric_id_as_str,
 ):
     """
     derivation_id is the numeric ID of the derivation being edited
     """
     trace_id = str(random.randint(1000000, 9999999))
     print(
-        "[TRACE] func: app/to_add_symbols_and_operations_for_expressions_in_step start "
+        "[TRACE] func: app/to_add_symbols_and_operations_for_expression start "
         + trace_id
     )
     # TODO: get the expressions associated with this step_id
@@ -1455,45 +1443,41 @@ def to_add_symbols_and_operations_for_expressions_in_step(
         print("request.form = ", request.form)
         # TODO
         print(
-            "[TRACE] func: app/to_add_symbols_and_operations_for_expressions_in_step end "
+            "[TRACE] func: app/to_add_symbols_and_operations_for_expression end "
             + trace_id
         )
         return redirect(
             url_for(
-                "to_add_sympy_and_lean_for_latex_expressions_in_step",
+                "to_add_sympy_and_lean_for_latex_expression",
                 derivation_id=derivation_id,
                 step_id=step_id,
             )
         )
     return render_template(
-        "new_step_symbols_and_operations.html", form=web_form_no_options
+        "expression_symbols_and_operations.html", form=web_form_no_options
     )
 
 
-@app.route(
-    "/sympy_and_latex_for_step/<derivation_id>/<step_id>", methods=["GET", "POST"]
-)
-def to_add_sympy_and_lean_for_latex_expressions_in_step(
-    derivation_id: unique_numeric_id_as_str, step_id: unique_numeric_id_as_str
-):
+@app.route("/sympy_and_latex_for_step/<expression_id>", methods=["GET", "POST"])
+def to_add_sympy_and_lean_for_latex_expression(expression_id: unique_numeric_id_as_str):
     """
     derivation_id is the numeric ID of the derivation being edited
     """
     trace_id = str(random.randint(1000000, 9999999))
     print(
-        "[TRACE] func: app/to_add_sympy_and_lean_for_latex_expressions_in_step start "
-        + trace_id
+        "[TRACE] func: app/to_add_sympy_and_lean_for_latex_expression start " + trace_id
     )
 
+    web_form_no_options = NoOptionsForm(request.form)
     if request.method == "POST":
         print("request.form = ", request.form)
         # TODO
         print(
-            "[TRACE] func: app/to_add_sympy_and_lean_for_latex_expressions_in_step start "
+            "[TRACE] func: app/to_add_sympy_and_lean_for_latex_expression start "
             + trace_id
         )
         return redirect(url_for("to_review_derivation", derivation_id=derivation_id))
-    return render_template("new_step_sympy_and_lean.html", form=web_form_no_options)
+    return render_template("expression_sympy_and_lean.html", form=web_form_no_options)
 
 
 @app.route("/new_inference_rule/", methods=["GET", "POST"])
@@ -1504,6 +1488,18 @@ def to_add_inference_rule():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_inference_rule start " + trace_id)
+
+    list_of_inference_rule_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_inference_rule_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "inference_rule"
+        )
+
+    dict_of_derivations_used_per_inference_rule = (
+        compute.get_dict_of_derivations_used_per_inference_rule(
+            graphDB_Driver, list_of_inference_rule_dicts
+        )
+    )
 
     web_form = SpecifyNewInferenceRuleForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -1573,31 +1569,16 @@ def to_add_inference_rule():
                 number_of_outputs=number_of_outputs,
                 author_name_latex=author_name_latex,
             )
-    else:
-        list_of_inference_rule_dicts = []
-        with graphDB_Driver.session() as session:
-            list_of_inference_rule_dicts = session.read_transaction(
-                neo4j_query.list_nodes_of_type, "inference_rule"
-            )
-
-        dict_of_derivations_used_per_inference_rule = (
-            compute.get_dict_of_derivations_used_per_inference_rule(
-                graphDB_Driver, list_of_inference_rule_dicts
-            )
-        )
-
         print("[TRACE] func: app/to_add_inference_rule end " + trace_id)
-        return render_template(
-            "inference_rule_create.html",
-            form=web_form,
-            list_of_inference_rule_dicts=list_of_inference_rule_dicts,
-            dict_of_derivations_used_per_inference_rule=dict_of_derivations_used_per_inference_rule,
-        )
-
-    # TODO: return to referrer
+        return redirect(url_for("to_list_inference_rules"))
 
     print("[TRACE] func: app/to_add_inference_rule end " + trace_id)
-    return redirect(url_for("to_list_inference_rules"))
+    return render_template(
+        "inference_rule_create.html",
+        form=web_form,
+        list_of_inference_rule_dicts=list_of_inference_rule_dicts,
+        dict_of_derivations_used_per_inference_rule=dict_of_derivations_used_per_inference_rule,
+    )
 
 
 @app.route("/edit_step/<derivation_id>/<step_id>", methods=["GET", "POST"])
@@ -1944,26 +1925,9 @@ def to_list_expressions():
 
     print("list_of_expression_dicts", list_of_expression_dicts)
 
-    symbols_per_expression = {}
-    operations_per_expression = {}
-    for this_expression_dict in list_of_expression_dicts:
-        list_of_symbol_IDs_in_expression = []
-        with graphDB_Driver.session() as session:
-            list_of_symbol_IDs_in_expression = session.read_transaction(
-                neo4j_query.symbols_in_expression, this_expression_dict["id"]
-            )
-        symbols_per_expression[this_expression_dict["id"]] = (
-            list_of_symbol_IDs_in_expression
-        )
-
-        list_of_operation_IDs_in_expression = []
-        with graphDB_Driver.session() as session:
-            list_of_operation_IDs_in_expression = session.read_transaction(
-                neo4j_query.operations_in_expression, this_expression_dict["id"]
-            )
-        operations_per_expression[this_expression_dict["id"]] = (
-            list_of_operation_IDs_in_expression
-        )
+    symbols_per_expression, operations_per_expression = (
+        compute.symbols_and_operations_per_expression(graphDB_Driver)
+    )
 
     dict_of_all_symbol_dicts = compute.get_dict_of_symbol_dicts(graphDB_Driver)
     dict_of_all_operation_dicts = compute.get_dict_of_operation_dicts(graphDB_Driver)
