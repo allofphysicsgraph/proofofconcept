@@ -1,0 +1,138 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=symbol_create">main page</a>
+</P>
+
+<P>See <a href="https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html">distinguishing scalars, vectors, and matrices as operators or symbols</a></P>
+
+<fieldset>
+  <legend>
+    <H2>Create symbol</H2>
+  </legend>
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form_symbol_properties_scalar.csrf_token }}
+    <P>{{ form_symbol_properties_scalar.symbol_latex.label}} (<B>required</B>): {{ form_symbol_properties_scalar.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
+    
+    <P>{{form_symbol_properties_scalar.symbol_name.label }} (optional): {{ form_symbol_properties_scalar.symbol_name(size=50, maxlength=1000) }}</p>
+    
+    <P>{{form_symbol_properties_scalar.symbol_description.label }} (optional): {{ form_symbol_properties_scalar.symbol_description(size=50, maxlength=1000) }}</p>
+
+    <P>{{ form_symbol_properties_scalar.symbol_scope.label }}: {{ form_symbol_properties_scalar.symbol_scope }}</p>
+
+    <P>{{ form_symbol_properties_scalar.symbol_variable_or_constant.label }}: {{ form_symbol_properties_scalar.symbol_variable_or_constant }}</p>
+
+    <P>{{ form_symbol_properties_scalar.symbol_reference.label }}(<small><em>optional</em></small>): {{ form_symbol_properties_scalar.symbol_reference }}</p>
+
+    <!-- https://en.wikipedia.org/wiki/International_System_of_Quantities#Base_quantities -->
+    <a href="https://www.ldeo.columbia.edu/~martins/hydro/case_studies/units_dimensions.html">dimensions</a>: 
+    <span class="input-group-addon">length</span>
+          <select name="dimension_length" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">time</span>
+          <select name="dimension_time" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">mass</span>
+          <select name="dimension_mass" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">temperature</span>
+          <select name="dimension_temperature" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">electric charge</span>
+          <select name="dimension_electric_charge" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">amount of substance</span>
+          <select name="dimension_amount_of_substance" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+          <span class="input-group-addon">luminous intensity</span>
+          <select name="dimension_luminous_intensity" class="selectpicker form-control">
+            {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
+              <option value="{{ intgr }}">{{ intgr }}</option>
+            {% endfor %}
+          </select>
+
+<P>{{ form_symbol_properties_scalar.symbol_radio_domain.label}}: {{ form_symbol_properties_scalar.symbol_radio_domain }}</P>
+
+
+      <input type="submit" value="add scalar symbol">
+    </P>
+  </form>
+</fieldset>
+
+<fieldset>
+  <legend>
+    <H3>vector symbol</H3>
+  </legend>
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form_symbol_properties_vector.csrf_token }}
+    <P>{{ form_symbol_properties_vector.symbol_latex.label}} (<B>required</B>): {{ form_symbol_properties_vector.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
+    
+    <P>{{form_symbol_properties_vector.symbol_name.label }} (optional): {{ form_symbol_properties_vector.symbol_name(size=50, maxlength=1000) }}</p>
+    
+    <P>{{form_symbol_properties_vector.symbol_description.label }} (optional): {{ form_symbol_properties_vector.symbol_description(size=50, maxlength=1000) }}</p>
+
+    <P>{{ form_symbol_properties_vector.symbol_reference.label }}(<small><em>optional</em></small>): {{ form_symbol_properties_vector.symbol_reference }}</p>
+
+
+      <input type="submit" value="add vector symbol">
+
+</fieldset>
+
+</fieldset>
+
+
+
+{% include '_table_of_symbols.html' %}
+
+<script>
+function select_symbol() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('symbol_input');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("symbol_UL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+
+
+{% endblock %}

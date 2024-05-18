@@ -1019,18 +1019,19 @@ def add_symbol(
     symbol_name: str,
     symbol_latex: str,
     symbol_description: str,
-    author_name_latex: str,
-    symbol_scope: str,
-    symbol_variable_or_constant: str,
+    symbol_requires_arguments: bool,
     symbol_reference: str,
-    symbol_domain: str,
-    dimension_length: int,
-    dimension_time: int,
-    dimension_mass: int,
-    dimension_temperature: int,
-    dimension_electric_charge: int,
-    dimension_amount_of_substance: int,
-    dimension_luminous_intensity: int,
+    author_name_latex: str,
+    # symbol_scope: str,
+    # symbol_variable_or_constant: str,
+    # symbol_domain: str,
+    # dimension_length: int,
+    # dimension_time: int,
+    # dimension_mass: int,
+    # dimension_temperature: int,
+    # dimension_electric_charge: int,
+    # dimension_amount_of_substance: int,
+    # dimension_luminous_intensity: int,
 ) -> None:
     """
     nothing returned by function because action is to write change to Neo4j database
@@ -1046,17 +1047,18 @@ def add_symbol(
         ' latex:"' + str(symbol_latex) + '", '
         ' description_latex:"' + str(symbol_description) + '", '
         ' author_name_latex:"' + str(author_name_latex) + '", '
-        ' symbol_scope:"' + str(symbol_scope) + '", '
-        ' symbol_variable_or_constant:"' + str(symbol_variable_or_constant) + '", '
+        ' requires_arguments:"' + str(symbol_requires_arguments) + '", '
         ' symbol_reference:"' + str(symbol_reference) + '", '
-        ' symbol_domain:"' + str(symbol_domain) + '", '
-        " dimension_length: " + str(dimension_length) + ", "
-        " dimension_time: " + str(dimension_time) + ", "
-        " dimension_mass: " + str(dimension_mass) + ", "
-        " dimension_temperature: " + str(dimension_temperature) + ", "
-        " dimension_electric_charge: " + str(dimension_electric_charge) + ", "
-        " dimension_amount_of_substance: " + str(dimension_amount_of_substance) + ", "
-        " dimension_luminous_intensity: " + str(dimension_luminous_intensity) + ", "
+        # ' symbol_scope:"' + str(symbol_scope) + '", '
+        # ' symbol_variable_or_constant:"' + str(symbol_variable_or_constant) + '", '
+        # ' symbol_domain:"' + str(symbol_domain) + '", '
+        # " dimension_length: " + str(dimension_length) + ", "
+        # " dimension_time: " + str(dimension_time) + ", "
+        # " dimension_mass: " + str(dimension_mass) + ", "
+        # " dimension_temperature: " + str(dimension_temperature) + ", "
+        # " dimension_electric_charge: " + str(dimension_electric_charge) + ", "
+        # " dimension_amount_of_substance: " + str(dimension_amount_of_substance) + ", "
+        # " dimension_luminous_intensity: " + str(dimension_luminous_intensity) + ", "
         ' id:"' + str(symbol_id) + '"})'
     )
 

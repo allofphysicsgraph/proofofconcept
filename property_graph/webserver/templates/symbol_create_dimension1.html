@@ -1,0 +1,65 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=symbol_create">main page</a>
+</P>
+
+<P>See <a href="https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html">distinguishing scalars, vectors, and matrices as operators or symbols</a></P>
+
+
+<fieldset>
+  <legend>
+    <H2>symbol dimension=1</H2>
+  </legend>
+
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form_symbol_properties_dimension1.csrf_token }}
+
+          <span class="input-group-addon">luminous intensity</span>
+          <select name="dimension_luminous_intensity" class="selectpicker form-control">
+            {% for vec_size in ["arbitrary", "1xarbitrary", "arbitraryx1", "2x1", "1x2", "3x1", "1x3", "4x1", "1x4"]  %}
+              <option value="{{ vec_size }}">{{ vec_size }}</option>
+            {% endfor %}
+          </select>
+
+
+    <P>{{ form_symbol_properties_dimension1.symbol_is_composite.label}} (<B>required</B>): {{ form_symbol_properties_dimension1.symbol_is_composite(size=50, minlength=1, maxlength=1000) }}</P>
+ 
+
+      <input type="submit" value="add dimension1 symbol">
+    </P>
+  </form>
+</fieldset>
+
+
+
+
+{% include '_table_of_symbols.html' %}
+
+<script>
+function select_symbol() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('symbol_input');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("symbol_UL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+
+
+{% endblock %}

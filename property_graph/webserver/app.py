@@ -245,15 +245,19 @@ class SpecifyNewExpressionForm(FlaskForm):
     )
 
 
-class SpecifyNewScalarSymbolForm(FlaskForm):
+class SpecifyNewSymbolForm(FlaskForm):
     """
     web form for user to specify symbols used in expressions
     """
 
     symbol_latex = StringField(
         "LaTeX symbol",
-        validators=[validators.Length(min=1, max=1000)],
+        validators=[validators.Length(min=1, max=1000),validators.InputRequired()],
     )
+    
+    symbol_requires_arguments = BooleanField("requires arguments",
+        validators=[validators.InputRequired()])
+
     symbol_name = StringField(
         "name (LaTeX)",
         validators=[validators.Length(max=1000)],
@@ -264,6 +268,16 @@ class SpecifyNewScalarSymbolForm(FlaskForm):
     )
     symbol_reference = StringField("reference")
 
+
+class SpecifyNewArgumentCountSymbolForm(FlaskForm):
+    required_argument_count = IntegerField("number of arguments",
+        validators=[validators.InputRequired()])
+
+class SpecifyNewDimensionCountSymbolForm(FlaskForm):
+    dimension_count = IntegerField("number of dimensions",
+        validators=[validators.InputRequired()])
+
+class SpecifyNewDimension0SymbolForm(FlaskForm):
     # https://en.wikipedia.org/wiki/List_of_types_of_numbers
     # symbol_scope_real = BooleanField(
     #    label="Real", description="check this", default="checked"
@@ -295,48 +309,6 @@ class SpecifyNewScalarSymbolForm(FlaskForm):
         validators=[validators.InputRequired()],
     )
 
-
-class SpecifyNewVectorSymbolForm(FlaskForm):
-    """
-    web form for user to specify symbols used in expressions
-    """
-
-    symbol_latex = StringField(
-        "LaTeX symbol",
-        validators=[validators.Length(min=1, max=1000)],
-    )
-    symbol_name = StringField(
-        "name (LaTeX)",
-        validators=[validators.Length(max=1000)],
-    )
-    symbol_description = StringField(
-        "description (LaTeX)",
-        validators=[validators.Length(max=1000)],
-    )
-    symbol_reference = StringField("reference")
-
-
-class SpecifyNewOperationForm(FlaskForm):
-    """
-    web form for user to specify operations used in expressions
-    """
-
-    operation_latex = StringField(
-        "LaTeX operation",
-        validators=[validators.Length(min=1, max=1000)],
-    )
-    operation_name = StringField(
-        "name (LaTeX)",
-        validators=[validators.Length(max=1000)],
-    )
-    operation_description = StringField(
-        "description (LaTeX)",
-        validators=[validators.Length(max=1000)],
-    )
-    operation_number_of_arguments = IntegerField(
-        "number of arguments (positive integer)",
-        validators=[validators.InputRequired(), validators.NumberRange(min=1, max=10)],
-    )
 
 
 class CypherQueryForm(FlaskForm):
@@ -622,7 +594,6 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
         print("list_of_step_dicts=", list_of_step_dicts)
 
         for this_step_dict in list_of_step_dicts:
-
             with graphDB_Driver.session() as session:
                 session.write_transaction(
                     neo4j_query.disconnect_step_from_inference_rule,
@@ -1221,37 +1192,30 @@ def to_add_symbol():
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_symbol start " + trace_id)
 
-    web_form_symbol_properties_scalar = SpecifyNewScalarSymbolForm(request.form)
-    web_form_symbol_properties_vector = SpecifyNewVectorSymbolForm(request.form)
+    web_form_symbol_properties = SpecifyNewSymbolForm(request.form)
     if request.method == "POST" and web_form_symbol_properties_scalar.validate():
         print("request.form = ", request.form)
 
-        # request.form =  ImmutableMultiDict(('symbol_latex', 'c'),
-        #      ('symbol_name', ''), ('symbol_description', ''),
-        #      ('symbol_scope', 'real'), ('symbol_reference', ''),
-        #      ('dimension_length', '1'), ('dimension_time', '0'), ('dimension_mass', '0'),
-        #      ('dimension_temperature', '0'), ('dimension_electric_charge', '0'),
-        #      ('dimension_amount_of_substance', '0'), ('dimension_luminous_intensity', '0'),
-        #      ('symbol_radio_domain', 'any')])
+        symbol_latex = str(web_form_symbol_properties.symbol_latex.data).strip()
+        symbol_name = str(web_form_symbol_properties.symbol_name.data).strip()
+        symbol_description = str(web_form_symbol_properties.symbol_description.data).strip()
+        symbol_requires_arguments = str(web_form_symbol_properties.symbol_requires_arguments.data).strip()
+        symbol_reference = str(web_form_symbol_properties.symbol_reference.data).strip()
 
-        symbol_latex = str(web_form.symbol_latex.data).strip()
-        symbol_name = str(web_form.symbol_name.data).strip()
-        symbol_description = str(web_form.symbol_description.data).strip()
-        symbol_scope = str(web_form.symbol_scope.data).strip()
-        symbol_variable_or_constant = str(
-            web_form.symbol_variable_or_constant.data
-        ).strip()
-        symbol_reference = str(web_form.symbol_reference.data).strip()
-        symbol_domain = str(web_form.symbol_radio_domain.data).strip()
-        dimension_length = int(request.form["dimension_length"])
-        dimension_time = int(request.form["dimension_time"])
-        dimension_mass = int(request.form["dimension_mass"])
-        dimension_temperature = int(request.form["dimension_temperature"])
-        dimension_electric_charge = int(request.form["dimension_electric_charge"])
-        dimension_amount_of_substance = int(
-            request.form["dimension_amount_of_substance"]
-        )
-        dimension_luminous_intensity = int(request.form["dimension_luminous_intensity"])
+        # symbol_scope = str(web_form.symbol_scope.data).strip()
+        # symbol_variable_or_constant = str(
+        #     web_form.symbol_variable_or_constant.data
+        # ).strip()
+        # symbol_domain = str(web_form.symbol_radio_domain.data).strip()
+        # dimension_length = int(request.form["dimension_length"])
+        # dimension_time = int(request.form["dimension_time"])
+        # dimension_mass = int(request.form["dimension_mass"])
+        # dimension_temperature = int(request.form["dimension_temperature"])
+        # dimension_electric_charge = int(request.form["dimension_electric_charge"])
+        # dimension_amount_of_substance = int(
+        #     request.form["dimension_amount_of_substance"]
+        # )
+        # dimension_luminous_intensity = int(request.form["dimension_luminous_intensity"])
 
         print("symbol_latex:", symbol_latex)
         print("symbol_name:", symbol_name)
@@ -1275,28 +1239,23 @@ def to_add_symbol():
                 symbol_name,
                 symbol_latex,
                 symbol_description,
-                author_name_latex,
-                symbol_scope,
-                symbol_variable_or_constant,
+                symbol_requires_arguments,
                 symbol_reference,
-                symbol_domain,
-                dimension_length,
-                dimension_time,
-                dimension_mass,
-                dimension_temperature,
-                dimension_electric_charge,
-                dimension_amount_of_substance,
-                dimension_luminous_intensity,
+                author_name_latex,
+                # symbol_scope,
+                # symbol_variable_or_constant,
+                # symbol_domain,
+                # dimension_length,
+                # dimension_time,
+                # dimension_mass,
+                # dimension_temperature,
+                # dimension_electric_charge,
+                # dimension_amount_of_substance,
+                # dimension_luminous_intensity,
             )
 
         print("[TRACE] func: app/to_add_symbol end " + trace_id)
-        return redirect(url_for("to_list_symbols"))
-
-    elif request.method == "POST" and web_form_symbol_properties_vector.validate():
-        print("request.form = ", request.form)
-
-        print("[TRACE] func: app/to_add_symbol end " + trace_id)
-        return redirect(url_for("to_list_symbols"))
+        return redirect(url_for(""))
 
     list_of_symbol_dicts = []
     with graphDB_Driver.session() as session:
@@ -1307,10 +1266,47 @@ def to_add_symbol():
     print("[TRACE] func: app/to_add_symbol end " + trace_id)
     return render_template(
         "symbol_create.html",
-        form_symbol_properties_scalar=web_form_symbol_properties_scalar,
-        form_symbol_properties_vector=web_form_symbol_properties_vector,
+        form_symbol_properties=web_form_symbol_properties,
         list_of_symbol_dicts=list_of_symbol_dicts,
     )
+
+@app.route("/new_symbol_required_argument_count/<symbol_id>", methods=["GET", "POST"])
+def to_add_symbol_required_argument_count(symbol_id: unique_numeric_id_as_str):
+    """
+    novel symbol: how many arguments?
+    see https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: app/new_symbol_required_argument_count start " + trace_id)
+
+    web_form_symbol_properties = SpecifyNewArgumentCountSymbolForm(request.form)
+    if request.method == "POST" and web_form_symbol_properties_scalar.validate():
+        print("request.form = ", request.form)
+
+        #symbol_latex = str(web_form_symbol_properties.symbol_latex.data).strip()
+
+    print("[TRACE] func: app/new_symbol_required_argument_count end " + trace_id)
+    return render_template("symbol_create_required_argument_count.html",
+        form_symbol_properties=web_form_symbol_properties)
+
+@app.route("/new_symbol_required_specify_dimension_count/<symbol_id>", methods=["GET", "POST"])
+def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
+    """
+    novel symbol: how many dimensions?
+    see https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: app/new_symbol_required_argument_count start " + trace_id)
+
+    web_form_symbol_properties = SpecifyNewDimensionCountSymbolForm(request.form)
+    if request.method == "POST" and web_form_symbol_properties_scalar.validate():
+        print("request.form = ", request.form)
+
+        #symbol_latex = str(web_form_symbol_properties.symbol_latex.data).strip()
+
+    print("[TRACE] func: app/new_symbol_required_argument_count end " + trace_id)
+    return render_template("symbol_create_specify_dimension_count.html",
+        form_symbol_properties=web_form_symbol_properties)
 
 
 @app.route("/new_operation/", methods=["GET", "POST"])

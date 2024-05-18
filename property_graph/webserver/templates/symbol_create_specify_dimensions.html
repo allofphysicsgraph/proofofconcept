@@ -1,0 +1,53 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=symbol_create">main page</a>
+</P>
+
+<P>See <a href="https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html">distinguishing scalars, vectors, and matrices as operators or symbols</a></P>
+
+<fieldset>
+  <legend>
+    <H2>symbol dimension count</H2>
+  </legend>
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form_symbol_properties.csrf_token }}
+
+    <P>{{form_symbol_properties.dimension_count.label }} (<B>required</B>): {{ form_symbol_properties.dimension_count() }}  
+
+      <input type="submit" value="specify dimension count for symbol">
+    </P>
+  </form>
+</fieldset>
+
+
+
+{% include '_table_of_symbols.html' %}
+
+<script>
+function select_symbol() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('symbol_input');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("symbol_UL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+
+
+{% endblock %}
