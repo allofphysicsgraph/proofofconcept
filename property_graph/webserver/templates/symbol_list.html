@@ -7,6 +7,12 @@
 
 <P>See also Wikipedia's <a href="https://en.wikipedia.org/wiki/Glossary_of_mathematical_symbols">list of symbols</a></P>
 
+{% for symbol_dict in list_of_symbol_dicts %}
+<UL>
+  <LI>{{ symbol_dict }}</LI>
+</UL>
+{% endfor %}
+
 <fieldset>
 <legend>
   <H2>List of Symbols</h2>

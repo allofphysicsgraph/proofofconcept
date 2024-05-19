@@ -39,7 +39,6 @@ def list_IDs(tx, node_type: str) -> list:
         "derivation",
         "inference_rule",
         "symbol",
-        "operation",
         "step",
         "expression",
     ]
@@ -142,7 +141,6 @@ def constrain_unique_id(tx) -> None:
         "derivation",
         "inference_rule",
         "symbol",
-        "operation",
         "step",
         "expression",
     ]:
@@ -195,11 +193,13 @@ def operations_in_expression(tx, expression_id: str) -> list:
 
     operation_list = []
     for result in tx.run(
-        "MATCH (e:expression)-[:HAS_OPERATION]->(p:operation) WHERE e.id='"
+        "MATCH (e:expression)-[:HAS_SYMBOL]->(s:symbol) WHERE e.id='"
         + expression_id
-        + "' RETURN p.id"
+        + "' RETURN s.id"
     ):
-        operation_list.append(result.data()["p.id"])
+        operation_list.append(result.data()["s.id"])
+
+    # TODO: not all symbols are operators. Filter by required_arguments=True
 
     print("expression_id=", expression_id, "operation_list=", operation_list)
 
@@ -222,7 +222,6 @@ def list_nodes_of_type(tx, node_type: str) -> list:
         "derivation",
         "inference_rule",
         "symbol",
-        "operation",
         "step",
         "expression",
     ]
@@ -251,26 +250,26 @@ def derivations_that_use_inference_rule(tx, inference_rule_id: str) -> list:
 
     print("inference_rule_id=", inference_rule_id)
 
-    list_of_derivations = []
+    list_of_derivation_dicts = []
     for result in tx.run(
         'MATCH (d:derivation), (s:step), (i:inference_rule) WHERE i.id = "'
         + str(inference_rule_id)
         + '" RETURN d'
     ):
-        list_of_derivations.append(result.data()["d"])
-        print("list_of_derivations=", list_of_derivations)
+        list_of_derivation_dicts.append(result.data()["d"])
+        # print("list_of_derivations=", list_of_derivations)
 
     print(
         "inference_rule_id=",
         inference_rule_id,
         "list_of_derivations=",
-        list_of_derivations,
+        list_of_derivation_dicts,
     )
 
     print(
         "[TRACE] func: neo4j_query/derivations_that_use_inference_rule end " + trace_id
     )
-    return list_of_derivations
+    return list_of_derivation_dicts
 
 
 def expressions_that_use_symbol(tx, symbol_id: str) -> list:
@@ -445,31 +444,21 @@ def node_properties(tx, node_type: str, node_id: str) -> dict:
         "derivation",
         "inference_rule",
         "symbol",
-        "operation",
         "step",
         "expression",
     ]
     print("node_type:", node_type)
     print("node_id:", node_id)
 
-    for result in tx.run(
-        "MATCH (n: "
-        + str(node_type)
-        + ') WHERE n.id = "'
-        + str(node_id)
-        + '" RETURN n',
-        # node_type=node_type,
-        # node_id=node_id,
-    ):
-        print("    result:", result)
-        print("    n=", result.data()["n"])
+    result = tx.run(
+        "MATCH (n: " + str(node_type) + ') WHERE n.id = "' + str(node_id) + '" RETURN n'
+    )
+    # node_data = result.data()['n']
+    node_data = result.data()[0]["n"]
+    print("node_data=", node_data)
 
-    try:
-        print("[TRACE] func: neo4j_query/node_properties end " + trace_id)
-        return result.data()["n"]
-    except UnboundLocalError:
-        print("[TRACE] func: neo4j_query/node_properties end " + trace_id)
-        return None
+    print("[TRACE] func: neo4j_query/node_properties end " + trace_id)
+    return node_data
 
 
 def add_derivation(
@@ -597,6 +586,43 @@ def edit_expression(
     return
 
 
+def edit_node_property(
+    tx, node_type: str, node_id: str, property_key: str, property_value
+) -> None:
+    """
+    property_value can be either str or int
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/edit_node_property start " + trace_id)
+
+    assert node_type in [
+        "derivation",
+        "inference_rule",
+        "symbol",
+        "step",
+        "expression",
+    ]
+    print(
+        "node_type=",
+        node_type,
+        ", node_id=",
+        node_id,
+        ",property_key=",
+        property_key,
+        ", property_value=",
+        property_value,
+    )
+
+    # https://neo4j.com/docs/getting-started/cypher-intro/updating/
+    result = tx.run(
+        "MERGE (n:" + str(node_type) + ' {id:"' + str(node_id) + '"})'
+        "SET n." + property_key + " = " + property_value
+    )
+
+    print("[TRACE] func: neo4j_query/edit_node_property end" + trace_id)
+    return
+
+
 def edit_derivation_metadata(
     tx,
     derivation_id: str,
@@ -712,7 +738,6 @@ def delete_node(tx, node_id: str, node_type) -> None:
         "derivation",
         "inference_rule",
         "symbol",
-        "operation",
         "step",
         "expression",
     ]
@@ -749,33 +774,33 @@ def disconnect_symbol_from_expression(tx, symbol_id: str, expression_id: str) ->
     return
 
 
-def disconnect_operation_from_expression(
-    tx, operation_id: str, expression_id: str
-) -> None:
-    """
-    called by "edit expression"
+# def disconnect_operation_from_expression(
+#     tx, operation_id: str, expression_id: str
+# ) -> None:
+#     """
+#     called by "edit expression"
 
-    https://neo4j.com/docs/cypher-manual/current/clauses/delete/
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print(
-        "[TRACE] func: neo4j_query/disconnect_operation_from_expression start "
-        + trace_id
-    )
-    result = tx.run(
-        "MATCH (e:expression)-[r:HAS_OPERATION]->(p:operation)"
-        + 'WHERE e.id="'
-        + str(expression_id)
-        + '" AND p.id="'
-        + str(operation_id)
-        + '"  DELETE r'
-    )
-    print("result.data=", result.data())
+#     https://neo4j.com/docs/cypher-manual/current/clauses/delete/
+#     """
+#     trace_id = str(random.randint(1000000, 9999999))
+#     print(
+#         "[TRACE] func: neo4j_query/disconnect_operation_from_expression start "
+#         + trace_id
+#     )
+#     result = tx.run(
+#         "MATCH (e:expression)-[r:HAS_OPERATION]->(p:operation)"
+#         + 'WHERE e.id="'
+#         + str(expression_id)
+#         + '" AND p.id="'
+#         + str(operation_id)
+#         + '"  DELETE r'
+#     )
+#     print("result.data=", result.data())
 
-    print(
-        "[TRACE] func: neo4j_query/disconnect_operation_from_expression end " + trace_id
-    )
-    return
+#     print(
+#         "[TRACE] func: neo4j_query/disconnect_operation_from_expression end " + trace_id
+#     )
+#     return
 
 
 def add_symbol_to_expression(tx, symbol_id: str, expression_id: str) -> None:
@@ -814,25 +839,25 @@ def add_symbol_to_expression(tx, symbol_id: str, expression_id: str) -> None:
     return
 
 
-def add_operation_to_expression(tx, operation_id: str, expression_id: str) -> None:
-    """ """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/add_operation_to_expression start " + trace_id)
+# def add_operation_to_expression(tx, operation_id: str, expression_id: str) -> None:
+#     """ """
+#     trace_id = str(random.randint(1000000, 9999999))
+#     print("[TRACE] func: neo4j_query/add_operation_to_expression start " + trace_id)
 
-    result = tx.run(
-        "MATCH (e:expression),(p:operation) "
-        + 'WHERE e.id="'
-        + str(expression_id)
-        + '" AND p.id="'
-        + str(operation_id)
-        + '" '
-        + "MERGE (e)-[r:HAS_OPERATION]->(p) RETURN r"
-    )
-    print("result.data=", result.data())
-    # TODO: probably don't need that "RETURN" statement
+#     result = tx.run(
+#         "MATCH (e:expression),(p:operation) "
+#         + 'WHERE e.id="'
+#         + str(expression_id)
+#         + '" AND p.id="'
+#         + str(operation_id)
+#         + '" '
+#         + "MERGE (e)-[r:HAS_OPERATION]->(p) RETURN r"
+#     )
+#     print("result.data=", result.data())
+#     # TODO: probably don't need that "RETURN" statement
 
-    print("[TRACE] func: neo4j_query/add_operation_to_expression end " + trace_id)
-    return
+#     print("[TRACE] func: neo4j_query/add_operation_to_expression end " + trace_id)
+#     return
 
 
 def list_sequence_values(tx, derivation_id: str) -> list:
@@ -1072,7 +1097,7 @@ def add_operation(
     operation_name: str,
     operation_latex: str,
     operation_description: str,
-    operation_number_of_arguments: str,
+    operation_argument_count: str,
     author_name_latex: str,
 ) -> None:
     """
@@ -1085,14 +1110,15 @@ def add_operation(
 
     assert len(operation_name) > 0
     assert len(operation_latex) > 0
-    assert int(operation_number_of_arguments) > 0
+    assert int(operation_argument_count) > 0
 
     result = tx.run(
-        "CREATE (a:operation "
+        "CREATE (a:symbol "
         '{name_latex:"' + str(operation_name) + '", '
         ' latex:"' + str(operation_latex) + '", '
         ' description_latex:"' + str(operation_description) + '", '
-        " number_of_arguments:" + str(operation_number_of_arguments) + ", "
+        " argument_count:" + str(operation_argument_count) + ", "
+        " requires_arguments: True,"
         ' author_name_latex:"' + str(author_name_latex) + '", '
         ' id:"' + str(operation_id) + '"})'
     )

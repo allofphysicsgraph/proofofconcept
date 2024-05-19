@@ -60,29 +60,30 @@ def get_dict_of_symbol_dicts(graphDB_Driver):
     return dict_of_all_symbol_dicts
 
 
-def get_dict_of_operation_dicts(
-    graphDB_Driver,
-):
-    """
-    >>> get_dict_of_operation_dicts()
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: compute/get_dict_of_operation_dicts start " + trace_id)
+# def get_dict_of_operation_dicts(
+#     graphDB_Driver,
+# ):
+#     """
+#     >>> get_dict_of_operation_dicts()
+#     """
+#     trace_id = str(random.randint(1000000, 9999999))
+#     print("[TRACE] func: compute/get_dict_of_operation_dicts start " + trace_id)
 
-    list_of_all_operation_dicts = []
-    with graphDB_Driver.session() as session:
-        list_of_all_operation_dicts = session.read_transaction(
-            neo4j_query.list_nodes_of_type, "operation"
-        )
-    print("list_of_all_operation_dicts=", list_of_all_operation_dicts)
+#     list_of_all_operation_dicts = []
+#     with graphDB_Driver.session() as session:
+#         list_of_all_operation_dicts = session.read_transaction(
+#             neo4j_query.list_nodes_of_type, "symbol"
+#         )
+#     # TODO: there are fewer operations than symbols
+#     print("list_of_all_operation_dicts=", list_of_all_operation_dicts)
 
-    dict_of_all_operation_dicts = {}
-    for this_operation_dict in list_of_all_operation_dicts:
-        dict_of_all_operation_dicts[this_operation_dict["id"]] = this_operation_dict
-    print("dict_of_all_operation_dicts=", dict_of_all_operation_dicts)
+#     dict_of_all_operation_dicts = {}
+#     for this_operation_dict in list_of_all_operation_dicts:
+#         dict_of_all_operation_dicts[this_operation_dict["id"]] = this_operation_dict
+#     print("dict_of_all_operation_dicts=", dict_of_all_operation_dicts)
 
-    print("[TRACE] func: compute/get_dict_of_operation_dicts end " + trace_id)
-    return dict_of_all_operation_dicts
+#     print("[TRACE] func: compute/get_dict_of_operation_dicts end " + trace_id)
+#     return dict_of_all_operation_dicts
 
 
 def get_dict_of_derivations_used_per_inference_rule(

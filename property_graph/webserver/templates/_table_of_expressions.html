@@ -16,7 +16,7 @@
     <th>description</th>
     <th>used in derivation</th>
     <TH>symbols</TH>
-    <TH>operations</TH>
+<!--    <TH>operations</TH> -->
     <th><a href="https://www.sympy.org/">sympy</a></th>
     <th><a href="https://github.com/leanprover/lean4">lean 4</a></th>
   </tr>
@@ -38,12 +38,12 @@
       </UL>
       {% endfor %}
     </td> <!-- symbols -->
-    <td>{% for operation_id in operations_per_expression[expression_dict['id']] %}
+    <!--<td>{ % for operation_id in operations_per_expression[expression_dict['id']] %}
       <UL>
-        <LI><a href="{{ url_for('to_edit_operation', operation_id=operation_id) }}">{{ dict_of_all_operation_dicts[operation_id]['id'] }}</a>: 
-            {{ dict_of_all_operation_dicts[operation_id]['latex'] }}</LI>
+        <LI><a href="{ { url_for('to_edit_operation', operation_id=operation_id) }}">{ { dict_of_all_operation_dicts[operation_id]['id'] }}</a>: 
+            { { dict_of_all_operation_dicts[operation_id]['latex'] }}</LI>
       </UL>
-      {% endfor %}
+      { % endfor %}
     </td> <!-- operations -->
     <td>{{ expression_dict['sympy'] }}</td>
     <td>{{ expression_dict['lean'] }}</td>

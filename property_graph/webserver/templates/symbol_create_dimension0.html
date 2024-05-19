@@ -7,27 +7,25 @@
 
 <P>See <a href="https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html">distinguishing scalars, vectors, and matrices as operators or symbols</a></P>
 
+<P>Symbol dict: {{ symbol_dict }}
+
 <fieldset>
   <legend>
     <H2>Create symbol</H2>
   </legend>
 
   <form method="post" action="" onsubmit="return checkForm(this);">
-    {{ form_symbol_properties_scalar.csrf_token }}
-    <P>{{ form_symbol_properties_scalar.symbol_latex.label}} (<B>required</B>): {{ form_symbol_properties_scalar.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
-    
-    <P>{{form_symbol_properties_scalar.symbol_name.label }} (optional): {{ form_symbol_properties_scalar.symbol_name(size=50, maxlength=1000) }}</p>
-    
-    <P>{{form_symbol_properties_scalar.symbol_description.label }} (optional): {{ form_symbol_properties_scalar.symbol_description(size=50, maxlength=1000) }}</p>
+    {{ form_symbol_properties.csrf_token }}
 
-    <P>{{ form_symbol_properties_scalar.symbol_scope.label }}: {{ form_symbol_properties_scalar.symbol_scope }}</p>
+    <P>{{ form_symbol_properties.symbol_scope.label }}: {{ form_symbol_properties.symbol_scope }}</p>
 
-    <P>{{ form_symbol_properties_scalar.symbol_variable_or_constant.label }}: {{ form_symbol_properties_scalar.symbol_variable_or_constant }}</p>
+    <P>{{ form_symbol_properties.symbol_variable_or_constant.label }}: {{ form_symbol_properties.symbol_variable_or_constant }}</p>
 
-    <P>{{ form_symbol_properties_scalar.symbol_reference.label }}(<small><em>optional</em></small>): {{ form_symbol_properties_scalar.symbol_reference }}</p>
+    <P>{{ form_symbol_properties.symbol_radio_domain.label}}: {{ form_symbol_properties.symbol_radio_domain }}</P>
+
 
     <!-- https://en.wikipedia.org/wiki/International_System_of_Quantities#Base_quantities -->
-    <a href="https://www.ldeo.columbia.edu/~martins/hydro/case_studies/units_dimensions.html">dimensions</a>: 
+    <P><a href="https://www.ldeo.columbia.edu/~martins/hydro/case_studies/units_dimensions.html">dimensions</a>: 
     <span class="input-group-addon">length</span>
           <select name="dimension_length" class="selectpicker form-control">
             {% for intgr in [0, -5, -4, -3, -2, -1, 1, 2, 3, 4, 5]  %}
@@ -77,39 +75,18 @@
             {% endfor %}
           </select>
 
-<P>{{ form_symbol_properties_scalar.symbol_radio_domain.label}}: {{ form_symbol_properties_scalar.symbol_radio_domain }}</P>
-
-
-      <input type="submit" value="add scalar symbol">
-    </P>
+      <P><input type="submit" value="add scalar symbol">
   </form>
 </fieldset>
 
-<fieldset>
-  <legend>
-    <H3>vector symbol</H3>
-  </legend>
-
-  <form method="post" action="" onsubmit="return checkForm(this);">
-    {{ form_symbol_properties_vector.csrf_token }}
-    <P>{{ form_symbol_properties_vector.symbol_latex.label}} (<B>required</B>): {{ form_symbol_properties_vector.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
-    
-    <P>{{form_symbol_properties_vector.symbol_name.label }} (optional): {{ form_symbol_properties_vector.symbol_name(size=50, maxlength=1000) }}</p>
-    
-    <P>{{form_symbol_properties_vector.symbol_description.label }} (optional): {{ form_symbol_properties_vector.symbol_description(size=50, maxlength=1000) }}</p>
-
-    <P>{{ form_symbol_properties_vector.symbol_reference.label }}(<small><em>optional</em></small>): {{ form_symbol_properties_vector.symbol_reference }}</p>
-
-
-      <input type="submit" value="add vector symbol">
-
-</fieldset>
-
-</fieldset>
-
-
-
 {% include '_table_of_symbols.html' %}
+
+<P>timing of queries (in seconds):{% for what_is_being_timed,duration_in_seconds in query_time_dict.items() %}
+  <UL>
+  <LI>{{ what_is_being_timed }}, {{ duration_in_seconds }}</LI>
+</UL>
+{% endfor %}
+
 
 <script>
 function select_symbol() {

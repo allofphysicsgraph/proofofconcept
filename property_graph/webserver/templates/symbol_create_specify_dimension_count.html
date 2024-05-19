@@ -7,17 +7,24 @@
 
 <P>See <a href="https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html">distinguishing scalars, vectors, and matrices as operators or symbols</a></P>
 
+<P>Symbol dict: {{ symbol_dict }}
+
 <fieldset>
   <legend>
     <H2>symbol dimension count</H2>
   </legend>
 
+<UL>
+  <LI>dimension = 0; aka scalar</LI>
+  <LI>dimension = 1; aka vector: 1xn or nx1</LI>
+  <LI>dimension = 2; aka matrix: nxm</LI>
+
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form_symbol_properties.csrf_token }}
 
-    <P>{{form_symbol_properties.dimension_count.label }} (<B>required</B>): {{ form_symbol_properties.dimension_count() }}  
+    <P>{{form_symbol_properties.dimension_count.label }} (<B>required</B>): {{ form_symbol_properties.dimension_count() }}</P>
 
-      <input type="submit" value="specify dimension count for symbol">
+    <P><input type="submit" value="specify dimension count for symbol"></P>
     </P>
   </form>
 </fieldset>
@@ -25,6 +32,13 @@
 
 
 {% include '_table_of_symbols.html' %}
+
+<P>timing of queries (in seconds):{% for what_is_being_timed,duration_in_seconds in query_time_dict.items() %}
+  <UL>
+  <LI>{{ what_is_being_timed }}, {{ duration_in_seconds }}</LI>
+</UL>
+{% endfor %}
+
 
 <script>
 function select_symbol() {
