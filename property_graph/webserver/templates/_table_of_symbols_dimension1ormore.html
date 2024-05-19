@@ -6,7 +6,7 @@
 <!-- { { list_of_symbol_dicts } } -->
 
 <ul>
-{% for this_symbol_dict in list_of_symbol_dicts %}
+{% for this_symbol_dict in list_of_dimension1ormore_symbol_dicts %}
 <li>{{ this_symbol_dict }}</li>
 {% endfor %}
 </ul>
@@ -22,7 +22,7 @@
     <th>is_composite</th>
     <th>size</th>
   </tr>
-  {% for symbol_dict in list_of_symbol_dicts %}
+  {% for symbol_dict in list_of_dimension1ormore_symbol_dicts %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_symbol', symbol_id=symbol_dict['id'] ) }}">

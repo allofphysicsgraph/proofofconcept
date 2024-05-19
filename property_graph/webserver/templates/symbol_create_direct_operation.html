@@ -2,7 +2,7 @@
 {% block content %}
 
 <P>
-  Return to <a href="{{ url_for('main') }}?referrer=symbol_create">main page</a>
+  Return to <a href="{{ url_for('main') }}?referrer=operation_create">main page</a>
 </P>
 
 <fieldset>
@@ -14,16 +14,17 @@
   That way the user can recognize collisions.
 
   <form method="post" action="" onsubmit="return checkForm(this);">
-    {{ form_symbol_properties.csrf_token }}
-    <P>{{ form_symbol_properties.symbol_latex.label}} (<B>required</B>): {{ form_symbol_properties.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
+    {{ form_operation_properties.csrf_token }}
 
-    <P>{{ form_symbol_properties.symbol_requires_arguments.label }} (<B><em>required</em></B>): {{ form_symbol_properties.symbol_requires_arguments }} Example: "+" requires arguments, so check the box. "c" does not, so leave box unchecked. </p>
+    <P>{{ form_operation_properties.operation_latex.label}} (<B>required</B>): {{ form_operation_properties.operation_latex(size=50, minlength=1, maxlength=1000) }}</P>
     
-    <P>{{form_symbol_properties.symbol_name.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_name(size=50, maxlength=1000) }}</p>
-    
-    <P>{{form_symbol_properties.symbol_description.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_description(size=50, maxlength=1000) }}</p>
+    <P>{{ form_operation_properties.operation_argument_count.label}} (<B>required</B>): {{ form_operation_properties.operation_argument_count() }}
 
-    <P>{{ form_symbol_properties.symbol_reference.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_reference }}</p>
+    <P>{{form_operation_properties.operation_name.label }} (<small><em>optional</em></small>): {{ form_operation_properties.operation_name(size=50, maxlength=1000) }}</p>
+    
+    <P>{{form_operation_properties.operation_description.label }} (<small><em>optional</em></small>): {{ form_operation_properties.operation_description(size=50, maxlength=1000) }}</p>
+
+    <P>{{ form_operation_properties.operation_reference.label }} (<small><em>optional</em></small>): {{ form_operation_properties.operation_reference }}</p>
 
       <input type="submit" value="add symbol">
     </P>
@@ -40,9 +41,9 @@
 function select_symbol() {
   // Declare variables
   var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById('symbol_input');
+  input = document.getElementById('operation_input');
   filter = input.value.toUpperCase();
-  ul = document.getElementById("symbol_UL");
+  ul = document.getElementById("operation_UL");
   li = ul.getElementsByTagName('li');
 
   // Loop through all list items, and hide those who don't match the search query

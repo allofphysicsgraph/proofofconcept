@@ -15,15 +15,33 @@
 
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form_symbol_properties.csrf_token }}
-    <P>{{ form_symbol_properties.symbol_latex.label}} (<B>required</B>): {{ form_symbol_properties.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
 
-    <P>{{ form_symbol_properties.symbol_requires_arguments.label }} (<B><em>required</em></B>): {{ form_symbol_properties.symbol_requires_arguments }} Example: "+" requires arguments, so check the box. "c" does not, so leave box unchecked. </p>
     
-    <P>{{form_symbol_properties.symbol_name.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_name(size=50, maxlength=1000) }}</p>
-    
-    <P>{{form_symbol_properties.symbol_description.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_description(size=50, maxlength=1000) }}</p>
 
-    <P>{{ form_symbol_properties.symbol_reference.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_reference }}</p>
+
+    <P>{{ form_symbol_properties.symbol_latex.label}} (<B>required</B>): 
+       {{ form_symbol_properties.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
+
+    <P>{{ form_symbol_properties.symbol_is_composite.label }} (<B><em>required</em></B>): 
+       {{ form_symbol_properties.symbol_is_composite }}</p>
+    
+    <P>{{form_symbol_properties.symbol_name.label }} (<small><em>optional</em></small>): 
+       {{ form_symbol_properties.symbol_name(size=50, maxlength=1000) }}</p>
+    
+    <P>{{form_symbol_properties.symbol_description.label }} (<small><em>optional</em></small>): 
+       {{ form_symbol_properties.symbol_description(size=50, maxlength=1000) }}</p>
+
+    <P>{{ form_symbol_properties.symbol_reference.label }} (<small><em>optional</em></small>): 
+       {{ form_symbol_properties.symbol_reference }}</p>
+
+    <P>{{ form_symbol_properties.symbol_size.label}} (<B>required</B>): 
+       {{ form_symbol_properties.symbol_size }}
+
+    <P>{{ form_symbol_properties.symbol_number_of_rows.label}} (<B>required</B>): 
+       {{ form_symbol_properties.symbol_number_of_rows() }}
+      
+    <P>{{ form_symbol_properties.symbol_number_of_columns.label}} (<B>required</B>): 
+       {{ form_symbol_properties.symbol_number_of_columns() }}
 
       <input type="submit" value="add symbol">
     </P>
@@ -32,8 +50,6 @@
 
 
 
-<P>{% include '_table_of_symbols_requires_arguments.html' %}
-<P>{% include '_table_of_symbols_dimension0.html' %}
 <P>{% include '_table_of_symbols_dimension1ormore.html' %}
 
 <script>

@@ -6,7 +6,7 @@
 <!-- { { list_of_symbol_dicts } } -->
 
 <ul>
-{% for this_symbol_dict in list_of_symbol_dicts %}
+{% for this_symbol_dict in list_of_operation_dicts %}
 <li>{{ this_symbol_dict }}</li>
 {% endfor %}
 </ul>
@@ -20,7 +20,7 @@
     <th>used in expression</th>
     <th>reference</th>
   </tr>
-  {% for symbol_dict in list_of_symbol_dicts %}
+  {% for symbol_dict in list_of_operation_dicts %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_symbol', symbol_id=symbol_dict['id'] ) }}">

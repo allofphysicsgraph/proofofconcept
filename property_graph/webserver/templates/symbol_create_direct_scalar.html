@@ -1,0 +1,102 @@
+{% extends "_base.html" %}
+{% block content %}
+
+<P>
+  Return to <a href="{{ url_for('main') }}?referrer=symbol_create">main page</a>
+</P>
+
+<fieldset>
+  <legend>
+    <H2>Create symbol</H2>
+  </legend>
+
+<P>TODO: as user is entering symbol, filter the list of existing symbols.
+  That way the user can recognize collisions.
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form_symbol_properties.csrf_token }}
+
+    <P>{{ form_symbol_properties.symbol_latex.label}} (<B>required</B>): 
+    {{ form_symbol_properties.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
+    
+    <P>{{form_symbol_properties.symbol_name.label }} (<small><em>optional</em></small>): 
+    {{ form_symbol_properties.symbol_name(size=50, maxlength=1000) }}</p>
+    
+    <P>{{form_symbol_properties.symbol_description.label }} (<small><em>optional</em></small>): 
+    {{ form_symbol_properties.symbol_description(size=50, maxlength=1000) }}</p>
+
+    <P>{{ form_symbol_properties.symbol_reference.label }} (<small><em>optional</em></small>): 
+    {{ form_symbol_properties.symbol_reference(size=50, maxlength=1000) }}</p>
+
+<table>
+<table border="0" id="scope_table">
+  <tr>
+    <td>{{ form_symbol_properties.symbol_scope.label }}: 
+    {{ form_symbol_properties.symbol_scope }}</td>
+
+    <td>{{ form_symbol_properties.symbol_variable_or_constant.label }}: 
+    {{ form_symbol_properties.symbol_variable_or_constant }}</td>
+
+    <td>{{ form_symbol_properties.symbol_domain.label}}: 
+    {{ form_symbol_properties.symbol_domain }}</td>
+  </tr>
+</table>
+
+<table>
+<table border="0" id="scope_table">
+  <tr>
+    <td>{{ form_symbol_properties.dimension_length.label }} (<B>required</B>): 
+    {{ form_symbol_properties.dimension_length() }}</P>
+    <P>{{ form_symbol_properties.dimension_time.label }} (<B>required</B>): 
+    {{ form_symbol_properties.dimension_time() }}</P>
+    <P>{{ form_symbol_properties.dimension_mass.label }} (<B>required</B>): 
+    {{ form_symbol_properties.dimension_mass() }}</P>
+    </td>
+    <td>
+    <P>{{ form_symbol_properties.dimension_temperature.label }} (<B>required</B>): 
+    {{ form_symbol_properties.dimension_temperature() }}</P>
+    <P>{{ form_symbol_properties.dimension_electric_charge.label }} (<B>required</B>): 
+    {{ form_symbol_properties.dimension_electric_charge() }}</P>
+    </td>
+    <td>
+    <P>{{ form_symbol_properties.dimension_amount_of_substance.label }} (<B>required</B>): 
+    {{ form_symbol_properties.dimension_amount_of_substance() }}</P>
+    <P>{{ form_symbol_properties.dimension_luminous_intensity.label }} (<B>required</B>): 
+    {{ form_symbol_properties.dimension_luminous_intensity() }}</P>
+  </tr>
+</table>
+
+      <input type="submit" value="add symbol">
+    </P>
+  </form>
+</fieldset>
+
+
+
+<P>{% include '_table_of_symbols_dimension0.html' %}
+
+<script>
+function select_symbol() {
+  // Declare variables
+  var input, filter, ul, li, a, i, txtValue;
+  input = document.getElementById('symbol_input');
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("symbol_UL");
+  li = ul.getElementsByTagName('li');
+
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("a")[0];
+    txtValue = a.textContent || a.innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
+
+
+
+{% endblock %}

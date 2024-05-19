@@ -16,9 +16,9 @@
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form_symbol_properties.csrf_token }}
 
-
-
     <P>{{ form_symbol_properties.symbol_latex.label}} (<B>required</B>): {{ form_symbol_properties.symbol_latex(size=50, minlength=1, maxlength=1000) }}</P>
+
+    <P>{{ form_symbol_properties.symbol_is_composite.label }} (<B><em>required</em></B>): {{ form_symbol_properties.symbol_is_composite }}</p>
     
     <P>{{form_symbol_properties.symbol_name.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_name(size=50, maxlength=1000) }}</p>
     
@@ -26,20 +26,9 @@
 
     <P>{{ form_symbol_properties.symbol_reference.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_reference }}</p>
 
-
-    <P>{{ form_symbol_properties.symbol_scope.label }}: {{ form_symbol_properties.symbol_scope }}</p>
-
-    <P>{{ form_symbol_properties.symbol_variable_or_constant.label }}: {{ form_symbol_properties.symbol_variable_or_constant }}</p>
-
-    <P>{{ form_symbol_properties.symbol_radio_domain.label}}: {{ form_symbol_properties.symbol_radio_domain }}</P>
-
-    <P>{{ form_symbol_properties.dimension_length.label }} (<B>required</B>): {{ form_symbol_properties.dimension_length() }}</P>
-    <P>{{ form_symbol_properties.dimension_time.label }} (<B>required</B>): {{ form_symbol_properties.dimension_time() }}</P>
-    <P>{{ form_symbol_properties.dimension_mass.label }} (<B>required</B>): {{ form_symbol_properties.dimension_mass() }}</P>
-    <P>{{ form_symbol_properties.dimension_temperature.label }} (<B>required</B>): {{ form_symbol_properties.dimension_temperature() }}</P>
-    <P>{{ form_symbol_properties.dimension_electric_charge.label }} (<B>required</B>): {{ form_symbol_properties.dimension_electric_charge() }}</P>
-    <P>{{ form_symbol_properties.dimension_amount_of_substance.label }} (<B>required</B>): {{ form_symbol_properties.dimension_amount_of_substance() }}</P>
-    <P>{{ form_symbol_properties.dimension_luminous_intensity.label }} (<B>required</B>): {{ form_symbol_properties.dimension_luminous_intensity() }}</P>
+    <P>{{ form_symbol_properties.symbol_size.label}} (<B>required</B>): {{ form_symbol_properties.symbol_size }}
+    <P>{{ form_symbol_properties.symbol_orientation.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_orientation }}
+    <P>{{ form_symbol_properties.symbol_number_of_entries.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_number_of_entries }}
 
 
       <input type="submit" value="add symbol">
@@ -49,8 +38,6 @@
 
 
 
-<P>{% include '_table_of_symbols_requires_arguments.html' %}
-<P>{% include '_table_of_symbols_dimension0.html' %}
 <P>{% include '_table_of_symbols_dimension1ormore.html' %}
 
 <script>

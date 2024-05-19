@@ -1065,16 +1065,6 @@ def add_symbol(
     symbol_requires_arguments: bool,
     symbol_reference: str,
     author_name_latex: str,
-    # symbol_scope: str,
-    # symbol_variable_or_constant: str,
-    # symbol_domain: str,
-    # dimension_length: int,
-    # dimension_time: int,
-    # dimension_mass: int,
-    # dimension_temperature: int,
-    # dimension_electric_charge: int,
-    # dimension_amount_of_substance: int,
-    # dimension_luminous_intensity: int,
 ) -> None:
     """
     nothing returned by function because action is to write change to Neo4j database
@@ -1092,16 +1082,6 @@ def add_symbol(
         ' author_name_latex:"' + str(author_name_latex) + '", '
         " requires_arguments:" + symbol_requires_arguments + ", "
         ' symbol_reference:"' + str(symbol_reference) + '", '
-        # ' symbol_scope:"' + str(symbol_scope) + '", '
-        # ' symbol_variable_or_constant:"' + str(symbol_variable_or_constant) + '", '
-        # ' symbol_domain:"' + str(symbol_domain) + '", '
-        # " dimension_length: " + str(dimension_length) + ", "
-        # " dimension_time: " + str(dimension_time) + ", "
-        # " dimension_mass: " + str(dimension_mass) + ", "
-        # " dimension_temperature: " + str(dimension_temperature) + ", "
-        # " dimension_electric_charge: " + str(dimension_electric_charge) + ", "
-        # " dimension_amount_of_substance: " + str(dimension_amount_of_substance) + ", "
-        # " dimension_luminous_intensity: " + str(dimension_luminous_intensity) + ", "
         ' id:"' + str(symbol_id) + '"})'
     )
 
@@ -1109,7 +1089,176 @@ def add_symbol(
     return
 
 
-def add_operation(
+def add_symbol_direct_scalar(
+    tx,
+    symbol_id: str,
+    symbol_name: str,
+    symbol_latex: str,
+    symbol_description: str,
+    symbol_reference: str,
+    symbol_scope: str,
+    symbol_variable_or_constant: str,
+    symbol_domain: str,
+    dimension_length: int,
+    dimension_time: int,
+    dimension_mass: int,
+    dimension_temperature: int,
+    dimension_electric_charge: int,
+    dimension_amount_of_substance: int,
+    dimension_luminous_intensity: int,
+    author_name_latex: str,
+):
+    """
+    >>>
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/add_symbol_direct_scalar start " + trace_id)
+
+    assert len(symbol_latex) > 0
+    assert len(symbol_scope) > 0
+
+    result = tx.run(
+        "CREATE (a:symbol "
+        '{name_latex:"' + str(symbol_name) + '", '
+        ' latex:"' + str(symbol_latex) + '", '
+        ' description_latex:"' + str(symbol_description) + '", '
+        ' reference:"' + str(symbol_reference) + '",'
+        " dimension_count: 0,"
+        ' scope:"' + str(symbol_scope) + '",'
+        ' variable_or_constant:"' + str(symbol_variable_or_constant) + '",'
+        ' domain:"' + str(symbol_domain) + '",'
+        " dimension_length: " + str(dimension_length) + ", "
+        " dimension_time: " + str(dimension_time) + ", "
+        " dimension_mass: " + str(dimension_mass) + ", "
+        " dimension_temperature: " + str(dimension_temperature) + ", "
+        " dimension_electric_charge: " + str(dimension_electric_charge) + ", "
+        " dimension_amount_of_substance: " + str(dimension_amount_of_substance) + ", "
+        " dimension_luminous_intensity: " + str(dimension_luminous_intensity) + ", "
+        " requires_arguments: False,"
+        ' author_name_latex:"' + str(author_name_latex) + '", '
+        ' id:"' + str(symbol_id) + '"})'
+    )
+
+    print("[TRACE] func: neo4j_query/add_symbol_direct_scalar end " + trace_id)
+    return
+
+
+def add_symbol_direct_vector(
+    tx,
+    symbol_id: str,
+    symbol_name: str,
+    symbol_latex: str,
+    symbol_description: str,
+    symbol_reference: str,
+    symbol_is_composite: bool,
+    symbol_size: str,
+    symbol_orientation: str,
+    symbol_number_of_entries: str,
+    author_name_latex: str,
+):
+    """
+    >>>
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/add_symbol_direct_vector start " + trace_id)
+
+    assert len(symbol_latex) > 0
+    assert len(symbol_scope) > 0
+
+    if symbol_size == "arbitrary":
+        result = tx.run(
+            "CREATE (:symbol "
+            '{name_latex:"' + str(symbol_name) + '", '
+            ' latex:"' + str(symbol_latex) + '", '
+            ' description_latex:"' + str(symbol_description) + '", '
+            ' symbol_reference:"' + str(symbol_reference) + '", '
+            " dimension_count: 1,"
+            'orientation:"' + str(symbol_orientation) + '", '
+            " size: '" + str(symbol_size) + "',"
+            "is_composite:" + str(symbol_is_composite) + ","
+            " requires_arguments: False,"
+            ' author_name_latex:"' + str(author_name_latex) + '", '
+            ' id:"' + str(symbol_id) + '"})'
+        )
+    else:  # fixed size
+        result = tx.run(
+            "CREATE (:symbol "
+            '{name_latex:"' + str(symbol_name) + '", '
+            ' latex:"' + str(symbol_latex) + '", '
+            ' description_latex:"' + str(symbol_description) + '", '
+            ' symbol_reference:"' + str(symbol_reference) + '", '
+            " dimension_count: 1,"
+            'orientation:"' + str(symbol_orientation) + '", '
+            " size: '" + str(symbol_size) + "',"
+            'number_of_entries:"' + str(symbol_number_of_rows) + '", '
+            "is_composite:" + str(symbol_is_composite) + ","
+            " requires_arguments: False,"
+            ' author_name_latex:"' + str(author_name_latex) + '", '
+            ' id:"' + str(symbol_id) + '"})'
+        )
+
+    print("[TRACE] func: neo4j_query/add_symbol_direct_vector end " + trace_id)
+    return
+
+
+def add_symbol_direct_matrix(
+    tx,
+    symbol_id: str,
+    symbol_name: str,
+    symbol_latex: str,
+    symbol_description: str,
+    symbol_reference: str,
+    symbol_is_composite: bool,
+    symbol_size: str,
+    symbol_number_of_rows: str,
+    symbol_number_of_columns: str,
+    author_name_latex: str,
+):
+    """
+    >>>
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: neo4j_query/add_symbol_direct_matrix start " + trace_id)
+
+    assert len(symbol_latex) > 0
+    assert len(symbol_scope) > 0
+
+    if symbol_size == "arbitrary":
+        result = tx.run(
+            "CREATE (:symbol "
+            '{name_latex:"' + str(symbol_name) + '", '
+            ' latex:"' + str(symbol_latex) + '", '
+            ' description_latex:"' + str(symbol_description) + '", '
+            ' symbol_reference:"' + str(symbol_reference) + '", '
+            " dimension_count: 2,"
+            " size: '" + str(symbol_size) + "',"
+            "is_composite:" + str(symbol_is_composite) + ","
+            " requires_arguments: False,"
+            ' author_name_latex:"' + str(author_name_latex) + '", '
+            ' id:"' + str(symbol_id) + '"})'
+        )
+    else:  # fixed size
+        result = tx.run(
+            "CREATE (:symbol "
+            '{name_latex:"' + str(symbol_name) + '", '
+            ' latex:"' + str(symbol_latex) + '", '
+            ' description_latex:"' + str(symbol_description) + '", '
+            ' symbol_reference:"' + str(symbol_reference) + '", '
+            " dimension_count: 2,"
+            " size: '" + str(symbol_size) + "',"
+            'number_of_rows:"' + str(symbol_number_of_rows) + '", '
+            'number_of_columns:"' + str(symbol_number_of_columns) + '", '
+            "is_composite:" + str(symbol_is_composite) + ","
+            " requires_arguments: False,"
+            ' author_name_latex:"' + str(author_name_latex) + '", '
+            ' id:"' + str(symbol_id) + '"})'
+        )
+
+    print("[TRACE] func: neo4j_query/add_symbol_direct_matrix end " + trace_id)
+    return
+
+
+def add_symbol_direct_operation(
     tx,
     operation_id: str,
     operation_name: str,
@@ -1124,7 +1273,7 @@ def add_operation(
     >>> add_operation(tx,)
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/add_operation start " + trace_id)
+    print("[TRACE] func: neo4j_query/add_symbol_direct_operation start " + trace_id)
 
     assert len(operation_name) > 0
     assert len(operation_latex) > 0
@@ -1141,7 +1290,7 @@ def add_operation(
         ' id:"' + str(operation_id) + '"})'
     )
 
-    print("[TRACE] func: neo4j_query/add_operation end " + trace_id)
+    print("[TRACE] func: neo4j_query/add_symbol_direct_operation end " + trace_id)
     return
 
 

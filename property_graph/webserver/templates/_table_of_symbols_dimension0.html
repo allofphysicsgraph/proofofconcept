@@ -6,7 +6,7 @@
 <!-- { { list_of_symbol_dicts } } -->
 
 <ul>
-{% for this_symbol_dict in list_of_symbol_dicts %}
+{% for this_symbol_dict in list_of_dimension0_symbol_dicts %}
 <li>{{ this_symbol_dict }}</li>
 {% endfor %}
 </ul>
@@ -29,7 +29,7 @@
     <th>scope</th>
     <th>domain</th>
   </tr>
-  {% for symbol_dict in list_of_symbol_dicts %}
+  {% for symbol_dict in list_of_dimension0_symbol_dicts %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_symbol', symbol_id=symbol_dict['id'] ) }}">
@@ -48,8 +48,8 @@
     <td>{{ symbol_dict['dimension_luminous_intensity'] }}</td>
     <td>{{ symbol_dict['dimension_amount_of_substance'] }}</td>
     <td>{{ symbol_dict['dimension_temperature'] }}</td>
-    <td>{{ symbol_dict['symbol_scope'] }}</td>
-    <td>{{ symbol_dict['symbol_domain'] }}</td>
+    <td>{{ symbol_dict['scope'] }}</td>
+    <td>{{ symbol_dict['sdomain'] }}</td>
   </tr>
   {% endfor %}
 </table>

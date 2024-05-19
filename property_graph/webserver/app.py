@@ -249,6 +249,10 @@ class SpecifyNewExpressionForm(FlaskForm):
 
 
 class SpecifyNewSymbolDIRECTScalarForm(FlaskForm):
+    """
+    https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html
+    """
+
     symbol_latex = StringField(
         label="LaTeX symbol",
         validators=[validators.Length(min=1, max=1000), validators.InputRequired()],
@@ -279,7 +283,7 @@ class SpecifyNewSymbolDIRECTScalarForm(FlaskForm):
     )
 
     # domain = input; range = output
-    symbol_radio_domain = RadioField(
+    symbol_domain = RadioField(
         "domain",
         choices=[
             ("any", "any"),
@@ -328,14 +332,13 @@ class SpecifyNewSymbolDIRECTScalarForm(FlaskForm):
 
 
 class SpecifyNewSymbolDIRECTVectorForm(FlaskForm):
+    """
+    https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html
+    """
+
     symbol_latex = StringField(
         label="LaTeX symbol",
         validators=[validators.Length(min=1, max=1000), validators.InputRequired()],
-    )
-
-    symbol_requires_arguments = BooleanField(
-        label="requires arguments",
-        description="check for 'yes' (as in +); unchecked for 'no' (as in c)",
     )
 
     symbol_name = StringField(
@@ -347,21 +350,44 @@ class SpecifyNewSymbolDIRECTVectorForm(FlaskForm):
         validators=[validators.Length(max=1000)],
     )
     symbol_reference = StringField("reference")
+
     symbol_is_composite = BooleanField(
         label="is composite",
         description="check for 'yes'; unchecked for 'no'",
+    )
+
+    symbol_size = RadioField(
+        label="size",
+        choices=[("arbitrary", "arbitrary"), ("fixed", "fixed")],
+        default="arbitrary",
+        validators=[validators.InputRequired()],
+    )
+
+    symbol_orientation = RadioField(
+        label="orientation",
+        choices=[
+            ("row vector", "row vector"),
+            ("column vector", "column vector"),
+            ("arbitrary", "arbitrary"),
+        ],
+        default="arbitrary",
+    )
+
+    symbol_number_of_entries = IntegerField(
+        label="number of entries",
+        validators=[validators.NumberRange(min=1, max=20)],
+        default=1,
     )
 
 
 class SpecifyNewSymbolDIRECTMatrixForm(FlaskForm):
+    """
+    https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html
+    """
+
     symbol_latex = StringField(
         label="LaTeX symbol",
         validators=[validators.Length(min=1, max=1000), validators.InputRequired()],
-    )
-
-    symbol_requires_arguments = BooleanField(
-        label="requires arguments",
-        description="check for 'yes' (as in +); unchecked for 'no' (as in c)",
     )
 
     symbol_name = StringField(
@@ -373,9 +399,28 @@ class SpecifyNewSymbolDIRECTMatrixForm(FlaskForm):
         validators=[validators.Length(max=1000)],
     )
     symbol_reference = StringField("reference")
+
     symbol_is_composite = BooleanField(
         label="is composite",
         description="check for 'yes'; unchecked for 'no'",
+    )
+
+    symbol_size = RadioField(
+        label="size",
+        choices=[("arbitrary", "arbitrary"), ("fixed", "fixed")],
+        default="arbitrary",
+        validators=[validators.InputRequired()],
+    )
+
+    symbol_number_of_rows = IntegerField(
+        label="number of rows",
+        validators=[validators.InputRequired(), validators.NumberRange(min=1, max=20)],
+        default=1,
+    )
+    symbol_number_of_columns = IntegerField(
+        label="number of columns",
+        validators=[validators.InputRequired(), validators.NumberRange(min=1, max=20)],
+        default=1,
     )
 
 
@@ -385,7 +430,7 @@ class SpecifyNewSymbolDIRECTOperationForm(FlaskForm):
         validators=[validators.Length(min=1, max=1000), validators.InputRequired()],
     )
 
-    required_argument_count = IntegerField(
+    operation_argument_count = IntegerField(
         label="number of arguments",
         validators=[validators.InputRequired(), validators.NumberRange(min=1, max=20)],
         default=1,
@@ -475,7 +520,7 @@ class SpecifyNewSymbolDimension0Form(FlaskForm):
     )
 
     # domain = input; range = output
-    symbol_radio_domain = RadioField(
+    symbol_domain = RadioField(
         "domain",
         choices=[
             ("any", "any"),
@@ -1479,6 +1524,25 @@ def to_add_symbol_scalar():
         print("symbol_name:", symbol_name)
         print("symbol_description", symbol_description)
 
+        symbol_scope = web_form_symbol_properties.symbol_scope.data
+        symbol_variable_or_constant = (
+            web_form_symbol_properties.symbol_variable_or_constant.data
+        )
+        symbol_domain = web_form_symbol_properties.symbol_domain.data
+        dimension_length = web_form_symbol_properties.dimension_length.data
+        dimension_time = web_form_symbol_properties.dimension_time.data
+        dimension_mass = web_form_symbol_properties.dimension_mass.data
+        dimension_temperature = web_form_symbol_properties.dimension_temperature.data
+        dimension_electric_charge = (
+            web_form_symbol_properties.dimension_electric_charge.data
+        )
+        dimension_amount_of_substance = (
+            web_form_symbol_properties.dimension_amount_of_substance.data
+        )
+        dimension_luminous_intensity = (
+            web_form_symbol_properties.dimension_luminous_intensity.data
+        )
+
         author_name_latex = "ben"
 
         list_of_symbol_IDs = []
@@ -1491,12 +1555,22 @@ def to_add_symbol_scalar():
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             session.write_transaction(
-                neo4j_query.add_symbol_matrix,
+                neo4j_query.add_symbol_direct_scalar,
                 symbol_id,
                 symbol_name,
                 symbol_latex,
                 symbol_description,
                 symbol_reference,
+                symbol_scope,
+                symbol_variable_or_constant,
+                symbol_domain,
+                dimension_length,
+                dimension_time,
+                dimension_mass,
+                dimension_temperature,
+                dimension_electric_charge,
+                dimension_amount_of_substance,
+                dimension_luminous_intensity,
                 author_name_latex,
             )
         return redirect(url_for("to_list_symbols"))
@@ -1506,7 +1580,7 @@ def to_add_symbol_scalar():
 
     print("[TRACE] func: app/to_add_symbol_scalar end " + trace_id)
     return render_template(
-        "symbol_create_scalar.html",
+        "symbol_create_direct_scalar.html",
         query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
     )
@@ -1522,6 +1596,7 @@ def to_add_symbol_vector():
     query_time_dict = {}
 
     web_form_symbol_properties = SpecifyNewSymbolDIRECTVectorForm(request.form)
+
     if request.method == "POST" and web_form_symbol_properties.validate():
         print("request.form = ", request.form)
 
@@ -1531,12 +1606,22 @@ def to_add_symbol_vector():
             web_form_symbol_properties.symbol_description.data
         ).strip()
         symbol_reference = str(web_form_symbol_properties.symbol_reference.data).strip()
+        symbol_is_composite = web_form_symbol_properties.symbol_is_composite.data
+
+        symbol_size = str(web_form_symbol_properties.symbol_size.data).strip()
+        symbol_orientation = str(
+            web_form_symbol_properties.symbol_orientation.data
+        ).strip()
 
         print("symbol_latex:", symbol_latex)
         print("symbol_name:", symbol_name)
         print("symbol_description", symbol_description)
 
-        author_name_latex = "ben"
+        symbol_number_of_entries = str(
+            web_form_symbol_properties.symbol_number_of_entries.data
+        ).strip()
+
+        author_name_latex = "ben"  # TODO: get username
 
         list_of_symbol_IDs = []
         with graphDB_Driver.session() as session:
@@ -1548,19 +1633,23 @@ def to_add_symbol_vector():
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             session.write_transaction(
-                neo4j_query.add_symbol_matrix,
+                neo4j_query.add_symbol_direct_vector,
                 symbol_id,
                 symbol_name,
                 symbol_latex,
                 symbol_description,
                 symbol_reference,
+                symbol_is_composite,
+                symbol_size,
+                symbol_orientation,
+                symbol_number_of_entries,
                 author_name_latex,
             )
         return redirect(url_for("to_list_symbols"))
 
-    print("[TRACE] func: app/to_add_symbol_vector start " + trace_id)
+    print("[TRACE] func: app/to_add_symbol_vector end " + trace_id)
     return render_template(
-        "symbol_create_vector.html",
+        "symbol_create_direct_vector.html",
         query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
     )
@@ -1586,11 +1675,22 @@ def to_add_symbol_matrix():
         ).strip()
         symbol_reference = str(web_form_symbol_properties.symbol_reference.data).strip()
 
+        symbol_is_composite = web_form_symbol_properties.symbol_is_composite.data
+
+        symbol_size = str(web_form_symbol_properties.symbol_size.data).strip()
+
         print("symbol_latex:", symbol_latex)
         print("symbol_name:", symbol_name)
         print("symbol_description", symbol_description)
 
-        author_name_latex = "ben"
+        symbol_number_of_rows = str(
+            web_form_symbol_properties.symbol_number_of_rows.data
+        ).strip()
+        symbol_number_of_columns = str(
+            web_form_symbol_properties.symbol_number_of_columns.data
+        ).strip()
+
+        author_name_latex = "ben"  # TODO: get username
 
         list_of_symbol_IDs = []
         with graphDB_Driver.session() as session:
@@ -1602,19 +1702,23 @@ def to_add_symbol_matrix():
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             session.write_transaction(
-                neo4j_query.add_symbol_matrix,
+                neo4j_query.add_symbol_direct_matrix,
                 symbol_id,
                 symbol_name,
                 symbol_latex,
                 symbol_description,
                 symbol_reference,
+                symbol_is_composite,
+                symbol_size,
+                symbol_number_of_rows,
+                symbol_number_of_columns,
                 author_name_latex,
             )
         return redirect(url_for("to_list_symbols"))
 
     print("[TRACE] func: app/to_add_symbol_matrix end " + trace_id)
     return render_template(
-        "symbol_create_matrix.html",
+        "symbol_create_direct_matrix.html",
         query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
     )
@@ -1880,7 +1984,7 @@ def to_add_symbol_dimension0_properties(symbol_id: unique_numeric_id_as_str):
                 "to_add_symbol_dimension0_properties: edit_node_property, symbol_variable_or_constant"
             ] = (time.time() - query_start_time)
 
-        symbol_domain = str(web_form_symbol_properties.symbol_radio_domain.data).strip()
+        symbol_domain = str(web_form_symbol_properties.symbol_domain.data).strip()
         with graphDB_Driver.session() as session:
             query_start_time = time.time()
             session.write_transaction(
@@ -2117,7 +2221,7 @@ def to_add_operation():
         operation_latex = str(web_form.operation_latex.data).strip()
         operation_name = str(web_form.operation_name.data).strip()
         operation_description = str(web_form.operation_description.data).strip()
-        operation_argument_count = str(web_form.operation_argument_count.data).strip()
+        operation_argument_count = int(web_form.operation_argument_count.data)
 
         print("operation_latex:", operation_latex)
         print("operation_name:", operation_name)
@@ -2136,7 +2240,7 @@ def to_add_operation():
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
             session.write_transaction(
-                neo4j_query.add_operation,
+                neo4j_query.add_symbol_direct_operation,
                 operation_id,
                 operation_name,
                 operation_latex,
@@ -2149,9 +2253,9 @@ def to_add_operation():
 
     print("[TRACE] func: app/to_add_operation end " + trace_id)
     return render_template(
-        "symbol_create_operation.html",
+        "symbol_create_direct_operation.html",
         query_time_dict=query_time_dict,
-        form=web_form,
+        form_operation_properties=web_form,
         list_of_operation_dicts=list_of_operation_dicts,
     )
 
