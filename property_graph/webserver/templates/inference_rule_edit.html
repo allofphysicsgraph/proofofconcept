@@ -3,10 +3,7 @@
 
 <P>
   Return to <a href="{{ url_for('main') }}?referrer=inference_rules_edit">main page</a>
-</P>
-
-<P>
-  Return to <a href="{{ url_for('to_list_inference_rules') }}?referrer=inference_rules_edit">list of inference rules</a>
+or return to <a href="{{ url_for('to_list_inference_rules') }}?referrer=inference_rules_edit">list of inference rules</a>
 </P>
 
 <P>Used in the following derivations: 
@@ -18,7 +15,7 @@
 
 <fieldset>
   <legend>
-    <H2>Edit Inference Rule</h2>
+    <H2>Edit Inference Rule {{ inference_rule_dict['name_latex'] }}</h2>
   </legend>
 
 <P>{{ inference_rule_dict }}

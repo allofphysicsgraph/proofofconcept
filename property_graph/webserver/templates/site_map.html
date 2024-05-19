@@ -11,7 +11,9 @@
   <LI><a href="{{ url_for('to_list_derivations') }}?referrer=main">show {{ number_of_derivations }} derivations</a>, from which you can select a derivation to review.</LI>
   <LI><a href="{{ url_for('to_list_inference_rules') }}?referrer=main">show {{ number_of_inference_rules }} inference rules</a></LI>
   <LI><a href="{{ url_for('to_list_expressions') }}?referrer=main">show {{ number_of_expressions }} expressions</a></LI>
-  <LI><a href="{{ url_for('to_list_symbols') }}?referrer=main">show {{ number_of_symbols }} symbols</a></LI>
+  <LI><a href="{{ url_for('to_list_symbols') }}?referrer=main">show {{ number_of_symbols }} symbols</a>
+  (of which {{ number_of_operations }} are 
+<a href="{{ url_for('to_list_operations') }}?referrer=main">operations</a>)</LI>
   <!--<LI><a href="{ { url_for('to_list_operations') }}?referrer=main">show { { number_of_operations } } operations</a> (<small>positive number of arguments required</small>)</LI>-->
   <!--
   <LI><a href="{ { url _for('to_list_all_nodes') }}?referrer=main">show all nodes</a>            (status: TODO)</LI>
@@ -24,17 +26,13 @@
 
 <fieldset>
   <legend>
-<h2>Danger zone!</h2>
-</legend>
-<P><a href="{{ url_for('to_delete_graph_content') }}?referrer=main">delete all content</a></P>
+    <h2>Danger zone!</h2>
+  </legend>
+  <P><a href="{{ url_for('to_delete_graph_content') }}?referrer=main">delete all content</a></P>
 
   <fieldset>
     <legend>
-      <H3>
-        <a name="upload data">
-          Upload data
-        </a>
-      </H3>
+      <H3><a name="upload data">Upload data</a></H3>
     </legend>
 
     <!-- https://www.google.com/search?q=flask+upload+file -->
@@ -46,13 +44,13 @@
       <input type="submit" name="upload_cypher" value="Upload Cypher">
     </form>
 
-<P>Warning: the upload deletes the existing database and places the .cypher in "dumping_grounds" folder on host. You then have to remove the constraint lines from the .cypher file, then run<BR>
-  <code>docker exec &lt;CONTAINER_ID&gt; bin/cypher-shell --file dumping_grounds/pdg.cypher</code><BR>
-  on the host to upload the file into Neo4j
+    <P>Warning: the upload deletes the existing database and places the .cypher in "dumping_grounds" folder on host. You then have to remove the constraint lines from the .cypher file, then run<BR>
+      <code>docker exec &lt;CONTAINER_ID&gt; bin/cypher-shell --file dumping_grounds/pdg.cypher</code><BR>
+      on the host to upload the file into Neo4j
 
-<P>Potential alternative: <a href="https://neo4j.com/labs/apoc/4.3/overview/apoc.load/apoc.load.json/">download/upload custom JSON</a>
+    <P>Potential alternative: <a href="https://neo4j.com/labs/apoc/4.3/overview/apoc.load/apoc.load.json/">download/upload custom JSON</a>
   </fieldset>
 
-<fieldset>
+</fieldset>
 
 {% endblock %}

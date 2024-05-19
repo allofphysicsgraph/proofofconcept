@@ -25,7 +25,7 @@
 
 <P>{% include '_table_of_symbols_requires_arguments.html' %}
 <P>{% include '_table_of_symbols_dimension0.html' %}
-<P>{% include '_table_of_symbols_dimension1and2.html' %}
+<P>{% include '_table_of_symbols_dimension1ormore.html' %}
 
 
 </fieldset>
@@ -34,9 +34,20 @@
 <legend>
   <H2>Actions for Symbols</h2>
 </legend>
-<a href="{{ url_for('to_add_symbol') }}?referrer=list_symbols">add new symbol</a>
+
+<UL>
+  <LI><a href="{{ url_for('to_add_operation') }}?referrer=list_symbols">add new operation</a> -- a symbol that requires arguments, e.g., +, ^, determinant</LI>
+  <LI><a href="{{ url_for('to_add_symbol_scalar') }}?referrer=list_symbols">add new scalar symbol</a> -- arguments not required. Includes bra, ket.</LI>
+  <LI><a href="{{ url_for('to_add_symbol_vector') }}?referrer=list_symbols">add new vector symbol</a> (e.g., 1xn or nx1 or arbitrary size)</LI>
+  <LI><a href="{{ url_for('to_add_symbol_matrix') }}?referrer=list_symbols">add new matrix symbol</a> (e.g., nxm or arbitrary size)</LI>
+  <LI><a href="{{ url_for('to_add_symbol') }}?referrer=list_symbols">add new symbol</a> -- not clear which categorey; guide needed</LI>
+</UL>
+
+
 
 </fieldset>
+
+
 <script>
 function select_symbol() {
   // Declare variables

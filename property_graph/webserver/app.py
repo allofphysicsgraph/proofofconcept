@@ -153,9 +153,9 @@ app.config["UPLOAD_FOLDER"] = (
     # the following folder on the host is accessible to both flask and neo4j
     "/scratch/dumping_grounds/"  # https://flask.palletsprojects.com/en/3.0.x/patterns/fileuploads/
 )
-app.config[
-    "SEND_FILE_MAX_AGE_DEFAULT"
-] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = (
+    0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+)
 app.config["DEBUG"] = True
 
 
@@ -248,42 +248,10 @@ class SpecifyNewExpressionForm(FlaskForm):
     )
 
 
-class SpecifyNewOperationForm(FlaskForm):
-    operation_latex = StringField(
-        "LaTeX symbol",
-        validators=[validators.Length(min=1, max=1000), validators.InputRequired()],
-    )
-
-    operation_argument_count = IntegerField(
-        "argument count",
-        validators=[validators.InputRequired(), validators.NumberRange(min=1, max=20)],
-        default=1,
-    )
-
-    operation_name = StringField(
-        "name (LaTeX)",
-        validators=[validators.Length(max=1000)],
-    )
-    operation_description = StringField(
-        "description (LaTeX)",
-        validators=[validators.Length(max=1000)],
-    )
-    operation_reference = StringField("reference")
-
-
-class SpecifyNewSymbolForm(FlaskForm):
-    """
-    web form for user to specify symbols used in expressions
-    """
-
+class SpecifyNewSymbolDIRECTScalarForm(FlaskForm):
     symbol_latex = StringField(
         label="LaTeX symbol",
         validators=[validators.Length(min=1, max=1000), validators.InputRequired()],
-    )
-
-    symbol_requires_arguments = BooleanField(
-        label="requires arguments",
-        description="check for 'yes' (as in +); unchecked for 'no' (as in c)",
     )
 
     symbol_name = StringField(
@@ -296,28 +264,6 @@ class SpecifyNewSymbolForm(FlaskForm):
     )
     symbol_reference = StringField("reference")
 
-
-class SpecifyNewArgumentCountSymbolForm(FlaskForm):
-    required_argument_count = IntegerField(
-        label="number of arguments",
-        validators=[validators.InputRequired(), validators.NumberRange(min=1, max=20)],
-        default=1,
-    )
-
-
-class SpecifyNewDimensionCountSymbolForm(FlaskForm):
-    dimension_count = IntegerField(
-        label="number of dimensions",
-        validators=[validators.InputRequired(), validators.NumberRange(min=0, max=3)],
-        default=0,
-    )
-
-
-class SpecifyNewDimension0SymbolForm(FlaskForm):
-    # https://en.wikipedia.org/wiki/List_of_types_of_numbers
-    # symbol_scope_real = BooleanField(
-    #    label="Real", description="check this", default="checked"
-    # )
     symbol_scope = RadioField(
         label="scope",
         choices=[("real", "real"), ("complex", "complex"), ("integer", "integer")],
@@ -381,14 +327,210 @@ class SpecifyNewDimension0SymbolForm(FlaskForm):
     )
 
 
-class SpecifyNewDimension1SymbolForm(FlaskForm):
+class SpecifyNewSymbolDIRECTVectorForm(FlaskForm):
+    symbol_latex = StringField(
+        label="LaTeX symbol",
+        validators=[validators.Length(min=1, max=1000), validators.InputRequired()],
+    )
+
+    symbol_requires_arguments = BooleanField(
+        label="requires arguments",
+        description="check for 'yes' (as in +); unchecked for 'no' (as in c)",
+    )
+
+    symbol_name = StringField(
+        label="name (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    symbol_description = StringField(
+        label="description (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    symbol_reference = StringField("reference")
     symbol_is_composite = BooleanField(
         label="is composite",
         description="check for 'yes'; unchecked for 'no'",
     )
 
 
-class SpecifyNewDimension2SymbolForm(FlaskForm):
+class SpecifyNewSymbolDIRECTMatrixForm(FlaskForm):
+    symbol_latex = StringField(
+        label="LaTeX symbol",
+        validators=[validators.Length(min=1, max=1000), validators.InputRequired()],
+    )
+
+    symbol_requires_arguments = BooleanField(
+        label="requires arguments",
+        description="check for 'yes' (as in +); unchecked for 'no' (as in c)",
+    )
+
+    symbol_name = StringField(
+        label="name (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    symbol_description = StringField(
+        label="description (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    symbol_reference = StringField("reference")
+    symbol_is_composite = BooleanField(
+        label="is composite",
+        description="check for 'yes'; unchecked for 'no'",
+    )
+
+
+class SpecifyNewSymbolDIRECTOperationForm(FlaskForm):
+    operation_latex = StringField(
+        "LaTeX symbol",
+        validators=[validators.Length(min=1, max=1000), validators.InputRequired()],
+    )
+
+    required_argument_count = IntegerField(
+        label="number of arguments",
+        validators=[validators.InputRequired(), validators.NumberRange(min=1, max=20)],
+        default=1,
+    )
+
+    operation_name = StringField(
+        "name (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    operation_description = StringField(
+        "description (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    operation_reference = StringField("reference")
+
+
+class SpecifyNewSymbolForm(FlaskForm):
+    """
+    web form for user to specify symbols used in expressions
+
+    user hasn't specified whether this is an operation, scalar, vector, or matrix
+    """
+
+    symbol_latex = StringField(
+        label="LaTeX symbol",
+        validators=[validators.Length(min=1, max=1000), validators.InputRequired()],
+    )
+
+    symbol_requires_arguments = BooleanField(
+        label="requires arguments",
+        description="check for 'yes' (as in +); unchecked for 'no' (as in c)",
+    )
+
+    symbol_name = StringField(
+        label="name (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    symbol_description = StringField(
+        label="description (LaTeX)",
+        validators=[validators.Length(max=1000)],
+    )
+    symbol_reference = StringField("reference")
+
+
+class SpecifyNewSymbolArgumentCountForm(FlaskForm):
+    """
+    user has specified this is an operation, so now they need to specify number of arguments
+    """
+
+    required_argument_count = IntegerField(
+        label="number of arguments",
+        validators=[validators.InputRequired(), validators.NumberRange(min=1, max=20)],
+        default=1,
+    )
+
+
+class SpecifyNewSymbolDimensionCountForm(FlaskForm):
+    """
+    User has specified this is NOT an opersion, so now they need to specify whether the symbol is scalar, vector, or matrix
+    """
+
+    dimension_count = IntegerField(
+        label="number of dimensions",
+        validators=[validators.InputRequired(), validators.NumberRange(min=0, max=3)],
+        default=0,
+    )
+
+
+class SpecifyNewSymbolDimension0Form(FlaskForm):
+    """
+    This overlaps with SpecifyNewSymbolDIRECTScalarForm
+    """
+
+    # https://en.wikipedia.org/wiki/List_of_types_of_numbers
+    symbol_scope = RadioField(
+        label="scope",
+        choices=[("real", "real"), ("complex", "complex"), ("integer", "integer")],
+        default="real",
+        validators=[validators.InputRequired()],
+    )
+
+    symbol_variable_or_constant = RadioField(
+        label="variable or constant",
+        choices=[("variable", "variable"), ("constant", "constant")],
+        default="variable",
+        validators=[validators.InputRequired()],
+    )
+
+    # domain = input; range = output
+    symbol_radio_domain = RadioField(
+        "domain",
+        choices=[
+            ("any", "any"),
+            ("positive", "positive"),
+            ("negative", "negative"),
+            ("non-negative", "non-negative"),
+        ],
+        default="any",
+        validators=[validators.InputRequired()],
+    )
+    dimension_length = IntegerField(
+        "dimension: length",
+        validators=[validators.InputRequired(), validators.NumberRange(min=-5, max=5)],
+        default=0,
+    )
+    dimension_time = IntegerField(
+        "dimension: time",
+        validators=[validators.InputRequired(), validators.NumberRange(min=-5, max=5)],
+        default=0,
+    )
+    dimension_mass = IntegerField(
+        "dimension: mass",
+        validators=[validators.InputRequired(), validators.NumberRange(min=-5, max=5)],
+        default=0,
+    )
+    dimension_temperature = IntegerField(
+        "dimension: temperature",
+        validators=[validators.InputRequired(), validators.NumberRange(min=-5, max=5)],
+        default=0,
+    )
+    dimension_electric_charge = IntegerField(
+        "dimension: electric charge",
+        validators=[validators.InputRequired(), validators.NumberRange(min=-5, max=5)],
+        default=0,
+    )
+    dimension_amount_of_substance = IntegerField(
+        "dimension: amount of substance",
+        validators=[validators.InputRequired(), validators.NumberRange(min=-5, max=5)],
+        default=0,
+    )
+    dimension_luminous_intensity = IntegerField(
+        "dimension: luminous intensity",
+        validators=[validators.InputRequired(), validators.NumberRange(min=-5, max=5)],
+        default=0,
+    )
+
+
+class SpecifyNewSymbolDimension1Form(FlaskForm):
+    symbol_is_composite = BooleanField(
+        label="is composite",
+        description="check for 'yes'; unchecked for 'no'",
+    )
+
+
+class SpecifyNewSymbolDimension2Form(FlaskForm):
     symbol_is_composite = BooleanField(
         label="is composite",
         description="check for 'yes'; unchecked for 'no'",
@@ -428,6 +570,7 @@ def main():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/main start " + trace_id)
+    query_time_dict = {}
 
     if request.method == "POST":
         print("request.form = %s", request.form)
@@ -469,8 +612,12 @@ def main():
             # shutil.copy(path_to_uploaded_file, "/code/" + path_to_db)
 
             with graphDB_Driver.session() as session:
+                query_start_time = time.time()
                 str_to_print = session.write_transaction(
                     neo4j_query.delete_all_nodes_and_relationships
+                )
+                query_time_dict["main: delete_all_nodes_and_relationships"] = (
+                    time.time() - query_start_time
                 )
             # upload Cypher content inside the neo4j docker image
             # TODO: how to automate this?
@@ -483,43 +630,64 @@ def main():
 
     number_of_derivations = None
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         number_of_derivations = len(
             session.read_transaction(neo4j_query.list_nodes_of_type, "derivation")
+        )
+        query_time_dict["main: list_nodes_of_type, derivation"] = (
+            time.time() - query_start_time
         )
 
     number_of_inference_rules = None
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         number_of_inference_rules = len(
             session.read_transaction(neo4j_query.list_nodes_of_type, "inference_rule")
+        )
+        query_time_dict["main: list_nodes_of_type, inference_rule"] = (
+            time.time() - query_start_time
         )
 
     number_of_expressions = None
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         number_of_expressions = len(
             session.read_transaction(neo4j_query.list_nodes_of_type, "expression")
+        )
+        query_time_dict["main: list_nodes_of_type, expression"] = (
+            time.time() - query_start_time
         )
 
     number_of_symbols = None
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         number_of_symbols = len(
             session.read_transaction(neo4j_query.list_nodes_of_type, "symbol")
         )
+        query_time_dict["main: list_nodes_of_type, symbol"] = (
+            time.time() - query_start_time
+        )
 
-    # number_of_operations = None
-    # with graphDB_Driver.session() as session:
-    #     number_of_operations = len(
-    #         session.read_transaction(neo4j_query.list_nodes_of_type, "operation")
-    #     )
+    number_of_operations = 0
+    with graphDB_Driver.session() as session:
+        list_of_symbol_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "symbol"
+        )
+    # filter "list_of_symbol_dicts" down to "list_of_operation_dicts"
+    for this_symbol_dict in list_of_symbol_dicts:
+        if this_symbol_dict["requires_arguments"]:
+            number_of_operations += 1
 
     print("[TRACE] func: app/main end " + trace_id)
     return render_template(
         "site_map.html",
         title="site map",
+        query_time_dict=query_time_dict,
         number_of_derivations=number_of_derivations,
         number_of_inference_rules=number_of_inference_rules,
         number_of_expressions=number_of_expressions,
         number_of_symbols=number_of_symbols,
-        # number_of_operations=number_of_operations,
+        number_of_operations=number_of_operations,
     )
 
 
@@ -534,6 +702,7 @@ def to_add_derivation():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_derivation start " + trace_id)
+    query_time_dict = {}
 
     # TODO: check that the name of the derivation doesn't
     #       conflict with existing derivation names
@@ -616,6 +785,7 @@ def to_add_derivation():
     print("[TRACE] func: app/to_add_derivation end " + trace_id)
     return render_template(
         "derivation_create.html",
+        query_time_dict=query_time_dict,
         form=web_form,
         list_of_derivation_dicts=list_of_derivation_dicts,
         number_of_steps_per_derivation=number_of_steps_per_derivation,
@@ -638,6 +808,7 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_review_derivation start " + trace_id)
     query_time_dict = {}
+
     #    if request.method == "POST" and web_form.validate():
 
     derivation_dict = {}
@@ -703,9 +874,9 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
     print("[TRACE] func: app/to_review_derivation end " + trace_id)
     return render_template(
         "derivation_review.html",
+        query_time_dict=query_time_dict,
         derivation_dict=derivation_dict,
         all_steps=all_steps,
-        query_time_dict=query_time_dict,
         form=web_form,
     )
 
@@ -769,6 +940,7 @@ def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
     """ """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_derivation_metadata start " + trace_id)
+    query_time_dict = {}
 
     web_form = SpecifyNewDerivationForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -805,7 +977,10 @@ def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
 
     print("[TRACE] func: app/to_edit_derivation_metadata end " + trace_id)
     return render_template(
-        "derivation_edit_metadata.html", form=web_form, derivation_dict=derivation_dict
+        "derivation_edit_metadata.html",
+        query_time_dict=query_time_dict,
+        form=web_form,
+        derivation_dict=derivation_dict,
     )
 
 
@@ -818,6 +993,7 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_step_select_inference_rule start " + trace_id)
+    query_time_dict = {}
 
     print("derivation_id: ", derivation_id)
 
@@ -871,6 +1047,7 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
     print("[TRACE] func: app/to_add_step_select_inference_rule end " + trace_id)
     return render_template(
         "new_step_select_inference_rule.html",
+        query_time_dict=query_time_dict,
         list_of_inference_rule_dicts=list_of_inference_rule_dicts,
         derivation_dict=derivation_dict,
     )
@@ -889,6 +1066,7 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_expression start " + trace_id)
+    query_time_dict = {}
 
     print("expression_id: ", expression_id)
 
@@ -950,9 +1128,9 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     dict_of_symbol_dicts_not_in_expression = {}
     for this_symbol_id in dict_of_all_symbol_dicts.keys():
         if this_symbol_id not in dict_of_symbol_dicts_in_expression.keys():
-            dict_of_symbol_dicts_not_in_expression[
-                this_symbol_id
-            ] = dict_of_all_symbol_dicts[this_symbol_id]
+            dict_of_symbol_dicts_not_in_expression[this_symbol_id] = (
+                dict_of_all_symbol_dicts[this_symbol_id]
+            )
     print(
         "dict_of_symbol_dicts_not_in_expression=",
         dict_of_symbol_dicts_not_in_expression,
@@ -1056,6 +1234,7 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     print("[TRACE] func: app/to_edit_expression end " + trace_id)
     return render_template(
         "expression_edit.html",
+        query_time_dict=query_time_dict,
         form_no_options=web_form_no_options,
         form_new_expression=web_form_new_expression,
         dict_of_symbol_dicts_in_expression=dict_of_symbol_dicts_in_expression,
@@ -1076,6 +1255,7 @@ def to_add_expression():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_expression start " + trace_id)
+    query_time_dict = {}
 
     list_of_expression_dicts = []
     with graphDB_Driver.session() as session:
@@ -1139,6 +1319,7 @@ def to_add_expression():
     print("[TRACE] func: app/to_add_expression end " + trace_id)
     return render_template(
         "expression_create.html",
+        query_time_dict=query_time_dict,
         form=web_form,
         symbols_per_expression=symbols_per_expression,
         operations_per_expression=operations_per_expression,
@@ -1153,6 +1334,7 @@ def to_edit_operation(operation_id: unique_numeric_id_as_str):
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_operation start " + trace_id)
+    query_time_dict = {}
 
     print("expression_id: ", operation_id)
 
@@ -1196,7 +1378,10 @@ def to_edit_operation(operation_id: unique_numeric_id_as_str):
 
     print("[TRACE] func: app/to_edit_operation end " + trace_id)
     return render_template(
-        "operation_edit.html", form=web_form, operation_dict=operation_dict
+        "operation_edit.html",
+        query_time_dict=query_time_dict,
+        form=web_form,
+        operation_dict=operation_dict,
     )
     # return redirect(url_for("to_list_operations"))
 
@@ -1210,6 +1395,7 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_symbol start " + trace_id)
+    query_time_dict = {}
 
     print("symbol_id: ", symbol_id)
 
@@ -1261,11 +1447,177 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
     print("[TRACE] func: app/to_edit_symbol end " + trace_id)
     return render_template(
         "symbol_edit.html",
+        query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
         form_no_options=web_form_no_options,
         symbol_dict=symbol_dict,
     )
     # return redirect(url_for("to_list_symbols"))
+
+
+@app.route("/new_symbol_scalar/", methods=["GET", "POST"])
+def to_add_symbol_scalar():
+    """
+    novel scalar symbol
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: app/to_add_symbol_scalar start " + trace_id)
+    query_time_dict = {}
+
+    web_form_symbol_properties = SpecifyNewSymbolDIRECTScalarForm(request.form)
+    if request.method == "POST" and web_form_symbol_properties.validate():
+        print("request.form = ", request.form)
+
+        symbol_latex = str(web_form_symbol_properties.symbol_latex.data).strip()
+        symbol_name = str(web_form_symbol_properties.symbol_name.data).strip()
+        symbol_description = str(
+            web_form_symbol_properties.symbol_description.data
+        ).strip()
+        symbol_reference = str(web_form_symbol_properties.symbol_reference.data).strip()
+
+        print("symbol_latex:", symbol_latex)
+        print("symbol_name:", symbol_name)
+        print("symbol_description", symbol_description)
+
+        author_name_latex = "ben"
+
+        list_of_symbol_IDs = []
+        with graphDB_Driver.session() as session:
+            list_of_symbol_IDs = session.read_transaction(
+                neo4j_query.list_IDs, "symbol"
+            )
+        symbol_id = compute.generate_random_id(list_of_symbol_IDs)
+
+        # https://neo4j.com/docs/python-manual/current/session-api/
+        with graphDB_Driver.session() as session:
+            session.write_transaction(
+                neo4j_query.add_symbol_matrix,
+                symbol_id,
+                symbol_name,
+                symbol_latex,
+                symbol_description,
+                symbol_reference,
+                author_name_latex,
+            )
+        return redirect(url_for("to_list_symbols"))
+
+    if request.method == "POST":
+        print("request.form = ", request.form)
+
+    print("[TRACE] func: app/to_add_symbol_scalar end " + trace_id)
+    return render_template(
+        "symbol_create_scalar.html",
+        query_time_dict=query_time_dict,
+        form_symbol_properties=web_form_symbol_properties,
+    )
+
+
+@app.route("/new_symbol_vector/", methods=["GET", "POST"])
+def to_add_symbol_vector():
+    """
+    novel symbol
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: app/to_add_symbol_vector start " + trace_id)
+    query_time_dict = {}
+
+    web_form_symbol_properties = SpecifyNewSymbolDIRECTVectorForm(request.form)
+    if request.method == "POST" and web_form_symbol_properties.validate():
+        print("request.form = ", request.form)
+
+        symbol_latex = str(web_form_symbol_properties.symbol_latex.data).strip()
+        symbol_name = str(web_form_symbol_properties.symbol_name.data).strip()
+        symbol_description = str(
+            web_form_symbol_properties.symbol_description.data
+        ).strip()
+        symbol_reference = str(web_form_symbol_properties.symbol_reference.data).strip()
+
+        print("symbol_latex:", symbol_latex)
+        print("symbol_name:", symbol_name)
+        print("symbol_description", symbol_description)
+
+        author_name_latex = "ben"
+
+        list_of_symbol_IDs = []
+        with graphDB_Driver.session() as session:
+            list_of_symbol_IDs = session.read_transaction(
+                neo4j_query.list_IDs, "symbol"
+            )
+        symbol_id = compute.generate_random_id(list_of_symbol_IDs)
+
+        # https://neo4j.com/docs/python-manual/current/session-api/
+        with graphDB_Driver.session() as session:
+            session.write_transaction(
+                neo4j_query.add_symbol_matrix,
+                symbol_id,
+                symbol_name,
+                symbol_latex,
+                symbol_description,
+                symbol_reference,
+                author_name_latex,
+            )
+        return redirect(url_for("to_list_symbols"))
+
+    print("[TRACE] func: app/to_add_symbol_vector start " + trace_id)
+    return render_template(
+        "symbol_create_vector.html",
+        query_time_dict=query_time_dict,
+        form_symbol_properties=web_form_symbol_properties,
+    )
+
+
+@app.route("/new_symbol_matrix/", methods=["GET", "POST"])
+def to_add_symbol_matrix():
+    """
+    novel symbol
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: app/to_add_symbol_matrix start " + trace_id)
+    query_time_dict = {}
+
+    web_form_symbol_properties = SpecifyNewSymbolDIRECTMatrixForm(request.form)
+    if request.method == "POST" and web_form_symbol_properties.validate():
+        print("request.form = ", request.form)
+
+        symbol_latex = str(web_form_symbol_properties.symbol_latex.data).strip()
+        symbol_name = str(web_form_symbol_properties.symbol_name.data).strip()
+        symbol_description = str(
+            web_form_symbol_properties.symbol_description.data
+        ).strip()
+        symbol_reference = str(web_form_symbol_properties.symbol_reference.data).strip()
+
+        print("symbol_latex:", symbol_latex)
+        print("symbol_name:", symbol_name)
+        print("symbol_description", symbol_description)
+
+        author_name_latex = "ben"
+
+        list_of_symbol_IDs = []
+        with graphDB_Driver.session() as session:
+            list_of_symbol_IDs = session.read_transaction(
+                neo4j_query.list_IDs, "symbol"
+            )
+        symbol_id = compute.generate_random_id(list_of_symbol_IDs)
+
+        # https://neo4j.com/docs/python-manual/current/session-api/
+        with graphDB_Driver.session() as session:
+            session.write_transaction(
+                neo4j_query.add_symbol_matrix,
+                symbol_id,
+                symbol_name,
+                symbol_latex,
+                symbol_description,
+                symbol_reference,
+                author_name_latex,
+            )
+        return redirect(url_for("to_list_symbols"))
+
+    print("[TRACE] func: app/to_add_symbol_matrix end " + trace_id)
+    return render_template(
+        "symbol_create_matrix.html",
+        query_time_dict=query_time_dict,
+        form_symbol_properties=web_form_symbol_properties,
+    )
 
 
 @app.route("/new_symbol/", methods=["GET", "POST"])
@@ -1275,6 +1627,7 @@ def to_add_symbol():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_symbol start " + trace_id)
+    query_time_dict = {}
 
     web_form_symbol_properties = SpecifyNewSymbolForm(request.form)
     if request.method == "POST" and web_form_symbol_properties.validate():
@@ -1301,7 +1654,6 @@ def to_add_symbol():
             list_of_symbol_IDs = session.read_transaction(
                 neo4j_query.list_IDs, "symbol"
             )
-
         symbol_id = compute.generate_random_id(list_of_symbol_IDs)
 
         # https://neo4j.com/docs/python-manual/current/session-api/
@@ -1337,17 +1689,23 @@ def to_add_symbol():
                 url_for("to_add_symbol_dimension_count", symbol_id=symbol_id)
             )
 
-    list_of_symbol_dicts = []
-    with graphDB_Driver.session() as session:
-        list_of_symbol_dicts = session.read_transaction(
-            neo4j_query.list_nodes_of_type, "symbol"
-        )
+    (
+        query_time_dict,
+        list_of_symbol_dicts,
+        list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts,
+    ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
     print("[TRACE] func: app/to_add_symbol end " + trace_id)
     return render_template(
         "symbol_create.html",
+        query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
         list_of_symbol_dicts=list_of_symbol_dicts,
+        list_of_operation_dicts=list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts=list_of_dimension1ormore_symbol_dicts,
     )
 
 
@@ -1372,7 +1730,7 @@ def to_add_symbol_required_argument_count(symbol_id: unique_numeric_id_as_str):
         ] = (time.time() - query_start_time)
     print("symbol_dict:", symbol_dict)
 
-    web_form_symbol_properties = SpecifyNewArgumentCountSymbolForm(request.form)
+    web_form_symbol_properties = SpecifyNewSymbolArgumentCountForm(request.form)
     if request.method == "POST" and web_form_symbol_properties.validate():
         print("request.form = ", request.form)
 
@@ -1409,7 +1767,7 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
         )
     print("symbol_dict:", symbol_dict)
 
-    web_form_symbol_properties = SpecifyNewDimensionCountSymbolForm(request.form)
+    web_form_symbol_properties = SpecifyNewSymbolDimensionCountForm(request.form)
     if request.method == "POST" and web_form_symbol_properties.validate():
         print("request.form = ", request.form)
 
@@ -1488,7 +1846,7 @@ def to_add_symbol_dimension0_properties(symbol_id: unique_numeric_id_as_str):
         ] = (time.time() - query_start_time)
     print("symbol_dict:", symbol_dict)
 
-    web_form_symbol_properties = SpecifyNewDimension0SymbolForm(request.form)
+    web_form_symbol_properties = SpecifyNewSymbolDimension0Form(request.form)
     if request.method == "POST" and web_form_symbol_properties.validate():
         print("request.form = ", request.form)
 
@@ -1674,7 +2032,7 @@ def to_add_symbol_dimension1_properties(symbol_id: unique_numeric_id_as_str):
         ] = (time.time() - query_start_time)
     print("symbol_dict:", symbol_dict)
 
-    web_form_symbol_properties = SpecifyNewDimension1SymbolForm(request.form)
+    web_form_symbol_properties = SpecifyNewSymbolDimension1Form(request.form)
     if request.method == "POST" and web_form_symbol_properties.validate():
         print("request.form = ", request.form)
 
@@ -1713,7 +2071,7 @@ def to_add_symbol_dimension2_properties(symbol_id: unique_numeric_id_as_str):
         ] = (time.time() - query_start_time)
     print("symbol_dict:", symbol_dict)
 
-    web_form_symbol_properties = SpecifyNewDimension2SymbolForm(request.form)
+    web_form_symbol_properties = SpecifyNewSymbolDimension2Form(request.form)
     if request.method == "POST" and web_form_symbol_properties.validate():
         print("request.form = ", request.form)
 
@@ -1738,14 +2096,19 @@ def to_add_operation():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_operation start " + trace_id)
+    query_time_dict = {}
 
     list_of_operation_dicts = []
     with graphDB_Driver.session() as session:
-        list_of_operation_dicts = session.read_transaction(
-            neo4j_query.list_nodes_of_type, "operation"
+        list_of_symbol_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "symbol"
         )
+    # filter "list_of_symbol_dicts" down to "list_of_operation_dicts"
+    for this_symbol_dict in list_of_symbol_dicts:
+        if this_symbol_dict["requires_arguments"]:
+            list_of_operation_dicts.append(this_symbol_dict)
 
-    web_form = SpecifyNewOperationForm(request.form)
+    web_form = SpecifyNewSymbolDIRECTOperationForm(request.form)
     if request.method == "POST" and web_form.validate():
         print("request.form = ", request.form)
 
@@ -1786,7 +2149,8 @@ def to_add_operation():
 
     print("[TRACE] func: app/to_add_operation end " + trace_id)
     return render_template(
-        "operation_create.html",
+        "symbol_create_operation.html",
+        query_time_dict=query_time_dict,
         form=web_form,
         list_of_operation_dicts=list_of_operation_dicts,
     )
@@ -1807,6 +2171,7 @@ def to_add_step_select_expressions(
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_step_select_expressions start " + trace_id)
+    query_time_dict = {}
 
     print("derivation_id:", derivation_id)
     print("inference_rule_id:", inference_rule_id)
@@ -1933,6 +2298,7 @@ def to_add_step_select_expressions(
     print("[TRACE] func: app/to_add_step_select_expressions end " + trace_id)
     return render_template(
         "new_step_select_expressions_for_inference_rule.html",
+        query_time_dict=query_time_dict,
         form=web_form,
         list_of_expression_IDs=list_of_expression_IDs,
         dict_of_expression_dicts=dict_of_expression_dicts,
@@ -1953,6 +2319,7 @@ def to_add_symbol_count_for_expression(
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_symbol_count_for_expression start " + trace_id)
+    query_time_dict = {}
 
     with graphDB_Driver.session() as session:
         expression_dict = session.read_transaction(
@@ -1977,6 +2344,7 @@ def to_add_symbol_count_for_expression(
     print("[TRACE] func: app/to_add_symbol_count_for_expression end " + trace_id)
     return render_template(
         "expression_symbol_count.html",
+        query_time_dict=query_time_dict,
         form=web_form_no_options,
         expression_dict=expression_dict,
     )
@@ -1997,6 +2365,7 @@ def to_add_symbols_and_operations_for_expression(
         "[TRACE] func: app/to_add_symbols_and_operations_for_expression start "
         + trace_id
     )
+    query_time_dict = {}
 
     with graphDB_Driver.session() as session:
         expression_dict = session.read_transaction(
@@ -2004,17 +2373,18 @@ def to_add_symbols_and_operations_for_expression(
         )
     print("expression_dict=", expression_dict)
 
-    with graphDB_Driver.session() as session:
-        list_of_symbol_dicts = session.read_transaction(
-            neo4j_query.list_nodes_of_type, "symbol"
-        )
-    print("list_of_symbol_dicts=", list_of_symbol_dicts)
-
     # TODO: given a Latex expression, and given all existing symbols,
     # sort the symbol_latex by length
     # then search (starting with the longest symbols first) for each symbol in the expression
     # provide the user with the list of guessed symbols
     # There may be multiple matching symbol IDs for a given latex symbol, e.g., "x"
+
+    list_of_symbol_dicts = []
+    with graphDB_Driver.session() as session:
+        list_of_symbol_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "symbol"
+        )
+    print("list_of_symbols", list_of_symbol_dicts)
 
     list_of_symbol_latex = []
     dict_of_symbol_dicts = {}
@@ -2053,6 +2423,7 @@ def to_add_symbols_and_operations_for_expression(
         )
     return render_template(
         "expression_symbols_and_operations.html",
+        query_time_dict=query_time_dict,
         form=web_form_no_options,
         expression_dict=expression_dict,
         list_of_symbol_dicts=list_of_symbol_dicts,
@@ -2088,6 +2459,7 @@ def to_add_sympy_and_lean_for_latex_expression(expression_id: unique_numeric_id_
 
     return render_template(
         "expression_sympy_and_lean.html",
+        query_time_dict=query_time_dict,
         form=web_form_no_options,
         expression_dict=expression_dict,
     )
@@ -2101,6 +2473,7 @@ def to_add_inference_rule():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_add_inference_rule start " + trace_id)
+    query_time_dict = {}
 
     list_of_inference_rule_dicts = []
     with graphDB_Driver.session() as session:
@@ -2188,6 +2561,7 @@ def to_add_inference_rule():
     print("[TRACE] func: app/to_add_inference_rule end " + trace_id)
     return render_template(
         "inference_rule_create.html",
+        query_time_dict=query_time_dict,
         form=web_form,
         list_of_inference_rule_dicts=list_of_inference_rule_dicts,
         dict_of_derivations_used_per_inference_rule=dict_of_derivations_used_per_inference_rule,
@@ -2201,6 +2575,7 @@ def to_edit_step(
     """ """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_step start " + trace_id)
+    query_time_dict = {}
 
     # list all steps in this derivation
     list_of_step_dicts = []
@@ -2234,7 +2609,12 @@ def to_edit_step(
             )
 
     print("[TRACE] func: app/to_edit_step end " + trace_id)
-    return render_template("step_edit.html", form=web_form, step_dict=this_step_dict)
+    return render_template(
+        "step_edit.html",
+        query_time_dict=query_time_dict,
+        form=web_form,
+        step_dict=this_step_dict,
+    )
 
 
 @app.route("/edit_inference_rule/<inference_rule_id>", methods=["GET", "POST"])
@@ -2242,6 +2622,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
     """ """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_inference_rule start " + trace_id)
+    query_time_dict = {}
 
     web_form = SpecifyNewInferenceRuleForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -2323,6 +2704,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
     print("[TRACE] func: app/to_edit_inference_rule end " + trace_id)
     return render_template(
         "inference_rule_edit.html",
+        query_time_dict=query_time_dict,
         form=web_form,
         inference_rule_dict=inference_rule_dict,
         list_of_derivation_dicts_that_use_this_inference_rule_id=list_of_derivation_dicts_that_use_this_inference_rule_id,
@@ -2379,6 +2761,7 @@ def to_query():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_query start " + trace_id)
+    query_time_dict = {}
 
     web_form = CypherQueryForm(request.form)
 
@@ -2406,9 +2789,11 @@ def to_query():
         try:
             # https://neo4j.com/docs/python-manual/current/session-api/
             with graphDB_Driver.session() as session:
+                query_start_time = time.time()
                 list_of_records = session.read_transaction(
                     neo4j_query.user_query, query
                 )
+                query_time_dict["to_query: user_query"] = time.time() - query_start_time
         except neo4j.exceptions.ClientError:
             list_of_records = ["WRITE OPERATIONS NOT ALLOWED (3)"]
         except neo4j.exceptions.TransactionError:
@@ -2446,8 +2831,12 @@ def to_query():
     derivation_id = ""
     list_of_derivation_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_derivation_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "derivation"
+        )
+        query_time_dict["to_query: list_nodes_of_type, derivation"] = (
+            time.time() - query_start_time
         )
     print("list_of_derivation_dicts=", list_of_derivation_dicts)
     derivation_id = list_of_derivation_dicts[0]["id"]
@@ -2455,8 +2844,12 @@ def to_query():
     inference_rule_id = ""
     list_of_inference_rule_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_inference_rule_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "inference_rule"
+        )
+        query_time_dict["to_query: list_nodes_of_type, inference_rule"] = (
+            time.time() - query_start_time
         )
     print("list_of_inference_rule_dicts=", list_of_inference_rule_dicts)
     inference_rule_id = list_of_inference_rule_dicts[0]["id"]
@@ -2464,8 +2857,12 @@ def to_query():
     step_id = ""
     list_of_step_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_step_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "step"
+        )
+        query_time_dict["to_query: list_nodes_of_type, step"] = (
+            time.time() - query_start_time
         )
     print("list_of_step_dicts=", list_of_step_dicts)
     step_id = list_of_step_dicts[0]["id"]
@@ -2473,6 +2870,7 @@ def to_query():
     print("[TRACE] func: app/to_query end " + trace_id)
     return render_template(
         "query.html",
+        query_time_dict=query_time_dict,
         form=web_form,
         submitted_query=query,
         list_of_records=list_of_records,
@@ -2489,18 +2887,29 @@ def to_list_operations():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_list_operations start " + trace_id)
+    query_time_dict = {}
 
     list_of_operation_dicts = []
     with graphDB_Driver.session() as session:
-        list_of_operation_dicts = session.read_transaction(
-            neo4j_query.list_nodes_of_type, "operation"
+        query_start_time = time.time()
+        list_of_symbol_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "symbol"
         )
+        query_time_dict["to_list_operations: list_nodes_of_type, symbol"] = (
+            time.time() - query_start_time
+        )
+    # filter "list_of_symbol_dicts" down to "list_of_operation_dicts"
+    for this_symbol_dict in list_of_symbol_dicts:
+        if this_symbol_dict["requires_arguments"]:
+            list_of_operation_dicts.append(this_symbol_dict)
 
     print("list_of_operation_dicts", list_of_operation_dicts)
 
     print("[TRACE] func: app/to_list_operations end " + trace_id)
     return render_template(
-        "operation_list.html", list_of_operation_dicts=list_of_operation_dicts
+        "symbol_list_operations.html",
+        query_time_dict=query_time_dict,
+        list_of_operation_dicts=list_of_operation_dicts,
     )
 
 
@@ -2511,17 +2920,24 @@ def to_list_symbols():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_list_symbols start " + trace_id)
+    query_time_dict = {}
 
-    list_of_symbol_dicts = []
-    with graphDB_Driver.session() as session:
-        list_of_symbol_dicts = session.read_transaction(
-            neo4j_query.list_nodes_of_type, "symbol"
-        )
-    print("list_of_symbols", list_of_symbol_dicts)
+    (
+        query_time_dict,
+        list_of_symbol_dicts,
+        list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts,
+    ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
     print("[TRACE] func: app/to_list_symbols end " + trace_id)
     return render_template(
-        "symbol_list.html", list_of_symbol_dicts=list_of_symbol_dicts
+        "symbol_list.html",
+        query_time_dict=query_time_dict,
+        list_of_symbol_dicts=list_of_symbol_dicts,
+        list_of_operation_dicts=list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts=list_of_dimension1ormore_symbol_dicts,
     )
 
 
@@ -2532,6 +2948,7 @@ def to_list_expressions():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_list_expressions start " + trace_id)
+    query_time_dict = {}
 
     list_of_expression_dicts = []
     with graphDB_Driver.session() as session:
@@ -2554,6 +2971,7 @@ def to_list_expressions():
     print("[TRACE] func: app/to_list_expressions end " + trace_id)
     return render_template(
         "expression_list.html",
+        query_time_dict=query_time_dict,
         list_of_expression_dicts=list_of_expression_dicts,
         symbols_per_expression=symbols_per_expression,
         operations_per_expression=operations_per_expression,
@@ -2571,6 +2989,7 @@ def to_list_derivations():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_list_derivations start " + trace_id)
+    query_time_dict = {}
 
     # The following is irrelevant since the page doesn't submit anything back to the server
     # if request.method == "POST":
@@ -2608,6 +3027,7 @@ def to_list_derivations():
     print("[TRACE] func: app/to_list_derivations end " + trace_id)
     return render_template(
         "derivation_list.html",
+        query_time_dict=query_time_dict,
         list_of_derivation_dicts=list_of_derivation_dicts,
         number_of_steps_per_derivation=number_of_steps_per_derivation,
     )
@@ -2620,6 +3040,7 @@ def to_list_inference_rules():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_list_inference_rules start " + trace_id)
+    query_time_dict = {}
 
     list_of_inference_rule_dicts = []
     with graphDB_Driver.session() as session:
@@ -2640,6 +3061,7 @@ def to_list_inference_rules():
     print("[TRACE] func: app/to_list_inference_rules end " + trace_id)
     return render_template(
         "inference_rule_list.html",
+        query_time_dict=query_time_dict,
         list_of_inference_rule_dicts=list_of_inference_rule_dicts,
         dict_of_derivations_used_per_inference_rule=dict_of_derivations_used_per_inference_rule,
     )
@@ -2688,6 +3110,7 @@ def to_delete_graph_content():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_delete_graph_content start " + trace_id)
+    query_time_dict = {}
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
@@ -2706,6 +3129,7 @@ def to_export_json():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_export_json start " + trace_id)
+    query_time_dict = {}
 
     with graphDB_Driver.session() as session:
         res = session.read_transaction(neo4j_query.apoc_export_json, "pdg.json")
@@ -2734,6 +3158,7 @@ def to_export_cypher():
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_export_cypher start " + trace_id)
+    query_time_dict = {}
 
     with graphDB_Driver.session() as session:
         res = session.read_transaction(neo4j_query.apoc_export_cypher, "pdg.cypher")

@@ -60,6 +60,41 @@ def get_dict_of_symbol_dicts(graphDB_Driver):
     return dict_of_all_symbol_dicts
 
 
+def split_symbol_categories(graphDB_Driver, query_time_dict):
+    """ """
+
+    with graphDB_Driver.session() as session:
+        query_start_time = time.time()
+        list_of_symbol_dicts = session.read_transaction(
+            neo4j_query.list_nodes_of_type, "symbol"
+        )
+        query_time_dict["split_symbol_categories: list_nodes_of_type symbol"] = (
+            time.time() - query_start_time
+        )
+    print("list_of_symbol_dicts=", list_of_symbol_dicts)
+
+    list_of_operation_dicts = []
+    list_of_dimension0_symbol_dicts = []
+    list_of_dimension1ormore_symbol_dicts = []
+
+    for this_symbol_dict in list_of_symbol_dicts:
+        if this_symbol_dict["requires_arguments"]:
+            list_of_operation_dicts.append(this_symbol_dict)
+        else:
+            if this_symbol_dict["dimension_count"] == 0:
+                list_of_dimension0_symbol_dicts.append(this_symbol_dict)
+            else:
+                list_of_dimension1ormore_symbol_dicts.append(this_symbol_dict)
+
+    return (
+        query_time_dict,
+        list_of_symbol_dicts,
+        list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts,
+    )
+
+
 # def get_dict_of_operation_dicts(
 #     graphDB_Driver,
 # ):
@@ -116,9 +151,9 @@ def get_dict_of_derivations_used_per_inference_rule(
         for derivation_id, derivation_dict in new_temp_dict.items():
             list_of_derivations_that_use_this_inference_rule_id.append(derivation_dict)
 
-        dict_of_derivations_used_per_inference_rule[
-            this_inference_rule_dict["id"]
-        ] = list_of_derivations_that_use_this_inference_rule_id
+        dict_of_derivations_used_per_inference_rule[this_inference_rule_dict["id"]] = (
+            list_of_derivations_that_use_this_inference_rule_id
+        )
     return dict_of_derivations_used_per_inference_rule
 
 
@@ -134,18 +169,18 @@ def symbols_and_operations_per_expression(
             list_of_symbol_IDs_in_expression = session.read_transaction(
                 neo4j_query.symbols_in_expression, this_expression_dict["id"]
             )
-        symbols_per_expression[
-            this_expression_dict["id"]
-        ] = list_of_symbol_IDs_in_expression
+        symbols_per_expression[this_expression_dict["id"]] = (
+            list_of_symbol_IDs_in_expression
+        )
 
         list_of_operation_IDs_in_expression = []
         with graphDB_Driver.session() as session:
             list_of_operation_IDs_in_expression = session.read_transaction(
                 neo4j_query.operations_in_expression, this_expression_dict["id"]
             )
-        operations_per_expression[
-            this_expression_dict["id"]
-        ] = list_of_operation_IDs_in_expression
+        operations_per_expression[this_expression_dict["id"]] = (
+            list_of_operation_IDs_in_expression
+        )
     return symbols_per_expression, operations_per_expression
 
 

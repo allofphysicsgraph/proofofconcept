@@ -1090,7 +1090,7 @@ def add_symbol(
         ' latex:"' + str(symbol_latex) + '", '
         ' description_latex:"' + str(symbol_description) + '", '
         ' author_name_latex:"' + str(author_name_latex) + '", '
-        ' requires_arguments:"' + str(symbol_requires_arguments) + '", '
+        " requires_arguments:" + symbol_requires_arguments + ", "
         ' symbol_reference:"' + str(symbol_reference) + '", '
         # ' symbol_scope:"' + str(symbol_scope) + '", '
         # ' symbol_variable_or_constant:"' + str(symbol_variable_or_constant) + '", '
