@@ -1415,7 +1415,7 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
 
         symbol_dimension_count = int(web_form_symbol_properties.dimension_count.data)
 
-        print("symbol_dimension_count=",symbol_dimension_count)
+        print("symbol_dimension_count=", symbol_dimension_count)
 
         with graphDB_Driver.session() as session:
             query_start_time = time.time()
@@ -1431,22 +1431,34 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
             ] = (time.time() - query_start_time)
 
         if request.form["dimension_count"] == 0:  # scalar
-            print("[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension0_properties" + trace_id)
+            print(
+                "[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension0_properties"
+                + trace_id
+            )
             return redirect(
                 url_for("to_add_symbol_dimension0_properties", symbol_id=symbol_id)
             )
         elif request.form["dimension_count"] == 1:  # vector
-            print("[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension1_properties" + trace_id)
+            print(
+                "[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension1_properties"
+                + trace_id
+            )
             return redirect(
                 url_for("to_add_symbol_dimension1_properties", symbol_id=symbol_id)
             )
         elif request.form["dimension_count"] == 2:  # vector
-            print("[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension2_properties" + trace_id)
+            print(
+                "[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension2_properties"
+                + trace_id
+            )
             return redirect(
                 url_for("to_add_symbol_dimension2_properties", symbol_id=symbol_id)
             )
 
-    print("[TRACE] func: app/to_add_symbol_dimension_count end; render template " + trace_id)
+    print(
+        "[TRACE] func: app/to_add_symbol_dimension_count end; render template "
+        + trace_id
+    )
     return render_template(
         "symbol_create_specify_dimension_count.html",
         form_symbol_properties=web_form_symbol_properties,
@@ -2043,7 +2055,7 @@ def to_add_symbols_and_operations_for_expression(
         "expression_symbols_and_operations.html",
         form=web_form_no_options,
         expression_dict=expression_dict,
-        list_of_symbol_dicts=list_of_symbol_dicts
+        list_of_symbol_dicts=list_of_symbol_dicts,
     )
 
 
