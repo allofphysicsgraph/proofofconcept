@@ -154,9 +154,9 @@ app.config["UPLOAD_FOLDER"] = (
     # the following folder on the host is accessible to both flask and neo4j
     "/scratch/dumping_grounds/"  # https://flask.palletsprojects.com/en/3.0.x/patterns/fileuploads/
 )
-app.config["SEND_FILE_MAX_AGE_DEFAULT"] = (
-    0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
-)
+app.config[
+    "SEND_FILE_MAX_AGE_DEFAULT"
+] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
 app.config["DEBUG"] = True
 
 
@@ -1179,9 +1179,9 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     dict_of_symbol_dicts_not_in_expression = {}
     for this_symbol_id in dict_of_all_symbol_dicts.keys():
         if this_symbol_id not in dict_of_symbol_dicts_in_expression.keys():
-            dict_of_symbol_dicts_not_in_expression[this_symbol_id] = (
-                dict_of_all_symbol_dicts[this_symbol_id]
-            )
+            dict_of_symbol_dicts_not_in_expression[
+                this_symbol_id
+            ] = dict_of_all_symbol_dicts[this_symbol_id]
     print(
         "dict_of_symbol_dicts_not_in_expression=",
         dict_of_symbol_dicts_not_in_expression,
@@ -1849,15 +1849,17 @@ def to_add_symbol():
         list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
-    dict_of_expressions_that_use_symbol, query_time_dict = (
-        compute.get_dict_of_expressions_that_use_symbol(
-            graphDB_Driver, query_time_dict, list_of_symbol_dicts
-        )
+    (
+        dict_of_expressions_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_expressions_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_symbol_dicts
     )
-    dict_of_derivations_that_use_symbol, query_time_dict = (
-        compute.get_dict_of_derivations_that_use_symbol(
-            graphDB_Driver, query_time_dict, list_of_symbol_dicts
-        )
+    (
+        dict_of_derivations_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_derivations_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_symbol_dicts
     )
 
     print("[TRACE] func: app/to_add_symbol end " + trace_id)
@@ -1925,15 +1927,17 @@ def to_add_symbol_required_argument_count(symbol_id: unique_numeric_id_as_str):
         list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
-    dict_of_expressions_that_use_symbol, query_time_dict = (
-        compute.get_dict_of_expressions_that_use_symbol(
-            graphDB_Driver, query_time_dict, list_of_symbol_dicts
-        )
+    (
+        dict_of_expressions_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_expressions_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_symbol_dicts
     )
-    dict_of_derivations_that_use_symbol, query_time_dict = (
-        compute.get_dict_of_derivations_that_use_symbol(
-            graphDB_Driver, query_time_dict, list_of_symbol_dicts
-        )
+    (
+        dict_of_derivations_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_derivations_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_symbol_dicts
     )
 
     print("[TRACE] func: app/to_add_symbol_required_argument_count end " + trace_id)
@@ -2334,15 +2338,17 @@ def to_add_operation():
         if this_symbol_dict["requires_arguments"]:
             list_of_operation_dicts.append(this_symbol_dict)
 
-    dict_of_expressions_that_use_symbol, query_time_dict = (
-        compute.get_dict_of_expressions_that_use_symbol(
-            graphDB_Driver, query_time_dict, list_of_operation_dicts
-        )
+    (
+        dict_of_expressions_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_expressions_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_operation_dicts
     )
-    dict_of_derivations_that_use_symbol, query_time_dict = (
-        compute.get_dict_of_derivations_that_use_symbol(
-            graphDB_Driver, query_time_dict, list_of_operation_dicts
-        )
+    (
+        dict_of_derivations_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_derivations_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_operation_dicts
     )
 
     web_form = SpecifyNewSymbolDIRECTOperationForm(request.form)
@@ -3188,15 +3194,17 @@ def to_list_operations():
             list_of_operation_dicts.append(this_symbol_dict)
     print("list_of_operation_dicts", list_of_operation_dicts)
 
-    dict_of_expressions_that_use_symbol, query_time_dict = (
-        compute.get_dict_of_expressions_that_use_symbol(
-            graphDB_Driver, query_time_dict, list_of_operation_dicts
-        )
+    (
+        dict_of_expressions_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_expressions_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_operation_dicts
     )
-    dict_of_derivations_that_use_symbol, query_time_dict = (
-        compute.get_dict_of_derivations_that_use_symbol(
-            graphDB_Driver, query_time_dict, list_of_operation_dicts
-        )
+    (
+        dict_of_derivations_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_derivations_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_operation_dicts
     )
 
     print("[TRACE] func: app/to_list_operations end " + trace_id)
@@ -3227,15 +3235,17 @@ def to_list_symbols():
         list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
-    dict_of_expressions_that_use_symbol, query_time_dict = (
-        compute.get_dict_of_expressions_that_use_symbol(
-            graphDB_Driver, query_time_dict, list_of_symbol_dicts
-        )
+    (
+        dict_of_expressions_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_expressions_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_symbol_dicts
     )
-    dict_of_derivations_that_use_symbol, query_time_dict = (
-        compute.get_dict_of_derivations_that_use_symbol(
-            graphDB_Driver, query_time_dict, list_of_symbol_dicts
-        )
+    (
+        dict_of_derivations_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_derivations_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_symbol_dicts
     )
 
     print("[TRACE] func: app/to_list_symbols end " + trace_id)
