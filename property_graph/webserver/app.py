@@ -1941,6 +1941,14 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
                 url_for("to_add_symbol_dimension2_properties", symbol_id=symbol_id)
             )
 
+    (
+        query_time_dict,
+        list_of_symbol_dicts,
+        list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts,
+    ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
+
     print(
         "[TRACE] func: app/to_add_symbol_dimension_count end; render template "
         + trace_id
@@ -1950,6 +1958,8 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
         form_symbol_properties=web_form_symbol_properties,
         symbol_dict=symbol_dict,
         query_time_dict=query_time_dict,
+        list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts=list_of_dimension1ormore_symbol_dicts,
     )
 
 
@@ -2130,12 +2140,22 @@ def to_add_symbol_dimension0_properties(symbol_id: unique_numeric_id_as_str):
 
         return redirect(url_for("to_list_symbols"))
 
+    (
+        query_time_dict,
+        list_of_symbol_dicts,
+        list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts,
+    ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
+
+
     print("[TRACE] func: app/to_add_symbol_dimension0_properties end " + trace_id)
     return render_template(
         "symbol_create_dimension0.html",
         form_symbol_properties=web_form_symbol_properties,
         symbol_dict=symbol_dict,
         query_time_dict=query_time_dict,
+        list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts
     )
 
 

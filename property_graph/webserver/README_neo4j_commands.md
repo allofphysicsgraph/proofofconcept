@@ -1,6 +1,6 @@
 The current schema is determined by searching for the string
 CREATE (
-in the file `app.py`. The `def neo4j_` definitions contain the relevant properties.
+in the file `neo4j_query.py`. 
 
 
 https://neo4j.com/docs/api/python-driver/current/api.html#neo4j.Result
@@ -11,10 +11,11 @@ https://neo4j.com/docs/cypher-manual/current/clauses/merge/
 https://neo4j.com/docs/cypher-manual/current/clauses/where/
 https://neo4j.com/docs/cypher-manual/current/clauses/with/
 
-To get inside the container,
+To get inside a running container,
 ```bash
 docker exec -it `docker ps | grep property_graph_webserver | cut -d' ' -f1` /bin/bash
 ```
+
 # How to run on the command line inside the docker container:
 ```python3
 import neo4j
