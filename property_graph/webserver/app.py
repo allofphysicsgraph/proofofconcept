@@ -1575,14 +1575,20 @@ def to_add_symbol_scalar():
             )
         return redirect(url_for("to_list_symbols"))
 
-    if request.method == "POST":
-        print("request.form = ", request.form)
+    (
+        query_time_dict,
+        list_of_symbol_dicts,
+        list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts,
+    ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
     print("[TRACE] func: app/to_add_symbol_scalar end " + trace_id)
     return render_template(
         "symbol_create_direct_scalar.html",
         query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
+        list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
     )
 
 
@@ -1647,11 +1653,20 @@ def to_add_symbol_vector():
             )
         return redirect(url_for("to_list_symbols"))
 
+    (
+        query_time_dict,
+        list_of_symbol_dicts,
+        list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts,
+    ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
+
     print("[TRACE] func: app/to_add_symbol_vector end " + trace_id)
     return render_template(
         "symbol_create_direct_vector.html",
         query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
+        list_of_dimension1ormore_symbol_dicts=list_of_dimension1ormore_symbol_dicts,
     )
 
 
@@ -1716,11 +1731,20 @@ def to_add_symbol_matrix():
             )
         return redirect(url_for("to_list_symbols"))
 
+    (
+        query_time_dict,
+        list_of_symbol_dicts,
+        list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts,
+        list_of_dimension1ormore_symbol_dicts,
+    ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
+
     print("[TRACE] func: app/to_add_symbol_matrix end " + trace_id)
     return render_template(
         "symbol_create_direct_matrix.html",
         query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
+        list_of_dimension1ormore_symbol_dicts=list_of_dimension1ormore_symbol_dicts,
     )
 
 
@@ -2230,12 +2254,11 @@ def to_add_operation():
 
         author_name_latex = "ben"
 
-        list_of_operation_IDs = []
         with graphDB_Driver.session() as session:
-            list_of_operation_IDs = session.read_transaction(
-                neo4j_query.list_IDs, "operation"
+            list_of_symbol_IDs = session.read_transaction(
+                neo4j_query.list_IDs, "symbol"
             )
-        operation_id = compute.generate_random_id(list_of_operation_IDs)
+        operation_id = compute.generate_random_id(list_of_symbol_IDs)
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:

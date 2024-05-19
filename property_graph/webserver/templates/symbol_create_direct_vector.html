@@ -3,6 +3,7 @@
 
 <P>
   Return to <a href="{{ url_for('main') }}?referrer=symbol_create">main page</a>
+  or return to <a href="{{ url_for('to_list_symbols') }}?referrer=operation_create">list of all symbols</a>
 </P>
 
 <fieldset>
@@ -24,14 +25,21 @@
     
     <P>{{form_symbol_properties.symbol_description.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_description(size=50, maxlength=1000) }}</p>
 
-    <P>{{ form_symbol_properties.symbol_reference.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_reference }}</p>
+    <P>{{ form_symbol_properties.symbol_reference.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_reference(size=50, maxlength=1000) }}</p>
 
-    <P>{{ form_symbol_properties.symbol_size.label}} (<B>required</B>): {{ form_symbol_properties.symbol_size }}
-    <P>{{ form_symbol_properties.symbol_orientation.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_orientation }}
+<table>
+<table border="0" id="scope_table">
+  <tr>
+    <td>{{ form_symbol_properties.symbol_size.label}} (<B>required</B>): {{ form_symbol_properties.symbol_size }}
     <P>{{ form_symbol_properties.symbol_number_of_entries.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_number_of_entries }}
 
+    </td>
+    <td>{{ form_symbol_properties.symbol_orientation.label }} (<small><em>optional</em></small>): {{ form_symbol_properties.symbol_orientation }}
+    </td>
+  </tr>
+</table>
 
-      <input type="submit" value="add symbol">
+    <P><input type="submit" value="add symbol"></P>
     </P>
   </form>
 </fieldset>

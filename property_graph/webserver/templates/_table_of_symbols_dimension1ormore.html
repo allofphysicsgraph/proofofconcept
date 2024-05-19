@@ -1,5 +1,5 @@
 
-<H3>Vectors, matricies = symbols of dimension 1 or more</H3>
+<H3>{{ list_of_dimension1ormore_symbol_dicts|length }} Vectors, matricies = symbols of dimension 1 or more</H3>
 
 <P>For debugging purposes, here is the all the info available:
 
@@ -34,8 +34,8 @@
     <td>{{ symbol_dict['description_latex'] }}</td>
     <td>TODO</td> <!-- used in expressions -->
     <td>{{ symbol_dict['symbol_reference'] }}</td>
-    <td>{{ symbol_dict['symbol_is_composit'] }}</td>
-    <td>{{ symbol_dict['symbol_size'] }}</td>
+    <td>{{ symbol_dict['is_composit'] }}</td>
+    <td>{{ symbol_dict['size'] }}</td>
   </tr>
   {% endfor %}
 </table>

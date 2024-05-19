@@ -3,6 +3,7 @@
 
 <P>
   Return to <a href="{{ url_for('main') }}?referrer=list_operations">main page</a>
+  or return to <a href="{{ url_for('to_list_symbols') }}?referrer=operation_create">list of all symbols</a>
 </P>
 
 <fieldset>
@@ -15,7 +16,7 @@
 
 <P>The operation ID links to a page where you can edit the operation<BR>
 
-<P>{% include '_table_of_operations.html' %}
+<P>{% include '_table_of_symbols_requires_arguments.html' %}
 
 </fieldset>
 

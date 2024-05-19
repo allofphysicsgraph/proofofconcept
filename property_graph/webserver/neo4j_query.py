@@ -1080,7 +1080,7 @@ def add_symbol(
         ' latex:"' + str(symbol_latex) + '", '
         ' description_latex:"' + str(symbol_description) + '", '
         ' author_name_latex:"' + str(author_name_latex) + '", '
-        " requires_arguments:" + symbol_requires_arguments + ", "
+        " requires_arguments:" + str(symbol_requires_arguments) + ", "
         ' symbol_reference:"' + str(symbol_reference) + '", '
         ' id:"' + str(symbol_id) + '"})'
     )
@@ -1163,7 +1163,6 @@ def add_symbol_direct_vector(
     print("[TRACE] func: neo4j_query/add_symbol_direct_vector start " + trace_id)
 
     assert len(symbol_latex) > 0
-    assert len(symbol_scope) > 0
 
     if symbol_size == "arbitrary":
         result = tx.run(
@@ -1221,7 +1220,6 @@ def add_symbol_direct_matrix(
     print("[TRACE] func: neo4j_query/add_symbol_direct_matrix start " + trace_id)
 
     assert len(symbol_latex) > 0
-    assert len(symbol_scope) > 0
 
     if symbol_size == "arbitrary":
         result = tx.run(

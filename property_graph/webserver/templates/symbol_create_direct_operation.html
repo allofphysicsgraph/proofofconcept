@@ -3,11 +3,12 @@
 
 <P>
   Return to <a href="{{ url_for('main') }}?referrer=operation_create">main page</a>
+  or return to <a href="{{ url_for('to_list_symbols') }}?referrer=operation_create">list of all symbols</a>
 </P>
 
 <fieldset>
   <legend>
-    <H2>Create symbol</H2>
+    <H2>Create operation</H2>
   </legend>
 
 <P>TODO: as user is entering symbol, filter the list of existing symbols.
@@ -32,10 +33,7 @@
 </fieldset>
 
 
-
 <P>{% include '_table_of_symbols_requires_arguments.html' %}
-<P>{% include '_table_of_symbols_dimension0.html' %}
-<P>{% include '_table_of_symbols_dimension1ormore.html' %}
 
 <script>
 function select_symbol() {
