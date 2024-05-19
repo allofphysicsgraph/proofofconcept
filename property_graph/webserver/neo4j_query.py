@@ -846,7 +846,7 @@ def add_step_to_derivation(
     step_id: str,
     derivation_id: str,
     inference_rule_id: str,
-    new_sequence_value: str,
+    new_sequence_value: int,
     now_str: str,
     note_before_step_latex: str,
     note_after_step_latex: str,
@@ -1123,7 +1123,7 @@ def add_symbol_direct_vector(
             " dimension_count: 1,"
             'orientation:"' + str(symbol_orientation) + '", '
             " size: '" + str(symbol_size) + "',"
-            'number_of_entries:"' + str(symbol_number_of_rows) + '", '
+            'number_of_entries:"' + str(symbol_number_of_entries) + '", '
             "is_composite:" + str(symbol_is_composite) + ","
             " requires_arguments: False,"
             ' author_name_latex:"' + str(author_name_latex) + '", '
@@ -1197,7 +1197,7 @@ def add_symbol_direct_operation(
     operation_name: str,
     operation_latex: str,
     operation_description: str,
-    operation_argument_count: str,
+    operation_argument_count: int,
     author_name_latex: str,
 ) -> None:
     """
@@ -1251,7 +1251,7 @@ def delete_all_nodes_and_relationships(tx) -> None:
     return
 
 
-def user_query(tx, query: str) -> str:
+def user_query(tx, query: str) -> list:
     """
     User-submitted Cypher query for Neo4j database
 

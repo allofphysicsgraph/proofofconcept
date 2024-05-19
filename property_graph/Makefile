@@ -30,3 +30,6 @@ black_out:
 
 black_in:
 	black webserver/app.py webserver/neo4j_query.py webserver/compute.py
+
+mypy_out:
+	docker run --rm -v`pwd`:/scratch --entrypoint='' -w /scratch/ property_graph_webserver mypy --check-untyped-defs webserver/app.py
