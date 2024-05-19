@@ -35,6 +35,8 @@ def list_IDs(tx, node_type: str) -> list:
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/list_IDs start " + trace_id)
 
+    print("node_type=",node_type)
+
     assert node_type in [
         "derivation",
         "inference_rule",
@@ -216,6 +218,8 @@ def list_nodes_of_type(tx, node_type: str) -> list:
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/list_nodes_of_type start " + trace_id)
+
+    print("node_type=",node_type)
 
     # must be one of these node types. See also 'schema.log' file
     assert node_type in [
@@ -440,6 +444,8 @@ def node_properties(tx, node_type: str, node_id: str) -> dict:
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/node_properties start " + trace_id)
 
+    print("node_type=",node_type)
+
     assert node_type in [
         "derivation",
         "inference_rule",
@@ -595,6 +601,8 @@ def edit_node_property(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/edit_node_property start " + trace_id)
 
+    print("node_type=",node_type)
+
     assert node_type in [
         "derivation",
         "inference_rule",
@@ -614,10 +622,18 @@ def edit_node_property(
     )
 
     # https://neo4j.com/docs/getting-started/cypher-intro/updating/
-    result = tx.run(
-        "MERGE (n:" + str(node_type) + ' {id:"' + str(node_id) + '"})'
-        "SET n." + property_key + " = " + property_value
-    )
+
+    # https://stackoverflow.com/a/15019884/1164295 says "bool is a subclass of int."
+    if isinstance(property_value, int):
+        result = tx.run(
+            "MERGE (n:" + str(node_type) + ' {id:"' + str(node_id) + '"})'
+            "SET n." + str(property_key) + " = " + str(property_value)
+        )
+    elif isinstance(property_value, str): # string needs quotes
+        result = tx.run(
+            "MERGE (n:" + str(node_type) + ' {id:"' + str(node_id) + '"})'
+            "SET n." + str(property_key) + " = '" + str(property_value) + "'"
+        )
 
     print("[TRACE] func: neo4j_query/edit_node_property end" + trace_id)
     return
@@ -732,6 +748,8 @@ def delete_node(tx, node_id: str, node_type) -> None:
     """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/delete_node start " + trace_id)
+
+    print("node_type=",node_type)
 
     # must be one of these node types. See also 'schema.log' file
     assert node_type in [

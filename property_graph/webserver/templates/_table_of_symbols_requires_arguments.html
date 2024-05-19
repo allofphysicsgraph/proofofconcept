@@ -1,0 +1,35 @@
+
+<P>For debugging purposes, here is the all the info available:
+
+<!-- { { list_of_symbol_dicts } } -->
+
+<ul>
+{% for this_symbol_dict in list_of_symbol_dicts %}
+<li>{{ this_symbol_dict }}</li>
+{% endfor % }
+</ul>
+
+<table border="1" id="symbol_table">
+  <tr>
+    <th>ID</th>
+    <th>latex</th>
+    <th>name</th>
+    <th>description</th>
+    <th>used in expression</th>
+    <th>reference</th>
+  </tr>
+  {% for symbol_dict in list_of_symbol_dicts %}
+  <tr>
+    <td>
+      <a href="{{ url_for( 'to_edit_symbol', symbol_id=symbol_dict['id'] ) }}">
+          {{ symbol_dict['id'] }}
+      </a>
+    </td>
+    <td>{{ symbol_dict['latex']}}</td>
+    <td>{{ symbol_dict['name_latex'] }}</td>
+    <td>{{ symbol_dict['description_latex'] }}</td>
+    <td>TODO</td> <!-- used in expressions -->
+    <td>{{ symbol_dict['symbol_reference'] }}</td>
+  </tr>
+  {% endfor %}
+</table>

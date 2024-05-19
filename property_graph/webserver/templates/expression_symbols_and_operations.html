@@ -12,6 +12,11 @@
     <H2>Specify Symbols and Operations for Latex expression</H2>
   </legend>
 
+{% for symbol_dict in list_of_symbol_dicts %}
+<UL>
+  <LI>{{ symbol_dict }}</LI>
+</UL>
+
   <form method="post" action="">
   {{ form.csrf_token }}
 

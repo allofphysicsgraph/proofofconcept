@@ -153,9 +153,9 @@ app.config["UPLOAD_FOLDER"] = (
     # the following folder on the host is accessible to both flask and neo4j
     "/scratch/dumping_grounds/"  # https://flask.palletsprojects.com/en/3.0.x/patterns/fileuploads/
 )
-app.config["SEND_FILE_MAX_AGE_DEFAULT"] = (
-    0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
-)
+app.config[
+    "SEND_FILE_MAX_AGE_DEFAULT"
+] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
 app.config["DEBUG"] = True
 
 
@@ -505,11 +505,11 @@ def main():
             session.read_transaction(neo4j_query.list_nodes_of_type, "symbol")
         )
 
-    number_of_operations = None
-    with graphDB_Driver.session() as session:
-        number_of_operations = len(
-            session.read_transaction(neo4j_query.list_nodes_of_type, "operation")
-        )
+    # number_of_operations = None
+    # with graphDB_Driver.session() as session:
+    #     number_of_operations = len(
+    #         session.read_transaction(neo4j_query.list_nodes_of_type, "operation")
+    #     )
 
     print("[TRACE] func: app/main end " + trace_id)
     return render_template(
@@ -519,7 +519,7 @@ def main():
         number_of_inference_rules=number_of_inference_rules,
         number_of_expressions=number_of_expressions,
         number_of_symbols=number_of_symbols,
-        number_of_operations=number_of_operations,
+        # number_of_operations=number_of_operations,
     )
 
 
@@ -950,9 +950,9 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     dict_of_symbol_dicts_not_in_expression = {}
     for this_symbol_id in dict_of_all_symbol_dicts.keys():
         if this_symbol_id not in dict_of_symbol_dicts_in_expression.keys():
-            dict_of_symbol_dicts_not_in_expression[this_symbol_id] = (
-                dict_of_all_symbol_dicts[this_symbol_id]
-            )
+            dict_of_symbol_dicts_not_in_expression[
+                this_symbol_id
+            ] = dict_of_all_symbol_dicts[this_symbol_id]
     print(
         "dict_of_symbol_dicts_not_in_expression=",
         dict_of_symbol_dicts_not_in_expression,
@@ -1415,7 +1415,8 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
 
         symbol_dimension_count = int(web_form_symbol_properties.dimension_count.data)
 
-        # TODO: add "dimension count" to property of symbol_id
+        print("symbol_dimension_count=",symbol_dimension_count)
+
         with graphDB_Driver.session() as session:
             query_start_time = time.time()
             session.write_transaction(
@@ -1430,30 +1431,22 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
             ] = (time.time() - query_start_time)
 
         if request.form["dimension_count"] == 0:  # scalar
-            print("[TRACE] func: app/to_add_symbol_dimension_count end " + trace_id)
+            print("[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension0_properties" + trace_id)
             return redirect(
                 url_for("to_add_symbol_dimension0_properties", symbol_id=symbol_id)
             )
         elif request.form["dimension_count"] == 1:  # vector
-            print("[TRACE] func: app/to_add_symbol_dimension_count end " + trace_id)
+            print("[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension1_properties" + trace_id)
             return redirect(
                 url_for("to_add_symbol_dimension1_properties", symbol_id=symbol_id)
             )
         elif request.form["dimension_count"] == 2:  # vector
-            print("[TRACE] func: app/to_add_symbol_dimension_count end " + trace_id)
+            print("[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension2_properties" + trace_id)
             return redirect(
                 url_for("to_add_symbol_dimension2_properties", symbol_id=symbol_id)
             )
-        else:
-            print("[TRACE] func: app/to_add_symbol_dimension_count end " + trace_id)
-            return render_template(
-                "symbol_create_specify_dimension_count.html",
-                form_symbol_properties=web_form_symbol_properties,
-                symbol_dict=symbol_dict,
-                query_time_dict=query_time_dict,
-            )
 
-    print("[TRACE] func: app/to_add_symbol_dimension_count end " + trace_id)
+    print("[TRACE] func: app/to_add_symbol_dimension_count end; render template " + trace_id)
     return render_template(
         "symbol_create_specify_dimension_count.html",
         form_symbol_properties=web_form_symbol_properties,
@@ -2050,6 +2043,7 @@ def to_add_symbols_and_operations_for_expression(
         "expression_symbols_and_operations.html",
         form=web_form_no_options,
         expression_dict=expression_dict,
+        list_of_symbol_dicts=list_of_symbol_dicts
     )
 
 
