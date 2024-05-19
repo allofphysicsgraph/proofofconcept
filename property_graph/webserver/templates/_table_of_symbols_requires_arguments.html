@@ -16,8 +16,10 @@
     <th>ID</th>
     <th>latex</th>
     <th>name</th>
+    <th>argument count</th>
     <th>description</th>
     <th>used in expression</th>
+    <th>used in derivation</th>
     <th>reference</th>
   </tr>
   {% for symbol_dict in list_of_operation_dicts %}
@@ -29,8 +31,10 @@
     </td>
     <td>{{ symbol_dict['latex']}}</td>
     <td>{{ symbol_dict['name_latex'] }}</td>
+    <td>{{ symbol_dict['argument_count'] }}</td>
     <td>{{ symbol_dict['description_latex'] }}</td>
     <td>TODO</td> <!-- used in expressions -->
+    <td>TODO</td> <!-- used in derivation -->
     <td>{{ symbol_dict['symbol_reference'] }}</td>
   </tr>
   {% endfor %}

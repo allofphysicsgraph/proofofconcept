@@ -17,7 +17,11 @@
     <th>latex</th>
     <th>name</th>
     <th>description</th>
+    <th>scope</th>
+    <th>domain</th>
     <th>used in expression</th>
+    <th>used in derivation</th>
+    <th>variable or constant</th>
     <th>reference</th>
     <th>dimension: time</th>
     <th>dimension: length</th>
@@ -26,8 +30,6 @@
     <th>dimension: luminous intensity</th>
     <th>dimension: amount of substance</th>
     <th>dimension: temperature</th>
-    <th>scope</th>
-    <th>domain</th>
   </tr>
   {% for symbol_dict in list_of_dimension0_symbol_dicts %}
   <tr>
@@ -39,7 +41,11 @@
     <td>{{ symbol_dict['latex']}}</td>
     <td>{{ symbol_dict['name_latex'] }}</td>
     <td>{{ symbol_dict['description_latex'] }}</td>
+    <td>{{ symbol_dict['scope'] }}</td>
+    <td>{{ symbol_dict['domain'] }}</td>
     <td>TODO</td> <!-- used in expressions -->
+    <td>TODO</td> <!-- used in derivation -->
+    <td>{{ symbol_dict['variable_or_constant'] }}</td>
     <td>{{ symbol_dict['symbol_reference'] }}</td>
     <td>{{ symbol_dict['dimension_time'] }}</td>
     <td>{{ symbol_dict['dimension_length'] }}</td>
@@ -48,8 +54,6 @@
     <td>{{ symbol_dict['dimension_luminous_intensity'] }}</td>
     <td>{{ symbol_dict['dimension_amount_of_substance'] }}</td>
     <td>{{ symbol_dict['dimension_temperature'] }}</td>
-    <td>{{ symbol_dict['scope'] }}</td>
-    <td>{{ symbol_dict['domain'] }}</td>
   </tr>
   {% endfor %}
 </table>

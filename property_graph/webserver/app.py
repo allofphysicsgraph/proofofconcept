@@ -1580,7 +1580,8 @@ def to_add_symbol_scalar():
         list_of_symbol_dicts,
         list_of_operation_dicts,
         list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
     print("[TRACE] func: app/to_add_symbol_scalar end " + trace_id)
@@ -1658,7 +1659,8 @@ def to_add_symbol_vector():
         list_of_symbol_dicts,
         list_of_operation_dicts,
         list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
     print("[TRACE] func: app/to_add_symbol_vector end " + trace_id)
@@ -1666,7 +1668,7 @@ def to_add_symbol_vector():
         "symbol_create_direct_vector.html",
         query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
-        list_of_dimension1ormore_symbol_dicts=list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts=list_of_dimension1_symbol_dicts,
     )
 
 
@@ -1736,7 +1738,8 @@ def to_add_symbol_matrix():
         list_of_symbol_dicts,
         list_of_operation_dicts,
         list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
     print("[TRACE] func: app/to_add_symbol_matrix end " + trace_id)
@@ -1744,7 +1747,7 @@ def to_add_symbol_matrix():
         "symbol_create_direct_matrix.html",
         query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
-        list_of_dimension1ormore_symbol_dicts=list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts=list_of_dimension2ormore_symbol_dicts,
     )
 
 
@@ -1822,7 +1825,8 @@ def to_add_symbol():
         list_of_symbol_dicts,
         list_of_operation_dicts,
         list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
     print("[TRACE] func: app/to_add_symbol end " + trace_id)
@@ -1833,7 +1837,8 @@ def to_add_symbol():
         list_of_symbol_dicts=list_of_symbol_dicts,
         list_of_operation_dicts=list_of_operation_dicts,
         list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts=list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts=list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts=list_of_dimension2ormore_symbol_dicts,
     )
 
 
@@ -1946,7 +1951,8 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
         list_of_symbol_dicts,
         list_of_operation_dicts,
         list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
     print(
@@ -1959,7 +1965,8 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
         symbol_dict=symbol_dict,
         query_time_dict=query_time_dict,
         list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts=list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts=list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts=list_of_dimension2ormore_symbol_dicts,
     )
 
 
@@ -2145,9 +2152,9 @@ def to_add_symbol_dimension0_properties(symbol_id: unique_numeric_id_as_str):
         list_of_symbol_dicts,
         list_of_operation_dicts,
         list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
-
 
     print("[TRACE] func: app/to_add_symbol_dimension0_properties end " + trace_id)
     return render_template(
@@ -2155,7 +2162,7 @@ def to_add_symbol_dimension0_properties(symbol_id: unique_numeric_id_as_str):
         form_symbol_properties=web_form_symbol_properties,
         symbol_dict=symbol_dict,
         query_time_dict=query_time_dict,
-        list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts
+        list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
     )
 
 
@@ -3074,7 +3081,8 @@ def to_list_symbols():
         list_of_symbol_dicts,
         list_of_operation_dicts,
         list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
     print("[TRACE] func: app/to_list_symbols end " + trace_id)
@@ -3084,7 +3092,8 @@ def to_list_symbols():
         list_of_symbol_dicts=list_of_symbol_dicts,
         list_of_operation_dicts=list_of_operation_dicts,
         list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts=list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts=list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts=list_of_dimension2ormore_symbol_dicts,
     )
 
 

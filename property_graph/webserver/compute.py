@@ -75,7 +75,8 @@ def split_symbol_categories(graphDB_Driver, query_time_dict):
 
     list_of_operation_dicts = []
     list_of_dimension0_symbol_dicts = []
-    list_of_dimension1ormore_symbol_dicts = []
+    list_of_dimension1_symbol_dicts = []
+    list_of_dimension2ormore_symbol_dicts = []
 
     for this_symbol_dict in list_of_symbol_dicts:
         if this_symbol_dict["requires_arguments"]:
@@ -83,15 +84,18 @@ def split_symbol_categories(graphDB_Driver, query_time_dict):
         else:
             if this_symbol_dict["dimension_count"] == 0:
                 list_of_dimension0_symbol_dicts.append(this_symbol_dict)
+            elif this_symbol_dict["dimension_count"] == 1:
+                list_of_dimension1_symbol_dicts.append(this_symbol_dict)
             else:
-                list_of_dimension1ormore_symbol_dicts.append(this_symbol_dict)
+                list_of_dimension2ormore_symbol_dicts.append(this_symbol_dict)
 
     return (
         query_time_dict,
         list_of_symbol_dicts,
         list_of_operation_dicts,
         list_of_dimension0_symbol_dicts,
-        list_of_dimension1ormore_symbol_dicts,
+        list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts,
     )
 
 

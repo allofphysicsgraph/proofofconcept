@@ -19,24 +19,15 @@
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form_symbol_properties.csrf_token }}
 
-          <span class="input-group-addon">size</span>
-          <select name="vector_size" class="selectpicker form-control">
-            {% for vec_size in ["arbitrary", "1xarbitrary", "arbitraryx1", "2x1", "1x2", "3x1", "1x3", "4x1", "1x4"]  %}
-              <option value="{{ vec_size }}">{{ vec_size }}</option>
-            {% endfor %}
-          </select>
-
-
     <P>{{ form_symbol_properties.symbol_is_composite.label}} (<B>required</B>): {{ form_symbol_properties.symbol_is_composite(size=50, minlength=1, maxlength=1000) }}</P>
  
-
-      <input type="submit" value="add dimension1 symbol">
+      <input type="submit" value="add vector">
     </P>
   </form>
 </fieldset>
 
 
-<P>{% include '_table_of_symbols_dimension1ormore.html' %}
+<P>{% include '_table_of_symbols_dimension1.html' %}
 
 
 

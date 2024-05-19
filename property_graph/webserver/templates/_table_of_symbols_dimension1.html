@@ -1,12 +1,12 @@
 
-<H3>{{ list_of_dimension1ormore_symbol_dicts|length }} Vectors, matricies = symbols of dimension 1 or more</H3>
+<H3>{{ list_of_dimension2ormore_symbol_dicts|length }} Vectors = symbols of dimension 1</H3>
 
 <P>For debugging purposes, here is the all the info available:
 
 <!-- { { list_of_symbol_dicts } } -->
 
 <ul>
-{% for this_symbol_dict in list_of_dimension1ormore_symbol_dicts %}
+{% for this_symbol_dict in list_of_dimension1_symbol_dicts %}
 <li>{{ this_symbol_dict }}</li>
 {% endfor %}
 </ul>
@@ -17,12 +17,14 @@
     <th>latex</th>
     <th>name</th>
     <th>description</th>
+    <th>orientation</th>
     <th>used in expression</th>
+    <th>used in derivation</th>
     <th>reference</th>
     <th>is_composite</th>
     <th>size</th>
   </tr>
-  {% for symbol_dict in list_of_dimension1ormore_symbol_dicts %}
+  {% for symbol_dict in list_of_dimension2ormore_symbol_dicts %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_symbol', symbol_id=symbol_dict['id'] ) }}">
@@ -32,9 +34,11 @@
     <td>{{ symbol_dict['latex']}}</td>
     <td>{{ symbol_dict['name_latex'] }}</td>
     <td>{{ symbol_dict['description_latex'] }}</td>
+    <td>{{ symbol_dict['orientation'] }}</td>
     <td>TODO</td> <!-- used in expressions -->
+    <td>TODO</td> <!-- used in derivation -->
     <td>{{ symbol_dict['symbol_reference'] }}</td>
-    <td>{{ symbol_dict['is_composit'] }}</td>
+    <td>{{ symbol_dict['is_composite'] }}</td>
     <td>{{ symbol_dict['size'] }}</td>
   </tr>
   {% endfor %}
