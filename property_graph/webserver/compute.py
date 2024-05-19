@@ -37,6 +37,44 @@ def generate_random_id(list_of_current_IDs: list) -> unique_numeric_id_as_str:
     return str(new_id)
 
 
+def get_dict_of_expressions_that_use_symbol(
+    graphDB_Driver, query_time_dict, list_of_symbol_dicts
+):
+    dict_of_expressions_that_use_symbol = {}
+    for this_symbol_dict in list_of_symbol_dicts:
+        with graphDB_Driver.session() as session:
+            query_start_time = time.time()
+            list_of_expression_dicts = session.read_transaction(
+                neo4j_query.expressions_that_use_symbol, this_symbol_dict["id"]
+            )
+            query_time_dict[
+                "get_dict_of_expressions_that_use_symbol: expressions_that_use_symbol"
+            ] = (time.time() - query_start_time)
+        dict_of_expressions_that_use_symbol[this_symbol_dict["id"]] = (
+            list_of_expression_dicts
+        )
+    return dict_of_expressions_that_use_symbol, query_time_dict
+
+
+def get_dict_of_derivations_that_use_symbol(
+    graphDB_Driver, query_time_dict, list_of_symbol_dicts
+):
+    dict_of_derivations_that_use_symbol = {}
+    for this_symbol_dict in list_of_symbol_dicts:
+        with graphDB_Driver.session() as session:
+            query_start_time = time.time()
+            list_of_derivation_dicts = session.read_transaction(
+                neo4j_query.derivations_that_use_symbol, this_symbol_dict["id"]
+            )
+            query_time_dict[
+                "get_dict_of_derivations_that_use_symbol: derivations_that_use_symbol"
+            ] = (time.time() - query_start_time)
+        dict_of_derivations_that_use_symbol[this_symbol_dict["id"]] = (
+            list_of_derivation_dicts
+        )
+    return dict_of_derivations_that_use_symbol, query_time_dict
+
+
 def get_dict_of_symbol_dicts(graphDB_Driver):
     """
     >>> get_dict_of_symbol_dicts()
@@ -79,6 +117,7 @@ def split_symbol_categories(graphDB_Driver, query_time_dict):
     list_of_dimension2ormore_symbol_dicts = []
 
     for this_symbol_dict in list_of_symbol_dicts:
+        print("this_symbol_dict=",this_symbol_dict)
         if this_symbol_dict["requires_arguments"]:
             list_of_operation_dicts.append(this_symbol_dict)
         else:
@@ -161,31 +200,31 @@ def get_dict_of_derivations_used_per_inference_rule(
     return dict_of_derivations_used_per_inference_rule
 
 
-def symbols_and_operations_per_expression(
-    graphDB_Driver, list_of_expression_dicts: list
+def symbols_per_expression(
+    graphDB_Driver, query_time_dict, list_of_expression_dicts: list
 ):
-    """ """
+    """
+    >>>
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: app/symbols_per_expression start " + trace_id)
+
     symbols_per_expression = {}
     operations_per_expression = {}
     for this_expression_dict in list_of_expression_dicts:
         list_of_symbol_IDs_in_expression = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_symbol_IDs_in_expression = session.read_transaction(
                 neo4j_query.symbols_in_expression, this_expression_dict["id"]
             )
+            query_time_dict["symbols_per_expression"] = time.time() - query_start_time
         symbols_per_expression[this_expression_dict["id"]] = (
             list_of_symbol_IDs_in_expression
         )
 
-        list_of_operation_IDs_in_expression = []
-        with graphDB_Driver.session() as session:
-            list_of_operation_IDs_in_expression = session.read_transaction(
-                neo4j_query.operations_in_expression, this_expression_dict["id"]
-            )
-        operations_per_expression[this_expression_dict["id"]] = (
-            list_of_operation_IDs_in_expression
-        )
-    return symbols_per_expression, operations_per_expression
+    print("[TRACE] func: app/symbols_per_expression end " + trace_id)
+    return symbols_per_expression, query_time_dict
 
 
 def all_steps_in_derivation(

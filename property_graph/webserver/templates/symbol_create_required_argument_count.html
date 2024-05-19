@@ -18,7 +18,8 @@
   <form method="post" action="" onsubmit="return checkForm(this);">
     {{ form_symbol_properties.csrf_token }}
 
-    <P>{{form_symbol_properties.required_argument_count.label }} (<B>required</B>): {{ form_symbol_properties.required_argument_count() }}    
+    <P>{{ form_symbol_properties.argument_count.label }} (<B>required</B>): 
+       {{ form_symbol_properties.argument_count() }}    
 
     <P><input type="submit" value="specify argument count for operation">
     </P>

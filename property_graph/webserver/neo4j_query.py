@@ -182,33 +182,6 @@ def symbols_in_expression(tx, expression_id: str) -> list:
     return symbol_list
 
 
-def operations_in_expression(tx, expression_id: str) -> list:
-    """
-    an expression typically has one or more operations
-    This read query returns which operation IDs are used for the provided expression ID
-
-    this is the opposite query of `expressions_that_use_operation`
-
-    """
-    trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/operations_in_expression start " + trace_id)
-
-    operation_list = []
-    for result in tx.run(
-        "MATCH (e:expression)-[:HAS_SYMBOL]->(s:symbol) WHERE e.id='"
-        + expression_id
-        + "' RETURN s.id"
-    ):
-        operation_list.append(result.data()["s.id"])
-
-    # TODO: not all symbols are operators. Filter by required_arguments=True
-
-    print("expression_id=", expression_id, "operation_list=", operation_list)
-
-    print("[TRACE] func: neo4j_query/operations_in_expression end " + trace_id)
-    return operation_list
-
-
 def list_nodes_of_type(tx, node_type: str) -> list:
     """
     for a specific node type (e.g., derivation XOR step XOR symbol, etc)
@@ -300,26 +273,28 @@ def expressions_that_use_symbol(tx, symbol_id: str) -> list:
     return list_of_expressions
 
 
-def expressions_that_use_operation(tx, operation_id: str) -> list:
+def derivations_that_use_symbol(tx, symbol_id: str) -> list:
     """
-    which expressions contain this operation?
+    which derivations contain this symbol?
 
-    >>> expressions_that_use_operation()
+    >>> derivations_that_use_symbol()
     """
     trace_id = str(random.randint(1000000, 9999999))
-    print("[TRACE] func: neo4j_query/expressions_that_use_operation start " + trace_id)
+    print("[TRACE] func: neo4j_query/derivations_that_use_symbol start " + trace_id)
 
-    list_of_expressions = []
+    list_of_derivations = []
 
     for result in tx.run(
-        "MATCH (e:expression), (op:operation) WHERE op.id = '"
-        + str(operation_id)
-        + "' RETURN e"
+        "MATCH (d:derivation), (s:symbol) WHERE s.id = '"
+        + str(symbol_id)
+        + "' RETURN d"
     ):
-        list_of_expressions.append(result.data()["e"])
+        list_of_derivations.append(result.data()["d"])
 
-    print("[TRACE] func: neo4j_query/expressions_that_use_operation end " + trace_id)
-    return list_of_expressions
+    print("symbol_id=", symbol_id, "list_of_derivations=", list_of_derivations)
+
+    print("[TRACE] func: neo4j_query/derivations_that_use_symbol end " + trace_id)
+    return list_of_derivations
 
 
 def steps_in_this_derivation(tx, derivation_id: str) -> list:
@@ -525,8 +500,14 @@ def add_inference_rule(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/add_inference_rule start " + trace_id)
 
-    assert (int(number_of_inputs) > 0) or (int(number_of_feeds) > 0)
+    assert (
+        (int(number_of_inputs) > 0)
+        or (int(number_of_feeds) > 0)
+        or (int(number_of_outputs) > 0)
+    )
+    assert int(number_of_inputs) >= 0
     assert int(number_of_feeds) >= 0
+    assert int(number_of_outputs) >= 0
 
     result = tx.run(
         "CREATE (a:inference_rule "
@@ -792,35 +773,6 @@ def disconnect_symbol_from_expression(tx, symbol_id: str, expression_id: str) ->
     return
 
 
-# def disconnect_operation_from_expression(
-#     tx, operation_id: str, expression_id: str
-# ) -> None:
-#     """
-#     called by "edit expression"
-
-#     https://neo4j.com/docs/cypher-manual/current/clauses/delete/
-#     """
-#     trace_id = str(random.randint(1000000, 9999999))
-#     print(
-#         "[TRACE] func: neo4j_query/disconnect_operation_from_expression start "
-#         + trace_id
-#     )
-#     result = tx.run(
-#         "MATCH (e:expression)-[r:HAS_OPERATION]->(p:operation)"
-#         + 'WHERE e.id="'
-#         + str(expression_id)
-#         + '" AND p.id="'
-#         + str(operation_id)
-#         + '"  DELETE r'
-#     )
-#     print("result.data=", result.data())
-
-#     print(
-#         "[TRACE] func: neo4j_query/disconnect_operation_from_expression end " + trace_id
-#     )
-#     return
-
-
 def add_symbol_to_expression(tx, symbol_id: str, expression_id: str) -> None:
     """ """
     trace_id = str(random.randint(1000000, 9999999))
@@ -855,27 +807,6 @@ def add_symbol_to_expression(tx, symbol_id: str, expression_id: str) -> None:
 
     print("[TRACE] func: neo4j_query/add_symbol_to_expression end " + trace_id)
     return
-
-
-# def add_operation_to_expression(tx, operation_id: str, expression_id: str) -> None:
-#     """ """
-#     trace_id = str(random.randint(1000000, 9999999))
-#     print("[TRACE] func: neo4j_query/add_operation_to_expression start " + trace_id)
-
-#     result = tx.run(
-#         "MATCH (e:expression),(p:operation) "
-#         + 'WHERE e.id="'
-#         + str(expression_id)
-#         + '" AND p.id="'
-#         + str(operation_id)
-#         + '" '
-#         + "MERGE (e)-[r:HAS_OPERATION]->(p) RETURN r"
-#     )
-#     print("result.data=", result.data())
-#     # TODO: probably don't need that "RETURN" statement
-
-#     print("[TRACE] func: neo4j_query/add_operation_to_expression end " + trace_id)
-#     return
 
 
 def list_sequence_values(tx, derivation_id: str) -> list:
@@ -1114,8 +1045,10 @@ def add_symbol_direct_scalar(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/add_symbol_direct_scalar start " + trace_id)
 
+    # corresponds to SpecifyNewSymbolDIRECTScalarForm
     assert len(symbol_latex) > 0
     assert len(symbol_scope) > 0
+    assert len(symbol_variable_or_constant) > 0
 
     result = tx.run(
         "CREATE (a:symbol "
@@ -1162,6 +1095,7 @@ def add_symbol_direct_vector(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/add_symbol_direct_vector start " + trace_id)
 
+    # corresponds to SpecifyNewSymbolDIRECTVectorForm
     assert len(symbol_latex) > 0
 
     if symbol_size == "arbitrary":
@@ -1219,6 +1153,7 @@ def add_symbol_direct_matrix(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/add_symbol_direct_matrix start " + trace_id)
 
+    # corresponds to SpecifyNewSymbolDIRECTMatrixForm
     assert len(symbol_latex) > 0
 
     if symbol_size == "arbitrary":
@@ -1273,6 +1208,7 @@ def add_symbol_direct_operation(
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: neo4j_query/add_symbol_direct_operation start " + trace_id)
 
+    # corresponds to SpecifyNewSymbolDIRECTOperationForm
     assert len(operation_name) > 0
     assert len(operation_latex) > 0
     assert int(operation_argument_count) > 0
@@ -1290,41 +1226,6 @@ def add_symbol_direct_operation(
 
     print("[TRACE] func: neo4j_query/add_symbol_direct_operation end " + trace_id)
     return
-
-
-# def all_edges(tx) -> str:
-#     """
-#     read Neo4j database
-
-#     >>> all_edges()
-#     """
-#     trace_id = str(random.randint(1000000, 9999999))
-#     print("[TRACE] func: neo4j_query/all_edges start " + trace_id)
-
-#     str_to_print = ""
-#     print("raw:")
-#     for result in tx.run("MATCH (n)-[r]->(m) RETURN n,r,m"):
-#         # print("n=", result["n"], "r=", result["r"], "m=", result["m"])
-#         print(result)
-
-#     # n= <Node id=0 labels=frozenset({'Person'}) properties={'name': 'Arthur'}>
-#     # r= <Relationship id=2 nodes=(<Node id=0 labels=frozenset({'Person'}) properties={'name': 'Arthur'}>, <Node id=3 labels=frozenset({'Person'}) properties={'name': 'Merlin'}>) type='KNOWS' properties={}>
-
-#     # https://stackoverflow.com/questions/31485802/how-to-return-relationship-type-with-neo4js-cypher-queries
-#     print("proper return:")
-#     for result in tx.run("MATCH (n)-[r]->(m) RETURN n.name_latex,type(r),m.name_latex"):
-#         print("result", result)
-#         str_to_print += (
-#             str(result["n.name_latex"])
-#             + "-"
-#             + str(result["type(r)"])
-#             + "->"
-#             + str(result["m.name_latex"])
-#             + "\n"
-#         )
-
-#     print("[TRACE] func: neo4j_query/all_edges end " + trace_id)
-#     return str_to_print
 
 
 def delete_all_nodes_and_relationships(tx) -> None:
@@ -1350,41 +1251,6 @@ def delete_all_nodes_and_relationships(tx) -> None:
     return
 
 
-# def all_nodes(tx):
-#     """
-#     List all nodes in Neo4j database
-
-#     Read-only for Neo4j database
-
-#     >>> all_nodes(tx)
-#     """
-#     trace_id = str(random.randint(1000000, 9999999))
-#     print("[TRACE] func: neo4j_query/all_nodes start " + trace_id)
-
-#     all_nodes = {}
-#     for result in tx.run("MATCH (n) RETURN n"):
-#         # print("result n",result["n"])
-#         # <Node id=0 labels=frozenset({'derivation'}) properties={'name_latex': 'a deriv', 'abstract_latex': 'an abstract for deriv', 'author_name_latex': 'ben', 'derivation_id': '5389624'}>
-#         # print("result.data()",result.data())
-#         # {'n': {'name_latex': 'a deriv', 'abstract_latex': 'an abstract for deriv', 'author_name_latex': 'ben', 'derivation_id': '5389624'}}
-#         if len(result["n"].labels) > 1:
-#             print("this result", result)
-
-#             print("[TRACE] func: neo4j_query/all_nodes end " + trace_id)
-#             raise Exception("multiple labels for this node")
-#         for this_label in result["n"].labels:
-#             try:
-#                 all_nodes[this_label].append(result.data())
-#             except KeyError:
-#                 all_nodes[this_label] = [result.data()]
-
-#     # for result in tx.run("MATCH (n) RETURN n.name"):
-#     #    result["n.name"]
-
-#     print("[TRACE] func: neo4j_query/all_nodes end " + trace_id)
-#     return all_nodes
-
-
 def user_query(tx, query: str) -> str:
     """
     User-submitted Cypher query for Neo4j database
@@ -1407,20 +1273,3 @@ def user_query(tx, query: str) -> str:
 
     print("[TRACE] func: neo4j_query/user_query end " + trace_id)
     return list_of_results
-
-
-# d e f who_are_friends_of(tx, name: str) -> list:
-#    """
-#    DEMO; CAN BE DELETED
-#    """
-#    print("func: who_are_friends_of")
-#    list_of_friends = []
-#    for result in tx.run(
-#        "MATCH (a:Person)-[:KNOWS]->(friend) WHERE a.name = $name "
-#        "RETURN friend.name ORDER BY friend.name",
-#        name=name,
-#    ):
-#        print(result)
-#        print(result["friend.name"])
-#        list_of_friends.append(str(result["friend.name"]))
-#    return list_of_friends

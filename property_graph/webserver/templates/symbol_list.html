@@ -7,42 +7,85 @@
 
 <P>See also Wikipedia's <a href="https://en.wikipedia.org/wiki/Glossary_of_mathematical_symbols">list of symbols</a></P>
 
+<!--
 <P>All symbols:
-{% for symbol_dict in list_of_symbol_dicts %}
+{ % for symbol_dict in list_of_symbol_dicts %}
 <UL>
-  <LI>{{ symbol_dict }}</LI>
+  <LI>{ { symbol_dict }}</LI>
 </UL>
-{% endfor %}
+{ % endfor %}
+-->
+
+<H1>List of Symbols</H1>
+
+<P>The symbol ID links to a page where you can edit the symbol<BR>
 
 <fieldset>
 <legend>
-  <H2>List of Symbols</h2>
+  <H2>There are {{ list_of_operation_dicts|length }} Operations, aka symbols that require arguments</h2>
+</legend>
+
+<P>An Operation is a symbol that requires arguments, e.g., +, ^, determinant
+
+<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
+<P>(TODO) this box doesn't actually search yet: <input type="text" id="symbol_input" onkeyup="select_symbol()" placeholder="Select symbol to review">
+
+{% include '_table_of_symbols_requires_arguments.html' %}
+
+<P>Action: <a href="{{ url_for('to_add_operation') }}?referrer=list_symbols">add new operation</a>
+
+</fieldset>
+
+<fieldset>
+<legend>
+  <H2>There are {{ list_of_dimension0_symbol_dicts|length }} Scalars, aka symbols of dimension 0</h2>
 </legend>
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
 (TODO) this box doesn't actually search yet: <input type="text" id="symbol_input" onkeyup="select_symbol()" placeholder="Select symbol to review">
 
-<P>The symbol ID links to a page where you can edit the symbol<BR>
+{% include '_table_of_symbols_dimension0.html' %}
 
-<P>{% include '_table_of_symbols_requires_arguments.html' %}
-<P>{% include '_table_of_symbols_dimension0.html' %}
-<P>{% include '_table_of_symbols_dimension1.html' %}
-<P>{% include '_table_of_symbols_dimension2ormore.html' %}
+<P>Action: <a href="{{ url_for('to_add_symbol_scalar') }}?referrer=list_symbols">add new scalar symbol</a> -- arguments not required. Includes bra, ket.
+
 
 
 </fieldset>
+<fieldset>
+<legend>
+  <H2>There are {{ list_of_dimension1_symbol_dicts|length }} Vectors = symbols of dimension 1</h2>
+</legend>
+
+<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
+(TODO) this box doesn't actually search yet: <input type="text" id="symbol_input" onkeyup="select_symbol()" placeholder="Select symbol to review">
+
+
+{% include '_table_of_symbols_dimension1.html' %}
+
+<P>Action: <a href="{{ url_for('to_add_symbol_vector') }}?referrer=list_symbols">add new vector symbol</a> (e.g., 1xn or nx1 or arbitrary size)
+
+</fieldset>
+<fieldset>
+<legend>
+  <H2>There are {{ list_of_dimension2ormore_symbol_dicts|length }} matricies = symbols of dimension 2 or more</h2>
+</legend>
+
+<!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
+(TODO) this box doesn't actually search yet: <input type="text" id="symbol_input" onkeyup="select_symbol()" placeholder="Select symbol to review">
+
+{% include '_table_of_symbols_dimension2ormore.html' %}
+
+<P>Action: <a href="{{ url_for('to_add_symbol_matrix') }}?referrer=list_symbols">add new matrix symbol</a> (e.g., nxm or arbitrary size)
+
+</fieldset>
+
 
 <fieldset>
 <legend>
   <H2>Actions for Symbols</h2>
 </legend>
 
-<UL>
-  <LI><a href="{{ url_for('to_add_operation') }}?referrer=list_symbols">add new operation</a> -- a symbol that requires arguments, e.g., +, ^, determinant</LI>
-  <LI><a href="{{ url_for('to_add_symbol_scalar') }}?referrer=list_symbols">add new scalar symbol</a> -- arguments not required. Includes bra, ket.</LI>
-  <LI><a href="{{ url_for('to_add_symbol_vector') }}?referrer=list_symbols">add new vector symbol</a> (e.g., 1xn or nx1 or arbitrary size)</LI>
-  <LI><a href="{{ url_for('to_add_symbol_matrix') }}?referrer=list_symbols">add new matrix symbol</a> (e.g., nxm or arbitrary size)</LI>
-  <LI><a href="{{ url_for('to_add_symbol') }}?referrer=list_symbols">add new symbol</a> -- not clear which categorey; guide needed</LI>
+  <P><a href="{{ url_for('to_add_symbol') }}?referrer=list_symbols">add new symbol</a> -- not clear which categorey; guide needed</P>
 </UL>
 
 

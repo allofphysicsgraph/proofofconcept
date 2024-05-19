@@ -41,13 +41,6 @@ properties={'author_name_latex': str,     # 'jane doe'
             'lean': str,                  # '?'
             'sympy': str}                 # Eq(Sym('49248923'),Sym('2499492'))
 
-node type: 'operation'
-properties={'author_name_latex': str,     # 'jane doe'
-            'name_latex': str,            # 'equality', 
-            'description_latex': str,     # 'explanation goes here'
-            'id': str,                    # '5607606', 
-            'latex': str}                 # '+'
-
 
 
 edges:
@@ -76,10 +69,6 @@ type='HAS_INFERENCE_RULE'
 :expression
 type='HAS_SYMBOL'
 :symbol
-
-:expression
-type='HAS_OPERATION'
-:operation
 
 
 

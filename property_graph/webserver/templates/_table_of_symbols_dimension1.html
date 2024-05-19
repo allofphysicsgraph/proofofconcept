@@ -1,5 +1,4 @@
 
-<H3>{{ list_of_dimension2ormore_symbol_dicts|length }} Vectors = symbols of dimension 1</H3>
 
 <P>For debugging purposes, here is the all the info available:
 
@@ -24,7 +23,7 @@
     <th>is_composite</th>
     <th>size</th>
   </tr>
-  {% for symbol_dict in list_of_dimension2ormore_symbol_dicts %}
+  {% for symbol_dict in list_of_dimension1_symbol_dicts %}
   <tr>
     <td>
       <a href="{{ url_for( 'to_edit_symbol', symbol_id=symbol_dict['id'] ) }}">
@@ -35,8 +34,18 @@
     <td>{{ symbol_dict['name_latex'] }}</td>
     <td>{{ symbol_dict['description_latex'] }}</td>
     <td>{{ symbol_dict['orientation'] }}</td>
-    <td>TODO</td> <!-- used in expressions -->
-    <td>TODO</td> <!-- used in derivation -->
+    <td>{% for expression_dict in dict_of_expressions_that_use_symbol[symbol_dict['id']] %}
+      <UL>
+        <LI><a href="{{ url_for('to_edit_expression', expression_id=expression_dict['id']) }}?referrer=table_of_symbols_requires_arguments">{{ expression_dict['id'] }}</a></LI>
+      </UL>
+        {% endfor %}
+    </td> <!-- used in expressions -->
+    <td>{% for derivation_dict in dict_of_derivations_that_use_symbol[symbol_dict['id']] %}
+      <UL>
+        <LI><a href="{{ url_for('to_review_derivation', derivation_id=derivation_dict['id']) }}">{{ derivation_dict['id'] }}</a></LI>
+      </UL>
+        {% endfor %}
+    </td> <!-- used in derivation -->
     <td>{{ symbol_dict['symbol_reference'] }}</td>
     <td>{{ symbol_dict['is_composite'] }}</td>
     <td>{{ symbol_dict['size'] }}</td>

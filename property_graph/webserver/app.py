@@ -123,6 +123,7 @@ while not neo4j_available:
 
 try:
     with graphDB_Driver.session() as session:
+        # NO TIMING NEEDED HERE
         list_of_derivation_IDs = session.write_transaction(
             neo4j_query.constrain_unique_id
         )
@@ -270,7 +271,12 @@ class SpecifyNewSymbolDIRECTScalarForm(FlaskForm):
 
     symbol_scope = RadioField(
         label="scope",
-        choices=[("real", "real"), ("complex", "complex"), ("integer", "integer")],
+        choices=[
+            ("real", "real"),
+            ("complex", "complex"),
+            ("integer", "integer"),
+            ("arbitrary", "arbitrary"),
+        ],
         default="real",
         validators=[validators.InputRequired()],
     )
@@ -438,7 +444,7 @@ class SpecifyNewSymbolDIRECTOperationForm(FlaskForm):
 
     operation_name = StringField(
         "name (LaTeX)",
-        validators=[validators.Length(max=1000)],
+        validators=[validators.InputRequired(), validators.Length(max=1000)],
     )
     operation_description = StringField(
         "description (LaTeX)",
@@ -480,7 +486,7 @@ class SpecifyNewSymbolArgumentCountForm(FlaskForm):
     user has specified this is an operation, so now they need to specify number of arguments
     """
 
-    required_argument_count = IntegerField(
+    argument_count = IntegerField(
         label="number of arguments",
         validators=[validators.InputRequired(), validators.NumberRange(min=1, max=20)],
         default=1,
@@ -715,8 +721,12 @@ def main():
 
     number_of_operations = 0
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_symbol_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "symbol"
+        )
+        query_time_dict["main: list_nodes_of_type, symbol for operation"] = (
+            time.time() - query_start_time
         )
     # filter "list_of_symbol_dicts" down to "list_of_operation_dicts"
     for this_symbol_dict in list_of_symbol_dicts:
@@ -754,6 +764,7 @@ def to_add_derivation():
 
     list_of_derivation_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_derivation_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "derivation"
         )
@@ -763,6 +774,7 @@ def to_add_derivation():
         print("derivation_dict", derivation_dict)
 
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_steps = session.read_transaction(
                 neo4j_query.steps_in_this_derivation, derivation_dict["id"]
             )
@@ -797,6 +809,7 @@ def to_add_derivation():
 
         list_of_derivation_IDs = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_derivation_IDs = session.read_transaction(
                 neo4j_query.list_IDs, "derivation"
             )
@@ -810,6 +823,7 @@ def to_add_derivation():
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_derivation,
                 derivation_id,
@@ -895,23 +909,28 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
 
         for this_step_dict in list_of_step_dicts:
             with graphDB_Driver.session() as session:
+                query_start_time = time.time()
                 session.write_transaction(
                     neo4j_query.disconnect_step_from_inference_rule,
                     this_step_dict["id"],
                 )
             with graphDB_Driver.session() as session:
+                query_start_time = time.time()
                 session.write_transaction(
                     neo4j_query.disconnect_step_from_expressions, this_step_dict["id"]
                 )
             with graphDB_Driver.session() as session:
+                query_start_time = time.time()
                 session.write_transaction(
                     neo4j_query.disconnect_step_from_derivation, this_step_dict["id"]
                 )
             with graphDB_Driver.session() as session:
+                query_start_time = time.time()
                 session.write_transaction(
                     neo4j_query.delete_node, this_step_dict["id"], "step"
                 )
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.delete_node, derivation_id, "derivation"
             )
@@ -1003,6 +1022,7 @@ def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
         author_name_latex = "Ben"
 
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.edit_derivation_metadata,
                 derivation_id,
@@ -1015,6 +1035,7 @@ def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
     # get properties for derivation ID
     derivation_dict = {}
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         derivation_dict = session.read_transaction(
             neo4j_query.node_properties, "derivation", derivation_id
         )
@@ -1064,6 +1085,7 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
 
     list_of_inference_rule_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_inference_rule_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "inference_rule"
         )
@@ -1084,6 +1106,7 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
     # get properties of this derivation
     derivation_dict = {}
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         derivation_dict = session.read_transaction(
             neo4j_query.node_properties, "derivation", derivation_id
         )
@@ -1117,6 +1140,7 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
 
     expression_dict = {}
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         expression_dict = session.read_transaction(
             neo4j_query.node_properties, "expression", expression_id
         )
@@ -1131,6 +1155,7 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
 
     list_of_symbol_IDs_in_expression = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_symbol_IDs_in_expression = session.read_transaction(
             neo4j_query.symbols_in_expression, expression_id
         )
@@ -1149,25 +1174,6 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
             this_symbol_ID
         ]
     print("dict_of_symbol_dicts_in_expression=", dict_of_symbol_dicts_in_expression)
-
-    # dict_of_operation_dicts_in_expression = {}
-    # with graphDB_Driver.session() as session:
-    #     list_of_operation_IDs_in_expression = session.read_transaction(
-    #         neo4j_query.operations_in_expression, expression_id
-    #     )
-    # print(
-    #     "list_of_operation_IDs_in_expression=",
-    #     list_of_operation_IDs_in_expression,
-    # )
-
-    # dict_of_operation_dicts_in_expression = {}
-    # for this_operation_ID in list_of_operation_IDs_in_expression:
-    #     dict_of_operation_dicts_in_expression[this_operation_ID] = (
-    #         dict_of_all_operation_dicts[this_operation_ID]
-    #     )
-    # print(
-    #     "dict_of_operation_dicts_in_expression=", dict_of_operation_dicts_in_expression
-    # )
 
     # create new dict of symbols NOT used in expression
     dict_of_symbol_dicts_not_in_expression = {}
@@ -1210,6 +1216,7 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.edit_expression,
                 expression_id,
@@ -1232,6 +1239,7 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
 
             # https://neo4j.com/docs/python-manual/current/session-api/
             with graphDB_Driver.session() as session:
+                query_start_time = time.time()
                 session.write_transaction(
                     neo4j_query.disconnect_symbol_from_expression,
                     symbol_id_to_disconnect,
@@ -1244,6 +1252,7 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
 
             # https://neo4j.com/docs/python-manual/current/session-api/
             with graphDB_Driver.session() as session:
+                query_start_time = time.time()
                 session.write_transaction(
                     neo4j_query.add_symbol_to_expression,
                     symbol_id_to_add,
@@ -1304,16 +1313,14 @@ def to_add_expression():
 
     list_of_expression_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_expression_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "expression"
         )
 
-    (
-        symbols_per_expression,
-        operations_per_expression,
-    ) = compute.symbols_and_operations_per_expression(
-        graphDB_Driver, list_of_expression_dicts
-    )
+        symbols_per_expression = compute.symbols_per_expression(
+            graphDB_Driver, query_time_dict, list_of_expression_dicts
+        )
 
     web_form = SpecifyNewExpressionForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -1336,6 +1343,7 @@ def to_add_expression():
 
         list_of_expression_IDs = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_expression_IDs = session.read_transaction(
                 neo4j_query.list_IDs, "expression"
             )
@@ -1343,6 +1351,7 @@ def to_add_expression():
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_expression,
                 expression_id,
@@ -1367,7 +1376,6 @@ def to_add_expression():
         query_time_dict=query_time_dict,
         form=web_form,
         symbols_per_expression=symbols_per_expression,
-        operations_per_expression=operations_per_expression,
         list_of_expression_dicts=list_of_expression_dicts,
     )
 
@@ -1402,6 +1410,7 @@ def to_edit_operation(operation_id: unique_numeric_id_as_str):
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_operation,
                 operation_id,
@@ -1415,6 +1424,7 @@ def to_edit_operation(operation_id: unique_numeric_id_as_str):
     operation_dict = {}
     # get properties of this operation
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         operation_dict = session.read_transaction(
             neo4j_query.node_properties, "operation", operation_id
         )
@@ -1459,6 +1469,7 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_symbol,
                 symbol_id,
@@ -1483,6 +1494,7 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
 
     symbol_dict = {}
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         symbol_dict = session.read_transaction(
             neo4j_query.node_properties, "symbol", symbol_id
         )
@@ -1547,6 +1559,7 @@ def to_add_symbol_scalar():
 
         list_of_symbol_IDs = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_symbol_IDs = session.read_transaction(
                 neo4j_query.list_IDs, "symbol"
             )
@@ -1554,6 +1567,7 @@ def to_add_symbol_scalar():
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_symbol_direct_scalar,
                 symbol_id,
@@ -1632,6 +1646,7 @@ def to_add_symbol_vector():
 
         list_of_symbol_IDs = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_symbol_IDs = session.read_transaction(
                 neo4j_query.list_IDs, "symbol"
             )
@@ -1639,6 +1654,7 @@ def to_add_symbol_vector():
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_symbol_direct_vector,
                 symbol_id,
@@ -1711,6 +1727,7 @@ def to_add_symbol_matrix():
 
         list_of_symbol_IDs = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_symbol_IDs = session.read_transaction(
                 neo4j_query.list_IDs, "symbol"
             )
@@ -1718,6 +1735,7 @@ def to_add_symbol_matrix():
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_symbol_direct_matrix,
                 symbol_id,
@@ -1782,6 +1800,7 @@ def to_add_symbol():
 
         list_of_symbol_IDs = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_symbol_IDs = session.read_transaction(
                 neo4j_query.list_IDs, "symbol"
             )
@@ -1789,6 +1808,7 @@ def to_add_symbol():
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_symbol,
                 symbol_id,
@@ -1829,11 +1849,24 @@ def to_add_symbol():
         list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
+    dict_of_expressions_that_use_symbol, query_time_dict = (
+        compute.get_dict_of_expressions_that_use_symbol(
+            graphDB_Driver, query_time_dict, list_of_symbol_dicts
+        )
+    )
+    dict_of_derivations_that_use_symbol, query_time_dict = (
+        compute.get_dict_of_derivations_that_use_symbol(
+            graphDB_Driver, query_time_dict, list_of_symbol_dicts
+        )
+    )
+
     print("[TRACE] func: app/to_add_symbol end " + trace_id)
     return render_template(
         "symbol_create.html",
         query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
+        dict_of_expressions_that_use_symbol=dict_of_expressions_that_use_symbol,
+        dict_of_derivations_that_use_symbol=dict_of_derivations_that_use_symbol,
         list_of_symbol_dicts=list_of_symbol_dicts,
         list_of_operation_dicts=list_of_operation_dicts,
         list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
@@ -1867,15 +1900,51 @@ def to_add_symbol_required_argument_count(symbol_id: unique_numeric_id_as_str):
     if request.method == "POST" and web_form_symbol_properties.validate():
         print("request.form = ", request.form)
 
-        # symbol_latex = str(web_form_symbol_properties.symbol_latex.data).strip()
+        argument_count = str(web_form_symbol_properties.argument_count.data).strip()
         return redirect(url_for("to_list_symbols"))
+
+        with graphDB_Driver.session() as session:
+            query_start_time = time.time()
+            session.write_transaction(
+                neo4j_query.edit_node_property,
+                "symbol",
+                symbol_id,
+                "argument_count",
+                argument_count,
+            )
+            query_time_dict[
+                "to_add_symbol_required_argument_count: edit_node_property, argument_count"
+            ] = (time.time() - query_start_time)
+
+    (
+        query_time_dict,
+        list_of_symbol_dicts,
+        list_of_operation_dicts,
+        list_of_dimension0_symbol_dicts,
+        list_of_dimension1_symbol_dicts,
+        list_of_dimension2ormore_symbol_dicts,
+    ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
+
+    dict_of_expressions_that_use_symbol, query_time_dict = (
+        compute.get_dict_of_expressions_that_use_symbol(
+            graphDB_Driver, query_time_dict, list_of_symbol_dicts
+        )
+    )
+    dict_of_derivations_that_use_symbol, query_time_dict = (
+        compute.get_dict_of_derivations_that_use_symbol(
+            graphDB_Driver, query_time_dict, list_of_symbol_dicts
+        )
+    )
 
     print("[TRACE] func: app/to_add_symbol_required_argument_count end " + trace_id)
     return render_template(
         "symbol_create_required_argument_count.html",
         form_symbol_properties=web_form_symbol_properties,
+        dict_of_expressions_that_use_symbol=dict_of_expressions_that_use_symbol,
+        dict_of_derivations_that_use_symbol=dict_of_derivations_that_use_symbol,
         symbol_dict=symbol_dict,
         query_time_dict=query_time_dict,
+        list_of_operation_dicts=list_of_operation_dicts,
     )
 
 
@@ -1921,7 +1990,7 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
                 "to_add_symbol_dimension_count: edit_node_property, symbol"
             ] = (time.time() - query_start_time)
 
-        if request.form["dimension_count"] == 0:  # scalar
+        if symbol_dimension_count == 0:  # scalar
             print(
                 "[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension0_properties"
                 + trace_id
@@ -1929,7 +1998,7 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
             return redirect(
                 url_for("to_add_symbol_dimension0_properties", symbol_id=symbol_id)
             )
-        elif request.form["dimension_count"] == 1:  # vector
+        elif symbol_dimension_count == 1:  # vector
             print(
                 "[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension1_properties"
                 + trace_id
@@ -1937,7 +2006,7 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
             return redirect(
                 url_for("to_add_symbol_dimension1_properties", symbol_id=symbol_id)
             )
-        elif request.form["dimension_count"] == 2:  # vector
+        elif symbol_dimension_count == 2:  # vector
             print(
                 "[TRACE] func: app/to_add_symbol_dimension_count end; redirect to to_add_symbol_dimension2_properties"
                 + trace_id
@@ -1946,14 +2015,15 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
                 url_for("to_add_symbol_dimension2_properties", symbol_id=symbol_id)
             )
 
-    (
-        query_time_dict,
-        list_of_symbol_dicts,
-        list_of_operation_dicts,
-        list_of_dimension0_symbol_dicts,
-        list_of_dimension1_symbol_dicts,
-        list_of_dimension2ormore_symbol_dicts,
-    ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
+    # can't use this because the dimension hasn't been specified yet
+    # (
+    #     query_time_dict,
+    #     list_of_symbol_dicts,
+    #     list_of_operation_dicts,
+    #     list_of_dimension0_symbol_dicts,
+    #     list_of_dimension1_symbol_dicts,
+    #     list_of_dimension2ormore_symbol_dicts,
+    # ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
     print(
         "[TRACE] func: app/to_add_symbol_dimension_count end; render template "
@@ -1964,9 +2034,9 @@ def to_add_symbol_dimension_count(symbol_id: unique_numeric_id_as_str):
         form_symbol_properties=web_form_symbol_properties,
         symbol_dict=symbol_dict,
         query_time_dict=query_time_dict,
-        list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
-        list_of_dimension1_symbol_dicts=list_of_dimension1_symbol_dicts,
-        list_of_dimension2ormore_symbol_dicts=list_of_dimension2ormore_symbol_dicts,
+        # list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
+        # list_of_dimension1_symbol_dicts=list_of_dimension1_symbol_dicts,
+        # list_of_dimension2ormore_symbol_dicts=list_of_dimension2ormore_symbol_dicts,
     )
 
 
@@ -2255,6 +2325,7 @@ def to_add_operation():
 
     list_of_operation_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_symbol_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "symbol"
         )
@@ -2262,6 +2333,17 @@ def to_add_operation():
     for this_symbol_dict in list_of_symbol_dicts:
         if this_symbol_dict["requires_arguments"]:
             list_of_operation_dicts.append(this_symbol_dict)
+
+    dict_of_expressions_that_use_symbol, query_time_dict = (
+        compute.get_dict_of_expressions_that_use_symbol(
+            graphDB_Driver, query_time_dict, list_of_operation_dicts
+        )
+    )
+    dict_of_derivations_that_use_symbol, query_time_dict = (
+        compute.get_dict_of_derivations_that_use_symbol(
+            graphDB_Driver, query_time_dict, list_of_operation_dicts
+        )
+    )
 
     web_form = SpecifyNewSymbolDIRECTOperationForm(request.form)
     if request.method == "POST" and web_form.validate():
@@ -2282,6 +2364,7 @@ def to_add_operation():
         author_name_latex = "ben"
 
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_symbol_IDs = session.read_transaction(
                 neo4j_query.list_IDs, "symbol"
             )
@@ -2289,6 +2372,7 @@ def to_add_operation():
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_symbol_direct_operation,
                 operation_id,
@@ -2307,6 +2391,8 @@ def to_add_operation():
         query_time_dict=query_time_dict,
         form_operation_properties=web_form,
         list_of_operation_dicts=list_of_operation_dicts,
+        dict_of_expressions_that_use_symbol=dict_of_expressions_that_use_symbol,
+        dict_of_derivations_that_use_symbol=dict_of_derivations_that_use_symbol,
     )
 
 
@@ -2333,6 +2419,7 @@ def to_add_step_select_expressions(
     # get list of expressions
     list_of_expression_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_expression_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "expression"
         )
@@ -2350,6 +2437,7 @@ def to_add_step_select_expressions(
     # get properties for derivation
     derivation_dict = {}
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         derivation_dict = session.read_transaction(
             neo4j_query.node_properties, "derivation", derivation_id
         )
@@ -2357,6 +2445,7 @@ def to_add_step_select_expressions(
 
     inference_rule_dict = {}
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         inference_rule_dict = session.read_transaction(
             neo4j_query.node_properties, "inference_rule", inference_rule_id
         )
@@ -2395,6 +2484,7 @@ def to_add_step_select_expressions(
 
         list_of_step_IDs = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_step_IDs = session.read_transaction(neo4j_query.list_IDs, "step")
         step_id = compute.generate_random_id(list_of_step_IDs)
         print("generated step_id=", step_id)
@@ -2404,6 +2494,7 @@ def to_add_step_select_expressions(
         list_of_sequence_values = []
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_sequence_values = session.read_transaction(
                 neo4j_query.list_sequence_values, derivation_id
             )
@@ -2418,6 +2509,7 @@ def to_add_step_select_expressions(
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_step_to_derivation,
                 step_id,
@@ -2476,6 +2568,7 @@ def to_add_symbol_count_for_expression(
     query_time_dict = {}
 
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         expression_dict = session.read_transaction(
             neo4j_query.node_properties, "expression", expression_id
         )
@@ -2522,9 +2615,13 @@ def to_add_symbols_and_operations_for_expression(
     query_time_dict = {}
 
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         expression_dict = session.read_transaction(
             neo4j_query.node_properties, "expression", expression_id
         )
+        query_time_dict[
+            "to_add_symbols_and_operations_for_expression, node_properties"
+        ] = (time.time() - query_start_time)
     print("expression_dict=", expression_dict)
 
     # TODO: given a Latex expression, and given all existing symbols,
@@ -2535,30 +2632,48 @@ def to_add_symbols_and_operations_for_expression(
 
     list_of_symbol_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_symbol_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "symbol"
         )
+        query_time_dict[
+            "to_add_symbols_and_operations_for_expression, list_nodes_of_type"
+        ] = (time.time() - query_start_time)
     print("list_of_symbols", list_of_symbol_dicts)
 
     list_of_symbol_latex = []
     dict_of_symbol_dicts = {}
     for this_symbol_dict in list_of_symbol_dicts:
         dict_of_symbol_dicts[this_symbol_dict["id"]] = this_symbol_dict
-        list_of_symbol_latex.append(this_symbol_dict["latex"])
+        # list_of_symbol_latex.append(this_symbol_dict["latex"])
 
     # https://stackoverflow.com/a/2587419/1164295
-    list_of_symbol_latex.sort(key=len)
-    print("list_of_symbol_latex=", list_of_symbol_latex)
+    # list_of_symbol_latex.sort(key=len)
+
+    # https://stackoverflow.com/a/73050/1164295
+    list_of_symbol_dicts_sorted_by_latex = sorted(
+        list_of_symbol_dicts, key=lambda d: d["latex"]
+    )
+
+    print("list_of_symbol_dicts_sorted_by_latex=", list_of_symbol_dicts_sorted_by_latex)
 
     # TODO: search (starting with the longest symbols first) for each symbol in the expression
     # provide the user with the list of guessed symbols
     # There may be multiple matching symbol IDs for a given latex symbol, e.g., "x"
 
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         expression_dict = session.read_transaction(
             neo4j_query.node_properties, "expression", expression_id
         )
+        query_time_dict[
+            "to_add_symbols_and_operations_for_expression, node_properties"
+        ] = (time.time() - query_start_time)
     print("expression_dict=", expression_dict)
+
+    print("expression_dict[latex]=", expression_dict["latex"])
+
+    potential_symbols_found = []
 
     # TODO: use the right form
     web_form_no_options = NoOptionsForm(request.form)
@@ -2593,11 +2708,16 @@ def to_add_sympy_and_lean_for_latex_expression(expression_id: unique_numeric_id_
     print(
         "[TRACE] func: app/to_add_sympy_and_lean_for_latex_expression start " + trace_id
     )
+    query_time_dict = {}
 
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         expression_dict = session.read_transaction(
             neo4j_query.node_properties, "expression", expression_id
         )
+        query_time_dict[
+            "to_add_sympy_and_lean_for_latex_expression, node_properties"
+        ] = (time.time() - query_start_time)
     print("expression_dict=", expression_dict)
 
     # TODO: use the right form
@@ -2631,6 +2751,7 @@ def to_add_inference_rule():
 
     list_of_inference_rule_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_inference_rule_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "inference_rule"
         )
@@ -2664,6 +2785,7 @@ def to_add_inference_rule():
         # https://neo4j.com/docs/python-manual/current/session-api/
         list_of_inference_rule_dicts = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_inference_rule_dicts = session.read_transaction(
                 neo4j_query.list_nodes_of_type, "inference_rule"
             )
@@ -2691,6 +2813,7 @@ def to_add_inference_rule():
 
         list_of_inference_rule_IDs = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_inference_rule_IDs = session.read_transaction(
                 neo4j_query.list_IDs, "inference_rule"
             )
@@ -2699,6 +2822,7 @@ def to_add_inference_rule():
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_inference_rule,
                 inference_rule_id=inference_rule_id,
@@ -2734,6 +2858,7 @@ def to_edit_step(
     # list all steps in this derivation
     list_of_step_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_step_dicts = session.read_transaction(
             neo4j_query.steps_in_this_derivation, derivation_id
         )
@@ -2755,6 +2880,7 @@ def to_edit_step(
         print("note_after_step_latex", note_after_step_latex)
 
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.edit_step_notes,
                 step_id,
@@ -2799,6 +2925,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
         # https://neo4j.com/docs/python-manual/current/session-api/
         list_of_inference_rule_dicts = []
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_inference_rule_dicts = session.read_transaction(
                 neo4j_query.list_nodes_of_type, "inference_rule"
             )
@@ -2823,6 +2950,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
 
         # https://neo4j.com/docs/python-manual/current/session-api/
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             session.write_transaction(
                 neo4j_query.add_inference_rule,
                 inference_rule_id=inference_rule_id,
@@ -2836,6 +2964,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
 
     list_of_derivation_dicts_that_use_this_inference_rule_id = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_derivation_dicts_that_use_this_inference_rule_id = (
             session.read_transaction(
                 neo4j_query.derivations_that_use_inference_rule,
@@ -2849,6 +2978,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
     # get properties for inference rule
     inference_rule_dict = {}
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         inference_rule_dict = session.read_transaction(
             neo4j_query.node_properties, "inference_rule", inference_rule_id
         )
@@ -3056,14 +3186,26 @@ def to_list_operations():
     for this_symbol_dict in list_of_symbol_dicts:
         if this_symbol_dict["requires_arguments"]:
             list_of_operation_dicts.append(this_symbol_dict)
-
     print("list_of_operation_dicts", list_of_operation_dicts)
+
+    dict_of_expressions_that_use_symbol, query_time_dict = (
+        compute.get_dict_of_expressions_that_use_symbol(
+            graphDB_Driver, query_time_dict, list_of_operation_dicts
+        )
+    )
+    dict_of_derivations_that_use_symbol, query_time_dict = (
+        compute.get_dict_of_derivations_that_use_symbol(
+            graphDB_Driver, query_time_dict, list_of_operation_dicts
+        )
+    )
 
     print("[TRACE] func: app/to_list_operations end " + trace_id)
     return render_template(
         "symbol_list_operations.html",
         query_time_dict=query_time_dict,
         list_of_operation_dicts=list_of_operation_dicts,
+        dict_of_expressions_that_use_symbol=dict_of_expressions_that_use_symbol,
+        dict_of_derivations_that_use_symbol=dict_of_derivations_that_use_symbol,
     )
 
 
@@ -3085,6 +3227,17 @@ def to_list_symbols():
         list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
+    dict_of_expressions_that_use_symbol, query_time_dict = (
+        compute.get_dict_of_expressions_that_use_symbol(
+            graphDB_Driver, query_time_dict, list_of_symbol_dicts
+        )
+    )
+    dict_of_derivations_that_use_symbol, query_time_dict = (
+        compute.get_dict_of_derivations_that_use_symbol(
+            graphDB_Driver, query_time_dict, list_of_symbol_dicts
+        )
+    )
+
     print("[TRACE] func: app/to_list_symbols end " + trace_id)
     return render_template(
         "symbol_list.html",
@@ -3094,6 +3247,8 @@ def to_list_symbols():
         list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
         list_of_dimension1_symbol_dicts=list_of_dimension1_symbol_dicts,
         list_of_dimension2ormore_symbol_dicts=list_of_dimension2ormore_symbol_dicts,
+        dict_of_expressions_that_use_symbol=dict_of_expressions_that_use_symbol,
+        dict_of_derivations_that_use_symbol=dict_of_derivations_that_use_symbol,
     )
 
 
@@ -3108,6 +3263,7 @@ def to_list_expressions():
 
     list_of_expression_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_expression_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "expression"
         )
@@ -3117,9 +3273,7 @@ def to_list_expressions():
     (
         symbols_per_expression,
         operations_per_expression,
-    ) = compute.symbols_and_operations_per_expression(
-        graphDB_Driver, list_of_expression_dicts
-    )
+    ) = compute.symbols_per_expression(graphDB_Driver, list_of_expression_dicts)
 
     dict_of_all_symbol_dicts = compute.get_dict_of_symbol_dicts(graphDB_Driver)
     # dict_of_all_operation_dicts = compute.get_dict_of_operation_dicts(graphDB_Driver)
@@ -3160,6 +3314,7 @@ def to_list_derivations():
     # https://neo4j.com/docs/python-manual/current/session-api/
     list_of_derivation_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_derivation_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "derivation"
         )
@@ -3171,6 +3326,7 @@ def to_list_derivations():
         print("derivation_dict", derivation_dict)
 
         with graphDB_Driver.session() as session:
+            query_start_time = time.time()
             list_of_steps = session.read_transaction(
                 neo4j_query.steps_in_this_derivation, derivation_dict["id"]
             )
@@ -3200,6 +3356,7 @@ def to_list_inference_rules():
 
     list_of_inference_rule_dicts = []
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         list_of_inference_rule_dicts = session.read_transaction(
             neo4j_query.list_nodes_of_type, "inference_rule"
         )
@@ -3223,41 +3380,6 @@ def to_list_inference_rules():
     )
 
 
-# @app.route("/list_all_nodes")
-# def to_list_all_nodes():
-#     """
-#     show all nodes
-#     """
-#     trace_id = str(random.randint(1000000, 9999999))
-#     print("[TRACE] func: app/to_list_all_nodes start " + trace_id)
-
-#     # https://neo4j.com/docs/python-manual/current/session-api/
-#     with graphDB_Driver.session() as session:
-#         dict_all_nodes = session.read_transaction(neo4j_query.all_nodes)
-
-#     print("dict_all_nodes", dict_all_nodes)
-
-#     print("[TRACE] func: app/to_list_all_nodes end " + trace_id)
-#     return render_template("list_all_nodes.html", dict_all_nodes=dict_all_nodes)
-
-
-# @app.route("/list_all_edges")
-# def to_list_all_edges():
-#     """
-#     show all edges
-#     """
-#     trace_id = str(random.randint(1000000, 9999999))
-#     print("[TRACE] func: app/to_list_all_edges start " + trace_id)
-
-#     # https://neo4j.com/docs/python-manual/current/session-api/
-
-#     with graphDB_Driver.session() as session:
-#         str_to_print = session.read_transaction(neo4j_query.all_edges)
-
-#     print("[TRACE] func: app/to_list_all_edges end " + trace_id)
-#     return str_to_print
-
-
 @app.route("/delete_all")
 def to_delete_graph_content():
     """
@@ -3270,6 +3392,7 @@ def to_delete_graph_content():
 
     # https://neo4j.com/docs/python-manual/current/session-api/
     with graphDB_Driver.session() as session:
+        query_start_time = time.time()
         str_to_print = session.write_transaction(
             neo4j_query.delete_all_nodes_and_relationships
         )
