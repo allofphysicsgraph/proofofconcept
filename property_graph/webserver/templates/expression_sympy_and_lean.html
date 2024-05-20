@@ -12,11 +12,16 @@
     <H2>Provide <a href="https://www.sympy.org/">SymPy</a> and <a href="https://github.com/leanprover/lean4">Lean</a></H2>
   </legend>
 
-  <form method="post" action="">
-  {{ form.csrf_token }}
 
-  <P><input type="submit" name="submit_button" value="update expressions">
+
+  <form method="post" action="" onsubmit="return checkForm(this);">
+    {{ form.csrf_token }}
+    <P>{{ form.sympy.label}}: {{ form.sympy(size=50, maxlength=1000) }}</P>
+    <P>{{ form.lean.label}}: {{ form.lean(size=50, maxlength=1000) }}</P>
+
+    <P><input type="submit" name="submit_button" value="update expressions"></P>
   </form>
+
 
 </fieldset>
 

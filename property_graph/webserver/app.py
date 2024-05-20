@@ -251,6 +251,27 @@ class SpecifyNewExpressionForm(FlaskForm):
     )
 
 
+class SpecifyNewSympyLeanForm(FlaskForm):
+    """
+    web form for user to provide SymPy and Lean vesions of expression
+
+    https://wtforms.readthedocs.io/en/2.3.x/validators/
+
+    the validators here need to also be present
+    in the HTML, otherwise the form validation fails
+    without a clear indicator to the HTML user
+    """
+
+    sympy = StringField(
+        "SymPy",
+        # validators=[validators.InputRequired(), validators.Length(min=5, max=1000)],
+    )
+    lean = StringField(
+        "Lean",
+        # validators=[validators.InputRequired(), validators.Length(min=5, max=10000)],
+    )
+
+
 class SpecifyNewSymbolDIRECTScalarForm(FlaskForm):
     """
     https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html
@@ -1615,12 +1636,27 @@ def to_add_symbol_scalar():
         list_of_dimension2ormore_symbol_dicts,
     ) = compute.split_symbol_categories(graphDB_Driver, query_time_dict)
 
+    (
+        dict_of_expressions_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_expressions_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_symbol_dicts
+    )
+    (
+        dict_of_derivations_that_use_symbol,
+        query_time_dict,
+    ) = compute.get_dict_of_derivations_that_use_symbol(
+        graphDB_Driver, query_time_dict, list_of_symbol_dicts
+    )
+
     print("[TRACE] func: app/to_add_symbol_scalar end " + trace_id)
     return render_template(
         "symbol_create_direct_scalar.html",
         query_time_dict=query_time_dict,
         form_symbol_properties=web_form_symbol_properties,
         list_of_dimension0_symbol_dicts=list_of_dimension0_symbol_dicts,
+        dict_of_expressions_that_use_symbol=dict_of_expressions_that_use_symbol,
+        dict_of_derivations_that_use_symbol=dict_of_derivations_that_use_symbol,
     )
 
 
@@ -2743,11 +2779,43 @@ def to_add_sympy_and_lean_for_latex_expression(expression_id: unique_numeric_id_
         ] = (time.time() - query_start_time)
     print("expression_dict=", expression_dict)
 
-    # TODO: use the right form
-    web_form_no_options = NoOptionsForm(request.form)
+    # TODO: provide a guess for the SymPy based on the Latex provided
+
+    # TODO: provide the symbol IDs to be used in the SymPy and Lean strings
+
+    web_form = SpecifyNewSympyLeanForm(request.form)
     if request.method == "POST":
         print("request.form = ", request.form)
-        # TODO
+
+        sympy = str(web_form.sympy.data).strip()
+        lean = str(web_form.lean.data).strip()
+
+        with graphDB_Driver.session() as session:
+            query_start_time = time.time()
+            list_of_inference_rule_dicts = session.write_transaction(
+                neo4j_query.edit_node_property,
+                "expression",
+                expression_id,
+                "sympy",
+                sympy,
+            )
+            query_time_dict[
+                "to_add_sympy_and_lean_for_latex_expression: edit_node_property, expression sympy"
+            ] = (time.time() - query_start_time)
+
+        with graphDB_Driver.session() as session:
+            query_start_time = time.time()
+            list_of_inference_rule_dicts = session.write_transaction(
+                neo4j_query.edit_node_property,
+                "expression",
+                expression_id,
+                "lean",
+                lean,
+            )
+            query_time_dict[
+                "to_add_sympy_and_lean_for_latex_expression: edit_node_property, expression lean"
+            ] = (time.time() - query_start_time)
+
         print(
             "[TRACE] func: app/to_add_sympy_and_lean_for_latex_expression start "
             + trace_id
@@ -2757,7 +2825,7 @@ def to_add_sympy_and_lean_for_latex_expression(expression_id: unique_numeric_id_
     return render_template(
         "expression_sympy_and_lean.html",
         query_time_dict=query_time_dict,
-        form=web_form_no_options,
+        form=web_form,
         expression_dict=expression_dict,
     )
 

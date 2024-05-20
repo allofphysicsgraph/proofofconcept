@@ -18,11 +18,17 @@
 
 <H1>List of Symbols</H1>
 
+Jump to <a href="#operation">operations</a>, 
+        <a href="#scalar">scalars</a>, 
+        <a href="#vector">vectors</a>, 
+        <a href="#matrix">matrices</a>, 
+        <a href="#action">generic action</a>.
+
 <P>The symbol ID links to a page where you can edit the symbol<BR>
 
 <fieldset>
 <legend>
-  <H2>There are {{ list_of_operation_dicts|length }} Operations, aka symbols that require arguments</h2>
+  <H2 id="operation">There are {{ list_of_operation_dicts|length }} Operations, aka symbols that require arguments</h2>
 </legend>
 
 <P>An Operation is a symbol that requires arguments, e.g., +, ^, determinant
@@ -38,7 +44,7 @@
 
 <fieldset>
 <legend>
-  <H2>There are {{ list_of_dimension0_symbol_dicts|length }} Scalars, aka symbols of dimension 0</h2>
+  <H2 id="scalar">There are {{ list_of_dimension0_symbol_dicts|length }} Scalars, aka symbols of dimension 0</h2>
 </legend>
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
@@ -53,7 +59,7 @@
 </fieldset>
 <fieldset>
 <legend>
-  <H2>There are {{ list_of_dimension1_symbol_dicts|length }} Vectors = symbols of dimension 1</h2>
+  <H2 id="vector">There are {{ list_of_dimension1_symbol_dicts|length }} Vectors = symbols of dimension 1</h2>
 </legend>
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
@@ -67,7 +73,7 @@
 </fieldset>
 <fieldset>
 <legend>
-  <H2>There are {{ list_of_dimension2ormore_symbol_dicts|length }} matricies = symbols of dimension 2 or more</h2>
+  <H2 id="matrix">There are {{ list_of_dimension2ormore_symbol_dicts|length }} matricies = symbols of dimension 2 or more</h2>
 </legend>
 
 <!-- https://www.w3schools.com/howto/howto_js_filter_lists.asp -->
@@ -82,7 +88,7 @@
 
 <fieldset>
 <legend>
-  <H2>Actions for Symbols</h2>
+  <H2 id="action">Actions for Symbols</h2>
 </legend>
 
   <P><a href="{{ url_for('to_add_symbol') }}?referrer=list_symbols">add new symbol</a> -- not clear which categorey; guide needed</P>

@@ -38,7 +38,8 @@ The proof-of-concept for all the initial objectives were completed during the Co
 - [ ] Adding content manually is burdensome. Find automations
 - [ ] Eliminate website errors
 - [ ] Enact testing of the backend software and the web UI.
-
+  * See <https://www.youtube.com/watch?v=RLKW7ZMJOf4> and <https://flask.palletsprojects.com/en/3.0.x/testing/> which use PyTest
+  * See <https://www.selenium.dev/selenium-ide/>
 
 # Licensing
 

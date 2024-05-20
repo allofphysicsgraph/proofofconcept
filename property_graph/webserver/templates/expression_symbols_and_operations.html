@@ -12,14 +12,15 @@
     <H2>Specify Symbols and Operations for Latex expression</H2>
   </legend>
 
+  <form method="post" action="">
+  {{ form.csrf_token }}
+
 {% for symbol_dict in list_of_symbol_dicts %}
 <UL>
-  <LI>{{ symbol_dict }}</LI>
+  <LI><input type="checkbox" name="{{ symbol_dict['id'] }}" value="{{ symbol_dict['id'] }}">{{ symbol_dict }}</LI>
 </UL>
 {% endfor %}
 
-  <form method="post" action="">
-  {{ form.csrf_token }}
 
   <P><input type="submit" name="submit_button" value="update expressions">
   </form>
