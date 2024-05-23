@@ -28,13 +28,34 @@ RUN apt-get update && \
                vim \
                python3 \
                python3-pip \
-               python3-dev && \
+               python3-dev \ 
+# documentation generation
+               python3-sphinx \
+# generate pictures of graphs using dot
+               graphviz \
+# generate pictures of expressions using latex
+               dvipng \
+# npm for mathjax
+               npm \
+# compile .tex to .dvi
+               texlive   && \
     if [ ! -e /usr/bin/python ]; then ln -sf python3 /usr/bin/python ; fi && \
     pip3 install --no-cache --upgrade pip setuptools wheel && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi
 
+# https://www.npmjs.com/package/mathjax
+RUN npm install mathjax@3
+#RUN npm install mathjax
+
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt
+
+# TODO: don't be root!
+
+RUN mkdir -p /code/static/mathjax
+RUN mv /code/node_modules/mathjax/es5 /code/static/mathjax
+
 EXPOSE 5000
 COPY . .
+
 CMD ["flask", "run"]
