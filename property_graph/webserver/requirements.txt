@@ -18,10 +18,9 @@ flake8
 pylint
 
 # step validation
-#sympy==1.5.1
+#sympy==1.12
 sympy
-#antlr4-python3-runtime==4.9.2
-antlr4-python3-runtime
+antlr4-python3-runtime==4.11
 
 # only necessary for localhost
 # from https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https
