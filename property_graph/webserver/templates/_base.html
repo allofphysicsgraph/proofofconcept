@@ -9,6 +9,14 @@
     <title>Welcome to the Physics Derivation Graph</title>
     {% endif %}
 
+    {% include '_js_head.html' %}
+
+    <meta property="og:type" content="website" /> <!-- https://ogp.me/#types -->
+    <meta property="og:site_name" content="Physics Derivation Graph" /> <!-- https://ogp.me/#optional -->
+
+    <!-- defines the default zoom for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   </head>
   <body>
   {% block content %}
@@ -21,6 +29,23 @@
 </UL>
 {% endfor %}
 
+<!-- https://flask.palletsprojects.com/en/2.0.x/patterns/flashing/ -->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% if messages|length > 1 %}
+    MESSAGES:
+    {% else %}
+    MESSAGE:
+    {% endif %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+  
+{% include '_footer.html' %}
   
   </body>
 </html>

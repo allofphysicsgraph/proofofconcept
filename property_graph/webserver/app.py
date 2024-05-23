@@ -39,6 +39,12 @@ See https://neo4j.com/developer/python/
 
 # Tips on using Cypher from Python
 - https://neo4j.com/docs/python-manual/current/cypher-workflow/
+
+****************************
+
+# convention: every call to flash must be either a string or the content must be wrapped in str()
+# reason: when content is passed to flash() that cannot be serialized, the Flask error and the website crashes
+
 """
 
 # TODO as of 2023-08-27: move neo4j queries into separate module
@@ -156,9 +162,9 @@ app.config["UPLOAD_FOLDER"] = (
     # the following folder on the host is accessible to both flask and neo4j
     "/scratch/dumping_grounds/"  # https://flask.palletsprojects.com/en/3.0.x/patterns/fileuploads/
 )
-app.config["SEND_FILE_MAX_AGE_DEFAULT"] = (
-    0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
-)
+app.config[
+    "SEND_FILE_MAX_AGE_DEFAULT"
+] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
 app.config["DEBUG"] = True
 
 
@@ -631,6 +637,29 @@ class NoOptionsForm(FlaskForm):
     """
 
     pass
+
+
+# @app.before_request
+# def before_request():
+#     """
+#     needed for "g.request_time()" to show page load latency
+
+#     TODO: this is referenced in _footer.html but doesn't work
+
+#     Note: this function need to be before almost all other functions
+
+#     tutorial: https://pythonise.com/series/learning-flask/python-before-after-request
+
+#     https://stackoverflow.com/questions/12273889/calculate-execution-time-for-every-page-in-pythons-flask
+#     actually, https://gist.github.com/lost-theory/4521102
+#     >>> before_request():
+#     """
+#     g.start = time.time()
+#     g.request_start_time = time.time()
+#     elapsed_time = lambda: "%.5f seconds" % (time.time() - g.request_start_time)
+#     # logger.debug("created elapsed_time function")
+#     g.request_time = elapsed_time
+#     return
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -1211,9 +1240,9 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     dict_of_symbol_dicts_not_in_expression = {}
     for this_symbol_id in dict_of_all_symbol_dicts.keys():
         if this_symbol_id not in dict_of_symbol_dicts_in_expression.keys():
-            dict_of_symbol_dicts_not_in_expression[this_symbol_id] = (
-                dict_of_all_symbol_dicts[this_symbol_id]
-            )
+            dict_of_symbol_dicts_not_in_expression[
+                this_symbol_id
+            ] = dict_of_all_symbol_dicts[this_symbol_id]
     print(
         "dict_of_symbol_dicts_not_in_expression=",
         dict_of_symbol_dicts_not_in_expression,

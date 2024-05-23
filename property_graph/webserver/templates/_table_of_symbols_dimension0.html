@@ -10,7 +10,7 @@
 {% endfor %}
 </ul>
 
-<table border="1" id="symbol_table">
+<table border="1" id="symbol_table" class="sortable">
   <tr>
     <th>ID</th>
     <th>latex</th>
@@ -22,13 +22,13 @@
     <th>used in derivation</th>
     <th>variable or constant</th>
     <th>reference</th>
-    <th>dimension: time</th>
-    <th>dimension: length</th>
-    <th>dimension: mass</th>
-    <th>dimension: electric charge</th>
-    <th>dimension: luminous intensity</th>
-    <th>dimension: amount of substance</th>
-    <th>dimension: temperature</th>
+    <th><small>dimension:</small> time</th>
+    <th><small>dimension:</small> length</th>
+    <th><small>dimension:</small> mass</th>
+    <th><small>dimension:</small> electric charge</th>
+    <th><small>dimension:</small> luminous intensity</th>
+    <th><small>dimension:</small> amount of substance</th>
+    <th><small>dimension:</small> temperature</th>
   </tr>
   {% for symbol_dict in list_of_dimension0_symbol_dicts %}
   <tr>
@@ -37,7 +37,8 @@
           {{ symbol_dict['id'] }}
       </a>
     </td>
-    <td>{{ symbol_dict['latex']}}</td>
+    <td>\({{ symbol_dict['latex']}}\)<BR>
+          {{ symbol_dict['latex']}}</td>
     <td>{{ symbol_dict['name_latex'] }}</td>
     <td>{{ symbol_dict['description_latex'] }}</td>
     <td>{{ symbol_dict['scope'] }}</td>

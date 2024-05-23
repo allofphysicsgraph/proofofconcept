@@ -10,7 +10,7 @@
 {% endfor %}
 </ul>
 
-<table border="1" id="symbol_table">
+<table border="1" id="symbol_table" class="sortable">
   <tr>
     <th>ID</th>
     <th>latex</th>
@@ -30,7 +30,8 @@
           {{ symbol_dict['id'] }}
       </a>
     </td>
-    <td>{{ symbol_dict['latex']}}</td>
+    <td>\({{ symbol_dict['latex']}}\)<BR>
+          {{ symbol_dict['latex']}}</td>
     <td>{{ symbol_dict['name_latex'] }}</td>
     <td>{{ symbol_dict['description_latex'] }}</td>
     <td>{{ symbol_dict['orientation'] }}</td>

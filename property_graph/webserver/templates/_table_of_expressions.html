@@ -8,7 +8,7 @@
 {% endfor %}
 </ul>
 
-<table border="1" id="expression_table">
+<table border="1" id="expression_table" class="sortable">
   <tr>
     <th>ID</th>
     <th>latex</th>
@@ -27,7 +27,8 @@
           {{ expression_dict['id'] }}
       </a>
     </td>
-    <td>{{ expression_dict['latex'] }}</td>
+    <td>\({{ expression_dict['latex'] }}\)<BR>
+          {{ expression_dict['latex'] }}</td>
     <td>{{ expression_dict['name_latex'] }}</td>
     <td>{{ expression_dict['description_latex'] }}</td>
     <td>TODO</td> <!-- derivation -->

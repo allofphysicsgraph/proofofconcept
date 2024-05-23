@@ -52,9 +52,9 @@ def get_dict_of_expressions_that_use_symbol(
             query_time_dict[
                 "get_dict_of_expressions_that_use_symbol: expressions_that_use_symbol"
             ] = (time.time() - query_start_time)
-        dict_of_expressions_that_use_symbol[this_symbol_dict["id"]] = (
-            list_of_expression_dicts
-        )
+        dict_of_expressions_that_use_symbol[
+            this_symbol_dict["id"]
+        ] = list_of_expression_dicts
     return dict_of_expressions_that_use_symbol, query_time_dict
 
 
@@ -71,9 +71,9 @@ def get_dict_of_derivations_that_use_symbol(
             query_time_dict[
                 "get_dict_of_derivations_that_use_symbol: derivations_that_use_symbol"
             ] = (time.time() - query_start_time)
-        dict_of_derivations_that_use_symbol[this_symbol_dict["id"]] = (
-            list_of_derivation_dicts
-        )
+        dict_of_derivations_that_use_symbol[
+            this_symbol_dict["id"]
+        ] = list_of_derivation_dicts
     return dict_of_derivations_that_use_symbol, query_time_dict
 
 
@@ -200,9 +200,9 @@ def get_dict_of_derivations_used_per_inference_rule(
         for derivation_id, derivation_dict in new_temp_dict.items():
             list_of_derivations_that_use_this_inference_rule_id.append(derivation_dict)
 
-        dict_of_derivations_used_per_inference_rule[this_inference_rule_dict["id"]] = (
-            list_of_derivations_that_use_this_inference_rule_id
-        )
+        dict_of_derivations_used_per_inference_rule[
+            this_inference_rule_dict["id"]
+        ] = list_of_derivations_that_use_this_inference_rule_id
     return dict_of_derivations_used_per_inference_rule
 
 
@@ -224,9 +224,9 @@ def symbols_per_expression(
                 neo4j_query.symbols_in_expression, this_expression_dict["id"]
             )
             query_time_dict["symbols_per_expression"] = time.time() - query_start_time
-        symbols_per_expression[this_expression_dict["id"]] = (
-            list_of_symbol_IDs_in_expression
-        )
+        symbols_per_expression[
+            this_expression_dict["id"]
+        ] = list_of_symbol_IDs_in_expression
 
     print("[TRACE] func: app/symbols_per_expression end " + trace_id)
     return symbols_per_expression, query_time_dict
