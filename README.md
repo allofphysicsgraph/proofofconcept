@@ -1,6 +1,3 @@
-
-This repo is the source code for the website <https://derivationmap.net/>, aka <https://allofphysics.com>.
-
 The Physics Derivation Graph focuses on the following:
 * Claim: a finite static directed graph exists which describes all of mathematical Physics. 
 * Claim: the graph representation is machine parsable
@@ -33,7 +30,7 @@ The proof-of-concept for all the initial objectives were completed during the Co
 
 ## Current unmet objectives
 
-- [ ] Use a property graph (e.g., Neo4j) and enable users to query the graph. Status: underway as of May 2024
+- [ ] Use a property graph (e.g., Neo4j) and enable users to query the graph. Status: underway as of May 2024. See <
 - [ ] Adapt visualizations to the new property graph database
 - [ ] Adding content manually is burdensome. Find automations
 - [ ] Eliminate website errors
@@ -46,25 +43,17 @@ The proof-of-concept for all the initial objectives were completed during the Co
 
 [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
 
-# Software Requirements
 
-* Docker
-* a web browser
 
-# How to use (for the impatient)
-
-    git clone https://github.com/allofphysicsgraph/proofofconcept.git
-    cd proofofconcept/v7_pickle_web_interface/flask/
-    docker build -t flask_ub .
-    docker run -it --rm -v`pwd`/data.json:/home/appuser/app/data.json \
-               -v`pwd`/logs/:/home/appuser/app/logs/ \
-               --publish 5000:5000 flask_ub
-
-See [developer documentation](https://derivationmap.net/developer_documentation?referrer=github_README) after reading the [user documentation](https://derivationmap.net/user_documentation)
 
 # a small derivation
 
 ![Physics derivation graph: integration by parts](https://derivationmap.net/static/derivation_000009_baa130c08a240e5ea9a5abe53425377d.png)
+
+# Aspirational web interface:
+<http://www.apcjones.com/arrows/> and <https://arrows.app/>
+
+
 
 # Contributing
 
