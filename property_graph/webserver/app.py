@@ -162,9 +162,9 @@ app.config["UPLOAD_FOLDER"] = (
     # the following folder on the host is accessible to both flask and neo4j
     "/scratch/dumping_grounds/"  # https://flask.palletsprojects.com/en/3.0.x/patterns/fileuploads/
 )
-app.config[
-    "SEND_FILE_MAX_AGE_DEFAULT"
-] = 0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = (
+    0  # https://stackoverflow.com/questions/34066804/disabling-caching-in-flask
+)
 app.config["DEBUG"] = True
 
 
@@ -663,7 +663,7 @@ class NoOptionsForm(FlaskForm):
 
 
 @app.route("/", methods=["GET", "POST"])
-def main():
+def main() -> str:
     """
     initial page
 
@@ -800,7 +800,7 @@ def main():
 
 
 @app.route("/new_derivation", methods=["GET", "POST"])
-def to_add_derivation():
+def to_add_derivation() -> str:
     """
     create new derivation
     user provides deritivation name and abstract
@@ -905,7 +905,7 @@ def to_add_derivation():
 
 
 @app.route("/review_derivation/<derivation_id>", methods=["GET", "POST"])
-def to_review_derivation(derivation_id: unique_numeric_id_as_str):
+def to_review_derivation(derivation_id: unique_numeric_id_as_str) -> str:
     """
     options from this page:
     * add step to existing derivation
@@ -999,7 +999,7 @@ def to_review_derivation(derivation_id: unique_numeric_id_as_str):
 
 
 @app.route("/select_step/<derivation_id>/", methods=["GET", "POST"])
-def to_select_step(derivation_id: unique_numeric_id_as_str):
+def to_select_step(derivation_id: unique_numeric_id_as_str) -> str:
     """
     User wants to delete step or edit step
     """
@@ -1053,7 +1053,7 @@ def to_select_step(derivation_id: unique_numeric_id_as_str):
 
 
 @app.route("/edit_derivation_metadata/<derivation_id>/", methods=["GET", "POST"])
-def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
+def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str) -> str:
     """ """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_derivation_metadata start " + trace_id)
@@ -1110,7 +1110,7 @@ def to_edit_derivation_metadata(derivation_id: unique_numeric_id_as_str):
 
 
 @app.route("/new_step_select_inference_rule/<derivation_id>/", methods=["GET", "POST"])
-def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
+def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str) -> str:
     """
     add new step to existing derivation
 
@@ -1187,7 +1187,7 @@ def to_add_step_select_inference_rule(derivation_id: unique_numeric_id_as_str):
 
 
 @app.route("/edit_expression/<expression_id>", methods=["GET", "POST"])
-def to_edit_expression(expression_id: unique_numeric_id_as_str):
+def to_edit_expression(expression_id: unique_numeric_id_as_str) -> str:
     """
     novel expression
     """
@@ -1240,9 +1240,9 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
     dict_of_symbol_dicts_not_in_expression = {}
     for this_symbol_id in dict_of_all_symbol_dicts.keys():
         if this_symbol_id not in dict_of_symbol_dicts_in_expression.keys():
-            dict_of_symbol_dicts_not_in_expression[
-                this_symbol_id
-            ] = dict_of_all_symbol_dicts[this_symbol_id]
+            dict_of_symbol_dicts_not_in_expression[this_symbol_id] = (
+                dict_of_all_symbol_dicts[this_symbol_id]
+            )
     print(
         "dict_of_symbol_dicts_not_in_expression=",
         dict_of_symbol_dicts_not_in_expression,
@@ -1364,7 +1364,7 @@ def to_edit_expression(expression_id: unique_numeric_id_as_str):
 
 
 @app.route("/new_expression/", methods=["GET", "POST"])
-def to_add_expression():
+def to_add_expression() -> str:
     """
     novel expression
     """
@@ -1442,7 +1442,7 @@ def to_add_expression():
 
 
 @app.route("/edit_operation/<operation_id>", methods=["GET", "POST"])
-def to_edit_operation(operation_id: unique_numeric_id_as_str):
+def to_edit_operation(operation_id: unique_numeric_id_as_str) -> str:
     """
     edit operation
     """
@@ -1501,7 +1501,7 @@ def to_edit_operation(operation_id: unique_numeric_id_as_str):
 
 
 @app.route("/edit_symbol/<symbol_id>", methods=["GET", "POST"])
-def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
+def to_edit_symbol(symbol_id: unique_numeric_id_as_str) -> str:
     """
     edit symbol
 
@@ -1580,7 +1580,7 @@ def to_edit_symbol(symbol_id: unique_numeric_id_as_str):
 
 
 @app.route("/new_symbol_scalar/", methods=["GET", "POST"])
-def to_add_symbol_scalar():
+def to_add_symbol_scalar() -> str:
     """
     novel scalar symbol
     """
@@ -1690,7 +1690,7 @@ def to_add_symbol_scalar():
 
 
 @app.route("/new_symbol_vector/", methods=["GET", "POST"])
-def to_add_symbol_vector():
+def to_add_symbol_vector() -> str:
     """
     novel symbol
     """
@@ -1771,7 +1771,7 @@ def to_add_symbol_vector():
 
 
 @app.route("/new_symbol_matrix/", methods=["GET", "POST"])
-def to_add_symbol_matrix():
+def to_add_symbol_matrix() -> str:
     """
     novel symbol
     """
@@ -1852,7 +1852,7 @@ def to_add_symbol_matrix():
 
 
 @app.route("/new_symbol/", methods=["GET", "POST"])
-def to_add_symbol():
+def to_add_symbol() -> str:
     """
     novel symbol
     """
@@ -1960,7 +1960,7 @@ def to_add_symbol():
 
 
 @app.route("/new_symbol_required_argument_count/<symbol_id>", methods=["GET", "POST"])
-def to_add_symbol_required_argument_count(symbol_id: unique_numeric_id_as_str):
+def to_add_symbol_required_argument_count(symbol_id: unique_numeric_id_as_str) -> str:
     """
     novel symbol: how many arguments?
     see https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html
@@ -2323,7 +2323,7 @@ def to_add_symbol_dimension0_properties(symbol_id: unique_numeric_id_as_str):
 
 
 @app.route("/new_symbol_dimension1_properties/<symbol_id>", methods=["GET", "POST"])
-def to_add_symbol_dimension1_properties(symbol_id: unique_numeric_id_as_str):
+def to_add_symbol_dimension1_properties(symbol_id: unique_numeric_id_as_str) -> str:
     """
 
     see https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html
@@ -2362,7 +2362,7 @@ def to_add_symbol_dimension1_properties(symbol_id: unique_numeric_id_as_str):
 
 
 @app.route("/new_symbol_dimension2_properties/<symbol_id>", methods=["GET", "POST"])
-def to_add_symbol_dimension2_properties(symbol_id: unique_numeric_id_as_str):
+def to_add_symbol_dimension2_properties(symbol_id: unique_numeric_id_as_str) -> str:
     """
 
     see https://physicsderivationgraph.blogspot.com/2024/05/distinguishing-scalars-vectors-and.html
@@ -2401,7 +2401,7 @@ def to_add_symbol_dimension2_properties(symbol_id: unique_numeric_id_as_str):
 
 
 @app.route("/new_operation/", methods=["GET", "POST"])
-def to_add_operation():
+def to_add_operation() -> str:
     """
     novel operation
     """
@@ -2489,7 +2489,7 @@ def to_add_operation():
 )
 def to_add_step_select_expressions(
     derivation_id: unique_numeric_id_as_str, inference_rule_id: unique_numeric_id_as_str
-):
+) -> str:
     """
     derivation_id is the numeric ID of the derivation being edited
 
@@ -2647,7 +2647,7 @@ def to_add_step_select_expressions(
 )
 def to_add_symbol_count_for_expression(
     expression_id: unique_numeric_id_as_str,
-):
+) -> str:
     """
     derivation_id is the numeric ID of the derivation being edited
     """
@@ -2691,9 +2691,16 @@ def to_add_symbol_count_for_expression(
 )
 def to_add_symbols_and_operations_for_expression(
     expression_id: unique_numeric_id_as_str,
-):
+) -> str:
     """
-    derivation_id is the numeric ID of the derivation being edited
+    expression_id is the numeric ID of the expression
+
+    This step comes immediately after the Latex expression is provided.
+
+    Although Latex-to-SymPy could be performed after the Latex is provided,
+    sometimes the symbols used in the latex inhibit converstion to Latex.
+    For example,
+    r_{\rm Earth} = 6
     """
     trace_id = str(random.randint(1000000, 9999999))
     print(
@@ -2788,7 +2795,9 @@ def to_add_symbols_and_operations_for_expression(
 
 
 @app.route("/sympy_and_latex_for_step/<expression_id>", methods=["GET", "POST"])
-def to_add_sympy_and_lean_for_latex_expression(expression_id: unique_numeric_id_as_str):
+def to_add_sympy_and_lean_for_latex_expression(
+    expression_id: unique_numeric_id_as_str,
+) -> str:
     """
     derivation_id is the numeric ID of the derivation being edited
     """
@@ -2860,7 +2869,7 @@ def to_add_sympy_and_lean_for_latex_expression(expression_id: unique_numeric_id_
 
 
 @app.route("/new_inference_rule/", methods=["GET", "POST"])
-def to_add_inference_rule():
+def to_add_inference_rule() -> str:
     """
     create inference rule
 
@@ -2969,7 +2978,7 @@ def to_add_inference_rule():
 @app.route("/edit_step/<derivation_id>/<step_id>", methods=["GET", "POST"])
 def to_edit_step(
     derivation_id: unique_numeric_id_as_str, step_id: unique_numeric_id_as_str
-):
+) -> str:
     """ """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_step start " + trace_id)
@@ -3018,7 +3027,7 @@ def to_edit_step(
 
 
 @app.route("/edit_inference_rule/<inference_rule_id>", methods=["GET", "POST"])
-def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
+def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str) -> str:
     """ """
     trace_id = str(random.randint(1000000, 9999999))
     print("[TRACE] func: app/to_edit_inference_rule start " + trace_id)
@@ -3159,7 +3168,7 @@ def to_edit_inference_rule(inference_rule_id: unique_numeric_id_as_str):
 
 
 @app.route("/query", methods=["GET", "POST"])
-def to_query():
+def to_query() -> str:
     """
     page for submitting Cypher queries
     """
@@ -3285,7 +3294,7 @@ def to_query():
 
 
 @app.route("/list_operations", methods=["GET", "POST"])
-def to_list_operations():
+def to_list_operations() -> str:
     """
     >>> to_list_operations()
     """
@@ -3332,7 +3341,7 @@ def to_list_operations():
 
 
 @app.route("/list_symbols", methods=["GET", "POST"])
-def to_list_symbols():
+def to_list_symbols() -> str:
     """
     >>> to_list_symbols()
     """
@@ -3377,7 +3386,7 @@ def to_list_symbols():
 
 
 @app.route("/list_expressions", methods=["GET", "POST"])
-def to_list_expressions():
+def to_list_expressions() -> str:
     """
     >>> to_list_expressions()
     """
@@ -3416,7 +3425,7 @@ def to_list_expressions():
 
 
 @app.route("/list_derivations", methods=["GET", "POST"])
-def to_list_derivations():
+def to_list_derivations() -> str:
     """
     this page is a gateway for the task "which existing derivation to edit?"
 
@@ -3471,7 +3480,7 @@ def to_list_derivations():
 
 
 @app.route("/list_inference_rules")
-def to_list_inference_rules():
+def to_list_inference_rules() -> str:
     """
     >>> to_show_all_inference_rules()
     """
@@ -3506,7 +3515,7 @@ def to_list_inference_rules():
 
 
 @app.route("/delete_all")
-def to_delete_graph_content():
+def to_delete_graph_content() -> str:
     """
     https://neo4j.com/docs/cypher-manual/current/clauses/delete/
     https://neo4j.com/developer/kb/large-delete-transaction-best-practices-in-neo4j/
@@ -3527,7 +3536,7 @@ def to_delete_graph_content():
 
 
 @app.route("/export_to_json")
-def to_export_json():
+def to_export_json() -> str:
     """
     TODO: export "graph to JSON" as file via web interface
     """
@@ -3547,7 +3556,7 @@ def to_export_json():
 
 
 @app.route("/export_to_cypher")
-def to_export_cypher():
+def to_export_cypher() -> str:
     """
     TODO: export "graph to CYPHER" as file via web interface
 

@@ -52,9 +52,9 @@ def get_dict_of_expressions_that_use_symbol(
             query_time_dict[
                 "get_dict_of_expressions_that_use_symbol: expressions_that_use_symbol"
             ] = (time.time() - query_start_time)
-        dict_of_expressions_that_use_symbol[
-            this_symbol_dict["id"]
-        ] = list_of_expression_dicts
+        dict_of_expressions_that_use_symbol[this_symbol_dict["id"]] = (
+            list_of_expression_dicts
+        )
     return dict_of_expressions_that_use_symbol, query_time_dict
 
 
@@ -71,9 +71,9 @@ def get_dict_of_derivations_that_use_symbol(
             query_time_dict[
                 "get_dict_of_derivations_that_use_symbol: derivations_that_use_symbol"
             ] = (time.time() - query_start_time)
-        dict_of_derivations_that_use_symbol[
-            this_symbol_dict["id"]
-        ] = list_of_derivation_dicts
+        dict_of_derivations_that_use_symbol[this_symbol_dict["id"]] = (
+            list_of_derivation_dicts
+        )
     return dict_of_derivations_that_use_symbol, query_time_dict
 
 
@@ -200,9 +200,9 @@ def get_dict_of_derivations_used_per_inference_rule(
         for derivation_id, derivation_dict in new_temp_dict.items():
             list_of_derivations_that_use_this_inference_rule_id.append(derivation_dict)
 
-        dict_of_derivations_used_per_inference_rule[
-            this_inference_rule_dict["id"]
-        ] = list_of_derivations_that_use_this_inference_rule_id
+        dict_of_derivations_used_per_inference_rule[this_inference_rule_dict["id"]] = (
+            list_of_derivations_that_use_this_inference_rule_id
+        )
     return dict_of_derivations_used_per_inference_rule
 
 
@@ -224,9 +224,9 @@ def symbols_per_expression(
                 neo4j_query.symbols_in_expression, this_expression_dict["id"]
             )
             query_time_dict["symbols_per_expression"] = time.time() - query_start_time
-        symbols_per_expression[
-            this_expression_dict["id"]
-        ] = list_of_symbol_IDs_in_expression
+        symbols_per_expression[this_expression_dict["id"]] = (
+            list_of_symbol_IDs_in_expression
+        )
 
     print("[TRACE] func: app/symbols_per_expression end " + trace_id)
     return symbols_per_expression, query_time_dict
@@ -312,3 +312,60 @@ def all_steps_in_derivation(
         }
     print("[TRACE] func: app/all_steps_in_derivation end " + trace_id)
     return all_steps, query_time_dict
+
+
+def remove_latex_presention_markings(latex_str: str) -> str:
+    """
+    clean the latex string
+    
+    based on the struggle with spacing,
+    https://github.com/sympy/sympy/issues/19075#issuecomment-633643570
+    BHP realized removing the presentation-related aspects would make the task for Sympy easier
+
+    >>> remove_latex_presention_markings('a\\ b = c')
+    'a b = c'
+    """
+    trace_id = str(random.randint(1000000, 9999999))
+    print("[TRACE] func: compute/remove_latex_presention_markings start " + trace_id)
+
+    print("latex to be cleaned: " + latex_str)
+
+    if "\\left." in latex_str:
+        latex_str = latex_str.replace("\\left.", "")
+    if "\\right." in latex_str:
+        latex_str = latex_str.replace("\\right.", "")
+    if "\\left|" in latex_str:
+        latex_str = latex_str.replace("\\left|", "|")
+    if "\\right|" in latex_str:
+        latex_str = latex_str.replace("\\right|", "|")
+    if "\\left(" in latex_str:
+        latex_str = latex_str.replace("\\left(", "(")
+    if "\\right)" in latex_str:
+        latex_str = latex_str.replace("\\right)", ")")
+    if "\\," in latex_str:
+        logger.debug("found space \\,")
+        latex_str = latex_str.replace("\\,", " ")  # thinspace
+    if "\\ " in latex_str:
+        logger.debug("found space \\ ")
+        latex_str = latex_str.replace("\\ ", " ")
+    if "\\;" in latex_str:
+        logger.debug("found space \\;")
+        latex_str = latex_str.replace("\\;", " ")  # thick space
+    if "\\:" in latex_str:
+        logger.debug("found space \\:")
+        latex_str = latex_str.replace("\\:", " ")  # medium space
+    if "\\!" in latex_str:
+        logger.debug("found space \\!")
+        latex_str = latex_str.replace("\\!", " ")  # negative space
+    if "\\;" in latex_str:
+        logger.debug("found space \\ ")
+        latex_str = latex_str.replace("\\ ", " ")
+    if "\\quad" in latex_str:
+        logger.debug("found space \\quad")
+        latex_str = latex_str.replace("\\quad", " ")
+    if "\\qquad" in latex_str:
+        logger.debug("found space \\qquad")
+        latex_str = latex_str.replace("\\qquad", " ")
+
+    print("[TRACE] func: compute/remove_latex_presention_markings end " + trace_id)
+    return latex_str

@@ -1,0 +1,17 @@
+****************************
+2024-05-24
+
+
+****************************
+2024-05-24
+
+In the v7 JSON implementation, the only way to create a new expression was to have the expression be associated with a specific derivation in a (new) step. The intent of this was to ensure there were no unconnected expressions. As a positive side-effect, associating a new expression with a derivation helped with guessing the symbols.
+
+In the new 2024 design, expressions can not be created during the specification of a derivation step. 
+Now an expression has to be created prior to being referenced in a step. The value of separating these actions is that the interaction with the user is easier when processing one expression (rather than a bunch concurrently all related to the step).
+Two consequences from this approach:
+- guessing the symbols lacks context of a derivation
+- expressions may be unconnected to a derivation step
+
+Interestingly, in the v7 JSON implementation a user could add new symbols that were not referenced by any expression.
+

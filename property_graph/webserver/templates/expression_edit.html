@@ -39,7 +39,8 @@ or return to <a href="{{ url_for('to_list_expressions') }}?referrer=expession_ed
           {{ symbol_id }}
       </a>
     </td>
-    <td>{{ symbol_dict['latex']}}</td>
+    <td>{{ symbol_dict['latex']}}<BR>
+      \({{ symbol_dict['latex']}}\)</td>
     <td>{{ symbol_dict['name_latex'] }}</td>
     <td>{{ symbol_dict['description_latex'] }}</td>
     <td>{{ symbol_dict['symbol_reference'] }}</td>

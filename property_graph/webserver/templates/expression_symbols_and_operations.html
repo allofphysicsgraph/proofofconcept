@@ -5,19 +5,19 @@
   Return to <a href="{{ url_for('main') }}?referrer=edit_step">main page</a>
 </P>
 
-{{ expression_dict }}
-
 <fieldset>
   <legend>
     <H2>Specify Symbols and Operations for Latex expression</H2>
   </legend>
+
+<H3>{{ expression_dict['latex'] }}</H3>
 
   <form method="post" action="">
   {{ form.csrf_token }}
 
 {% for symbol_dict in list_of_symbol_dicts %}
 <UL>
-  <LI><input type="checkbox" name="{{ symbol_dict['id'] }}" value="{{ symbol_dict['id'] }}">{{ symbol_dict }}</LI>
+  <LI><input type="checkbox" name="{{ symbol_dict['id'] }}" value="{{ symbol_dict['id'] }}">\({{ symbol_dict['latex'] }}\), aka {{ symbol_dict['latex'] }}<BR>{{ symbol_dict }}</LI>
 </UL>
 {% endfor %}
 

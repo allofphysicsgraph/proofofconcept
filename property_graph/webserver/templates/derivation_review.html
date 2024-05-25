@@ -33,21 +33,21 @@
     <td>{% for m_dict in step_dict['list of input IDs'] %}
       <OL>
         <LI><a href="{{ url_for('to_edit_expression', expression_id=m_dict['m']['id']) }}">{{m_dict['m']['id']}}</a><BR>
-        {{ m_dict['m'] }}</LI>
+        \({{ m_dict['m']['latex'] }}\)</LI>
       </OL>
         {% endfor %}
     </td>
     <td>{% for m_dict in step_dict['list of feed IDs'] %}
       <OL>
         <LI><a href="{{ url_for('to_edit_expression', expression_id=m_dict['m']['id']) }}">{{m_dict['m']['id']}}</a><BR>
-        {{ m_dict['m'] }}</LI>
+        \({{ m_dict['m']['latex'] }}\)</LI>
       </OL>
         {% endfor %}
     </td>
     <td>{% for m_dict in step_dict['list of output IDs'] %}
       <OL>
         <LI><a href="{{ url_for('to_edit_expression', expression_id=m_dict['m']['id']) }}">{{m_dict['m']['id']}}</a><BR>
-        {{ m_dict['m'] }}</LI>
+        \({{ m_dict['m']['latex'] }}\)</LI>
       </OL>
         {% endfor %}
     </td>
