@@ -30,8 +30,8 @@ The proof-of-concept for all the initial objectives were completed during the Co
 
 ## Current unmet objectives
 
-- [ ] Use a property graph (e.g., Neo4j) and enable users to query the graph. Status: underway as of May 2024. See <
-- [ ] Adapt visualizations to the new property graph database
+- [x] Use a property graph (e.g., Neo4j) and enable users to query the graph. Status: underway as of May 2024. See <
+- [x] Adapt visualizations to the new property graph database
 - [ ] Adding content manually is burdensome. Find automations
 - [ ] Eliminate website errors
 - [ ] Enact testing of the backend software and the web UI.
